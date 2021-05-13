@@ -1,0 +1,116 @@
+.ms-icon-computer-personal::after {
+  content: '\01F4BB'; }
+.ms-icon-computer-personal-old::after {
+  content: '\01F5B3'; }
+.ms-icon-computer-desktop::after {
+  content: '\01F5A5'; }
+.ms-icon-keyboard-mouse::after {
+  content: '\01F5A6'; }
+.ms-icon-three-networked-computers::after, .ms-icon-lan::after, .ms-icon-network::after {
+  content: '\01F5A6'; }
+.ms-icon-printer::after {
+  content: '\01F5A8'; }
+.ms-icon-pocket-calculator::after {
+  content: '\01F5A9'; }
+.ms-icon-black-hard-shell-floppy-disk::after {
+  content: '\01F5AA'; }
+.ms-icon-white-hard-shell-floppy-disk::after {
+  content: '\01F5AB'; }
+
+.ms-icon-boy::after {
+  content: '\01F466'; }
+.ms-icon-girl::after {
+  content: '\01F467'; }
+.ms-icon-man::after {
+  content: '\01F468'; }
+.ms-icon-woman::after {
+  content: '\01F469'; }
+.ms-icon-family::after {
+  content: '\01F46A'; }
+.ms-icon-friendship-man-woman::after {
+  content: '\01F46B'; }
+.ms-icon-friendship-man::after {
+  content: '\01F46C'; }
+.ms-icon-friendship-women::after {
+  content: '\01F46D'; }
+.ms-icon-police-officer::after {
+  content: '\01F46E'; }
+.ms-icon-woman-with-bunny-ears::after {
+  content: '\01F46F'; }
+
+/*blocks*/
+.ms-icon-aegean-word-separator-line::after {
+  content: '\010100'; }
+.ms-icon-aegean-word-separator-dot::after {
+  content: '\010101'; }
+.ms-icon-aegean-check-mark::after {
+  content: '\010102'; }
+.ms-icon-aegean-number-one::after {
+  content: '\010107'; }
+.ms-icon-aegean-number-two::after {
+  content: '\010108'; }
+.ms-icon-aegean-number-three::after {
+  content: '\010109'; }
+.ms-icon-aegean-number-four::after {
+  content: '\01010A'; }
+.ms-icon-aegean-number-five::after {
+  content: '\01010B'; }
+.ms-icon-aegean-number-six::after {
+  content: '\01010C'; }
+.ms-icon-aegean-number-seven::after {
+  content: '\01010D'; }
+.ms-icon-aegean-number-eight::after {
+  content: '\01010E'; }
+.ms-icon-aegean-number-nine::after {
+  content: '\01010F'; }
+
+/**
+* categories
+* ref : https://graphemica.com/categories/
+* blocks
+* ref : https://graphemica.com/blocks/
+*/
+.ms-icon {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit; }
+  .ms-icon-exclamation-mark::after {
+    content: '\000021'; }
+  .ms-icon-quotation-mark::after {
+    content: '\000022'; }
+  .ms-icon-number-sign::after {
+    content: '\000023'; }
+  .ms-icon-telephone::after {
+    content: '\002706'; }
+  .ms-icon-write::after {
+    content: '\00270D'; }
+  .ms-icon-victory-hand::after {
+    content: '\00270C'; }
+  .ms-icon-envelope::after {
+    content: '\002709'; }
+  .ms-icon-airplane::after {
+    content: '\002708'; }
+  .ms-icon-tape-drive::after {
+    content: '\002707'; }
+  .ms-icon-white-scissors::after {
+    content: '\002704'; }
+  .ms-icon-black-scissors::after {
+    content: '\002702'; }
+  .ms-icon-upper-blade-scissors::after {
+    content: '\002701'; }
+  .ms-icon-white-flag-with-horizontal-middle-black-stripe::after {
+    content: '\0026FF'; }
+  .ms-icon-credit-card::after {
+    content: '\01F4B3'; }
+  .ms-icon-mathematical-sans-serif-bold-small-f::after {
+    content: '\01D5F3'; }
+  .ms-icon-user::after {
+    content: '\01F464'; }
+  .ms-icon-user-group::after {
+    content: '\01F465'; }
+  .ms-icon-trash::after {
+    content: '\01F5D1'; }
+  .ms-icon-search::after {
+    content: '\01F50D'; }
+
+/*# sourceMappingURL=icons.css.map */

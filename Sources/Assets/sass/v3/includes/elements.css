@@ -1,0 +1,66 @@
+/* src/assets/scss/lib.scss */
+/*colors */
+/*ranges */
+.input-control {
+  width: 100% !important;
+  font-size: 16px;
+  padding: 10px 15px;
+  margin: 4px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  -webkit-border-radius: 4px;
+  border-radius: 4px; }
+
+.input-control:disabled, .input-control:disabled:hover {
+  color: #ffffff;
+  background: #d3d3d3;
+  border: 1px solid #d3d3d3; }
+
+.input-control-padding-low {
+  padding: 5px 8px; }
+
+.input-control:hover {
+  border: 1px solid #0777cc; }
+
+.input-box-bottom-border-only {
+  width: 100%;
+  font-size: 15px;
+  padding: 2px;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 2px dotted #789; }
+
+.input-group {
+  display: table;
+  border-collapse: collapse;
+  width: 100%; }
+
+.input-group > div {
+  display: table-cell;
+  vertical-align: middle; }
+
+.input-group-icon {
+  background: #eee;
+  color: #777;
+  padding: 0 12px; }
+
+.input-group-area {
+  width: 100%; }
+
+.input-group input {
+  display: inline-block;
+  width: 100%;
+  border-radius: 4px; }
+
+.input-group .buttonBox input {
+  padding: 0 20px;
+  text-align: center;
+  text-decoration: none;
+  font: bold 15px/36px Arial, sans-serif; }
+
+label {
+  font-size: 15px;
+  font-weight: 400; }
+
+/*# sourceMappingURL=element-%20all.css.map */

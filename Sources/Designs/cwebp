@@ -1,0 +1,3 @@
+$ cwebp -q 60 Cute-Baby-Girl.png -o Cute-Baby-Girl.webp
+OR
+$ ./cwebp -q 60 Cute-Baby-Girl.png -o Cute-Baby-Girl.webp

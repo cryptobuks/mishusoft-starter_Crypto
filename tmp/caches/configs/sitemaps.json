@@ -1,0 +1,52 @@
+[
+  {
+    "url": "",
+    "changefreq": "always",
+    "priority": "1.0"
+  },
+  {
+    "url": "company/about",
+    "changefreq": "always",
+    "priority": "1.0"
+  },
+  {
+    "url": "company/achivements",
+    "changefreq": "always",
+    "priority": "1.0"
+  },
+  {
+    "url": "company/clients",
+    "changefreq": "always",
+    "priority": "1.0"
+  },
+  {
+    "url": "company/contact",
+    "changefreq": "always",
+    "priority": "1.0"
+  },
+  {
+    "url": "company/photos",
+    "changefreq": "always",
+    "priority": "1.0"
+  },
+  {
+    "url": "company/policy",
+    "changefreq": "always",
+    "priority": "1.0"
+  },
+  {
+    "url": "company/services",
+    "changefreq": "always",
+    "priority": "1.0"
+  },
+  {
+    "url": "company/terms",
+    "changefreq": "always",
+    "priority": "1.0"
+  },
+  {
+    "url": "company/why",
+    "changefreq": "always",
+    "priority": "1.0"
+  }
+]

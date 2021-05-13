@@ -1,0 +1,23 @@
+@font-face {
+  font-family: SolaimanLipi;
+  src: url(../../webfonts/SolaimanLipi/SolaimanLipi.eot);
+  src: url(../../webfonts/SolaimanLipi/SolaimanLipi.woff) format("woff"), url(../../webfonts/SolaimanLipi/SolaimanLipi.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap; }
+@font-face {
+  font-family: SourceSansPro;
+  src: url(../../webfonts/SourceSansPro/SourceSansPro.eot);
+  src: url(../../webfonts/SourceSansPro/SourceSansPro.woff2) format("woff2"), url(../../webfonts/SourceSansPro/SourceSansPro.woff) format("woff"), url(../../webfonts/SourceSansPro/SourceSansPro.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap; }
+@font-face {
+  font-family: 'Saira Stencil One';
+  src: url(../../webfonts/SairaStencilOne/SairaStencilOne-Regular.eot);
+  src: url(../../webfonts/SairaStencilOne/SairaStencilOne-Regular.eot?#iefix) format("embedded-opentype"), url(../../webfonts/SairaStencilOne/SairaStencilOne-Regular.woff2) format("woff2"), url(../../webfonts/SairaStencilOne/SairaStencilOne-Regular.woff) format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap; }
+
+/*# sourceMappingURL=font-face.css.map */

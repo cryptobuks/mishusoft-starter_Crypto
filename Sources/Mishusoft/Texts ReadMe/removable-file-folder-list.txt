@@ -1,0 +1,15 @@
+/dist-src
+/logs
+/node_modules
+/Packages/Lab/Configs
+/Packages/Lab/Databases
+/Packages/Lab/Security
+/Projects
+/src
+/System/Backups
+/System/Registries
+/System/storage/0/databases
+--/System/storage/0/media--
+/System/storage/0/others
+/tmp
+

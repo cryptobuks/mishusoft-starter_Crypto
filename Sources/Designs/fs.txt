@@ -1,0 +1,9 @@
+/home/<username>
+/Mishusoft/Ema
+/Mishusoft/Framework
+/Mishusoft/Themes
+/Mishusoft/Widgets
+/Mishusoft/Packages
+/Storages
+/tmp
+/vendor

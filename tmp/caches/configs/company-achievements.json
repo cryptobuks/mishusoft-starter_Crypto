@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Best Web Developer Award 2019",
+    "content": [
+      "We received the Best Web Development Award 2019 from Afif Computer Ltd., Dhaka Cantonment, Mirpur, Dhaka for web development in 2019."
+    ],
+    "provider": {
+      "Name": "Afif Computer Ltd",
+      "Address": "Dhaka Cantonment, Mirpur, Dhaka",
+      "Category": "Computer",
+      "Website": "afif.com"
+    },
+    "brief": {
+      "Project Description": "Local Website (Control Center & Business)",
+      "Construction period": "December, 2018- February, 2019.",
+      "Current Status": "Running as its own internal (local) website."
+    },
+    "images": []
+  }
+]

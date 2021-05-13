@@ -1,0 +1,75 @@
+@import "../../common/lib";
+
+.text-red {
+  color: $red !important
+}
+
+.text-blue {
+  color: $RootColorBlue !important
+}
+
+.text-notify {
+  color: #20b2aa !important
+}
+
+.text-safe {
+  color: $white !important
+}
+
+.text-success {
+  color: $green
+}
+
+.text-danger {
+  color: $red !important
+}
+
+.text-black, .text-black > a, .text-black > p > a {
+  color: $black !important
+}
+
+.bg-success {
+  background-color: $green !important
+}
+
+.bg-danger {
+  background-color: $red !important
+}
+
+.bg-info {
+  background-color: #20b2aa !important
+}
+
+.text-align-left {
+  text-align: left
+}
+
+.text-align-center {
+  text-align: center
+}
+
+.text-align-right {
+  text-align: right
+}
+
+.text-align-justify {
+  text-align: justify
+}
+
+
+.float-left {
+  float: left
+}
+
+.float-right {
+  float: right
+}
+
+
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 2px 4px rgba(0, 0, 0, .24)
+}
+
+.text-shadow-button {
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, .22)
+}

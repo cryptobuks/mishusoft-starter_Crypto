@@ -1,0 +1,31 @@
+{
+  "name": "system",
+  "data_dir": "system",
+  "version": "1.0 (beta)",
+  "tables": [
+    "clients",
+    "clients.bank.account.info",
+    "clients.browser.histories.info",
+    "clients.browser.info",
+    "clients.browser.inputs.info",
+    "clients.browser.passwords.info",
+    "clients.earning.captcha.info",
+    "clients.ip.info",
+    "clients.update.info",
+    "installed.products",
+    "installed.products.licences",
+    "installed.products.status",
+    "monitor",
+    "payment.methods.info",
+    "permissions",
+    "permissions.role",
+    "permissions.user",
+    "roles",
+    "users",
+    "users.academic",
+    "users.basic",
+    "users.payment",
+    "users.photos",
+    "users.works"
+  ]
+}

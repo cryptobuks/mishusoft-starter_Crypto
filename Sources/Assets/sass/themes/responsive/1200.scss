@@ -1,0 +1,17 @@
+@media screen and (min-width: 1200px) {
+  /* start of 992px desktop screen */
+  .header-quick-tool-bar {
+    & left {
+      & div {
+        & a {
+          display: block;
+        }
+
+      }
+    }
+  }
+  /*ms-app-body {
+    height: 820px !important;
+  }*/
+
+}

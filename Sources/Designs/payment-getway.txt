@@ -1,0 +1,10 @@
+payment gateway
+1.bkash
+link https://github.com/bKash-developer/pgw-merchant-backend-php
+https://developer.bka.sh/docs
+
+2. rocket
+link https://www.dutchbanglabank.com/electronic-banking/internet-payment-gateway.html
+
+3. nagad
+link https://github.com/arif98741/nagadApi

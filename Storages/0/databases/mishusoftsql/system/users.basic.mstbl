@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "user": "1",
+    "first-name": "Al Amin",
+    "last-name": "Ahmed",
+    "nick-name": "Ahmed",
+    "date-of-birth": "17/01/1996",
+    "gender": "male"
+  }
+]

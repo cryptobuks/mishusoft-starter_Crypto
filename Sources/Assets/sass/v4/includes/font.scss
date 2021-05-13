@@ -1,0 +1,30 @@
+.font-40 {
+  &-normal {
+    font: {
+      size: 40px;
+      weight: normal;
+    };
+  }
+  &-bold {
+    font: {
+      size: 40px;
+      weight: bold;
+    };
+  }
+}
+
+.font-18 {
+  &-normal {
+    font: {
+      size: 18px;
+      weight: normal;
+    };
+  }
+  &-bold {
+    font: {
+      size: 18px;
+      weight: bold;
+    };
+  }
+}
+

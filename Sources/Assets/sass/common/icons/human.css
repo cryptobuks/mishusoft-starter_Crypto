@@ -1,0 +1,22 @@
+.ms-icon-boy::after {
+  content: '\01F466'; }
+.ms-icon-girl::after {
+  content: '\01F467'; }
+.ms-icon-man::after {
+  content: '\01F468'; }
+.ms-icon-woman::after {
+  content: '\01F469'; }
+.ms-icon-family::after {
+  content: '\01F46A'; }
+.ms-icon-friendship-man-woman::after {
+  content: '\01F46B'; }
+.ms-icon-friendship-man::after {
+  content: '\01F46C'; }
+.ms-icon-friendship-women::after {
+  content: '\01F46D'; }
+.ms-icon-police-officer::after {
+  content: '\01F46E'; }
+.ms-icon-woman-with-bunny-ears::after {
+  content: '\01F46F'; }
+
+/*# sourceMappingURL=human.css.map */

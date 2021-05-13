@@ -1,0 +1,10 @@
+{
+  "name": "test",
+  "data_dir": "test",
+  "version": "1.0 (beta)",
+  "tables": [
+    "test",
+    "user",
+    "test3"
+  ]
+}

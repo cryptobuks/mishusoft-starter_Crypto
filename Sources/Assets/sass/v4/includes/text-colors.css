@@ -1,0 +1,32 @@
+/* src/assets/scss/lib.scss */
+/*colors*/
+/*ranges*/
+.text-red {
+  color: #ff0000 !important;
+}
+
+.text-blue {
+  color: #0777cc !important;
+}
+
+.text-notify {
+  color: #20b2aa !important;
+}
+
+.text-safe {
+  color: #ffffff !important;
+}
+
+.text-success {
+  color: #4caf50;
+}
+
+.text-danger {
+  color: #ff0000 !important;
+}
+
+.text-black, .text-black > a, .text-black > p > a {
+  color: #000 !important;
+}
+
+/*# sourceMappingURL=text-colors.css.map */

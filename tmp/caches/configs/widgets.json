@@ -1,0 +1,29 @@
+{
+  "topQuickBar": {
+    "class": "topQuickBar",
+    "method": "getTopQuickBar",
+    "child": [],
+    "configuration": {
+      "position": "top"
+    },
+    "setting": {
+      "status": "enable"
+    }
+  },
+  "universalMenuBar": {
+    "class": "universalMenuBar",
+    "method": "getUniversalMenuBar",
+    "child": [
+      "header",
+      "left",
+      "right",
+      "footer"
+    ],
+    "configuration": {
+      "position": "header"
+    },
+    "setting": {
+      "status": "enable"
+    }
+  }
+}

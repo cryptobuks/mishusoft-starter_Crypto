@@ -1,0 +1,33 @@
+/* src/assets/scss/v3.scss */
+/* src/assets/scss/lib.scss */
+/*colors */
+/*ranges */
+.ip-info-plus-app {
+  /*width: 360px;*/ }
+  .ip-info-plus-app-hr {
+    margin: 0;
+    padding: 0;
+    border-bottom: 2px solid lightskyblue; }
+  .ip-info-plus-app-title {
+    padding: 5px 0 5px 0;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Arial, Helvetica, sans-serif, "courier new", "times new roman", fixed, monospace'; }
+  .ip-info-plus-app-body {
+    padding: 5px;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif; }
+  .ip-info-plus-app-bottom {
+    padding: 5px 0 5px 5px;
+    text-align: left;
+    font-size: 16px;
+    font-family: 'Arial, Helvetica, sans-serif, "courier new", "times new roman", fixed, monospace'; }
+  .ip-info-plus-app-data-table {
+    text-align: left;
+    font-size: 14px;
+    font-family: 'Arial, Helvetica, sans-serif, "courier new", "times new roman", fixed, monospace'; }
+  .ip-info-plus-app-search-body {
+    width: 100%;
+    display: inline-block; }
+
+/*# sourceMappingURL=ipinfo.css.map */

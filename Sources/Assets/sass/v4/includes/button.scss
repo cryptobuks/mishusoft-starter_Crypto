@@ -1,0 +1,394 @@
+@import "../../common/lib";
+
+.button {
+  display: inline-block;
+  margin: 5px;
+  padding: 5px 20px;
+  /*height: 35px;*/
+  text-align: center;
+  text-decoration: none;
+  border-style: none;
+
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+
+  font: bold 14px/24px Noto Sans, Arial, sans-serif;
+  font-weight: 800;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, .29), inset 1px 1px 1px rgba(255, 255, 255, .44);
+  -o-box-shadow: 1px 1px 1px rgba(0, 0, 0, .29), inset 1px 1px 1px rgba(255, 255, 255, .44);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, .29), inset 1px 1px 1px rgba(255, 255, 255, .44);
+
+  -webkit-transition: all .15s ease;
+  -o-transition: all .15s ease;
+  transition: all .15s ease;
+
+/*  &:hover {
+    -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, .29), inset 0 0 2px rgba(0, 0, 0, .5);
+    -o-box-shadow: 1px 1px 1px rgba(0, 0, 0, .29), inset 0 0 2px rgba(0, 0, 0, .5);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, .29), inset 0 0 2px rgba(0, 0, 0, .5)
+  }
+
+  &:hover {
+    -webkit-box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2), 0 8px 16px 0 rgba(0, 0, 0, .2);
+    -o-box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2), 0 8px 16px 0 rgba(0, 0, 0, .2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2), 0 8px 16px 0 rgba(0, 0, 0, .2)
+  }
+  */
+  &:active {
+    -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, .8);
+    -o-box-shadow: inset 0 0 3px rgba(0, 0, 0, .8);
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, .8)
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: $lightgrey;
+    border: 2px solid $lightgrey;
+
+    &:hover {
+      color: $lightgrey;
+      border: 2px solid $lightgrey
+    }
+  }
+
+
+  &-success {
+    color: #3e5706;
+    background: #a5cd4e;
+    /*  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #a5cd4e), color-stop(100%, #6b8f1a));
+      background: -webkit-linear-gradient(top, #a5cd4e 0, #6b8f1a 100%);
+      background: -o-linear-gradient(top, #a5cd4e 0, #6b8f1a 100%);
+      background: -ms-linear-gradient(top, #a5cd4e 0, #6b8f1a 100%);
+      background: linear-gradient(top, #a5cd4e 0, #6b8f1a 100%)*/
+  }
+
+
+  &-primary {
+    color: #19667d;
+    background: #70c9e3;
+     /* background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #70c9e3), color-stop(100%, #39a0be));
+      background: -webkit-linear-gradient(top, #70c9e3 0, #39a0be 100%);
+      background: -o-linear-gradient(top, #70c9e3 0, #39a0be 100%);
+      background: -ms-linear-gradient(top, #70c9e3 0, #39a0be 100%);
+      background: linear-gradient(top, #70c9e3 0, #39a0be 100%)*/
+  }
+
+  &-default {
+    color: #515151;
+    background: $lightgrey;
+    /*  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, $lightgrey), color-stop(100%, #8a8a8a));
+      background: -webkit-linear-gradient(top, $lightgrey 0, #8a8a8a 100%);
+      background: -o-linear-gradient(top, $lightgrey 0, #8a8a8a 100%);
+      background: -ms-linear-gradient(top, $lightgrey 0, #8a8a8a 100%);
+      background: linear-gradient(top, $lightgrey 0, #8a8a8a 100%)*/
+  }
+
+  &-danger {
+    color: $white;
+    background: $red;
+    /*  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(255, 36, 44, .63)), color-stop(100%, #ff5154));
+      background: -webkit-linear-gradient(top, rgba(255, 36, 44, .63) 0, #ff5154 100%);
+      background: -o-linear-gradient(top, rgba(255, 36, 44, .63) 0, #ff5154 100%);
+      background: -ms-linear-gradient(top, rgba(255, 36, 44, .63) 0, #ff5154 100%);
+      background: linear-gradient(top, rgba(255, 36, 44, .63) 0, #ff5154 100%)*/
+  }
+
+  &-warning {
+    color: $black;
+    background: $yellow;
+    /*  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(255, 36, 44, .63)), color-stop(100%, #ff5154));
+      background: -webkit-linear-gradient(top, rgba(255, 36, 44, .63) 0, #ff5154 100%);
+      background: -o-linear-gradient(top, rgba(255, 36, 44, .63) 0, #ff5154 100%);
+      background: -ms-linear-gradient(top, rgba(255, 36, 44, .63) 0, #ff5154 100%);
+      background: linear-gradient(top, rgba(255, 36, 44, .63) 0, #ff5154 100%)*/
+  }
+
+  &-lg {
+    padding: 5px 35px 5px;
+    text-transform: uppercase;
+    font: 900 20px/25px SourceSansPro, SolaimanLipi, sans-serif, Arial
+  }
+
+  &-xs {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 1px 1px;
+    height: 25px;
+    width: 20px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700
+  }
+
+  &-outline {
+    height: 40px;
+    font-size: 15px;
+    padding: 7px 10px;
+    cursor: pointer;
+    margin: 8px 0;
+    transition: .3s;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+    -o-box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+
+    &:disabled {
+      cursor: not-allowed;
+      color: $lightgrey;
+      border: 2px solid $lightgrey;
+
+      &:hover {
+        color: $lightgrey;
+        border: 2px solid $lightgrey
+      }
+
+    }
+
+    &:hover {
+      -webkit-box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2), 0 8px 16px 0 rgba(0, 0, 0, .2);
+      -o-box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2), 0 8px 16px 0 rgba(0, 0, 0, .2);
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2), 0 8px 16px 0 rgba(0, 0, 0, .2)
+    }
+
+    &-primary {
+      color: $black;
+      border: 2px solid $RootColorBlue;
+      background-color: $white;
+
+      &:disabled {
+        color: $lightgrey;
+        background-color: $white;
+        border: 2px solid $lightgrey;
+
+        &:hover {
+          color: $lightgrey;
+          cursor: not-allowed;
+          border: 2px solid $lightgrey;
+        }
+      }
+
+      &:hover {
+        color: $white;
+        background-color: $RootColorBlue;
+      }
+    }
+
+    &-secondary {
+      color: $black;
+      border: 2px solid rgba(0, 0, 0, .58);
+      background-color: $white;
+
+      &:disabled {
+        color: $lightgrey;
+        border: 2px solid $lightgrey;
+        background-color: $white;
+
+        &:hover {
+          color: $lightgrey;
+          cursor: not-allowed;
+          border: 2px solid $lightgrey;
+          background-color: $white
+        }
+      }
+
+      &:hover {
+        color: $white;
+        border: none;
+        background-color: rgba(0, 0, 0, .58)
+      }
+    }
+
+    &-success {
+      color: $black;
+      border: 2px solid #4caf50;
+      background-color: $white;
+
+      &:disabled {
+        color: $lightgrey;
+        border: 2px solid $lightgrey;
+        background-color: $white;
+
+        &:hover {
+          color: $lightgrey;
+          cursor: not-allowed;
+          border: 2px solid $lightgrey;
+          background-color: $white
+        }
+      }
+
+      &:hover {
+        color: $white;
+        background-color: #4caf50
+      }
+    }
+
+    &-danger {
+      color: $black;
+      border: 2px solid $red;
+      background-color: $white;
+
+      &:disabled {
+        color: $lightgrey;
+        border: 2px solid $lightgrey;
+        background-color: $white;
+
+        &:hover {
+          color: $lightgrey;
+          cursor: not-allowed;
+          border: 2px solid $lightgrey;
+          background-color: $white
+        }
+      }
+
+      &:hover {
+        color: $white;
+        background-color: $red
+      }
+
+    }
+
+    &-warning {
+      color: $black;
+      border: 2px solid #ff0;
+      background-color: $white;
+
+      &:disabled {
+        color: $lightgrey;
+        border: 2px solid $lightgrey;
+        background-color: $white;
+
+        &:hover {
+          color: $lightgrey;
+          cursor: not-allowed;
+          border: 2px solid $lightgrey;
+          background-color: $white
+        }
+
+      }
+
+      &:hover {
+        color: $black;
+        background-color: #ff0
+      }
+
+    }
+
+    &-info {
+      color: $black;
+      border: 2px solid $RootColorBlue;
+      background-color: $white;
+
+      &:disabled {
+        color: $lightgrey;
+        border: 2px solid $lightgrey;
+        background-color: $white;
+
+        &:hover {
+          color: $lightgrey;
+          cursor: not-allowed;
+          border: 2px solid $lightgrey;
+          background-color: $white
+        }
+      }
+
+      &:hover {
+        color: $white;
+        background-color: $RootColorBlue
+      }
+    }
+
+    &-light {
+      color: $black;
+      border: 2px solid $lightgrey;
+      background-color: $white;
+
+      &:disabled {
+        color: $lightgrey;
+        border: 2px solid $lightgrey;
+        background-color: $white;
+
+        &:hover {
+          color: $lightgrey;
+          cursor: not-allowed;
+          border: 2px solid $lightgrey;
+          background-color: $white
+        }
+      }
+
+      &:hover {
+        color: $white;
+        background-color: $lightgrey
+      }
+    }
+
+    &-black {
+      color: $black;
+      border: 2px solid $black;
+      background-color: $white;
+
+      &:disabled {
+        color: $lightgrey;
+        border: 2px solid $lightgrey;
+        background-color: $white;
+
+        &:hover {
+          color: $lightgrey;
+          cursor: not-allowed;
+          border: 2px solid $lightgrey;
+          background-color: $white
+        }
+      }
+
+      &:hover {
+        color: $white;
+        background-color: $black
+      }
+    }
+
+    &-default {
+      color: $black;
+      border: 2px solid $white;
+      background-color: $white;
+
+      &:disabled {
+        color: $lightgrey;
+        border: 2px solid $lightgrey;
+        background-color: $white;
+
+        &:hover {
+          color: $lightgrey;
+          cursor: not-allowed;
+          border: 2px solid $lightgrey;
+          background-color: $white
+        }
+      }
+
+      &:hover {
+        color: $black;
+        background-color: $white
+      }
+    }
+  }
+
+}
+
+
+.big span {
+  display: block;
+  text-transform: none;
+  font: italic normal 12px/18px Georgia, sans-serif
+}
+
+.readmore {
+  color: #ffffff;
+  width: 100px;
+  padding: 5px 10px 5px 10px;
+  font-size: 15px;
+  background: #0777cc;
+  -webkit-border-radius: 5px;
+  border-radius: 5px; }

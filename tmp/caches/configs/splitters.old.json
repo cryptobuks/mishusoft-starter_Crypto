@@ -1,0 +1,30 @@
+[
+  {
+    "name": "api",
+    "descriptions": "receive client request and response",
+    "class": "ApplicationProgrammingInterface",
+    "handles": [
+      "api",
+      "monitor"
+    ]
+  },
+  {
+    "name": "cdn",
+    "descriptions": "This is built-in uninterrupted web resources delivery system. Every request communicate with public css, images and js libraries and other permitted resources",
+    "class": "WebResourceDelivery",
+    "handles": [
+      "assets",
+      "shared",
+      "media"
+    ]
+  },
+  {
+    "name": "setup",
+    "descriptions": "communicate with app installer with it called",
+    "class": "SystemConfiguration",
+    "handles": [
+      "install",
+      "update"
+    ]
+  }
+]

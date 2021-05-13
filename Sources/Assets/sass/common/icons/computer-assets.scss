@@ -1,0 +1,29 @@
+.ms-icon {
+  &-computer-personal::after {
+    content: '\01F4BB';
+  }
+  &-computer-personal-old::after {
+    content: '\01F5B3';
+  }
+  &-computer-desktop::after {
+    content: '\01F5A5';
+  }
+  &-keyboard-mouse::after {
+    content: '\01F5A6';
+  }
+  &-three-networked-computers::after,&-lan::after,&-network::after {
+    content: '\01F5A6';
+  }
+  &-printer::after {
+    content: '\01F5A8';
+  }
+  &-pocket-calculator::after {
+    content: '\01F5A9';
+  }
+  &-black-hard-shell-floppy-disk::after {
+    content: '\01F5AA';
+  }
+  &-white-hard-shell-floppy-disk::after {
+    content: '\01F5AB';
+  }
+}

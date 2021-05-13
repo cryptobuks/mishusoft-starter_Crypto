@@ -1,0 +1,9 @@
+{
+  "base": "api",
+  "descriptions": "receive client request and response",
+  "class": "ApplicationProgrammingInterface",
+  "route": [
+    "api",
+    "monitor"
+  ]
+}

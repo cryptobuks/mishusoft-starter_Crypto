@@ -1,0 +1,32 @@
+html:root {
+  /*blue color group*/
+  --blue-deep-black: #006194;
+  --blue-deep: #0777cc;
+  --blue-deep-light: #34abe6;
+  --blue-light-cyan: #52acf0;
+  --blue-light-malibu: #7ac3fb;
+  --blue-light-sky: lightskyblue;
+  --blue-light: #63ddfa52;
+  /*red color group*/
+  --red: #ff0000;
+  --red-light: #f7d7d4;
+  /*green color group*/
+  --green: #4caf50;
+  --green-light:rgba(188, 247, 189, 0.7);
+  /*grey color group*/
+  --grey: #808080;
+  --grey-light: #d3d3d3;
+  --grey-light-very: #f7f7f7;
+  /*white color*/
+  --white:#ffffff;
+  /*black color*/
+  --black:#000;
+  /*yellow color*/
+  --yellow:#ffff00;
+  /*darkorchid color*/
+  --darkorchid:#9932CC;
+  --orchid-dark:#9932CC;
+  --orchid-light:#E1B4F7;
+}
+
+/*# sourceMappingURL=colors.css.map */

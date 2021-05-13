@@ -1,0 +1,84 @@
+/* start of desktop styles */
+
+@media screen and (min-width: 1024px) {
+  /* start of 1024px desktop screen */
+  /*ms-app-body {
+    height: 820px !important;
+  }*/
+
+}
+@media screen and (min-width: 1280px) {
+  /* start of 1280px desktop screen */
+  /*ms-app-body {
+    height: 945px !important;
+  }*/
+
+}
+
+/*end of desktop style*/
+
+
+
+@media screen and (max-width: 991px) {
+  /* start of large tablet styles */
+
+}
+
+@media screen and (max-width: 767px) {
+  /* start of medium tablet styles */
+
+}
+
+@media screen and (max-width: 479px) {
+  /* start of phone styles */
+  .navbar1 {
+    width: 100%;
+    height: 30px;
+
+    & a i {
+        margin-right: 5px;
+    }
+
+    &-left-nav {
+      width: 60%;
+      height: inherit;
+      text-align: left;
+    }
+
+    &-right-nav {
+      width: 40%;
+      height: inherit;
+      text-align: right;
+    }
+
+    &-left-nav a, &-right-nav a, &-right-nav  span {
+      height: inherit;
+      padding: 5px 8px;
+      font-size: 14px;
+      display: inline-block;
+    }
+
+    &-dropdown {
+      cursor: pointer;
+
+      &-content {
+        display: none;
+        position: absolute;
+        width: 100px;
+        text-align: right;
+        /*left: 8px;*/
+
+        -webkit-box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2);
+        -o-box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2);
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2);
+        z-index: 1;
+
+        & a {
+          /*display: block;*/
+          width: 100%;
+        }
+      }
+    }
+  }
+
+}

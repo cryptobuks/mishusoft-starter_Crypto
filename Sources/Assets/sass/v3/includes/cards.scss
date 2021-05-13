@@ -1,0 +1,343 @@
+@import "../../common/lib";
+
+.simple-card1 {
+  margin: 10px;
+  width: 165px;
+  height: 160px; /*! position: relative; */
+  display: inline-block;
+  transition: .2s;
+  cursor: pointer;
+  border-radius: 5px;
+  -webkit-border-radius: 5px
+}
+
+.simple-card1-logo {
+  height: 110px;
+  width: 100%;
+  font-size: 80px;
+  font-weight: 700;
+  text-align: center;
+  color: $white;
+  padding: 5px;
+  background-color: $RootColorBlue;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-top-left-radius: 5px;
+}
+
+.simple-card1-logo-image {
+  opacity: 1;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  transition: .5s ease;
+  backface-visibility: hidden
+}
+
+.simple-card1-logo-image-alt {
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%)
+}
+
+.simple-card1-text {
+  height: 50px;
+  width: 100%;
+  text-align: left;
+  padding: 7px 10px
+}
+
+.simple-card1-title-text {
+  font-size: 16px;
+  font-weight: 700
+}
+
+.simple-card1-status-text {
+  font-size: 15px
+}
+
+.simple-card1-link {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%)
+}
+
+.simple-card1-link-text {
+  background-color: $RootColorBlue;
+  color: $white;
+  font-size: 16px;
+  padding: 16px 32px
+}
+
+.simple-card1:hover {
+  -webkit-box-shadow: 0 0 2px 1px rgba(0, 150, 186, .5);
+  box-shadow: 0 0 2px 1px rgba(0, 150, 186, .5)
+}
+
+.simple-card1:hover > .simple-card1-logo {
+  border-bottom: 2px solid $white
+}
+
+.simple-card1:hover > .simple-card1-text {
+  color: $white;
+  background-color: $RootColorBlue;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px
+}
+
+.simple-card1:hover .simple-card1-logo {
+  opacity: .3
+}
+
+.simple-card1:hover .simple-card1-link {
+  opacity: 1
+}
+
+.simple-card2 {
+  margin: 10px 5px 5px 5px;
+  width: 232px;
+  height: 260px;
+  position: relative;
+  display: inline-block;
+  transition: .2s;
+  cursor: pointer;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  float: left;
+}
+
+.simple-card2-logo {
+  height: 150px;
+  width: 100%;
+  font-size: 100px;
+  font-weight: 700;
+  text-align: center;
+  color: $white;
+  padding: 5px;
+  background-color: $RootColorBlue;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-top-left-radius: 5px
+}
+
+.simple-card2-logo-image-alt {
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%)
+}
+
+.simple-card2-text {
+  height: 110px;
+  width: 100%;
+  text-align: left;
+  padding: 7px 10px
+}
+
+.simple-card2-text-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 2px
+}
+
+.simple-card2-text-status {
+  font-size: 15px;
+  text-align: justify;
+  line-height: 1.4
+}
+
+.simple-card2-link {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+
+  padding: 10px 5px;
+  background-color: $RootColorBlue;
+  cursor: pointer;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-box-shadow: 0 0 2px 1px rgba(0, 150, 186, .5);
+  box-shadow: 0 0 2px 1px rgba(0, 150, 186, .5)
+}
+
+.simple-card2-link-text {
+  background-color: $RootColorBlue;
+  color: $white;
+  font-size: 16px;
+  padding: 10px 28px;
+  border-style: none;
+}
+
+.simple-card2:hover {
+  -webkit-box-shadow: 0 0 2px 1px rgba(0, 150, 186, .5);
+  box-shadow: 0 0 2px 1px rgba(0, 150, 186, .5)
+}
+
+.simple-card2:hover > .simple-card2-logo {
+  border-bottom: 2px solid $white
+}
+
+.simple-card2:hover > .simple-card2-text {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px
+}
+
+.simple-card2:hover .simple-card2-logo {
+  opacity: .3
+}
+
+.simple-card2:hover .simple-card2-link {
+  opacity: 1
+}
+
+.simple-card3 {
+  margin: 0 10px 10px 10px;
+  width: 305px;
+  height: 80px;
+  float: left
+}
+
+.simple-card3.box-shadow-light:last-child {
+  margin-right: 0
+}
+
+.simple-card3-logo {
+  width: 80px;
+  height: 80px;
+  float: left
+}
+
+.simple-card3-text {
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  width: 225px;
+  height: 80px;
+  float: left;
+  line-height: 30px
+}
+
+.simple-card3-text, .simple-card3-url-text {
+  color: $black
+}
+
+.simple-card3-text:hover {
+  color: $white;
+  background-color: $RootColorBlue;
+  -webkit-border-radius: 0 5px 5px 0;
+  border-radius: 0 5px 5px 0
+}
+
+.simple-card3-text:hover .simple-card3-url-text {
+  color: $white
+}
+
+.simple-card3-title-text {
+  font-weight: 700;
+  font-size: 18px
+}
+
+.simple-card3-status-text {
+  font-size: 15px
+}
+
+.simple-card3-url-text {
+  font-weight: 700;
+  font-size: 15px
+}
+
+.simple-card3-url-text:hover {
+  font-weight: 700;
+  background-color: $green;
+  color: $white;
+  font-size: 15px;
+  padding: 4px 10px
+}
+
+
+
+
+.thumbnail {
+  margin: 5px;
+  width: 155px;
+  height: 110px;
+  position: relative;
+  display: inline-block;
+  transition: .2s;
+  cursor: pointer;
+  border-radius: 5px;
+  -webkit-border-radius: 5px
+}
+
+.thumbnail-md {
+  margin: 5px;
+  width: 150px;
+  height: 110px;
+  position: relative;
+  display: inline-block;
+  transition: .2s;
+  cursor: pointer;
+  border-radius: 5px;
+  -webkit-border-radius: 5px
+}
+
+.thumbnail-image {
+  height: 75px;
+  width: 100%;
+  font-size: 50px;
+  font-weight: 700;
+  text-align: center;
+  color: $white;
+  padding: 5px;
+  display: block;
+  background-color: $RootColorBlue;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-top-left-radius: 5px
+}
+
+.thumbnail-text {
+  height: 35px;
+  font-size: 15px;
+  text-align: center;
+  padding: 9px 5px;
+  color: $black;
+}
+
+.thumbnail:hover > .thumbnail-image {
+  border-bottom: 2px solid $white
+}
+
+.thumbnail:hover > .thumbnail-text {
+  color: $white;
+  background-color: $RootColorBlue;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px
+}

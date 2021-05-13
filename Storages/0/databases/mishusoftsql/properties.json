@@ -1,0 +1,13 @@
+{
+  "databases": [
+    "test",
+    "system"
+  ],
+  "users": [
+    {
+      "username": "superuser",
+      "password": "superuser",
+      "permission": "all"
+    }
+  ]
+}

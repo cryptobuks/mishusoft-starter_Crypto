@@ -1,0 +1,6 @@
+name: mishusoft_website
+dev_dependencies:
+  sass: ^1.32.12
+
+environment:
+  sdk: '>=2.10.0 <3.0.0'

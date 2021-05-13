@@ -1,0 +1,20 @@
+/* src/assets/scss/lib.scss */
+/*colors*/
+/*ranges*/
+.bg-success {
+  background: #4caf50 !important;
+}
+
+.bg-danger {
+  background: #ff0000 !important;
+}
+
+.bg-info {
+  background: #20b2aa !important;
+}
+
+.bg-default {
+  background: #aab7b8 !important;
+}
+
+/*# sourceMappingURL=background-colors.css.map */
