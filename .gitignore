@@ -50,3 +50,10 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# unnecessary files
+/node_modules/
+/tmp/caches/updates/
+/tmp/logs/
+/tmp/sessions/
+update-*.zip
