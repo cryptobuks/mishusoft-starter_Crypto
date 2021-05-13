@@ -55,8 +55,6 @@ dkms.conf
 
 /.dart_tool/
 /.idea/
-/.phpunit.result.cache/
-
 
 /dist-src/
 /home/
@@ -66,4 +64,10 @@ dkms.conf
 /tmp/caches/updates/
 /tmp/logs/
 /tmp/sessions/
+
 update-*.zip
+pwa.webmanifest
+robots.txt
+.user.ini
+.phpunit.result.cache
+.packages
