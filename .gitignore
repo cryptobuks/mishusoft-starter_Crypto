@@ -52,6 +52,16 @@ Mkfile.old
 dkms.conf
 
 # unnecessary files
+
+/.dart_tool/
+/.idea/
+/.phpunit.result.cache/
+
+
+/dist-src/
+/home/
+/Mishusoft/
+/task/
 /node_modules/
 /tmp/caches/updates/
 /tmp/logs/

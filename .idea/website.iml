@@ -10,6 +10,9 @@
       <excludeFolder url="file://$MODULE_DIR$/build" />
       <excludeFolder url="file://$MODULE_DIR$/task/@fortawesome" />
       <excludeFolder url="file://$MODULE_DIR$/task/Collections" />
+      <excludeFolder url="file://$MODULE_DIR$/dist-src" />
+      <excludeFolder url="file://$MODULE_DIR$/home" />
+      <excludeFolder url="file://$MODULE_DIR$/task" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
