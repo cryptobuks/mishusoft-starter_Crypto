@@ -160,7 +160,7 @@ const commonFileConfig = {
          * */
         'mishusoft-theme': [
             './Assets/sass/themes/mishusoft.scss',
-            './Assets/sass/themes/responsive.scss',
+            './Assets/sass/themes/mishusoft/responsive.scss',
         ],
 
 
