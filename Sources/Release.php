@@ -28,7 +28,7 @@ define('FILE_BASE_NAME', basename(__FILE__));
 define('RELEASE_FILE_ROOT', realpath(__FILE__));
 define('RELEASE_DOCUMENT_ROOT', realpath('./'));
 
-// set customize error controller
+// set customize error controller.
 set_error_handler(
     function ($errorMessage, $errorFile, $errorLine) {
         echo "Error : {$errorMessage} from {$errorFile} on line {$errorLine}." . PHP_EOL;
@@ -36,11 +36,11 @@ set_error_handler(
     E_ALL
 );
 
-function preOutput(string $argument) {
+function preOutput(string $argument)
+{
     echo '<pre>';
     print_r($argument);
     echo '</pre>';
-
 }
 
 
@@ -50,17 +50,18 @@ require_once realpath(dirname(__FILE__)) . '/Mishusoft/Release/Compile.php';
 (function (array $parameters) {
     if (count($parameters) > 0) {
         array_shift($parameters);
-        // remove file name form argv string
+        // Remove file name form $parameters string.
         $options = array_shift($parameters);
         if (!is_null($options)) {
-            // update release versions of remote server
+            // Update release versions of remote server.
             if (str_starts_with($options, '-update') === true) {
                 if (count($parameters) > 1) {
                     Compile::updateOldVersion($parameters);
                 } else {
                     Compile::release_log(
                         'Error in argument 2, no source code or target destination provided.',
-                        'error');
+                        'error'
+                    );
                     echo Compile::defaultInfo;
                     exit();
                 }
@@ -68,14 +69,14 @@ require_once realpath(dirname(__FILE__)) . '/Mishusoft/Release/Compile.php';
                 exit();
             }
 
-            // update node-app and Mishusoft Framework release versions
+            // Update node-app and Mishusoft Framework release versions.
             if (str_starts_with($options, '-u') === true) {
                 Compile::updatePRV(realpath('./package.json'));
                 Compile::updatePRVALlPackages(realpath(dirname(__FILE__) . '/Mishusoft/Packages'));
                 exit();
             }
 
-            // update node-app and Mishusoft Framework release versions
+            // Update node-app and Mishusoft Framework release versions.
             if (str_starts_with($options, '-copy') === true) {
                 if (count($parameters) > 1) {
                     Compile::start('copy', $parameters);
@@ -88,20 +89,21 @@ require_once realpath(dirname(__FILE__)) . '/Mishusoft/Release/Compile.php';
                 exit();
             }
 
-            // show help information
+            // Show help information.
             if (str_starts_with($options, '-h') === true) {
                 echo Compile::defaultInfo;
                 exit();
             }
 
-            // release themes sources or compressed files
+            // Release themes sources or compressed files.
             if (str_starts_with($options, '-t') === true || str_starts_with($options, '-tc') === true) {
                 if (count($parameters) > 1) {
                     Compile::start('rThemes', $parameters);
                 } else {
                     Compile::release_log(
                         'Error in argument 2, no source code or target destination provided.',
-                        'error');
+                        'error'
+                    );
                     echo Compile::defaultInfo;
                     exit();
                 }
@@ -109,14 +111,15 @@ require_once realpath(dirname(__FILE__)) . '/Mishusoft/Release/Compile.php';
                 exit();
             }
 
-            // release themes sources or compressed files
+            // Release themes sources or compressed files.
             if (str_starts_with($options, '-w') === true || str_starts_with($options, '-wc') === true) {
                 if (count($parameters) > 1) {
                     Compile::start('rWidgets', $parameters);
                 } else {
                     Compile::release_log(
                         'Error in argument 2, no source code or target destination provided.',
-                        'error');
+                        'error'
+                    );
                     echo Compile::defaultInfo;
                     exit();
                 }
@@ -124,7 +127,7 @@ require_once realpath(dirname(__FILE__)) . '/Mishusoft/Release/Compile.php';
                 exit();
             }
 
-            // release static html pages sources files
+            // Release static html pages sources files.
             if (str_starts_with($options, '-sp') === true || str_starts_with($options, '-spc') === true) {
                 if (count($parameters) > 1) {
                     Compile::start('rStaticHTMLPages', $parameters);
@@ -137,7 +140,7 @@ require_once realpath(dirname(__FILE__)) . '/Mishusoft/Release/Compile.php';
                 exit();
             }
 
-            // Compress sources code
+            // Compress sources code.
             if (str_starts_with($options, '-c') === true) {
                 if (count($parameters) > 1) {
                     Compile::start('rPHP', $parameters);
