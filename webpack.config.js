@@ -1,17 +1,17 @@
 const path = require('path');
 
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TerserJSPlugin = require('terser-webpack-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const JavaScriptObfuscator = require('webpack-obfuscator');
+const CopyWebpackPlugin       = require('copy-webpack-plugin');
+const MiniCssExtractPlugin    = require('mini-css-extract-plugin');
+const TerserJSPlugin          = require('terser-webpack-plugin');
+const {CleanWebpackPlugin}    = require('clean-webpack-plugin');
+const JavaScriptObfuscator    = require('webpack-obfuscator');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 //const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries"); /*webpack 4*/
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts'); /*webpack 5*/
 
 /*required path declare*/
-const MS_DOCUMENT_ROOT = path.resolve(__dirname);
+const MS_DOCUMENT_ROOT    = path.resolve(__dirname);
 const MS_WEBPACK_SRC_ROOT = path.join(MS_DOCUMENT_ROOT, './Sources');
 
 /*static sources destinations*/
