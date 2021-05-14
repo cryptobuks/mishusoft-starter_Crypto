@@ -62,14 +62,14 @@ use ZipArchive;
  * */
 class Compile
 {
-    const packageName = "Mishusoft Release";
-    const packageNameFull = "Mishusoft Release Manager";
+    const PACKAGENAME = "Mishusoft Release";
+    const PACKAGENAMEFULL = "Mishusoft Release Manager";
     const package_version = "0.2";
     const currentYear = CURRENT_YEAR;
     const fileBaseName = FILE_BASE_NAME;
     const package_company = "Mishusoft Systems Incorporated";
 
-    const defaultInfo = self::packageName . " version " . self::package_version . " (" . "PHP " . PHP_VERSION . ")" . PHP_EOL
+    const defaultInfo = self::PACKAGENAME . " version " . self::package_version . " (" . "PHP " . PHP_VERSION . ")" . PHP_EOL
     . "Copyright " . self::currentYear . " (c) " . self::package_company . "" . PHP_EOL . PHP_EOL
     . "Usage:\t php " . self::fileBaseName . " [options] [-s] <location> [-d] <location>" . PHP_EOL
     . "\t php " . self::fileBaseName . " [-c] [-s] <location> [-d] <location>" . PHP_EOL
@@ -108,7 +108,7 @@ class Compile
                     if ($operation === "copy") {
                         self::release_log(self::fileBaseName . " is started.");
 
-                        self::release_log(self::packageName . " :: Copy Operation is running.");
+                        self::release_log(self::PACKAGENAME . " :: Copy Operation is running.");
                         self::release_log("Source:: " . $sources_directory);
                         self::release_log("Output:: " . $output_directory);
                         if (!empty($sources_directory) and !empty($output_directory)) {
@@ -123,17 +123,16 @@ class Compile
                                     }
                                 }
                             }
-
                         }
 
                         //self::release_log("------------------END----------------------");
-                    }
+                    } //end if
 
                     if ($operation === "rThemes") {
                         self::release_log(self::fileBaseName . " is started.");
 
                         if (file_exists("$sources_directory/positions.config.standard.php")) {
-                            self::release_log(self::packageName . " :: Themes Release Operation is running.");
+                            self::release_log(self::PACKAGENAME . " :: Themes Release Operation is running.");
                             self::release_log("Source:: " . $sources_directory);
                             self::release_log("Output:: " . $output_directory);
                             if (count(self::getThemesList($sources_directory)) > 0) {
@@ -169,7 +168,7 @@ class Compile
                         self::release_log(self::fileBaseName . " is started.");
 
                         if (file_exists($sources_directory)) {
-                            self::release_log(self::packageName . " :: Widgets Release Operation is running.");
+                            self::release_log(self::PACKAGENAME . " :: Widgets Release Operation is running.");
                             self::release_log("Source:: " . $sources_directory);
                             self::release_log("Output:: " . $output_directory);
 
@@ -196,7 +195,7 @@ class Compile
                         self::release_log(self::fileBaseName . " is started.");
 
                         if (file_exists($sources_directory)) {
-                            self::release_log(self::packageName . " :: Templates Release Operation is running.");
+                            self::release_log(self::PACKAGENAME . " :: Templates Release Operation is running.");
                             self::release_log("Source:: " . $sources_directory);
                             self::release_log("Output:: " . $output_directory);
 
@@ -222,7 +221,7 @@ class Compile
                         //self::release_log("------------------END----------------------");
                     } else {
                         self::release_log(self::fileBaseName . " is started.");
-                        self::release_log(self::packageName . " Operation is running.");
+                        self::release_log(self::PACKAGENAME . " Operation is running.");
 
 
                         self::release_log("Source:: " . $sources_directory);
@@ -706,7 +705,7 @@ class Compile
                     self::release_log(self::fileBaseName . " is started.");
 
                     if (file_exists($sources_directory)) {
-                        self::release_log(self::packageNameFull . " :: update Operation is running.");
+                        self::release_log(self::PACKAGENAMEFULL . " :: update Operation is running.");
                         self::release_log("Source:: " . $sources_directory);
                         self::release_log("Output:: WebDirectory/" . $output_directory);
 

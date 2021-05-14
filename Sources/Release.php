@@ -56,17 +56,17 @@ require_once realpath(dirname(__FILE__)).'/Mishusoft/Release/Compile.php';
                     );
                     echo Compile::defaultInfo;
                     exit();
-                }
+                } //end if
 
                 exit();
-            }
+            } //end if
 
             // Update node-app and Mishusoft Framework release versions.
             if (str_starts_with($options, '-u') === true) {
                 Compile::updatePRV(realpath('./package.json'));
                 Compile::updatePRVALlPackages(realpath(dirname(__FILE__).'/Mishusoft/Packages'));
                 exit();
-            }
+            } //end if
 
             // Update node-app and Mishusoft Framework release versions.
             if (str_starts_with($options, '-copy') === true) {
@@ -77,15 +77,14 @@ require_once realpath(dirname(__FILE__)).'/Mishusoft/Release/Compile.php';
                     echo Compile::defaultInfo;
                     exit();
                 }
-
                 exit();
-            }
+            } //end if
 
             // Show help information.
             if (str_starts_with($options, '-h') === true) {
                 echo Compile::defaultInfo;
                 exit();
-            }
+            } //end if
 
             // Release themes sources or compressed files.
             if (str_starts_with($options, '-t') === true || str_starts_with($options, '-tc') === true) {
@@ -99,9 +98,8 @@ require_once realpath(dirname(__FILE__)).'/Mishusoft/Release/Compile.php';
                     echo Compile::defaultInfo;
                     exit();
                 }
-
                 exit();
-            }
+            } //end if
 
             // Release themes sources or compressed files.
             if (str_starts_with($options, '-w') === true || str_starts_with($options, '-wc') === true) {
@@ -115,9 +113,8 @@ require_once realpath(dirname(__FILE__)).'/Mishusoft/Release/Compile.php';
                     echo Compile::defaultInfo;
                     exit();
                 }
-
                 exit();
-            }
+            } //end if
 
             // Release static html pages sources files.
             if (str_starts_with($options, '-sp') === true || str_starts_with($options, '-spc') === true) {
@@ -127,10 +124,10 @@ require_once realpath(dirname(__FILE__)).'/Mishusoft/Release/Compile.php';
                     Compile::release_log('Error in argument 2, no source code destination provided.', 'error');
                     echo Compile::defaultInfo;
                     exit();
-                }
+                } //end if
 
                 exit();
-            }
+            } //end if
 
             // Compress sources code.
             if (str_starts_with($options, '-c') === true) {
@@ -144,7 +141,7 @@ require_once realpath(dirname(__FILE__)).'/Mishusoft/Release/Compile.php';
             } else {
                 Compile::release_log('Error in argument 1, invalid option.', 'error');
                 echo Compile::defaultInfo;
-            }
+            } //end if
         } else {
             Compile::release_log('Error in argument 1, empty option.', 'error');
             echo Compile::defaultInfo;

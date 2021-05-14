@@ -30,7 +30,7 @@
   "scripts": {
     "htaccess-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/http.htaccess -d ./.htaccess",
     "robots-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/robots.txt -d ./robots.txt",
-    "index-php-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/app.php -d ./index.php",
+    "index-php-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/app.php -d /srv/http/index.php",
     "index-html-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/app.html -d ./index.html",
     "framework-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Framework -d ./Mishusoft/Framework",
     "ema-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Ema -d ./Mishusoft/Ema",
