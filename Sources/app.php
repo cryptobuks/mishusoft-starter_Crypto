@@ -47,8 +47,8 @@ try {
         );
     } else {
         Framework\Chipsets\System\Logger::write(
-            Framework\Chipsets\RuntimeErrors::codeAsString($e->getCode()) . ' [' . $e->getCode() . '] : '
-            . $e->getMessage() . ' from ' . $e->getFile() . ' on line ' . $e->getLine() . '.'
+            Framework\Chipsets\RuntimeErrors::codeAsString($e->getCode()).
+            ' [' . $e->getCode().'] : '.$e->getMessage().' from '.$e->getFile().' on line '.$e->getLine().'.'
         );
         echo "<pre>$e</pre>";
     }
