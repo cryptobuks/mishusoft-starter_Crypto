@@ -34,7 +34,6 @@
     "javascript-obfuscator": "^0.28.4",
     "mini-css-extract-plugin": "^0.9.0",
     "normalize-scss": "^7.0.1",
-    "obfuscator-loader": "^1.1.2",
     "optimize-css-assets-webpack-plugin": "^5.0.4",
     "postcss": "^8.2.15",
     "postcss-loader": "^3.0.0",
