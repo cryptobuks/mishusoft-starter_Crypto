@@ -17,10 +17,10 @@ use Mishusoft\Release\Compile;
  * Declare constants
  */
 
-define('PHP_RUNTIME_ROOT_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
-define('PHP_RUNTIME_SYSTEM_PATH', PHP_RUNTIME_ROOT_PATH . 'Mishusoft' . DIRECTORY_SEPARATOR);
+define('PHP_RUNTIME_ROOT_PATH', realpath(dirname(__FILE__)).DIRECTORY_SEPARATOR);
+define('PHP_RUNTIME_SYSTEM_PATH', PHP_RUNTIME_ROOT_PATH.'Mishusoft'.DIRECTORY_SEPARATOR);
 
-define('PHP_SOURCES_ROOT_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
+define('PHP_SOURCES_ROOT_PATH', realpath(dirname(__FILE__)).DIRECTORY_SEPARATOR);
 define('CURRENT_YEAR', date('Y'));
 define('CURRENT_SYS_USER', array_key_exists('USER', $_SERVER) ? $_SERVER['USER'] : get_current_user());
 define('FILE_BASE_NAME', basename(__FILE__));
@@ -28,24 +28,16 @@ define('FILE_BASE_NAME', basename(__FILE__));
 define('RELEASE_FILE_ROOT', realpath(__FILE__));
 define('RELEASE_DOCUMENT_ROOT', realpath('./'));
 
-// set customize error controller.
+// Set customize error controller.
 set_error_handler(
     function ($errorMessage, $errorFile, $errorLine) {
-        echo "Error : {$errorMessage} from {$errorFile} on line {$errorLine}." . PHP_EOL;
+        echo "Error : {$errorMessage} from {$errorFile} on line {$errorLine}.".PHP_EOL;
     },
     E_ALL
 );
 
-function preOutput(string $argument)
-{
-    echo '<pre>';
-    print_r($argument);
-    echo '</pre>';
-}
-
-
 // Add autoload file.
-require_once realpath(dirname(__FILE__)) . '/Mishusoft/Release/Compile.php';
+require_once realpath(dirname(__FILE__)).'/Mishusoft/Release/Compile.php';
 
 (function (array $parameters) {
     if (count($parameters) > 0) {
@@ -72,7 +64,7 @@ require_once realpath(dirname(__FILE__)) . '/Mishusoft/Release/Compile.php';
             // Update node-app and Mishusoft Framework release versions.
             if (str_starts_with($options, '-u') === true) {
                 Compile::updatePRV(realpath('./package.json'));
-                Compile::updatePRVALlPackages(realpath(dirname(__FILE__) . '/Mishusoft/Packages'));
+                Compile::updatePRVALlPackages(realpath(dirname(__FILE__).'/Mishusoft/Packages'));
                 exit();
             }
 
