@@ -3,8 +3,8 @@
  *
  * @package    MishusoftDevelopment
  * @subpackage webpack
- * @author     Squiz Pty Ltd <products@squiz.net>
- * @copyright  2021 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @author     Mishusoft System Inc <products@mishusoft.com>
+ * @copyright  2021 Mishusoft System Inc (ABN 77 084 670 600)
  **/
 
 const path = require('path');
