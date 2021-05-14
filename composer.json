@@ -1,7 +1,22 @@
 {
   "name": "mishusoft/website",
   "description": "Official website of Mishusoft",
+  "homepage": "https://www.mishusoft.com/",
   "license": "proprietary",
+  "authors": [
+    {
+      "name": "Mishusoft",
+      "email": "support@mishusoft.com"
+    }
+  ],
+  "support": {
+    "email": "support@mishusoft.com",
+    "issues": "https://www.mishusoft.com/framework-sample/issues",
+    "source": "https://www.mishusoft.com/framework-sample"
+  },
+  "config": {
+    "sort-order": true
+  },
   "autoload": {
     "psr-4": {
       "Mishusoft\\": "Mishusoft/"
@@ -11,6 +26,23 @@
     "psr-4": {
       "Mishusoft\\": "Sources/Mishusoft"
     }
+  },
+  "scripts": {
+    "htaccess-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/http.htaccess -d ./.htaccess",
+    "robots-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/robots.txt -d ./robots.txt",
+    "index-php-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/app.php -d ./index.php",
+    "index-html-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/app.html -d ./index.html",
+    "framework-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Framework -d ./Mishusoft/Framework",
+    "ema-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Ema -d ./Mishusoft/Ema",
+    "packages-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Packages -d ./Packages",
+    "themes-update": "php ./Sources/Release.php -t  -s ./Sources/Mishusoft/Views/Themes -d ./Mishusoft/Themes",
+    "widgets-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Widgets -d ./Mishusoft/Widgets",
+    "widgets-components-update": "php ./Sources/Release.php -w  -s ./Sources/Mishusoft/Views/Widgets -d ./Mishusoft/Widgets/Views",
+    "packages-components-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Views/Templates/Packages -d ./Packages",
+    "copy-media": "mishusoft-release -copy  -s ./Sources/Assets/media -d ./Storages/0/media",
+    "copy-errors-page": "mishusoft-release -copy  -s ./Sources/Mishusoft/V -d ./Storages/0/media",
+    "phpcs": "phpcs",
+    "phpcbf": "phpcbf"
   },
   "require": {
     "php": "8.*",

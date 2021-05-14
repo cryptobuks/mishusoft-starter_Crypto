@@ -3,9 +3,6 @@
 #RewriteEngine turn on
 RewriteEngine On
 
-#set base
-RewriteBase /
-
 #redirect to https
 #prevent me from redirect action
 RewriteCond %{SERVER_NAME} !localhost
@@ -31,25 +28,15 @@ RewriteCond %{REMOTE_ADDR} !^::1
 RewriteCond %{SERVER_PORT} !^443$
 RewriteRule ^(.*) https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]
 
-# add trailing slash if missing
-RewriteRule ^(([a-z0-9\-]+/)*[a-z0-9\-]+)$ $1/ [NC,R=301,L]
-
-#Set rewrite conditions for denial of access to direct files or directories
-RewriteCond  %{REQUEST_FILENAME} -d
-RewriteCond  %{REQUEST_FILENAME} -f
-RewriteCond  %{REQUEST_FILENAME} -l
-RewriteRule ^(.*) ./index.php [L,R=301]
-
 #Rewrite Conditions set
 RewriteCond  %{REQUEST_FILENAME} !-d
 RewriteCond  %{REQUEST_FILENAME} !-f
 RewriteCond  %{REQUEST_FILENAME} !-l
 
-
 #Rewrite Rules set
 RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
 # Rewrite /foo/bar to /foo/bar.php
-# RewriteRule ^([^.?]+)$.mfw %{REQUEST_URI} [L]
+#RewriteRule ^([^.?]+)$.mfw %{REQUEST_URI} [L]
 
 
 #error page setting
@@ -59,11 +46,6 @@ ErrorDocument 404 /404.shtml
 ErrorDocument 408 /408.shtml
 ErrorDocument 500 /500.shtml
 ErrorDocument 503 /503.shtml
-
-#Add these lines to your .htaccess to block requests to it :
-<Files ".user.ini"> 
-    Require all denied
-</Files>
 
 
 <Files ~ "\.(png|jpe?g|gif|webp)$">
