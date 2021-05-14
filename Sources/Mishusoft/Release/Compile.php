@@ -123,10 +123,10 @@ class Compile
                                     }
                                 }
                             }
-                        }
+                        }//end if
 
                         //self::release_log("------------------END----------------------");
-                    } //end if
+                    }//end if
 
                     if ($operation === "rThemes") {
                         self::release_log(self::fileBaseName . " is started.");
