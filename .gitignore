@@ -65,6 +65,8 @@ dkms.conf
 /tmp/logs/
 /tmp/sessions/
 
+composer.lock
+package-lock.json
 update-*.zip
 pwa.webmanifest
 robots.txt
