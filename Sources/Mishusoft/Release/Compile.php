@@ -673,40 +673,40 @@ class Compile
      * @param string $identity File identy.
      * @return false|string Return filename or false.
      */
-    public static function zip(string $srcDirectory, string $identity)
+    public static function zip(string $srcDirectory, string $identity): bool|string
     {
         $tempDir = '/srv/http/tmp/caches/updates/';
-        $update  = $identity . '-update-[' . date('YmdH') . '].zip';
-        $archive = $tempDir . $update;
+        $update  = $identity.'-update-['.date('YmdH').'].zip';
+        $archive = $tempDir.$update;
 
-        // output check start
-        self::release_log('Preparing to check $temp_dir');
+        // Output check start.
+        self::release_log("Preparing to check $tempDir");
 
         if (!file_exists($tempDir)) {
-            self::release_log('Creating new $temp_dir');
+            self::release_log("Creating new $tempDir");
             mkdir($tempDir, 0777, true);
-            exec('chmod -R 777 $temp_dir');
+            exec("chmod -R 777 $tempDir");
         } else {
             if (file_exists($archive)) {
-                self::release_log('Removing exists update $archive');
+                self::release_log("Removing exists update $archive");
                 self::deleteFiles($archive);
             }//end if
         }//end if
 
-        self::release_log('Check completed of $temp_dir');
+        self::release_log("Check completed of $tempDir");
         // Output check end.
         // Check src files permissions start.
         $files = FileSystem::glob_recursive($srcDirectory.'/*', GLOB_MARK);
         if (is_array($files) and count($files) > 0) {
-            self::release_log('Preparing to check permissions $src_directory');
+            self::release_log("Preparing to check permissions $srcDirectory");
             foreach ($files as $file) {
                 // self::release_log(
                 //'Exploit permission for $file, permission is ' .
                 // substr(sprintf('%o', fileperms($file)), -4)
                 //);
                 if (!is_readable($file)) {
-                    self::release_log('Changing permission for $file');
-                    exec('chmod -R 777 $file');
+                    self::release_log("Changing permission for $file");
+                    exec("chmod -R 777 $file");
                 }//end if
             }
         }//end if
@@ -715,7 +715,7 @@ class Compile
         $zip = new ZipArchive();
         $ret = $zip->open($archive, (ZipArchive::CREATE | ZipArchive::OVERWRITE));
         if ($ret !== true) {
-            self::release_log('Failed with code $ret', 'error');
+            self::release_log("Failed with code $ret", 'error');
             exit();
         } else {
             foreach ($files as $file) {
