@@ -1,3 +1,12 @@
+/**
+ * Call node path module.
+ *
+ * @package    MishusoftDevelopment
+ * @subpackage webpack
+ * @author     Squiz Pty Ltd <products@squiz.net>
+ * @copyright  2021 Squiz Pty Ltd (ABN 77 084 670 600)
+ **/
+
 const path = require('path');
 
 const CopyWebpackPlugin       = require('copy-webpack-plugin');
@@ -7,7 +16,7 @@ const {CleanWebpackPlugin}    = require('clean-webpack-plugin');
 const JavaScriptObfuscator    = require('webpack-obfuscator');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-//const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries"); /*webpack 4*/
+/*const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");*/ /*webpack 4*/
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts'); /*webpack 5*/
 
 /*required path declare*/
@@ -16,13 +25,11 @@ const MS_WEBPACK_SRC_ROOT = path.join(MS_DOCUMENT_ROOT, './Sources');
 
 /*static sources destinations*/
 const MS_WEBPACK_STATIC_ASSETS_SRC_ROOT = path.join(MS_DOCUMENT_ROOT, './Sources/Assets');
-//const MS_WEBPACK_STATIC_MEDIA_SRC_ROOT = path.join(MS_DOCUMENT_ROOT, './Sources/Assets/media');
-
+/* const MS_WEBPACK_STATIC_MEDIA_SRC_ROOT = path.join(MS_DOCUMENT_ROOT, './Sources/Assets/media');*/
 /*webpack output destinations*/
 /*export direct to production*/
 const MS_ASSETS_PATH = path.join(MS_DOCUMENT_ROOT, './Storages/0/assets');
-//const MS_MEDIA_PATH = path.join(MS_DOCUMENT_ROOT, './Storages/0/media');
-
+/*const MS_MEDIA_PATH = path.join(MS_DOCUMENT_ROOT, './Storages/0/media');*/
 
 const commonConfig = {
     mode: 'production',
@@ -33,26 +40,26 @@ const commonConfig = {
                 test: /\.(sa|sc|c)ss$/i,
                 exclude: /node_modules/,
                 use: [
-                    //minify compiled css files
+                    // Minify compiled css files.
                     MiniCssExtractPlugin.loader,
-                    // Translates CSS into CommonJS
+                    // Translates CSS into CommonJS.
                     "css-loader",
-                    // load postcss
+                    // Load postcss.
                     "postcss-loader",
-                    // Compiles Sass to CSS
+                    // Compiles Sass to CSS.
                     "sass-loader",
-                ]
-            },
+                ]},
             {
                 test: /\.(png|jpg|gif)$/, /*test: /\.(svg|png|jpg|gif)$/,*/
                 use: {
                     loader: 'file-loader',
                     options: {
-                        name: '[name].[ext]', //set output file name
-                        outputPath: 'images/' //set output directory
+                        // Set output file name.
+                        name: '[name].[ext]',
+                        // Set output directory.
+                        outputPath: 'images/'
                     }
-                }
-            },
+                }},
             {
                 test: /\.(ttf|otf|eot|svg|woff|woff2)$/,
                 use: {
@@ -61,37 +68,33 @@ const commonConfig = {
                         name: '[name].[ext]',
                         outputPath: '../webfonts/'
                     }
-                }
-            },
-        ],
+                }}]
     },
     resolve: {
-        extensions: ['.ts', '.js'],
+        extensions: ['.ts', '.js']
     },
     /*externals: nodeModules,*/
     plugins: [
         new CleanWebpackPlugin(),
 
-        new CopyWebpackPlugin({
-            patterns: [
+        new CopyWebpackPlugin(
+            {
+                patterns: [
                 /*copy webfonts file from sources directory*/
                 {from: MS_WEBPACK_STATIC_ASSETS_SRC_ROOT + '/webfonts/', to: MS_ASSETS_PATH + '/webfonts/[name].[ext]'},
-
-                /*
-                * copy images and others media items file from sources directory
-                * these command deprecated in latest update
-                * */
-                // {from: MS_WEBPACK_STATIC_MEDIA_SRC_ROOT + '/images/', to: MS_MEDIA_PATH + '/images/[name].[ext]'},
-                // {from: MS_WEBPACK_STATIC_MEDIA_SRC_ROOT + '/logos/', to: MS_MEDIA_PATH + '/logos/'},
-                // {from: MS_WEBPACK_STATIC_MEDIA_SRC_ROOT + '/users/', to: MS_MEDIA_PATH + '/users/'},
-            ]
-        }),
-        //new FixStyleOnlyEntriesPlugin(), /*webpack 4*/
-        new RemoveEmptyScriptsPlugin(), /*webpack 5*/
-        new MiniCssExtractPlugin({
-            filename: 'css/[name].css',
-            chunkFilename: 'css/[id].css',
-        })
+                ]
+            }
+        ),
+        /*webpack 4*/
+        /*new FixStyleOnlyEntriesPlugin(),*/
+        /*webpack 5*/
+        new RemoveEmptyScriptsPlugin(),
+        new MiniCssExtractPlugin(
+            {
+                filename: 'css/[name].css',
+                chunkFilename: 'css/[id].css'
+            }
+        )
     ]
 }
 
@@ -161,14 +164,14 @@ const commonFileConfig = {
         'mishusoft-theme': [
             './Assets/sass/themes/mishusoft.scss',
             './Assets/sass/themes/mishusoft/responsive.scss',
-        ],
+        ]
 
 
     },
     output: {
         path: MS_ASSETS_PATH,
         filename: 'js/[name].js'
-    },
+    }
 };
 
 const prodConfig = {
@@ -183,24 +186,26 @@ const prodConfig = {
                     options: {
                         params: {
                             ENV: 'production',
-                            debug: false,
+                            debug: false
                         },
-                        verbose: false,
-                    },
+                        verbose: false
+                    }
                 },],
-                exclude: /node_modules/,
-            },
+                exclude: /node_modules/
+        },
         ]
     },
     optimization: {
-        minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+        minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})]
     },
     plugins: [
         ...commonFileConfig.plugins,
-        new JavaScriptObfuscator({
-            rotateStringArray: true
-        })
-    ],
+        new JavaScriptObfuscator(
+            {
+                rotateStringArray: true
+            }
+        )
+    ]
 };
 
 const testConfig = {
@@ -218,18 +223,18 @@ const testConfig = {
                     options: {
                         params: {
                             ENV: 'development',
-                            debug: true,
+                            debug: true
                         },
-                        verbose: false,
-                    },
+                        verbose: false
+                    }
                 },],
-                exclude: /node_modules/,
-            },
+                exclude: /node_modules/
+        },
         ]
-    },
+    }
 }
 
-module.exports = (env) => {
+module.exports  = (env) => {
     let configs = []
     if (env && env.target === 'production') {
         configs.push({...prodConfig, name: 'production'})
