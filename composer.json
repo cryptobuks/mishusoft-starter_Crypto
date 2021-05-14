@@ -40,7 +40,7 @@
     "widgets-components-update": "php ./Sources/Release.php -w  -s ./Sources/Mishusoft/Views/Widgets -d ./Mishusoft/Widgets/Views",
     "packages-components-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Views/Templates/Packages -d ./Packages",
     "copy-media": "mishusoft-release -copy  -s ./Sources/Assets/media -d ./Storages/0/media",
-    "copy-errors-page": "mishusoft-release -copy  -s ./Sources/Mishusoft/V -d ./Storages/0/media",
+    "copy-errors-page": "mishusoft-release -copy  -s ./Sources/Mishusoft/Views/Errors/SHtml -d ./Mishusoft/Errors",
     "phpcs": "phpcs",
     "phpcbf": "phpcbf"
   },
