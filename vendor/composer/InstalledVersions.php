@@ -32,7 +32,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '8fae72a0ad82f011b4e398de3603d0164f74390f',
+    'reference' => 'fadf5a1c2de00533a2aeecd1c2b4a7dbfcdc14cc',
     'name' => 'mishusoft/website',
   ),
   'versions' => 
@@ -134,7 +134,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '8fae72a0ad82f011b4e398de3603d0164f74390f',
+      'reference' => 'fadf5a1c2de00533a2aeecd1c2b4a7dbfcdc14cc',
     ),
     'myclabs/deep-copy' => 
     array (
