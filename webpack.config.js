@@ -16,12 +16,12 @@ const MS_WEBPACK_SRC_ROOT = path.join(MS_DOCUMENT_ROOT, './Sources');
 
 /*static sources destinations*/
 const MS_WEBPACK_STATIC_ASSETS_SRC_ROOT = path.join(MS_DOCUMENT_ROOT, './Sources/Assets');
-const MS_WEBPACK_STATIC_MEDIA_SRC_ROOT = path.join(MS_DOCUMENT_ROOT, './Sources/Assets/media');
+//const MS_WEBPACK_STATIC_MEDIA_SRC_ROOT = path.join(MS_DOCUMENT_ROOT, './Sources/Assets/media');
 
 /*webpack output destinations*/
 /*export direct to production*/
 const MS_ASSETS_PATH = path.join(MS_DOCUMENT_ROOT, './Storages/0/assets');
-const MS_MEDIA_PATH = path.join(MS_DOCUMENT_ROOT, './Storages/0/media');
+//const MS_MEDIA_PATH = path.join(MS_DOCUMENT_ROOT, './Storages/0/media');
 
 
 const commonConfig = {
