@@ -666,11 +666,12 @@ class Compile
     }//end compressPhpSource()
 
 
+
     /**
-     * make a zip file for sources.
-     * @param string $srcDirectory source directory for zip.
-     * @param string $identity file identy.
-     * @return false|string return fileane or false.
+     * Make a zip file for sources.
+     * @param string $srcDirectory Source directory for zip.
+     * @param string $identity File identy.
+     * @return false|string Return filename or false.
      */
     public static function zip(string $srcDirectory, string $identity)
     {
