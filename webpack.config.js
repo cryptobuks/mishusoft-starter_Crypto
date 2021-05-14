@@ -1,5 +1,15 @@
 const path = require('path');
 
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const JavaScriptObfuscator = require('webpack-obfuscator');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
+const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries"); /*webpack 4*/
+//const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts'); /*webpack 5*/
+
 /*required path declare*/
 const MS_DOCUMENT_ROOT = path.resolve(__dirname);
 const MS_WEBPACK_SRC_ROOT = path.join(MS_DOCUMENT_ROOT, './Sources');
@@ -12,16 +22,6 @@ const MS_WEBPACK_STATIC_MEDIA_SRC_ROOT = path.join(MS_DOCUMENT_ROOT, './Sources/
 /*export direct to production*/
 const MS_ASSETS_PATH = path.join(MS_DOCUMENT_ROOT, './Storages/0/assets');
 const MS_MEDIA_PATH = path.join(MS_DOCUMENT_ROOT, './Storages/0/media');
-
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TerserJSPlugin = require('terser-webpack-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const JavaScriptObfuscator = require('webpack-obfuscator');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-
-const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries"); /*webpack 4*/
-//const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts'); /*webpack 5*/
 
 
 const commonConfig = {
@@ -99,7 +99,7 @@ const commonFileConfig = {
     ...commonConfig,
     entry: {
         /**
-         * browser identifier javascript framework
+         * Browser identifier javascript framework
          * Collect information of visitor's
          * <ul>
          *     <li>ip</li>
@@ -111,13 +111,13 @@ const commonFileConfig = {
         'browser': ['./Assets/typescripts/browser.ts'],
 
         /**
-         * javascript serviceworker framework
+         * Javascript serviceworker framework
          * */
         'pwa': ['./Assets/typescripts/pwa.ts'], /*build serviceworker module for background mode support*/
         'sw': ['./Assets/typescripts/service-worker.ts'], /*build serviceworker module for background mode support*/
 
         /**
-         * javascript framework for application
+         * Javascript framework for application
          * */
 
         'installer': ['./Assets/typescripts/installer.ts'], /*build mishusoft installer module for installation mode support*/
@@ -127,14 +127,14 @@ const commonFileConfig = {
         'app-js-v4': ['./Assets/typescripts/runtime/v4.ts',/*'./Assets/sass/v4/v4.scss'*/], /*build js and  stylesheet v4 module for application support*/
 
         /**
-         * special javascript framework for application
+         * Special javascript framework for application
          * */
 
         'monitor': ['./Assets/typescripts/tracker.ts'], /*build monitor module for monitor visitor's activities*/
         'emergency': ['./Assets/typescripts/runtime/v3/emergency.ts'], /*build emergency module for emergency mode support*/
 
         /**
-         * css framework for application
+         * CSS framework for application
          * */
         'app-ui-v3': [
             './Assets/sass/common/colors.scss',
@@ -156,7 +156,7 @@ const commonFileConfig = {
         ], /*build stylesheet v4 module for application support*/
 
         /**
-         * build mishusoft theme css framework supporter module for ui support
+         * Build mishusoft theme css framework supporter module for ui support
          * */
         'mishusoft-theme': [
             './Assets/sass/themes/mishusoft.scss',
