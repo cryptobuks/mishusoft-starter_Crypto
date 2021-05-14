@@ -37,7 +37,7 @@ const commonConfig = {
                     MiniCssExtractPlugin.loader,
                     // Translates CSS into CommonJS
                     "css-loader",
-                    // Translates CSS into CommonJS
+                    // load postcss
                     "postcss-loader",
                     // Compiles Sass to CSS
                     "sass-loader",
@@ -77,10 +77,13 @@ const commonConfig = {
                 /*copy webfonts file from sources directory*/
                 {from: MS_WEBPACK_STATIC_ASSETS_SRC_ROOT + '/webfonts/', to: MS_ASSETS_PATH + '/webfonts/[name].[ext]'},
 
-                /*copy images and others media items file from sources directory*/
-                {from: MS_WEBPACK_STATIC_MEDIA_SRC_ROOT + '/images/', to: MS_MEDIA_PATH + '/images/[name].[ext]'},
-                {from: MS_WEBPACK_STATIC_MEDIA_SRC_ROOT + '/logos/', to: MS_MEDIA_PATH + '/logos/'},
-                {from: MS_WEBPACK_STATIC_MEDIA_SRC_ROOT + '/users/', to: MS_MEDIA_PATH + '/users/'},
+                /*
+                * copy images and others media items file from sources directory
+                * these command deprecated in latest update
+                * */
+                // {from: MS_WEBPACK_STATIC_MEDIA_SRC_ROOT + '/images/', to: MS_MEDIA_PATH + '/images/[name].[ext]'},
+                // {from: MS_WEBPACK_STATIC_MEDIA_SRC_ROOT + '/logos/', to: MS_MEDIA_PATH + '/logos/'},
+                // {from: MS_WEBPACK_STATIC_MEDIA_SRC_ROOT + '/users/', to: MS_MEDIA_PATH + '/users/'},
             ]
         }),
         new FixStyleOnlyEntriesPlugin(), /*webpack 4*/
