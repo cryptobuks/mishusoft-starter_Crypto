@@ -608,13 +608,13 @@ class Compile
 
         $tokens = token_get_all($source);
 
-        $new = '';
+        $new = "";
         $c   = sizeof($tokens);
         $iw  = false;
         // ignore whitespace
         $ih = false;
         // in HEREDOC
-        $ls = '';
+        $ls = "";
         // last sign
         $ot = null;
         // open tag
@@ -628,11 +628,12 @@ class Compile
                     $new .= $ts;
                     $iw   = false;
                 } else if ($tn === T_OPEN_TAG) {
-                    if (strpos($ts, " ") || strpos($ts, "\n") || strpos($ts, "\t") || strpos($ts, "\r")) {
+                    if (strpos($ts, " ") === true  || strpos($ts, "\n") === true  ||
+                        strpos($ts, "\t") === true || strpos($ts, "\r") === true ) {
                         $ts = rtrim($ts);
                     }
 
-                    $ts  .= ' ';
+                    $ts  .= " ";
                     $new .= $ts;
                     $ot   = T_OPEN_TAG;
                     $iw   = true;
@@ -642,9 +643,9 @@ class Compile
                     $iw   = true;
                 } else if ($tn === T_CLOSE_TAG) {
                     if ($ot === T_OPEN_TAG_WITH_ECHO) {
-                        $new = rtrim($new, '; ');
+                        $new = rtrim($new, "; ");
                     } else {
-                        $ts = ' '.$ts;
+                        $ts = " ".$ts;
                     }
 
                     $new .= $ts;
@@ -657,7 +658,7 @@ class Compile
                     || $tn === T_ENCAPSED_AND_WHITESPACE
                 ) {
                     if ($ts[0] === '"') {
-                        $ts = addcslashes($ts, '\n\t\r');
+                        $ts = addcslashes($ts, "\n\t\r");
                     }
 
                     $new .= $ts;
@@ -665,27 +666,29 @@ class Compile
                 } else if ($tn === T_WHITESPACE) {
                     if (array_key_exists(($i + 1), $tokens) === true) {
                         $nt = @$tokens[($i + 1)];
-                        if (!$iw && (!is_string($nt) || $nt === '$') && !in_array($nt[0], $IW)) {
+                        if (!$iw && (!is_string($nt) || $nt === "$") && !in_array($nt[0], $IW)) {
                             $new .= ' ';
                         }
                     }
 
                     $iw = false;
                 } else if ($tn === T_START_HEREDOC) {
-                    $new .= '<<<S\n';
+                    $new .= "<<<S\n";
                     $iw   = false;
                     $ih   = true;
                     // in HEREDOC
                 } else if ($tn === T_END_HEREDOC) {
-                    $new .= 'S;';
+                    $new .= "S;";
                     $iw   = true;
                     $ih   = false;
                     // in HEREDOC
                     for ($j = ($i + 1); $j < $c; $j++) {
-                        if (is_string($tokens[$j]) && $tokens[$j] === ';') {
+                        if (is_string($tokens[$j]) === true && $tokens[$j] === ";") {
                             $i = $j;
                             break;
-                        } else if ($tokens[$j][0] == T_CLOSE_TAG) {
+                        }
+
+                        if ($tokens[$j][0] === T_CLOSE_TAG) {
                             break;
                         }
                     }
@@ -703,7 +706,7 @@ class Compile
 
                 $ls = '';
             } else {
-                if (($token !== ';' && $token !== ':') || $ls !== $token) {
+                if (($token !== ";" && $token !== ":") || $ls !== $token) {
                     $new .= $token;
                     $ls   = $token;
                 }
@@ -770,23 +773,23 @@ class Compile
         if ($ret !== true) {
             self::release_log("Failed with code $ret", 'error');
             exit();
-        } else {
-            foreach ($files as $file) {
-                if (is_file($file)) {
-                    // self::release_log('Added to archive $file');
-                    $zip->addFile($file, str_replace('/srv/http', '', $file));
-                }//end if
-            }
-
-            $zip->close();
         }
+
+        foreach ($files as $file) {
+            if (is_file($file)) {
+                // self::release_log('Added to archive $file');
+                $zip->addFile($file, str_replace('/srv/http', '', $file));
+            }//end if
+        }
+
+        $zip->close();
 
         if (file_exists($archive)) {
             self::release_log('New archive $archive created');
             return $archive;
-        } else {
-            return false;
         }
+
+        return false;
 
     }//end zip()
 
