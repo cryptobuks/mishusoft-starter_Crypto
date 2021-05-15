@@ -51,8 +51,8 @@ require_once realpath(dirname(__FILE__)).'/Mishusoft/Release/Compile.php';
 
 (function (array $parameters) {
     if (count($parameters) > 0) {
-        array_shift($parameters);
         // Remove file name form $parameters string.
+        array_shift($parameters);
         $options = array_shift($parameters);
         if ($options !== null) {
             // Update release versions of remote server.
