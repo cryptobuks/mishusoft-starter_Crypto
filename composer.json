@@ -28,23 +28,23 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Mishusoft\\": "Sources/Mishusoft"
+      "\\": "Sources/"
     }
   },
   "scripts": {
-    "htaccess-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/http.htaccess -d ./.htaccess",
-    "robots-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/robots.txt -d ./robots.txt",
-    "index-php-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/app.php -d /srv/http/index.php",
-    "index-html-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/app.html -d ./index.html",
-    "framework-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Framework -d ./Mishusoft/Framework",
-    "ema-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Ema -d ./Mishusoft/Ema",
-    "packages-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Packages -d ./Packages",
-    "themes-update": "php ./Sources/Release.php -t  -s ./Sources/Mishusoft/Views/Themes -d ./Mishusoft/Themes",
-    "widgets-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Widgets -d ./Mishusoft/Widgets",
-    "widgets-components-update": "php ./Sources/Release.php -w  -s ./Sources/Mishusoft/Views/Widgets -d ./Mishusoft/Widgets/Views",
-    "packages-components-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Views/Templates/Packages -d ./Packages",
-    "copy-media": "php ./Sources/Release.php -copy  -s ./Sources/Assets/media -d ./Storages/0/media",
-    "copy-errors-page": "php ./Sources/Release.php -copy  -s ./Sources/Mishusoft/Views/Errors/SHtml -d ./Mishusoft/Errors",
+    "htaccess-update": "php ./Sources/Release.php -c  -s ./Sources/http.htaccess -d /srv/http/.htaccess",
+    "robots-update": "php ./Sources/Release.php -c  -s ./Sources/robots.txt -d /srv/http/robots.txt",
+    "index-php-update": "php ./Sources/Release.php -c  -s ./Sources/app.php -d /srv/http/index.php",
+    "index-html-update": "php ./Sources/Release.php -c  -s ./Sources/app.html -d /srv/http/index.html",
+    "framework-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Framework -d /srv/http/Mishusoft/Framework",
+    "ema-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Ema -d /srv/http/Mishusoft/Ema",
+    "packages-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Packages -d /srv/http/Packages",
+    "themes-update": "php ./Sources/Release.php -t  -s ./Sources/Mishusoft/Views/Themes -d /srv/http/Mishusoft/Themes",
+    "widgets-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Widgets -d /srv/http/Mishusoft/Widgets",
+    "widgets-components-update": "php ./Sources/Release.php -w  -s ./Sources/Mishusoft/Views/Widgets -d /srv/http/Mishusoft/Widgets/Views",
+    "packages-components-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Views/Templates/Packages -d /srv/http/Packages",
+    "copy-media": "php ./Sources/Release.php -copy  -s ./Sources/Assets/media -d /srv/http/Storages/0/media",
+    "copy-errors-page": "php ./Sources/Release.php -copy  -s ./Sources/Mishusoft/Views/Errors/SHtml -d /srv/http/Mishusoft/Errors",
     "phpcs": "phpcs",
     "phpcbf": "phpcbf"
   },

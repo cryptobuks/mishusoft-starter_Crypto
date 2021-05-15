@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'b9ef186d515d762cd9f8778e8acd5ada4c569963',
+    'reference' => '6abb26e2750c693589782488da75b87725bf22ed',
     'name' => 'mishusoft/website',
   ),
   'versions' => 
@@ -108,7 +108,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'b9ef186d515d762cd9f8778e8acd5ada4c569963',
+      'reference' => '6abb26e2750c693589782488da75b87725bf22ed',
     ),
     'myclabs/deep-copy' => 
     array (

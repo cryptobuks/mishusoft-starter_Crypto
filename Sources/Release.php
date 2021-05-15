@@ -46,7 +46,7 @@ set_error_handler(
     E_ALL
 );
 
-// Add Compile file.
+// Add Compiler class file.
 require_once realpath(dirname(__FILE__)).'/Mishusoft/Release/Compile.php';
 
 (function (array $parameters) {

@@ -25,6 +25,10 @@ class ComposerStaticInit1fcaf894a4199623320e5a41a3b1d3b0
         array (
             'phpDocumentor\\Reflection\\' => 25,
         ),
+        '\\' => 
+        array (
+            '\\' => 1,
+        ),
         'W' => 
         array (
             'Webmozart\\Assert\\' => 17,
@@ -93,6 +97,10 @@ class ComposerStaticInit1fcaf894a4199623320e5a41a3b1d3b0
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+        ),
+        '\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Sources',
         ),
         'Webmozart\\Assert\\' => 
         array (
@@ -205,7 +213,6 @@ class ComposerStaticInit1fcaf894a4199623320e5a41a3b1d3b0
         'Mishusoft\\' => 
         array (
             0 => __DIR__ . '/../..' . '/Mishusoft',
-            1 => __DIR__ . '/../..' . '/Sources/Mishusoft',
         ),
         'MaxMind\\WebService\\' => 
         array (
