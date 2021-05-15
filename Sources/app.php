@@ -25,7 +25,7 @@ set_time_limit(600);
 
 // Start of core constants declarations.
 define('DS', DIRECTORY_SEPARATOR);
-define('PHP_CODE_SYNTAX', 'PHP_8.0.3');
+define('PHP_CODE_SYNTAX', 'PHP_8.*');
 define('WHO_AM_I', 'Mishusoft');
 define('PHP_RUNTIME_ROOT_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
 define('PHP_RUNTIME_SYSTEM_PATH', PHP_RUNTIME_ROOT_PATH . 'Mishusoft' . DIRECTORY_SEPARATOR);
