@@ -14,7 +14,7 @@
     "remove-webfonts": "rm -rvf ./Storages/0/webfonts"
   },
   "keywords": [],
-  "author": "Mr Al Amin Ahamed Abir",
+  "author": "Al-Amin Ahamed (Abir)",
   "license": "ISC",
   "devDependencies": {
     "@javascript-obfuscator/escodegen": "^2.2.0",
