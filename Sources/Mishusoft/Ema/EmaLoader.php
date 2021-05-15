@@ -25,8 +25,7 @@ $prediction = new ClientRequest();
 
 $emaRootPath = PHP_RUNTIME_SYSTEM_PATH.'Ema'.DIRECTORY_SEPARATOR;
 
-if (file_exists($emaRootPath)===true) {
-    
+if (file_exists($emaRootPath) === true) {
     /*
      * We need to check Url Splitters (Built-In web interface) root path,
      * if exists this path,
@@ -35,8 +34,7 @@ if (file_exists($emaRootPath)===true) {
 
     $urlSplitterRootPath = $emaRootPath.'UrlSplitters'.DIRECTORY_SEPARATOR;
 
-    if (file_exists($urlSplitterRootPath)===true) {
-
+    if (file_exists($urlSplitterRootPath) === true) {
         /*
          * auto update splitters configurations
          *
@@ -65,15 +63,15 @@ if (file_exists($emaRootPath)===true) {
         if (count(json_decode(FileSystem::read(BIOS::urlSplittersConfigFile), true)) > 0) {
             foreach (json_decode(FileSystem::read(BIOS::urlSplittersConfigFile), true) as $splitter) {
                 if (in_array(_String::lower($prediction->getController()), _Array::value($splitter, 'route'))) {
-                    if (is_readable($urlSplitterRootPath._Array::value($splitter, 'class').'.php')===true) {
+                    if (is_readable($urlSplitterRootPath._Array::value($splitter, 'class').'.php') === true) {
                         include_once $urlSplitterRootPath._Array::value($splitter, 'class').'.php';
                         $UrlSplitter = Preloader::getClassNamespaceFromPath(
                             $urlSplitterRootPath._Array::value($splitter, 'class').'.php'
                         );
-                        if (method_exists(new $UrlSplitter, _String::lower($prediction->getController()))) {
+                        if (method_exists(new $UrlSplitter(), _String::lower($prediction->getController()))) {
                             call_user_func(
                                 [
-                                    new $UrlSplitter,
+                                    new $UrlSplitter(),
                                     _String::lower($prediction->getController()),
                                 ],
                                 [
@@ -84,7 +82,8 @@ if (file_exists($emaRootPath)===true) {
                             );
                         } else {
                             Firewall::runtimeFailure(
-                                'Not Found', [
+                                'Not Found',
+                                [
                                     'debug' => [
                                         'file'        => "$UrlSplitter::"._String::lower($prediction->getController()),
                                         'location'    => (new Browser())->getVisitedPage(),
@@ -96,7 +95,8 @@ if (file_exists($emaRootPath)===true) {
                         }//end if
                     } else {
                         Firewall::runtimeFailure(
-                            'Not Found', [
+                            'Not Found',
+                            [
                                 'debug' => [
                                     'file'        => $urlSplitterRootPath._Array::value($splitter, 'class').'.php',
                                     'location'    => $urlSplitterRootPath,
@@ -123,7 +123,7 @@ if (file_exists($emaRootPath)===true) {
 
     $mishusoftAppPath = $emaRootPath.'Mishusoft'.DIRECTORY_SEPARATOR;
     $defaultPackage   = 'Main';
-    if (file_exists($mishusoftAppPath)===true) {
+    if (file_exists($mishusoftAppPath) === true) {
         if (count(FileSystem::getList("$mishusoftAppPath$defaultPackage/UrlHandlers/", 'file')) > 0) {
             foreach (FileSystem::getList("$mishusoftAppPath$defaultPackage/UrlHandlers/", 'file') as $filename) {
                 if (_String::lower(BIOS::getFilenameOnly($filename)) === _String::lower($prediction->getController())) {
@@ -132,7 +132,7 @@ if (file_exists($emaRootPath)===true) {
                         $UrlHandler = Preloader::getClassNamespaceFromPath("$mishusoftAppPath$defaultPackage/UrlHandlers/".$filename);
                         call_user_func(
                             [
-                                new $UrlHandler,
+                                new $UrlHandler(),
                                 'Response',
                             ],
                             [
@@ -166,4 +166,3 @@ if (Memory::Data('framework')->maintenance === true) {
         Runtime::redirect('maintenance');
     }
 }
-

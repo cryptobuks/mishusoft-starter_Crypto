@@ -9,7 +9,7 @@ use Mishusoft\Framework\Chipsets\Utility\Stream;
 
 class Memory
 {
-    // declare version
+    // Declare version
     public const VERSION = '1.0.0';
 
 
@@ -27,13 +27,13 @@ class Memory
          * ..................................
          */
 
-        if (!class_exists(ROM::class)) {
+        if (class_exists(ROM::class) === false) {
             trigger_error(__NAMESPACE__.'\ROM not found.');
         } else {
             (new ROM())->play();
         }
 
-        if (!file_exists(PHP_RUNTIME_REGISTRIES_PATH.'framework.json')) {
+        if (file_exists(PHP_RUNTIME_REGISTRIES_PATH.'framework.json') === false) {
             trigger_error(PHP_RUNTIME_REGISTRIES_PATH.'framework.json not found.');
         }
 
@@ -48,9 +48,14 @@ class Memory
     }//end enable()
 
 
+    /**
+     * Load core constants.
+     */
+
+
     private static function loadCoreDefinedConstants()
     {
-        // system default path declare
+        // System default path declare
         define('MS_SYSTEM_PATH', PHP_RUNTIME_ROOT_PATH.'Mishusoft'.DIRECTORY_SEPARATOR);
         define('MS_FRAMEWORK_PATH', PHP_RUNTIME_SYSTEM_PATH.'Framework'.DIRECTORY_SEPARATOR);
         define('MS_PACKAGES_PATH', PHP_RUNTIME_SYSTEM_PATH.'Packages'.DIRECTORY_SEPARATOR);
@@ -66,16 +71,22 @@ class Memory
         define('MS_UPLOADS_MEDIA_PATH', MS_STORAGE_PATH.'0/media/uploads'.DIRECTORY_SEPARATOR);
 
         define('MS_SYSTEM_TEMP_PATH', PHP_RUNTIME_ROOT_PATH.'tmp'.DIRECTORY_SEPARATOR);
-        // main constants define end
+        // Main constants define end
         define('PHP_LANG_VERSION', phpversion());
         define('HASH_KEY', '57c1d48ba721a');
-        // define('HASH_KEY_OPENSSL', 'bRuD5WYw5wd0rdHR9yLlM6wt2vteuiniQBqE70nAuhU');
+        define('HASH_KEY_OPENSSL', 'bRuD5WYw5wd0rdHR9yLlM6wt2vteuiniQBqE70nAuhU');
         if (is_readable(join([PHP_RUNTIME_SYSTEM_PATH, 'Registries/framework.install.json']))) {
-            define('BaseURL', self::Data('framework', [
-                'file' => join([PHP_RUNTIME_SYSTEM_PATH, 'Registries/framework.install.json'])
-            ])->host->url);
+            define(
+                'BASEURL',
+                self::Data(
+                    'framework',
+                    [
+                        'file' => join([PHP_RUNTIME_SYSTEM_PATH, 'Registries/framework.install.json']),
+                    ]
+                )->host->url
+            );
         } else {
-            define('BaseURL', System::getAbsoluteInstalledURL());
+            define('BASEURL', System::getAbsoluteInstalledURL());
         }
 
         // database info
@@ -96,10 +107,14 @@ class Memory
 
 
     /**
+     * Load Data.
+     *
      * @param  string $carrier
      * @param  array  $options
      * @return mixed
      */
+
+
     public static function Data(string $carrier='memory', array $options=[]): mixed
     {
         switch ($carrier) {
@@ -175,26 +190,36 @@ class Memory
 
 
     /**
-     * @param string $filename
+     * Load memory data.
+     *
+     * @param string $filename Valid file name.
+     *
      */
+
+
     public static function loadMemory(string $filename=PHP_RUNTIME_REGISTRIES_PATH.'framework.json')
     {
-        if (is_readable(stream_resolve_include_path($filename))) {
-            self::Read(json_decode(file_get_contents(stream_resolve_include_path($filename))));
+        if (is_readable(stream_resolve_include_path($filename)) === true) {
+            self::read(json_decode(file_get_contents(stream_resolve_include_path($filename))));
         } else {
-            self::Read(json_decode(json_encode(FRAMEWORK_DEFAULT_CONF)));
+            self::read(json_decode(json_encode(FRAMEWORK_DEFAULT_CONF)));
         }
 
     }//end loadMemory()
 
 
     /**
-     * @param object $framework
-     */
-    private static function Read(object $framework)
+     * Read object of framework
+     *
+     * @param  object $framework Framework data object.
+     * @return void Return nothing.
+     * */
+
+
+    private static function read(object $framework)
     {
-        if (!empty($framework)) {
-            // Required constant variables declared here
+        if (empty($framework) === false) {
+            // Required constant variables declared here.
             define('DEFAULT_APP_NAME', $framework->name);
             define('FRAMEWORK_NAME', $framework->fullName);
             define('FRAMEWORK_DESCRIPTION', $framework->descriptions);
@@ -209,7 +234,7 @@ class Memory
             define('DEFAULT_SYSTEM_LAYOUT', $framework->preset->theme);
             define('DEFAULT_SYSTEM_THEME', $framework->preset->theme);
 
-            // alias of default system layout
+            // Alias of default system layout.
             define('APP_USERNAME_PREFIX', $framework->prefix->char.$framework->prefix->separator);
             define('DEFAULT_OPERATING_SYSTEM_USER', APP_USERNAME_PREFIX.$framework->preset->user);
             define('DEFAULT_OPERATING_SYSTEM_PASSWORD', $framework->preset->user);
@@ -219,33 +244,30 @@ class Memory
 
             define('DEFAULT_DATABASE', 'system');
 
-            // Mishusoft associates files format
-            define('Mishusoft_Database_File_Format', '.msdb');
-            define('Mishusoft_Database_Dump_File_Format', '.mdf');
-            define('Mishusoft_Configuration_File_Format', '.mscf');
+            // Mishusoft associates files format.
+            define('MISHUSOFT_DATABASE_FILE_FORMAT', '.msdb');
+            define('MISHUSOFT_DATABASE_DUMP_FILE_FORMAT', '.mdf');
+            define('MISHUSOFT_CONFIGURATION_FILE_FORMAT', '.mscf');
 
             define('USER_PASSWORD_LENGTH_LIMIT', 8);
 
-            // support address
+            // Support address.
             define('SUPPORT_EMAIL_ADDRESS', $framework->company->mail);
             define('SUPPORT_WEBSITE', $framework->company->support);
             define('SUPPORT_CONTACT_TITLE', 'Feedback');
 
-            // system exclude dir
+            // System exclude dir.
             define('SYSTEM_EXCLUDE_DIRS', $framework->exclude->dir);
-
-            /*
-                system extensions*/
-            /*
-                define('SYSTEM_REQUIRED_EXTENSIONS', $framework->required->extensions);
-            define('SYSTEM_REQUIRED_THIRD_PARTY', $framework->required->thirdparty);*/
         } else {
             trigger_error('Memory is corrupted.');
         }//end if
 
-    }//end Read()
+    }//end read()
 
 
+    /**
+     * Destruct Memory class
+     */
     public function __destruct()
     {
 
