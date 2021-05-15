@@ -17,6 +17,7 @@
   "author": "Mr Al Amin Ahamed Abir",
   "license": "ISC",
   "devDependencies": {
+    "@javascript-obfuscator/escodegen": "^2.2.0",
     "@types/sass": "^1.16.0",
     "archiver": "^4.0.2",
     "autoprefixer": "^9.8.6",

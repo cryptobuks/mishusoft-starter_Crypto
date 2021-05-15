@@ -115,11 +115,11 @@ class Compile
             $sourcesDirectory = FileSystem::realpath($sourcesDirectory);
             // Valid location for sources code
             if (count($options) > 1) {
-                $output_identify = array_shift($options);
+                $outputIdentify = array_shift($options);
                 $outputDirectory = array_shift($options);
                 $flash           = array_shift($options);
 
-                if (strtolower($output_identify) === '-d') {
+                if (strtolower($outputIdentify) === '-d') {
                     $outputDirectory = FileSystem::realpath($outputDirectory);
                     $sourcesPathBase = pathinfo($sourcesDirectory, PATHINFO_BASENAME);
                     $outputPathBase  = pathinfo($outputDirectory, PATHINFO_BASENAME);
@@ -146,7 +146,7 @@ class Compile
                     if ($operation === 'rThemes') {
                         self::release_log(self::FILE_BASE_NAME.' is started.');
 
-                        if (file_exists('$sourcesDirectory/positions.config.standard.php')) {
+                        if (file_exists("$sourcesDirectory/positions.config.standard.php")) {
                             self::release_log(self::PACKAGE_NAME.' :: Themes Release Operation is running.');
                             self::release_log('Source:: '.$sourcesDirectory);
                             self::release_log('Output:: '.$outputDirectory);
@@ -821,10 +821,10 @@ class Compile
             $sourcesDirectory = FileSystem::realpath($sourcesDirectory);
             // Valid location for sources code
             if (count($parameters) > 1) {
-                $output_identify = array_shift($parameters);
+                $outputIdentify = array_shift($parameters);
                 $outputDirectory = array_shift($parameters);
 
-                if (strtolower($output_identify) === '-d') {
+                if (strtolower($outputIdentify) === '-d') {
                     /*
                      * Valid location for compressed code
                      * */
