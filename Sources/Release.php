@@ -1,10 +1,13 @@
 <?php
-
 /**
- * #!/bin/php
+ * Release Manager
  *
- * add bash command
- * alias mishusoft-release="php /srv/http/Sources/Release.php"
+ * @package    Mishusoft
+ * @subpackage Release
+ * @author     Mishusoft System Inc <products@mishusoft.com>
+ * @copyright  2021 Mishusoft System Inc (ABN 77 084 670 600)
+ *
+ * Add bash command "alias mishusoft-release="php /srv/http/Sources/Release.php""
  */
 
 declare(strict_types=1);
@@ -22,21 +25,28 @@ define('PHP_RUNTIME_SYSTEM_PATH', PHP_RUNTIME_ROOT_PATH.'Mishusoft'.DIRECTORY_SE
 
 define('PHP_SOURCES_ROOT_PATH', realpath(dirname(__FILE__)).DIRECTORY_SEPARATOR);
 define('CURRENT_YEAR', date('Y'));
-define('CURRENT_SYS_USER', array_key_exists('USER', $_SERVER) ? $_SERVER['USER'] : get_current_user());
+
 define('FILE_BASE_NAME', basename(__FILE__));
 
 define('RELEASE_FILE_ROOT', realpath(__FILE__));
 define('RELEASE_DOCUMENT_ROOT', realpath('./'));
 
+if (array_key_exists('USER', $_SERVER) === true) {
+    define('CURRENT_SYS_USER', $_SERVER['USER']);
+} else {
+    define('CURRENT_SYS_USER', get_current_user());
+}
+
+
 // Set customize error controller.
 set_error_handler(
     function ($errorMessage, $errorFile, $errorLine) {
-        echo "Error : {$errorMessage} from {$errorFile} on line {$errorLine}.".PHP_EOL;
+        echo 'Error : '.$errorMessage.' from '.$errorFile.' on line '.$errorLine.PHP_EOL;
     },
     E_ALL
 );
 
-// Add autoload file.
+// Add Compile file.
 require_once realpath(dirname(__FILE__)).'/Mishusoft/Release/Compile.php';
 
 (function (array $parameters) {
@@ -44,7 +54,7 @@ require_once realpath(dirname(__FILE__)).'/Mishusoft/Release/Compile.php';
         array_shift($parameters);
         // Remove file name form $parameters string.
         $options = array_shift($parameters);
-        if (!is_null($options)) {
+        if ($options !== null) {
             // Update release versions of remote server.
             if (str_starts_with($options, '-update') === true) {
                 if (count($parameters) > 1) {
@@ -54,7 +64,7 @@ require_once realpath(dirname(__FILE__)).'/Mishusoft/Release/Compile.php';
                         'Error in argument 2, no source code or target destination provided.',
                         'error'
                     );
-                    echo Compile::defaultInfo;
+                    Compile::defaultInfo();
                     exit();
                 }//end if
 
@@ -74,15 +84,16 @@ require_once realpath(dirname(__FILE__)).'/Mishusoft/Release/Compile.php';
                     Compile::start('copy', $parameters);
                 } else {
                     Compile::release_log('Error in argument 2, no source or destination provided.', 'error');
-                    echo Compile::defaultInfo;
+                    Compile::defaultInfo();
                     exit();
-                }
+                }//end if
+
                 exit();
             }//end if
 
             // Show help information.
             if (str_starts_with($options, '-h') === true) {
-                echo Compile::defaultInfo;
+                Compile::defaultInfo();
                 exit();
             }//end if
 
@@ -95,9 +106,10 @@ require_once realpath(dirname(__FILE__)).'/Mishusoft/Release/Compile.php';
                         'Error in argument 2, no source code or target destination provided.',
                         'error'
                     );
-                    echo Compile::defaultInfo;
+                    Compile::defaultInfo();
                     exit();
                 }//end if
+
                 exit();
             }//end if
 
@@ -110,9 +122,10 @@ require_once realpath(dirname(__FILE__)).'/Mishusoft/Release/Compile.php';
                         'Error in argument 2, no source code or target destination provided.',
                         'error'
                     );
-                    echo Compile::defaultInfo;
+                    Compile::defaultInfo();
                     exit();
                 }//end if
+
                 exit();
             }//end if
 
@@ -122,7 +135,7 @@ require_once realpath(dirname(__FILE__)).'/Mishusoft/Release/Compile.php';
                     Compile::start('rStaticHTMLPages', $parameters);
                 } else {
                     Compile::release_log('Error in argument 2, no source code destination provided.', 'error');
-                    echo Compile::defaultInfo;
+                    Compile::defaultInfo();
                     exit();
                 }//end if
 
@@ -135,19 +148,19 @@ require_once realpath(dirname(__FILE__)).'/Mishusoft/Release/Compile.php';
                     Compile::start('rPHP', $parameters);
                 } else {
                     Compile::release_log('Error in argument 2, no source code destination provided.', 'error');
-                    echo Compile::defaultInfo;
+                    Compile::defaultInfo();
                     exit();
-                }
+                }//end if
             } else {
                 Compile::release_log('Error in argument 1, invalid option.', 'error');
-                echo Compile::defaultInfo;
+                Compile::defaultInfo();
             }//end if
         } else {
             Compile::release_log('Error in argument 1, empty option.', 'error');
-            echo Compile::defaultInfo;
+            Compile::defaultInfo();
         }//end if
     } else {
-        echo Compile::defaultInfo;
+        Compile::defaultInfo();
     }//end if
 
     exit();

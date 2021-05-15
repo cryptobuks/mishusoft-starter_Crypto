@@ -1,26 +1,14 @@
 <?php
 
-namespace Mishusoft\Release;
-
-require_once PHP_SOURCES_ROOT_PATH . '/Mishusoft/Framework/Chipsets/FileSystem.php';
-require_once PHP_SOURCES_ROOT_PATH . '/Mishusoft/Framework/Chipsets/Media.php';
-require_once PHP_SOURCES_ROOT_PATH . '/Mishusoft/Framework/Chipsets/Media/Mime.php';
-require_once PHP_SOURCES_ROOT_PATH . '/Mishusoft/Framework/Chipsets/Utility/_String.php';
-
-use CURLFile;
-use Mishusoft\Framework\Chipsets\FileSystem;
-use Mishusoft\Framework\Chipsets\Media;
-
-// use Mishusoft\Framework\Chipsets\Media\Mime;
-use Mishusoft\Framework\Chipsets\Utility\_String;
-use ZipArchive;
-
 /**
  * Release Manager
  *
- * @package    Mishusoft
- * @subpackage Release
- * @uses       php cli to use the valid command as belows
+ * @package    Mishusoft/Release
+ * @subpackage Compile
+ * @author     Squiz Pty Ltd <products@squiz.net>
+ * @copyright  2021 Squiz Pty Ltd (ABN 77 084 670 600)
+ *
+ * @uses php cli to use the valid command as belows
  * <pre>
  * geoipupdate && cp -r /var/lib/GeoIP ./Storages/0/GeoIP
  * sudo geoipupdate && sudo cp -r /var/lib/GeoIP ./Storages/0/GeoIP
@@ -57,42 +45,70 @@ use ZipArchive;
  *
  * </pre>
  * */
+
+declare(strict_types=1);
+
+namespace Mishusoft\Release;
+
+require_once PHP_SOURCES_ROOT_PATH.'/Mishusoft/Framework/Chipsets/FileSystem.php';
+require_once PHP_SOURCES_ROOT_PATH.'/Mishusoft/Framework/Chipsets/Media.php';
+require_once PHP_SOURCES_ROOT_PATH.'/Mishusoft/Framework/Chipsets/Media/Mime.php';
+require_once PHP_SOURCES_ROOT_PATH.'/Mishusoft/Framework/Chipsets/Utility/_String.php';
+
+use CURLFile;
+use Mishusoft\Framework\Chipsets\FileSystem;
+use Mishusoft\Framework\Chipsets\Media;
+
+use Mishusoft\Framework\Chipsets\Utility\_String;
+use ZipArchive;
+
 class Compile
 {
-    public const PACKAGENAME = 'Mishusoft Release';
-    public const PACKAGENAMEFULL = 'Mishusoft Release Manager';
-    public const PACKAGE_VERSION = '0.2';
-    public const CURRENTYEAR = CURRENT_YEAR;
-    public const FILEBASENAME = FILE_BASE_NAME;
-    public const PACKAGE_COMPANY = 'Mishusoft Systems Incorporated';
-
-    public const defaultInfo = self::PACKAGENAME . ' version ' . self::PACKAGE_VERSION . ' (' . 'PHP ' . PHP_VERSION . ')' . PHP_EOL . 'Copyright ' . self::CURRENTYEAR . ' (c) ' . self::PACKAGE_COMPANY . '' . PHP_EOL . PHP_EOL . 'Usage:\t php ' . self::FILEBASENAME . ' [options] [-s] <location> [-d] <location>' . PHP_EOL . '\t php ' . self::FILEBASENAME . ' [-c] [-s] <location> [-d] <location>' . PHP_EOL . '\t php ' . self::FILEBASENAME . ' [-t] [-s] <location> [-d] <location>' . PHP_EOL . '\t php ' . self::FILEBASENAME . ' [-tc] [-s] <location> [-d] <location>' . PHP_EOL . '\t php ' . self::FILEBASENAME . ' [-sp] [-s] <location> [-d] <location>' . PHP_EOL . '\t php ' . self::FILEBASENAME . ' [-spc] [-s] <location> [-d] <location>' . PHP_EOL . '\t php ' . self::FILEBASENAME . ' [-u] ' . PHP_EOL . '\t php ' . self::FILEBASENAME . ' [-h] ' . PHP_EOL
-    // end of uses
-    . PHP_EOL
-    // this function has been built
-    . 'Information about options' . PHP_EOL
-    // this function has been built
-    . '\t -c \t Compress sources code' . PHP_EOL
-    // this function has been built
-    . '\t -s \t Valid location for sources code' . PHP_EOL
-    // this function has been built
-    . '\t -d \t Valid location for compressed code' . PHP_EOL
-    // this function has been built
-    . '\t -t \t Release themes for Mishusoft Framework' . PHP_EOL . '\t -sp \t Release static pages for Mishusoft Framework' . PHP_EOL . '\t -u \t Update node-app and Mishusoft Framework release versions' . PHP_EOL
-    // this function has been built
-    . '\t -h \t help for release' . PHP_EOL;
-    // this function has been built
+    public const PACKAGE_NAME      = 'Mishusoft Release';
+    public const PACKAGE_NAME_FULL = 'Mishusoft Release Manager';
+    public const PACKAGE_VERSION   = '0.2';
+    public const CURRENT_YEAR      = CURRENT_YEAR;
+    public const FILE_BASE_NAME    = FILE_BASE_NAME;
+    public const PACKAGE_COMPANY   = 'Mishusoft Systems Incorporated';
 
 
     /**
-     * Start php file compiling
+     * Write log for default.
+     */
+    public static function defaultInfo()
+    {
+        echo self::PACKAGE_NAME.' version '.self::PACKAGE_VERSION.' (PHP '.PHP_VERSION.')'.PHP_EOL;
+        echo 'Copyright '.self::CURRENT_YEAR.' (c) '.self::PACKAGE_COMPANY.''.PHP_EOL.PHP_EOL;
+        echo 'Usage:\t php '.self::FILE_BASE_NAME.' [options] [-s] <location> [-d] <location>'.PHP_EOL;
+        echo '\t php '.self::FILE_BASE_NAME.' [-c] [-s] <location> [-d] <location>'.PHP_EOL;
+        echo '\t php '.self::FILE_BASE_NAME.' [-t] [-s] <location> [-d] <location>'.PHP_EOL;
+        echo '\t php '.self::FILE_BASE_NAME.' [-tc] [-s] <location> [-d] <location>'.PHP_EOL;
+        echo '\t php '.self::FILE_BASE_NAME.' [-sp] [-s] <location> [-d] <location>'.PHP_EOL;
+        echo '\t php '.self::FILE_BASE_NAME.' [-spc] [-s] <location> [-d] <location>'.PHP_EOL;
+        echo '\t php '.self::FILE_BASE_NAME.' [-u] '.PHP_EOL;
+        echo '\t php '.self::FILE_BASE_NAME.' [-h] '.PHP_EOL.PHP_EOL;
+        // End of uses.
+        // This function has been built.
+        echo 'Information about options'.PHP_EOL;
+        echo '\t -c \t Compress sources code'.PHP_EOL;
+        echo '\t -s \t Valid location for sources code'.PHP_EOL;
+        echo '\t -d \t Valid location for compressed code'.PHP_EOL;
+        echo '\t -t \t Release themes for Mishusoft Framework'.PHP_EOL;
+        echo '\t -sp \t Release static pages for Mishusoft Framework'.PHP_EOL;
+        echo '\t -u \t Update node-app and Mishusoft Framework release versions'.PHP_EOL;
+        echo '\t -h \t help for release'.PHP_EOL;
+    }//end defaultInfo()
+
+
+    /**
+     * Start php file compiling.
      *
      * @param string $operation
-     * @param array $options
+     * @param array  $options
      */
     public static function start(string $operation, array $options)
     {
-        $sourcesIdentify = array_shift($options);
+        $sourcesIdentify  = array_shift($options);
         $sourcesDirectory = array_shift($options);
 
         if (strtolower($sourcesIdentify) === '-s') {
@@ -101,22 +117,22 @@ class Compile
             if (count($options) > 1) {
                 $output_identify = array_shift($options);
                 $outputDirectory = array_shift($options);
-                $flash = array_shift($options);
+                $flash           = array_shift($options);
 
                 if (strtolower($output_identify) === '-d') {
                     $outputDirectory = FileSystem::realpath($outputDirectory);
+                    $sourcesPathBase = pathinfo($sourcesDirectory, PATHINFO_BASENAME);
+                    $outputPathBase  = pathinfo($outputDirectory, PATHINFO_BASENAME);
                     // Valid location for compressed code
                     if ($operation === 'copy') {
-                        self::release_log(self::FILEBASENAME . ' is started.');
+                        self::release_log(self::FILE_BASE_NAME.' is started.');
 
-                        self::release_log(self::PACKAGENAME . ' :: Copy Operation is running.');
-                        self::release_log('Source:: ' . $sourcesDirectory);
-                        self::release_log('Output:: ' . $outputDirectory);
+                        self::release_log(self::PACKAGE_NAME.' :: Copy Operation is running.');
+                        self::release_log('Source:: '.$sourcesDirectory);
+                        self::release_log('Output:: '.$outputDirectory);
                         if (!empty($sourcesDirectory) and !empty($outputDirectory)) {
-                            foreach (FileSystem::glob_recursive($sourcesDirectory . '/*', GLOB_MARK) as $file) {
+                            foreach (FileSystem::glob_recursive($sourcesDirectory.'/*', GLOB_MARK) as $file) {
                                 if (is_file($file)) {
-                                    // copy($file, str_replace($sourcesDirectory, $outputDirectory, $file));
-                                    // copy($sourcesDirectory, $outputDirectory);
                                     if (copy($file, str_replace($sourcesDirectory, $outputDirectory, $file))) {
                                         self::release_log('$file copied!!');
                                     } else {
@@ -128,33 +144,24 @@ class Compile
                     }//end if
 
                     if ($operation === 'rThemes') {
-                        self::release_log(self::FILEBASENAME . ' is started.');
+                        self::release_log(self::FILE_BASE_NAME.' is started.');
 
                         if (file_exists('$sourcesDirectory/positions.config.standard.php')) {
-                            self::release_log(self::PACKAGENAME . ' :: Themes Release Operation is running.');
-                            self::release_log('Source:: ' . $sourcesDirectory);
-                            self::release_log('Output:: ' . $outputDirectory);
+                            self::release_log(self::PACKAGE_NAME.' :: Themes Release Operation is running.');
+                            self::release_log('Source:: '.$sourcesDirectory);
+                            self::release_log('Output:: '.$outputDirectory);
                             if (count(self::getThemesList($sourcesDirectory)) > 0) {
                                 foreach (self::getThemesList($sourcesDirectory) as $theme) {
                                     $themeDirectory = pathinfo($theme, PATHINFO_FILENAME);
-                                    $themeFormat = pathinfo($theme, PATHINFO_EXTENSION);
-
-                                    /*
-                                     * if (!file_exists('$outputDirectory/$themeDirectory/configs')) {
-                                     *  mkdir('$outputDirectory/$themeDirectory/configs', 0777, true);
-                                     *  exec('chmod -R 777 $outputDirectory/$themeDirectory/configs');
-                                     * }
-                                     */
+                                    $themeFormat    = pathinfo($theme, PATHINFO_EXTENSION);
                                     if (!file_exists("$outputDirectory/$themeDirectory")) {
                                         mkdir("$outputDirectory/$themeDirectory", 0777, true);
                                         exec("chmod -R 777 $outputDirectory/$themeDirectory");
                                     }//end if
 
                                     self::release_log(
-                                        'Compiling [...]/' . pathinfo($sourcesDirectory, PATHINFO_BASENAME) . '/positions.config.standard.php to [...]/' . pathinfo(
-                                            $outputDirectory,
-                                            PATHINFO_BASENAME
-                                        ) . "/$themeDirectory/configs.php.."
+                                        'Compiling [...]/'.$sourcesPathBase.'/positions.config.standard.php to [...]/'
+                                        .$outputPathBase."/$themeDirectory/configs.php.."
                                     );
                                     self::Compiler(
                                         "$sourcesDirectory/positions.config.standard.php",
@@ -162,10 +169,8 @@ class Compile
                                         ($flash === '-flash')
                                     );
                                     self::release_log(
-                                        'Compiling [...]/' . pathinfo($sourcesDirectory, PATHINFO_BASENAME) . "/$theme to [...]/" . pathinfo(
-                                            $outputDirectory,
-                                            PATHINFO_BASENAME
-                                        ) . "/$themeDirectory/template.$themeFormat.."
+                                        'Compiling [...]/'.$sourcesPathBase."/$theme to [...]/"
+                                        .$outputPathBase."/$themeDirectory/template.$themeFormat.."
                                     );
                                     self::Compiler(
                                         "$sourcesDirectory/$theme",
@@ -178,15 +183,15 @@ class Compile
                             self::release_log('Operation completed!!');
                         } else {
                             self::release_log("$sourcesDirectory/positions.config.standard.php not exists.", 'error');
-                            echo self::defaultInfo;
+                            self::defaultInfo();
                         }//end if
-                    } else if ($operation === 'rWidgets') {
-                        self::release_log(self::FILEBASENAME . ' is started.');
+                    } elseif ($operation === 'rWidgets') {
+                        self::release_log(self::FILE_BASE_NAME.' is started.');
 
                         if (file_exists($sourcesDirectory)) {
-                            self::release_log(self::PACKAGENAME . ' :: Widgets Release Operation is running.');
-                            self::release_log('Source:: ' . $sourcesDirectory);
-                            self::release_log('Output:: ' . $outputDirectory);
+                            self::release_log(self::PACKAGE_NAME.' :: Widgets Release Operation is running.');
+                            self::release_log('Source:: '.$sourcesDirectory);
+                            self::release_log('Output:: '.$outputDirectory);
 
                             if (count(self::getDirectoryList($sourcesDirectory)) > 0) {
                                 foreach (self::getDirectoryList($sourcesDirectory) as $widget) {
@@ -197,10 +202,7 @@ class Compile
                                     }
 
                                     self::release_log(
-                                        'Compiling [...]/' . pathinfo($sourcesDirectory, PATHINFO_BASENAME) . "/$widget to [...]/" . pathinfo(
-                                            $outputDirectory,
-                                            PATHINFO_BASENAME
-                                        ) . "/$widgetDirectory.."
+                                        'Compiling [...]/'.$sourcesPathBase."/$widget to [...]/".$outputPathBase."/$widgetDirectory.."
                                     );
                                     self::Compiler(
                                         "$sourcesDirectory/$widget",
@@ -213,15 +215,15 @@ class Compile
                             self::release_log('Operation completed!!');
                         } else {
                             self::release_log("$sourcesDirectory not exists.", 'error');
-                            echo self::defaultInfo;
+                            self::defaultInfo();
                         }//end if
-                    } else if ($operation === 'rStaticHTMLPages') {
-                        self::release_log(self::FILEBASENAME . ' is started.');
+                    } elseif ($operation === 'rStaticHTMLPages') {
+                        self::release_log(self::FILE_BASE_NAME.' is started.');
 
                         if (file_exists($sourcesDirectory)) {
-                            self::release_log(self::PACKAGENAME . ' :: Templates Release Operation is running.');
-                            self::release_log('Source:: ' . $sourcesDirectory);
-                            self::release_log('Output:: ' . $outputDirectory);
+                            self::release_log(self::PACKAGE_NAME.' :: Templates Release Operation is running.');
+                            self::release_log('Source:: '.$sourcesDirectory);
+                            self::release_log('Output:: '.$outputDirectory);
 
                             if (count(self::getDirectoryList($sourcesDirectory)) > 0) {
                                 foreach (self::getDirectoryList($sourcesDirectory) as $packageDirectory) {
@@ -232,7 +234,7 @@ class Compile
                                         }
 
                                         self::release_log(
-                                            'Compiling [...]/' . pathinfo($sourcesDirectory, PATHINFO_BASENAME) . "/$packageDirectory/$moduleDirectory to [...]/" . pathinfo($outputDirectory, PATHINFO_BASENAME) . "/$packageDirectory/Resources/Templates/$moduleDirectory.."
+                                            'Compiling [...]/'.$sourcesPathBase."/$packageDirectory/$moduleDirectory to [...]/".$outputPathBase."/$packageDirectory/Resources/Templates/$moduleDirectory.."
                                         );
                                         self::Compiler(
                                             "$sourcesDirectory/$packageDirectory/$moduleDirectory",
@@ -246,16 +248,16 @@ class Compile
                             self::release_log('Operation completed!!');
                         } else {
                             self::release_log("$sourcesDirectory not exists.", 'error');
-                            echo self::defaultInfo;
+                            self::defaultInfo();
                         }//end if
                     } else {
-                        self::release_log(self::FILEBASENAME . ' is started.');
-                        self::release_log(self::PACKAGENAME . ' Operation is running.');
+                        self::release_log(self::FILE_BASE_NAME.' is started.');
+                        self::release_log(self::PACKAGE_NAME.' Operation is running.');
 
-                        self::release_log('Source:: ' . $sourcesDirectory);
-                        self::release_log('Output:: ' . $outputDirectory);
+                        self::release_log('Source:: '.$sourcesDirectory);
+                        self::release_log('Output:: '.$outputDirectory);
 
-                        self::release_log('Compiling $sourcesDirectory to ' . FileSystem::realpath($outputDirectory));
+                        self::release_log("Compiling $sourcesDirectory to ".FileSystem::realpath($outputDirectory));
 
                         self::Compiler($sourcesDirectory, FileSystem::realpath($outputDirectory), ($flash === '-flash'));
                         self::release_log('Operation completed!!');
@@ -264,15 +266,14 @@ class Compile
                 }//end if
             } else {
                 self::release_log('Error in argument 3, no destination location provided.', 'error');
-                echo self::defaultInfo;
+                self::defaultInfo();
             }//end if
         }//end if
-
     }//end start()
 
 
     /**
-     * @param string $directory
+     * @param  string $directory
      * @return array|false
      */
     private static function getThemesList(string $directory): bool|array
@@ -286,12 +287,11 @@ class Compile
         }
 
         return $files;
-
     }//end getThemesList()
 
 
     /**
-     * @param string $directory
+     * @param  string $directory
      * @return array|false
      */
     private static function getDirectoryList(string $directory): bool|array
@@ -305,7 +305,6 @@ class Compile
         }
 
         return $files;
-
     }//end getDirectoryList()
 
 
@@ -328,11 +327,10 @@ class Compile
 
         // update package release version for all packages
         foreach ($packages as $package) {
-            if (is_file(FileSystem::realpath($packagesRootDir . "/$package.json"))) {
-                self::updatePRV(FileSystem::realpath($packagesRootDir . "/$package.json"));
+            if (is_file(FileSystem::realpath($packagesRootDir."/$package.json"))) {
+                self::updatePRV(FileSystem::realpath($packagesRootDir."/$package.json"));
             }
         }
-
     }//end updatePRVALlPackages()
 
 
@@ -345,7 +343,7 @@ class Compile
         if (is_array($packageJsonContents) and count($packageJsonContents) > 0) {
             if (array_key_exists('version', $packageJsonContents)) {
                 $old_version = $packageJsonContents['version'];
-                $versions = explode('.', $packageJsonContents['version']);
+                $versions    = explode('.', $packageJsonContents['version']);
                 // extract version string into array
                 $firstArrKey = (count($versions) - 3);
                 // find out first array key index
@@ -371,7 +369,7 @@ class Compile
                     }
                 }
 
-                $new_version = implode('.', $versions);
+                $new_version                    = implode('.', $versions);
                 $packageJsonContents['version'] = $new_version;
                 if (is_readable($packageJsonFile)) {
                     if (is_writable($packageJsonFile)) {
@@ -379,19 +377,21 @@ class Compile
                             self::release_log("Version $old_version to $new_version updated from $packageJsonFile.");
                         } else {
                             self::release_log('Error in updating version, version setting failed.', 'error');
-                            echo self::defaultInfo;
+                            self::defaultInfo();
                         }
                     } else {
-                        self::release_log("Error in updating version, $packageJsonFile write permission denied.", 'error');
-                        echo self::defaultInfo;
+                        self::release_log(
+                            "Error in updating version, $packageJsonFile write permission denied.",
+                            'error'
+                        );
+                        self::defaultInfo();
                     }
                 } else {
                     self::release_log("Error in updating version, $packageJsonFile read permission denied.", 'error');
-                    echo self::defaultInfo;
+                    self::defaultInfo();
                 }
             }//end if
         }//end if
-
     }//end updatePRV()
 
 
@@ -399,20 +399,20 @@ class Compile
      * @param string $message
      * @param string $type
      */
-    public static function release_log(string $message, string $type = 'log')
+    public static function release_log(string $message, string $type='log')
     {
-        echo '[' . date('Y-m-d H:i:s A') . '] [' . strtoupper($type) . '] ' . $message . PHP_EOL;
-
+        echo '['.date('Y-m-d H:i:s A').'] ['.strtoupper($type).'] '.$message.PHP_EOL;
     }//end release_log()
 
 
     /**
      * Root compiler
-     * @param string $sourcesDirectory source directory of system.
-     * @param string $outputDirectory file or folder new compilation.
+     *
+     * @param string  $sourcesDirectory source directory of system.
+     * @param string  $outputDirectory  file or folder new compilation.
      * @param boolean $flash
      */
-    public static function Compiler(string $sourcesDirectory, string $outputDirectory, bool $flash = false)
+    public static function Compiler(string $sourcesDirectory, string $outputDirectory, bool $flash=false)
     {
         if (!is_file($sourcesDirectory)) {
             if (!file_exists($outputDirectory)) {
@@ -435,37 +435,38 @@ class Compile
         if (is_file($sourcesDirectory)) {
             self::writeFile($outputDirectory, $sourcesDirectory);
         } else {
-            $files = glob($sourcesDirectory . '*', GLOB_MARK);
+            $files = glob($sourcesDirectory.'*', GLOB_MARK);
             foreach ($files as $file) {
                 if (is_dir($file)) {
                     if ((basename($outputDirectory) !== basename($file))) {
-                        $terget = $outputDirectory . DIRECTORY_SEPARATOR . basename($file);
+                        $terget = $outputDirectory.DIRECTORY_SEPARATOR.basename($file);
                     } else {
                         $terget = $outputDirectory;
                     }//end if
+
                     self::Compiler($file, $terget);
                 } else {
                     if (is_file($sourcesDirectory)) {
                         self::writeFile($outputDirectory, $file);
                     } else {
-                        self::writeFile($outputDirectory . DIRECTORY_SEPARATOR . basename($file), $file);
+                        self::writeFile($outputDirectory.DIRECTORY_SEPARATOR.basename($file), $file);
                     }//end if
                 }//end if
             }
         }//end if
-
     }//end Compiler()
 
 
     /**
      * Delete file or folder.
+     *
      * @param string $target valid filename.
      */
     private static function deleteFiles(string $target)
     {
         if (file_exists($target)) {
             if (is_dir($target)) {
-                $files = glob($target . '*', GLOB_MARK);
+                $files = glob($target.'*', GLOB_MARK);
                 // GLOB_MARK adds a slash to directories returned
                 foreach ($files as $file) {
                     self::deleteFiles($file);
@@ -480,13 +481,13 @@ class Compile
                 }//end if
             }//end if
         }//end if
-
     }//end deleteFiles()
 
 
     /**
      * Write new file form source.
-     * @param string $newFile new output filename.
+     *
+     * @param string $newFile    new output filename.
      * @param string $sourceFile source filename.
      */
     private static function writeFile(string $newFile, string $sourceFile)
@@ -506,50 +507,77 @@ class Compile
         if ($cpm_src_file) {
             fwrite($cpm_src_file, self::compressPhpSource($sourceFile));
             fclose($cpm_src_file);
-            exec('chmod -R 777 ' . $newFile);
+            exec('chmod -R 777 '.$newFile);
         }//end if
-
     }//end writeFile()
 
 
     /**
      * With this function You can compress Your PHP source code.
      *
-     * @param string $validFileName
+     * @param  string $validFileName
      * @return boolean|string
      */
     public static function compressPhpSource(string $validFileName): bool|string
     {
         // Whitespaces left and right from this signs can be ignored
         static $IW = [
-            T_CONCAT_EQUAL, // .=
-            T_DOUBLE_ARROW, // =>
-            T_BOOLEAN_AND,  // &&
-            T_BOOLEAN_OR,  // ||
-            T_IS_EQUAL, // ==
-            T_IS_NOT_EQUAL, // != or <>
-            T_IS_SMALLER_OR_EQUAL, // <=
-            T_IS_GREATER_OR_EQUAL, // >=
-            T_INC, // ++
-            T_DEC, // --
-            T_PLUS_EQUAL, // +=
-            T_MINUS_EQUAL, // -=
-            T_MUL_EQUAL, // *=
-            T_DIV_EQUAL, // /=
-            T_IS_IDENTICAL, // ===
-            T_IS_NOT_IDENTICAL, // !==
-            T_DOUBLE_COLON, // ::
-            T_PAAMAYIM_NEKUDOTAYIM, // ::
-            T_OBJECT_OPERATOR, // ->
-            T_DOLLAR_OPEN_CURLY_BRACES, // ${
-            T_AND_EQUAL, // &=
-            T_MOD_EQUAL, // %=
-            T_XOR_EQUAL, // ^=
-            T_OR_EQUAL, // |=
-            T_SL, // <<
-            T_SR, // >>
-            T_SL_EQUAL, // <<=
-            T_SR_EQUAL, // >>=
+            T_CONCAT_EQUAL,
+        // .=
+            T_DOUBLE_ARROW,
+        // =>
+            T_BOOLEAN_AND,
+        // &&
+            T_BOOLEAN_OR,
+        // ||
+            T_IS_EQUAL,
+        // ==
+            T_IS_NOT_EQUAL,
+        // != or <>
+            T_IS_SMALLER_OR_EQUAL,
+        // <=
+            T_IS_GREATER_OR_EQUAL,
+        // >=
+            T_INC,
+        // ++
+            T_DEC,
+        // --
+            T_PLUS_EQUAL,
+        // +=
+            T_MINUS_EQUAL,
+        // -=
+            T_MUL_EQUAL,
+        // *=
+            T_DIV_EQUAL,
+        // /=
+            T_IS_IDENTICAL,
+        // ===
+            T_IS_NOT_IDENTICAL,
+        // !==
+            T_DOUBLE_COLON,
+        // ::
+            T_PAAMAYIM_NEKUDOTAYIM,
+        // ::
+            T_OBJECT_OPERATOR,
+        // ->
+            T_DOLLAR_OPEN_CURLY_BRACES,
+        // ${
+            T_AND_EQUAL,
+        // &=
+            T_MOD_EQUAL,
+        // %=
+            T_XOR_EQUAL,
+        // ^=
+            T_OR_EQUAL,
+        // |=
+            T_SL,
+        // <<
+            T_SR,
+        // >>
+            T_SL_EQUAL,
+        // <<=
+            T_SR_EQUAL,
+        // >>=
         ];
         if (is_file($validFileName)) {
             if (!$validFileName = file_get_contents($validFileName)) {
@@ -560,11 +588,15 @@ class Compile
         $tokens = token_get_all($validFileName);
 
         $new = '';
-        $c = sizeof($tokens);
-        $iw = false; // ignore whitespace
-        $ih = false; // in HEREDOC
-        $ls = ''; // last sign
-        $ot = null; // open tag
+        $c   = sizeof($tokens);
+        $iw  = false;
+        // ignore whitespace
+        $ih = false;
+        // in HEREDOC
+        $ls = '';
+        // last sign
+        $ot = null;
+        // open tag
         for ($i = 0; $i < $c; $i++) {
             $token = $tokens[$i];
             if (is_array($token)) {
@@ -573,35 +605,35 @@ class Compile
                 // $tname = token_name($tn);
                 if ($tn == T_INLINE_HTML) {
                     $new .= $ts;
-                    $iw = false;
+                    $iw   = false;
                 } else {
                     if ($tn == T_OPEN_TAG) {
                         if (strpos($ts, ' ') || strpos($ts, '\n') || strpos($ts, '\t') || strpos($ts, '\r')) {
                             $ts = rtrim($ts);
                         }
 
-                        $ts .= ' ';
+                        $ts  .= ' ';
                         $new .= $ts;
-                        $ot = T_OPEN_TAG;
-                        $iw = true;
-                    } else if ($tn == T_OPEN_TAG_WITH_ECHO) {
+                        $ot   = T_OPEN_TAG;
+                        $iw   = true;
+                    } elseif ($tn == T_OPEN_TAG_WITH_ECHO) {
                         $new .= $ts;
-                        $ot = T_OPEN_TAG_WITH_ECHO;
-                        $iw = true;
-                    } else if ($tn == T_CLOSE_TAG) {
+                        $ot   = T_OPEN_TAG_WITH_ECHO;
+                        $iw   = true;
+                    } elseif ($tn == T_CLOSE_TAG) {
                         if ($ot == T_OPEN_TAG_WITH_ECHO) {
                             $new = rtrim($new, '; ');
                         } else {
-                            $ts = ' ' . $ts;
+                            $ts = ' '.$ts;
                         }
 
                         $new .= $ts;
-                        $ot = null;
-                        $iw = false;
-                    } else if (in_array($tn, $IW)) {
+                        $ot   = null;
+                        $iw   = false;
+                    } elseif (in_array($tn, $IW)) {
                         $new .= $ts;
-                        $iw = true;
-                    } else if ($tn == T_CONSTANT_ENCAPSED_STRING
+                        $iw   = true;
+                    } elseif ($tn == T_CONSTANT_ENCAPSED_STRING
                         || $tn == T_ENCAPSED_AND_WHITESPACE
                     ) {
                         if ($ts[0] == '"') {
@@ -609,8 +641,8 @@ class Compile
                         }
 
                         $new .= $ts;
-                        $iw = true;
-                    } else if ($tn == T_WHITESPACE) {
+                        $iw   = true;
+                    } elseif ($tn == T_WHITESPACE) {
                         if (array_key_exists(($i + 1), $tokens)) {
                             $nt = @$tokens[($i + 1)];
                             if (!$iw && (!is_string($nt) || $nt == '$') && !in_array($nt[0], $IW)) {
@@ -619,25 +651,25 @@ class Compile
                         }
 
                         $iw = false;
-                    } else if ($tn == T_START_HEREDOC) {
+                    } elseif ($tn == T_START_HEREDOC) {
                         $new .= '<<<S\n';
-                        $iw = false;
-                        $ih = true;
-                        // in HEREDOC
-                    } else if ($tn == T_END_HEREDOC) {
+                        $iw   = false;
+                        $ih   = true;
+                    // in HEREDOC
+                    } elseif ($tn == T_END_HEREDOC) {
                         $new .= 'S;';
-                        $iw = true;
-                        $ih = false;
+                        $iw   = true;
+                        $ih   = false;
                         // in HEREDOC
                         for ($j = ($i + 1); $j < $c; $j++) {
                             if (is_string($tokens[$j]) && $tokens[$j] == ';') {
                                 $i = $j;
                                 break;
-                            } else if ($tokens[$j][0] == T_CLOSE_TAG) {
+                            } elseif ($tokens[$j][0] == T_CLOSE_TAG) {
                                 break;
                             }
                         }
-                    } else if ($tn == T_COMMENT || $tn == T_DOC_COMMENT) {
+                    } elseif ($tn == T_COMMENT || $tn == T_DOC_COMMENT) {
                         $iw = true;
                     } else {
                         if (!$ih) {
@@ -646,7 +678,7 @@ class Compile
                         }
 
                         $new .= $ts;
-                        $iw = false;
+                        $iw   = false;
                     }//end if
                 }//end if
 
@@ -654,7 +686,7 @@ class Compile
             } else {
                 if (($token != ';' && $token != ':') || $ls != $token) {
                     $new .= $token;
-                    $ls = $token;
+                    $ls   = $token;
                 }
 
                 $iw = true;
@@ -662,15 +694,14 @@ class Compile
         }//end for
 
         return $new;
-
     }//end compressPhpSource()
-
 
 
     /**
      * Make a zip file for sources.
-     * @param string $srcDirectory Source directory for zip.
-     * @param string $identity File identy.
+     *
+     * @param  string $srcDirectory Source directory for zip.
+     * @param  string $identity     File identy.
      * @return false|string Return filename or false.
      */
     public static function zip(string $srcDirectory, string $identity): bool|string
@@ -701,9 +732,9 @@ class Compile
             self::release_log("Preparing to check permissions $srcDirectory");
             foreach ($files as $file) {
                 // self::release_log(
-                //'Exploit permission for $file, permission is ' .
+                // 'Exploit permission for $file, permission is ' .
                 // substr(sprintf('%o', fileperms($file)), -4)
-                //);
+                // );
                 if (!is_readable($file)) {
                     self::release_log("Changing permission for $file");
                     exec("chmod -R 777 $file");
@@ -734,18 +765,18 @@ class Compile
         } else {
             return false;
         }
-
     }//end zip()
 
 
     /**
      * Make web request.
-     * @param string $url
-     * @param null $data
-     * @param null $headers
-     * @return bool|string
+     *
+     * @param  string $url
+     * @param  null   $data
+     * @param  null   $headers
+     * @return boolean|string
      */
-    public static function curlPost(string $url, $data = null, $headers = null): bool|string
+    public static function curlPost(string $url, $data=null, $headers=null): bool|string
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, 1);
@@ -769,13 +800,12 @@ class Compile
         $response = curl_exec($ch);
 
         if (curl_error($ch)) {
-            self::release_log('Connection Error: ' . curl_error($ch), 'error');
+            self::release_log('Connection Error: '.curl_error($ch), 'error');
             exit();
         }//end if
 
         curl_close($ch);
         return $response;
-
     }//end curlPost()
 
 
@@ -784,7 +814,7 @@ class Compile
      */
     public static function updateOldVersion(array $parameters)
     {
-        $sourcesIdentify = array_shift($parameters);
+        $sourcesIdentify  = array_shift($parameters);
         $sourcesDirectory = array_shift($parameters);
 
         if (strtolower($sourcesIdentify) === '-s') {
@@ -801,15 +831,15 @@ class Compile
                     // $outputDirectory = FileSystem::realpath($outputDirectory);
                     $outputDirectory = str_replace('./', '', $outputDirectory);
 
-                    self::release_log(self::FILEBASENAME . ' is started.');
+                    self::release_log(self::FILE_BASE_NAME.' is started.');
 
                     if (file_exists($sourcesDirectory)) {
-                        self::release_log(self::PACKAGENAMEFULL . ' :: update Operation is running.');
-                        self::release_log('Source:: ' . $sourcesDirectory);
-                        self::release_log('Output:: WebDirectory/' . $outputDirectory);
+                        self::release_log(self::PACKAGE_NAME_FULL.' :: update Operation is running.');
+                        self::release_log('Source:: '.$sourcesDirectory);
+                        self::release_log('Output:: WebDirectory/'.$outputDirectory);
 
                         $dest_identify = array_shift($parameters);
-                        $dest_server = array_shift($parameters);
+                        $dest_server   = array_shift($parameters);
 
                         if (strtolower($dest_identify) === '-w') {
                             if ($dest_server) {
@@ -838,24 +868,22 @@ class Compile
                             }//end if
                         } else {
                             self::release_log('Remote server name not exists.', 'error');
-                            echo self::defaultInfo;
+                            self::defaultInfo();
                         }//end if
                     } else {
                         self::release_log('Remote server identity not exists.', 'error');
-                        echo self::defaultInfo;
+                        self::defaultInfo();
                     }//end if
 
                     self::release_log('Operation completed!!');
                 } else {
                     self::release_log("$sourcesDirectory not exists.", 'error');
-                    echo self::defaultInfo;
+                    self::defaultInfo();
                 }//end if
             }//end if
         } else {
             self::release_log('Error in argument 3, no destination location provided.', 'error');
-            echo self::defaultInfo;
+            self::defaultInfo();
         }//end if
-
     }//end updateOldVersion()
-
 }//end class
