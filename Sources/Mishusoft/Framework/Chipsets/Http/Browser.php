@@ -15,40 +15,60 @@ use Mishusoft\Framework\Chipsets\Utility\Stream;
 
 class Browser extends DataObject
 {
-    /*declare version*/
-    const VERSION = "1.0.2";
+    // declare version
+    const VERSION = '1.0.2';
 
-    /*variables*/
+    // variables
     private string $RequestMethod;
+
     private string $RequestMode;
+
     private string $UserAgent = 'Unknown';
+
     private string $AcceptLanguage = 'Unknown';
+
     private string $AcceptEncoding = 'Unknown';
 
     private string $browserName = 'Unknown';
+
     private string $browserNameFull = 'Unknown';
+
     private string $browserVersion = 'Unknown';
+
     private string $browserVersionFull = 'Unknown';
+
     private string $browserArchitecture = 'Unknown';
+
     private string $browserAppName = 'Unknown';
+
     private string $browserAppVersion = 'Unknown';
+
     private string $browserAppCodeName = 'Unknown';
+
     private string $browserAppCodeVersion = 'Unknown';
 
     private string $browserEngineName = 'Unknown';
+
     private string $browserEngineNameFull = 'Unknown';
+
     private string $browserEngineVersion = 'Unknown';
+
     private array $browserInfoAll = [];
 
     private string $deviceName = 'Unknown';
+
     private string $deviceType = 'Unknown';
+
     private string $deviceArchitecture = 'Unknown';
+
     private string $deviceWindowManager = 'Unknown';
 
     private array $deviceInfoAll;
+
     private string $deviceNameFull;
 
     private string $deviceNameOriginal = 'Unknown';
+
     private string $deviceWmNameOriginal = 'Unknown';
 
     /**
@@ -57,18 +77,26 @@ class Browser extends DataObject
     private $currentDeviceInfo;
 
     private string $URLProtocol;
+
     private string $URLHostname;
+
     private string $URLPath;
 
+    // runtime storage
+    private array $UserAgentList = [];
 
-    /*runtime storage*/
-    private array $UserAgentList = array();
     private array $devicesList;
+
     private array $devicesArchitectureList;
+
     private array $devicesPlatformWMNameList;
+
     private array $devicesCategoryList;
+
     private array $webBrowserList;
+
     private array $webBrowserAppCodeNameList;
+
     private array $webBrowserLayoutList;
 
     private string $timeOfToday;
@@ -76,26 +104,26 @@ class Browser extends DataObject
 
     public function __construct()
     {
-        $this->timeOfToday = date("Y-m-d H:i:s");
+        $this->timeOfToday   = date('Y-m-d H:i:s');
         $this->RequestMethod = $_SERVER['REQUEST_METHOD'];
-        $this->RequestMode = array_key_exists('HTTP-SEC-FETCH-MODE', $_SERVER) ? $_SERVER['HTTP-SEC-FETCH-MODE'] : 'negative';
-        $this->URLProtocol = array_key_exists('REQUEST_SCHEME', $_SERVER) ? $_SERVER['REQUEST_SCHEME'] : 'http';
-        $this->URLHostname = $_SERVER['HTTP_HOST'];
-        $this->URLPath = $_SERVER['REQUEST_URI'];
+        $this->RequestMode   = array_key_exists('HTTP-SEC-FETCH-MODE', $_SERVER) ? $_SERVER['HTTP-SEC-FETCH-MODE'] : 'negative';
+        $this->URLProtocol   = array_key_exists('REQUEST_SCHEME', $_SERVER) ? $_SERVER['REQUEST_SCHEME'] : 'http';
+        $this->URLHostname   = $_SERVER['HTTP_HOST'];
+        $this->URLPath       = $_SERVER['REQUEST_URI'];
 
         $this->loadBrowserData();
 
         if (function_exists('apache_request_headers')) {
             if (array_key_exists('User-Agent', apache_request_headers())) {
-                $this->UserAgent = array_key_exists('User-Agent', apache_request_headers()) ? apache_request_headers()['User-Agent'] : $this->UserAgent;
+                $this->UserAgent      = array_key_exists('User-Agent', apache_request_headers()) ? apache_request_headers()['User-Agent'] : $this->UserAgent;
                 $this->AcceptLanguage = array_key_exists('Accept-Language', apache_request_headers()) ? apache_request_headers()['Accept-Language'] : $this->AcceptLanguage;
                 $this->AcceptEncoding = array_key_exists('Accept-Encoding', apache_request_headers()) ? apache_request_headers()['Accept-Encoding'] : $this->AcceptEncoding;
                 $this->storeUserAgentInFile();
                 $this->analyze();
             }
-        } elseif (function_exists('getallheaders')) {
+        } else if (function_exists('getallheaders')) {
             if (array_key_exists('User-Agent', getallheaders())) {
-                $this->UserAgent = array_key_exists('HTTP_USER_AGENT', getallheaders()) ? getallheaders()['HTTP_USER_AGENT'] : $this->UserAgent;
+                $this->UserAgent      = array_key_exists('HTTP_USER_AGENT', getallheaders()) ? getallheaders()['HTTP_USER_AGENT'] : $this->UserAgent;
                 $this->AcceptLanguage = array_key_exists('Accept-Language', getallheaders()) ? getallheaders()['Accept-Language'] : $this->AcceptLanguage;
                 $this->AcceptEncoding = array_key_exists('Accept-Encoding', getallheaders()) ? getallheaders()['Accept-Encoding'] : $this->AcceptEncoding;
                 $this->storeUserAgentInFile();
@@ -109,12 +137,14 @@ class Browser extends DataObject
                 $this->storeUserAgentInFile();
                 $this->analyze();
             }
-        }
-    }
+        }//end if
 
-    private function loadBrowserData()
+    }//end __construct()
+
+
+    private function loadBrowserData(): void
     {
-        /*devices list*/
+        // devices list
         if (file_exists(self::devicesListFile)) {
             if (is_readable(self::devicesListFile)) {
                 if ($this->IsUpdateDatabase($this->getDevicesList(), self::devicesListFile)) {
@@ -122,16 +152,18 @@ class Browser extends DataObject
                         file_put_contents(self::devicesListFile, json_encode($this->getDevicesList()));
                     }
                 }
+
                 $this->devicesList = json_decode(file_get_contents(self::devicesListFile), true);
             }
         } else {
-            if (fopen(self::devicesListFile, 'w+')) {
+            if (fopen(self::devicesListFile, 'wb+')) {
                 file_put_contents(self::devicesListFile, json_encode($this->getDevicesList()));
             }
+
             $this->devicesList = $this->getDevicesList();
         }
 
-        /*device's architecture list*/
+        // device's architecture list
         if (file_exists(self::devicesArchitectureListFile)) {
             if (is_readable(self::devicesArchitectureListFile)) {
                 if ($this->IsUpdateDatabase($this->getDevicesArchitectureList(), self::devicesArchitectureListFile)) {
@@ -139,16 +171,18 @@ class Browser extends DataObject
                         file_put_contents(self::devicesArchitectureListFile, json_encode($this->getDevicesArchitectureList()));
                     }
                 }
+
                 $this->devicesArchitectureList = json_decode(file_get_contents(self::devicesArchitectureListFile), true);
             }
         } else {
-            if (fopen(self::devicesArchitectureListFile, 'w+')) {
+            if (fopen(self::devicesArchitectureListFile, 'wb+')) {
                 file_put_contents(self::devicesArchitectureListFile, json_encode($this->getDevicesArchitectureList()));
             }
+
             $this->devicesArchitectureList = $this->getDevicesArchitectureList();
         }
 
-        /*devices category list*/
+        // devices category list
         if (file_exists(self::devicesCategoryListFile)) {
             if (is_readable(self::devicesCategoryListFile)) {
                 if ($this->IsUpdateDatabase($this->getDevicesCategoryList(), self::devicesCategoryListFile)) {
@@ -156,16 +190,18 @@ class Browser extends DataObject
                         file_put_contents(self::devicesCategoryListFile, json_encode($this->getDevicesCategoryList()));
                     }
                 }
+
                 $this->devicesCategoryList = json_decode(file_get_contents(self::devicesCategoryListFile), true);
             }
         } else {
-            if (fopen(self::devicesCategoryListFile, 'w+')) {
+            if (fopen(self::devicesCategoryListFile, 'wb+')) {
                 file_put_contents(self::devicesCategoryListFile, json_encode($this->getDevicesCategoryList()));
             }
+
             $this->devicesCategoryList = $this->getDevicesCategoryList();
         }
 
-        /*platform window manager list*/
+        // platform window manager list
         if (file_exists(self::devicesPlatformWMNameListFile)) {
             if (is_readable(self::devicesPlatformWMNameListFile)) {
                 if ($this->IsUpdateDatabase($this->getPlatformWmList(), self::devicesPlatformWMNameListFile)) {
@@ -173,16 +209,18 @@ class Browser extends DataObject
                         file_put_contents(self::devicesPlatformWMNameListFile, json_encode($this->getPlatformWmList()));
                     }
                 }
+
                 $this->devicesPlatformWMNameList = json_decode(file_get_contents(self::devicesPlatformWMNameListFile), true);
             }
         } else {
-            if (fopen(self::devicesPlatformWMNameListFile, 'w+')) {
+            if (fopen(self::devicesPlatformWMNameListFile, 'wb+')) {
                 file_put_contents(self::devicesPlatformWMNameListFile, json_encode($this->getPlatformWmList()));
             }
+
             $this->devicesPlatformWMNameList = $this->getPlatformWmList();
         }
 
-        /*browsers list*/
+        // browsers list
         if (file_exists(self::webBrowserListFile)) {
             if (is_readable(self::webBrowserListFile)) {
                 if ($this->IsUpdateDatabase($this->getWebBrowsersList(), self::webBrowserListFile)) {
@@ -190,18 +228,18 @@ class Browser extends DataObject
                         file_put_contents(self::webBrowserListFile, json_encode($this->getWebBrowsersList()));
                     }
                 }
-                $this->webBrowserList = json_decode(file_get_contents(self::webBrowserListFile), true);
 
+                $this->webBrowserList = json_decode(file_get_contents(self::webBrowserListFile), true);
             }
         } else {
-            if (fopen(self::webBrowserListFile, 'w+')) {
+            if (fopen(self::webBrowserListFile, 'wb+')) {
                 file_put_contents(self::webBrowserListFile, json_encode($this->getWebBrowsersList()));
             }
+
             $this->webBrowserList = $this->getWebBrowsersList();
         }
 
-
-        /*browsers app code list*/
+        // browsers app code list
         if (file_exists(self::webBrowserAppCodeListFile)) {
             if (is_readable(self::webBrowserAppCodeListFile)) {
                 if ($this->IsUpdateDatabase($this->getWebBrowserAppCodeList(), self::webBrowserAppCodeListFile)) {
@@ -209,16 +247,18 @@ class Browser extends DataObject
                         file_put_contents(self::webBrowserAppCodeListFile, json_encode($this->getWebBrowserAppCodeList()));
                     }
                 }
+
                 $this->webBrowserAppCodeNameList = json_decode(file_get_contents(self::webBrowserAppCodeListFile), true);
             }
         } else {
-            if (fopen(self::webBrowserAppCodeListFile, 'w+')) {
+            if (fopen(self::webBrowserAppCodeListFile, 'wb+')) {
                 file_put_contents(self::webBrowserAppCodeListFile, json_encode($this->getWebBrowserAppCodeList()));
             }
+
             $this->webBrowserAppCodeNameList = $this->getWebBrowserAppCodeList();
         }
 
-        /*browsers layout list*/
+        // browsers layout list
         if (file_exists(self::webBrowserLayoutListFile)) {
             if (is_readable(self::webBrowserLayoutListFile)) {
                 if ($this->IsUpdateDatabase($this->getWebBrowsersLayoutList(), self::webBrowserLayoutListFile)) {
@@ -226,124 +266,140 @@ class Browser extends DataObject
                         file_put_contents(self::webBrowserLayoutListFile, json_encode($this->getWebBrowsersLayoutList()));
                     }
                 }
+
                 $this->webBrowserLayoutList = json_decode(file_get_contents(self::webBrowserLayoutListFile), true);
             }
         } else {
-            if (fopen(self::webBrowserLayoutListFile, 'w+')) {
+            if (fopen(self::webBrowserLayoutListFile, 'wb+')) {
                 file_put_contents(self::webBrowserLayoutListFile, json_encode($this->getWebBrowsersLayoutList()));
             }
+
             $this->webBrowserLayoutList = $this->getWebBrowsersLayoutList();
         }
-    }
+
+    }//end loadBrowserData()
+
 
     private function IsUpdateDatabase(array $database, string $filename): bool
     {
-        if (is_readable(file_get_contents($filename)) && strlen(file_get_contents($filename)) !== 0 and count(array_keys($database)) > count(array_keys(json_decode(file_get_contents($filename), true))) ||
-            strlen(json_encode($database)) > strlen(file_get_contents($filename))) {
+        if (is_readable(file_get_contents($filename)) && strlen(file_get_contents($filename)) !== 0 and count(array_keys($database)) > count(array_keys(json_decode(file_get_contents($filename), true)))
+            || strlen(json_encode($database)) > strlen(file_get_contents($filename))
+        ) {
             return true;
         }
+
         return false;
-    }
+
+    }//end IsUpdateDatabase()
+
 
     private function storeUserAgentInFile(): void
     {
-        /*UserAgentListFile*/
+        // UserAgentListFile
         if (file_exists(self::userAgentListFile)) {
             if (is_writable(self::userAgentListFile)) {
-                Stream::append(self::userAgentListFile,"\"$this->timeOfToday\",\"".IP::get()."\",\"$this->UserAgent\"".PHP_EOL);
+                Stream::append(self::userAgentListFile, "\"$this->timeOfToday\",\"".IP::get()."\",\"$this->UserAgent\"".PHP_EOL);
             }
         } else {
             if (is_writable(dirname(self::userAgentListFile))) {
-                Stream::append(self::userAgentListFile,"\"Date\", \"Client\", \"User-Agent\"".PHP_EOL);
-                Stream::append(self::userAgentListFile,"\"$this->timeOfToday\",\"".IP::get()."\",\"$this->UserAgent\"".PHP_EOL);
+                Stream::append(self::userAgentListFile, '"Date", "Client", "User-Agent"'.PHP_EOL);
+                Stream::append(self::userAgentListFile, "\"$this->timeOfToday\",\"".IP::get()."\",\"$this->UserAgent\"".PHP_EOL);
             }
         }
-    }
+
+    }//end storeUserAgentInFile()
+
 
     private function analyze()
     {
-        /*start operation*/
-        /*first step*/
+        /*
+            start operation*/
+        // first step
         $cleanUA = $this->cleanUserAgentString($this->UserAgent);
         foreach ($this->webBrowserAppCodeNameList as $appKey => $appValue) {
-            if (preg_match('#' . preg_quote(strtolower($appKey)) . '[/]+([0-9]+(?:\.[0-9]+)?)#', $cleanUA, $matches)) {
-                $this->browserAppCodeName = $appValue;
+            if (preg_match('#'.preg_quote(strtolower($appKey)).'[/]+([0-9]+(?:\.[0-9]+)?)#', $cleanUA, $matches)) {
+                $this->browserAppCodeName    = $appValue;
                 $this->browserAppCodeVersion = $matches[1];
                 break;
             }
         }
 
-        /*second step*/
+        // second step
         foreach ($this->devicesPlatformWMNameList as $pwKey => $pwValue) {
-            if (preg_match('/' . preg_quote(strtolower($pwKey)) . '\b/i', $cleanUA, $matches)) {
-                $this->deviceWindowManager = $pwKey;
+            if (preg_match('/'.preg_quote(strtolower($pwKey)).'\b/i', $cleanUA, $matches)) {
+                $this->deviceWindowManager  = $pwKey;
                 $this->deviceWmNameOriginal = ucfirst($pwKey);
                 $this->windowManager($pwValue);
                 break;
             }
         }
-        /*third step*/
+
+        // third step
         foreach ($this->devicesCategoryList as $dcKey => $dcValue) {
-            if (preg_match('/' . preg_quote(strtolower($dcKey)) . '\b/i', $cleanUA, $matches)) {
+            if (preg_match('/'.preg_quote(strtolower($dcKey)).'\b/i', $cleanUA, $matches)) {
                 $this->deviceWindowManager = $dcValue;
                 break;
             }
         }
 
-        /*fourth step*/
+        // fourth step
         foreach ($this->devicesList as $dKey => $dValue) {
-            if (preg_match('/' . strtolower($dKey) . '\b/i', $cleanUA, $matches)) {
-                $this->deviceName = $dKey;
+            if (preg_match('/'.strtolower($dKey).'\b/i', $cleanUA, $matches)) {
+                $this->deviceName     = $dKey;
                 $this->deviceNameFull = $this->finalContent($dKey, $cleanUA);
-                $this->deviceInfoAll = (array)$dValue;
-                $this->deviceDetails((array)$dValue);
+                $this->deviceInfoAll  = (array) $dValue;
+                $this->deviceDetails((array) $dValue);
 
                 $device = explode(';', $this->deviceInfo($cleanUA));
                 foreach ($device as $devValue) {
-                    if (preg_match('/' . strtolower($dKey) . '\b/i', $devValue, $matches)) {
+                    if (preg_match('/'.strtolower($dKey).'\b/i', $devValue, $matches)) {
                         $this->deviceNameOriginal = ltrim($devValue);
                         break;
                     }
                 }
+
                 break;
             }
         }
-        /*fifth step*/
+
+        // fifth step
         foreach ($this->devicesArchitectureList as $aKey => $aValue) {
-            if (preg_match('/' . strtolower($aKey) . '\b/i', $cleanUA, $matches)) {
-                $this->deviceArchitecture = $aValue;
+            if (preg_match('/'.strtolower($aKey).'\b/i', $cleanUA, $matches)) {
+                $this->deviceArchitecture  = $aValue;
                 $this->browserArchitecture = $aValue;
                 break;
             }
         }
-        /*sixth step*/
+
+        // sixth step
         foreach (array_change_key_case($this->webBrowserList, CASE_LOWER) as $wbKey => $wbValue) {
-            if (preg_match('/' . preg_quote(strtolower($wbKey)) . '\b/i', $cleanUA, $matches)) {
-                $this->browserName = ucfirst($wbKey);
-                $this->browserNameFull = ltrim(ucwords(strtr(strtolower($this->finalContent($wbKey, $cleanUA)), array($wbKey => $wbValue['name']))));
-                $this->browserInfoAll = is_array($wbValue) ? $wbValue : array();
+            if (preg_match('/'.preg_quote(strtolower($wbKey)).'\b/i', $cleanUA, $matches)) {
+                $this->browserName        = ucfirst($wbKey);
+                $this->browserNameFull    = ltrim(ucwords(strtr(strtolower($this->finalContent($wbKey, $cleanUA)), [$wbKey => $wbValue['name']])));
+                $this->browserInfoAll     = is_array($wbValue) ? $wbValue : [];
                 $this->browserVersionFull = substr($this->browserNameFull, (strpos($this->browserNameFull, $wbKey) + strlen($wbKey) + 1), (strlen($this->browserNameFull) - (strpos($this->browserNameFull, $wbKey) + strlen($wbKey) + 1)));
-                $this->browserVersion = substr($this->browserVersionFull, 0, strpos($this->browserVersionFull, "."));
+                $this->browserVersion     = substr($this->browserVersionFull, 0, strpos($this->browserVersionFull, '.'));
                 break;
             }
         }
 
-
-        /*seventh step*/
+        // seventh step
         foreach (array_change_key_case($this->webBrowserLayoutList, CASE_LOWER) as $layoutKey => $layoutValue) {
-            if (preg_match('#' . preg_quote(strtolower($layoutValue['contain'])) . '[/]+([0-9]+(?:\.[0-9]+)?)#', $cleanUA, $matches)) {
-                $this->browserEngineName = $layoutKey;
+            if (preg_match('#'.preg_quote(strtolower($layoutValue['contain'])).'[/]+([0-9]+(?:\.[0-9]+)?)#', $cleanUA, $matches)) {
+                $this->browserEngineName     = $layoutKey;
                 $this->browserEngineNameFull = $this->cleanContent($matches[0]);
-                $this->browserEngineVersion = $matches[1];
+                $this->browserEngineVersion  = $matches[1];
                 break;
             }
         }
-    }
+
+    }//end analyze()
+
 
     /**
      * Make user agent string lowercase, and replace browser aliases.
      *
-     * @param string $string The dirty user agent string
+     * @param  string $string The dirty user agent string
      * @return string Returns the clean user agent string.
      */
     protected function cleanUserAgentString(string $string): string
@@ -353,7 +409,9 @@ class Browser extends DataObject
 
         // replace browser names with their aliases
         return strtr($string, $this->getKnownBrowserAliases());
-    }
+
+    }//end cleanUserAgentString()
+
 
     /**
      * Gets known browser aliases.
@@ -362,11 +420,13 @@ class Browser extends DataObject
      */
     protected function getKnownBrowserAliases(): array
     {
-        return array(
-            'opr' => 'opera',
+        return [
+            'opr'       => 'opera',
             'iceweasel' => 'firefox',
-        );
-    }
+        ];
+
+    }//end getKnownBrowserAliases()
+
 
     private function windowManager(array $array): void
     {
@@ -374,25 +434,28 @@ class Browser extends DataObject
             if (array_key_exists('name', $array)) {
                 $this->deviceType = $array['name'];
             }
+
             if (array_key_exists('type', $array)) {
                 $this->deviceWindowManager = $array['type'];
             }
         } else {
-            $this->deviceType = (string)$array;
+            $this->deviceType = (string) $array;
         }
-    }
+
+    }//end windowManager()
+
 
     private function finalContent(string $key, string $content): string
     {
         $finalOutput = '';
-        $kPosition = strpos($content, strtolower($key));
-        $cLength = strlen($content);
-        $fountText = substr($content, $kPosition, ($cLength - $kPosition));
-        $totalWords = str_word_count($fountText);
+        $kPosition   = strpos($content, strtolower($key));
+        $cLength     = strlen($content);
+        $fountText   = substr($content, $kPosition, ($cLength - $kPosition));
+        $totalWords  = str_word_count($fountText);
         if ($totalWords > 1) {
             $wordsArray = explode(' ', $fountText);
             foreach ($wordsArray as $value) {
-                if (preg_match('/' . preg_quote(strtolower($key)) . '/i', $value, $matches)) {
+                if (preg_match('/'.preg_quote(strtolower($key)).'/i', $value, $matches)) {
                     $finalOutput = $value;
                     break;
                 }
@@ -402,40 +465,48 @@ class Browser extends DataObject
         }
 
         return $this->cleanContent($finalOutput);
-    }
+
+    }//end finalContent()
+
 
     private function cleanContent(string $content): string
     {
         return ltrim(ucwords(preg_replace('#[/]|[;]|[)]#', ' ', $content)));
-    }
+
+    }//end cleanContent()
+
 
     private function deviceDetails(array $resources): void
     {
         if (is_array($resources) and count($resources) > 0) {
             if (array_key_exists('Platform', $resources)) {
-                $this->currentDeviceInfo = $resources['Platform'];
-                $this->deviceName = $resources['Platform']['name'];
+                $this->currentDeviceInfo  = $resources['Platform'];
+                $this->deviceName         = $resources['Platform']['name'];
                 $this->deviceArchitecture = $resources['Platform']['architecture'];
-                $this->deviceType = $resources['Device']['type'];
+                $this->deviceType         = $resources['Device']['type'];
             } else {
                 if (is_string($resources)) {
-                    $this->deviceName = $resources;
-                    $this->deviceType = $resources;
+                    $this->deviceName        = $resources;
+                    $this->deviceType        = $resources;
                     $this->currentDeviceInfo = $resources;
                 }
             }
         }
-    }
+
+    }//end deviceDetails()
+
 
     /**
-     * @param string $ua
+     * @param  string $ua
      * @return string
      */
     private function deviceInfo(string $ua): string
     {
         preg_match('/\(([^\)]*)\)/', $ua, $matches);
         return $matches[1];
-    }
+
+    }//end deviceInfo()
+
 
     /**
      * @public
@@ -445,10 +516,10 @@ class Browser extends DataObject
     {
         // SET DEFAULT
         $title = 'No title found';
-        //Web url
+        // Web url
         $url = self::getVisitedPage();
         // OPEN THE REMOTE PAGE
-        $file = fopen($url, "r") or trigger_error("url not found");
+        $file = fopen($url, 'r') or trigger_error('url not found');
         // ITERATE OVER THE PAGE DATA
         while (!feof($file)) {
             $text = fread($file, 16384);
@@ -459,7 +530,9 @@ class Browser extends DataObject
         }
 
         return ltrim($title);
-    }
+
+    }//end visitedPageTitle()
+
 
     /**
      * @public
@@ -468,38 +541,44 @@ class Browser extends DataObject
     public static function getVisitedPage(): string
     {
         return self::VisitedPageURL($_SERVER);
-    }
+
+    }//end getVisitedPage()
+
 
     /**
-     * @param $s
-     * @param false $use_forwarded_host
+     * @param  $s
+     * @param  false $use_forwarded_host
      * @return string
      */
-    public static function VisitedPageURL($s, $use_forwarded_host = false): string
+    public static function VisitedPageURL($s, $use_forwarded_host=false): string
     {
-        return self::url_origin($s, $use_forwarded_host) . $s['REQUEST_URI'];
-    }
+        return self::url_origin($s, $use_forwarded_host).$s['REQUEST_URI'];
+
+    }//end VisitedPageURL()
+
 
     /**
-     * @param $s
-     * @param false $use_forwarded_host
+     * @param  $s
+     * @param  false $use_forwarded_host
      * @return string
      */
-    public static function url_origin($s, $use_forwarded_host = false): string
+    public static function url_origin($s, $use_forwarded_host=false): string
     {
-        $ssl = (!empty($s['HTTPS']) && $s['HTTPS'] == 'on');
-        $sp = strtolower($s['SERVER_PROTOCOL']);
-        $protocol = substr($sp, 0, strpos($sp, '/')) . (($ssl) ? 's' : '');
-        $port = $s['SERVER_PORT'];
-        $port = ((!$ssl && $port == '80') || ($ssl && $port == '443')) ? '' : ':' . $port;
-        $host = ($use_forwarded_host && isset($s['HTTP_X_FORWARDED_HOST'])) ? $s['HTTP_X_FORWARDED_HOST'] : (isset($s['HTTP_HOST']) ? $s['HTTP_HOST'] : null);
-        $host = isset($host) ? $host : $s['SERVER_NAME'] . $port;
-        return $protocol . '://' . $host;
-    }
+        $ssl      = (!empty($s['HTTPS']) && $s['HTTPS'] == 'on');
+        $sp       = strtolower($s['SERVER_PROTOCOL']);
+        $protocol = substr($sp, 0, strpos($sp, '/')).(($ssl) ? 's' : '');
+        $port     = $s['SERVER_PORT'];
+        $port     = ((!$ssl && $port == '80') || ($ssl && $port == '443')) ? '' : ':'.$port;
+        $host     = ($use_forwarded_host && isset($s['HTTP_X_FORWARDED_HOST'])) ? $s['HTTP_X_FORWARDED_HOST'] : (isset($s['HTTP_HOST']) ? $s['HTTP_HOST'] : null);
+        $host     = isset($host) ? $host : $s['SERVER_NAME'].$port;
+        return $protocol.'://'.$host;
+
+    }//end url_origin()
+
 
     /**
      * @public
-     * @param string $name
+     * @param  string $name
      * @return array
      */
     public function getBrowserDetails(string $name): array
@@ -508,20 +587,23 @@ class Browser extends DataObject
             if (array_key_exists(strtolower($name), array_change_key_case($this->webBrowserList, CASE_LOWER))) {
                 foreach ($this->webBrowserList as $item => $details) {
                     if (strtolower($item) === strtolower($name)) {
-                        return is_array($details) ? $details : (array)$details;
+                        return is_array($details) ? $details : (array) $details;
                     }
                 }
             } else {
-                return array(
-                    'name' => $name,
-                    'status' => 'Unknown'
-                );
+                return [
+                    'name'   => $name,
+                    'status' => 'Unknown',
+                ];
             }
         } else {
             trigger_error('Invalid browser name used');
         }
+
         return [];
-    }
+
+    }//end getBrowserDetails()
+
 
     /**
      * @public
@@ -530,7 +612,9 @@ class Browser extends DataObject
     public function getBrowserEngineName(): string
     {
         return ltrim($this->browserEngineName);
-    }
+
+    }//end getBrowserEngineName()
+
 
     /**
      * @public
@@ -539,7 +623,9 @@ class Browser extends DataObject
     public function getBrowserEngineNameFull(): string
     {
         return ltrim($this->browserEngineNameFull);
-    }
+
+    }//end getBrowserEngineNameFull()
+
 
     /**
      * @public
@@ -548,7 +634,8 @@ class Browser extends DataObject
     public function getBrowserInfoAll(): array
     {
         return $this->browserInfoAll;
-    }
+
+    }//end getBrowserInfoAll()
 
 
     /**
@@ -558,7 +645,9 @@ class Browser extends DataObject
     public function getBrowserAppCodeName(): string
     {
         return ltrim($this->browserAppCodeName);
-    }
+
+    }//end getBrowserAppCodeName()
+
 
     /**
      * @public
@@ -567,7 +656,9 @@ class Browser extends DataObject
     public function getBrowserAppCodeVersion(): string
     {
         return ltrim($this->browserAppCodeVersion);
-    }
+
+    }//end getBrowserAppCodeVersion()
+
 
     /**
      * @public
@@ -576,7 +667,9 @@ class Browser extends DataObject
     public function getBrowserAppName(): string
     {
         return ltrim($this->browserAppName);
-    }
+
+    }//end getBrowserAppName()
+
 
     /**
      * @public
@@ -585,7 +678,9 @@ class Browser extends DataObject
     public function getBrowserAppVersion(): string
     {
         return ltrim($this->browserAppVersion);
-    }
+
+    }//end getBrowserAppVersion()
+
 
     /**
      * @public
@@ -594,7 +689,8 @@ class Browser extends DataObject
     public function getBrowserArchitecture(): string
     {
         return ltrim($this->browserArchitecture);
-    }
+
+    }//end getBrowserArchitecture()
 
 
     /**
@@ -604,7 +700,9 @@ class Browser extends DataObject
     public function getBrowserEngineVersion(): string
     {
         return ltrim($this->browserEngineVersion);
-    }
+
+    }//end getBrowserEngineVersion()
+
 
     /**
      * @public
@@ -613,7 +711,9 @@ class Browser extends DataObject
     public function getBrowserName(): string
     {
         return ltrim($this->browserName);
-    }
+
+    }//end getBrowserName()
+
 
     /**
      * @public
@@ -622,7 +722,8 @@ class Browser extends DataObject
     public function getBrowserNameFull(): string
     {
         return ltrim($this->browserNameFull);
-    }
+
+    }//end getBrowserNameFull()
 
 
     /**
@@ -632,7 +733,9 @@ class Browser extends DataObject
     public function getBrowserVersion(): string
     {
         return ltrim($this->browserVersion);
-    }
+
+    }//end getBrowserVersion()
+
 
     /**
      * @public
@@ -641,7 +744,9 @@ class Browser extends DataObject
     public function getBrowserVersionFull(): string
     {
         return ltrim($this->browserVersionFull);
-    }
+
+    }//end getBrowserVersionFull()
+
 
     /**
      * @public
@@ -650,7 +755,9 @@ class Browser extends DataObject
     public function getCurrentDeviceInfo()
     {
         return $this->currentDeviceInfo;
-    }
+
+    }//end getCurrentDeviceInfo()
+
 
     /**
      * @public
@@ -659,7 +766,9 @@ class Browser extends DataObject
     public function getDeviceName(): string
     {
         return ltrim($this->deviceName);
-    }
+
+    }//end getDeviceName()
+
 
     /**
      * @public
@@ -668,7 +777,9 @@ class Browser extends DataObject
     public function getDeviceNameFull(): string
     {
         return ltrim($this->deviceNameFull);
-    }
+
+    }//end getDeviceNameFull()
+
 
     /**
      * @public
@@ -677,7 +788,8 @@ class Browser extends DataObject
     public function getDeviceNameOriginal(): string
     {
         return ltrim($this->deviceNameOriginal);
-    }
+
+    }//end getDeviceNameOriginal()
 
 
     /**
@@ -687,7 +799,9 @@ class Browser extends DataObject
     public function getDeviceType(): string
     {
         return ltrim($this->deviceType);
-    }
+
+    }//end getDeviceType()
+
 
     /**
      * @public
@@ -696,7 +810,9 @@ class Browser extends DataObject
     public function getDeviceArchitecture(): string
     {
         return ltrim($this->deviceArchitecture);
-    }
+
+    }//end getDeviceArchitecture()
+
 
     /**
      * @public
@@ -705,7 +821,9 @@ class Browser extends DataObject
     public function getDeviceWindowManager(): string
     {
         return ltrim($this->deviceWindowManager);
-    }
+
+    }//end getDeviceWindowManager()
+
 
     /**
      * @public
@@ -714,7 +832,9 @@ class Browser extends DataObject
     public function getDeviceWmNameOriginal(): string
     {
         return $this->deviceWmNameOriginal;
-    }
+
+    }//end getDeviceWmNameOriginal()
+
 
     /**
      * @public
@@ -723,7 +843,9 @@ class Browser extends DataObject
     public function getDeviceInfoAll(): array
     {
         return $this->deviceInfoAll;
-    }
+
+    }//end getDeviceInfoAll()
+
 
     /**
      * @public
@@ -732,7 +854,9 @@ class Browser extends DataObject
     public function getUserAgent(): string
     {
         return $this->UserAgent;
-    }
+
+    }//end getUserAgent()
+
 
     /**
      * @public
@@ -741,7 +865,8 @@ class Browser extends DataObject
     public function getUserAgentList(): array
     {
         return $this->UserAgentList;
-    }
+
+    }//end getUserAgentList()
 
 
     /**
@@ -751,7 +876,9 @@ class Browser extends DataObject
     public function getURLProtocol(): string
     {
         return $this->URLProtocol;
-    }
+
+    }//end getURLProtocol()
+
 
     /**
      * @public
@@ -760,7 +887,9 @@ class Browser extends DataObject
     public function getURLHostname(): string
     {
         return $this->URLHostname;
-    }
+
+    }//end getURLHostname()
+
 
     /**
      * @public
@@ -769,7 +898,9 @@ class Browser extends DataObject
     public function getURLPath(): string
     {
         return $this->URLPath;
-    }
+
+    }//end getURLPath()
+
 
     /**
      * @public
@@ -778,7 +909,9 @@ class Browser extends DataObject
     public function getRequestMethod(): string
     {
         return $this->RequestMethod;
-    }
+
+    }//end getRequestMethod()
+
 
     /**
      * @return mixed|string
@@ -786,12 +919,14 @@ class Browser extends DataObject
     public function getRequestMode(): string
     {
         return $this->RequestMode;
-    }
+
+    }//end getRequestMode()
+
 
     function __destruct()
     {
 
-    }
+    }//end __destruct()
 
 
-}
+}//end class

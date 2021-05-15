@@ -5,8 +5,8 @@
  *
  * @package    Mishusoft/Release
  * @subpackage Compile
- * @author     Mishusoft System Inc <products@mishusoft.com>
- * @copyright  2021 Mishusoft System Inc (ABN 77 084 670 600)
+ * @author     Squiz Pty Ltd <products@squiz.net>
+ * @copyright  2021 Squiz Pty Ltd (ABN 77 084 670 600)
  *
  * @uses php cli to use the valid command as belows
  * <pre>
@@ -97,6 +97,7 @@ class Compile
         echo '\t -sp \t Release static pages for Mishusoft Framework'.PHP_EOL;
         echo '\t -u \t Update node-app and Mishusoft Framework release versions'.PHP_EOL;
         echo '\t -h \t help for release'.PHP_EOL;
+
     }//end defaultInfo()
 
 
@@ -115,7 +116,7 @@ class Compile
             $sourcesDirectory = FileSystem::realpath($sourcesDirectory);
             // Valid location for sources code
             if (count($options) > 1) {
-                $outputIdentify = array_shift($options);
+                $outputIdentify  = array_shift($options);
                 $outputDirectory = array_shift($options);
                 $flash           = array_shift($options);
 
@@ -155,13 +156,15 @@ class Compile
                                     $themeDirectory = pathinfo($theme, PATHINFO_FILENAME);
                                     $themeFormat    = pathinfo($theme, PATHINFO_EXTENSION);
                                     if (!file_exists("$outputDirectory/$themeDirectory")) {
-                                        mkdir("$outputDirectory/$themeDirectory", 0777, true);
+                                        if (!mkdir("$outputDirectory/$themeDirectory", 0777, true) && !is_dir("$outputDirectory/$themeDirectory")) {
+                                            throw new \RuntimeException(sprintf('Directory "%s" was not created', "$outputDirectory/$themeDirectory"));
+                                        }
+
                                         exec("chmod -R 777 $outputDirectory/$themeDirectory");
                                     }//end if
 
                                     self::release_log(
-                                        'Compiling [...]/'.$sourcesPathBase.'/positions.config.standard.php to [...]/'
-                                        .$outputPathBase."/$themeDirectory/configs.php.."
+                                        'Compiling [...]/'.$sourcesPathBase.'/positions.config.standard.php to [...]/'.$outputPathBase."/$themeDirectory/configs.php.."
                                     );
                                     self::Compiler(
                                         "$sourcesDirectory/positions.config.standard.php",
@@ -169,8 +172,7 @@ class Compile
                                         ($flash === '-flash')
                                     );
                                     self::release_log(
-                                        'Compiling [...]/'.$sourcesPathBase."/$theme to [...]/"
-                                        .$outputPathBase."/$themeDirectory/template.$themeFormat.."
+                                        'Compiling [...]/'.$sourcesPathBase."/$theme to [...]/".$outputPathBase."/$themeDirectory/template.$themeFormat.."
                                     );
                                     self::Compiler(
                                         "$sourcesDirectory/$theme",
@@ -185,7 +187,7 @@ class Compile
                             self::release_log("$sourcesDirectory/positions.config.standard.php not exists.", 'error');
                             self::defaultInfo();
                         }//end if
-                    } elseif ($operation === 'rWidgets') {
+                    } else if ($operation === 'rWidgets') {
                         self::release_log(self::FILE_BASE_NAME.' is started.');
 
                         if (file_exists($sourcesDirectory)) {
@@ -197,7 +199,10 @@ class Compile
                                 foreach (self::getDirectoryList($sourcesDirectory) as $widget) {
                                     $widgetDirectory = pathinfo($widget, PATHINFO_FILENAME);
                                     if (!file_exists("$outputDirectory/$widgetDirectory")) {
-                                        mkdir("$outputDirectory/$widgetDirectory", 0777, true);
+                                        if (!mkdir("$outputDirectory/$widgetDirectory", 0777, true) && !is_dir("$outputDirectory/$widgetDirectory")) {
+                                            throw new \RuntimeException(sprintf('Directory "%s" was not created', "$outputDirectory/$widgetDirectory"));
+                                        }
+
                                         exec("chmod -R 777 $outputDirectory/$widgetDirectory");
                                     }
 
@@ -217,7 +222,7 @@ class Compile
                             self::release_log("$sourcesDirectory not exists.", 'error');
                             self::defaultInfo();
                         }//end if
-                    } elseif ($operation === 'rStaticHTMLPages') {
+                    } else if ($operation === 'rStaticHTMLPages') {
                         self::release_log(self::FILE_BASE_NAME.' is started.');
 
                         if (file_exists($sourcesDirectory)) {
@@ -229,7 +234,10 @@ class Compile
                                 foreach (self::getDirectoryList($sourcesDirectory) as $packageDirectory) {
                                     foreach (self::getDirectoryList("$sourcesDirectory/$packageDirectory") as $moduleDirectory) {
                                         if (!file_exists("$outputDirectory/$packageDirectory/Resources/Templates/$moduleDirectory")) {
-                                            mkdir("$outputDirectory/$packageDirectory/Resources/Templates/$moduleDirectory", 0777, true);
+                                            if (!mkdir("$outputDirectory/$packageDirectory/Resources/Templates/$moduleDirectory", 0777, true) && !is_dir("$outputDirectory/$packageDirectory/Resources/Templates/$moduleDirectory")) {
+                                                throw new \RuntimeException(sprintf('Directory "%s" was not created', "$outputDirectory/$packageDirectory/Resources/Templates/$moduleDirectory"));
+                                            }
+
                                             exec("chmod -R 777 $outputDirectory/$packageDirectory/Resources/Templates/$moduleDirectory");
                                         }
 
@@ -269,6 +277,7 @@ class Compile
                 self::defaultInfo();
             }//end if
         }//end if
+
     }//end start()
 
 
@@ -287,6 +296,7 @@ class Compile
         }
 
         return $files;
+
     }//end getThemesList()
 
 
@@ -305,6 +315,7 @@ class Compile
         }
 
         return $files;
+
     }//end getDirectoryList()
 
 
@@ -331,6 +342,7 @@ class Compile
                 self::updatePRV(FileSystem::realpath($packagesRootDir."/$package.json"));
             }
         }
+
     }//end updatePRVALlPackages()
 
 
@@ -392,6 +404,7 @@ class Compile
                 }
             }//end if
         }//end if
+
     }//end updatePRV()
 
 
@@ -402,6 +415,7 @@ class Compile
     public static function release_log(string $message, string $type='log')
     {
         echo '['.date('Y-m-d H:i:s A').'] ['.strtoupper($type).'] '.$message.PHP_EOL;
+
     }//end release_log()
 
 
@@ -416,7 +430,10 @@ class Compile
     {
         if (!is_file($sourcesDirectory)) {
             if (!file_exists($outputDirectory)) {
-                mkdir($outputDirectory, 0777, true);
+                if (!mkdir($outputDirectory, 0777, true) && !is_dir($outputDirectory)) {
+                    throw new \RuntimeException(sprintf('Directory "%s" was not created', $outputDirectory));
+                }
+
                 exec("chmod -R 777 $outputDirectory");
             }//end if
 
@@ -426,7 +443,10 @@ class Compile
                 }//end if
 
                 if (!file_exists($outputDirectory)) {
-                    mkdir($outputDirectory, 0777, true);
+                    if (!mkdir($outputDirectory, 0777, true) && !is_dir($outputDirectory)) {
+                        throw new \RuntimeException(sprintf('Directory "%s" was not created', $outputDirectory));
+                    }
+
                     exec("chmod -R 777 $outputDirectory");
                 }//end if
             }//end if
@@ -439,12 +459,12 @@ class Compile
             foreach ($files as $file) {
                 if (is_dir($file)) {
                     if ((basename($outputDirectory) !== basename($file))) {
-                        $terget = $outputDirectory.DIRECTORY_SEPARATOR.basename($file);
+                        $target = $outputDirectory.DIRECTORY_SEPARATOR.basename($file);
                     } else {
-                        $terget = $outputDirectory;
+                        $target = $outputDirectory;
                     }//end if
 
-                    self::Compiler($file, $terget);
+                    self::Compiler($file, $target);
                 } else {
                     if (is_file($sourcesDirectory)) {
                         self::writeFile($outputDirectory, $file);
@@ -454,6 +474,7 @@ class Compile
                 }//end if
             }
         }//end if
+
     }//end Compiler()
 
 
@@ -464,23 +485,22 @@ class Compile
      */
     private static function deleteFiles(string $target)
     {
-        if (file_exists($target)) {
-            if (is_dir($target)) {
-                $files = glob($target.'*', GLOB_MARK);
-                // GLOB_MARK adds a slash to directories returned
-                foreach ($files as $file) {
-                    self::deleteFiles($file);
-                }
+        if (is_dir($target)) {
+            $files = glob($target.'*', GLOB_MARK);
+            // GLOB_MARK adds a slash to directories returned
+            foreach ($files as $file) {
+                self::deleteFiles($file);
+            }
 
-                if (file_exists($target)) {
-                    rmdir(FileSystem::realpath($target));
-                }//end if
-            } else {
-                if (is_file($target)) {
-                    unlink(FileSystem::realpath($target));
-                }//end if
+            if (file_exists($target)) {
+                rmdir(FileSystem::realpath($target));
+            }//end if
+        } else {
+            if (is_file($target)) {
+                unlink(FileSystem::realpath($target));
             }//end if
         }//end if
+
     }//end deleteFiles()
 
 
@@ -502,23 +522,24 @@ class Compile
             }//end if
         }//end if
 
-        $cpm_src_file = fopen($newFile, 'w+');
+        $cpm_src_file = fopen($newFile, 'wb+');
 
         if ($cpm_src_file) {
             fwrite($cpm_src_file, self::compressPhpSource($sourceFile));
             fclose($cpm_src_file);
             exec('chmod -R 777 '.$newFile);
         }//end if
+
     }//end writeFile()
 
 
     /**
      * With this function You can compress Your PHP source code.
      *
-     * @param  string $validFileName
+     * @param  string $source
      * @return boolean|string
      */
-    public static function compressPhpSource(string $validFileName): bool|string
+    public static function compressPhpSource(string $source): bool|string
     {
         // Whitespaces left and right from this signs can be ignored
         static $IW = [
@@ -579,13 +600,13 @@ class Compile
             T_SR_EQUAL,
         // >>=
         ];
-        if (is_file($validFileName)) {
-            if (!$validFileName = file_get_contents($validFileName)) {
+        if (is_file($source) === true) {
+            if (!$source = file_get_contents($source)) {
                 return false;
             }//end if
         }//end if
 
-        $tokens = token_get_all($validFileName);
+        $tokens = token_get_all($source);
 
         $new = '';
         $c   = sizeof($tokens);
@@ -599,92 +620,90 @@ class Compile
         // open tag
         for ($i = 0; $i < $c; $i++) {
             $token = $tokens[$i];
-            if (is_array($token)) {
+            if (is_array($token) === true) {
                 list($tn, $ts) = $token;
                 // tokens: number, string, line
                 // $tname = token_name($tn);
-                if ($tn == T_INLINE_HTML) {
+                if ($tn === T_INLINE_HTML) {
                     $new .= $ts;
                     $iw   = false;
-                } else {
-                    if ($tn == T_OPEN_TAG) {
-                        if (strpos($ts, ' ') || strpos($ts, '\n') || strpos($ts, '\t') || strpos($ts, '\r')) {
-                            $ts = rtrim($ts);
-                        }
+                } else if ($tn === T_OPEN_TAG) {
+                    if (strpos($ts, " ") || strpos($ts, "\n") || strpos($ts, "\t") || strpos($ts, "\r")) {
+                        $ts = rtrim($ts);
+                    }
 
-                        $ts  .= ' ';
-                        $new .= $ts;
-                        $ot   = T_OPEN_TAG;
-                        $iw   = true;
-                    } elseif ($tn == T_OPEN_TAG_WITH_ECHO) {
-                        $new .= $ts;
-                        $ot   = T_OPEN_TAG_WITH_ECHO;
-                        $iw   = true;
-                    } elseif ($tn == T_CLOSE_TAG) {
-                        if ($ot == T_OPEN_TAG_WITH_ECHO) {
-                            $new = rtrim($new, '; ');
-                        } else {
-                            $ts = ' '.$ts;
-                        }
-
-                        $new .= $ts;
-                        $ot   = null;
-                        $iw   = false;
-                    } elseif (in_array($tn, $IW)) {
-                        $new .= $ts;
-                        $iw   = true;
-                    } elseif ($tn == T_CONSTANT_ENCAPSED_STRING
-                        || $tn == T_ENCAPSED_AND_WHITESPACE
-                    ) {
-                        if ($ts[0] == '"') {
-                            $ts = addcslashes($ts, '\n\t\r');
-                        }
-
-                        $new .= $ts;
-                        $iw   = true;
-                    } elseif ($tn == T_WHITESPACE) {
-                        if (array_key_exists(($i + 1), $tokens)) {
-                            $nt = @$tokens[($i + 1)];
-                            if (!$iw && (!is_string($nt) || $nt == '$') && !in_array($nt[0], $IW)) {
-                                $new .= ' ';
-                            }
-                        }
-
-                        $iw = false;
-                    } elseif ($tn == T_START_HEREDOC) {
-                        $new .= '<<<S\n';
-                        $iw   = false;
-                        $ih   = true;
-                    // in HEREDOC
-                    } elseif ($tn == T_END_HEREDOC) {
-                        $new .= 'S;';
-                        $iw   = true;
-                        $ih   = false;
-                        // in HEREDOC
-                        for ($j = ($i + 1); $j < $c; $j++) {
-                            if (is_string($tokens[$j]) && $tokens[$j] == ';') {
-                                $i = $j;
-                                break;
-                            } elseif ($tokens[$j][0] == T_CLOSE_TAG) {
-                                break;
-                            }
-                        }
-                    } elseif ($tn == T_COMMENT || $tn == T_DOC_COMMENT) {
-                        $iw = true;
+                    $ts  .= ' ';
+                    $new .= $ts;
+                    $ot   = T_OPEN_TAG;
+                    $iw   = true;
+                } else if ($tn === T_OPEN_TAG_WITH_ECHO) {
+                    $new .= $ts;
+                    $ot   = T_OPEN_TAG_WITH_ECHO;
+                    $iw   = true;
+                } else if ($tn === T_CLOSE_TAG) {
+                    if ($ot === T_OPEN_TAG_WITH_ECHO) {
+                        $new = rtrim($new, '; ');
                     } else {
-                        if (!$ih) {
-                            $ts = $ts;
-                            // $ts = strtolower($ts);
-                        }
+                        $ts = ' '.$ts;
+                    }
 
-                        $new .= $ts;
-                        $iw   = false;
-                    }//end if
+                    $new .= $ts;
+                    $ot   = null;
+                    $iw   = false;
+                } else if (in_array($tn, $IW) === true) {
+                    $new .= $ts;
+                    $iw   = true;
+                } else if ($tn === T_CONSTANT_ENCAPSED_STRING
+                    || $tn === T_ENCAPSED_AND_WHITESPACE
+                ) {
+                    if ($ts[0] === '"') {
+                        $ts = addcslashes($ts, '\n\t\r');
+                    }
+
+                    $new .= $ts;
+                    $iw   = true;
+                } else if ($tn === T_WHITESPACE) {
+                    if (array_key_exists(($i + 1), $tokens) === true) {
+                        $nt = @$tokens[($i + 1)];
+                        if (!$iw && (!is_string($nt) || $nt === '$') && !in_array($nt[0], $IW)) {
+                            $new .= ' ';
+                        }
+                    }
+
+                    $iw = false;
+                } else if ($tn === T_START_HEREDOC) {
+                    $new .= '<<<S\n';
+                    $iw   = false;
+                    $ih   = true;
+                    // in HEREDOC
+                } else if ($tn === T_END_HEREDOC) {
+                    $new .= 'S;';
+                    $iw   = true;
+                    $ih   = false;
+                    // in HEREDOC
+                    for ($j = ($i + 1); $j < $c; $j++) {
+                        if (is_string($tokens[$j]) && $tokens[$j] === ';') {
+                            $i = $j;
+                            break;
+                        } else if ($tokens[$j][0] == T_CLOSE_TAG) {
+                            break;
+                        }
+                    }
+                } else if ($tn === T_COMMENT || $tn === T_DOC_COMMENT) {
+                    $iw = true;
+                } else {
+                    if (!$ih) {
+                        $ts = $ts;
+                        // $ts = strtolower($ts);
+                    }
+
+                    $new .= $ts;
+                    $iw   = false;
                 }//end if
 
                 $ls = '';
             } else {
-                if (($token != ';' && $token != ':') || $ls != $token) {
+                if (($token !== ';' && $token !== ':') || $ls !== $token) {
                     $new .= $token;
                     $ls   = $token;
                 }
@@ -694,6 +713,7 @@ class Compile
         }//end for
 
         return $new;
+
     }//end compressPhpSource()
 
 
@@ -715,7 +735,9 @@ class Compile
 
         if (!file_exists($tempDir)) {
             self::release_log("Creating new $tempDir");
-            mkdir($tempDir, 0777, true);
+            if (!mkdir($tempDir, 0777, true) && !is_dir($tempDir)) {
+                throw new \RuntimeException(sprintf('Directory "%s" was not created', $tempDir));
+            }
             exec("chmod -R 777 $tempDir");
         } else {
             if (file_exists($archive)) {
@@ -765,6 +787,7 @@ class Compile
         } else {
             return false;
         }
+
     }//end zip()
 
 
@@ -806,6 +829,7 @@ class Compile
 
         curl_close($ch);
         return $response;
+
     }//end curlPost()
 
 
@@ -821,7 +845,7 @@ class Compile
             $sourcesDirectory = FileSystem::realpath($sourcesDirectory);
             // Valid location for sources code
             if (count($parameters) > 1) {
-                $outputIdentify = array_shift($parameters);
+                $outputIdentify  = array_shift($parameters);
                 $outputDirectory = array_shift($parameters);
 
                 if (strtolower($outputIdentify) === '-d') {
@@ -885,5 +909,8 @@ class Compile
             self::release_log('Error in argument 3, no destination location provided.', 'error');
             self::defaultInfo();
         }//end if
+
     }//end updateOldVersion()
+
+
 }//end class

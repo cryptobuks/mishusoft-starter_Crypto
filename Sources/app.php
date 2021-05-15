@@ -9,7 +9,8 @@ use Error;
 use Exception;
 
 if (array_key_exists('SERVER_NAME', $_SERVER) === true
-    && strpos($_SERVER['SERVER_NAME'], strtolower(__NAMESPACE__)) === true) {
+    && stripos($_SERVER['SERVER_NAME'], strtolower(__NAMESPACE__)) === true
+) {
     ini_set('display_errors', '0');
 } else {
     error_reporting(E_ALL);
@@ -27,11 +28,11 @@ set_time_limit(600);
 define('DS', DIRECTORY_SEPARATOR);
 define('PHP_CODE_SYNTAX', 'PHP_8.*');
 define('WHO_AM_I', 'Mishusoft');
-define('PHP_RUNTIME_ROOT_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
-define('PHP_RUNTIME_SYSTEM_PATH', PHP_RUNTIME_ROOT_PATH . 'Mishusoft' . DIRECTORY_SEPARATOR);
+define('PHP_RUNTIME_ROOT_PATH', realpath(__DIR__).DIRECTORY_SEPARATOR);
+define('PHP_RUNTIME_SYSTEM_PATH', PHP_RUNTIME_ROOT_PATH.'Mishusoft'.DIRECTORY_SEPARATOR);
 // End of core constants declarations.
 try {
-    include_once PHP_RUNTIME_SYSTEM_PATH . 'Framework/Chipsets/Autoload.php';
+    include_once PHP_RUNTIME_SYSTEM_PATH.'Framework/Chipsets/Autoload.php';
 
     // BIOS initialisation.
     Framework\Chipsets\System\BIOS::initialise();
@@ -47,8 +48,7 @@ try {
         );
     } else {
         Framework\Chipsets\System\Logger::write(
-            Framework\Chipsets\RuntimeErrors::codeAsString($e->getCode()).
-            ' [' . $e->getCode().'] : '.$e->getMessage().' from '.$e->getFile().' on line '.$e->getLine().'.'
+            Framework\Chipsets\RuntimeErrors::toWriteable($e)
         );
         echo "<pre>$e</pre>";
     }

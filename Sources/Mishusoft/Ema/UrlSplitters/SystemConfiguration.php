@@ -69,7 +69,7 @@ class SystemConfiguration
                 exit();
             }
 
-            if (file_exists(PHP_RUNTIME_SYSTEM_TEMP_PATH.$uploader->file_name) === true) {
+            if (file_exists(PHP_RUNTIME_SYSTEM_TEMP_PATH.$uploader->file_name)) {
                 echo "$uploader->file_name already exists.";
                 exit();
             }
