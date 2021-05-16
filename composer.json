@@ -43,6 +43,7 @@
     "widgets-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Widgets -d /srv/http/Mishusoft/Widgets",
     "widgets-components-update": "php ./Sources/Release.php -w  -s ./Sources/Mishusoft/Views/Widgets -d /srv/http/Mishusoft/Widgets/Views",
     "packages-components-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Views/Templates/Packages -d /srv/http/Packages",
+    "copy-assests": "php ./Sources/Release.php -copy  -s ./Storages/0/assets -d /srv/http/Storages/0/assets",
     "copy-media": "php ./Sources/Release.php -copy  -s ./Sources/Assets/media -d /srv/http/Storages/0/media",
     "copy-errors-page": "php ./Sources/Release.php -copy  -s ./Sources/Mishusoft/Views/Errors/SHtml -d /srv/http/Mishusoft/Errors",
     "phpcs": "phpcs",

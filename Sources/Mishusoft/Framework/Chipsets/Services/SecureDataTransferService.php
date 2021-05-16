@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Mishusoft\Framework\Chipsets\Services;
-
 
 use Mishusoft\Framework\Chipsets\Cryptography\OpenSSL\Decryption;
 use Mishusoft\Framework\Chipsets\Cryptography\OpenSSL\Encryption;
@@ -23,20 +21,33 @@ class SecureDataTransferService
      * SecureDataTransferService constructor.
      * This is built-in uninterrupted web request processing delivery system.
      */
+
     /*declare version*/
     public static SecureDataTransferDatabaseService $conOfDatabase;
     private static int $limitOfProductLicence;
     private static int $limitOfProductLicenceBase;
 
+    /**
+     * SecureDataTransferService constructor.
+     */
     public function __construct()
     {
         self::$conOfDatabase = new SecureDataTransferDatabaseService();
     }
+
+    /**
+     * @param array $request
+     */
     public function api(array $request)
     {
         _Debug::preOutput($request);
         
     }
+
+    /**
+     * @param array $request
+     * @throws \JsonException
+     */
     public function monitor(array $request)
     {
         if (_String::lower($request["method"]) === _String::lower('index')) {
@@ -46,7 +57,7 @@ class SecureDataTransferService
             ]);
         }
         else if (_String::lower($request["method"]) === _String::lower('browser')) {
-            if (_String::lower(join("/", $request['arguments'])) === _String::lower('receiveFeedback')) {
+            if (_String::lower(implode("/", $request['arguments'])) === _String::lower('receiveFeedback')) {
 
                 $RequestedDataArray = json_decode(file_get_contents('php://input'), true);
                 if (is_array($RequestedDataArray) and count($RequestedDataArray) > 0) {
@@ -462,7 +473,7 @@ class SecureDataTransferService
     /**
      * @param array $RequestedDataArray
      */
-    private static function getVerifiedProductId(array $RequestedDataArray)
+    private static function getVerifiedProductId(array $RequestedDataArray) : void
     {
         $idNbOfProduct = self::$conOfDatabase->getIdNbOfVerifiedProduct(_String::removeTags(_Array::value(_Array::value($RequestedDataArray, "IdRequest"), "name")), _String::removeTags(_Array::value(_Array::value($RequestedDataArray, "IdRequest"), "version")), _String::removeTags(_Array::value(_Array::value($RequestedDataArray, "IdRequest"), "ip")), _String::removeTags(_Array::value(_Array::value($RequestedDataArray, "IdRequest"), "browser")));
         if (!is_numeric($idNbOfProduct)) {
@@ -473,7 +484,7 @@ class SecureDataTransferService
         }
     }
 
-    private static function getLicenceLimitByPlan(string $plan)
+    private static function getLicenceLimitByPlan(string $plan) : void
     {
         switch ($plan) {
             case 'trial':
@@ -503,7 +514,7 @@ class SecureDataTransferService
         }
     }
 
-    private static function processUserAuthentication($detailsArray, $IdNbOfUsr, $userDetails)
+    private static function processUserAuthentication($detailsArray, $IdNbOfUsr, $userDetails): void
     {
         /*$data->userdata->_default_->app_id*/
         $app = self::$conOfDatabase->getInstPrdInfById(Decryption::static(_Array::value(_Array::value(_Array::value($detailsArray, "userdata"), "_default_"), "app_id")));

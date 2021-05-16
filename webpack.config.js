@@ -16,8 +16,8 @@ const {CleanWebpackPlugin}    = require('clean-webpack-plugin');
 const JavaScriptObfuscator    = require('webpack-obfuscator');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-/*const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");*/ /*webpack 4*/
-const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts'); /*webpack 5*/
+const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries"); /*webpack 4*/
+/*const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');*/ /*webpack 5*/
 
 /*required path declare*/
 const MS_DOCUMENT_ROOT    = path.resolve(__dirname);
@@ -66,7 +66,7 @@ const commonConfig = {
                     loader: 'file-loader',
                     options: {
                         name: '[name].[ext]',
-                        outputPath: '../webfonts/'
+                        outputPath: 'webfonts/'
                     }
                 }}]
     },
@@ -86,9 +86,9 @@ const commonConfig = {
             }
         ),
         /*webpack 4*/
-        /*new FixStyleOnlyEntriesPlugin(),*/
+        new FixStyleOnlyEntriesPlugin(),
         /*webpack 5*/
-        new RemoveEmptyScriptsPlugin(),
+        /*new RemoveEmptyScriptsPlugin(),*/
         new MiniCssExtractPlugin(
             {
                 filename: 'css/[name].css',
