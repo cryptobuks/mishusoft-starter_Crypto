@@ -139,9 +139,11 @@ class Compile
                                 }
                             }
                         }
+
+                        self::log('Operation completed!!');
                     }//end if
 
-                    if ($operation === 'rThemes') {
+                    else if ($operation === 'rThemes') {
                         self::log(self::FILE_BASE_NAME.' is started.');
 
                         if (file_exists("$sourcesDirectory/positions.config.standard.php")) {
@@ -184,7 +186,8 @@ class Compile
                             self::log("$sourcesDirectory/positions.config.standard.php not exists.", 'error');
                             self::defaultInfo();
                         }//end if
-                    } elseif ($operation === 'rWidgets') {
+                    }
+                    else if ($operation === 'rWidgets') {
                         self::log(self::FILE_BASE_NAME.' is started.');
 
                         if (file_exists($sourcesDirectory)) {
@@ -219,7 +222,8 @@ class Compile
                             self::log("$sourcesDirectory not exists.", 'error');
                             self::defaultInfo();
                         }//end if
-                    } elseif ($operation === 'rStaticHTMLPages') {
+                    }
+                    else if ($operation === 'rStaticHTMLPages') {
                         self::log(self::FILE_BASE_NAME.' is started.');
 
                         if (file_exists($sourcesDirectory)) {
@@ -255,14 +259,15 @@ class Compile
                             self::log("$sourcesDirectory not exists.", 'error');
                             self::defaultInfo();
                         }//end if
-                    } else {
+                    }
+                    else {
                         self::log(self::FILE_BASE_NAME.' is started.');
                         self::log(self::PACKAGE_NAME.' Operation is running.');
 
                         self::log('Source:: '.$sourcesDirectory);
                         self::log('Output:: '.$outputDirectory);
 
-                        self::log("Compiling $sourcesDirectory to ".FileSystem::realpath($outputDirectory));
+                        self::log('Compiling '.$sourcesDirectory.' to '.FileSystem::realpath($outputDirectory));
 
                         self::Compiler($sourcesDirectory, FileSystem::realpath($outputDirectory), ($flash === '-flash'));
                         self::log('Operation completed!!');
