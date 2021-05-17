@@ -9,7 +9,9 @@ class OpenSSL
     /*declare version*/
     const VERSION = "3.0.2";
 
+    /* Will be remove. */
     protected static string $encryption_key_256bit = "bRuD5WYw5wd0rdHR9yLlM6wt2vteuiniQBqE70nAuhU";
+    protected static string $encryptionKey256bit = "bRuD5WYw5wd0rdHR9yLlM6wt2vteuiniQBqE70nAuhU";
     protected static string $secretIv = "my_simple_secret_iv";
     protected static string $alphanumerics = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=`~[]{};\:"|",./<>?";
     protected static string $cipherAlgo1 = "aes-256-cbc";

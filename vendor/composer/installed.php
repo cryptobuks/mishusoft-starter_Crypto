@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '6abb26e2750c693589782488da75b87725bf22ed',
+    'reference' => '9e718e3dc99e7149d2791623a9b75ff81edecfc8',
     'name' => 'mishusoft/website',
   ),
   'versions' => 
@@ -40,12 +40,12 @@
     ),
     'doctrine/annotations' => 
     array (
-      'pretty_version' => '1.13.0',
-      'version' => '1.13.0.0',
+      'pretty_version' => '1.13.1',
+      'version' => '1.13.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '03cb2123a67d4be806554fe670d0adc298199808',
+      'reference' => 'e6e7b7d5b45a2f2abc5460cc6396480b2b1d321f',
     ),
     'doctrine/instantiator' => 
     array (
@@ -108,7 +108,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '6abb26e2750c693589782488da75b87725bf22ed',
+      'reference' => '9e718e3dc99e7149d2791623a9b75ff81edecfc8',
     ),
     'myclabs/deep-copy' => 
     array (
@@ -307,6 +307,16 @@
       array (
         0 => '1.0',
       ),
+    ),
+    'roave/security-advisories' => 
+    array (
+      'pretty_version' => 'dev-latest',
+      'version' => 'dev-latest',
+      'aliases' => 
+      array (
+        0 => '9999999-dev',
+      ),
+      'reference' => '5ffdb87f627ff16cc392e30515a1fe069cddc3e2',
     ),
     'sebastian/cli-parser' => 
     array (

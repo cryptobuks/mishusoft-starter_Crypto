@@ -1,5 +1,6 @@
 <?php
 
+use Mishusoft\Framework\Chipsets\FileSystem;
 use Mishusoft\Framework\Chipsets\System\Localization;
 use Mishusoft\Framework\Chipsets\Ui;
 use Mishusoft\Framework\Chipsets\Utility\_Array;
@@ -7,8 +8,8 @@ use Mishusoft\Framework\Chipsets\Utility\_String;
 
 
 $translation = new Localization(_Array::value($this->request, "locale"));
-if (is_array(json_decode(\Mishusoft\Framework\Chipsets\FileSystem::read(PHP_RUNTIME_REGISTRIES_PATH . "company-about.json"),true))){
-    $aboutInfo = json_decode(\Mishusoft\Framework\Chipsets\FileSystem::read(PHP_RUNTIME_REGISTRIES_PATH . "company-about.json"),true);
+if (is_array(json_decode(FileSystem::read(PHP_RUNTIME_REGISTRIES_PATH . "company-about.json"),true))){
+    $aboutInfo = json_decode(FileSystem::read(PHP_RUNTIME_REGISTRIES_PATH . "company-about.json"),true);
 } else {
     $aboutInfo = array();
 }
@@ -37,9 +38,9 @@ $titleOfAbout = Ui::element($aboutPage, "ms-app-about-title", ["class" => "docum
     ["style" => Ui::htmlHrefStyle . "font-size: 18px;font-weight: normal;", "text" => $translation->translate("Basic Information")],
 ]]);*/
 Ui::elementList(Ui::element($titleOfAbout, "span", ["class" => "flex-center-all" ]), ["span" => [
-    ["class" => "font-40-bold;", "text" => "Who We Are"],
-    ["class" => "font-40-bold;", "text" => "|"],
-    ["class" => "font-18-normal;", "text" => $translation->translate("Basic Information")],
+    ["class" => "font-40-bold", "text" => "Who We Are"],
+    ["class" => "font-40-bold", "text" => "|"],
+    ["class" => "font-18-normal", "text" => $translation->translate("Basic Information")],
 ]]);
 
 

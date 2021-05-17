@@ -45,6 +45,7 @@ if ($this->template_use === "no") {
     Ui::elementList(Ui::getDocumentHeadElement(), [
         "meta" => [
             ["charset" => "UTF-8"],
+            ["name" => "viewport", "content" => "width=device-width, initial-scale=1.0"],
         ]
     ]);
 
@@ -59,7 +60,8 @@ if ($this->template_use === "no") {
     /*Ui::elementList($this->documentHeadElement, [
         "meta" => [
             ["name" => "viewport", "content" => "width=device-width, initial-scale=1.0"],
-            ["http-equiv" => "Content-Type", "content" => "text/html; charset=utf-8"],//<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+            ["http-equiv" => "Content-Type", "content" => "text/html; charset=utf-8"],
+    //<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         ]
     ]);*/
 
