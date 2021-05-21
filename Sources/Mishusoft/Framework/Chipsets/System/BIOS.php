@@ -25,7 +25,7 @@ class BIOS
             self::$initialise = new self();
         }
 
-        // Instance system memory
+        // Instance system memory.
         (new Memory())->enable();
 
         $firewall = new Firewall();
@@ -35,7 +35,7 @@ class BIOS
             Session::init();
 
             /*
-             * Start special url handler [Ema Embed Mishusoft Application]
+             * Start special url handler [Ema Embed Mishusoft Application].
              * */
             if (file_exists(PHP_RUNTIME_SYSTEM_PATH.'Ema'.DIRECTORY_SEPARATOR.'EmaLoader.php') === true) {
                 // Include ema package loader.

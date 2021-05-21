@@ -9,8 +9,14 @@ use Mishusoft\Framework\Chipsets\Utility\Number;
 class RuntimeErrors extends Exception
 {
 
+    /**
+     * @var integer
+     */
     protected int $severity;
 
+    /**
+     * @var string
+     */
     private string $errTrace;
 
 
@@ -34,28 +40,34 @@ class RuntimeErrors extends Exception
         $this->line     = $lineno;
         $this->errTrace = $trace;
 
-        echo '<br/><div style="margin: 0;padding: 5px;border-style: solid;border-radius: 5px;border-color: lightgray;">';
-        echo '<div style="font-size: 18px;padding: 5px;margin: -5px -5px 10px -5px;">';
-        echo self::codeAsString($this->getCode())." [$this->code] : $this->message from $this->file on line $this->line.";
-        Logger::write($this->codeAsString($this->getCode())." [$this->code] : $this->message from $this->file on line $this->line.");
+        echo '<br/><article style="margin: 0;padding: 5px;border: 1px solid lightgray;border-radius: 5px;background-color: #f4f4f4;">';
+        echo '<section style="line-height: 1.5;margin: -5px -5px 10px -5px;box-shadow: inset 0 -3em 3em rgba(0,0,0,.1),.3em .3em 1em rgba(0,0,0,.3);padding: 8px 5px;text-align: justify;">';
+        echo '<div style="font-size: 20px;font-weight: bold; border-bottom: 1px solid lightgray;padding-bottom: 10px;text-transform: uppercase;">';
+        echo self::codeAsString($this->getCode());
         echo '</div>';
+        echo '<div style="font-size: 15px;font-weight:normal;padding: 5px 2px;">';
+        echo $this->message.' from '.$this->file.' on line '.$this->line;
+        //Logger::write($this->codeAsString($this->getCode())
+        //." [$this->code] : $this->message from $this->file on line $this->line.");
+        echo '</div>';
+        echo '</section>';
         echo 'Call Stack<br/><pre>';
-        if ($trace) {
+        if (is_string($trace) === true) {
             $this->beautifyCallStack($this->errTrace);
         } else {
             $this->beautifyCallStack($this->getTraceAsString());
         }
 
-        echo '<!--</pre>--></div>';
+        echo '</pre></article>';
 
     }//end __construct()
 
 
     /**
-     * @param  $code
+     * @param  int $code
      * @return false|string
      */
-    public static function codeAsString(int $code)
+    public static function codeAsString(int $code): bool|string
     {
         /*
          * Error Levels in PHP
@@ -100,7 +112,8 @@ class RuntimeErrors extends Exception
                 E_RECOVERABLE_ERROR  => 'Catchable Fatal Error'
                 );
          * */
-        $errType = match ($code) {
+        // end match
+        return match ($code) {
             1 => 'Critical Error',
             2 => 'Warning',
             4 => 'Parse Error',
@@ -117,20 +130,18 @@ class RuntimeErrors extends Exception
             8192 => 'Identification',
             16384 => 'User Identification',
             default => 'Unexpected Error',
-        };//end match
-
-        return $errType;
+        };
 
     }//end codeAsString()
 
 
     /**
-     * @param $trace
+     * @param string $trace
      */
     private function beautifyCallStack(string $trace): void
     {
-        $trace_array = array_reverse(explode("\n", $trace));
-        foreach ($trace_array as $key => $value) {
+        $traceArray = array_reverse(explode("\n", $trace));
+        foreach ($traceArray as $key => $value) {
             $result = preg_replace('/[#]+/', '', $value);
             $result = preg_filter('/[0-9]+/', Number::next($key).')', $result);
             echo "$result<br/>".PHP_EOL;
@@ -156,6 +167,9 @@ class RuntimeErrors extends Exception
     }//end toWriteable()
 
 
+    /**
+     *
+     */
     public function __destruct()
     {
 

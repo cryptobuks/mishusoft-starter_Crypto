@@ -22,8 +22,8 @@ use RuntimeException;
 class System
 {
     // Set Mishusoft version
-    const VERSION                 = '4.0.0';
-    const defaultConfigProperties = [
+    public const VERSION                 = '4.0.0';
+    public const defaultConfigProperties = [
         'dbms'    => [],
         'default' => '',
     ];
@@ -189,7 +189,7 @@ class System
         self::$configDir       = implode(DIRECTORY_SEPARATOR, [MS_PACKAGES_PATH, Memory::Data('mpm')->packages->default, 'Configs'.DIRECTORY_SEPARATOR]);
         self::$configServerDir = self::$configDir.md5((new Browser())->getURLHostname()).DIRECTORY_SEPARATOR;
         if (empty($dirname) === true) {
-            self::$setupFile = self::$configServerDir.$dirname.DIRECTORY_SEPARATOR.Encryption::static((new Browser())->getURLHostname()).Mishusoft_Configuration_File_Format;
+            self::$setupFile = self::$configServerDir.$dirname.DIRECTORY_SEPARATOR.Encryption::static((new Browser())->getURLHostname()).MISHUSOFT_CONFIGURATION_FILE_FORMAT;
         }
 
         // Application security.
@@ -230,7 +230,7 @@ class System
     {
         // Security file directory.
         if (is_writable(dirname(self::getRequiresFile('SECURITY_FILE_DIR_PATH'))) === false
-            || is_readable(dirname(self::getRequiresFile('SECURITY_FILE_DIR_PATH'))) ===false
+            || is_readable(dirname(self::getRequiresFile('SECURITY_FILE_DIR_PATH'))) === false
         ) {
             FileSystem::exec(dirname(self::getRequiresFile('SECURITY_FILE_DIR_PATH')));
         }
@@ -259,7 +259,7 @@ class System
 
     private static function backupSecurityFile(): void
     {
-        if (file_exists(self::getRequiresFile('SECURITY_BACKUP_DIR_PATH')) ===false) {
+        if (file_exists(self::getRequiresFile('SECURITY_BACKUP_DIR_PATH')) === false) {
             FileSystem::createDirectory(self::getRequiresFile('SECURITY_BACKUP_DIR_PATH'));
             FileSystem::exec(self::getRequiresFile('SECURITY_BACKUP_DIR_PATH'));
         }
@@ -282,8 +282,8 @@ class System
     private static function getProgressedSystemStatus(string $appSecurityFile): array
     {
         if ((int) ((disk_free_space(MS_DOCUMENT_ROOT) / 1024) / 1024) > 50) {
-            if (Memory::Data('mpm')->config->database->activation) {
-                // check database activation
+            if (Memory::Data('mpm')->config->database->activation === true) {
+                // Check database activation.
                 if (file_exists($appSecurityFile) && !empty(file_get_contents($appSecurityFile))) {
                     // check security file and its data
                     $security = json_decode(file_get_contents($appSecurityFile));
@@ -1999,46 +1999,37 @@ class System
      */
     private static function configure(string $data): bool
     {
-        if (!is_dir(self::getRequiresFile('CONFIG_DIR_PATH'))) {
-            if (mkdir(self::getRequiresFile('CONFIG_DIR_PATH'), 0777, true)) {
-                Stream::exec(self::getRequiresFile('CONFIG_DIR_PATH'));
-                // change directory permission
-            }
-        }
+        FileSystem::createDirectory(self::getRequiresFile('CONFIG_DIR_PATH'));
+        FileSystem::createDirectory(self::getRequiresFile('CONFIG_SERVER_DIR_PATH'));
 
-        if (!is_dir(self::getRequiresFile('CONFIG_SERVER_DIR_PATH'))) {
-            if (mkdir(self::getRequiresFile('CONFIG_SERVER_DIR_PATH'), 0777, true)) {
-                Stream::exec(self::getRequiresFile('CONFIG_SERVER_DIR_PATH'));
-                // change directory permission
-            }
-        }
-
-        if (!is_null(self::getDefaultDb()) and !file_exists(self::getRequiresFile('SETUP_FILE_PATH', self::getDefaultDb()))) {
-            $file = fopen(self::getRequiresFile('SETUP_FILE_PATH', self::getDefaultDb()), 'w+');
+        if (is_null(self::getDefaultDb()) === false
+            && file_exists(self::getRequiresFile('SETUP_FILE_PATH', self::getDefaultDb())) === false) {
+            $file = fopen(self::getRequiresFile('SETUP_FILE_PATH', self::getDefaultDb()), 'wb+');
             if ($file !== false) {
+                // Change file permission.
                 Stream::exec(self::getRequiresFile('SETUP_FILE_PATH', self::getDefaultDb()));
-                // change file permission
                 fwrite($file, $data);
                 fclose($file);
             }
 
             return true;
-        } else {
-            return false;
         }
+
+        return false;
 
     }//end configure()
 
 
     /**
-     * @param array $array_data
+     * @param array $arrayData
+     * @throws JsonException
      */
-    private static function configureUpdate(array $array_data)
+    private static function configureUpdate(array $arrayData): void
     {
-        $current_data_array = json_decode(file_get_contents(self::getRequiresFile('SETUP_FILE_PATH')), true);
-        $current_data_array = array_merge($current_data_array, $array_data);
+        $currentDataArray = json_decode(file_get_contents(self::getRequiresFile('SETUP_FILE_PATH')), true, 512, JSON_THROW_ON_ERROR);
+        $currentDataArray = array_merge($currentDataArray, $arrayData);
 
-        if (!file_put_contents(self::getRequiresFile('SETUP_FILE_PATH', self::getDefaultDb()), json_encode($current_data_array))) {
+        if (file_put_contents(self::getRequiresFile('SETUP_FILE_PATH', self::getDefaultDb()), json_encode($currentDataArray, JSON_THROW_ON_ERROR)) === false) {
             Media::StreamAsJson(
                 [
                     'env' => [
@@ -2064,13 +2055,13 @@ class System
     /**
      * @param $database
      */
-    public static function DropPreviousTables(string $database)
+    public static function DropPreviousTables(string $database): void
     {
         self::makeDbConnectionRequestAuto(
             function ($connection) use ($database) {
                 $data = $connection->query('SHOW TABLES FROM `'.$database.'`')->fetchAll(PdoMySQL::FETCH_COLUMN);
 
-                if ($data) {
+                if (empty($data) == false) {
                     $tables = implode(', ', $data);
                     $connection->query('DROP TABLE '.$tables.';');
                 }
@@ -2080,7 +2071,7 @@ class System
     }//end DropPreviousTables()
 
 
-    public static function makeDbConnectionRequestAuto(callable $callBack)
+    public static function makeDbConnectionRequestAuto(callable $callBack): void
     {
         self::makeDbConnectionRequest(
             _Array::value(self::getDbConfigArgument('db', self::getRequiresFile('SETUP_FILE_PATH', self::getDefaultDb())), 'host'),
@@ -2098,7 +2089,7 @@ class System
      * @param $database_dump_sql_file
      * @param $database_table_prefix
      */
-    private static function SetupAppRequiredTables(string $database_dump_sql_file, string $database_table_prefix)
+    private static function SetupAppRequiredTables(string $database_dump_sql_file, string $database_table_prefix): void
     {
         try {
             self::makeDbConnectionRequestAuto(
@@ -2119,7 +2110,7 @@ class System
      */
     private static function databaseFile(string $file): string
     {
-        return self::$databaseFile = join(DIRECTORY_SEPARATOR, [MS_PACKAGES_PATH.MPM::defaultPackage(), 'Databases', "{$file}.sql"]);
+        return self::$databaseFile = implode(DIRECTORY_SEPARATOR, [MS_PACKAGES_PATH.MPM::defaultPackage(), 'Databases', "{$file}.sql"]);
 
     }//end databaseFile()
 

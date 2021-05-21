@@ -156,11 +156,11 @@ class MPM
 
                             if ($key === 'status') {
                                 if ($value === 'enable') {
-                                    foreach (self::$content['modules'][$packageName]['all'] as $module => $details) {
-                                        if (self::$content['modules'][$packageName]['all'][$module]['status'] === 'enable') {
-                                            if ((self::$content['modules'][$packageName]['default'] === $module) === false) {
-                                                $array[] = $module;
-                                            }
+                                    foreach (self::$content['modules'][$packageName]['all'] as $module => $moduleDetails) {
+                                        if ((self::$content['modules'][$packageName]['all'][$module]['status'] === 'enable')
+                                            && (self::$content['modules'][$packageName]['default'] === $module) === false
+                                        ) {
+                                            $array[] = $module;
                                         }
                                     }
                                 }
@@ -231,25 +231,25 @@ class MPM
 
 
     /**
-     * @param  string $packagename
+     * @param  string $packageName
      * @return string
      */
-    public static function modulesPath(string $packagename=''): string
+    public static function modulesPath(string $packageName=''): string
     {
-        if (empty($packagename)) {
-            $packagename = Memory::Data('mpm')->packages->default;
+        if (empty($packageName) === true) {
+            $packageName = Memory::Data('mpm')->packages->default;
         }
 
         // make temp modules path
-        return MS_PACKAGES_PATH."$packagename/Modules/";
+        return MS_PACKAGES_PATH.$packageName.'/Modules/';
 
     }//end modulesPath()
 
 
     /**
-     * @return mixed
+     * @return string
      */
-    public static function defaultPackage()
+    public static function defaultPackage(): string
     {
         return Memory::data('mpm')->packages->default;
 
@@ -257,9 +257,9 @@ class MPM
 
 
     /**
-     * @return mixed
+     * @return string
      */
-    public static function defaultModule()
+    public static function defaultModule(): string
     {
         return Memory::data('mpm', ['format' => 'array'])['modules'][self::defaultPackage()]['default'];
 
@@ -272,7 +272,7 @@ class MPM
      */
     public static function moduleRootController(string $module): string
     {
-        // return root controller file of module
+        // Return root controller file of module.
         return self::getControllerOfModule(self::defaultModule(), $module);
 
     }//end moduleRootController()
@@ -285,7 +285,7 @@ class MPM
      */
     private static function getControllerOfModule(string $module, string $controller): string
     {
-        return implode(DIRECTORY_SEPARATOR, [self::modulesPath().$module, 'Controllers', "{$controller}Controller.php"]);
+        return implode(DIRECTORY_SEPARATOR, [self::modulesPath().$module, 'Controllers', $controller.'Controller.php']);
         // $rootController = join([MPM::modulesPath(), CMOS::Data("mpm", ["format" => "array"])["modules"][CMOS::Data("mpm")->packages->default]["default"],DS, 'Controllers', DS, $controller, '.php']);
 
     }//end getControllerOfModule()
@@ -294,49 +294,51 @@ class MPM
     /**
      * @param  array $filter
      * @return mixed
+     * @throws \JsonException
      */
     public static function packagesAll(array $filter=[])
     {
-        return self::readConfigure(
-            function () use ($filter) {
-                $result = '';
-                $array  = [];
-                if (count($filter) > 0) {
-                    foreach ($filter as $key => $value) {
-                        if ($key === 'item') {
-                            if ($value === 'default') {
-                                $result = self::$content['packages']['default'];
-                            }
+        $result = '';
+        $array  = [];
+        if (self::readConfigure() === true) {
+            if (count($filter) > 0) {
+                foreach ($filter as $key => $value) {
+                    if ($key === 'item') {
+                        if ($value === 'default') {
+                            $result = self::$content['packages']['default'];
+                        }
 
-                            if ($value === 'new') {
-                                $dirs = scandir(realpath(MS_PACKAGES_PATH));
-                                foreach ($dirs as $index => $dir) {
-                                    if ($dir === '.' or $dir === '..') {
-                                        unset($dirs[$index]);
-                                    }
-
-                                    if (is_file($dir)) {
-                                        unset($dirs[$index]);
-                                    }
-
-                                    if ($dir === self::defaultPackage()) {
-                                        unset($dirs[$index]);
-                                    }
+                        if ($value === 'new') {
+                            $dirs = scandir(realpath(MS_PACKAGES_PATH));
+                            foreach ($dirs as $index => $dir) {
+                                if ($dir === '.' || $dir === '..') {
+                                    unset($dirs[$index]);
                                 }
 
-                                $result = $dirs;
-                            }
-                        }//end if
-                    }//end foreach
-                } else {
-                    $array = array_keys(self::$content['packages']['all']);
-                }//end if
+                                if (is_file($dir) === true) {
+                                    unset($dirs[$index]);
+                                }
 
-                return !empty($result) ? $result : $array;
-            }
-        );
+                                if ($dir === self::defaultPackage()) {
+                                    unset($dirs[$index]);
+                                }
+                            }
+
+                            $result = $dirs;
+                        }
+                    }//end if
+                }//end foreach
+            } else {
+                $array = array_keys(self::$content['packages']['all']);
+            }//end if
+        }//end if
 
         // return CMOS::Data("mpm", ["format" => "array"])["modules"][CMOS::Data("mpm")->packages->default]["default"];
+        if (empty($result) === false) {
+            return $result;
+        }
+
+        return $array;
 
     }//end packagesAll()
 
@@ -352,78 +354,76 @@ class MPM
     {
         // Preparing to check configure file.
         if (file_exists(self::packageConfigFile) === true) {
-            self::readConfigure(
-                function () use ($setDefault, $newPackage) {
-                    if (is_array(self::$content['packages']['all']) === true) {
-                        if (in_array($newPackage, self::$content['packages']['all'], true) === true) {
-                            trigger_error('New '.$newPackage.' is already installed.');
-                        } else {
-                            self::$content['packages']['all'][] = $newPackage;
+            if (self::readConfigure() === true) {
+                if (is_array(self::$content['packages']['all']) === true) {
+                    if (in_array($newPackage, self::$content['packages']['all'], true) === true) {
+                        trigger_error('New '.$newPackage.' is already installed.');
+                    } else {
+                        self::$content['packages']['all'][] = $newPackage;
 
-                            if (empty(self::$content['packages']['default']) === true) {
-                                self::$content['packages']['default'] = $newPackage;
-                            }
+                        if (empty(self::$content['packages']['default']) === true) {
+                            self::$content['packages']['default'] = $newPackage;
+                        }
 
-                            if ($setDefault === true) {
-                                self::$content['packages']['default'] = $newPackage;
-                            }
+                        if ($setDefault === true) {
+                            self::$content['packages']['default'] = $newPackage;
+                        }
 
-                            // importing package property
-                            $newPackageProperties = _JSON::decodeToArray(
-                                file_get_contents(MS_PACKAGES_PATH.$newPackage.'.json')
-                            );
+                        // Importing package property.
+                        $newPackageProperties = _JSON::decodeToArray(
+                            file_get_contents(MS_PACKAGES_PATH.$newPackage.'.json')
+                        );
 
-                            if (array_key_exists('name', $newPackageProperties) === true) {
-                                if ($newPackageProperties['name'] === $newPackage) {
-                                    /*
-                                     * Start of importing package property
-                                     * */
-                                    // Add package loader to mpm register.
-                                    if (array_key_exists('loader', $newPackageProperties) === true) {
-                                        if (array_key_exists(ucfirst($newPackage), $newPackageProperties['loader'])) {
-                                            self::$content['loader'] = array_merge(self::$content['loader'], $newPackageProperties['loader']);
-                                        } else {
-                                            trigger_error("The {$newPackage} loader file property not found. Please remove broken package or update broken package.");
-                                        }
+                        if (array_key_exists('name', $newPackageProperties) === true) {
+                            if ($newPackageProperties['name'] === $newPackage) {
+                                /*
+                                 * Start of importing package property
+                                 * */
+                                // Add package loader to mpm register.
+                                if (array_key_exists('loader', $newPackageProperties) === true) {
+                                    if (array_key_exists(ucfirst($newPackage), $newPackageProperties['loader']) === true) {
+                                        self::$content['loader'] = array_merge(self::$content['loader'], $newPackageProperties['loader']);
                                     } else {
-                                        trigger_error("The {$newPackage} loader property not found. Please remove broken package or update broken package.");
+                                        trigger_error("The {$newPackage} loader file property not found. Please remove broken package or update broken package.");
                                     }
-
-                                    // add package modules to mpm register
-                                    if (array_key_exists('modules', $newPackageProperties)) {
-                                        if (array_key_exists(ucfirst($newPackage), $newPackageProperties['modules'])) {
-                                            self::$content['modules'] = array_merge(self::$content['modules'], $newPackageProperties['modules']);
-                                        } else {
-                                            trigger_error("The {$newPackage} loader file property not found. Please remove broken package or update broken package.");
-                                        }
-                                    } else {
-                                        trigger_error("The {$newPackage} modules property not found. Please remove broken package or update broken package.");
-                                    }
-
-                                    // end of importing package property
                                 } else {
-                                    trigger_error("The {$newPackage} name is not matched with property. Please remove broken package or update broken package.");
-                                }//end if
-                            } else {
-                                trigger_error("The properties of New {$newPackage} is corrupted. Please remove broken package or update broken package.");
-                            }//end if
+                                    trigger_error("The {$newPackage} loader property not found. Please remove broken package or update broken package.");
+                                }
 
-                            // collected data save to register file
-                            Stream::saveToFile(self::packageConfigFile, _JSON::encode_to_string(self::$content));
+                                // Add package modules to mpm register.
+                                if (array_key_exists('modules', $newPackageProperties)) {
+                                    if (array_key_exists(ucfirst($newPackage), $newPackageProperties['modules']) === true) {
+                                        self::$content['modules'] = array_merge(self::$content['modules'], $newPackageProperties['modules']);
+                                    } else {
+                                        trigger_error("The {$newPackage} loader file property not found. Please remove broken package or update broken package.");
+                                    }
+                                } else {
+                                    trigger_error("The {$newPackage} modules property not found. Please remove broken package or update broken package.");
+                                }
+
+                                // end of importing package property
+                            } else {
+                                trigger_error("The {$newPackage} name is not matched with property. Please remove broken package or update broken package.");
+                            }//end if
+                        } else {
+                            trigger_error("The properties of New {$newPackage} is corrupted. Please remove broken package or update broken package.");
                         }//end if
 
-                        if (!file_exists(MS_PACKAGES_PATH."$newPackage.json")) {
-                            trigger_error("New {$newPackage} have no properties. Please remove broken package or update broken package.");
-                        }
-
-                        if (!file_exists(MS_PACKAGES_PATH."$newPackage.loader.php")) {
-                            trigger_error("The loader of New {$newPackage} is not exists. Please remove broken package or update broken package.");
-                        }
-                    } else {
-                        self::freshInstall();
+                        // collected data save to register file
+                        Stream::saveToFile(self::packageConfigFile, _JSON::encodeToString(self::$content));
                     }//end if
-                }
-            );
+
+                    if (file_exists(MS_PACKAGES_PATH."$newPackage.json") === false) {
+                        trigger_error("New {$newPackage} have no properties. Please remove broken package or update broken package.");
+                    }
+
+                    if (file_exists(MS_PACKAGES_PATH."$newPackage.loader.php") === false) {
+                        trigger_error("The loader of New {$newPackage} is not exists. Please remove broken package or update broken package.");
+                    }
+                } else {
+                    self::freshInstall();
+                }//end if
+            }//end if
         } else {
             self::freshInstall();
         }//end if

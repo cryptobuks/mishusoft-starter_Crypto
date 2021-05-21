@@ -14,10 +14,10 @@ Ui::start();
 $html = Ui::element(Ui::$domDocument, 'html', ['lang' => 'en']);
 $this->documentHeadElement = Ui::element($html, 'head');
 $this->documentTitleElement = Ui::element($this->documentHeadElement, 'title');*/
-Ui::setDocumentTitle($this->TitleOfCurrentWebPage);
+Ui::setDocumentTitle($this->titleOfCurrentWebPage);
 
 
-if ($this->template_use === "no") {
+if ($this->templateUse === "no") {
 
     /*add template body*/
     $this->documentTemplateBodyElement = Ui::element(Ui::getDocumentRoot(), "body");
@@ -151,7 +151,7 @@ if ($this->template_use === "no") {
 
     Ui::elementList(Ui::getDocumentHeadElement(), [
         "meta" => [
-            ["id" => "meta-title", "name" => "meta-title", "content" => $this->TitleOfCurrentWebPage],
+            ["id" => "meta-title", "name" => "meta-title", "content" => $this->titleOfCurrentWebPage],
             ["id" => "meta-app-name", "name" => "meta-app-name", "content" => Memory::Data()->name],
             ["id" => "mishusoft-web-root", "name" => "mishusoft-web-root", "content" => Memory::Data("framework")->host->url],
             ["id" => "mishusoft-session-validity", "name" => "mishusoft-session-validity", "content" => Session::get("auth")],
@@ -236,7 +236,7 @@ if ($this->template_use === "no") {
 
     /*add template footer*/
 
-    if (array_key_exists("footer", $this->getWidgets())) {
+    if (array_key_exists("footer", $this->getWidgets()) === true) {
         foreach ($this->getWidgets()["footer"] as $widget) {
             include_once $widget;
         }

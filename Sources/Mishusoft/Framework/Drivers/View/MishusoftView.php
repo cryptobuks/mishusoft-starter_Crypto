@@ -4,6 +4,7 @@
 namespace Mishusoft\Framework\Drivers\View;
 
 
+use JsonException;
 use Mishusoft\Framework\Chipsets\FileSystem;
 use Mishusoft\Framework\Chipsets\Preloader;
 use Mishusoft\Framework\Chipsets\System\Firewall;
@@ -13,102 +14,171 @@ use Mishusoft\Framework\Interfaces\Drivers\MishusoftViewInterface;
 
 class MishusoftView implements MishusoftViewInterface
 {
-    /*declare version*/
-    const VERSION = "1.0.0";
+    // Declare version.
+    public const VERSION = '1.0.0';
 
-    const widgetsFile = PHP_RUNTIME_REGISTRIES_PATH . "widgets.json";
-    const widgetsConfigFile = PHP_RUNTIME_REGISTRIES_PATH . "widgets-config.json";
+    public const widgetsFile       = PHP_RUNTIME_REGISTRIES_PATH.'widgets.json';
+    public const widgetsConfigFile = PHP_RUNTIME_REGISTRIES_PATH.'widgets-config.json';
 
-    const  defaultWidgetConfig = array(
-        "position" => "footer",
-        "show" => "all",
-        "hide" => array()
-    );
+    protected const defaultWidgetConfig = [
+        'position' => 'footer',
+        'show'     => 'all',
+        'hide'     => [],
+    ];
 
+    /**
+     * @var array|array[]
+     */
+    private array $installedWidgets = [
+        'topQuickBar'      => [
+            'class'         => 'topQuickBar',
+            'method'        => 'getTopQuickBar',
+            'child'         => [],
+            'configuration' => ['position' => 'top'],
+            'setting'       => ['status' => 'enable'],
+        ],
+        'universalMenuBar' => [
+            'class'         => 'universalMenuBar',
+            'method'        => 'getUniversalMenuBar',
+            'child'         => [
+                'header',
+                'left',
+                'right',
+                'footer',
+            ],
+            'configuration' => ['position' => 'header'],
+            'setting'       => ['status' => 'enable'],
+        ],
+    ];
 
-    private array $installedWidgets = array(
-        "topQuickBar" => array(
-            "class" => "topQuickBar",
-            "method" => "getTopQuickBar",
-            "child" => array(),
-            "configuration" => array(
-                "position" => "top"
-            ),
-            "setting" => array(
-                "status" => "enable"
-            )
-        ),
-        "universalMenuBar" => array(
-            "class" => "universalMenuBar",
-            "method" => "getUniversalMenuBar",
-            "child" => array("header", "left", "right", "footer"),
-            "configuration" => array(
-                "position" => "header"
-            ),
-            "setting" => array(
-                "status" => "enable"
-            )
-        ),
-    );
-
+    /**
+     * @var array
+     */
     public array $request;
-    public array $widgetConfig;
-    public string $TitleOfCurrentWebPage;
-    public string $UrlOfHostedWebsite;
 
+    /**
+     * @var array
+     */
+    public array $widgetConfig;
+
+    /**
+     * @var string
+     */
+    public string $titleOfCurrentWebPage;
+
+    /**
+     * @var string
+     */
+    public string $urlOfHostedWebsite;
+
+    /**
+     * @var object
+     */
     public object $documentTitleElement;
+
+    /**
+     * @var object
+     */
     public object $documentHeadElement;
+
+    /**
+     * @var object
+     */
     public object $documentBodyElement;
+
+    /**
+     * @var object
+     */
     public object $documentTemplateElement;
+
+    /**
+     * @var object
+     */
     public object $documentTemplateBodyElement;
+
+    /**
+     * @var object
+     */
     public object $documentFooterElement;
 
-    private string $template_name;
-    private string $template_dir;
-    private string $template_render_dir;
-    private string $template_ext;
-    private string $template_load;
-    private string $template_use;
+    /**
+     * @var string
+     */
+    private string $templateName;
 
+    /**
+     * @var string
+     */
+    private string $templateDirectory;
+
+    /**
+     * @var string
+     */
+    private string $templateRenderDirectory;
+
+    /**
+     * @var string
+     */
+    private string $templateExt;
+
+    /**
+     * @var string
+     */
+    private string $templateLoad;
+
+    /**
+     * @var string
+     */
+    private string $templateUse;
+
+    /**
+     * @var array
+     */
     private array $variables;
+
+    /**
+     * @var array
+     */
     private array $widget;
+
 
     /**
      * ViewRender constructor.
+     *
      * @param string $hostUrl
      * @param string $rootTitle
-     * @param array $widgetConfig
-     * @param array $request
+     * @param array  $widgetConfig
+     * @param array  $request
      */
     public function __construct(string $hostUrl, string $rootTitle, array $widgetConfig, array $request)
     {
-        // TODO: Implement __construct() method.
-        //_Debug::preOutput(func_get_args());
-        $this->request = $request;
-        $this->UrlOfHostedWebsite = $hostUrl;
-        $this->TitleOfCurrentWebPage = $rootTitle;
-        $this->widgetConfig = $widgetConfig;
+        $this->request               = $request;
+        $this->urlOfHostedWebsite    = $hostUrl;
+        $this->titleOfCurrentWebPage = $rootTitle;
+        $this->widgetConfig          = $widgetConfig;
 
+        // Info of template.
+        $this->templateName = strtolower(DEFAULT_APP_NAME);
 
-        /*info of template*/
-        $this->template_name = strtolower(DEFAULT_APP_NAME);
+        // Template preset info.
+        $this->templateLoad = 'auto';
+        $this->templateUse  = 'yes';
 
-        /*template preset info*/
-        $this->template_load = "auto";
-        $this->template_use = "yes";
+        // Directory allocation.
+        $this->templateDirectory       = MS_THEMES_PATH;
+        $this->templateRenderDirectory = MS_DOCUMENT_ROOT.'Ema'.DIRECTORY_SEPARATOR.'Mishusoft/Main/Views/';
 
-        /*directory allocation*/
-        $this->template_dir = MS_THEMES_PATH;
-        $this->template_render_dir = MS_DOCUMENT_ROOT . "Ema" . DIRECTORY_SEPARATOR . "Mishusoft/Main/Views/";
-
-        /*file information*/
-        $this->template_ext = "php";
+        // File information.
+        $this->templateExt = 'php';
 
         $this->variables = [];
-    }
+
+    }//end __construct()
+
 
     /**
      * @return string
+     * @throws JsonException
      */
     private function readWidgetsConfigFile(): string
     {
@@ -120,82 +190,146 @@ class MishusoftView implements MishusoftViewInterface
         /*
          * check the registries path exists
          * create that path when not exists
-        */
-        if (!is_dir(PHP_RUNTIME_REGISTRIES_PATH)) {
-            mkdir(PHP_RUNTIME_REGISTRIES_PATH, 0777, true);
-        }
+         */
+
+        FileSystem::createDirectory(PHP_RUNTIME_REGISTRIES_PATH);
 
         /*
          * check the installed widgets list file exists
          * create that path when not exists
-        */
-        if (!file_exists(self::widgetsFile)) {
-            if (count(FileSystem::getList(MS_WIDGETS_PATH, "file")) > 0) {
-                foreach (FileSystem::getList(MS_WIDGETS_PATH, "file") as $widgetFile) {
-                    if (pathinfo($widgetFile, PATHINFO_EXTENSION) === "json") {
-                        $this->installedWidgets = array_merge($this->installedWidgets, array(pathinfo($widgetFile, PATHINFO_FILENAME) => FileSystem::read(join([MS_WIDGETS_PATH, $widgetFile]))));
+         */
+        if (file_exists(self::widgetsFile) === false) {
+            if (count(FileSystem::getList(MS_WIDGETS_PATH, 'file')) > 0) {
+                foreach (FileSystem::getList(MS_WIDGETS_PATH, 'file') as $widgetFile) {
+                    if (pathinfo($widgetFile, PATHINFO_EXTENSION) === 'json') {
+                        $newData = [
+                            pathinfo($widgetFile, PATHINFO_FILENAME) => json_decode(
+                                FileSystem::read(MS_WIDGETS_PATH.$widgetFile),
+                                true,
+                                512,
+                                JSON_THROW_ON_ERROR
+                            ),
+                        ];
+                        $this->installedWidgets[] = $newData;
                     }
                 }
             }
+
             FileSystem::write(self::widgetsFile, $this->installedWidgets);
         }
 
         /*
          * check the installed widgets configuration file exists
          * create that path when not exists
-        */
-        if (!file_exists(self::widgetsConfigFile)) {
-            foreach (json_decode(FileSystem::read(self::widgetsFile),true) as $widget => $config) {
-                if (file_exists(self::widgetsConfigFile) and count(json_decode(FileSystem::read(self::widgetsConfigFile),true)) > 0) {
+         */
+
+        $widgetFileArray   = json_decode(FileSystem::read(self::widgetsFile), true, 512, JSON_THROW_ON_ERROR);
+        $widgetConfigArray = json_decode(FileSystem::read(self::widgetsConfigFile), true, 512, JSON_THROW_ON_ERROR);
+
+        if (file_exists(self::widgetsConfigFile) === false) {
+            foreach ($widgetFileArray as $widget => $config) {
+                if (file_exists(self::widgetsConfigFile) === true && count($widgetConfigArray) > 0) {
                     $this->updateWidgets($widget, $config);
                 } else {
                     $this->installFreshWidget($widget, $config);
                 }
             }
+        } else if (count($widgetConfigArray) === 0) {
+            foreach ($widgetFileArray as $widget => $config) {
+                $this->updateWidgets($widget, $config);
+            }
         } else {
-            if (count(json_decode(FileSystem::read(self::widgetsConfigFile),true)) > !0) {
-                foreach (json_decode(FileSystem::read(self::widgetsFile),true) as $widget => $config) {
+            foreach ($widgetFileArray as $widget => $config) {
+                if (array_key_exists($widget, $widgetConfigArray) === false) {
                     $this->updateWidgets($widget, $config);
                 }
-            } else {
-                foreach (json_decode(FileSystem::read(self::widgetsFile),true) as $widget => $config) {
-                    if (!array_key_exists($widget, json_decode(FileSystem::read(self::widgetsConfigFile),true))) {
-                        $this->updateWidgets($widget, $config);
-                    }
-                }
             }
-        }
+        }//end if
 
         return self::widgetsConfigFile;
-    }
 
+    }//end readWidgetsConfigFile()
+
+
+
+    /**
+     * @param  string $widget
+     * @param  array  $config
+     * @throws JsonException
+     */
+    private function installFreshWidget(string $widget, array $config): void
+    {
+        FileSystem::write(self::widgetsConfigFile, $this->collectAllData($widget, $config));
+
+    }//end installFreshWidget()
+
+
+    /**
+     * @param  string $widget
+     * @param  array  $config
+     * @return void
+     * @throws JsonException
+     */
+    private function updateWidgets(string $widget, array $config): void
+    {
+        FileSystem::write(
+            self::widgetsConfigFile,
+            array_merge(
+                json_decode(FileSystem::read(self::widgetsConfigFile), true, 512, JSON_THROW_ON_ERROR),
+                $this->collectAllData($widget, $config)
+            )
+        );
+
+    }//end updateWidgets()
+
+
+
+
+    /**
+     * @param  string $widget
+     * @param  array  $config
+     * @return array
+     */
     private function collectAllData(string $widget, array $config): array
     {
-        $array = array();
-        if (count($config["child"]) > 0) {
-            foreach ($config["child"] as $child) {
-                $array = array_merge($array, array("$widget-" . $child => array_merge(self::defaultWidgetConfig, array("position" => $child))));
+        $array = [];
+        if (count($config['child']) > 0) {
+            foreach ($config['child'] as $child) {
+                $array = array_merge($array, ["$widget-".$child => array_merge(self::defaultWidgetConfig, ['position' => $child])]);
             }
         } else {
-            $array = array_merge($array, array($widget => array_merge(self::defaultWidgetConfig, $config["configuration"])));
+            $array = array_merge($array, [$widget => array_merge(self::defaultWidgetConfig, $config['configuration'])]);
         }
 
         return $array;
-    }
 
+    }//end collectAllData()
+
+
+    /**
+     * @return array
+     * @throws JsonException
+     */
     private function getWidgetsConfigAll(): array
     {
-        return json_decode(FileSystem::read(self::readWidgetsConfigFile()),true);
-    }
+        return json_decode(FileSystem::read($this->readWidgetsConfigFile()), true, 512, JSON_THROW_ON_ERROR);
 
+    }//end getWidgetsConfigAll()
+
+
+    /**
+     * @param  string $child
+     * @return string
+     * @throws JsonException
+     */
     private function getWidgetsParent(string $child): string
     {
-        $parent = "";
-        $wd = array_keys(self::getWidgetsConfigAll());
+        $parent = '';
+        $wd     = array_keys($this->getWidgetsConfigAll());
         foreach ($wd as $item) {
-            if ($item === $child){
-                if (strpos($item, "-")) {
-                    $data = explode("-", $item);
+            if ($item === $child) {
+                if (strpos($item, '-') === true) {
+                    $data   = explode('-', $item);
                     $parent = array_shift($data);
                 } else {
                     $parent = $item;
@@ -204,167 +338,173 @@ class MishusoftView implements MishusoftViewInterface
         }
 
         return $parent;
-    }
 
+    }//end getWidgetsParent()
+
+
+    /**
+     * @return array
+     * @throws JsonException
+     */
     private function getWidgetsParentAll(): array
     {
-        $parents = array();
-        $wd = array_keys(self::getWidgetsConfigAll());
+        $parents = [];
+        $wd      = array_keys($this->getWidgetsConfigAll());
         foreach ($wd as $item) {
-            if (strpos($item, "-")) {
-                $data = explode("-", $item);
-                array_push($parents,array_shift($data));
+            if (strpos($item, '-') === true) {
+                $data      = explode('-', $item);
+                $parents[] = array_shift($data);
             } else {
-                array_push($parents,$item);
+                $parents[] = $item;
             }
         }
 
-        /*remove duplicate data*/
+        // Remove duplicate data.
         $parents = array_unique($parents, SORT_ASC);
         array_multisort($parents, SORT_ASC);
         asort($parents, SORT_ASC);
 
         return $parents;
-    }
 
+    }//end getWidgetsParentAll()
+
+
+    /**
+     * @param  string $parent
+     * @return array
+     * @throws JsonException
+     */
     private function getAllDataOfWidgetsParent(string $parent): array
     {
-        return _Array::value(json_decode(FileSystem::read(self::widgetsFile),true), $parent);
-    }
+        return _Array::value(json_decode(FileSystem::read(self::widgetsFile), true, 512, JSON_THROW_ON_ERROR), $parent);
+
+    }//end getAllDataOfWidgetsParent()
 
     /**
-     * @param string $widget
-     * @param array $config
-     * @return false|int
+     * @throws JsonException
      */
-    private function installFreshWidget(string $widget, array $config): bool|int
-    {
-        return FileSystem::write(self::widgetsConfigFile, $this->collectAllData($widget, $config));
-    }
-
-    /**
-     * @param string $widget
-     * @param array $config
-     * @return void
-     */
-    private function updateWidgets(string $widget, array $config): void
-    {
-        FileSystem::write(self::widgetsConfigFile,
-            array_merge(
-                json_decode(FileSystem::read(self::widgetsConfigFile),true),
-                $this->collectAllData($widget, $config)
-            ));
-    }
-
     private function getConfig(string $widget): array
     {
-        if (is_readable($this->readWidgetsConfigFile())) {
-            return _Array::value(json_decode(FileSystem::read(self::widgetsFile),true), $widget);
-        } else {
-            return self::defaultWidgetConfig;
+        if (is_readable($this->readWidgetsConfigFile()) === true) {
+            return _Array::value(json_decode(FileSystem::read(self::widgetsFile), true, 512, JSON_THROW_ON_ERROR), $widget);
         }
-    }
+
+        return self::defaultWidgetConfig;
+
+    }//end getConfig()
+
 
     /**
-     * @param string $template
+     * @param  string $template
      * @return array
      */
-    public function getAvailableWidgetsPositions(string $template = DEFAULT_SYSTEM_THEME): array
+    public function getAvailableWidgetsPositions(string $template=DEFAULT_SYSTEM_THEME): array
     {
-        if (!empty($this->template_name)) {
-            $template = $this->template_name;
+        if (empty($this->templateName) === false) {
+            $template = $this->templateName;
         }
 
-        if (is_readable(join(DIRECTORY_SEPARATOR, [MS_THEMES_PATH . $template . DIRECTORY_SEPARATOR. "configs.php"]))) {
-            include_once MS_THEMES_PATH . $template . DIRECTORY_SEPARATOR. "configs.php";
+        if (is_readable(implode(DIRECTORY_SEPARATOR, [MS_THEMES_PATH.$template.DIRECTORY_SEPARATOR.'configs.php'])) === true) {
+            include_once MS_THEMES_PATH.$template.DIRECTORY_SEPARATOR.'configs.php';
             return get_available_widgets_positions();
-        } else {
-            Firewall::runtimeFailure("Not Found", [
-                "debug" => [
-                    "file" => "Theme's Configs.php",
-                    "location" => MS_THEMES_PATH . $template . DIRECTORY_SEPARATOR. "configs.php",
-                    "description" => "Theme's configuration file not found."
-                ],
-                "error" => ["description" => "Your requested url is broken!!"]
-            ]);
-
-            return [];
         }
-    }
+
+        Firewall::runtimeFailure(
+            'Not Found',
+            [
+                'debug' => [
+                    'file'        => "Theme's Configs.php",
+                    'location'    => MS_THEMES_PATH.$template.DIRECTORY_SEPARATOR.'configs.php',
+                    'description' => "Theme's configuration file not found.",
+                ],
+                'error' => ['description' => 'Your requested url is broken!!'],
+            ]
+        );
+
+        return [];
+
+    }//end getAvailableWidgetsPositions()
+
 
     /**
-     * @param string $widget
-     * @param string $method
-     * @param array $options
+     * @param  string $widget
+     * @param  string $method
+     * @param  array  $options
      * @return mixed|void
      */
-    public function widget(string $widget, string $method, array $options = array())
+    public function widget(string $widget, string $method, array $options=[])
     {
-        if (!is_array($options)) {
-            $options = array($options);
+        if (is_array($options) === false) {
+            $options = [$options];
         }
 
-        $widgetClass = $widget . 'Widget';
-        if (is_readable(MS_WIDGETS_PATH . "$widgetClass.php")) {
-            include_once MS_WIDGETS_PATH . "$widgetClass.php";
-            $widgetClass = Preloader::getClassNamespaceFromPath(MS_WIDGETS_PATH . "$widgetClass.php");
-            if (!class_exists($widgetClass)) {
-                Firewall::runtimeFailure("Not Found", [
-                    "debug" => [
-                        "file" => "$widgetClass",
-                        "location" => MS_WIDGETS_PATH . "$widgetClass.php",
-                        "description" => "Widget class not found or Widget class call error"
-                    ],
-                    "error" => ["description" => "Your requested url is broken!!"]
-                ]);
+        $widgetClass = $widget.'Widget';
+        if (is_readable(MS_WIDGETS_PATH."$widgetClass.php") === true) {
+            include_once MS_WIDGETS_PATH."$widgetClass.php";
+            $widgetClass = Preloader::getClassNamespaceFromPath(MS_WIDGETS_PATH."$widgetClass.php");
+            if (class_exists($widgetClass) === false) {
+                Firewall::runtimeFailure(
+                    'Not Found',
+                    [
+                        'debug' => [
+                            'file'        => "$widgetClass",
+                            'location'    => MS_WIDGETS_PATH."$widgetClass.php",
+                            'description' => 'Widget class not found or Widget class call error',
+                        ],
+                        'error' => ['description' => 'Your requested url is broken!!'],
+                    ]
+                );
             }
 
-            if (is_callable($widgetClass, $method)) {
-                if (count($options)) {
-                    return call_user_func_array(array(new $widgetClass, $method), $options);
+            if (is_callable($widgetClass, $method) === true) {
+                if (count($options) > 0) {
+                    return call_user_func_array([new $widgetClass, $method], $options);
                 } else {
-                    return call_user_func(array(new $widgetClass, $method));
+                    return call_user_func([new $widgetClass, $method]);
                 }
             }
         } else {
-            Firewall::runtimeFailure("Not Found", [
-                "debug" => [
-                    "file" => "$widgetClass.php",
-                    "location" => MS_WIDGETS_PATH . "$widgetClass.php",
-                    "description" => "Widget's content not readable or found."
-                ],
-                "error" => ["description" => "Your requested url is broken!!"]
-            ]);
-        }
-    }
+            Firewall::runtimeFailure(
+                'Not Found',
+                [
+                    'debug' => [
+                        'file'        => "$widgetClass.php",
+                        'location'    => MS_WIDGETS_PATH."$widgetClass.php",
+                        'description' => "Widget's content not readable or found.",
+                    ],
+                    'error' => ['description' => 'Your requested url is broken!!'],
+                ]
+            );
+        }//end if
+
+    }//end widget()
 
 
+    /**
+     * @throws JsonException
+     */
     public function getWidgets(): array
     {
-
-        //Widgets list
-        /*$widgetsList = array(
+        // Widgets list
+        /*
+            $widgetsList = array(
             "widget-name-like-filename" => array (
                 "configuration"=> $this->widget('widget-class-name', 'widget-method-name', array('widget-filename')), //config collector function
                 "configuration"=> $this->getConfig('topQuickBar'), //config collector function
                 "configuration"=> $config, //config collector array,
                 'content' => array('widget-class-name', 'widget-method-name', array('widget-name', 'widget-filename')) //data collector function
             )
-        );
-        $widgetsA = array(
+            );
+            $widgetsA = array(
              'menu-top' => array(
                   'config' => $this->widget('menu', 'getConfig', array('top')),
                  'content' => array('menu', 'getMenu', array('top', 'top'))
             ),
         );*/
 
-
-
-        $widgets = array();
+        $widgets = [];
 
         foreach ($this->getWidgetsConfigAll() as $wd => $cnf) {
-
-
             /*
              * Sample
              * $widgets = array(
@@ -372,197 +512,245 @@ class MishusoftView implements MishusoftViewInterface
                     'config' => $this->getConfig('topQuickBar'),
                     'content' => array('topQuickBar', 'getTopQuickBar', array('topQuickBar', 'top-quick-bar', 'php'))
                 )
-            );
-            */
+                );
+             */
 
-            $widgets = array_merge($widgets, array($wd => array(
-                    "config" => $cnf,
-                    "content" => array(
-                        _Array::value($this->getAllDataOfWidgetsParent($this->getWidgetsParent($wd)),"class"),
-                        _Array::value($this->getAllDataOfWidgetsParent($this->getWidgetsParent($wd)),"method"),
-                        array(_Array::value($this->getAllDataOfWidgetsParent($this->getWidgetsParent($wd)),"class"), $wd, 'php')),
-                ))
+            $widgets = array_merge(
+                $widgets,
+                [
+                    $wd => [
+                        'config'  => $cnf,
+                        'content' => [
+                            _Array::value($this->getAllDataOfWidgetsParent($this->getWidgetsParent($wd)), 'class'),
+                            _Array::value($this->getAllDataOfWidgetsParent($this->getWidgetsParent($wd)), 'method'),
+                            [
+                                _Array::value($this->getAllDataOfWidgetsParent($this->getWidgetsParent($wd)), 'class'),
+                                $wd,
+                                'php',
+                            ],
+                        ],
+                    ],
+                ]
             );
-        }
+        }//end foreach
 
         $positions = $this->getAvailableWidgetsPositions();
-        $keys = array();
-        if ($widgets == !false) {
+        $keys      = [];
+        if (is_array($widgets) === true) {
             $keys = array_keys($widgets);
         }
 
         foreach ($keys as $k) {
-            /* Verification of widgets position visibility. */
-            if (isset($positions[$widgets[$k]['config']['position']])) {
-                /* Verification it's view disability by url [controller/method]  */
-                if (!isset($widgets[$k]['config']['hide']) || !in_array($this->request["controller"] . "/" . $this->request["method"], $widgets[$k]['config']['hide'])) {
-                    /* Verification it's view visibility by url [controller/method] */
-                    if ($widgets[$k]['config']['show'] === 'all' || in_array($this->request["controller"] . "/" . $this->request["method"], $widgets[$k]['config']['show'])) {
+            // Verification of widgets position visibility.
+            if (isset($positions[$widgets[$k]['config']['position']]) === true) {
+                // Verification it's view disability by url [controller/method]
+                if (!isset($widgets[$k]['config']['hide']) || !in_array($this->request['controller'].'/'.$this->request['method'], $widgets[$k]['config']['hide'])) {
+                    // Verification it's view visibility by url [controller/method]
+                    if ($widgets[$k]['config']['show'] === 'all' || in_array($this->request['controller'].'/'.$this->request['method'], $widgets[$k]['config']['show'])) {
                         if (isset($this->widget[$k])) {
                             $widgets[$k]['content'][2] = $this->widget[$k];
                         }
-                        /*is it's have position in layout*/
+
+                        // is it's have position in layout
                         $positions[$widgets[$k]['config']['position']][] = $this->getWidgetContent($widgets[$k]['content']);
                     }
                 }
             }
+        }//end foreach
 
-        }
         return $positions;
-    }
+
+    }//end getWidgets()
 
 
     /**
-     * @param array $content
+     * @param  array $content
      * @return mixed|void
      */
     public function getWidgetContent(array $content)
     {
-        if (!isset($content[0]) || !isset($content[1])) {
-            Firewall::runtimeFailure("Not Found", [
-                "debug" => [
-                    "file" => "Widget",
-                    "location" => "Required file",
-                    "description" => "Widget's content not found."
-                ],
-                "error" => ["description" => "Your requested url is broken!!"]
-            ]);
+        if (array_key_exists(0, $content) === false || array_key_exists(1, $content) === false) {
+            Firewall::runtimeFailure(
+                'Not Found',
+                [
+                    'debug' => [
+                        'file'        => 'Widget',
+                        'location'    => 'Required file',
+                        'description' => "Widget's content not found.",
+                    ],
+                    'error' => ['description' => 'Your requested url is broken!!'],
+                ]
+            );
         }
-        if (!isset($content[2])) {
-            $content[2] = array();
+
+        if (array_key_exists(2, $content) === false) {
+            $content[2] = [];
         }
+
         return $this->widget($content[0], $content[1], $content[2]);
-    }
+
+    }//end getWidgetContent()
 
 
     /**
      * @inheritDoc
-     * @param array $config
+     * @param      array $config
      */
     public function setWidgetConfig(array $config): void
     {
-        // TODO: Implement setWidgetConfig() method.
         $this->widgetConfig = $config;
-    }
+
+    }//end setWidgetConfig()
 
 
     /**
      * @inheritDoc
-     * @param string $documentTitle
+     * @param      string $documentTitle
      */
     public function setDocumentTitle(string $documentTitle): void
     {
-        // TODO: Implement setDocumentTitle() method.
-        $this->TitleOfCurrentWebPage = $documentTitle;
-    }
+        $this->titleOfCurrentWebPage = $documentTitle;
+
+    }//end setDocumentTitle()
+
 
     /**
      * @inheritDoc
-     * @param string $UrlOfHostedWebsite
+     * @param      string $urlOfHostedWebsite
      */
-    public function setUrlOfHostedWebsite(string $UrlOfHostedWebsite): void
+    public function setUrlOfHostedWebsite(string $urlOfHostedWebsite): void
     {
-        // TODO: Implement setUrlOfHostedWebsite() method.
-        $this->UrlOfHostedWebsite = $UrlOfHostedWebsite;
-    }
+        $this->urlOfHostedWebsite = $urlOfHostedWebsite;
 
+    }//end setUrlOfHostedWebsite()
 
 
     /**
      * @param array $options
      */
-    public function display(array $options = []): void
+    public function display(array $options=[]): void
     {
         if (count($options) > 0) {
-            /*identify file load auto or manual the current file*/
-            if (array_key_exists("load", $options) and _Array::value($options, "load") === "manual") {
-                $this->template_load = "manual";
-                if (array_key_exists("template_dir", $options)) {
-                    $this->template_render_dir = (string)_Array::value($options, "template_dir");
+            // Identify file load auto or manual the current file.
+            if (array_key_exists('load', $options) === true && _Array::value($options, 'load') === 'manual') {
+                $this->templateLoad = 'manual';
+                if (array_key_exists('templateDirectory', $options) === true) {
+                    $this->templateRenderDirectory = (string) _Array::value($options, 'templateDirectory');
                 } else {
-                    Firewall::runtimeFailure("Not Found", [
-                        "debug" => ["file" => __FILE__, "location" => __METHOD__, "description" => "Invalid \$options parsed. template directory location not provided."],
-                        "error" => ["description" => "Your requested file not found or deleted!!"]
-                    ]);
+                    Firewall::runtimeFailure(
+                        'Not Found',
+                        [
+                            'debug' => [
+                                'file'        => __FILE__,
+                                'location'    => __METHOD__,
+                                'description' => 'Invalid $options parsed. template directory location not provided.',
+                            ],
+                            'error' => ['description' => 'Your requested file not found or deleted!!'],
+                        ]
+                    );
                 }
-                if (array_key_exists("template_ext", $options)) {
-                    $this->template_ext = (string)_Array::value($options, "template_ext");
+
+                if (array_key_exists('templateExt', $options) === true) {
+                    $this->templateExt = (string) _Array::value($options, 'templateExt');
                 } else {
-                    Firewall::runtimeFailure("Not Found", [
-                        "debug" => ["file" => __FILE__, "location" => __METHOD__, "description" => "Invalid \$options parsed. template extension not provided."],
-                        "error" => ["description" => "Your requested file not found or deleted!!"]
-                    ]);
+                    Firewall::runtimeFailure(
+                        'Not Found',
+                        [
+                            'debug' => [
+                                'file'        => __FILE__,
+                                'location'    => __METHOD__,
+                                'description' => 'Invalid $options parsed. template extension not provided.',
+                            ],
+                            'error' => ['description' => 'Your requested file not found or deleted!!'],
+                        ]
+                    );
                 }
-            }
-            /*identify use theme or not the current file*/
-            if (array_key_exists("useTheme", $options) and _Array::value($options, "useTheme") === "no") {
-                $this->template_use = "no";
-            }
-        }
+            }//end if
 
-        //_Debug::preOutput($this->loadTemplateFile());
-        //if (file_exists($this->loadTemplateFile())) {_Debug::preOutput($this->loadTemplateFile() . " found");}
-        //else {_Debug::preOutput($this->loadTemplateFile() . " Not Found");}
+            // Identify use theme or not the current file.
+            if (array_key_exists('useTheme', $options) === true && _Array::value($options, 'useTheme') === 'no') {
+                $this->templateUse = 'no';
+            }
+        }//end if
 
-        if (file_exists($this->loadTemplateFile())) {
+        if (file_exists($this->loadTemplateFile()) === true) {
             $this->compile();
         } else {
-            Firewall::runtimeFailure("Not Found", [
-                "debug" => ["file" => $this->loadTemplateFile(), "location" => $this->template_render_dir, "description" => $this->loadTemplateFile() . " not found."],
-                "error" => ["description" => "Your requested file not found or deleted!!"]
-            ]);
+            Firewall::runtimeFailure(
+                'Not Found',
+                [
+                    'debug' => [
+                        'file'        => $this->loadTemplateFile(),
+                        'location'    => $this->templateRenderDirectory,
+                        'description' => $this->loadTemplateFile().' not found.',
+                    ],
+                    'error' => ['description' => 'Your requested file not found or deleted!!'],
+                ]
+            );
         }
-    }
+
+    }//end display()
+
 
     /**
      * @return string
      */
-    function loadTemplateFile(): string
+    public function loadTemplateFile(): string
     {
-        return $this->template_render_dir . join("/", [_String::ucfirst($this->request["controller"]), $this->request["method"]]) . ".$this->template_ext";
-    }
+        return $this->templateRenderDirectory.implode('/', [_String::ucfirst($this->request['controller']), $this->request['method']]).".$this->templateExt";
 
-    private function compile()
-    {
-        //_Debug::preOutput("{$this->template_dir}");
-        //if (file_exists($this->template_dir)){_Debug::preOutput("$this->template_dir found ");}
-        //else {_Debug::preOutput("$this->template_dir not found ");}
-        if (is_dir($this->template_dir)){
-            //_Debug::preOutput("{$this->template_dir}");
-            if (file_exists("{$this->template_dir}{$this->template_name}/template.php")) {
-                //_Debug::preOutput("{$this->template_dir}{$this->template_name}/template.php");
-                include_once "{$this->template_dir}{$this->template_name}/template.php";
-            } else {
-                Firewall::runtimeFailure("Not Found", [
-                    "debug" => [
-                        "file" => "template.php",
-                        "location" =>  "{$this->template_dir}{$this->template_name}/template.php",
-                        "description" => "Template file not found"
-                    ],
-                    "error" => ["description" => "Your requested url is broken!!"]
-                ]);
-            }
-        } else {
-            Firewall::runtimeFailure("Not Found", [
-                "debug" => [
-                    "file" => "template directory",
-                    "location" =>  "{$this->template_dir}",
-                    "description" => "template directory not found"
-                ],
-                "error" => ["description" => "Your requested url is broken!!"]
-            ]);
-        }
+    }//end loadTemplateFile()
 
-    }
 
     /**
-     * @inheritDoc
+     *
      */
-    public function assign(string $tpl_key, $tpl_value): array
+    private function compile(): void
     {
-        // TODO: Implement assign() method.
+        if (is_dir($this->templateDirectory) === true) {
+            if (file_exists("{$this->templateDirectory}{$this->templateName}/template.php") === true) {
+                include_once "{$this->templateDirectory}{$this->templateName}/template.php";
+            } else {
+                Firewall::runtimeFailure(
+                    'Not Found',
+                    [
+                        'debug' => [
+                            'file'        => 'template.php',
+                            'location'    => "{$this->templateDirectory}{$this->templateName}/template.php",
+                            'description' => 'Template file not found',
+                        ],
+                        'error' => ['description' => 'Your requested url is broken!!'],
+                    ]
+                );
+            }
+        } else {
+            Firewall::runtimeFailure(
+                'Not Found',
+                [
+                    'debug' => [
+                        'file'        => 'template directory',
+                        'location'    => "{$this->templateDirectory}",
+                        'description' => 'template directory not found',
+                    ],
+                    'error' => ['description' => 'Your requested url is broken!!'],
+                ]
+            );
+        }//end if
 
-        /*_Debug::preOutput(array_merge($this->variables, array($tpl_key => $tpl_value)));*/
-        return $this->variables = array_merge($this->variables, array($tpl_key => $tpl_value));
-    }
-}
+    }//end compile()
+
+
+    /**
+     * @param string $tplKey
+     * @param $tplValue
+     * @return array
+     */
+    public function assign(string $tplKey, $tplValue): array
+    {
+        // _Debug::preOutput(array_merge($this->variables, array($tpl_key => $tpl_value)));
+        return $this->variables = array_merge($this->variables, [$tplKey => $tplValue]);
+
+    }//end assign()
+
+
+}//end class

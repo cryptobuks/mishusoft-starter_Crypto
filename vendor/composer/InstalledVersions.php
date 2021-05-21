@@ -32,7 +32,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'b3b6076f88b0f899bed9fca22a2835a7ebf63b41',
+    'reference' => '5a183fcccdd64d3a708757470073816aec4c9d85',
     'name' => 'mishusoft/website',
   ),
   'versions' => 
@@ -134,7 +134,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'b3b6076f88b0f899bed9fca22a2835a7ebf63b41',
+      'reference' => '5a183fcccdd64d3a708757470073816aec4c9d85',
     ),
     'myclabs/deep-copy' => 
     array (
@@ -351,7 +351,7 @@ private static $installed = array (
       array (
         0 => '9999999-dev',
       ),
-      'reference' => '42840dcc436945146d79a985240a99ddd3bc5dc7',
+      'reference' => '6e52ab3a11a0d4fb0d9b2fb199a5887b8e01b1ae',
     ),
     'sebastian/cli-parser' => 
     array (
@@ -517,12 +517,12 @@ private static $installed = array (
     ),
     'stripe/stripe-php' => 
     array (
-      'pretty_version' => 'v7.78.0',
-      'version' => '7.78.0.0',
+      'pretty_version' => 'v7.79.0',
+      'version' => '7.79.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '6ec33fa8e9de2322be93d28dfd685661c67ca549',
+      'reference' => 'e17e85bc13dfa531bdfb3d3719d3810431d104f9',
     ),
     'symfony/console' => 
     array (
@@ -578,12 +578,12 @@ private static $installed = array (
     ),
     'symfony/finder' => 
     array (
-      'pretty_version' => 'v5.2.8',
-      'version' => '5.2.8.0',
+      'pretty_version' => 'v5.2.9',
+      'version' => '5.2.9.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'eccb8be70d7a6a2230d05f6ecede40f3fdd9e252',
+      'reference' => 'ccccb9d48ca42757dd12f2ca4bf857a4e217d90d',
     ),
     'symfony/options-resolver' => 
     array (

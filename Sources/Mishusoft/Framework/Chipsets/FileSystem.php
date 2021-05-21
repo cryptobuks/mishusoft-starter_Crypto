@@ -357,8 +357,8 @@ class FileSystem
                 unset($files[$id]);
             }
 
-            if ($filter !== 'both' || $filter !== 'directory' || $filter !== 'file') {
-                throw new RuntimeException('$filter not determined. Unknown $filter found.');
+            if ($filter !== 'both' && $filter !== 'directory' && $filter !== 'file') {
+                throw new RuntimeException('$filter='.$filter.' not determined. Unknown $filter found.');
             }
         }
 

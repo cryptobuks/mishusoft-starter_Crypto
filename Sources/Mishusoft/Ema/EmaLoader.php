@@ -44,7 +44,7 @@ if (file_exists($emaRootPath) === true) {
         if (count(FileSystem::getList($urlSplitterRootPath, 'file')) > 0) {
             foreach (FileSystem::getList($urlSplitterRootPath, 'file') as $filename) {
                 if (pathinfo($filename, PATHINFO_EXTENSION) === 'json') {
-                    array_push($configs, json_decode(FileSystem::read("$urlSplitterRootPath$filename"), true));
+                    $configs[] = json_decode(FileSystem::read("$urlSplitterRootPath$filename"), true);
                 }
             }
 
