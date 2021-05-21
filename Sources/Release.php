@@ -4,8 +4,8 @@
  *
  * @package    Mishusoft
  * @subpackage Release
- * @author     Mishusoft System Inc <products@mishusoft.com>
- * @copyright  2021 Mishusoft System Inc (ABN 77 084 670 600)
+ * @author     Squiz Pty Ltd <products@squiz.net>
+ * @copyright  2021 Squiz Pty Ltd (ABN 77 084 670 600)
  *
  * Add bash command "alias mishusoft-release="php /srv/http/Sources/Release.php""
  */
@@ -67,14 +67,14 @@ require_once realpath(__DIR__).'/Mishusoft/Release/Compile.php';
                     'error'
                 );
                 Compile::defaultInfo();
-                exit();//end if
-
+                exit();
+                // end if
             }//end if
 
             // Update node-app and Mishusoft Framework release versions.
             if (str_starts_with($options, '-u') === true) {
                 Compile::updatePRV(realpath('./package.json'));
-                Compile::updatePRVALlPackages(realpath(dirname(__FILE__).'/Mishusoft/Packages'));
+                Compile::updatePRVALlPackages(realpath(__DIR__.'/Mishusoft/Packages'));
                 exit();
             }//end if
 
@@ -87,7 +87,8 @@ require_once realpath(__DIR__).'/Mishusoft/Release/Compile.php';
 
                 Compile::log('Error in argument 2, no source or destination provided.', 'error');
                 Compile::defaultInfo();
-                exit();//end if
+                exit();
+                // end if
             }//end if
 
             // Show help information.
@@ -108,7 +109,8 @@ require_once realpath(__DIR__).'/Mishusoft/Release/Compile.php';
                     'error'
                 );
                 Compile::defaultInfo();
-                exit();//end if
+                exit();
+                // end if
             }//end if
 
             // Release themes sources or compressed files.
@@ -123,7 +125,8 @@ require_once realpath(__DIR__).'/Mishusoft/Release/Compile.php';
                     'error'
                 );
                 Compile::defaultInfo();
-                exit();//end if
+                exit();
+                // end if
             }//end if
 
             // Release static html pages sources files.
@@ -135,7 +138,8 @@ require_once realpath(__DIR__).'/Mishusoft/Release/Compile.php';
 
                 Compile::log('Error in argument 2, no source code destination provided.', 'error');
                 Compile::defaultInfo();
-                exit();//end if
+                exit();
+                // end if
             }//end if
 
             // Compress sources code.
@@ -147,19 +151,23 @@ require_once realpath(__DIR__).'/Mishusoft/Release/Compile.php';
 
                 Compile::log('Error in argument 2, no source code destination provided.', 'error');
                 Compile::defaultInfo();
-                exit();//end if
+                exit();
+                // end if
             }
 
             Compile::log('Error in argument 1, invalid option.', 'error');
-            Compile::defaultInfo();//end if
+            Compile::defaultInfo();
+            // end if
             exit();
-        }
+        }//end if
 
         Compile::log('Error in argument 1, empty option.', 'error');
         Compile::defaultInfo();
-        exit();//end if
-    }
+        exit();
+        // end if
+    }//end if
 
     Compile::defaultInfo();
-    exit();//end if
+    exit();
+    // end if
 })($argv);

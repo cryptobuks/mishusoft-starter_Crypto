@@ -1,6 +1,0 @@
-Programming skills
-
-website: https://dimikoj.com/
-profile: https://dimikoj.com/users/4379/mrabirahamed
-category: c++, java, python
-rank: https://dimikoj.com/users/ranklist?page=144

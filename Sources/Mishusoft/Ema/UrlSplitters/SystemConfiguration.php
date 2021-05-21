@@ -24,25 +24,25 @@ class SystemConfiguration
     /**
      * @param array $request
      */
-    public function install(array $request)
+    public function install(array $request): void
     {
         if (strlen(file_get_contents('php://input')) > 0) {
             System::checkSystemRequirements();
             System::communicate();
             exit();
-        } else {
-            Firewall::runtimeFailure(
-                'Not Found',
-                [
-                    'debug' => [
-                        'file'        => ucfirst($request['controller']),
-                        'location'    => (new Browser())->getVisitedPage(),
-                        'description' => 'Your requested url not found!!',
-                    ],
-                    'error' => ['description' => 'Your requested url not found!!'],
-                ]
-            );
         }
+
+        Firewall::runtimeFailure(
+            'Not Found',
+            [
+                'debug' => [
+                    'file'        => ucfirst($request['controller']),
+                    'location'    => Browser::getVisitedPage(),
+                    'description' => 'Your requested url not found!!',
+                ],
+                'error' => ['description' => 'Your requested url not found!!'],
+            ]
+        );
 
     }//end install()
 
@@ -50,9 +50,11 @@ class SystemConfiguration
     /**
      * @param array $request
      */
-    public function update(array $request)
+    public function update(array $request): void
     {
-        if (array_key_exists('update', $_FILES)) {
+
+        //$requestedFile = filter_input_array(FILE_BINARY, 'update');
+        if (array_key_exists('update', $_FILES) === true) {
             $uploader = new Uploader($_FILES['update']);
             if (!$uploader->file_temp_name) {
                 echo 'Please browse for a file before clicking upload button.';
@@ -90,19 +92,19 @@ class SystemConfiguration
             }
 
             exit();
-        } else {
-            Firewall::runtimeFailure(
-                'Not Found',
-                [
-                    'debug' => [
-                        'file'        => ucfirst($request['controller']),
-                        'location'    => (new Browser())->getVisitedPage(),
-                        'description' => 'Your requested url not found!!',
-                    ],
-                    'error' => ['description' => 'Your requested url not found!!'],
-                ]
-            );
-        }//end if
+        }
+
+        Firewall::runtimeFailure(
+            'Not Found',
+            [
+                'debug' => [
+                    'file'        => ucfirst($request['controller']),
+                    'location'    => Browser::getVisitedPage(),
+                    'description' => 'Your requested url not found!!',
+                ],
+                'error' => ['description' => 'Your requested url not found!!'],
+            ]
+        );//end if
 
     }//end update()
 

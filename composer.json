@@ -43,6 +43,7 @@
     "widgets-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Widgets -d /srv/http/Mishusoft/Widgets",
     "widgets-components-update": "php ./Sources/Release.php -w  -s ./Sources/Mishusoft/Views/Widgets -d /srv/http/Mishusoft/Widgets/Views",
     "packages-components-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Views/Templates/Packages -d /srv/http/Packages",
+    "copy-storages-all": "php ./Sources/Release.php -copy  -s ./Storages/ -d /srv/http/Storages/",
     "copy-assests": "php ./Sources/Release.php -copy  -s ./Storages/0/assets -d /srv/http/Storages/0/assets",
     "copy-media": "php ./Sources/Release.php -copy  -s ./Sources/Assets/media -d /srv/http/Storages/0/media",
     "copy-errors-page": "php ./Sources/Release.php -copy  -s ./Sources/Mishusoft/Views/Errors/SHtml -d /srv/http/Mishusoft/Errors",
@@ -66,6 +67,7 @@
     "roave/security-advisories": "dev-latest",
     "phpunit/phpunit": "^9.5",
     "squizlabs/php_codesniffer": "^3.6",
-    "friendsofphp/php-cs-fixer": "^3.0"
+    "friendsofphp/php-cs-fixer": "^3.0",
+    "phpstan/phpstan": "^0.12.88"
   }
 }

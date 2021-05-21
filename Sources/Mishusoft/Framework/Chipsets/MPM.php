@@ -12,8 +12,12 @@ class MPM
     public const VERSION           = '1.0.0';
     public const packageConfigFile = PHP_RUNTIME_REGISTRIES_PATH.'mpm.json';
 
-    // mpm valid keys
-    public const  valid_key = [
+    /**
+     * MPM valid keys.
+     *
+     * @var array
+     */
+    public const VALID_KEY = [
         'name',
         'version',
         'loader',
@@ -22,68 +26,87 @@ class MPM
         'config',
     ];
 
+    /**
+     * @var array
+     */
     private static array $content = [];
 
+    /**
+     * @var string
+     */
     private static string $packageConfigFileDirectory;
 
 
-    public static function load()
+    /**
+     * @throws \JsonException
+     */
+    public static function load(): void
     {
         self::moduleMonitor();
-        return self::readConfigure(
-            function () {
-                // verify name from mishusoft package manager
-                if (array_key_exists('name', self::$content)) {
-                    // verify installed packages
-                    if (array_key_exists('packages', self::$content)) {
-                        if (is_array(self::$content['packages'])) {
-                            if (count(self::$content['packages']['all']) > 0) {
-                                // verify validation of current package
-                                if (!empty(self::$content['packages']['default']) and in_array(self::$content['packages']['default'], self::$content['packages']['all'])) {
-                                    // verify validation of current package directory
-                                    if (is_dir(join([MS_PACKAGES_PATH, self::$content['packages']['default']]))) {
-                                        // verify validation of current package loader
-                                        if (strpos(self::$content['loader'][self::$content['packages']['default']], '.php')) {
-                                            if (file_exists(join([MS_PACKAGES_PATH, self::$content['loader'][self::$content['packages']['default']]]))) {
-                                                // include current package loader
-                                                include_once MS_PACKAGES_PATH.self::$content['loader'][self::$content['packages']['default']];
-                                            }
-                                        }
-                                    }
-                                }
-                            } else {
-                                if (is_array(self::packagesAll(['item' => 'new']))) {
-                                    if (count(self::packagesAll(['item' => 'new'])) > 0) {
-                                        foreach (self::packagesAll(['item' => 'new']) as $package) {
-                                            self::install(ucfirst($package));
-                                        }
-                                    }
-                                } else {
-                                    trigger_error('No package installed');
-                                }
-                            }//end if
-                        }//end if
-                    }//end if
-                }//end if
-            }
-        );
+        // Verify name from mishusoft package manager.
+        // Verify installed packages.
+        if ((self::readConfigure() === true)
+            && array_key_exists('name', self::$content) === true
+            && array_key_exists('packages', self::$content) === true
+            && is_array(self::$content['packages']) === true
+        ) {
+            if (count(self::$content['packages']['all']) > 0) {
+                // Verify validation of current package.
+                // Verify validation of current package directory.
+                if (empty(self::$content['packages']['default']) === false
+                    && in_array(self::$content['packages']['default'], self::$content['packages']['all'], true) === true
+                    && is_dir(implode([MS_PACKAGES_PATH, self::$content['packages']['default']])) === true
+                ) {
+                    // Verify validation of current package loader.
+                    if (strpos(self::$content['loader'][self::$content['packages']['default']], '.php') === true
+                        && file_exists(MS_PACKAGES_PATH.self::$content['loader'][self::$content['packages']['default']]) === true
+                    ) {
+                        // Include current package loader.
+                        include_once MS_PACKAGES_PATH.self::$content['loader'][self::$content['packages']['default']];
+                    }
+                }
+            } else if (is_array(self::packagesAll(['item' => 'new'])) === true) {
+                if (count(self::packagesAll(['item' => 'new'])) > 0) {
+                    foreach (self::packagesAll(['item' => 'new']) as $package) {
+                        self::install(ucfirst($package));
+                    }
+                }
+            } else {
+                trigger_error('No package installed');
+            }//end if
+        }//end if
 
     }//end load()
 
 
-    public static function moduleMonitor()
+    /**
+     * Module monitor.
+     *
+     * @return void
+     */
+    public static function moduleMonitor(): void
     {
-        // check orphan modules
+        // Check orphan modules.
         foreach (self::modulesAll(self::defaultPackage(), ['status' => 'enable']) as $module) {
-            if (!file_exists(self::moduleRootController($module))) {
-                System::setRuntimeErrors(['cors' => 'The root controller of installed module <b>'.$module.'</b> is not found.', 'normal' => 'one-of-module-broken']);
+            if (file_exists(self::moduleRootController($module)) === false) {
+                System::setRuntimeErrors(
+                    [
+                        'cors'   => 'The root controller of installed module <b>'.$module.'</b> is not found.',
+                        'normal' => 'one-of-module-broken',
+                    ]
+                );
             }
         }
 
-        // check uninstalled modules
+        // Check uninstalled modules.
         if (count(self::modulesAll(self::defaultPackage(), ['item' => 'new'])) > 0) {
             foreach (self::modulesAll(self::defaultPackage(), ['item' => 'new']) as $module) {
-                System::setRuntimeErrors(['cors' => 'The module <b>'.$module.'</b> is not installed.', 'normal' => 'one-of-module-broken']);
+                System::setRuntimeErrors(
+                    [
+                        'cors'   => 'The module <b>'.$module.'</b> is not installed.',
+                        'normal' => 'one-of-module-broken',
+                    ]
+                );
             }
         }
 
@@ -93,76 +116,76 @@ class MPM
     /**
      * Get all modules from package
      *
-     * @param  string $package_name
+     * @param  string $packageName
      * @param  array  $filter
-     * @return mixed
+     * @throws \JsonException
      */
-    public static function modulesAll(string $package_name, array $filter=[])
+    public static function modulesAll(string $packageName, array $filter=[])
     {
-        return self::readConfigure(
-            function () use ($package_name, $filter) {
-                $result = '';
-                $array  = [];
-                foreach (self::$content['modules'] as $package => $details) {
-                    if ($package_name === $package) {
-                        if (count($filter) > 0) {
-                            foreach ($filter as $key => $value) {
-                                if ($key === 'item') {
-                                    if ($value === 'default') {
-                                        $result = self::$content['modules'][$package_name]['default'];
-                                    }
+        $result = '';
+        $array  = [];
+        if (self::readConfigure() === true) {
+            foreach (self::$content['modules'] as $package => $details) {
+                if ($packageName === $package) {
+                    if (count($filter) > 0) {
+                        foreach ($filter as $key => $value) {
+                            if ($key === 'item') {
+                                if ($value === 'default') {
+                                    $result = self::$content['modules'][$packageName]['default'];
+                                }
 
-                                    if ($value === 'new') {
-                                        $dirs = scandir(self::modulesPath($package_name), SCANDIR_SORT_ASCENDING);
-                                        foreach ($dirs as $index => $dir) {
-                                            if ($dir === '.' or $dir === '..') {
-                                                unset($dirs[$index]);
-                                            }
-
-                                            if (in_array($dir, self::modulesAll(self::defaultPackage(), ['status' => 'enable']))) {
-                                                unset($dirs[$index]);
-                                            }
-
-                                            if ($dir === self::defaultModule()) {
-                                                unset($dirs[$index]);
-                                            }
+                                if ($value === 'new') {
+                                    $dirs = scandir(self::modulesPath($packageName), SCANDIR_SORT_ASCENDING);
+                                    foreach ($dirs as $index => $dir) {
+                                        if ($dir === '.' || $dir === '..') {
+                                            unset($dirs[$index]);
                                         }
 
-                                        $result = $dirs;
-                                    }
-                                }//end if
+                                        if (in_array($dir, self::modulesAll(self::defaultPackage(), ['status' => 'enable']), true) === true) {
+                                            unset($dirs[$index]);
+                                        }
 
-                                if ($key === 'status') {
-                                    if ($value === 'enable') {
-                                        foreach (self::$content['modules'][$package_name]['all'] as $module => $details) {
-                                            if (self::$content['modules'][$package_name]['all'][$module]['status'] = 'enable') {
-                                                if (!self::$content['modules'][$package_name]['default'] === $module) {
-                                                    array_push($array, $module);
-                                                }
-                                            }
+                                        if ($dir === self::defaultModule()) {
+                                            unset($dirs[$index]);
                                         }
                                     }
 
-                                    if ($value === 'disabled') {
-                                        foreach (self::$content['modules'][$package_name]['all'] as $module) {
-                                            if (self::$content['modules'][$package_name]['all'][$module]['status'] = 'disabled') {
-                                                array_push($array, $module);
+                                    $result = $dirs;
+                                }
+                            }//end if
+
+                            if ($key === 'status') {
+                                if ($value === 'enable') {
+                                    foreach (self::$content['modules'][$packageName]['all'] as $module => $details) {
+                                        if (self::$content['modules'][$packageName]['all'][$module]['status'] === 'enable') {
+                                            if ((self::$content['modules'][$packageName]['default'] === $module) === false) {
+                                                $array[] = $module;
                                             }
                                         }
                                     }
                                 }
-                            }//end foreach
-                        } else {
-                            $array = array_keys(self::$content['modules'][$package_name]['all']);
-                        }//end if
+
+                                if ($value === 'disabled') {
+                                    foreach (self::$content['modules'][$packageName]['all'] as $module) {
+                                        if (self::$content['modules'][$packageName]['all'][$module]['status'] === 'disabled') {
+                                            $array[] = $module;
+                                        }
+                                    }
+                                }
+                            }
+                        }//end foreach
+                    } else {
+                        $array = array_keys(self::$content['modules'][$packageName]['all']);
                     }//end if
-                }//end foreach
+                }//end if
+            }//end foreach
+        }//end if
 
-                return !empty($result) ? $result : $array;
-            }
-        );
+        if (empty($result) === false) {
+            return $result;
+        }
 
-        // return CMOS::Data("mpm", ["format" => "array"])["modules"][CMOS::Data("mpm")->packages->default]["default"];
+        return $array;
 
     }//end modulesAll()
 
@@ -170,52 +193,55 @@ class MPM
     /**
      * Get all records from configure file
      *
-     * @param  callable $callback
-     * @return mixed
+     * @return boolean
+     * @throws \JsonException
      */
-    public static function readConfigure(callable $callback)
+    public static function readConfigure(): bool
     {
         self::$packageConfigFileDirectory = dirname(self::packageConfigFile);
-        // Autoload::log('MPM configure file found and start reading.');
-        if (is_readable(self::packageConfigFile)) {
-            // check file's content is string or not
-            if (!empty(file_get_contents(self::packageConfigFile))) {
-                // check file's content after extract is string or not
-                if (is_array(_JSON::decode_to_array(file_get_contents(self::packageConfigFile)))) {
-                    self::$content = _JSON::decode_to_array(file_get_contents(self::packageConfigFile));
-                    // check file's content key are valid key listed or not
+        // MPM configure file found and start reading.
+        if (is_readable(self::packageConfigFile) === true) {
+            // Check file's content is string or not.
+            if (empty(file_get_contents(self::packageConfigFile)) === false) {
+                // Check file's content after extract is string or not.
+                if (is_array(_JSON::decodeToArray(file_get_contents(self::packageConfigFile))) === true) {
+                    self::$content = _JSON::decodeToArray(file_get_contents(self::packageConfigFile));
+                    // Check file's content key are valid key listed or not.
                     foreach (self::$content as $key => $value) {
-                        if (!in_array($key, self::valid_key)) {
-                            // if file's content key are not valid key listed, then throw message
-                            trigger_error("Invalid format. $key is not exists on ".self::packageConfigFile.' file.');
+                        if (in_array($key, self::VALID_KEY, true) === false) {
+                            // If file's content key are not valid key listed, then throw message.
+                            trigger_error('Invalid format. '.$key.' is not exists on '.self::packageConfigFile.' file.');
                         }
                     }
 
-                    if (is_callable($callback)) {
-                        return $callback();
-                    }
-                } else {
-                    return trigger_error('The content of file : '.self::packageConfigFile.' extracting failure.');
+                    return true;
                 }
-            } else {
-                return trigger_error('File : '.self::packageConfigFile.' Invalid content.');
-            }//end if
-        } else {
-            return trigger_error('File ('.self::packageConfigFile.' in '.self::$packageConfigFileDirectory.') is not readable.');
+
+                return trigger_error('The content of file : '.self::packageConfigFile.' extracting failure.');
+            }
+
+            return trigger_error('File : '.self::packageConfigFile.' Invalid content.');
+            // end if
         }//end if
+
+        return trigger_error('File ('.self::packageConfigFile.' in '.self::$packageConfigFileDirectory.') is not readable.');
+        // end if
 
     }//end readConfigure()
 
 
     /**
-     * @param  string $package_name
+     * @param  string $packagename
      * @return string
      */
-    public static function modulesPath(string $package_name=''): string
+    public static function modulesPath(string $packagename=''): string
     {
-        $package_name = empty($package_name) ? Memory::Data('mpm')->packages->default : $package_name;
+        if (empty($packagename)) {
+            $packagename = Memory::Data('mpm')->packages->default;
+        }
+
         // make temp modules path
-        return MS_PACKAGES_PATH."$package_name/Modules/";
+        return MS_PACKAGES_PATH."$packagename/Modules/";
 
     }//end modulesPath()
 
@@ -225,7 +251,7 @@ class MPM
      */
     public static function defaultPackage()
     {
-        return Memory::Data('mpm')->packages->default;
+        return Memory::data('mpm')->packages->default;
 
     }//end defaultPackage()
 
@@ -235,7 +261,7 @@ class MPM
      */
     public static function defaultModule()
     {
-        return Memory::Data('mpm', ['format' => 'array'])['modules'][self::defaultPackage()]['default'];
+        return Memory::data('mpm', ['format' => 'array'])['modules'][self::defaultPackage()]['default'];
 
     }//end defaultModule()
 
@@ -259,7 +285,7 @@ class MPM
      */
     private static function getControllerOfModule(string $module, string $controller): string
     {
-        return join(DIRECTORY_SEPARATOR, [self::modulesPath().$module, 'Controllers', "{$controller}Controller.php"]);
+        return implode(DIRECTORY_SEPARATOR, [self::modulesPath().$module, 'Controllers', "{$controller}Controller.php"]);
         // $rootController = join([MPM::modulesPath(), CMOS::Data("mpm", ["format" => "array"])["modules"][CMOS::Data("mpm")->packages->default]["default"],DS, 'Controllers', DS, $controller, '.php']);
 
     }//end getControllerOfModule()
@@ -318,38 +344,42 @@ class MPM
     /**
      * The installer of package
      *
-     * @param string  $newPackage
-     * @param boolean $setDefault
+     * @param  string  $newPackage
+     * @param  boolean $setDefault
+     * @throws \JsonException
      */
-    public static function install(string $newPackage='', bool $setDefault=false)
+    public static function install(string $newPackage='', bool $setDefault=false): void
     {
-        // Autoload::log('Preparing to check configure file.');
-        if (file_exists(self::packageConfigFile)) {
+        // Preparing to check configure file.
+        if (file_exists(self::packageConfigFile) === true) {
             self::readConfigure(
                 function () use ($setDefault, $newPackage) {
-                    if (is_array(self::$content['packages']['all'])) {
-                        if (in_array($newPackage, self::$content['packages']['all'])) {
-                            trigger_error("New {$newPackage} is already installed.");
+                    if (is_array(self::$content['packages']['all']) === true) {
+                        if (in_array($newPackage, self::$content['packages']['all'], true) === true) {
+                            trigger_error('New '.$newPackage.' is already installed.');
                         } else {
-                            array_push(self::$content['packages']['all'], $newPackage);
+                            self::$content['packages']['all'][] = $newPackage;
 
-                            if (empty(self::$content['packages']['default'])) {
+                            if (empty(self::$content['packages']['default']) === true) {
                                 self::$content['packages']['default'] = $newPackage;
                             }
 
-                            if ($setDefault) {
+                            if ($setDefault === true) {
                                 self::$content['packages']['default'] = $newPackage;
                             }
 
                             // importing package property
-                            $newPackageProperties = _JSON::decode_to_array(file_get_contents(MS_PACKAGES_PATH."$newPackage.json"));
+                            $newPackageProperties = _JSON::decodeToArray(
+                                file_get_contents(MS_PACKAGES_PATH.$newPackage.'.json')
+                            );
 
-                            if (array_key_exists('name', $newPackageProperties)) {
+                            if (array_key_exists('name', $newPackageProperties) === true) {
                                 if ($newPackageProperties['name'] === $newPackage) {
                                     /*
-                                        start of importing package property*/
-                                    // add package loader to mpm register
-                                    if (array_key_exists('loader', $newPackageProperties)) {
+                                     * Start of importing package property
+                                     * */
+                                    // Add package loader to mpm register.
+                                    if (array_key_exists('loader', $newPackageProperties) === true) {
                                         if (array_key_exists(ucfirst($newPackage), $newPackageProperties['loader'])) {
                                             self::$content['loader'] = array_merge(self::$content['loader'], $newPackageProperties['loader']);
                                         } else {
@@ -401,14 +431,17 @@ class MPM
     }//end install()
 
 
-    private static function freshInstall()
+    /**
+     * @throws \JsonException
+     */
+    private static function freshInstall(): void
     {
         // Autoload::log('Preparing to create framework install file.');
         if (fopen(self::packageConfigFile, 'w+')) {
             Stream::exec(self::packageConfigFile);
             Stream::saveToFile(
                 self::packageConfigFile,
-                _JSON::encode_to_string(
+                _JSON::encodeToString(
                     [
                         'name'     => self::NAME,
                         'version'  => self::VERSION,
@@ -434,11 +467,11 @@ class MPM
      * @param  string $controllerName
      * @return mixed
      */
-    public static function TemplatesHtmlResourcesRoot(string $moduleName, string $controllerName)
+    public static function templatesHtmlResourcesRoot(string $moduleName, string $controllerName): mixed
     {
-        return join(DIRECTORY_SEPARATOR, [self::resourcesPath().'Templates', $moduleName, $controllerName.DIRECTORY_SEPARATOR]);
+        return implode(DIRECTORY_SEPARATOR, [self::resourcesPath().'Templates', $moduleName, $controllerName.DIRECTORY_SEPARATOR]);
 
-    }//end TemplatesHtmlResourcesRoot()
+    }//end templatesHtmlResourcesRoot()
 
 
     /**
@@ -447,7 +480,10 @@ class MPM
      */
     public static function resourcesPath(string $packageName=''): string
     {
-        $packageName = empty($packageName) ? Memory::Data('mpm')->packages->default : $packageName;
+        if (empty($packageName) === true) {
+            $packageName = Memory::Data('mpm')->packages->default;
+        }
+
         // make temp modules path
         return MS_PACKAGES_PATH."$packageName/Resources/";
 
@@ -459,42 +495,42 @@ class MPM
      * @param  string $controllerName
      * @return mixed
      */
-    public static function TemplatesJavascriptResourcesRoot(string $moduleName, string $controllerName)
+    public static function templatesJavascriptResourcesRoot(string $moduleName, string $controllerName): mixed
     {
-        return join(DIRECTORY_SEPARATOR, [Media::getWebResourcesPath().'related', 'Javascripts', $moduleName, $controllerName.DIRECTORY_SEPARATOR]);
+        return implode(DIRECTORY_SEPARATOR, [Media::getWebResourcesPath().'related', 'Javascripts', $moduleName, $controllerName.DIRECTORY_SEPARATOR]);
 
-    }//end TemplatesJavascriptResourcesRoot()
+    }//end templatesJavascriptResourcesRoot()
 
 
     /**
      * @return string
      */
-    public static function TemplatesJavascriptResourcesRootLocal(): string
+    public static function templatesJavascriptResourcesRootLocal(): string
     {
         return self::resourcesPath().'Javascripts'.DS;
 
-    }//end TemplatesJavascriptResourcesRootLocal()
+    }//end templatesJavascriptResourcesRootLocal()
 
 
     /**
      * @param string  $module_name
-     * @param string  $package_name
+     * @param string  $packageName
      * @param string  $status
      * @param boolean $set_default
      */
-    public static function addModule(string $module_name, string $package_name, string $status='disabled', bool $set_default=false)
+    public static function addModule(string $module_name, string $packageName, string $status='disabled', bool $set_default=false)
     {
         if (!empty($module_name)) {
             self::readConfigure(
-                function () use ($set_default, $status, $package_name, $module_name) {
-                    if (in_array($package_name, self::$content['modules'])) {
-                        if (is_array(self::$content['modules'][$package_name]['all'])) {
-                            if (in_array($module_name, self::$content['modules'][$package_name]['all'])) {
+                function () use ($set_default, $status, $packageName, $module_name) {
+                    if (in_array($packageName, self::$content['modules'])) {
+                        if (is_array(self::$content['modules'][$packageName]['all'])) {
+                            if (in_array($module_name, self::$content['modules'][$packageName]['all'])) {
                                 trigger_error("New module \"$module_name\" is already exists on ".self::packageConfigFile.' file.');
                             } else {
-                                array_push(self::$content['modules'][$package_name]['all'], [$module_name => ['status' => $status]]);
+                                array_push(self::$content['modules'][$packageName]['all'], [$module_name => ['status' => $status]]);
                                 if ($set_default) {
-                                    self::$content['modules'][$package_name]['default'] = $module_name;
+                                    self::$content['modules'][$packageName]['default'] = $module_name;
                                 }
 
                                 Stream::saveToFile(self::packageConfigFile, _JSON::encode_to_string(self::$content));
@@ -512,21 +548,21 @@ class MPM
 
     /**
      * @param string  $module_name
-     * @param string  $package_name
+     * @param string  $packageName
      * @param string  $status
      * @param boolean $set_default
      */
-    public static function updateModule(string $module_name, string $package_name, string $status='disabled', bool $set_default=false)
+    public static function updateModule(string $module_name, string $packageName, string $status='disabled', bool $set_default=false)
     {
         if (!empty($module_name)) {
             self::readConfigure(
-                function () use ($set_default, $status, $package_name, $module_name) {
-                    if (in_array($package_name, self::$content['modules'])) {
-                        if (is_array(self::$content['modules'][$package_name]['all'])) {
-                            if (in_array($module_name, self::$content['modules'][$package_name]['all'])) {
-                                self::$content['modules'][$package_name]['all'][$module_name]['status'] = $status;
+                function () use ($set_default, $status, $packageName, $module_name) {
+                    if (in_array($packageName, self::$content['modules'])) {
+                        if (is_array(self::$content['modules'][$packageName]['all'])) {
+                            if (in_array($module_name, self::$content['modules'][$packageName]['all'])) {
+                                self::$content['modules'][$packageName]['all'][$module_name]['status'] = $status;
                                 if ($set_default) {
-                                    self::$content['modules'][$package_name]['default'] = $module_name;
+                                    self::$content['modules'][$packageName]['default'] = $module_name;
                                 }
 
                                 Stream::saveToFile(self::packageConfigFile, _JSON::encode_to_string(self::$content));
@@ -546,27 +582,27 @@ class MPM
 
     /**
      * @param string $module_name
-     * @param string $package_name
+     * @param string $packageName
      */
-    public static function removeModule(string $module_name, string $package_name)
+    public static function removeModule(string $module_name, string $packageName)
     {
         if (!empty($module_name)) {
             self::readConfigure(
-                function () use ($package_name, $module_name) {
-                    if (in_array($package_name, self::$content['modules'])) {
-                        if (is_array(self::$content['modules'][$package_name]['all'])) {
-                            if (in_array($module_name, self::$content['modules'][$package_name]['all'])) {
-                                foreach (self::$content['modules'][$package_name]['all'] as $module => $details) {
+                function () use ($packageName, $module_name) {
+                    if (in_array($packageName, self::$content['modules'])) {
+                        if (is_array(self::$content['modules'][$packageName]['all'])) {
+                            if (in_array($module_name, self::$content['modules'][$packageName]['all'])) {
+                                foreach (self::$content['modules'][$packageName]['all'] as $module => $details) {
                                     if ($module === $module_name) {
-                                        unset(self::$content['modules'][$package_name]['all'][$module]);
-                                        if (self::$content['modules'][$package_name]['default'] === $module_name) {
-                                            if (in_array('Main', self::$content['modules'][$package_name]['all'])) {
-                                                self::$content['modules'][$package_name]['default']               = 'Main';
-                                                self::$content['modules'][$package_name]['all']['Main']['status'] = 'enable';
+                                        unset(self::$content['modules'][$packageName]['all'][$module]);
+                                        if (self::$content['modules'][$packageName]['default'] === $module_name) {
+                                            if (in_array('Main', self::$content['modules'][$packageName]['all'])) {
+                                                self::$content['modules'][$packageName]['default']               = 'Main';
+                                                self::$content['modules'][$packageName]['all']['Main']['status'] = 'enable';
                                             } else {
-                                                if (in_array('Mishusoft', self::$content['modules'][$package_name]['all'])) {
-                                                    self::$content['modules'][$package_name]['default']                    = 'Mishusoft';
-                                                    self::$content['modules'][$package_name]['all']['Mishusoft']['status'] = 'enable';
+                                                if (in_array('Mishusoft', self::$content['modules'][$packageName]['all'])) {
+                                                    self::$content['modules'][$packageName]['default']                    = 'Mishusoft';
+                                                    self::$content['modules'][$packageName]['all']['Mishusoft']['status'] = 'enable';
                                                 }
                                             }
                                         }
@@ -590,14 +626,14 @@ class MPM
 
     /**
      * @param  string $module_name
-     * @param  string $package_name
+     * @param  string $packageName
      * @return mixed
      */
-    public static function isEnabledModule(string $module_name, string $package_name)
+    public static function isEnabledModule(string $module_name, string $packageName)
     {
         return self::readConfigure(
-            function () use ($module_name, $package_name) {
-                if (self::$content['modules'][$package_name]['all'][$module_name]['status'] = 'enable') {
+            function () use ($module_name, $packageName) {
+                if (self::$content['modules'][$packageName]['all'][$module_name]['status'] = 'enable') {
                     return true;
                 } else {
                     return false;
@@ -610,14 +646,14 @@ class MPM
 
     /**
      * @param  string $module_name
-     * @param  string $package_name
+     * @param  string $packageName
      * @return mixed
      */
-    public static function isDisabledModule(string $module_name, string $package_name)
+    public static function isDisabledModule(string $module_name, string $packageName)
     {
         return self::readConfigure(
-            function () use ($module_name, $package_name) {
-                if (self::$content['modules'][$package_name]['all'][$module_name]['status'] = 'disabled') {
+            function () use ($module_name, $packageName) {
+                if (self::$content['modules'][$packageName]['all'][$module_name]['status'] = 'disabled') {
                     return true;
                 } else {
                     return false;
@@ -663,14 +699,17 @@ class MPM
 
 
     /**
-     * @param  string $package_name
+     * @param  string $packageName
      * @return string
      */
-    public static function databasesPath(string $package_name=''): string
+    public static function databasesPath(string $packageName=''): string
     {
-        // make temp modules path
-        $package_name = empty($package_name) ? Memory::Data('mpm')->packages->default : $package_name;
-        return MS_PACKAGES_PATH."$package_name/Databases/";
+        // Make temp modules path.
+        if (empty($packageName) === true) {
+            $packageName = Memory::Data('mpm')->packages->default;
+        }
+
+        return MS_PACKAGES_PATH."$packageName/Databases/";
 
     }//end databasesPath()
 
@@ -682,8 +721,11 @@ class MPM
      */
     public static function runtimeRootController(string $controller, string $module=''): string
     {
-        // check module is set or not
-        $module = empty($module) ? self::defaultModule() : $module;
+        // Check module is set or not.
+        if (empty($module) === true) {
+            $module = self::defaultModule();
+        }
+
         return self::getControllerOfModule($module, $controller);
 
     }//end runtimeRootController()
@@ -705,16 +747,16 @@ class MPM
         if (file_exists($filename)) {
             $tempLine = '';
             $lines    = file($filename);
-            // Read entire file
+            // Read entire file.
             foreach ($lines as $line) {
                 // Skip it if it's a comment
                 if (substr($line, 0, 2) === '--' || $line === '' || substr($line, 0, 2) === '/*') {
                     continue;
                 }
 
-                // Add this line to the current segment
+                // Add this line to the current segment.
                 $tempLine .= $line;
-                // If it has a semicolon at the end, it's the end of the query
+                // If it has a semicolon at the end, it's the end of the query.
                 if (substr(trim($line), -1, 1) === ';') {
                     $realData = preg_replace($pattern, $db_prefix, $tempLine);
                     $status   = $db->query($realData);

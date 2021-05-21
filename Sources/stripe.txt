@@ -1,0 +1,10 @@
+/*$this->stripeAccountNumber = 'acct_1Ggw7NICDFi9hiLv';
+$this->stripeTestSecretKey = 'sk_test_KNRYBEhH0Z0Nn45tfsxNKGBg00ZuxV398M';
+$this->stripeTestPublicKey = 'pk_test_lEu9dnADBJpxYjvgo7ncRgXm00KIadnaul';
+$this->stripeLiveSecretKey = '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';
+//$this->stripeLiveSecretKey = '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';
+//$this->stripeLiveSecretKey = 'sk_live_jL6zCdXpz9s8KpPxk3I6v37X00L1qfAcYY';
+$this->stripeLivePublicKey = 'pk_live_51H3PVcBymvw3ZmfrSCcliH91ypMHq7BHQ3rXZUtZMilFrcs3YxIiFt5QSgDd05e18UACyCiRhwJS3hzVMSJkEAbl00sFCTa98D';
+//$this->stripeLivePublicKey = 'pk_live_51H3LZYLLBYZtgCSkh7lhSIuWDFgrVbjNXPdPJQkK89490FX5dZMHPwY3HgjBAFr9VGig2CW5gYxG9oY0rCZS7QB7003bobCq0j';
+//$this->stripeLivePublicKey = 'pk_live_v8g0vaAJBJFKwfyWXpAVLvL600sAzhzOMC';
+$this->openExchangeAppIdKey = '4a4f25ec70954d2eb4eadfac7c9b15a8';*/

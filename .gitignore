@@ -74,3 +74,6 @@ robots.txt
 .user.ini
 .phpunit.result.cache
 .packages
+/tests/
+/Sources/officials/
+/Sources/Designs/

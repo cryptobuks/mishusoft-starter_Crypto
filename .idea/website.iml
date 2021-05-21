@@ -79,6 +79,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/friendsofphp/php-cs-fixer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor" />
       <excludeFolder url="file://$MODULE_DIR$/Mishusoft" />
+      <excludeFolder url="file://$MODULE_DIR$/Sources/officials" />
+      <excludeFolder url="file://$MODULE_DIR$/Sources/Designs" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -7,10 +7,10 @@ use Mishusoft\Framework\Chipsets\Services\SecureDataTransferService;
 class ApplicationProgrammingInterface extends SecureDataTransferService
 {
 
+
     /**
      * ApplicationProgrammingInterface constructor.
      */
-
     public function __construct()
     {
         parent::__construct();
@@ -21,7 +21,6 @@ class ApplicationProgrammingInterface extends SecureDataTransferService
     /**
      * @param array $request
      */
-
     public function api(array $request)
     {
         parent::api($request);
@@ -32,7 +31,6 @@ class ApplicationProgrammingInterface extends SecureDataTransferService
     /**
      * @param array $request
      */
-
     public function monitor(array $request)
     {
         parent::monitor($request);

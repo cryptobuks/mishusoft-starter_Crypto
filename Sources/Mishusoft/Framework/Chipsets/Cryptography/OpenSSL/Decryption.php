@@ -2,8 +2,8 @@
 
 namespace Mishusoft\Framework\Chipsets\Cryptography\OpenSSL;
 
-use Exception;
 use Mishusoft\Framework\Chipsets\Cryptography\OpenSSL;
+use RuntimeException;
 
 class Decryption extends OpenSSL
 {
@@ -16,7 +16,7 @@ class Decryption extends OpenSSL
      * @param string $type Command type, default is advanced.
      *
      * @return string Return decrypted string.
-     * @throws Exception \Throwable Exception.
+     * @throws RuntimeException \Throwable Exception.
      */
     public static function dynamic(string $data, string $type='advanced'): string
     {
@@ -30,29 +30,28 @@ class Decryption extends OpenSSL
                 $iv,
             ]       = explode(':'.self::$waterMark.':', base64_decode($data), 2);
             $result = openssl_decrypt($encryptedData, self::$cipherAlgo1, $encryptionKey, 0, $iv);
-        } else {
-            // Generate an initialization vector.
-            $cipher       = openssl_cipher_iv_length(self::$cipherAlgo1);
-            $strongResult = false;
-            if ($cipher !== true) {
-                $vector = openssl_random_pseudo_bytes($cipher, $strongResult);
-                if ($strongResult === true) {
-                    /*
-                     * Encrypt the data using AES 256 encryption in CBC mode,
-                     * using our encryption key and initialization vector.
-                     *
-                     * */
+        }
 
+        if ($type === 'advanced') {
+            // Generate an initialization vector.
+            $cipherLength = openssl_cipher_iv_length(self::$cipherAlgo1);
+            if (is_int($cipherLength) === true) {
+                $random = openssl_random_pseudo_bytes($cipherLength, $isSourceStrong);
+                if (false === $isSourceStrong || false === $random) {
+                    throw new RuntimeException('IV generation failed');
+                } else {
+                    // Encrypt the data using AES 256 encryption in CBC mode,
+                    // using our encryption key and initialization vector.
                     $result = openssl_encrypt(
                         $data,
                         self::$cipherAlgo1,
                         base64_decode(self::$encryptionKey256bit),
                         0,
-                        $vector
+                        $random
                     );
-                } else {
-                    throw new Exception('Non-cryptographically strong algorithm used for iv generation.');
                 }
+            } else {
+                    throw new RuntimeException('Non-cryptographically strong algorithm used for iv generation.');
             }//end if
         }//end if
 
@@ -62,20 +61,29 @@ class Decryption extends OpenSSL
 
 
     /**
-     * @param  string $data
-     * @return string
+     * Decrypt static string.
+     *
+     * @param  string $data Static string.
+     * @return string Result.
      */
     public static function static(string $data): string
     {
         // you may change these values to your own
         /*
-            $secret_key = 'my_simple_secret_key';*/
+         * $secret_key = 'my_simple_secret_key';
+        */
         // $secret_iv = 'my_simple_secret_iv';
         // $encrypt_method = 'AES-256-CBC';
         $key = hash(self::$cipherAlgo2, HASH_KEY);
         $iv  = substr(hash(self::$cipherAlgo2, self::$secretIv), 0, 16);
 
-        return openssl_decrypt(base64_decode($data), self::$cipherAlgo1, $key, 0, $iv);
+        return openssl_decrypt(
+            base64_decode($data),
+            self::$cipherAlgo1,
+            $key,
+            0,
+            self::getStaticNumber()
+        );
 
     }//end static()
 

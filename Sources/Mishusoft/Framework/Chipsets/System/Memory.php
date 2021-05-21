@@ -2,6 +2,9 @@
 
 namespace Mishusoft\Framework\Chipsets\System;
 
+use ErrorException;
+use JsonException;
+use Mishusoft\Framework\Chipsets\FileSystem;
 use Mishusoft\Framework\Chipsets\Framework;
 use Mishusoft\Framework\Chipsets\MPM;
 use Mishusoft\Framework\Chipsets\System;
@@ -9,7 +12,7 @@ use Mishusoft\Framework\Chipsets\Utility\Stream;
 
 class Memory
 {
-    // Declare version
+    // Declare version.
     public const VERSION = '1.0.0';
 
 
@@ -40,7 +43,10 @@ class Memory
     }//end __construct()
 
 
-    public function enable()
+    /**
+     * @throws JsonException
+     */
+    public function enable(): void
     {
         self::loadCoreDefinedConstants();
         self::loadMemory();
@@ -53,9 +59,9 @@ class Memory
      */
 
 
-    private static function loadCoreDefinedConstants()
+    private static function loadCoreDefinedConstants(): void
     {
-        // System default path declare
+        // System default path declare.
         define('MS_SYSTEM_PATH', PHP_RUNTIME_ROOT_PATH.'Mishusoft'.DIRECTORY_SEPARATOR);
         define('MS_FRAMEWORK_PATH', PHP_RUNTIME_SYSTEM_PATH.'Framework'.DIRECTORY_SEPARATOR);
         define('MS_PACKAGES_PATH', PHP_RUNTIME_SYSTEM_PATH.'Packages'.DIRECTORY_SEPARATOR);
@@ -71,17 +77,17 @@ class Memory
         define('MS_UPLOADS_MEDIA_PATH', MS_STORAGE_PATH.'0/media/uploads'.DIRECTORY_SEPARATOR);
 
         define('MS_SYSTEM_TEMP_PATH', PHP_RUNTIME_ROOT_PATH.'tmp'.DIRECTORY_SEPARATOR);
-        // Main constants define end
+        // Main constants define end.
         define('PHP_LANG_VERSION', phpversion());
         define('HASH_KEY', '57c1d48ba721a');
         define('HASH_KEY_OPENSSL', 'bRuD5WYw5wd0rdHR9yLlM6wt2vteuiniQBqE70nAuhU');
-        if (is_readable(join([PHP_RUNTIME_SYSTEM_PATH, 'Registries/framework.install.json']))) {
+        if (is_readable(implode([PHP_RUNTIME_SYSTEM_PATH, 'Registries/framework.install.json']))) {
             define(
                 'BASEURL',
                 self::Data(
                     'framework',
                     [
-                        'file' => join([PHP_RUNTIME_SYSTEM_PATH, 'Registries/framework.install.json']),
+                        'file' => implode([PHP_RUNTIME_SYSTEM_PATH, 'Registries/framework.install.json']),
                     ]
                 )->host->url
             );
@@ -89,7 +95,7 @@ class Memory
             define('BASEURL', System::getAbsoluteInstalledURL());
         }
 
-        // database info
+        // database info.
         define('MS_DB_USER_NAME', 'superuser');
         define('MS_DB_USER_PASSWORD', 'superuser');
 
@@ -115,76 +121,159 @@ class Memory
      */
 
 
-    public static function Data(string $carrier='memory', array $options=[]): mixed
+    public static function data(string $carrier='memory', array $options=[]): mixed
     {
-        switch ($carrier) {
-            case 'config':
-                $format   = array_key_exists('format', $options) ? $options['format'] : 'object';
-                $default  = array_key_exists('default', $options) ? $options['default'] : ['status' => 'no_data'];
-                $filename = array_key_exists('file', $options) ? $options['file'] : System::getRequiresFile('SETUP_FILE_PATH', System::getDefaultDb());
+        if ($carrier === 'config') {
+            if (array_key_exists('format', $options) === true) {
+                $format = $options['format'];
+            } else {
+                $format = 'object';
+            }
+
+            if (array_key_exists('default', $options) === true) {
+                $default = $options['default'];
+            } else {
+                $default = ['status' => 'no_data'];
+            }
+
+            if (array_key_exists('file', $options) === true) {
+                $filename = $options['file'];
+            } else {
+                $filename = System::getRequiresFile('SETUP_FILE_PATH', System::getDefaultDb());
+            }
+
             return self::dataLoader($format, $default, $filename);
+        }//end if
 
-            case 'mpm':
-                $format   = array_key_exists('format', $options) ? $options['format'] : 'object';
-                $default  = array_key_exists('default', $options) ? $options['default'] : ['status' => 'no_data'];
-                $filename = array_key_exists('file', $options) ? $options['file'] : MPM::packageConfigFile;
-                if (!file_exists($filename)) {
-                    MPM::install();
-                }
+        if ($carrier === 'mpm') {
+            if (array_key_exists('format', $options) === true) {
+                $format = $options['format'];
+            } else {
+                $format = 'object';
+            }
+
+            if (array_key_exists('default', $options) === true) {
+                $default = $options['default'];
+            } else {
+                $default = ['status' => 'no_data'];
+            }
+
+            if (array_key_exists('file', $options) === true) {
+                $filename = $options['file'];
+            } else {
+                $filename = MPM::packageConfigFile;
+            }
+
+            if (file_exists($filename) === false) {
+                MPM::install();
+            }
+
             return self::dataLoader($format, $default, $filename);
+        }//end if
 
-            case 'framework':
-                $format   = array_key_exists('format', $options) ? $options['format'] : 'object';
-                $default  = array_key_exists('default', $options) ? $options['default'] : ['status' => 'no_data'];
-                $filename = array_key_exists('file', $options) ? $options['file'] : Framework::installFile;
-                if (!file_exists($filename)) {
-                    Framework::install();
-                }
+        if ($carrier === 'framework') {
+            if (array_key_exists('format', $options) === true) {
+                $format = $options['format'];
+            } else {
+                $format = 'object';
+            }
+
+            if (array_key_exists('default', $options) === true) {
+                $default = $options['default'];
+            } else {
+                $default = ['status' => 'no_data'];
+            }
+
+            if (array_key_exists('file', $options) === true) {
+                $filename = $options['file'];
+            } else {
+                $filename = Framework::installFile;
+            }
+
+            if (file_exists($filename) === false) {
+                Framework::install();
+            }
+
             return self::dataLoader($format, $default, $filename);
+        }//end if
 
-            case 'memory':
-                $format   = array_key_exists('format', $options) ? $options['format'] : 'object';
-                $default  = array_key_exists('default', $options) ? $options['default'] : FRAMEWORK_DEFAULT_CONF;
-                $filename = array_key_exists('file', $options) ? $options['file'] : Framework::configFile;
+        if ($carrier === 'memory') {
+            if (array_key_exists('format', $options) === true) {
+                $format = $options['format'];
+            } else {
+                $format = 'object';
+            }
+
+            if (array_key_exists('default', $options) === true) {
+                $default = $options['default'];
+            } else {
+                $default = FRAMEWORK_DEFAULT_CONF;
+            }
+
+            if (array_key_exists('file', $options) === true) {
+                $filename = $options['file'];
+            } else {
+                $filename = Framework::configFile;
+            }
+
             return self::dataLoader($format, $default, $filename);
+        }//end if
 
-            default:
-            return self::dataLoader($options['format'], $options['default'], $options['file']);
-        }//end switch
+        return self::dataLoader($options['format'], $options['default'], $options['file']);
 
-    }//end Data()
+    }//end data()
 
 
     /**
      * @param  string $format
      * @param  array  $default
      * @param  string $filename
-     * @return mixed
+     * @throws JsonException
+     * @throws ErrorException
      */
-    private static function dataLoader(string $format, array $default, string $filename): mixed
+    private static function dataLoader(string $format, array $default, string $filename)
     {
-        return Stream::readFromFile(
-            $filename,
-            function ($contents) use ($default, $format) {
-                if (strlen($contents) > 0) {
-                    if (strtolower($format) === 'object') {
-                        if (is_string($contents)) {
-                            return json_decode($contents);
-                        } else {
-                            return json_decode(json_encode($default));
-                        }
+        if (is_readable($filename) === true) {
+            $contents = file_get_contents($filename);
+
+            if ($contents !== '') {
+                if (strtolower($format) === 'object') {
+                    if (is_string($contents) === true) {
+                        $result = json_decode($contents, false, 512, JSON_THROW_ON_ERROR);
                     } else {
-                        if (strtolower($format) === 'array') {
-                            return json_decode($contents, true);
-                        } else {
-                            return json_decode(json_encode($default), true);
-                        }
+                        $result = json_decode(
+                            json_encode($default, JSON_THROW_ON_ERROR),
+                            false,
+                            512,
+                            JSON_THROW_ON_ERROR
+                        );
                     }
+
+                    return $result;
                 }
 
-                return json_encode([]);
-            }
-        );
+                if (strtolower($format) === 'array') {
+                    if (is_string($contents) === true) {
+                        $result = json_decode($contents, true, 512, JSON_THROW_ON_ERROR);
+                    } else {
+                        $result = json_decode(
+                            json_encode($default, JSON_THROW_ON_ERROR),
+                            true,
+                            512,
+                            JSON_THROW_ON_ERROR
+                        );
+                    }
+
+                    return $result;
+                }
+            } else {
+                return json_encode([], JSON_THROW_ON_ERROR);
+            }//end if
+        } else {
+            throw new ErrorException($filename.' not readable.');
+        }//end if
+
+        return false;
 
     }//end dataLoader()
 
@@ -192,17 +281,31 @@ class Memory
     /**
      * Load memory data.
      *
-     * @param string $filename Valid file name.
-     *
+     * @param  string $filename Valid file name.
+     * @throws JsonException
      */
 
 
-    public static function loadMemory(string $filename=PHP_RUNTIME_REGISTRIES_PATH.'framework.json')
+    public static function loadMemory(string $filename=PHP_RUNTIME_REGISTRIES_PATH.'framework.json'): void
     {
         if (is_readable(stream_resolve_include_path($filename)) === true) {
-            self::read(json_decode(file_get_contents(stream_resolve_include_path($filename))));
+            self::read(
+                json_decode(
+                    file_get_contents(stream_resolve_include_path($filename)),
+                    false,
+                    512,
+                    JSON_THROW_ON_ERROR
+                )
+            );
         } else {
-            self::read(json_decode(json_encode(FRAMEWORK_DEFAULT_CONF)));
+            self::read(
+                json_decode(
+                    json_encode(FRAMEWORK_DEFAULT_CONF, JSON_THROW_ON_ERROR),
+                    false,
+                    512,
+                    JSON_THROW_ON_ERROR
+                )
+            );
         }
 
     }//end loadMemory()
@@ -213,10 +316,9 @@ class Memory
      *
      * @param  object $framework Framework data object.
      * @return void Return nothing.
+     *
      * */
-
-
-    private static function read(object $framework)
+    private static function read(object $framework): void
     {
         if (empty($framework) === false) {
             // Required constant variables declared here.

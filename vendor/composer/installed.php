@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '9e718e3dc99e7149d2791623a9b75ff81edecfc8',
+    'reference' => 'b3b6076f88b0f899bed9fca22a2835a7ebf63b41',
     'name' => 'mishusoft/website',
   ),
   'versions' => 
@@ -108,7 +108,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '9e718e3dc99e7149d2791623a9b75ff81edecfc8',
+      'reference' => 'b3b6076f88b0f899bed9fca22a2835a7ebf63b41',
     ),
     'myclabs/deep-copy' => 
     array (
@@ -203,6 +203,15 @@
       array (
       ),
       'reference' => 'be1996ed8adc35c3fd795488a653f4b518be70ea',
+    ),
+    'phpstan/phpstan' => 
+    array (
+      'pretty_version' => '0.12.88',
+      'version' => '0.12.88.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '464d1a81af49409c41074aa6640ed0c4cbd9bb68',
     ),
     'phpunit/php-code-coverage' => 
     array (
@@ -316,7 +325,7 @@
       array (
         0 => '9999999-dev',
       ),
-      'reference' => '5ffdb87f627ff16cc392e30515a1fe069cddc3e2',
+      'reference' => '42840dcc436945146d79a985240a99ddd3bc5dc7',
     ),
     'sebastian/cli-parser' => 
     array (
