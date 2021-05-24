@@ -8,7 +8,7 @@ use Mishusoft\Framework\Drivers\Session;
 class BIOS
 {
 
-    // declare version
+    // Declare version.
     public const VERSION = '1.0.2';
 
     public const urlSplittersConfigFile = PHP_RUNTIME_REGISTRIES_PATH.'splitters.json';
@@ -74,6 +74,10 @@ class BIOS
 
             // Communicate with framework
             Framework::init();
+
+
+
+
         } else {
             $firewall->defenceActivate();
         }//end if

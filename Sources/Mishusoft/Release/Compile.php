@@ -63,7 +63,6 @@ use Mishusoft\Framework\Chipsets\Media;
 use RuntimeException;
 use ZipArchive;
 
-
 /**
  * Compile class for Mishusoft\Release package
  */
@@ -116,7 +115,7 @@ class Compile extends FileSystem
      * @return void              No action return.
      * @throws RuntimeException Throw runtime exception.
      */
-    public static function start(string $operation, array $options): void
+    public static function start(string $operation, array $options, string $mode): void
     {
         $sourcesIdentify  = array_shift($options);
         $sourcesDirectory = array_shift($options);
@@ -181,6 +180,7 @@ class Compile extends FileSystem
                                     self::compiler(
                                         $sourcesDirectory.'/positions.config.standard.php',
                                         $outputDirectory.'/'.$themeDirectory.'/configs.php',
+                                        $mode,
                                         ($flash === '-flash')
                                     );
                                     self::log(
@@ -190,6 +190,7 @@ class Compile extends FileSystem
                                     self::compiler(
                                         $sourcesDirectory.'/'.$theme,
                                         $outputDirectory.'/'.$themeDirectory.'/template.'.$themeFormat,
+                                        $mode,
                                         ($flash === '-flash')
                                     );
                                 }//end foreach
@@ -225,6 +226,7 @@ class Compile extends FileSystem
                                     self::compiler(
                                         $sourcesDirectory.'/'.$widget,
                                         $outputDirectory.'/'.$widgetDirectory,
+                                        $mode,
                                         ($flash === '-flash')
                                     );
                                 }
@@ -262,6 +264,7 @@ class Compile extends FileSystem
                                         self::compiler(
                                             $sourcesDirectory.'/'.$package.'/'.$module,
                                             $outputDirectoryRoot,
+                                            $mode,
                                             ($flash === '-flash')
                                         );
                                     }//end foreach
@@ -289,7 +292,7 @@ class Compile extends FileSystem
                             'following'
                         );
 
-                        self::compiler($sourcesDirectory, self::realpath($outputDirectory), ($flash === '-flash'));
+                        self::compiler($sourcesDirectory, self::realpath($outputDirectory), $mode, ($flash === '-flash'));
                         self::log('Operation completed!!');
                     }//end if
                 }//end if
@@ -431,14 +434,13 @@ class Compile extends FileSystem
      * @param string  $output  File or folder new compilation.
      * @param boolean $flash
      */
-    public static function compiler(string $sources, string $output, bool $flash=false): void
+    public static function compiler(string $sources, string $output, string $mode, bool $flash=false): void
     {
         /*
          * If the given source file is not (i.e. it is a confirmed directory)
          * then the output has to be created from the directory.
          *
          * */
-
         if (is_file($sources) === false) {
             self::createDirectory($output);
         }//end if
@@ -448,7 +450,6 @@ class Compile extends FileSystem
          * and create new
          *
          * */
-
         if ($flash === true) {
             if (file_exists($output) === true) {
                 self::remove($output);
@@ -467,7 +468,7 @@ class Compile extends FileSystem
 
         if (is_file($sources) === true) {
             self::log('Waiting '.$output, 'pending');
-            self::writeFile($output, $sources);
+            self::writeFile($output, $sources, $mode);
         } else {
             $files = glob($sources.'*', GLOB_MARK);
             foreach ($files as $file) {
@@ -479,11 +480,11 @@ class Compile extends FileSystem
 
                 if (is_file($file) === true) {
                     self::log('Waiting '.$target, 'pending');
-                    self::writeFile($target, $file);
+                    self::writeFile($target, $file, $mode);
                 }//end if
 
                 if (is_dir($file) === true) {
-                    self::compiler($file, $target);
+                    self::compiler($file, $target, $mode, $flash);
                 }//end if
             }
         }//end if
@@ -497,8 +498,9 @@ class Compile extends FileSystem
      * @param string $newFile    New output filename.
      * @param string $sourceFile Source filename.
      */
-    private static function writeFile(string $newFile, string $sourceFile): void
+    private static function writeFile(string $newFile, string $sourceFile, string $mode): void
     {
+        //print_r(func_get_args());
         if ((file_exists($newFile) === true) && is_file($newFile) === true) {
             unlink($newFile);
         }//end if
@@ -507,7 +509,14 @@ class Compile extends FileSystem
             $compliedFile = fopen($newFile, 'wb+');
 
             if (is_resource($compliedFile) === true) {
-                fwrite($compliedFile, self::compressPhpSource($sourceFile));
+                if ($mode === '-compile') {
+                    fwrite($compliedFile, self::compressPhpSource($sourceFile));
+                }
+
+                if ($mode === '-test') {
+                    fwrite($compliedFile, file_get_contents($sourceFile));
+                }
+
                 fclose($compliedFile);
                 self::exec($newFile);
             }//end if

@@ -9,8 +9,10 @@ use Mishusoft\Framework\Chipsets\FileSystem;
 use Mishusoft\Framework\Chipsets\Preloader;
 use Mishusoft\Framework\Chipsets\System\Firewall;
 use Mishusoft\Framework\Chipsets\Utility\_Array;
+use Mishusoft\Framework\Chipsets\Utility\_Debug;
 use Mishusoft\Framework\Chipsets\Utility\_String;
 use Mishusoft\Framework\Interfaces\Drivers\MishusoftViewInterface;
+use RuntimeException;
 
 class MishusoftView implements MishusoftViewInterface
 {
@@ -185,7 +187,7 @@ class MishusoftView implements MishusoftViewInterface
         /*
          * $widgetsFile = PHP_RUNTIME_REGISTRIES_PATH . "widgets.json";
          * $widgetsConfigFile = PHP_RUNTIME_REGISTRIES_PATH . "widgets-config.json";
-         * */
+         */
 
         /*
          * check the registries path exists
@@ -197,51 +199,36 @@ class MishusoftView implements MishusoftViewInterface
         /*
          * check the installed widgets list file exists
          * create that path when not exists
+         *
          */
-        if (file_exists(self::widgetsFile) === false) {
-            if (count(FileSystem::getList(MS_WIDGETS_PATH, 'file')) > 0) {
-                foreach (FileSystem::getList(MS_WIDGETS_PATH, 'file') as $widgetFile) {
-                    if (pathinfo($widgetFile, PATHINFO_EXTENSION) === 'json') {
-                        $newData = [
-                            pathinfo($widgetFile, PATHINFO_FILENAME) => json_decode(
-                                FileSystem::read(MS_WIDGETS_PATH.$widgetFile),
-                                true,
-                                512,
-                                JSON_THROW_ON_ERROR
-                            ),
-                        ];
-                        $this->installedWidgets[] = $newData;
-                    }
-                }
-            }
-
-            FileSystem::write(self::widgetsFile, $this->installedWidgets);
-        }
+        if (file_exists(self::widgetsFile) === false || FileSystem::read(self::widgetsFile) === '') {
+            $this->installFreshWidgets();
+        }//end if
 
         /*
          * check the installed widgets configuration file exists
          * create that path when not exists
          */
 
-        $widgetFileArray   = json_decode(FileSystem::read(self::widgetsFile), true, 512, JSON_THROW_ON_ERROR);
-        $widgetConfigArray = json_decode(FileSystem::read(self::widgetsConfigFile), true, 512, JSON_THROW_ON_ERROR);
-
+        // $widgetFileArray = json_decode(FileSystem::read(self::widgetsFile), true, 512, JSON_THROW_ON_ERROR);
+        // $widgetConfigArray = json_decode(FileSystem::read(self::widgetsConfigFile), true, 512, JSON_THROW_ON_ERROR);
+         // _Debug::preOutput($this->getInstalledWidgets());
         if (file_exists(self::widgetsConfigFile) === false) {
-            foreach ($widgetFileArray as $widget => $config) {
-                if (file_exists(self::widgetsConfigFile) === true && count($widgetConfigArray) > 0) {
-                    $this->updateWidgets($widget, $config);
+            foreach ($this->getInstalledWidgets() as $widget => $config) {
+                if (file_exists(self::widgetsConfigFile) === true && count($this->getInstalledWidgetsConfig()) > 0) {
+                    $this->updateWidgetsConfig($widget, $config);
                 } else {
-                    $this->installFreshWidget($widget, $config);
+                    $this->installFreshWidgetsConfig($widget, $config);
                 }
             }
-        } else if (count($widgetConfigArray) === 0) {
-            foreach ($widgetFileArray as $widget => $config) {
-                $this->updateWidgets($widget, $config);
+        } else if (count($this->getInstalledWidgetsConfig()) === 0) {
+            foreach ($this->getInstalledWidgets() as $widget => $config) {
+                $this->updateWidgetsConfig($widget, $config);
             }
         } else {
-            foreach ($widgetFileArray as $widget => $config) {
-                if (array_key_exists($widget, $widgetConfigArray) === false) {
-                    $this->updateWidgets($widget, $config);
+            foreach ($this->getInstalledWidgets() as $widget => $config) {
+                if (array_key_exists($widget, $this->getInstalledWidgetsConfig()) === false) {
+                    $this->updateWidgetsConfig($widget, $config);
                 }
             }
         }//end if
@@ -251,17 +238,67 @@ class MishusoftView implements MishusoftViewInterface
     }//end readWidgetsConfigFile()
 
 
+    /**
+     * @throws JsonException
+     */
+    private function installFreshWidgets(): void
+    {
+        $newWidget = [];
+        if (count(FileSystem::getList(MS_WIDGETS_PATH, 'file')) > 0) {
+            foreach (FileSystem::getList(MS_WIDGETS_PATH, 'file') as $widgetFile) {
+                if (pathinfo($widgetFile, PATHINFO_EXTENSION) === 'json') {
+                    $configuration = [
+                        pathinfo($widgetFile, PATHINFO_FILENAME) => json_decode(
+                            FileSystem::read(MS_WIDGETS_PATH.$widgetFile),
+                            true,
+                            512,
+                            JSON_THROW_ON_ERROR
+                        ),
+                    ];
+
+                    $filename             = pathinfo($widgetFile, PATHINFO_FILENAME);
+                    $newWidget[$filename] = $configuration[$filename];
+                }
+            }
+        }
+
+        $this->installedWidgets = array_merge($this->installedWidgets, $newWidget);
+        FileSystem::write(self::widgetsFile, $this->installedWidgets);
+
+    }//end installFreshWidgets()
+
+
+    /**
+     * @throws JsonException
+     */
+    private function getInstalledWidgets()
+    {
+        return json_decode(FileSystem::read(self::widgetsFile), true, 512, JSON_THROW_ON_ERROR);
+
+    }//end getInstalledWidgets()
+
+
+    /**
+     * @throws JsonException
+     */
+    private function getInstalledWidgetsConfig()
+    {
+        return json_decode(FileSystem::read(self::widgetsConfigFile), true, 512, JSON_THROW_ON_ERROR);
+
+    }//end getInstalledWidgetsConfig()
+
 
     /**
      * @param  string $widget
      * @param  array  $config
      * @throws JsonException
      */
-    private function installFreshWidget(string $widget, array $config): void
+    private function installFreshWidgetsConfig(string $widget, array $config): void
     {
+        // _Debug::preOutput(func_get_args());
         FileSystem::write(self::widgetsConfigFile, $this->collectAllData($widget, $config));
 
-    }//end installFreshWidget()
+    }//end installFreshWidgetsConfig()
 
 
     /**
@@ -270,8 +307,9 @@ class MishusoftView implements MishusoftViewInterface
      * @return void
      * @throws JsonException
      */
-    private function updateWidgets(string $widget, array $config): void
+    private function updateWidgetsConfig(string $widget, array $config): void
     {
+        // _Debug::preOutput(func_get_args());
         FileSystem::write(
             self::widgetsConfigFile,
             array_merge(
@@ -280,9 +318,7 @@ class MishusoftView implements MishusoftViewInterface
             )
         );
 
-    }//end updateWidgets()
-
-
+    }//end updateWidgetsConfig()
 
 
     /**
@@ -293,14 +329,38 @@ class MishusoftView implements MishusoftViewInterface
     private function collectAllData(string $widget, array $config): array
     {
         $array = [];
-        if (count($config['child']) > 0) {
-            foreach ($config['child'] as $child) {
-                $array = array_merge($array, ["$widget-".$child => array_merge(self::defaultWidgetConfig, ['position' => $child])]);
-            }
+        // _Debug::preOutput($widget);
+         // _Debug::preOutput($config);
+        if (array_key_exists('child', $config) === true) {
+            if (count($config['child']) > 0) {
+                foreach ($config['child'] as $child) {
+                    $array[$widget.'-'.$child] = array_merge(
+                        self::defaultWidgetConfig,
+                        [
+                            'parent'   => $config['class'],
+                            'position' => $child,
+                        ]
+                    );
+                    /*
+                        $array = array_merge($array,
+                        ["$widget-".$child => array_merge(self::defaultWidgetConfig, ['position' => $child])]
+                    );*/
+                }
+            } else {
+                $array[$widget] = array_merge(
+                    self::defaultWidgetConfig,
+                    $config['configuration'],
+                    [
+                        'parent' => $config['class'],
+                    ],
+                );
+                // $array = array_merge($array, [$widget => array_merge(self::defaultWidgetConfig, $config['configuration'])]);
+            }//end if
         } else {
-            $array = array_merge($array, [$widget => array_merge(self::defaultWidgetConfig, $config['configuration'])]);
-        }
+            throw new RuntimeException('Child element not found. Widget configuration corrupted');
+        }//end if
 
+        // _Debug::preOutput($array);
         return $array;
 
     }//end collectAllData()
@@ -328,9 +388,8 @@ class MishusoftView implements MishusoftViewInterface
         $wd     = array_keys($this->getWidgetsConfigAll());
         foreach ($wd as $item) {
             if ($item === $child) {
-                if (strpos($item, '-') === true) {
-                    $data   = explode('-', $item);
-                    $parent = array_shift($data);
+                if (str_contains($item, '-') === true) {
+                    $parent = substr($item, 0, strpos($item, '-'));
                 } else {
                     $parent = $item;
                 }
@@ -351,9 +410,8 @@ class MishusoftView implements MishusoftViewInterface
         $parents = [];
         $wd      = array_keys($this->getWidgetsConfigAll());
         foreach ($wd as $item) {
-            if (strpos($item, '-') === true) {
-                $data      = explode('-', $item);
-                $parents[] = array_shift($data);
+            if (str_contains($item, '-') === true) {
+                $parents[] = substr($item, 0, strpos($item, '-'));
             } else {
                 $parents[] = $item;
             }
@@ -376,9 +434,22 @@ class MishusoftView implements MishusoftViewInterface
      */
     private function getAllDataOfWidgetsParent(string $parent): array
     {
-        return _Array::value(json_decode(FileSystem::read(self::widgetsFile), true, 512, JSON_THROW_ON_ERROR), $parent);
+        // _Debug::preOutput(func_get_args());
+        // _Debug::preOutput(FileSystem::read(self::widgetsConfigFile));
+        // _Debug::preOutput(json_decode(FileSystem::read(self::widgetsFile), true, 512, JSON_THROW_ON_ERROR));
+        return _Array::value(
+            json_decode(
+                FileSystem::read(self::widgetsFile),
+                //FileSystem::read(self::widgetsConfigFile),
+                true,
+                512,
+                JSON_THROW_ON_ERROR
+            ),
+            $parent
+        );
 
     }//end getAllDataOfWidgetsParent()
+
 
     /**
      * @throws JsonException
@@ -386,7 +457,15 @@ class MishusoftView implements MishusoftViewInterface
     private function getConfig(string $widget): array
     {
         if (is_readable($this->readWidgetsConfigFile()) === true) {
-            return _Array::value(json_decode(FileSystem::read(self::widgetsFile), true, 512, JSON_THROW_ON_ERROR), $widget);
+            return _Array::value(
+                json_decode(
+                    FileSystem::read(self::widgetsFile),
+                    true,
+                    512,
+                    JSON_THROW_ON_ERROR
+                ),
+                $widget
+            );
         }
 
         return self::defaultWidgetConfig;
@@ -404,7 +483,7 @@ class MishusoftView implements MishusoftViewInterface
             $template = $this->templateName;
         }
 
-        if (is_readable(implode(DIRECTORY_SEPARATOR, [MS_THEMES_PATH.$template.DIRECTORY_SEPARATOR.'configs.php'])) === true) {
+        if (is_readable(MS_THEMES_PATH.$template.DIRECTORY_SEPARATOR.'configs.php') === true) {
             include_once MS_THEMES_PATH.$template.DIRECTORY_SEPARATOR.'configs.php';
             return get_available_widgets_positions();
         }
@@ -434,21 +513,22 @@ class MishusoftView implements MishusoftViewInterface
      */
     public function widget(string $widget, string $method, array $options=[])
     {
+        _Debug::preOutput(func_get_args());
         if (is_array($options) === false) {
             $options = [$options];
         }
 
         $widgetClass = $widget.'Widget';
-        if (is_readable(MS_WIDGETS_PATH."$widgetClass.php") === true) {
-            include_once MS_WIDGETS_PATH."$widgetClass.php";
-            $widgetClass = Preloader::getClassNamespaceFromPath(MS_WIDGETS_PATH."$widgetClass.php");
+        if (is_readable(MS_WIDGETS_PATH.$widgetClass.'.php') === true) {
+            include_once MS_WIDGETS_PATH.$widgetClass.'.php';
+            $widgetClass = Preloader::getClassNamespaceFromPath(MS_WIDGETS_PATH.$widgetClass.'.php');
             if (class_exists($widgetClass) === false) {
                 Firewall::runtimeFailure(
                     'Not Found',
                     [
                         'debug' => [
-                            'file'        => "$widgetClass",
-                            'location'    => MS_WIDGETS_PATH."$widgetClass.php",
+                            'file'        => $widgetClass,
+                            'location'    => MS_WIDGETS_PATH.$widgetClass.'.php',
                             'description' => 'Widget class not found or Widget class call error',
                         ],
                         'error' => ['description' => 'Your requested url is broken!!'],
@@ -459,9 +539,9 @@ class MishusoftView implements MishusoftViewInterface
             if (is_callable($widgetClass, $method) === true) {
                 if (count($options) > 0) {
                     return call_user_func_array([new $widgetClass, $method], $options);
-                } else {
-                    return call_user_func([new $widgetClass, $method]);
                 }
+
+                return call_user_func([new $widgetClass, $method]);
             }
         } else {
             Firewall::runtimeFailure(
@@ -515,23 +595,23 @@ class MishusoftView implements MishusoftViewInterface
                 );
              */
 
-            $widgets = array_merge(
-                $widgets,
-                [
-                    $wd => [
-                        'config'  => $cnf,
-                        'content' => [
-                            _Array::value($this->getAllDataOfWidgetsParent($this->getWidgetsParent($wd)), 'class'),
-                            _Array::value($this->getAllDataOfWidgetsParent($this->getWidgetsParent($wd)), 'method'),
-                            [
-                                _Array::value($this->getAllDataOfWidgetsParent($this->getWidgetsParent($wd)), 'class'),
-                                $wd,
-                                'php',
-                            ],
-                        ],
+            //_Debug::preOutput($wd);
+            $widget = $this->getAllDataOfWidgetsParent($this->getWidgetsParent($wd));
+            //_Debug::preOutput($widget);
+            _Debug::preOutput($this->widget);
+
+            $widgets[$wd] = [
+                'config'  => $cnf,
+                'content' => [
+                    _Array::value($this->getAllDataOfWidgetsParent($this->getWidgetsParent($wd)), 'class'),
+                    _Array::value($this->getAllDataOfWidgetsParent($this->getWidgetsParent($wd)), 'method'),
+                    [
+                        _Array::value($this->getAllDataOfWidgetsParent($this->getWidgetsParent($wd)), 'class'),
+                        $wd,
+                        'php',
                     ],
-                ]
-            );
+                ],
+            ];
         }//end foreach
 
         $positions = $this->getAvailableWidgetsPositions();
@@ -543,15 +623,15 @@ class MishusoftView implements MishusoftViewInterface
         foreach ($keys as $k) {
             // Verification of widgets position visibility.
             if (isset($positions[$widgets[$k]['config']['position']]) === true) {
-                // Verification it's view disability by url [controller/method]
+                // Verification it's view disability by url [controller/method].
                 if (!isset($widgets[$k]['config']['hide']) || !in_array($this->request['controller'].'/'.$this->request['method'], $widgets[$k]['config']['hide'])) {
-                    // Verification it's view visibility by url [controller/method]
+                    // Verification it's view visibility by url [controller/method].
                     if ($widgets[$k]['config']['show'] === 'all' || in_array($this->request['controller'].'/'.$this->request['method'], $widgets[$k]['config']['show'])) {
-                        if (isset($this->widget[$k])) {
+                        if (array_key_exists($k, $this->widget) === true) {
                             $widgets[$k]['content'][2] = $this->widget[$k];
                         }
 
-                        // is it's have position in layout
+                        // Is it's have position in layout.
                         $positions[$widgets[$k]['config']['position']][] = $this->getWidgetContent($widgets[$k]['content']);
                     }
                 }
@@ -569,6 +649,7 @@ class MishusoftView implements MishusoftViewInterface
      */
     public function getWidgetContent(array $content)
     {
+        _Debug::preOutput(func_get_args());
         if (array_key_exists(0, $content) === false || array_key_exists(1, $content) === false) {
             Firewall::runtimeFailure(
                 'Not Found',
@@ -697,7 +778,8 @@ class MishusoftView implements MishusoftViewInterface
      */
     public function loadTemplateFile(): string
     {
-        return $this->templateRenderDirectory.implode('/', [_String::ucfirst($this->request['controller']), $this->request['method']]).".$this->templateExt";
+        $routeUrl = implode('/', [_String::ucfirst($this->request['controller']), $this->request['method']]);
+        return $this->templateRenderDirectory.$routeUrl.'.'.$this->templateExt;
 
     }//end loadTemplateFile()
 
@@ -716,7 +798,7 @@ class MishusoftView implements MishusoftViewInterface
                     [
                         'debug' => [
                             'file'        => 'template.php',
-                            'location'    => "{$this->templateDirectory}{$this->templateName}/template.php",
+                            'location'    => $this->templateDirectory.$this->templateName.'/template.php',
                             'description' => 'Template file not found',
                         ],
                         'error' => ['description' => 'Your requested url is broken!!'],
@@ -729,7 +811,7 @@ class MishusoftView implements MishusoftViewInterface
                 [
                     'debug' => [
                         'file'        => 'template directory',
-                        'location'    => "{$this->templateDirectory}",
+                        'location'    => $this->templateDirectory,
                         'description' => 'template directory not found',
                     ],
                     'error' => ['description' => 'Your requested url is broken!!'],
@@ -741,11 +823,11 @@ class MishusoftView implements MishusoftViewInterface
 
 
     /**
-     * @param string $tplKey
-     * @param $tplValue
+     * @param  string   $tplKey
+     * @param  mixed $tplValue
      * @return array
      */
-    public function assign(string $tplKey, $tplValue): array
+    public function assign(string $tplKey, mixed $tplValue): array
     {
         // _Debug::preOutput(array_merge($this->variables, array($tpl_key => $tpl_value)));
         return $this->variables = array_merge($this->variables, [$tplKey => $tplValue]);

@@ -8,8 +8,8 @@ namespace Mishusoft;
 use Error;
 use Exception;
 
-if (array_key_exists('SERVER_NAME', $_SERVER) === true
-    && stripos($_SERVER['SERVER_NAME'], strtolower(__NAMESPACE__)) === true
+if ((array_key_exists('SERVER_NAME', $_SERVER) === true)
+    && (stripos($_SERVER['SERVER_NAME'], strtolower(__NAMESPACE__)) === true)
 ) {
     ini_set('display_errors', '0');
 } else {

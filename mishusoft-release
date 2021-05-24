@@ -1,0 +1,3 @@
+#! /bin/php
+<?php
+include_once './Sources/Release.php';

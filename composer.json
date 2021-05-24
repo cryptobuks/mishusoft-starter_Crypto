@@ -32,21 +32,35 @@
     }
   },
   "scripts": {
-    "htaccess-update": "php ./Sources/Release.php -c  -s ./Sources/http.htaccess -d /srv/http/.htaccess",
-    "robots-update": "php ./Sources/Release.php -c  -s ./Sources/robots.txt -d /srv/http/robots.txt",
-    "index-php-update": "php ./Sources/Release.php -c  -s ./Sources/app.php -d /srv/http/index.php",
-    "index-html-update": "php ./Sources/Release.php -c  -s ./Sources/app.html -d /srv/http/index.html",
-    "framework-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Framework -d /srv/http/Mishusoft/Framework",
-    "ema-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Ema -d /srv/http/Mishusoft/Ema",
-    "packages-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Packages -d /srv/http/Packages",
-    "themes-update": "php ./Sources/Release.php -t  -s ./Sources/Mishusoft/Views/Themes -d /srv/http/Mishusoft/Themes",
-    "widgets-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Widgets -d /srv/http/Mishusoft/Widgets",
-    "widgets-components-update": "php ./Sources/Release.php -w  -s ./Sources/Mishusoft/Views/Widgets -d /srv/http/Mishusoft/Widgets/Views",
-    "packages-components-update": "php ./Sources/Release.php -c  -s ./Sources/Mishusoft/Views/Templates/Packages -d /srv/http/Packages",
-    "copy-storages-all": "php ./Sources/Release.php -copy  -s ./Storages/ -d /srv/http/Storages/",
-    "copy-assests": "php ./Sources/Release.php -copy  -s ./Storages/0/assets -d /srv/http/Storages/0/assets",
-    "copy-media": "php ./Sources/Release.php -copy  -s ./Sources/Assets/media -d /srv/http/Storages/0/media",
-    "copy-errors-page": "php ./Sources/Release.php -copy  -s ./Sources/Mishusoft/Views/Errors/SHtml -d /srv/http/Mishusoft/Errors",
+
+    "htaccess-update": "php ./Sources/Release.php -compile -s ./Sources/http.htaccess -d /srv/http/.htaccess",
+    "robots-update": "php ./Sources/Release.php -compile -s ./Sources/robots.txt -d /srv/http/robots.txt",
+    "index-php-update": "php ./Sources/Release.php -compile -s ./Sources/app.php -d /srv/http/index.php",
+    "index-html-update": "php ./Sources/Release.php -compile -s ./Sources/app.html -d /srv/http/index.html",
+    "framework-update": "php ./Sources/Release.php -compile -s ./Sources/Mishusoft/Framework -d /srv/http/Mishusoft/Framework",
+    "ema-update": "php ./Sources/Release.php -compile -s ./Sources/Mishusoft/Ema -d /srv/http/Mishusoft/Ema",
+    "packages-update": "php ./Sources/Release.php -compile -s ./Sources/Mishusoft/Packages -d /srv/http/Packages",
+    "themes-update": "php ./Sources/Release.php -themes -s ./Sources/Mishusoft/Views/Themes -d /srv/http/Mishusoft/Themes",
+    "widgets-update": "php ./Sources/Release.php -compile -s ./Sources/Mishusoft/Widgets -d /srv/http/Mishusoft/Widgets",
+    "widgets-components-update": "php ./Sources/Release.php -widgets -s ./Sources/Mishusoft/Views/Widgets -d /srv/http/Mishusoft/Widgets/Views",
+    "packages-components-update": "php ./Sources/Release.php -staticpages -s ./Sources/Mishusoft/Views/Templates/Packages -d /srv/http/Packages",
+
+
+    "index-php-update-test": "php ./Sources/Release.php -test -s ./Sources/app.php -d /srv/http/index.php",
+    "index-html-update-test": "php ./Sources/Release.php -test -s ./Sources/app.html -d /srv/http/index.html",
+    "framework-update-test": "php ./Sources/Release.php -test -s ./Sources/Mishusoft/Framework -d /srv/http/Mishusoft/Framework",
+    "ema-update-test": "php ./Sources/Release.php -test -s ./Sources/Mishusoft/Ema -d /srv/http/Mishusoft/Ema",
+    "packages-update-test": "php ./Sources/Release.php -test -s ./Sources/Mishusoft/Packages -d /srv/http/Packages",
+    "themes-update-test": "php ./Sources/Release.php -themes -s ./Sources/Mishusoft/Views/Themes -d /srv/http/Mishusoft/Themes",
+    "widgets-update-test": "php ./Sources/Release.php -test -s ./Sources/Mishusoft/Widgets -d /srv/http/Mishusoft/Widgets",
+    "widgets-components-update-test": "php ./Sources/Release.php -widgets -s ./Sources/Mishusoft/Views/Widgets -d /srv/http/Mishusoft/Widgets/Views",
+    "packages-components-update-test": "php ./Sources/Release.php -staticpages -s ./Sources/Mishusoft/Views/Templates/Packages -d /srv/http/Packages",
+
+
+    "copy-storages-all": "php ./Sources/Release.php -copy -s ./Storages/ -d /srv/http/Storages/",
+    "copy-assests": "php ./Sources/Release.php -copy -s ./Storages/0/assets -d /srv/http/Storages/0/assets",
+    "copy-media": "php ./Sources/Release.php -copy -s ./Sources/Assets/media -d /srv/http/Storages/0/media",
+    "copy-errors-page": "php ./Sources/Release.php -copy -s ./Sources/Mishusoft/Views/Errors/SHtml -d /srv/http/Mishusoft/Errors",
     "phpcs": "phpcs",
     "phpcbf": "phpcbf"
   },
@@ -56,18 +70,19 @@
     "stripe/stripe-php": "^7.77",
     "phpmailer/phpmailer": "^6.4",
     "smarty/smarty": "^3.1",
-    "geoip2/geoip2": "^2.11",
-    "ext-json": "*",
-    "ext-zip": "*",
-    "ext-openssl": "*",
-    "ext-dom": "*",
-    "ext-curl": "*"
+    "geoip2/geoip2": "^2.11"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",
     "phpunit/phpunit": "^9.5",
     "squizlabs/php_codesniffer": "^3.6",
     "friendsofphp/php-cs-fixer": "^3.0",
-    "phpstan/phpstan": "^0.12.88"
+    "phpstan/phpstan": "^0.12.88",
+    "ext-zend-opcache": "*",
+    "ext-json": "*",
+    "ext-zip": "*",
+    "ext-openssl": "*",
+    "ext-dom": "*",
+    "ext-curl": "*"
   }
 }

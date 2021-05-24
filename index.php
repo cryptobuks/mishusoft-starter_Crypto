@@ -15,7 +15,7 @@ set_time_limit(600);
 define('DS', DIRECTORY_SEPARATOR);
 define("PHP_CODE_SYNTAX", "PHP7.4.3");
 define("WHO_AM_I", "Mishusoft");
-define("PHP_RUNTIME_ROOT_PATH", realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
+define("PHP_RUNTIME_ROOT_PATH", realpath(__DIR__) . DIRECTORY_SEPARATOR);
 define("PHP_RUNTIME_SYSTEM_PATH", PHP_RUNTIME_ROOT_PATH . "Mishusoft" . DIRECTORY_SEPARATOR);
 try {
     /*require_once PHP_RUNTIME_SYSTEM_PATH . 'Autoload.php';*/

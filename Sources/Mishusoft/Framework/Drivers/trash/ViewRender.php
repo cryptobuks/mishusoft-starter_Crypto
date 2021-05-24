@@ -15,43 +15,43 @@ use Mishusoft\Framework\Interfaces\Drivers\MishusoftViewInterface;
 
 class ViewRender implements MishusoftViewInterface
 {
-    /*declare version*/
-    const VERSION = "1.0.0";
+    /*Declare version*/
+    public const VERSION = "1.0.0";
 
-    const widgetsFile = PHP_RUNTIME_REGISTRIES_PATH . "widgets.json";
-    const widgetsConfigFile = PHP_RUNTIME_REGISTRIES_PATH . "widgets-config.json";
+    public const widgetsFile = PHP_RUNTIME_REGISTRIES_PATH . "widgets.json";
+    public const widgetsConfigFile = PHP_RUNTIME_REGISTRIES_PATH . "widgets-config.json";
 
-    const  defaultWidgetConfig = array(
+    public const  defaultWidgetConfig = [
         "position" => "footer",
         "show" => "all",
-        "hide" => array()
-    );
+        "hide" => [],
+    ];
 
 
-    private array $installedWidgets = array(
-        "topQuickBar" => array(
+    private array $installedWidgets = [
+        "topQuickBar" => [
             "class" => "topQuickBar",
             "method" => "getTopQuickBar",
-            "child" => array(),
-            "configuration" => array(
-                "position" => "top"
-            ),
-            "setting" => array(
-                "status" => "enable"
-            )
-        ),
-        "universalMenuBar" => array(
+            "child" => [],
+            "configuration" => [
+                "position" => "top",
+            ],
+            "setting" => [
+                "status" => "enable",
+            ],
+        ],
+        "universalMenuBar" => [
             "class" => "universalMenuBar",
             "method" => "getUniversalMenuBar",
-            "child" => array("header", "left", "right", "footer"),
-            "configuration" => array(
-                "position" => "header"
-            ),
-            "setting" => array(
-                "status" => "enable"
-            )
-        ),
-    );
+            "child" => ["header", "left", "right", "footer"],
+            "configuration" => [
+                "position" => "header",
+            ],
+            "setting" => [
+                "status" => "enable",
+            ],
+        ],
+    ];
 
     public array $request;
     public array $widgetConfig;
@@ -134,7 +134,7 @@ class ViewRender implements MishusoftViewInterface
             if (count(Stream::getList(MS_WIDGETS_PATH, "file")) > 0) {
                 foreach (Stream::getList(MS_WIDGETS_PATH, "file") as $widgetFile) {
                     if (pathinfo($widgetFile, PATHINFO_EXTENSION) === "json") {
-                        $this->installedWidgets = array_merge($this->installedWidgets, array(pathinfo($widgetFile, PATHINFO_FILENAME) => Stream::read(join([MS_WIDGETS_PATH, $widgetFile]))));
+                        $this->installedWidgets = array_merge($this->installedWidgets, [pathinfo($widgetFile, PATHINFO_FILENAME) => Stream::read(join([MS_WIDGETS_PATH, $widgetFile]))]);
                     }
                 }
             }
@@ -172,13 +172,13 @@ class ViewRender implements MishusoftViewInterface
 
     private function collectAllData(string $widget, array $config): array
     {
-        $array = array();
+        $array = [];
         if (count($config["child"]) > 0) {
             foreach ($config["child"] as $child) {
-                $array = array_merge($array, array("$widget-" . $child => array_merge(self::defaultWidgetConfig, array("position" => $child))));
+                $array = array_merge($array, ["$widget-" . $child => array_merge(self::defaultWidgetConfig, ["position" => $child])]);
             }
         } else {
-            $array = array_merge($array, array($widget => array_merge(self::defaultWidgetConfig, $config["configuration"])));
+            $array = array_merge($array, [$widget => array_merge(self::defaultWidgetConfig, $config["configuration"])]);
         }
 
         return $array;
@@ -209,14 +209,14 @@ class ViewRender implements MishusoftViewInterface
 
     private function getWidgetsParentAll(): array
     {
-        $parents = array();
+        $parents = [];
         $wd = array_keys(Stream::read(self::widgetsConfigFile));
         foreach ($wd as $item) {
             if (strpos($item, "-")) {
                 $data = explode("-", $item);
-                array_push($parents,array_shift($data));
+                array_push($parents, array_shift($data));
             } else {
-                array_push($parents,$item);
+                array_push($parents, $item);
             }
         }
 
@@ -281,9 +281,9 @@ class ViewRender implements MishusoftViewInterface
                 "debug" => [
                     "file" => "Configs.php",
                     "location" => join(DIRECTORY_SEPARATOR, [MS_THEMES_PATH . $template, "configs", "configs.php"]),
-                    "description" => "Theme's configuration file not found."
+                    "description" => "Theme's configuration file not found.",
                 ],
-                "error" => ["description" => "Your requested url is broken!!"]
+                "error" => ["description" => "Your requested url is broken!!"],
             ]);
 
             return [];
@@ -296,10 +296,10 @@ class ViewRender implements MishusoftViewInterface
      * @param array $options
      * @return mixed|void
      */
-    public function widget($widget, $method, $options = array())
+    public function widget($widget, $method, $options = [])
     {
         if (!is_array($options)) {
-            $options = array($options);
+            $options = [$options];
         }
 
         $widgetClass = $widget . 'Widget';
@@ -311,17 +311,17 @@ class ViewRender implements MishusoftViewInterface
                     "debug" => [
                         "file" => "$widgetClass",
                         "location" => MS_WIDGETS_PATH . "$widgetClass.php",
-                        "description" => "Widget class not found or Widget class call error"
+                        "description" => "Widget class not found or Widget class call error",
                     ],
-                    "error" => ["description" => "Your requested url is broken!!"]
+                    "error" => ["description" => "Your requested url is broken!!"],
                 ]);
             }
 
             if (is_callable($widgetClass, $method)) {
                 if (count($options)) {
-                    return call_user_func_array(array(new $widgetClass, $method), $options);
+                    return call_user_func_array([new $widgetClass, $method], $options);
                 } else {
-                    return call_user_func(array(new $widgetClass, $method));
+                    return call_user_func([new $widgetClass, $method]);
                 }
             }
         } else {
@@ -329,9 +329,9 @@ class ViewRender implements MishusoftViewInterface
                 "debug" => [
                     "file" => "Widget",
                     "location" => "Required file",
-                    "description" => "Widget's content not found."
+                    "description" => "Widget's content not found.",
                 ],
-                "error" => ["description" => "Your requested url is broken!!"]
+                "error" => ["description" => "Your requested url is broken!!"],
             ]);
         }
     }
@@ -358,7 +358,7 @@ class ViewRender implements MishusoftViewInterface
 
 
 
-        $widgets = array();
+        $widgets = [];
 
         foreach ($this->getWidgetsConfigAll() as $wd => $cnf) {
 
@@ -373,18 +373,20 @@ class ViewRender implements MishusoftViewInterface
             );
             */
 
-            $widgets = array_merge($widgets, array($wd => array(
+            $widgets = array_merge(
+                $widgets,
+                [$wd => [
                     "config" => $cnf,
-                    "content" => array(
-                        _Array::value($this->getAllDataOfWidgetsParent($this->getWidgetsParent($wd)),"class"),
-                        _Array::value($this->getAllDataOfWidgetsParent($this->getWidgetsParent($wd)),"method"),
-                        array(_Array::value($this->getAllDataOfWidgetsParent($this->getWidgetsParent($wd)),"class"), $wd, 'php')),
-                ))
+                    "content" => [
+                        _Array::value($this->getAllDataOfWidgetsParent($this->getWidgetsParent($wd)), "class"),
+                        _Array::value($this->getAllDataOfWidgetsParent($this->getWidgetsParent($wd)), "method"),
+                        [_Array::value($this->getAllDataOfWidgetsParent($this->getWidgetsParent($wd)), "class"), $wd, 'php'], ],
+                ]]
             );
         }
 
         $positions = $this->getAvailableWidgetsPositions();
-        $keys = array();
+        $keys = [];
         if ($widgets == true) {
             $keys = array_keys($widgets);
         }
@@ -421,13 +423,13 @@ class ViewRender implements MishusoftViewInterface
                 "debug" => [
                     "file" => "Widget",
                     "location" => "Required file",
-                    "description" => "Widget's content not found."
+                    "description" => "Widget's content not found.",
                 ],
-                "error" => ["description" => "Your requested url is broken!!"]
+                "error" => ["description" => "Your requested url is broken!!"],
             ]);
         }
         if (!isset($content[2])) {
-            $content[2] = array();
+            $content[2] = [];
         }
         return $this->widget($content[0], $content[1], $content[2]);
     }
@@ -506,7 +508,7 @@ class ViewRender implements MishusoftViewInterface
                 } else {
                     Firewall::runtimeFailure("Not Found", [
                         "debug" => ["file" => __FILE__, "location" => __METHOD__, "description" => "Invalid \$options parsed. template directory location not provided."],
-                        "error" => ["description" => "Your requested file not found or deleted!!"]
+                        "error" => ["description" => "Your requested file not found or deleted!!"],
                     ]);
                 }
                 if (array_key_exists("template_ext", $options)) {
@@ -514,7 +516,7 @@ class ViewRender implements MishusoftViewInterface
                 } else {
                     Firewall::runtimeFailure("Not Found", [
                         "debug" => ["file" => __FILE__, "location" => __METHOD__, "description" => "Invalid \$options parsed. template extension not provided."],
-                        "error" => ["description" => "Your requested file not found or deleted!!"]
+                        "error" => ["description" => "Your requested file not found or deleted!!"],
                     ]);
                 }
             }
@@ -530,7 +532,7 @@ class ViewRender implements MishusoftViewInterface
         } else {
             Firewall::runtimeFailure("Not Found", [
                 "debug" => ["file" => $this->loadTemplateFile(), "location" => $this->template_render_dir, "description" => $this->loadTemplateFile() . " not found."],
-                "error" => ["description" => "Your requested file not found or deleted!!"]
+                "error" => ["description" => "Your requested file not found or deleted!!"],
             ]);
         }
     }
@@ -538,7 +540,7 @@ class ViewRender implements MishusoftViewInterface
     /**
      * @return string
      */
-    function loadTemplateFile(): string
+    public function loadTemplateFile(): string
     {
         return $this->template_render_dir . join("/", [_String::ucfirst($this->request["controller"]), $this->request["method"]]) . ".$this->template_ext";
     }
@@ -554,9 +556,9 @@ class ViewRender implements MishusoftViewInterface
                     "debug" => [
                         "file" => "template.php",
                         "location" =>  "$this->template_dir$this->template_name/template.php",
-                        "description" => "Template file not found"
+                        "description" => "Template file not found",
                     ],
-                    "error" => ["description" => "Your requested url is broken!!"]
+                    "error" => ["description" => "Your requested url is broken!!"],
                 ]);
             }
         }
@@ -571,6 +573,6 @@ class ViewRender implements MishusoftViewInterface
         // TODO: Implement assign() method.
 
         /*_Debug::preOutput(array_merge($this->variables, array($tpl_key => $tpl_value)));*/
-        return $this->variables = array_merge($this->variables, array($tpl_key => $tpl_value));
+        return $this->variables = array_merge($this->variables, [$tpl_key => $tpl_value]);
     }
 }

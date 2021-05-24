@@ -10,6 +10,9 @@ use RuntimeException;
 define('MS_DOCUMENT_ROOT', realpath(dirname(__FILE__, 3)).DIRECTORY_SEPARATOR);
 define('MS_SERVER_PATH', dirname($_SERVER['PHP_SELF']));
 
+define('PHP_RUNTIME_SYSTEM_TEMP_PATH', PHP_RUNTIME_ROOT_PATH.'tmp'.DIRECTORY_SEPARATOR);
+define('PHP_RUNTIME_CACHE_ROOT_PATH', PHP_RUNTIME_ROOT_PATH.'tmp/'.md5($_SERVER['PHP_SELF']).DIRECTORY_SEPARATOR);
+
 if (array_key_exists('HTTP_HOST', $_SERVER) === true) {
     define('INSTALLED_HOST_NAME', $_SERVER['HTTP_HOST']);
 } else {
@@ -23,18 +26,18 @@ if (array_key_exists('SERVER_NAME', $_SERVER) === true) {
 }
 
 // Create root directory for current server.
-$concurrentDirectory = PHP_RUNTIME_ROOT_PATH.'tmp/caches/'.md5($_SERVER['PHP_SELF']).DIRECTORY_SEPARATOR;
-if ((file_exists($concurrentDirectory) === false)
-    && mkdir($concurrentDirectory, 0777, true) === false
-    && is_dir($concurrentDirectory) === false
+if ((file_exists(PHP_RUNTIME_CACHE_ROOT_PATH) === false)
+    && mkdir(PHP_RUNTIME_CACHE_ROOT_PATH, 0777, true) === false
+    && is_dir(PHP_RUNTIME_CACHE_ROOT_PATH) === false
 ) {
-    throw new RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+    throw new RuntimeException(sprintf('Directory "%s" was not created', PHP_RUNTIME_CACHE_ROOT_PATH));
 }
 
 
-define('PHP_RUNTIME_SYSTEM_TEMP_PATH', PHP_RUNTIME_ROOT_PATH.'tmp'.DIRECTORY_SEPARATOR);
-define('PHP_RUNTIME_LOGS_PATH', $concurrentDirectory.'logs'.DIRECTORY_SEPARATOR);
-define('PHP_RUNTIME_REGISTRIES_PATH', $concurrentDirectory.'configs'.DIRECTORY_SEPARATOR);
+define('PHP_RUNTIME_CACHE_TEMP_PATH', PHP_RUNTIME_CACHE_ROOT_PATH.'caches'.DIRECTORY_SEPARATOR);
+define('PHP_RUNTIME_REGISTRIES_PATH', PHP_RUNTIME_CACHE_ROOT_PATH.'configs'.DIRECTORY_SEPARATOR);
+define('PHP_RUNTIME_LOGS_PATH', PHP_RUNTIME_CACHE_ROOT_PATH.'logs'.DIRECTORY_SEPARATOR);
+define('PHP_RUNTIME_CACHE_TEMPLATES_PATH', PHP_RUNTIME_CACHE_ROOT_PATH.'templates'.DIRECTORY_SEPARATOR);
 
 // Log files location declare.
 define('PHP_ACCESS_LOG_FILE', PHP_RUNTIME_LOGS_PATH.'php_access_'.MS_SERVER_NAME.'.log');

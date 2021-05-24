@@ -3,6 +3,7 @@
 namespace Mishusoft\Framework\Chipsets;
 
 
+use JsonException;
 use Mishusoft\Framework\Chipsets\Autoload;
 use Mishusoft\Framework\Chipsets\Http\IP;
 use Mishusoft\Framework\Chipsets\System\Logger;
@@ -384,7 +385,7 @@ class FileSystem
      * @param  string $filename
      * @param  array  $contents
      * @return false|integer
-     * @throws \JsonException
+     * @throws JsonException
      */
     public static function write(string $filename, array $contents): bool|int
     {

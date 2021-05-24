@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '5a183fcccdd64d3a708757470073816aec4c9d85',
+    'reference' => 'e990d673b1f508c1fa2afd6913f876868562adf2',
     'name' => 'mishusoft/website',
   ),
   'versions' => 
@@ -22,12 +22,12 @@
     ),
     'composer/semver' => 
     array (
-      'pretty_version' => '3.2.4',
-      'version' => '3.2.4.0',
+      'pretty_version' => '3.2.5',
+      'version' => '3.2.5.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'a02fdf930a3c1c3ed3a49b5f63859c0c20e10464',
+      'reference' => '31f3ea725711245195f62e54ffa402d8ef2fdba9',
     ),
     'composer/xdebug-handler' => 
     array (
@@ -108,7 +108,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '5a183fcccdd64d3a708757470073816aec4c9d85',
+      'reference' => 'e990d673b1f508c1fa2afd6913f876868562adf2',
     ),
     'myclabs/deep-copy' => 
     array (
@@ -325,7 +325,7 @@
       array (
         0 => '9999999-dev',
       ),
-      'reference' => '6e52ab3a11a0d4fb0d9b2fb199a5887b8e01b1ae',
+      'reference' => '9d9641b43426b6614603313428170f3b2e7d61fa',
     ),
     'sebastian/cli-parser' => 
     array (
