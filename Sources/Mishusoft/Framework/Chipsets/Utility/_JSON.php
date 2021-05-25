@@ -25,7 +25,7 @@ class _JSON
      */
     public static function encodeToObject(array $array): string
     {
-        return self::decode_to_object(self::encode_to_string($array));
+        return self::decodeToObject(self::encodeToString($array));
 
     }//end encodeToObject()
 

@@ -32,9 +32,9 @@ interface MishusoftViewInterface
 
 
     /**
-     * @param string $UrlOfHostedWebsite
+     * @param string $urlOfHostedWebsite
      */
-    public function setUrlOfHostedWebsite(string $UrlOfHostedWebsite): void;
+    public function setUrlOfHostedWebsite(string $urlOfHostedWebsite): void;
 
 
     /**

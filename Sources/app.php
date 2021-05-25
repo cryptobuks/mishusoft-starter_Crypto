@@ -50,6 +50,6 @@ try {
         Framework\Chipsets\System\Logger::write(
             Framework\Chipsets\RuntimeErrors::toWriteable($e)
         );
-        echo "<pre>$e</pre>";
+        echo "<pre>".$e."</pre>";
     }
 }//end try

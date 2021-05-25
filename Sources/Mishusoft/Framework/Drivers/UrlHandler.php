@@ -5,6 +5,7 @@ namespace Mishusoft\Framework\Drivers;
 
 
 use Mishusoft\Framework\Chipsets\System\Memory;
+use Mishusoft\Framework\Chipsets\Utility\_Debug;
 use Mishusoft\Framework\Interfaces\Drivers\UrlHandlerInterface;
 use Mishusoft\Framework\Interfaces\Drivers\MishusoftViewInterface;
 
@@ -35,11 +36,11 @@ abstract class UrlHandler implements UrlHandlerInterface
      *      "template_ext" => ".phpt"
      * ]);
      *
-     * @param array $prediction
+     * @param array $prediction Array format of client http request.
      */
 
 
-    abstract public function Response(array $prediction);
+    abstract public function response(array $prediction);
 
 
     /**
@@ -50,6 +51,7 @@ abstract class UrlHandler implements UrlHandlerInterface
      */
     protected function render(string $rootTitle, array $request, array $noMenuList=[]): MishusoftViewInterface
     {
+        _Debug::preOutput(func_get_args());
         return new View\MishusoftView(Memory::Data('framework')->host->url, $rootTitle, $noMenuList, $request);
 
     }//end render()

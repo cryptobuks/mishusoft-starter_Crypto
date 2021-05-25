@@ -7,10 +7,13 @@ namespace Mishusoft\Framework\Interfaces\Drivers;
 interface UrlHandlerInterface
 {
 
-    /**
-     * @param array $prediction
-     * @return mixed
-     */
-    public function Response(array $prediction);
 
-}
+    /**
+     * Mandatory function to response client request.
+     *
+     * @param  array $prediction Array format of client http request.
+     */
+    public function response(array $prediction);
+
+
+}//end interface

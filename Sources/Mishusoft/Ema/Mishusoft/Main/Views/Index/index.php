@@ -13,7 +13,7 @@ Ui::updateDocumentTitle(" || " . $translation->translate("Welcome to You."));
 
 //Ui::assignAttributes($this->documentTemplateBodyElement,["style"=>"background-image: linear-gradient(to bottom left, rgba(225, 225, 225, 0.03) 0%, rgba(225, 225, 225, 0.03) 49.9%, rgba(225, 225, 225, 0) 50%, rgba(225, 225, 225, 0) 100%),linear-gradient(to top left, rgba(225, 225, 225, 0.03) 0%, rgba(225, 225, 225, 0.03) 49.9%, rgba(225, 225, 225, 0) 50%, rgba(225, 225, 225, 0) 100%),linear-gradient( 10deg , #00302f, #5498df);background-position: top right,bottom right;background-repeat: no-repeat;background-size: 80% 70%,80% 75%,100% auto;color: #f7f7f7;"]);
 
-/*set separate paragraph for index page*/
+/*Set separate paragraph for index page.*/
 Ui::elementList(
     $this->documentTemplateBodyElement, [
     "article" => [

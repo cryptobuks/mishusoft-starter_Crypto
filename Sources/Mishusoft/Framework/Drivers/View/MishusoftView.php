@@ -8,13 +8,14 @@ use JsonException;
 use Mishusoft\Framework\Chipsets\FileSystem;
 use Mishusoft\Framework\Chipsets\Preloader;
 use Mishusoft\Framework\Chipsets\System\Firewall;
+use Mishusoft\Framework\Chipsets\System\Logger;
 use Mishusoft\Framework\Chipsets\Utility\_Array;
 use Mishusoft\Framework\Chipsets\Utility\_Debug;
 use Mishusoft\Framework\Chipsets\Utility\_String;
 use Mishusoft\Framework\Interfaces\Drivers\MishusoftViewInterface;
 use RuntimeException;
 
-class MishusoftView implements MishusoftViewInterface
+class MishusoftView extends FileSystem implements MishusoftViewInterface
 {
     // Declare version.
     public const VERSION = '1.0.0';
@@ -154,6 +155,9 @@ class MishusoftView implements MishusoftViewInterface
      */
     public function __construct(string $hostUrl, string $rootTitle, array $widgetConfig, array $request)
     {
+        /*Fetching incomming variables.*/
+        Logger::write('Fetching incomming variables.');
+
         $this->request               = $request;
         $this->urlOfHostedWebsite    = $hostUrl;
         $this->titleOfCurrentWebPage = $rootTitle;
@@ -194,14 +198,16 @@ class MishusoftView implements MishusoftViewInterface
          * create that path when not exists
          */
 
-        FileSystem::createDirectory(PHP_RUNTIME_REGISTRIES_PATH);
+        Logger::write('Creating '.PHP_RUNTIME_REGISTRIES_PATH.' if not exists in system.');
+        self::createDirectory(PHP_RUNTIME_REGISTRIES_PATH);
 
         /*
          * check the installed widgets list file exists
          * create that path when not exists
-         *
          */
-        if (file_exists(self::widgetsFile) === false || FileSystem::read(self::widgetsFile) === '') {
+
+        Logger::write('Creating '.self::widgetsFile.' or updating if not exists or empty in system.');
+        if (file_exists(self::widgetsFile) === false || self::read(self::widgetsFile) === '') {
             $this->installFreshWidgets();
         }//end if
 
@@ -210,9 +216,10 @@ class MishusoftView implements MishusoftViewInterface
          * create that path when not exists
          */
 
-        // $widgetFileArray = json_decode(FileSystem::read(self::widgetsFile), true, 512, JSON_THROW_ON_ERROR);
-        // $widgetConfigArray = json_decode(FileSystem::read(self::widgetsConfigFile), true, 512, JSON_THROW_ON_ERROR);
+        // $widgetFileArray = json_decode(self::read(self::widgetsFile), true, 512, JSON_THROW_ON_ERROR);
+        // $widgetConfigArray = json_decode(self::read(self::widgetsConfigFile), true, 512, JSON_THROW_ON_ERROR);
          // _Debug::preOutput($this->getInstalledWidgets());
+        Logger::write('Creating '.self::widgetsConfigFile.' or updating if not exists or empty in system.');
         if (file_exists(self::widgetsConfigFile) === false) {
             foreach ($this->getInstalledWidgets() as $widget => $config) {
                 if (file_exists(self::widgetsConfigFile) === true && count($this->getInstalledWidgetsConfig()) > 0) {
@@ -244,12 +251,12 @@ class MishusoftView implements MishusoftViewInterface
     private function installFreshWidgets(): void
     {
         $newWidget = [];
-        if (count(FileSystem::getList(MS_WIDGETS_PATH, 'file')) > 0) {
-            foreach (FileSystem::getList(MS_WIDGETS_PATH, 'file') as $widgetFile) {
+        if (count(self::getList(MS_WIDGETS_PATH, 'file')) > 0) {
+            foreach (self::getList(MS_WIDGETS_PATH, 'file') as $widgetFile) {
                 if (pathinfo($widgetFile, PATHINFO_EXTENSION) === 'json') {
                     $configuration = [
                         pathinfo($widgetFile, PATHINFO_FILENAME) => json_decode(
-                            FileSystem::read(MS_WIDGETS_PATH.$widgetFile),
+                            self::read(MS_WIDGETS_PATH.$widgetFile),
                             true,
                             512,
                             JSON_THROW_ON_ERROR
@@ -263,7 +270,7 @@ class MishusoftView implements MishusoftViewInterface
         }
 
         $this->installedWidgets = array_merge($this->installedWidgets, $newWidget);
-        FileSystem::write(self::widgetsFile, $this->installedWidgets);
+        self::write(self::widgetsFile, $this->installedWidgets);
 
     }//end installFreshWidgets()
 
@@ -273,7 +280,7 @@ class MishusoftView implements MishusoftViewInterface
      */
     private function getInstalledWidgets()
     {
-        return json_decode(FileSystem::read(self::widgetsFile), true, 512, JSON_THROW_ON_ERROR);
+        return json_decode(self::read(self::widgetsFile), true, 512, JSON_THROW_ON_ERROR);
 
     }//end getInstalledWidgets()
 
@@ -283,7 +290,7 @@ class MishusoftView implements MishusoftViewInterface
      */
     private function getInstalledWidgetsConfig()
     {
-        return json_decode(FileSystem::read(self::widgetsConfigFile), true, 512, JSON_THROW_ON_ERROR);
+        return json_decode(self::read(self::widgetsConfigFile), true, 512, JSON_THROW_ON_ERROR);
 
     }//end getInstalledWidgetsConfig()
 
@@ -296,7 +303,7 @@ class MishusoftView implements MishusoftViewInterface
     private function installFreshWidgetsConfig(string $widget, array $config): void
     {
         // _Debug::preOutput(func_get_args());
-        FileSystem::write(self::widgetsConfigFile, $this->collectAllData($widget, $config));
+        self::write(self::widgetsConfigFile, $this->collectAllData($widget, $config));
 
     }//end installFreshWidgetsConfig()
 
@@ -310,10 +317,10 @@ class MishusoftView implements MishusoftViewInterface
     private function updateWidgetsConfig(string $widget, array $config): void
     {
         // _Debug::preOutput(func_get_args());
-        FileSystem::write(
+        self::write(
             self::widgetsConfigFile,
             array_merge(
-                json_decode(FileSystem::read(self::widgetsConfigFile), true, 512, JSON_THROW_ON_ERROR),
+                json_decode(self::read(self::widgetsConfigFile), true, 512, JSON_THROW_ON_ERROR),
                 $this->collectAllData($widget, $config)
             )
         );
@@ -372,7 +379,7 @@ class MishusoftView implements MishusoftViewInterface
      */
     private function getWidgetsConfigAll(): array
     {
-        return json_decode(FileSystem::read($this->readWidgetsConfigFile()), true, 512, JSON_THROW_ON_ERROR);
+        return json_decode(self::read($this->readWidgetsConfigFile()), true, 512, JSON_THROW_ON_ERROR);
 
     }//end getWidgetsConfigAll()
 
@@ -435,12 +442,12 @@ class MishusoftView implements MishusoftViewInterface
     private function getAllDataOfWidgetsParent(string $parent): array
     {
         // _Debug::preOutput(func_get_args());
-        // _Debug::preOutput(FileSystem::read(self::widgetsConfigFile));
-        // _Debug::preOutput(json_decode(FileSystem::read(self::widgetsFile), true, 512, JSON_THROW_ON_ERROR));
+        // _Debug::preOutput(self::read(self::widgetsConfigFile));
+        // _Debug::preOutput(json_decode(self::read(self::widgetsFile), true, 512, JSON_THROW_ON_ERROR));
         return _Array::value(
             json_decode(
-                FileSystem::read(self::widgetsFile),
-                //FileSystem::read(self::widgetsConfigFile),
+                self::read(self::widgetsFile),
+                // self::read(self::widgetsConfigFile),
                 true,
                 512,
                 JSON_THROW_ON_ERROR
@@ -459,7 +466,7 @@ class MishusoftView implements MishusoftViewInterface
         if (is_readable($this->readWidgetsConfigFile()) === true) {
             return _Array::value(
                 json_decode(
-                    FileSystem::read(self::widgetsFile),
+                    self::read(self::widgetsFile),
                     true,
                     512,
                     JSON_THROW_ON_ERROR
@@ -595,9 +602,9 @@ class MishusoftView implements MishusoftViewInterface
                 );
              */
 
-            //_Debug::preOutput($wd);
+            // _Debug::preOutput($wd);
             $widget = $this->getAllDataOfWidgetsParent($this->getWidgetsParent($wd));
-            //_Debug::preOutput($widget);
+            // _Debug::preOutput($widget);
             _Debug::preOutput($this->widget);
 
             $widgets[$wd] = [
@@ -711,6 +718,7 @@ class MishusoftView implements MishusoftViewInterface
      */
     public function display(array $options=[]): void
     {
+        _Debug::preOutput(func_get_args());
         if (count($options) > 0) {
             // Identify file load auto or manual the current file.
             if (array_key_exists('load', $options) === true && _Array::value($options, 'load') === 'manual') {
@@ -754,6 +762,8 @@ class MishusoftView implements MishusoftViewInterface
             }
         }//end if
 
+        _Debug::preOutput($this->loadTemplateFile());
+
         if (file_exists($this->loadTemplateFile()) === true) {
             $this->compile();
         } else {
@@ -790,8 +800,10 @@ class MishusoftView implements MishusoftViewInterface
     private function compile(): void
     {
         if (is_dir($this->templateDirectory) === true) {
-            if (file_exists("{$this->templateDirectory}{$this->templateName}/template.php") === true) {
-                include_once "{$this->templateDirectory}{$this->templateName}/template.php";
+            _Debug::preOutput($this->templateDirectory);
+            if (file_exists($this->templateDirectory.$this->templateName.'/template.php') === true) {
+                _Debug::preOutput($this->templateDirectory.$this->templateName.'/template.php');
+                include_once $this->templateDirectory.$this->templateName.'/template.php';
             } else {
                 Firewall::runtimeFailure(
                     'Not Found',
@@ -823,8 +835,8 @@ class MishusoftView implements MishusoftViewInterface
 
 
     /**
-     * @param  string   $tplKey
-     * @param  mixed $tplValue
+     * @param  string $tplKey
+     * @param  mixed  $tplValue
      * @return array
      */
     public function assign(string $tplKey, mixed $tplValue): array

@@ -12,17 +12,18 @@ use Mishusoft\Framework\Drivers\UrlHandler;
 class IndexUrlHandler extends UrlHandler
 {
 
+
     /**
-     * @inheritDoc
+     * @param array $prediction
      */
-    public function Response(array $prediction)
+    public function response(array $prediction)
     {
-        //_Debug::preOutput($prediction);
-        //echo phpinfo();
-        // TODO: Implement Response() method.
-        $translation = new Localization(_Array::value($prediction, "locale"));
-        //_Debug::preOutput($translation->translate("Mishusoft"));
-        $view = $this->render($translation->translate("Mishusoft"), $prediction);
+        _Debug::preOutput(func_get_args());
+        $translation = new Localization(_Array::value($prediction, 'locale'));
+        $view        = $this->render($translation->translate('Mishusoft'), $prediction);
         $view->display();
-    }
-}
+
+    }//end response()
+
+
+}//end class
