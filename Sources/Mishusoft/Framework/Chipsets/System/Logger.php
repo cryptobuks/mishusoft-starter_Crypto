@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 
 namespace Mishusoft\Framework\Chipsets\System;
 
@@ -24,8 +26,8 @@ class Logger
         FileSystem::createDirectory(dirname($logFile));
 
         if (file_exists($logFile) === false) {
-            fopen($logFile, 'w+');
-            exec('chmod -R 777 '.$logFile);
+            FileSystem::createFile($logFile);
+            FileSystem::exec($logFile);
         }
 
         $mode    = array_key_exists('REQUEST_METHOD', $_SERVER) ? $_SERVER['REQUEST_METHOD'] : 'GET';
@@ -48,7 +50,7 @@ class Logger
         }
 
         if (is_writable($logFile) === true) {
-            file_put_contents($logFile, $contents);
+            FileSystem::saveToFile($logFile, $contents);
         }
 
     }//end write()

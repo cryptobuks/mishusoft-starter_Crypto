@@ -4,8 +4,8 @@
  *
  * @package    Mishusoft
  * @subpackage Release
- * @author     Mishusoft Systems Inc <products@mishusoft.com>
- * @copyright  2021 Mishusoft Systems Inc (ABN 77 084 670 600)
+ * @author     Squiz Pty Ltd <products@squiz.net>
+ * @copyright  2021 Squiz Pty Ltd (ABN 77 084 670 600)
  *
  * Add bash command "alias mishusoft-release="php /srv/http/Sources/Release.php""
  */
@@ -20,10 +20,10 @@ use Mishusoft\Release\Compile;
  * Declare constants
  */
 
-define('PHP_RUNTIME_ROOT_PATH', realpath(__DIR__) . DIRECTORY_SEPARATOR);
-define('PHP_RUNTIME_SYSTEM_PATH', PHP_RUNTIME_ROOT_PATH . 'Mishusoft' . DIRECTORY_SEPARATOR);
+define('PHP_RUNTIME_ROOT_PATH', realpath(__DIR__).DIRECTORY_SEPARATOR);
+define('PHP_RUNTIME_SYSTEM_PATH', PHP_RUNTIME_ROOT_PATH.'Mishusoft'.DIRECTORY_SEPARATOR);
 
-define('PHP_SOURCES_ROOT_PATH', realpath(__DIR__) . DIRECTORY_SEPARATOR);
+define('PHP_SOURCES_ROOT_PATH', realpath(__DIR__).DIRECTORY_SEPARATOR);
 define('CURRENT_YEAR', date('Y'));
 
 define('FILE_BASE_NAME', basename(__FILE__));
@@ -41,13 +41,13 @@ if (array_key_exists('USER', $_SERVER) === true) {
 // Set customize error controller.
 set_error_handler(
     static function ($errorMessage, $errorFile, $errorLine) {
-        echo 'Error : ' . $errorMessage . ' from ' . $errorFile . ' on line ' . $errorLine . PHP_EOL;
+        echo 'Error : '.$errorMessage.' from '.$errorFile.' on line '.$errorLine.PHP_EOL;
     },
     E_ALL
 );
 
 // Add Compiler class file.
-require_once realpath(__DIR__) . '/Mishusoft/Release/Compile.php';
+require_once realpath(__DIR__).'/Mishusoft/Release/Compile.php';
 
 (static function (array $parameters) {
     if (count($parameters) > 0) {
@@ -74,7 +74,7 @@ require_once realpath(__DIR__) . '/Mishusoft/Release/Compile.php';
             // Update node-app and Mishusoft Framework release versions.
             if (str_starts_with($options, '-u') === true) {
                 Compile::updatePRV(realpath('./package.json'));
-                Compile::updatePRVALlPackages(realpath(__DIR__ . '/Mishusoft/Packages'));
+                Compile::updatePRVALlPackages(realpath(__DIR__.'/Mishusoft/Packages'));
                 exit();
             }//end if
 
@@ -98,8 +98,11 @@ require_once realpath(__DIR__) . '/Mishusoft/Release/Compile.php';
             }//end if
 
             // Release themes sources or compressed files.
-            if (str_starts_with($options, '-themes') === true) {
+            if (str_starts_with($options, '-compile-themes') === true
+                || str_starts_with($options, '-test-themes') === true
+            ) {
                 if (count($parameters) > 1) {
+                    $options = substr($options, 0, strpos($options, '-themes'));
                     Compile::start('rThemes', $parameters, $options);
                     exit();
                 }
@@ -114,8 +117,11 @@ require_once realpath(__DIR__) . '/Mishusoft/Release/Compile.php';
             }//end if
 
             // Release themes sources or compressed files.
-            if (str_starts_with($options, '-widgets') === true) {
+            if (str_starts_with($options, '-compile-widgets') === true
+                || str_starts_with($options, '-test-widgets') === true
+            ) {
                 if (count($parameters) > 1) {
+                    $options = substr($options, 0, strpos($options, '-widgets'));
                     Compile::start('rWidgets', $parameters, $options);
                     exit();
                 }
@@ -130,8 +136,11 @@ require_once realpath(__DIR__) . '/Mishusoft/Release/Compile.php';
             }//end if
 
             // Release static html pages sources files.
-            if (str_starts_with($options, '-staticpages') === true) {
+            if (str_starts_with($options, '-compile-static') === true
+                || str_starts_with($options, '-test-static') === true
+            ) {
                 if (count($parameters) > 1) {
+                    $options = substr($options, 0, strpos($options, '-static'));
                     Compile::start('rStaticHTMLPages', $parameters, $options);
                     exit();
                 }

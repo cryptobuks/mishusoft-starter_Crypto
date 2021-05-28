@@ -112,8 +112,8 @@ class Compile extends FileSystem
      *
      * @param  string $operation Compilation command.
      * @param  array  $options   Resources of compilation.
+     * @param  string $mode
      * @return void              No action return.
-     * @throws RuntimeException Throw runtime exception.
      */
     public static function start(string $operation, array $options, string $mode): void
     {
@@ -292,7 +292,12 @@ class Compile extends FileSystem
                             'following'
                         );
 
-                        self::compiler($sourcesDirectory, self::realpath($outputDirectory), $mode, ($flash === '-flash'));
+                        self::compiler(
+                            $sourcesDirectory,
+                            self::realpath($outputDirectory),
+                            $mode,
+                            ($flash === '-flash')
+                        );
                         self::log('Operation completed!!');
                     }//end if
                 }//end if
@@ -353,62 +358,66 @@ class Compile extends FileSystem
     public static function updatePRV(string $packageJsonFile): void
     {
         $packageJsonContents = json_decode(file_get_contents($packageJsonFile), true, 512, JSON_THROW_ON_ERROR);
-        if (is_array($packageJsonContents) === true
-            && count($packageJsonContents) > 0
-            && (array_key_exists('version', $packageJsonContents) === true)
-        ) {
-            $oldVersion = $packageJsonContents['version'];
-            // Extract version string into array.
-            $versions = explode('.', $packageJsonContents['version']);
-            // Find out first array key index.
-            $firstArrKey = (count($versions) - 3);
-            // Find out middle array key index.
-            $middleArrKey = (count($versions) - 2);
-            // Find out last array key index.
-            $lastArrKey = (count($versions) - 1);
-            if (array_key_exists($lastArrKey, $versions) === true) {
-                if ($versions[$lastArrKey] === 9) {
-                    $versions[$lastArrKey] = 0;
-                    if (array_key_exists($middleArrKey, $versions) === true) {
-                        if ($versions[$middleArrKey] === 9) {
-                            $versions[$middleArrKey] = 0;
-                            if (array_key_exists($firstArrKey, $versions) === true) {
-                                ++$versions[$firstArrKey];
+        if (is_array($packageJsonContents) === true) {
+            if (count($packageJsonContents) > 0) {
+                if (array_key_exists('version', $packageJsonContents) === true) {
+                    $oldVersion = $packageJsonContents['version'];
+                    // Extract version string into array.
+                    $versions = explode('.', $packageJsonContents['version']);
+                    // Find out first array key index.
+                    $firstArrKey = (count($versions) - 3);
+                    // Find out middle array key index.
+                    $middleArrKey = (count($versions) - 2);
+                    // Find out last array key index.
+                    $lastArrKey = (count($versions) - 1);
+                    if (array_key_exists($lastArrKey, $versions) === true) {
+                        if ($versions[$lastArrKey] === 9) {
+                            $versions[$lastArrKey] = 0;
+                            if (array_key_exists($middleArrKey, $versions) === true) {
+                                if ($versions[$middleArrKey] === 9) {
+                                    $versions[$middleArrKey] = 0;
+                                    if (array_key_exists($firstArrKey, $versions) === true) {
+                                        ++$versions[$firstArrKey];
+                                    }
+                                } else {
+                                    ++$versions[$middleArrKey];
+                                }
                             }
                         } else {
-                            ++$versions[$middleArrKey];
+                            ++$versions[$lastArrKey];
                         }
                     }
-                } else {
-                    ++$versions[$lastArrKey];
-                }
-            }
 
-            $newVersion = implode('.', $versions);
-            $packageJsonContents['version'] = $newVersion;
-            if (is_readable($packageJsonFile) === true) {
-                if (is_writable($packageJsonFile) === true) {
-                    if (file_put_contents(
-                        $packageJsonFile,
-                        json_encode($packageJsonContents, JSON_THROW_ON_ERROR)
-                    ) === true
-                    ) {
-                        self::log('Version '.$oldVersion.' to '.$newVersion.' updated from '.$packageJsonFile.'.');
+                    $newVersion = implode('.', $versions);
+                    $packageJsonContents['version'] = $newVersion;
+                    if (is_readable($packageJsonFile) === true) {
+                        if (is_writable($packageJsonFile) === true) {
+                            if (self::saveToFile(
+                                $packageJsonFile,
+                                json_encode($packageJsonContents, JSON_THROW_ON_ERROR)
+                            ) === true
+                            ) {
+                                self::log('Version '.$oldVersion.' to '.$newVersion.' updated from '.$packageJsonFile.'.');
+                            } else {
+                                self::log('Error in updating version, version setting failed.', 'error');
+                            }
+                        } else {
+                            self::log(
+                                'Error in updating version, '.$packageJsonFile.' write permission denied.',
+                                'error'
+                            );
+                        }
                     } else {
-                        self::log('Error in updating version, version setting failed.', 'error');
-                        self::defaultInfo();
-                    }
+                        self::log('Error in updating version, '.$packageJsonFile.' read permission denied.', 'error');
+                    }//end if
                 } else {
-                    self::log(
-                        'Error in updating version, '.$packageJsonFile.' write permission denied.',
-                        'error'
-                    );
-                    self::defaultInfo();
-                }
+                    self::log('Error in updating version, version number not found in '.$packageJsonFile.'.', 'error');
+                }//end if
             } else {
-                self::log('Error in updating version, '.$packageJsonFile.' read permission denied.', 'error');
-                self::defaultInfo();
+                self::log('Error in updating version, '.$packageJsonFile.' is empty.', 'error');
             }//end if
+        } else {
+            self::log('Error in updating version, '.$packageJsonFile.' corrupted.', 'error');
         }//end if
 
     }//end updatePRV()
@@ -432,25 +441,41 @@ class Compile extends FileSystem
      *
      * @param string  $sources Source directory of system.
      * @param string  $output  File or folder new compilation.
-     * @param boolean $flash
+     * @param boolean $flash   Boolean command fetching.
      */
     public static function compiler(string $sources, string $output, string $mode, bool $flash=false): void
     {
         /*
-         * If the given source file is not (i.e. it is a confirmed directory)
+         * If the given source file is a confirmed directory
          * then the output has to be created from the directory.
-         *
          * */
-        if (is_file($sources) === false) {
+
+        if (is_dir($sources) === true) {
+            /*
+             * If the given output is exists and it's child are no empty
+             * then compiler will be delete all child item.
+             * */
+
+            if ((file_exists($output) === true) && count(self::getList($output)) > 0) {
+                foreach (self::globRecursive($output) as $item) {
+                    self::remove($item);
+                }
+            }
+
             self::createDirectory($output);
         }//end if
 
         /*
          * If flash command found, then delete exists output
-         * and create new
-         *
+         * and create new.
          * */
+
         if ($flash === true) {
+            /*
+             * If the given output is exists
+             * then compiler will be delete all child item.
+             * */
+
             if (file_exists($output) === true) {
                 self::remove($output);
             }//end if
@@ -497,11 +522,11 @@ class Compile extends FileSystem
      *
      * @param string $newFile    New output filename.
      * @param string $sourceFile Source filename.
+     * @param string $mode
      */
     private static function writeFile(string $newFile, string $sourceFile, string $mode): void
     {
-        //print_r(func_get_args());
-        if ((file_exists($newFile) === true) && is_file($newFile) === true) {
+        if ((file_exists($newFile) === true) && (is_file($newFile) === true)) {
             unlink($newFile);
         }//end if
 
@@ -511,10 +536,12 @@ class Compile extends FileSystem
             if (is_resource($compliedFile) === true) {
                 if ($mode === '-compile') {
                     fwrite($compliedFile, self::compressPhpSource($sourceFile));
-                }
-
-                if ($mode === '-test') {
+                } else if ($mode === '-test') {
                     fwrite($compliedFile, file_get_contents($sourceFile));
+                } else {
+                    $message = 'Unable to write '.$compliedFile.'. Invalid command.';
+                    fwrite($compliedFile, $message.debug_backtrace());
+                    self::log($message, 'error');
                 }
 
                 fclose($compliedFile);
@@ -660,7 +687,7 @@ class Compile extends FileSystem
                     $new .= $ts;
                     $ot   = null;
                     $iw   = false;
-                } else if (in_array($tn, $IW) === true) {
+                } else if (in_array($tn, $IW, true) === true) {
                     $new .= $ts;
                     $iw   = true;
                 } else if ($tn === T_CONSTANT_ENCAPSED_STRING
@@ -685,12 +712,12 @@ class Compile extends FileSystem
                     $new .= "<<<S\n";
                     $iw   = false;
                     $ih   = true;
-                    // in HEREDOC
+                    // in HEREDOC.
                 } else if ($tn === T_END_HEREDOC) {
                     $new .= 'S;';
                     $iw   = true;
                     $ih   = false;
-                    // in HEREDOC
+                    // in HEREDOC.
                     for ($j = ($i + 1); $j < $c; $j++) {
                         if (is_string($tokens[$j]) === true && $tokens[$j] === ';') {
                             $i = $j;

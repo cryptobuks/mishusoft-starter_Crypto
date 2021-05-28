@@ -151,7 +151,7 @@ class System
      */
     public static function getAbsoluteInstalledURL(): string
     {
-        return Browser::url_origin($_SERVER).MS_SERVER_PATH;
+        return Browser::urlOrigin($_SERVER).MS_SERVER_PATH;
 
     }//end getAbsoluteInstalledURL()
 
@@ -218,7 +218,7 @@ class System
             'SECURITY_BACKUP_FILE_NAME' => self::$appSecurityBackupFileName,
             'SECURITY_BACKUP_FILE_PATH' => self::$appSecurityFileBackup,
             default => throw new RuntimeException('invalid argument parsed.'),
-        };//end switch
+        };//end match
 
     }//end getRequiresFile()
 

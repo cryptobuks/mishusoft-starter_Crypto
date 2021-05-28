@@ -1,27 +1,36 @@
 <?php
 
+
 use Mishusoft\Framework\Chipsets\Media;
 use Mishusoft\Framework\Chipsets\Services\SEOToolKitService;
+use Mishusoft\Framework\Chipsets\System\Logger;
 use Mishusoft\Framework\Chipsets\System\Memory;
 use Mishusoft\Framework\Chipsets\Ui;
 use Mishusoft\Framework\Chipsets\Utility\_String;
 use Mishusoft\Framework\Drivers\Session;
 
-// we need to generate template engine
+Logger::write('mishusoft.php template is running..');
+Logger::write('UI started');
+// We need to generate template engine.
 Ui::start();
 /*
     Ui::$domDocument = new DOMDocument('1.0', 'UTF-8');
     $html = Ui::element(Ui::$domDocument, 'html', ['lang' => 'en']);
     $this->documentHeadElement = Ui::element($html, 'head');
 $this->documentTitleElement = Ui::element($this->documentHeadElement, 'title');*/
+Logger::write('UI set document title');
 Ui::setDocumentTitle($this->titleOfCurrentWebPage);
 
 
+Logger::write('UI checking template use or not');
 if ($this->templateUse === 'no') {
-    // add template body
+    Logger::write('UI build document for themselves');
+    // Add template body.
     $this->documentTemplateBodyElement = Ui::element(Ui::getDocumentRoot(), 'body');
     Ui::element($this->documentTemplateBodyElement, 'script', ['id' => 'content-loader', 'text' => 0]);
-    // runtime file for compile
+
+    Logger::write('UI load current page.');
+    // Runtime file for compile.
     include_once $this->loadTemplateFile();
 
 
@@ -244,14 +253,14 @@ if ($this->templateUse === 'no') {
     // Ui::element($this->documentBodyElement, 'button',["style"=>"position: absolute;top: 1px;left: 1px;","text"=>"Add to home screen"]);
     // <button class="add-button">Add to home screen</button>
     // add template topQuickBar
-    if (array_key_exists('top', $this->getWidgets())) {
+    if (array_key_exists('top', $this->getWidgets()) === true) {
         foreach ($this->getWidgets()['top'] as $widget) {
             include_once $widget;
         }
     }
 
     // add template universal menubar
-    if (array_key_exists('header', $this->getWidgets())) {
+    if (array_key_exists('header', $this->getWidgets()) === true) {
         foreach ($this->getWidgets()['header'] as $widget) {
             include_once $widget;
         }

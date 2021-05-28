@@ -3,16 +3,14 @@
 namespace Mishusoft\Framework\Chipsets;
 
 
+use ErrorException;
 use JsonException;
-use Mishusoft\Framework\Chipsets\Autoload;
-use Mishusoft\Framework\Chipsets\Http\IP;
 use Mishusoft\Framework\Chipsets\System\Logger;
-use Mishusoft\Packages\Lab\Modules\Main\Controllers\indexController;
 use RuntimeException;
 
 class FileSystem
 {
-    // declare version
+    // Declare version.
     public const VERSION = '1.0.2';
 
 
@@ -23,9 +21,9 @@ class FileSystem
      */
     public static function file(string $filename, $callback=false): bool|string
     {
-        if (self::isFileExists($filename)) {
+        if (self::isFileExists($filename) === true) {
             $fp = fopen($filename, 'rb');
-            if ($fp) {
+            if (is_resource($fp) === true) {
                 $line = fgets($fp);
                 if ($line !== false) {
                     if ($callback) {
@@ -33,7 +31,7 @@ class FileSystem
                     }
 
                     return $filename;
-                    // process $line
+                    // Process $line.
                 }
             }
         }
@@ -44,12 +42,12 @@ class FileSystem
 
 
     /**
-     * @param  $filename
+     * @param  string $filename
      * @return string
      */
     public static function exec(string $filename): string
     {
-        return exec("chmod -R 777 $filename");
+        return exec('chmod -R 777 '.$filename);
 
     }//end exec()
 
@@ -154,6 +152,7 @@ class FileSystem
      * @param  string   $filename
      * @param  callable $callback
      * @return boolean
+     * @throws ErrorException
      */
     public static function readFromFile(string $filename, callable $callback)
     {
@@ -161,7 +160,7 @@ class FileSystem
             return $callback(file_get_contents($filename));
         }
 
-        return trigger_error($filename.' not readable');
+        throw new ErrorException($filename.' not readable');
 
     }//end readFromFile()
 
@@ -194,7 +193,7 @@ class FileSystem
          * chmod("test.txt",0755);// Everything for owner, read and execute for everybody else
          * chmod("test.txt",0740);// Everything for owner, read for owner's group
          * */
-        if (@chmod($destination, $mode)) {
+        if (@chmod($destination, $mode) === true) {
             return @chmod($destination, $mode);
         }
 
@@ -230,7 +229,7 @@ class FileSystem
             closedir($dh);
         } else {
             if (is_link($path) === true) {
-                print "link '$path' is skipped\n";
+                print 'link \''.$path.'\' is skipped';
                 return;
             }
 
@@ -286,7 +285,7 @@ class FileSystem
             }
         }
 
-        if (self::isWriteable($filename) === true) {
+        if ((is_string($filename) === true) && is_writable($filename) === true) {
             self::delete($filename);
         }
 
@@ -318,10 +317,35 @@ class FileSystem
 
 
     /**
+     * @param array|string $directory
+     */
+    public static function directoryCreate(array|string $directory): void
+    {
+        if (is_array($directory) === true) {
+            foreach ($directory as $file) {
+                if (is_writable(self::realpath(dirname($file))) === true) {
+                    self::createDirectory($file);
+                } else {
+                    throw new RuntimeException('Permission denied. '.$file.' creation failed.');
+                }
+            }
+        }
+
+        if (is_string($directory) === true) {
+            if (is_writable(self::realpath(dirname($directory))) === true) {
+                self::createDirectory($directory);
+            } else {
+                throw new RuntimeException('Permission denied. '.$directory.' creation failed');
+            }
+        }
+
+    }//end directoryCreate()
+
+
+    /**
      * @param string  $directory
      * @param integer $permissions
      * @param boolean $recursive
-     * @param null    $context
      */
     public static function createDirectory(string $directory, int $permissions=0777, bool $recursive=true): void
     {
@@ -382,16 +406,18 @@ class FileSystem
 
 
     /**
-     * @param  string $filename
-     * @param  array  $contents
+     * @param  string       $filename
+     * @param  array        $contents
+     * @param  integer|null $length
      * @return false|integer
      * @throws JsonException
      */
-    public static function write(string $filename, array $contents): bool|int
+    public static function write(string $filename, array $contents, int|null $length=null): bool|int
     {
         return fwrite(
             fopen($filename, 'wb+'),
-            json_encode($contents, JSON_THROW_ON_ERROR)
+            json_encode($contents, JSON_THROW_ON_ERROR),
+            $length
         );
 
     }//end write()
@@ -410,15 +436,6 @@ class FileSystem
         fclose($fp);
 
     }//end append()
-
-
-    /**
-     * Destruct class.
-     */
-    public function __destruct()
-    {
-
-    }//end __destruct()
 
 
     /**
@@ -470,6 +487,93 @@ class FileSystem
         return $result;
 
     }//end globRecursive()
+
+
+    /**
+     * @param  string $path
+     * @param  string $filter
+     * @return string|array
+     */
+    public static function getFile(string $path, string $filter):string|array
+    {
+        // echo pathinfo($path, PATHINFO_FILENAME);
+        // echo pathinfo($path, PATHINFO_BASENAME);
+        // echo pathinfo($path, PATHINFO_ALL);
+        // echo pathinfo($path, PATHINFO_DIRNAME);
+        // echo pathinfo($path, PATHINFO_EXTENSION);
+        return match (strtolower($filter)) {
+            'name'=> self::getFilename($path),
+            'base'=> self::getFileBase($path),
+            'directory'=> self::getFileDirectory($path),
+            'extension'=> self::getFileExt($path),
+            default => self::getFileAll($path),
+        };
+
+    }//end getFile()
+
+
+    /**
+     * @param  string $path
+     * @return array
+     */
+    public static function getFileAll(string $path):array
+    {
+        return pathinfo($path, PATHINFO_ALL);
+
+    }//end getFileAll()
+
+
+    /**
+     * @param  string $path
+     * @return string
+     */
+    public static function getFilename(string $path):string
+    {
+        return pathinfo($path, PATHINFO_FILENAME);
+
+    }//end getFilename()
+
+
+    /**
+     * @param  string $path
+     * @return string
+     */
+    public static function getFileBase(string $path):string
+    {
+        return pathinfo($path, PATHINFO_BASENAME);
+
+    }//end getFileBase()
+
+
+    /**
+     * @param  string $path
+     * @return string
+     */
+    public static function getFileDirectory(string $path):string
+    {
+        return pathinfo($path, PATHINFO_DIRNAME);
+
+    }//end getFileDirectory()
+
+
+    /**
+     * @param  string $path
+     * @return string
+     */
+    public static function getFileExt(string $path):string
+    {
+        return pathinfo($path, PATHINFO_EXTENSION);
+
+    }//end getFileExt()
+
+
+    /**
+     * Destruct class.
+     */
+    public function __destruct()
+    {
+
+    }//end __destruct()
 
 
 }//end class

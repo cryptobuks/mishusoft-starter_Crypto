@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Mishusoft\Framework\Chipsets\System;
 
@@ -7,15 +7,22 @@ use JsonException;
 use Mishusoft\Framework\Chipsets\Framework;
 use Mishusoft\Framework\Chipsets\MPM;
 use Mishusoft\Framework\Chipsets\System;
+use RuntimeException;
 
 class Memory
 {
     // Declare version.
     public const VERSION = '1.0.0';
 
+    private string $frameworkConfigFile = Framework::configFile;
+
+    private static string $frameworkInstallFile = Framework::installFile;
+
 
     /**
-     * C_MOS constructor.
+     * Memory constructor.
+     *
+     * @throws JsonException
      */
     public function __construct()
     {
@@ -29,13 +36,13 @@ class Memory
          */
 
         if (class_exists(ROM::class) === false) {
-            trigger_error(__NAMESPACE__.'\ROM not found.');
+            throw new RuntimeException(__NAMESPACE__.'\ROM not found.');
         } else {
             (new ROM())->play();
         }
 
-        if (file_exists(PHP_RUNTIME_REGISTRIES_PATH.'framework.json') === false) {
-            trigger_error(PHP_RUNTIME_REGISTRIES_PATH.'framework.json not found.');
+        if (file_exists($this->frameworkConfigFile) === false) {
+            throw new RuntimeException($this->frameworkConfigFile.' not found.');
         }
 
     }//end __construct()
@@ -76,36 +83,18 @@ class Memory
 
         define('MS_SYSTEM_TEMP_PATH', PHP_RUNTIME_ROOT_PATH.'tmp'.DIRECTORY_SEPARATOR);
         // Main constants define end.
-        define('PHP_LANG_VERSION', phpversion());
+        define('PHP_LANG_VERSION', PHP_VERSION);
         define('HASH_KEY', '57c1d48ba721a');
         define('HASH_KEY_OPENSSL', 'bRuD5WYw5wd0rdHR9yLlM6wt2vteuiniQBqE70nAuhU');
-        if (is_readable(implode([PHP_RUNTIME_SYSTEM_PATH, 'Registries/framework.install.json']))) {
-            define(
-                'BASEURL',
-                self::Data(
-                    'framework',
-                    [
-                        'file' => implode([PHP_RUNTIME_SYSTEM_PATH, 'Registries/framework.install.json']),
-                    ]
-                )->host->url
-            );
+        if (is_readable(self::$frameworkInstallFile) === true) {
+            define('BASEURL', self::data('framework', ['file' => self::$frameworkInstallFile])->host->url);
         } else {
             define('BASEURL', System::getAbsoluteInstalledURL());
         }
 
-        // database info.
+        // Database info.
         define('MS_DB_USER_NAME', 'superuser');
         define('MS_DB_USER_PASSWORD', 'superuser');
-
-        /*
-            define('MS_MEDIA_IMAGES_LOCAL_PATH', MS_ASSETS_MEDIA_PATH . 'images' . DIRECTORY_SEPARATOR);
-            define('MS_MEDIA_IMAGES_REMOTE_PATH', join([BaseURL , 'libraries/images' , DIRECTORY_SEPARATOR]));
-            define('MS_MEDIA_LOGOS_LOCAL_PATH', MS_ASSETS_MEDIA_PATH . 'favicons' . DIRECTORY_SEPARATOR);
-            define('MS_MEDIA_LOGOS_REMOTE_PATH', join([BaseURL , 'libraries/images/logos' , DIRECTORY_SEPARATOR]));
-            define('MS_MEDIA_PROFILE_PHOTOS_LOCAL_PATH', MS_ASSETS_MEDIA_PATH . 'profile_photos' . DIRECTORY_SEPARATOR);
-            define('MS_MEDIA_PROFILE_PHOTOS_REMOTE_PATH', join([BaseURL , 'libraries/images/avatars' , DIRECTORY_SEPARATOR]));
-            define('MS_MEDIA_UPLOADS_LOCAL_PATH', MS_ASSETS_MEDIA_PATH . 'uploads' . DIRECTORY_SEPARATOR);
-        define('MS_MEDIA_UPLOADS_REMOTE_PATH', join([BaseURL , 'libraries/uploads' , DIRECTORY_SEPARATOR]));*/
 
     }//end loadCoreDefinedConstants()
 
@@ -116,6 +105,8 @@ class Memory
      * @param  string $carrier
      * @param  array  $options
      * @return mixed
+     * @throws ErrorException
+     * @throws JsonException
      */
 
 
@@ -185,7 +176,7 @@ class Memory
             if (array_key_exists('file', $options) === true) {
                 $filename = $options['file'];
             } else {
-                $filename = Framework::installFile;
+                $filename = self::$frameworkInstallFile;
             }
 
             if (file_exists($filename) === false) {
@@ -314,7 +305,6 @@ class Memory
      *
      * @param  object $framework Framework data object.
      * @return void Return nothing.
-     *
      * */
     private static function read(object $framework): void
     {

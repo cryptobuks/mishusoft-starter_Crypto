@@ -42,6 +42,8 @@ class RuntimeErrors extends Exception
         $this->line     = $lineno;
         $this->errTrace = $trace;
 
+        //_Debug::preOutput(debug_backtrace());
+
         echo '<br/><article style="margin: 0;padding: 5px;border: 1px solid lightgray;border-radius: 5px;background-color: #f4f4f4;">';
         echo '<section style="line-height: 1.5;margin: -5px -5px 10px -5px;box-shadow: inset 0 -3em 3em rgba(0,0,0,.1),.3em .3em 1em rgba(0,0,0,.3);padding: 8px 5px;text-align: justify;">';
         echo '<div style="font-size: 20px;font-weight: bold; border-bottom: 1px solid lightgray;padding-bottom: 10px;text-transform: uppercase;">';
@@ -134,8 +136,8 @@ class RuntimeErrors extends Exception
     private function beautifyCallStack(array|string $trace): void
     {
         if (is_array($trace) === true && count($trace) > 0) {
-            $traceArray = array_reverse($trace);
-            foreach (self::cleanTraceArray($traceArray) as $key => $value) {
+            $traceArray = self::cleanTraceArray($trace);
+            foreach ($traceArray as $key => $value) {
                 $line = Number::next($key).') ';
                 if (array_key_exists('file', $value) === true) {
                     $line .= $value['file'];
@@ -171,15 +173,9 @@ class RuntimeErrors extends Exception
         }//end if
 
         if (is_string($trace) === true && $trace !== '') {
-            $traceArray = array_reverse(explode("\n", $trace));
-            foreach (self::cleanTraceArray($traceArray) as $key => $value) {
-                if (str_contains($value, '{closure}()') === true) {
-                    unset($traceArray[$key]);
-                } else if (str_contains($value, '{main}') === true) {
-                    unset($traceArray[$key]);
-                } else {
-                    echo preg_replace('/[#]\d+/', Number::next($key).')', $value).PHP_EOL;
-                }
+            $traceArray = self::cleanTraceArray(explode("\n", $trace));
+            foreach ($traceArray as $key => $value) {
+                echo preg_replace('/[#]\d+/', Number::next($key).')', $value).PHP_EOL;
             }
         }
 
@@ -211,6 +207,9 @@ class RuntimeErrors extends Exception
                 }
             }
         }//end foreach
+
+        array_multisort($traceArray, SORT_DESC);
+        //ksort($traceArray, SORT_ASC);
 
         return $traceArray;
 

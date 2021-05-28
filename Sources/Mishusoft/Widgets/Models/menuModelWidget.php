@@ -1,11 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace Mishusoft\Framework\Widgets\Models;
+namespace Mishusoft\Widgets\Models;
 
 use Mishusoft\Framework\Chipsets\Databases\PdoMySQL;
 use Mishusoft\Framework\Chipsets\System;
 use Mishusoft\Framework\Chipsets\Utility\_Array;
-use Mishusoft\Framework\Chipsets\Utility\_Debug;
 use Mishusoft\Framework\Drivers\Model;
 
 class menuModelWidget extends Model
@@ -20,7 +19,7 @@ class menuModelWidget extends Model
         $data = array();
         $result = $this->db->query("SELECT DISTINCT `position` FROM `" . DbPREFIX . "pages` WHERE `status` = 'enable' ORDER BY `position`")->fetchAll(PdoMySQL::FETCH_ASSOC);
         if ($result !== false && count($result) > 0) {
-            for ($i = 0; $i < count($result); $i++) {
+            for ($i = 0, $iMax = count($result); $i < $iMax; $i++) {
                 $position_id = $result[$i]['position'];
                 if ($this->getPositionStatusById($position_id) !== false) {
                     $data = $this->getMenusByPositionId($position_id);
@@ -53,7 +52,7 @@ class menuModelWidget extends Model
         //$sub = array();
 
         if (count($menus) > (int)'0') {
-            for ($i = 0; count($menus) > $i; $i++) {
+            for ($i = 0, $iMax = count($menus); $iMax > $i; $i++) {
                 $parent = (int)$menus[$i]['parent_id'];
                 if (($menus[$i]['parent_id'] === "$parent") === true || ($menus[$i]['parent_id'] === $parent) === true) { // server fetch problem with $parent variable out of invite comma
                     $data[$i] = array(
@@ -159,7 +158,7 @@ class menuModelWidget extends Model
      * @public
      * @return mixed
      */
-    public function getSiteInfo()
+    public function getSiteInfo(): mixed
     {
         return $this->db->query("SELECT * FROM `" . DbPREFIX . WEB_CONFIG_TABLE . "` WHERE `http_host_name` = '" . System::getInstalledURL() . "' LIMIT 1;")->fetchAll(PdoMySQL::FETCH_ASSOC);
     }

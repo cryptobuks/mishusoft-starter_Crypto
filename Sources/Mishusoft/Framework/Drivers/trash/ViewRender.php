@@ -306,7 +306,7 @@ class ViewRender implements MishusoftViewInterface
         if (is_readable(MS_WIDGETS_PATH . "$widgetClass.php")) {
             include_once MS_WIDGETS_PATH . "$widgetClass.php";
             $widgetClass = Preloader::getClassNamespaceFromPath(MS_WIDGETS_PATH . "$widgetClass.php");
-            if (!class_exists($widgetClass)) {
+            if (class_exists($widgetClass, false) === false) {
                 Firewall::runtimeFailure("Not Found", [
                     "debug" => [
                         "file" => "$widgetClass",

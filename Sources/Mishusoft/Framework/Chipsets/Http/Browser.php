@@ -1,6 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
-/**
+/*
  * Browser (php language) Library
  * Developer: Mr Al-Amin Ahmed Abir
  * Website: https://www.mishusoft.com
@@ -10,24 +10,28 @@
 namespace Mishusoft\Framework\Chipsets\Http;
 
 
+use Mishusoft\Framework\Chipsets\FileSystem;
 use Mishusoft\Framework\Chipsets\Http\Browser\DataObject;
+use Mishusoft\Framework\Chipsets\Utility\_Debug;
+use Mishusoft\Framework\Chipsets\Utility\_JSON;
 use Mishusoft\Framework\Chipsets\Utility\Stream;
+use RuntimeException;
 
 class Browser extends DataObject
 {
-    // declare version
-    const VERSION = '1.0.2';
+    // Declare version.
+    public const VERSION = '1.0.2';
 
-    // variables
-    private string $RequestMethod;
+    // Variables.
+    private string $requestMethod;
 
-    private string $RequestMode;
+    private string $requestMode;
 
-    private string $UserAgent = 'Unknown';
+    private string $userAgent = 'Unknown';
 
-    private string $AcceptLanguage = 'Unknown';
+    private string $acceptLanguage = 'Unknown';
 
-    private string $AcceptEncoding = 'Unknown';
+    private string $acceptEncoding = 'Unknown';
 
     private string $browserName = 'Unknown';
 
@@ -74,16 +78,16 @@ class Browser extends DataObject
     /**
      * @var mixed
      */
-    private $currentDeviceInfo;
+    private mixed $currentDeviceInfo;
 
-    private string $URLProtocol;
+    private string $urlProtocol;
 
-    private string $URLHostname;
+    private string $urlHostname;
 
-    private string $URLPath;
+    private string $urlPath;
 
     // runtime storage
-    private array $UserAgentList = [];
+    private array $userAgentList = [];
 
     private array $devicesList;
 
@@ -102,38 +106,43 @@ class Browser extends DataObject
     private string $timeOfToday;
 
 
+    /**
+     * Browser constructor.
+     *
+     * @throws \JsonException
+     */
     public function __construct()
     {
         $this->timeOfToday   = date('Y-m-d H:i:s');
-        $this->RequestMethod = $_SERVER['REQUEST_METHOD'];
-        $this->RequestMode   = array_key_exists('HTTP-SEC-FETCH-MODE', $_SERVER) ? $_SERVER['HTTP-SEC-FETCH-MODE'] : 'negative';
-        $this->URLProtocol   = array_key_exists('REQUEST_SCHEME', $_SERVER) ? $_SERVER['REQUEST_SCHEME'] : 'http';
-        $this->URLHostname   = $_SERVER['HTTP_HOST'];
-        $this->URLPath       = $_SERVER['REQUEST_URI'];
+        $this->requestMethod = $_SERVER['REQUEST_METHOD'];
+        $this->requestMode   = array_key_exists('HTTP-SEC-FETCH-MODE', $_SERVER) ? $_SERVER['HTTP-SEC-FETCH-MODE'] : 'negative';
+        $this->urlProtocol   = array_key_exists('REQUEST_SCHEME', $_SERVER) ? $_SERVER['REQUEST_SCHEME'] : 'http';
+        $this->urlHostname   = array_key_exists('HTTP_HOST', $_SERVER) ? $_SERVER['HTTP_HOST'] : 'unknown host';
+        $this->urlPath       = $_SERVER['REQUEST_URI'];
 
         $this->loadBrowserData();
 
-        if (function_exists('apache_request_headers')) {
-            if (array_key_exists('User-Agent', apache_request_headers())) {
-                $this->UserAgent      = array_key_exists('User-Agent', apache_request_headers()) ? apache_request_headers()['User-Agent'] : $this->UserAgent;
-                $this->AcceptLanguage = array_key_exists('Accept-Language', apache_request_headers()) ? apache_request_headers()['Accept-Language'] : $this->AcceptLanguage;
-                $this->AcceptEncoding = array_key_exists('Accept-Encoding', apache_request_headers()) ? apache_request_headers()['Accept-Encoding'] : $this->AcceptEncoding;
+        if (function_exists('apache_request_headers') === true) {
+            if (array_key_exists('User-Agent', apache_request_headers()) === true) {
+                $this->userAgent      = array_key_exists('User-Agent', apache_request_headers()) ? apache_request_headers()['User-Agent'] : $this->UserAgent;
+                $this->acceptLanguage = array_key_exists('Accept-Language', apache_request_headers()) ? apache_request_headers()['Accept-Language'] : $this->AcceptLanguage;
+                $this->acceptEncoding = array_key_exists('Accept-Encoding', apache_request_headers()) ? apache_request_headers()['Accept-Encoding'] : $this->AcceptEncoding;
                 $this->storeUserAgentInFile();
                 $this->analyze();
             }
-        } else if (function_exists('getallheaders')) {
-            if (array_key_exists('User-Agent', getallheaders())) {
-                $this->UserAgent      = array_key_exists('HTTP_USER_AGENT', getallheaders()) ? getallheaders()['HTTP_USER_AGENT'] : $this->UserAgent;
-                $this->AcceptLanguage = array_key_exists('Accept-Language', getallheaders()) ? getallheaders()['Accept-Language'] : $this->AcceptLanguage;
-                $this->AcceptEncoding = array_key_exists('Accept-Encoding', getallheaders()) ? getallheaders()['Accept-Encoding'] : $this->AcceptEncoding;
+        } else if (function_exists('getallheaders') === true) {
+            if (array_key_exists('User-Agent', getallheaders()) === true) {
+                $this->userAgent      = array_key_exists('HTTP_USER_AGENT', getallheaders()) ? getallheaders()['HTTP_USER_AGENT'] : $this->UserAgent;
+                $this->acceptLanguage = array_key_exists('Accept-Language', getallheaders()) ? getallheaders()['Accept-Language'] : $this->AcceptLanguage;
+                $this->acceptEncoding = array_key_exists('Accept-Encoding', getallheaders()) ? getallheaders()['Accept-Encoding'] : $this->AcceptEncoding;
                 $this->storeUserAgentInFile();
                 $this->analyze();
             }
         } else {
-            if (array_key_exists('HTTP_USER_AGENT', $_SERVER)) {
-                $this->AcceptLanguage = array_key_exists('HTTP_USER_AGENT', $_SERVER) ? $_SERVER['HTTP_USER_AGENT'] : $this->UserAgent;
-                $this->AcceptLanguage = array_key_exists('HTTP_ACCEPT_LANGUAGE', $_SERVER) ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : $this->AcceptLanguage;
-                $this->AcceptEncoding = array_key_exists('HTTP_ACCEPT_ENCODING', $_SERVER) ? $_SERVER['HTTP_ACCEPT_ENCODING'] : $this->AcceptEncoding;
+            if (array_key_exists('HTTP_USER_AGENT', $_SERVER) === true) {
+                $this->userAgent      = array_key_exists('HTTP_USER_AGENT', $_SERVER) ? $_SERVER['HTTP_USER_AGENT'] : $this->UserAgent;
+                $this->acceptLanguage = array_key_exists('HTTP_ACCEPT_LANGUAGE', $_SERVER) ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : $this->AcceptLanguage;
+                $this->acceptEncoding = array_key_exists('HTTP_ACCEPT_ENCODING', $_SERVER) ? $_SERVER['HTTP_ACCEPT_ENCODING'] : $this->AcceptEncoding;
                 $this->storeUserAgentInFile();
                 $this->analyze();
             }
@@ -142,153 +151,220 @@ class Browser extends DataObject
     }//end __construct()
 
 
+    /**
+     * @throws \JsonException
+     */
     private function loadBrowserData(): void
     {
-        // devices list
-        if (file_exists(self::devicesListFile)) {
-            if (is_readable(self::devicesListFile)) {
-                if ($this->IsUpdateDatabase($this->getDevicesList(), self::devicesListFile)) {
-                    if (is_writable(self::devicesListFile)) {
-                        file_put_contents(self::devicesListFile, json_encode($this->getDevicesList()));
+        // Devices list.
+        if (file_exists(self::devicesListFile) === true) {
+            if (is_readable(self::devicesListFile) === true) {
+                if (($this->IsUpdateDatabase($this->getDevicesList(), self::devicesListFile) === true)) {
+                    if (is_writable(self::devicesListFile) === true) {
+                        FileSystem::saveToFile(self::devicesListFile, _JSON::encodeToString($this->getDevicesList()));
+                    } else {
+                        throw new RuntimeException('Permission denied. Unable to write '.self::devicesListFile);
                     }
                 }
 
-                $this->devicesList = json_decode(file_get_contents(self::devicesListFile), true);
+                $this->devicesList = _JSON::decodeToArray(FileSystem::read(self::devicesListFile));
+            } else {
+                throw new RuntimeException('Permission denied. Unable to read '.self::devicesListFile);
             }
         } else {
-            if (fopen(self::devicesListFile, 'wb+')) {
-                file_put_contents(self::devicesListFile, json_encode($this->getDevicesList()));
+            if (is_resource(fopen(self::devicesListFile, 'wb+')) === true) {
+                FileSystem::saveToFile(self::devicesListFile, _JSON::encodeToString($this->getDevicesList()));
+            } else {
+                throw new RuntimeException('Permission denied. Unable to create '.self::devicesListFile);
             }
 
             $this->devicesList = $this->getDevicesList();
-        }
+        }//end if
 
-        // device's architecture list
-        if (file_exists(self::devicesArchitectureListFile)) {
-            if (is_readable(self::devicesArchitectureListFile)) {
-                if ($this->IsUpdateDatabase($this->getDevicesArchitectureList(), self::devicesArchitectureListFile)) {
-                    if (is_writable(self::devicesArchitectureListFile)) {
-                        file_put_contents(self::devicesArchitectureListFile, json_encode($this->getDevicesArchitectureList()));
+        // Device's architecture list.
+        if (file_exists(self::devicesArchitectureListFile) === true) {
+            if (is_readable(self::devicesArchitectureListFile) === true) {
+                if ($this->IsUpdateDatabase($this->getDevicesArchitectureList(), self::devicesArchitectureListFile) === true) {
+                    if (is_writable(self::devicesArchitectureListFile) === true) {
+                        FileSystem::saveToFile(
+                            self::devicesArchitectureListFile,
+                            _JSON::encodeToString($this->getDevicesArchitectureList())
+                        );
+                    } else {
+                        throw new RuntimeException('Permission denied. Unable to write '.self::devicesArchitectureListFile);
                     }
                 }
 
-                $this->devicesArchitectureList = json_decode(file_get_contents(self::devicesArchitectureListFile), true);
+                $this->devicesArchitectureList = _JSON::decodeToArray(FileSystem::read(self::devicesArchitectureListFile));
+            } else {
+                throw new RuntimeException('Permission denied. Unable to read '.self::devicesArchitectureListFile);
             }
         } else {
-            if (fopen(self::devicesArchitectureListFile, 'wb+')) {
-                file_put_contents(self::devicesArchitectureListFile, json_encode($this->getDevicesArchitectureList()));
+            if (is_resource(fopen(self::devicesArchitectureListFile, 'wb+')) === true) {
+                FileSystem::saveToFile(
+                    self::devicesArchitectureListFile,
+                    _JSON::encodeToString($this->getDevicesArchitectureList())
+                );
+            } else {
+                throw new RuntimeException('Permission denied. Unable to create '.self::devicesArchitectureListFile);
             }
 
             $this->devicesArchitectureList = $this->getDevicesArchitectureList();
-        }
+        }//end if
 
-        // devices category list
-        if (file_exists(self::devicesCategoryListFile)) {
-            if (is_readable(self::devicesCategoryListFile)) {
-                if ($this->IsUpdateDatabase($this->getDevicesCategoryList(), self::devicesCategoryListFile)) {
-                    if (is_writable(self::devicesCategoryListFile)) {
-                        file_put_contents(self::devicesCategoryListFile, json_encode($this->getDevicesCategoryList()));
+        // Devices category list.
+        if (file_exists(self::devicesCategoryListFile) === true) {
+            if (is_readable(self::devicesCategoryListFile) === true) {
+                if ($this->IsUpdateDatabase($this->getDevicesCategoryList(), self::devicesCategoryListFile) === true) {
+                    if (is_writable(self::devicesCategoryListFile) === true) {
+                        FileSystem::saveToFile(
+                            self::devicesCategoryListFile,
+                            _JSON::encodeToString($this->getDevicesCategoryList())
+                        );
+                    } else {
+                        throw new RuntimeException('Permission denied. Unable to write '.self::devicesCategoryListFile);
                     }
                 }
 
-                $this->devicesCategoryList = json_decode(file_get_contents(self::devicesCategoryListFile), true);
+                $this->devicesCategoryList = _JSON::decodeToArray(FileSystem::read(self::devicesCategoryListFile));
+            } else {
+                throw new RuntimeException('Permission denied. Unable to read '.self::devicesCategoryListFile);
             }
         } else {
-            if (fopen(self::devicesCategoryListFile, 'wb+')) {
-                file_put_contents(self::devicesCategoryListFile, json_encode($this->getDevicesCategoryList()));
+            if (is_resource(fopen(self::devicesCategoryListFile, 'wb+')) === true) {
+                FileSystem::saveToFile(self::devicesCategoryListFile, _JSON::encodeToString($this->getDevicesCategoryList()));
+            } else {
+                throw new RuntimeException('Permission denied. Unable to create '.self::devicesCategoryListFile);
             }
 
             $this->devicesCategoryList = $this->getDevicesCategoryList();
-        }
+        }//end if
 
-        // platform window manager list
-        if (file_exists(self::devicesPlatformWMNameListFile)) {
-            if (is_readable(self::devicesPlatformWMNameListFile)) {
-                if ($this->IsUpdateDatabase($this->getPlatformWmList(), self::devicesPlatformWMNameListFile)) {
+        // Platform window manager list.
+        if (file_exists(self::devicesPlatformWMNameListFile) === true) {
+            if (is_readable(self::devicesPlatformWMNameListFile) === true) {
+                if ($this->IsUpdateDatabase($this->getPlatformWmList(), self::devicesPlatformWMNameListFile) === true) {
                     if (is_writable(self::devicesPlatformWMNameListFile)) {
-                        file_put_contents(self::devicesPlatformWMNameListFile, json_encode($this->getPlatformWmList()));
+                        FileSystem::saveToFile(
+                            self::devicesPlatformWMNameListFile,
+                            _JSON::encodeToString($this->getPlatformWmList())
+                        );
+                    } else {
+                        throw new RuntimeException('Permission denied. Unable to write '.self::devicesPlatformWMNameListFile);
                     }
                 }
 
-                $this->devicesPlatformWMNameList = json_decode(file_get_contents(self::devicesPlatformWMNameListFile), true);
+                $this->devicesPlatformWMNameList = _JSON::decodeToArray(FileSystem::read(self::devicesPlatformWMNameListFile));
+            } else {
+                throw new RuntimeException('Permission denied. Unable to read '.self::devicesPlatformWMNameListFile);
             }
         } else {
-            if (fopen(self::devicesPlatformWMNameListFile, 'wb+')) {
-                file_put_contents(self::devicesPlatformWMNameListFile, json_encode($this->getPlatformWmList()));
+            if (is_resource(fopen(self::devicesPlatformWMNameListFile, 'wb+')) === true) {
+                FileSystem::saveToFile(self::devicesPlatformWMNameListFile, _JSON::encodeToString($this->getPlatformWmList()));
+            } else {
+                throw new RuntimeException('Permission denied. Unable to create '.self::devicesCategoryListFile);
             }
 
             $this->devicesPlatformWMNameList = $this->getPlatformWmList();
-        }
+        }//end if
 
-        // browsers list
-        if (file_exists(self::webBrowserListFile)) {
-            if (is_readable(self::webBrowserListFile)) {
-                if ($this->IsUpdateDatabase($this->getWebBrowsersList(), self::webBrowserListFile)) {
-                    if (is_writable(self::webBrowserListFile)) {
-                        file_put_contents(self::webBrowserListFile, json_encode($this->getWebBrowsersList()));
+        // Browsers list.
+        if (file_exists(self::webBrowserListFile) === true) {
+            if (is_readable(self::webBrowserListFile) === true) {
+                if ($this->IsUpdateDatabase($this->getWebBrowsersList(), self::webBrowserListFile) === true) {
+                    if (is_writable(self::webBrowserListFile) === true) {
+                        FileSystem::saveToFile(self::webBrowserListFile, _JSON::encodeToString($this->getWebBrowsersList()));
+                    } else {
+                        throw new RuntimeException('Permission denied. Unable to write '.self::devicesPlatformWMNameListFile);
                     }
                 }
 
-                $this->webBrowserList = json_decode(file_get_contents(self::webBrowserListFile), true);
+                $this->webBrowserList = _JSON::decodeToArray(FileSystem::read(self::webBrowserListFile));
+            } else {
+                throw new RuntimeException('Permission denied. Unable to read '.self::webBrowserListFile);
             }
         } else {
-            if (fopen(self::webBrowserListFile, 'wb+')) {
-                file_put_contents(self::webBrowserListFile, json_encode($this->getWebBrowsersList()));
+            if (is_resource(fopen(self::webBrowserListFile, 'wb+')) === true) {
+                FileSystem::saveToFile(self::webBrowserListFile, _JSON::encodeToString($this->getWebBrowsersList()));
+            } else {
+                throw new RuntimeException('Permission denied. Unable to create '.self::devicesCategoryListFile);
             }
 
             $this->webBrowserList = $this->getWebBrowsersList();
-        }
+        }//end if
 
-        // browsers app code list
-        if (file_exists(self::webBrowserAppCodeListFile)) {
-            if (is_readable(self::webBrowserAppCodeListFile)) {
-                if ($this->IsUpdateDatabase($this->getWebBrowserAppCodeList(), self::webBrowserAppCodeListFile)) {
-                    if (is_writable(self::webBrowserAppCodeListFile)) {
-                        file_put_contents(self::webBrowserAppCodeListFile, json_encode($this->getWebBrowserAppCodeList()));
+        // Browsers app code list.
+        if (file_exists(self::webBrowserAppCodeListFile) === true) {
+            if (is_readable(self::webBrowserAppCodeListFile) === true) {
+                if ($this->IsUpdateDatabase($this->getWebBrowserAppCodeList(), self::webBrowserAppCodeListFile) === true) {
+                    if (is_writable(self::webBrowserAppCodeListFile) === true) {
+                        FileSystem::saveToFile(
+                            self::webBrowserAppCodeListFile,
+                            _JSON::encodeToString($this->getWebBrowserAppCodeList())
+                        );
+                    } else {
+                        throw new RuntimeException('Permission denied. Unable to write '.self::devicesPlatformWMNameListFile);
                     }
                 }
 
-                $this->webBrowserAppCodeNameList = json_decode(file_get_contents(self::webBrowserAppCodeListFile), true);
+                $this->webBrowserAppCodeNameList = _JSON::decodeToArray(FileSystem::read(self::webBrowserAppCodeListFile));
+            } else {
+                throw new RuntimeException('Permission denied. Unable to read '.self::webBrowserAppCodeListFile);
             }
         } else {
-            if (fopen(self::webBrowserAppCodeListFile, 'wb+')) {
-                file_put_contents(self::webBrowserAppCodeListFile, json_encode($this->getWebBrowserAppCodeList()));
+            if (is_resource(fopen(self::webBrowserAppCodeListFile, 'wb+')) === true) {
+                FileSystem::saveToFile(
+                    self::webBrowserAppCodeListFile,
+                    _JSON::encodeToString($this->getWebBrowserAppCodeList())
+                );
+            } else {
+                throw new RuntimeException('Permission denied. Unable to create '.self::devicesCategoryListFile);
             }
 
             $this->webBrowserAppCodeNameList = $this->getWebBrowserAppCodeList();
-        }
+        }//end if
 
-        // browsers layout list
-        if (file_exists(self::webBrowserLayoutListFile)) {
-            if (is_readable(self::webBrowserLayoutListFile)) {
-                if ($this->IsUpdateDatabase($this->getWebBrowsersLayoutList(), self::webBrowserLayoutListFile)) {
-                    if (is_writable(self::webBrowserLayoutListFile)) {
-                        file_put_contents(self::webBrowserLayoutListFile, json_encode($this->getWebBrowsersLayoutList()));
+        // Browsers layout list.
+        if (file_exists(self::webBrowserLayoutListFile) === true) {
+            if (is_readable(self::webBrowserLayoutListFile) === true) {
+                if ($this->IsUpdateDatabase($this->getWebBrowsersLayoutList(), self::webBrowserLayoutListFile) === true) {
+                    if (is_writable(self::webBrowserLayoutListFile) === true) {
+                        FileSystem::saveToFile(
+                            self::webBrowserLayoutListFile,
+                            _JSON::encodeToString($this->getWebBrowsersLayoutList())
+                        );
+                    } else {
+                        throw new RuntimeException('Permission denied. Unable to write '.self::devicesPlatformWMNameListFile);
                     }
                 }
 
-                $this->webBrowserLayoutList = json_decode(file_get_contents(self::webBrowserLayoutListFile), true);
+                $this->webBrowserLayoutList = _JSON::decodeToArray(FileSystem::read(self::webBrowserLayoutListFile), true);
+            } else {
+                throw new RuntimeException('Permission denied. Unable to read '.self::webBrowserAppCodeListFile);
             }
         } else {
-            if (fopen(self::webBrowserLayoutListFile, 'wb+')) {
-                file_put_contents(self::webBrowserLayoutListFile, json_encode($this->getWebBrowsersLayoutList()));
+            if (is_resource(fopen(self::webBrowserLayoutListFile, 'wb+')) === true) {
+                FileSystem::saveToFile(self::webBrowserLayoutListFile, _JSON::encodeToString($this->getWebBrowsersLayoutList()));
             }
 
             $this->webBrowserLayoutList = $this->getWebBrowsersLayoutList();
-        }
+        }//end if
 
     }//end loadBrowserData()
 
 
+    /**
+     * @param  array  $database
+     * @param  string $filename
+     * @return boolean
+     * @throws \JsonException
+     */
     private function IsUpdateDatabase(array $database, string $filename): bool
     {
-        if (is_readable(file_get_contents($filename)) && strlen(file_get_contents($filename)) !== 0 and count(array_keys($database)) > count(array_keys(json_decode(file_get_contents($filename), true)))
-            || strlen(json_encode($database)) > strlen(file_get_contents($filename))
-        ) {
-            return true;
-        }
-
-        return false;
+        return (is_readable($filename) === true
+                && strlen(FileSystem::read($filename)) !== 0
+                && count(array_keys($database)) > count(array_keys(_JSON::decodeToArray(FileSystem::read($filename)))))
+            || strlen(_JSON::encodeToString($database)) > strlen(FileSystem::read($filename));
 
     }//end IsUpdateDatabase()
 
@@ -296,14 +372,14 @@ class Browser extends DataObject
     private function storeUserAgentInFile(): void
     {
         // UserAgentListFile
-        if (file_exists(self::userAgentListFile)) {
-            if (is_writable(self::userAgentListFile)) {
-                Stream::append(self::userAgentListFile, "\"$this->timeOfToday\",\"".IP::get()."\",\"$this->UserAgent\"".PHP_EOL);
+        if (file_exists(self::userAgentListFile) === true) {
+            if (is_writable(self::userAgentListFile) === true) {
+                FileSystem::append(self::userAgentListFile, "\"$this->timeOfToday\",\"".IP::get()."\",\"$this->userAgent\"".PHP_EOL);
             }
         } else {
-            if (is_writable(dirname(self::userAgentListFile))) {
-                Stream::append(self::userAgentListFile, '"Date", "Client", "User-Agent"'.PHP_EOL);
-                Stream::append(self::userAgentListFile, "\"$this->timeOfToday\",\"".IP::get()."\",\"$this->UserAgent\"".PHP_EOL);
+            if (is_writable(dirname(self::userAgentListFile)) === true) {
+                FileSystem::append(self::userAgentListFile, '"Date", "Client", "User-Agent"'.PHP_EOL);
+                FileSystem::append(self::userAgentListFile, "\"$this->timeOfToday\",\"".IP::get()."\",\"$this->userAgent\"".PHP_EOL);
             }
         }
 
@@ -315,9 +391,9 @@ class Browser extends DataObject
         /*
             start operation*/
         // first step
-        $cleanUA = $this->cleanUserAgentString($this->UserAgent);
+        $cleanUA = $this->cleanUserAgentString($this->userAgent);
         foreach ($this->webBrowserAppCodeNameList as $appKey => $appValue) {
-            if (preg_match('#'.preg_quote(strtolower($appKey)).'[/]+([0-9]+(?:\.[0-9]+)?)#', $cleanUA, $matches)) {
+            if (preg_match('#'.preg_quote(strtolower($appKey)).'[/]+([0-9]+(?:\.[0-9]+)?)#', $cleanUA, $matches) === true) {
                 $this->browserAppCodeName    = $appValue;
                 $this->browserAppCodeVersion = $matches[1];
                 break;
@@ -326,7 +402,7 @@ class Browser extends DataObject
 
         // second step
         foreach ($this->devicesPlatformWMNameList as $pwKey => $pwValue) {
-            if (preg_match('/'.preg_quote(strtolower($pwKey)).'\b/i', $cleanUA, $matches)) {
+            if (preg_match('/'.preg_quote(strtolower($pwKey)).'\b/i', $cleanUA, $matches) === true) {
                 $this->deviceWindowManager  = $pwKey;
                 $this->deviceWmNameOriginal = ucfirst($pwKey);
                 $this->windowManager($pwValue);
@@ -336,7 +412,7 @@ class Browser extends DataObject
 
         // third step
         foreach ($this->devicesCategoryList as $dcKey => $dcValue) {
-            if (preg_match('/'.preg_quote(strtolower($dcKey)).'\b/i', $cleanUA, $matches)) {
+            if (preg_match('/'.preg_quote(strtolower($dcKey)).'\b/i', $cleanUA, $matches) === true) {
                 $this->deviceWindowManager = $dcValue;
                 break;
             }
@@ -344,7 +420,7 @@ class Browser extends DataObject
 
         // fourth step
         foreach ($this->devicesList as $dKey => $dValue) {
-            if (preg_match('/'.strtolower($dKey).'\b/i', $cleanUA, $matches)) {
+            if (preg_match('/'.strtolower($dKey).'\b/i', $cleanUA, $matches) === true) {
                 $this->deviceName     = $dKey;
                 $this->deviceNameFull = $this->finalContent($dKey, $cleanUA);
                 $this->deviceInfoAll  = (array) $dValue;
@@ -352,7 +428,7 @@ class Browser extends DataObject
 
                 $device = explode(';', $this->deviceInfo($cleanUA));
                 foreach ($device as $devValue) {
-                    if (preg_match('/'.strtolower($dKey).'\b/i', $devValue, $matches)) {
+                    if (preg_match('/'.strtolower($dKey).'\b/i', $devValue, $matches) === true) {
                         $this->deviceNameOriginal = ltrim($devValue);
                         break;
                     }
@@ -364,7 +440,7 @@ class Browser extends DataObject
 
         // fifth step
         foreach ($this->devicesArchitectureList as $aKey => $aValue) {
-            if (preg_match('/'.strtolower($aKey).'\b/i', $cleanUA, $matches)) {
+            if (preg_match('/'.strtolower($aKey).'\b/i', $cleanUA, $matches) === true) {
                 $this->deviceArchitecture  = $aValue;
                 $this->browserArchitecture = $aValue;
                 break;
@@ -373,7 +449,7 @@ class Browser extends DataObject
 
         // sixth step
         foreach (array_change_key_case($this->webBrowserList, CASE_LOWER) as $wbKey => $wbValue) {
-            if (preg_match('/'.preg_quote(strtolower($wbKey)).'\b/i', $cleanUA, $matches)) {
+            if (preg_match('/'.preg_quote(strtolower($wbKey)).'\b/i', $cleanUA, $matches) === true) {
                 $this->browserName        = ucfirst($wbKey);
                 $this->browserNameFull    = ltrim(ucwords(strtr(strtolower($this->finalContent($wbKey, $cleanUA)), [$wbKey => $wbValue['name']])));
                 $this->browserInfoAll     = is_array($wbValue) ? $wbValue : [];
@@ -385,7 +461,7 @@ class Browser extends DataObject
 
         // seventh step
         foreach (array_change_key_case($this->webBrowserLayoutList, CASE_LOWER) as $layoutKey => $layoutValue) {
-            if (preg_match('#'.preg_quote(strtolower($layoutValue['contain'])).'[/]+([0-9]+(?:\.[0-9]+)?)#', $cleanUA, $matches)) {
+            if (preg_match('#'.preg_quote(strtolower($layoutValue['contain'])).'[/]+([0-9]+(?:\.[0-9]+)?)#', $cleanUA, $matches) === true) {
                 $this->browserEngineName     = $layoutKey;
                 $this->browserEngineNameFull = $this->cleanContent($matches[0]);
                 $this->browserEngineVersion  = $matches[1];
@@ -404,10 +480,11 @@ class Browser extends DataObject
      */
     protected function cleanUserAgentString(string $string): string
     {
-        // clean up the string
-        $string = trim(strtolower($string));
+        _Debug::preOutput(func_get_args());
+        // Clean up the string.
+        $string = strtolower(trim($string));
 
-        // replace browser names with their aliases
+        // Replace browser names with their aliases.
         return strtr($string, $this->getKnownBrowserAliases());
 
     }//end cleanUserAgentString()
@@ -445,10 +522,15 @@ class Browser extends DataObject
     }//end windowManager()
 
 
+    /**
+     * @param string $key
+     * @param string $content
+     * @return string
+     */
     private function finalContent(string $key, string $content): string
     {
         $finalOutput = '';
-        $kPosition   = strpos($content, strtolower($key));
+        $kPosition   = stripos($content, $key);
         $cLength     = strlen($content);
         $fountText   = substr($content, $kPosition, ($cLength - $kPosition));
         $totalWords  = str_word_count($fountText);
@@ -469,6 +551,10 @@ class Browser extends DataObject
     }//end finalContent()
 
 
+    /**
+     * @param string $content
+     * @return string
+     */
     private function cleanContent(string $content): string
     {
         return ltrim(ucwords(preg_replace('#[/]|[;]|[)]#', ' ', $content)));
@@ -476,20 +562,23 @@ class Browser extends DataObject
     }//end cleanContent()
 
 
-    private function deviceDetails(array $resources): void
+    /**
+     * @param string|array $resources
+     */
+    private function deviceDetails(string|array $resources): void
     {
-        if (is_array($resources) and count($resources) > 0) {
-            if (array_key_exists('Platform', $resources)) {
+        if (is_array($resources) === true && count($resources) > 0) {
+            if (array_key_exists('Platform', $resources) === true) {
                 $this->currentDeviceInfo  = $resources['Platform'];
                 $this->deviceName         = $resources['Platform']['name'];
                 $this->deviceArchitecture = $resources['Platform']['architecture'];
                 $this->deviceType         = $resources['Device']['type'];
-            } else {
-                if (is_string($resources)) {
-                    $this->deviceName        = $resources;
-                    $this->deviceType        = $resources;
-                    $this->currentDeviceInfo = $resources;
-                }
+            }
+
+            if (is_string($resources) === true) {
+                $this->deviceName        = $resources;
+                $this->deviceType        = $resources;
+                $this->currentDeviceInfo = $resources;
             }
         }
 
@@ -519,7 +608,7 @@ class Browser extends DataObject
         // Web url
         $url = self::getVisitedPage();
         // OPEN THE REMOTE PAGE
-        $file = fopen($url, 'r') or trigger_error('url not found');
+        $file = fopen($url, 'rb') or trigger_error('url not found');
         // ITERATE OVER THE PAGE DATA
         while (!feof($file)) {
             $text = fread($file, 16384);
@@ -546,34 +635,34 @@ class Browser extends DataObject
 
 
     /**
-     * @param  $s
-     * @param  false $use_forwarded_host
+     * @param  array $s
+     * @param  bool $useForwardedHost
      * @return string
      */
-    public static function VisitedPageURL($s, $use_forwarded_host=false): string
+    public static function visitedPageURL(array $s, bool $useForwardedHost=false): string
     {
-        return self::url_origin($s, $use_forwarded_host).$s['REQUEST_URI'];
+        return self::urlOrigin($s, $useForwardedHost).$s['REQUEST_URI'];
 
     }//end VisitedPageURL()
 
 
     /**
-     * @param  $s
-     * @param  false $use_forwarded_host
+     * @param  array $s
+     * @param  bool $useForwardedHost
      * @return string
      */
-    public static function url_origin($s, $use_forwarded_host=false): string
+    public static function urlOrigin(array $s, bool $useForwardedHost=false): string
     {
-        $ssl      = (!empty($s['HTTPS']) && $s['HTTPS'] == 'on');
+        $ssl      = (empty($s['HTTPS']) === false && $s['HTTPS'] === 'on');
         $sp       = strtolower($s['SERVER_PROTOCOL']);
         $protocol = substr($sp, 0, strpos($sp, '/')).(($ssl) ? 's' : '');
         $port     = $s['SERVER_PORT'];
         $port     = ((!$ssl && $port == '80') || ($ssl && $port == '443')) ? '' : ':'.$port;
-        $host     = ($use_forwarded_host && isset($s['HTTP_X_FORWARDED_HOST'])) ? $s['HTTP_X_FORWARDED_HOST'] : (isset($s['HTTP_HOST']) ? $s['HTTP_HOST'] : null);
-        $host     = isset($host) ? $host : $s['SERVER_NAME'].$port;
+        $host     = ($useForwardedHost && isset($s['HTTP_X_FORWARDED_HOST'])) ? $s['HTTP_X_FORWARDED_HOST'] : ($s['HTTP_HOST'] ?? null);
+        $host     = ($host ?? $s['SERVER_NAME']).$port;
         return $protocol.'://'.$host;
 
-    }//end url_origin()
+    }//end urlOrigin()
 
 
     /**
@@ -583,8 +672,8 @@ class Browser extends DataObject
      */
     public function getBrowserDetails(string $name): array
     {
-        if (is_string($name)) {
-            if (array_key_exists(strtolower($name), array_change_key_case($this->webBrowserList, CASE_LOWER))) {
+        if (is_string($name) === true) {
+            if (array_key_exists(strtolower($name), array_change_key_case($this->webBrowserList, CASE_LOWER)) === true) {
                 foreach ($this->webBrowserList as $item => $details) {
                     if (strtolower($item) === strtolower($name)) {
                         return is_array($details) ? $details : (array) $details;
@@ -597,7 +686,7 @@ class Browser extends DataObject
                 ];
             }
         } else {
-            trigger_error('Invalid browser name used');
+            throw new RuntimeException('Invalid browser name used');
         }
 
         return [];
@@ -853,7 +942,7 @@ class Browser extends DataObject
      */
     public function getUserAgent(): string
     {
-        return $this->UserAgent;
+        return $this->userAgent;
 
     }//end getUserAgent()
 
@@ -864,7 +953,7 @@ class Browser extends DataObject
      */
     public function getUserAgentList(): array
     {
-        return $this->UserAgentList;
+        return $this->userAgentList;
 
     }//end getUserAgentList()
 
@@ -875,7 +964,7 @@ class Browser extends DataObject
      */
     public function getURLProtocol(): string
     {
-        return $this->URLProtocol;
+        return $this->urlProtocol;
 
     }//end getURLProtocol()
 
@@ -886,7 +975,7 @@ class Browser extends DataObject
      */
     public function getURLHostname(): string
     {
-        return $this->URLHostname;
+        return $this->urlHostname;
 
     }//end getURLHostname()
 
@@ -897,7 +986,7 @@ class Browser extends DataObject
      */
     public function getURLPath(): string
     {
-        return $this->URLPath;
+        return $this->urlPath;
 
     }//end getURLPath()
 
@@ -908,22 +997,22 @@ class Browser extends DataObject
      */
     public function getRequestMethod(): string
     {
-        return $this->RequestMethod;
+        return $this->requestMethod;
 
     }//end getRequestMethod()
 
 
     /**
-     * @return mixed|string
+     * @return string
      */
     public function getRequestMode(): string
     {
-        return $this->RequestMode;
+        return $this->requestMode;
 
     }//end getRequestMode()
 
 
-    function __destruct()
+    public function __destruct()
     {
 
     }//end __destruct()

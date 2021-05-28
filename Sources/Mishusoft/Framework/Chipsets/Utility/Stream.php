@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Mishusoft\Framework\Chipsets\Utility;
 
@@ -8,7 +8,7 @@ use Mishusoft\Framework\Chipsets\System\Logger;
 class Stream
 {
     // declare version
-    const VERSION = '1.0.2';
+    public const VERSION = '1.0.2';
 
 
     /**
@@ -18,16 +18,16 @@ class Stream
     public static function file(string $filename, $callback=false)
     {
         if (self::isFileExists($filename)) {
-            $fp = fopen($filename, 'r');
+            $fp = fopen($filename, 'rb');
             if ($fp) {
                 $line = fgets($fp);
                 if ($line !== false) {
                     if ($callback) {
                         return $callback($line);
-                    } else {
-                        return $filename;
-                        // process $line
                     }
+
+                    return $filename;
+                    // process $line
                 }
             }
         }

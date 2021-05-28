@@ -51,7 +51,7 @@ abstract class UrlHandler implements UrlHandlerInterface
      */
     protected function render(string $rootTitle, array $request, array $noMenuList=[]): MishusoftViewInterface
     {
-        _Debug::preOutput(func_get_args());
+       // _Debug::preOutput(func_get_args());
         return new View\MishusoftView(Memory::Data('framework')->host->url, $rootTitle, $noMenuList, $request);
 
     }//end render()

@@ -3,11 +3,12 @@
 namespace Mishusoft\Framework\Chipsets;
 
 
+use ErrorException;
+use JsonException;
 use Mishusoft\Framework\Chipsets\System\Memory;
 use Mishusoft\Framework\Chipsets\System\Network;
 use Mishusoft\Framework\Chipsets\System\Time;
-use Mishusoft\Framework\Chipsets\Utility\_Debug;
-use Mishusoft\Framework\Chipsets\Utility\Stream;
+use Mishusoft\Framework\Chipsets\Utility\_JSON;
 
 class Framework
 {
@@ -76,11 +77,13 @@ class Framework
 
 
     /**
-     * @throws \JsonException
+     * Init function for Framework
+     *
+     * @throws JsonException|ErrorException Return JsonException error.
      */
     public static function init(): Framework
     {
-        if (!self::$init instanceof self) {
+        if (self::$init instanceof self === false) {
             self::$init = new self();
         }
 
@@ -104,19 +107,31 @@ class Framework
 
 
     /**
-     * @param  string $rootPath
-     * @return void
+     * Check whole file system.
+     *
+     * @param  string $rootPath System root path.
+     * @return void             Return not arguments.
+     * @throws ErrorException   Return error exception.
      */
     private static function checkFileSystem(string $rootPath=self::installedDocumentRoot): void
     {
+        /*
+         * Check root directory is directory or not.
+         * */
         if (is_dir($rootPath) === false) {
-            trigger_error($rootPath.' not found.');
+            throw new ErrorException($rootPath.' not found.');
         }
 
+        /*
+         * Check last string of root directory is back slash or not.
+         * */
         if ($rootPath[(strlen($rootPath) - 1)] !== '/') {
             $rootPath .= '/';
         }
 
+        /*
+         * Check provided root directory in app installed path.
+         * */
         if (in_array(
             strtolower(
                 substr(
@@ -132,6 +147,9 @@ class Framework
             return;
         }
 
+        /*
+         * Browse every file and directory.
+         * */
         $files = glob($rootPath.'*', GLOB_MARK);
         foreach ($files as $file) {
             if (is_dir($file) === true) {
@@ -145,7 +163,8 @@ class Framework
 
 
     /**
-     * @param string $file
+     * @param  string $file
+     * @throws ErrorException
      */
     private static function updateFileSystemDisk(string $file): void
     {
@@ -153,63 +172,45 @@ class Framework
             if (is_readable(self::systemVFDFile) === true) {
                 self::updateDirectoryIndex($file);
             } else {
-                trigger_error('Unable to read '.self::systemVFDFile);
+                throw new ErrorException('Unable to read '.self::systemVFDFile);
             }
-        } else {
-            /*
-             * Autoload::log("Unable to read $fDisk.");
-             * Autoload::log("Preparing to create $fDisk file.");
-             * Autoload::log("Checking permissions of directory " . dirname(dirname($fDisk)));
-             * Autoload::log("Requested directory's permission is " . substr(sprintf('%o', fileperms(dirname(dirname($fDisk)))), -4));
-             * */
+        } else if (is_writable(dirname(self::systemVFDFile, 2)) === true) {
+            if (is_dir(dirname(self::systemVFDFile)) === false) {
+                /*
+                 * Autoload::log("Directory " . dirname($fDisk) . " is not exists ");
+                 * Autoload::log("Preparing to create directory " . dirname($fDisk));
+                 * */
+                FileSystem::createDirectory(dirname(self::systemVFDFile));
+                // Autoload::log("Directory " . dirname(self::systemVFDFile) . " has been created ");
+            }
 
-            if (is_writable(dirname(self::systemVFDFile, 2)) === true) {
-                if (is_dir(dirname(self::systemVFDFile)) === false) {
+            if (is_writable(dirname(self::systemVFDFile)) === true) {
+                /*
+                 * Autoload::log("Checking permissions of directory " . dirname($fDisk));
+                 * Autoload::log("Requested directory's permission is " . substr(sprintf('%o', fileperms(dirname($fDisk))), -4));
+                 * */
+                if (file_exists(self::systemVFDFile) === false) {
                     /*
-                     * Autoload::log("Directory " . dirname($fDisk) . " is not exists ");
-                     * Autoload::log("Preparing to create directory " . dirname($fDisk));
+                     * Autoload::log("File $fDisk is not exists.");
+                     * Autoload::log("Preparing to create file $fDisk.");
                      * */
-                    FileSystem::createDirectory(dirname(self::systemVFDFile));
-                    // mkdir(dirname(self::systemVFDFile));
-                    FileSystem::exec(dirname(self::systemVFDFile));
-                    // Autoload::log("Directory " . dirname($fDisk) . " has been created ");
-                } else {
-                    if (is_dir(dirname(self::systemVFDFile)) === false) {
-                        // Autoload::log("We failed to create " . dirname($fDisk));
-                        trigger_error('We failed to create '.dirname(self::systemVFDFile));
-                    }
+                    fclose(fopen(self::systemVFDFile, 'wb+'));
+                    FileSystem::exec(self::systemVFDFile);
+                    // Autoload::log("File $fDisk has been created.");
                 }
 
-                if (is_writable(dirname(self::systemVFDFile)) === true) {
-                    /*
-                     * Autoload::log("Checking permissions of directory " . dirname($fDisk));
-                     * Autoload::log("Requested directory's permission is " . substr(sprintf('%o', fileperms(dirname($fDisk))), -4));
-                     * */
-                    if (file_exists(self::systemVFDFile) === false) {
-                        /*
-                         * Autoload::log("File $fDisk is not exists.");
-                         * Autoload::log("Preparing to create file $fDisk.");
-                         * */
-                        fopen(self::systemVFDFile, 'wb+');
-                        FileSystem::exec(self::systemVFDFile);
-                        // Autoload::log("File $fDisk has been created.");
-                    } else {
-                        if (!file_exists(self::systemVFDFile)) {
-                            // Autoload::log("We failed to create $fDisk.");
-                            trigger_error('We failed to create {self::systemVFDFile}.');
-                        }
-                    }
-
-                    self::updateDirectoryIndex($file);
-                }//end if
+                self::updateDirectoryIndex($file);
             }//end if
+        } else {
+            throw new ErrorException('Unable to write '.self::systemVFDFile.'. Permission denied.');
         }//end if
 
     }//end updateFileSystemDisk()
 
 
     /**
-     * @param string $file
+     * @param  string $file
+     * @throws ErrorException
      */
     private static function updateDirectoryIndex(string $file): void
     {
@@ -231,28 +232,28 @@ class Framework
             if (is_file($file) === true && file_exists($file) === true) {
                 $data  = file_get_contents(self::systemVFDFile);
                 $data .= substr(sprintf('%o', fileperms(self::systemVFDFile)), -4)."\t".filetype(realpath(self::systemVFDFile))."\t$file\n";
-                file_put_contents(self::systemVFDFile, $data);
+                FileSystem::saveToFile(self::systemVFDFile, $data);
             }
 
             // Autoload::log("Updated successfully to disk file $fDisk.");
         } else {
             // Autoload::log("Unable to write $fDisk.");
-            trigger_error('Unable to write '.self::systemVFDFile);
+            throw new ErrorException('Unable to write '.self::systemVFDFile);
         }//end if
 
     }//end updateDirectoryIndex()
 
 
     /**
-     * @throws \JsonException
+     * @throws JsonException
      */
     public static function install(): void
     {
-        // Autoload::log('Preparing to check framework install file.');
+        // Preparing to check framework install file.
         if (file_exists(self::installFile) === true) {
-            // Autoload::log('Framework install file found and start reading.');
+            // Framework install file found and start reading.
             if ((is_readable(self::installFile) === true) && (defined('INSTALLED_HOST_NAME') === false)) {
-                define('INSTALLED_HOST_NAME', Memory::Data('framework')->host->name);
+                define('INSTALLED_HOST_NAME', Memory::data('framework')->host->name);
             }
         } else {
             // Preparing to create framework install file.
@@ -275,10 +276,9 @@ class Framework
                     ],
                 ],
             ];
-            if (FileSystem::write(self::installFile,$defaultData) === true) {
+            if (FileSystem::write(self::installFile, $defaultData) === true) {
                 FileSystem::exec(self::installFile);
             }
-
         }//end if
 
     }//end install()
@@ -286,6 +286,7 @@ class Framework
 
     /**
      *
+     * @throws ErrorException
      */
     private static function backupFilesCheck(): void
     {
@@ -360,7 +361,8 @@ class Framework
     /**
      * Check required file and copy it
      *
-     * @param array $requiredFiles
+     * @param  array $requiredFiles
+     * @throws ErrorException
      */
     private static function fileHandler(array $requiredFiles): void
     {
@@ -383,64 +385,64 @@ class Framework
                                     FileSystem::copy($requiredFile['from'], $requiredFile['to']);
                                     FileSystem::exec($requiredFile['to']);
                                 } else {
-                                    trigger_error('$to not found in $required argument');
+                                    throw new ErrorException('$to not found in $required argument');
                                 }
                             }
                         } else {
-                            trigger_error('$from not found in $required argument');
+                            throw new ErrorException('$from not found in $required argument');
                         }//end if
                     }//end if
                 } else {
-                    trigger_error('$check not found in $required argument');
+                    throw new ErrorException('$check not found in $required argument');
                 }//end if
             }//end foreach
         } else {
-            trigger_error('Invalid $requiredFiles argument 1 parsed');
+            throw new ErrorException('Invalid $requiredFiles argument 1 parsed');
         }//end if
 
     }//end fileHandler()
 
 
+    /**
+     * @throws JsonException
+     * @throws ErrorException
+     */
     private static function extensionRequiredCheck(): void
     {
         // Framework required extensions check.
-        if ((is_array(Memory::Data()->required->extensions) === true)
-            && (count(Memory::Data()->required->extensions) > 0)
+        if ((is_array(Memory::data()->required->extensions) === true)
+            && (count(Memory::data()->required->extensions) > 0)
         ) {
-            foreach (Memory::Data()->required->extensions as $extension) {
+            foreach (Memory::data()->required->extensions as $extension) {
                 if (extension_loaded($extension) === false) {
-                    trigger_error('Warning: '.ucfirst($extension).' extension is required');
+                    throw new ErrorException('Warning: '.ucfirst($extension).' extension is required');
                 }
             }
         } else {
-            trigger_error('Framework required extensions checking failed');
+            throw new ErrorException('Framework required extensions checking failed');
         }
 
     }//end extensionRequiredCheck()
 
 
     /**
-     * @throws \JsonException
+     * @throws JsonException
+     * @throws ErrorException
      */
     private static function thirdPartyRequiredCheck(): void
     {
         // required third-party library check
-        if ((is_array(Memory::Data()->required->thirdparty) === true)
-            && (count(Memory::Data()->required->thirdparty) > 0)
+        if ((is_array(Memory::data()->required->thirdparty) === true)
+            && (count(Memory::data()->required->thirdparty) > 0)
         ) {
-            $thirdParty = json_decode(
-                json_encode(Memory::Data()->required->thirdparty, JSON_THROW_ON_ERROR),
-                true,
-                512,
-                JSON_THROW_ON_ERROR
-            );
+            $thirdParty = _JSON::decodeToArray(_JSON::encodeToString(Memory::data()->required->thirdparty));
             foreach ($thirdParty as $package => $details) {
                 if (is_dir(PHP_RUNTIME_ROOT_PATH.'vendor/'.$package) === false) {
-                    trigger_error('Warning: '.ucfirst($details['name']).' is required. Please run '.$details['command'].'or for fresh download visit '.$details['url']);
+                    throw new ErrorException('Warning: '.ucfirst($details['name']).' is required. Please run '.$details['command'].'or for fresh download visit '.$details['url']);
                 }
             }
         } else {
-            trigger_error('Framework required third party package checking failed');
+            throw new ErrorException('Framework required third party package checking failed');
         }
 
     }//end thirdPartyRequiredCheck()
@@ -448,36 +450,37 @@ class Framework
 
     /**
      *
+     * @throws ErrorException
      */
     private static function opcacheStatusCheck(): void
     {
-        // REQUIREMENTS - Opcache
+        // REQUIREMENTS - Opcache.
         if (function_exists('opcache_get_status') === false) {
             trigger_error('Requires Opcache installations');
         } else {
             $opcache = opcache_get_status(false);
-            if (empty($opcache) === false && $opcache['opcache_enabled']) {
-                // additional opcache ini settings
+            if (empty($opcache) === false && isset($opcache['opcache_enabled']) === true) {
+                // Additional opcache ini settings.
                 ini_set('opcache.memory_consumption', 128);
-                // application opcache memory_consumption
+                // Application opcache memory_consumption.
                 ini_set('opcache.interned_strings_buffer', 8);
-                // application opcache interned_strings_buffer
+                // Application opcache interned_strings_buffer.
                 ini_set('opcache.max_accelerated_files', 4000);
-                // application opcache max_accelerated_files
+                // Application opcache max_accelerated_files.
                 ini_set('opcache.revalidate_freq', 60);
-                // application opcache revalidate_freq
+                // Application opcache revalidate_freq.
                 // ini_set('opcache.fast_shutdown', 1);
-                // application opcache fast_shutdown
+                // Application opcache fast_shutdown.
                 ini_set('opcache.enable_cli', 1);
-                // application opcache cli
+                // Application opcache cli.
                 ini_set('opcache.use_cwd', 1);
-                // application opcache use_cwd
+                // Application opcache use_cwd.
                 ini_set('opcache.file_cache', MS_SYSTEM_TEMP_PATH.'/cache/.opcache;');
-                if ($opcache['cache_full']) {
+                if (isset($opcache['cache_full']) === true) {
                     opcache_reset();
                 }
             } else {
-                trigger_error('You must need to enable opcache');
+                throw new ErrorException('You must need to enable opcache');
             }//end if
         }//end if
 
@@ -485,7 +488,7 @@ class Framework
 
 
     /**
-     * @throws \JsonException
+     * @throws JsonException
      */
     private static function execute(): void
     {
@@ -537,7 +540,6 @@ class Framework
         }//end if
 
         MPM::load();
-        // end if
 
     }//end execute()
 

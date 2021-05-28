@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 
 namespace Mishusoft\Framework\Chipsets\Databases\MishusoftSQLStandalone;
@@ -60,7 +60,7 @@ class Data implements DataInterface
                                     if (_Array::value($contents[$key], $option)) {
                                         foreach ($options["where"] as $k => $v) {
                                             $v = is_numeric($v) ? (string)$v : $v;
-                                            if (array_key_exists($k, $contents[$key]) and $contents[$key][$k] === $v) {
+                                            if (array_key_exists($k, $contents[$key]) === true && $contents[$key][$k] === $v) {
                                                 array_push($this->output, [$option => $contents[$key][$option]]);
                                             }
                                         }

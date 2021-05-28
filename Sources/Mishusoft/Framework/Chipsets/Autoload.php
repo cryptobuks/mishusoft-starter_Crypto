@@ -61,6 +61,8 @@ class Autoload
 
     /**
      * Automatically load all required classes.
+     *
+     * @return void
      */
     public static function register(): void
     {

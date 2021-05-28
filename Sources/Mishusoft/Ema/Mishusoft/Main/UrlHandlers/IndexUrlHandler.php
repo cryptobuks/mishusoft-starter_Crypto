@@ -18,7 +18,7 @@ class IndexUrlHandler extends UrlHandler
      */
     public function response(array $prediction)
     {
-        _Debug::preOutput(func_get_args());
+       // _Debug::preOutput(func_get_args());
         $translation = new Localization(_Array::value($prediction, 'locale'));
         $view        = $this->render($translation->translate('Mishusoft'), $prediction);
         $view->display();

@@ -3,14 +3,23 @@
 namespace Mishusoft\Framework\Drivers;
 
 
+use Mishusoft\Framework\Chipsets\FileSystem;
 use Mishusoft\Framework\Chipsets\Preloader;
 use Mishusoft\Framework\Chipsets\System\Firewall;
+use Mishusoft\Framework\Chipsets\Utility\_Debug;
 use Mishusoft\Framework\Interfaces\Drivers\WidgetInterface;
+use RuntimeException;
 
 abstract class Widget implements WidgetInterface
 {
+
+    /**
+     * @var Registry
+     */
     private Registry $registry;
-    protected $acl;
+
+    protected mixed $acl;
+
 
     /**
      * Widget constructor.
@@ -18,71 +27,90 @@ abstract class Widget implements WidgetInterface
     public function __construct()
     {
         $this->registry = Registry::getInstance();
-        $this->acl = $this->registry->acl;
-    }
+        $this->acl      = $this->registry->acl;
+
+    }//end __construct()
+
 
     /**
-     * @param string $model
+     * @param  string $model
      * @return mixed
      */
-    protected function loadModel(string $model)
+    protected function loadModel(string $model): mixed
     {
-        $modelClass = $model . 'ModelWidget';
-        $widgetModelFile = MS_WIDGETS_PATH . 'Models' . DS . $modelClass . '.php';
-        if (is_readable($widgetModelFile)) {
-            require_once $widgetModelFile;
+        $modelClass      = $model.'ModelWidget';
+        $widgetModelFile = MS_WIDGETS_PATH.'Models'.DS.$modelClass.'.php';
+        _Debug::preOutput($widgetModelFile);
+        // _Debug::preOutput(debug_backtrace());
+        if (is_readable($widgetModelFile) === true) {
+            include_once $widgetModelFile;
             $modelClass = Preloader::getClassNamespaceFromPath($widgetModelFile);
-            if (class_exists($modelClass)) {
-                return new $modelClass;
+            _Debug::preOutput($modelClass);
+            _Debug::preOutput(get_included_files());
+            if (in_array($widgetModelFile, get_included_files()) === true) {
+                if (class_exists($modelClass, false) === true) {
+                    _Debug::preOutput("class $modelClass loading");
+                    _Debug::preOutput(new $modelClass);
+                    return new $modelClass;
+                }
+
+                _Debug::preOutput("class $modelClass loading failed");
+                throw new RuntimeException("class $modelClass loading failed");
             }
+
+            _Debug::preOutput("$widgetModelFile inclusion failed.");
+            throw new RuntimeException($widgetModelFile.' inclusion failed');
         } else {
-            Firewall::runtimeFailure("Not Found", [
-                "debug" => [
-                    "file" => $modelClass,
-                    "location" => $widgetModelFile,
-                    "description" => "Model class not found or Model class loading error."
-                ],
-                "error" => ["description" => "Your requested url is broken!!"]
-            ]);
-        }
-    }
+            throw new RuntimeException($widgetModelFile.' not found');
+        }//end if
+
+    }//end loadModel()
+
 
     /**
-     * @param string $menu
-     * @param string $view
-     * @param array $data
-     * @param string $ext
+     * @param  string $menu
+     * @param  string $view
+     * @param  array  $data
+     * @param  string $ext
      * @return false|string
      */
-    protected function render(string $menu, string $view, array $data = array(), string $ext = 'phtml')
+    protected function render(string $menu, string $view, array $data=[], string $ext='phtml'): bool|string
     {
-        $widgetViewFile = join([MS_WIDGETS_PATH , 'Views' . DS . "$menu" . DS . $view . ".$ext"]);
-        if (is_readable($widgetViewFile)) {
-            if(pathinfo($widgetViewFile,PATHINFO_EXTENSION)==="php"){
+        $widgetViewFile = MS_WIDGETS_PATH.'Views'.DS.$menu.DS.$view.'.'.$ext;
+        if (is_readable($widgetViewFile) === true) {
+            if (FileSystem::getFileExt($widgetViewFile) === 'php') {
                 return $widgetViewFile;
-            } else {
-                ob_start();
-                extract($data);
-                include_once $widgetViewFile;
-                $content = ob_get_contents();
-                ob_end_clean();
-                return $content;
             }
-        } else {
-            Firewall::runtimeFailure("Not Found", [
-                "debug" => [
-                    "file" => "$menu ($view:$widgetViewFile)",
-                    "location" => $widgetViewFile,
-                    "description" => "Widget's views content not readable or found."
-                ],
-                "error" => ["description" => "Your requested url is broken!!"]
-            ]);
-        }
-        return "";
-    }
 
-    function __destruct()
+            ob_start();
+            extract($data, EXTR_OVERWRITE);
+            include_once $widgetViewFile;
+            return ob_get_clean();
+        }
+
+        Firewall::runtimeFailure(
+            'Not Found',
+            [
+                'debug' => [
+                    'file'        => "$menu ($view:$widgetViewFile)",
+                    'location'    => $widgetViewFile,
+                    'description' => "Widget's views content not readable or found.",
+                ],
+                'error' => ['description' => 'Your requested url is broken!!'],
+            ]
+        );
+        return '';
+
+    }//end render()
+
+
+    /**
+     *
+     */
+    public function __destruct()
     {
 
-    }
-}
+    }//end __destruct()
+
+
+}//end class

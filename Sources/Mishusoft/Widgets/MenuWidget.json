@@ -1,0 +1,11 @@
+{
+  "class": "menu",
+  "method": "getMenu",
+  "child": [],
+  "configuration": {
+    "position": "header"
+  },
+  "setting": {
+    "status": "disable"
+  }
+}

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 
 namespace Mishusoft\Framework\Chipsets\System;
@@ -8,43 +8,52 @@ use Mishusoft\Framework\Chipsets\Utility\_String;
 
 class Device
 {
-    /*declare version*/
-    const VERSION = "1.0.2";
-    private string $osReleaseFile = "/etc/os-release";
-    private string $hostNameCtlFile = PHP_RUNTIME_REGISTRIES_PATH . "hostnamectl.txt";
-    private string $lsbReleaseFile = PHP_RUNTIME_REGISTRIES_PATH . "lsb_release.txt";
-    private array $data = array();
+    // declare version
+    const VERSION = '1.0.2';
+
+    private string $osReleaseFile = '/etc/os-release';
+
+    private string $hostNameCtlFile = PHP_RUNTIME_REGISTRIES_PATH.'hostnamectl.txt';
+
+    private string $lsbReleaseFile = PHP_RUNTIME_REGISTRIES_PATH.'lsb_release.txt';
+
+    private array $data = [];
+
 
     public function __construct()
     {
-        if (function_exists("system")) {
+        if (function_exists('system')) {
             system("hostnamectl > $this->hostNameCtlFile");
             system("lsb_release -a > $this->lsbReleaseFile");
         }
-    }
+
+    }//end __construct()
+
 
     /**
-     * @param string $filename
-     * @param string $delimiter
+     * @param  string $filename
+     * @param  string $delimiter
      * @return array
      */
     private function extract(string $filename, string $delimiter): array
     {
-        if (is_readable($filename)) {
-            if (strlen(file_get_contents($filename)) !== 0) {
-                $contents = file_get_contents($filename);
-                $contents = explode("\n", $contents);
-                $contents = array_filter($contents);
-                foreach ($contents as $i => $v) {
-                    $contents[$i] = explode($delimiter, $v);
-                    $this->data[preg_replace("[\s]","_",ltrim(_String::lower($contents[$i][0])))] = preg_replace("[\"]","",ltrim($contents[$i][1]));
-                }
-                //preOutput($this->data);
-                return $this->data;
+        if (is_readable($filename) === true && strlen(file_get_contents($filename)) !== 0) {
+            $contents = file_get_contents($filename);
+            $contents = explode("\n", $contents);
+            $contents = array_filter($contents);
+            foreach ($contents as $i => $v) {
+                $contents[$i] = explode($delimiter, $v);
+                $this->data[preg_replace('[\s]', '_', ltrim(_String::lower($contents[$i][0])))] = preg_replace('["]', '', ltrim($contents[$i][1]));
             }
+
+            // preOutput($this->data);
+            return $this->data;
         }
+
         return $this->data;
-    }
+
+    }//end extract()
+
 
     public function osRelease(): array
     {
@@ -64,9 +73,10 @@ class Device
          *     [logo] => manjarolinux
          * )*/
 
-        return $this->extract($this->osReleaseFile, "=");
+        return $this->extract($this->osReleaseFile, '=');
 
-        /*if (is_readable($this->osReleaseFile)) {
+        /*
+            if (is_readable($this->osReleaseFile)) {
             if (strlen(file_get_contents($this->osReleaseFile)) !== 0) {
                 $contents = file_get_contents($this->osReleaseFile);
                 $contents = explode("\n", $contents);
@@ -78,7 +88,9 @@ class Device
                 return $this->data;
             }
         }*/
-    }
+
+    }//end osRelease()
+
 
     public function hostnamectl(): array
     {
@@ -95,26 +107,31 @@ class Device
          *     [architecture] =>  x86-64
          * )*/
 
-        return $this->extract($this->hostNameCtlFile, ":");
-    }
+        return $this->extract($this->hostNameCtlFile, ':');
+
+    }//end hostnamectl()
+
 
     public function lsbRelease(): array
     {
         /*
          * Array
          * (
-         *     [lsb version] => 	n/a
-         *     [distributor id] => 	ManjaroLinux
-         *     [description] => 	Manjaro Linux
-         *     [release] => 	20.2
-         *     [codename] => 	Nibia
+         *     [lsb version] =>     n/a
+         *     [distributor id] =>     ManjaroLinux
+         *     [description] =>     Manjaro Linux
+         *     [release] =>     20.2
+         *     [codename] =>     Nibia
          * )*/
-        return $this->extract($this->lsbReleaseFile, ":");
-    }
+        return $this->extract($this->lsbReleaseFile, ':');
+
+    }//end lsbRelease()
+
 
     function __destruct()
     {
 
-    }
+    }//end __destruct()
 
-}
+
+}//end class

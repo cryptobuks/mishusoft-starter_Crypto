@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 
 namespace Mishusoft\Framework\Chipsets\Http;
@@ -20,8 +20,9 @@ class Visitor
         if (is_array($data) and count($data) > 0) {
             foreach ($data as $action => $datum) {
                 if (array_key_exists(IP::get(), $data[$action])) {
-                    foreach ($data[$action][IP::get()] as $browser => $visit)
-                        array_push($browsers, ltrim($browser));
+                    foreach ($data[$action][IP::get()] as $browser => $visit) {
+                        $browsers[] = ltrim($browser);
+                    }
                 }
             }
         }

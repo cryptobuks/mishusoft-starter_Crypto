@@ -1,4 +1,12 @@
 <?php
+/**
+ * Mishusoft application paler.
+ *
+ * @package    Mishusoft
+ * @subpackage website
+ * @author     Mishusoft Systems Ltd <products@mishusoft.com>
+ * @copyright   2021 Mishusoft Systems Ltd <products@mishusoft.com>
+ *  */
 
 declare(strict_types=1);
 
@@ -50,6 +58,6 @@ try {
         Framework\Chipsets\System\Logger::write(
             Framework\Chipsets\RuntimeErrors::toWriteable($e)
         );
-        echo "<pre>".$e."</pre>";
+        echo '<pre>'.$e.'</pre>';
     }
 }//end try

@@ -2,51 +2,83 @@
 
 namespace Mishusoft\Framework\Drivers;
 
-use Mishusoft\Framework\Chipsets\Autoload;
+use Mishusoft\Framework\Chipsets\System\Logger;
 use PDO;
 use PDOException;
 
 class Model
 {
-    public $dbc;
-    protected $db;
+
+    /**
+     * @var mixed|false
+     */
+    public mixed $dbc;
+
+    /**
+     * @var mixed|false
+     */
+    protected mixed $db;
+
+    /**
+     * @var Registry
+     */
     private Registry $registry;
+
 
     public function __construct()
     {
         $this->registry = Registry::getInstance();
-        $this->db = $this->registry->db;
-        $this->dbc = $this->db;
-    }
+        $this->db       = $this->registry->db;
+        $this->dbc      = $this->db;
+
+    }//end __construct()
+
 
     function __destruct()
     {
 
-    }
+    }//end __destruct()
 
-    protected function prepare($sql)
+
+    /**
+     * @param string $sql
+     * @return mixed
+     */
+    protected function prepare(string $sql)
     {
         try {
-            if ($this->db) {
+            if ($this->db === true) {
                 return $this->db->prepare($sql);
             }
         } catch (PDOException $e) {
-            Autoload::log($e->getMessage(), PHP_COMPILE_LOG_FILE, "full");
-            echo "<pre>" . $e . "</pre>";
+            Logger::write($e->getMessage(), PHP_COMPILE_LOG_FILE, 'smart');
+            echo '<pre>'.$e.'</pre>';
+            throw $e;
         }
-        //exit();
-    }
 
-    protected function isTableExistsOnDatabase($table): bool
+        // exit();
+
+    }//end prepare()
+
+
+    /**
+     * @param string $table
+     * @return bool
+     */
+    protected function isTableExistsOnDatabase(string $table): bool
     {
-        $tbl = $this->query("SHOW TABLES LIKE %" . DbPREFIX . "$table`;");
-        if ($tbl->fetch(PDO::FETCH_ASSOC)) {
-            return TRUE;
+        $tbl = $this->query('SHOW TABLES LIKE %'.DbPREFIX.$table.'`;');
+        if ($tbl->fetch(PDO::FETCH_ASSOC) === true) {
+            return true;
         }
-        return FALSE;
-    }
 
-    /*protected function retrieveReturnVariable($data, $var) {
+        return false;
+
+    }//end isTableExistsOnDatabase()
+
+
+    /*
+        protected function retrieveReturnVariable($data, $var) {
         if (version_compare(PhpVersion, '7.4', '<')) {
             if ($data[$var]) {
                 return $data[$var];
@@ -58,16 +90,25 @@ class Model
         }
     }*/
 
-    protected function query($sql)
+    /**
+     * @param string $sql
+     * @return mixed
+     */
+    protected function query(string $sql)
     {
         try {
-            if ($this->db) {
+            if ($this->db === true) {
                 return $this->db->query($sql);
             }
         } catch (PDOException $e) {
-            Autoload::log($e->getMessage(), PHP_COMPILE_LOG_FILE, "full");
-            echo "<pre>" . $e . "</pre>";
+            Logger::write($e->getMessage(), PHP_COMPILE_LOG_FILE, 'smart');
+            echo '<pre>'.$e.'</pre>';
+            throw $e;
         }
-        //exit();
-    }
-}
+
+        // exit();
+
+    }//end query()
+
+
+}//end class

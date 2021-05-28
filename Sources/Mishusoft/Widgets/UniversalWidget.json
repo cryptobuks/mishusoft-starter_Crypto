@@ -1,0 +1,11 @@
+{
+  "class": "universal",
+  "method": "getMenu",
+  "child": [],
+  "configuration": {
+    "position": "header"
+  },
+  "setting": {
+    "status": "enable"
+  }
+}
