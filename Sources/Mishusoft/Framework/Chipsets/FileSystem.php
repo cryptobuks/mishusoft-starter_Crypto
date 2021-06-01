@@ -246,9 +246,9 @@ class FileSystem
     /**
      * @param string $filename
      */
-    public static function createFile(string $filename): bool
+    public static function createFile(string $filename)
     {
-        if (self::isWriteable(dirname($filename)) === true) {
+        if (is_writable(dirname($filename)) === true) {
             return fopen($filename, 'wb+');
         }
 
@@ -263,7 +263,7 @@ class FileSystem
      */
     public static function isWriteable(string $filename): bool
     {
-        if (self::isFileExists($filename) === true) {
+        if (file_exists($filename) === true) {
             return is_writable($filename) === true;
         }
 
@@ -279,7 +279,7 @@ class FileSystem
     {
         if (is_array($filename) === true) {
             foreach ($filename as $file) {
-                if (self::isWriteable($file) === true) {
+                if (is_writable($file) === true) {
                     self::delete($file);
                 }
             }

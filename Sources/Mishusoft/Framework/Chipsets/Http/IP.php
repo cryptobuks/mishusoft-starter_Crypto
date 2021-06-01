@@ -8,271 +8,357 @@
  *     172.16.0.0 - 172.31.255.255 (1,048,576 IP addresses)
  *     10.0.0.0 - 10.255.255.255 (16,777,216 IP addresses)
  *
- * Your simple home network, with its router at the center and computers connected to it—wired or wireless—classifies as one of those networks.
-*/
+ * Your simple home network,
+ * with its router at the center and computers connected to it—wired or wireless—classifies as one of those networks.
+ */
 
 namespace Mishusoft\Framework\Chipsets\Http;
 
 use GeoIp2\Database\Reader;
 use GeoIp2\Exception\AddressNotFoundException;
-use Ipdata\ApiClient\Ipdata;
 use MaxMind\Db\Reader\InvalidDatabaseException;
 use Mishusoft\Framework\Chipsets\RuntimeErrors;
-use Mishusoft\Framework\Chipsets\Utility\_String;
-use Nyholm\Psr7\Factory\Psr17Factory;
-use Psr\Http\Client\ClientExceptionInterface;
-use Symfony\Component\HttpClient\Psr18Client;
 
 class IP
 {
-    /*declare version*/
-    const VERSION = "1.0.2";
+    // Declare version.
+    public const VERSION = '1.0.2';
+
+    /**
+     * The api key for IPDATA.COM website.
+     *
+     * @var string
+     */
+    private static string $apiKey = '2f9dde381f67efed325acfb1011a988036b28fc6cc02f07668ef7180';
+
+    /**
+     * Absolute path of geo lite city db file.
+     *
+     * @var string
+     */
+    private static string $cityDbFile = APPLICATION_STORAGE_PATH.'0/GeoIP/GeoLite2-City.mmdb';
+
+    /**
+     * Absolute path of geo lite country db file.
+     *
+     * @var string
+     */
+    private static string $countryDbFile = APPLICATION_STORAGE_PATH.'0/GeoIP/GeoLite2-Country.mmdb';
 
 
     /**
+     * IP constructor.
+     */
+    public function __construct()
+    {
+
+    }//end __construct()
+
+
+    /**
+     * Get country name of client.
+     *
      * @return string
+     * @throws \JsonException Throw exception when json error occurred.
      */
     public static function getCountry(): string
     {
         $country = 'Unknown';
         try {
-            if (self::is_public_ip(self::get())) {
-                $reader = new Reader(MS_STORAGE_PATH . "0/GeoIP/GeoLite2-Country.mmdb");
-                $record = $reader->country(self::get());
+            if (self::isPublicIp(self::get()) === true) {
+                $reader  = new Reader(self::$countryDbFile);
+                $record  = $reader->country(self::get());
                 $country = $record->country->name;
             } else {
                 $country = 'Private IP';
             }
         } catch (AddressNotFoundException $e) {
-            if (empty($record->country->name)) {
-                try {
-                    $httpClient = new Psr18Client();
-                    $psr17Factory = new Psr17Factory();
-                    $ipdata = new Ipdata('test', $httpClient, $psr17Factory);
-                    $country = $ipdata->lookup(self::get())['country_name'];
-
-                } catch (ClientExceptionInterface $e) {
-                    new RuntimeErrors($e->getMessage(), $e->getCode(), $e->getCode(), $e->getFile(), $e->getLine(), $e->getTraceAsString());
-                }
+            if (empty($record->country->name) === true) {
+                $remoteData = new IpDataClient(self::$apiKey);
+                $country    = $remoteData->lookup(self::get())['country_name'];
             } else {
-                new RuntimeErrors($e->getMessage(), $e->getCode(), $e->getCode(), $e->getFile(), $e->getLine(), $e->getTraceAsString());
+                RuntimeErrors::fetch($e);
             }
         } catch (InvalidDatabaseException $e) {
-            new RuntimeErrors($e->getMessage(), $e->getCode(), $e->getCode(), $e->getFile(), $e->getLine(), $e->getTraceAsString());
+            RuntimeErrors::fetch($e);
         } finally {
             return $country;
-        }
-    }
+        }//end try
+
+    }//end getCountry()
+
 
     /**
-     * @param null $ip
-     * @return bool
+     * @param  string $ip
+     * @return boolean
      */
-    public static function is_public_ip($ip = NULL): bool
+    public static function isPublicIp(string $ip=''): bool
     {
         return filter_var(
-                $ip,
-                FILTER_VALIDATE_IP,
-                FILTER_FLAG_IPV4 | FILTER_FLAG_IPV6 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE
-            ) === $ip;
-    }
+            $ip,
+            FILTER_VALIDATE_IP,
+            (FILTER_FLAG_IPV4 | FILTER_FLAG_IPV6 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)
+        ) === $ip;
+
+    }//end isPublicIp()
+
 
     /**
+     * Get the IP Address of client.
+     *
      * @return string
      */
-    static public function get(): string
+    public static function get(): string
     {
-        $remote = $_SERVER['REMOTE_ADDR'];
-        $client = false;
+        $remote  = $_SERVER['REMOTE_ADDR'];
+        $client  = false;
         $forward = false;
-        if (array_key_exists('HTTP_CLIENT_IP', $_SERVER))
+        if (array_key_exists('HTTP_CLIENT_IP', $_SERVER) === true) {
             $client = $_SERVER['HTTP_CLIENT_IP'];
-        if (array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER))
+        }
+
+        if (array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER) === true) {
             $forward = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        if (filter_var($client, FILTER_VALIDATE_IP)) {
+        }
+
+        if (filter_var($client, FILTER_VALIDATE_IP) !== false) {
             $ip = $client;
-        } elseif (filter_var($forward, FILTER_VALIDATE_IP)) {
+        } else if (filter_var($forward, FILTER_VALIDATE_IP) !== false) {
             $ip = $forward;
         } else {
             $ip = $remote;
         }
 
         return $ip;
-    }
+
+    }//end get()
+
 
     /**
-     * @param string $purpose
+     * Get all information about client.
+     *
+     * @param string $purpose The purpose of data.
+     *
      * @return array|float|string|null
      */
-    public static function getInfo(string $purpose = "location")
+    public static function getInfo(string $purpose='location'): float|array|string|null
     {
-        $output = "Unknown Location";
+        $output = 'Unknown Location';
         try {
-            if (self::is_public_ip(self::get()/*'103.154.156.11'*/)) {
-                $reader = new Reader(MS_STORAGE_PATH . "0/GeoIP/GeoLite2-City.mmdb");
-                $record = $reader->city(IP::get() /*'103.154.156.11'*/);
-                $purpose = str_replace(array("name", "\n", "\t", " ", "-", "_"), NULL, _String::lower(trim($purpose)));
-                $support = array("latitude", "longitude", "timezone", "postalcode", "city", "state", "country", "countrycode", "continent", "continentcode", "location", "address");
-                if (filter_var(IP::get()/*'103.154.156.11'*/, FILTER_VALIDATE_IP) && in_array($purpose, $support)) {
+            if (self::isPublicIp(self::get()) === true) {
+                $reader  = new Reader(self::$cityDbFile);
+                $record  = $reader->city(self::get());
+                $purpose = str_replace(['name', "\n", "\t", ' ', '-', '_'], '', strtolower(trim($purpose)));
+                $support = [
+                    'latitude',
+                    'longitude',
+                    'timezone',
+                    'postalcode',
+                    'city',
+                    'state',
+                    'country',
+                    'countrycode',
+                    'continent',
+                    'continentcode',
+                    'location',
+                    'address',
+                ];
+                if (filter_var(self::get(), FILTER_VALIDATE_IP) && in_array($purpose, $support, true)) {
                     switch ($purpose) {
-                        case "location":
-                            $output = array(
-                                "latitude" => $record->location->latitude,
-                                "longitude" => $record->location->longitude,
-                                "time_zone" => $record->location->timeZone,
-                                "postal_code" => $record->postal->code,
-                                "city" => $record->city->name,
-                                "state" => $record->mostSpecificSubdivision->name,
-                                "country" => $record->country->name,
-                                "country_code" => $record->country->isoCode,
-                                "continent" => $record->continent->name,
-                                "continent_code" => $record->continent->code
-                            );
-                            break;
-                        case "address":
-                            $address = array($record->country->name);
+                        case 'location':
+                            $output = [
+                                'latitude'       => $record->location->latitude,
+                                'longitude'      => $record->location->longitude,
+                                'time_zone'      => $record->location->timeZone,
+                                'postal_code'    => $record->postal->code,
+                                'city'           => $record->city->name,
+                                'state'          => $record->mostSpecificSubdivision->name,
+                                'country'        => $record->country->name,
+                                'country_code'   => $record->country->isoCode,
+                                'continent'      => $record->continent->name,
+                                'continent_code' => $record->continent->code,
+                            ];
+                        break;
+
+                        case 'address':
+                            $address   = [$record->country->name];
                             $address[] = $record->mostSpecificSubdivision->name;
                             $address[] = $record->city->name;
-                            $output = implode(", ", array_reverse($address));
-                            break;
-                        case "latitude":
+                            $output    = implode(', ', array_reverse($address));
+                        break;
+
+                        case 'latitude':
                             $output = $record->location->latitude;
-                            break;
-                        case "longitude":
+                        break;
+
+                        case 'longitude':
                             $output = $record->location->longitude;
-                            break;
-                        case "timezone":
+                        break;
+
+                        case 'timezone':
                             $output = $record->location->timeZone;
-                            break;
-                        case "city":
+                        break;
+
+                        case 'city':
                             $output = $record->city->name;
-                            break;
-                        case "postalcode":
+                        break;
+
+                        case 'postalcode':
                             $output = $record->postal->code;
-                            break;
-                        case "state":
+                        break;
+
+                        case 'state':
                             $output = $record->mostSpecificSubdivision->name;
-                            break;
-                        case "country":
+                        break;
+
+                        case 'country':
                             $output = $record->country->name;
-                            break;
-                        case "countrycode":
+                        break;
+
+                        case 'countrycode':
                             $output = $record->country->isoCode;
-                            break;
-                        case "continent":
+                        break;
+
+                        case 'continent':
                             $output = $record->continent->name;
-                            break;
-                        case "continentcode":
+                        break;
+
+                        case 'continentcode':
                             $output = $record->continent->code;
-                            break;
+                        break;
+
                         default:
                             $output = 'Unknown';
-                            break;
-                    }
-                }
+                        break;
+                    }//end switch
+                }//end if
             } else {
                 $output = 'Private IP';
-            }
+            }//end if
         } catch (AddressNotFoundException | InvalidDatabaseException $e) {
-            new RuntimeErrors($e->getMessage(), $e->getCode(), $e->getCode(), $e->getFile(), $e->getLine(), $e->getTraceAsString());
+            RuntimeErrors::fetch($e);
         } finally {
             return $output;
-        }
-    }
+        }//end try
+
+    }//end getInfo()
+
 
     /**
      * @public
-     * @param null $ip
-     * @return bool
+     * @param  string $ip
+     * @return boolean
      */
-    public static function is_private_ip($ip = NULL): bool
+    public static function isPrivateIp(string $ip=''): bool
     {
-        return self::is_ip($ip) && !self::is_public_ip($ip);
-    }
+        return self::isIp($ip) && !self::isPublicIp($ip);
 
-    public static function is_ip($ip = NULL): bool
+    }//end isPrivateIp()
+
+
+    /**
+     * @param  string $ip
+     * @return boolean
+     */
+    public static function isIp(string $ip=''): bool
     {
         return filter_var(
-                $ip,
-                FILTER_VALIDATE_IP,
-                FILTER_FLAG_IPV4 | FILTER_FLAG_IPV6
-            ) === $ip;
-    }
+            $ip,
+            FILTER_VALIDATE_IP,
+            (FILTER_FLAG_IPV4 | FILTER_FLAG_IPV6)
+        ) === $ip;
+
+    }//end isIp()
+
 
     /**
      * @public
-     * @param null $ip
-     * @return bool
+     * @param  string $ip
+     * @return boolean
      */
-    public static function is_private_ipv4($ip = NULL): bool
+    public static function isPrivateIpv4(string $ip=''): bool
     {
-        return self::is_ipv4($ip) && !self::is_public_ipv4($ip);
-    }
+        return self::isIpv4($ip) && !self::isPublicIpv4($ip);
+
+    }//end isPrivateIpv4()
+
 
     /**
-     * @param null $ip
-     * @return bool
+     * @param  string $ip
+     * @return boolean
      */
-    public static function is_ipv4($ip = NULL): bool
+    public static function isIpv4(string $ip=''): bool
     {
         return filter_var(
-                $ip,
-                FILTER_VALIDATE_IP,
-                FILTER_FLAG_IPV4
-            ) === $ip;
-    }
+            $ip,
+            FILTER_VALIDATE_IP,
+            FILTER_FLAG_IPV4
+        ) === $ip;
+
+    }//end isIpv4()
+
 
     /**
-     * @param null $ip
-     * @return bool
+     * @param  string $ip
+     * @return boolean
      */
-    public static function is_public_ipv4($ip = NULL): bool
+    public static function isPublicIpv4(string $ip=''): bool
     {
         return filter_var(
-                $ip,
-                FILTER_VALIDATE_IP,
-                FILTER_FLAG_IPV4 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE
-            ) === $ip;
-    }
+            $ip,
+            FILTER_VALIDATE_IP,
+            (FILTER_FLAG_IPV4 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)
+        ) === $ip;
+
+    }//end isPublicIpv4()
+
 
     /**
      * @public
-     * @param null $ip
-     * @return bool
+     * @param  string $ip
+     * @return boolean
      */
-    public static function is_private_ipv6($ip = NULL): bool
+    public static function isPrivateIpv6(string $ip=''): bool
     {
-        return self::is_ipv6($ip) && !self::is_public_ipv6($ip);
-    }
+        return self::isIpv6($ip) && !self::isPublicIpv6($ip);
+
+    }//end isPrivateIpv6()
+
 
     /**
-     * @param null $ip
-     * @return bool
+     * @param  null $ip
+     * @return boolean
      */
-    public static function is_ipv6($ip = NULL): bool
+    public static function isIpv6($ip=null): bool
     {
         return filter_var(
-                $ip,
-                FILTER_VALIDATE_IP,
-                FILTER_FLAG_IPV6
-            ) === $ip;
-    }
+            $ip,
+            FILTER_VALIDATE_IP,
+            FILTER_FLAG_IPV6
+        ) === $ip;
+
+    }//end isIpv6()
+
 
     /**
-     * @param null $ip
-     * @return bool
+     * @param  string $ip
+     * @return boolean
      */
-    public static function is_public_ipv6($ip = NULL): bool
+    public static function isPublicIpv6(string $ip=''): bool
     {
         return filter_var(
-                $ip,
-                FILTER_VALIDATE_IP,
-                FILTER_FLAG_IPV6 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE
-            ) === $ip;
-    }
+            $ip,
+            FILTER_VALIDATE_IP,
+            (FILTER_FLAG_IPV6 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)
+        ) === $ip;
 
-    function __destruct()
+    }//end isPublicIpv6()
+
+
+    public function __destruct()
     {
 
-    }
-}
+    }//end __destruct()
+
+
+}//end class

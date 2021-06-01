@@ -4,8 +4,8 @@
  *
  * @package    Mishusoft
  * @subpackage website
- * @author     Mishusoft Systems Ltd <products@mishusoft.com>
- * @copyright   2021 Mishusoft Systems Ltd <products@mishusoft.com>
+ * @author     Squiz Pty Ltd <products@squiz.net>
+ * @copyright  2021 Squiz Pty Ltd (ABN 77 084 670 600)
  *  */
 
 declare(strict_types=1);
@@ -26,6 +26,13 @@ if ((array_key_exists('SERVER_NAME', $_SERVER) === true)
     ini_set('display_startup_errors', '1');
 }
 
+// Start enable-mode.
+// Enable display error mode.
+// error_reporting(E_ALL);
+// ini_set('display_errors', '0');
+// ini_set('display_errors', '1');
+// ini_set('display_startup_errors', '1');
+// End enable-mode.
 ini_set('max_input_time', '600');
 ini_set('max_execution_time', '600');
 ini_set('zlib.output_compression', 'On');
@@ -42,18 +49,13 @@ define('PHP_RUNTIME_SYSTEM_PATH', PHP_RUNTIME_ROOT_PATH.'Mishusoft'.DIRECTORY_SE
 try {
     include_once PHP_RUNTIME_SYSTEM_PATH.'Framework/Chipsets/Autoload.php';
 
+    Framework\Chipsets\System\Logger::write(sprintf('%s application started', __NAMESPACE__));
+
     // BIOS initialisation.
     Framework\Chipsets\System\BIOS::initialise();
 } catch (Error | Exception $e) {
     if (class_exists(Framework\Chipsets\RuntimeErrors::class)) {
-        new Framework\Chipsets\RuntimeErrors(
-            $e->getMessage(),
-            $e->getCode(),
-            $e->getCode(),
-            $e->getFile(),
-            $e->getLine(),
-            $e->getTraceAsString()
-        );
+        Framework\Chipsets\RuntimeErrors::fetch($e);
     } else {
         Framework\Chipsets\System\Logger::write(
             Framework\Chipsets\RuntimeErrors::toWriteable($e)

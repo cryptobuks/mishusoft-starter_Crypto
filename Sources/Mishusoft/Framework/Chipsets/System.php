@@ -22,8 +22,8 @@ use RuntimeException;
 class System
 {
     // Set Mishusoft version
-    public const VERSION                 = '4.0.0';
-    public const defaultConfigProperties = [
+    public const VERSION                   = '4.0.0';
+    public const DEFAULT_CONFIG_PROPERTIES = [
         'dbms'    => [],
         'default' => '',
     ];
@@ -36,12 +36,12 @@ class System
     /**
      * @var string
      */
-    public static string $StepTitle = '';
+    public static string $stepTitle = '';
 
     /**
      * @var string
      */
-    public static string $Message = '';
+    public static string $message = '';
 
     /**
      * @var string
@@ -151,7 +151,7 @@ class System
      */
     public static function getAbsoluteInstalledURL(): string
     {
-        return Browser::urlOrigin($_SERVER).MS_SERVER_PATH;
+        return Browser::urlOrigin($_SERVER).APPLICATION_SERVER_PATH;
 
     }//end getAbsoluteInstalledURL()
 
@@ -186,24 +186,24 @@ class System
     public static function getRequiresFile(string $filename, string $dirname=''): string
     {
         // Packages configuration.
-        self::$configDir       = implode(DIRECTORY_SEPARATOR, [MS_PACKAGES_PATH, Memory::Data('mpm')->packages->default, 'Configs'.DIRECTORY_SEPARATOR]);
+        self::$configDir       = implode(DIRECTORY_SEPARATOR, [APPLICATION_PACKAGES_PATH, Memory::Data('mpm')->packages->default, 'Configs'.DIRECTORY_SEPARATOR]);
         self::$configServerDir = self::$configDir.md5((new Browser())->getURLHostname()).DIRECTORY_SEPARATOR;
         if (empty($dirname) === true) {
             self::$setupFile = self::$configServerDir.$dirname.DIRECTORY_SEPARATOR.Encryption::static((new Browser())->getURLHostname()).MISHUSOFT_CONFIGURATION_FILE_FORMAT;
         }
 
         // Application security.
-        self::$appSecurityDirectory      = MS_PACKAGES_PATH.Memory::Data('mpm')->packages->default.DIRECTORY_SEPARATOR.'Security'.DIRECTORY_SEPARATOR;
+        self::$appSecurityDirectory      = APPLICATION_PACKAGES_PATH.Memory::Data('mpm')->packages->default.DIRECTORY_SEPARATOR.'Security'.DIRECTORY_SEPARATOR;
         self::$appSecurityFileName       = ucfirst(DEFAULT_APP_NAME).'ApplicationSecurity.lock';
         self::$appSecurityBackupFileName = ucfirst(DEFAULT_APP_NAME).'ApplicationSecurity.lock.backup';
         self::$appSecurityFile           = self::$appSecurityDirectory.self::$appSecurityFileName;
-        self::$appSecurityFileBackup     = MS_FRAMEWORK_PATH.'Backups'.DIRECTORY_SEPARATOR.self::$appSecurityBackupFileName;
+        self::$appSecurityFileBackup     = APPLICATION_FRAMEWORK_PATH.'Backups'.DIRECTORY_SEPARATOR.self::$appSecurityBackupFileName;
 
         // Configuration properties.
         self::$configurePropertiesFileName = 'properties.json';
         self::$configurePropertiesFile     = self::$configServerDir.self::$configurePropertiesFileName;
         // Backup location of security file.
-        self::$appSecurityFileBackupDirectory = MS_FRAMEWORK_PATH.'Backups'.DIRECTORY_SEPARATOR;
+        self::$appSecurityFileBackupDirectory = APPLICATION_FRAMEWORK_PATH.'Backups'.DIRECTORY_SEPARATOR;
 
         return match (strtoupper($filename)) {
             'CONFIG_SERVER_DIR_PATH' => self::$configServerDir,
@@ -281,7 +281,7 @@ class System
      */
     private static function getProgressedSystemStatus(string $appSecurityFile): array
     {
-        if ((int) ((disk_free_space(MS_DOCUMENT_ROOT) / 1024) / 1024) > 50) {
+        if ((int) ((disk_free_space(APPLICATION_DOCUMENT_ROOT) / 1024) / 1024) > 50) {
             if (Memory::Data('mpm')->config->database->activation === true) {
                 // Check database activation.
                 if (file_exists($appSecurityFile) && !empty(file_get_contents($appSecurityFile))) {
@@ -525,7 +525,7 @@ class System
                 Stream::createFile(self::getRequiresFile('CONFIG_PROPERTIES_FILE_PATH'));
                 Stream::exec(self::getRequiresFile('CONFIG_PROPERTIES_FILE_PATH'));
                 if (file_exists(self::getRequiresFile('CONFIG_PROPERTIES_FILE_PATH'))) {
-                    if (file_put_contents(self::getRequiresFile('CONFIG_PROPERTIES_FILE_PATH'), json_encode(self::defaultConfigProperties))) {
+                    if (file_put_contents(self::getRequiresFile('CONFIG_PROPERTIES_FILE_PATH'), json_encode(self::DEFAULT_CONFIG_PROPERTIES))) {
                         return self::checkSystemConfiguration();
                     } else {
                         self::$event = [
@@ -655,7 +655,7 @@ class System
      */
     public static function setProgressStep(): bool
     {
-        // preOutput(disk_free_space(MS_DOCUMENT_ROOT));
+        // preOutput(disk_free_space(APPLICATION_DOCUMENT_ROOT));
         // preOutput(json_decode(file_get_contents(self::getRequiresFile("CONFIG_PROPERTIES_FILE_PATH")),true));
         // preOutput(self::$event);
         switch (_Array::value(self::$event, 'message')) {
@@ -744,14 +744,14 @@ class System
     public static function setRuntimeInstallationEvent(string $title, string $message): bool
     {
         if (!empty(isset($title))) {
-            self::$StepTitle = $title;
+            self::$stepTitle = $title;
         }
 
         if (!empty(isset($message))) {
-            self::$Message = $message;
+            self::$message = $message;
         }
 
-        return self::$StepTitle && self::$Message;
+        return self::$stepTitle && self::$message;
 
     }//end setRuntimeInstallationEvent()
 
@@ -765,14 +765,14 @@ class System
     {
         // preOutput(func_get_args());
         if (!empty($title)) {
-            self::$StepTitle = $title;
+            self::$stepTitle = $title;
         }
 
         if (!empty($step)) {
             self::$Step = $step;
         }
 
-        return self::$StepTitle && self::$Step;
+        return self::$stepTitle && self::$Step;
 
     }//end setStepForInstallation()
 
@@ -1552,10 +1552,10 @@ class System
                         }
 
                         try {
-                            $app_name        = $data->env->installation->client->base->area->website->name;
-                            $app_description = $data->env->installation->client->base->area->website->description;
-                            $app_company     = $data->env->installation->client->base->area->website->company;
-                            $doc_root        = str_replace('\\', '/', MS_DOCUMENT_ROOT);
+                            $appName        = $data->env->installation->client->base->area->website->name;
+                            $appDescription = $data->env->installation->client->base->area->website->description;
+                            $appCompany     = $data->env->installation->client->base->area->website->company;
+                            $doccumentRoot        = str_replace('\\', '/', APPLICATION_DOCUMENT_ROOT);
                             $http_host_name  = $_SERVER['SERVER_NAME'];
                             $http_host_add   = self::getAbsoluteInstalledURL();
                             $http_host_ip    = $_SERVER['SERVER_ADDR'];
@@ -1571,10 +1571,10 @@ class System
                                 _Array::value(self::getDbConfigArgument('db', self::getRequiresFile('SETUP_FILE_PATH', self::getDefaultDb())), 'prefix')
                             );
                             self::ConfigWebApp(
-                                $app_name,
-                                $app_description,
-                                $app_company,
-                                $doc_root,
+                                $appName,
+                                $appDescription,
+                                $appCompany,
+                                $doccumentRoot,
                                 $http_host_name,
                                 $http_host_add,
                                 $http_host_ip,
@@ -1587,10 +1587,10 @@ class System
                             self::configureUpdate(
                                 [
                                     'app' => [
-                                        'name'            => $app_name,
-                                        'description'     => $app_description,
-                                        'company'         => $app_company,
-                                        'doc_root'        => $doc_root,
+                                        'name'            => $appName,
+                                        'description'     => $appDescription,
+                                        'company'         => $appCompany,
+                                        'doc_root'        => $doccumentRoot,
                                         'http_host_name'  => $http_host_name,
                                         'http_host_add'   => $http_host_add,
                                         'http_host_ip'    => $http_host_ip,
@@ -1649,7 +1649,7 @@ class System
                         }//end try
                     }//end if
                 } else {
-                    if (!empty(self::$Message)) {
+                    if (!empty(self::$message)) {
                         Media::StreamAsJson(
                             [
                                 'env' => [
@@ -1658,7 +1658,7 @@ class System
                                             'cmd_btn'   => 'remove',
                                             'set_title' => 'need',
                                             'type'      => 'error',
-                                            'text'      => self::$Message,
+                                            'text'      => self::$message,
                                         ],
                                         'client'  => $data->env->installation->client,
                                     ],
@@ -1823,7 +1823,7 @@ class System
                         array_push($current_data['dbms'], $name);
                     }
                 } else {
-                    $current_data = self::defaultConfigProperties;
+                    $current_data = self::DEFAULT_CONFIG_PROPERTIES;
                     array_push($current_data['dbms'], $name);
                 }
 
@@ -2110,7 +2110,7 @@ class System
      */
     private static function databaseFile(string $file): string
     {
-        return self::$databaseFile = implode(DIRECTORY_SEPARATOR, [MS_PACKAGES_PATH.MPM::defaultPackage(), 'Databases', "{$file}.sql"]);
+        return self::$databaseFile = implode(DIRECTORY_SEPARATOR, [APPLICATION_PACKAGES_PATH.MPM::defaultPackage(), 'Databases', "{$file}.sql"]);
 
     }//end databaseFile()
 
@@ -2162,7 +2162,7 @@ class System
      * @param string $name
      * @param string $description
      * @param string $company
-     * @param string $doc_root
+     * @param string $doccumentRoot
      * @param string $http_host_name
      * @param string $http_host_add
      * @param string $http_host_ip
@@ -2176,7 +2176,7 @@ class System
         string $name,
         string $description,
         string $company,
-        string $doc_root,
+        string $doccumentRoot,
         string $http_host_name,
         string $http_host_add,
         string $http_host_ip,
@@ -2188,8 +2188,8 @@ class System
     ) {
         $db_prefix = _Array::value(self::getDbConfigArgument('db', self::getRequiresFile('SETUP_FILE_PATH', self::getDefaultDb())), 'prefix');
         self::makeDbConnectionRequestAuto(
-            function ($connection) use ($favicon, $icon_local_dir, $icon_remote_dir, $default_layout, $default_home, $http_host_ip, $http_host_add, $http_host_name, $doc_root, $company, $description, $name, $db_prefix) {
-                $connection->query('INSERT INTO `'.$db_prefix.WEB_CONFIG_TABLE."` VALUES (null, '$name', '$description', '$company', '$doc_root', '$http_host_name', '$http_host_add', '$http_host_ip', '$default_home', '$default_layout', '$icon_remote_dir', '$icon_local_dir', '$favicon');");
+            function ($connection) use ($favicon, $icon_local_dir, $icon_remote_dir, $default_layout, $default_home, $http_host_ip, $http_host_add, $http_host_name, $doccumentRoot, $company, $description, $name, $db_prefix) {
+                $connection->query('INSERT INTO `'.$db_prefix.WEB_CONFIG_TABLE."` VALUES (null, '$name', '$description', '$company', '$doccumentRoot', '$http_host_name', '$http_host_add', '$http_host_ip', '$default_home', '$default_layout', '$icon_remote_dir', '$icon_local_dir', '$favicon');");
             }
         );
 

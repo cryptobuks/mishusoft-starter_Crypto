@@ -8,9 +8,12 @@ class _JSON
 
 
     /**
-     * @param array $array
-     * @return string
-     * @throws \JsonException
+     * Encode array to json string.
+     *
+     * @param array $array Array contents.
+     *
+     * @return string   Encoded json string.
+     * @throws \JsonException Throw exception on json process error.
      */
     public static function encodeToString(array $array): string
     {
@@ -20,10 +23,14 @@ class _JSON
 
 
     /**
-     * @param  array $array
-     * @return string
+     * Encode array to json object.
+     *
+     * @param array $array Array contents.
+     *
+     * @return object   Decoded json object.
+     * @throws \JsonException Throw exception on json process error.
      */
-    public static function encodeToObject(array $array): string
+    public static function encodeToObject(array $array): object
     {
         return self::decodeToObject(self::encodeToString($array));
 
@@ -33,16 +40,17 @@ class _JSON
     /**
      * Json string to object converting
      * <code>
-     * return json_decode($string);
+     * return json_decode($string, false, 512, JSON_THROW_ON_ERROR);
      * </code>
      *
-     * @param string $string
-     * @return string
-     * @throws \JsonException
+     * @param string $string Encoded json string.
+     *
+     * @return object   Decoded json object.
+     * @throws \JsonException Throw exception on json process error.
      */
-    public static function decodeToObject(string $string): string
+    public static function decodeToObject(string $string): object
     {
-        return json_decode($string, true, 512, JSON_THROW_ON_ERROR);
+        return json_decode($string, false, 512, JSON_THROW_ON_ERROR);
 
     }//end decodeToObject()
 
@@ -53,9 +61,10 @@ class _JSON
      * return json_decode($string,true);
      * </code>
      *
-     * @param  string $string
-     * @return array
-     * @throws \JsonException
+     * @param string $string Encoded json string.
+     *
+     * @return array Decoded array data.
+     * @throws \JsonException Throw exception on json process error.
      */
     public static function decodeToArray(string $string):array
     {

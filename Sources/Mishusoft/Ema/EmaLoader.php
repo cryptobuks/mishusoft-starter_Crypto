@@ -8,11 +8,16 @@ use Mishusoft\Framework\Chipsets\Http\ClientRequest;
 use Mishusoft\Framework\Chipsets\Preloader;
 use Mishusoft\Framework\Chipsets\System\BIOS;
 use Mishusoft\Framework\Chipsets\System\Firewall;
+use Mishusoft\Framework\Chipsets\System\Logger;
 use Mishusoft\Framework\Chipsets\System\Memory;
 use Mishusoft\Framework\Chipsets\Utility\_Array;
+use Mishusoft\Framework\Chipsets\Utility\_JSON;
 use Mishusoft\Framework\Chipsets\Utility\_String;
 use Mishusoft\Framework\Libraries\Runtime;
 
+Logger::write('Ema loader started');
+
+Logger::write('Client request store in $rediection variable');
 $prediction = new ClientRequest();
 
 
@@ -22,29 +27,28 @@ $prediction = new ClientRequest();
  * The system will be execute ema applications.
  *
  * */
-
 $emaRootPath = PHP_RUNTIME_SYSTEM_PATH.'Ema'.DIRECTORY_SEPARATOR;
 
+Logger::write(sprintf('Check %s directory existent.', $emaRootPath));
 if (file_exists($emaRootPath) === true) {
+    Logger::write(sprintf('Found %s directory existent.', $emaRootPath));
     /*
      * We need to check Url Splitters (Built-In web interface) root path,
      * if exists this path,
      * The System will be execute all active splitters that is locate at <APP_DIRECTORY>/Ema/UrlSplitters
      * */
-
     $urlSplitterRootPath = $emaRootPath.'UrlSplitters'.DIRECTORY_SEPARATOR;
-
+    Logger::write(sprintf('Check %s directory existent.', $urlSplitterRootPath));
     if (file_exists($urlSplitterRootPath) === true) {
         /*
-         * auto update splitters configurations
-         *
+         * Auto update splitters configurations
          * */
-
         $configs = [];
+        Logger::write(sprintf('Count all exists files from %s directory.', $urlSplitterRootPath));
         if (count(FileSystem::getList($urlSplitterRootPath, 'file')) > 0) {
             foreach (FileSystem::getList($urlSplitterRootPath, 'file') as $filename) {
                 if (pathinfo($filename, PATHINFO_EXTENSION) === 'json') {
-                    $configs[] = json_decode(FileSystem::read("$urlSplitterRootPath$filename"), true);
+                    $configs[] = _JSON::decodeToArray(FileSystem::read($urlSplitterRootPath.$filename));
                 }
             }
 
@@ -52,26 +56,32 @@ if (file_exists($emaRootPath) === true) {
             ksort($configs, SORT_ASC);
 
 
-            FileSystem::remove(BIOS::urlSplittersConfigFile);
-            FileSystem::saveToFile(BIOS::urlSplittersConfigFile, json_encode($configs));
+            Logger::write(sprintf('Remove old splitters config file from %s directory.', PHP_RUNTIME_REGISTRIES_PATH));
+            FileSystem::remove(BIOS::URL_SPLITTERS_CONFIG_FILE);
+            Logger::write(sprintf('Write new splitters config file in %s directory.', PHP_RUNTIME_REGISTRIES_PATH));
+            FileSystem::saveToFile(BIOS::URL_SPLITTERS_CONFIG_FILE, _JSON::encodeToString($configs));
         }
 
         /*
-         * Load UrlSplitters
+         * Load UrlSplitters.
          * */
-
-        if (count(json_decode(FileSystem::read(BIOS::urlSplittersConfigFile), true)) > 0) {
-            foreach (json_decode(FileSystem::read(BIOS::urlSplittersConfigFile), true) as $splitter) {
-                if (in_array(_String::lower($prediction->getController()), _Array::value($splitter, 'route'))) {
-                    if (is_readable($urlSplitterRootPath._Array::value($splitter, 'class').'.php') === true) {
-                        include_once $urlSplitterRootPath._Array::value($splitter, 'class').'.php';
-                        $UrlSplitter = Preloader::getClassNamespaceFromPath(
-                            $urlSplitterRootPath._Array::value($splitter, 'class').'.php'
-                        );
-                        if (method_exists(new $UrlSplitter(), _String::lower($prediction->getController()))) {
+        Logger::write(sprintf('Check splitters config file in %s directory.', PHP_RUNTIME_REGISTRIES_PATH));
+        if (count(_JSON::decodeToArray(FileSystem::read(BIOS::URL_SPLITTERS_CONFIG_FILE))) > 0) {
+            foreach (_JSON::decodeToArray(FileSystem::read(BIOS::URL_SPLITTERS_CONFIG_FILE)) as $splitter) {
+                $requestedRoute = _Array::value($splitter, 'route');
+                if (in_array(strtolower($prediction->getController()), $requestedRoute, true) === true) {
+                    $requestedClassName = _Array::value($splitter, 'class');
+                    $currentRequestedFile = sprintf('%s%s.php', $urlSplitterRootPath, $requestedClassName);
+                    if (is_readable($currentRequestedFile) === true) {
+                        Logger::write(sprintf('Load %s from %s.', $currentRequestedFile, $urlSplitterRootPath));
+                        include_once $currentRequestedFile;
+                        Logger::write(sprintf('Extract %s from %s.', $requestedClassName, $currentRequestedFile));
+                        $urlSplitter = Preloader::getClassNamespaceFromPath($currentRequestedFile);
+                        if (method_exists(new $urlSplitter(), _String::lower($prediction->getController())) === true) {
+                            Logger::write(sprintf('Execute %s from %s.', $requestedClassName, $currentRequestedFile));
                             call_user_func(
                                 [
-                                    new $UrlSplitter(),
+                                    new $urlSplitter(),
                                     _String::lower($prediction->getController()),
                                 ],
                                 [
@@ -81,12 +91,19 @@ if (file_exists($emaRootPath) === true) {
                                 ]
                             );
                         } else {
+                            Logger::write(
+                                sprintf(
+                                    'Not found %s form %s.',
+                                    $urlSplitter.'::'._String::lower($prediction->getController()),
+                                    $currentRequestedFile
+                                )
+                            );
                             Firewall::runtimeFailure(
                                 'Not Found',
                                 [
                                     'debug' => [
-                                        'file'        => "$UrlSplitter::"._String::lower($prediction->getController()),
-                                        'location'    => (new Browser())->getVisitedPage(),
+                                        'file'        => $urlSplitter.'::'._String::lower($prediction->getController()),
+                                        'location'    => Browser::getVisitedPage(),
                                         'description' => 'Your requested url not found!!',
                                     ],
                                     'error' => ['description' => 'Your requested url not found!!'],
@@ -94,11 +111,12 @@ if (file_exists($emaRootPath) === true) {
                             );
                         }//end if
                     } else {
+                        Logger::write(sprintf('Not found %s.php from %s.', $requestedClassName, $urlSplitterRootPath));
                         Firewall::runtimeFailure(
                             'Not Found',
                             [
                                 'debug' => [
-                                    'file'        => $urlSplitterRootPath._Array::value($splitter, 'class').'.php',
+                                    'file'        => sprintf('%s%s.php', $urlSplitterRootPath, $requestedClassName),
                                     'location'    => $urlSplitterRootPath,
                                     'description' => 'Required file is not readable!!',
                                 ],
@@ -123,16 +141,23 @@ if (file_exists($emaRootPath) === true) {
 
     $mishusoftAppPath = $emaRootPath.'Mishusoft'.DIRECTORY_SEPARATOR;
     $defaultPackage   = 'Main';
+    Logger::write(sprintf('Check %s directory existent.', $mishusoftAppPath));
     if (file_exists($mishusoftAppPath) === true) {
-        if (count(FileSystem::getList("$mishusoftAppPath$defaultPackage/UrlHandlers/", 'file')) > 0) {
-            foreach (FileSystem::getList("$mishusoftAppPath$defaultPackage/UrlHandlers/", 'file') as $filename) {
+        Logger::write(sprintf('Count all exists files from %s directory.', $mishusoftAppPath));
+        $requestedHandleDirectory = $mishusoftAppPath.$defaultPackage.'/UrlHandlers/';
+        if (count(FileSystem::getList($requestedHandleDirectory, 'file')) > 0) {
+            foreach (FileSystem::getList($requestedHandleDirectory, 'file') as $filename) {
                 if (_String::lower(BIOS::getFilenameOnly($filename)) === _String::lower($prediction->getController())) {
-                    if (is_readable("$mishusoftAppPath$defaultPackage/UrlHandlers/".$filename)) {
-                        include_once "$mishusoftAppPath$defaultPackage/UrlHandlers/".$filename;
-                        $UrlHandler = Preloader::getClassNamespaceFromPath("$mishusoftAppPath$defaultPackage/UrlHandlers/".$filename);
+                    $currentRequestedFile = $mishusoftAppPath.$defaultPackage.'/UrlHandlers/'.$filename;
+                    if (is_readable($currentRequestedFile) === true) {
+                        Logger::write(sprintf('Load %s form %s directory.', $currentRequestedFile, $mishusoftAppPath));
+                        include_once $currentRequestedFile;
+                        Logger::write(sprintf('Extract class from %s.', $currentRequestedFile));
+                        $urlHandler = Preloader::getClassNamespaceFromPath($currentRequestedFile);
+                        Logger::write(sprintf('Execute class from %s.', $currentRequestedFile));
                         call_user_func(
                             [
-                                new $UrlHandler(),
+                                new $urlHandler(),
                                 'Response',
                             ],
                             [
@@ -144,7 +169,7 @@ if (file_exists($emaRootPath) === true) {
                         );
                         exit();
                     }
-                }
+                }//end if
             }//end foreach
         }//end if
     }//end if
@@ -161,8 +186,8 @@ if (file_exists($emaRootPath) === true) {
  * this interface exclude maintenance and emergency pages
  */
 
-if (Memory::Data('framework')->maintenance === true) {
-    if ($prediction->getController() !== 'maintenance') {
-        Runtime::redirect('maintenance');
-    }
+if ((Memory::data('framework')->maintenance === true)
+    && $prediction->getController() !== 'maintenance'
+) {
+    Runtime::redirect('maintenance');
 }

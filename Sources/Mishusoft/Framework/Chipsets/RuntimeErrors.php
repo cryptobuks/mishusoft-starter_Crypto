@@ -4,8 +4,6 @@ namespace Mishusoft\Framework\Chipsets;
 
 use Exception;
 use Mishusoft\Framework\Chipsets\System\Logger;
-use Mishusoft\Framework\Chipsets\Utility\_Array;
-use Mishusoft\Framework\Chipsets\Utility\_Debug;
 use Mishusoft\Framework\Chipsets\Utility\Number;
 
 class RuntimeErrors extends Exception
@@ -42,17 +40,26 @@ class RuntimeErrors extends Exception
         $this->line     = $lineno;
         $this->errTrace = $trace;
 
-        //_Debug::preOutput(debug_backtrace());
-
+        // _Debug::preOutput(debug_backtrace());
         echo '<br/><article style="margin: 0;padding: 5px;border: 1px solid lightgray;border-radius: 5px;background-color: #f4f4f4;">';
         echo '<section style="line-height: 1.5;margin: -5px -5px 10px -5px;box-shadow: inset 0 -3em 3em rgba(0,0,0,.1),.3em .3em 1em rgba(0,0,0,.3);padding: 8px 5px;text-align: justify;">';
         echo '<div style="font-size: 20px;font-weight: bold; border-bottom: 1px solid lightgray;padding-bottom: 10px;text-transform: uppercase;">';
         echo self::codeAsString($this->getCode());
         echo '</div>';
-        echo '<div style="font-family: DejaVu Sans Mono;font-size: 15px;font-weight:normal;padding: 5px 2px;">';
+        echo '<div style="font-family: DejaVu Sans Mono,serif;font-size: 15px;font-weight:normal;padding: 5px 2px;">';
         echo $this->message.' from '.$this->file.' on line '.$this->line;
-        // Logger::write($this->codeAsString($this->getCode())
-        // ." [$this->code] : $this->message from $this->file on line $this->line.");
+        Logger::write(
+            sprintf(
+                '%s [%s] : %s from %s on line %d.',
+                self::codeAsString($this->getCode()),
+                $this->code,
+                $this->message,
+                $this->file,
+                $this->line
+            ),
+            LOGGER_WRITE_STYLE_FULL,
+            LOGGER_FLAG_TYPE_RUNTIME
+        );
         echo '</div>';
         echo '</section>';
 
@@ -77,7 +84,8 @@ class RuntimeErrors extends Exception
     /**
      * Error code to name assignment.
      *
-     * @param  integer $code Error code.
+     * @param integer $code Error code.
+     *
      * @return false|string Assigned name.
      */
     public static function codeAsString(int $code): bool|string
@@ -131,7 +139,11 @@ class RuntimeErrors extends Exception
 
 
     /**
-     * @param array|string $trace
+     * Make beautiful view of error call stack
+     *
+     * @param array|string $trace Error call stack.
+     *
+     * @return void
      */
     private function beautifyCallStack(array|string $trace): void
     {
@@ -183,7 +195,10 @@ class RuntimeErrors extends Exception
 
 
     /**
-     * @param  array $traceArray
+     * Clean call trace.
+     *
+     * @param array $traceArray Array format of error trace.
+     *
      * @return array
      */
     private static function cleanTraceArray(array $traceArray):array
@@ -209,8 +224,7 @@ class RuntimeErrors extends Exception
         }//end foreach
 
         array_multisort($traceArray, SORT_DESC);
-        //ksort($traceArray, SORT_ASC);
-
+        // ksort($traceArray, SORT_ASC);
         return $traceArray;
 
     }//end cleanTraceArray()
@@ -219,8 +233,9 @@ class RuntimeErrors extends Exception
     /**
      * Make writeable string
      *
-     * @param  object $exception
-     * @return string
+     * @param object $exception Object of exception error.
+     *
+     * @return string Writable string.
      */
     public static function toWriteable(object $exception): string
     {
@@ -234,7 +249,28 @@ class RuntimeErrors extends Exception
 
 
     /**
+     * Fetch error on runtime catch area.
      *
+     * @param object $exception Object of exception error.
+     *
+     * @return RuntimeErrors Return runtime error class.
+     */
+    public static function fetch(object $exception): RuntimeErrors
+    {
+        return new self(
+            $exception->getMessage(),
+            $exception->getCode(),
+            $exception->getCode(),
+            $exception->getFile(),
+            $exception->getLine(),
+            $exception->getTraceAsString()
+        );
+
+    }//end fetch()
+
+
+    /**
+     * Destruct runtime errors class.
      */
     public function __destruct()
     {

@@ -840,7 +840,8 @@ class Compile extends FileSystem
         curl_setopt($ch, CURLOPT_POST, 1);
         // 0 for a get request
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
+        // Set the content type to application/json.
+        // curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
         curl_setopt($ch, CURLOPT_TIMEOUT, 300);
 
@@ -851,8 +852,7 @@ class Compile extends FileSystem
         if (empty($data) === false) {
             // Attach encoded JSON string to the POST fields.
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-            // Set the content type to application/json.
-            // curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+            // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
         }//end if
 
         $response = curl_exec($ch);

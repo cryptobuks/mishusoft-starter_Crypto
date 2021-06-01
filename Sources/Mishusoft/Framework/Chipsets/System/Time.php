@@ -7,110 +7,206 @@ use DateTimeZone;
 
 class Time extends DateTime
 {
-    /*declare version*/
-    const VERSION = "1.0.2";
+    // declare version
+    const VERSION = '1.0.2';
 
-    public function __construct($time = 'now', DateTimeZone $timezone = null)
+
+    /**
+     * Time constructor.
+     * @param string $time
+     * @param DateTimeZone|null $timezone
+     * @throws \Exception
+     */
+    public function __construct($time='now', DateTimeZone $timezone=null)
     {
         parent::__construct($time, $timezone);
-    }
 
-    public static function getFullTime()
+    }//end __construct()
+
+
+    /**
+     * @return string
+     */
+    public static function getFullTime(): string
     {
         return date('d-m-Y h:i A', time());
-    }
 
-    public static function getToday()
-    {
-        return date("Y-m-d H:i:s");
-    }
+    }//end getFullTime()
 
-    public static function getTodayFull()
-    {
-        return date("Y-m-d H:i:s A");
-    }
 
-    public static function getTodayFullBeautify(int $date)
+    /**
+     * @return string
+     */
+    public static function getToday(): string
     {
-        return date("D d, M Y H:i:s A", $date);
-    }
+        return date('Y-m-d H:i:s');
+
+    }//end getToday()
+
+
+    /**
+     * @return string
+     */
+    public static function getTodayFull(): string
+    {
+        return date('Y-m-d H:i:s A');
+
+    }//end getTodayFull()
+
+
+    /**
+     * @param int $date
+     * @return string
+     */
+    public static function getTodayFullBeautify(int $date): string
+    {
+        return date('D d, M Y H:i:s A', $date);
+
+    }//end getTodayFullBeautify()
+
 
     /**
      * @return array|false
      */
-    public static function current()
+    public static function current(): bool|array
     {
-        return date_parse(date("Y-m-d H:i:s A"));
+        return date_parse(date('Y-m-d H:i:s A'));
 
-    }
+    }//end current()
 
-    public static function getCurrentMonthNumber()
+
+    /**
+     * @return string
+     */
+    public static function getCurrentMonthNumber(): string
     {
-        return date("m");
-    }
+        return date('m');
 
-    public static function getDateOnly(string $date)
+    }//end getCurrentMonthNumber()
+
+
+    /**
+     * @param string $date
+     * @return string
+     */
+    public static function getDateOnly(string $date): string
     {
-        return date("Y-m-d", strtotime($date));
-    }
+        return date('Y-m-d', strtotime($date));
 
-    public static function getDateOnlyFromTime(int $time)
+    }//end getDateOnly()
+
+
+    /**
+     * @param int $time
+     * @return string
+     */
+    public static function getDateOnlyFromTime(int $time): string
     {
-        return date("Y-m-d", $time);
-    }
+        return date('Y-m-d', $time);
 
-    public static function getHours(string $date)
+    }//end getDateOnlyFromTime()
+
+
+    /**
+     * @param string $date
+     * @return string
+     */
+    public static function getHours(string $date): string
     {
-        return date("h", strtotime($date));
-    }
+        return date('h', strtotime($date));
 
-    public static function getMinutes(string $date)
+    }//end getHours()
+
+
+    /**
+     * @param string $date
+     * @return float|int
+     */
+    public static function getMinutes(string $date): float|int
     {
-        return (time() - strtotime($date)) / 60;
-    }
+        return ((time() - strtotime($date)) / 60);
 
-    public static function getCurrentMonthName()
+    }//end getMinutes()
+
+
+    /**
+     * @return string
+     */
+    public static function getCurrentMonthName(): string
     {
-        return date("M");
-    }
+        return date('M');
 
-    public static function getCurrentYearNumber()
+    }//end getCurrentMonthName()
+
+
+    /**
+     * @return string
+     */
+    public static function getCurrentYearNumber(): string
     {
-        return date("Y");
-    }
+        return date('Y');
 
-    public static function getTodayDateOnly()
+    }//end getCurrentYearNumber()
+
+
+    /**
+     * @return string
+     */
+    public static function getTodayDateOnly(): string
     {
-        return date("Y-m-d");
+        return date('Y-m-d');
 
-    }
+    }//end getTodayDateOnly()
 
+
+    /**
+     * @return string
+     */
     public function getYesterdayDate(): string
     {
-        return date("F j, Y", time() - 60 * 60 * 24);
-    }
+        return date('F j, Y', (time() - 60 * 60 * 24));
 
+    }//end getYesterdayDate()
+
+
+    /**
+     * @return int
+     */
     public function getDaysInMonth(): int
     {
         return cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'));
-    }
 
-    public static function getNextMonthDate()
-    {
-        /*minutes = minutes < 10 ? "0" + minutes : minutes;*/
-        $m = (date("m") + 1);
-        return date("Y-" . ($m < 10 ? "0" . $m : $m) . "-d H:i:s");
-    }
+    }//end getDaysInMonth()
 
-    public static function getNextDayDate()
+
+    /**
+     * @return string
+     */
+    public static function getNextMonthDate(): string
     {
-        /*minutes = minutes < 10 ? "0" + minutes : minutes;*/
-        $d = (date("d") + 1);
-        return date("Y-m-" . ($d < 10 ? "0" . $d : $d) . " H:i:s");
-    }
+        // minutes = minutes < 10 ? "0" + minutes : minutes;
+        $m = (date('m') + 1);
+        return date('Y-'.($m < 10 ? '0'.$m : $m).'-d H:i:s');
+
+    }//end getNextMonthDate()
+
+
+    /**
+     * @return string
+     */
+    public static function getNextDayDate(): string
+    {
+        // minutes = minutes < 10 ? "0" + minutes : minutes;
+        $d = (date('d') + 1);
+        return date('Y-m-'.($d < 10 ? '0'.$d : $d).' H:i:s');
+
+    }//end getNextDayDate()
+
 
     function __destruct()
     {
 
-    }
-}
+    }//end __destruct()
+
+
+}//end class
