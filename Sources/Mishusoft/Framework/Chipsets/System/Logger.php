@@ -7,15 +7,6 @@ use Mishusoft\Framework\Chipsets\Http\Browser;
 use Mishusoft\Framework\Chipsets\Http\IP;
 use RuntimeException;
 
-// Logger style for log writing.
-define('LOGGER_WRITE_STYLE_SMART', 'smart');
-define('LOGGER_WRITE_STYLE_SHORTCUT', 'shortcut');
-define('LOGGER_WRITE_STYLE_FULL', 'full');
-
-// Log flag.
-define('LOGGER_FLAG_TYPE_COMPILE', 'compile');
-define('LOGGER_FLAG_TYPE_ACCESS', 'access');
-define('LOGGER_FLAG_TYPE_RUNTIME', 'runtime');
 
 
 class Logger
@@ -169,7 +160,7 @@ class Logger
      */
     private static function getLogFilePath(string $flag):string
     {
-        $logRootPath   = PHP_RUNTIME_LOGS_PATH;
+        $logRootPath   = RUNTIME_LOGS_PATH;
         $appServerName = APPLICATION_SERVER_NAME;
         $todayDate     = date('Ymd');
 

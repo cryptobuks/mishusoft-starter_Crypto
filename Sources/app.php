@@ -43,11 +43,11 @@ set_time_limit(600);
 define('DS', DIRECTORY_SEPARATOR);
 define('PHP_CODE_SYNTAX', 'PHP_8.*');
 define('WHO_AM_I', 'Mishusoft');
-define('PHP_RUNTIME_ROOT_PATH', realpath(__DIR__).DIRECTORY_SEPARATOR);
-define('PHP_RUNTIME_SYSTEM_PATH', PHP_RUNTIME_ROOT_PATH.'Mishusoft'.DIRECTORY_SEPARATOR);
+define('RUNTIME_ROOT_PATH', realpath(__DIR__).DIRECTORY_SEPARATOR);
+define('RUNTIME_SYSTEM_PATH', RUNTIME_ROOT_PATH.'Mishusoft'.DIRECTORY_SEPARATOR);
 // End of core constants declarations.
 try {
-    include_once PHP_RUNTIME_SYSTEM_PATH.'Framework/Chipsets/Autoload.php';
+    include_once RUNTIME_SYSTEM_PATH.'Framework/Chipsets/Autoload.php';
 
     Framework\Chipsets\System\Logger::write(sprintf('%s application started', __NAMESPACE__));
 

@@ -13,27 +13,6 @@ use Mishusoft\Framework\Chipsets\Utility\_JSON;
 use RuntimeException;
 use stdClass;
 
-Logger::write('Load embedded defined core constants from memory.');
-// System default path declare.
-define('APPLICATION_SYSTEM_PATH', PHP_RUNTIME_ROOT_PATH.'Mishusoft'.DIRECTORY_SEPARATOR);
-define('APPLICATION_FRAMEWORK_PATH', PHP_RUNTIME_SYSTEM_PATH.'Framework'.DIRECTORY_SEPARATOR);
-define('APPLICATION_PACKAGES_PATH', PHP_RUNTIME_SYSTEM_PATH.'Packages'.DIRECTORY_SEPARATOR);
-define('APPLICATION_THEMES_PATH', PHP_RUNTIME_SYSTEM_PATH.'Themes'.DIRECTORY_SEPARATOR);
-define('APPLICATION_WIDGETS_PATH', PHP_RUNTIME_SYSTEM_PATH.'Widgets'.DIRECTORY_SEPARATOR);
-define('APPLICATION_PAGINATION_PATH', PHP_RUNTIME_SYSTEM_PATH.'Views/Pagination'.DIRECTORY_SEPARATOR);
-
-define('APPLICATION_STORAGE_PATH', PHP_RUNTIME_ROOT_PATH.'Storages'.DIRECTORY_SEPARATOR);
-define('APPLICATION_DATABASES_PATH', APPLICATION_STORAGE_PATH.'0/databases'.DIRECTORY_SEPARATOR);
-define('APPLICATION_ASSETS_MEDIA_PATH', APPLICATION_STORAGE_PATH.'0/assets'.DIRECTORY_SEPARATOR);
-define('APPLICATION_PRIVATE_MEDIA_PATH', APPLICATION_STORAGE_PATH.'0/media'.DIRECTORY_SEPARATOR);
-define('APPLICATION_PRIVATE_LOCALIZATIONS_PATH', APPLICATION_STORAGE_PATH.'0/localization'.DIRECTORY_SEPARATOR);
-define('APPLICATION_UPLOADS_MEDIA_PATH', APPLICATION_STORAGE_PATH.'0/media/uploads'.DIRECTORY_SEPARATOR);
-
-define('APPLICATION_SYSTEM_TEMP_PATH', PHP_RUNTIME_ROOT_PATH.'tmp'.DIRECTORY_SEPARATOR);
-// Main constants define end.
-define('PHP_LANG_VERSION', PHP_VERSION);
-define('HASH_KEY', '57c1d48ba721a');
-define('HASH_KEY_OPENSSL', 'bRuD5WYw5wd0rdHR9yLlM6wt2vteuiniQBqE70nAuhU');
 if (is_readable(Framework::installFile) === true) {
     try {
         define('BASEURL', Memory::data('framework', ['file' => Framework::installFile])->host->url);
@@ -44,11 +23,6 @@ if (is_readable(Framework::installFile) === true) {
     define('BASEURL', System::getAbsoluteInstalledURL());
 }
 
-// Database info.
-define('APPLICATION_SYSTEM_USER_NAME', 'superuser');
-define('APPLICATION_SYSTEM_USER_PASSWORD', 'superuser');
-
-define('PREG_QUOTE_DEFAULT_SEPARATOR', '/@#~');
 
 class Memory
 {
@@ -301,7 +275,7 @@ class Memory
      * @return void
      * @throws JsonException Throw json exception when json error occurred.
      */
-    public static function loadMemory(string $filename=PHP_RUNTIME_REGISTRIES_PATH.'framework.json'): void
+    public static function loadMemory(string $filename=RUNTIME_REGISTRIES_PATH.'framework.json'): void
     {
         Logger::write(sprintf('Check read permission of %s file.', self::$frameworkConfigFile));
         if (is_readable(stream_resolve_include_path($filename)) === true) {

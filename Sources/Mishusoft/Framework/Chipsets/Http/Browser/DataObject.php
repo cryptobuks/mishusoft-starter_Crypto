@@ -7,14 +7,14 @@ namespace Mishusoft\Framework\Chipsets\Http\Browser;
 class DataObject
 {
     /*file list of various collected data*/
-    public const userAgentListFile = PHP_RUNTIME_REGISTRIES_PATH . 'browser.user.agents.list.csv';
-    public const webBrowserListFile = PHP_RUNTIME_REGISTRIES_PATH . 'browser.all.list.json';
-    public const webBrowserAppCodeListFile = PHP_RUNTIME_REGISTRIES_PATH . 'browser.app.code.list.json';
-    public const webBrowserLayoutListFile = PHP_RUNTIME_REGISTRIES_PATH . 'browser.layout.list.json';
-    public const devicesListFile = PHP_RUNTIME_REGISTRIES_PATH . 'browser.devices.list.json';
-    public const devicesCategoryListFile = PHP_RUNTIME_REGISTRIES_PATH . 'browser.devices.category.list.json';
-    public const devicesPlatformWMNameListFile = PHP_RUNTIME_REGISTRIES_PATH . 'browser.devices.platform.wmn.list.json';
-    public const devicesArchitectureListFile = PHP_RUNTIME_REGISTRIES_PATH . 'browser.devices.architecture.list.json';
+    public const userAgentListFile = RUNTIME_REGISTRIES_PATH . 'browser.user.agents.list.csv';
+    public const webBrowserListFile = RUNTIME_REGISTRIES_PATH . 'browser.all.list.json';
+    public const webBrowserAppCodeListFile = RUNTIME_REGISTRIES_PATH . 'browser.app.code.list.json';
+    public const webBrowserLayoutListFile = RUNTIME_REGISTRIES_PATH . 'browser.layout.list.json';
+    public const devicesListFile = RUNTIME_REGISTRIES_PATH . 'browser.devices.list.json';
+    public const devicesCategoryListFile = RUNTIME_REGISTRIES_PATH . 'browser.devices.category.list.json';
+    public const devicesPlatformWMNameListFile = RUNTIME_REGISTRIES_PATH . 'browser.devices.platform.wmn.list.json';
+    public const devicesArchitectureListFile = RUNTIME_REGISTRIES_PATH . 'browser.devices.architecture.list.json';
 
     protected function getDevicesList(): array
     {

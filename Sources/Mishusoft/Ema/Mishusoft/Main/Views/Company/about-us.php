@@ -8,8 +8,8 @@ use Mishusoft\Framework\Chipsets\Utility\_String;
 
 
 $translation = new Localization(_Array::value($this->request, "locale"));
-if (is_array(json_decode(FileSystem::read(PHP_RUNTIME_REGISTRIES_PATH . "company-about.json"),true))){
-    $aboutInfo = json_decode(FileSystem::read(PHP_RUNTIME_REGISTRIES_PATH . "company-about.json"),true);
+if (is_array(json_decode(FileSystem::read(RUNTIME_REGISTRIES_PATH . "company-about.json"),true))){
+    $aboutInfo = json_decode(FileSystem::read(RUNTIME_REGISTRIES_PATH . "company-about.json"),true);
 } else {
     $aboutInfo = array();
 }

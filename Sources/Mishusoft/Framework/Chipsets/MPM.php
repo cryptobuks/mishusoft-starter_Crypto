@@ -10,7 +10,7 @@ class MPM
 {
     public const NAME              = 'Mishusoft Packages Manager';
     public const VERSION           = '1.0.0';
-    public const packageConfigFile = PHP_RUNTIME_REGISTRIES_PATH.'mpm.json';
+    public const packageConfigFile = RUNTIME_REGISTRIES_PATH.'mpm.json';
 
     /**
      * MPM valid keys.

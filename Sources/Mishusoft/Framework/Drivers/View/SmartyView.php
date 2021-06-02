@@ -15,15 +15,15 @@ use Mishusoft\Framework\Drivers\Session;
 use SmartyBC;
 use SmartyException;
 
-if (file_exists(PHP_RUNTIME_ROOT_PATH.'vendor/smarty/smarty/libs/SmartyBC.class.php') === true) {
-    include_once PHP_RUNTIME_ROOT_PATH.'vendor/smarty/smarty/libs/SmartyBC.class.php';
+if (file_exists(RUNTIME_ROOT_PATH.'vendor/smarty/smarty/libs/SmartyBC.class.php') === true) {
+    include_once RUNTIME_ROOT_PATH.'vendor/smarty/smarty/libs/SmartyBC.class.php';
 } else {
     Firewall::runtimeFailure(
         'Not Found',
         [
             'debug' => [
                 'file'        => 'vendor/smarty/smarty/libs/SmartyBC.class.php',
-                'location'    => PHP_RUNTIME_ROOT_PATH.'vendor/smarty/smarty/libs/SmartyBC.class.php',
+                'location'    => RUNTIME_ROOT_PATH.'vendor/smarty/smarty/libs/SmartyBC.class.php',
                 'description' => 'Required Smarty Template Engine Library not found.',
             ],
             'error' => ['description' => 'Your requested url is broken!!'],
@@ -99,23 +99,23 @@ class SmartyView extends SmartyBC
         }
 
         // Ensure required directory.
-        if (is_dir(MS_THEMES_PATH.$this->template.DS.'configs'.DS) === false) {
-            FileSystem::createDirectory(MS_THEMES_PATH.$this->template.DS.'configs'.DS);
+        if (is_dir(APPLICATION_THEMES_PATH.$this->template.DS.'configs'.DS) === false) {
+            FileSystem::createDirectory(APPLICATION_THEMES_PATH.$this->template.DS.'configs'.DS);
         }
 
-        if (is_dir(PHP_RUNTIME_CACHE_TEMP_PATH) === false) {
-            FileSystem::createDirectory(PHP_RUNTIME_CACHE_TEMP_PATH);
+        if (is_dir(RUNTIME_CACHE_TEMP_PATH) === false) {
+            FileSystem::createDirectory(RUNTIME_CACHE_TEMP_PATH);
         }
 
-        if (is_dir(PHP_RUNTIME_CACHE_TEMPLATES_PATH) === false) {
-            FileSystem::createDirectory(PHP_RUNTIME_CACHE_TEMPLATES_PATH);
+        if (is_dir(RUNTIME_CACHE_TEMPLATES_PATH) === false) {
+            FileSystem::createDirectory(RUNTIME_CACHE_TEMPLATES_PATH);
         }
 
         // Set required directory to template engine.
-        $this->template_dir = MS_THEMES_PATH.$this->template.DS;
-        $this->config_dir   = MS_THEMES_PATH.$this->template.DS.'configs'.DS;
-        $this->cache_dir    = MS_DOCUMENT_ROOT.'tmp'.DS.'caches'.DS;
-        $this->compile_dir  = MS_DOCUMENT_ROOT.'tmp'.DS.'templates'.DS;
+        $this->template_dir = APPLICATION_THEMES_PATH.$this->template.DS;
+        $this->config_dir   = APPLICATION_THEMES_PATH.$this->template.DS.'configs'.DS;
+        $this->cache_dir    = APPLICATION_DOCUMENT_ROOT.'tmp'.DS.'caches'.DS;
+        $this->compile_dir  = APPLICATION_DOCUMENT_ROOT.'tmp'.DS.'templates'.DS;
 
         // $favicon = join([MS_MEDIA_PATH,"favicons/"]) . $this->favicon();
         $js = [];

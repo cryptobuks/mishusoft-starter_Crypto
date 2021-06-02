@@ -49,11 +49,11 @@ declare(strict_types=1);
 
 namespace Mishusoft\Release;
 
-require_once PHP_SOURCES_ROOT_PATH.'/Mishusoft/Framework/Chipsets/FileSystem.php';
-require_once PHP_SOURCES_ROOT_PATH.'/Mishusoft/Framework/Chipsets/Media.php';
-require_once PHP_SOURCES_ROOT_PATH.'/Mishusoft/Framework/DataObjects/MediaMimeDataObject.php';
-require_once PHP_SOURCES_ROOT_PATH.'/Mishusoft/Framework/Chipsets/Media/Mime.php';
-require_once PHP_SOURCES_ROOT_PATH.'/Mishusoft/Framework/Chipsets/Utility/_String.php';
+require_once SOURCES_ROOT_PATH.'/Mishusoft/Framework/Chipsets/FileSystem.php';
+require_once SOURCES_ROOT_PATH.'/Mishusoft/Framework/Chipsets/Media.php';
+require_once SOURCES_ROOT_PATH.'/Mishusoft/Framework/DataObjects/MediaMimeDataObject.php';
+require_once SOURCES_ROOT_PATH.'/Mishusoft/Framework/Chipsets/Media/Mime.php';
+require_once SOURCES_ROOT_PATH.'/Mishusoft/Framework/Chipsets/Utility/_String.php';
 
 use CURLFile;
 use JsonException;

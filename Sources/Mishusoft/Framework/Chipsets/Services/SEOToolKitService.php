@@ -15,9 +15,9 @@ use Mishusoft\Framework\Drivers\View\MishusoftView;
 
 class SEOToolKitService
 {
-    public const seoConfigFile        = PHP_RUNTIME_REGISTRIES_PATH.'seo.json';
-    public const AdSenseConfigFile    = PHP_RUNTIME_REGISTRIES_PATH.'seo-ad-sense.json';
-    public const SearchEngineListFile = PHP_RUNTIME_REGISTRIES_PATH.'seo-se-list.json';
+    public const SEO_CONFIG_FILE         = RUNTIME_REGISTRIES_PATH.'seo.json';
+    public const AD_SENSE_CONFIG_FILE    = RUNTIME_REGISTRIES_PATH.'seo-ad-sense.json';
+    public const SEARCH_ENGINE_LIST_FILE = RUNTIME_REGISTRIES_PATH.'seo-se-list.json';
 
     private object $view;
 
@@ -46,7 +46,8 @@ class SEOToolKitService
 
     /**
      * SEOToolKitService constructor.
-     * @param MishusoftView $view
+     *
+     * @param  MishusoftView $view
      * @throws \JsonException
      */
     public function __construct(MishusoftView $view)
@@ -394,7 +395,7 @@ class SEOToolKitService
 
 
     /**
-     * @param string $url
+     * @param  string $url
      * @return array
      * @throws \JsonException
      */

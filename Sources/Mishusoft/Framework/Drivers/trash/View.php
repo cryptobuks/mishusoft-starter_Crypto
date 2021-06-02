@@ -12,13 +12,13 @@ use Mishusoft\Framework\Chipsets\System\Network;
 use SmartyBC;
 use SmartyException;
 
-if (file_exists(PHP_RUNTIME_ROOT_PATH . "vendor/smarty/smarty/libs/SmartyBC.class.php")) {
-    require_once PHP_RUNTIME_ROOT_PATH . 'vendor/smarty/smarty/libs/SmartyBC.class.php';
+if (file_exists(RUNTIME_ROOT_PATH . "vendor/smarty/smarty/libs/SmartyBC.class.php")) {
+    require_once RUNTIME_ROOT_PATH . 'vendor/smarty/smarty/libs/SmartyBC.class.php';
 } else {
     Firewall::runtimeFailure("Not Found", [
         "debug" => [
             "file" => "vendor/smarty/smarty/libs/SmartyBC.class.php",
-            "location" => PHP_RUNTIME_ROOT_PATH . 'vendor/smarty/smarty/libs/SmartyBC.class.php',
+            "location" => RUNTIME_ROOT_PATH . 'vendor/smarty/smarty/libs/SmartyBC.class.php',
             "description" => "Required Smarty Template Engine Library not found."
         ],
         "error" => ["description" => "Your requested url is broken!!"]

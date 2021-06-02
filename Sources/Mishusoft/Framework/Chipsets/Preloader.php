@@ -20,7 +20,7 @@ class Preloader
             (strlen($filename) - (strlen($filename) - strpos($filename, '.php')))
         ));
         return substr($namespace,
-            (strpos($namespace, rtrim(PHP_RUNTIME_ROOT_PATH, DIRECTORY_SEPARATOR)) + strlen(rtrim(PHP_RUNTIME_ROOT_PATH, DIRECTORY_SEPARATOR))),
+            (strpos($namespace, rtrim(RUNTIME_ROOT_PATH, DIRECTORY_SEPARATOR)) + strlen(rtrim(RUNTIME_ROOT_PATH, DIRECTORY_SEPARATOR))),
             strlen($namespace));
 
     }//end getClassNamespaceFromPath()
@@ -35,7 +35,7 @@ class Preloader
     {
         $file = str_replace('\\', DIRECTORY_SEPARATOR, $name_space).$extension;
         // return PHP_RUNTIME_ROOT_PATH . substr($file, strlen(WHO_AM_I) + 1, strlen($file)); /*old version for remove mishusoft form namespace*/
-        return PHP_RUNTIME_ROOT_PATH.$file;
+        return RUNTIME_ROOT_PATH.$file;
 
     }//end getPathFromClassNamespace()
 

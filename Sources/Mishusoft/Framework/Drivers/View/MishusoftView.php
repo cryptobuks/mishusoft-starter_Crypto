@@ -22,8 +22,8 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
     // Declare version.
     public const VERSION = '1.0.0';
 
-    public const widgetsFile       = PHP_RUNTIME_REGISTRIES_PATH.'widgets.json';
-    public const widgetsConfigFile = PHP_RUNTIME_REGISTRIES_PATH.'widgets-config.json';
+    public const widgetsFile       = RUNTIME_REGISTRIES_PATH.'widgets.json';
+    public const widgetsConfigFile = RUNTIME_REGISTRIES_PATH.'widgets-config.json';
 
     protected const defaultWidgetConfig = [
         'position' => 'footer',
@@ -173,8 +173,8 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
         $this->templateUse  = 'yes';
 
         // Directory allocation.
-        $this->templateDirectory       = MS_THEMES_PATH;
-        $this->templateRenderDirectory = MS_DOCUMENT_ROOT.'Ema'.DIRECTORY_SEPARATOR.'Mishusoft/Main/Views/';
+        $this->templateDirectory       = APPLICATION_THEMES_PATH;
+        $this->templateRenderDirectory = APPLICATION_DOCUMENT_ROOT.'Ema'.DIRECTORY_SEPARATOR.'Mishusoft/Main/Views/';
 
         // File information.
         $this->templateExt = 'php';
@@ -201,8 +201,8 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
          * create that path when not exists
          */
 
-        Logger::write('Creating '.PHP_RUNTIME_REGISTRIES_PATH.' if not exists in system.');
-        self::createDirectory(PHP_RUNTIME_REGISTRIES_PATH);
+        Logger::write('Creating '.RUNTIME_REGISTRIES_PATH.' if not exists in system.');
+        self::createDirectory(RUNTIME_REGISTRIES_PATH);
 
         /*
          * check the installed widgets list file exists
@@ -214,10 +214,10 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
             Logger::write('Creating '.self::widgetsFile.' if not exists or empty in system.');
             $this->installFreshWidgets();
         } else {
-            foreach (self::getList(MS_WIDGETS_PATH, 'file') as $widgetFile) {
+            foreach (self::getList(APPLICATION_WIDGETS_PATH, 'file') as $widgetFile) {
                 if (self::getFileExt($widgetFile) === 'php') {
                     $filename         = self::getFilename($widgetFile);
-                    $widgetConfigFile = MS_WIDGETS_PATH.$filename.'.json';
+                    $widgetConfigFile = APPLICATION_WIDGETS_PATH.$filename.'.json';
                     if (file_exists($widgetConfigFile) === true) {
                         $filenameOriginal = substr($filename, 0, strpos($filename, 'Widget'));
                         $configuration    = _JSON::decodeToArray(self::read($widgetConfigFile));
@@ -309,11 +309,11 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
     {
         Logger::write('Fresh install '.self::widgetsFile.' in system.');
         $newWidget = [];
-        if (count(self::getList(MS_WIDGETS_PATH, 'file')) > 0) {
-            foreach (self::getList(MS_WIDGETS_PATH, 'file') as $widgetFile) {
+        if (count(self::getList(APPLICATION_WIDGETS_PATH, 'file')) > 0) {
+            foreach (self::getList(APPLICATION_WIDGETS_PATH, 'file') as $widgetFile) {
                 if (self::getFileExt($widgetFile) === 'php') {
                     $filename         = self::getFilename($widgetFile);
-                    $widgetConfigFile = MS_WIDGETS_PATH.$filename.'.json';
+                    $widgetConfigFile = APPLICATION_WIDGETS_PATH.$filename.'.json';
                     if (file_exists($widgetConfigFile) === true) {
                         $filenameOriginal = substr($filename, 0, strpos($filename, 'Widget'));
                         $lastModification = filemtime($widgetConfigFile);
@@ -572,20 +572,20 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
             $template = $this->templateName;
         }
 
-        Logger::write('Checking '.MS_THEMES_PATH.$template.DIRECTORY_SEPARATOR.'configs.php'.' is readable or not in system.');
-        if (is_readable(MS_THEMES_PATH.$template.DIRECTORY_SEPARATOR.'configs.php') === true) {
-            Logger::write(MS_THEMES_PATH.$template.DIRECTORY_SEPARATOR.'configs.php is readable and load it.');
-            include_once MS_THEMES_PATH.$template.DIRECTORY_SEPARATOR.'configs.php';
+        Logger::write('Checking '.APPLICATION_THEMES_PATH.$template.DIRECTORY_SEPARATOR.'configs.php'.' is readable or not in system.');
+        if (is_readable(APPLICATION_THEMES_PATH.$template.DIRECTORY_SEPARATOR.'configs.php') === true) {
+            Logger::write(APPLICATION_THEMES_PATH.$template.DIRECTORY_SEPARATOR.'configs.php is readable and load it.');
+            include_once APPLICATION_THEMES_PATH.$template.DIRECTORY_SEPARATOR.'configs.php';
             return get_available_widgets_positions();
         }
 
-        Logger::write(MS_THEMES_PATH.$template.DIRECTORY_SEPARATOR.'configs.php'.' is not readable.');
+        Logger::write(APPLICATION_THEMES_PATH.$template.DIRECTORY_SEPARATOR.'configs.php'.' is not readable.');
         Firewall::runtimeFailure(
             'Not Found',
             [
                 'debug' => [
                     'file'        => "Theme's Configs.php",
-                    'location'    => MS_THEMES_PATH.$template.DIRECTORY_SEPARATOR.'configs.php',
+                    'location'    => APPLICATION_THEMES_PATH.$template.DIRECTORY_SEPARATOR.'configs.php',
                     'description' => "Theme's configuration file not found.",
                 ],
                 'error' => ['description' => 'Your requested url is broken!!'],
@@ -613,19 +613,19 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
 
         $widgetClass = $widget.'Widget';
 
-        Logger::write('Checking '.MS_WIDGETS_PATH.$widgetClass.'.php is readable or not in system.');
-        if (is_readable(MS_WIDGETS_PATH.$widgetClass.'.php') === true) {
-            Logger::write(MS_WIDGETS_PATH.$widgetClass.'.php is readable and load it.');
-            include_once MS_WIDGETS_PATH.$widgetClass.'.php';
-            $widgetClass = Preloader::getClassNamespaceFromPath(MS_WIDGETS_PATH.$widgetClass.'.php');
-            Logger::write('Extract class name from'.MS_WIDGETS_PATH.$widgetClass.'.php');
+        Logger::write('Checking '.APPLICATION_WIDGETS_PATH.$widgetClass.'.php is readable or not in system.');
+        if (is_readable(APPLICATION_WIDGETS_PATH.$widgetClass.'.php') === true) {
+            Logger::write(APPLICATION_WIDGETS_PATH.$widgetClass.'.php is readable and load it.');
+            include_once APPLICATION_WIDGETS_PATH.$widgetClass.'.php';
+            $widgetClass = Preloader::getClassNamespaceFromPath(APPLICATION_WIDGETS_PATH.$widgetClass.'.php');
+            Logger::write('Extract class name from'.APPLICATION_WIDGETS_PATH.$widgetClass.'.php');
             if (class_exists($widgetClass) === false) {
                 Firewall::runtimeFailure(
                     'Not Found',
                     [
                         'debug' => [
                             'file'        => $widgetClass,
-                            'location'    => MS_WIDGETS_PATH.$widgetClass.'.php',
+                            'location'    => APPLICATION_WIDGETS_PATH.$widgetClass.'.php',
                             'description' => 'Widget class not found or Widget class call error',
                         ],
                         'error' => ['description' => 'Your requested url is broken!!'],
@@ -634,7 +634,7 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
             }
 
             Logger::write('Checking '.$widgetClass.' and '.$method.'.is callable or not.');
-            if (is_callable($widgetClass, $method) === true) {
+            if (method_exists($widgetClass, $method) === true) {
                 if (count($options) > 0) {
                     return call_user_func_array([new $widgetClass, $method], $options);
                 }
@@ -642,13 +642,13 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
                 return call_user_func([new $widgetClass, $method]);
             }
         } else {
-            Logger::write(MS_WIDGETS_PATH.$widgetClass.'.php is not readable.');
+            Logger::write(APPLICATION_WIDGETS_PATH.$widgetClass.'.php is not readable.');
             Firewall::runtimeFailure(
                 'Not Found',
                 [
                     'debug' => [
                         'file'        => $widgetClass.'.php',
-                        'location'    => MS_WIDGETS_PATH.$widgetClass.'.php',
+                        'location'    => APPLICATION_WIDGETS_PATH.$widgetClass.'.php',
                         'description' => "Widget's content not readable or found.",
                     ],
                     'error' => ['description' => 'Your requested url is broken!!'],

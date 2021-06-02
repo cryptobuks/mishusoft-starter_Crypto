@@ -11,8 +11,8 @@ use RuntimeException;
 define('APPLICATION_DOCUMENT_ROOT', realpath(dirname(__FILE__, 3)).DS);
 define('APPLICATION_SERVER_PATH', dirname($_SERVER['PHP_SELF']));
 
-define('PHP_RUNTIME_SYSTEM_TEMP_PATH', PHP_RUNTIME_ROOT_PATH.'tmp'.DS);
-define('PHP_RUNTIME_CACHE_ROOT_PATH', PHP_RUNTIME_ROOT_PATH.'tmp/'.md5($_SERVER['PHP_SELF']).DS);
+define('RUNTIME_SYSTEM_TEMP_PATH', RUNTIME_ROOT_PATH.'tmp'.DS);
+define('RUNTIME_CACHE_ROOT_PATH', RUNTIME_ROOT_PATH.'tmp/'.md5($_SERVER['PHP_SELF']).DS);
 
 if (array_key_exists('HTTP_HOST', $_SERVER) === true) {
     define('INSTALLED_HOST_NAME', $_SERVER['HTTP_HOST']);
@@ -27,18 +27,58 @@ if (array_key_exists('SERVER_NAME', $_SERVER) === true) {
 }
 
 // Create root directory for current server.
-if ((file_exists(PHP_RUNTIME_CACHE_ROOT_PATH) === false)
-    && mkdir(PHP_RUNTIME_CACHE_ROOT_PATH, 0777, true) === false
-    && is_dir(PHP_RUNTIME_CACHE_ROOT_PATH) === false
+if ((file_exists(RUNTIME_CACHE_ROOT_PATH) === false)
+    && mkdir(RUNTIME_CACHE_ROOT_PATH, 0777, true) === false
+    && is_dir(RUNTIME_CACHE_ROOT_PATH) === false
 ) {
-    throw new RuntimeException(sprintf('Directory "%s" was not created', PHP_RUNTIME_CACHE_ROOT_PATH));
+    throw new RuntimeException(sprintf('Directory "%s" was not created', RUNTIME_CACHE_ROOT_PATH));
 }
 
 
-define('PHP_RUNTIME_CACHE_TEMP_PATH', PHP_RUNTIME_CACHE_ROOT_PATH.'caches'.DS);
-define('PHP_RUNTIME_REGISTRIES_PATH', PHP_RUNTIME_CACHE_ROOT_PATH.'configs'.DS);
-define('PHP_RUNTIME_LOGS_PATH', PHP_RUNTIME_CACHE_ROOT_PATH.'logs'.DS);
-define('PHP_RUNTIME_CACHE_TEMPLATES_PATH', PHP_RUNTIME_CACHE_ROOT_PATH.'templates'.DS);
+define('RUNTIME_CACHE_TEMP_PATH', RUNTIME_CACHE_ROOT_PATH.'caches'.DS);
+define('RUNTIME_REGISTRIES_PATH', RUNTIME_CACHE_ROOT_PATH.'configs'.DS);
+define('RUNTIME_LOGS_PATH', RUNTIME_CACHE_ROOT_PATH.'logs'.DS);
+define('RUNTIME_CACHE_TEMPLATES_PATH', RUNTIME_CACHE_ROOT_PATH.'templates'.DS);
+
+
+// Logger style for log writing.
+define('LOGGER_WRITE_STYLE_SMART', 'smart');
+define('LOGGER_WRITE_STYLE_SHORTCUT', 'shortcut');
+define('LOGGER_WRITE_STYLE_FULL', 'full');
+
+// Log flag.
+define('LOGGER_FLAG_TYPE_COMPILE', 'compile');
+define('LOGGER_FLAG_TYPE_ACCESS', 'access');
+define('LOGGER_FLAG_TYPE_RUNTIME', 'runtime');
+
+
+// System default path declare.
+define('APPLICATION_SYSTEM_PATH', RUNTIME_ROOT_PATH.'Mishusoft'.DIRECTORY_SEPARATOR);
+define('APPLICATION_FRAMEWORK_PATH', RUNTIME_SYSTEM_PATH.'Framework'.DIRECTORY_SEPARATOR);
+define('APPLICATION_PACKAGES_PATH', RUNTIME_SYSTEM_PATH.'Packages'.DIRECTORY_SEPARATOR);
+define('APPLICATION_THEMES_PATH', RUNTIME_SYSTEM_PATH.'Themes'.DIRECTORY_SEPARATOR);
+define('APPLICATION_WIDGETS_PATH', RUNTIME_SYSTEM_PATH.'Widgets'.DIRECTORY_SEPARATOR);
+define('APPLICATION_PAGINATION_PATH', RUNTIME_SYSTEM_PATH.'Views/Pagination'.DIRECTORY_SEPARATOR);
+
+define('APPLICATION_STORAGE_PATH', RUNTIME_ROOT_PATH.'Storages'.DIRECTORY_SEPARATOR);
+define('APPLICATION_DATABASES_PATH', APPLICATION_STORAGE_PATH.'0/databases'.DIRECTORY_SEPARATOR);
+define('APPLICATION_ASSETS_MEDIA_PATH', APPLICATION_STORAGE_PATH.'0/assets'.DIRECTORY_SEPARATOR);
+define('APPLICATION_PRIVATE_MEDIA_PATH', APPLICATION_STORAGE_PATH.'0/media'.DIRECTORY_SEPARATOR);
+define('APPLICATION_PRIVATE_LOCALIZATIONS_PATH', APPLICATION_STORAGE_PATH.'0/localization'.DIRECTORY_SEPARATOR);
+define('APPLICATION_UPLOADS_MEDIA_PATH', APPLICATION_STORAGE_PATH.'0/media/uploads'.DIRECTORY_SEPARATOR);
+
+define('APPLICATION_SYSTEM_TEMP_PATH', RUNTIME_ROOT_PATH.'tmp'.DIRECTORY_SEPARATOR);
+// Main constants define end.
+define('PHP_LANG_VERSION', PHP_VERSION);
+define('HASH_KEY', '57c1d48ba721a');
+define('HASH_KEY_OPENSSL', 'bRuD5WYw5wd0rdHR9yLlM6wt2vteuiniQBqE70nAuhU');
+
+// Database info.
+define('APPLICATION_SYSTEM_USER_NAME', 'superuser');
+define('APPLICATION_SYSTEM_USER_PASSWORD', 'superuser');
+
+define('PREG_QUOTE_DEFAULT_SEPARATOR', '/@#~');
+
 
 
 /**
@@ -130,7 +170,7 @@ class Autoload
      */
     private static function retrieveAutoFileUrl(string $directory, string $qualifiedClassName):string
     {
-        return PHP_RUNTIME_SYSTEM_PATH.ucfirst($directory).DS.ucfirst($qualifiedClassName).'.php';
+        return RUNTIME_SYSTEM_PATH.ucfirst($directory).DS.ucfirst($qualifiedClassName).'.php';
 
     }//end retrieveAutoFileUrl()
 
@@ -146,7 +186,7 @@ class Autoload
     public static function retrieveFileUrl(string $namespace, string $extension='.php'): string
     {
         $file = str_replace('\\', DIRECTORY_SEPARATOR, $namespace).$extension;
-        return PHP_RUNTIME_ROOT_PATH.$file;
+        return RUNTIME_ROOT_PATH.$file;
 
     }//end retrieveFileUrl()
 
@@ -155,9 +195,9 @@ class Autoload
 
 Autoload::loadFile(
     [
-        implode(DIRECTORY_SEPARATOR, [PHP_RUNTIME_ROOT_PATH.'vendor', 'autoload.php']),
-        PHP_RUNTIME_SYSTEM_PATH.'Framework/Chipsets/Preloader.php',
-        PHP_RUNTIME_SYSTEM_PATH.'Framework/Chipsets/System/Logger.php',
+        implode(DIRECTORY_SEPARATOR, [RUNTIME_ROOT_PATH.'vendor', 'autoload.php']),
+        RUNTIME_SYSTEM_PATH.'Framework/Chipsets/Preloader.php',
+        RUNTIME_SYSTEM_PATH.'Framework/Chipsets/System/Logger.php',
     ]
 );
 

@@ -132,7 +132,7 @@ class ROM extends FileSystem
      *
      * @var string
      */
-    private string $defaultMemoryDir = PHP_RUNTIME_REGISTRIES_PATH;
+    private string $defaultMemoryDir = RUNTIME_REGISTRIES_PATH;
 
     /**
      * Absolute path of Framework config json file
@@ -194,13 +194,13 @@ class ROM extends FileSystem
      */
     public function play(): void
     {
-        Logger::write(sprintf('create temporarily folders in %s.', PHP_RUNTIME_SYSTEM_TEMP_PATH));
+        Logger::write(sprintf('create temporarily folders in %s.', RUNTIME_SYSTEM_TEMP_PATH));
         self::directoryCreate(
             [
-                PHP_RUNTIME_CACHE_TEMP_PATH,
-                PHP_RUNTIME_REGISTRIES_PATH,
-                PHP_RUNTIME_LOGS_PATH,
-                PHP_RUNTIME_CACHE_TEMPLATES_PATH,
+                RUNTIME_CACHE_TEMP_PATH,
+                RUNTIME_REGISTRIES_PATH,
+                RUNTIME_LOGS_PATH,
+                RUNTIME_CACHE_TEMPLATES_PATH,
             ]
         );
 

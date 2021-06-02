@@ -8,7 +8,7 @@ use Mishusoft\Framework\Chipsets\Utility\Stream;
 
 
 $translation = new Localization(_Array::value($this->request, "locale"));
-$aboutInfo = Stream::read(PHP_RUNTIME_REGISTRIES_PATH . "company-about.json");
+$aboutInfo = Stream::read(RUNTIME_REGISTRIES_PATH . "company-about.json");
 
 
 /*set text for title*/

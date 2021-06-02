@@ -20,10 +20,10 @@ use Mishusoft\Release\Compile;
  * Declare constants
  */
 
-define('PHP_RUNTIME_ROOT_PATH', realpath(__DIR__).DIRECTORY_SEPARATOR);
-define('PHP_RUNTIME_SYSTEM_PATH', PHP_RUNTIME_ROOT_PATH.'Mishusoft'.DIRECTORY_SEPARATOR);
+define('RUNTIME_ROOT_PATH', realpath(__DIR__).DIRECTORY_SEPARATOR);
+define('RUNTIME_SYSTEM_PATH', RUNTIME_ROOT_PATH.'Mishusoft'.DIRECTORY_SEPARATOR);
 
-define('PHP_SOURCES_ROOT_PATH', realpath(__DIR__).DIRECTORY_SEPARATOR);
+define('SOURCES_ROOT_PATH', realpath(__DIR__).DIRECTORY_SEPARATOR);
 define('CURRENT_YEAR', date('Y'));
 
 define('FILE_BASE_NAME', basename(__FILE__));

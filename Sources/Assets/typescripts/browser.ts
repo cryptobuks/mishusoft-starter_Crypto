@@ -2869,7 +2869,7 @@ export class Browser {
         return this.deviceArchitecture;
     }
 
-    private cleanUserAgentString(UserAgent: string) {
+    private cleanUserAgentString(UserAgent: string):string {
         // clean up the string
         // replace browser names with their aliases
         return UserAgent.toLowerCase().trim().replace('opr', 'opera').replace('iceweasel', 'firefox');

@@ -41,33 +41,33 @@ class Framework
     public const COMPANY_EST_YEAR            = '2014';
 
     // Declare required file and directories path.
-    public const installedDocumentRoot = PHP_RUNTIME_ROOT_PATH;
-    public const configFile            = PHP_RUNTIME_REGISTRIES_PATH.'framework.json';
-    public const installFile           = PHP_RUNTIME_REGISTRIES_PATH.'framework.install.json';
-    public const systemVFDFile         = PHP_RUNTIME_REGISTRIES_PATH.'files/'.MS_SERVER_NAME.'.ext4';
+    public const installedDocumentRoot = RUNTIME_ROOT_PATH;
+    public const configFile            = RUNTIME_REGISTRIES_PATH.'framework.json';
+    public const installFile           = RUNTIME_REGISTRIES_PATH.'framework.install.json';
+    public const systemVFDFile         = RUNTIME_REGISTRIES_PATH.'files/'.APPLICATION_SERVER_NAME.'.ext4';
 
     // list of backup files with main files
     public const htaccessOriginalFile = self::installedDocumentRoot.'.htaccess';
     // original file
-    public const htaccessBackupFile = MS_FRAMEWORK_PATH.'Backups/main.htaccess.backup';
+    public const htaccessBackupFile = APPLICATION_FRAMEWORK_PATH.'Backups/main.htaccess.backup';
     // backup file
     public const faviconOriginalFile = self::installedDocumentRoot.'favicon.ico';
     // original file
-    public const faviconBackupFile = MS_PRIVATE_MEDIA_PATH.'logos/favicon.ico';
+    public const faviconBackupFile = APPLICATION_PRIVATE_MEDIA_PATH.'logos/favicon.ico';
     // backup file
     public const indexHtmlOriginalFile = self::installedDocumentRoot.'index.html';
     // original file
-    public const indexHtmlBackupFile = MS_FRAMEWORK_PATH.'Backups/index.html.backup';
+    public const indexHtmlBackupFile = APPLICATION_FRAMEWORK_PATH.'Backups/index.html.backup';
     // backup file
     public const indexPhpOriginalFile = self::installedDocumentRoot.'index.php';
     // original file
-    public const indexPhpBackupFile = MS_FRAMEWORK_PATH.'Backups/index.php.backup';
+    public const indexPhpBackupFile = APPLICATION_FRAMEWORK_PATH.'Backups/index.php.backup';
     // backup file
-    public const mishusoftApplicationSecurityBackupFile = MS_FRAMEWORK_PATH.'Backups/'.self::NAME.'ApplicationSecurity.lock.backup';
+    public const mishusoftApplicationSecurityBackupFile = APPLICATION_FRAMEWORK_PATH.'Backups/'.self::NAME.'ApplicationSecurity.lock.backup';
     // backup file
     public const robotsTxtOriginalFile = self::installedDocumentRoot.'robots.txt';
     // original file
-    public const robotsTxtBackupFile = MS_FRAMEWORK_PATH.'Backups/robots.txt.backup';
+    public const robotsTxtBackupFile = APPLICATION_FRAMEWORK_PATH.'Backups/robots.txt.backup';
     // backup file
 
     /**
@@ -270,9 +270,9 @@ class Framework
                 ],
                 'root'        => [
                     'dir' => [
-                        'name' => MS_DOCUMENT_ROOT,
-                        'size' => disk_total_space(MS_DOCUMENT_ROOT),
-                        'free' => disk_free_space(MS_DOCUMENT_ROOT),
+                        'name' => APPLICATION_DOCUMENT_ROOT,
+                        'size' => disk_total_space(APPLICATION_DOCUMENT_ROOT),
+                        'free' => disk_free_space(APPLICATION_DOCUMENT_ROOT),
                     ],
                 ],
             ];
@@ -437,7 +437,7 @@ class Framework
         ) {
             $thirdParty = _JSON::decodeToArray(_JSON::encodeToString(Memory::data()->required->thirdparty));
             foreach ($thirdParty as $package => $details) {
-                if (is_dir(PHP_RUNTIME_ROOT_PATH.'vendor/'.$package) === false) {
+                if (is_dir(RUNTIME_ROOT_PATH.'vendor/'.$package) === false) {
                     throw new ErrorException('Warning: '.ucfirst($details['name']).' is required. Please run '.$details['command'].'or for fresh download visit '.$details['url']);
                 }
             }
@@ -475,7 +475,7 @@ class Framework
                 // Application opcache cli.
                 ini_set('opcache.use_cwd', 1);
                 // Application opcache use_cwd.
-                ini_set('opcache.file_cache', MS_SYSTEM_TEMP_PATH.'/cache/.opcache;');
+                ini_set('opcache.file_cache', APPLICATION_SYSTEM_TEMP_PATH.'/cache/.opcache;');
                 if (isset($opcache['cache_full']) === true) {
                     opcache_reset();
                 }

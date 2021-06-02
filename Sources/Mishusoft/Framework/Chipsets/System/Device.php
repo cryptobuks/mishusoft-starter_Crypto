@@ -13,9 +13,9 @@ class Device
 
     private string $osReleaseFile = '/etc/os-release';
 
-    private string $hostNameCtlFile = PHP_RUNTIME_REGISTRIES_PATH.'hostnamectl.txt';
+    private string $hostNameCtlFile = RUNTIME_REGISTRIES_PATH.'hostnamectl.txt';
 
-    private string $lsbReleaseFile = PHP_RUNTIME_REGISTRIES_PATH.'lsb_release.txt';
+    private string $lsbReleaseFile = RUNTIME_REGISTRIES_PATH.'lsb_release.txt';
 
     private array $data = [];
 

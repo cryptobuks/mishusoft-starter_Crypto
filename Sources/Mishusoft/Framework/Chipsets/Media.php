@@ -27,7 +27,7 @@ class Media
      * @param  string $folderPath
      * @return array|false
      */
-    public static function FileExplore(string $folderPath=MS_ASSETS_MEDIA_PATH)
+    public static function FileExplore(string $folderPath=APPLICATION_ASSETS_MEDIA_PATH)
     {
         if (substr($folderPath, (strlen($folderPath) - 1), 1) !== '/') {
             $folderPath .= '/';
@@ -213,11 +213,13 @@ class Media
     public static function getRegistriesPath(string $filename, string $feature, string $indicator='libraries/json/'): string
     {
         if (!empty($filename)) {
-            if (file_exists(PHP_RUNTIME_REGISTRIES_PATH.$filename)) {
+            if (file_exists(RUNTIME_REGISTRIES_PATH.$filename)) {
                 if (_String::lower($feature) === 'local') {
-                    return PHP_RUNTIME_REGISTRIES_PATH.$filename;
-                } elseif (_String::lower($feature) === 'remote') {
-                    return join([BaseURL, $indicator, $filename]);
+                    return RUNTIME_REGISTRIES_PATH.$filename;
+                }
+
+                if (_String::lower($feature) === 'remote') {
+                    return implode([BASEURL, $indicator, $filename]);
                 }
             } else {
                 Firewall::runtimeFailure(
@@ -225,7 +227,7 @@ class Media
                     [
                         'debug' => [
                             'file'        => (new Browser())->getURLPath(),
-                            'location'    => MS_ASSETS_MEDIA_PATH.$filename,
+                            'location'    => APPLICATION_ASSETS_MEDIA_PATH.$filename,
                             'description' => 'Your requested file not found or deleted!!',
                         ],
                         'error' => ['description' => 'Your requested file not found or deleted!!'],
@@ -239,16 +241,18 @@ class Media
 
 
     /**
-     * @param  string $indicator
-     * @param  string $filename
-     * @param  string $feature
+     * @param string $filename
+     * @param string $feature
+     * @param string $indicator
      * @return string
+     * @throws \ErrorException
+     * @throws \JsonException
      */
     public static function getLogosMediaPath(string $filename, string $feature, string $indicator='libraries/logos/'): string
     {
-        if (file_exists(MS_PRIVATE_MEDIA_PATH.'logos/'.$filename) === true) {
+        if (file_exists(APPLICATION_PRIVATE_MEDIA_PATH.'logos/'.$filename) === true) {
             if (_String::lower($feature) === 'local') {
-                return MS_PRIVATE_MEDIA_PATH.'logos/'.$filename;
+                return APPLICATION_PRIVATE_MEDIA_PATH.'logos/'.$filename;
             }
 
             if (_String::lower($feature) === 'remote') {
@@ -260,7 +264,7 @@ class Media
                 [
                     'debug' => [
                         'file'        => (new Browser())->getURLPath(),
-                        'location'    => MS_PRIVATE_MEDIA_PATH.'logos/'.$filename,
+                        'location'    => APPLICATION_PRIVATE_MEDIA_PATH.'logos/'.$filename,
                         'description' => 'Your requested file not found or deleted!!',
                     ],
                     'error' => ['description' => 'Your requested file not found or deleted!!'],
@@ -280,9 +284,9 @@ class Media
      */
     public static function getMediaPathOfUsersPhotos(string $filename, string $feature, string $indicator='libraries/users/'): string
     {
-        if (file_exists(MS_PRIVATE_MEDIA_PATH.'users/'.$filename)) {
+        if (file_exists(APPLICATION_PRIVATE_MEDIA_PATH.'users/'.$filename)) {
             if (_String::lower($feature) === 'local') {
-                return MS_PRIVATE_MEDIA_PATH.'users/'.$filename;
+                return APPLICATION_PRIVATE_MEDIA_PATH.'users/'.$filename;
             }
 
             if (_String::lower($feature) === 'remote') {
@@ -294,7 +298,7 @@ class Media
                 [
                     'debug' => [
                         'file'        => (new Browser())->getURLPath(),
-                        'location'    => MS_PRIVATE_MEDIA_PATH.'users/'.$filename,
+                        'location'    => APPLICATION_PRIVATE_MEDIA_PATH.'users/'.$filename,
                         'description' => 'Your requested file not found or deleted!!',
                     ],
                     'error' => ['description' => 'Your requested file not found or deleted!!'],
@@ -339,9 +343,9 @@ class Media
      */
     public static function getMediaPathOfUploads(string $filename, string $feature, string $indicator='libraries/uploads/'): string
     {
-        if (file_exists(MS_PRIVATE_MEDIA_PATH.'uploads/'.$filename)) {
+        if (file_exists(APPLICATION_PRIVATE_MEDIA_PATH.'uploads/'.$filename)) {
             if (_String::lower($feature) === 'local') {
-                return MS_PRIVATE_MEDIA_PATH.'uploads/'.$filename;
+                return APPLICATION_PRIVATE_MEDIA_PATH.'uploads/'.$filename;
             }
 
             if (_String::lower($feature) === 'remote') {
@@ -353,7 +357,7 @@ class Media
                 [
                     'debug' => [
                         'file'        => (new Browser())->getURLPath(),
-                        'location'    => MS_PRIVATE_MEDIA_PATH.'uploads/'.$filename,
+                        'location'    => APPLICATION_PRIVATE_MEDIA_PATH.'uploads/'.$filename,
                         'description' => 'Your requested file not found or deleted!!',
                     ],
                     'error' => ['description' => 'Your requested file not found or deleted!!'],
@@ -404,15 +408,15 @@ class Media
              $filename = filter_var($filename, FILTER_DEFAULT);
              $filename = explode("_", $filename);
              $filename = array_filter($filename);
-             if (file_exists(MS_ASSETS_MEDIA_PATH . join(DIRECTORY_SEPARATOR, $filename))) {
+             if (file_exists(APPLICATION_ASSETS_MEDIA_PATH . join(DIRECTORY_SEPARATOR, $filename))) {
                  if (_String::lower($feature) === "local") {
-                     return MS_ASSETS_MEDIA_PATH . join(DIRECTORY_SEPARATOR, $filename);
+                     return APPLICATION_ASSETS_MEDIA_PATH . join(DIRECTORY_SEPARATOR, $filename);
                  } elseif (_String::lower($feature) === "remote") {
                      return join([self::getWebResourcesPath() . DIRECTORY_SEPARATOR, join(DIRECTORY_SEPARATOR, $filename)]);
                  }
              } else {
                  Firewall::runtimeFailure("Not Found", [
-                     "debug" => ["file" => (new Browser())->getURLPath(), "location" => MS_ASSETS_MEDIA_PATH . join(DIRECTORY_SEPARATOR, $filename), "description" => "Your requested file not found or deleted!!"],
+                     "debug" => ["file" => (new Browser())->getURLPath(), "location" => APPLICATION_ASSETS_MEDIA_PATH . join(DIRECTORY_SEPARATOR, $filename), "description" => "Your requested file not found or deleted!!"],
                      "error" => ["description" => "Your requested file not found or deleted!!"]
                  ]);
              }
@@ -433,7 +437,7 @@ class Media
             return implode([self::getWebResourcesPath().DIRECTORY_SEPARATOR, $filename]);
         }
 
-        return MS_ASSETS_MEDIA_PATH.$filename;
+        return APPLICATION_ASSETS_MEDIA_PATH.$filename;
     }//end getAssetsPath()
 
 
@@ -461,7 +465,7 @@ class Media
         if (_String::lower($feature) === 'remote') {
             return implode([System::getInstalledURL()."media/$filename"]);
         } else {
-            return MS_PRIVATE_MEDIA_PATH.$filename;
+            return APPLICATION_PRIVATE_MEDIA_PATH.$filename;
         }
     }//end getMediaPath()
 
@@ -477,7 +481,7 @@ class Media
         if (_String::lower($feature) === 'remote') {
             return implode([System::getInstalledURL()."media/$filename"]);
         } else {
-            return MS_PRIVATE_MEDIA_PATH.$filename;
+            return APPLICATION_PRIVATE_MEDIA_PATH.$filename;
         }
     }//end getSharedPath()
 
@@ -493,7 +497,7 @@ class Media
         if (_String::lower($feature) === 'remote') {
             return implode([self::getWebResourcesPath().DIRECTORY_SEPARATOR, $filename]);
         } else {
-            return MS_STORAGE_PATH."0/$filename";
+            return APPLICATION_STORAGE_PATH."0/$filename";
         }
     }//end getStoragePath()
 

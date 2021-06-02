@@ -5,10 +5,12 @@ namespace Mishusoft\Framework\Drivers;
 
 
 use Mishusoft\Framework\Chipsets\Cryptography\OpenSSL\Decryption;
+use Mishusoft\Framework\Chipsets\FileSystem;
 use Mishusoft\Framework\Chipsets\Preloader;
 use Mishusoft\Framework\Chipsets\System\Firewall;
 use Mishusoft\Framework\Chipsets\Ui;
 use Mishusoft\Framework\Chipsets\Utility\_Array;
+use Mishusoft\Framework\Chipsets\Utility\_JSON;
 use Mishusoft\Framework\Chipsets\Utility\_String;
 use Mishusoft\Framework\Chipsets\Utility\Stream;
 use Mishusoft\Framework\Interfaces\Drivers\MishusoftViewInterface;
@@ -18,8 +20,8 @@ class ViewRender implements MishusoftViewInterface
     /*Declare version*/
     public const VERSION = "1.0.0";
 
-    public const widgetsFile = PHP_RUNTIME_REGISTRIES_PATH . "widgets.json";
-    public const widgetsConfigFile = PHP_RUNTIME_REGISTRIES_PATH . "widgets-config.json";
+    public const widgetsFile = RUNTIME_REGISTRIES_PATH . "widgets.json";
+    public const widgetsConfigFile = RUNTIME_REGISTRIES_PATH . "widgets-config.json";
 
     public const  defaultWidgetConfig = [
         "position" => "footer",
@@ -99,8 +101,8 @@ class ViewRender implements MishusoftViewInterface
         $this->template_use = "yes";
 
         /*directory allocation*/
-        $this->template_dir = MS_THEMES_PATH;
-        $this->template_render_dir = MS_DOCUMENT_ROOT . "Ema" . DIRECTORY_SEPARATOR . "Mishusoft/Main/ViewRenders/";
+        $this->template_dir = APPLICATION_THEMES_PATH;
+        $this->template_render_dir = APPLICATION_DOCUMENT_ROOT . "Ema" . DIRECTORY_SEPARATOR . "Mishusoft/Main/ViewRenders/";
 
         /*file information*/
         $this->template_ext = "php";
@@ -122,23 +124,20 @@ class ViewRender implements MishusoftViewInterface
          * check the registries path exists
          * create that path when not exists
         */
-        if (!is_dir(PHP_RUNTIME_REGISTRIES_PATH)) {
-            mkdir(PHP_RUNTIME_REGISTRIES_PATH, 0777, true);
-        }
-
+        FileSystem::createDirectory(RUNTIME_REGISTRIES_PATH);
         /*
          * check the installed widgets list file exists
          * create that path when not exists
         */
         if (!file_exists(self::widgetsFile)) {
-            if (count(Stream::getList(MS_WIDGETS_PATH, "file")) > 0) {
-                foreach (Stream::getList(MS_WIDGETS_PATH, "file") as $widgetFile) {
+            if (count(FileSystem::getList(APPLICATION_WIDGETS_PATH, "file")) > 0) {
+                foreach (FileSystem::getList(APPLICATION_WIDGETS_PATH, "file") as $widgetFile) {
                     if (pathinfo($widgetFile, PATHINFO_EXTENSION) === "json") {
-                        $this->installedWidgets = array_merge($this->installedWidgets, [pathinfo($widgetFile, PATHINFO_FILENAME) => Stream::read(join([MS_WIDGETS_PATH, $widgetFile]))]);
+                        $this->installedWidgets = array_merge($this->installedWidgets, [pathinfo($widgetFile, PATHINFO_FILENAME) => Stream::read(join([APPLICATION_WIDGETS_PATH, $widgetFile]))]);
                     }
                 }
             }
-            Stream::write(self::widgetsFile, $this->installedWidgets);
+            FileSystem::write(self::widgetsFile, $this->installedWidgets);
         }
 
         /*
@@ -146,7 +145,7 @@ class ViewRender implements MishusoftViewInterface
          * create that path when not exists
         */
         if (!file_exists(self::widgetsConfigFile)) {
-            foreach (Stream::read(self::widgetsFile) as $widget => $config) {
+            foreach (FileSystem::read(self::widgetsFile) as $widget => $config) {
                 if (file_exists(self::widgetsConfigFile) and count(Stream::read(self::widgetsConfigFile)) > 0) {
                     $this->updateWidgets($widget, $config);
                 } else {
@@ -210,13 +209,13 @@ class ViewRender implements MishusoftViewInterface
     private function getWidgetsParentAll(): array
     {
         $parents = [];
-        $wd = array_keys(Stream::read(self::widgetsConfigFile));
+        $wd = array_keys(_JSON::decodeToArray(Stream::read(self::widgetsConfigFile)));
         foreach ($wd as $item) {
             if (strpos($item, "-")) {
                 $data = explode("-", $item);
-                array_push($parents, array_shift($data));
+                $parents[] = array_shift($data);
             } else {
-                array_push($parents, $item);
+                $parents[] = $item;
             }
         }
 
@@ -230,7 +229,7 @@ class ViewRender implements MishusoftViewInterface
 
     private function getAllDataOfWidgetsParent(string $parent): array
     {
-     return _Array::value(Stream::read(self::widgetsFile), $parent);
+     return _Array::value(_JSON::decodeToArray(Stream::read(self::widgetsFile)), $parent);
     }
 
     /**
@@ -273,14 +272,14 @@ class ViewRender implements MishusoftViewInterface
             $template = $this->template_name;
         }
 
-        if (is_readable(join(DIRECTORY_SEPARATOR, [MS_THEMES_PATH . $template, "configs", "configs.php"]))) {
-            include_once join(DIRECTORY_SEPARATOR, [MS_THEMES_PATH . $template, "configs", "configs.php"]);
+        if (is_readable(join(DIRECTORY_SEPARATOR, [APPLICATION_THEMES_PATH . $template, "configs", "configs.php"]))) {
+            include_once join(DIRECTORY_SEPARATOR, [APPLICATION_THEMES_PATH . $template, "configs", "configs.php"]);
             return get_available_widgets_positions();
         } else {
             Firewall::runtimeFailure("Not Found", [
                 "debug" => [
                     "file" => "Configs.php",
-                    "location" => join(DIRECTORY_SEPARATOR, [MS_THEMES_PATH . $template, "configs", "configs.php"]),
+                    "location" => join(DIRECTORY_SEPARATOR, [APPLICATION_THEMES_PATH . $template, "configs", "configs.php"]),
                     "description" => "Theme's configuration file not found.",
                 ],
                 "error" => ["description" => "Your requested url is broken!!"],
@@ -303,14 +302,14 @@ class ViewRender implements MishusoftViewInterface
         }
 
         $widgetClass = $widget . 'Widget';
-        if (is_readable(MS_WIDGETS_PATH . "$widgetClass.php")) {
-            include_once MS_WIDGETS_PATH . "$widgetClass.php";
-            $widgetClass = Preloader::getClassNamespaceFromPath(MS_WIDGETS_PATH . "$widgetClass.php");
+        if (is_readable(APPLICATION_WIDGETS_PATH . "$widgetClass.php")) {
+            include_once APPLICATION_WIDGETS_PATH . "$widgetClass.php";
+            $widgetClass = Preloader::getClassNamespaceFromPath(APPLICATION_WIDGETS_PATH . "$widgetClass.php");
             if (class_exists($widgetClass, false) === false) {
                 Firewall::runtimeFailure("Not Found", [
                     "debug" => [
                         "file" => "$widgetClass",
-                        "location" => MS_WIDGETS_PATH . "$widgetClass.php",
+                        "location" => APPLICATION_WIDGETS_PATH . "$widgetClass.php",
                         "description" => "Widget class not found or Widget class call error",
                     ],
                     "error" => ["description" => "Your requested url is broken!!"],

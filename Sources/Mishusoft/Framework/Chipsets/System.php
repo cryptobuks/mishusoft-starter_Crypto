@@ -107,15 +107,24 @@ class System
      * @var string
      */
     private static string $configServerDir;
+    private Browser $browser;
+
+    public function __construct()
+    {
+        $this->browser =  new Browser();
+    }
 
 
     /**
      * @throws JsonException
      */
-    public static function activate(): void
+    public static function activate(): System
     {
+
         self::initializeSecurity();
         self::getProgressedSystemStatus(self::getRequiresFile('SECURITY_FILE_PATH'));
+
+        return new self();
 
     }//end activate()
 
@@ -1817,14 +1826,14 @@ class System
                     $current_data['dbms'] = array_filter($current_data['dbms']);
                     if (count($current_data['dbms']) > 0) {
                         if (!in_array($name, _Array::value($current_data, 'dbms'))) {
-                            array_push($current_data['dbms'], $name);
+                            $current_data['dbms'][] = $name;
                         }
                     } else {
-                        array_push($current_data['dbms'], $name);
+                        $current_data['dbms'][] = $name;
                     }
                 } else {
                     $current_data = self::DEFAULT_CONFIG_PROPERTIES;
-                    array_push($current_data['dbms'], $name);
+                    $current_data['dbms'][] = $name;
                 }
 
                 if ($default) {
@@ -1842,9 +1851,9 @@ class System
             }//end if
 
             return true;
-        } else {
-            return false;
-        }//end if
+        }
+
+        return false;//end if
 
     }//end updateConfigProperties()
 
@@ -1895,29 +1904,29 @@ class System
                             ]
                         );
                         exit();
-                    } else {
-                        self::configureUpdate(
-                            [
-                                'client' => [
-                                    'deviceIP'      => IP::get(),
-                                    'deviceOsName'  => (new Browser())->getDeviceNameFull(),
-                                    'deviceBrowser' => (new Browser())->getBrowserNameFull(),
-                                ],
-                            ]
-                        );
-                        self::configureUpdate(
-                            [
-                                'server' => [
-                                    'name'             => Network::getValOfSrv('SERVER_NAME'),
-                                    'ip'               => Network::getValOfSrv('SERVER_ADDR'),
-                                    'port'             => Network::getValOfSrv('SERVER_PORT'),
-                                    'gatewayInterface' => Network::getValOfSrv('GATEWAY_INTERFACE'),
-                                    'host'             => Network::getValOfSrv('HTTP_HOST'),
-                                    'software'         => Network::getValOfSrv('SERVER_SOFTWARE'),
-                                ],
-                            ]
-                        );
-                    }//end if
+                    }
+
+                    self::configureUpdate(
+                        [
+                            'client' => [
+                                'deviceIP'      => IP::get(),
+                                'deviceOsName'  => $this->browser->getDeviceNameFull(),
+                                'deviceBrowser' => $this->browser->getBrowserNameFull(),
+                            ],
+                        ]
+                    );
+                    self::configureUpdate(
+                        [
+                            'server' => [
+                                'name'             => Network::getValOfSrv('SERVER_NAME'),
+                                'ip'               => Network::getValOfSrv('SERVER_ADDR'),
+                                'port'             => Network::getValOfSrv('SERVER_PORT'),
+                                'gatewayInterface' => Network::getValOfSrv('GATEWAY_INTERFACE'),
+                                'host'             => Network::getValOfSrv('HTTP_HOST'),
+                                'software'         => Network::getValOfSrv('SERVER_SOFTWARE'),
+                            ],
+                        ]
+                    );//end if
 
                     if (self::getProgressedSystemStatus(self::getRequiresFile('SECURITY_FILE_PATH')) and _Array::value(self::$event, 'message') === 'app-user-info-not-exist') {
                         Media::StreamAsJson(

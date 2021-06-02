@@ -7,14 +7,14 @@ namespace Mishusoft\Framework\DataObjects;
 class BrowserDataObject
 {
     // File list of various collected data.
-    public const USER_AGENT_LIST_FILE              = PHP_RUNTIME_REGISTRIES_PATH.'browser.user.agents.list.csv';
-    public const WEB_BROWSER_LIST_FILE             = PHP_RUNTIME_REGISTRIES_PATH.'browser.all.list.json';
-    public const WEB_BROWSER_APP_CODE_LIST_FILE    = PHP_RUNTIME_REGISTRIES_PATH.'browser.app.code.list.json';
-    public const WEB_BROWSER_LAYOUT_LIST_FILE      = PHP_RUNTIME_REGISTRIES_PATH.'browser.layout.list.json';
-    public const DEVICES_LIST_FILE                 = PHP_RUNTIME_REGISTRIES_PATH.'browser.devices.list.json';
-    public const DEVICES_CATEGORY_LIST_FILE        = PHP_RUNTIME_REGISTRIES_PATH.'browser.devices.category.list.json';
-    public const DEVICES_PLATFORM_WMNAME_LIST_FILE = PHP_RUNTIME_REGISTRIES_PATH.'browser.devices.platform.wmn.list.json';
-    public const DEVICES_ARCHITECTURE_LIST_FILE    = PHP_RUNTIME_REGISTRIES_PATH.'browser.devices.architecture.list.json';
+    public const USER_AGENT_LIST_FILE              = RUNTIME_REGISTRIES_PATH.'browser.user.agents.list.csv';
+    public const WEB_BROWSER_LIST_FILE             = RUNTIME_REGISTRIES_PATH.'browser.all.list.json';
+    public const WEB_BROWSER_APP_CODE_LIST_FILE    = RUNTIME_REGISTRIES_PATH.'browser.app.code.list.json';
+    public const WEB_BROWSER_LAYOUT_LIST_FILE      = RUNTIME_REGISTRIES_PATH.'browser.layout.list.json';
+    public const DEVICES_LIST_FILE                 = RUNTIME_REGISTRIES_PATH.'browser.devices.list.json';
+    public const DEVICES_CATEGORY_LIST_FILE        = RUNTIME_REGISTRIES_PATH.'browser.devices.category.list.json';
+    public const DEVICES_PLATFORM_WMNAME_LIST_FILE = RUNTIME_REGISTRIES_PATH.'browser.devices.platform.wmn.list.json';
+    public const DEVICES_ARCHITECTURE_LIST_FILE    = RUNTIME_REGISTRIES_PATH.'browser.devices.architecture.list.json';
 
     // Variables.
 
@@ -23,14 +23,14 @@ class BrowserDataObject
      *
      * @var string
      */
-    protected string $requestMethod;
+    protected string $requestMethod = 'Unknown';
 
     /**
      * Http request mode of browser.
      *
      * @var string
      */
-    protected string $requestMode;
+    protected string $requestMode = 'Unknown';
 
     /**
      * Http user agent of browser.
@@ -177,12 +177,12 @@ class BrowserDataObject
      *
      * @var array
      */
-    protected array $deviceInfoAll;
+    protected array $deviceInfoAll = [];
 
     /**
      * @var string
      */
-    protected string $deviceNameFull;
+    protected string $deviceNameFull = 'Unknown';
 
     /**
      * Device original name
@@ -203,28 +203,28 @@ class BrowserDataObject
      *
      * @var array
      */
-    protected array $currentDeviceInfo;
+    protected array $currentDeviceInfo = [];
 
     /**
      * Http protocol
      *
      * @var string
      */
-    protected string $urlProtocol;
+    protected string $urlProtocol = 'Unknown';
 
     /**
      * Http host name
      *
      * @var string
      */
-    protected string $urlHostname;
+    protected string $urlHostname = 'Unknown';
 
     /**
      * Http url path
      *
      * @var string
      */
-    protected string $urlPath;
+    protected string $urlPath = 'Unknown';
 
     /**
      * Runtime storage.
@@ -238,56 +238,56 @@ class BrowserDataObject
      *
      * @var array
      */
-    protected array $devicesList;
+    protected array $devicesList = [];
 
     /**
      * List of devices architecture
      *
      * @var array
      */
-    protected array $devicesArchitectureList;
+    protected array $devicesArchitectureList = [];
 
     /**
      * List of devices window manger
      *
      * @var array
      */
-    protected array $devicesPlatformWMNameList;
+    protected array $devicesPlatformWMNameList = [];
 
     /**
      * List of devices category
      *
      * @var array
      */
-    protected array $devicesCategoryList;
+    protected array $devicesCategoryList = [];
 
     /**
      * List of web browsers
      *
      * @var array
      */
-    protected array $webBrowserList;
+    protected array $webBrowserList = [];
 
     /**
      * List of web browser app code name
      *
      * @var array
      */
-    protected array $webBrowserAppCodeNameList;
+    protected array $webBrowserAppCodeNameList = [];
 
     /**
      * List of web browsers layout
      *
      * @var array
      */
-    protected array $webBrowserLayoutList;
+    protected array $webBrowserLayoutList = [];
 
     /**
      * Time of today
      *
      * @var string
      */
-    protected string $timeOfToday;
+    protected string $timeOfToday = 'Unknown';
 
     /**
      * Allowed domains for mishusoft
@@ -315,9 +315,9 @@ class BrowserDataObject
      */
     protected function getDevicesList(): array
     {
-        // Devices List
+        // Devices List.
         return [
-            // console
+            // Console.
             '3DS'                  => [
                 'Browser'  => [
                     'name'             => 'Nintendo Browser',
@@ -436,7 +436,7 @@ class BrowserDataObject
                 ],
             ],
 
-            // Desktops
+            // Desktops.
             'Amiga'                => [
                 'Browser'  => [
                     'name'         => 'IBrowse',
@@ -476,7 +476,7 @@ class BrowserDataObject
                 ],
             ],
 
-            // car
+            // car.
             'tesla'                => [
                 'Browser'  => [
                     'name'             => 'Tesla Car Browser',
@@ -518,7 +518,7 @@ class BrowserDataObject
                 ],
             ],
 
-            // Linux Desktop
+            // Linux Desktop.
             'freebsd'              => [
                 'Platform' => [
                     'name'         => 'FreeBSD',
@@ -1769,7 +1769,7 @@ class BrowserDataObject
             'Win64'                                        => '64 Bit',
             'x86_64'                                       => '64 Bit',
             'x86-64'                                       => '64 Bit',
-            'x64\/x86'                                     => '64 Bit',
+            'x64/x86'                                     => '64 Bit',
             'IA-64'                                        => '64 Bit',
             'ARM64'                                        => '64 Bit',
             'AMD64'                                        => '64 Bit',

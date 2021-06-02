@@ -13,8 +13,8 @@ class BIOS
     // Declare version.
     public const VERSION = '1.0.2';
 
-    public const URL_SPLITTERS_CONFIG_FILE = PHP_RUNTIME_REGISTRIES_PATH.'splitters.json';
-    public const EMA_LOADER_FILE           = PHP_RUNTIME_SYSTEM_PATH.'Ema'.DS.'EmaLoader.php';
+    public const URL_SPLITTERS_CONFIG_FILE = RUNTIME_REGISTRIES_PATH.'splitters.json';
+    public const EMA_LOADER_FILE           = RUNTIME_SYSTEM_PATH.'Ema'.DS.'EmaLoader.php';
 
     public static $initialise;
 
@@ -55,7 +55,7 @@ class BIOS
                 Logger::write(sprintf('Load %s from system.', self::EMA_LOADER_FILE));
                 /** @define "self::EMA_LOADER_FILE" ".../Sources/Mishusoft/Ema/EmaLoader.php" */
                 //include_once self::EMA_LOADER_FILE;
-                include_once PHP_RUNTIME_SYSTEM_PATH.'Ema'.DS.'EmaLoader.php';
+                include_once RUNTIME_SYSTEM_PATH.'Ema'.DS.'EmaLoader.php';
             }
 
             /*

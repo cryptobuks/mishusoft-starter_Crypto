@@ -71,18 +71,18 @@ class SystemConfiguration
                 exit();
             }
 
-            if (file_exists(PHP_RUNTIME_SYSTEM_TEMP_PATH.$uploader->file_name)) {
+            if (file_exists(RUNTIME_SYSTEM_TEMP_PATH.$uploader->file_name)) {
                 echo "$uploader->file_name already exists.";
                 exit();
             }
 
-            if (move_uploaded_file($uploader->file_temp_name, PHP_RUNTIME_SYSTEM_TEMP_PATH.$uploader->file_name)) {
+            if (move_uploaded_file($uploader->file_temp_name, RUNTIME_SYSTEM_TEMP_PATH.$uploader->file_name)) {
                 $filename = strtoupper(str_replace('-', ' ', pathinfo($uploader->file_name, PATHINFO_FILENAME)));
                 $zip      = new ZipArchive();
-                if ($zip->open(PHP_RUNTIME_SYSTEM_TEMP_PATH.$uploader->file_name) === true) {
-                    $zip->extractTo(PHP_RUNTIME_ROOT_PATH);
+                if ($zip->open(RUNTIME_SYSTEM_TEMP_PATH.$uploader->file_name) === true) {
+                    $zip->extractTo(RUNTIME_ROOT_PATH);
                     $zip->close();
-                    unlink(PHP_RUNTIME_SYSTEM_TEMP_PATH.$uploader->file_name);
+                    unlink(RUNTIME_SYSTEM_TEMP_PATH.$uploader->file_name);
                     echo "$filename successfully installed on ".System::getAbsoluteInstalledURL();
                 } else {
                     echo "$filename installation failed on ".System::getAbsoluteInstalledURL();

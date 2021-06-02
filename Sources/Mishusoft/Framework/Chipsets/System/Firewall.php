@@ -27,8 +27,8 @@ class Firewall
     public const VERSION = '1.0.2';
 
 
-    public const FIREWALL_CONFIG_FILE = PHP_RUNTIME_REGISTRIES_PATH.'firewall.json';
-    public const FIREWALL_LOG_FILE    = PHP_RUNTIME_REGISTRIES_PATH.'firewall.logs.access.json';
+    public const FIREWALL_CONFIG_FILE = RUNTIME_REGISTRIES_PATH.'firewall.json';
+    public const FIREWALL_LOG_FILE    = RUNTIME_REGISTRIES_PATH.'firewall.logs.access.json';
 
     public const REQUIRED_KEYS = [
         'status'                             => 'enable',
@@ -105,7 +105,7 @@ class Firewall
      *
      * @var Browser
      */
-    private Browser $browser;
+    private static Browser $browser;
 
     /**
      * Firewall configuration array.
@@ -178,8 +178,8 @@ class Firewall
      */
     public function __construct()
     {
-        Logger::write('Store Browser object in to $this->browser attribute.');
-        $this->browser = new Browser();
+        Logger::write('Store Browser object in to self::$browser attribute.');
+        self::$browser = new Browser();
         Logger::write(sprintf('Load Firewall configuration from %s.json.', self::FIREWALL_CONFIG_FILE));
         $this->loadConfig();
         Logger::write('Filter request of client.');
@@ -578,15 +578,16 @@ class Firewall
      */
     private static function runtimeFailureUi(string $title, array $message): void
     {
-        $requestMethod  = (new Browser())->getRequestMethod();
+        self::$browser = new Browser();
+        $requestMethod  = self::$browser->getRequestMethod();
         $requestAddress = Browser::getVisitedPage();
 
-        if ((new Browser())->getRequestMethod() === 'OPTIONS') {
+        if (self::$browser->getRequestMethod() === 'OPTIONS') {
             // add welcome not for http options method
             Media::StreamAsJson(['message' => ['type' => 'success', 'contents' => "The HTTP OPTIONS method requests permitted to communicate for $requestAddress."]]);
-            Logger::write("The HTTP OPTIONS method requests permitted to communicate for $requestAddress.", PHP_ACCESS_LOG_FILE, 'full');
+            Logger::write("The HTTP OPTIONS method requests permitted to communicate for $requestAddress.", LOGGER_WRITE_STYLE_FULL, LOGGER_FLAG_TYPE_ACCESS);
         } else {
-            Logger::write(array_key_exists('debug', $message) ? $message['debug']['description'] : $message['description']." for $requestAddress.", PHP_ACCESS_LOG_FILE, 'full');
+            Logger::write(array_key_exists('debug', $message) ? $message['debug']['description'] : $message['description']." for $requestAddress.", LOGGER_WRITE_STYLE_FULL, LOGGER_FLAG_TYPE_ACCESS);
             if (Memory::Data('framework')->debug) {
                 // add runtime failure ui
                 Ui::HtmlInterface(
@@ -625,7 +626,7 @@ class Firewall
                             );
                         }//end if
 
-                        self::viewVisitorInfo($template_body, $requestMethod, $requestAddress);
+                        self::viewVisitorInfo($template_body, $requestMethod, $requestAddress, self::$browser);
                         Ui::addDefaultSignature($template_body);
                         Ui::text(
                             Ui::element($body, 'script'),
@@ -689,14 +690,14 @@ class Firewall
     /**
      * View visitor information for html display
      *
-     * @param DOMElement|DOMNode|DOMDocument $body           Html body.
-     * @param string                         $requestMethod  Requested method name.
-     * @param string                         $requestAddress Requested address.
-     *
+     * @param DOMElement|DOMNode|DOMDocument $body Html body.
+     * @param string $requestMethod Requested method name.
+     * @param string $requestAddress Requested address.
+     * @param object $browser
      * @return void
      * @throws JsonException Throw exception when json error occurred.
      */
-    private static function viewVisitorInfo(DOMElement|DOMNode|DOMDocument $body, string $requestMethod, string $requestAddress): void
+    private static function viewVisitorInfo(DOMElement|DOMNode|DOMDocument $body, string $requestMethod, string $requestAddress, object $browser): void
     {
         Ui::text(
             Ui::element(
@@ -704,7 +705,7 @@ class Firewall
                 'ms-app-paragraph',
                 ['style' => 'font-size: 15px;line-height: 1.5;display: flex;text-align: left;padding: 5px;border-top: groove;margin-top: 10px;']
             ),
-            'User Agent: '.(new Browser())->getUserAgent()
+            'User Agent: '.$browser->getUserAgent()
         );
         Ui::text(
             Ui::element(
@@ -747,26 +748,26 @@ class Firewall
         }//end if
 
         // avoid error browser capturing
-        if (_String::lower((new Browser())->getBrowserName()) !== 'unknown') {
+        if (_String::lower($browser->getBrowserName()) !== 'unknown') {
             Ui::text(
                 Ui::element(
                     $body,
                     'ms-app-paragraph',
                     ['style' => 'font-size: 15px;line-height: 1.5;display: flex;text-align: left;padding: 5px;']
                 ),
-                'Browser: '.(new Browser())->getBrowserNameFull()
+                'Browser: '.$browser->getBrowserNameFull()
             );
         }
 
         // avoid error device capturing
-        if (_String::lower((new Browser())->getDeviceName()) !== 'unknown') {
+        if (_String::lower($browser->getDeviceName()) !== 'unknown') {
             Ui::text(
                 Ui::element(
                     $body,
                     'ms-app-paragraph',
                     ['style' => 'font-size: 15px;line-height: 1.5;display: flex;text-align: left;padding: 5px;']
                 ),
-                'Device: '.(new Browser())->getDeviceName().' ('._String::lower((new Browser())->getDeviceArchitecture()).')'
+                'Device: '.$browser->getDeviceName().' ('.strtolower($browser->getDeviceArchitecture()).')'
             );
         }
 
@@ -800,104 +801,203 @@ class Firewall
             ]);
         }*/
 
-        Logger::write('Start testing requested hostname with firewall configuration.');
+        // Start test website's host name
+        Logger::write(
+            sprintf(
+                'Start testing requested hostname [%s] with firewall configuration.',
+                self::$browser->getURLHostname()
+            )
+        );
 
-        _Debug::preOutput($this->firewallConfiguration['hostname']);
-        _Debug::preOutput($this->browser->getURLHostname());
-
-        if ($this->firewallConfiguration['hostname'] !== $this->browser->getURLHostname()) {
-            Logger::write('Requested hostname not matched with firewall configuration.');
+        if ($this->firewallConfiguration['hostname'] !== self::$browser->getURLHostname()) {
+            Logger::write(
+                sprintf(
+                    'Requested hostname [%s] does not matched with firewall configuration.',
+                    self::$browser->getURLHostname()
+                )
+            );
             if ($this->isListed(IP::get()) === false) {
-                Logger::write('Firewall block the browser.');
+                Logger::write(
+                    sprintf(
+                        'Firewall block the browser %s of client.',
+                        self::$browser->getBrowserNameFull()
+                    )
+                );
                 $this->actionStatus    = 'blocked';
                 $this->actionComponent = 'browser';
             }
         }
 
-        Logger::write('End testing requested hostname with firewall configuration.');
+        Logger::write(
+            sprintf(
+                'End testing requested hostname [%s] with firewall configuration.',
+                self::$browser->getURLHostname()
+            )
+        );
 
-        Logger::write('Start searching client ip in banned list.');
+        // End test website's host name
+        // Start test the ip address of client.
+        Logger::write(
+            sprintf(
+                'Start searching client ip [%s] in banned list.',
+                IP::get()
+            )
+        );
+
         if (in_array(IP::get(), $this->firewallConfiguration['ip']['banned'], true) === true) {
-            Logger::write('The client ip address found in banned list.');
+            Logger::write(
+                sprintf(
+                    'The client ip address [%s] found in banned list.',
+                    IP::get()
+                )
+            );
+
             Logger::write('Firewall banned the ip address.');
             $this->actionStatus    = 'banned';
             $this->actionComponent = 'IP';
         }
 
-        Logger::write('End searching client ip in banned list.');
+        Logger::write(
+            sprintf(
+                'End searching client ip [%s] in banned list.',
+                IP::get()
+            )
+        );
+        // End test the ip address of client.
+        // Start test the web browser of client.
+        Logger::write(
+            sprintf(
+                'Start searching client browser [%s] in banned list.',
+                self::$browser->getBrowserNameFull()
+            )
+        );
 
-        Logger::write('Start searching client browser in banned list.');
         if (in_array(
-            _String::lower($this->browser->getBrowserName()),
+            strtolower(self::$browser->getBrowserName()),
             $this->firewallConfiguration['browser']['banned'],
             true
         ) === true
         ) {
-            Logger::write('The client browser found in banned list.');
+            Logger::write(
+                sprintf(
+                    'The client browser [%s] found in banned list.',
+                    self::$browser->getBrowserNameFull()
+                )
+            );
             Logger::write('Firewall banned the browser.');
             $this->actionStatus    = 'banned';
             $this->actionComponent = 'browser';
         }
 
-        Logger::write('End searching client browser in banned list.');
+        Logger::write(
+            sprintf(
+                'End searching client browser [%s] in banned list.',
+                self::$browser->getBrowserNameFull()
+            )
+        );
 
-        Logger::write('Start searching client device in banned list.');
+        // End test the web browser of client.
+        // Start test the device name of client.
+        Logger::write(
+            sprintf(
+                'Start searching client device [%s] in banned list.',
+                self::$browser->getDeviceNameFull()
+            )
+        );
         if (in_array(
-            _String::lower($this->browser->getDeviceName()),
+            _String::lower(self::$browser->getDeviceName()),
             $this->firewallConfiguration['device']['banned'],
             true
         ) === true
         ) {
-            Logger::write('The client device found in banned list.');
+            Logger::write(
+                sprintf(
+                    'The client device [%s] found in banned list.',
+                    self::$browser->getDeviceNameFull()
+                )
+            );
             Logger::write('Firewall banned the device.');
             $this->actionStatus    = 'banned';
             $this->actionComponent = 'device';
         }
-        Logger::write('End searching client device in banned list.');
 
-        Logger::write('Start searching client continent in banned list.');
+        Logger::write(
+            sprintf(
+                'End searching client device [%s] in banned list.',
+                self::$browser->getDeviceNameFull()
+            )
+        );
+
+        // End test the device name of client.
+        // Start test the continent name of client.
+        Logger::write(
+            sprintf(
+                'Start searching client continent [%s] in banned list.',
+                IP::getInfo('continent')
+            )
+        );
         if (in_array(
             _String::lower(IP::getInfo('continent')),
             $this->firewallConfiguration['continent']['banned'],
             true
-        )) {
-            Logger::write('The client continent found in banned list.');
+        )
+        ) {
+            Logger::write(
+                sprintf(
+                    'The client continent [%s] found in banned list.',
+                    IP::getInfo('continent')
+                )
+            );
             Logger::write('Firewall banned the continent.');
             $this->actionStatus    = 'banned';
             $this->actionComponent = 'continent';
         }
-        Logger::write('End searching client continent in banned list.');
 
+        Logger::write(
+            sprintf(
+                'End searching client continent [%s] in banned list.',
+                IP::getInfo('continent')
+            )
+        );
+
+        // End test the continent name of client.
+        // Start test the country name of client.
         Logger::write('Start searching client country in banned list.');
-        if (in_array(_String::lower(IP::getInfo('country')),
-                $this->firewallConfiguration['country']['banned'],
-                true) === true) {
+        if (in_array(
+            _String::lower(IP::getInfo('country')),
+            $this->firewallConfiguration['country']['banned'],
+            true
+        ) === true
+        ) {
             Logger::write('The client continent found in banned list.');
             Logger::write('Firewall banned the country.');
             $this->actionStatus    = 'banned';
             $this->actionComponent = 'country';
         }
+
         Logger::write('End searching client country in banned list.');
 
-
+        // End test the country name of client.
+        // Start test the country name of client.
         Logger::write('Start searching client city in banned list.');
-            if (in_array(_String::lower(IP::getInfo("city")), $this->firewallConfiguration["city"]["banned"])) {
-                Logger::write('The client city found in banned list.');
-                Logger::write('Firewall banned the city.');
-            $this->actionStatus = "banned";
-            $this->actionComponent = "city";
+        if (in_array(_String::lower(IP::getInfo('city')), $this->firewallConfiguration['city']['banned'])) {
+            Logger::write('The client city found in banned list.');
+            Logger::write('Firewall banned the city.');
+            $this->actionStatus    = 'banned';
+            $this->actionComponent = 'city';
         }
+
         Logger::write('End searching client city in banned list.');
 
         if ($this->firewallConfiguration['browser']['order'] === 'blacklist') {
-            if (in_array(_String::lower($this->browser->getBrowserName()), $this->firewallConfiguration['browser']['blacklist'], true) === true) {
+            if (in_array(_String::lower(self::$browser->getBrowserName()), $this->firewallConfiguration['browser']['blacklist'], true) === true) {
                 $this->actionStatus    = 'blocked';
                 $this->actionComponent = 'browser';
             }
         }
 
         if ($this->firewallConfiguration['browser']['order'] === 'whitelist') {
-            if (in_array(_String::lower($this->browser->getBrowserName()), $this->firewallConfiguration['browser']['whitelist']) === false) {
+            if (in_array(_String::lower(self::$browser->getBrowserName()), $this->firewallConfiguration['browser']['whitelist']) === false) {
                 $this->actionStatus    = 'blocked';
                 $this->actionComponent = 'browser';
             }
@@ -1011,10 +1111,10 @@ class Firewall
                             && array_key_exists(IP::get(), $logs[$this->actionStatus]) === true
                         ) {
                             if (is_array($logs[$this->actionStatus][IP::get()]) === true
-                                && array_key_exists($this->browser->getBrowserNameFull(), $logs[$this->actionStatus][IP::get()]) === true
+                                && array_key_exists(self::$browser->getBrowserNameFull(), $logs[$this->actionStatus][IP::get()]) === true
                             ) {
-                                if (is_array($logs[$this->actionStatus][IP::get()][$this->browser->getBrowserNameFull()]) === true
-                                    && array_key_exists(Time::getToday(), $logs[$this->actionStatus][IP::get()][$this->browser->getBrowserNameFull()]) === false && is_readable(self::FIREWALL_LOG_FILE) === true
+                                if (is_array($logs[$this->actionStatus][IP::get()][self::$browser->getBrowserNameFull()]) === true
+                                    && array_key_exists(Time::getToday(), $logs[$this->actionStatus][IP::get()][self::$browser->getBrowserNameFull()]) === false && is_readable(self::FIREWALL_LOG_FILE) === true
                                 ) {
                                     FileSystem::saveToFile(
                                         self::FIREWALL_LOG_FILE,
@@ -1028,8 +1128,8 @@ class Firewall
                                                             IP::get() => array_merge(
                                                                 $logs[$this->actionStatus][IP::get()],
                                                                 [
-                                                                    $this->browser->getBrowserNameFull() => array_merge(
-                                                                        $logs[$this->actionStatus][IP::get()][$this->browser->getBrowserNameFull()],
+                                                                    self::$browser->getBrowserNameFull() => array_merge(
+                                                                        $logs[$this->actionStatus][IP::get()][self::$browser->getBrowserNameFull()],
                                                                         $this->getNewVisitorTimeBased()
                                                                     ),
                                                                 ]
@@ -1115,10 +1215,10 @@ class Firewall
                 'ip'         => IP::get(),
                 'country'    => IP::getCountry(),
                 'location'   => IP::getInfo(),
-                'device'     => $this->browser->getDeviceName().' ('.$this->browser->getDeviceArchitecture().')',
-                'browser'    => $this->browser->getBrowserNameFull(),
-                'UUAS'       => $this->browser->getUserAgent(),
-                'url'        => $this->browser::VisitedPageURL($_SERVER),
+                'device'     => self::$browser->getDeviceName().' ('.self::$browser->getDeviceArchitecture().')',
+                'browser'    => self::$browser->getBrowserNameFull(),
+                'UUAS'       => self::$browser->getUserAgent(),
+                'url'        => self::$browser::VisitedPageURL($_SERVER),
                 'status'     => $this->actionStatus,
                 'component'  => $this->actionComponent,
                 'visit-time' => Time::getToday(),
@@ -1133,7 +1233,7 @@ class Firewall
      */
     private function getNewVisitorBrowserBased(): array
     {
-        return [$this->browser->getBrowserNameFull() => $this->getNewVisitorTimeBased()];
+        return [self::$browser->getBrowserNameFull() => $this->getNewVisitorTimeBased()];
 
     }//end getNewVisitorBrowserBased()
 
@@ -1325,8 +1425,8 @@ class Firewall
     public function defenceActivate(): void
     {
         if ($this->actionStatus === 'banned' || $this->actionStatus === 'blocked') {
-            if (array_key_exists('ui', $this->browser->getBrowserDetails($this->browser->getBrowserName()))) {
-                if (_String::lower($this->browser->getBrowserDetails($this->browser->getBrowserName())['ui']) === _String::lower('FullTextMode')) {
+            if (array_key_exists('ui', self::$browser->getBrowserDetails(self::$browser->getBrowserName()))) {
+                if (_String::lower(self::$browser->getBrowserDetails(self::$browser->getBrowserName())['ui']) === _String::lower('FullTextMode')) {
                     $msg_lb        = "\n";
                     $this->msg_tab = "\t";
                     $this->defenseMessageShow('', $msg_lb, $this->actionStatus, $this->actionComponent, 'text');
@@ -1364,9 +1464,13 @@ class Firewall
      */
     private function defenseMessageShow(string $title, string $lb, string $status, string $component, string $viewMode)
     {
-        $componentText  = ($component === 'browser') ? "on $component ".$this->browser->getBrowserNameFull() : "from $component ".IP::get();
-        $requestMethod  = $this->browser->getRequestMethod();
-        $requestAddress = $this->browser->getVisitedPage();
+        if ($component === 'browser') {
+            $componentText = "on $component " . self::$browser->getBrowserNameFull();
+        } else {
+            $componentText = "from $component " . IP::get();
+        }
+        $requestMethod  = self::$browser->getRequestMethod();
+        $requestAddress = self::$browser::getVisitedPage();
 
         if (!empty($viewMode) and is_string($viewMode)) {
             if (Network::requestHeader('HTTP_SEC_FETCH_MODE') === 'cors') {
@@ -1376,9 +1480,9 @@ class Firewall
                             'type'    => 'error',
                             'details' => "Your access has been $status $componentText.",
                             'visitor' => [
-                                'user-agent'     => $this->browser->getUserAgent(),
-                                'request-method' => $this->browser->getRequestMethod(),
-                                'request-url'    => $this->browser->getVisitedPage(),
+                                'user-agent'     => self::$browser->getUserAgent(),
+                                'request-method' => self::$browser->getRequestMethod(),
+                                'request-url'    => self::$browser::getVisitedPage(),
                                 'ip-addr'        => IP::get(),
                             ],
                         ],
@@ -1396,28 +1500,28 @@ class Firewall
                 }
 
                 echo PHP_EOL;
-                // echo " User Agent : $this->msg_tab" . $this->browser->getUserAgent() . PHP_EOL;
-                echo " Request URL : $this->msg_tab$requestMethod $requestAddress".PHP_EOL;
+                // echo " User Agent : $this->msg_tab" . self::$browser->getUserAgent() . PHP_EOL;
+                echo " Request URL : $this->msgTab$requestMethod $requestAddress".PHP_EOL;
                 echo PHP_EOL;
-                echo " IP address : $this->msg_tab".IP::get().PHP_EOL;
+                echo " IP address : $this->msgTab".IP::get().PHP_EOL;
 
                 // avoid error country capturing
                 if (_String::lower(IP::getCountry()) !== 'unknown') {
-                    echo " Country : $this->msg_tab".IP::getCountry().PHP_EOL;
+                    echo " Country : $this->msgTab".IP::getCountry().PHP_EOL;
                 } else {
                     if (_String::lower(IP::getInfo('country')) !== 'unknown location') {
-                        echo " Country : $this->msg_tab".IP::getCountry().PHP_EOL;
+                        echo " Country : $this->msgTab".IP::getCountry().PHP_EOL;
                     }
                 }
 
                 // avoid error browser capturing
-                if (_String::lower($this->browser->getBrowserName()) !== 'unknown') {
-                    echo " Browser : $this->msg_tab".$this->browser->getBrowserNameFull().PHP_EOL;
+                if (_String::lower(self::$browser->getBrowserName()) !== 'unknown') {
+                    echo " Browser : $this->msgTab".self::$browser->getBrowserNameFull().PHP_EOL;
                 }
 
                 // avoid error device capturing
-                if (_String::lower($this->browser->getDeviceName()) !== 'unknown') {
-                    echo " Device : $this->msg_tab".$this->browser->getDeviceName().' ('._String::lower($this->browser->getDeviceArchitecture()).').'.PHP_EOL;
+                if (_String::lower(self::$browser->getDeviceName()) !== 'unknown') {
+                    echo " Device : $this->msgTab".self::$browser->getDeviceName().' ('._String::lower(self::$browser->getDeviceArchitecture()).').'.PHP_EOL;
                 }
 
                 for ($i = 0; $i <= 65; $i++) {
@@ -1500,7 +1604,7 @@ class Firewall
                             );
                         }
 
-                        $this->viewVisitorInfo($template_body, $requestMethod, $requestAddress);
+                        $this->viewVisitorInfo($template_body, $requestMethod, $requestAddress,self::$browser);
                         Ui::addDefaultSignature($template_body);
                         Ui::text(
                             Ui::element($documentBody, 'script'),

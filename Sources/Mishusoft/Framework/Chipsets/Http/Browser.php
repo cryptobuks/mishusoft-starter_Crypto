@@ -12,6 +12,7 @@ namespace Mishusoft\Framework\Chipsets\Http;
 
 use JsonException;
 use Mishusoft\Framework\Chipsets\FileSystem;
+use Mishusoft\Framework\Chipsets\Utility\_Debug;
 use Mishusoft\Framework\Chipsets\Utility\_JSON;
 use Mishusoft\Framework\DataObjects\BrowserDataObject;
 use RuntimeException;
@@ -372,20 +373,69 @@ class Browser extends BrowserDataObject
      */
     private function analyze(): void
     {
+        /*
+         * Simple regex
+
+            Regex quick reference
+            [abc]     A single character: a, b or c
+            [^abc]     Any single character but a, b, or c
+            [a-z]     Any single character in the range a-z
+            [a-zA-Z]     Any single character in the range a-z or A-Z
+            ^     Start of line
+            $     End of line
+            \A     Start of string
+            \z     End of string
+            .     Any single character
+            \s     Any whitespace character
+            \S     Any non-whitespace character
+            \d     Any digit
+            \D     Any non-digit
+            \w     Any word character (letter, number, underscore)
+            \W     Any non-word character
+            \b     Any word boundary character
+            (...)     Capture everything enclosed
+            (a|b)     a or b
+            a?     Zero or one of a
+            a*     Zero or more of a
+            a+     One or more of a
+            a{3}     Exactly 3 of a
+            a{3,}     3 or more of a
+            a{3,6}     Between 3 and 6 of a
+
+            options: i case insensitive m make dot match newlines x ignore whitespace in regex o perform #{...} substitutions only once
+         */
         // Start operation.
         // First step.
-        $cleanUA = $this->cleanUserAgentString($this->userAgent);
+        // $cleanUA = $this->cleanUserAgentString($this->userAgent);
+        //$cleanUA = 'Mozilla/5.0 (X11; U; Linux i686; en-GB; rv:1.9.2.17) Gecko/20111028 Ubuntu/8.04 (hardy) Firefox/3.6.17';
+        $cleanUA = 'Mozilla/5.0 X11; U; Linux i686; en-GB; rv:1.9.2.17 Gecko/20111028 Ubuntu/8.04 hardy Firefox/3.6.17';
+        _Debug::preOutput($cleanUA);
+        // Search app code name of web browser from user agent.
         foreach ($this->webBrowserAppCodeNameList as $appKey => $appValue) {
-            if (preg_match('#'.preg_quote(strtolower($appKey), '/').'[/]+([0-9]+(?:\.[0-9]+)?)#', $cleanUA, $matches) === true) {
+            // _Debug::preOutput($appKey);
+            // _Debug::preOutput($appValue);
+            // preg_match('/(^\w+)\/(\d+[.]\d+)/', $cleanUA, $matches);
+            // _Debug::preOutput($matches);
+            // preg_match(
+            // '/('.preg_quote(
+            // strtolower($appKey),
+            // PREG_QUOTE_DEFAULT_SEPARATOR
+            // ).')\/(\d+[.]\d+)/',
+            // $cleanUA,
+            // $matches
+            // );
+            // _Debug::preOutput($matches);
+            if (preg_match('/('.$this->quote(strtolower($appKey)).')\/(\d+[.]\d+)/', $cleanUA, $matches) === 1) {
                 $this->browserAppCodeName    = $appValue;
                 $this->browserAppCodeVersion = $matches[1];
                 break;
             }
-        }
+        }//end foreach
 
         // Second step.
+        // Search window manager name and type from user agent.
         foreach ($this->devicesPlatformWMNameList as $pwKey => $pwValue) {
-            if (preg_match('/'.preg_quote(strtolower($pwKey), '/').'\b/i', $cleanUA, $matches) === true) {
+            if (preg_match('/'.$this->quote(strtolower($pwKey)).'\b/i', $cleanUA, $matches) === 1) {
                 $this->deviceWindowManager  = $pwKey;
                 $this->deviceWmNameOriginal = ucfirst($pwKey);
                 $this->windowManager($pwValue);
@@ -394,16 +444,43 @@ class Browser extends BrowserDataObject
         }
 
         // Third step.
+        // Search device category from user agent.
         foreach ($this->devicesCategoryList as $dcKey => $dcValue) {
-            if (preg_match('/'.preg_quote(strtolower($dcKey), '/').'\b/i', $cleanUA, $matches) === true) {
+            if (preg_match('/'.$this->quote(strtolower($dcKey)).'\b/i', $cleanUA, $matches) === 1) {
                 $this->deviceWindowManager = $dcValue;
                 break;
             }
         }
 
         // Fourth step.
+        // Search device and details in () from user agent.
         foreach ($this->devicesList as $dKey => $dValue) {
-            if (preg_match('/'.strtolower($dKey).'\b/i', $cleanUA, $matches) === true) {
+//            if (preg_match('/(?<=\()(.+)(?=\))/is', $cleanUA, $match) === 1) {
+//                _Debug::preOutput($matches);
+//            }
+//            if (preg_match('/\(([^\)]*)\)/', $cleanUA, $matches) === 1) {
+//                _Debug::preOutput($matches);
+//            }
+//            if (preg_match('/\((['.$this->quote(strtolower($dKey)).']*)\)/', $cleanUA, $matches) === 1) {
+//                _Debug::preOutput($matches);
+//            }
+//            if (preg_match('/\('.$this->quote(strtolower($dKey)).'\)/', $cleanUA, $matches) === 1) {
+//                _Debug::preOutput($matches);
+//            }
+            //_Debug::preOutput($this->quote(strtolower($dKey)));
+            //_Debug::preOutput(preg_match('/'.$this->quote(strtolower($dKey)).'/i', $cleanUA, $matches));
+            preg_match('/('.$this->quote(strtolower($dKey)).')\/(\d{1-2}+[.]\d{1-2}+)/', $cleanUA, $matches);
+            _Debug::preOutput($matches);
+
+            if (preg_match('/'.$this->quote(strtolower($dKey)).'/i', $cleanUA, $matches) === 1) {
+                _Debug::preOutput($matches);
+                exit();
+            }
+
+            if (preg_match('/('.strtolower($dKey).')\b/i', $cleanUA, $matches) === 1) {
+                _Debug::preOutput($dKey);
+                _Debug::preOutput($dValue);
+                _Debug::preOutput($matches);
                 $this->deviceName     = $dKey;
                 $this->deviceNameFull = $this->finalContent($dKey, $cleanUA);
                 $this->deviceInfoAll  = (array) $dValue;
@@ -411,19 +488,21 @@ class Browser extends BrowserDataObject
 
                 $device = explode(';', $this->deviceInfo($cleanUA));
                 foreach ($device as $devValue) {
-                    if (preg_match('/'.strtolower($dKey).'\b/i', $devValue, $matches) === true) {
+                    if (preg_match('/'.strtolower($dKey).'\b/i', $devValue, $matches) === 1) {
                         $this->deviceNameOriginal = ltrim($devValue);
                         break;
                     }
                 }
 
+                _Debug::preOutput($this->deviceNameOriginal);
+
                 break;
-            }
-        }
+            }//end if
+        }//end foreach
 
         // Fifth step.
         foreach ($this->devicesArchitectureList as $aKey => $aValue) {
-            if (preg_match('/'.strtolower($aKey).'\b/i', $cleanUA, $matches) === true) {
+            if (preg_match('/'.strtolower($aKey).'\b/i', $cleanUA, $matches) === 1) {
                 $this->deviceArchitecture  = $aValue;
                 $this->browserArchitecture = $aValue;
                 break;
@@ -432,14 +511,15 @@ class Browser extends BrowserDataObject
 
         // Sixth step.
         foreach (array_change_key_case($this->webBrowserList, CASE_LOWER) as $wbKey => $wbValue) {
-            if (preg_match('/'.preg_quote(strtolower($wbKey), '/').'\b/i', $cleanUA, $matches) === true) {
-                $this->browserName        = ucfirst($wbKey);
-                $this->browserNameFull    = ltrim(ucwords(strtr(strtolower($this->finalContent($wbKey, $cleanUA)), [$wbKey => $wbValue['name']])));
+            if (preg_match('/'.preg_quote(strtolower($wbKey), '/').'\b/i', $cleanUA, $matches) === 1) {
+                $this->browserName     = ucfirst($wbKey);
+                $this->browserNameFull = ucwords(ltrim(strtr(strtolower($this->finalContent($wbKey, $cleanUA)), [$wbKey => $wbValue['name']])));
                 if (is_array($wbValue) === true) {
                     $this->browserInfoAll = $wbValue;
                 } else {
                     $this->browserInfoAll = [];
                 }
+
                 $this->browserVersionFull = substr($this->browserNameFull, (strpos($this->browserNameFull, $wbKey) + strlen($wbKey) + 1), (strlen($this->browserNameFull) - (strpos($this->browserNameFull, $wbKey) + strlen($wbKey) + 1)));
                 $this->browserVersion     = substr($this->browserVersionFull, 0, strpos($this->browserVersionFull, '.'));
                 break;
@@ -448,7 +528,15 @@ class Browser extends BrowserDataObject
 
         // Seventh step.
         foreach (array_change_key_case($this->webBrowserLayoutList, CASE_LOWER) as $layoutKey => $layoutValue) {
-            if (preg_match('#'.preg_quote(strtolower($layoutValue['contain']), '/').'[/]+([0-9]+(?:\.[0-9]+)?)#', $cleanUA, $matches) === true) {
+            if (preg_match(
+                '#'.preg_quote(
+                    strtolower($layoutValue['contain']),
+                    PREG_QUOTE_DEFAULT_SEPARATOR
+                ).'[/]+([0-9]+(?:\.[0-9]+)?)#',
+                $cleanUA,
+                $matches
+            ) === true
+            ) {
                 $this->browserEngineName     = $layoutKey;
                 $this->browserEngineNameFull = $this->cleanContent($matches[0]);
                 $this->browserEngineVersion  = $matches[1];
@@ -457,6 +545,17 @@ class Browser extends BrowserDataObject
         }
 
     }//end analyze()
+
+    /**
+     * Quote any string
+     *
+     * @param string $string String for quote.
+     *
+     * @return string
+     */
+    protected function quote(string $string):string{
+        return preg_quote($string, PREG_QUOTE_DEFAULT_SEPARATOR);
+    }
 
 
     /**
@@ -496,11 +595,11 @@ class Browser extends BrowserDataObject
     /**
      * Retrieve device window manager.
      *
-     * @param array $array Devices information.
+     * @param array|string $array $array Devices information.
      *
      * @return void
      */
-    private function windowManager(array $array): void
+    private function windowManager(array|string $array): void
     {
         if (is_array($array) === true && count($array) > 0) {
             if (array_key_exists('name', $array) === true) {
@@ -527,22 +626,36 @@ class Browser extends BrowserDataObject
      */
     private function finalContent(string $key, string $content): string
     {
-        $finalOutput = '';
-        $kPosition   = stripos($content, $key);
-        $cLength     = strlen($content);
-        $fountText   = substr($content, $kPosition, ($cLength - $kPosition));
-        $totalWords  = str_word_count($fountText);
+        // _Debug::preOutput('From final content func');
+        // _Debug::preOutput(func_get_args());
+        $finalOutput   = '';
+        $keyPosition   = stripos($content, $key);
+        $contentLength = strlen($content);
+        $foundText     = substr($content, $keyPosition, ($contentLength - $keyPosition));
+        $totalWords    = str_word_count($foundText);
+        // _Debug::preOutput($foundText);
+        // _Debug::preOutput($totalWords);
         if ($totalWords > 1) {
-            $wordsArray = explode(' ', $fountText);
+            $wordsArray = explode(' ', $foundText);
+            // $architectures = array_keys($this->getDevicesArchitectureList());
+            // $architectures = implode('|', $architectures);
+            // _Debug::preOutput($architectures);
+            $quotedKey = preg_quote(strtolower($key), PREG_QUOTE_DEFAULT_SEPARATOR);
+            // $quotedDevicePlatform = preg_quote(strtolower($architectures), PREG_QUOTE_DEFAULT_SEPARATOR);
+            // preg_match('/\b'.$quotedKey.'\b/i', $foundText, $matches);
+            // _Debug::preOutput($matches);
+            // preg_match('/\b'.$quotedKey.'\b\s+\b['.$quotedDevicePlatform.']\b/i', $foundText, $matches);
+            // _Debug::preOutput($matches);
             foreach ($wordsArray as $value) {
-                if (preg_match('/'.preg_quote(strtolower($key), '/').'/i', $value, $matches) === true) {
+                if (preg_match('/\b'.$quotedKey.'\b/i', $value, $matches) === 1) {
+                    // _Debug::preOutput($matches);
                     $finalOutput = $value;
                     break;
                 }
             }
         } else {
-            $finalOutput = $fountText;
-        }
+            $finalOutput = $foundText;
+        }//end if
 
         return $this->cleanContent($finalOutput);
 
@@ -572,6 +685,8 @@ class Browser extends BrowserDataObject
      */
     private function deviceDetails(string|array $resources): void
     {
+        // _Debug::preOutput('From device details func');
+        // _Debug::preOutput(func_get_args());
         if (is_array($resources) === true && count($resources) > 0) {
             if (array_key_exists('Platform', $resources) === true) {
                 $this->currentDeviceInfo  = $resources['Platform'];
