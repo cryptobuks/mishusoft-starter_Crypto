@@ -3,11 +3,8 @@
 namespace Mishusoft\Framework\Chipsets\System;
 
 use InvalidArgumentException;
-use Mishusoft\Framework\Chipsets\Http\Browser;
 use Mishusoft\Framework\Chipsets\Http\IP;
 use RuntimeException;
-
-
 
 class Logger
 {
@@ -98,12 +95,16 @@ class Logger
                 $url = '/test';
             }
 
+            if (array_key_exists('REQUEST_SCHEME', $_SERVER) === true) {
+                $protocol = $_SERVER['REQUEST_SCHEME'];
+            } else {
+                $protocol = 'http';
+            }
+
             // @codingStandardsIgnoreStart
             $ip         = IP::get();
             // @codingStandardsIgnoreEnd
-            $browser    = new Browser();
-            $useragent  = $browser->getUserAgent();
-            $protocol   = $browser->getURLProtocol();
+            $useragent  = self::getHttpUserAgent();
             $httpStatus = http_response_code();
             $time       = date('Y-m-d h:i A');
 
@@ -148,6 +149,30 @@ class Logger
         }//end if
 
     }//end write()
+
+
+    /**
+     * @return string
+     */
+    private static function getHttpUserAgent() : string
+    {
+        $userAgent = '';
+        if (function_exists('apache_request_headers') === true) {
+            if (array_key_exists('User-Agent', apache_request_headers()) === true) {
+                $userAgent = apache_request_headers()['User-Agent'];
+            }
+        } else if (function_exists('getallheaders') === true) {
+            if (array_key_exists('HTTP_USER_AGENT', getallheaders()) === true) {
+                $userAgent = getallheaders()['HTTP_USER_AGENT'];
+            }
+        } else if (array_key_exists('HTTP_USER_AGENT', $_SERVER) === true) {
+            $userAgent = $_SERVER['HTTP_USER_AGENT'];
+        } else {
+            throw new RuntimeException('Unable to extract user agent.');
+        }//end if
+
+        return $userAgent;
+    }//end getHttpUserAgent()
 
 
     /**
