@@ -509,6 +509,8 @@ class UAAnalyze extends UATable
                 '2345explorer'=>'/(?<name>(2345explorer))(?<separator>(\/|\ ))(?<version>((v)\d+[.]\d+[.]\d+[.]\d+)|(\d+[.]\d+[.]\d+[.]\d+)|(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+)|()\w+)/i',
                 // 360SE
                 '360se'=>'/(?<name>(360se))/i',
+                // 37abc
+                '360se'=>'/(?<name>(360se))/i',
                 default => throw new ErrorException('Unexpected browser : '.$keyword)
             };//end match
         }//end if
