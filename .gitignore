@@ -63,15 +63,15 @@ dkms.conf
 /node_modules/
 /tmp/
 /vendor/
+/tests/
+/Storages/
 
 composer.lock
 package-lock.json
-update-*.zip
 pwa.webmanifest
 robots.txt
 .user.ini
 .phpunit.result.cache
 .packages
-/tests/
 /Sources/officials/
 /Sources/Designs/
