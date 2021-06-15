@@ -70,6 +70,8 @@ composer.lock
 package-lock.json
 pwa.webmanifest
 robots.txt
+.env
+.env.example
 .user.ini
 .phpunit.result.cache
 .packages
