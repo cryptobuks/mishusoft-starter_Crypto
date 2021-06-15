@@ -1,8 +1,0 @@
-   Static hostname: abir-ms7b53
-         Icon name: computer-desktop
-           Chassis: desktop
-        Machine ID: 1e5556959f7b4d47b22b842eadb337fc
-           Boot ID: 363a80dfd9d54279bd698e00c631eed3
-  Operating System: Manjaro Linux
-            Kernel: Linux 5.10.15-1-MANJARO
-      Architecture: x86-64

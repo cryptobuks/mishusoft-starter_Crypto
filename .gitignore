@@ -61,9 +61,7 @@ dkms.conf
 /Mishusoft/
 /task/
 /node_modules/
-/tmp/caches/updates/
-/tmp/logs/
-/tmp/sessions/
+/tmp/
 /vendor/
 
 composer.lock
