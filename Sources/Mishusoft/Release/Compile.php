@@ -76,12 +76,17 @@ class Compile extends FileSystem
     public const PACKAGE_COMPANY   = 'Mishusoft Systems Incorporated';
 
 
+    public function __construct()
+    {
+    }
+
+
     /**
      * Write log for default.
      *
      * @return void
      */
-    public static function defaultInfo(): void
+    public function defaultInfo(): void
     {
         echo self::PACKAGE_NAME.' version '.self::PACKAGE_VERSION.' (PHP '.PHP_VERSION.')'.PHP_EOL;
         echo 'Copyright '.self::CURRENT_YEAR.' (c) '.self::PACKAGE_COMPANY.''.PHP_EOL.PHP_EOL;
@@ -103,7 +108,6 @@ class Compile extends FileSystem
         echo '\t -sp \t Release static pages for Mishusoft Framework'.PHP_EOL;
         echo '\t -u \t Update node-app and Mishusoft Framework release versions'.PHP_EOL;
         echo '\t -h \t help for release'.PHP_EOL;
-
     }//end defaultInfo()
 
 
@@ -115,7 +119,7 @@ class Compile extends FileSystem
      * @param  string $mode
      * @return void              No action return.
      */
-    public static function start(string $operation, array $options, string $mode): void
+    public function start(string $operation, array $options, string $mode): void
     {
         $sourcesIdentify  = array_shift($options);
         $sourcesDirectory = array_shift($options);
@@ -133,36 +137,36 @@ class Compile extends FileSystem
                     $outputPathBase  = pathinfo($outputDirectory, PATHINFO_BASENAME);
 
                     if ($operation === 'copy') {
-                        self::log(self::FILE_BASE_NAME.' is started.');
+                        $this->log(self::FILE_BASE_NAME.' is started.');
 
-                        self::log(self::PACKAGE_NAME.' :: Copy Operation is running.');
-                        self::log('Source:: '.$sourcesDirectory);
-                        self::log('Output:: '.$outputDirectory);
+                        $this->log(self::PACKAGE_NAME.' :: Copy Operation is running.');
+                        $this->log('Source:: '.$sourcesDirectory);
+                        $this->log('Output:: '.$outputDirectory);
                         if (empty($sourcesDirectory) === false && empty($outputDirectory) === false) {
                             foreach (self::globRecursive($sourcesDirectory.'/*', GLOB_MARK) as $file) {
                                 if (is_file($file) === true) {
                                     if (copy($file, str_replace($sourcesDirectory, $outputDirectory, $file)) === true) {
-                                        self::log($file.' copied!!', 'success');
+                                        $this->log($file.' copied!!', 'success');
                                     } else {
-                                        self::log($file.' could not copied!!', 'error');
+                                        $this->log($file.' could not copied!!', 'error');
                                     }//end if
                                 }//end if
                             }
                         }//end if
 
-                        self::log('Operation completed!!');
+                        $this->log('Operation completed!!');
                         exit();
                     }//end if
 
                     if ($operation === 'rThemes') {
-                        self::log(self::FILE_BASE_NAME.' is started.');
+                        $this->log(self::FILE_BASE_NAME.' is started.');
 
                         if (file_exists($sourcesDirectory.'/positions.config.standard.php') === true) {
-                            self::log(self::PACKAGE_NAME.' :: Themes Release Operation is running.');
-                            self::log('Source:: '.$sourcesDirectory);
-                            self::log('Output:: '.$outputDirectory);
-                            if (count(self::getThemesList($sourcesDirectory)) > 0) {
-                                foreach (self::getThemesList($sourcesDirectory) as $theme) {
+                            $this->log(self::PACKAGE_NAME.' :: Themes Release Operation is running.');
+                            $this->log('Source:: '.$sourcesDirectory);
+                            $this->log('Output:: '.$outputDirectory);
+                            if (count($this->getThemesList($sourcesDirectory)) > 0) {
+                                foreach ($this->getThemesList($sourcesDirectory) as $theme) {
                                     $themeDirectory = pathinfo($theme, PATHINFO_FILENAME);
                                     $themeFormat    = pathinfo($theme, PATHINFO_EXTENSION);
 
@@ -173,21 +177,21 @@ class Compile extends FileSystem
                                     $outputThemePathRoot = $outputPathBase.'/'.$themeDirectory.'/template.'.$themeFormat;
 
                                     self::createDirectory($outputDirectory.'/'.$themeDirectory);
-                                    self::log(
+                                    $this->log(
                                         'Compiling [..]/'.$sourceConfigPathRoot.' to [..]/'.$outputConfigPathRoot,
                                         'following'
                                     );
-                                    self::compiler(
+                                    $this->compiler(
                                         $sourcesDirectory.'/positions.config.standard.php',
                                         $outputDirectory.'/'.$themeDirectory.'/configs.php',
                                         $mode,
                                         ($flash === '-flash')
                                     );
-                                    self::log(
+                                    $this->log(
                                         'Compiling [..]/'.$sourceThemePathRoot.' to [..]/'.$outputThemePathRoot,
                                         'following'
                                     );
-                                    self::compiler(
+                                    $this->compiler(
                                         $sourcesDirectory.'/'.$theme,
                                         $outputDirectory.'/'.$themeDirectory.'/template.'.$themeFormat,
                                         $mode,
@@ -196,22 +200,22 @@ class Compile extends FileSystem
                                 }//end foreach
                             }//end if
 
-                            self::log('Operation completed!!');
+                            $this->log('Operation completed!!');
                         } else {
-                            self::log($sourcesDirectory.'/positions.config.standard.php not exists.', 'error');
-                            self::defaultInfo();
+                            $this->log($sourcesDirectory.'/positions.config.standard.php not exists.', 'error');
+                            $this->defaultInfo();
                         }//end if
 
                         exit();
                     }//end if
 
                     if ($operation === 'rWidgets') {
-                        self::log(self::FILE_BASE_NAME.' is started.');
+                        $this->log(self::FILE_BASE_NAME.' is started.');
 
                         if (file_exists($sourcesDirectory) === true) {
-                            self::log(self::PACKAGE_NAME.' :: Widgets Release Operation is running.');
-                            self::log('Source:: '.$sourcesDirectory);
-                            self::log('Output:: '.$outputDirectory);
+                            $this->log(self::PACKAGE_NAME.' :: Widgets Release Operation is running.');
+                            $this->log('Source:: '.$sourcesDirectory);
+                            $this->log('Output:: '.$outputDirectory);
 
                             if (count(self::getList($sourcesDirectory, 'directory')) > 0) {
                                 foreach (self::getList($sourcesDirectory, 'directory') as $widget) {
@@ -219,11 +223,11 @@ class Compile extends FileSystem
                                     $sourceRoot      = $sourcesPathBase.'/'.$widget;
                                     $outputRoot      = $outputPathBase.'/'.$widgetDirectory;
                                     self::createDirectory($outputDirectory.'/'.$widgetDirectory);
-                                    self::log(
+                                    $this->log(
                                         'Compiling [...]/'.$sourceRoot.' to [...]/'.$outputRoot,
                                         'following'
                                     );
-                                    self::compiler(
+                                    $this->compiler(
                                         $sourcesDirectory.'/'.$widget,
                                         $outputDirectory.'/'.$widgetDirectory,
                                         $mode,
@@ -232,22 +236,22 @@ class Compile extends FileSystem
                                 }
                             }//end if
 
-                            self::log('Operation completed!!');
+                            $this->log('Operation completed!!');
                         } else {
-                            self::log($sourcesDirectory.' not exists.', 'error');
-                            self::defaultInfo();
+                            $this->log($sourcesDirectory.' not exists.', 'error');
+                            $this->defaultInfo();
                         }//end if
 
                         exit();
                     }//end if
 
                     if ($operation === 'rStaticHTMLPages') {
-                        self::log(self::FILE_BASE_NAME.' is started.');
+                        $this->log(self::FILE_BASE_NAME.' is started.');
 
                         if (file_exists($sourcesDirectory) === true) {
-                            self::log(self::PACKAGE_NAME.' :: Templates Release Operation is running.');
-                            self::log('Source:: '.$sourcesDirectory);
-                            self::log('Output:: '.$outputDirectory);
+                            $this->log(self::PACKAGE_NAME.' :: Templates Release Operation is running.');
+                            $this->log('Source:: '.$sourcesDirectory);
+                            $this->log('Output:: '.$outputDirectory);
 
                             if (count(self::getList($sourcesDirectory, 'directory')) > 0) {
                                 foreach (self::getList($sourcesDirectory, 'directory') as $package) {
@@ -257,11 +261,11 @@ class Compile extends FileSystem
                                         $outputPathRoot      = $outputPathBase.'/'.$outputPathCommon;
                                         $outputDirectoryRoot = $outputDirectory.'/'.$outputPathCommon;
                                         self::createDirectory($outputDirectoryRoot);
-                                        self::log(
+                                        $this->log(
                                             'Compiling [...]/'.$sourceRoot.' to [...]/'.$outputPathRoot,
                                             'following'
                                         );
-                                        self::compiler(
+                                        $this->compiler(
                                             $sourcesDirectory.'/'.$package.'/'.$module,
                                             $outputDirectoryRoot,
                                             $mode,
@@ -271,42 +275,41 @@ class Compile extends FileSystem
                                 }//end foreach
                             }//end if
 
-                            self::log('Operation completed!!');
+                            $this->log('Operation completed!!');
                         } else {
-                            self::log($sourcesDirectory.' not exists.', 'error');
-                            self::defaultInfo();
+                            $this->log($sourcesDirectory.' not exists.', 'error');
+                            $this->defaultInfo();
                         }//end if
 
                         exit();
                     }//end if
 
                     if (empty($sourcesDirectory) === false && empty($outputDirectory) === false) {
-                        self::log(self::FILE_BASE_NAME.' is started.');
-                        self::log(self::PACKAGE_NAME.' Operation is running.');
+                        $this->log(self::FILE_BASE_NAME.' is started.');
+                        $this->log(self::PACKAGE_NAME.' Operation is running.');
 
-                        self::log('Source:: '.$sourcesDirectory);
-                        self::log('Output:: '.$outputDirectory);
+                        $this->log('Source:: '.$sourcesDirectory);
+                        $this->log('Output:: '.$outputDirectory);
 
-                        self::log(
+                        $this->log(
                             'Compiling '.$sourcesDirectory.' to '.self::realpath($outputDirectory),
                             'following'
                         );
 
-                        self::compiler(
+                        $this->compiler(
                             $sourcesDirectory,
                             self::realpath($outputDirectory),
                             $mode,
                             ($flash === '-flash')
                         );
-                        self::log('Operation completed!!');
+                        $this->log('Operation completed!!');
                     }//end if
                 }//end if
             } else {
-                self::log('Error in argument 3, no destination location provided.', 'error');
-                self::defaultInfo();
+                $this->log('Error in argument 3, no destination location provided.', 'error');
+                $this->defaultInfo();
             }//end if
         }//end if
-
     }//end start()
 
 
@@ -316,7 +319,7 @@ class Compile extends FileSystem
      * @param  string $directory Theme folder root.
      * @return array|false       Return array or false by collecting info from sources folder.
      */
-    private static function getThemesList(string $directory): bool|array
+    private function getThemesList(string $directory): bool|array
     {
         $files = self::getList($directory, 'file');
 
@@ -327,7 +330,6 @@ class Compile extends FileSystem
         }
 
         return $files;
-
     }//end getThemesList()
 
 
@@ -337,17 +339,16 @@ class Compile extends FileSystem
      * @param  string $directory
      * @throws JsonException
      */
-    public static function updatePRVALlPackages(string $directory): void
+    public function updatePRVALlPackages(string $directory): void
     {
         $packages = self::getList($directory, 'directory');
 
         // Update package release version for all packages.
         foreach ($packages as $package) {
             if (is_file(self::realpath($directory.'/'.$package.'.json')) === true) {
-                self::updatePRV(self::realpath($directory.'/'.$package.'.json'));
+                $this->updatePRV(self::realpath($directory.'/'.$package.'.json'));
             }
         }
-
     }//end updatePRVALlPackages()
 
 
@@ -355,7 +356,7 @@ class Compile extends FileSystem
      * @param  string $packageJsonFile
      * @throws JsonException
      */
-    public static function updatePRV(string $packageJsonFile): void
+    public function updatePRV(string $packageJsonFile): void
     {
         $packageJsonContents = json_decode(file_get_contents($packageJsonFile), true, 512, JSON_THROW_ON_ERROR);
         if (is_array($packageJsonContents) === true) {
@@ -397,29 +398,28 @@ class Compile extends FileSystem
                                 json_encode($packageJsonContents, JSON_THROW_ON_ERROR)
                             ) === true
                             ) {
-                                self::log('Version '.$oldVersion.' to '.$newVersion.' updated from '.$packageJsonFile.'.');
+                                $this->log('Version '.$oldVersion.' to '.$newVersion.' updated from '.$packageJsonFile.'.');
                             } else {
-                                self::log('Error in updating version, version setting failed.', 'error');
+                                $this->log('Error in updating version, version setting failed.', 'error');
                             }
                         } else {
-                            self::log(
+                            $this->log(
                                 'Error in updating version, '.$packageJsonFile.' write permission denied.',
                                 'error'
                             );
                         }
                     } else {
-                        self::log('Error in updating version, '.$packageJsonFile.' read permission denied.', 'error');
+                        $this->log('Error in updating version, '.$packageJsonFile.' read permission denied.', 'error');
                     }//end if
                 } else {
-                    self::log('Error in updating version, version number not found in '.$packageJsonFile.'.', 'error');
+                    $this->log('Error in updating version, version number not found in '.$packageJsonFile.'.', 'error');
                 }//end if
             } else {
-                self::log('Error in updating version, '.$packageJsonFile.' is empty.', 'error');
+                $this->log('Error in updating version, '.$packageJsonFile.' is empty.', 'error');
             }//end if
         } else {
-            self::log('Error in updating version, '.$packageJsonFile.' corrupted.', 'error');
+            $this->log('Error in updating version, '.$packageJsonFile.' corrupted.', 'error');
         }//end if
-
     }//end updatePRV()
 
 
@@ -429,10 +429,9 @@ class Compile extends FileSystem
      * @param string $message
      * @param string $type
      */
-    public static function log(string $message, string $type='log'): void
+    public function log(string $message, string $type='log'): void
     {
         echo '['.date('Y-m-d H:i:s A').'] ['.strtoupper($type).'] '.$message.PHP_EOL;
-
     }//end log()
 
 
@@ -443,7 +442,7 @@ class Compile extends FileSystem
      * @param string  $output  File or folder new compilation.
      * @param boolean $flash   Boolean command fetching.
      */
-    public static function compiler(string $sources, string $output, string $mode, bool $flash=false): void
+    public function compiler(string $sources, string $output, string $mode, bool $flash=false): void
     {
         /*
          * If the given source file is a confirmed directory
@@ -492,8 +491,8 @@ class Compile extends FileSystem
          * */
 
         if (is_file($sources) === true) {
-            self::log('Waiting '.$output, 'pending');
-            self::writeFile($output, $sources, $mode);
+            $this->log('Waiting '.$output, 'pending');
+            $this->writeFile($output, $sources, $mode);
         } else {
             $files = glob($sources.'*', GLOB_MARK);
             foreach ($files as $file) {
@@ -504,8 +503,8 @@ class Compile extends FileSystem
                 }//end if
 
                 if (is_file($file) === true) {
-                    self::log('Waiting '.$target, 'pending');
-                    self::writeFile($target, $file, $mode);
+                    $this->log('Waiting '.$target, 'pending');
+                    $this->writeFile($target, $file, $mode);
                 }//end if
 
                 if (is_dir($file) === true) {
@@ -513,7 +512,6 @@ class Compile extends FileSystem
                 }//end if
             }
         }//end if
-
     }//end compiler()
 
 
@@ -524,7 +522,7 @@ class Compile extends FileSystem
      * @param string $sourceFile Source filename.
      * @param string $mode
      */
-    private static function writeFile(string $newFile, string $sourceFile, string $mode): void
+    private function writeFile(string $newFile, string $sourceFile, string $mode): void
     {
         if ((file_exists($newFile) === true) && (is_file($newFile) === true)) {
             unlink($newFile);
@@ -535,13 +533,13 @@ class Compile extends FileSystem
 
             if (is_resource($compliedFile) === true) {
                 if ($mode === '-compile') {
-                    fwrite($compliedFile, self::compressPhpSource($sourceFile));
-                } else if ($mode === '-test') {
+                    fwrite($compliedFile, $this->compressPhpSource($sourceFile));
+                } elseif ($mode === '-test') {
                     fwrite($compliedFile, file_get_contents($sourceFile));
                 } else {
                     $message = 'Unable to write '.$compliedFile.'. Invalid command.';
                     fwrite($compliedFile, $message.debug_backtrace());
-                    self::log($message, 'error');
+                    $this->log($message, 'error');
                 }
 
                 fclose($compliedFile);
@@ -549,8 +547,7 @@ class Compile extends FileSystem
             }//end if
         }//end if
 
-        self::log('File '.$newFile.' has been complied.', 'success');
-
+        $this->log('File '.$newFile.' has been complied.', 'success');
     }//end writeFile()
 
 
@@ -559,9 +556,8 @@ class Compile extends FileSystem
      * @param string $lebel
      * @param string $version
      */
-    private static function convert(string $source, string $lebel='latest', string $version='8'): void
+    private function convert(string $source, string $lebel='latest', string $version='8'): void
     {
-
     }//end convert()
 
 
@@ -571,7 +567,7 @@ class Compile extends FileSystem
      * @param  string $source
      * @return boolean|string
      */
-    public static function compressPhpSource(string $source): bool|string
+    public function compressPhpSource(string $source): bool|string
     {
         // Whitespaces left and right from this signs can be ignored.
         static $IW = [
@@ -662,7 +658,7 @@ class Compile extends FileSystem
                 if ($tn === T_INLINE_HTML) {
                     $new .= $ts;
                     $iw   = false;
-                } else if ($tn === T_OPEN_TAG) {
+                } elseif ($tn === T_OPEN_TAG) {
                     if (strpos($ts, ' ') === true || strpos($ts, "\n") === true
                         || strpos($ts, "\t") === true || strpos($ts, "\r") === true
                     ) {
@@ -673,11 +669,11 @@ class Compile extends FileSystem
                     $new .= $ts;
                     $ot   = T_OPEN_TAG;
                     $iw   = true;
-                } else if ($tn === T_OPEN_TAG_WITH_ECHO) {
+                } elseif ($tn === T_OPEN_TAG_WITH_ECHO) {
                     $new .= $ts;
                     $ot   = T_OPEN_TAG_WITH_ECHO;
                     $iw   = true;
-                } else if ($tn === T_CLOSE_TAG) {
+                } elseif ($tn === T_CLOSE_TAG) {
                     if ($ot === T_OPEN_TAG_WITH_ECHO) {
                         $new = rtrim($new, '; ');
                     } else {
@@ -687,10 +683,10 @@ class Compile extends FileSystem
                     $new .= $ts;
                     $ot   = null;
                     $iw   = false;
-                } else if (in_array($tn, $IW, true) === true) {
+                } elseif (in_array($tn, $IW, true) === true) {
                     $new .= $ts;
                     $iw   = true;
-                } else if ($tn === T_CONSTANT_ENCAPSED_STRING
+                } elseif ($tn === T_CONSTANT_ENCAPSED_STRING
                     || $tn === T_ENCAPSED_AND_WHITESPACE
                 ) {
                     if ($ts[0] === '"') {
@@ -699,7 +695,7 @@ class Compile extends FileSystem
 
                     $new .= $ts;
                     $iw   = true;
-                } else if ($tn === T_WHITESPACE) {
+                } elseif ($tn === T_WHITESPACE) {
                     if (array_key_exists(($i + 1), $tokens) === true) {
                         $nt = @$tokens[($i + 1)];
                         if (!$iw && (!is_string($nt) || $nt === '$') && !in_array($nt[0], $IW)) {
@@ -708,12 +704,12 @@ class Compile extends FileSystem
                     }
 
                     $iw = false;
-                } else if ($tn === T_START_HEREDOC) {
+                } elseif ($tn === T_START_HEREDOC) {
                     $new .= "<<<S\n";
                     $iw   = false;
                     $ih   = true;
-                    // in HEREDOC.
-                } else if ($tn === T_END_HEREDOC) {
+                // in HEREDOC.
+                } elseif ($tn === T_END_HEREDOC) {
                     $new .= 'S;';
                     $iw   = true;
                     $ih   = false;
@@ -728,7 +724,7 @@ class Compile extends FileSystem
                             break;
                         }
                     }
-                } else if ($tn === T_COMMENT || $tn === T_DOC_COMMENT) {
+                } elseif ($tn === T_COMMENT || $tn === T_DOC_COMMENT) {
                     $iw = true;
                 } else {
                     if (!$ih) {
@@ -752,7 +748,6 @@ class Compile extends FileSystem
         }//end for
 
         return $new;
-
     }//end compressPhpSource()
 
 
@@ -763,38 +758,38 @@ class Compile extends FileSystem
      * @param  string $identity     File identy.
      * @return false|string Return filename or false.
      */
-    public static function zip(string $srcDirectory, string $identity): bool|string
+    public function zip(string $srcDirectory, string $identity): bool|string
     {
         $tempDir = '/srv/http/tmp/caches/updates/';
         $update  = $identity.'-update-['.date('YmdH').'].zip';
         $archive = $tempDir.$update;
 
         // Output check start.
-        self::log('Preparing to check '.$tempDir);
+        $this->log('Preparing to check '.$tempDir);
 
         self::createDirectory($tempDir);
 
         if (file_exists($tempDir) === false) {
-            self::log('Creating new '.$tempDir);
+            $this->log('Creating new '.$tempDir);
             self::createDirectory($tempDir);
-        } else if (file_exists($archive) === true) {
-            self::log('Removing exists update '.$archive);
+        } elseif (file_exists($archive) === true) {
+            $this->log('Removing exists update '.$archive);
             self::remove($archive);
         }//end if
 
-        self::log('Check completed of '.$tempDir);
+        $this->log('Check completed of '.$tempDir);
         // Output check end.
         // Check src files permissions start.
         $files = self::globRecursive($srcDirectory.'/*', GLOB_MARK);
         if (is_array($files) === true && count($files) > 0) {
-            self::log('Preparing to check permissions '.$srcDirectory);
+            $this->log('Preparing to check permissions '.$srcDirectory);
             foreach ($files as $file) {
                 if (is_readable($file) === false) {
-                    self::log(
+                    $this->log(
                         'Exploit permission for '.$file.', permission is '.substr(sprintf('%o', fileperms($file)), -4),
                         'permission'
                     );
-                    self::log('Changing permission for '.$file, 'processing');
+                    $this->log('Changing permission for '.$file, 'processing');
                     exec('chmod -R 777 '.$file);
                 }//end if
             }
@@ -804,7 +799,7 @@ class Compile extends FileSystem
         $zip = new ZipArchive();
         $ret = $zip->open($archive, (ZipArchive::CREATE | ZipArchive::OVERWRITE));
         if ($ret !== true) {
-            self::log('Failed with code '.$ret, 'error');
+            $this->log('Failed with code '.$ret, 'error');
             exit();
         }
 
@@ -817,12 +812,11 @@ class Compile extends FileSystem
         $zip->close();
 
         if (file_exists($archive) === true) {
-            self::log('New archive '.$archive.' created');
+            $this->log('New archive '.$archive.' created');
             return $archive;
         }
 
         return false;
-
     }//end zip()
 
 
@@ -834,7 +828,7 @@ class Compile extends FileSystem
      * @param  mixed  $headers
      * @return boolean|string
      */
-    public static function curlPost(string $url, mixed $data='', mixed $headers=''): bool|string
+    public function curlPost(string $url, mixed $data='', mixed $headers=''): bool|string
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, 1);
@@ -858,13 +852,12 @@ class Compile extends FileSystem
         $response = curl_exec($ch);
 
         if (is_string(curl_error($ch)) === true) {
-            self::log('Connection Error: '.curl_error($ch), 'error');
+            $this->log('Connection Error: '.curl_error($ch), 'error');
             exit();
         }//end if
 
         curl_close($ch);
         return $response;
-
     }//end curlPost()
 
 
@@ -874,7 +867,7 @@ class Compile extends FileSystem
      * @param  array $parameters
      * @return void Noting return.
      */
-    public static function updateOldVersion(array $parameters): void
+    public function updateOldVersion(array $parameters): void
     {
         $sourcesIdentify  = array_shift($parameters);
         $sourcesDirectory = array_shift($parameters);
@@ -892,12 +885,12 @@ class Compile extends FileSystem
 
                     $outputDirectory = str_replace('./', '', $outputDirectory);
 
-                    self::log(self::FILE_BASE_NAME.' is started.');
+                    $this->log(self::FILE_BASE_NAME.' is started.');
 
                     if (file_exists($sourcesDirectory) === true) {
-                        self::log(self::PACKAGE_NAME_FULL.' :: update Operation is running.');
-                        self::log('Source:: '.$sourcesDirectory);
-                        self::log('Output:: WebDirectory/'.$outputDirectory);
+                        $this->log(self::PACKAGE_NAME_FULL.' :: update Operation is running.');
+                        $this->log('Source:: '.$sourcesDirectory);
+                        $this->log('Output:: WebDirectory/'.$outputDirectory);
 
                         $destinationIdentify = array_shift($parameters);
                         $destinationServer   = array_shift($parameters);
@@ -908,11 +901,11 @@ class Compile extends FileSystem
                                     $destinationServer = rtrim($destinationServer, '/');
                                 }
 
-                                self::log('Archiving '.$sourcesDirectory);
+                                $this->log('Archiving '.$sourcesDirectory);
                                 $filename = self::zip($sourcesDirectory, $outputDirectory);
 
                                 if (is_file($filename) === true) {
-                                    $response = self::curlPost(
+                                    $response = $this->curlPost(
                                         $destinationServer.'/update',
                                         [
                                             'update' => new CURLFile(
@@ -923,30 +916,27 @@ class Compile extends FileSystem
                                         ]
                                     );
 
-                                    self::log($response);
+                                    $this->log($response);
                                 }
                             }//end if
                         } else {
-                            self::log('Remote server name not exists.', 'error');
-                            self::defaultInfo();
+                            $this->log('Remote server name not exists.', 'error');
+                            $this->defaultInfo();
                         }//end if
                     } else {
-                        self::log('Remote server identity not exists.', 'error');
-                        self::defaultInfo();
+                        $this->log('Remote server identity not exists.', 'error');
+                        $this->defaultInfo();
                     }//end if
 
-                    self::log('Operation completed!!');
+                    $this->log('Operation completed!!');
                 } else {
-                    self::log($sourcesDirectory.' not exists.', 'error');
-                    self::defaultInfo();
+                    $this->log($sourcesDirectory.' not exists.', 'error');
+                    $this->defaultInfo();
                 }//end if
             }//end if
         } else {
-            self::log('Error in argument 3, no destination location provided.', 'error');
-            self::defaultInfo();
+            $this->log('Error in argument 3, no destination location provided.', 'error');
+            $this->defaultInfo();
         }//end if
-
     }//end updateOldVersion()
-
-
 }//end class

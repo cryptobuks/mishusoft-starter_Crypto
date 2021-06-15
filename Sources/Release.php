@@ -50,6 +50,7 @@ set_error_handler(
 require_once realpath(__DIR__).'/Mishusoft/Release/Compile.php';
 
 (static function (array $parameters) {
+    $compile  = new Compile();
     if (count($parameters) > 0) {
         // Remove file name form $parameters string.
         array_shift($parameters);
@@ -58,42 +59,42 @@ require_once realpath(__DIR__).'/Mishusoft/Release/Compile.php';
             // Update release versions of remote server.
             if (str_starts_with($options, '-update') === true) {
                 if (count($parameters) > 1) {
-                    Compile::updateOldVersion($parameters);
+                    $compile->updateOldVersion($parameters);
                     exit();
                 }
 
-                Compile::log(
+                $compile->log(
                     'Error in argument 2, no source code or target destination provided.',
                     'error'
                 );
-                Compile::defaultInfo();
+                $compile->defaultInfo();
                 exit();
                 // end if
             }//end if
 
             // Update node-app and Mishusoft Framework release versions.
             if (str_starts_with($options, '-u') === true) {
-                Compile::updatePRV(realpath('./package.json'));
-                Compile::updatePRVALlPackages(realpath(__DIR__.'/Mishusoft/Packages'));
+                $compile->updatePRV(realpath('./package.json'));
+                $compile->updatePRVALlPackages(realpath(__DIR__.'/Mishusoft/Packages'));
                 exit();
             }//end if
 
             // Update node-app and Mishusoft Framework release versions.
             if (str_starts_with($options, '-copy') === true) {
                 if (count($parameters) > 1) {
-                    Compile::start('copy', $parameters, $options);
+                    $compile->start('copy', $parameters, $options);
                     exit();
                 }
 
-                Compile::log('Error in argument 2, no source or destination provided.', 'error');
-                Compile::defaultInfo();
+                $compile->log('Error in argument 2, no source or destination provided.', 'error');
+                $compile->defaultInfo();
                 exit();
                 // end if
             }//end if
 
             // Show help information.
             if (str_starts_with($options, '-h') === true) {
-                Compile::defaultInfo();
+                $compile->defaultInfo();
                 exit();
             }//end if
 
@@ -103,15 +104,15 @@ require_once realpath(__DIR__).'/Mishusoft/Release/Compile.php';
             ) {
                 if (count($parameters) > 1) {
                     $options = substr($options, 0, strpos($options, '-themes'));
-                    Compile::start('rThemes', $parameters, $options);
+                    $compile->start('rThemes', $parameters, $options);
                     exit();
                 }
 
-                Compile::log(
+                $compile->log(
                     'Error in argument 2, no source code or target destination provided.',
                     'error'
                 );
-                Compile::defaultInfo();
+                $compile->defaultInfo();
                 exit();
                 // end if
             }//end if
@@ -122,15 +123,15 @@ require_once realpath(__DIR__).'/Mishusoft/Release/Compile.php';
             ) {
                 if (count($parameters) > 1) {
                     $options = substr($options, 0, strpos($options, '-widgets'));
-                    Compile::start('rWidgets', $parameters, $options);
+                    $compile->start('rWidgets', $parameters, $options);
                     exit();
                 }
 
-                Compile::log(
+                $compile->log(
                     'Error in argument 2, no source code or target destination provided.',
                     'error'
                 );
-                Compile::defaultInfo();
+                $compile->defaultInfo();
                 exit();
                 // end if
             }//end if
@@ -141,12 +142,12 @@ require_once realpath(__DIR__).'/Mishusoft/Release/Compile.php';
             ) {
                 if (count($parameters) > 1) {
                     $options = substr($options, 0, strpos($options, '-static'));
-                    Compile::start('rStaticHTMLPages', $parameters, $options);
+                    $compile->start('rStaticHTMLPages', $parameters, $options);
                     exit();
                 }
 
-                Compile::log('Error in argument 2, no source code destination provided.', 'error');
-                Compile::defaultInfo();
+                $compile->log('Error in argument 2, no source code destination provided.', 'error');
+                $compile->defaultInfo();
                 exit();
                 // end if
             }//end if
@@ -154,29 +155,29 @@ require_once realpath(__DIR__).'/Mishusoft/Release/Compile.php';
             // Compress sources code.
             if (str_starts_with($options, '-compile') === true || str_starts_with($options, '-test') === true) {
                 if (count($parameters) > 1) {
-                    Compile::start('rPHP', $parameters, $options);
+                    $compile->start('rPHP', $parameters, $options);
                     exit();
                 }
 
-                Compile::log('Error in argument 2, no source code destination provided.', 'error');
-                Compile::defaultInfo();
+                $compile->log('Error in argument 2, no source code destination provided.', 'error');
+                $compile->defaultInfo();
                 exit();
                 // end if
             }
 
-            Compile::log('Error in argument 1, invalid option.', 'error');
-            Compile::defaultInfo();
+            $compile->log('Error in argument 1, invalid option.', 'error');
+            $compile->defaultInfo();
             // end if
             exit();
         }//end if
 
-        Compile::log('Error in argument 1, empty option.', 'error');
-        Compile::defaultInfo();
+        $compile->log('Error in argument 1, empty option.', 'error');
+        $compile->defaultInfo();
         exit();
         // end if
     }//end if
 
-    Compile::defaultInfo();
+    $compile->defaultInfo();
     exit();
     // end if
 })($argv);

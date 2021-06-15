@@ -109,15 +109,16 @@ class FileSystem
 
 
     /**
-     * @param  string $file
-     * @param  string $delimiter
+     * @param string $file
+     * @param string $delimiter
      * @return false|string
+     * @throws JsonException
      */
     public static function csvtojson(string $file, string $delimiter): bool|string
     {
         if (self::isFileExists($file) === true) {
             if (($handle = fopen($file, 'rb')) === false) {
-                Logger::write('Can"t open the file.', PHP_COMPILE_LOG_FILE, 'full');
+                Logger::write('Can"t open the file.', LOGGER_WRITE_STYLE_SMART, LOGGER_FLAG_TYPE_COMPILE);
             }
 
             $csv_headers = fgetcsv($handle, 4000, $delimiter);

@@ -76,9 +76,7 @@
   "require-dev": {
     "roave/security-advisories": "dev-latest",
     "phpunit/phpunit": "^9.5",
-    "squizlabs/php_codesniffer": "^3.6",
     "friendsofphp/php-cs-fixer": "^3.0",
-    "phpstan/phpstan": "^0.12.88",
     "ext-zend-opcache": "*",
     "ext-json": "*",
     "ext-zip": "*",
