@@ -4,6 +4,7 @@
 namespace Mishusoft\Framework\Chipsets\Http;
 
 use CurlHandle;
+use Mishusoft\Framework\Chipsets\Media;
 
 /*
  * Example of use it
@@ -32,7 +33,7 @@ class CurlRequest
     );
 
     private int $timeOut = 200;
-    private array|string $errors = '';
+    private array $errors = [];
 
     private string $requestMethod = 'GET';
     private string $responseHead;
@@ -165,16 +166,21 @@ class CurlRequest
 
     public function sendRequest(): static
     {
+        // Execute curl request.
         $response = curl_exec($this->ch);
-        $errors = curl_error($this->ch);
-        if ($errors !== "") {
-            $this->errors = $errors;
+
+        // Catch curl error.
+        $errno = curl_errno($this->ch);
+
+        if ($errno !== 0) {
+            $this->errors['code'] = $errno;
+            $this->errors['message'] = curl_strerror($errno);
+            $this->errors['details'] = curl_error($this->ch);
+
         }
-        //print_r($response, false);
 
 
-        // Extract header and bodoy
-
+        // Extract header and body
         $header_size = curl_getinfo($this->ch, CURLINFO_HEADER_SIZE);
         $this->responseHead = substr($response, 0, $header_size);
         $this->responseBody = substr($response, $header_size);
@@ -182,9 +188,73 @@ class CurlRequest
 
         $this->responseCode = curl_getinfo($this->ch, CURLINFO_HTTP_CODE);
         $this->lastUrl = curl_getinfo($this->ch, CURLINFO_EFFECTIVE_URL);
+
+        // Close the curl session
         curl_close($this->ch);
 
         return $this;
+    }
+
+    /**
+     * @throws \JsonException
+     */
+    public static function uploadFile(string $hostUrl, array $files)
+    {
+
+//        $postField = array();
+//        $tmpfile = $_FILES[$name]['tmp_name'][$i];
+//        $filename = basename($_FILES[$name]['name'][$i]);
+//        $postField['files'] =  curl_file_create($tmpfile, $_FILES[$name]['type'][$i], $filename);
+//        $headers = array("Content-Type" => "multipart/form-data");
+//        $curl_handle = curl_init();
+//        curl_setopt($curl_handle, CURLOPT_URL, 'Put here curl API');
+//
+//        curl_setopt($curl_handle, CURLOPT_HTTPHEADER, $headers);
+//        curl_setopt($curl_handle, CURLOPT_POST, TRUE);
+//        curl_setopt($curl_handle, CURLOPT_POSTFIELDS, $postField);
+//        curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, TRUE);
+//        $returned_fileName = curl_exec($curl_handle);
+//        curl_close($curl_handle);
+
+        // Uses
+//        $filename = 'absolute-path-of-file';
+//        $response = CurlRequest::uploadFile(
+//            '{valid-full-host-address}',
+//            [
+//                'update' => new \CURLFile(
+//                    $filename,
+//                    Media::getMimeContent($filename),
+//                    pathinfo($filename, PATHINFO_BASENAME)
+//                ),
+//            ]
+//        );
+//        $response = CurlRequest::uploadFile(
+//            '{valid-full-host-address}',
+//            [
+//                'update' => [new \CURLFile(
+//                    $filename,
+//                    Media::getMimeContent($filename),
+//                    pathinfo($filename, PATHINFO_BASENAME)
+//                ),new \CURLFile(
+//                    $filename,
+//                    Media::getMimeContent($filename),
+//                    pathinfo($filename, PATHINFO_BASENAME)
+//                ),new \CURLFile(
+//                    $filename,
+//                    Media::getMimeContent($filename),
+//                    pathinfo($filename, PATHINFO_BASENAME)
+//                ),]
+//            ]
+//        );
+
+        $request = new self();
+        $request->setHost($hostUrl);
+        $request->makeRequest(['timeout' => 20])->with('method', [
+            'method' => 'post', 'post_fields' => $files
+        ]);
+        $request->sendRequest();
+
+        return ['header' =>$request->getResponseHeadArray(),'response' =>$request->getResponseBody(),'errors' =>$request->getErrors()];
     }
 
     /**
@@ -206,7 +276,6 @@ class CurlRequest
         $head = $this->getResponseHeadArray();
         if (array_key_exists($keyword, $head) === true) {
             if ($this->getHeaderLine($keyword) !== $validateName) {
-                //return $curlHandle->getResponseBody();
                 throw new \RuntimeException('Cannot convert response to array. Response has:'.$this->getHeaderLine($keyword));
             }
         } else {
@@ -255,7 +324,7 @@ class CurlRequest
      */
     public function toJson(): string
     {
-        $this->validate('date', date('Y-m-d H:i:s'));
+        //$this->validate('date', date('Y-m-d H:i:s'));
 
         $result = json_encode($this->getResponseBody(), JSON_THROW_ON_ERROR);
         $this->jsonLastErrorCheckOut();
@@ -269,14 +338,7 @@ class CurlRequest
      */
     public function getErrors(): array
     {
-        $result = [];
-        if ($this->isJsonString($this->errors)) {
-            $result[] = json_decode($this->errors, true, 512, JSON_THROW_ON_ERROR);
-        } else {
-            $result[] = $this->errors;
-        }
-
-        return array_filter($result);
+        return array_filter($this->errors);
     }
 
     private function isJsonString(string $string): bool

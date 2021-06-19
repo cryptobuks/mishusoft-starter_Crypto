@@ -458,6 +458,9 @@ class UAAnalyze extends UATable
     protected function getPatternOfRegExp(string $keyword, string $haystack): string
     {
         //https://www.php.net/manual/en/regexp.reference.subpatterns.php
+        //https://regexr.com/
+        //https://regex101.com/r/lU4lD5/1
+
         // print_r($keyword) . PHP_EOL;
         // print_r($haystack). PHP_EOL;
         if ($haystack === 'browser') {

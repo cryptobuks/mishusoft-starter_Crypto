@@ -54,10 +54,12 @@ require_once SOURCES_ROOT_PATH.'/Mishusoft/Framework/Chipsets/Media.php';
 require_once SOURCES_ROOT_PATH.'/Mishusoft/Framework/DataObjects/MediaMimeDataObject.php';
 require_once SOURCES_ROOT_PATH.'/Mishusoft/Framework/Chipsets/Media/Mime.php';
 require_once SOURCES_ROOT_PATH.'/Mishusoft/Framework/Chipsets/Utility/_String.php';
+require_once SOURCES_ROOT_PATH.'/Mishusoft/Framework/Chipsets/Http/CurlRequest.php';
 
 use CURLFile;
 use JsonException;
 use Mishusoft\Framework\Chipsets\FileSystem;
+use Mishusoft\Framework\Chipsets\Http\CurlRequest;
 use Mishusoft\Framework\Chipsets\Media;
 
 use RuntimeException;
@@ -864,8 +866,9 @@ class Compile extends FileSystem
     /**
      * Update package version.
      *
-     * @param  array $parameters
+     * @param array $parameters
      * @return void Noting return.
+     * @throws JsonException
      */
     public function updateOldVersion(array $parameters): void
     {
@@ -905,10 +908,10 @@ class Compile extends FileSystem
                                 $filename = $this->zip($sourcesDirectory, $outputDirectory);
 
                                 if (is_file($filename) === true) {
-                                    $response = $this->curlPost(
-                                        $destinationServer.'/update',
+                                    $response = CurlRequest::uploadFile(
+                                        '{valid-full-host-address}',
                                         [
-                                            'update' => new CURLFile(
+                                            'update' => new \CURLFile(
                                                 $filename,
                                                 Media::getMimeContent($filename),
                                                 pathinfo($filename, PATHINFO_BASENAME)
@@ -916,7 +919,18 @@ class Compile extends FileSystem
                                         ]
                                     );
 
-                                    $this->log($response);
+//                                    $response = $this->curlPost(
+//                                        $destinationServer.'/update',
+//                                        [
+//                                            'update' => new CURLFile(
+//                                                $filename,
+//                                                Media::getMimeContent($filename),
+//                                                pathinfo($filename, PATHINFO_BASENAME)
+//                                            ),
+//                                        ]
+//                                    );
+
+                                    $this->log($response['response']);
                                 }
                             }//end if
                         } else {
