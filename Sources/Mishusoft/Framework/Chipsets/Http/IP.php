@@ -51,7 +51,6 @@ class IP
      */
     public function __construct()
     {
-
     }//end __construct()
 
 
@@ -84,7 +83,6 @@ class IP
         } finally {
             return $country;
         }//end try
-
     }//end getCountry()
 
 
@@ -99,7 +97,6 @@ class IP
             FILTER_VALIDATE_IP,
             (FILTER_FLAG_IPV4 | FILTER_FLAG_IPV6 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)
         ) === $ip;
-
     }//end isPublicIp()
 
 
@@ -123,14 +120,13 @@ class IP
 
         if (filter_var($client, FILTER_VALIDATE_IP) !== false) {
             $ip = $client;
-        } else if (filter_var($forward, FILTER_VALIDATE_IP) !== false) {
+        } elseif (filter_var($forward, FILTER_VALIDATE_IP) !== false) {
             $ip = $forward;
         } else {
             $ip = $remote;
         }
 
         return $ip;
-
     }//end get()
 
 
@@ -240,7 +236,6 @@ class IP
         } finally {
             return $output;
         }//end try
-
     }//end getInfo()
 
 
@@ -252,7 +247,6 @@ class IP
     public static function isPrivateIp(string $ip=''): bool
     {
         return self::isIp($ip) && !self::isPublicIp($ip);
-
     }//end isPrivateIp()
 
 
@@ -267,7 +261,6 @@ class IP
             FILTER_VALIDATE_IP,
             (FILTER_FLAG_IPV4 | FILTER_FLAG_IPV6)
         ) === $ip;
-
     }//end isIp()
 
 
@@ -279,7 +272,6 @@ class IP
     public static function isPrivateIpv4(string $ip=''): bool
     {
         return self::isIpv4($ip) && !self::isPublicIpv4($ip);
-
     }//end isPrivateIpv4()
 
 
@@ -294,7 +286,6 @@ class IP
             FILTER_VALIDATE_IP,
             FILTER_FLAG_IPV4
         ) === $ip;
-
     }//end isIpv4()
 
 
@@ -309,7 +300,6 @@ class IP
             FILTER_VALIDATE_IP,
             (FILTER_FLAG_IPV4 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)
         ) === $ip;
-
     }//end isPublicIpv4()
 
 
@@ -321,7 +311,6 @@ class IP
     public static function isPrivateIpv6(string $ip=''): bool
     {
         return self::isIpv6($ip) && !self::isPublicIpv6($ip);
-
     }//end isPrivateIpv6()
 
 
@@ -336,7 +325,6 @@ class IP
             FILTER_VALIDATE_IP,
             FILTER_FLAG_IPV6
         ) === $ip;
-
     }//end isIpv6()
 
 
@@ -351,14 +339,10 @@ class IP
             FILTER_VALIDATE_IP,
             (FILTER_FLAG_IPV6 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)
         ) === $ip;
-
     }//end isPublicIpv6()
 
 
     public function __destruct()
     {
-
     }//end __destruct()
-
-
 }//end class

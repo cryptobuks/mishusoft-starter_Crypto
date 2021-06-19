@@ -19,6 +19,12 @@ class RuntimeErrors extends Exception
      */
     private string $errTrace;
 
+    /* Inherited properties */
+    protected $message;
+    protected $code;
+    protected $file;
+    protected $line;
+
 
     /**
      * RuntimeErrors constructor.
@@ -67,9 +73,9 @@ class RuntimeErrors extends Exception
         echo '<pre style="line-height: 1.8;">';
         if (is_array($this->getTrace()) === true && count($this->getTrace()) > 0) {
             $this->beautifyCallStack($this->getTrace());
-        } else if ($this->errTrace !== '') {
+        } elseif ($this->errTrace !== '') {
             $this->beautifyCallStack($this->errTrace);
-        } else if ($this->getTraceAsString() !== '') {
+        } elseif ($this->getTraceAsString() !== '') {
             $this->beautifyCallStack($this->getTraceAsString());
         } else {
             echo 'No trace of this error could be detected.';
@@ -77,7 +83,6 @@ class RuntimeErrors extends Exception
 
         echo '</pre>';
         echo '</article>';
-
     }//end __construct()
 
 
@@ -134,7 +139,6 @@ class RuntimeErrors extends Exception
             16384 => 'User Identification',
             default => 'Unexpected Error',
         };//end match
-
     }//end codeAsString()
 
 
@@ -171,14 +175,15 @@ class RuntimeErrors extends Exception
                     $line .= $value['type'];
                 }
 
-                if (array_key_exists('args', $value) === true) {
-                    if (array_key_exists('function', $value) === true) {
+                if (array_key_exists('function', $value) === true) {
+                    if (array_key_exists('args', $value) === true) {
                         $line .= $value['function'];
                         $line .= '('.implode(',', $value['args']).')';
+                    } else {
+                        $line .= $value['function'].'()';
                     }
-                } else if (array_key_exists('function', $value) === true) {
-                    $line .= $value['function'].'()';
                 }
+
 
                 echo $line.PHP_EOL;
             }//end foreach
@@ -190,7 +195,6 @@ class RuntimeErrors extends Exception
                 echo preg_replace('/[#]\d+/', Number::next($key).')', $value).PHP_EOL;
             }
         }
-
     }//end beautifyCallStack()
 
 
@@ -208,7 +212,8 @@ class RuntimeErrors extends Exception
                 if (array_key_exists('function', $value) === true) {
                     if (str_contains($value['function'], '{closure}()') === true) {
                         unset($traceArray[$key]);
-                    }if (str_contains($value['function'], '{main}') === true) {
+                    }
+                    if (str_contains($value['function'], '{main}') === true) {
                         unset($traceArray[$key]);
                     }
                 }
@@ -226,7 +231,6 @@ class RuntimeErrors extends Exception
         array_multisort($traceArray, SORT_DESC);
         // ksort($traceArray, SORT_ASC);
         return $traceArray;
-
     }//end cleanTraceArray()
 
 
@@ -244,7 +248,6 @@ class RuntimeErrors extends Exception
         $output .= $exception->getMessage().' from ';
         $output .= $exception->getFile().' on line '.$exception->getLine().'.';
         return $output;
-
     }//end toWriteable()
 
 
@@ -265,7 +268,6 @@ class RuntimeErrors extends Exception
             $exception->getLine(),
             $exception->getTraceAsString()
         );
-
     }//end fetch()
 
 
@@ -274,8 +276,5 @@ class RuntimeErrors extends Exception
      */
     public function __destruct()
     {
-
     }//end __destruct()
-
-
 }//end class

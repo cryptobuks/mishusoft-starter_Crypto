@@ -902,7 +902,7 @@ class Compile extends FileSystem
                                 }
 
                                 $this->log('Archiving '.$sourcesDirectory);
-                                $filename = self::zip($sourcesDirectory, $outputDirectory);
+                                $filename = $this->zip($sourcesDirectory, $outputDirectory);
 
                                 if (is_file($filename) === true) {
                                     $response = $this->curlPost(

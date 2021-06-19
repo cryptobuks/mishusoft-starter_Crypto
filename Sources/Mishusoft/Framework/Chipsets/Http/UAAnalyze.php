@@ -21,7 +21,7 @@ class UAAnalyze extends UATable
      *
      * @param  string  $userAgent  User agent string from web browser.
      * @param  boolean $matchFound
-     * @throws JsonException|ErrorException
+     * @throws JsonException|ErrorException Throw exception when error occurred.
      */
     public function __construct(
         public string $userAgent,
@@ -32,7 +32,6 @@ class UAAnalyze extends UATable
         $this->saveUserAgent('development');
         $this->loadBrowserData();
         $this->analyze();
-
     }//end __construct()
 
 
@@ -51,7 +50,6 @@ class UAAnalyze extends UATable
                 && (FileSystem::read($filename) !== '')
                 && (count(array_keys($database)) > count(array_keys(_JSON::decodeToArray(FileSystem::read($filename))))))
             || (strlen(_JSON::encodeToString($database)) > strlen(FileSystem::read($filename)));
-
     }//end isUpdateDatabase()
 
 
@@ -122,11 +120,7 @@ class UAAnalyze extends UATable
         // Devices category list.
         if (file_exists(self::DEVICES_CATEGORY_LIST_FILE) === true) {
             if (is_readable(self::DEVICES_CATEGORY_LIST_FILE) === true) {
-                if ($this->isUpdateDatabase(
-                    $this->getDevicesCategoryList(),
-                    self::DEVICES_CATEGORY_LIST_FILE
-                ) === true
-                ) {
+                if ($this->isUpdateDatabase($this->getDevicesCategoryList(), self::DEVICES_CATEGORY_LIST_FILE) === true) {
                     if (is_writable(self::DEVICES_CATEGORY_LIST_FILE) === true) {
                         FileSystem::saveToFile(
                             self::DEVICES_CATEGORY_LIST_FILE,
@@ -157,11 +151,7 @@ class UAAnalyze extends UATable
         // Platform window manager list.
         if (file_exists(self::DEVICES_PLATFORM_WM_NAME_LIST_FILE) === true) {
             if (is_readable(self::DEVICES_PLATFORM_WM_NAME_LIST_FILE) === true) {
-                if ($this->isUpdateDatabase(
-                    $this->getPlatformWmList(),
-                    self::DEVICES_PLATFORM_WM_NAME_LIST_FILE
-                ) === true
-                ) {
+                if ($this->isUpdateDatabase($this->getPlatformWmList(), self::DEVICES_PLATFORM_WM_NAME_LIST_FILE) === true) {
                     if (is_writable(self::DEVICES_PLATFORM_WM_NAME_LIST_FILE)) {
                         FileSystem::saveToFile(
                             self::DEVICES_PLATFORM_WM_NAME_LIST_FILE,
@@ -199,7 +189,7 @@ class UAAnalyze extends UATable
                             _JSON::encodeToString($this->getWebBrowsersList())
                         );
                     } else {
-                        throw new RuntimeException('Permission denied. Unable to write '.self::DEVICES_PLATFORM_WMNAME_LIST_FILE);
+                        throw new RuntimeException('Permission denied. Unable to write '.self::DEVICES_PLATFORM_WM_NAME_LIST_FILE);
                     }
                 }
 
@@ -220,18 +210,14 @@ class UAAnalyze extends UATable
         // Browsers app code list.
         if (file_exists(self::WEB_BROWSER_APP_CODE_LIST_FILE) === true) {
             if (is_readable(self::WEB_BROWSER_APP_CODE_LIST_FILE) === true) {
-                if ($this->isUpdateDatabase(
-                    $this->getWebBrowserAppCodeList(),
-                    self::WEB_BROWSER_APP_CODE_LIST_FILE
-                ) === true
-                ) {
+                if ($this->isUpdateDatabase($this->getWebBrowserAppCodeList(), self::WEB_BROWSER_APP_CODE_LIST_FILE) === true) {
                     if (is_writable(self::WEB_BROWSER_APP_CODE_LIST_FILE) === true) {
                         FileSystem::saveToFile(
                             self::WEB_BROWSER_APP_CODE_LIST_FILE,
                             _JSON::encodeToString($this->getWebBrowserAppCodeList())
                         );
                     } else {
-                        throw new RuntimeException('Permission denied. Unable to write '.self::DEVICES_PLATFORM_WMNAME_LIST_FILE);
+                        throw new RuntimeException('Permission denied. Unable to write '.self::DEVICES_PLATFORM_WM_NAME_LIST_FILE);
                     }
                 }
 
@@ -255,18 +241,14 @@ class UAAnalyze extends UATable
         // Browsers layout list.
         if (file_exists(self::WEB_BROWSER_LAYOUT_LIST_FILE) === true) {
             if (is_readable(self::WEB_BROWSER_LAYOUT_LIST_FILE) === true) {
-                if ($this->isUpdateDatabase(
-                    $this->getWebBrowsersLayoutList(),
-                    self::WEB_BROWSER_LAYOUT_LIST_FILE
-                ) === true
-                ) {
+                if ($this->isUpdateDatabase($this->getWebBrowsersLayoutList(), self::WEB_BROWSER_LAYOUT_LIST_FILE) === true) {
                     if (is_writable(self::WEB_BROWSER_LAYOUT_LIST_FILE) === true) {
                         FileSystem::saveToFile(
                             self::WEB_BROWSER_LAYOUT_LIST_FILE,
                             _JSON::encodeToString($this->getWebBrowsersLayoutList())
                         );
                     } else {
-                        throw new RuntimeException('Permission denied. Unable to write '.self::DEVICES_PLATFORM_WMNAME_LIST_FILE);
+                        throw new RuntimeException('Permission denied. Unable to write '.self::DEVICES_PLATFORM_WM_NAME_LIST_FILE);
                     }
                 }
 
@@ -284,7 +266,6 @@ class UAAnalyze extends UATable
 
             $this->webBrowserLayoutList = $this->getWebBrowsersLayoutList();
         }//end if
-
     }//end loadBrowserData()
 
 
@@ -298,9 +279,9 @@ class UAAnalyze extends UATable
         $cleanUA        = $this->cleanUserAgentString($this->userAgent);
         $webBrowserList = $this->getWebBrowsersList();
         foreach ($webBrowserList as $webBrowser => $detailsInformation) {
-            // print_r($webBrowser). PHP_EOL;
-            if (preg_match($this->getRegexp($webBrowser, 'browser'), $cleanUA, $matches) === 1) {
-                // print_r($webBrowser).PHP_EOL;
+            // print_r($webBrowser, false). PHP_EOL;
+            if (preg_match($this->getPatternOfRegExp($webBrowser, 'browser'), $cleanUA, $matches) === 1) {
+                // print_r($webBrowser, false).PHP_EOL;
                 $this->matchFound = true;
                 // Known browser detected.
                 echo 'WEB BROWSER DETECTED.'.PHP_EOL;
@@ -314,18 +295,18 @@ class UAAnalyze extends UATable
 
                 $this->browserInfoAll = $this->getBrowserDetails($webBrowser);
 
-                print_r($details);
-                print_r($this->cleanFilter($details));
+                print_r($details, false);
+                print_r($this->cleanFilter($details), false);
 
                 // First step.
                 // Search app code name of web browser from user agent.
                 foreach ($this->webBrowserAppCodeNameList as $key => $value) {
-                    if (preg_match($this->getRegexp($key, 'application_code'), $cleanUA, $matches) === 1) {
+                    if (preg_match($this->getPatternOfRegExp($key, 'application_code'), $cleanUA, $matches) === 1) {
                         $this->browserAppCodeName    = $this->cleanFilter($matches)['name'];
                         $this->browserAppCodeVersion = $this->cleanFilter($matches)['version'];
 
                         echo 'APP CODE OF WEB BROWSER DETECTED.'.PHP_EOL;
-                        print_r($this->cleanFilter($matches));
+                        print_r($this->cleanFilter($matches), false);
                         break;
                     }
                 }//end foreach
@@ -333,14 +314,14 @@ class UAAnalyze extends UATable
                 // Second step.
                 // Search rendering engine from user agent.
                 foreach ($this->webBrowserLayoutList as $key => $value) {
-                    if (preg_match($this->getRegexp($key, 'rendering_engine'), $cleanUA, $matches) === 1) {
+                    if (preg_match($this->getPatternOfRegExp($key, 'rendering_engine'), $cleanUA, $matches) === 1) {
                         $this->browserEngineName     = $this->cleanFilter($matches)['name'];
                         $this->browserEngineNameFull = $this->cleanFilter($matches)['name'];
                         $this->browserEngineVersion  = $this->cleanFilter($matches)['name'];
 
                         echo 'WEB BROWSER\'s RENDERING ENGINE DETECTED.'.PHP_EOL;
 
-                        print_r($this->cleanFilter($matches));
+                        print_r($this->cleanFilter($matches), false);
                         break;
                     }
                 }
@@ -348,14 +329,14 @@ class UAAnalyze extends UATable
                 // Second step.
                 // Search rendering engine from user agent.
                 foreach ($this->devicesArchitectureList as $key => $value) {
-                    if (preg_match($this->getRegexp($key, 'architecture'), $cleanUA, $matches) === 1) {
+                    if (preg_match($this->getPatternOfRegExp($key, 'architecture'), $cleanUA, $matches) === 1) {
                         $this->browserArchitecture = $value;
                         $this->deviceArchitecture  = $value;
 
                         echo 'ARCHITECTURE OF WEB BROWSER DETECTED.'.PHP_EOL;
 
                         // echo $value;
-                        print_r($this->cleanFilter($matches));
+                        print_r($this->cleanFilter($matches), false);
                         break;
                     }
                 }
@@ -363,13 +344,13 @@ class UAAnalyze extends UATable
                 // Third step.
                 // Search window manager name and type from user agent.
                 foreach ($this->devicesPlatformWMNameList as $key => $value) {
-                    if (preg_match($this->getRegexp($key, 'window_manager'), $cleanUA, $matches) === 1) {
+                    if (preg_match($this->getPatternOfRegExp($key, 'window_manager'), $cleanUA, $matches) === 1) {
                         $this->deviceWindowManager  = $this->cleanFilter($matches)['name'];
                         $this->deviceWmNameOriginal = implode(' ', array_values($this->cleanFilter($matches)));
                         $this->windowManager($value);
 
                         echo 'WINDOW MANAGER OF PLATFORM DETECTED.'.PHP_EOL;
-                        print_r($this->cleanFilter($matches));
+                        print_r($this->cleanFilter($matches), false);
                         break;
                     }
                 }
@@ -384,14 +365,14 @@ class UAAnalyze extends UATable
                 // Ubuntu
                 // U
                 foreach ($this->getPlatforms() as $key => $value) {
-                    // print_r($key);
-                    if (preg_match($this->getRegexp($key, 'platform'), $cleanUA, $matches) === 1) {
+                    // print_r($key, false);
+                    if (preg_match($this->getPatternOfRegExp($key, 'platform'), $cleanUA, $matches) === 1) {
                         echo 'PLATFORM OF WEB BROWSER DETECTED.'.PHP_EOL;
 
-                        // print_r($key);
-                        // print_r($value);
-                        // print_r($matches);
-                        print_r($this->cleanFilter($matches));
+                        // print_r($key, false);
+                        // print_r($value, false);
+                        // print_r($matches, false);
+                        print_r($this->cleanFilter($matches), false);
                         $this->deviceName     = $key;
                         $this->deviceNameFull = implode(' ', array_values($this->cleanFilter($matches)));
 
@@ -415,16 +396,16 @@ class UAAnalyze extends UATable
                 // Search device and details in () from user agent.
                 // Device name type
                 foreach ($this->getDevices() as $key => $value) {
-                    // print_r($key);
-                    if (preg_match($this->getRegexp($key, 'device'), $cleanUA, $matches) === 1) {
+                    // print_r($key, false);
+                    if (preg_match($this->getPatternOfRegExp($key, 'device'), $cleanUA, $matches) === 1) {
                         echo 'DEVICE OF WEB BROWSER DETECTED.'.PHP_EOL;
 
-                        // print_r($key);
-                        // print_r($value);
-                        print_r($this->cleanFilter($matches));
+                        // print_r($key, false);
+                        // print_r($value, false);
+                        print_r($this->cleanFilter($matches), false);
                         $this->deviceName     = $key;
                         $this->deviceNameFull = $this->filter($matches)[0];
-                        // print_r($matches);
+                        // print_r($matches, false);
                         // $this->deviceNameFull = $this->finalContent($key, $cleanUA);
                         // $this->deviceInfoAll  = (array) $value;
                         // $this->deviceDetails((array) $value);
@@ -450,7 +431,6 @@ class UAAnalyze extends UATable
         } else {
             $this->saveUserAgent('unsolved');
         }
-
     }//end analyze()
 
 
@@ -464,20 +444,20 @@ class UAAnalyze extends UATable
     protected function quote(string $string): string
     {
         return preg_quote($string, PREG_QUOTE_DEFAULT_SEPARATOR);
-
     }//end quote()
 
 
     /**
-     * Create Regular expression string for keyword.
+     * Create pattern of regular expression string for keyword.
      *
      * @param  string $keyword  Keyword string.
      * @param  string $haystack
      * @return string
      * @throws ErrorException Throw exception on error.
      */
-    protected function getRegexp(string $keyword, string $haystack): string
+    protected function getPatternOfRegExp(string $keyword, string $haystack): string
     {
+        //https://www.php.net/manual/en/regexp.reference.subpatterns.php
         // print_r($keyword) . PHP_EOL;
         // print_r($haystack). PHP_EOL;
         if ($haystack === 'browser') {
@@ -509,8 +489,17 @@ class UAAnalyze extends UATable
                 '2345explorer'=>'/(?<name>(2345explorer))(?<separator>(\/|\ ))(?<version>((v)\d+[.]\d+[.]\d+[.]\d+)|(\d+[.]\d+[.]\d+[.]\d+)|(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+)|()\w+)/i',
                 // 360SE
                 '360se'=>'/(?<name>(360se))/i',
-                // 37abc
-                '360se'=>'/(?<name>(360se))/i',
+                // 37abc/1.6.5.14
+                '37abc'=>'/(?<name>(37abc))\/(?<version>(\d+[.]\d+[.]\d+[.]\d+)|(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+                // 7Star/2.1.62.0
+                '7star'=>'/(?<name>(7star))\/(?<version>(\d+[.]\d+[.]\d+[.]\d+)|(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+                 // ABrowse 0.4
+                 // ABrowse 0.6
+                'abrowse'=>'/(?<name>(abrowse))\s*(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+                 // acoo browser
+                'acoo-browser'=>'/(?<name>(acoo browser))/i',
+                // Alienforce/9.0.1
+                'alienforce'=>'/(?<name>(alienforce))\/(?<version>(\d+[.]\d+[.]\d+[.]\d+)|(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
                 default => throw new ErrorException('Unexpected browser : '.$keyword)
             };//end match
         }//end if
@@ -555,7 +544,7 @@ class UAAnalyze extends UATable
 
         if ($haystack === 'application_code') {
             return match (strtolower($keyword)) {
-                    // Application code of web browsers.
+                // Application code of web browsers.
                     'mozilla'=>'/(?<name>(mozilla))\/(?<version>(\d+[.]\d+))/i',
                     default => throw new ErrorException('Unexpected application code : '.$keyword)
             };
@@ -609,7 +598,7 @@ class UAAnalyze extends UATable
                 // Windows NT 5.0;
                 // Win31
                 // Windows NT 5.0;
-                'windows 10', 'windows 2000', 'win31', 'win32' =>'/(?<name>(windows))\s*(?<version>(nt)\s*(\d+[.]\d+)|(\d+))/i',
+                'windows 10', 'windows 2000', 'win31', 'win16', 'win32' =>'/(?<name>(windows))\s*(?<version>(nt)\s*(\d+[.]\d+)|(\d+))/i',
 
                 default => throw new ErrorException('Unexpected platform : '.$keyword)
             };//end match
@@ -630,8 +619,7 @@ class UAAnalyze extends UATable
         }//end if
 
         throw new ErrorException('Unexpected haystack : '.$haystack);
-
-    }//end getRegexp()
+    }//end getPatternOfRegExp()
 
 
     /**
@@ -644,7 +632,6 @@ class UAAnalyze extends UATable
     protected function filter(array $array): array
     {
         return array_values(array_filter($array));
-
     }//end filter()
 
 
@@ -665,7 +652,6 @@ class UAAnalyze extends UATable
         }
 
         return $result;
-
     }//end cleanFilter()
 
 
@@ -683,7 +669,6 @@ class UAAnalyze extends UATable
         $string = trim($string);
         // Replace browser names with their aliases.
         return strtr($string, $this->getKnownBrowserAliases());
-
     }//end cleanUserAgentString()
 
 
@@ -708,12 +693,11 @@ class UAAnalyze extends UATable
 
         if ($category === 'unsolved') {
             $this->write(self::UNSOLVED_USER_AGENT_LIST_FILE);
-        } else if ($category === 'solved') {
+        } elseif ($category === 'solved') {
             $this->write(self::SOLVED_USER_AGENT_LIST_FILE);
         } else {
             $this->write(self::USER_AGENT_LIST_FILE);
         }
-
     }//end saveUserAgent()
 
 
@@ -770,7 +754,6 @@ class UAAnalyze extends UATable
         } else {
             throw new RuntimeException('Permission denied. Unable to write or read '.$requestedFileDirectory);
         }//end if
-
     }//end write()
 
 
@@ -788,7 +771,6 @@ class UAAnalyze extends UATable
         }
 
         return $result;
-
     }//end getBrowserDetails()
 
 
@@ -812,8 +794,5 @@ class UAAnalyze extends UATable
         } else {
             $this->deviceType = (string) $array;
         }
-
     }//end windowManager()
-
-
 }//end class

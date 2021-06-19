@@ -119,7 +119,7 @@ class sendRequestDirect extends sendRequestCommon
     public function parseHttpResponse(string $content): array
     {
         if (array_key_exists('content-type', $this->getHeaderArray()) === true) {
-            if ($this->getHeaderLine('content-type') === 'application/json') {
+            if ($this->getHeaderLine('content-type') !== 'application/json') {
                 throw new RuntimeException('Cannot convert response to array. Response has Content-Type:'.$this->getHeaderLine('content-type'));
             }
         } else {
