@@ -295,7 +295,7 @@ class UAAnalyze extends UATable
 
                 $this->browserInfoAll = $this->getBrowserDetails($webBrowser);
 
-                print_r($details, false);
+                //print_r($details, false);
                 print_r($this->cleanFilter($details), false);
 
                 // First step.
@@ -462,7 +462,27 @@ class UAAnalyze extends UATable
         // print_r($haystack). PHP_EOL;
         if ($haystack === 'browser') {
             return match (strtolower($keyword)) {
-                // Web browsers.
+                // Bot
+                //python-requests/2.7.0 ok
+                //python-requests/2.2.1 CPython/2.7.6 Linux/4.19.0-13-amd64 ok
+                //python-requests/2.6.0 CPython/2.6.6 Linux/2.6.32-754.18.2.el6.x86_64 ok
+                //python-requests/2.25.1 fb6 ok
+
+                //Python-urllib 2.7 ok
+                //Python-urllib 1.17 ok
+                //Python-urllib/3.5 ok
+                'python-requests', 'python-urllib'=>'/(?<name>(python-(requests|urllib)))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+
+                //Googlebot
+                //Googlebot/2.1
+                //Googlebot-Video/1.0
+                //Googlebot-Mobile/2.1
+                //Googlebot (gocrawl v0.4)
+                //Googlebot/2.X
+                //Googlebot/Nutch-1.7
+
+
+                // Browsers.
                 // 1Password/1.2.3. ok
                 '1password'=>'/(?<name>(1password))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
                 // 007ac9 Crawler ok
@@ -500,6 +520,8 @@ class UAAnalyze extends UATable
                 'acoo-browser'=>'/(?<name>(acoo browser))/i',
                 // Alienforce/9.0.1
                 'alienforce'=>'/(?<name>(alienforce))\/(?<version>(\d+[.]\d+[.]\d+[.]\d+)|(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+                // 2GDPR/1.2
+                '2gdpr'=>'/(?<name>(2gdpr))\/(?<version>(\d+[.]\d+[.]\d+[.]\d+)|(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
                 default => throw new ErrorException('Unexpected browser : '.$keyword)
             };//end match
         }//end if

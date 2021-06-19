@@ -328,16 +328,88 @@ class UATable
      */
     protected function getWebBrowsersList(): array
     {
-        // Web Browser List.
+        // Application, Bot/Crawler, Browser, Email Client, Feed Reader, Multimedia Player, Offline Browser and Tool List.
         return [
+            /*Applications*/
+            '1password'      => [
+                'name'           => '1 Password',
+                'type'           => 'Applications',
+                'category'           => 'Password Manager',
+                'ui'             => 'GraphicalMode',
+                'authors'        => [
+                    [
+                        'name' => 'AgileBits Inc',
+                        'link' => 'https://1password.com/',
+                    ],
+                ],
+                'cost'           => 'Trialware',
+                'status'         => 'Active',
+                'licence'        => [
+                    [
+                        'name' => 'Trialware',
+                        'link' => 'https://en.wikipedia.org/wiki/Trialware',
+                    ],
+                ],
+                'layout'         => [
+                    [
+                        'name' => 'WebKit',
+                        'link' => 'https://en.wikipedia.org/wiki/WebKit',
+                    ],
+                ],
+                'latest-release' => [
+                    'updates' => 'https://app-updates.agilebits.com/'
+                ],
+            ],
+
+
             // Crawler.
             '007ac9 crawler' => [
                 'name'      => '007ac9 Crawler',
-                'type'      => 'Crawler',
+                'type'      => 'Bot (Crawler)',
                 'ui'        => 'FullTextMode',
-                'developer' => '007ac9',
-                'link'      => 'http://crawler.007ac9.net',
+                'authors'        => [
+                    [
+                        'name' => '007ac9',
+                        'link' => 'http://crawler.007ac9.net',
+                    ],
+                ],
             ],
+            '2gdpr'          => [
+                'name'           => '2gdpr Bot',
+                'type'           => 'Bot (Crawler)',
+                'ui'             => 'FullTextMode',
+                'authors'        => [
+                    [
+                        'name' => '2gdpr',
+                        'link' => 'http://2gdpr.com',
+                    ],
+                ],
+            ],
+            'python-requests'          => [
+                'name'           => 'python-requests Bot',
+                'type'           => 'Bot (Crawler)',
+                'ui'             => 'FullTextMode',
+                'authors'        => [
+                    [
+                        'name' => 'Python Software Foundation',
+                        'link' => 'https://www.python.org/psf/',
+                    ],
+                ],
+            ],
+            'python-urllib'          => [
+                'name'           => 'python-urllib Bot',
+                'type'           => 'Bot (Crawler)',
+                'ui'             => 'FullTextMode',
+                'authors'        => [
+                    [
+                        'name' => 'Python Software Foundation',
+                        'link' => 'https://www.python.org/psf/',
+                    ],
+                ],
+            ],
+
+
+            /*Browsers*/
             '115browser'     => [
                 'name'           => '115 Browser',
                 'type'           => 'Web Browser',
@@ -397,49 +469,6 @@ class UATable
                     'date'    => 'Unknown',
                 ],
             ],*/
-            '1password'      => [
-                'name'           => '1 Password',
-                'type'           => 'Password Manager',
-                'ui'             => 'FullTextMode',
-                'creator'        => [
-                    [
-                        'name' => 'AgileBits Inc',
-                        'link' => 'https://1password.com/',
-                    ],
-                ],
-                'cost'           => 'Trialware',
-                'status'         => 'Active',
-                'licence'        => [
-                    [
-                        'name' => 'Trialware',
-                        'link' => 'https://en.wikipedia.org/wiki/Trialware',
-                    ],
-                ],
-                'layout'         => [
-                    [
-                        'name' => 'Trident',
-                        'link' => 'https://en.wikipedia.org/wiki/Trident_(software)',
-                    ],
-                ],
-                'latest-release' => [
-                    'Android' => [
-                        'version' => '7.5.1',
-                        'date'    => 'May 4, 2020',
-                    ],
-                    'iOS'     => [
-                        'version' => '7.5.2',
-                        'date'    => 'April 22, 2020',
-                    ],
-                    'macOS'   => [
-                        'version' => '7.5',
-                        'date'    => 'May 5, 2020',
-                    ],
-                    'Windows' => [
-                        'version' => '7.4.767',
-                        'date'    => 'April 27, 2020',
-                    ],
-                ],
-            ],
             '1stBrowser'     => [
                 'name'           => '1st Browser',
                 'type'           => 'Web Browser',
@@ -3391,6 +3420,21 @@ class UATable
         ];
     }//end getWebBrowsers()
 
+
+    public function getWebBrowsersCategory():array
+    {
+        return [
+            "Application",
+            "Bot/Crawler",
+            "Browser",
+            "Email Client",
+            "Feed Reader",
+            "Multimedia Player",
+            "Offline Browser",
+            "Tool"
+        ];
+        
+    }
 
     /**
      * Gets known browser aliases.
