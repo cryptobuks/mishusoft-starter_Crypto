@@ -4,14 +4,14 @@
 namespace Mishusoft\Framework\Chipsets\Http;
 
 use CurlHandle;
-use Mishusoft\Framework\Chipsets\Media;
 
 /*
  * Example of use it
  * $curlHandle = new CurlRequest;
  * $curlHandle->setHost('example.com'); or
  * $curlHandle->setHeaders(['Host'=> 'example.com']);
- * $curlHandle->getResponse();
+ * $curlHandle->makeRequest(['timeout' => 20]);
+ * $curlHandle->sendRequest();
  */
 
 class CurlRequest
@@ -45,6 +45,8 @@ class CurlRequest
         'post',
         'put',
     ];
+    private int $executionTime;
+    private array $connectionInfo;
 
     public function __construct(private ?string $hostUrl = null)
     {
@@ -176,7 +178,6 @@ class CurlRequest
             $this->errors['code'] = $errno;
             $this->errors['message'] = curl_strerror($errno);
             $this->errors['details'] = curl_error($this->ch);
-
         }
 
 
@@ -186,8 +187,11 @@ class CurlRequest
         $this->responseBody = substr($response, $header_size);
 
 
-        $this->responseCode = curl_getinfo($this->ch, CURLINFO_HTTP_CODE);
+        // Retrieve information about connection.
+        $this->executionTime = curl_getinfo($this->ch, CURLINFO_TOTAL_TIME);
+        $this->responseCode = curl_getinfo($this->ch, CURLINFO_RESPONSE_CODE);
         $this->lastUrl = curl_getinfo($this->ch, CURLINFO_EFFECTIVE_URL);
+        $this->connectionInfo = curl_getinfo($this->ch);
 
         // Close the curl session
         curl_close($this->ch);
@@ -198,23 +202,23 @@ class CurlRequest
     /**
      * @throws \JsonException
      */
-    public static function uploadFile(string $hostUrl, array $files)
+    public static function uploadFile(string $hostUrl, array $files): array
     {
 
-//        $postField = array();
-//        $tmpfile = $_FILES[$name]['tmp_name'][$i];
-//        $filename = basename($_FILES[$name]['name'][$i]);
-//        $postField['files'] =  curl_file_create($tmpfile, $_FILES[$name]['type'][$i], $filename);
-//        $headers = array("Content-Type" => "multipart/form-data");
-//        $curl_handle = curl_init();
-//        curl_setopt($curl_handle, CURLOPT_URL, 'Put here curl API');
-//
-//        curl_setopt($curl_handle, CURLOPT_HTTPHEADER, $headers);
-//        curl_setopt($curl_handle, CURLOPT_POST, TRUE);
-//        curl_setopt($curl_handle, CURLOPT_POSTFIELDS, $postField);
-//        curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, TRUE);
-//        $returned_fileName = curl_exec($curl_handle);
-//        curl_close($curl_handle);
+        //        $postField = array();
+        //        $tmpfile = $_FILES[$name]['tmp_name'][$i];
+        //        $filename = basename($_FILES[$name]['name'][$i]);
+        //        $postField['files'] =  curl_file_create($tmpfile, $_FILES[$name]['type'][$i], $filename);
+        //        $headers = array("Content-Type" => "multipart/form-data");
+        //        $curl_handle = curl_init();
+        //        curl_setopt($curl_handle, CURLOPT_URL, 'Put here curl API');
+        //
+        //        curl_setopt($curl_handle, CURLOPT_HTTPHEADER, $headers);
+        //        curl_setopt($curl_handle, CURLOPT_POST, TRUE);
+        //        curl_setopt($curl_handle, CURLOPT_POSTFIELDS, $postField);
+        //        curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, TRUE);
+        //        $returned_fileName = curl_exec($curl_handle);
+        //        curl_close($curl_handle);
 
         // Uses
 //        $filename = 'absolute-path-of-file';
@@ -247,15 +251,89 @@ class CurlRequest
 //            ]
 //        );
 
-        $request = new self();
-        $request->setHost($hostUrl);
+        $request = new self($hostUrl);
         $request->makeRequest(['timeout' => 20])->with('method', [
             'method' => 'post', 'post_fields' => $files
         ]);
         $request->sendRequest();
 
+        $request->responseErrorCheckOut();
+
         return ['header' =>$request->getResponseHeadArray(),'response' =>$request->getResponseBody(),'errors' =>$request->getErrors()];
     }
+
+    public static function massDownload(array $dataList, string $keyword, array $formats, string $directory, string $filter): void
+    {
+        foreach ($dataList as $serial => $item) {
+            echo sprintf("Query :: %d/%d\nItem :: %s (%s)\nDestination :: %s", ++$serial, count($dataList), $item, $keyword, $directory) . PHP_EOL;
+            foreach ($formats as $format) {
+                if ((file_exists($directory) === false) && !mkdir($directory, 077, true) && !is_dir($directory)) {
+                    throw new \RuntimeException(sprintf('Directory "%s" was not created', $directory));
+                }
+
+                self::download($item, $keyword, $format, $directory, $filter);
+            }
+
+            print_r('The content of ' . $item . ' download has been finished.' . PHP_EOL . PHP_EOL, false);
+        }
+    }
+
+    public static function download(string $item, string $keyword, string $format, string $directory, string $filter): void
+    {
+        if ((file_exists($directory) === false) && !mkdir($directory, 077, true) && !is_dir($directory)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $directory));
+        }
+
+        $filename = sprintf('user-agents_%s.%s', $item, $format);
+        $filename = sprintf('%s%s', $directory, $filename);
+
+        try {
+            if (($filter === 'new') && file_exists($filename) === false) {
+                self::write($filename, self::response($keyword, $item, $format));
+            }
+
+            if ($filter === 'update') {
+                if (file_exists($filename) === true) {
+                    print_r('Remove old file: ' . basename($filename) . PHP_EOL, false);
+                    unlink($filename);
+                }
+
+                self::write($filename, self::response($keyword, $item, $format));
+            }
+        } catch (\Error | \Exception $exception) {
+            echo PHP_EOL;
+            echo 'Unable to write ' . $filename . PHP_EOL;
+            echo $exception->getMessage() . PHP_EOL;
+            exit();
+        }
+    }
+
+    public static function write(string $filename, string $content): void
+    {
+        if (is_resource(fopen($filename, 'wb+')) === true) {
+            $resource = fopen($filename, 'wb+');
+            if (is_resource($resource) === true) {
+                fwrite($resource, $content);
+                fclose($resource);
+            }
+
+            print_r('Write new file: ' . basename($filename) . PHP_EOL, false);
+        }
+    }
+
+    public static function response($keyword, $item, $format): string
+    {
+        $request = new self('https://user-agents.net/download');
+        //http_build_query($parameters['post_fields'])
+        $request->makeRequest(['timeout' => 20])->with('method', [
+            'method' => 'post', 'post_fields' => http_build_query([$keyword => $item, 'download' => $format])
+        ])->sendRequest();
+
+        $request->responseErrorCheckOut();
+        $request->validate('content-type', 'application/octet-stream');
+        return $request->getResponseBody();
+    }
+
 
     /**
      * @param  string $keyword
@@ -280,6 +358,14 @@ class CurlRequest
             }
         } else {
             throw new \RuntimeException(sprintf('Response has been corrupted. Unable to find out %s.', preg_replace('[#/-]', ' ', $keyword)));
+        }
+    }
+
+    public function responseErrorCheckOut():void
+    {
+        if ($this->getResponseCode() !== 200) {
+            [$errCode, $errMessage] = $this->getErrors();
+            throw new \RuntimeException(sprintf('Error (%d): %s', $errCode, $errMessage));
         }
     }
 
@@ -334,11 +420,26 @@ class CurlRequest
 
     /**
      * @return array
-     * @throws \JsonException
      */
     public function getErrors(): array
     {
         return array_filter($this->errors);
+    }
+
+    /**
+     * @return int
+     */
+    public function getExecutionTime(): int
+    {
+        return $this->executionTime;
+    }
+
+    /**
+     * @return array
+     */
+    public function getConnectionInfo(): array
+    {
+        return $this->connectionInfo;
     }
 
     private function isJsonString(string $string): bool
