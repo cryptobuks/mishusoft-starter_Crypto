@@ -8,27 +8,27 @@
 
 namespace Mishusoft\Framework\Chipsets\Http;
 
-define('USER_AGENT_ANALYZE_DATA_PATH', RUNTIME_CACHE_ROOT_PATH.'UATable'.DS);
+define('USER_AGENT_ANALYZE_DATA_PATH', RUNTIME_CACHE_ROOT_PATH . 'UATable' . DS);
 
 
 class UATable
 {
     // File list of various collected data.
     // Files of received, solved and unsolved ua list.
-    public const USER_AGENT_LIST_FILE          = USER_AGENT_ANALYZE_DATA_PATH.'ua.list.csv';
-    public const UNSOLVED_USER_AGENT_LIST_FILE = USER_AGENT_ANALYZE_DATA_PATH.'ua.list.unsolved.csv';
-    public const SOLVED_USER_AGENT_LIST_FILE   = USER_AGENT_ANALYZE_DATA_PATH.'ua.list.solved.csv';
+    public const USER_AGENT_LIST_FILE = USER_AGENT_ANALYZE_DATA_PATH . 'ua.list.csv';
+    public const UNSOLVED_USER_AGENT_LIST_FILE = USER_AGENT_ANALYZE_DATA_PATH . 'ua.list.unsolved.csv';
+    public const SOLVED_USER_AGENT_LIST_FILE = USER_AGENT_ANALYZE_DATA_PATH . 'ua.list.solved.csv';
 
     // Files of browsers name, app code and layout list.
-    public const WEB_BROWSER_LIST_FILE          = USER_AGENT_ANALYZE_DATA_PATH.'browser.all.list.json';
-    public const WEB_BROWSER_APP_CODE_LIST_FILE = USER_AGENT_ANALYZE_DATA_PATH.'browser.app.code.list.json';
-    public const WEB_BROWSER_LAYOUT_LIST_FILE   = USER_AGENT_ANALYZE_DATA_PATH.'browser.layout.list.json';
+    public const WEB_BROWSER_LIST_FILE = USER_AGENT_ANALYZE_DATA_PATH . 'browser.all.list.json';
+    public const WEB_BROWSER_APP_CODE_LIST_FILE = USER_AGENT_ANALYZE_DATA_PATH . 'browser.app.code.list.json';
+    public const WEB_BROWSER_LAYOUT_LIST_FILE = USER_AGENT_ANALYZE_DATA_PATH . 'browser.layout.list.json';
 
     // Files of devices name, category, platform, architectures list.
-    public const DEVICES_LIST_FILE                  = USER_AGENT_ANALYZE_DATA_PATH.'devices.list.json';
-    public const DEVICES_CATEGORY_LIST_FILE         = USER_AGENT_ANALYZE_DATA_PATH.'devices.category.list.json';
-    public const DEVICES_PLATFORM_WM_NAME_LIST_FILE = USER_AGENT_ANALYZE_DATA_PATH.'devices.platform.wmn.list.json';
-    public const DEVICES_ARCHITECTURE_LIST_FILE     = USER_AGENT_ANALYZE_DATA_PATH.'devices.architecture.list.json';
+    public const DEVICES_LIST_FILE = USER_AGENT_ANALYZE_DATA_PATH . 'devices.list.json';
+    public const DEVICES_CATEGORY_LIST_FILE = USER_AGENT_ANALYZE_DATA_PATH . 'devices.category.list.json';
+    public const DEVICES_PLATFORM_WM_NAME_LIST_FILE = USER_AGENT_ANALYZE_DATA_PATH . 'devices.platform.wmn.list.json';
+    public const DEVICES_ARCHITECTURE_LIST_FILE = USER_AGENT_ANALYZE_DATA_PATH . 'devices.architecture.list.json';
 
     // Variables.
 
@@ -331,26 +331,26 @@ class UATable
         // Application, Bot/Crawler, Browser, Email Client, Feed Reader, Multimedia Player, Offline Browser and Tool List.
         return [
             /*Applications*/
-            '1password'      => [
-                'name'           => '1 Password',
-                'type'           => 'Applications',
-                'category'           => 'Password Manager',
-                'ui'             => 'GraphicalMode',
-                'authors'        => [
+            '1password' => [
+                'name' => '1 Password',
+                'type' => 'Applications',
+                'category' => 'Password Manager',
+                'ui' => 'GraphicalMode',
+                'authors' => [
                     [
                         'name' => 'AgileBits Inc',
                         'link' => 'https://1password.com/',
                     ],
                 ],
-                'cost'           => 'Trialware',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Trialware',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'Trialware',
                         'link' => 'https://en.wikipedia.org/wiki/Trialware',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'WebKit',
                         'link' => 'https://en.wikipedia.org/wiki/WebKit',
@@ -364,71 +364,126 @@ class UATable
 
             // Crawler.
             '007ac9 crawler' => [
-                'name'      => '007ac9 Crawler',
-                'type'      => 'Bot (Crawler)',
-                'ui'        => 'FullTextMode',
-                'authors'        => [
+                'name' => '007ac9 Crawler',
+                'type' => 'Bot (Crawler)',
+                'ui' => 'FullTextMode',
+                'authors' => [
                     [
                         'name' => '007ac9',
                         'link' => 'http://crawler.007ac9.net',
                     ],
                 ],
             ],
-            '2gdpr'          => [
-                'name'           => '2gdpr Bot',
-                'type'           => 'Bot (Crawler)',
-                'ui'             => 'FullTextMode',
-                'authors'        => [
+            '2gdpr' => [
+                'name' => '2gdpr Bot',
+                'type' => 'Bot (Crawler)',
+                'ui' => 'FullTextMode',
+                'authors' => [
                     [
                         'name' => '2gdpr',
                         'link' => 'http://2gdpr.com',
                     ],
                 ],
             ],
-            'python-requests'          => [
-                'name'           => 'python-requests Bot',
-                'type'           => 'Bot (Crawler)',
-                'ui'             => 'FullTextMode',
-                'authors'        => [
+            'python-requests' => [
+                'name' => 'python-requests Bot',
+                'type' => 'Bot (Crawler)',
+                'ui' => 'FullTextMode',
+                'authors' => [
                     [
                         'name' => 'Python Software Foundation',
                         'link' => 'https://www.python.org/psf/',
                     ],
                 ],
             ],
-            'python-urllib'          => [
-                'name'           => 'python-urllib Bot',
-                'type'           => 'Bot (Crawler)',
-                'ui'             => 'FullTextMode',
-                'authors'        => [
+            'python-urllib' => [
+                'name' => 'python-urllib Bot',
+                'type' => 'Bot (Crawler)',
+                'ui' => 'FullTextMode',
+                'authors' => [
                     [
                         'name' => 'Python Software Foundation',
                         'link' => 'https://www.python.org/psf/',
+                    ],
+                ],
+            ],
+            'googlebot' => [
+                'name' => 'Google Bot',
+                'type' => 'Bot (Crawler)',
+                'ui' => 'FullTextMode',
+                'authors' => [
+                    [
+                        'name' => 'Google Inc',
+                        'link' => 'https://www.google.com/',
+                    ],
+                ],
+            ],
+            'ahrefsbot' => [
+                'name' => 'Ahrefs Bot',
+                'type' => 'Bot (Crawler)',
+                'ui' => 'FullTextMode',
+                'authors' => [
+                    [
+                        'name' => 'Ahrefs Pte Ltd',
+                        'link' => 'https://ahrefs.com/robot/',
+                    ],
+                ],
+            ],
+            'bingbot' => [
+                'name' => 'Bing Bot',
+                'type' => 'Bot (Crawler)',
+                'ui' => 'FullTextMode',
+                'authors' => [
+                    [
+                        'name' => 'Microsoft Corporation',
+                        'link' => 'https://www.bing.com/bingbot.htm',
+                    ],
+                ],
+            ],
+            'yandexbot' => [
+                'name' => 'Yandex Bot',
+                'type' => 'Bot (Crawler)',
+                'ui' => 'FullTextMode',
+                'authors' => [
+                    [
+                        'name' => 'Yandex LLC.',
+                        'link' => 'https://yandex.com/bots',
+                    ],
+                ],
+            ],
+            'dotbot' => [
+                'name' => 'Dot Bot',
+                'type' => 'Bot (Crawler)',
+                'ui' => 'FullTextMode',
+                'authors' => [
+                    [
+                        'name' => 'SEOmoz, Inc',
+                        'link' => 'https://www.opensiteexplorer.org/dotbot',
                     ],
                 ],
             ],
 
 
             /*Browsers*/
-            '115browser'     => [
-                'name'           => '115 Browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            '115browser' => [
+                'name' => '115 Browser',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => '115 Team',
                         'link' => 'https://115.com/',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     ['name' => 'Unknown'],
                 ],
-                'layout'         => 'Unknown',
+                'layout' => 'Unknown',
                 'latest-release' => [
                     'version' => 'Unknown',
-                    'date'    => 'Unknown',
+                    'date' => 'Unknown',
                 ],
             ],
             /*
@@ -469,106 +524,106 @@ class UATable
                     'date'    => 'Unknown',
                 ],
             ],*/
-            '1stBrowser'     => [
-                'name'           => '1st Browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            '1stBrowser' => [
+                'name' => '1st Browser',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Sien',
                         'link' => 'https://www.sien.com/',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     ['name' => 'Unknown'],
                 ],
-                'layout'         => 'Unknown',
+                'layout' => 'Unknown',
                 'latest-release' => [
                     'version' => 'Unknown',
-                    'date'    => 'Unknown',
+                    'date' => 'Unknown',
                 ],
             ],
-            'Mb2345Browser'  => [
-                'name'           => '2345 Browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Mb2345Browser' => [
+                'name' => '2345 Browser',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => '2345 Team',
                         'link' => 'https://app.2345.com/',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     ['name' => 'Unknown'],
                 ],
-                'layout'         => 'Unknown',
+                'layout' => 'Unknown',
                 'latest-release' => [
                     'version' => 'Unknown',
-                    'date'    => 'Unknown',
+                    'date' => 'Unknown',
                 ],
             ],
-            '2345chrome'     => [
-                'name'           => '2345 Chrome',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            '2345chrome' => [
+                'name' => '2345 Chrome',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => '2345 Team',
                         'link' => 'https://app.2345.com/',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     ['name' => 'Unknown'],
                 ],
-                'layout'         => 'Unknown',
+                'layout' => 'Unknown',
                 'latest-release' => [
                     'version' => 'Unknown',
-                    'date'    => 'Unknown',
+                    'date' => 'Unknown',
                 ],
             ],
-            '2345explorer'   => [
-                'name'           => '2345 Explorer',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            '2345explorer' => [
+                'name' => '2345 Explorer',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => '2345 Team',
                         'link' => 'https://app.2345.com/',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     ['name' => 'Unknown'],
                 ],
-                'layout'         => 'Unknown',
+                'layout' => 'Unknown',
                 'latest-release' => [
                     'version' => 'Unknown',
-                    'date'    => 'Unknown',
+                    'date' => 'Unknown',
                 ],
             ],
-            '360SE'          => [
-                'name'           => '360 Secure Browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            '360SE' => [
+                'name' => '360 Secure Browser',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Qihoo 360 Technology Co. Ltd..',
                         'link' => 'https://browser.360.cn/se/en.html',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     ['name' => 'Unknown'],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Blink',
                         'link' => 'https://en.wikipedia.org/wiki/WebKit',
@@ -581,44 +636,44 @@ class UATable
                 'latest-release' => [
                     'initial' => [
                         'version' => '1.0',
-                        'date'    => 'September 2008',
+                        'date' => 'September 2008',
                     ],
-                    'Stable'  => [
+                    'Stable' => [
                         'version' => '12.3.1001.0.0',
-                        'date'    => 'June 5, 2020',
+                        'date' => 'June 5, 2020',
                     ],
                     'Preview' => [
                         [
                             'version' => '10.1.2245.0',
-                            'date'    => 'October 25, 2019',
+                            'date' => 'October 25, 2019',
                         ],
                         [
                             'version' => '11.0.2251.0',
-                            'date'    => 'November 15, 2019',
+                            'date' => 'November 15, 2019',
                         ],
                         [
                             'version' => '12.2.1228.0',
-                            'date'    => 'June 12, 2020',
+                            'date' => 'June 12, 2020',
                         ],
                     ],
                 ],
             ],
-            '37abc'          => [
-                'name'           => '37abc Browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            '37abc' => [
+                'name' => '37abc Browser',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Guangzhou Network Technology Co., Ltd',
                         'link' => 'http://37abc.com/',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     ['name' => 'Unknown'],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Blink',
                         'link' => 'https://en.wikipedia.org/wiki/WebKit',
@@ -626,25 +681,25 @@ class UATable
                 ],
                 'latest-release' => [
                     'version' => 'Unknown',
-                    'date'    => 'Unknown',
+                    'date' => 'Unknown',
                 ],
             ],
-            '7star'          => [
-                'name'           => '7 Star Browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            '7star' => [
+                'name' => '7 Star Browser',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Kuaiso Beijing ICP',
                         'link' => 'https://www.qixing123.com/',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     ['name' => 'Unknown'],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Blink',
                         'link' => 'https://en.wikipedia.org/wiki/WebKit',
@@ -652,25 +707,25 @@ class UATable
                 ],
                 'latest-release' => [
                     'version' => 'Unknown',
-                    'date'    => 'Unknown',
+                    'date' => 'Unknown',
                 ],
             ],
-            'abrowse'          => [
-                'name'           => 'ABrowse Browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'abrowse' => [
+                'name' => 'ABrowse Browser',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Syllable Project',
                         'link' => 'https://www.qixing123.com/',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     ['name' => 'Unknown'],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Blink',
                         'link' => 'https://en.wikipedia.org/wiki/WebKit',
@@ -678,25 +733,25 @@ class UATable
                 ],
                 'latest-release' => [
                     'version' => 'Unknown',
-                    'date'    => 'Unknown',
+                    'date' => 'Unknown',
                 ],
             ],
-            'acoo-browser'          => [
-                'name'           => 'Acoo Browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'acoo-browser' => [
+                'name' => 'Acoo Browser',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Matthew Marsh',
                         'link' => 'https://www.acoobrowser.com/',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
-                    ['name' => 'Freeware','link' => 'https://en.wikipedia.org/wiki/Web_browser'],
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
+                    ['name' => 'Freeware', 'link' => 'https://en.wikipedia.org/wiki/Web_browser'],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Trident',
                         'link' => 'https://en.wikipedia.org/wiki/Trident_(software)',
@@ -704,25 +759,25 @@ class UATable
                 ],
                 'latest-release' => [
                     'version' => 'Unknown',
-                    'date'    => 'Unknown',
+                    'date' => 'Unknown',
                 ],
             ],
-            'Alienforce'          => [
-                'name'           => 'Alienforce Browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Alienforce' => [
+                'name' => 'Alienforce Browser',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'kbclub',
                         'link' => 'https://kbclub.ru/',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
-                    ['name' => 'Freeware','link' => 'https://en.wikipedia.org/wiki/Web_browser'],
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
+                    ['name' => 'Freeware', 'link' => 'https://en.wikipedia.org/wiki/Web_browser'],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Gecko',
                         'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
@@ -730,15 +785,15 @@ class UATable
                 ],
                 'latest-release' => [
                     'version' => 'Unknown',
-                    'date'    => 'Unknown',
+                    'date' => 'Unknown',
                 ],
             ],
 
-            'Amaya'          => [
-                'name'           => 'Amaya',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Amaya' => [
+                'name' => 'Amaya',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'W3C',
                         'link' => 'https://www.w3.org/',
@@ -748,39 +803,39 @@ class UATable
                         'link' => 'http://www.inria.fr/en/',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'discontinued',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'discontinued',
+                'licence' => [
                     [
                         'name' => 'W3C',
                         'link' => 'https://en.wikipedia.org/wiki/W3C_Software_Notice_and_License',
                     ],
                 ],
-                'layout'         => 'custom',
+                'layout' => 'custom',
                 'latest-release' => [
                     'version' => '11.4.4',
-                    'date'    => 'January 18, 2012',
+                    'date' => 'January 18, 2012',
                 ],
             ],
-            'AOL'            => [
-                'name'           => 'AOL Explorer',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'AOL' => [
+                'name' => 'AOL Explorer',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'America Online, Inc',
                         'link' => 'https://www.aol.com/',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'discontinued',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'discontinued',
+                'licence' => [
                     [
                         'name' => 'Proprietary',
                         'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Trident',
                         'link' => 'https://en.wikipedia.org/wiki/Trident_(software)',
@@ -788,25 +843,25 @@ class UATable
                 ],
                 'latest-release' => [
                     'version' => '1.5',
-                    'date'    => 'May 10, 2016',
+                    'date' => 'May 10, 2016',
                 ],
             ],
-            'Arora'          => [
-                'name'           => 'Arora',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Arora' => [
+                'name' => 'Arora',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     ['name' => 'Avant Force'],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'discontinued',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'discontinued',
+                'licence' => [
                     [
                         'name' => 'Proprietary',
                         'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Blink',
                         'link' => 'https://en.wikipedia.org/wiki/WebKit',
@@ -814,25 +869,25 @@ class UATable
                 ],
                 'latest-release' => [
                     'version' => '0.11.0',
-                    'date'    => '27 September 2010',
+                    'date' => '27 September 2010',
                 ],
             ],
-            'Avant'          => [
-                'name'           => 'Avant ',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Avant' => [
+                'name' => 'Avant ',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     ['name' => 'Benjamin C. Meyer'],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'GPL',
                         'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'WebKit',
                         'link' => 'https://en.wikipedia.org/wiki/Blink_(layout_engine)',
@@ -848,28 +903,28 @@ class UATable
                 ],
                 'latest-release' => [
                     'version' => '2020 build 3',
-                    'date'    => 'March 17, 2020',
+                    'date' => 'March 17, 2020',
                 ],
             ],
-            'Basilisk'       => [
-                'name'           => 'Basilisk ',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Basilisk' => [
+                'name' => 'Basilisk ',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Moonchild Productions',
                         'link' => 'https://www.basilisk-browser.org/',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'MPL 2.0',
                         'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Goanna',
                         'link' => 'https://en.wikipedia.org/wiki/Goanna_(software)',
@@ -877,28 +932,28 @@ class UATable
                 ],
                 'latest-release' => [
                     'version' => '2020.10.05',
-                    'date'    => '5 October 2020',
+                    'date' => '5 October 2020',
                 ],
             ],
-            'Blisk'          => [
-                'name'           => 'Blisk',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Blisk' => [
+                'name' => 'Blisk',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     ['name' => 'Blisk team'],
                 ],
-                'cost'           => [
+                'cost' => [
                     'Free' => 'Limited',
                     'Paid' => 'Unlimited Pro',
                 ],
-                'status'         => 'Active',
-                'licence'        => [
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'Proprietary',
                         'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Blink',
                         'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
@@ -910,102 +965,102 @@ class UATable
                 ],
                 'latest-release' => [
                     'version' => '12.0.92.83',
-                    'date'    => 'June 29, 2019',
+                    'date' => 'June 29, 2019',
                 ],
             ],
-            'BeakerBrowser'  => [
-                'name'           => 'Beaker',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'BeakerBrowser' => [
+                'name' => 'Beaker',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Blue Link Labs',
                         'link' => 'https://beakerbrowser.com/about',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'MIT License',
                         'link' => 'https://en.wikipedia.org/wiki/MIT_License',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Blink',
                         'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
                     ],
                 ],
                 'latest-release' => [
-                    'macOS'   => [
+                    'macOS' => [
                         'version' => '0.8.10',
-                        'date'    => 'March 13, 2020',
+                        'date' => 'March 13, 2020',
                     ],
                     'Windows' => [
                         'version' => '0.8.10',
-                        'date'    => 'March 13, 2020',
+                        'date' => 'March 13, 2020',
                     ],
-                    'Linux'   => [
+                    'Linux' => [
                         'version' => '0.8.10',
-                        'date'    => 'March 13, 2020',
+                        'date' => 'March 13, 2020',
                     ],
                 ],
             ],
-            'Electron'       => [
-                'name'           => 'Electron',
-                'type'           => 'Electron (software framework)',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Electron' => [
+                'name' => 'Electron',
+                'type' => 'Electron (software framework)',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'GitHub',
                         'link' => 'https://en.wikipedia.org/wiki/GitHub',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'MIT License',
                         'link' => 'https://en.wikipedia.org/wiki/MIT_License',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Blink',
                         'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
                     ],
                 ],
                 'latest-release' => [
-                    'Stable release'  => [
+                    'Stable release' => [
                         'version' => '10.1.5',
-                        'date'    => '23 October 2020',
+                        'date' => '23 October 2020',
                     ],
                     'Preview release' => [
                         'version' => '11.0.0-beta.16',
-                        'date'    => '24 October 2020',
+                        'date' => '24 October 2020',
                     ],
                 ],
             ],
-            'Brave'          => [
-                'name'           => 'Brave Browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Brave' => [
+                'name' => 'Brave Browser',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Brave Software Inc',
                         'link' => 'https://en.wikipedia.org/wiki/Brave_(browser)',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'MPL 2.0',
                         'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Blink',
                         'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
@@ -1014,36 +1069,36 @@ class UATable
                 'latest-release' => [
                     'Android' => [
                         'version' => '1.15.73',
-                        'date'    => '15 October 2020',
+                        'date' => '15 October 2020',
                     ],
-                    'iOS'     => [
+                    'iOS' => [
                         'version' => '1.20',
-                        'date'    => '25 September 2020',
+                        'date' => '25 September 2020',
                     ],
-                    'macOS'   => [
+                    'macOS' => [
                         'version' => '1.15.75',
-                        'date'    => '16 October 2020',
+                        'date' => '16 October 2020',
                     ],
                     'Windows' => [
                         'version' => '1.15.75',
-                        'date'    => '16 October 2020',
+                        'date' => '16 October 2020',
                     ],
-                    'Linux'   => [
+                    'Linux' => [
                         'version' => '1.15.75',
-                        'date'    => '16 October 2020',
+                        'date' => '16 October 2020',
                     ],
                 ],
             ],
-            'Camino'         => [
-                'name'           => 'Camino',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Camino' => [
+                'name' => 'Camino',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     ['name' => 'The Camino Project'],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'discontinued',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'discontinued',
+                'licence' => [
                     [
                         'name' => 'MPL 1.1',
                         'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
@@ -1057,7 +1112,7 @@ class UATable
                         'link' => 'https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Gecko',
                         'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
@@ -1065,25 +1120,25 @@ class UATable
                 ],
                 'latest-release' => [
                     'version' => '2.1.2',
-                    'date'    => '14 March 2012',
+                    'date' => '14 March 2012',
                 ],
             ],
-            'Cliqz'          => [
-                'name'           => 'Cliqz',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Cliqz' => [
+                'name' => 'Cliqz',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     ['name' => 'Cliqz GmbH'],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'discontinued',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'discontinued',
+                'licence' => [
                     [
                         'name' => 'MPL 2.0',
                         'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Gecko',
                         'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
@@ -1092,45 +1147,45 @@ class UATable
                 'latest-release' => [
                     'Android' => [
                         'version' => '1.9.7',
-                        'date'    => 'April 4, 2020',
+                        'date' => 'April 4, 2020',
                     ],
-                    'iOS'     => [
+                    'iOS' => [
                         'version' => '3.6.3',
-                        'date'    => 'June 30, 2020',
+                        'date' => 'June 30, 2020',
                     ],
-                    'macOS'   => [
+                    'macOS' => [
                         'version' => '1.38.0',
-                        'date'    => 'July 22, 2020',
+                        'date' => 'July 22, 2020',
                     ],
                     'Windows' => [
                         'version' => '1.38.0',
-                        'date'    => 'July 22, 2020',
+                        'date' => 'July 22, 2020',
                     ],
-                    'Linux'   => [
+                    'Linux' => [
                         'version' => '1.38.0',
-                        'date'    => 'July 22, 2020',
+                        'date' => 'July 22, 2020',
                     ],
                 ],
             ],
-            'Edg'            => [
-                'name'           => 'Microsoft Edge',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Edg' => [
+                'name' => 'Microsoft Edge',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Microsoft Corp',
                         'link' => 'https://www.microsoftedgeinsider.com/en-us/',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'Proprietary',
                         'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Blink',
                         'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
@@ -1138,28 +1193,28 @@ class UATable
                 ],
                 'latest-release' => [
                     'version' => '88.0.673.0',
-                    'date'    => '14 October 2020',
+                    'date' => '14 October 2020',
                 ],
             ],
-            'Opera'          => [
-                'name'           => 'Opera',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Opera' => [
+                'name' => 'Opera',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Opera Software',
                         'link' => 'https://en.wikipedia.org/wiki/Opera_Software',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'Proprietary',
                         'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Blink',
                         'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
@@ -1167,71 +1222,71 @@ class UATable
                 ],
                 'latest-release' => [
                     'version' => '71.0.3770.271',
-                    'date'    => '14 October 2020',
+                    'date' => '14 October 2020',
                 ],
             ],
-            'Opera Mobile'   => [
-                'name'           => 'Opera',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Opera Mobile' => [
+                'name' => 'Opera',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Opera Software',
                         'link' => 'https://en.wikipedia.org/wiki/Opera_Software',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'Proprietary',
                         'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Blink',
                         'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
                     ],
                 ],
                 'latest-release' => [
-                    'Android'           => [
+                    'Android' => [
                         'version' => '59.1.2926.54067',
-                        'date'    => 'July 13, 2020',
+                        'date' => 'July 13, 2020',
                     ],
                     'Android (classic)' => [
                         'version' => '12.1.9',
-                        'date'    => 'June 8, 2016',
+                        'date' => 'June 8, 2016',
                     ],
-                    'Symbian'           => [
+                    'Symbian' => [
                         'version' => 'S60 12.0.22',
-                        'date'    => 'June 24, 2012',
+                        'date' => 'June 24, 2012',
                     ],
-                    'Windows Mobile'    => [
+                    'Windows Mobile' => [
                         'version' => '10.0',
-                        'date'    => 'March 16, 2010',
+                        'date' => 'March 16, 2010',
                     ],
                 ],
             ],
-            'whale'          => [
-                'name'           => 'Naver Whale',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'whale' => [
+                'name' => 'Naver Whale',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Naver Corporation',
                         'link' => 'https://en.wikipedia.org/wiki/Naver_Corporation',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'Freeware',
                         'link' => 'https://en.wikipedia.org/wiki/Freeware',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Blink',
                         'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
@@ -1240,45 +1295,45 @@ class UATable
                 'latest-release' => [
                     'Android' => [
                         'version' => '1.5.4.2',
-                        'date'    => 'May 26, 2020',
+                        'date' => 'May 26, 2020',
                     ],
-                    'iOS'     => [
+                    'iOS' => [
                         'version' => '1.5.0',
-                        'date'    => 'May 25, 2020',
+                        'date' => 'May 25, 2020',
                     ],
-                    'macOS'   => [
+                    'macOS' => [
                         'version' => '2.7.100.20',
-                        'date'    => 'June 18, 2020',
+                        'date' => 'June 18, 2020',
                     ],
                     'Windows' => [
                         'version' => '2.7.100.20',
-                        'date'    => 'June 18, 2020',
+                        'date' => 'June 18, 2020',
                     ],
-                    'Linux'   => [
+                    'Linux' => [
                         'version' => '2.7.100.20',
-                        'date'    => 'June 18, 2020',
+                        'date' => 'June 18, 2020',
                     ],
                 ],
             ],
-            'Falkon'         => [
-                'name'           => 'Falkon',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Falkon' => [
+                'name' => 'Falkon',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'David Rosca',
                         'link' => 'https://en.wikipedia.org/wiki/Links_(web_browser)',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'GPL 3.0',
                         'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Blink',
                         'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
@@ -1287,29 +1342,29 @@ class UATable
                 'latest-release' => [
                     [
                         'version' => '3.1.0.75',
-                        'date'    => 'March 19, 2019',
+                        'date' => 'March 19, 2019',
                     ],
                 ],
             ],
-            'Konqueror'      => [
-                'name'           => 'Konqueror Browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Konqueror' => [
+                'name' => 'Konqueror Browser',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'KDE',
                         'link' => 'https://en.wikipedia.org/wiki/KDE',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'GPL',
                         'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'KHTML',
                         'link' => 'https://en.wikipedia.org/wiki/KHTML',
@@ -1320,32 +1375,32 @@ class UATable
                     ],
                 ],
                 'latest-release' => [
-                    'Stable release'  => [
+                    'Stable release' => [
                         'version' => '20.08.2',
-                        'date'    => '7 June 2018',
+                        'date' => '7 June 2018',
                     ],
                     'Preview release' => [],
                 ],
             ],
-            'YaBrowser'      => [
-                'name'           => 'Yandex Browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'YaBrowser' => [
+                'name' => 'Yandex Browser',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Yandex',
                         'link' => 'https://en.wikipedia.org/wiki/Yandex',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'Proprietary',
                         'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Blink',
                         'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
@@ -1354,45 +1409,45 @@ class UATable
                 'latest-release' => [
                     'Android' => [
                         'version' => '20.6.3.54',
-                        'date'    => 'July 23, 2020',
+                        'date' => 'July 23, 2020',
                     ],
-                    'iOS'     => [
+                    'iOS' => [
                         'version' => '20.6.2.318',
-                        'date'    => 'July 16, 2020',
+                        'date' => 'July 16, 2020',
                     ],
-                    'macOS'   => [
+                    'macOS' => [
                         'version' => '20.7.2',
-                        'date'    => 'July 2020',
+                        'date' => 'July 2020',
                     ],
                     'Windows' => [
                         'version' => '20.7.2',
-                        'date'    => 'July 2020',
+                        'date' => 'July 2020',
                     ],
-                    'Linux'   => [
+                    'Linux' => [
                         'version' => '20.7.2',
-                        'date'    => 'July 2020',
+                        'date' => 'July 2020',
                     ],
                 ],
             ],
-            'QtWebEngine'    => [
-                'name'           => 'Qt Web Engine based browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'QtWebEngine' => [
+                'name' => 'Qt Web Engine based browser',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Dooble Project Team',
                         'link' => 'https://en.wikipedia.org/wiki/Dooble',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'BSD',
                         'link' => 'https://en.wikipedia.org/wiki/BSD_licenses',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Blink',
                         'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
@@ -1401,7 +1456,7 @@ class UATable
                 'latest-release' => [
                     [
                         'version' => '2020.10.10',
-                        'date'    => 'October 10, 2020',
+                        'date' => 'October 10, 2020',
                     ],
                 ],
             ],
@@ -1421,25 +1476,25 @@ class UATable
                 Licence    BSD, with some parts under other licences.[6] Source code not provided.
                 Website    www.srware.net/en/software_srware_iron.php
              * */
-            'Iron'           => [
-                'name'           => 'SRWare Iron',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Iron' => [
+                'name' => 'SRWare Iron',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'SRWare',
                         'link' => 'www.srware.net/en/software_srware_iron.php',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'BSD',
                         'link' => 'https://en.wikipedia.org/wiki/BSD_licenses',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Blink',
                         'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
@@ -1452,41 +1507,41 @@ class UATable
                 'latest-release' => [
                     'Android' => [
                         'version' => '74.0.3850.0',
-                        'date'    => 'May 10, 2019',
+                        'date' => 'May 10, 2019',
                     ],
-                    'macOS'   => [
+                    'macOS' => [
                         'version' => '84.0.4300.0',
-                        'date'    => 'August 29, 2020',
+                        'date' => 'August 29, 2020',
                     ],
                     'Windows' => [
                         'version' => '85.0.4350.0',
-                        'date'    => 'October 2, 2020',
+                        'date' => 'October 2, 2020',
                     ],
-                    'Linux'   => [
+                    'Linux' => [
                         'version' => '85.0.4350.0',
-                        'date'    => 'October 6, 2020',
+                        'date' => 'October 6, 2020',
                     ],
                 ],
             ],
-            'Chrome'         => [
-                'name'           => 'Google Chrome',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Chrome' => [
+                'name' => 'Google Chrome',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Google LLC',
                         'link' => 'https://en.wikipedia.org/wiki/Google',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'BSD (Chromium executable) (some closed-source features)',
                         'link' => 'https://en.wikipedia.org/wiki/BSD_licenses',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Blink',
                         'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
@@ -1495,45 +1550,45 @@ class UATable
                 'latest-release' => [
                     'Android' => [
                         'version' => '86.0.4240.114',
-                        'date'    => 'October 22, 2020',
+                        'date' => 'October 22, 2020',
                     ],
-                    'iOS'     => [
+                    'iOS' => [
                         'version' => '86.0.4240.93',
-                        'date'    => 'October 12, 2020',
+                        'date' => 'October 12, 2020',
                     ],
-                    'macOS'   => [
+                    'macOS' => [
                         'version' => '86.0.4240.111',
-                        'date'    => 'October 20, 2020',
+                        'date' => 'October 20, 2020',
                     ],
                     'Windows' => [
                         'version' => '86.0.4240.111',
-                        'date'    => 'October 20, 2020',
+                        'date' => 'October 20, 2020',
                     ],
-                    'Linux'   => [
+                    'Linux' => [
                         'version' => '86.0.4240.111',
-                        'date'    => 'October 20, 2020',
+                        'date' => 'October 20, 2020',
                     ],
                 ],
             ],
-            'Chromium'       => [
-                'name'           => 'Chromium Browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Chromium' => [
+                'name' => 'Chromium Browser',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'The Chromium Project',
                         'link' => 'https://www.chromium.org/',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'BSD',
                         'link' => 'https://en.wikipedia.org/wiki/BSD_licenses',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Blink',
                         'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
@@ -1546,25 +1601,25 @@ class UATable
                     ],
                 ],
             ],
-            'Comodo_Dragon'  => [
-                'name'           => 'Comodo Dragon',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Comodo_Dragon' => [
+                'name' => 'Comodo Dragon',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Comodo Group',
                         'link' => 'https://www.comodo.com/home/browsers-toolbars/internet-products.php',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'BSD',
                         'link' => 'https://en.wikipedia.org/wiki/BSD_licenses',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Blink',
                         'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
@@ -1573,29 +1628,29 @@ class UATable
                 'latest-release' => [
                     [
                         'version' => '83.0.4103.116',
-                        'date'    => 'July 21, 2020',
+                        'date' => 'July 21, 2020',
                     ],
                 ],
             ],
-            'IceDragon'      => [
-                'name'           => 'Comodo Ice Dragon',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'IceDragon' => [
+                'name' => 'Comodo Ice Dragon',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Comodo Group',
                         'link' => 'https://www.comodo.com/home/browsers-toolbars/internet-products.php',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'MPL 2.0',
                         'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Gecko',
                         'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
@@ -1604,57 +1659,57 @@ class UATable
                 'latest-release' => [
                     [
                         'version' => '65.0.2.15',
-                        'date'    => 'June 19, 2019',
+                        'date' => 'June 19, 2019',
                     ],
                 ],
             ],
-            'Dillo'          => [
-                'name'           => 'Dillo',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Dillo' => [
+                'name' => 'Dillo',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'The Dillo team',
                         'link' => 'https://www.dillo.org/',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'discontinued',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'discontinued',
+                'licence' => [
                     [
                         'name' => 'GPL',
                         'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     ['name' => 'custom'],
                 ],
                 'latest-release' => [
                     [
                         'version' => '3.0.5',
-                        'date'    => '30 June 2015',
+                        'date' => '30 June 2015',
                     ],
                 ],
             ],
-            'Dooble'         => [
-                'name'           => 'Dooble',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Dooble' => [
+                'name' => 'Dooble',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Dooble Project Team',
                         'link' => 'https://en.wikipedia.org/wiki/Dooble',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'BSD',
                         'link' => 'https://en.wikipedia.org/wiki/BSD_licenses',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Blink',
                         'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
@@ -1663,29 +1718,29 @@ class UATable
                 'latest-release' => [
                     [
                         'version' => '2020.10.10',
-                        'date'    => 'October 10, 2020',
+                        'date' => 'October 10, 2020',
                     ],
                 ],
             ],
-            'ELinks'         => [
-                'name'           => 'ELinks',
-                'type'           => 'Web Browser',
-                'ui'             => 'TextBasedMode',
-                'creator'        => [
+            'ELinks' => [
+                'name' => 'ELinks',
+                'type' => 'Web Browser',
+                'ui' => 'TextBasedMode',
+                'creator' => [
                     [
                         'name' => 'Baudis, Fonseca, et al.',
                         'link' => 'https://en.wikipedia.org/wiki/ELinks',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'discontinued',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'discontinued',
+                'licence' => [
                     [
                         'name' => 'GPL',
                         'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'custom',
                         'note' => 'fork of Links',
@@ -1694,15 +1749,15 @@ class UATable
                 'latest-release' => [
                     [
                         'version' => '0.11.7',
-                        'date'    => '22 August 2009',
+                        'date' => '22 August 2009',
                     ],
                 ],
             ],
-            'Epiphany'       => [
-                'name'           => 'GNOME Web',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Epiphany' => [
+                'name' => 'GNOME Web',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Marco Pesenti Gritti',
                         'link' => 'https://www.gnome.org/news/2015/05/goodbye-marco/',
@@ -1712,64 +1767,64 @@ class UATable
                         'link' => 'https://en.wikipedia.org/wiki/The_GNOME_Project',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'GPL',
                         'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'WebKitGTK',
                         'link' => 'https://en.wikipedia.org/wiki/WebKitGTK',
                     ],
                 ],
                 'latest-release' => [
-                    'Stable release'  => [
+                    'Stable release' => [
                         'version' => '3.38.1',
-                        'date'    => '8 October 2020',
+                        'date' => '8 October 2020',
                     ],
                     'Preview release' => [
                         'version' => '3.37.92',
-                        'date'    => '13 September 2020',
+                        'date' => '13 September 2020',
                     ],
                 ],
             ],
-            'Links'          => [
-                'name'           => 'Links',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Links' => [
+                'name' => 'Links',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Patocka, et al',
                         'link' => 'https://en.wikipedia.org/wiki/Links_(web_browser)',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'GPL',
                         'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     ['name' => 'custom'],
                 ],
                 'latest-release' => [
                     [
                         'version' => '2.21',
-                        'date'    => '2 August 2020',
+                        'date' => '2 August 2020',
                     ],
                 ],
             ],
-            'Flock'          => [
-                'name'           => 'Flock',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Flock' => [
+                'name' => 'Flock',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Flock Inc',
                         'link' => [
@@ -1778,16 +1833,16 @@ class UATable
                         ],
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'discontinued',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'discontinued',
+                'licence' => [
                     [
                         'name' => 'Proprietary',
                         'note' => '(as of 3.0)',
                         'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'WebKit',
                         'link' => 'https://en.wikipedia.org/wiki/WebKit',
@@ -1796,26 +1851,26 @@ class UATable
                 'latest-release' => [
                     [
                         'version' => '3.5.3.4641',
-                        'date'    => 'February 1, 2011',
+                        'date' => 'February 1, 2011',
                     ],
                 ],
             ],
-            'Waterfox'       => [
-                'name'           => 'Waterfox Browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Waterfox' => [
+                'name' => 'Waterfox Browser',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     ['name' => 'Alex Kontos'],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'GPL',
                         'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Gecko',
                         'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
@@ -1824,29 +1879,29 @@ class UATable
                 'latest-release' => [
                     [
                         'version' => '2020.10',
-                        'date'    => '21 October 2020',
+                        'date' => '21 October 2020',
                     ],
                 ],
             ],
-            'Eolie'          => [
-                'name'           => 'Eolie Browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Eolie' => [
+                'name' => 'Eolie Browser',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Mozilla Foundation',
                         'link' => 'https://en.wikipedia.org/wiki/Mozilla_Foundation',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'MPL 2.0',
                         'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Gecko',
                         'note' => '(before v57)',
@@ -1859,32 +1914,32 @@ class UATable
                     ],
                 ],
                 'latest-release' => [
-                    'Standard'                 => [
+                    'Standard' => [
                         'version' => '82.0',
-                        'date'    => 'October 20, 2020',
+                        'date' => 'October 20, 2020',
                     ],
                     'Extended Support Release' => [
                         'version' => '78.4.0',
-                        'date'    => 'October 20, 2020',
+                        'date' => 'October 20, 2020',
                     ],
                 ],
             ],
-            'PaleMoon'       => [
-                'name'           => 'PaleMoon Browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'PaleMoon' => [
+                'name' => 'PaleMoon Browser',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     ['name' => 'Moonchild Productions'],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'MPL 2.0',
                         'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Goanna',
                         'link' => 'https://en.wikipedia.org/wiki/Goanna_(software)',
@@ -1893,61 +1948,61 @@ class UATable
                 'latest-release' => [
                     'Standard' => [
                         'version' => '28.15.0',
-                        'date'    => '27 October 2020',
+                        'date' => '27 October 2020',
                     ],
                 ],
             ],
-            'SeaMonkey'      => [
-                'name'           => 'SeaMonkey Browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'SeaMonkey' => [
+                'name' => 'SeaMonkey Browser',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     ['name' => 'SeaMonkey Council'],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'MPL 2.0',
                         'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Gecko',
                         'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
                     ],
                 ],
                 'latest-release' => [
-                    'Stable release'  => [
+                    'Stable release' => [
                         'version' => '2.53.4',
-                        'date'    => 'September 22, 2020',
+                        'date' => 'September 22, 2020',
                     ],
                     'Preview release' => [
                         'version' => '2.53.5b1',
-                        'date'    => 'October 29, 2020',
+                        'date' => 'October 29, 2020',
                     ],
                 ],
             ],
-            'SalamWeb'       => [
-                'name'           => 'SalamWeb Browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'SalamWeb' => [
+                'name' => 'SalamWeb Browser',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'SalamWeb',
                         'link' => 'https://salamweb.com/',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'Freeware',
                         'link' => 'https://en.wikipedia.org/wiki/Freeware',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Blink',
                         'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
@@ -1956,42 +2011,42 @@ class UATable
                 'latest-release' => [
                     'Windows' => [
                         'version' => '4.5',
-                        'date'    => 'July 31, 2020',
+                        'date' => 'July 31, 2020',
                     ],
                     'Android' => [
                         'version' => '4.5.0.40',
-                        'date'    => 'June 25, 2020',
+                        'date' => 'June 25, 2020',
                     ],
-                    'macOS'   => [
+                    'macOS' => [
                         'version' => '4.5',
-                        'date'    => 'June 20, 2020',
+                        'date' => 'June 20, 2020',
                     ],
-                    'iOS'     => [
+                    'iOS' => [
                         'version' => '4.5',
-                        'date'    => 'June 20, 2020',
+                        'date' => 'June 20, 2020',
                     ],
                 ],
             ],
-            'firefox'        => [
-                'name'           => 'Firefox Browser',
-                'keyword'        => 'firefox',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'firefox' => [
+                'name' => 'Firefox Browser',
+                'keyword' => 'firefox',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Mozilla Foundation',
                         'link' => 'https://en.wikipedia.org/wiki/Mozilla_Foundation',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'MPL 2.0',
                         'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Gecko',
                         'note' => '(before v57)',
@@ -2004,35 +2059,35 @@ class UATable
                     ],
                 ],
                 'latest-release' => [
-                    'Standard'                 => [
+                    'Standard' => [
                         'version' => '82.0',
-                        'date'    => 'October 20, 2020',
+                        'date' => 'October 20, 2020',
                     ],
                     'Extended Support Release' => [
                         'version' => '78.4.0',
-                        'date'    => 'October 20, 2020',
+                        'date' => 'October 20, 2020',
                     ],
                 ],
             ],
-            'Galeon'         => [
-                'name'           => 'Galeon Browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Galeon' => [
+                'name' => 'Galeon Browser',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Marco Pesenti Gritti',
                         'link' => 'https://www.gnome.org/news/2015/05/goodbye-marco/',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'discontinued',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'discontinued',
+                'licence' => [
                     [
                         'name' => 'GPL',
                         'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Gecko',
                         'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
@@ -2041,23 +2096,23 @@ class UATable
                 'latest-release' => [
                     [
                         'version' => '2.0.7',
-                        'date'    => '27 September 2008',
+                        'date' => '27 September 2008',
                     ],
                 ],
             ],
-            'iCab'           => [
-                'name'           => 'iCab Browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'iCab' => [
+                'name' => 'iCab Browser',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Alexander Clauss',
                         'link' => 'https://www.clauss-net.de/',
                     ],
                 ],
-                'cost'           => 'Free, $20 (Pro)',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free, $20 (Pro)',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'Proprietary (browser)',
                         'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
@@ -2067,7 +2122,7 @@ class UATable
                         'link' => 'https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'WebKit',
                         'link' => 'https://en.wikipedia.org/wiki/WebKit',
@@ -2076,23 +2131,23 @@ class UATable
                 'latest-release' => [
                     [
                         'version' => '5.9.2',
-                        'date'    => 'March 4, 2020',
+                        'date' => 'March 4, 2020',
                     ],
                 ],
             ],
-            'curl'           => [
-                'name'           => 'Client URL',
-                'type'           => 'Web Browser',
-                'ui'             => 'FullTextMode',
-                'creator'        => [
+            'curl' => [
+                'name' => 'Client URL',
+                'type' => 'Web Browser',
+                'ui' => 'FullTextMode',
+                'creator' => [
                     [
                         'name' => 'Daniel Stenberg',
                         'link' => 'https://en.wikipedia.org/wiki/Daniel_Stenberg',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'Free Software: MIT/X derivate license',
                         'link' => 'https://curl.haxx.se/docs/copyright.html',
@@ -2101,26 +2156,26 @@ class UATable
                 'latest-release' => [
                     'Stable release' => [
                         'version' => '7.73.0',
-                        'date'    => '14 October 2020',
+                        'date' => '14 October 2020',
                     ],
                 ],
             ],
-            'Lynx'           => [
-                'name'           => 'Lynx',
-                'type'           => 'FTP client / HTTP client',
-                'ui'             => 'TextBasedMode',
-                'creator'        => [
+            'Lynx' => [
+                'name' => 'Lynx',
+                'type' => 'FTP client / HTTP client',
+                'ui' => 'TextBasedMode',
+                'creator' => [
                     ['name' => 'Montulli, Grobe, Rezac, et al'],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'GPL',
                         'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'custom, fork of libwww',
                         'link' => 'https://en.wikipedia.org/wiki/Libwww',
@@ -2129,63 +2184,63 @@ class UATable
                 'latest-release' => [
                     [
                         'version' => '2.8.9rel.1',
-                        'date'    => '8 July 2018',
+                        'date' => '8 July 2018',
                     ],
                 ],
             ],
-            'msie'           => 'msie',
+            'msie' => 'msie',
 
-            'Midori'         => [
-                'name'           => 'Midori Browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Midori' => [
+                'name' => 'Midori Browser',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Christian Dywan, et al.',
                         'link' => 'https://astian.org/en/midori-browser/',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'LGPL',
                         'link' => 'https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'WebKit',
                         'link' => 'https://en.wikipedia.org/wiki/WebKit',
                     ],
                 ],
                 'latest-release' => [
-                    'Stable release'  => [],
+                    'Stable release' => [],
                     'Preview release' => [
                         'version' => '9.0',
-                        'date'    => 'July 29, 2019',
+                        'date' => 'July 29, 2019',
                     ],
                 ],
             ],
-            'NetSurf'        => [
-                'name'           => 'NetSurf Browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'NetSurf' => [
+                'name' => 'NetSurf Browser',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'The NetSurf Developers',
                         'link' => 'http://www.netsurf-browser.org/',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'GPL',
                         'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Qt WebEngine',
                         'link' => 'https://en.wikipedia.org/wiki/Qt_WebEngine',
@@ -2196,32 +2251,32 @@ class UATable
                     ],
                 ],
                 'latest-release' => [
-                    'Stable release'  => [
+                    'Stable release' => [
                         'version' => '3.10',
-                        'date'    => 'May 24, 2020',
+                        'date' => 'May 24, 2020',
                     ],
                     'Preview release' => [],
                 ],
             ],
-            'Otter'          => [
-                'name'           => 'Otter Browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Otter' => [
+                'name' => 'Otter Browser',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Michał Dutkiewicz',
                         'link' => 'https://otter-browser.org/',
                     ],
                 ],
-                'cost'           => 'Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'GPLv3',
                         'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'Qt WebEngine',
                         'link' => 'https://en.wikipedia.org/wiki/Qt_WebEngine',
@@ -2232,35 +2287,35 @@ class UATable
                     ],
                 ],
                 'latest-release' => [
-                    'Stable release'  => [
+                    'Stable release' => [
                         'version' => '1.0.01',
-                        'date'    => '1 January 2019',
+                        'date' => '1 January 2019',
                     ],
                     'Preview release' => [
                         'version' => 'weekly333',
-                        'date'    => 'May 18, 2020',
+                        'date' => 'May 18, 2020',
                     ],
                 ],
             ],
-            'Maxthon'        => [
-                'name'           => 'Maxthon Browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'Maxthon' => [
+                'name' => 'Maxthon Browser',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Maxthon International Ltd',
                         'link' => 'https://en.wikipedia.org/wiki/Maxthon',
                     ],
                 ],
-                'cost'           => '	Free',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => '	Free',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'Freeware',
                         'link' => 'https://en.wikipedia.org/wiki/Freeware',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'WebKit',
                         'link' => 'https://en.wikipedia.org/wiki/WebKit',
@@ -2271,45 +2326,45 @@ class UATable
                     ],
                 ],
                 'latest-release' => [
-                    'Windows'       => [
+                    'Windows' => [
                         'version' => '5.3.8.2000',
-                        'date'    => 'October 25, 2019',
+                        'date' => 'October 25, 2019',
                     ],
-                    'Android'       => [
+                    'Android' => [
                         'version' => '5.2.3.3241',
-                        'date'    => 'January 25, 2019',
+                        'date' => 'January 25, 2019',
                     ],
-                    'macOS'         => [
+                    'macOS' => [
                         'version' => '5.1.60',
-                        'date'    => 'August 27, 2018',
+                        'date' => 'August 27, 2018',
                     ],
-                    'iOS'           => [
+                    'iOS' => [
                         'version' => '5.4.5',
-                        'date'    => 'July 21, 2020',
+                        'date' => 'July 21, 2020',
                     ],
                     'Windows Phone' => [
                         'version' => '2.2.0',
-                        'date'    => 'March 30, 2017',
+                        'date' => 'March 30, 2017',
                     ],
-                    'Linux'         => [
+                    'Linux' => [
                         'version' => '1.0.5.3',
-                        'date'    => 'September 9, 2014',
+                        'date' => 'September 9, 2014',
                     ],
                 ],
             ],
-            'safari'         => [
-                'name'           => 'safari Browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
+            'safari' => [
+                'name' => 'safari Browser',
+                'type' => 'Web Browser',
+                'ui' => 'GraphicalMode',
+                'creator' => [
                     [
                         'name' => 'Apple Inc.',
                         'link' => 'https://en.wikipedia.org/wiki/Apple_Inc.',
                     ],
                 ],
-                'cost'           => 'Included with macOS and iOS',
-                'status'         => 'Active',
-                'licence'        => [
+                'cost' => 'Included with macOS and iOS',
+                'status' => 'Active',
+                'licence' => [
                     [
                         'name' => 'Proprietary (browser)',
                         'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
@@ -2319,7 +2374,7 @@ class UATable
                         'link' => 'https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License',
                     ],
                 ],
-                'layout'         => [
+                'layout' => [
                     [
                         'name' => 'WebKit',
                         'link' => 'https://en.wikipedia.org/wiki/WebKit',
@@ -2328,11 +2383,11 @@ class UATable
                 'latest-release' => [
                     'macOS' => [
                         'version' => '14.0',
-                        'date'    => 'September 17, 2020',
+                        'date' => 'September 17, 2020',
                     ],
-                    'iOS'   => [
+                    'iOS' => [
                         'version' => '14.0',
-                        'date'    => 'September 17, 2020',
+                        'date' => 'September 17, 2020',
                     ],
                 ],
             ],
@@ -3421,7 +3476,7 @@ class UATable
     }//end getWebBrowsers()
 
 
-    public function getWebBrowsersCategory():array
+    public function getWebBrowsersCategory(): array
     {
         return [
             "Application",
@@ -3433,7 +3488,7 @@ class UATable
             "Offline Browser",
             "Tool"
         ];
-        
+
     }
 
     /**
@@ -3444,7 +3499,7 @@ class UATable
     protected function getKnownBrowserAliases(): array
     {
         return [
-            'opr'       => 'opera',
+            'opr' => 'opera',
             'iceweasel' => 'firefox',
         ];
     }//end getKnownBrowserAliases()
@@ -3486,100 +3541,100 @@ class UATable
          * Servo is an experimental web browser layout engine being developed cooperatively by Mozilla and Samsung.*/
 
         return [
-            'Blink'     => [
-                'name'            => 'Blink',
-                'developer'       => 'Google Inc',
-                'contain'         => 'Chrome',
+            'Blink' => [
+                'name' => 'Blink',
+                'developer' => 'Google Inc',
+                'contain' => 'Chrome',
                 'contain_example' => 'Chrome/v.x.y.z',
             ],
-            'EdgeHTML'  => [
-                'name'            => 'EdgeHTML',
-                'developer'       => 'Microsoft',
-                'contain'         => 'Edg',
+            'EdgeHTML' => [
+                'name' => 'EdgeHTML',
+                'developer' => 'Microsoft',
+                'contain' => 'Edg',
                 'contain_example' => 'Edge/x.y',
             ],
-            'T5'        => [
-                'name'            => 'T5',
-                'developer'       => 'Baidu',
-                'contain'         => 'T5',
+            'T5' => [
+                'name' => 'T5',
+                'developer' => 'Baidu',
+                'contain' => 'T5',
                 'contain_example' => 't5/x.y',
             ],
-            'T7'        => [
-                'name'            => 'T7',
-                'developer'       => 'Baidu',
-                'contain'         => 't7',
+            'T7' => [
+                'name' => 'T7',
+                'developer' => 'Baidu',
+                'contain' => 't7',
                 'contain_example' => 't7/x.y',
             ],
-            'WebKit'    => [
-                'name'            => 'WebKit',
-                'developer'       => 'Apple Inc',
-                'contain'         => 'AppleWebKit',
+            'WebKit' => [
+                'name' => 'WebKit',
+                'developer' => 'Apple Inc',
+                'contain' => 'AppleWebKit',
                 'contain_example' => 'AppleWebKit/xyz',
             ],
-            'KHTML'     => [
-                'name'            => 'KHTML',
-                'developer'       => 'KDE project',
-                'contain'         => 'KHTML',
+            'KHTML' => [
+                'name' => 'KHTML',
+                'developer' => 'KDE project',
+                'contain' => 'KHTML',
                 'contain_example' => 'KHTML/x.y.z',
             ],
-            'Goanna'    => [
-                'name'            => 'Goanna',
-                'developer'       => 'Moonchild Productions',
-                'contain'         => 'Goanna',
+            'Goanna' => [
+                'name' => 'Goanna',
+                'developer' => 'Moonchild Productions',
+                'contain' => 'Goanna',
                 'contain_example' => 'Goanna/xyz',
             ],
-            'Gecko'     => [
-                'name'            => 'Gecko',
-                'developer'       => 'Mozilla Foundation',
-                'contain'         => 'Gecko',
+            'Gecko' => [
+                'name' => 'Gecko',
+                'developer' => 'Mozilla Foundation',
+                'contain' => 'Gecko',
                 'contain_example' => 'Gecko/xyz',
             ],
-            'NetFront'  => [
-                'name'            => 'NetFront',
-                'developer'       => 'Access',
-                'contain'         => 'NetFront',
+            'NetFront' => [
+                'name' => 'NetFront',
+                'developer' => 'Access',
+                'contain' => 'NetFront',
                 'contain_example' => 'NetFront/xy.z',
             ],
-            'Presto'    => [
-                'name'            => 'Presto',
-                'developer'       => 'Opera Software',
-                'contain'         => 'Opera',
+            'Presto' => [
+                'name' => 'Presto',
+                'developer' => 'Opera Software',
+                'contain' => 'Opera',
                 'contain_example' => 'Opera/x.y.z',
             ],
-            'Tasman'    => [
-                'name'            => 'Tasman',
-                'developer'       => 'Microsoft',
-                'contain'         => 'Tasman',
+            'Tasman' => [
+                'name' => 'Tasman',
+                'developer' => 'Microsoft',
+                'contain' => 'Tasman',
                 'contain_example' => 'Tasman/xyz',
             ],
-            'Trident'   => [
-                'name'            => 'Trident',
-                'developer'       => 'Microsoft',
-                'contain'         => 'Trident',
+            'Trident' => [
+                'name' => 'Trident',
+                'developer' => 'Microsoft',
+                'contain' => 'Trident',
                 'contain_example' => 'Trident/xyz',
             ],
-            'U2'        => [
-                'name'            => 'WebKit',
-                'developer'       => 'UCWeb Inc.',
-                'contain'         => 'U2',
+            'U2' => [
+                'name' => 'WebKit',
+                'developer' => 'UCWeb Inc.',
+                'contain' => 'U2',
                 'contain_example' => 'u2/x.y.z',
             ],
-            'U3'        => [
-                'name'            => 'WebKit',
-                'developer'       => 'UCWeb Inc.',
-                'contain'         => 'UCBrowser',
+            'U3' => [
+                'name' => 'WebKit',
+                'developer' => 'UCWeb Inc.',
+                'contain' => 'UCBrowser',
                 'contain_example' => 'UCBrowser/x.y.z',
             ],
-            'Servo'     => [
-                'name'            => 'Servo',
-                'developer'       => 'cooperatively by Mozilla and Samsung',
-                'contain'         => 'Servo',
+            'Servo' => [
+                'name' => 'Servo',
+                'developer' => 'cooperatively by Mozilla and Samsung',
+                'contain' => 'Servo',
                 'contain_example' => 'Servo/xyz',
             ],
             'libwww-FM' => [
-                'name'            => 'libwww-FM',
-                'developer'       => 'Tim Berners-Lee',
-                'contain'         => 'libwww-FM',
+                'name' => 'libwww-FM',
+                'developer' => 'Tim Berners-Lee',
+                'contain' => 'libwww-FM',
                 'contain_example' => 'libwww-FM/xyz',
             ],
         ];
@@ -3595,15 +3650,15 @@ class UATable
     {
         // Platform's Window Manager.
         return [
-            'x11'     => [
+            'x11' => [
                 'name' => 'Linux Desktop,',
                 'type' => 'X11 Window Manager.',
             ],
-            'linux'   => [
+            'linux' => [
                 'name' => 'Linux Desktop,',
                 'type' => 'Unknown Window Manager.',
             ],
-            'win'     => [
+            'win' => [
                 'name' => 'Windows Desktop,',
                 'type' => 'Windows Window Manager.',
             ],
@@ -3611,11 +3666,11 @@ class UATable
                 'name' => 'Android Device,',
                 'type' => 'Unknown Window Manager.',
             ],
-            'cpu'     => [
+            'cpu' => [
                 'name' => 'iOS,',
                 'type' => 'Mac Window Manager.',
             ],
-            'mac'     => [
+            'mac' => [
                 'name' => 'Macintosh,',
                 'type' => 'Mac Window Manager.',
             ],
@@ -3632,16 +3687,14 @@ class UATable
     {
         // Devices Categories.
         return [
-            'linux'   => 'linux',
-            'iphone'  => 'iPhone',
-            'mac'     => 'mac OS',
-            'win'     => 'windows',
+            'linux' => 'linux',
+            'iphone' => 'iPhone',
+            'mac' => 'mac OS',
+            'win' => 'windows',
             'android' => 'Android',
-            'mobi'    => 'Mobile',
+            'mobi' => 'Mobile',
         ];
     }//end getDevicesCategoryList()
-
-
 
 
     public function getPlatformsKeys(): array
@@ -7523,25 +7576,25 @@ class UATable
     protected function getPlatforms(): array
     {
         return [
-            'AIX'          => [
-                'name'         => 'AIX',
+            'AIX' => [
+                'name' => 'AIX',
                 'architecture' => '32-bit',
-                'developer'    => 'IBM',
+                'developer' => 'IBM',
             ],
-            'AmigaOS'      => [
-                'name'         => 'Amiga OS',
+            'AmigaOS' => [
+                'name' => 'Amiga OS',
                 'architecture' => '32-bit',
-                'developer'    => 'Commodore International',
+                'developer' => 'Commodore International',
             ],
-            'Android'      => [
-                'name'         => 'Android',
+            'Android' => [
+                'name' => 'Android',
                 'architecture' => '32-bit',
-                'developer'    => 'Goggle Inc',
+                'developer' => 'Goggle Inc',
             ],
-            'GoogleTV'     => [
-                'name'         => 'Android for GoogleTV',
+            'GoogleTV' => [
+                'name' => 'Android for GoogleTV',
                 'architecture' => '32-bit',
-                'developer'    => 'Goggle Inc',
+                'developer' => 'Goggle Inc',
             ],
             // 'Asha',
             // 'ATV OS X',
@@ -7560,10 +7613,10 @@ class UATable
             // 'Firefox OS',
             // 'FreeBSD',
             // 'HP-UX',
-            'iOS'          => [
-                'name'         => 'iOS for iPhone',
+            'iOS' => [
+                'name' => 'iOS for iPhone',
                 'architecture' => '32-bit',
-                'developer'    => 'Apple Inc',
+                'developer' => 'Apple Inc',
             ],
             // 'ipadOS',
             // 'IRIX64',
@@ -7604,30 +7657,30 @@ class UATable
             // 'Ubuntu Touch',
             // 'Unix',
             // 'webOS',
-            'Windows 10'   => [
-                'name'         => 'Windows 10',
+            'Windows 10' => [
+                'name' => 'Windows 10',
                 'architecture' => '64-bit',
-                'developer'    => 'Microsoft Corporation',
+                'developer' => 'Microsoft Corporation',
             ],
-            'Win16'        => [
-                'name'         => 'Win16',
+            'Win16' => [
+                'name' => 'Win16',
                 'architecture' => '16-bit',
-                'developer'    => 'Microsoft Corporation',
+                'developer' => 'Microsoft Corporation',
             ],
             'Windows 2000' => [
-                'name'         => 'Win16',
+                'name' => 'Win16',
                 'architecture' => '16-bit',
-                'developer'    => 'Microsoft Corporation',
+                'developer' => 'Microsoft Corporation',
             ],
-            'Win31'        => [
-                'name'         => 'Win31',
+            'Win31' => [
+                'name' => 'Win31',
                 'architecture' => '16-bit',
-                'developer'    => 'Microsoft Corporation',
+                'developer' => 'Microsoft Corporation',
             ],
-            'Win32'        => [
-                'name'         => 'Win32',
+            'Win32' => [
+                'name' => 'Win32',
                 'architecture' => '16-bit',
-                'developer'    => 'Microsoft Corporation',
+                'developer' => 'Microsoft Corporation',
             ],
             // 'Win32',
             // 'Win64',
@@ -7685,18 +7738,18 @@ class UATable
     {
         return [
             'iphone' => [
-                'name'    => 'iPhone',
-                'type'    => 'Mobile phone',
+                'name' => 'iPhone',
+                'type' => 'Mobile phone',
                 'pointer' => 'Touch Screen',
-                'vendor'  => 'Apple Inc',
-                'brand'   => 'Apple',
+                'vendor' => 'Apple Inc',
+                'brand' => 'Apple',
             ],
             'mobile' => [
-                'name'    => 'Mobile',
-                'type'    => 'Mobile phone',
+                'name' => 'Mobile',
+                'type' => 'Mobile phone',
                 'pointer' => 'Touch Screen',
-                'vendor'  => 'Unknown',
-                'brand'   => 'Generic',
+                'vendor' => 'Unknown',
+                'brand' => 'Generic',
             ],
         ];
     }//end getDevices()
@@ -7712,841 +7765,841 @@ class UATable
         // Devices List.
         return [
             // Console.
-            '3ds'                  => [
-                'Browser'  => [
-                    'name'             => 'Nintendo Browser',
-                    'architecture'     => '32-bit',
-                    'developer'        => 'Nintendo',
+            '3ds' => [
+                'Browser' => [
+                    'name' => 'Nintendo Browser',
+                    'architecture' => '32-bit',
+                    'developer' => 'Nintendo',
                     'rendering engine' => 'WebKit.',
-                    'type'             => 'Browser.',
+                    'type' => 'Browser.',
                 ],
                 'Platform' => [
-                    'name'         => 'Nintendo 3DS',
+                    'name' => 'Nintendo 3DS',
                     'architecture' => '32-bit',
-                    'developer'    => 'Nintendo',
+                    'developer' => 'Nintendo',
                 ],
-                'Device'   => [
-                    'name'   => '3DS',
-                    'type'   => 'Console',
+                'Device' => [
+                    'name' => '3DS',
+                    'type' => 'Console',
                     'vendor' => 'Nintendo',
-                    'brand'  => 'Nintendo',
+                    'brand' => 'Nintendo',
                 ],
             ],
-            'DSi'                  => [
-                'Browser'  => [
-                    'name'             => 'Nintendo Browser',
-                    'architecture'     => '32-bit',
-                    'developer'        => 'Nintendo',
+            'DSi' => [
+                'Browser' => [
+                    'name' => 'Nintendo Browser',
+                    'architecture' => '32-bit',
+                    'developer' => 'Nintendo',
                     'rendering engine' => 'Presto.',
-                    'type'             => 'Browser.',
+                    'type' => 'Browser.',
                 ],
                 'Platform' => [
-                    'name'         => 'Nintendo DSi',
+                    'name' => 'Nintendo DSi',
                     'architecture' => '32-bit',
-                    'developer'    => 'Nintendo',
+                    'developer' => 'Nintendo',
                 ],
-                'Device'   => [
-                    'name'   => 'DSi',
-                    'type'   => 'Console',
+                'Device' => [
+                    'name' => 'DSi',
+                    'type' => 'Console',
                     'vendor' => 'Nintendo',
-                    'brand'  => 'Nintendo',
+                    'brand' => 'Nintendo',
                 ],
             ],
-            'New 3DS'              => [
-                'Browser'  => [
-                    'name'             => 'Nintendo Browser',
-                    'architecture'     => '32-bit',
-                    'developer'        => 'Nintendo',
+            'New 3DS' => [
+                'Browser' => [
+                    'name' => 'Nintendo Browser',
+                    'architecture' => '32-bit',
+                    'developer' => 'Nintendo',
                     'rendering engine' => 'WebKit.',
-                    'type'             => 'Browser.',
+                    'type' => 'Browser.',
                 ],
                 'Platform' => [
-                    'name'         => 'Nintendo 3DS',
+                    'name' => 'Nintendo 3DS',
                     'architecture' => '32-bit',
-                    'developer'    => 'Nintendo',
+                    'developer' => 'Nintendo',
                 ],
-                'Device'   => [
-                    'name'   => 'New 3DS',
-                    'type'   => 'Console',
+                'Device' => [
+                    'name' => 'New 3DS',
+                    'type' => 'Console',
                     'vendor' => 'Nintendo',
-                    'brand'  => 'Nintendo',
+                    'brand' => 'Nintendo',
                 ],
             ],
             'Playstation Portable' => [
-                'Browser'  => [
-                    'name'         => 'Sony PSP',
+                'Browser' => [
+                    'name' => 'Sony PSP',
                     'architecture' => '32-bit',
-                    'developer'    => 'Sony',
-                    'type'         => 'Browser.',
+                    'developer' => 'Sony',
+                    'type' => 'Browser.',
                 ],
                 'Platform' => [
-                    'name'         => 'JAVA',
+                    'name' => 'JAVA',
                     'architecture' => '32-bit',
-                    'developer'    => 'Oracle',
-                ],
-                'Device'   => [
-                    'name'   => 'Playstation Portable',
-                    'type'   => 'Console',
-                    'vendor' => 'Sony',
-                    'brand'  => 'Sony',
-                ],
-            ],
-            'PlayStation Vita'     => [
-                'Browser'  => [
-                    'name'             => 'Playstation Browser',
-                    'developer'        => 'Sony',
-                    'rendering engine' => 'WebKit.',
-                    'type'             => 'Browser.',
-                ],
-                'Platform' => [
-                    'name'      => 'PlayStation Vita',
                     'developer' => 'Oracle',
                 ],
-                'Device'   => [
-                    'name'   => 'PlayStation Vita',
-                    'type'   => 'Console',
+                'Device' => [
+                    'name' => 'Playstation Portable',
+                    'type' => 'Console',
                     'vendor' => 'Sony',
-                    'brand'  => 'Sony',
+                    'brand' => 'Sony',
                 ],
             ],
-            'Switch'               => [
-                'Browser'  => [
-                    'name'             => 'Nintendo Browser',
-                    'architecture'     => '32-bit',
-                    'developer'        => 'Nintendo',
+            'PlayStation Vita' => [
+                'Browser' => [
+                    'name' => 'Playstation Browser',
+                    'developer' => 'Sony',
                     'rendering engine' => 'WebKit.',
-                    'type'             => 'Browser.',
+                    'type' => 'Browser.',
                 ],
                 'Platform' => [
-                    'name'         => 'Nintendo Switch',
-                    'architecture' => '32-bit',
-                    'developer'    => 'Nintendo',
+                    'name' => 'PlayStation Vita',
+                    'developer' => 'Oracle',
                 ],
-                'Device'   => [
-                    'name'   => 'Switch',
-                    'type'   => 'Console',
+                'Device' => [
+                    'name' => 'PlayStation Vita',
+                    'type' => 'Console',
+                    'vendor' => 'Sony',
+                    'brand' => 'Sony',
+                ],
+            ],
+            'Switch' => [
+                'Browser' => [
+                    'name' => 'Nintendo Browser',
+                    'architecture' => '32-bit',
+                    'developer' => 'Nintendo',
+                    'rendering engine' => 'WebKit.',
+                    'type' => 'Browser.',
+                ],
+                'Platform' => [
+                    'name' => 'Nintendo Switch',
+                    'architecture' => '32-bit',
+                    'developer' => 'Nintendo',
+                ],
+                'Device' => [
+                    'name' => 'Switch',
+                    'type' => 'Console',
                     'vendor' => 'Nintendo',
-                    'brand'  => 'Nintendo',
+                    'brand' => 'Nintendo',
                 ],
             ],
 
             // Desktops.
-            'Amiga'                => [
-                'Browser'  => [
-                    'name'         => 'IBrowse',
+            'Amiga' => [
+                'Browser' => [
+                    'name' => 'IBrowse',
                     'architecture' => '32-bit',
-                    'developer'    => 'Stefan Burstroem',
-                    'type'         => 'Browser.',
+                    'developer' => 'Stefan Burstroem',
+                    'type' => 'Browser.',
                 ],
                 'Platform' => [
-                    'name'         => 'Amiga OS',
+                    'name' => 'Amiga OS',
                     'architecture' => '32-bit',
-                    'developer'    => 'Commodore International',
+                    'developer' => 'Commodore International',
                 ],
-                'Device'   => [
-                    'name'   => 'Amiga',
-                    'type'   => 'Desktop',
+                'Device' => [
+                    'name' => 'Amiga',
+                    'type' => 'Desktop',
                     'vendor' => 'Commodore International',
-                    'brand'  => 'Commodore',
+                    'brand' => 'Commodore',
                 ],
             ],
-            'DA241HL'              => [
-                'Browser'  => [
-                    'name'         => 'Chrome',
+            'DA241HL' => [
+                'Browser' => [
+                    'name' => 'Chrome',
                     'architecture' => '32-bit',
-                    'developer'    => 'Google Inc',
-                    'type'         => 'Browser.',
+                    'developer' => 'Google Inc',
+                    'type' => 'Browser.',
                 ],
                 'Platform' => [
-                    'name'         => 'Android',
+                    'name' => 'Android',
                     'architecture' => '32-bit',
-                    'developer'    => 'Google Inc',
+                    'developer' => 'Google Inc',
                 ],
-                'Device'   => [
-                    'name'   => 'DA 241HL',
-                    'type'   => 'Desktop',
+                'Device' => [
+                    'name' => 'DA 241HL',
+                    'type' => 'Desktop',
                     'vendor' => 'Acer',
-                    'brand'  => 'Acer',
+                    'brand' => 'Acer',
                 ],
             ],
 
             // car.
-            'tesla'                => [
-                'Browser'  => [
-                    'name'             => 'Tesla Car Browser',
-                    'architecture'     => '32-bit',
-                    'developer'        => 'Tesla Motors.',
+            'tesla' => [
+                'Browser' => [
+                    'name' => 'Tesla Car Browser',
+                    'architecture' => '32-bit',
+                    'developer' => 'Tesla Motors.',
                     'rendering engine' => 'Blink.',
-                    'type'             => 'Browser.',
+                    'type' => 'Browser.',
                 ],
                 'Platform' => [
-                    'name'         => 'Linux',
+                    'name' => 'Linux',
                     'architecture' => '32-bit',
-                    'developer'    => 'Linux Foundation',
+                    'developer' => 'Linux Foundation',
                 ],
-                'Device'   => [
-                    'name'   => 'Car',
-                    'type'   => 'Car Entertainment Framework',
+                'Device' => [
+                    'name' => 'Car',
+                    'type' => 'Car Entertainment Framework',
                     'vendor' => 'Tesla Motors',
-                    'brand'  => 'Tesla',
+                    'brand' => 'Tesla',
                 ],
             ],
-            'QtCarBrowser'         => [
-                'Browser'  => [
-                    'name'             => 'Tesla Car Browser',
-                    'architecture'     => '32-bit',
-                    'developer'        => 'Tesla Motors.',
+            'QtCarBrowser' => [
+                'Browser' => [
+                    'name' => 'Tesla Car Browser',
+                    'architecture' => '32-bit',
+                    'developer' => 'Tesla Motors.',
                     'rendering engine' => 'Blink.',
-                    'type'             => 'Browser.',
+                    'type' => 'Browser.',
                 ],
                 'Platform' => [
-                    'name'         => 'Linux',
+                    'name' => 'Linux',
                     'architecture' => '32-bit',
-                    'developer'    => 'Linux Foundation',
+                    'developer' => 'Linux Foundation',
                 ],
-                'Device'   => [
-                    'name'   => 'Car',
-                    'type'   => 'Car Entertainment Framework',
+                'Device' => [
+                    'name' => 'Car',
+                    'type' => 'Car Entertainment Framework',
                     'vendor' => 'Tesla Motors',
-                    'brand'  => 'Tesla',
+                    'brand' => 'Tesla',
                 ],
             ],
 
             // Linux Desktop.
-            'freebsd'              => [
+            'freebsd' => [
                 'Platform' => [
-                    'name'         => 'FreeBSD',
+                    'name' => 'FreeBSD',
                     'architecture' => '32-bit',
-                    'developer'    => 'FreeBSD Foundation',
+                    'developer' => 'FreeBSD Foundation',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Computer',
                     'type' => 'Linux Desktop',
                 ],
             ],
-            'CrOS'                 => [
+            'CrOS' => [
                 'Platform' => [
-                    'name'         => 'Chrome OS',
+                    'name' => 'Chrome OS',
                     'architecture' => '32-bit',
-                    'developer'    => 'Google Inc',
+                    'developer' => 'Google Inc',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Computer',
                     'type' => 'Desktop',
                 ],
             ],
-            'Ubuntu'               => [
+            'Ubuntu' => [
                 'Platform' => [
-                    'name'         => 'Ubuntu OS',
+                    'name' => 'Ubuntu OS',
                     'architecture' => '32-bit',
-                    'developer'    => 'Canonical Inc',
+                    'developer' => 'Canonical Inc',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Computer',
                     'type' => 'Linux Desktop',
                 ],
             ],
-            'Arch Linux'           => [
+            'Arch Linux' => [
                 'Platform' => [
-                    'name'         => 'Arch Linux',
+                    'name' => 'Arch Linux',
                     'architecture' => '32-bit',
-                    'developer'    => 'Arch Linux',
+                    'developer' => 'Arch Linux',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Computer',
                     'type' => 'Linux Desktop',
                 ],
             ],
-            'manjaro'              => 'manjaro',
-            'linux'                => [
+            'manjaro' => 'manjaro',
+            'linux' => [
                 'Platform' => [
-                    'name'         => 'Linux',
+                    'name' => 'Linux',
                     'architecture' => '32-bit',
-                    'developer'    => 'Linux Foundation',
+                    'developer' => 'Linux Foundation',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Computer',
                     'type' => 'Linux Desktop',
                 ],
             ],
-            'debian'               => 'Debian',
-            'sunos'                => 'Sun Solaris',
-            'beos'                 => 'BeOS',
-            'apachebench'          => 'ApacheBench',
-            'aix'                  => 'AIX',
-            'irix'                 => 'Irix',
-            'osf'                  => 'DEC OSF',
-            'hp-ux'                => 'HP-UX',
-            'netbsd'               => 'NetBSD',
-            'bsdi'                 => 'BSDi',
-            'openbsd'              => 'OpenBSD',
-            'gnu'                  => 'GNU/Linux',
-            'unix'                 => 'Unknown Unix OS',
-            'ubuntu'               => 'Ubuntu',
-            'RISC OS'              => 'RISC OS',
-            'Darwin'               => 'MAC OS',
-            'Haiku'                => 'Haiku OS',
-            'FreeMiNT'             => 'FreeMiNT OS',
+            'debian' => 'Debian',
+            'sunos' => 'Sun Solaris',
+            'beos' => 'BeOS',
+            'apachebench' => 'ApacheBench',
+            'aix' => 'AIX',
+            'irix' => 'Irix',
+            'osf' => 'DEC OSF',
+            'hp-ux' => 'HP-UX',
+            'netbsd' => 'NetBSD',
+            'bsdi' => 'BSDi',
+            'openbsd' => 'OpenBSD',
+            'gnu' => 'GNU/Linux',
+            'unix' => 'Unknown Unix OS',
+            'ubuntu' => 'Ubuntu',
+            'RISC OS' => 'RISC OS',
+            'Darwin' => 'MAC OS',
+            'Haiku' => 'Haiku OS',
+            'FreeMiNT' => 'FreeMiNT OS',
 
             // Windows Desktop
-            'windows phone 8'      => [
+            'windows phone 8' => [
                 'Platform' => [
-                    'name'         => 'Windows Phone 8',
+                    'name' => 'Windows Phone 8',
                     'architecture' => '32-bit',
-                    'developer'    => 'Microsoft Corp',
+                    'developer' => 'Microsoft Corp',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Windows Phone',
                     'type' => 'phone',
                 ],
             ],
-            'windows phone os 7'   => [
+            'windows phone os 7' => [
                 'Platform' => [
-                    'name'         => 'Windows Phone 7',
+                    'name' => 'Windows Phone 7',
                     'architecture' => '32-bit',
-                    'developer'    => 'Microsoft Corp',
+                    'developer' => 'Microsoft Corp',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Windows Phone',
                     'type' => 'phone',
                 ],
             ],
-            'windows nt 10'        => [
+            'windows nt 10' => [
                 'Platform' => [
-                    'name'         => 'Windows 10',
+                    'name' => 'Windows 10',
                     'architecture' => '32-bit',
-                    'developer'    => 'Microsoft Corp',
+                    'developer' => 'Microsoft Corp',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Computer',
                     'type' => 'Desktop',
                 ],
             ],
-            'windows nt 6.3'       => [
+            'windows nt 6.3' => [
                 'Platform' => [
-                    'name'         => 'Windows 8.1',
+                    'name' => 'Windows 8.1',
                     'architecture' => '32-bit',
-                    'developer'    => 'Microsoft Corp',
+                    'developer' => 'Microsoft Corp',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Computer',
                     'type' => 'Desktop',
                 ],
             ],
-            'windows nt 6.2'       => [
+            'windows nt 6.2' => [
                 'Platform' => [
-                    'name'         => 'Windows 8',
+                    'name' => 'Windows 8',
                     'architecture' => '32-bit',
-                    'developer'    => 'Microsoft Corp',
+                    'developer' => 'Microsoft Corp',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Computer',
                     'type' => 'Desktop',
                 ],
             ],
-            'windows nt 6.1'       => [
+            'windows nt 6.1' => [
                 'Platform' => [
-                    'name'         => 'Windows 7',
+                    'name' => 'Windows 7',
                     'architecture' => '32-bit',
-                    'developer'    => 'Microsoft Corp',
+                    'developer' => 'Microsoft Corp',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Computer',
                     'type' => 'Desktop',
                 ],
             ],
-            'windows nt 6.0'       => [
+            'windows nt 6.0' => [
                 'Platform' => [
-                    'name'         => 'Windows Longhorn',
+                    'name' => 'Windows Longhorn',
                     'architecture' => '32-bit',
-                    'developer'    => 'Microsoft Corp',
+                    'developer' => 'Microsoft Corp',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Computer',
                     'type' => 'Desktop',
                 ],
             ],
-            'windows nt 5.2'       => [
+            'windows nt 5.2' => [
                 'Platform' => [
-                    'name'         => 'Windows 2003',
+                    'name' => 'Windows 2003',
                     'architecture' => '32-bit',
-                    'developer'    => 'Microsoft Corp',
+                    'developer' => 'Microsoft Corp',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Computer',
                     'type' => 'Desktop',
                 ],
             ],
-            'windows nt 5.1'       => [
+            'windows nt 5.1' => [
                 'Platform' => [
-                    'name'         => 'Windows XP',
+                    'name' => 'Windows XP',
                     'architecture' => '32-bit',
-                    'developer'    => 'Microsoft Corp',
+                    'developer' => 'Microsoft Corp',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Computer',
                     'type' => 'Desktop',
                 ],
             ],
-            'windows xp'           => [
+            'windows xp' => [
                 'Platform' => [
-                    'name'         => 'Windows XP',
+                    'name' => 'Windows XP',
                     'architecture' => '32-bit',
-                    'developer'    => 'Microsoft Corp',
+                    'developer' => 'Microsoft Corp',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Computer',
                     'type' => 'Desktop',
                 ],
             ],
-            'windows nt 5.0'       => [
+            'windows nt 5.0' => [
                 'Platform' => [
-                    'name'         => 'Windows 2000',
+                    'name' => 'Windows 2000',
                     'architecture' => '32-bit',
-                    'developer'    => 'Microsoft Corp',
+                    'developer' => 'Microsoft Corp',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Computer',
                     'type' => 'Desktop',
                 ],
             ],
-            'windows me'           => [
+            'windows me' => [
                 'Platform' => [
-                    'name'         => 'Windows ME',
+                    'name' => 'Windows ME',
                     'architecture' => '32-bit',
-                    'developer'    => 'Microsoft Corp',
+                    'developer' => 'Microsoft Corp',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Computer',
                     'type' => 'Desktop',
                 ],
             ],
-            'windows nt 4.0'       => [
+            'windows nt 4.0' => [
                 'Platform' => [
-                    'name'         => 'Windows NT 4.0',
+                    'name' => 'Windows NT 4.0',
                     'architecture' => '32-bit',
-                    'developer'    => 'Microsoft Corp',
+                    'developer' => 'Microsoft Corp',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Computer',
                     'type' => 'Desktop',
                 ],
             ],
-            'winnt4.0'             => [
+            'winnt4.0' => [
                 'Platform' => [
-                    'name'         => 'Windows NT 4.0',
+                    'name' => 'Windows NT 4.0',
                     'architecture' => '32-bit',
-                    'developer'    => 'Microsoft Corp',
+                    'developer' => 'Microsoft Corp',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Computer',
                     'type' => 'Desktop',
                 ],
             ],
-            'winnt 4.0'            => [
+            'winnt 4.0' => [
                 'Platform' => [
-                    'name'         => 'Windows NT',
+                    'name' => 'Windows NT',
                     'architecture' => '32-bit',
-                    'developer'    => 'Microsoft Corp',
+                    'developer' => 'Microsoft Corp',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Computer',
                     'type' => 'Desktop',
                 ],
             ],
-            'winn/t'               => [
+            'winn/t' => [
                 'Platform' => [
-                    'name'         => 'Windows NT',
+                    'name' => 'Windows NT',
                     'architecture' => '32-bit',
-                    'developer'    => 'Microsoft Corp',
+                    'developer' => 'Microsoft Corp',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Computer',
                     'type' => 'Desktop',
                 ],
             ],
-            'windows 98'           => [
+            'windows 98' => [
                 'Platform' => [
-                    'name'         => 'Windows 98',
+                    'name' => 'Windows 98',
                     'architecture' => '32-bit',
-                    'developer'    => 'Microsoft Corp',
+                    'developer' => 'Microsoft Corp',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Computer',
                     'type' => 'Desktop',
                 ],
             ],
-            'win98'                => [
+            'win98' => [
                 'Platform' => [
-                    'name'         => 'Windows 98',
+                    'name' => 'Windows 98',
                     'architecture' => '32-bit',
-                    'developer'    => 'Microsoft Corp',
+                    'developer' => 'Microsoft Corp',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Computer',
                     'type' => 'Desktop',
                 ],
             ],
-            'windows 95'           => [
+            'windows 95' => [
                 'Platform' => [
-                    'name'         => 'Windows 95',
+                    'name' => 'Windows 95',
                     'architecture' => '32-bit',
-                    'developer'    => 'Microsoft Corp',
+                    'developer' => 'Microsoft Corp',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Computer',
                     'type' => 'Desktop',
                 ],
             ],
-            'win95'                => [
+            'win95' => [
                 'Platform' => [
-                    'name'         => 'Windows 95',
+                    'name' => 'Windows 95',
                     'architecture' => '32-bit',
-                    'developer'    => 'Microsoft Corp',
+                    'developer' => 'Microsoft Corp',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Computer',
                     'type' => 'Desktop',
                 ],
             ],
-            'win16'                => [
+            'win16' => [
                 'Platform' => [
-                    'name'         => 'Windows 3.11',
+                    'name' => 'Windows 3.11',
                     'architecture' => '32-bit',
-                    'developer'    => 'Microsoft Corp',
+                    'developer' => 'Microsoft Corp',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Computer',
                     'type' => 'Desktop',
                 ],
             ],
             // Macintosh
-            'ppc'                  => 'Macintosh',
-            'macintosh|mac os x'   => 'Mac OS X',
-            'mac_powerpc'          => 'Mac OS 9',
-            'os x'                 => 'Mac OS X',
-            'ppc mac'              => 'Power PC Mac',
+            'ppc' => 'Macintosh',
+            'macintosh|mac os x' => 'Mac OS X',
+            'mac_powerpc' => 'Mac OS 9',
+            'os x' => 'Mac OS X',
+            'ppc mac' => 'Power PC Mac',
 
             // Phone
-            'android'              => 'Android',
-            'webos'                => 'Mobile',
+            'android' => 'Android',
+            'webos' => 'Mobile',
 
             // legacy array, old values commented out
-            'mobileexplorer'       => 'Mobile Explorer',
+            'mobileexplorer' => 'Mobile Explorer',
             // 'openwave'        => 'Open Wave',
             // 'opera mini'        => 'Opera Mini',
             // 'operamini'        => 'Opera Mini',
             // 'elaine'            => 'Palm',
-            'palmsource'           => 'Palm',
+            'palmsource' => 'Palm',
             // 'digital paths'    => 'Palm',
             // 'avantgo'            => 'Avantgo',
             // 'xiino'            => 'Xiino',
-            'palmscape'            => 'Palmscape',
+            'palmscape' => 'Palmscape',
             // 'nokia'            => 'Nokia',
             // 'ericsson'        => 'Ericsson',
             // 'blackberry'        => 'BlackBerry',
             // 'motorola'        => 'Motorola'
             // Phones and Manufacturers
-            'motorola'             => 'Motorola',
-            'nokia'                => 'Nokia',
-            'iphone'               => 'Apple iPhone',
-            'ipad'                 => 'iPad',
-            'ipod'                 => 'Apple iPod Touch',
-            'sony'                 => 'Sony Ericsson',
-            'ericsson'             => 'Sony Ericsson',
-            'blackberry'           => 'BlackBerry',
-            'cocoon'               => 'O2 Cocoon',
-            'blazer'               => 'Treo',
-            'lg'                   => 'LG',
-            'amoi'                 => 'Amoi',
-            'xda'                  => 'XDA',
-            'mda'                  => 'MDA',
-            'vario'                => 'Vario',
-            'htc'                  => 'HTC',
-            'samsung'              => 'Samsung',
-            'sharp'                => 'Sharp',
-            'sie-'                 => 'Siemens',
-            'alcatel'              => 'Alcatel',
-            'benq'                 => 'BenQ',
-            'ipaq'                 => 'HP iPaq',
-            'mot-'                 => 'Motorola',
+            'motorola' => 'Motorola',
+            'nokia' => 'Nokia',
+            'iphone' => 'Apple iPhone',
+            'ipad' => 'iPad',
+            'ipod' => 'Apple iPod Touch',
+            'sony' => 'Sony Ericsson',
+            'ericsson' => 'Sony Ericsson',
+            'blackberry' => 'BlackBerry',
+            'cocoon' => 'O2 Cocoon',
+            'blazer' => 'Treo',
+            'lg' => 'LG',
+            'amoi' => 'Amoi',
+            'xda' => 'XDA',
+            'mda' => 'MDA',
+            'vario' => 'Vario',
+            'htc' => 'HTC',
+            'samsung' => 'Samsung',
+            'sharp' => 'Sharp',
+            'sie-' => 'Siemens',
+            'alcatel' => 'Alcatel',
+            'benq' => 'BenQ',
+            'ipaq' => 'HP iPaq',
+            'mot-' => 'Motorola',
             'playstation portable' => 'PlayStation Portable',
-            'hiptop'               => 'Danger Hiptop',
-            'nec-'                 => 'NEC',
-            'panasonic'            => 'Panasonic',
-            'philips'              => 'Philips',
-            'sagem'                => 'Sagem',
-            'sanyo'                => 'Sanyo',
-            'spv'                  => 'SPV',
-            'zte'                  => 'ZTE',
-            'sendo'                => 'Sendo',
+            'hiptop' => 'Danger Hiptop',
+            'nec-' => 'NEC',
+            'panasonic' => 'Panasonic',
+            'philips' => 'Philips',
+            'sagem' => 'Sagem',
+            'sanyo' => 'Sanyo',
+            'spv' => 'SPV',
+            'zte' => 'ZTE',
+            'sendo' => 'Sendo',
 
             // Operating Systems
-            'symbian'              => 'Symbian',
-            'SymbianOS'            => 'SymbianOS',
-            'elaine'               => 'Palm',
-            'palm'                 => 'Palm',
-            'series60'             => 'Symbian S60',
-            'windows ce'           => 'Windows CE',
+            'symbian' => 'Symbian',
+            'SymbianOS' => 'SymbianOS',
+            'elaine' => 'Palm',
+            'palm' => 'Palm',
+            'series60' => 'Symbian S60',
+            'windows ce' => 'Windows CE',
 
             // Browsers
-            'obigo'                => 'Obigo',
-            'netfront'             => 'Netfront Browser',
-            'openwave'             => 'Openwave Browser',
-            'mobilexplorer'        => 'Mobile Explorer',
-            'operamini'            => 'Opera Mini',
-            'opera mini'           => 'Opera Mini',
+            'obigo' => 'Obigo',
+            'netfront' => 'Netfront Browser',
+            'openwave' => 'Openwave Browser',
+            'mobilexplorer' => 'Mobile Explorer',
+            'operamini' => 'Opera Mini',
+            'opera mini' => 'Opera Mini',
 
             // Other
-            'digital paths'        => 'Digital Paths',
-            'avantgo'              => 'AvantGo',
-            'xiino'                => 'Xiino',
-            'novarra'              => 'Novarra Transcoder',
-            'vodafone'             => 'Vodafone',
-            'docomo'               => 'NTT DoCoMo',
-            'o2'                   => 'O2',
+            'digital paths' => 'Digital Paths',
+            'avantgo' => 'AvantGo',
+            'xiino' => 'Xiino',
+            'novarra' => 'Novarra Transcoder',
+            'vodafone' => 'Vodafone',
+            'docomo' => 'NTT DoCoMo',
+            'o2' => 'O2',
 
             // Fallback
-            'mobile'               => 'Generic Mobile',
-            'wireless'             => 'Generic Mobile',
-            'j2me'                 => 'Generic Mobile',
-            'midp'                 => 'Generic Mobile',
-            'cldc'                 => 'Generic Mobile',
-            'up.link'              => 'Generic Mobile',
-            'up.browser'           => 'Generic Mobile',
-            'smartphone'           => 'Generic Mobile',
-            'cellphone'            => 'Generic Mobile',
+            'mobile' => 'Generic Mobile',
+            'wireless' => 'Generic Mobile',
+            'j2me' => 'Generic Mobile',
+            'midp' => 'Generic Mobile',
+            'cldc' => 'Generic Mobile',
+            'up.link' => 'Generic Mobile',
+            'up.browser' => 'Generic Mobile',
+            'smartphone' => 'Generic Mobile',
+            'cellphone' => 'Generic Mobile',
 
             // Raspberry Pi
-            'Raspbian'             => [
+            'Raspbian' => [
                 'Platform' => [
-                    'name'         => 'Raspbian Pi',
+                    'name' => 'Raspbian Pi',
                     'architecture' => '32-bit',
-                    'developer'    => 'Raspberry Pi Foundation',
+                    'developer' => 'Raspberry Pi Foundation',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Computer',
                     'type' => 'Desktop',
                 ],
             ],
 
             // Bots
-            'Mail.RU_Bot'          => [
+            'Mail.RU_Bot' => [
                 'Platform' => [
-                    'name'         => 'Mail.ru Crawler',
+                    'name' => 'Mail.ru Crawler',
                     'architecture' => '32-bit',
-                    'developer'    => 'Mail RU',
+                    'developer' => 'Mail RU',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Crawler',
                     'type' => 'Server',
                 ],
             ],
-            'Googlebot'            => [
+            'Googlebot' => [
                 'Platform' => [
-                    'name'         => 'Googlebot Crawler',
+                    'name' => 'Googlebot Crawler',
                     'architecture' => '32-bit',
-                    'developer'    => 'Google Inc',
+                    'developer' => 'Google Inc',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Crawler',
                     'type' => 'Server',
                 ],
             ],
-            'Baiduspider'          => [
+            'Baiduspider' => [
                 'Platform' => [
-                    'name'         => 'Baidu Spider',
+                    'name' => 'Baidu Spider',
                     'architecture' => '32-bit',
-                    'developer'    => 'Baidu Inc',
+                    'developer' => 'Baidu Inc',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Crawler',
                     'type' => 'Server',
                 ],
             ],
-            'bingbot'              => [
+            'bingbot' => [
                 'Platform' => [
-                    'name'         => 'Bing Bot',
+                    'name' => 'Bing Bot',
                     'architecture' => '32-bit',
-                    'developer'    => 'Microsoft Corp',
+                    'developer' => 'Microsoft Corp',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Crawler',
                     'type' => 'Server',
                 ],
             ],
-            'msnbot'               => [
+            'msnbot' => [
                 'Platform' => [
-                    'name'         => 'MSN Bot',
+                    'name' => 'MSN Bot',
                     'architecture' => '32-bit',
-                    'developer'    => 'Microsoft Corp',
+                    'developer' => 'Microsoft Corp',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Crawler',
                     'type' => 'Server',
                 ],
             ],
-            'MJ12bot'              => [
+            'MJ12bot' => [
                 'Platform' => [
-                    'name'         => 'Majestic-12 Distributed Search Bot',
+                    'name' => 'Majestic-12 Distributed Search Bot',
                     'architecture' => '32-bit',
-                    'developer'    => 'Majestic',
+                    'developer' => 'Majestic',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Crawler',
                     'type' => 'Server',
                 ],
             ],
-            'Yahoo! Slurp'         => [
+            'Yahoo! Slurp' => [
                 'Platform' => [
-                    'name'         => 'Yahoo! Slurp Web Crawler Bot',
+                    'name' => 'Yahoo! Slurp Web Crawler Bot',
                     'architecture' => '32-bit',
-                    'developer'    => 'Yahoo LLC',
+                    'developer' => 'Yahoo LLC',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Crawler',
                     'type' => 'Server',
                 ],
             ],
-            'MegaIndex.ru'         => [
+            'MegaIndex.ru' => [
                 'Platform' => [
-                    'name'         => 'MegaIndex Crawler Bot',
+                    'name' => 'MegaIndex Crawler Bot',
                     'architecture' => '32-bit',
-                    'developer'    => 'MegaIndex.ru',
+                    'developer' => 'MegaIndex.ru',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Crawler',
                     'type' => 'Server',
                 ],
             ],
-            'AhrefsBot'            => [
+            'AhrefsBot' => [
                 'Platform' => [
-                    'name'         => 'Ahrefs Backlink Research Bot',
+                    'name' => 'Ahrefs Backlink Research Bot',
                     'architecture' => '32-bit',
-                    'developer'    => 'Ahrefs',
+                    'developer' => 'Ahrefs',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Crawler',
                     'type' => 'Server',
                 ],
             ],
-            'DotBot'               => [
+            'DotBot' => [
                 'Platform' => [
-                    'name'         => 'OpenSite Explorer Crawler',
+                    'name' => 'OpenSite Explorer Crawler',
                     'architecture' => '32-bit',
-                    'developer'    => 'The Moz',
+                    'developer' => 'The Moz',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Crawler',
                     'type' => 'Server',
                 ],
             ],
-            'JobboerseBot'         => [
+            'JobboerseBot' => [
                 'Platform' => [
-                    'name'         => 'Jobboerse Crawler',
+                    'name' => 'Jobboerse Crawler',
                     'architecture' => '32-bit',
-                    'developer'    => 'jobboerse.com',
+                    'developer' => 'jobboerse.com',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Crawler',
                     'type' => 'Server',
                 ],
             ],
-            'SemrushBot'           => [
+            'SemrushBot' => [
                 'Platform' => [
-                    'name'         => 'SEMRush Crawler',
+                    'name' => 'SEMRush Crawler',
                     'architecture' => '32-bit',
-                    'developer'    => 'SEMrush',
+                    'developer' => 'SEMrush',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Crawler',
                     'type' => 'Server',
                 ],
             ],
-            'YandexBot'            => [
+            'YandexBot' => [
                 'Platform' => [
-                    'name'         => 'Yandex Search Bot',
+                    'name' => 'Yandex Search Bot',
                     'architecture' => '32-bit',
-                    'developer'    => 'Yandex',
+                    'developer' => 'Yandex',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Crawler',
                     'type' => 'Server',
                 ],
             ],
-            'seoscanners.net'      => [
+            'seoscanners.net' => [
                 'Platform' => [
-                    'name'         => 'SEO Scanners Crawler Bot',
+                    'name' => 'SEO Scanners Crawler Bot',
                     'architecture' => '32-bit',
-                    'developer'    => 'SEO Scanners',
+                    'developer' => 'SEO Scanners',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Crawler',
                     'type' => 'Server',
                 ],
             ],
-            'SEOkicks-Robot'       => [
+            'SEOkicks-Robot' => [
                 'Platform' => [
-                    'name'         => 'SEOkicks Crawler',
+                    'name' => 'SEOkicks Crawler',
                     'architecture' => '32-bit',
-                    'developer'    => 'SEOkicks',
+                    'developer' => 'SEOkicks',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Crawler',
                     'type' => 'Server',
                 ],
             ],
-            'CheckMarkNetwork'     => [
+            'CheckMarkNetwork' => [
                 'Platform' => [
-                    'name'         => 'CheckMark Network Crawler',
+                    'name' => 'CheckMark Network Crawler',
                     'architecture' => '32-bit',
-                    'developer'    => 'CheckMark',
+                    'developer' => 'CheckMark',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Crawler',
                     'type' => 'Server',
                 ],
             ],
-            'BingPreview'          => [
+            'BingPreview' => [
                 'Platform' => [
-                    'name'         => 'Bing Preview Snapshot Generator',
+                    'name' => 'Bing Preview Snapshot Generator',
                     'architecture' => '32-bit',
-                    'developer'    => 'Microsoft Corp',
+                    'developer' => 'Microsoft Corp',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Crawler',
                     'type' => 'Server',
                 ],
             ],
-            'VoilaBot BETA'        => [
+            'VoilaBot BETA' => [
                 'Platform' => [
-                    'name'         => 'VoilaBot BETA',
+                    'name' => 'VoilaBot BETA',
                     'architecture' => '32-bit',
-                    'developer'    => 'orange ft group',
+                    'developer' => 'orange ft group',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Crawler',
                     'type' => 'Server',
                 ],
             ],
-            'adscanner'            => [
+            'adscanner' => [
                 'Platform' => [
-                    'name'         => 'AdScanner Crawler',
+                    'name' => 'AdScanner Crawler',
                     'architecture' => '32-bit',
-                    'developer'    => 'AdScanner',
+                    'developer' => 'AdScanner',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Crawler',
                     'type' => 'Server',
                 ],
             ],
-            'Qwantify'             => [
+            'Qwantify' => [
                 'Platform' => [
-                    'name'         => 'Qwantify Search Crawler',
+                    'name' => 'Qwantify Search Crawler',
                     'architecture' => '32-bit',
-                    'developer'    => 'Qwantify',
+                    'developer' => 'Qwantify',
                 ],
-                'Device'   => [
+                'Device' => [
                     'name' => 'Crawler',
                     'type' => 'Server',
                 ],
@@ -8948,124 +9001,124 @@ class UATable
             "ZenPad S 8.0 Z580C",*/
 
             // Televisions
-            'apple tv'             => [
-                'name'        => 'AppleTV',
-                'device'      => 'Television',
+            'apple tv' => [
+                'name' => 'AppleTV',
+                'device' => 'Television',
                 'manufacture' => 'Apple Inc.',
             ],
-            'chromecast'           => [
-                'name'        => 'Chromecast',
-                'device'      => 'Television',
+            'chromecast' => [
+                'name' => 'Chromecast',
+                'device' => 'Television',
                 'manufacture' => 'Google Inc.',
             ],
-            'aftb'                 => [
-                'name'        => 'Fire TV',
-                'device'      => 'Television',
+            'aftb' => [
+                'name' => 'Fire TV',
+                'device' => 'Television',
                 'manufacture' => 'Amazon.com, Inc.',
             ],
-            'freebox'              => [
-                'name'        => 'Freebox Revolution',
-                'device'      => 'Television',
+            'freebox' => [
+                'name' => 'Freebox Revolution',
+                'device' => 'Television',
                 'manufacture' => 'FREE SAS.',
             ],
-            'googletv'             => [
-                'name'        => 'Google TV',
-                'device'      => 'Television',
+            'googletv' => [
+                'name' => 'Google TV',
+                'device' => 'Television',
                 'manufacture' => 'Sony.',
             ],
-            'netbox'               => [
-                'name'        => 'Netbox',
-                'device'      => 'Television',
+            'netbox' => [
+                'name' => 'Netbox',
+                'device' => 'Television',
                 'manufacture' => 'Sony.',
             ],
-            'playstation 3'        => [
-                'name'        => 'Playstation 3',
-                'device'      => 'Television',
+            'playstation 3' => [
+                'name' => 'Playstation 3',
+                'device' => 'Television',
                 'manufacture' => 'Sony.',
             ],
-            'playstation 4'        => [
-                'name'        => 'Playstation 4',
-                'device'      => 'Television',
+            'playstation 4' => [
+                'name' => 'Playstation 4',
+                'device' => 'Television',
                 'manufacture' => 'Sony.',
             ],
-            'kdl32Cx525'           => [
-                'name'        => 'KDL32CX525',
-                'tdeviceype'  => 'Television',
+            'kdl32Cx525' => [
+                'name' => 'KDL32CX525',
+                'tdeviceype' => 'Television',
                 'manufacture' => 'Sony.',
             ],
-            'nsz-gs7\/gx70'        => [
-                'name'        => 'NSZ-GS7/GX70',
-                'device'      => 'Television',
+            'nsz-gs7\/gx70' => [
+                'name' => 'NSZ-GS7/GX70',
+                'device' => 'Television',
                 'manufacture' => 'Sony.',
             ],
-            'h96 pro\+'            => [
-                'name'        => 'H96 Pro+',
-                'device'      => 'Television',
+            'h96 pro\+' => [
+                'name' => 'H96 Pro+',
+                'device' => 'Television',
                 'manufacture' => 'Alfawise.',
             ],
-            'mx enjoy tv'          => [
-                'name'        => 'MX Enjoy TV BOX',
-                'device'      => 'Television',
+            'mx enjoy tv' => [
+                'name' => 'MX Enjoy TV BOX',
+                'device' => 'Television',
                 'manufacture' => 'Geniatech.',
             ],
-            'smarttv2016'          => [
-                'name'        => 'Series J (2016)',
-                'device'      => 'Television',
+            'smarttv2016' => [
+                'name' => 'Series J (2016)',
+                'device' => 'Television',
                 'manufacture' => 'Samsung.',
             ],
-            'smart-tv'             => [
-                'name'        => 'Smart TV',
-                'device'      => 'Television',
+            'smart-tv' => [
+                'name' => 'Smart TV',
+                'device' => 'Television',
                 'manufacture' => 'Samsung.',
             ],
-            'tpm171e'              => [
-                'name'        => 'TPM171E',
-                'device'      => 'Television',
+            'tpm171e' => [
+                'name' => 'TPM171E',
+                'device' => 'Television',
                 'manufacture' => 'Philips.',
             ],
-            'smarttva'             => [
-                'name'        => 'TV',
-                'device'      => 'Television',
+            'smarttva' => [
+                'name' => 'TV',
+                'device' => 'Television',
                 'manufacture' => 'LG.',
             ],
-            'vap430'               => [
-                'name'        => 'VAP430',
-                'device'      => 'Television',
+            'vap430' => [
+                'name' => 'VAP430',
+                'device' => 'Television',
                 'manufacture' => 'Vizio.',
             ],
-            'viera'                => [
-                'name'        => 'Viera TV',
-                'device'      => 'Television',
+            'viera' => [
+                'name' => 'Viera TV',
+                'device' => 'Television',
                 'manufacture' => 'Panasonic.',
             ],
-            'webtv'                => [
-                'name'        => 'WebTV',
-                'device'      => 'Television',
+            'webtv' => [
+                'name' => 'WebTV',
+                'device' => 'Television',
                 'manufacture' => 'Microsoft.',
             ],
-            'xbox'                 => [
-                'name'        => 'Xbox 360',
-                'device'      => 'Television',
+            'xbox' => [
+                'name' => 'Xbox 360',
+                'device' => 'Television',
                 'manufacture' => 'Microsoft.',
             ],
-            'xbox one'             => [
-                'name'        => 'Xbox One',
-                'device'      => 'Television',
+            'xbox one' => [
+                'name' => 'Xbox One',
+                'device' => 'Television',
                 'manufacture' => 'Microsoft.',
             ],
-            'wii'                  => [
-                'name'        => 'Wii',
-                'device'      => 'Television',
+            'wii' => [
+                'name' => 'Wii',
+                'device' => 'Television',
                 'manufacture' => 'Nintendo.',
             ],
-            'wiiu'                 => [
-                'name'        => 'WiiU',
-                'device'      => 'Television',
+            'wiiu' => [
+                'name' => 'WiiU',
+                'device' => 'Television',
                 'manufacture' => 'Nintendo.',
             ],
-            'x96 mini'             => [
-                'name'        => 'X96 mini',
-                'device'      => 'Television',
+            'x96 mini' => [
+                'name' => 'X96 mini',
+                'device' => 'Television',
                 'manufacture' => 'ShySky.',
             ],
         ];
@@ -9082,46 +9135,46 @@ class UATable
         // Devices architecture List.
         return [
             // Old model computers.
-            'Babbage'                                      => '50 d',
-            'Zuse Z3'                                      => '22 Bit',
-            'ABC'                                          => '50 Bit',
-            'Harvard Mark I'                               => '23 d',
-            'ENIAC I'                                      => '20 d',
-            'Manchester Baby'                              => '32 Bit',
-            'UNIVAC I'                                     => '12 d',
-            'IAS machine'                                  => '40 Bit',
-            'Fast Universal Digital Computer M-2'          => '34 bit',
-            'IBM 701'                                      => '36 bit',
+            'Babbage' => '50 d',
+            'Zuse Z3' => '22 Bit',
+            'ABC' => '50 Bit',
+            'Harvard Mark I' => '23 d',
+            'ENIAC I' => '20 d',
+            'Manchester Baby' => '32 Bit',
+            'UNIVAC I' => '12 d',
+            'IAS machine' => '40 Bit',
+            'Fast Universal Digital Computer M-2' => '34 bit',
+            'IBM 701' => '36 bit',
             'UNIVAC 60|IBM 702|UNIVAC 120|IBM 705|IBM 305' => 'n d',
-            'ARRA I|ARRA II'                               => '30 bit',
-            'IBM 650|IBM 653'                              => '10 d',
-            'IBM 704'                                      => '10 d',
-            'IBM NORC'                                     => '16 d',
-            'ARMAC'                                        => '34 bit',
-            'Autonetics Recomp I'                          => '40 bit',
+            'ARRA I|ARRA II' => '30 bit',
+            'IBM 650|IBM 653' => '10 d',
+            'IBM 704' => '10 d',
+            'IBM NORC' => '16 d',
+            'ARMAC' => '34 bit',
+            'Autonetics Recomp I' => '40 bit',
 
             // ARM architecture.
-            'ARMv1'                                        => '32 bit',
-            'ARMv2'                                        => '32 bit',
-            'ARMv3'                                        => '32 bit',
-            'ARMv4'                                        => '32 bit',
-            'ARMv4T'                                       => '32 bit',
-            'ARMv5TE'                                      => '32 bit',
-            'ARMv6'                                        => '32 bit',
-            'ARMv6-M'                                      => '32 bit',
-            'ARMv7-M'                                      => '32 bit',
-            'ARMv7E-M'                                     => '32 bit',
-            'ARMv8-M'                                      => '32 bit',
-            'ARMv7-R'                                      => '32 bit',
-            'ARMv8-R'                                      => '32 bit',
-            'ARMv7-A'                                      => '32 bit',
-            'ARMv8-A'                                      => '64 bit',
-            'ARMv8.1-A'                                    => '64/32 bit',
-            'ARMv8.2-A'                                    => '64/32 bit',
-            'ARMv8.3-A'                                    => '64/32 bit',
-            'ARMv8.4-A'                                    => '64/32 bit',
-            'ARMv8.5-A'                                    => '64/32 bit',
-            'ARMv8.6-A'                                    => '64/32 bit',
+            'ARMv1' => '32 bit',
+            'ARMv2' => '32 bit',
+            'ARMv3' => '32 bit',
+            'ARMv4' => '32 bit',
+            'ARMv4T' => '32 bit',
+            'ARMv5TE' => '32 bit',
+            'ARMv6' => '32 bit',
+            'ARMv6-M' => '32 bit',
+            'ARMv7-M' => '32 bit',
+            'ARMv7E-M' => '32 bit',
+            'ARMv8-M' => '32 bit',
+            'ARMv7-R' => '32 bit',
+            'ARMv8-R' => '32 bit',
+            'ARMv7-A' => '32 bit',
+            'ARMv8-A' => '64 bit',
+            'ARMv8.1-A' => '64/32 bit',
+            'ARMv8.2-A' => '64/32 bit',
+            'ARMv8.3-A' => '64/32 bit',
+            'ARMv8.4-A' => '64/32 bit',
+            'ARMv8.5-A' => '64/32 bit',
+            'ARMv8.6-A' => '64/32 bit',
 
             // Windows/Linux/Mac.
             /*
@@ -9131,24 +9184,24 @@ class UATable
              *  the i686 (the Pentium Pro) in 1995, and the i786 (Pentium 4, or NetBurst) in 2000.
              */
 
-            'i286'                                         => '16 Bit',
-            'Win16'                                        => '16 Bit',
-            'i386'                                         => '32 Bit',
-            'i486'                                         => '32 Bit',
-            'i586'                                         => '32 Bit',
-            'i686'                                         => '32 Bit',
-            'i786'                                         => '32 Bit',
-            'x86'                                          => '32 Bit',
-            'x64'                                          => '64 Bit',
-            'WOW64'                                        => '64 Bit',
-            'Win64'                                        => '64 Bit',
-            'x86_64'                                       => '64 Bit',
-            'x86-64'                                       => '64 Bit',
-            'x64/x86'                                      => '64 Bit',
-            'IA-64'                                        => '64 Bit',
-            'ARM64'                                        => '64 Bit',
-            'AMD64'                                        => '64 Bit',
-            'Intel64'                                      => '64 Bit',
+            'i286' => '16 Bit',
+            'Win16' => '16 Bit',
+            'i386' => '32 Bit',
+            'i486' => '32 Bit',
+            'i586' => '32 Bit',
+            'i686' => '32 Bit',
+            'i786' => '32 Bit',
+            'x86' => '32 Bit',
+            'x64' => '64 Bit',
+            'WOW64' => '64 Bit',
+            'Win64' => '64 Bit',
+            'x86_64' => '64 Bit',
+            'x86-64' => '64 Bit',
+            'x64/x86' => '64 Bit',
+            'IA-64' => '64 Bit',
+            'ARM64' => '64 Bit',
+            'AMD64' => '64 Bit',
+            'Intel64' => '64 Bit',
         ];
     }//end getDevicesArchitectureList()
 }//end class

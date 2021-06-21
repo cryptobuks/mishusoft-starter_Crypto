@@ -478,11 +478,24 @@ class UAAnalyze extends UATable
 
                 //Googlebot
                 //Googlebot/2.1
+                //Googlebot/2.X
                 //Googlebot-Video/1.0
                 //Googlebot-Mobile/2.1
                 //Googlebot (gocrawl v0.4)
-                //Googlebot/2.X
                 //Googlebot/Nutch-1.7
+                'googlebot'=>'/(?<name>(googlebot))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+
+                //AhrefsBot/2.1
+                'ahrefsbot'=>'/(?<name>(ahrefsbot))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+
+                //bingbot/2.0
+                'bingbot'=>'/(?<name>(bingbot))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+
+                //yandexbot/3.0
+                'yandexbot'=>'/(?<name>(yandexbot))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+
+                //DotBot/3.0
+                'dotbot'=>'/(?<name>(dotbot))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
 
 
                 // Browsers.

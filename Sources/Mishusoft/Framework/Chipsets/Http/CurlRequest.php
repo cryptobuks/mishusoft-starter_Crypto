@@ -262,7 +262,7 @@ class CurlRequest
         return ['header' =>$request->getResponseHeadArray(),'response' =>$request->getResponseBody(),'errors' =>$request->getErrors()];
     }
 
-    public static function massDownload(array $dataList, string $keyword, array $formats, string $directory, string $filter): void
+    public static function massDownload(array $dataList, string $keyword, array $formats, string $directory, string $filter, string $filenamePrefix): void
     {
         foreach ($dataList as $serial => $item) {
             echo sprintf("Query :: %d/%d\nItem :: %s (%s)\nDestination :: %s", ++$serial, count($dataList), $item, $keyword, $directory) . PHP_EOL;
@@ -271,28 +271,33 @@ class CurlRequest
                     throw new \RuntimeException(sprintf('Directory "%s" was not created', $directory));
                 }
 
-                self::download($item, $keyword, $format, $directory, $filter);
+                self::download($item, $keyword, $format, $directory, $filter, $filenamePrefix);
             }
 
             print_r('The content of ' . $item . ' download has been finished.' . PHP_EOL . PHP_EOL, false);
         }
     }
 
-    public static function download(string $item, string $keyword, string $format, string $directory, string $filter): void
+    public static function download(string $item, string $keyword, string $format, string $directory, string $filter, string $filenamePrefix='download'): void
     {
         if ((file_exists($directory) === false) && !mkdir($directory, 077, true) && !is_dir($directory)) {
             throw new \RuntimeException(sprintf('Directory "%s" was not created', $directory));
         }
 
-        $filename = sprintf('user-agents_%s.%s', $item, $format);
-        $filename = sprintf('%s%s', $directory, $filename);
+        //$filename = sprintf('user-agents_%s.%s', $item, $format);
+        //$filename = sprintf('%s%s', $directory, $filename);
 
         try {
-            if (($filter === 'new') && file_exists($filename) === false) {
-                self::write($filename, self::response($keyword, $item, $format));
+            if ($filter === 'new') {
+                $filename = sprintf('%s%s%s.%s', $directory, $filenamePrefix, $item, $format);
+                if (file_exists($filename) === false) {
+                    self::write($filename, self::response($keyword, $item, $format));
+                }
             }
 
+
             if ($filter === 'update') {
+                $filename = sprintf('%s%s%s.%s', $directory, $filenamePrefix, $item, $format);
                 if (file_exists($filename) === true) {
                     print_r('Remove old file: ' . basename($filename) . PHP_EOL, false);
                     unlink($filename);
@@ -302,7 +307,8 @@ class CurlRequest
             }
         } catch (\Error | \Exception $exception) {
             echo PHP_EOL;
-            echo 'Unable to write ' . $filename . PHP_EOL;
+            //echo 'Unable to write ' . $filename . PHP_EOL;
+            echo sprintf('Unable to write %s%s%s.%s', $directory, $filenamePrefix, $item, $format) . PHP_EOL;
             echo $exception->getMessage() . PHP_EOL;
             exit();
         }
@@ -357,7 +363,7 @@ class CurlRequest
                 throw new \RuntimeException('Cannot convert response to array. Response has:'.$this->getHeaderLine($keyword));
             }
         } else {
-            throw new \RuntimeException(sprintf('Response has been corrupted. Unable to find out %s.', preg_replace('[#/-]', ' ', $keyword)));
+            throw new \RuntimeException(sprintf('Response has been corrupted. Unable to find out %s.', preg_replace('[\#\/\-]', ' ', $keyword)));
         }
     }
 
