@@ -331,7 +331,7 @@ class UATable
         // Application, Bot/Crawler, Browser, Email Client, Feed Reader, Multimedia Player, Offline Browser and Tool List.
         return [
             /*Applications*/
-            '1password' => [
+            /*'1password' => [
                 'name' => '1 Password',
                 'type' => 'Applications',
                 'category' => 'Password Manager',
@@ -359,11 +359,13 @@ class UATable
                 'latest-release' => [
                     'updates' => 'https://app-updates.agilebits.com/'
                 ],
-            ],
+            ],*/
 
 
+            ...$this->browserTypeApplication(),
+            ...$this->browserTypeBotCrawler(),
             // Crawler.
-            '007ac9 crawler' => [
+/*            '007ac9 crawler' => [
                 'name' => '007ac9 Crawler',
                 'type' => 'Bot (Crawler)',
                 'ui' => 'FullTextMode',
@@ -461,7 +463,7 @@ class UATable
                         'link' => 'https://www.opensiteexplorer.org/dotbot',
                     ],
                 ],
-            ],
+            ],*/
 
 
             /*Browsers*/
@@ -2394,6 +2396,122 @@ class UATable
         ];
     }//end getWebBrowsersList()
 
+    /**
+     * Applications
+     *
+     * @return array[]
+     */
+    protected function browserTypeApplication(): array
+    {
+        return [
+            '1password' => [
+                'name' => '1 Password',
+                'type' => 'Applications',
+                'category' => 'Password Manager',
+                'ui' => 'GraphicalMode',
+                'authors' => [
+                    [
+                        'name' => 'AgileBits Inc',
+                        'link' => 'https://1password.com/',
+                    ],
+                ],
+                'cost' => 'Trialware',
+                'status' => 'Active',
+                'licence' => [
+                    [
+                        'name' => 'Trialware',
+                        'link' => 'https://en.wikipedia.org/wiki/Trialware',
+                    ],
+                ],
+                'layout' => [
+                    [
+                        'name' => 'WebKit',
+                        'link' => 'https://en.wikipedia.org/wiki/WebKit',
+                    ],
+                ],
+                'latest-release' => [
+                    'updates' => 'https://app-updates.agilebits.com/'
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * Browser type of Bot/Crawler
+     *
+     * @return array
+     */
+    protected function browserTypeBotCrawler(): array
+    {
+        return [
+            $this->detailsOfBotCrawler('007ac9 crawler', '007ac9 Crawler', '007ac9', 'https://crawler.007ac9.net'),
+            $this->detailsOfBotCrawler('2gdpr', '2gdpr Bot', '2gdpr', 'https://2gdpr.com'),
+            $this->detailsOfBotCrawler('python-requests', 'python-requests Bot', 'Python Software Foundation', 'https://www.python.org/psf/'),
+            $this->detailsOfBotCrawler('python-urllib', 'python-urllib Bot', 'Python Software Foundation', 'https://www.python.org/psf/'),
+            $this->detailsOfBotCrawler('googlebot', 'Google Bot', 'Google Inc', 'https://www.google.com'),
+            $this->detailsOfBotCrawler('ahrefsbot', 'Ahrefs Bot', 'Ahrefs Pte Ltd', 'https://ahrefs.com/robot/'),
+            $this->detailsOfBotCrawler('bingbot', 'Bing Bot', 'Microsoft Corporation', 'https://www.bing.com/bingbot.htm'),
+            $this->detailsOfBotCrawler('yandexbot', 'Yandex Bot', 'Yandex LLC', 'https://yandex.com/bots'),
+            $this->detailsOfBotCrawler('dotbot', 'Dot Bot', 'SEOmoz, Inc', 'https://www.opensiteexplorer.org/dotbot'),
+        ];
+    }
+
+    /**
+     * Details builder of Bot/Crawler.
+     *
+     * @param string $uniqueKeyword Unique keyword of bot/crawler for query in useragent string
+     * @param string $qualifiedName Qualified name of bot/crawler
+     * @param string $authorName Author/Developer name of bot/crawler
+     * @param string $authorHomeUrl Author's homepage of bot/crawler
+     *
+     * @return array[] Details array of Bot/Crawler
+     */
+    private function detailsOfBotCrawler(string $uniqueKeyword, string $qualifiedName, string $authorName, string $authorHomeUrl): array
+    {
+        return [
+            $uniqueKeyword => [
+                'name' => $qualifiedName,
+                'type' => 'Bot (Crawler)',
+                'ui' => 'FullTextMode',
+                'authors' => [
+                    [
+                        'name' => $authorName,
+                        'link' => $authorHomeUrl,
+                    ]
+                ]
+            ]];
+    }
+
+    protected function browserTypeWebBrowser(): array
+    {
+        return [];
+    }
+
+    protected function browserTypeEmailClient(): array
+    {
+        return [];
+    }
+
+    protected function browserTypeFeedReader(): array
+    {
+        return [];
+    }
+
+    protected function browserTypeMultimediaPlayer(): array
+    {
+        return [];
+    }
+
+    protected function browserTypeOfflineBrowser(): array
+    {
+        return [];
+    }
+
+    protected function browserTypeTool(): array
+    {
+        return [];
+    }
+
 
     /**
      * List of web browsers.
@@ -3488,7 +3606,6 @@ class UATable
             "Offline Browser",
             "Tool"
         ];
-
     }
 
     /**
