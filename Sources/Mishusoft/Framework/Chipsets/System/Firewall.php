@@ -962,6 +962,9 @@ class Firewall
         // Start test the country name of client.
         Logger::write('Start searching client browser in black list.');
         if ($this->firewallConfiguration['browser']['order'] === 'blacklist') {
+            // we need to check block time of browser,
+            // if the time has been expire, then unblock th browser
+            // or show protection message
             if (in_array(_String::lower(self::$browser->getBrowserName()), $this->firewallConfiguration['browser']['blacklist'], true) === true) {
                 Logger::write('The client browser found in black list.');
                 Logger::write('Firewall banned the browser.');
@@ -981,6 +984,9 @@ class Firewall
         }
 
         if ($this->firewallConfiguration['ip']['order'] === 'blacklist') {
+            // we need to check block time of ip,
+            // if the time has been expire, then unblock the ip
+            // or show protection message
             if (in_array(IP::get(), $this->firewallConfiguration['ip']['blacklist'], true) === false) {
                 $this->actionStatus    = 'blocked';
                 $this->actionComponent = 'IP';
@@ -995,6 +1001,9 @@ class Firewall
         }
 
         if ($this->firewallConfiguration['device']['order'] === 'blacklist') {
+            // we need to check block time of device,
+            // if the time has been expire, then unblock the device
+            // or show protection message
             if (in_array(IP::get(), $this->firewallConfiguration['device']['blacklist'], true)) {
                 $this->actionStatus    = 'blocked';
                 $this->actionComponent = 'device';
@@ -1009,6 +1018,9 @@ class Firewall
         }
 
         if ($this->firewallConfiguration['continent']['order'] === 'blacklist') {
+            // we need to check block time of continent,
+            // if the time has been expire, then unblock the continent
+            // or show protection message
             if (in_array(IP::get(), $this->firewallConfiguration['continent']['blacklist'], true)) {
                 $this->actionStatus    = 'blocked';
                 $this->actionComponent = 'continent';
@@ -1023,6 +1035,9 @@ class Firewall
         }
 
         if ($this->firewallConfiguration['country']['order'] === 'blacklist') {
+            // we need to check block time of country,
+            // if the time has been expire, then unblock th country
+            // or show protection message
             if (in_array(IP::get(), $this->firewallConfiguration['country']['blacklist'], true)) {
                 $this->actionStatus    = 'blocked';
                 $this->actionComponent = 'country';
@@ -1037,6 +1052,9 @@ class Firewall
         }
 
         if ($this->firewallConfiguration['city']['order'] === 'blacklist') {
+            // we need to check block time of city,
+            // if the time has been expire, then unblock the city
+            // or show protection message
             if (in_array(IP::get(), $this->firewallConfiguration['city']['blacklist'], true)) {
                 $this->actionStatus    = 'blocked';
                 $this->actionComponent = 'city';
@@ -1050,7 +1068,7 @@ class Firewall
             }
         }
 
-        if (!empty($this->actionStatus) and $this->actionStatus === 'banned' || 'blocked') {
+        if (!empty($this->actionStatus) && ($this->actionStatus === 'banned' || 'blocked')) {
             $this->storeFirewallLogs();
             $this->accessDefence($this->actionStatus);
             $this->accessRequestProcessed = false;
@@ -1073,7 +1091,7 @@ class Firewall
     {
         $logs = [];
         if (is_readable(self::FIREWALL_LOG_FILE) === true) {
-            if (FileSystem::read(self::FIREWALL_LOG_FILE) != '') {
+            if (FileSystem::read(self::FIREWALL_LOG_FILE) !== '') {
                 $content = json_decode(FileSystem::read(self::FIREWALL_LOG_FILE), true, 512, JSON_THROW_ON_ERROR);
                 if (is_array($content) === true) {
                     $logs = array_merge($logs, $content);
@@ -1233,9 +1251,9 @@ class Firewall
             if (is_readable(self::FIREWALL_LOG_FILE) === true) {
                 if (!empty(file_get_contents(self::FIREWALL_LOG_FILE))) {
                     $logs = json_decode(file_get_contents(self::FIREWALL_LOG_FILE), true, 512, JSON_THROW_ON_ERROR);
-                    if (is_array($logs) and count($logs) !== 0) {
+                    if (is_array($logs) && count($logs) !== 0) {
                         if (array_key_exists($status, $logs)) {
-                            if (is_array($logs[$status]) and array_key_exists(IP::get(), $logs[$status])) {
+                            if (is_array($logs[$status]) && array_key_exists(IP::get(), $logs[$status])) {
                                 $times          = [];
                                 $countdownTimes = [];
                                 foreach (array_keys($logs[$status][IP::get()]) as $browser) {
@@ -1262,7 +1280,10 @@ class Firewall
 
                                 $now      = array_shift($times);
                                 $previous = array_shift($times);
-                                if (is_array($now) and array_key_exists('visit-time', $now) and is_array($previous) and array_key_exists('visit-time', $previous)) {
+                                if (is_array($now)
+                                    && array_key_exists('visit-time', $now)
+                                    && is_array($previous)
+                                    && array_key_exists('visit-time', $previous)) {
                                     /*
                                         check countdown time is set or not*/
                                     // Returns true if $x is greater than or equal to $y
@@ -1272,16 +1293,16 @@ class Firewall
                                             /*
                                                 preOutput($this->firewallConfiguration["$status-device-count-down-time"]);*/
                                             // Set new time, if set time to current time more than 60 minutes, set new time as current time
-                                            $this->last_visit_duration = intval((strtotime($now['visit-time']) - strtotime($this->firewallConfiguration["$status-device-count-down-time"][IP::get()])) / 60);
-                                            if ($this->last_visit_duration >= $this->firewallConfiguration["$status-device-time-limit"]) {
+                                            $this->lastVisitDuration = (int)((strtotime($now['visit-time']) - strtotime($this->firewallConfiguration["$status-device-count-down-time"][IP::get()])) / 60);
+                                            if ($this->lastVisitDuration >= $this->firewallConfiguration["$status-device-time-limit"]) {
                                                 $this->firewallConfiguration["$status-device-count-down-time"][IP::get()] = $now['visit-time'];
                                                 FileSystem::saveToFile(self::FIREWALL_CONFIG_FILE, json_encode($this->firewallConfiguration, JSON_THROW_ON_ERROR));
                                             } //end if
 
                                             else {
                                                 // Set new time, if previous time set more than 10 minutes
-                                                $this->last_visit_duration = intval((strtotime($now['visit-time']) - strtotime($previous['visit-time'])) / 60);
-                                                if ($this->last_visit_duration > 10) {
+                                                $this->lastVisitDuration = (int)((strtotime($now['visit-time']) - strtotime($previous['visit-time'])) / 60);
+                                                if ($this->lastVisitDuration > 10) {
                                                     // preOutput("Setting previous time!!");
                                                     $this->firewallConfiguration["$status-device-count-down-time"][IP::get()] = $previous['visit-time'];
                                                     FileSystem::saveToFile(self::FIREWALL_CONFIG_FILE, json_encode($this->firewallConfiguration, JSON_THROW_ON_ERROR));
@@ -1292,8 +1313,8 @@ class Firewall
 
                                         else {
                                             // Set new time, if current time to previous time set more than 60 minutes
-                                            $this->last_visit_duration = intval((strtotime($now['visit-time']) - strtotime($previous['visit-time'])) / 60);
-                                            if ($this->last_visit_duration >= $this->firewallConfiguration["$status-device-time-limit"]) {
+                                            $this->lastVisitDuration = (int)((strtotime($now['visit-time']) - strtotime($previous['visit-time'])) / 60);
+                                            if ($this->lastVisitDuration >= $this->firewallConfiguration["$status-device-time-limit"]) {
                                                 $this->firewallConfiguration["$status-device-count-down-time"][IP::get()] = $now['visit-time'];
                                             } else {
                                                 // Set new time, if current time to previous time set less than 60 minutes
@@ -1322,17 +1343,17 @@ class Firewall
                                     if (array_key_exists("$status-device-limit-time-format", $this->firewallConfiguration)) {
                                         // check limit time format key value and it is second, so calculate duration as seconds
                                         if ($this->firewallConfiguration["$status-device-limit-time-format"] === 'second') {
-                                            $this->duration  = intval((strtotime($now['visit-time']) - strtotime($this->controller)));
+                                            $this->duration  = (int)(strtotime($now['visit-time']) - strtotime($this->controller));
                                             $this->separator = 'seconds';
                                         } //end if
 
                                         elseif ($this->firewallConfiguration["$status-device-limit-time-format"] === 'minute') {
-                                            $this->duration  = intval((strtotime($now['visit-time']) - strtotime($this->controller)) / 60);
+                                            $this->duration  = (int)((strtotime($now['visit-time']) - strtotime($this->controller)) / 60);
                                             $this->separator = 'minutes';
                                         } // otherwise calculate duration as hours
 
                                         else {
-                                            $this->duration  = intval(((strtotime($now['visit-time']) - strtotime($this->controller)) / 60) / 60);
+                                            $this->duration  = (int)(((strtotime($now['visit-time']) - strtotime($this->controller)) / 60) / 60);
                                             $this->separator = 'hours';
                                         }
                                     } //end if
@@ -1513,7 +1534,7 @@ class Firewall
                 //echo 'Copyright © '.Time::getCurrentYearNumber().' '.Framework::COMPANY_NAME.'. All Right Reserved.'.PHP_EOL;
                 echo '© '.Time::getCurrentYearNumber().' '.Framework::COMPANY_NAME.'.'.PHP_EOL;
             } else {
-                self::strictProtectionView("$title $status", '','');
+                self::strictProtectionView("$title $status", '', '');
                 exit();
                 Ui::HtmlInterface(
                     "$title has been $status!!",
@@ -1616,7 +1637,7 @@ class Firewall
         $cssContent .= ".application-content-body-details-title{margin: 20px 0 10px 0;font-size: 20px;font-weight: bold;}";
 
         //Ui::element(Ui::getDocumentHeadElement(), 'style', ['text'=>$cssContent]);
-        Ui::elementList(Ui::getDocumentHeadElement(), array('link'=> Ui::getWebFavicons()));
+        Ui::elementList(Ui::getDocumentHeadElement(), array('link'=> Ui::getAutomatedWebFavicons()));
 
         Ui::elementList(
             Ui::getDocumentHeadElement(),
@@ -1664,6 +1685,33 @@ class Firewall
 
 
         Ui::display();
+    }
+
+    private function getAutomatedVisitorDetails():array
+    {
+        $visitorDetails = array();
+
+        //['class' => 'application-content-body-details-item','text' => IP::get(),],
+        $visitorDetails[] = array(
+            'class'  => 'application-content-body-details-item',
+            'text'  => IP::get(),
+        );
+
+
+        if (str_starts_with(pathinfo($imageFile, PATHINFO_FILENAME), 'apple-icon') === true) {
+            //    <link rel="apple-touch-icon" sizes="57x57" href="{$layoutParams.logoFolder}apple-icon-57x57.png">
+            //    /home/abir/Development/web-development/lastest.mishusoft.com/Storages/0/media/logos/apple-icon-152x152.png
+            $faviconsList[] = array(
+                'rel'  => 'apple-touch-icon',
+                'type'  => _Array::value($fileDetails, 'mime'),
+                'sizes'  => implode('x', array(_Array::value($fileDetails, 0),_Array::value($fileDetails, 1))),
+                'href' => Storage::toDataUri('logos'. DIRECTORY_SEPARATOR.pathinfo($imageFile, PATHINFO_BASENAME)),
+            );
+        }
+
+
+        return $visitorDetails;
+        
     }
 
 

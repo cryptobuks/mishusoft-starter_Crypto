@@ -482,7 +482,7 @@ class Ui
     }//end html()
 
 
-    public static function getWebFavicons():array
+    public static function getAutomatedWebFavicons():array
     {
         $faviconsList = array();
         $fileList = array();
