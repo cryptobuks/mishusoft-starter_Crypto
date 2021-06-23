@@ -1,72 +1,25 @@
-# Prerequisites
-*.d
-
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
-
-# Linker output
-*.ilk
-*.map
-*.exp
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
-
-# unnecessary files
-
+# Dart Lanugage's cache folder
 /.dart_tool/
+
+# PHPStorm's cache folder
 /.idea/
 
+# Mishusoft Framework associates
 /dist-src/
 /home/
 /Mishusoft/
-/task/
 /node_modules/
+/public_html/
+/Sources/officials/
+/Sources/Designs/
+/Sources/Assets/js [backup]/
+/Storages/
+/task/
+/tests/
 /tmp/
 /vendor/
-/tests/
-/Storages/
-/public_html/
 
+# Runtime cache files
 composer.lock
 package-lock.json
 pwa.webmanifest
@@ -76,6 +29,6 @@ robots.txt
 .user.ini
 .phpunit.result.cache
 .packages
-/Sources/officials/
-/Sources/Designs/
-/Sources/Assets/js [backup]/
+
+# Linker output
+*.map
