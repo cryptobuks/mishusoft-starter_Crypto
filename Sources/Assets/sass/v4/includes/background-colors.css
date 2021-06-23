@@ -2,11 +2,11 @@
 /*colors*/
 /*ranges*/
 .bg-success {
-  background: #4caf50 !important;
+  background: var(--green) !important;
 }
 
 .bg-danger {
-  background: #ff0000 !important;
+  background: var(--red) !important;
 }
 
 .bg-info {

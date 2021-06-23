@@ -110,18 +110,18 @@ const commonFileConfig = {
          *     <li>device</li>
          *     <li>platform</li>
          * </ul>
-         * */
+         */
         'browser': ['./Assets/typescripts/browser.ts'],
 
         /**
          * Javascript serviceworker framework
-         * */
+         */
         'pwa': ['./Assets/typescripts/pwa.ts'], /*build serviceworker module for background mode support*/
         'sw': ['./Assets/typescripts/service-worker.ts'], /*build serviceworker module for background mode support*/
 
         /**
          * Javascript framework for application
-         * */
+         */
 
         'installer': ['./Assets/typescripts/installer.ts'], /*build mishusoft installer module for installation mode support*/
 
@@ -131,14 +131,14 @@ const commonFileConfig = {
 
         /**
          * Special javascript framework for application
-         * */
+         */
 
         'monitor': ['./Assets/typescripts/tracker.ts'], /*build monitor module for monitor visitor's activities*/
         'emergency': ['./Assets/typescripts/runtime/v3/emergency.ts'], /*build emergency module for emergency mode support*/
 
         /**
          * CSS framework for application
-         * */
+         */
         'app-ui-v3': [
             './Assets/sass/common/colors.scss',
             './Assets/sass/v3/v3.scss',
@@ -148,7 +148,9 @@ const commonFileConfig = {
             './Assets/sass/v3/backup-old.version.scss',
         ],/*build stylesheet v3 module for application support*/
 
-
+        /**
+         * Build stylesheet v4 module for application support
+         */
         'app-ui-v4': [
             './Assets/sass/common/colors.scss',
             './Assets/sass/v4/v4.scss',
@@ -156,18 +158,18 @@ const commonFileConfig = {
             './Assets/sass/v4/includes.scss',
             './Assets/sass/v4/runtime-includes.scss',
             './Assets/sass/v4/backup-old.version.scss',
-        ], /*build stylesheet v4 module for application support*/
+        ],
 
         /**
          * Build mishusoft theme css framework supporter module for ui support
-         * */
+         */
         'mishusoft-theme': [
             './Assets/sass/themes/mishusoft.scss',
             './Assets/sass/themes/mishusoft/responsive.scss',
         ],
         /**
          * Build font face css framework supporter module for ui support
-         * */
+         */
         'font-face': [
             './Assets/sass/common/font-face.scss',
         ]

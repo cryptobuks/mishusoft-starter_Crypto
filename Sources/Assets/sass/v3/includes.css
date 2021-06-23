@@ -1,10 +1,6 @@
 /* src/assets/scss/lib.scss */
 /*colors*/
 /*ranges*/
-:root {
-  --red: #ff0000;
-}
-
 .button {
   display: inline-block;
   margin: 5px;
@@ -340,10 +336,6 @@
 /* src/assets/scss/lib.scss */
 /*colors*/
 /*ranges*/
-:root {
-  --red: #ff0000;
-}
-
 .simple-card1 {
   margin: 10px;
   width: 165px;
@@ -685,10 +677,6 @@
 /* src/assets/scss/lib.scss */
 /*colors*/
 /*ranges*/
-:root {
-  --red: #ff0000;
-}
-
 .input-control {
   width: 100% !important;
   font-size: 15px;
@@ -1025,10 +1013,6 @@ input, select, textarea {
 /* src/assets/scss/lib.scss */
 /*colors*/
 /*ranges*/
-:root {
-  --red: #ff0000;
-}
-
 .text-red {
   color: #ff0000 !important;
 }
@@ -1104,10 +1088,6 @@ input, select, textarea {
 /* src/assets/scss/lib.scss */
 /*colors*/
 /*ranges*/
-:root {
-  --red: #ff0000;
-}
-
 .messageZone {
   /*margin-top: 10px;*/
   text-align: center;
@@ -1293,10 +1273,6 @@ input, select, textarea {
 /* src/assets/scss/lib.scss */
 /*colors*/
 /*ranges*/
-:root {
-  --red: #ff0000;
-}
-
 .modal {
   display: none;
   position: fixed;
@@ -1394,10 +1370,6 @@ input, select, textarea {
 /* src/assets/scss/lib.scss */
 /*colors*/
 /*ranges*/
-:root {
-  --red: #ff0000;
-}
-
 .navbar1 {
   width: 100%;
   height: 30px;

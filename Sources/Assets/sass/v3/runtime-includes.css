@@ -2,10 +2,6 @@
 /* src/assets/scss/lib.scss */
 /*colors*/
 /*ranges*/
-:root {
-  --red: #ff0000;
-}
-
 .ip-info-plus-app {
   /*width: 360px;*/
 }
@@ -45,10 +41,6 @@
 /* src/assets/scss/lib.scss */
 /*colors*/
 /*ranges*/
-:root {
-  --red: #ff0000;
-}
-
 .hidden {
   display: none;
 }
@@ -253,10 +245,6 @@
 /* src/assets/scss/lib.scss */
 /*colors*/
 /*ranges*/
-:root {
-  --red: #ff0000;
-}
-
 .table-view table {
   padding: 0;
 }
@@ -404,10 +392,6 @@
 /* src/assets/scss/lib.scss */
 /*colors*/
 /*ranges*/
-:root {
-  --red: #ff0000;
-}
-
 .flex-center {
   display: flex;
   justify-content: center;
@@ -458,10 +442,6 @@
 /* src/assets/scss/lib.scss */
 /*colors*/
 /*ranges*/
-:root {
-  --red: #ff0000;
-}
-
 .web-app-info-box {
   margin-top: 10px;
   color: #000;

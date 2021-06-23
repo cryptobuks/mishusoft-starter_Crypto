@@ -1,68 +1,100 @@
+@charset "UTF-8";
 .ms-icon-computer-personal::after {
-  content: '\01F4BB'; }
+  content: "💻";
+}
 .ms-icon-computer-personal-old::after {
-  content: '\01F5B3'; }
+  content: "🖳";
+}
 .ms-icon-computer-desktop::after {
-  content: '\01F5A5'; }
+  content: "🖥";
+}
 .ms-icon-keyboard-mouse::after {
-  content: '\01F5A6'; }
+  content: "🖦";
+}
 .ms-icon-three-networked-computers::after, .ms-icon-lan::after, .ms-icon-network::after {
-  content: '\01F5A6'; }
+  content: "🖦";
+}
 .ms-icon-printer::after {
-  content: '\01F5A8'; }
+  content: "🖨";
+}
 .ms-icon-pocket-calculator::after {
-  content: '\01F5A9'; }
+  content: "🖩";
+}
 .ms-icon-black-hard-shell-floppy-disk::after {
-  content: '\01F5AA'; }
+  content: "🖪";
+}
 .ms-icon-white-hard-shell-floppy-disk::after {
-  content: '\01F5AB'; }
+  content: "🖫";
+}
 
 .ms-icon-boy::after {
-  content: '\01F466'; }
+  content: "👦";
+}
 .ms-icon-girl::after {
-  content: '\01F467'; }
+  content: "👧";
+}
 .ms-icon-man::after {
-  content: '\01F468'; }
+  content: "👨";
+}
 .ms-icon-woman::after {
-  content: '\01F469'; }
+  content: "👩";
+}
 .ms-icon-family::after {
-  content: '\01F46A'; }
+  content: "👪";
+}
 .ms-icon-friendship-man-woman::after {
-  content: '\01F46B'; }
+  content: "👫";
+}
 .ms-icon-friendship-man::after {
-  content: '\01F46C'; }
+  content: "👬";
+}
 .ms-icon-friendship-women::after {
-  content: '\01F46D'; }
+  content: "👭";
+}
 .ms-icon-police-officer::after {
-  content: '\01F46E'; }
+  content: "👮";
+}
 .ms-icon-woman-with-bunny-ears::after {
-  content: '\01F46F'; }
+  content: "👯";
+}
 
 /*blocks*/
 .ms-icon-aegean-word-separator-line::after {
-  content: '\010100'; }
+  content: "𐄀";
+}
 .ms-icon-aegean-word-separator-dot::after {
-  content: '\010101'; }
+  content: "𐄁";
+}
 .ms-icon-aegean-check-mark::after {
-  content: '\010102'; }
+  content: "𐄂";
+}
 .ms-icon-aegean-number-one::after {
-  content: '\010107'; }
+  content: "𐄇";
+}
 .ms-icon-aegean-number-two::after {
-  content: '\010108'; }
+  content: "𐄈";
+}
 .ms-icon-aegean-number-three::after {
-  content: '\010109'; }
+  content: "𐄉";
+}
 .ms-icon-aegean-number-four::after {
-  content: '\01010A'; }
+  content: "𐄊";
+}
 .ms-icon-aegean-number-five::after {
-  content: '\01010B'; }
+  content: "𐄋";
+}
 .ms-icon-aegean-number-six::after {
-  content: '\01010C'; }
+  content: "𐄌";
+}
 .ms-icon-aegean-number-seven::after {
-  content: '\01010D'; }
+  content: "𐄍";
+}
 .ms-icon-aegean-number-eight::after {
-  content: '\01010E'; }
+  content: "𐄎";
+}
 .ms-icon-aegean-number-nine::after {
-  content: '\01010F'; }
+  content: "𐄏";
+}
 
 /**
 * categories
@@ -73,44 +105,64 @@
 .ms-icon {
   font-family: inherit;
   font-size: inherit;
-  color: inherit; }
-  .ms-icon-exclamation-mark::after {
-    content: '\000021'; }
-  .ms-icon-quotation-mark::after {
-    content: '\000022'; }
-  .ms-icon-number-sign::after {
-    content: '\000023'; }
-  .ms-icon-telephone::after {
-    content: '\002706'; }
-  .ms-icon-write::after {
-    content: '\00270D'; }
-  .ms-icon-victory-hand::after {
-    content: '\00270C'; }
-  .ms-icon-envelope::after {
-    content: '\002709'; }
-  .ms-icon-airplane::after {
-    content: '\002708'; }
-  .ms-icon-tape-drive::after {
-    content: '\002707'; }
-  .ms-icon-white-scissors::after {
-    content: '\002704'; }
-  .ms-icon-black-scissors::after {
-    content: '\002702'; }
-  .ms-icon-upper-blade-scissors::after {
-    content: '\002701'; }
-  .ms-icon-white-flag-with-horizontal-middle-black-stripe::after {
-    content: '\0026FF'; }
-  .ms-icon-credit-card::after {
-    content: '\01F4B3'; }
-  .ms-icon-mathematical-sans-serif-bold-small-f::after {
-    content: '\01D5F3'; }
-  .ms-icon-user::after {
-    content: '\01F464'; }
-  .ms-icon-user-group::after {
-    content: '\01F465'; }
-  .ms-icon-trash::after {
-    content: '\01F5D1'; }
-  .ms-icon-search::after {
-    content: '\01F50D'; }
+  color: inherit;
+}
+.ms-icon-exclamation-mark::after {
+  content: "!";
+}
+.ms-icon-quotation-mark::after {
+  content: '"';
+}
+.ms-icon-number-sign::after {
+  content: "#";
+}
+.ms-icon-telephone::after {
+  content: "✆";
+}
+.ms-icon-write::after {
+  content: "✍";
+}
+.ms-icon-victory-hand::after {
+  content: "✌";
+}
+.ms-icon-envelope::after {
+  content: "✉";
+}
+.ms-icon-airplane::after {
+  content: "✈";
+}
+.ms-icon-tape-drive::after {
+  content: "✇";
+}
+.ms-icon-white-scissors::after {
+  content: "✄";
+}
+.ms-icon-black-scissors::after {
+  content: "✂";
+}
+.ms-icon-upper-blade-scissors::after {
+  content: "✁";
+}
+.ms-icon-white-flag-with-horizontal-middle-black-stripe::after {
+  content: "⛿";
+}
+.ms-icon-credit-card::after {
+  content: "💳";
+}
+.ms-icon-mathematical-sans-serif-bold-small-f::after {
+  content: "𝗳";
+}
+.ms-icon-user::after {
+  content: "👤";
+}
+.ms-icon-user-group::after {
+  content: "👥";
+}
+.ms-icon-trash::after {
+  content: "🗑";
+}
+.ms-icon-search::after {
+  content: "🔍";
+}
 
 /*# sourceMappingURL=icons.css.map */

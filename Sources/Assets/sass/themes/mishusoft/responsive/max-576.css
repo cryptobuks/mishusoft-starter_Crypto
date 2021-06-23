@@ -1,4 +1,4 @@
-@media screen and (min-width: 576px) {
+@media screen and (max-width: 576px) {
   /* start of 576px desktop screen */
   .header-quick-tool-bar left div a {
     display: none;

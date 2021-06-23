@@ -1,22 +1,33 @@
+@charset "UTF-8";
 .ms-icon-boy::after {
-  content: '\01F466'; }
+  content: "👦";
+}
 .ms-icon-girl::after {
-  content: '\01F467'; }
+  content: "👧";
+}
 .ms-icon-man::after {
-  content: '\01F468'; }
+  content: "👨";
+}
 .ms-icon-woman::after {
-  content: '\01F469'; }
+  content: "👩";
+}
 .ms-icon-family::after {
-  content: '\01F46A'; }
+  content: "👪";
+}
 .ms-icon-friendship-man-woman::after {
-  content: '\01F46B'; }
+  content: "👫";
+}
 .ms-icon-friendship-man::after {
-  content: '\01F46C'; }
+  content: "👬";
+}
 .ms-icon-friendship-women::after {
-  content: '\01F46D'; }
+  content: "👭";
+}
 .ms-icon-police-officer::after {
-  content: '\01F46E'; }
+  content: "👮";
+}
 .ms-icon-woman-with-bunny-ears::after {
-  content: '\01F46F'; }
+  content: "👯";
+}
 
 /*# sourceMappingURL=human.css.map */

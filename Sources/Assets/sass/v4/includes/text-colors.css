@@ -1,12 +1,9 @@
-/* src/assets/scss/lib.scss */
-/*colors*/
-/*ranges*/
 .text-red {
-  color: #ff0000 !important;
+  color: var(--red) !important;
 }
 
 .text-blue {
-  color: #0777cc !important;
+  color: var(--blue-deep) !important;
 }
 
 .text-notify {
@@ -14,19 +11,19 @@
 }
 
 .text-safe {
-  color: #ffffff !important;
+  color: var(--white) !important;
 }
 
 .text-success {
-  color: #4caf50;
+  color: var(--green);
 }
 
 .text-danger {
-  color: #ff0000 !important;
+  color: var(--red) !important;
 }
 
 .text-black, .text-black > a, .text-black > p > a {
-  color: #000 !important;
+  color: var(--black) !important;
 }
 
 /*# sourceMappingURL=text-colors.css.map */

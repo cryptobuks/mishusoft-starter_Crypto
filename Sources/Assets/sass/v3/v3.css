@@ -2,10 +2,6 @@
 /* src/assets/scss/lib.scss */
 /*colors*/
 /*ranges*/
-:root {
-  --red: #ff0000;
-}
-
 * {
   margin: 0;
   padding: 0;

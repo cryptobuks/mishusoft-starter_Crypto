@@ -1,3 +1,64 @@
-
+/* src/assets/scss/lib.scss */
+/*colors*/
+/*ranges*/
+.navbar1 {
+  width: 100%;
+  height: 30px;
+  color: #ffffff;
+  background-image: linear-gradient(#000, #808080);
+  /*display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  align-content: space-between;*/
+}
+.navbar1 a {
+  color: #ffffff;
+}
+.navbar1 a i {
+  margin-right: 5px;
+}
+.navbar1-left-nav {
+  width: 60%;
+  height: inherit;
+  text-align: left;
+}
+.navbar1-right-nav {
+  width: 40%;
+  height: inherit;
+  text-align: right;
+}
+.navbar1-left-nav a, .navbar1-right-nav a, .navbar1-right-nav span {
+  height: inherit;
+  padding: 5px 8px;
+  font-size: 14px;
+  display: inline-block;
+}
+.navbar1-dropdown {
+  cursor: pointer;
+}
+.navbar1-dropdown-content {
+  color: #ffffff;
+  display: none;
+  position: absolute;
+  background-color: #000;
+  width: 100px;
+  text-align: right;
+  /*left: 8px;*/
+  -webkit-box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  -o-box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+.navbar1-dropdown-content a {
+  /*display: block;*/
+  width: 100%;
+}
+.navbar1-dropdown-content a:hover {
+  background-color: #d3d3d3;
+  color: #000;
+}
+.navbar1-dropdown:hover .navbar1-dropdown-content {
+  display: block;
+}
 
 /*# sourceMappingURL=navbars.css.map */
