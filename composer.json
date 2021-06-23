@@ -63,6 +63,9 @@
     "copy-media": "php ./Sources/Release.php -copy -s ./Sources/Assets/media -d /srv/http/Storages/0/media",
     "copy-errors-page": "php ./Sources/Release.php -copy -s ./Sources/Mishusoft/Views/Errors/SHtml -d /srv/http/Mishusoft/Errors",
     "update-geoip-db": "sudo -S geoipupdate && sudo cp -r /var/lib/GeoIP ./Storages/0/GeoIP",
+
+    "php-devServer": "php -S localhost:8080",
+
     "phpcs": "phpcs",
     "phpcbf": "phpcbf"
   },
@@ -87,6 +90,7 @@
     "ext-pdo": "*",
     "ext-mysqli": "*",
     "ext-intl": "*",
-    "ext-gd": "*"
+    "ext-gd": "*",
+    "ext-fileinfo": "*"
   }
 }

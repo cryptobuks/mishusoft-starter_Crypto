@@ -164,6 +164,12 @@ const commonFileConfig = {
         'mishusoft-theme': [
             './Assets/sass/themes/mishusoft.scss',
             './Assets/sass/themes/mishusoft/responsive.scss',
+        ],
+        /**
+         * Build font face css framework supporter module for ui support
+         * */
+        'font-face': [
+            './Assets/sass/common/font-face.scss',
         ]
 
 
