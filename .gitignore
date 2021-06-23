@@ -65,6 +65,7 @@ dkms.conf
 /vendor/
 /tests/
 /Storages/
+/public_html/
 
 composer.lock
 package-lock.json
