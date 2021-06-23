@@ -5,7 +5,7 @@ namespace Mishusoft\Packages\Lab\Modules\System\Controllers;
 
 use Exception;
 use Mishusoft\Framework\Chipsets\Cryptography\Decryption;
-use Mishusoft\Framework\Chipsets\Media;
+use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Framework\Chipsets\Utility\Pagination;
 use Mishusoft\Framework\PreRequires\_Array;
 use Mishusoft\Framework\PreRequires\_String;
@@ -121,24 +121,24 @@ class pagesController extends systemController
         $data = json_decode(file_get_contents('php://input'));
         if (!empty($data) && is_object($data)) {
             if (empty($data->security_code) or $data->security_code !== 1) {
-                Media::StreamAsJson(['type' => 'error', 'message' => 'App\'s security_code not found.']);
+                Storage::StreamAsJson(['type' => 'error', 'message' => 'App\'s security_code not found.']);
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'New page\'s security code not found.')));
                 exit;
             }
 
             if (empty($this->filterInt($data->page))) {
-                Media::StreamAsJson(['type' => 'error', 'message' => 'Page id not found.']);
+                Storage::StreamAsJson(['type' => 'error', 'message' => 'Page id not found.']);
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'New page\'s name or title not found.')));
                 exit;
             }
 
             if ($this->system->isPageExistsById($this->filterInt($data->page))) {
-                Media::StreamAsJson(['type' => 'success', 'name' => _Array::value($this->system->getPage($this->filterInt($data->page)), 'title'), 'message' => 'page ' . _Array::value($this->system->getPage($this->filterInt($data->page)), 'title') . ' name send']);
+                Storage::StreamAsJson(['type' => 'success', 'name' => _Array::value($this->system->getPage($this->filterInt($data->page)), 'title'), 'message' => 'page ' . _Array::value($this->system->getPage($this->filterInt($data->page)), 'title') . ' name send']);
                 //Tracker::addEvent(array('activity' => array('messageType' => 'success', 'name' => retrieveReturnVariable($this->system->getPage($this->filterInt($data->page)), 'title'), 'message' => 'page ' . retrieveReturnVariable($this->system->getPage($this->filterInt($data->page)), 'title') . ' name send')));
                 exit;
 
             } else {
-                Media::StreamAsJson(['type' => 'error', 'message' => 'Page name request failed.']);
+                Storage::StreamAsJson(['type' => 'error', 'message' => 'Page name request failed.']);
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Page name request failed.')));
                 exit;
             }

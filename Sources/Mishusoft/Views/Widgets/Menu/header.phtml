@@ -5,7 +5,7 @@
             <?php
 
             use Mishusoft\Framework\Chipsets\Framework;
-            use Mishusoft\Framework\Chipsets\Media;
+            use Mishusoft\Framework\Chipsets\Storage;
             use Mishusoft\Framework\Chipsets\System;
             use Mishusoft\Framework\Chipsets\Utility\_String;
             use Mishusoft\Framework\Drivers\View; ?>
@@ -14,7 +14,7 @@
                 <div class="flex-group flex-row web-logo-area-thumb">
                     <div class="flex-column web-logo-area-thumb-container">
                         <img alt="<?php echo substr(Framework::NAME, 0, 1); ?>"
-                             src="<?php echo Media::getLogosMediaPath(_String::lower(Framework::NAME) . "-logo-lite.webp", "remote"); ?>" class="web-logo-area-thumb-container-img">
+                             src="<?php echo Storage::getLogosMediaPath(_String::lower(Framework::NAME) . "-logo-lite.webp", "remote"); ?>" class="web-logo-area-thumb-container-img">
                     </div>
                     <div class="flex-column web-logo-area-thumb-title">
                         <?php echo (empty($si['name'])) ? Framework::NAME: $si['name']; ?>

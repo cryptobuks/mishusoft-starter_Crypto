@@ -2,7 +2,7 @@
 
 namespace Mishusoft\Packages\Lab\Modules\System\Controllers;
 
-use Mishusoft\Framework\Chipsets\Media;
+use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Packages\Lab\Modules\Main\Controllers\systemController;
 
 class indexController extends systemController
@@ -30,7 +30,7 @@ class indexController extends systemController
     {
         $this->acl->access('edit_content');
         /*Tracker::addEvent(array('activity' => array('messageType' => 'success', 'message' => ' Framework Menu main (JSON data) extract successfully')));*/
-        Media::StreamAsJson($this->system->getMainItemTabs());
+        Storage::StreamAsJson($this->system->getMainItemTabs());
 
     }
 
@@ -38,7 +38,7 @@ class indexController extends systemController
     {
         $this->acl->access('edit_content');
         /*Tracker::addEvent(array('activity' => array('messageType' => 'success', 'message' => ' Framework Menu extra (JSON data) extract successfully')));*/
-        Media::StreamAsJson($this->system->getExtraItemTabs());
+        Storage::StreamAsJson($this->system->getExtraItemTabs());
 
     }
 }

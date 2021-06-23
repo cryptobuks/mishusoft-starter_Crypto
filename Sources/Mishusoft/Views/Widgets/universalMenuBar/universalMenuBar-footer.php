@@ -1,6 +1,6 @@
 <?php
 
-use Mishusoft\Framework\Chipsets\Media;
+use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Framework\Chipsets\System\Localization;
 use Mishusoft\Framework\Chipsets\System\Memory;
 use Mishusoft\Framework\Chipsets\System\Time;
@@ -58,21 +58,21 @@ if (!in_array(_String::lower($this->request["controller"]), $authenticate)) {
     $parent = Ui::element($right, 'div', ['class'=>'quick-link-area',/*'style' => 'font-size:12px;'*/]);
     /*map marker*/
     Ui::elementList(Ui::element($parent, 'div', ['class'=>'quick-link',/*'style' => 'height: 20px;background:inherit;color: inherit;display: flex;flex-direction:row;'*/]), ["img" => [
-        [/*"style" => "height: 15px;width: 15px;margin-left:10px;margin-right:10px;margin-top: 4px;",*/ "src" => Media::getMediaPath("images/map-marker.png", "remote"),"height"=>"15px","width"=>"15px", "alt" => Memory::Data()->company->address],
+        [/*"style" => "height: 15px;width: 15px;margin-left:10px;margin-right:10px;margin-top: 4px;",*/ "src" => Storage::getMediaPath("images/map-marker.png", "remote"),"height"=>"15px","width"=>"15px", "alt" => Memory::Data()->company->address],
     ], "a" => [
         ['class'=>'protect',/*"style" => Ui::htmlHrefStyle . "color:" . Ui::color["white"],*/ "href" => Memory::Data()->company->map, "target" => "_blank", "rel" => "noreferrer", "text" => Memory::Data()->company->address],
     ]]);
 
     /*cell phone*/
     Ui::elementList(Ui::element($parent, 'div', ['class'=>'quick-link',/*'style' => 'height: 20px;background:inherit;color: inherit;display: flex;flex-direction:row;'*/]), ["img" => [
-        ["style" => "height: 15px;width: 15px;margin-left:10px;margin-right:10px;margin-top: 4px;", "src" => Media::getMediaPath("images/ringing-phone.png", "remote"),"height"=>"15px","width"=>"15px", "alt" => Memory::Data()->company->care],
+        ["style" => "height: 15px;width: 15px;margin-left:10px;margin-right:10px;margin-top: 4px;", "src" => Storage::getMediaPath("images/ringing-phone.png", "remote"),"height"=>"15px","width"=>"15px", "alt" => Memory::Data()->company->care],
     ], "a" => [
         ["style" => Ui::htmlHrefStyle . "color:" . Ui::color["white"], "href" => "tel:" . Memory::Data()->company->care, "target" => "_blank", "text" => Memory::Data()->company->care],
     ]]);
 
     /*email address*/
     Ui::elementList(Ui::element($parent, 'div', ['class'=>'quick-link'/*,'style' => 'height: 20px;background:inherit;color: inherit;display: flex;flex-direction:row;'*/]), ["img" => [
-        ["style" => "height: 15px;width: 15px;margin-left:10px;margin-right:10px;margin-top: 4px;", "src" => Media::getMediaPath("images/mail-contact.png", "remote"),"height"=>"15px","width"=>"15px", "alt" => Memory::Data()->company->mail],
+        ["style" => "height: 15px;width: 15px;margin-left:10px;margin-right:10px;margin-top: 4px;", "src" => Storage::getMediaPath("images/mail-contact.png", "remote"),"height"=>"15px","width"=>"15px", "alt" => Memory::Data()->company->mail],
     ], "a" => [
         ["style" => Ui::htmlHrefStyle . "color:" . Ui::color["white"], "href" => "mailto:" . Memory::Data()->company->mail, "target" => "_blank", "text" => Memory::Data()->company->mail],
     ]]);
@@ -97,43 +97,43 @@ if (!in_array(_String::lower($this->request["controller"]), $authenticate)) {
     /*facebook*/
     Ui::element(
         Ui::element($socialMediaBar, "a", ["style" => $StyleForSocialMediaLink, "href" => "https://www.facebook.com/alamin.ahamed.abir", "target" => "_blank", "rel" => "noreferrer"]),
-        "img", ["style" => $StyleForSocialMediaIcon,"height"=>"20px","width"=>"20px", "src" => Media::getMediaPath("images/facebook-new.png", "remote"), "alt" => "facebook"]
+        "img", ["style" => $StyleForSocialMediaIcon,"height"=>"20px","width"=>"20px", "src" => Storage::getMediaPath("images/facebook-new.png", "remote"), "alt" => "facebook"]
     );
     /*github*/
     Ui::element(
         Ui::element($socialMediaBar, "a", ["style" => $StyleForSocialMediaLink, "href" => "https://github.com/mrabirahamed", "target" => "_blank", "rel" => "noreferrer"]),
-        "img", ["style" => $StyleForSocialMediaIcon,"height"=>"20px","width"=>"20px", "src" => Media::getMediaPath("images/github.png", "remote"), "alt" => "github"]
+        "img", ["style" => $StyleForSocialMediaIcon,"height"=>"20px","width"=>"20px", "src" => Storage::getMediaPath("images/github.png", "remote"), "alt" => "github"]
     );
 
     /*instagram*/
     Ui::element(
         Ui::element($socialMediaBar, "a", ["style" => $StyleForSocialMediaLink, "href" => "https://www.instagram.com/mrabir.ahmed", "target" => "_blank", "rel" => "noreferrer"]),
-        "img", ["style" => $StyleForSocialMediaIcon,"height"=>"20px","width"=>"20px", "src" => Media::getMediaPath("images/instagram-new.png", "remote"), "alt" => "instagram"]
+        "img", ["style" => $StyleForSocialMediaIcon,"height"=>"20px","width"=>"20px", "src" => Storage::getMediaPath("images/instagram-new.png", "remote"), "alt" => "instagram"]
     );
     /*linkedin*/
     Ui::element(
         Ui::element($socialMediaBar, "a", ["style" => $StyleForSocialMediaLink, "href" => "https://www.linkedin.com/in/mrabirahamed/", "target" => "_blank", "rel" => "noreferrer"]),
-        "img", ["style" => $StyleForSocialMediaIcon,"height"=>"20px","width"=>"20px", "src" => Media::getMediaPath("images/linkedin.png", "remote"), "alt" => "linkedin"]
+        "img", ["style" => $StyleForSocialMediaIcon,"height"=>"20px","width"=>"20px", "src" => Storage::getMediaPath("images/linkedin.png", "remote"), "alt" => "linkedin"]
     );
     /*pinterest*/
     Ui::element(
         Ui::element($socialMediaBar, "a", ["style" => $StyleForSocialMediaLink, "href" => "https://www.pinterest.com/mrabirahamed", "target" => "_blank", "rel" => "noreferrer"]),
-        "img", ["style" => $StyleForSocialMediaIcon,"height"=>"20px","width"=>"20px", "src" => Media::getMediaPath("images/pinterest.png", "remote"), "alt" => "pinterest"]
+        "img", ["style" => $StyleForSocialMediaIcon,"height"=>"20px","width"=>"20px", "src" => Storage::getMediaPath("images/pinterest.png", "remote"), "alt" => "pinterest"]
     );
     /*reddit*/
     Ui::element(
         Ui::element($socialMediaBar, "a", ["style" => $StyleForSocialMediaLink, "href" => "https://www.reddit.com/user/mrabirahamed", "target" => "_blank", "rel" => "noreferrer"]),
-        "img", ["style" => $StyleForSocialMediaIcon,"height"=>"20px","width"=>"20px", "src" => Media::getMediaPath("images/reddit.png", "remote"), "alt" => "reddit"]
+        "img", ["style" => $StyleForSocialMediaIcon,"height"=>"20px","width"=>"20px", "src" => Storage::getMediaPath("images/reddit.png", "remote"), "alt" => "reddit"]
     );
     /*tiktok*/
     Ui::element(
         Ui::element($socialMediaBar, "a", ["style" => $StyleForSocialMediaLink, "href" => "https://www.tiktok.com/@user7594632514421?lang=en", "target" => "_blank", "rel" => "noreferrer"]),
-        "img", ["style" => $StyleForSocialMediaIcon,"height"=>"20px","width"=>"20px", "src" => Media::getMediaPath("images/tiktok.png", "remote"), "alt" => "tiktok"]
+        "img", ["style" => $StyleForSocialMediaIcon,"height"=>"20px","width"=>"20px", "src" => Storage::getMediaPath("images/tiktok.png", "remote"), "alt" => "tiktok"]
     );
     /*twitter*/
     Ui::element(
         Ui::element($socialMediaBar, "a", ["style" => $StyleForSocialMediaLink, "href" => "https://twitter.com/mrabir_ahamed", "target" => "_blank", "rel" => "noreferrer"]),
-        "img", ["style" => $StyleForSocialMediaIcon,"height"=>"20px","width"=>"20px", "src" => Media::getMediaPath("images/twitter.png", "remote"), "alt" => "twitter"]
+        "img", ["style" => $StyleForSocialMediaIcon,"height"=>"20px","width"=>"20px", "src" => Storage::getMediaPath("images/twitter.png", "remote"), "alt" => "twitter"]
     );
 
 

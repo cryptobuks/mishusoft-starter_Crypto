@@ -5,7 +5,7 @@ namespace Mishusoft\Framework\Drivers\View;
 use Exception;
 use Mishusoft\Framework\Chipsets\FileSystem;
 use Mishusoft\Framework\Chipsets\Http\ClientRequest;
-use Mishusoft\Framework\Chipsets\Media;
+use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Framework\Chipsets\MPM;
 use Mishusoft\Framework\Chipsets\Preloader;
 use Mishusoft\Framework\Chipsets\System\Firewall;
@@ -147,10 +147,10 @@ class SmartyView extends SmartyBC
             'js'                         => $js,
             'jsPlugin'                   => $this->jsPlugin,
             // 'mediaImage' => WebPublicImagesFolder,
-            'logoFolder'                 => Media::getLogosMediaPath('', 'remote'),
+            'logoFolder'                 => Storage::getLogosMediaPath('', 'remote'),
             // 'favicon' => $favicon,
-            'profilePhotosFolder'        => Media::getMediaPathOfUsersPhotos('profiles', 'remote'),
-            'uploads'                    => Media::getMediaPathOfUploads('', 'remote'),
+            'profilePhotosFolder'        => Storage::getMediaPathOfUsersPhotos('profiles', 'remote'),
+            'uploads'                    => Storage::getMediaPathOfUploads('', 'remote'),
             'root'                       => BASEURL,
             'mishusoft_session_validity' => Session::get('auth'),
             'current_host_name'          => Network::getValOfSrv('SERVER_NAME'),

@@ -10,7 +10,7 @@ use Mishusoft\Framework\Chipsets\Cryptography\Encryption;
 use Mishusoft\Framework\Chipsets\Framework;
 use Mishusoft\Framework\Chipsets\Http;
 use Mishusoft\Framework\Chipsets\Http\Browser;
-use Mishusoft\Framework\Chipsets\Media;
+use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Framework\Chipsets\System\Memory;
 use Mishusoft\Framework\Chipsets\System\Firewall;
 use Mishusoft\Framework\Chipsets\Ui;
@@ -47,7 +47,7 @@ class AccountViewRender extends ViewRender
         Ui::HtmlInterface($this->TitleOfCurrentWebPage, function ($html, $head, $title) {
 
             /*add css file in head*/
-            Ui::element($head, "link", ["rel" => "stylesheet", "href" => Media::getWebResourcesPath() . "/css/v4.css"]);
+            Ui::element($head, "link", ["rel" => "stylesheet", "href" => Storage::getWebResourcesPath() . "/css/v4.css"]);
 
             /*set id attribute for body*/
             $body = Ui::element($html, "body", ["id" => "account"]);
@@ -117,19 +117,19 @@ class AccountViewRender extends ViewRender
 
                 /*create html anchor elements*/
                 $card1 = Ui::element($cardParent, "a", ["style" => $commonStyleStringForCards, "href" => Memory::Data("framework")->host->url . "account/login"]);
-                Ui::element($card1, "img", ["style" => Ui::htmlHrefStyle . "width:80px;height:60px;border-radius: 10px;", "src" => Media::getAssetsPath("images_img-avatar3.png", "remote")]);
+                Ui::element($card1, "img", ["style" => Ui::htmlHrefStyle . "width:80px;height:60px;border-radius: 10px;", "src" => Storage::getAssetsPath("images_img-avatar3.png", "remote")]);
                 Ui::element($card1, "text", ["style" => Ui::htmlHrefStyle, "text" => "Log in"]);
 
                 $card2 = Ui::element($cardParent, "a", ["style" => $commonStyleStringForCards, "href" => Memory::Data("framework")->host->url . "account/create"]);
-                Ui::element($card2, "img", ["style" => Ui::htmlHrefStyle . "width:80px;height:60px;border-radius: 10px;", "src" => Media::getAssetsPath("images_img-avatar3.png", "remote")]);
+                Ui::element($card2, "img", ["style" => Ui::htmlHrefStyle . "width:80px;height:60px;border-radius: 10px;", "src" => Storage::getAssetsPath("images_img-avatar3.png", "remote")]);
                 Ui::element($card2, "text", ["style" => Ui::htmlHrefStyle, "text" => "Create New Account"]);
 
                 $card3 = Ui::element($cardParent, "a", ["style" => $commonStyleStringForCards, "href" => Memory::Data("framework")->host->url . "account/activate"]);
-                Ui::element($card3, "img", ["style" => Ui::htmlHrefStyle . "width:80px;height:60px;border-radius: 10px;", "src" => Media::getAssetsPath("images_img-avatar3.png", "remote")]);
+                Ui::element($card3, "img", ["style" => Ui::htmlHrefStyle . "width:80px;height:60px;border-radius: 10px;", "src" => Storage::getAssetsPath("images_img-avatar3.png", "remote")]);
                 Ui::element($card3, "text", ["style" => Ui::htmlHrefStyle, "text" => "Activate Account"]);
 
                 $card4 = Ui::element($cardParent, "a", ["style" => $commonStyleStringForCards, "href" => Memory::Data("framework")->host->url . "account/recovery"]);
-                Ui::element($card4, "img", ["style" => Ui::htmlHrefStyle . "width:80px;height:60px;border-radius: 10px;", "src" => Media::getAssetsPath("images_img-avatar3.png", "remote")]);
+                Ui::element($card4, "img", ["style" => Ui::htmlHrefStyle . "width:80px;height:60px;border-radius: 10px;", "src" => Storage::getAssetsPath("images_img-avatar3.png", "remote")]);
                 Ui::element($card4, "text", ["style" => Ui::htmlHrefStyle, "text" => "Forget Account"]);
             } /*take action in logout page on account area*/
             elseif (_String::lower($this->request["method"]) === _String::lower("logout")) {
@@ -150,7 +150,7 @@ class AccountViewRender extends ViewRender
                     $loginBody = Ui::element($template_body, "ms-app-login-box", [
                         "style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";background: white;padding: 20px;border-radius:10px;text-align: left;font-size: 16px;height: 500px;width: 370px;" . Ui::css["box-shadow"] . Ui::css["display-flex"] . Ui::css["flex-column"] . Ui::css["center"],
                     ]);
-                    Ui::element($loginBody, "img", ["style" => Ui::htmlHrefStyle . "width:100px;height:100px;border-radius: 50%;margin-bottom: 15px;", "src" => Media::getAssetsPath("images_img-avatar3.png", "remote")]);
+                    Ui::element($loginBody, "img", ["style" => Ui::htmlHrefStyle . "width:100px;height:100px;border-radius: 50%;margin-bottom: 15px;", "src" => Storage::getAssetsPath("images_img-avatar3.png", "remote")]);
 
 
                     /*catch error*/
@@ -330,7 +330,7 @@ class AccountViewRender extends ViewRender
                     $signupBody = Ui::element($template_body, "ms-app-create-box", [
                         "style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";background: white;padding: 20px;border-radius:10px;text-align: left;font-size: 16px;height:500px;width: 370px;" . Ui::css["box-shadow"] . Ui::css["display-flex"] . Ui::css["flex-column"] . Ui::css["center"],
                     ]);
-                    Ui::element($signupBody, "img", ["style" => Ui::htmlHrefStyle . "width:100px;height:100px;border-radius: 50%;margin-bottom: 15px;", "src" => Media::getAssetsPath("images_img-avatar3.png", "remote")]);
+                    Ui::element($signupBody, "img", ["style" => Ui::htmlHrefStyle . "width:100px;height:100px;border-radius: 50%;margin-bottom: 15px;", "src" => Storage::getAssetsPath("images_img-avatar3.png", "remote")]);
                     Ui::element($signupBody, "h3", ["style" => Ui::htmlHrefStyle . "text-align: left;display: flex;align-items: start;width: 100%;padding: 5px;margin-bottom: 5px;margin-top: 0px;", "text" => "Create a new account"]);
 
 
@@ -434,7 +434,7 @@ class AccountViewRender extends ViewRender
                         $usernameBody = Ui::element($template_body, "ms-app-username-box", [
                             "style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";background: white;padding: 20px;border-radius:10px;text-align: left;font-size: 16px;height:500px;width: 370px;" . Ui::css["box-shadow"] . Ui::css["display-flex"] . Ui::css["flex-column"] . Ui::css["center"],
                         ]);
-                        Ui::element($usernameBody, "img", ["style" => Ui::htmlHrefStyle . "width:100px;height:100px;border-radius: 50%;margin-bottom: 15px;", "src" => Media::getAssetsPath("images_img-avatar3.png", "remote")]);
+                        Ui::element($usernameBody, "img", ["style" => Ui::htmlHrefStyle . "width:100px;height:100px;border-radius: 50%;margin-bottom: 15px;", "src" => Storage::getAssetsPath("images_img-avatar3.png", "remote")]);
 
                         //echo Encryption::dynamic("new");
                         //aUsxYUxuNTFGcVM4VmV1VlpXYm1jUT09Ok1pc2h1c29mdDpRMH4kE1dsWbXR1IyWrqhu
@@ -613,7 +613,7 @@ class AccountViewRender extends ViewRender
                         $usernameBody = Ui::element($template_body, "ms-app-username-box", [
                             "style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";background: white;padding: 20px;border-radius:10px;text-align: left;font-size: 16px;height:500px;width: 370px;" . Ui::css["box-shadow"] . Ui::css["display-flex"] . Ui::css["flex-column"] . Ui::css["center"],
                         ]);
-                        Ui::element($usernameBody, "img", ["style" => Ui::htmlHrefStyle . "width:100px;height:100px;border-radius: 50%;margin-bottom: 15px;", "src" => Media::getAssetsPath("images_img-avatar3.png", "remote")]);
+                        Ui::element($usernameBody, "img", ["style" => Ui::htmlHrefStyle . "width:100px;height:100px;border-radius: 50%;margin-bottom: 15px;", "src" => Storage::getAssetsPath("images_img-avatar3.png", "remote")]);
 
                         //echo Encryption::dynamic("new");
                         //aUsxYUxuNTFGcVM4VmV1VlpXYm1jUT09Ok1pc2h1c29mdDpRMH4kE1dsWbXR1IyWrqhu
@@ -792,7 +792,7 @@ class AccountViewRender extends ViewRender
                         $welcomeBody = Ui::element($template_body, "ms-app-welcome-box", [
                             "style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";background: white;padding: 20px;border-radius:10px;text-align: left;font-size: 16px;height:500px;width: 370px;" . Ui::css["box-shadow"] . Ui::css["display-flex"] . Ui::css["flex-column"] . Ui::css["center"],
                         ]);
-                        Ui::element($welcomeBody, "img", ["style" => Ui::htmlHrefStyle . "width:100px;height:100px;border-radius: 50%;margin-bottom: 15px;", "src" => Media::getAssetsPath("images_img-avatar3.png", "remote")]);
+                        Ui::element($welcomeBody, "img", ["style" => Ui::htmlHrefStyle . "width:100px;height:100px;border-radius: 50%;margin-bottom: 15px;", "src" => Storage::getAssetsPath("images_img-avatar3.png", "remote")]);
 
                         /*catch error*/
                         if (array_key_exists("error", $_GET) || array_key_exists("success", $_GET) || array_key_exists("notify", $_GET)) {
@@ -910,7 +910,7 @@ class AccountViewRender extends ViewRender
                 /*profile photo*/
                 Ui::element(Ui::element($profileBody, "ms-app-profile-user-photo", [
                     "style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";text-align: center;font-size: 16px;height:100px;width: -moz-available;width: -webkit-fill-available;" . Ui::css["display-flex"] . Ui::css["flex-column"] . Ui::css["center"],
-                ]), "img", ["style" => Ui::htmlHrefStyle . "width:150px;height:150px;border-radius: 50%;margin-bottom: 15px;margin-top: -80px;padding: 10px;background: white;" . Ui::css["box-shadow"], "src" => Media::getAssetsPath("images_img-avatar3.png", "remote")]);
+                ]), "img", ["style" => Ui::htmlHrefStyle . "width:150px;height:150px;border-radius: 50%;margin-bottom: 15px;margin-top: -80px;padding: 10px;background: white;" . Ui::css["box-shadow"], "src" => Storage::getAssetsPath("images_img-avatar3.png", "remote")]);
 
                 /*Ui::element($profileBody, "ms-app-profile-menubar", [
                     "style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";text-align: center;font-size: 16px;height:80px;width: -moz-available;width: -webkit-fill-available;box-shadow: 1px 3px 4px rgba(0,0,0,.12),1px 1px 2px rgba(0,0,0,.24);margin-bottom: 10px;border-top: 1px solid rgba(0,0,0,.12);width: 1024px;". Ui::css["display-flex"] . Ui::css["flex-column"] . Ui::css["center"],

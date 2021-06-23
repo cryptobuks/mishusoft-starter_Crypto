@@ -7,7 +7,7 @@ use Mishusoft\Framework\Chipsets\Cryptography\OpenSSL\Decryption;
 use Mishusoft\Framework\Chipsets\Cryptography\OpenSSL\Encryption;
 use Mishusoft\Framework\Chipsets\Http\Browser;
 use Mishusoft\Framework\Chipsets\Http\IP;
-use Mishusoft\Framework\Chipsets\Media;
+use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Framework\Chipsets\System\Network;
 use Mishusoft\Framework\Chipsets\System\Time;
 use Mishusoft\Framework\Chipsets\Utility\_Debug;
@@ -367,7 +367,7 @@ class paymentController extends Controller
                 exit;
             }
         } else {
-            Media::StreamAsJson(['type' => 'error', 'message' => 'Invalid token request.']);
+            Storage::StreamAsJson(['type' => 'error', 'message' => 'Invalid token request.']);
             //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Invalid token request.')));
             exit;
         }
@@ -533,12 +533,12 @@ class paymentController extends Controller
                     }
                 }
             } else {
-                Media::StreamAsJson(['type' => 'error', 'message' => 'Converting error. Data not found.']);
+                Storage::StreamAsJson(['type' => 'error', 'message' => 'Converting error. Data not found.']);
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Converting error. Data not found.')));
                 exit;
             }
         } else {
-            Media::StreamAsJson(['type' => 'error', 'message' => 'Converting error. Currency empty.']);
+            Storage::StreamAsJson(['type' => 'error', 'message' => 'Converting error. Currency empty.']);
             //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Converting error. Currency empty.')));
             exit;
         }

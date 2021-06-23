@@ -7,7 +7,7 @@ namespace Mishusoft\Framework\Libraries;
 use Mishusoft\Framework\Chipsets\Framework;
 use Mishusoft\Framework\Chipsets\Http;
 use Mishusoft\Framework\Chipsets\Http\Browser;
-use Mishusoft\Framework\Chipsets\Media;
+use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Framework\Chipsets\System\Memory;
 use Mishusoft\Framework\Chipsets\System\Firewall;
 use Mishusoft\Framework\Chipsets\System\Time;

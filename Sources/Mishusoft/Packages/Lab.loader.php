@@ -1,6 +1,6 @@
 <?php
 
-use Mishusoft\Framework\Chipsets\Media;
+use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Framework\Chipsets\System;
 use Mishusoft\Framework\Chipsets\System\Memory;
 use Mishusoft\Framework\Chipsets\System\Device;
@@ -154,12 +154,12 @@ use Mishusoft\Framework\Chipsets\Utility\_String;
                                 ],
                                 [
                                     'type' => 'application/javascript',
-                                    'src'  => Media::toDataUri('js_installer.js', 'remote'),
+                                    'src'  => Storage::toDataUri('js_installer.js', 'remote'),
                                 // .join([Memory::Data("framework")->host->url . 'libraries/js/installer.js'])
                                 ],
                                 [
                                     'type' => 'application/javascript',
-                                    'src'  => Media::toDataUri('js_app-js-framework-v4.js', 'remote'),
+                                    'src'  => Storage::toDataUri('js_app-js-framework-v4.js', 'remote'),
                                 ],
                             ],
                         ]

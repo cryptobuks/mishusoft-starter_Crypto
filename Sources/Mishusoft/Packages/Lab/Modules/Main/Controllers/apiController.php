@@ -2,7 +2,7 @@
 
 namespace Mishusoft\Packages\Lab\Modules\Main\Controllers;
 
-use Mishusoft\Framework\Chipsets\Media;
+use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Framework\Drivers\Controller;
 
 class apiController extends Controller {
@@ -31,29 +31,29 @@ class apiController extends Controller {
         $this->access_init();
         $this->acl->access('edit_content');
         //getting data from database
-        Media::StreamAsJson($this->api->getVisitorsAccessLogsLimited());
+        Storage::StreamAsJson($this->api->getVisitorsAccessLogsLimited());
     }
     public function getVisitorsAccessLogs() {
         $this->access_init();
         $this->acl->access('edit_content');
         //getting data from database
-        Media::StreamAsJson($this->api->getVisitorsAccessLogs());
+        Storage::StreamAsJson($this->api->getVisitorsAccessLogs());
     }
     public function getContactMessagesLimited() {
         $this->access_init();
         $this->acl->access('edit_content');
         //getting data from database
-        Media::StreamAsJson($this->api->getContactMessagesLimited());
+        Storage::StreamAsJson($this->api->getContactMessagesLimited());
     }
     public function getContactMessages() {
         $this->access_init();
         $this->acl->access('edit_content');
         //getting data from database
-        Media::StreamAsJson($this->api->getContactMessages());
+        Storage::StreamAsJson($this->api->getContactMessages());
     }
 
     public function geSocialLinks(){
-        Media::StreamAsJson($this->api->geSocialLinks());
+        Storage::StreamAsJson($this->api->geSocialLinks());
     }
 
 }

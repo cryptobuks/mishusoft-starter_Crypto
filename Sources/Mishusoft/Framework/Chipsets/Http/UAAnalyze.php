@@ -497,6 +497,24 @@ class UAAnalyze extends UATable
                 //DotBot/3.0
                 'dotbot'=>'/(?<name>(dotbot))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
 
+                //Baiduspider/2.0
+                'baiduspider'=>'/(?<name>(baiduspider))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+
+                //Baiduspider/2.0
+                'grapeshotcrawler'=>'/(?<name>(grapeshotcrawler))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 // Browsers.
                 // 1Password/1.2.3. ok

@@ -3,7 +3,7 @@
 namespace Mishusoft\Packages\Lab\Modules\System\Controllers;
 
 
-use Mishusoft\Framework\Chipsets\Media;
+use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Framework\Chipsets\Utility\Pagination;
 use Mishusoft\Framework\Globals\Functions\Text;
 use Mishusoft\Packages\Lab\Modules\Main\Controllers\systemController;
@@ -233,13 +233,13 @@ class usersController extends systemController
             $upload = new upload($_FILES['imageFile']);
             $upload->allowed = array('image/*');
             $upload->file_new_name_body = 'msu_pro_pic_' . uniqid();
-            $upload->process(Media::getMediaPathOfUploads("","local"));
+            $upload->process(Storage::getMediaPathOfUploads("","local"));
 
             if ($upload->processed) {
                 $imageName = $upload->file_dst_name;
                 $imageMime = $upload->file_src_mime;
                 $imageSize = ($upload->file_src_size / 1024) / 1024;
-                $imageContent = file_get_contents(Media::getMediaPathOfUploads($imageName,"local"));
+                $imageContent = file_get_contents(Storage::getMediaPathOfUploads($imageName,"local"));
 
                 //$imageActualSize = number_format($imageSize, 2) . ' Mb';
 

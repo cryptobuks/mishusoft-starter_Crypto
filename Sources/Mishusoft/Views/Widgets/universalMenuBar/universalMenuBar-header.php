@@ -2,7 +2,7 @@
 
 
 // we need configuration file to multiple positioning and links
-use Mishusoft\Framework\Chipsets\Media;
+use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Framework\Chipsets\System\Localization;
 use Mishusoft\Framework\Chipsets\Ui;
 use Mishusoft\Framework\Chipsets\Utility\_Array;
@@ -25,7 +25,7 @@ $authenticate = [
 $template_header = Ui::element($this->documentBodyElement, 'header', ['class' => 'header header-navigation-bar box-shadow box-shadow-inset']);
 // add logo, menu section in navigation bar in header area
 $header_logo_zone = Ui::element($template_header, 'a', ['class' => 'protect mishusoft-logo mishusoft-root-link mishusoft-root-link-primary animate', 'href' => Runtime::link('default_home')]);
-$header_logo      = Ui::element($header_logo_zone, 'img', ['src' => Media::getMediaPath('logos/mishusoft-logo-lite.webp', 'remote'), 'class' => ' box-shadow1', 'height' => '50px', 'width' => '50px', 'alt' => 'm'/* 'alt' => 'mishusoft\'s official logo'*/]);
+$header_logo      = Ui::element($header_logo_zone, 'img', ['src' => Storage::getMediaPath('logos/mishusoft-logo-lite.webp', 'remote'), 'class' => ' box-shadow1', 'height' => '50px', 'width' => '50px', 'alt' => 'm'/* 'alt' => 'mishusoft\'s official logo'*/]);
 Ui::text($header_logo_zone, $this->titleOfCurrentWebPage);
 
 if (Session::get('auth')) {

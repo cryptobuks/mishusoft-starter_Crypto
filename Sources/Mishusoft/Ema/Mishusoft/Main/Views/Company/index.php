@@ -1,6 +1,6 @@
 <?php
 
-use Mishusoft\Framework\Chipsets\Media;
+use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Framework\Chipsets\System\Localization;
 use Mishusoft\Framework\Chipsets\Ui;
 use Mishusoft\Framework\Chipsets\Utility\_Array;
@@ -41,7 +41,7 @@ Ui::elementList(
         /*create html anchor elements*/
         $card1 = Ui::element($cardParent, "a", ["class" => "protect flex-center-all", "href" => Runtime::link("company/$item")]);
         //Ui::element($card1, "img", ["style" => Ui::htmlHrefStyle . "width:80px;height:60px;border-radius: 10px;", "src" => Media::getAssetsPath("images_img-avatar3.png", "remote")]);
-        Ui::element(Ui::element($card1, "div", ["class" => "card-icon flex-center-all"]), "img", ["width" => "60px", "height" => "60px", "loading" => "lazy", "src" => Media::getMediaPath("images/icons/companies/" . pathinfo($item, PATHINFO_FILENAME) . ".png", "remote"), "alt" => ucfirst(str_replace("-", " ", pathinfo($item, PATHINFO_FILENAME)))]);
+        Ui::element(Ui::element($card1, "div", ["class" => "card-icon flex-center-all"]), "img", ["width" => "60px", "height" => "60px", "loading" => "lazy", "src" => Storage::getMediaPath("images/icons/companies/" . pathinfo($item, PATHINFO_FILENAME) . ".png", "remote"), "alt" => ucfirst(str_replace("-", " ", pathinfo($item, PATHINFO_FILENAME)))]);
         Ui::element($card1, "div", ["class" => "card-title flex-center-all", "text" => ucfirst(str_replace("-", " ", pathinfo($item, PATHINFO_FILENAME)))]);
         /*end of html anchor elements*/
     }

@@ -1,7 +1,7 @@
 <?php
 
 
-use Mishusoft\Framework\Chipsets\Media;
+use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Framework\Chipsets\Services\SEOToolKitService;
 use Mishusoft\Framework\Chipsets\System\Logger;
 use Mishusoft\Framework\Chipsets\System\Memory;
@@ -69,6 +69,9 @@ if ($this->templateUse === 'no') {
      * */
 
     (new SEOToolKitService($this))->start();
+
+
+    Ui::elementList(Ui::getDocumentHeadElement(), array('link'=> Ui::getWebFavicons()));
 
     /*
         Ui::elementList($this->documentHeadElement, [
@@ -212,8 +215,8 @@ if ($this->templateUse === 'no') {
         add pwa manifest*/
     // Ui::element($this->documentHeadElement, "link", ["rel" => "manifest", "href" => "/pwa.webmanifest"]);
     // add css file in head
-    Ui::element(Ui::getDocumentHeadElement(), 'link', ['rel' => 'stylesheet', 'type' => 'text/css', 'href' => Media::getAssetsPath('css/app-ui-v4.css', 'remote')]);
-    Ui::element(Ui::getDocumentHeadElement(), 'link', ['rel' => 'stylesheet', 'type' => 'text/css', 'href' => Media::getAssetsPath('css/mishusoft-theme.css', 'remote')]);
+    Ui::element(Ui::getDocumentHeadElement(), 'link', ['rel' => 'stylesheet', 'type' => 'text/css', 'href' => Storage::getAssetsPath('css/app-ui-v4.css', 'remote')]);
+    Ui::element(Ui::getDocumentHeadElement(), 'link', ['rel' => 'stylesheet', 'type' => 'text/css', 'href' => Storage::getAssetsPath('css/mishusoft-theme.css', 'remote')]);
     /*
         Ui::element($this->documentHeadElement, "link", ["rel"=>"stylesheet", "type" => "text/css", "href" => Media::toDataUri("css_app-theme-framework.css", "remote"), "media"=>"orientation:landscape"]);*/
     // Ui::element($this->documentHeadElement, "style", ["text"=>"body{margin:0;padding:0;}"]);
@@ -305,12 +308,12 @@ if ($this->templateUse === 'no') {
                 [
                     'type'  => 'application/javascript',
                     'async' => 'async',
-                    'src'   => Media::getAssetsPath('js/app-js-v4.js', 'remote'),
+                    'src'   => Storage::getAssetsPath('js/app-js-v4.js', 'remote'),
                 ],
             ],
         ]
     );
 }//end if
 
-// execute the compiled html document
-Ui::execute();
+// display the compiled html document
+Ui::display();

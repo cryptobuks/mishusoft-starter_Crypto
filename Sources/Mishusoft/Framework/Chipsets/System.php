@@ -400,7 +400,7 @@ class System
                                                                 if (Stream::copy(self::getRequiresFile('SECURITY_FILE_PATH'), self::getRequiresFile('SECURITY_BACKUP_FILE_PATH'))) {
                                                                     if (empty(file_get_contents(self::getRequiresFile('SECURITY_BACKUP_FILE_PATH')))) {
                                                                         if (!file_put_contents(self::getRequiresFile('SECURITY_BACKUP_FILE_PATH'), file_get_contents(self::getRequiresFile('SECURITY_FILE_PATH')))) {
-                                                                            Media::StreamAsJson(
+                                                                            Storage::StreamAsJson(
                                                                                 [
                                                                                     'env' => [
                                                                                         'installation' => [
@@ -632,7 +632,7 @@ class System
     public static function setRuntimeErrors(array $message)
     {
         if (Network::getValOfSrv('HTTP-SEC-FETCH-MODE') === 'cors') {
-            Media::StreamAsJson(
+            Storage::StreamAsJson(
                 [
                     'env' => [
                         'installation' => [
@@ -850,7 +850,7 @@ class System
             if ($data->security_code === 1 && !empty($data->env) && !empty($data->env->installation)) {
                 if ($data->security_code === 1 && !empty($data->env) && !empty($data->env->installation->client->base->area)) {
                     if ($data->env->installation->client->base->area === 'database-create') {
-                        Media::StreamAsJson(
+                        Storage::StreamAsJson(
                             [
                                 'env' => [
                                     'installation' => [
@@ -877,7 +877,7 @@ class System
                         if ($data->env->installation->client->base->area->database->step === 'database-select') {
                             $default = !is_null(self::getDefaultDb()) || !empty(self::getDefaultDb()) ? false : true;
                             if (self::updateConfigProperties($data->env->installation->client->base->area->database->dbms, $default)) {
-                                Media::StreamAsJson(
+                                Storage::StreamAsJson(
                                     [
                                         'env' => [
                                             'installation' => [
@@ -899,7 +899,7 @@ class System
                                     ]
                                 );
                             } else {
-                                Media::StreamAsJson(
+                                Storage::StreamAsJson(
                                     [
                                         'env' => [
                                             'installation' => [
@@ -925,7 +925,7 @@ class System
 
                         if ($data->env->installation->client->base->area->database->step === 'connect') {
                             if (empty($data->env->installation->client->base->area->database->host)) {
-                                Media::StreamAsJson(
+                                Storage::StreamAsJson(
                                     [
                                         'env' => [
                                             'installation' => [
@@ -944,7 +944,7 @@ class System
                             }
 
                             if (empty($data->env->installation->client->base->area->database->user)) {
-                                Media::StreamAsJson(
+                                Storage::StreamAsJson(
                                     [
                                         'env' => [
                                             'installation' => [
@@ -963,7 +963,7 @@ class System
                             }
 
                             if (empty($data->env->installation->client->base->area->database->user_pass)) {
-                                Media::StreamAsJson(
+                                Storage::StreamAsJson(
                                     [
                                         'env' => [
                                             'installation' => [
@@ -986,7 +986,7 @@ class System
                             $password   = $data->env->installation->client->base->area->database->user_pass;
                             $conn       = new MySqli($servername, $username, $password);
                             if ($conn->connect_error) {
-                                Media::StreamAsJson(
+                                Storage::StreamAsJson(
                                     [
                                         'env' => [
                                             'installation' => [
@@ -1003,7 +1003,7 @@ class System
                                     ]
                                 );
                             } else {
-                                Media::StreamAsJson(
+                                Storage::StreamAsJson(
                                     [
                                         'env' => [
                                             'installation' => [
@@ -1045,7 +1045,7 @@ class System
 
                         if ($data->env->installation->client->base->area->database->step === 'create') {
                             if (empty($data->env->installation->client->base->area->database->name)) {
-                                Media::StreamAsJson(
+                                Storage::StreamAsJson(
                                     [
                                         'env' => [
                                             'installation' => [
@@ -1069,7 +1069,7 @@ class System
                             }//end if
 
                             if (empty($data->env->installation->client->base->area->database->char)) {
-                                Media::StreamAsJson(
+                                Storage::StreamAsJson(
                                     [
                                         'env' => [
                                             'installation' => [
@@ -1093,7 +1093,7 @@ class System
                             }//end if
 
                             if (empty($data->env->installation->client->base->area->database->table_prefix)) {
-                                Media::StreamAsJson(
+                                Storage::StreamAsJson(
                                     [
                                         'env' => [
                                             'installation' => [
@@ -1124,7 +1124,7 @@ class System
                                 $conn       = new MySqli($servername, $username, $password);
 
                                 if ($conn->connect_error) {
-                                    Media::StreamAsJson(
+                                    Storage::StreamAsJson(
                                         [
                                             'env' => [
                                                 'installation' => [
@@ -1146,7 +1146,7 @@ class System
                                 if ($conn->query($sql) === true) {
                                     self::setupDatabaseConfigure($data->env->installation->client->base->area->database);
                                 } else {
-                                    Media::StreamAsJson(
+                                    Storage::StreamAsJson(
                                         [
                                             'env' => [
                                                 'installation' => [
@@ -1166,7 +1166,7 @@ class System
 
                                 $conn->close();
                             } else {
-                                Media::StreamAsJson(
+                                Storage::StreamAsJson(
                                     [
                                         'env' => [
                                             'installation' => [
@@ -1187,7 +1187,7 @@ class System
 
                         if ($data->env->installation->client->base->area->database->step === 'configure') {
                             if (empty($data->env->installation->client->base->area->database->host)) {
-                                Media::StreamAsJson(
+                                Storage::StreamAsJson(
                                     [
                                         'env' => [
                                             'installation' => [
@@ -1206,7 +1206,7 @@ class System
                             }
 
                             if (empty($data->env->installation->client->base->area->database->user)) {
-                                Media::StreamAsJson(
+                                Storage::StreamAsJson(
                                     [
                                         'env' => [
                                             'installation' => [
@@ -1225,7 +1225,7 @@ class System
                             }
 
                             if (empty($data->env->installation->client->base->area->database->user_pass)) {
-                                Media::StreamAsJson(
+                                Storage::StreamAsJson(
                                     [
                                         'env' => [
                                             'installation' => [
@@ -1244,7 +1244,7 @@ class System
                             }
 
                             if (empty($data->env->installation->client->base->area->database->name)) {
-                                Media::StreamAsJson(
+                                Storage::StreamAsJson(
                                     [
                                         'env' => [
                                             'installation' => [
@@ -1263,7 +1263,7 @@ class System
                             }
 
                             if (empty($data->env->installation->client->base->area->database->char)) {
-                                Media::StreamAsJson(
+                                Storage::StreamAsJson(
                                     [
                                         'env' => [
                                             'installation' => [
@@ -1282,7 +1282,7 @@ class System
                             }
 
                             if (empty($data->env->installation->client->base->area->database->table_prefix)) {
-                                Media::StreamAsJson(
+                                Storage::StreamAsJson(
                                     [
                                         'env' => [
                                             'installation' => [
@@ -1306,7 +1306,7 @@ class System
 
                     if (isset($data->env->installation->client->base->area->account) && $data->env->installation->client->base->area->account !== null && is_object($data->env->installation->client->base->area->account)) {
                         if (empty($data->env->installation->client->base->area->account->username)) {
-                            Media::StreamAsJson(
+                            Storage::StreamAsJson(
                                 [
                                     'env' => [
                                         'installation' => [
@@ -1325,7 +1325,7 @@ class System
                         }
 
                         if (empty($data->env->installation->client->base->area->account->email)) {
-                            Media::StreamAsJson(
+                            Storage::StreamAsJson(
                                 [
                                     'env' => [
                                         'installation' => [
@@ -1344,7 +1344,7 @@ class System
                         }
 
                         if (empty($data->env->installation->client->base->area->account->user_pass)) {
-                            Media::StreamAsJson(
+                            Storage::StreamAsJson(
                                 [
                                     'env' => [
                                         'installation' => [
@@ -1363,7 +1363,7 @@ class System
                         }
 
                         if (empty($data->env->installation->client->base->area->account->user_cnf_pass)) {
-                            Media::StreamAsJson(
+                            Storage::StreamAsJson(
                                 [
                                     'env' => [
                                         'installation' => [
@@ -1382,7 +1382,7 @@ class System
                         }
 
                         if ($data->env->installation->client->base->area->account->user_pass !== $data->env->installation->client->base->area->account->user_cnf_pass) {
-                            Media::StreamAsJson(
+                            Storage::StreamAsJson(
                                 [
                                     'env' => [
                                         'installation' => [
@@ -1459,7 +1459,7 @@ class System
                                     );
 
                                     // successful message to client
-                                    Media::StreamAsJson(
+                                    Storage::StreamAsJson(
                                         [
                                             'env' => [
                                                 'installation' => [
@@ -1483,7 +1483,7 @@ class System
                                 }//end if
                             }//end if
                         } catch (Exception $e) {
-                            Media::StreamAsJson(
+                            Storage::StreamAsJson(
                                 [
                                     'env' => [
                                         'installation' => [
@@ -1504,7 +1504,7 @@ class System
 
                     if (isset($data->env->installation->client->base->area->website) && $data->env->installation->client->base->area->website !== null && is_object($data->env->installation->client->base->area->website)) {
                         if (empty($data->env->installation->client->base->area->website->name)) {
-                            Media::StreamAsJson(
+                            Storage::StreamAsJson(
                                 [
                                     'env' => [
                                         'installation' => [
@@ -1523,7 +1523,7 @@ class System
                         }
 
                         if (empty($data->env->installation->client->base->area->website->description)) {
-                            Media::StreamAsJson(
+                            Storage::StreamAsJson(
                                 [
                                     'env' => [
                                         'installation' => [
@@ -1542,7 +1542,7 @@ class System
                         }
 
                         if (empty($data->env->installation->client->base->area->website->company)) {
-                            Media::StreamAsJson(
+                            Storage::StreamAsJson(
                                 [
                                     'env' => [
                                         'installation' => [
@@ -1589,8 +1589,8 @@ class System
                                 $http_host_ip,
                                 $default_home,
                                 $default_layout,
-                                Media::getLogosMediaPath('', 'remote'),
-                                Media::getLogosMediaPath('', 'local'),
+                                Storage::getLogosMediaPath('', 'remote'),
+                                Storage::getLogosMediaPath('', 'local'),
                                 $defaultFavicon
                             );
                             self::configureUpdate(
@@ -1605,8 +1605,8 @@ class System
                                         'http_host_ip'    => $http_host_ip,
                                         'default_home'    => $default_home,
                                         'default_layout'  => $default_layout,
-                                        'icon_remote_dir' => Media::getLogosMediaPath('', 'remote'),
-                                        'icon_local_dir'  => Media::getLogosMediaPath('', 'local'),
+                                        'icon_remote_dir' => Storage::getLogosMediaPath('', 'remote'),
+                                        'icon_local_dir'  => Storage::getLogosMediaPath('', 'local'),
                                         'favicon'         => $defaultFavicon,
                                     ],
                                 ]
@@ -1614,7 +1614,7 @@ class System
                             self::makeDbConnectionRequestAuto(
                                 function ($connection) use ($setupFile, $setupTime, $setupMessage) {
                                     $connection->query('INSERT INTO `'._Array::value(self::getDbConfigArgument('db', self::getRequiresFile('SETUP_FILE_PATH', self::getDefaultDb())), 'prefix')."trackSystemUpdate` VALUES (null, 'msu_root', '$setupMessage','$setupFile', '$setupTime');");
-                                    Media::StreamAsJson(
+                                    Storage::StreamAsJson(
                                         [
                                             'env' => [
                                                 'installation' => [
@@ -1639,7 +1639,7 @@ class System
                                 }
                             );
                         } catch (Exception $e) {
-                            Media::StreamAsJson(
+                            Storage::StreamAsJson(
                                 [
                                     'env' => [
                                         'installation' => [
@@ -1659,7 +1659,7 @@ class System
                     }//end if
                 } else {
                     if (!empty(self::$message)) {
-                        Media::StreamAsJson(
+                        Storage::StreamAsJson(
                             [
                                 'env' => [
                                     'installation' => [
@@ -1677,7 +1677,7 @@ class System
                     } else {
                         switch (self::$Step) {
                             case 'website':
-                                Media::StreamAsJson(
+                                Storage::StreamAsJson(
                                     [
                                         'env' => [
                                             'installation' => [
@@ -1701,7 +1701,7 @@ class System
                             break;
 
                             case 'account':
-                                Media::StreamAsJson(
+                                Storage::StreamAsJson(
                                     [
                                         'env' => [
                                             'installation' => [
@@ -1725,7 +1725,7 @@ class System
                             break;
 
                             case 'database-select':
-                                Media::StreamAsJson(
+                                Storage::StreamAsJson(
                                     [
                                         'env' => [
                                             'installation' => [
@@ -1749,7 +1749,7 @@ class System
                             break;
 
                             case 'database':
-                                Media::StreamAsJson(
+                                Storage::StreamAsJson(
                                     [
                                         'env' => [
                                             'installation' => [
@@ -1773,7 +1773,7 @@ class System
                             break;
 
                             default:
-                                Media::StreamAsJson(
+                                Storage::StreamAsJson(
                                     [
                                         'env' => [
                                             'installation' => [
@@ -1887,7 +1887,7 @@ class System
                         )
                     ) === false
                     ) {
-                        Media::StreamAsJson(
+                        Storage::StreamAsJson(
                             [
                                 'env' => [
                                     'installation' => [
@@ -1929,7 +1929,7 @@ class System
                     );//end if
 
                     if (self::getProgressedSystemStatus(self::getRequiresFile('SECURITY_FILE_PATH')) and _Array::value(self::$event, 'message') === 'app-user-info-not-exist') {
-                        Media::StreamAsJson(
+                        Storage::StreamAsJson(
                             [
                                 'env' => [
                                     'installation' => [
@@ -1951,7 +1951,7 @@ class System
                             ]
                         );
                     } else if (self::getProgressedSystemStatus(self::getRequiresFile('SECURITY_FILE_PATH')) and _Array::value(self::$event, 'message') === 'app-info-not-exist') {
-                        Media::StreamAsJson(
+                        Storage::StreamAsJson(
                             [
                                 'env' => [
                                     'installation' => [
@@ -1973,7 +1973,7 @@ class System
                             ]
                         );
                     } else {
-                        Media::StreamAsJson(
+                        Storage::StreamAsJson(
                             [
                                 'env' => [
                                     'installation' => [
@@ -2039,7 +2039,7 @@ class System
         $currentDataArray = array_merge($currentDataArray, $arrayData);
 
         if (file_put_contents(self::getRequiresFile('SETUP_FILE_PATH', self::getDefaultDb()), json_encode($currentDataArray, JSON_THROW_ON_ERROR)) === false) {
-            Media::StreamAsJson(
+            Storage::StreamAsJson(
                 [
                     'env' => [
                         'installation' => [
@@ -2144,7 +2144,7 @@ class System
                     $connection->query('INSERT INTO `'.$db_prefix."users` VALUES (null, null, null, '$email', '$password', '$username', '$activity', '$role', '$status', now(), '$random');");
                     $connection->query('INSERT INTO `'.$db_prefix."users_details` VALUES (null, '$dob', '$gender', null, null, null);");
                 } catch (Exception $e) {
-                    Media::StreamAsJson(
+                    Storage::StreamAsJson(
                         [
                             'env' => [
                                 'installation' => [

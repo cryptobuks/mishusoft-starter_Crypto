@@ -4,7 +4,7 @@ namespace Mishusoft\Packages\Lab\Modules\System\Controllers;
 /*https://rdap.verisign.com/com/v1/domain/mishusoft.com*/
 
 use Exception;
-use Mishusoft\Framework\Chipsets\Media;
+use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Framework\Drivers\Database;
 use Mishusoft\Packages\Lab\Modules\Main\Controllers\systemController;
 use PDO;
@@ -51,36 +51,36 @@ class trackingController extends systemController
 
         if (!empty($data) && is_object($data)) {
             if (empty($this->filterInt($data->security_code)) or $this->filterInt($data->security_code) !== 1) {
-                Media::StreamAsJson(['type' => 'error', 'message' => 'Site\'s security code not found.',]);
+                Storage::StreamAsJson(['type' => 'error', 'message' => 'Site\'s security code not found.',]);
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Site\'s security code not found.')));
                 exit;
             }
             if (empty($data->name)) {
-                Media::StreamAsJson(['type' => 'error', 'message' => 'Server\'s name not found.',]);
+                Storage::StreamAsJson(['type' => 'error', 'message' => 'Server\'s name not found.',]);
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Server\'s name not found.')));
                 exit;
             }
 
             if (empty($data->user)) {
-                Media::StreamAsJson(['type' => 'error', 'message' => 'Databases username not found.',]);
+                Storage::StreamAsJson(['type' => 'error', 'message' => 'Databases username not found.',]);
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Databases username not found.')));
                 exit;
             }
 
             if (empty($data->db)) {
-                Media::StreamAsJson(['type' => 'error', 'message' => 'Databases name not found.',]);
+                Storage::StreamAsJson(['type' => 'error', 'message' => 'Databases name not found.',]);
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Databases name not found.')));
                 exit;
             }
 
             if (empty($data->password)) {
-                Media::StreamAsJson(['type' => 'error', 'message' => 'Databases password not found.',]);
+                Storage::StreamAsJson(['type' => 'error', 'message' => 'Databases password not found.',]);
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Databases password not found.')));
                 exit;
             }
             if ($data->btnName === 'Update') {
                 $this->system->editServerDatabase($this->filterInt($data->id), $this->getSqlText($data->name), $this->getSqlText($data->user), $this->getSqlText($data->db), $this->getSqlText($data->password));
-                Media::StreamAsJson(['type' => 'success', 'message' => ucfirst($this->getSqlText($data->db)) . ' updated successfully....',]);
+                Storage::StreamAsJson(['type' => 'success', 'message' => ucfirst($this->getSqlText($data->db)) . ' updated successfully....',]);
                 /*Tracker::addEvent(array(
                     'activity' => array('messageType' => 'success', 'message' => ucfirst($this->getSqlText($data->db)) . ' updated successfully....'),
                     'update' => array('messageType' => 'success', 'uFile' => 'database', 'message' => ucfirst($this->getSqlText($data->db)) . ' updated successfully....')
@@ -88,7 +88,7 @@ class trackingController extends systemController
                 exit;
             } else if ($data->btnName === 'Save') {
                 $this->system->addServerDatabase($this->getSqlText($data->name), $this->getSqlText($data->user), $this->getSqlText($data->db), $this->getSqlText($data->password));
-                Media::StreamAsJson(['type' => 'success', 'message' => 'New ' . ucfirst($this->getSqlText($data->db)) . ' added successfully....',]);
+                Storage::StreamAsJson(['type' => 'success', 'message' => 'New ' . ucfirst($this->getSqlText($data->db)) . ' added successfully....',]);
                 /*Tracker::addEvent(array(
                     'activity' => array('messageType' => 'success', 'message' => 'New ' . ucfirst($this->getSqlText($data->db)) . ' added successfully....'),
                     'update' => array('messageType' => 'success', 'uFile' => 'database', 'message' => 'New ' . ucfirst($this->getSqlText($data->db)) . ' added successfully....')
@@ -97,7 +97,7 @@ class trackingController extends systemController
             }
 
             if ($data->btnName !== 'Save' || $data->btnName !== 'Update') {
-                Media::StreamAsJson(['type' => 'error', 'message' => 'Job command not found.',]);
+                Storage::StreamAsJson(['type' => 'error', 'message' => 'Job command not found.',]);
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Job command not found.')));
                 exit;
             }
@@ -112,7 +112,7 @@ class trackingController extends systemController
         if (!empty($data) && is_object($data)) {
             $database = $this->system->getServerDatabaseById($this->filterInt($data->id));
             $this->system->deleteServerDatabase($this->filterInt($data->id));
-            Media::StreamAsJson(['type' => 'success', 'message' => '<b>' . $database['db'] . '</b> disconnected successfully....']);
+            Storage::StreamAsJson(['type' => 'success', 'message' => '<b>' . $database['db'] . '</b> disconnected successfully....']);
             /*Tracker::addEvent(array(
                 'activity' => array('messageType' => 'success', 'message' => '<b>' . $database['db'] . '</b> disconnected successfully....'),
                 'update' => array('messageType' => 'success', 'uFile' => 'database', 'message' => '<b>' . $database['db'] . '</b> disconnected successfully....')
@@ -132,14 +132,14 @@ class trackingController extends systemController
                 $db->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
                 $db->setAttribute(PDO::ATTR_ORACLE_NULLS, PDO::NULL_EMPTY_STRING);
                 $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-                Media::StreamAsJson(['type' => 'success', 'message' => 'connected']);
+                Storage::StreamAsJson(['type' => 'success', 'message' => 'connected']);
                 /*Tracker::addEvent(array(
                     'activity' => array('messageType' => 'success', 'message' => 'Connected successfully....'),
                     'update' => array('messageType' => 'success', 'uFile' => 'database', 'message' => 'Connected successfully....')
                 ));*/
                 exit;
             } catch (Exception $e) {
-                Media::StreamAsJson(['type' => 'error', 'message' => $e->getMessage()]);
+                Storage::StreamAsJson(['type' => 'error', 'message' => $e->getMessage()]);
                 /*Tracker::addEvent(array(
                     'activity' => array('messageType' => 'error', 'message' => $e->getMessage()),
                     'update' => array('messageType' => 'error', 'uFile' => 'database', 'message' => $e->getMessage())
@@ -161,7 +161,7 @@ class trackingController extends systemController
             $this->db['password'] = $data->password;
             $this->connectDb(function () {
                 $db = new Database($this->db['name'], $this->db['db'], $this->db['user'], $this->db['password'], '');
-                Media::StreamAsJson($db->query("SHOW STATUS")->fetchAll(PDO::FETCH_ASSOC));
+                Storage::StreamAsJson($db->query("SHOW STATUS")->fetchAll(PDO::FETCH_ASSOC));
             });
         }
     }
@@ -178,7 +178,7 @@ class trackingController extends systemController
             $this->db['table'] = $data->table;
             $this->connectDb(function () {
                 $db = new Database($this->db['name'], $this->db['db'], $this->db['user'], $this->db['password'], '');
-                Media::StreamAsJson($db->query("SHOW CREATE TABLE " . DbPREFIX .  $this->db['table'])->fetch(PDO::FETCH_ASSOC));
+                Storage::StreamAsJson($db->query("SHOW CREATE TABLE " . DbPREFIX .  $this->db['table'])->fetch(PDO::FETCH_ASSOC));
             });
         }
     }
@@ -195,7 +195,7 @@ class trackingController extends systemController
             $this->db['table'] = $data->table;
             $this->connectDb(function () {
                 $db = new Database($this->db['name'], $this->db['db'], $this->db['user'], $this->db['password'], '');
-                Media::StreamAsJson($db->query("SHOW CREATE TABLE " . DbPREFIX .  $this->db['table'])->fetch(PDO::FETCH_ASSOC));
+                Storage::StreamAsJson($db->query("SHOW CREATE TABLE " . DbPREFIX .  $this->db['table'])->fetch(PDO::FETCH_ASSOC));
             });
         }
     }
@@ -211,7 +211,7 @@ class trackingController extends systemController
             $this->db['password'] = $data->password;
             $this->connectDb(function () {
                 $db = new Database($this->db['name'], $this->db['db'], $this->db['user'], $this->db['password'], '');
-                Media::StreamAsJson($db->query("show processlist")->fetchAll());
+                Storage::StreamAsJson($db->query("show processlist")->fetchAll());
             });
         }
     }
@@ -268,7 +268,7 @@ class trackingController extends systemController
             $this->connectDb(function () {
                 $db = new Database($this->db['name'], $this->db['db'], $this->db['user'], $this->db['password'], '');
                 //echo json_encode($db->query("SELECT TABLE_NAME, TABLE_ROWS, (DATA_LENGTH + INDEX_LENGTH) AS `Size`, CREATE_TIME, UPDATE_TIME, TABLE_COLLATION, ENGINE FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '" . $this->db['db'] . "' ORDER BY TABLE_NAME ASC;")->fetchAll(PDO::FETCH_ASSOC));
-                Media::StreamAsJson($db->query("SHOW TABLE STATUS FROM " . $this->db['db'])->fetchAll(PDO::FETCH_ASSOC));
+                Storage::StreamAsJson($db->query("SHOW TABLE STATUS FROM " . $this->db['db'])->fetchAll(PDO::FETCH_ASSOC));
             });
         }
     }
@@ -284,7 +284,7 @@ class trackingController extends systemController
             //$this->copyDataByTable('loreley_db1','test', DbPREFIX . $tableName);
             $this->connectDb(function () {
                 $db = new Database($this->db['name'], $this->db['db'], $this->db['user'], $this->db['password'], '');
-                Media::StreamAsJson($db->query("SELECT * FROM `" . $this->table . "` ORDER BY `id` DESC;")->fetchAll(PDO::FETCH_ASSOC));
+                Storage::StreamAsJson($db->query("SELECT * FROM `" . $this->table . "` ORDER BY `id` DESC;")->fetchAll(PDO::FETCH_ASSOC));
             });
         }
     }
@@ -298,7 +298,7 @@ class trackingController extends systemController
             $this->table = $tableName;
             $this->connectDb(function () {
                 $db = new Database($this->db['name'], $this->db['db'], $this->db['user'], $this->db['password'], '');
-                Media::StreamAsJson($db->query("SELECT * FROM `" . DbPREFIX . $this->table . "` ORDER BY `id` DESC LIMIT 5;")->fetchAll(PDO::FETCH_ASSOC));
+                Storage::StreamAsJson($db->query("SELECT * FROM `" . DbPREFIX . $this->table . "` ORDER BY `id` DESC LIMIT 5;")->fetchAll(PDO::FETCH_ASSOC));
             });
         }
     }
@@ -316,7 +316,7 @@ class trackingController extends systemController
             $this->connectDb(function () {
                 $db = new Database($this->db['name'], $this->db['db'], $this->db['user'], $this->db['password'], '');
                 $db->query("DELETE FROM `" . DbPREFIX . $this->table . "` where `id` = '{$this->runtime}';");
-                Media::StreamAsJson(['type' => 'success', 'message' => 'Selected row deleted successfully....']);
+                Storage::StreamAsJson(['type' => 'success', 'message' => 'Selected row deleted successfully....']);
                 /*Tracker::addEvent(array(
                     'activity' => array('messageType' => 'success', 'message' => 'Selected row deleted successfully....'),
                     'update' => array('messageType' => 'success', 'uFile' => 'database', 'message' => 'Selected row deleted successfully....')
@@ -338,7 +338,7 @@ class trackingController extends systemController
             $this->connectDb(function () {
                 $db = new Database($this->db['name'], $this->db['db'], $this->db['user'], $this->db['password'], '');
                 $db->query("DROP TABLE `" . DbPREFIX . $this->table . "`;");
-                Media::StreamAsJson(['type' => 'success', 'message' => $this->table . ' deleted successfully....']);
+                Storage::StreamAsJson(['type' => 'success', 'message' => $this->table . ' deleted successfully....']);
                 /*Tracker::addEvent(array(
                     'activity' => array('messageType' => 'success', 'message' => $this->table . ' deleted successfully....'),
                     'update' => array('messageType' => 'success', 'uFile' => 'database', 'message' => $this->table . ' deleted successfully....')
@@ -408,7 +408,7 @@ class trackingController extends systemController
                     }
                 }
                 //echo 'Copy completed!!<br/>';
-                Media::StreamAsJson(['type' => 'success', 'message' => $this->db['db'] . ' backup completed']);
+                Storage::StreamAsJson(['type' => 'success', 'message' => $this->db['db'] . ' backup completed']);
                 /*Tracker::addEvent(array(
                     'activity' => array('messageType' => 'success', 'message' => $this->db['db'] . ' backup completed'),
                     'update' => array('messageType' => 'success', 'uFile' => 'database', 'message' => $this->db['db'] . ' backup completed')

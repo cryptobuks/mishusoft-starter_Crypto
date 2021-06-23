@@ -1,7 +1,7 @@
 <?php
 
 use Mishusoft\Ema\Mishusoft\Main\Databases\AccountMSQL;
-use Mishusoft\Framework\Chipsets\Media;
+use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Framework\Chipsets\System\Memory;
 use Mishusoft\Framework\Chipsets\Ui;
 use Mishusoft\Framework\Chipsets\Utility\_Array;
@@ -77,7 +77,7 @@ $profileBody = Ui::element($this->documentTemplateBodyElement, "ms-app-profile-b
 ]);*/
 Ui::element($profileBody, "img", [
     "style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";background: lightgray;text-align: center;font-size: 16px;height:125px;width: -moz-available;width: -webkit-fill-available;" . Ui::css["display-flex"] . Ui::css["flex-column"] . Ui::css["center"],
-    "src" => Media::getAssetsPath("images_abstract-texture-background.jpg","remote"),
+    "src" => Storage::getAssetsPath("images_abstract-texture-background.jpg","remote"),
 ]);
 /*
  * off-white-paper-texture-watermark-useful-as-background-off-white-paper-texture-watermark-useful-as-background-high-130523073.jpg
@@ -85,7 +85,7 @@ Ui::element($profileBody, "img", [
 /*profile photo*/
 Ui::element(Ui::element($profileBody, "ms-app-profile-user-photo", [
     "style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";text-align: center;font-size: 16px;height:100px;width: -moz-available;width: -webkit-fill-available;" . Ui::css["display-flex"] . Ui::css["flex-column"] . Ui::css["center"],
-]), "img", ["style" => Ui::htmlHrefStyle . "width:150px;height:150px;border-radius: 50%;margin-bottom: 15px;margin-top: -80px;padding: 10px;background: white;" . Ui::css["box-shadow"], "src" => Media::getAssetsPath("images_img-avatar3.png", "remote")]);
+]), "img", ["style" => Ui::htmlHrefStyle . "width:150px;height:150px;border-radius: 50%;margin-bottom: 15px;margin-top: -80px;padding: 10px;background: white;" . Ui::css["box-shadow"], "src" => Storage::getAssetsPath("images_img-avatar3.png", "remote")]);
 
 /*Ui::element($profileBody, "ms-app-profile-menubar", [
     "style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";text-align: center;font-size: 16px;height:80px;width: -moz-available;width: -webkit-fill-available;box-shadow: 1px 3px 4px rgba(0,0,0,.12),1px 1px 2px rgba(0,0,0,.24);margin-bottom: 10px;border-top: 1px solid rgba(0,0,0,.12);width: 1024px;". Ui::css["display-flex"] . Ui::css["flex-column"] . Ui::css["center"],

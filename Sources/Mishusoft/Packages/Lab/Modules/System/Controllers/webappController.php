@@ -2,7 +2,7 @@
 
 namespace Mishusoft\Packages\Lab\Modules\System\Controllers;
 
-use Mishusoft\Framework\Chipsets\Media;
+use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Framework\Chipsets\MPM;
 use Mishusoft\Framework\Chipsets\System;
 use Mishusoft\Framework\Globals\Functions\Text;
@@ -345,13 +345,13 @@ class webappController extends systemController
                 exit;
             }
 
-            chmod(Media::getMediaPathOfUploads("","local"),0777);
-            if (move_uploaded_file($fileTmpLoc, Media::getMediaPathOfUploads($fileName,"local"))) {
+            chmod(Storage::getMediaPathOfUploads("","local"),0777);
+            if (move_uploaded_file($fileTmpLoc, Storage::getMediaPathOfUploads($fileName,"local"))) {
 
-                $oldImageFile = Media::getMediaPathOfUploads($fileName,"local");
+                $oldImageFile = Storage::getMediaPathOfUploads($fileName,"local");
                 $newImageFile = 'logo_' . uniqid();
-                rename($oldImageFile , Media::getMediaPathOfUploads($newImageFile,"local"));
-                chmod(Media::getMediaPathOfUploads($newImageFile,"local"),0777);
+                rename($oldImageFile , Storage::getMediaPathOfUploads($newImageFile,"local"));
+                chmod(Storage::getMediaPathOfUploads($newImageFile,"local"),0777);
                 $this->system->setLogo($newImageFile);
                 echo 'Webapp logo change with new (' . $fileName . ') successfully....';
                 /*Tracker::addEvent(array(

@@ -14,11 +14,6 @@ class RuntimeErrors extends Exception
      */
     protected int $severity;
 
-    /**
-     * @var string
-     */
-    private string $errTrace;
-
     /* Inherited properties */
     protected $message;
     protected $code;
@@ -36,24 +31,45 @@ class RuntimeErrors extends Exception
      * @param integer $lineno
      * @param string  $trace
      */
-    public function __construct(string $message='', int $code=0, int $severity=1, string $filename=__FILE__, int $lineno=__LINE__, string $trace='')
-    {
+    public function __construct(
+        string $message='',
+        int $code=0,
+        int $severity=1,
+        string $filename=__FILE__,
+        int $lineno=__LINE__,
+        string $trace='',
+        string $objectName=''
+    ) {
         parent::__construct();
         $this->message  = $message;
         $this->code     = $code;
         $this->severity = $severity;
         $this->file     = $filename;
         $this->line     = $lineno;
-        $this->errTrace = $trace;
+
+        //echo '<pre>'.print_r($this->getTrace(), false). PHP_EOL;
+        //echo $this->errorTrace. PHP_EOL;
+        //echo $this->getTraceAsString(). PHP_EOL;
+        //exit();
 
         // _Debug::preOutput(debug_backtrace());
+
+        if ($objectName !== '') {
+            $titleOfErrorMessage = $objectName;
+        } else {
+            $titleOfErrorMessage = self::codeAsString($this->getCode());
+        }
+
+        echo sprintf('<title>%s</title>', $titleOfErrorMessage);
+
+
         echo '<br/><article style="margin: 0;padding: 5px;border: 1px solid lightgray;border-radius: 5px;background-color: #f4f4f4;">';
-        echo '<section style="line-height: 1.5;margin: -5px -5px 10px -5px;box-shadow: inset 0 -3em 3em rgba(0,0,0,.1),.3em .3em 1em rgba(0,0,0,.3);padding: 8px 5px;text-align: justify;">';
-        echo '<div style="font-size: 20px;font-weight: bold; border-bottom: 1px solid lightgray;padding-bottom: 10px;text-transform: uppercase;">';
-        echo self::codeAsString($this->getCode());
-        echo '</div>';
+        echo '<section style="line-height: 1.5;margin: -5px -5px 10px -5px;/*box-shadow: inset 0 -3em 3em rgba(0,0,0,.1),.3em .3em 1em rgba(0,0,0,.3);*/padding: 8px 5px;text-align: justify;border-bottom: 1px solid lightgray;">';
+
+
+        echo sprintf('<div style="font-size: 20px;font-weight: bold; border-bottom: 1px solid lightgray;padding-bottom: 10px;text-transform: uppercase;">%s</div>', $titleOfErrorMessage);
         echo '<div style="font-family: DejaVu Sans Mono,serif;font-size: 15px;font-weight:normal;padding: 5px 2px;">';
-        echo $this->message.' from '.$this->file.' on line '.$this->line;
+        echo $this->message.' from '.$this->hideDirectoryName($this->file).' on line '.$this->line;
         Logger::write(
             sprintf(
                 '%s [%s] : %s from %s on line %d.',
@@ -69,12 +85,15 @@ class RuntimeErrors extends Exception
         echo '</div>';
         echo '</section>';
 
-        echo '<span style="font-size: 15px;font-family: DejaVu Sans Mono,serif;font-weight: bold;">Call Stack</span>';
-        echo '<pre style="line-height: 1.8;">';
-        if (is_array($this->getTrace()) === true && count($this->getTrace()) > 0) {
+
+        echo '<section style="margin: -5px -5px 10px -5px;padding: 0 5px 5px 5px;">';
+        echo '<div style="font-size: 15px;font-family: DejaVu Sans Mono,serif;font-weight: bold;">Stack Trace</div>';
+        echo '<pre style="line-height: 1.8;overflow-y: auto;">';
+
+        if ($trace !== '') {
+            $this->beautifyCallStack($trace);
+        } elseif (is_array($this->getTrace()) === true && count($this->getTrace()) > 0) {
             $this->beautifyCallStack($this->getTrace());
-        } elseif ($this->errTrace !== '') {
-            $this->beautifyCallStack($this->errTrace);
         } elseif ($this->getTraceAsString() !== '') {
             $this->beautifyCallStack($this->getTraceAsString());
         } else {
@@ -82,6 +101,9 @@ class RuntimeErrors extends Exception
         }
 
         echo '</pre>';
+        echo '</section>';
+
+
         echo '</article>';
     }//end __construct()
 
@@ -192,10 +214,15 @@ class RuntimeErrors extends Exception
         if (is_string($trace) === true && $trace !== '') {
             $traceArray = self::cleanTraceArray(explode("\n", $trace));
             foreach ($traceArray as $key => $value) {
-                echo preg_replace('/[#]\d+/', Number::next($key).')', $value).PHP_EOL;
+                echo preg_replace('/[#]\d+/', Number::next($key).')', $this->hideDirectoryName($value)).PHP_EOL;
             }
         }
     }//end beautifyCallStack()
+
+    private function hideDirectoryName(string $string):string
+    {
+        return str_replace(RUNTIME_ROOT_PATH, 'file://', $string);
+    }
 
 
     /**
@@ -228,8 +255,9 @@ class RuntimeErrors extends Exception
             }
         }//end foreach
 
-        array_multisort($traceArray, SORT_DESC);
+        //array_multisort($traceArray, SORT_DESC);
         // ksort($traceArray, SORT_ASC);
+        $traceArray = array_reverse($traceArray);
         return $traceArray;
     }//end cleanTraceArray()
 
@@ -260,13 +288,17 @@ class RuntimeErrors extends Exception
      */
     public static function fetch(object $exception): RuntimeErrors
     {
+        //echo get_class($exception). PHP_EOL;
+        //echo $exception->getTraceAsString(). PHP_EOL;
+        //print_r(func_get_args(), false);exit();
         return new self(
             $exception->getMessage(),
             $exception->getCode(),
             $exception->getCode(),
             $exception->getFile(),
             $exception->getLine(),
-            $exception->getTraceAsString()
+            $exception->getTraceAsString(),
+            get_class($exception)
         );
     }//end fetch()
 

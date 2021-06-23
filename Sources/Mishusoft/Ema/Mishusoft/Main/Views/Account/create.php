@@ -2,7 +2,7 @@
 
 
 use Mishusoft\Framework\Chipsets\Cryptography\OpenSSL\Encryption;
-use Mishusoft\Framework\Chipsets\Media;
+use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Framework\Chipsets\System\Memory;
 use Mishusoft\Framework\Chipsets\Ui;
 use Mishusoft\Framework\Chipsets\Utility\_Array;
@@ -25,7 +25,7 @@ if (Session::get("auth")) {
     $signupBody = Ui::element($this->documentTemplateBodyElement, "ms-app-create-box", [
         "style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";background: white;padding: 20px;border-radius:10px;text-align: left;font-size: 16px;height:500px;width: 370px;" . Ui::css["box-shadow"] . Ui::css["display-flex"] . Ui::css["flex-column"] . Ui::css["center"],
     ]);
-    Ui::element($signupBody, "img", ["style" => Ui::htmlHrefStyle . "width:100px;height:100px;border-radius: 50%;margin-bottom: 15px;", "src" => Media::getAssetsPath("images_img-avatar3.png", "remote")]);
+    Ui::element($signupBody, "img", ["style" => Ui::htmlHrefStyle . "width:100px;height:100px;border-radius: 50%;margin-bottom: 15px;", "src" => Storage::getAssetsPath("images_img-avatar3.png", "remote")]);
     Ui::element($signupBody, "h3", ["style" => Ui::htmlHrefStyle . "text-align: left;display: flex;align-items: start;width: 100%;padding: 5px;margin-bottom: 5px;margin-top: 0px;", "text" => "Create a new account"]);
 
 

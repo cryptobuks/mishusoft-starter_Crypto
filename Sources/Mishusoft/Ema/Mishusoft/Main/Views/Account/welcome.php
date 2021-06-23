@@ -2,7 +2,7 @@
 
 
 use Mishusoft\Framework\Chipsets\Cryptography\OpenSSL\Decryption;
-use Mishusoft\Framework\Chipsets\Media;
+use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Framework\Chipsets\System\Memory;
 use Mishusoft\Framework\Chipsets\Ui;
 use Mishusoft\Framework\Chipsets\Utility\_Array;
@@ -37,7 +37,7 @@ if (array_key_exists("t", $_GET)) {
         $welcomeBody = Ui::element($this->documentTemplateBodyElement, "ms-app-welcome-box", [
             "style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";background: white;padding: 20px;border-radius:10px;text-align: left;font-size: 16px;height:500px;width: 370px;" . Ui::css["box-shadow"] . Ui::css["display-flex"] . Ui::css["flex-column"] . Ui::css["center"],
         ]);
-        Ui::element($welcomeBody, "img", ["style" => Ui::htmlHrefStyle . "width:100px;height:100px;border-radius: 50%;margin-bottom: 15px;", "src" => Media::getAssetsPath("images_img-avatar3.png", "remote")]);
+        Ui::element($welcomeBody, "img", ["style" => Ui::htmlHrefStyle . "width:100px;height:100px;border-radius: 50%;margin-bottom: 15px;", "src" => Storage::getAssetsPath("images_img-avatar3.png", "remote")]);
 
         /*catch error*/
         if (array_key_exists("error", $_GET) || array_key_exists("success", $_GET) || array_key_exists("notify", $_GET)) {

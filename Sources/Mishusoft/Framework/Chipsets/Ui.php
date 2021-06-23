@@ -9,6 +9,7 @@ use DOMNode;
 use DOMNodeList;
 use Mishusoft\Framework\Chipsets\System\Memory;
 use Mishusoft\Framework\Chipsets\System\Time;
+use Mishusoft\Framework\Chipsets\Utility\_Array;
 use Mishusoft\Framework\Chipsets\Utility\_String;
 
 class Ui
@@ -70,6 +71,7 @@ class Ui
      * @var DOMNode
      */
     private static DOMNode $documentTitleElement;
+    private static string $domDocumentType;
 
 
     /**
@@ -77,7 +79,6 @@ class Ui
      */
     private function __construct()
     {
-
     }//end __construct()
 
 
@@ -86,22 +87,19 @@ class Ui
      */
     public static function start(string $document='html'): void
     {
+        self::$domDocumentType      = $document;
         self::$domDocument          = new DOMDocument('1.0', 'UTF-8');
-        self::$documentRoot         = self::element(self::$domDocument, $document, ['lang' => 'en']);
+        self::$documentRoot         = self::element(self::$domDocument, self::$domDocumentType, ['lang' => 'en']);
         self::$documentHeadElement  = self::element(self::$documentRoot, 'head');
         self::$documentTitleElement = self::element(self::$documentHeadElement, 'title');
-
     }//end start()
 
 
-    /**
-     * @param string $document
-     */
-    public static function execute(string $document='html'): void
+    public static function display(): void
     {
-        switch ($document) {
+        switch (self::$domDocumentType) {
             case 'xml':
-                // Execute the compiled xml document.
+                // Display the compiled xml document.
                 header('Content-Type: text/xml; charset=utf-8', true);
                 echo '<?xml version="1.0" encoding="UTF-8"?>';
                 echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.sitemaps.org/schemas/sitemap/0.9 https://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">';
@@ -109,13 +107,12 @@ class Ui
 
             case 'html':
             default:
-                // Execute the compiled html document.
+                // Display the compiled html document.
                 header('Content-Type: text/html; charset=utf-8');
                 echo '<!DOCTYPE html>';
                 echo self::$domDocument->saveHTML();
             break;
         }
-
     }//end execute()
 
 
@@ -125,7 +122,6 @@ class Ui
     public static function getDocumentRoot(): DOMNode
     {
         return self::$documentRoot;
-
     }//end getDocumentRoot()
 
 
@@ -135,7 +131,6 @@ class Ui
     public static function getDocumentHeadElement(): DOMNode
     {
         return self::$documentHeadElement;
-
     }//end getDocumentHeadElement()
 
 
@@ -146,7 +141,6 @@ class Ui
     public static function make(string $qualifiedName): DOMElement
     {
         return self::$domDocument->createElement($qualifiedName);
-
     }//end make()
 
 
@@ -157,7 +151,6 @@ class Ui
     public static function setDocumentTitle(string $content): DOMNode
     {
         return self::text(self::$documentTitleElement, $content);
-
     }//end setDocumentTitle()
 
 
@@ -168,7 +161,6 @@ class Ui
     public static function updateDocumentTitle(string $content): DOMNode
     {
         return self::text(self::$documentTitleElement, ' || '._String::ucwords($content));
-
     }//end updateDocumentTitle()
 
 
@@ -184,7 +176,7 @@ class Ui
         $html              = self::element(self::$domDocument, 'html', ['lang' => 'en']);
         $head              = self::element($html, 'head');
         $title             = self::element($head, 'title');
-        self::text($title, !empty($title_content) ? "$title_content" : '(Empty Title)');
+        self::text($title, !empty($title_content) ? $title_content : '(Empty Title)');
 
         if (is_callable($callback) === true) {
             $callback($html, $head, $title);
@@ -217,7 +209,6 @@ class Ui
         header('Content-Type: text/html; charset=utf-8');
         echo '<!DOCTYPE html>';
         echo self::$domDocument->saveHTML();
-
     }//end HtmlInterface()
 
 
@@ -231,10 +222,10 @@ class Ui
      */
     public static function element(DOMElement|DOMNode|DOMDocument $parent, string $tag, array $attributes=[]): DOMNode
     {
+        //print_r(func_get_args(), false);
         $root = self::make($tag);
         self::assignAttributes($root, $attributes);
         return $parent->appendChild($root);
-
     }//end element()
 
 
@@ -246,7 +237,6 @@ class Ui
     public static function hasAttribute(DOMElement $htmlElement, string $qualifiedName): bool
     {
         return $htmlElement->hasAttribute($qualifiedName);
-
     }//end hasAttribute()
 
 
@@ -258,7 +248,6 @@ class Ui
     public static function getAttribute(DOMElement $htmlElement, string $qualifiedName): string
     {
         return $htmlElement->getAttribute($qualifiedName);
-
     }//end getAttribute()
 
 
@@ -270,7 +259,6 @@ class Ui
     public static function removeAttribute(DOMElement $htmlElement, string $qualifiedName): bool
     {
         return $htmlElement->removeAttribute($qualifiedName);
-
     }//end removeAttribute()
 
 
@@ -287,7 +275,6 @@ class Ui
                 }
             }
         }
-
     }//end updateAttribute()
 
 
@@ -298,7 +285,6 @@ class Ui
     public static function domCDATA(string $string): DOMCdataSection
     {
         return new DOMCdataSection($string);
-
     }//end domCDATA()
 
 
@@ -323,7 +309,6 @@ class Ui
                 }
             }
         }
-
     }//end updateAttributesValue()
 
 
@@ -344,7 +329,6 @@ class Ui
                 }
             }
         }
-
     }//end setAttributeValue()
 
 
@@ -361,7 +345,6 @@ class Ui
         $root = self::$domDocument->createElement($tag);
         self::assignAttributes($root, $attributes);
         return $parent->appendChild($root);
-
     }//end makeElement()
 
 
@@ -372,7 +355,6 @@ class Ui
     public static function elementList(DOMElement|DOMNode|DOMDocument $parentElement, array $list=[])
     {
         self::makeElementBatch($parentElement, $list);
-
     }//end elementList()
 
 
@@ -417,7 +399,6 @@ class Ui
                 }
             }
         }
-
     }//end makeElementBatch()
 
 
@@ -434,19 +415,19 @@ class Ui
                 unset($attributes['text']);
                 self::_setAttributes($htmlElement, $attributes);
                 self::text($htmlElement, $text);
-            } else if (array_key_exists(strtolower('html'), $attributes) === true) {
+            } elseif (array_key_exists(strtolower('html'), $attributes) === true) {
                 $html = $attributes['html'];
                 unset($attributes['html']);
                 self::_setAttributes($htmlElement, $attributes);
                 self::html($htmlElement, $html);
-            } else if (array_key_exists(strtolower('child'), $attributes) === true) {
+            } elseif (array_key_exists(strtolower('child'), $attributes) === true) {
                 $htmlChild = $attributes['child'];
                 unset($attributes['child']);
                 self::_setAttributes($htmlElement, $attributes);
                 self::makeElementBatch($htmlElement, $htmlChild);
 
-                /*
-                    add child*/
+            /*
+                add child*/
                 /*
                  *             "meta" => [
                                 ["name" => "google-site-verification", "content" => "920ooXJv6lcqtSwPRaqe_b5EJwKNB367u-F7qhfdQGA"],
@@ -459,7 +440,6 @@ class Ui
         }//end if
 
         return $htmlElement;
-
     }//end assignAttributes()
 
 
@@ -477,7 +457,6 @@ class Ui
         }
 
         return $htmlElement;
-
     }//end _setAttributes()
 
 
@@ -489,7 +468,6 @@ class Ui
     public static function text(DOMElement|DOMNode $parentHtmlElement, string $content): DOMNode
     {
         return $parentHtmlElement->appendChild(self::$domDocument->createTextNode($content));
-
     }//end text()
 
 
@@ -501,8 +479,73 @@ class Ui
     public static function html(DOMElement $parentHtmlElement, string $content): mixed
     {
         return $parentHtmlElement->appendChild(self::$domDocument->loadHTML($content));
-
     }//end html()
+
+
+    public static function getWebFavicons():array
+    {
+        $faviconsList = array();
+        $fileList = array();
+
+        $list = Storage::getFiles('media/logos');
+
+        foreach ($list as $item) {
+            if (count(Storage::getInformationOfImageFile($item))>0) {
+                $fileList[$item] = Storage::getInformationOfImageFile($item);
+            }
+        }
+
+
+        foreach ($fileList as $imageFile => $fileDetails) {
+            if (str_starts_with(pathinfo($imageFile, PATHINFO_FILENAME), 'apple-icon') === true) {
+                //    <link rel="apple-touch-icon" sizes="57x57" href="{$layoutParams.logoFolder}apple-icon-57x57.png">
+                //    /home/abir/Development/web-development/lastest.mishusoft.com/Storages/0/media/logos/apple-icon-152x152.png
+                $faviconsList[] = array(
+                    'rel'  => 'apple-touch-icon',
+                    'type'  => _Array::value($fileDetails, 'mime'),
+                    'sizes'  => implode('x', array(_Array::value($fileDetails, 0),_Array::value($fileDetails, 1))),
+                    'href' => Storage::toDataUri('logos'. DIRECTORY_SEPARATOR.pathinfo($imageFile, PATHINFO_BASENAME)),
+                );
+            }
+            if (str_starts_with(pathinfo($imageFile, PATHINFO_FILENAME), 'android-icon') === true) {
+                //    <link rel="icon" type="image/png" sizes="192x192" href="{$layoutParams.logoFolder}android-icon-192x192.png">
+                //    /home/abir/Development/web-development/lastest.mishusoft.com/Storages/0/media/logos/android-icon-192x192.png
+                $faviconsList[] = array(
+                    'rel'  => 'icon',
+                    'type'  => _Array::value($fileDetails, 'mime'),
+                    'sizes'  => implode('x', array(_Array::value($fileDetails, 0),_Array::value($fileDetails, 1))),
+                    'href' => Storage::toDataUri('logos'. DIRECTORY_SEPARATOR.pathinfo($imageFile, PATHINFO_BASENAME)),
+                );
+            }
+            if (str_starts_with(pathinfo($imageFile, PATHINFO_FILENAME), 'favicon') === true) {
+                //       <link rel="icon" type="image/png" sizes="16x16" href="{$layoutParams.logoFolder}favicon-16x16.png">
+                //    /home/abir/Development/web-development/lastest.mishusoft.com/Storages/0/media/logos/favicon-16x16.png
+
+                //        <link rel="icon" type="image/vnd.microsoft.icon" sizes="16x16" href="{$layoutParams.logoFolder}favicon.ico">
+                //    /home/abir/Development/web-development/lastest.mishusoft.com/Storages/0/media/logos/favicon.ico
+                $faviconsList[] = array(
+                    'rel'  => 'icon',
+                    'type'  => _Array::value($fileDetails, 'mime'),
+                    'sizes'  => implode('x', array(_Array::value($fileDetails, 0),_Array::value($fileDetails, 1))),
+                    'href' => Storage::toDataUri('logos'. DIRECTORY_SEPARATOR.pathinfo($imageFile, PATHINFO_BASENAME)),
+                );
+            }
+            if (str_starts_with(pathinfo($imageFile, PATHINFO_FILENAME), 'mishusoft-logo-lite') === true) {
+                //    <link rel="icon" type="image/webp" sizes="16x16" href="{$layoutParams.logoFolder}mishusoft-logo-lite.webp">
+                //    /home/abir/Development/web-development/lastest.mishusoft.com/Storages/0/media/logos/mishusoft-logo-lite.webp
+                $faviconsList[] = array(
+                    'rel'  => 'icon',
+                    'type'  => _Array::value($fileDetails, 'mime'),
+                    'sizes'  => implode('x', array(_Array::value($fileDetails, 0),_Array::value($fileDetails, 1))),
+                    'href' => Storage::toDataUri('logos'. DIRECTORY_SEPARATOR.pathinfo($imageFile, PATHINFO_BASENAME)),
+                );
+            }
+
+        }
+
+
+        return $faviconsList;
+    }
 
 
     /**
@@ -523,7 +566,6 @@ class Ui
             "Sorry! Your web browser doesn't support javascript."
         );
         // end of adding noscript
-
     }//end setNoScriptText()
 
 
@@ -544,7 +586,6 @@ class Ui
             'Copyright © '.Time::getCurrentYearNumber().' '.Memory::Data()->company->name.'. All Right Reserved.'
             // Copyright © 2020 Winstarit LTD. All Right Reserved.
         );
-
     }//end addDefaultSignature()
 
 
@@ -556,7 +597,6 @@ class Ui
     {
         ksort($attributes);
         return !(array_key_exists(0, array_filter($attributes)) === true);
-
     }//end isSingleAttributeList()
 
 
@@ -568,7 +608,6 @@ class Ui
     public static function entity(object $parentHtmlElement, string $name): mixed
     {
         return $parentHtmlElement->appendChild(self::$domDocument->createEntityReference($name));
-
     }//end entity()
 
 
@@ -580,7 +619,6 @@ class Ui
     public static function comment(object $parentHtmlElement, string $data): mixed
     {
         return $parentHtmlElement->appendChild(self::$domDocument->createComment($data));
-
     }//end comment()
 
 
@@ -591,7 +629,6 @@ class Ui
     public static function remove(DOMElement $childElement): DOMNode
     {
         return self::$domDocument->removeChild($childElement);
-
     }//end remove()
 
 
@@ -602,7 +639,6 @@ class Ui
     public static function captureElementsByTagName(string $tag): DOMNodeList
     {
         return self::$domDocument->getElementsByTagName($tag);
-
     }//end captureElementsByTagName()
 
 
@@ -613,7 +649,6 @@ class Ui
     public static function captureElementById(string $elementId): ?DOMElement
     {
         return self::$domDocument->getElementById($elementId);
-
     }//end captureElementById()
 
 
@@ -622,8 +657,5 @@ class Ui
      */
     public function __destruct()
     {
-
     }//end __destruct()
-
-
 }//end class

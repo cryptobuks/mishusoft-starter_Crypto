@@ -9,7 +9,7 @@ use Mishusoft\Framework\Chipsets\Utility\_String;
 use Mishusoft\Framework\Chipsets\Utility\Number;
 use Mishusoft\Framework\Chipsets\Utility\Stream;
 
-class Media
+class Storage
 {
     // declare version
     public const VERSION = '1.0.2';
@@ -89,7 +89,7 @@ class Media
             // Getting headers sent by the client.
             $headers = apache_request_headers();
             // Checking if the client is validating his cache and if it is current.
-            if (isset($headers['If-Modified-Since']) && (strtotime($headers['If-Modified-Since']) == filemtime($filename))) {
+            if (isset($headers['If-Modified-Since']) && (strtotime($headers['If-Modified-Since']) === filemtime($filename))) {
                 // Client's cache IS current, so we just respond '304 Not Modified'.
                 header('Last-Modified: '.gmdate('D, d M Y H:i:s', filemtime($filename)).' GMT', true, 304);
             } else {
@@ -118,7 +118,10 @@ class Media
      */
     public static function getMimeContent(string $filename): string
     {
-        if (is_array(self::getFileInfo($filename)) and count(self::getFileInfo($filename)) > 0) {
+        if (array_key_exists('type', self::getFileInfo($filename))) {
+            //print_r(self::getFileInfo($filename), false);
+            //print_r(self::getExtension($filename), false);
+            //print_r(self::getFileInfo($filename)['type'], false);
             return self::getFileInfo($filename)['type'];
         }
 
@@ -135,7 +138,9 @@ class Media
     {
         if (is_array(Mime::Common) and count(Mime::Common) > 0) {
             foreach (Mime::Common as $content) {
-                if ($content['extension'] === substr($filename, (strpos($filename, '.') + strlen('.')), (strlen($filename) - (strpos($filename, '.') + strlen('.'))))) {
+                // substr($filename, (strpos($filename, '.') + strlen('.')), (strlen($filename) - (strpos($filename, '.') + strlen('.'))))
+                if ($content['extension'] === self::getExtension($filename)) {
+                    //print_r($content['extension'], false);
                     return $content;
                 }
             }

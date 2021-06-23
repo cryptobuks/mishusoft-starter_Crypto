@@ -6,7 +6,7 @@ namespace Mishusoft\Framework\Chipsets\Services;
 
 use Mishusoft\Framework\Chipsets\FileSystem;
 use Mishusoft\Framework\Chipsets\Http\Browser;
-use Mishusoft\Framework\Chipsets\Media;
+use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Framework\Chipsets\System\Memory;
 use Mishusoft\Framework\Chipsets\Ui;
 use Mishusoft\Framework\Chipsets\Utility\_Array;
@@ -68,9 +68,9 @@ class SEOToolKitService
     private function check(): void
     {
         $fileList = [
-            self::seoConfigFile,
-            self::AdSenseConfigFile,
-            self::SearchEngineListFile,
+            self::SEO_CONFIG_FILE,
+            self::AD_SENSE_CONFIG_FILE,
+            self::SEARCH_ENGINE_LIST_FILE,
         ];
         if (count($fileList) > 0) {
             foreach ($fileList as $file) {
@@ -201,6 +201,7 @@ class SEOToolKitService
 
     /**
      *
+     * @throws \JsonException
      */
     private function default(): void
     {
@@ -234,7 +235,7 @@ class SEOToolKitService
                     ],
                     [
                         'name'    => 'description',
-                        'content' => (array_key_exists('description', self::getAbout((new Browser())->getVisitedPage()))) ? _Array::value(self::getAbout((new Browser())->getVisitedPage()), 'description') : Memory::data()->company->detailsDescription,
+                        'content' => (array_key_exists('description', $this->getAbout(Browser::getVisitedPage()))) ? _Array::value($this->getAbout(Browser::getVisitedPage()), 'description') : Memory::data()->company->detailsDescription,
                     ],
                     // <meta name="description"content="This is an example of a meta description.This will often show up in search results.">
                 ],
@@ -267,11 +268,11 @@ class SEOToolKitService
                     ],
                     [
                         'itemprop' => 'image',
-                        'content'  => Media::getLogosMediaPath('favicon.ico', 'remote'),
+                        'content'  => Storage::getLogosMediaPath('favicon.ico', 'remote'),
                     ],
                     [
                         'itemprop' => 'description',
-                        'content'  => (array_key_exists('description', self::getAbout((new Browser())->getVisitedPage()))) ? _Array::value(self::getAbout((new Browser())->getVisitedPage()), 'description') : Memory::data()->company->detailsDescription,
+                        'content'  => (array_key_exists('description', $this->getAbout(Browser::getVisitedPage()))) ? _Array::value($this->getAbout(Browser::getVisitedPage()), 'description') : Memory::data()->company->detailsDescription,
                     ],
                     // <meta name="description"content="This is an example of a meta description.This will often show up in search results.">
                 ],
@@ -305,7 +306,7 @@ class SEOToolKitService
                 'meta' => [
                     [
                         'name'    => 'twitter:card',
-                        'content' => Media::getLogosMediaPath('mishusoft-logo-lite.webp', 'remote'),
+                        'content' => Storage::getLogosMediaPath('mishusoft-logo-lite.webp', 'remote'),
                     ],
                     [
                         'name'    => 'twitter:site',
@@ -317,7 +318,7 @@ class SEOToolKitService
                     ],
                     [
                         'name'    => 'twitter:description',
-                        'content' => (array_key_exists('description', self::getAbout((new Browser())->getVisitedPage()))) ? _Array::value(self::getAbout((new Browser())->getVisitedPage()), 'description') : Memory::data()->company->detailsDescription,
+                        'content' => (array_key_exists('description', $this->getAbout(Browser::getVisitedPage()))) ? _Array::value($this->getAbout(Browser::getVisitedPage()), 'description') : Memory::data()->company->detailsDescription,
                     ],
                     // <meta name="description"content="This is an example of a meta description.This will often show up in search results.">
                     [
@@ -326,7 +327,7 @@ class SEOToolKitService
                     ],
                     [
                         'name'    => 'twitter:image:src',
-                        'content' => Media::getLogosMediaPath('mishusoft-logo-lite.png', 'remote'),
+                        'content' => Storage::getLogosMediaPath('mishusoft-logo-lite.png', 'remote'),
                     ],
                 ],
             ]
@@ -375,11 +376,11 @@ class SEOToolKitService
                     ],
                     [
                         'property' => 'og:image',
-                        'content'  => Media::getLogosMediaPath('mishusoft-logo-lite.png', 'remote'),
+                        'content'  => Storage::getLogosMediaPath('mishusoft-logo-lite.png', 'remote'),
                     ],
                     [
                         'property' => 'og:description',
-                        'content'  => (array_key_exists('description', self::getAbout((new Browser())->getVisitedPage()))) ? _Array::value(self::getAbout((new Browser())->getVisitedPage()), 'description') : Memory::data()->company->detailsDescription,
+                        'content'  => (array_key_exists('description', $this->getAbout(Browser::getVisitedPage()))) ? _Array::value($this->getAbout(Browser::getVisitedPage()), 'description') : Memory::data()->company->detailsDescription,
                     ],
                     // <meta name="description"content="This is an example of a meta description.This will often show up in search results.">
                     [
@@ -402,7 +403,7 @@ class SEOToolKitService
     private function getAbout(string $url): array
     {
         $result = [];
-        foreach (json_decode(FileSystem::read(self::seoConfigFile), true, 512, JSON_THROW_ON_ERROR) as $inf) {
+        foreach (json_decode(FileSystem::read(self::SEO_CONFIG_FILE), true, 512, JSON_THROW_ON_ERROR) as $inf) {
             if (array_key_exists($url, $inf) === true) {
                 $result = $inf;
             }

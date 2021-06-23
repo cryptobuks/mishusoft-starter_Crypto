@@ -1,7 +1,7 @@
 <?php
 
 use Mishusoft\Framework\Chipsets\Cryptography\OpenSSL\Encryption;
-use Mishusoft\Framework\Chipsets\Media;
+use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Framework\Chipsets\System\Memory;
 use Mishusoft\Framework\Chipsets\Ui;
 use Mishusoft\Framework\Chipsets\Utility\_Array;
@@ -34,7 +34,7 @@ if (Session::get("auth")) {
         "style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";background: white;padding: 20px;border-radius:10px;text-align: left;font-size: 16px;height: auto;width: 370px;" . Ui::css["box-shadow"] . Ui::css["display-flex"] . Ui::css["flex-column"] . Ui::css["center"],
     ]);
     Ui::element($loginBody, "img", ["style" => Ui::htmlHrefStyle . "width:100px;height:100px;border-radius: 50%;margin-bottom: 15px;",
-        "src" => Media::getMediaPath("images/avatars/img-avatar3.png", "remote")]);
+        "src" => Storage::getMediaPath("images/avatars/img-avatar3.png", "remote")]);
 
 
     /*catch error*/

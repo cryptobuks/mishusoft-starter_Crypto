@@ -9,7 +9,6 @@
 
 namespace Mishusoft\Framework\Chipsets\Http;
 
-
 use ErrorException;
 use JsonException;
 use Mishusoft\Framework\Chipsets\FileSystem;
@@ -67,7 +66,7 @@ class Browser extends BrowserDataObject
 
         if ($this->userAgentString !== 'default') {
             $this->userAgent = $this->userAgentString;
-        } else if (function_exists('apache_request_headers') === true) {
+        } elseif (function_exists('apache_request_headers') === true) {
             if (array_key_exists('User-Agent', apache_request_headers()) === true) {
                 $this->userAgent = apache_request_headers()['User-Agent'];
                 if (array_key_exists('Accept-Language', apache_request_headers()) === true) {
@@ -81,7 +80,7 @@ class Browser extends BrowserDataObject
                 $this->storeUserAgentInFile();
                 $this->analyze();
             }
-        } else if (function_exists('getallheaders') === true) {
+        } elseif (function_exists('getallheaders') === true) {
             if (array_key_exists('HTTP_USER_AGENT', getallheaders()) === true) {
                 $this->userAgent = getallheaders()['HTTP_USER_AGENT'];
                 if (array_key_exists('Accept-Language', getallheaders()) === true) {
@@ -95,7 +94,7 @@ class Browser extends BrowserDataObject
                 $this->storeUserAgentInFile();
                 $this->analyze();
             }
-        } else if (array_key_exists('HTTP_USER_AGENT', $_SERVER) === true) {
+        } elseif (array_key_exists('HTTP_USER_AGENT', $_SERVER) === true) {
             $this->userAgent = $_SERVER['HTTP_USER_AGENT'];
 
             if (array_key_exists('HTTP_ACCEPT_LANGUAGE', $_SERVER) === true) {
@@ -111,7 +110,6 @@ class Browser extends BrowserDataObject
         } else {
             throw new RuntimeException('Unable to extract browser data.');
         }//end if
-
     }//end __construct()
 
 
@@ -316,7 +314,6 @@ class Browser extends BrowserDataObject
 
             $this->webBrowserLayoutList = $this->getWebBrowsersLayoutList();
         }//end if
-
     }//end loadBrowserData()
 
 
@@ -335,7 +332,6 @@ class Browser extends BrowserDataObject
                 && (FileSystem::read($filename) !== '')
                 && (count(array_keys($database)) > count(array_keys(_JSON::decodeToArray(FileSystem::read($filename))))))
             || (strlen(_JSON::encodeToString($database)) > strlen(FileSystem::read($filename)));
-
     }//end isUpdateDatabase()
 
 
@@ -365,7 +361,6 @@ class Browser extends BrowserDataObject
                 sprintf('"%s","%s","%s"', $this->timeOfToday, IP::get(), $this->userAgent).PHP_EOL
             );
         }
-
     }//end storeUserAgentInFile()
 
 
@@ -430,14 +425,14 @@ class Browser extends BrowserDataObject
         // Mozilla/5.0 (X11; U; Darwin 10.0.0 x64-86; en-US; rv:1.9.0.8) Gecko/2009040414 GranParadiso/3.0.8
         $cleanUA = 'Mozilla/5.0 (X11; U; Darwin 10.0.0; en-US; rv:1.9.0.8) Gecko/2009040414 GranParadiso/3.0.8';
 
-        _Debug::preOutput($cleanUA);
+        //_Debug::preOutput($cleanUA);
 
         // We will check if the browser is included in our database and if not, save it in an unsolved file.
         foreach ($this->getWebBrowsersList() as $webBrowser) {
             if (is_array($webBrowser) === true) {
                 if (array_key_exists('keyword', $webBrowser) === true) {
                     $keyword = $webBrowser['keyword'];
-                } else if (array_key_exists('name', $webBrowser) === true) {
+                } elseif (array_key_exists('name', $webBrowser) === true) {
                     $keyword = $webBrowser['name'];
                 } else {
                     $keyword = (string) $webBrowser;
@@ -528,7 +523,6 @@ class Browser extends BrowserDataObject
                 break;
             }//end if
         }//end foreach
-
     }//end analyze()
 
 
@@ -542,7 +536,6 @@ class Browser extends BrowserDataObject
     protected function quote(string $string): string
     {
         return preg_quote($string, PREG_QUOTE_DEFAULT_SEPARATOR);
-
     }//end quote()
 
 
@@ -576,7 +569,6 @@ class Browser extends BrowserDataObject
             'ubuntu' => '/('.$this->quote(strtolower($keyword)).')\/(\d+[.]\d+)/im',
             default => throw new ErrorException('Unexpected value : '.$keyword)
         };
-
     }//end getRegexp()
 
 
@@ -590,7 +582,6 @@ class Browser extends BrowserDataObject
     protected function filter(array $array): array
     {
         return array_values(array_filter($array));
-
     }//end filter()
 
 
@@ -609,7 +600,6 @@ class Browser extends BrowserDataObject
 
         // Replace browser names with their aliases.
         return strtr($string, $this->getKnownBrowserAliases());
-
     }//end cleanUserAgentString()
 
 
@@ -624,7 +614,6 @@ class Browser extends BrowserDataObject
             'opr'       => 'opera',
             'iceweasel' => 'firefox',
         ];
-
     }//end getKnownBrowserAliases()
 
 
@@ -648,7 +637,6 @@ class Browser extends BrowserDataObject
         } else {
             $this->deviceType = (string) $array;
         }
-
     }//end windowManager()
 
 
@@ -694,7 +682,6 @@ class Browser extends BrowserDataObject
         }//end if
 
         return $this->cleanContent($finalOutput);
-
     }//end finalContent()
 
 
@@ -708,7 +695,6 @@ class Browser extends BrowserDataObject
     private function cleanContent(string $content): string
     {
         return ltrim(ucwords(preg_replace('#[/]|[;]|[)]#', ' ', $content)));
-
     }//end cleanContent()
 
 
@@ -737,7 +723,6 @@ class Browser extends BrowserDataObject
                 $this->currentDeviceInfo = (array) $resources;
             }
         }
-
     }//end deviceDetails()
 
 
@@ -752,7 +737,6 @@ class Browser extends BrowserDataObject
     {
         preg_match('/\(([^\)]*)\)/', $ua, $matches);
         return $matches[1];
-
     }//end deviceInfo()
 
 
@@ -785,7 +769,6 @@ class Browser extends BrowserDataObject
         }
 
         return ltrim($title);
-
     }//end visitedPageTitle()
 
 
@@ -798,7 +781,6 @@ class Browser extends BrowserDataObject
     public static function getVisitedPage(): string
     {
         return self::VisitedPageURL($_SERVER);
-
     }//end getVisitedPage()
 
 
@@ -813,7 +795,6 @@ class Browser extends BrowserDataObject
     public static function visitedPageURL(array $s, bool $useForwardedHost=false): string
     {
         return self::urlOrigin($s, $useForwardedHost).$s['REQUEST_URI'];
-
     }//end visitedPageURL()
 
 
@@ -832,7 +813,6 @@ class Browser extends BrowserDataObject
         $host     = ($useForwardedHost && isset($s['HTTP_X_FORWARDED_HOST'])) ? $s['HTTP_X_FORWARDED_HOST'] : ($s['HTTP_HOST'] ?? null);
         $host     = ($host ?? $s['SERVER_NAME']).$port;
         return $protocol.'://'.$host;
-
     }//end urlOrigin()
 
 
@@ -865,7 +845,6 @@ class Browser extends BrowserDataObject
         }
 
         return [];
-
     }//end getBrowserDetails()
 
 
@@ -876,7 +855,6 @@ class Browser extends BrowserDataObject
     public function getBrowserEngineName(): string
     {
         return ltrim($this->browserEngineName);
-
     }//end getBrowserEngineName()
 
 
@@ -887,7 +865,6 @@ class Browser extends BrowserDataObject
     public function getBrowserEngineNameFull(): string
     {
         return ltrim($this->browserEngineNameFull);
-
     }//end getBrowserEngineNameFull()
 
 
@@ -898,7 +875,6 @@ class Browser extends BrowserDataObject
     public function getBrowserInfoAll(): array
     {
         return $this->browserInfoAll;
-
     }//end getBrowserInfoAll()
 
 
@@ -909,7 +885,6 @@ class Browser extends BrowserDataObject
     public function getBrowserAppCodeName(): string
     {
         return ltrim($this->browserAppCodeName);
-
     }//end getBrowserAppCodeName()
 
 
@@ -920,7 +895,6 @@ class Browser extends BrowserDataObject
     public function getBrowserAppCodeVersion(): string
     {
         return ltrim($this->browserAppCodeVersion);
-
     }//end getBrowserAppCodeVersion()
 
 
@@ -931,7 +905,6 @@ class Browser extends BrowserDataObject
     public function getBrowserAppName(): string
     {
         return ltrim($this->browserAppName);
-
     }//end getBrowserAppName()
 
 
@@ -942,7 +915,6 @@ class Browser extends BrowserDataObject
     public function getBrowserAppVersion(): string
     {
         return ltrim($this->browserAppVersion);
-
     }//end getBrowserAppVersion()
 
 
@@ -953,7 +925,6 @@ class Browser extends BrowserDataObject
     public function getBrowserArchitecture(): string
     {
         return ltrim($this->browserArchitecture);
-
     }//end getBrowserArchitecture()
 
 
@@ -964,7 +935,6 @@ class Browser extends BrowserDataObject
     public function getBrowserEngineVersion(): string
     {
         return ltrim($this->browserEngineVersion);
-
     }//end getBrowserEngineVersion()
 
 
@@ -975,7 +945,6 @@ class Browser extends BrowserDataObject
     public function getBrowserName(): string
     {
         return ltrim($this->browserName);
-
     }//end getBrowserName()
 
 
@@ -986,7 +955,6 @@ class Browser extends BrowserDataObject
     public function getBrowserNameFull(): string
     {
         return ltrim($this->browserNameFull);
-
     }//end getBrowserNameFull()
 
 
@@ -997,7 +965,6 @@ class Browser extends BrowserDataObject
     public function getBrowserVersion(): string
     {
         return ltrim($this->browserVersion);
-
     }//end getBrowserVersion()
 
 
@@ -1008,7 +975,6 @@ class Browser extends BrowserDataObject
     public function getBrowserVersionFull(): string
     {
         return ltrim($this->browserVersionFull);
-
     }//end getBrowserVersionFull()
 
 
@@ -1019,7 +985,6 @@ class Browser extends BrowserDataObject
     public function getCurrentDeviceInfo()
     {
         return $this->currentDeviceInfo;
-
     }//end getCurrentDeviceInfo()
 
 
@@ -1030,7 +995,6 @@ class Browser extends BrowserDataObject
     public function getDeviceName(): string
     {
         return ltrim($this->deviceName);
-
     }//end getDeviceName()
 
 
@@ -1041,7 +1005,6 @@ class Browser extends BrowserDataObject
     public function getDeviceNameFull(): string
     {
         return ltrim($this->deviceNameFull);
-
     }//end getDeviceNameFull()
 
 
@@ -1052,7 +1015,6 @@ class Browser extends BrowserDataObject
     public function getDeviceNameOriginal(): string
     {
         return ltrim($this->deviceNameOriginal);
-
     }//end getDeviceNameOriginal()
 
 
@@ -1063,7 +1025,6 @@ class Browser extends BrowserDataObject
     public function getDeviceType(): string
     {
         return ltrim($this->deviceType);
-
     }//end getDeviceType()
 
 
@@ -1074,7 +1035,6 @@ class Browser extends BrowserDataObject
     public function getDeviceArchitecture(): string
     {
         return ltrim($this->deviceArchitecture);
-
     }//end getDeviceArchitecture()
 
 
@@ -1085,7 +1045,6 @@ class Browser extends BrowserDataObject
     public function getDeviceWindowManager(): string
     {
         return ltrim($this->deviceWindowManager);
-
     }//end getDeviceWindowManager()
 
 
@@ -1096,7 +1055,6 @@ class Browser extends BrowserDataObject
     public function getDeviceWmNameOriginal(): string
     {
         return $this->deviceWmNameOriginal;
-
     }//end getDeviceWmNameOriginal()
 
 
@@ -1107,7 +1065,6 @@ class Browser extends BrowserDataObject
     public function getDeviceInfoAll(): array
     {
         return $this->deviceInfoAll;
-
     }//end getDeviceInfoAll()
 
 
@@ -1118,7 +1075,6 @@ class Browser extends BrowserDataObject
     public function getUserAgent(): string
     {
         return $this->userAgent;
-
     }//end getUserAgent()
 
 
@@ -1129,7 +1085,6 @@ class Browser extends BrowserDataObject
     public function getUserAgentList(): array
     {
         return $this->userAgentList;
-
     }//end getUserAgentList()
 
 
@@ -1140,7 +1095,6 @@ class Browser extends BrowserDataObject
     public function getURLProtocol(): string
     {
         return $this->urlProtocol;
-
     }//end getURLProtocol()
 
 
@@ -1151,7 +1105,6 @@ class Browser extends BrowserDataObject
     public function getURLHostname(): string
     {
         return $this->urlHostname;
-
     }//end getURLHostname()
 
 
@@ -1162,7 +1115,6 @@ class Browser extends BrowserDataObject
     public function getURLPath(): string
     {
         return $this->urlPath;
-
     }//end getURLPath()
 
 
@@ -1173,7 +1125,6 @@ class Browser extends BrowserDataObject
     public function getRequestMethod(): string
     {
         return $this->requestMethod;
-
     }//end getRequestMethod()
 
 
@@ -1183,13 +1134,11 @@ class Browser extends BrowserDataObject
     public function getRequestMode(): string
     {
         return $this->requestMode;
-
     }//end getRequestMode()
 
 
     public function __destruct()
     {
-
     }//end __destruct()
 
 
@@ -1199,7 +1148,6 @@ class Browser extends BrowserDataObject
     public function getAcceptLanguage(): mixed
     {
         return $this->acceptLanguage;
-
     }//end getAcceptLanguage()
 
 
@@ -1209,8 +1157,5 @@ class Browser extends BrowserDataObject
     public function getAcceptEncoding(): mixed
     {
         return $this->acceptEncoding;
-
     }//end getAcceptEncoding()
-
-
 }//end class

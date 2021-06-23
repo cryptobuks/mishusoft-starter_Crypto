@@ -9,7 +9,7 @@ use Mishusoft\Framework\Chipsets\Cryptography\Decryption;
 use Mishusoft\Framework\Chipsets\Cryptography\Encryption;
 use Mishusoft\Framework\Chipsets\Http;
 use Mishusoft\Framework\Chipsets\Http\Browser;
-use Mishusoft\Framework\Chipsets\Media;
+use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Framework\Chipsets\System\Firewall;
 use Mishusoft\Framework\Chipsets\System\Network;
 use Mishusoft\Framework\Chipsets\System\Time;
@@ -38,10 +38,10 @@ class MonitorViewRender extends ViewRender
     {
         $idNbOfProduct = self::$conOfDatabase->getIdNbOfVerifiedProduct(_String::removeTags(_Array::value(_Array::value($RequestedDataArray, "IdRequest"), "name")), _String::removeTags(_Array::value(_Array::value($RequestedDataArray, "IdRequest"), "version")), _String::removeTags(_Array::value(_Array::value($RequestedDataArray, "IdRequest"), "ip")), _String::removeTags(_Array::value(_Array::value($RequestedDataArray, "IdRequest"), "browser")));
         if (!is_numeric($idNbOfProduct)) {
-            Media::StreamAsJson(array('app_pub_id' => Encryption::static($idNbOfProduct)));
+            Storage::StreamAsJson(array('app_pub_id' => Encryption::static($idNbOfProduct)));
         } else {
             self::$conOfDatabase->addProductToInstList(_String::removeTags(_Array::value(_Array::value($RequestedDataArray, "IdRequest"), "name")), _String::removeTags(_Array::value(_Array::value($RequestedDataArray, "IdRequest"), "version")), _String::removeTags(_Array::value(_Array::value($RequestedDataArray, "IdRequest"), "ip")), _String::removeTags(_Array::value(_Array::value($RequestedDataArray, "IdRequest"), "browser")));
-            Media::StreamAsJson(array('app_pub_id' => Encryption::static(self::$conOfDatabase->getLastInsertedId("installed.products"))));
+            Storage::StreamAsJson(array('app_pub_id' => Encryption::static(self::$conOfDatabase->getLastInsertedId("installed.products"))));
         }
     }
 
@@ -106,7 +106,7 @@ class MonitorViewRender extends ViewRender
                 Decryption::static(_Array::value(_Array::value(_Array::value($detailsArray, "userdata"), "_default_"), "app_id"))
             );
             self::upgradeLcnLmt(Decryption::static(_Array::value(_Array::value(_Array::value($detailsArray, "userdata"), "_default_"), "app_id")));
-            Media::StreamAsJson(
+            Storage::StreamAsJson(
                 array(
                     'message' => 'success', 'login' => 'passed', 'way' => 'email_password', 'log_status' => 'success',
                     'user' => array(
@@ -119,7 +119,7 @@ class MonitorViewRender extends ViewRender
                 )
             );
         } else {
-            Media::StreamAsJson(array('message' => 'error', 'login' => 'failed', 'way' => 'email_password'));
+            Storage::StreamAsJson(array('message' => 'error', 'login' => 'failed', 'way' => 'email_password'));
         }
     }
 
@@ -197,7 +197,7 @@ class MonitorViewRender extends ViewRender
                         } elseif (strpos(_Array::value(_Array::value($RequestedDataArray, "IdRequest"), "message"), "update") <= 0) {
                             self::getVerifiedProductId($RequestedDataArray);
                         } else {
-                            Media::StreamAsJson(array("data" => "empty"));
+                            Storage::StreamAsJson(array("data" => "empty"));
                         }
                     }
                 } else {
@@ -268,9 +268,9 @@ class MonitorViewRender extends ViewRender
                                 !empty(_String::removeTags(_Array::value(_Array::value($RequestedDataArray, "userdata"), "email"))) &&
                                 !empty(_String::removeTags(_Array::value(_Array::value($RequestedDataArray, "userdata"), "password")))) {
                                 if (!empty($registeredUserIdByEmail)) {
-                                    Media::StreamAsJson(array('message' => 'error', 'registration' => 'already_register', 'way' => 'email', 'licence' => $licence));
+                                    Storage::StreamAsJson(array('message' => 'error', 'registration' => 'already_register', 'way' => 'email', 'licence' => $licence));
                                 } elseif (!empty($registeredUserIdByIP)) {
-                                    Media::StreamAsJson(array('message' => 'error', 'registration' => 'already_register', 'way' => 'ip', 'licence' => $licence));
+                                    Storage::StreamAsJson(array('message' => 'error', 'registration' => 'already_register', 'way' => 'ip', 'licence' => $licence));
                                 } else {
                                     self::$conOfDatabase->saveUserSettingData(
                                         Decryption::static(_Array::value(_Array::value(_Array::value($RequestedDataArray, "userdata"), "_default_"), "app_id")),
@@ -294,7 +294,7 @@ class MonitorViewRender extends ViewRender
                                         Time::getToday(), Time::getNextDayDate(), 'not-fixed'
                                     );
 
-                                    Media::StreamAsJson(array(
+                                    Storage::StreamAsJson(array(
                                         'message' => 'success', 'registration' => 'new_register',
                                         'way' => 'new', 'log_status' => 'success', 'u_pass' => Encryption::static(_String::removeTags(_Array::value(_Array::value($RequestedDataArray, "userdata"), "password"))),
                                         'licence' => self::$conOfDatabase->getLcnByPrdIdCLIpBr(
@@ -305,7 +305,7 @@ class MonitorViewRender extends ViewRender
                                     ));
                                 }
                             } else {
-                                Media::StreamAsJson(array('message' => 'error', 'registration' => 'failed', 'way' => 'empty_data', 'licence' => $licence));
+                                Storage::StreamAsJson(array('message' => 'error', 'registration' => 'failed', 'way' => 'empty_data', 'licence' => $licence));
                             }
                         }
 
@@ -333,21 +333,21 @@ class MonitorViewRender extends ViewRender
                                             $userDetails = self::$conOfDatabase->getUsrDtlByEmlPss(_String::removeTags(_Array::value(_Array::value($RequestedDataArray, "userdata"), "email")), _String::removeTags(_Array::value(_Array::value($RequestedDataArray, "userdata"), "password")));
                                             self::processUserAuthentication($RequestedDataArray, $IdNbOfUsr, $userDetails);
                                         } else {
-                                            Media::StreamAsJson(array('message' => 'error', 'login' => 'incorrect', 'way' => 'password'));
+                                            Storage::StreamAsJson(array('message' => 'error', 'login' => 'incorrect', 'way' => 'password'));
                                         }
                                     } else {
                                         if (_String::removeTags(_Array::value(_Array::value($RequestedDataArray, "userdata"), "password")) === $password) {
                                             $userDetails = self::$conOfDatabase->getUsrDtlByEmlPss(_String::removeTags(_Array::value(_Array::value($RequestedDataArray, "userdata"), "email")), Encryption::static(_String::removeTags(_Array::value(_Array::value($RequestedDataArray, "userdata"), "password"))));
                                             self::processUserAuthentication($RequestedDataArray, $IdNbOfUsr, $userDetails);
                                         } else {
-                                            Media::StreamAsJson(array('message' => 'error', 'login' => 'incorrect', 'way' => 'password'));
+                                            Storage::StreamAsJson(array('message' => 'error', 'login' => 'incorrect', 'way' => 'password'));
                                         }
                                     }
                                 } else {
-                                    Media::StreamAsJson(array('message' => 'error', 'login' => 'not_exist', 'way' => 'password'));
+                                    Storage::StreamAsJson(array('message' => 'error', 'login' => 'not_exist', 'way' => 'password'));
                                 }
                             } else {
-                                Media::StreamAsJson(array('message' => 'error', 'login' => 'not_exist', 'way' => 'email'));
+                                Storage::StreamAsJson(array('message' => 'error', 'login' => 'not_exist', 'way' => 'email'));
                             }
                         }
 
@@ -364,7 +364,7 @@ class MonitorViewRender extends ViewRender
                                 Encryption::static(_String::removeTags(_Array::value(_Array::value($RequestedDataArray, "userdata"), "password")))
                             );
 
-                            Media::StreamAsJson(array(
+                            Storage::StreamAsJson(array(
                                 'message' => 'success', 'registration' => 'new_register',
                                 'way' => 'new', 'log_status' => 'success', 'u_pass' => _String::removeTags(_Array::value(_Array::value($RequestedDataArray, "userdata"), "password")),
                                 'licence' => self::$conOfDatabase->getLcnByPrdIdCLIpBr(
@@ -380,12 +380,12 @@ class MonitorViewRender extends ViewRender
                             if (isset($user)) {
                                 $password = self::$conOfDatabase->getUsrPssByEmlAddr(_String::removeTags(_Array::value(_Array::value($RequestedDataArray, "userdata"), "email")));
                                 if (isset($password)) {
-                                    Media::StreamAsJson(array('message' => 'success', 'passwordRecovery' => 'exist', 'way' => 'email', 'password' => Decryption::static($password)));
+                                    Storage::StreamAsJson(array('message' => 'success', 'passwordRecovery' => 'exist', 'way' => 'email', 'password' => Decryption::static($password)));
                                 } else {
-                                    Media::StreamAsJson(array('message' => 'error', 'passwordRecovery' => 'not_exist', 'way' => 'password'));
+                                    Storage::StreamAsJson(array('message' => 'error', 'passwordRecovery' => 'not_exist', 'way' => 'password'));
                                 }
                             } else {
-                                Media::StreamAsJson(array('message' => 'error', 'passwordRecovery' => 'not_exist', 'way' => 'email'));
+                                Storage::StreamAsJson(array('message' => 'error', 'passwordRecovery' => 'not_exist', 'way' => 'email'));
                             }
                         }
                     }

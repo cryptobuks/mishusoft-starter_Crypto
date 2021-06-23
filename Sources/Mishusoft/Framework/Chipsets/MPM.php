@@ -497,7 +497,7 @@ class MPM
      */
     public static function templatesJavascriptResourcesRoot(string $moduleName, string $controllerName): mixed
     {
-        return implode(DIRECTORY_SEPARATOR, [Media::getWebResourcesPath().'related', 'Javascripts', $moduleName, $controllerName.DIRECTORY_SEPARATOR]);
+        return implode(DIRECTORY_SEPARATOR, [Storage::getWebResourcesPath().'related', 'Javascripts', $moduleName, $controllerName.DIRECTORY_SEPARATOR]);
 
     }//end templatesJavascriptResourcesRoot()
 

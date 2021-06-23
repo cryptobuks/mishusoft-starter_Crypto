@@ -3,7 +3,7 @@
 namespace Mishusoft\Packages\Lab\Modules\System\Controllers;
 
 use Exception;
-use Mishusoft\Framework\Chipsets\Media;
+use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Framework\Chipsets\Utility\Pagination;
 use Mishusoft\Framework\Globals\Functions\Text;
 use Mishusoft\Packages\Lab\Modules\Main\Controllers\systemController;
@@ -39,7 +39,7 @@ class branchesController extends systemController
 
     public function getBranches(){
         $this->acl->access('system_access');
-        Media::StreamAsJson($this->system->getBranches());
+        Storage::StreamAsJson($this->system->getBranches());
     }
 
     public function indexPaginationAJAX()

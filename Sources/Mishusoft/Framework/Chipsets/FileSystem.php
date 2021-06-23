@@ -246,8 +246,9 @@ class FileSystem
 
     /**
      * @param string $filename
+     * @return bool
      */
-    public static function createFile(string $filename)
+    public static function createFile(string $filename): bool
     {
         if (is_writable(dirname($filename)) === true) {
             return fopen($filename, 'wb+');
@@ -486,6 +487,27 @@ class FileSystem
         }
 
         return $result;
+
+    }//end globRecursive()
+
+
+    /**
+     *  Does not support flag GLOB_BRACE.
+     *
+     * @param  string  $directory
+     * @param  integer $flags
+     * @return boolean|array
+     */
+    public static function glob(string $directory, int $flags=0): bool|array
+    {
+        $result = glob($directory.'/*', $flags);
+        foreach ($result as $item) {
+            if (is_file($item) === true) {
+                $result[] = $item;
+            }//end if
+        }
+
+        return array_unique(array_values($result), SORT_ASC);
 
     }//end globRecursive()
 

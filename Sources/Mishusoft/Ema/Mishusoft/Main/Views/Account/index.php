@@ -1,6 +1,6 @@
 <?php
 
-use Mishusoft\Framework\Chipsets\Media;
+use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Framework\Chipsets\System\Localization;
 use Mishusoft\Framework\Chipsets\Ui;
 use Mishusoft\Framework\Chipsets\Utility\_Array;
@@ -58,7 +58,7 @@ Ui::elementList(
                 "div" => [
                     ["class" => "card-icon flex-center-all", "child" => ["img" => [
                         "alt" => "Log in to your account", "width" => "85px", "height" => "85px",
-                        "src" => Media::getMediaPath("images/users/login-rounded-right.png", "remote")
+                        "src" => Storage::getMediaPath("images/users/login-rounded-right.png", "remote")
                     ]]],
                     ["class" => "card-title flex-center-all", "text" => "Log in"]
                 ]
@@ -67,7 +67,7 @@ Ui::elementList(
                 "div" => [
                     ["class" => "card-icon flex-center-all", "child" => ["img" => [
                         "alt" => "Create a new account", "width" => "85px", "height" => "85px",
-                        "src" => Media::getMediaPath("images/users/edit-user-male.png", "remote")
+                        "src" => Storage::getMediaPath("images/users/edit-user-male.png", "remote")
                     ]]],
                     ["class" => "card-title flex-center-all", "text" => "Create a new account"]
                 ]
@@ -76,7 +76,7 @@ Ui::elementList(
                 "div" => [
                     ["class" => "card-icon flex-center-all", "child" => ["img" => [
                         "alt" => "Activate your account", "width" => "85px", "height" => "85px",
-                        "src" => Media::getMediaPath("images/users/checked-user-male.png", "remote")
+                        "src" => Storage::getMediaPath("images/users/checked-user-male.png", "remote")
                     ]]],
                     ["class" => "card-title flex-center-all", "text" => "Activate account"]
                 ]
@@ -85,7 +85,7 @@ Ui::elementList(
                 "div" => [
                     ["class" => "card-icon flex-center-all", "child" => ["img" => [
                         "alt" => "Recover your account", "width" => "85px", "height" => "85px",
-                        "src" => Media::getMediaPath("images/users/undelete.png", "remote")
+                        "src" => Storage::getMediaPath("images/users/undelete.png", "remote")
                     ]]],
                     ["class" => "card-title flex-center-all", "text" => "Forget Account"]
                 ]

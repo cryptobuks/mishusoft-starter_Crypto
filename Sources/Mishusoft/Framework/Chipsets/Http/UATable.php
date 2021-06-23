@@ -329,2071 +329,2074 @@ class UATable
     protected function getWebBrowsersList(): array
     {
         // Application, Bot/Crawler, Browser, Email Client, Feed Reader, Multimedia Player, Offline Browser and Tool List.
-        return [
-            /*Applications*/
-            /*'1password' => [
-                'name' => '1 Password',
-                'type' => 'Applications',
-                'category' => 'Password Manager',
-                'ui' => 'GraphicalMode',
-                'authors' => [
-                    [
-                        'name' => 'AgileBits Inc',
-                        'link' => 'https://1password.com/',
-                    ],
-                ],
-                'cost' => 'Trialware',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'Trialware',
-                        'link' => 'https://en.wikipedia.org/wiki/Trialware',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'WebKit',
-                        'link' => 'https://en.wikipedia.org/wiki/WebKit',
-                    ],
-                ],
-                'latest-release' => [
-                    'updates' => 'https://app-updates.agilebits.com/'
-                ],
-            ],*/
 
-
-            ...$this->browserTypeApplication(),
-            ...$this->browserTypeBotCrawler(),
-            // Crawler.
-/*            '007ac9 crawler' => [
-                'name' => '007ac9 Crawler',
-                'type' => 'Bot (Crawler)',
-                'ui' => 'FullTextMode',
-                'authors' => [
-                    [
-                        'name' => '007ac9',
-                        'link' => 'http://crawler.007ac9.net',
-                    ],
-                ],
-            ],
-            '2gdpr' => [
-                'name' => '2gdpr Bot',
-                'type' => 'Bot (Crawler)',
-                'ui' => 'FullTextMode',
-                'authors' => [
-                    [
-                        'name' => '2gdpr',
-                        'link' => 'http://2gdpr.com',
-                    ],
-                ],
-            ],
-            'python-requests' => [
-                'name' => 'python-requests Bot',
-                'type' => 'Bot (Crawler)',
-                'ui' => 'FullTextMode',
-                'authors' => [
-                    [
-                        'name' => 'Python Software Foundation',
-                        'link' => 'https://www.python.org/psf/',
-                    ],
-                ],
-            ],
-            'python-urllib' => [
-                'name' => 'python-urllib Bot',
-                'type' => 'Bot (Crawler)',
-                'ui' => 'FullTextMode',
-                'authors' => [
-                    [
-                        'name' => 'Python Software Foundation',
-                        'link' => 'https://www.python.org/psf/',
-                    ],
-                ],
-            ],
-            'googlebot' => [
-                'name' => 'Google Bot',
-                'type' => 'Bot (Crawler)',
-                'ui' => 'FullTextMode',
-                'authors' => [
-                    [
-                        'name' => 'Google Inc',
-                        'link' => 'https://www.google.com/',
-                    ],
-                ],
-            ],
-            'ahrefsbot' => [
-                'name' => 'Ahrefs Bot',
-                'type' => 'Bot (Crawler)',
-                'ui' => 'FullTextMode',
-                'authors' => [
-                    [
-                        'name' => 'Ahrefs Pte Ltd',
-                        'link' => 'https://ahrefs.com/robot/',
-                    ],
-                ],
-            ],
-            'bingbot' => [
-                'name' => 'Bing Bot',
-                'type' => 'Bot (Crawler)',
-                'ui' => 'FullTextMode',
-                'authors' => [
-                    [
-                        'name' => 'Microsoft Corporation',
-                        'link' => 'https://www.bing.com/bingbot.htm',
-                    ],
-                ],
-            ],
-            'yandexbot' => [
-                'name' => 'Yandex Bot',
-                'type' => 'Bot (Crawler)',
-                'ui' => 'FullTextMode',
-                'authors' => [
-                    [
-                        'name' => 'Yandex LLC.',
-                        'link' => 'https://yandex.com/bots',
-                    ],
-                ],
-            ],
-            'dotbot' => [
-                'name' => 'Dot Bot',
-                'type' => 'Bot (Crawler)',
-                'ui' => 'FullTextMode',
-                'authors' => [
-                    [
-                        'name' => 'SEOmoz, Inc',
-                        'link' => 'https://www.opensiteexplorer.org/dotbot',
-                    ],
-                ],
-            ],*/
-
-
-            /*Browsers*/
-            '115browser' => [
-                'name' => '115 Browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => '115 Team',
-                        'link' => 'https://115.com/',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    ['name' => 'Unknown'],
-                ],
-                'layout' => 'Unknown',
-                'latest-release' => [
-                    'version' => 'Unknown',
-                    'date' => 'Unknown',
-                ],
-            ],
-            /*
-                '126browser'     => [
-                'name'           => '126 BROWSER',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
-                    ['name' => 'Unknown'],
-                ],
-                'cost'           => 'Free',
-                'status'         => 'Unknown',
-                'licence'        => [
-                    ['name' => 'Unknown'],
-                ],
-                'layout'         => 'Unknown',
-                'latest-release' => [
-                    'version' => 'Unknown',
-                    'date'    => 'Unknown',
-                ],
-            ],*/
-            /*
-                '1337browser'    => [
-                'name'           => '1337 Browser',
-                'type'           => 'Web Browser',
-                'ui'             => 'GraphicalMode',
-                'creator'        => [
-                    ['name' => 'Unknown'],
-                ],
-                'cost'           => 'Free',
-                'status'         => 'Unknown',
-                'licence'        => [
-                    ['name' => 'Unknown'],
-                ],
-                'layout'         => 'Unknown',
-                'latest-release' => [
-                    'version' => 'Unknown',
-                    'date'    => 'Unknown',
-                ],
-            ],*/
-            '1stBrowser' => [
-                'name' => '1st Browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Sien',
-                        'link' => 'https://www.sien.com/',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    ['name' => 'Unknown'],
-                ],
-                'layout' => 'Unknown',
-                'latest-release' => [
-                    'version' => 'Unknown',
-                    'date' => 'Unknown',
-                ],
-            ],
-            'Mb2345Browser' => [
-                'name' => '2345 Browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => '2345 Team',
-                        'link' => 'https://app.2345.com/',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    ['name' => 'Unknown'],
-                ],
-                'layout' => 'Unknown',
-                'latest-release' => [
-                    'version' => 'Unknown',
-                    'date' => 'Unknown',
-                ],
-            ],
-            '2345chrome' => [
-                'name' => '2345 Chrome',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => '2345 Team',
-                        'link' => 'https://app.2345.com/',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    ['name' => 'Unknown'],
-                ],
-                'layout' => 'Unknown',
-                'latest-release' => [
-                    'version' => 'Unknown',
-                    'date' => 'Unknown',
-                ],
-            ],
-            '2345explorer' => [
-                'name' => '2345 Explorer',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => '2345 Team',
-                        'link' => 'https://app.2345.com/',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    ['name' => 'Unknown'],
-                ],
-                'layout' => 'Unknown',
-                'latest-release' => [
-                    'version' => 'Unknown',
-                    'date' => 'Unknown',
-                ],
-            ],
-            '360SE' => [
-                'name' => '360 Secure Browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Qihoo 360 Technology Co. Ltd..',
-                        'link' => 'https://browser.360.cn/se/en.html',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    ['name' => 'Unknown'],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Blink',
-                        'link' => 'https://en.wikipedia.org/wiki/WebKit',
-                    ],
-                    [
-                        'name' => 'Trident',
-                        'link' => 'https://en.wikipedia.org/wiki/Trident_(software)',
-                    ],
-                ],
-                'latest-release' => [
-                    'initial' => [
-                        'version' => '1.0',
-                        'date' => 'September 2008',
-                    ],
-                    'Stable' => [
-                        'version' => '12.3.1001.0.0',
-                        'date' => 'June 5, 2020',
-                    ],
-                    'Preview' => [
+        return array_merge_recursive(
+            $this->getBrowserTypeApplications(),
+            $this->getBrowserTypeBotCrawlers(),
+            [
+                /*Applications*/
+                /*'1password' => [
+                    'name' => '1 Password',
+                    'type' => 'Applications',
+                    'category' => 'Password Manager',
+                    'ui' => 'GraphicalMode',
+                    'authors' => [
                         [
-                            'version' => '10.1.2245.0',
-                            'date' => 'October 25, 2019',
+                            'name' => 'AgileBits Inc',
+                            'link' => 'https://1password.com/',
+                        ],
+                    ],
+                    'cost' => 'Trialware',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'Trialware',
+                            'link' => 'https://en.wikipedia.org/wiki/Trialware',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'WebKit',
+                            'link' => 'https://en.wikipedia.org/wiki/WebKit',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'updates' => 'https://app-updates.agilebits.com/'
+                    ],
+                ],*/
+
+
+                // Crawler.
+                /*            '007ac9 crawler' => [
+                                'name' => '007ac9 Crawler',
+                                'type' => 'Bot (Crawler)',
+                                'ui' => 'FullTextMode',
+                                'authors' => [
+                                    [
+                                        'name' => '007ac9',
+                                        'link' => 'http://crawler.007ac9.net',
+                                    ],
+                                ],
+                            ],
+                            '2gdpr' => [
+                                'name' => '2gdpr Bot',
+                                'type' => 'Bot (Crawler)',
+                                'ui' => 'FullTextMode',
+                                'authors' => [
+                                    [
+                                        'name' => '2gdpr',
+                                        'link' => 'http://2gdpr.com',
+                                    ],
+                                ],
+                            ],
+                            'python-requests' => [
+                                'name' => 'python-requests Bot',
+                                'type' => 'Bot (Crawler)',
+                                'ui' => 'FullTextMode',
+                                'authors' => [
+                                    [
+                                        'name' => 'Python Software Foundation',
+                                        'link' => 'https://www.python.org/psf/',
+                                    ],
+                                ],
+                            ],
+                            'python-urllib' => [
+                                'name' => 'python-urllib Bot',
+                                'type' => 'Bot (Crawler)',
+                                'ui' => 'FullTextMode',
+                                'authors' => [
+                                    [
+                                        'name' => 'Python Software Foundation',
+                                        'link' => 'https://www.python.org/psf/',
+                                    ],
+                                ],
+                            ],
+                            'googlebot' => [
+                                'name' => 'Google Bot',
+                                'type' => 'Bot (Crawler)',
+                                'ui' => 'FullTextMode',
+                                'authors' => [
+                                    [
+                                        'name' => 'Google Inc',
+                                        'link' => 'https://www.google.com/',
+                                    ],
+                                ],
+                            ],
+                            'ahrefsbot' => [
+                                'name' => 'Ahrefs Bot',
+                                'type' => 'Bot (Crawler)',
+                                'ui' => 'FullTextMode',
+                                'authors' => [
+                                    [
+                                        'name' => 'Ahrefs Pte Ltd',
+                                        'link' => 'https://ahrefs.com/robot/',
+                                    ],
+                                ],
+                            ],
+                            'bingbot' => [
+                                'name' => 'Bing Bot',
+                                'type' => 'Bot (Crawler)',
+                                'ui' => 'FullTextMode',
+                                'authors' => [
+                                    [
+                                        'name' => 'Microsoft Corporation',
+                                        'link' => 'https://www.bing.com/bingbot.htm',
+                                    ],
+                                ],
+                            ],
+                            'yandexbot' => [
+                                'name' => 'Yandex Bot',
+                                'type' => 'Bot (Crawler)',
+                                'ui' => 'FullTextMode',
+                                'authors' => [
+                                    [
+                                        'name' => 'Yandex LLC.',
+                                        'link' => 'https://yandex.com/bots',
+                                    ],
+                                ],
+                            ],
+                            'dotbot' => [
+                                'name' => 'Dot Bot',
+                                'type' => 'Bot (Crawler)',
+                                'ui' => 'FullTextMode',
+                                'authors' => [
+                                    [
+                                        'name' => 'SEOmoz, Inc',
+                                        'link' => 'https://www.opensiteexplorer.org/dotbot',
+                                    ],
+                                ],
+                            ],*/
+
+
+                /*Browsers*/
+                '115browser' => [
+                    'name' => '115 Browser',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => '115 Team',
+                            'link' => 'https://115.com/',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        ['name' => 'Unknown'],
+                    ],
+                    'layout' => 'Unknown',
+                    'latest-release' => [
+                        'version' => 'Unknown',
+                        'date' => 'Unknown',
+                    ],
+                ],
+                /*
+                    '126browser'     => [
+                    'name'           => '126 BROWSER',
+                    'type'           => 'Web Browser',
+                    'ui'             => 'GraphicalMode',
+                    'creator'        => [
+                        ['name' => 'Unknown'],
+                    ],
+                    'cost'           => 'Free',
+                    'status'         => 'Unknown',
+                    'licence'        => [
+                        ['name' => 'Unknown'],
+                    ],
+                    'layout'         => 'Unknown',
+                    'latest-release' => [
+                        'version' => 'Unknown',
+                        'date'    => 'Unknown',
+                    ],
+                ],*/
+                /*
+                    '1337browser'    => [
+                    'name'           => '1337 Browser',
+                    'type'           => 'Web Browser',
+                    'ui'             => 'GraphicalMode',
+                    'creator'        => [
+                        ['name' => 'Unknown'],
+                    ],
+                    'cost'           => 'Free',
+                    'status'         => 'Unknown',
+                    'licence'        => [
+                        ['name' => 'Unknown'],
+                    ],
+                    'layout'         => 'Unknown',
+                    'latest-release' => [
+                        'version' => 'Unknown',
+                        'date'    => 'Unknown',
+                    ],
+                ],*/
+                '1stBrowser' => [
+                    'name' => '1st Browser',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Sien',
+                            'link' => 'https://www.sien.com/',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        ['name' => 'Unknown'],
+                    ],
+                    'layout' => 'Unknown',
+                    'latest-release' => [
+                        'version' => 'Unknown',
+                        'date' => 'Unknown',
+                    ],
+                ],
+                'Mb2345Browser' => [
+                    'name' => '2345 Browser',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => '2345 Team',
+                            'link' => 'https://app.2345.com/',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        ['name' => 'Unknown'],
+                    ],
+                    'layout' => 'Unknown',
+                    'latest-release' => [
+                        'version' => 'Unknown',
+                        'date' => 'Unknown',
+                    ],
+                ],
+                '2345chrome' => [
+                    'name' => '2345 Chrome',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => '2345 Team',
+                            'link' => 'https://app.2345.com/',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        ['name' => 'Unknown'],
+                    ],
+                    'layout' => 'Unknown',
+                    'latest-release' => [
+                        'version' => 'Unknown',
+                        'date' => 'Unknown',
+                    ],
+                ],
+                '2345explorer' => [
+                    'name' => '2345 Explorer',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => '2345 Team',
+                            'link' => 'https://app.2345.com/',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        ['name' => 'Unknown'],
+                    ],
+                    'layout' => 'Unknown',
+                    'latest-release' => [
+                        'version' => 'Unknown',
+                        'date' => 'Unknown',
+                    ],
+                ],
+                '360SE' => [
+                    'name' => '360 Secure Browser',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Qihoo 360 Technology Co. Ltd..',
+                            'link' => 'https://browser.360.cn/se/en.html',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        ['name' => 'Unknown'],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Blink',
+                            'link' => 'https://en.wikipedia.org/wiki/WebKit',
                         ],
                         [
-                            'version' => '11.0.2251.0',
-                            'date' => 'November 15, 2019',
+                            'name' => 'Trident',
+                            'link' => 'https://en.wikipedia.org/wiki/Trident_(software)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'initial' => [
+                            'version' => '1.0',
+                            'date' => 'September 2008',
+                        ],
+                        'Stable' => [
+                            'version' => '12.3.1001.0.0',
+                            'date' => 'June 5, 2020',
+                        ],
+                        'Preview' => [
+                            [
+                                'version' => '10.1.2245.0',
+                                'date' => 'October 25, 2019',
+                            ],
+                            [
+                                'version' => '11.0.2251.0',
+                                'date' => 'November 15, 2019',
+                            ],
+                            [
+                                'version' => '12.2.1228.0',
+                                'date' => 'June 12, 2020',
+                            ],
+                        ],
+                    ],
+                ],
+                '37abc' => [
+                    'name' => '37abc Browser',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Guangzhou Network Technology Co., Ltd',
+                            'link' => 'http://37abc.com/',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        ['name' => 'Unknown'],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Blink',
+                            'link' => 'https://en.wikipedia.org/wiki/WebKit',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'version' => 'Unknown',
+                        'date' => 'Unknown',
+                    ],
+                ],
+                '7star' => [
+                    'name' => '7 Star Browser',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Kuaiso Beijing ICP',
+                            'link' => 'https://www.qixing123.com/',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        ['name' => 'Unknown'],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Blink',
+                            'link' => 'https://en.wikipedia.org/wiki/WebKit',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'version' => 'Unknown',
+                        'date' => 'Unknown',
+                    ],
+                ],
+                'abrowse' => [
+                    'name' => 'ABrowse Browser',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Syllable Project',
+                            'link' => 'https://www.qixing123.com/',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        ['name' => 'Unknown'],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Blink',
+                            'link' => 'https://en.wikipedia.org/wiki/WebKit',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'version' => 'Unknown',
+                        'date' => 'Unknown',
+                    ],
+                ],
+                'acoo-browser' => [
+                    'name' => 'Acoo Browser',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Matthew Marsh',
+                            'link' => 'https://www.acoobrowser.com/',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        ['name' => 'Freeware', 'link' => 'https://en.wikipedia.org/wiki/Web_browser'],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Trident',
+                            'link' => 'https://en.wikipedia.org/wiki/Trident_(software)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'version' => 'Unknown',
+                        'date' => 'Unknown',
+                    ],
+                ],
+                'alienforce' => [
+                    'name' => 'Alienforce Browser',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'kbclub',
+                            'link' => 'https://kbclub.ru/',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        ['name' => 'Freeware', 'link' => 'https://en.wikipedia.org/wiki/Web_browser'],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Gecko',
+                            'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'version' => 'Unknown',
+                        'date' => 'Unknown',
+                    ],
+                ],
+
+                'Amaya' => [
+                    'name' => 'Amaya',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'W3C',
+                            'link' => 'https://www.w3.org/',
                         ],
                         [
-                            'version' => '12.2.1228.0',
-                            'date' => 'June 12, 2020',
+                            'name' => 'INRIA',
+                            'link' => 'http://www.inria.fr/en/',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'discontinued',
+                    'licence' => [
+                        [
+                            'name' => 'W3C',
+                            'link' => 'https://en.wikipedia.org/wiki/W3C_Software_Notice_and_License',
+                        ],
+                    ],
+                    'layout' => 'custom',
+                    'latest-release' => [
+                        'version' => '11.4.4',
+                        'date' => 'January 18, 2012',
+                    ],
+                ],
+                'AOL' => [
+                    'name' => 'AOL Explorer',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'America Online, Inc',
+                            'link' => 'https://www.aol.com/',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'discontinued',
+                    'licence' => [
+                        [
+                            'name' => 'Proprietary',
+                            'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Trident',
+                            'link' => 'https://en.wikipedia.org/wiki/Trident_(software)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'version' => '1.5',
+                        'date' => 'May 10, 2016',
+                    ],
+                ],
+                'Arora' => [
+                    'name' => 'Arora',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        ['name' => 'Avant Force'],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'discontinued',
+                    'licence' => [
+                        [
+                            'name' => 'Proprietary',
+                            'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Blink',
+                            'link' => 'https://en.wikipedia.org/wiki/WebKit',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'version' => '0.11.0',
+                        'date' => '27 September 2010',
+                    ],
+                ],
+                'Avant' => [
+                    'name' => 'Avant ',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        ['name' => 'Benjamin C. Meyer'],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'GPL',
+                            'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'WebKit',
+                            'link' => 'https://en.wikipedia.org/wiki/Blink_(layout_engine)',
+                        ],
+                        [
+                            'name' => 'Gecko',
+                            'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
+                        ],
+                        [
+                            'name' => 'Trident',
+                            'link' => 'https://en.wikipedia.org/wiki/Trident_(layout_engine)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'version' => '2020 build 3',
+                        'date' => 'March 17, 2020',
+                    ],
+                ],
+                'Basilisk' => [
+                    'name' => 'Basilisk ',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Moonchild Productions',
+                            'link' => 'https://www.basilisk-browser.org/',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'MPL 2.0',
+                            'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Goanna',
+                            'link' => 'https://en.wikipedia.org/wiki/Goanna_(software)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'version' => '2020.10.05',
+                        'date' => '5 October 2020',
+                    ],
+                ],
+                'Blisk' => [
+                    'name' => 'Blisk',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        ['name' => 'Blisk team'],
+                    ],
+                    'cost' => [
+                        'Free' => 'Limited',
+                        'Paid' => 'Unlimited Pro',
+                    ],
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'Proprietary',
+                            'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Blink',
+                            'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+                        ],
+                        [
+                            'name' => 'V8',
+                            'link' => 'https://en.wikipedia.org/wiki/V8_(JavaScript_engine)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'version' => '12.0.92.83',
+                        'date' => 'June 29, 2019',
+                    ],
+                ],
+                'BeakerBrowser' => [
+                    'name' => 'Beaker',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Blue Link Labs',
+                            'link' => 'https://beakerbrowser.com/about',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'MIT License',
+                            'link' => 'https://en.wikipedia.org/wiki/MIT_License',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Blink',
+                            'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'macOS' => [
+                            'version' => '0.8.10',
+                            'date' => 'March 13, 2020',
+                        ],
+                        'Windows' => [
+                            'version' => '0.8.10',
+                            'date' => 'March 13, 2020',
+                        ],
+                        'Linux' => [
+                            'version' => '0.8.10',
+                            'date' => 'March 13, 2020',
                         ],
                     ],
                 ],
-            ],
-            '37abc' => [
-                'name' => '37abc Browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Guangzhou Network Technology Co., Ltd',
-                        'link' => 'http://37abc.com/',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    ['name' => 'Unknown'],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Blink',
-                        'link' => 'https://en.wikipedia.org/wiki/WebKit',
-                    ],
-                ],
-                'latest-release' => [
-                    'version' => 'Unknown',
-                    'date' => 'Unknown',
-                ],
-            ],
-            '7star' => [
-                'name' => '7 Star Browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Kuaiso Beijing ICP',
-                        'link' => 'https://www.qixing123.com/',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    ['name' => 'Unknown'],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Blink',
-                        'link' => 'https://en.wikipedia.org/wiki/WebKit',
-                    ],
-                ],
-                'latest-release' => [
-                    'version' => 'Unknown',
-                    'date' => 'Unknown',
-                ],
-            ],
-            'abrowse' => [
-                'name' => 'ABrowse Browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Syllable Project',
-                        'link' => 'https://www.qixing123.com/',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    ['name' => 'Unknown'],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Blink',
-                        'link' => 'https://en.wikipedia.org/wiki/WebKit',
-                    ],
-                ],
-                'latest-release' => [
-                    'version' => 'Unknown',
-                    'date' => 'Unknown',
-                ],
-            ],
-            'acoo-browser' => [
-                'name' => 'Acoo Browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Matthew Marsh',
-                        'link' => 'https://www.acoobrowser.com/',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    ['name' => 'Freeware', 'link' => 'https://en.wikipedia.org/wiki/Web_browser'],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Trident',
-                        'link' => 'https://en.wikipedia.org/wiki/Trident_(software)',
-                    ],
-                ],
-                'latest-release' => [
-                    'version' => 'Unknown',
-                    'date' => 'Unknown',
-                ],
-            ],
-            'Alienforce' => [
-                'name' => 'Alienforce Browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'kbclub',
-                        'link' => 'https://kbclub.ru/',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    ['name' => 'Freeware', 'link' => 'https://en.wikipedia.org/wiki/Web_browser'],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Gecko',
-                        'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
-                    ],
-                ],
-                'latest-release' => [
-                    'version' => 'Unknown',
-                    'date' => 'Unknown',
-                ],
-            ],
-
-            'Amaya' => [
-                'name' => 'Amaya',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'W3C',
-                        'link' => 'https://www.w3.org/',
-                    ],
-                    [
-                        'name' => 'INRIA',
-                        'link' => 'http://www.inria.fr/en/',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'discontinued',
-                'licence' => [
-                    [
-                        'name' => 'W3C',
-                        'link' => 'https://en.wikipedia.org/wiki/W3C_Software_Notice_and_License',
-                    ],
-                ],
-                'layout' => 'custom',
-                'latest-release' => [
-                    'version' => '11.4.4',
-                    'date' => 'January 18, 2012',
-                ],
-            ],
-            'AOL' => [
-                'name' => 'AOL Explorer',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'America Online, Inc',
-                        'link' => 'https://www.aol.com/',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'discontinued',
-                'licence' => [
-                    [
-                        'name' => 'Proprietary',
-                        'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Trident',
-                        'link' => 'https://en.wikipedia.org/wiki/Trident_(software)',
-                    ],
-                ],
-                'latest-release' => [
-                    'version' => '1.5',
-                    'date' => 'May 10, 2016',
-                ],
-            ],
-            'Arora' => [
-                'name' => 'Arora',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    ['name' => 'Avant Force'],
-                ],
-                'cost' => 'Free',
-                'status' => 'discontinued',
-                'licence' => [
-                    [
-                        'name' => 'Proprietary',
-                        'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Blink',
-                        'link' => 'https://en.wikipedia.org/wiki/WebKit',
-                    ],
-                ],
-                'latest-release' => [
-                    'version' => '0.11.0',
-                    'date' => '27 September 2010',
-                ],
-            ],
-            'Avant' => [
-                'name' => 'Avant ',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    ['name' => 'Benjamin C. Meyer'],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'GPL',
-                        'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'WebKit',
-                        'link' => 'https://en.wikipedia.org/wiki/Blink_(layout_engine)',
-                    ],
-                    [
-                        'name' => 'Gecko',
-                        'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
-                    ],
-                    [
-                        'name' => 'Trident',
-                        'link' => 'https://en.wikipedia.org/wiki/Trident_(layout_engine)',
-                    ],
-                ],
-                'latest-release' => [
-                    'version' => '2020 build 3',
-                    'date' => 'March 17, 2020',
-                ],
-            ],
-            'Basilisk' => [
-                'name' => 'Basilisk ',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Moonchild Productions',
-                        'link' => 'https://www.basilisk-browser.org/',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'MPL 2.0',
-                        'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Goanna',
-                        'link' => 'https://en.wikipedia.org/wiki/Goanna_(software)',
-                    ],
-                ],
-                'latest-release' => [
-                    'version' => '2020.10.05',
-                    'date' => '5 October 2020',
-                ],
-            ],
-            'Blisk' => [
-                'name' => 'Blisk',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    ['name' => 'Blisk team'],
-                ],
-                'cost' => [
-                    'Free' => 'Limited',
-                    'Paid' => 'Unlimited Pro',
-                ],
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'Proprietary',
-                        'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Blink',
-                        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
-                    ],
-                    [
-                        'name' => 'V8',
-                        'link' => 'https://en.wikipedia.org/wiki/V8_(JavaScript_engine)',
-                    ],
-                ],
-                'latest-release' => [
-                    'version' => '12.0.92.83',
-                    'date' => 'June 29, 2019',
-                ],
-            ],
-            'BeakerBrowser' => [
-                'name' => 'Beaker',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Blue Link Labs',
-                        'link' => 'https://beakerbrowser.com/about',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'MIT License',
-                        'link' => 'https://en.wikipedia.org/wiki/MIT_License',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Blink',
-                        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
-                    ],
-                ],
-                'latest-release' => [
-                    'macOS' => [
-                        'version' => '0.8.10',
-                        'date' => 'March 13, 2020',
-                    ],
-                    'Windows' => [
-                        'version' => '0.8.10',
-                        'date' => 'March 13, 2020',
-                    ],
-                    'Linux' => [
-                        'version' => '0.8.10',
-                        'date' => 'March 13, 2020',
-                    ],
-                ],
-            ],
-            'Electron' => [
-                'name' => 'Electron',
-                'type' => 'Electron (software framework)',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'GitHub',
-                        'link' => 'https://en.wikipedia.org/wiki/GitHub',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'MIT License',
-                        'link' => 'https://en.wikipedia.org/wiki/MIT_License',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Blink',
-                        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
-                    ],
-                ],
-                'latest-release' => [
-                    'Stable release' => [
-                        'version' => '10.1.5',
-                        'date' => '23 October 2020',
-                    ],
-                    'Preview release' => [
-                        'version' => '11.0.0-beta.16',
-                        'date' => '24 October 2020',
-                    ],
-                ],
-            ],
-            'Brave' => [
-                'name' => 'Brave Browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Brave Software Inc',
-                        'link' => 'https://en.wikipedia.org/wiki/Brave_(browser)',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'MPL 2.0',
-                        'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Blink',
-                        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
-                    ],
-                ],
-                'latest-release' => [
-                    'Android' => [
-                        'version' => '1.15.73',
-                        'date' => '15 October 2020',
-                    ],
-                    'iOS' => [
-                        'version' => '1.20',
-                        'date' => '25 September 2020',
-                    ],
-                    'macOS' => [
-                        'version' => '1.15.75',
-                        'date' => '16 October 2020',
-                    ],
-                    'Windows' => [
-                        'version' => '1.15.75',
-                        'date' => '16 October 2020',
-                    ],
-                    'Linux' => [
-                        'version' => '1.15.75',
-                        'date' => '16 October 2020',
-                    ],
-                ],
-            ],
-            'Camino' => [
-                'name' => 'Camino',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    ['name' => 'The Camino Project'],
-                ],
-                'cost' => 'Free',
-                'status' => 'discontinued',
-                'licence' => [
-                    [
-                        'name' => 'MPL 1.1',
-                        'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
-                    ],
-                    [
-                        'name' => 'GPL',
-                        'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
-                    ],
-                    [
-                        'name' => 'LGPL',
-                        'link' => 'https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Gecko',
-                        'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
-                    ],
-                ],
-                'latest-release' => [
-                    'version' => '2.1.2',
-                    'date' => '14 March 2012',
-                ],
-            ],
-            'Cliqz' => [
-                'name' => 'Cliqz',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    ['name' => 'Cliqz GmbH'],
-                ],
-                'cost' => 'Free',
-                'status' => 'discontinued',
-                'licence' => [
-                    [
-                        'name' => 'MPL 2.0',
-                        'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Gecko',
-                        'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
-                    ],
-                ],
-                'latest-release' => [
-                    'Android' => [
-                        'version' => '1.9.7',
-                        'date' => 'April 4, 2020',
-                    ],
-                    'iOS' => [
-                        'version' => '3.6.3',
-                        'date' => 'June 30, 2020',
-                    ],
-                    'macOS' => [
-                        'version' => '1.38.0',
-                        'date' => 'July 22, 2020',
-                    ],
-                    'Windows' => [
-                        'version' => '1.38.0',
-                        'date' => 'July 22, 2020',
-                    ],
-                    'Linux' => [
-                        'version' => '1.38.0',
-                        'date' => 'July 22, 2020',
-                    ],
-                ],
-            ],
-            'Edg' => [
-                'name' => 'Microsoft Edge',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Microsoft Corp',
-                        'link' => 'https://www.microsoftedgeinsider.com/en-us/',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'Proprietary',
-                        'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Blink',
-                        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
-                    ],
-                ],
-                'latest-release' => [
-                    'version' => '88.0.673.0',
-                    'date' => '14 October 2020',
-                ],
-            ],
-            'Opera' => [
-                'name' => 'Opera',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Opera Software',
-                        'link' => 'https://en.wikipedia.org/wiki/Opera_Software',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'Proprietary',
-                        'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Blink',
-                        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
-                    ],
-                ],
-                'latest-release' => [
-                    'version' => '71.0.3770.271',
-                    'date' => '14 October 2020',
-                ],
-            ],
-            'Opera Mobile' => [
-                'name' => 'Opera',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Opera Software',
-                        'link' => 'https://en.wikipedia.org/wiki/Opera_Software',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'Proprietary',
-                        'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Blink',
-                        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
-                    ],
-                ],
-                'latest-release' => [
-                    'Android' => [
-                        'version' => '59.1.2926.54067',
-                        'date' => 'July 13, 2020',
-                    ],
-                    'Android (classic)' => [
-                        'version' => '12.1.9',
-                        'date' => 'June 8, 2016',
-                    ],
-                    'Symbian' => [
-                        'version' => 'S60 12.0.22',
-                        'date' => 'June 24, 2012',
-                    ],
-                    'Windows Mobile' => [
-                        'version' => '10.0',
-                        'date' => 'March 16, 2010',
-                    ],
-                ],
-            ],
-            'whale' => [
-                'name' => 'Naver Whale',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Naver Corporation',
-                        'link' => 'https://en.wikipedia.org/wiki/Naver_Corporation',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'Freeware',
-                        'link' => 'https://en.wikipedia.org/wiki/Freeware',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Blink',
-                        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
-                    ],
-                ],
-                'latest-release' => [
-                    'Android' => [
-                        'version' => '1.5.4.2',
-                        'date' => 'May 26, 2020',
-                    ],
-                    'iOS' => [
-                        'version' => '1.5.0',
-                        'date' => 'May 25, 2020',
-                    ],
-                    'macOS' => [
-                        'version' => '2.7.100.20',
-                        'date' => 'June 18, 2020',
-                    ],
-                    'Windows' => [
-                        'version' => '2.7.100.20',
-                        'date' => 'June 18, 2020',
-                    ],
-                    'Linux' => [
-                        'version' => '2.7.100.20',
-                        'date' => 'June 18, 2020',
-                    ],
-                ],
-            ],
-            'Falkon' => [
-                'name' => 'Falkon',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'David Rosca',
-                        'link' => 'https://en.wikipedia.org/wiki/Links_(web_browser)',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'GPL 3.0',
-                        'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Blink',
-                        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
-                    ],
-                ],
-                'latest-release' => [
-                    [
-                        'version' => '3.1.0.75',
-                        'date' => 'March 19, 2019',
-                    ],
-                ],
-            ],
-            'Konqueror' => [
-                'name' => 'Konqueror Browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'KDE',
-                        'link' => 'https://en.wikipedia.org/wiki/KDE',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'GPL',
-                        'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'KHTML',
-                        'link' => 'https://en.wikipedia.org/wiki/KHTML',
-                    ],
-                    [
-                        'name' => 'WebKit',
-                        'link' => 'https://en.wikipedia.org/wiki/WebKit',
-                    ],
-                ],
-                'latest-release' => [
-                    'Stable release' => [
-                        'version' => '20.08.2',
-                        'date' => '7 June 2018',
-                    ],
-                    'Preview release' => [],
-                ],
-            ],
-            'YaBrowser' => [
-                'name' => 'Yandex Browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Yandex',
-                        'link' => 'https://en.wikipedia.org/wiki/Yandex',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'Proprietary',
-                        'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Blink',
-                        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
-                    ],
-                ],
-                'latest-release' => [
-                    'Android' => [
-                        'version' => '20.6.3.54',
-                        'date' => 'July 23, 2020',
-                    ],
-                    'iOS' => [
-                        'version' => '20.6.2.318',
-                        'date' => 'July 16, 2020',
-                    ],
-                    'macOS' => [
-                        'version' => '20.7.2',
-                        'date' => 'July 2020',
-                    ],
-                    'Windows' => [
-                        'version' => '20.7.2',
-                        'date' => 'July 2020',
-                    ],
-                    'Linux' => [
-                        'version' => '20.7.2',
-                        'date' => 'July 2020',
-                    ],
-                ],
-            ],
-            'QtWebEngine' => [
-                'name' => 'Qt Web Engine based browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Dooble Project Team',
-                        'link' => 'https://en.wikipedia.org/wiki/Dooble',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'BSD',
-                        'link' => 'https://en.wikipedia.org/wiki/BSD_licenses',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Blink',
-                        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
-                    ],
-                ],
-                'latest-release' => [
-                    [
-                        'version' => '2020.10.10',
-                        'date' => 'October 10, 2020',
-                    ],
-                ],
-            ],
-            /*
-             * Iron 73.0.3800.0 on Windows 10
-                Developer(s)    SRWare
-                Initial release    18 September 2008; 12 years ago[1]
-                Stable release(s) [±]
-                Windows    85.0.4350.0 / October 2, 2020; 35 days ago[2]
-                macOS    84.0.4300.0 / August 29, 2020; 2 months ago[3]
-                Linux    85.0.4350.0 / October 6, 2020; 31 days ago[4]
-                Android    74.0.3850.0 / May 10, 2019; 17 months ago[5]
-                Engine    Blink, V8
-                Operating system    Windows 7 and later, OS X 10.9 and later, Linux, Android 4.1 and later
-                Size    47.9 MB (Windows), 45.1 (Android)
-                Type    Web browser
-                Licence    BSD, with some parts under other licences.[6] Source code not provided.
-                Website    www.srware.net/en/software_srware_iron.php
-             * */
-            'Iron' => [
-                'name' => 'SRWare Iron',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'SRWare',
-                        'link' => 'www.srware.net/en/software_srware_iron.php',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'BSD',
-                        'link' => 'https://en.wikipedia.org/wiki/BSD_licenses',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Blink',
-                        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
-                    ],
-                    [
-                        'name' => 'V8',
-                        'link' => 'https://en.wikipedia.org/wiki/V8_(JavaScript_engine)',
-                    ],
-                ],
-                'latest-release' => [
-                    'Android' => [
-                        'version' => '74.0.3850.0',
-                        'date' => 'May 10, 2019',
-                    ],
-                    'macOS' => [
-                        'version' => '84.0.4300.0',
-                        'date' => 'August 29, 2020',
-                    ],
-                    'Windows' => [
-                        'version' => '85.0.4350.0',
-                        'date' => 'October 2, 2020',
-                    ],
-                    'Linux' => [
-                        'version' => '85.0.4350.0',
-                        'date' => 'October 6, 2020',
-                    ],
-                ],
-            ],
-            'Chrome' => [
-                'name' => 'Google Chrome',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Google LLC',
-                        'link' => 'https://en.wikipedia.org/wiki/Google',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'BSD (Chromium executable) (some closed-source features)',
-                        'link' => 'https://en.wikipedia.org/wiki/BSD_licenses',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Blink',
-                        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
-                    ],
-                ],
-                'latest-release' => [
-                    'Android' => [
-                        'version' => '86.0.4240.114',
-                        'date' => 'October 22, 2020',
-                    ],
-                    'iOS' => [
-                        'version' => '86.0.4240.93',
-                        'date' => 'October 12, 2020',
-                    ],
-                    'macOS' => [
-                        'version' => '86.0.4240.111',
-                        'date' => 'October 20, 2020',
-                    ],
-                    'Windows' => [
-                        'version' => '86.0.4240.111',
-                        'date' => 'October 20, 2020',
-                    ],
-                    'Linux' => [
-                        'version' => '86.0.4240.111',
-                        'date' => 'October 20, 2020',
-                    ],
-                ],
-            ],
-            'Chromium' => [
-                'name' => 'Chromium Browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'The Chromium Project',
-                        'link' => 'https://www.chromium.org/',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'BSD',
-                        'link' => 'https://en.wikipedia.org/wiki/BSD_licenses',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Blink',
-                        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
-                    ],
-                ],
-                'latest-release' => [
-                    [
-                        'name' => 'built nightly',
-                        'link' => 'https://chromium.woolyss.com/',
-                    ],
-                ],
-            ],
-            'Comodo_Dragon' => [
-                'name' => 'Comodo Dragon',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Comodo Group',
-                        'link' => 'https://www.comodo.com/home/browsers-toolbars/internet-products.php',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'BSD',
-                        'link' => 'https://en.wikipedia.org/wiki/BSD_licenses',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Blink',
-                        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
-                    ],
-                ],
-                'latest-release' => [
-                    [
-                        'version' => '83.0.4103.116',
-                        'date' => 'July 21, 2020',
-                    ],
-                ],
-            ],
-            'IceDragon' => [
-                'name' => 'Comodo Ice Dragon',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Comodo Group',
-                        'link' => 'https://www.comodo.com/home/browsers-toolbars/internet-products.php',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'MPL 2.0',
-                        'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Gecko',
-                        'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
-                    ],
-                ],
-                'latest-release' => [
-                    [
-                        'version' => '65.0.2.15',
-                        'date' => 'June 19, 2019',
-                    ],
-                ],
-            ],
-            'Dillo' => [
-                'name' => 'Dillo',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'The Dillo team',
-                        'link' => 'https://www.dillo.org/',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'discontinued',
-                'licence' => [
-                    [
-                        'name' => 'GPL',
-                        'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
-                    ],
-                ],
-                'layout' => [
-                    ['name' => 'custom'],
-                ],
-                'latest-release' => [
-                    [
-                        'version' => '3.0.5',
-                        'date' => '30 June 2015',
-                    ],
-                ],
-            ],
-            'Dooble' => [
-                'name' => 'Dooble',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Dooble Project Team',
-                        'link' => 'https://en.wikipedia.org/wiki/Dooble',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'BSD',
-                        'link' => 'https://en.wikipedia.org/wiki/BSD_licenses',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Blink',
-                        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
-                    ],
-                ],
-                'latest-release' => [
-                    [
-                        'version' => '2020.10.10',
-                        'date' => 'October 10, 2020',
-                    ],
-                ],
-            ],
-            'ELinks' => [
-                'name' => 'ELinks',
-                'type' => 'Web Browser',
-                'ui' => 'TextBasedMode',
-                'creator' => [
-                    [
-                        'name' => 'Baudis, Fonseca, et al.',
-                        'link' => 'https://en.wikipedia.org/wiki/ELinks',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'discontinued',
-                'licence' => [
-                    [
-                        'name' => 'GPL',
-                        'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'custom',
-                        'note' => 'fork of Links',
-                    ],
-                ],
-                'latest-release' => [
-                    [
-                        'version' => '0.11.7',
-                        'date' => '22 August 2009',
-                    ],
-                ],
-            ],
-            'Epiphany' => [
-                'name' => 'GNOME Web',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Marco Pesenti Gritti',
-                        'link' => 'https://www.gnome.org/news/2015/05/goodbye-marco/',
-                    ],
-                    [
-                        'name' => 'The GNOME Project',
-                        'link' => 'https://en.wikipedia.org/wiki/The_GNOME_Project',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'GPL',
-                        'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'WebKitGTK',
-                        'link' => 'https://en.wikipedia.org/wiki/WebKitGTK',
-                    ],
-                ],
-                'latest-release' => [
-                    'Stable release' => [
-                        'version' => '3.38.1',
-                        'date' => '8 October 2020',
-                    ],
-                    'Preview release' => [
-                        'version' => '3.37.92',
-                        'date' => '13 September 2020',
-                    ],
-                ],
-            ],
-            'Links' => [
-                'name' => 'Links',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Patocka, et al',
-                        'link' => 'https://en.wikipedia.org/wiki/Links_(web_browser)',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'GPL',
-                        'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
-                    ],
-                ],
-                'layout' => [
-                    ['name' => 'custom'],
-                ],
-                'latest-release' => [
-                    [
-                        'version' => '2.21',
-                        'date' => '2 August 2020',
-                    ],
-                ],
-            ],
-            'Flock' => [
-                'name' => 'Flock',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Flock Inc',
-                        'link' => [
-                            'https://web.archive.org/web/20110325151017/http://www.flock.com/',
-                            'https://en.wikipedia.org/wiki/Flock_(web_browser)',
+                'Electron' => [
+                    'name' => 'Electron',
+                    'type' => 'Electron (software framework)',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'GitHub',
+                            'link' => 'https://en.wikipedia.org/wiki/GitHub',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'MIT License',
+                            'link' => 'https://en.wikipedia.org/wiki/MIT_License',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Blink',
+                            'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'Stable release' => [
+                            'version' => '10.1.5',
+                            'date' => '23 October 2020',
+                        ],
+                        'Preview release' => [
+                            'version' => '11.0.0-beta.16',
+                            'date' => '24 October 2020',
                         ],
                     ],
                 ],
-                'cost' => 'Free',
-                'status' => 'discontinued',
-                'licence' => [
-                    [
-                        'name' => 'Proprietary',
-                        'note' => '(as of 3.0)',
-                        'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
+                'Brave' => [
+                    'name' => 'Brave Browser',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Brave Software Inc',
+                            'link' => 'https://en.wikipedia.org/wiki/Brave_(browser)',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'MPL 2.0',
+                            'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Blink',
+                            'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'Android' => [
+                            'version' => '1.15.73',
+                            'date' => '15 October 2020',
+                        ],
+                        'iOS' => [
+                            'version' => '1.20',
+                            'date' => '25 September 2020',
+                        ],
+                        'macOS' => [
+                            'version' => '1.15.75',
+                            'date' => '16 October 2020',
+                        ],
+                        'Windows' => [
+                            'version' => '1.15.75',
+                            'date' => '16 October 2020',
+                        ],
+                        'Linux' => [
+                            'version' => '1.15.75',
+                            'date' => '16 October 2020',
+                        ],
                     ],
                 ],
-                'layout' => [
-                    [
-                        'name' => 'WebKit',
-                        'link' => 'https://en.wikipedia.org/wiki/WebKit',
+                'Camino' => [
+                    'name' => 'Camino',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        ['name' => 'The Camino Project'],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'discontinued',
+                    'licence' => [
+                        [
+                            'name' => 'MPL 1.1',
+                            'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
+                        ],
+                        [
+                            'name' => 'GPL',
+                            'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
+                        ],
+                        [
+                            'name' => 'LGPL',
+                            'link' => 'https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Gecko',
+                            'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'version' => '2.1.2',
+                        'date' => '14 March 2012',
                     ],
                 ],
-                'latest-release' => [
-                    [
-                        'version' => '3.5.3.4641',
-                        'date' => 'February 1, 2011',
+                'Cliqz' => [
+                    'name' => 'Cliqz',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        ['name' => 'Cliqz GmbH'],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'discontinued',
+                    'licence' => [
+                        [
+                            'name' => 'MPL 2.0',
+                            'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Gecko',
+                            'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'Android' => [
+                            'version' => '1.9.7',
+                            'date' => 'April 4, 2020',
+                        ],
+                        'iOS' => [
+                            'version' => '3.6.3',
+                            'date' => 'June 30, 2020',
+                        ],
+                        'macOS' => [
+                            'version' => '1.38.0',
+                            'date' => 'July 22, 2020',
+                        ],
+                        'Windows' => [
+                            'version' => '1.38.0',
+                            'date' => 'July 22, 2020',
+                        ],
+                        'Linux' => [
+                            'version' => '1.38.0',
+                            'date' => 'July 22, 2020',
+                        ],
                     ],
                 ],
-            ],
-            'Waterfox' => [
-                'name' => 'Waterfox Browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    ['name' => 'Alex Kontos'],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'GPL',
-                        'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
+                'Edg' => [
+                    'name' => 'Microsoft Edge',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Microsoft Corp',
+                            'link' => 'https://www.microsoftedgeinsider.com/en-us/',
+                        ],
                     ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Gecko',
-                        'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'Proprietary',
+                            'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
+                        ],
                     ],
-                ],
-                'latest-release' => [
-                    [
-                        'version' => '2020.10',
-                        'date' => '21 October 2020',
+                    'layout' => [
+                        [
+                            'name' => 'Blink',
+                            'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+                        ],
                     ],
-                ],
-            ],
-            'Eolie' => [
-                'name' => 'Eolie Browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Mozilla Foundation',
-                        'link' => 'https://en.wikipedia.org/wiki/Mozilla_Foundation',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'MPL 2.0',
-                        'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Gecko',
-                        'note' => '(before v57)',
-                        'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
-                    ],
-                    [
-                        'name' => 'Gecko w/Servo',
-                        'note' => 'v57 & after',
-                        'link' => 'https://en.wikipedia.org/wiki/Servo_(software)',
-                    ],
-                ],
-                'latest-release' => [
-                    'Standard' => [
-                        'version' => '82.0',
-                        'date' => 'October 20, 2020',
-                    ],
-                    'Extended Support Release' => [
-                        'version' => '78.4.0',
-                        'date' => 'October 20, 2020',
-                    ],
-                ],
-            ],
-            'PaleMoon' => [
-                'name' => 'PaleMoon Browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    ['name' => 'Moonchild Productions'],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'MPL 2.0',
-                        'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Goanna',
-                        'link' => 'https://en.wikipedia.org/wiki/Goanna_(software)',
-                    ],
-                ],
-                'latest-release' => [
-                    'Standard' => [
-                        'version' => '28.15.0',
-                        'date' => '27 October 2020',
-                    ],
-                ],
-            ],
-            'SeaMonkey' => [
-                'name' => 'SeaMonkey Browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    ['name' => 'SeaMonkey Council'],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'MPL 2.0',
-                        'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Gecko',
-                        'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
-                    ],
-                ],
-                'latest-release' => [
-                    'Stable release' => [
-                        'version' => '2.53.4',
-                        'date' => 'September 22, 2020',
-                    ],
-                    'Preview release' => [
-                        'version' => '2.53.5b1',
-                        'date' => 'October 29, 2020',
-                    ],
-                ],
-            ],
-            'SalamWeb' => [
-                'name' => 'SalamWeb Browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'SalamWeb',
-                        'link' => 'https://salamweb.com/',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'Freeware',
-                        'link' => 'https://en.wikipedia.org/wiki/Freeware',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Blink',
-                        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
-                    ],
-                ],
-                'latest-release' => [
-                    'Windows' => [
-                        'version' => '4.5',
-                        'date' => 'July 31, 2020',
-                    ],
-                    'Android' => [
-                        'version' => '4.5.0.40',
-                        'date' => 'June 25, 2020',
-                    ],
-                    'macOS' => [
-                        'version' => '4.5',
-                        'date' => 'June 20, 2020',
-                    ],
-                    'iOS' => [
-                        'version' => '4.5',
-                        'date' => 'June 20, 2020',
-                    ],
-                ],
-            ],
-            'firefox' => [
-                'name' => 'Firefox Browser',
-                'keyword' => 'firefox',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Mozilla Foundation',
-                        'link' => 'https://en.wikipedia.org/wiki/Mozilla_Foundation',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'MPL 2.0',
-                        'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Gecko',
-                        'note' => '(before v57)',
-                        'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
-                    ],
-                    [
-                        'name' => 'Gecko w/Servo',
-                        'note' => 'v57 & after',
-                        'link' => 'https://en.wikipedia.org/wiki/Servo_(software)',
-                    ],
-                ],
-                'latest-release' => [
-                    'Standard' => [
-                        'version' => '82.0',
-                        'date' => 'October 20, 2020',
-                    ],
-                    'Extended Support Release' => [
-                        'version' => '78.4.0',
-                        'date' => 'October 20, 2020',
-                    ],
-                ],
-            ],
-            'Galeon' => [
-                'name' => 'Galeon Browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Marco Pesenti Gritti',
-                        'link' => 'https://www.gnome.org/news/2015/05/goodbye-marco/',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'discontinued',
-                'licence' => [
-                    [
-                        'name' => 'GPL',
-                        'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Gecko',
-                        'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
-                    ],
-                ],
-                'latest-release' => [
-                    [
-                        'version' => '2.0.7',
-                        'date' => '27 September 2008',
-                    ],
-                ],
-            ],
-            'iCab' => [
-                'name' => 'iCab Browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Alexander Clauss',
-                        'link' => 'https://www.clauss-net.de/',
-                    ],
-                ],
-                'cost' => 'Free, $20 (Pro)',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'Proprietary (browser)',
-                        'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
-                    ],
-                    [
-                        'name' => 'LGPL (WebKit)',
-                        'link' => 'https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'WebKit',
-                        'link' => 'https://en.wikipedia.org/wiki/WebKit',
-                    ],
-                ],
-                'latest-release' => [
-                    [
-                        'version' => '5.9.2',
-                        'date' => 'March 4, 2020',
-                    ],
-                ],
-            ],
-            'curl' => [
-                'name' => 'Client URL',
-                'type' => 'Web Browser',
-                'ui' => 'FullTextMode',
-                'creator' => [
-                    [
-                        'name' => 'Daniel Stenberg',
-                        'link' => 'https://en.wikipedia.org/wiki/Daniel_Stenberg',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'Free Software: MIT/X derivate license',
-                        'link' => 'https://curl.haxx.se/docs/copyright.html',
-                    ],
-                ],
-                'latest-release' => [
-                    'Stable release' => [
-                        'version' => '7.73.0',
+                    'latest-release' => [
+                        'version' => '88.0.673.0',
                         'date' => '14 October 2020',
                     ],
                 ],
-            ],
-            'Lynx' => [
-                'name' => 'Lynx',
-                'type' => 'FTP client / HTTP client',
-                'ui' => 'TextBasedMode',
-                'creator' => [
-                    ['name' => 'Montulli, Grobe, Rezac, et al'],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'GPL',
-                        'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
+                'Opera' => [
+                    'name' => 'Opera',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Opera Software',
+                            'link' => 'https://en.wikipedia.org/wiki/Opera_Software',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'Proprietary',
+                            'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Blink',
+                            'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'version' => '71.0.3770.271',
+                        'date' => '14 October 2020',
                     ],
                 ],
-                'layout' => [
-                    [
-                        'name' => 'custom, fork of libwww',
-                        'link' => 'https://en.wikipedia.org/wiki/Libwww',
+                'Opera Mobile' => [
+                    'name' => 'Opera',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Opera Software',
+                            'link' => 'https://en.wikipedia.org/wiki/Opera_Software',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'Proprietary',
+                            'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Blink',
+                            'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'Android' => [
+                            'version' => '59.1.2926.54067',
+                            'date' => 'July 13, 2020',
+                        ],
+                        'Android (classic)' => [
+                            'version' => '12.1.9',
+                            'date' => 'June 8, 2016',
+                        ],
+                        'Symbian' => [
+                            'version' => 'S60 12.0.22',
+                            'date' => 'June 24, 2012',
+                        ],
+                        'Windows Mobile' => [
+                            'version' => '10.0',
+                            'date' => 'March 16, 2010',
+                        ],
                     ],
                 ],
-                'latest-release' => [
-                    [
-                        'version' => '2.8.9rel.1',
-                        'date' => '8 July 2018',
+                'whale' => [
+                    'name' => 'Naver Whale',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Naver Corporation',
+                            'link' => 'https://en.wikipedia.org/wiki/Naver_Corporation',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'Freeware',
+                            'link' => 'https://en.wikipedia.org/wiki/Freeware',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Blink',
+                            'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'Android' => [
+                            'version' => '1.5.4.2',
+                            'date' => 'May 26, 2020',
+                        ],
+                        'iOS' => [
+                            'version' => '1.5.0',
+                            'date' => 'May 25, 2020',
+                        ],
+                        'macOS' => [
+                            'version' => '2.7.100.20',
+                            'date' => 'June 18, 2020',
+                        ],
+                        'Windows' => [
+                            'version' => '2.7.100.20',
+                            'date' => 'June 18, 2020',
+                        ],
+                        'Linux' => [
+                            'version' => '2.7.100.20',
+                            'date' => 'June 18, 2020',
+                        ],
                     ],
                 ],
-            ],
-            'msie' => 'msie',
+                'Falkon' => [
+                    'name' => 'Falkon',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'David Rosca',
+                            'link' => 'https://en.wikipedia.org/wiki/Links_(web_browser)',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'GPL 3.0',
+                            'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Blink',
+                            'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        [
+                            'version' => '3.1.0.75',
+                            'date' => 'March 19, 2019',
+                        ],
+                    ],
+                ],
+                'Konqueror' => [
+                    'name' => 'Konqueror Browser',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'KDE',
+                            'link' => 'https://en.wikipedia.org/wiki/KDE',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'GPL',
+                            'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'KHTML',
+                            'link' => 'https://en.wikipedia.org/wiki/KHTML',
+                        ],
+                        [
+                            'name' => 'WebKit',
+                            'link' => 'https://en.wikipedia.org/wiki/WebKit',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'Stable release' => [
+                            'version' => '20.08.2',
+                            'date' => '7 June 2018',
+                        ],
+                        'Preview release' => [],
+                    ],
+                ],
+                'YaBrowser' => [
+                    'name' => 'Yandex Browser',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Yandex',
+                            'link' => 'https://en.wikipedia.org/wiki/Yandex',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'Proprietary',
+                            'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Blink',
+                            'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'Android' => [
+                            'version' => '20.6.3.54',
+                            'date' => 'July 23, 2020',
+                        ],
+                        'iOS' => [
+                            'version' => '20.6.2.318',
+                            'date' => 'July 16, 2020',
+                        ],
+                        'macOS' => [
+                            'version' => '20.7.2',
+                            'date' => 'July 2020',
+                        ],
+                        'Windows' => [
+                            'version' => '20.7.2',
+                            'date' => 'July 2020',
+                        ],
+                        'Linux' => [
+                            'version' => '20.7.2',
+                            'date' => 'July 2020',
+                        ],
+                    ],
+                ],
+                'QtWebEngine' => [
+                    'name' => 'Qt Web Engine based browser',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Dooble Project Team',
+                            'link' => 'https://en.wikipedia.org/wiki/Dooble',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'BSD',
+                            'link' => 'https://en.wikipedia.org/wiki/BSD_licenses',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Blink',
+                            'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        [
+                            'version' => '2020.10.10',
+                            'date' => 'October 10, 2020',
+                        ],
+                    ],
+                ],
+                /*
+                 * Iron 73.0.3800.0 on Windows 10
+                    Developer(s)    SRWare
+                    Initial release    18 September 2008; 12 years ago[1]
+                    Stable release(s) [±]
+                    Windows    85.0.4350.0 / October 2, 2020; 35 days ago[2]
+                    macOS    84.0.4300.0 / August 29, 2020; 2 months ago[3]
+                    Linux    85.0.4350.0 / October 6, 2020; 31 days ago[4]
+                    Android    74.0.3850.0 / May 10, 2019; 17 months ago[5]
+                    Engine    Blink, V8
+                    Operating system    Windows 7 and later, OS X 10.9 and later, Linux, Android 4.1 and later
+                    Size    47.9 MB (Windows), 45.1 (Android)
+                    Type    Web browser
+                    Licence    BSD, with some parts under other licences.[6] Source code not provided.
+                    Website    www.srware.net/en/software_srware_iron.php
+                 * */
+                'Iron' => [
+                    'name' => 'SRWare Iron',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'SRWare',
+                            'link' => 'www.srware.net/en/software_srware_iron.php',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'BSD',
+                            'link' => 'https://en.wikipedia.org/wiki/BSD_licenses',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Blink',
+                            'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+                        ],
+                        [
+                            'name' => 'V8',
+                            'link' => 'https://en.wikipedia.org/wiki/V8_(JavaScript_engine)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'Android' => [
+                            'version' => '74.0.3850.0',
+                            'date' => 'May 10, 2019',
+                        ],
+                        'macOS' => [
+                            'version' => '84.0.4300.0',
+                            'date' => 'August 29, 2020',
+                        ],
+                        'Windows' => [
+                            'version' => '85.0.4350.0',
+                            'date' => 'October 2, 2020',
+                        ],
+                        'Linux' => [
+                            'version' => '85.0.4350.0',
+                            'date' => 'October 6, 2020',
+                        ],
+                    ],
+                ],
+                'Chrome' => [
+                    'name' => 'Google Chrome',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Google LLC',
+                            'link' => 'https://en.wikipedia.org/wiki/Google',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'BSD (Chromium executable) (some closed-source features)',
+                            'link' => 'https://en.wikipedia.org/wiki/BSD_licenses',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Blink',
+                            'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'Android' => [
+                            'version' => '86.0.4240.114',
+                            'date' => 'October 22, 2020',
+                        ],
+                        'iOS' => [
+                            'version' => '86.0.4240.93',
+                            'date' => 'October 12, 2020',
+                        ],
+                        'macOS' => [
+                            'version' => '86.0.4240.111',
+                            'date' => 'October 20, 2020',
+                        ],
+                        'Windows' => [
+                            'version' => '86.0.4240.111',
+                            'date' => 'October 20, 2020',
+                        ],
+                        'Linux' => [
+                            'version' => '86.0.4240.111',
+                            'date' => 'October 20, 2020',
+                        ],
+                    ],
+                ],
+                'Chromium' => [
+                    'name' => 'Chromium Browser',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'The Chromium Project',
+                            'link' => 'https://www.chromium.org/',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'BSD',
+                            'link' => 'https://en.wikipedia.org/wiki/BSD_licenses',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Blink',
+                            'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        [
+                            'name' => 'built nightly',
+                            'link' => 'https://chromium.woolyss.com/',
+                        ],
+                    ],
+                ],
+                'Comodo_Dragon' => [
+                    'name' => 'Comodo Dragon',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Comodo Group',
+                            'link' => 'https://www.comodo.com/home/browsers-toolbars/internet-products.php',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'BSD',
+                            'link' => 'https://en.wikipedia.org/wiki/BSD_licenses',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Blink',
+                            'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        [
+                            'version' => '83.0.4103.116',
+                            'date' => 'July 21, 2020',
+                        ],
+                    ],
+                ],
+                'IceDragon' => [
+                    'name' => 'Comodo Ice Dragon',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Comodo Group',
+                            'link' => 'https://www.comodo.com/home/browsers-toolbars/internet-products.php',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'MPL 2.0',
+                            'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Gecko',
+                            'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        [
+                            'version' => '65.0.2.15',
+                            'date' => 'June 19, 2019',
+                        ],
+                    ],
+                ],
+                'Dillo' => [
+                    'name' => 'Dillo',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'The Dillo team',
+                            'link' => 'https://www.dillo.org/',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'discontinued',
+                    'licence' => [
+                        [
+                            'name' => 'GPL',
+                            'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
+                        ],
+                    ],
+                    'layout' => [
+                        ['name' => 'custom'],
+                    ],
+                    'latest-release' => [
+                        [
+                            'version' => '3.0.5',
+                            'date' => '30 June 2015',
+                        ],
+                    ],
+                ],
+                'Dooble' => [
+                    'name' => 'Dooble',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Dooble Project Team',
+                            'link' => 'https://en.wikipedia.org/wiki/Dooble',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'BSD',
+                            'link' => 'https://en.wikipedia.org/wiki/BSD_licenses',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Blink',
+                            'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        [
+                            'version' => '2020.10.10',
+                            'date' => 'October 10, 2020',
+                        ],
+                    ],
+                ],
+                'ELinks' => [
+                    'name' => 'ELinks',
+                    'type' => 'Web Browser',
+                    'ui' => 'TextBasedMode',
+                    'creator' => [
+                        [
+                            'name' => 'Baudis, Fonseca, et al.',
+                            'link' => 'https://en.wikipedia.org/wiki/ELinks',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'discontinued',
+                    'licence' => [
+                        [
+                            'name' => 'GPL',
+                            'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'custom',
+                            'note' => 'fork of Links',
+                        ],
+                    ],
+                    'latest-release' => [
+                        [
+                            'version' => '0.11.7',
+                            'date' => '22 August 2009',
+                        ],
+                    ],
+                ],
+                'Epiphany' => [
+                    'name' => 'GNOME Web',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Marco Pesenti Gritti',
+                            'link' => 'https://www.gnome.org/news/2015/05/goodbye-marco/',
+                        ],
+                        [
+                            'name' => 'The GNOME Project',
+                            'link' => 'https://en.wikipedia.org/wiki/The_GNOME_Project',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'GPL',
+                            'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'WebKitGTK',
+                            'link' => 'https://en.wikipedia.org/wiki/WebKitGTK',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'Stable release' => [
+                            'version' => '3.38.1',
+                            'date' => '8 October 2020',
+                        ],
+                        'Preview release' => [
+                            'version' => '3.37.92',
+                            'date' => '13 September 2020',
+                        ],
+                    ],
+                ],
+                'Links' => [
+                    'name' => 'Links',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Patocka, et al',
+                            'link' => 'https://en.wikipedia.org/wiki/Links_(web_browser)',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'GPL',
+                            'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
+                        ],
+                    ],
+                    'layout' => [
+                        ['name' => 'custom'],
+                    ],
+                    'latest-release' => [
+                        [
+                            'version' => '2.21',
+                            'date' => '2 August 2020',
+                        ],
+                    ],
+                ],
+                'Flock' => [
+                    'name' => 'Flock',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Flock Inc',
+                            'link' => [
+                                'https://web.archive.org/web/20110325151017/http://www.flock.com/',
+                                'https://en.wikipedia.org/wiki/Flock_(web_browser)',
+                            ],
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'discontinued',
+                    'licence' => [
+                        [
+                            'name' => 'Proprietary',
+                            'note' => '(as of 3.0)',
+                            'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'WebKit',
+                            'link' => 'https://en.wikipedia.org/wiki/WebKit',
+                        ],
+                    ],
+                    'latest-release' => [
+                        [
+                            'version' => '3.5.3.4641',
+                            'date' => 'February 1, 2011',
+                        ],
+                    ],
+                ],
+                'Waterfox' => [
+                    'name' => 'Waterfox Browser',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        ['name' => 'Alex Kontos'],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'GPL',
+                            'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Gecko',
+                            'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        [
+                            'version' => '2020.10',
+                            'date' => '21 October 2020',
+                        ],
+                    ],
+                ],
+                'Eolie' => [
+                    'name' => 'Eolie Browser',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Mozilla Foundation',
+                            'link' => 'https://en.wikipedia.org/wiki/Mozilla_Foundation',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'MPL 2.0',
+                            'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Gecko',
+                            'note' => '(before v57)',
+                            'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
+                        ],
+                        [
+                            'name' => 'Gecko w/Servo',
+                            'note' => 'v57 & after',
+                            'link' => 'https://en.wikipedia.org/wiki/Servo_(software)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'Standard' => [
+                            'version' => '82.0',
+                            'date' => 'October 20, 2020',
+                        ],
+                        'Extended Support Release' => [
+                            'version' => '78.4.0',
+                            'date' => 'October 20, 2020',
+                        ],
+                    ],
+                ],
+                'PaleMoon' => [
+                    'name' => 'PaleMoon Browser',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        ['name' => 'Moonchild Productions'],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'MPL 2.0',
+                            'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Goanna',
+                            'link' => 'https://en.wikipedia.org/wiki/Goanna_(software)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'Standard' => [
+                            'version' => '28.15.0',
+                            'date' => '27 October 2020',
+                        ],
+                    ],
+                ],
+                'SeaMonkey' => [
+                    'name' => 'SeaMonkey Browser',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        ['name' => 'SeaMonkey Council'],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'MPL 2.0',
+                            'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Gecko',
+                            'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'Stable release' => [
+                            'version' => '2.53.4',
+                            'date' => 'September 22, 2020',
+                        ],
+                        'Preview release' => [
+                            'version' => '2.53.5b1',
+                            'date' => 'October 29, 2020',
+                        ],
+                    ],
+                ],
+                'SalamWeb' => [
+                    'name' => 'SalamWeb Browser',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'SalamWeb',
+                            'link' => 'https://salamweb.com/',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'Freeware',
+                            'link' => 'https://en.wikipedia.org/wiki/Freeware',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Blink',
+                            'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'Windows' => [
+                            'version' => '4.5',
+                            'date' => 'July 31, 2020',
+                        ],
+                        'Android' => [
+                            'version' => '4.5.0.40',
+                            'date' => 'June 25, 2020',
+                        ],
+                        'macOS' => [
+                            'version' => '4.5',
+                            'date' => 'June 20, 2020',
+                        ],
+                        'iOS' => [
+                            'version' => '4.5',
+                            'date' => 'June 20, 2020',
+                        ],
+                    ],
+                ],
+                'firefox' => [
+                    'name' => 'Firefox Browser',
+                    'keyword' => 'firefox',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Mozilla Foundation',
+                            'link' => 'https://en.wikipedia.org/wiki/Mozilla_Foundation',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'MPL 2.0',
+                            'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Gecko',
+                            'note' => '(before v57)',
+                            'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
+                        ],
+                        [
+                            'name' => 'Gecko w/Servo',
+                            'note' => 'v57 & after',
+                            'link' => 'https://en.wikipedia.org/wiki/Servo_(software)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'Standard' => [
+                            'version' => '82.0',
+                            'date' => 'October 20, 2020',
+                        ],
+                        'Extended Support Release' => [
+                            'version' => '78.4.0',
+                            'date' => 'October 20, 2020',
+                        ],
+                    ],
+                ],
+                'Galeon' => [
+                    'name' => 'Galeon Browser',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Marco Pesenti Gritti',
+                            'link' => 'https://www.gnome.org/news/2015/05/goodbye-marco/',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'discontinued',
+                    'licence' => [
+                        [
+                            'name' => 'GPL',
+                            'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Gecko',
+                            'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        [
+                            'version' => '2.0.7',
+                            'date' => '27 September 2008',
+                        ],
+                    ],
+                ],
+                'iCab' => [
+                    'name' => 'iCab Browser',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Alexander Clauss',
+                            'link' => 'https://www.clauss-net.de/',
+                        ],
+                    ],
+                    'cost' => 'Free, $20 (Pro)',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'Proprietary (browser)',
+                            'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
+                        ],
+                        [
+                            'name' => 'LGPL (WebKit)',
+                            'link' => 'https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'WebKit',
+                            'link' => 'https://en.wikipedia.org/wiki/WebKit',
+                        ],
+                    ],
+                    'latest-release' => [
+                        [
+                            'version' => '5.9.2',
+                            'date' => 'March 4, 2020',
+                        ],
+                    ],
+                ],
+                'curl' => [
+                    'name' => 'Client URL',
+                    'type' => 'Web Browser',
+                    'ui' => 'FullTextMode',
+                    'creator' => [
+                        [
+                            'name' => 'Daniel Stenberg',
+                            'link' => 'https://en.wikipedia.org/wiki/Daniel_Stenberg',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'Free Software: MIT/X derivate license',
+                            'link' => 'https://curl.haxx.se/docs/copyright.html',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'Stable release' => [
+                            'version' => '7.73.0',
+                            'date' => '14 October 2020',
+                        ],
+                    ],
+                ],
+                'Lynx' => [
+                    'name' => 'Lynx',
+                    'type' => 'FTP client / HTTP client',
+                    'ui' => 'TextBasedMode',
+                    'creator' => [
+                        ['name' => 'Montulli, Grobe, Rezac, et al'],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'GPL',
+                            'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'custom, fork of libwww',
+                            'link' => 'https://en.wikipedia.org/wiki/Libwww',
+                        ],
+                    ],
+                    'latest-release' => [
+                        [
+                            'version' => '2.8.9rel.1',
+                            'date' => '8 July 2018',
+                        ],
+                    ],
+                ],
+                'msie' => 'msie',
 
-            'Midori' => [
-                'name' => 'Midori Browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Christian Dywan, et al.',
-                        'link' => 'https://astian.org/en/midori-browser/',
+                'Midori' => [
+                    'name' => 'Midori Browser',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Christian Dywan, et al.',
+                            'link' => 'https://astian.org/en/midori-browser/',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'LGPL',
+                            'link' => 'https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'WebKit',
+                            'link' => 'https://en.wikipedia.org/wiki/WebKit',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'Stable release' => [],
+                        'Preview release' => [
+                            'version' => '9.0',
+                            'date' => 'July 29, 2019',
+                        ],
                     ],
                 ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'LGPL',
-                        'link' => 'https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License',
+                'NetSurf' => [
+                    'name' => 'NetSurf Browser',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'The NetSurf Developers',
+                            'link' => 'http://www.netsurf-browser.org/',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'GPL',
+                            'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Qt WebEngine',
+                            'link' => 'https://en.wikipedia.org/wiki/Qt_WebEngine',
+                        ],
+                        [
+                            'name' => 'QtWebKit',
+                            'link' => 'https://en.wikipedia.org/wiki/QtWebKit',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'Stable release' => [
+                            'version' => '3.10',
+                            'date' => 'May 24, 2020',
+                        ],
+                        'Preview release' => [],
                     ],
                 ],
-                'layout' => [
-                    [
-                        'name' => 'WebKit',
-                        'link' => 'https://en.wikipedia.org/wiki/WebKit',
+                'Otter' => [
+                    'name' => 'Otter Browser',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Michał Dutkiewicz',
+                            'link' => 'https://otter-browser.org/',
+                        ],
+                    ],
+                    'cost' => 'Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'GPLv3',
+                            'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'Qt WebEngine',
+                            'link' => 'https://en.wikipedia.org/wiki/Qt_WebEngine',
+                        ],
+                        [
+                            'name' => 'QtWebKit',
+                            'link' => 'https://en.wikipedia.org/wiki/QtWebKit',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'Stable release' => [
+                            'version' => '1.0.01',
+                            'date' => '1 January 2019',
+                        ],
+                        'Preview release' => [
+                            'version' => 'weekly333',
+                            'date' => 'May 18, 2020',
+                        ],
                     ],
                 ],
-                'latest-release' => [
-                    'Stable release' => [],
-                    'Preview release' => [
-                        'version' => '9.0',
-                        'date' => 'July 29, 2019',
+                'Maxthon' => [
+                    'name' => 'Maxthon Browser',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Maxthon International Ltd',
+                            'link' => 'https://en.wikipedia.org/wiki/Maxthon',
+                        ],
+                    ],
+                    'cost' => '	Free',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'Freeware',
+                            'link' => 'https://en.wikipedia.org/wiki/Freeware',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'WebKit',
+                            'link' => 'https://en.wikipedia.org/wiki/WebKit',
+                        ],
+                        [
+                            'name' => 'Trident',
+                            'link' => 'https://en.wikipedia.org/wiki/Trident_(layout_engine)',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'Windows' => [
+                            'version' => '5.3.8.2000',
+                            'date' => 'October 25, 2019',
+                        ],
+                        'Android' => [
+                            'version' => '5.2.3.3241',
+                            'date' => 'January 25, 2019',
+                        ],
+                        'macOS' => [
+                            'version' => '5.1.60',
+                            'date' => 'August 27, 2018',
+                        ],
+                        'iOS' => [
+                            'version' => '5.4.5',
+                            'date' => 'July 21, 2020',
+                        ],
+                        'Windows Phone' => [
+                            'version' => '2.2.0',
+                            'date' => 'March 30, 2017',
+                        ],
+                        'Linux' => [
+                            'version' => '1.0.5.3',
+                            'date' => 'September 9, 2014',
+                        ],
                     ],
                 ],
-            ],
-            'NetSurf' => [
-                'name' => 'NetSurf Browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'The NetSurf Developers',
-                        'link' => 'http://www.netsurf-browser.org/',
+                'safari' => [
+                    'name' => 'safari Browser',
+                    'type' => 'Web Browser',
+                    'ui' => 'GraphicalMode',
+                    'creator' => [
+                        [
+                            'name' => 'Apple Inc.',
+                            'link' => 'https://en.wikipedia.org/wiki/Apple_Inc.',
+                        ],
+                    ],
+                    'cost' => 'Included with macOS and iOS',
+                    'status' => 'Active',
+                    'licence' => [
+                        [
+                            'name' => 'Proprietary (browser)',
+                            'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
+                        ],
+                        [
+                            'name' => 'LGPL (WebKit) ',
+                            'link' => 'https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License',
+                        ],
+                    ],
+                    'layout' => [
+                        [
+                            'name' => 'WebKit',
+                            'link' => 'https://en.wikipedia.org/wiki/WebKit',
+                        ],
+                    ],
+                    'latest-release' => [
+                        'macOS' => [
+                            'version' => '14.0',
+                            'date' => 'September 17, 2020',
+                        ],
+                        'iOS' => [
+                            'version' => '14.0',
+                            'date' => 'September 17, 2020',
+                        ],
                     ],
                 ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'GPL',
-                        'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Qt WebEngine',
-                        'link' => 'https://en.wikipedia.org/wiki/Qt_WebEngine',
-                    ],
-                    [
-                        'name' => 'QtWebKit',
-                        'link' => 'https://en.wikipedia.org/wiki/QtWebKit',
-                    ],
-                ],
-                'latest-release' => [
-                    'Stable release' => [
-                        'version' => '3.10',
-                        'date' => 'May 24, 2020',
-                    ],
-                    'Preview release' => [],
-                ],
-            ],
-            'Otter' => [
-                'name' => 'Otter Browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Michał Dutkiewicz',
-                        'link' => 'https://otter-browser.org/',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'GPLv3',
-                        'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'Qt WebEngine',
-                        'link' => 'https://en.wikipedia.org/wiki/Qt_WebEngine',
-                    ],
-                    [
-                        'name' => 'QtWebKit',
-                        'link' => 'https://en.wikipedia.org/wiki/QtWebKit',
-                    ],
-                ],
-                'latest-release' => [
-                    'Stable release' => [
-                        'version' => '1.0.01',
-                        'date' => '1 January 2019',
-                    ],
-                    'Preview release' => [
-                        'version' => 'weekly333',
-                        'date' => 'May 18, 2020',
-                    ],
-                ],
-            ],
-            'Maxthon' => [
-                'name' => 'Maxthon Browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Maxthon International Ltd',
-                        'link' => 'https://en.wikipedia.org/wiki/Maxthon',
-                    ],
-                ],
-                'cost' => '	Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'Freeware',
-                        'link' => 'https://en.wikipedia.org/wiki/Freeware',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'WebKit',
-                        'link' => 'https://en.wikipedia.org/wiki/WebKit',
-                    ],
-                    [
-                        'name' => 'Trident',
-                        'link' => 'https://en.wikipedia.org/wiki/Trident_(layout_engine)',
-                    ],
-                ],
-                'latest-release' => [
-                    'Windows' => [
-                        'version' => '5.3.8.2000',
-                        'date' => 'October 25, 2019',
-                    ],
-                    'Android' => [
-                        'version' => '5.2.3.3241',
-                        'date' => 'January 25, 2019',
-                    ],
-                    'macOS' => [
-                        'version' => '5.1.60',
-                        'date' => 'August 27, 2018',
-                    ],
-                    'iOS' => [
-                        'version' => '5.4.5',
-                        'date' => 'July 21, 2020',
-                    ],
-                    'Windows Phone' => [
-                        'version' => '2.2.0',
-                        'date' => 'March 30, 2017',
-                    ],
-                    'Linux' => [
-                        'version' => '1.0.5.3',
-                        'date' => 'September 9, 2014',
-                    ],
-                ],
-            ],
-            'safari' => [
-                'name' => 'safari Browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Apple Inc.',
-                        'link' => 'https://en.wikipedia.org/wiki/Apple_Inc.',
-                    ],
-                ],
-                'cost' => 'Included with macOS and iOS',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'Proprietary (browser)',
-                        'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
-                    ],
-                    [
-                        'name' => 'LGPL (WebKit) ',
-                        'link' => 'https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'WebKit',
-                        'link' => 'https://en.wikipedia.org/wiki/WebKit',
-                    ],
-                ],
-                'latest-release' => [
-                    'macOS' => [
-                        'version' => '14.0',
-                        'date' => 'September 17, 2020',
-                    ],
-                    'iOS' => [
-                        'version' => '14.0',
-                        'date' => 'September 17, 2020',
-                    ],
-                ],
-            ],
-        ];
+            ]
+        );
     }//end getWebBrowsersList()
 
     /**
@@ -2401,7 +2404,7 @@ class UATable
      *
      * @return array[]
      */
-    protected function browserTypeApplication(): array
+    protected function getBrowserTypeApplications(): array
     {
         return [
             '1password' => [
@@ -2441,19 +2444,71 @@ class UATable
      *
      * @return array
      */
-    protected function browserTypeBotCrawler(): array
+    protected function getBrowserTypeBotCrawlers(): array
     {
-        return [
-            $this->detailsOfBotCrawler('007ac9 crawler', '007ac9 Crawler', '007ac9', 'https://crawler.007ac9.net'),
-            $this->detailsOfBotCrawler('2gdpr', '2gdpr Bot', '2gdpr', 'https://2gdpr.com'),
-            $this->detailsOfBotCrawler('python-requests', 'python-requests Bot', 'Python Software Foundation', 'https://www.python.org/psf/'),
-            $this->detailsOfBotCrawler('python-urllib', 'python-urllib Bot', 'Python Software Foundation', 'https://www.python.org/psf/'),
-            $this->detailsOfBotCrawler('googlebot', 'Google Bot', 'Google Inc', 'https://www.google.com'),
-            $this->detailsOfBotCrawler('ahrefsbot', 'Ahrefs Bot', 'Ahrefs Pte Ltd', 'https://ahrefs.com/robot/'),
-            $this->detailsOfBotCrawler('bingbot', 'Bing Bot', 'Microsoft Corporation', 'https://www.bing.com/bingbot.htm'),
-            $this->detailsOfBotCrawler('yandexbot', 'Yandex Bot', 'Yandex LLC', 'https://yandex.com/bots'),
-            $this->detailsOfBotCrawler('dotbot', 'Dot Bot', 'SEOmoz, Inc', 'https://www.opensiteexplorer.org/dotbot'),
-        ];
+        return array_merge_recursive(
+            $this->getDetailsOfBotCrawler(
+                '007ac9 crawler',
+                '007ac9 Crawler',
+                '007ac9',
+                'https://crawler.007ac9.net'
+            ),
+            $this->getDetailsOfBotCrawler(
+                '2gdpr',
+                '2gdpr Bot',
+                '2gdpr',
+                'https://2gdpr.com'
+            ),
+            $this->getDetailsOfBotCrawlerGroup([
+                'python-requests'=> 'Python HTTP Requests Library',
+                'python-urllib'=> 'Python HTTP Url library',
+                ],
+                'Python Software Foundation',
+                'https://www.python.org/psf/'
+            ),
+            $this->getDetailsOfBotCrawler(
+                'googlebot',
+                'Google Bot',
+                'Google Inc',
+                'https://www.google.com'
+            ),
+            $this->getDetailsOfBotCrawler(
+                'ahrefsbot',
+                'Ahrefs Bot',
+                'Ahrefs Pte Ltd',
+                'https://ahrefs.com/robot/'
+            ),
+            $this->getDetailsOfBotCrawler(
+                'bingbot',
+                'Bing Bot',
+                'Microsoft Corporation',
+                'https://www.bing.com/bingbot.htm'
+            ),
+            $this->getDetailsOfBotCrawler(
+                'yandexbot',
+                'Yandex Bot',
+                'Yandex LLC',
+                'https://yandex.com/bots'
+            ),
+            $this->getDetailsOfBotCrawler(
+                'dotbot',
+                'Dot Bot',
+                'SEOmoz, Inc',
+                'https://www.opensiteexplorer.org/dotbot'
+            ),
+            $this->getDetailsOfBotCrawler(
+                'baiduspider',
+                'Baidu Spider',
+                'Baidu',
+                'https://www.baidu.com/search/spider.html'
+            ),
+            $this->getDetailsOfBotCrawler(
+                'grapeshotcrawler',
+                'Grapeshot Crawler',
+                'Grapeshot Limited',
+                'https://www.grapeshot.co.uk/crawler.php'
+            ),
+        );
     }
 
     /**
@@ -2466,48 +2521,83 @@ class UATable
      *
      * @return array[] Details array of Bot/Crawler
      */
-    private function detailsOfBotCrawler(string $uniqueKeyword, string $qualifiedName, string $authorName, string $authorHomeUrl): array
+    private function getDetailsOfBotCrawler(string $uniqueKeyword, string $qualifiedName, string $authorName, string $authorHomeUrl): array
+    {
+        return [$uniqueKeyword => $this->makeDetailsOfBotCrawler($qualifiedName, $authorName, $authorHomeUrl)];
+    }
+
+    /**
+     * Details group builder of Bot/Crawler.
+     *
+     * @param array $bots Unique keywords of bot/crawler for query in useragent string
+     * @param string $authorName Author/Developer name of bot/crawler
+     * @param string $authorHomeUrl Author's homepage of bot/crawler
+     *
+     * @return array[] Details array of Bot/Crawler
+     */
+    private function getDetailsOfBotCrawlerGroup(array $bots, string $authorName, string $authorHomeUrl): array
+    {
+        $details = array();
+
+        if (count($bots) > 0) {
+            foreach ($bots as $bot => $qualifiedName) {
+                $details[$bot] = $this->makeDetailsOfBotCrawler($qualifiedName, $authorName, $authorHomeUrl);
+            }
+        }
+
+        return $details;
+    }
+
+    /**
+     * Details of Bot/Crawler.
+     *
+     * @param string $qualifiedName Qualified name of bot/crawler
+     * @param string $authorName Author/Developer name of bot/crawler
+     * @param string $authorHomeUrl Author's homepage of bot/crawler
+     *
+     * @return array Details of Bot/Crawler
+     */
+    private function makeDetailsOfBotCrawler(string $qualifiedName, string $authorName, string $authorHomeUrl):array
     {
         return [
-            $uniqueKeyword => [
-                'name' => $qualifiedName,
-                'type' => 'Bot (Crawler)',
-                'ui' => 'FullTextMode',
-                'authors' => [
-                    [
-                        'name' => $authorName,
-                        'link' => $authorHomeUrl,
-                    ]
+            'name' => $qualifiedName,
+            'type' => 'Bot (Crawler)',
+            'ui' => 'FullTextMode',
+            'authors' => [
+                [
+                    'name' => $authorName,
+                    'link' => $authorHomeUrl,
                 ]
-            ]];
+            ]
+        ];
     }
 
-    protected function browserTypeWebBrowser(): array
+    protected function getBrowserTypeWebBrowsers(): array
     {
         return [];
     }
 
-    protected function browserTypeEmailClient(): array
+    protected function getBrowserTypeEmailClients(): array
     {
         return [];
     }
 
-    protected function browserTypeFeedReader(): array
+    protected function getBrowserTypeFeedReaders(): array
     {
         return [];
     }
 
-    protected function browserTypeMultimediaPlayer(): array
+    protected function getBrowserTypeMultimediaPlayers(): array
     {
         return [];
     }
 
-    protected function browserTypeOfflineBrowser(): array
+    protected function getBrowserTypeOfflineBrowsers(): array
     {
         return [];
     }
 
-    protected function browserTypeTool(): array
+    protected function getBrowserTypeTools(): array
     {
         return [];
     }

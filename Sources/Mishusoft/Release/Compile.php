@@ -60,7 +60,7 @@ use CURLFile;
 use JsonException;
 use Mishusoft\Framework\Chipsets\FileSystem;
 use Mishusoft\Framework\Chipsets\Http\CurlRequest;
-use Mishusoft\Framework\Chipsets\Media;
+use Mishusoft\Framework\Chipsets\Storage;
 
 use RuntimeException;
 use ZipArchive;
@@ -913,7 +913,7 @@ class Compile extends FileSystem
                                         [
                                             'update' => new \CURLFile(
                                                 $filename,
-                                                Media::getMimeContent($filename),
+                                                Storage::getMimeContent($filename),
                                                 pathinfo($filename, PATHINFO_BASENAME)
                                             ),
                                         ]

@@ -13,7 +13,7 @@ use Mishusoft\Framework\Chipsets\Framework;
 use Mishusoft\Framework\Chipsets\Http;
 use Mishusoft\Framework\Chipsets\Http\Browser;
 use Mishusoft\Framework\Chipsets\Http\IP;
-use Mishusoft\Framework\Chipsets\Media;
+use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Framework\Chipsets\Ui;
 use Mishusoft\Framework\Chipsets\Utility\_Array;
 use Mishusoft\Framework\Chipsets\Utility\_Debug;
@@ -140,7 +140,7 @@ class Firewall
      *
      * @var string
      */
-    private string $color = '#f22b08';
+    private static string $color = '#f22b08';
 
     /**
      * Duration
@@ -184,7 +184,6 @@ class Firewall
         $this->loadConfig();
         Logger::write('Filter request of client.');
         $this->filterHttpRequest(apache_request_headers());
-
     }//end __construct()
 
 
@@ -313,7 +312,6 @@ class Firewall
         }//end if
 
         Logger::write(sprintf('End checking read permission of %s.', self::FIREWALL_CONFIG_FILE));
-
     }//end loadConfig()
 
 
@@ -335,7 +333,6 @@ class Firewall
 
         Logger::write(sprintf('Write firewall configuration into %s.', self::FIREWALL_CONFIG_FILE));
         FileSystem::write(self::FIREWALL_CONFIG_FILE, $config);
-
     }//end createConfiguration()
 
 
@@ -415,7 +412,6 @@ class Firewall
         }//end if
 
         Logger::write('End testing whether the request array');
-
     }//end filterHttpRequest()
 
 
@@ -440,7 +436,6 @@ class Firewall
         }
 
         return false;
-
     }//end isListed()
 
 
@@ -478,7 +473,6 @@ class Firewall
             default:
             throw new Exception('Unexpected value');
         }//end switch
-
     }//end addIP()
 
 
@@ -500,7 +494,6 @@ class Firewall
                 }
             }
         }
-
     }//end removeFromList()
 
 
@@ -519,7 +512,6 @@ class Firewall
             $this->firewallConfiguration['ip'][$list][] = $ip;
             FileSystem::saveToFile(self::FIREWALL_CONFIG_FILE, _JSON::encodeToString($this->firewallConfiguration));
         }
-
     }//end updateList()
 
 
@@ -554,7 +546,7 @@ class Firewall
                     }
 
                     self::runtimeFailureUi($status, $message);
-                } else if (array_key_exists('error', $message) === true
+                } elseif (array_key_exists('error', $message) === true
                     && array_key_exists('description', $message['error']) === true
                 ) {
                     self::runtimeFailureUi($status, $message['error']);
@@ -563,7 +555,6 @@ class Firewall
                 }//end if
             }//end if
         }//end foreach
-
     }//end runtimeFailure()
 
 
@@ -584,7 +575,7 @@ class Firewall
 
         if (self::$browser->getRequestMethod() === 'OPTIONS') {
             // add welcome not for http options method
-            Media::StreamAsJson(['message' => ['type' => 'success', 'contents' => "The HTTP OPTIONS method requests permitted to communicate for $requestAddress."]]);
+            Storage::StreamAsJson(['message' => ['type' => 'success', 'contents' => "The HTTP OPTIONS method requests permitted to communicate for $requestAddress."]]);
             Logger::write("The HTTP OPTIONS method requests permitted to communicate for $requestAddress.", LOGGER_WRITE_STYLE_FULL, LOGGER_FLAG_TYPE_ACCESS);
         } else {
             Logger::write(array_key_exists('debug', $message) ? $message['debug']['description'] : $message['description']." for $requestAddress.", LOGGER_WRITE_STYLE_FULL, LOGGER_FLAG_TYPE_ACCESS);
@@ -683,7 +674,6 @@ class Firewall
 
             exit();
         }//end if
-
     }//end runtimeFailureUi()
 
 
@@ -770,7 +760,6 @@ class Firewall
                 'Device: '.$browser->getDeviceName().' ('.strtolower($browser->getDeviceArchitecture()).')'
             );
         }
-
     }//end viewVisitorInfo()
 
 
@@ -872,12 +861,7 @@ class Firewall
             )
         );
 
-        if (in_array(
-            strtolower(self::$browser->getBrowserName()),
-            $this->firewallConfiguration['browser']['banned'],
-            true
-        ) === true
-        ) {
+        if (in_array(strtolower(self::$browser->getBrowserName()), $this->firewallConfiguration['browser']['banned'], true) === true) {
             Logger::write(
                 sprintf(
                     'The client browser [%s] found in banned list.',
@@ -904,12 +888,7 @@ class Firewall
                 self::$browser->getDeviceNameFull()
             )
         );
-        if (in_array(
-            _String::lower(self::$browser->getDeviceName()),
-            $this->firewallConfiguration['device']['banned'],
-            true
-        ) === true
-        ) {
+        if (in_array(_String::lower(self::$browser->getDeviceName()), $this->firewallConfiguration['device']['banned'], true) === true) {
             Logger::write(
                 sprintf(
                     'The client device [%s] found in banned list.',
@@ -936,12 +915,7 @@ class Firewall
                 IP::getInfo('continent')
             )
         );
-        if (in_array(
-            _String::lower(IP::getInfo('continent')),
-            $this->firewallConfiguration['continent']['banned'],
-            true
-        )
-        ) {
+        if (in_array(_String::lower(IP::getInfo('continent')), $this->firewallConfiguration['continent']['banned'], true)) {
             Logger::write(
                 sprintf(
                     'The client continent [%s] found in banned list.',
@@ -963,12 +937,7 @@ class Firewall
         // End test the continent name of client.
         // Start test the country name of client.
         Logger::write('Start searching client country in banned list.');
-        if (in_array(
-            _String::lower(IP::getInfo('country')),
-            $this->firewallConfiguration['country']['banned'],
-            true
-        ) === true
-        ) {
+        if (in_array(_String::lower(IP::getInfo('country')), $this->firewallConfiguration['country']['banned'], true) === true) {
             Logger::write('The client continent found in banned list.');
             Logger::write('Firewall banned the country.');
             $this->actionStatus    = 'banned';
@@ -980,7 +949,7 @@ class Firewall
         // End test the country name of client.
         // Start test the country name of client.
         Logger::write('Start searching client city in banned list.');
-        if (in_array(_String::lower(IP::getInfo('city')), $this->firewallConfiguration['city']['banned'])) {
+        if (in_array(_String::lower(IP::getInfo('city')), $this->firewallConfiguration['city']['banned'], true)) {
             Logger::write('The client city found in banned list.');
             Logger::write('Firewall banned the city.');
             $this->actionStatus    = 'banned';
@@ -989,15 +958,23 @@ class Firewall
 
         Logger::write('End searching client city in banned list.');
 
+        // End test the city name of client.
+        // Start test the country name of client.
+        Logger::write('Start searching client browser in black list.');
         if ($this->firewallConfiguration['browser']['order'] === 'blacklist') {
             if (in_array(_String::lower(self::$browser->getBrowserName()), $this->firewallConfiguration['browser']['blacklist'], true) === true) {
+                Logger::write('The client browser found in black list.');
+                Logger::write('Firewall banned the browser.');
                 $this->actionStatus    = 'blocked';
                 $this->actionComponent = 'browser';
             }
         }
+        Logger::write('End searching client browser in banned list.');
+
+        // End test the city name of client.
 
         if ($this->firewallConfiguration['browser']['order'] === 'whitelist') {
-            if (in_array(_String::lower(self::$browser->getBrowserName()), $this->firewallConfiguration['browser']['whitelist']) === false) {
+            if (in_array(_String::lower(self::$browser->getBrowserName()), $this->firewallConfiguration['browser']['whitelist'], true) === false) {
                 $this->actionStatus    = 'blocked';
                 $this->actionComponent = 'browser';
             }
@@ -1011,63 +988,63 @@ class Firewall
         }
 
         if ($this->firewallConfiguration['ip']['order'] === 'whitelist') {
-            if (!in_array(IP::get(), $this->firewallConfiguration['ip']['whitelist'])) {
+            if (!in_array(IP::get(), $this->firewallConfiguration['ip']['whitelist'], true)) {
                 $this->actionStatus    = 'blocked';
                 $this->actionComponent = 'IP';
             }
         }
 
         if ($this->firewallConfiguration['device']['order'] === 'blacklist') {
-            if (in_array(IP::get(), $this->firewallConfiguration['device']['blacklist'])) {
+            if (in_array(IP::get(), $this->firewallConfiguration['device']['blacklist'], true)) {
                 $this->actionStatus    = 'blocked';
                 $this->actionComponent = 'device';
             }
         }
 
         if ($this->firewallConfiguration['device']['order'] === 'whitelist') {
-            if (!in_array(IP::get(), $this->firewallConfiguration['device']['whitelist'])) {
+            if (!in_array(IP::get(), $this->firewallConfiguration['device']['whitelist'], true)) {
                 $this->actionStatus    = 'blocked';
                 $this->actionComponent = 'device';
             }
         }
 
         if ($this->firewallConfiguration['continent']['order'] === 'blacklist') {
-            if (in_array(IP::get(), $this->firewallConfiguration['continent']['blacklist'])) {
+            if (in_array(IP::get(), $this->firewallConfiguration['continent']['blacklist'], true)) {
                 $this->actionStatus    = 'blocked';
                 $this->actionComponent = 'continent';
             }
         }
 
         if ($this->firewallConfiguration['continent']['order'] === 'whitelist') {
-            if (!in_array(IP::get(), $this->firewallConfiguration['continent']['whitelist'])) {
+            if (!in_array(IP::get(), $this->firewallConfiguration['continent']['whitelist'], true)) {
                 $this->actionStatus    = 'blocked';
                 $this->actionComponent = 'continent';
             }
         }
 
         if ($this->firewallConfiguration['country']['order'] === 'blacklist') {
-            if (in_array(IP::get(), $this->firewallConfiguration['country']['blacklist'])) {
+            if (in_array(IP::get(), $this->firewallConfiguration['country']['blacklist'], true)) {
                 $this->actionStatus    = 'blocked';
                 $this->actionComponent = 'country';
             }
         }
 
         if ($this->firewallConfiguration['country']['order'] === 'whitelist') {
-            if (!in_array(IP::get(), $this->firewallConfiguration['country']['whitelist'])) {
+            if (!in_array(IP::get(), $this->firewallConfiguration['country']['whitelist'], true)) {
                 $this->actionStatus    = 'blocked';
                 $this->actionComponent = 'country';
             }
         }
 
         if ($this->firewallConfiguration['city']['order'] === 'blacklist') {
-            if (in_array(IP::get(), $this->firewallConfiguration['city']['blacklist'])) {
+            if (in_array(IP::get(), $this->firewallConfiguration['city']['blacklist'], true)) {
                 $this->actionStatus    = 'blocked';
                 $this->actionComponent = 'city';
             }
         }
 
         if ($this->firewallConfiguration['city']['order'] === 'whitelist') {
-            if (!in_array(IP::get(), $this->firewallConfiguration['city']['whitelist'])) {
+            if (!in_array(IP::get(), $this->firewallConfiguration['city']['whitelist'], true)) {
                 $this->actionStatus    = 'blocked';
                 $this->actionComponent = 'city';
             }
@@ -1086,7 +1063,6 @@ class Firewall
         }
 
         Logger::write('End create http request to system for the client');
-
     }//end makeAccessRequest()
 
 
@@ -1141,7 +1117,7 @@ class Firewall
                                         )
                                     );
                                 }//end if
-                            } else if (is_writable(self::FIREWALL_LOG_FILE) === true) {
+                            } elseif (is_writable(self::FIREWALL_LOG_FILE) === true) {
                                 FileSystem::saveToFile(
                                     self::FIREWALL_LOG_FILE,
                                     _JSON::encodeToString(
@@ -1162,7 +1138,7 @@ class Firewall
                                     )
                                 );
                             }//end if
-                        } else if (is_writable(self::FIREWALL_LOG_FILE) === true) {
+                        } elseif (is_writable(self::FIREWALL_LOG_FILE) === true) {
                             FileSystem::saveToFile(
                                 self::FIREWALL_LOG_FILE,
                                 json_encode(
@@ -1175,7 +1151,7 @@ class Firewall
                                 )
                             );
                         }//end if
-                    } else if (is_writable(self::FIREWALL_LOG_FILE) === true) {
+                    } elseif (is_writable(self::FIREWALL_LOG_FILE) === true) {
                         FileSystem::saveToFile(
                             self::FIREWALL_LOG_FILE,
                             _JSON::encodeToString(
@@ -1186,13 +1162,13 @@ class Firewall
                             )
                         );
                     }//end if
-                } else if (is_writable(self::FIREWALL_LOG_FILE) === true) {
+                } elseif (is_writable(self::FIREWALL_LOG_FILE) === true) {
                     FileSystem::saveToFile(
                         self::FIREWALL_LOG_FILE,
                         _JSON::encodeToString([$this->actionStatus => $this->getNewVisitorIPBased()])
                     );
                 }//end if
-            } else if (is_writable(self::FIREWALL_LOG_FILE) === true) {
+            } elseif (is_writable(self::FIREWALL_LOG_FILE) === true) {
                 FileSystem::saveToFile(
                     self::FIREWALL_LOG_FILE,
                     _JSON::encodeToString([$this->actionStatus => $this->getNewVisitorIPBased()])
@@ -1201,12 +1177,12 @@ class Firewall
         } else {
             throw new RuntimeException('Permission denied. Unable to read '.self::FIREWALL_LOG_FILE);
         }//end if
-
     }//end storeFirewallLogs()
 
 
     /**
      * @return array[]
+     * @throws JsonException
      */
     private function getNewVisitorTimeBased(): array
     {
@@ -1224,39 +1200,39 @@ class Firewall
                 'visit-time' => Time::getToday(),
             ],
         ];
-
     }//end getNewVisitorTimeBased()
 
 
     /**
      * @return \array[][]
+     * @throws JsonException
      */
     private function getNewVisitorBrowserBased(): array
     {
         return [self::$browser->getBrowserNameFull() => $this->getNewVisitorTimeBased()];
-
     }//end getNewVisitorBrowserBased()
 
 
     /**
      * @return \array[][][]
+     * @throws JsonException
      */
     private function getNewVisitorIPBased(): array
     {
         return [IP::get() => $this->getNewVisitorBrowserBased()];
-
     }//end getNewVisitorIPBased()
 
 
     /**
      * @param string $status
+     * @throws JsonException
      */
     private function accessDefence(string $status): void
     {
         if (array_key_exists("$status-device-access-limit-filter", $this->firewallConfiguration) and $this->firewallConfiguration["$status-device-access-limit-filter"] === 'enable') {
             if (is_readable(self::FIREWALL_LOG_FILE) === true) {
                 if (!empty(file_get_contents(self::FIREWALL_LOG_FILE))) {
-                    $logs = json_decode(file_get_contents(self::FIREWALL_LOG_FILE), true);
+                    $logs = json_decode(file_get_contents(self::FIREWALL_LOG_FILE), true, 512, JSON_THROW_ON_ERROR);
                     if (is_array($logs) and count($logs) !== 0) {
                         if (array_key_exists($status, $logs)) {
                             if (is_array($logs[$status]) and array_key_exists(IP::get(), $logs[$status])) {
@@ -1264,13 +1240,15 @@ class Firewall
                                 $countdownTimes = [];
                                 foreach (array_keys($logs[$status][IP::get()]) as $browser) {
                                     foreach ($logs[$status][IP::get()][$browser] as $time => $log) {
-                                        $times = array_merge($times, [$time => $log]);
+                                        //$times = array_merge($times, [$time => $log]);
+                                        $times[$time] = $log;
                                         if (!array_key_exists(IP::get(), $this->firewallConfiguration["$status-device-count-down-time"])) {
                                             $this->firewallConfiguration["$status-device-count-down-time"][IP::get()] = '';
                                         }
 
                                         if ($time >= $this->firewallConfiguration["$status-device-count-down-time"][IP::get()]) {
-                                            $countdownTimes = array_merge($countdownTimes, [$time => $log]);
+                                            //$countdownTimes = array_merge($countdownTimes, [$time => $log]);
+                                            $countdownTimes[$time] = $log;
                                         }
                                     }
                                 }
@@ -1297,7 +1275,7 @@ class Firewall
                                             $this->last_visit_duration = intval((strtotime($now['visit-time']) - strtotime($this->firewallConfiguration["$status-device-count-down-time"][IP::get()])) / 60);
                                             if ($this->last_visit_duration >= $this->firewallConfiguration["$status-device-time-limit"]) {
                                                 $this->firewallConfiguration["$status-device-count-down-time"][IP::get()] = $now['visit-time'];
-                                                FileSystem::saveToFile(self::FIREWALL_CONFIG_FILE, json_encode($this->firewallConfiguration));
+                                                FileSystem::saveToFile(self::FIREWALL_CONFIG_FILE, json_encode($this->firewallConfiguration, JSON_THROW_ON_ERROR));
                                             } //end if
 
                                             else {
@@ -1306,7 +1284,7 @@ class Firewall
                                                 if ($this->last_visit_duration > 10) {
                                                     // preOutput("Setting previous time!!");
                                                     $this->firewallConfiguration["$status-device-count-down-time"][IP::get()] = $previous['visit-time'];
-                                                    FileSystem::saveToFile(self::FIREWALL_CONFIG_FILE, json_encode($this->firewallConfiguration));
+                                                    FileSystem::saveToFile(self::FIREWALL_CONFIG_FILE, json_encode($this->firewallConfiguration, JSON_THROW_ON_ERROR));
                                                     // preOutput($this->firewallConfiguration);
                                                 }
                                             }
@@ -1322,7 +1300,7 @@ class Firewall
                                                 $this->firewallConfiguration["$status-device-count-down-time"][IP::get()] = $previous['visit-time'];
                                             }
 
-                                            FileSystem::saveToFile(self::FIREWALL_CONFIG_FILE, json_encode($this->firewallConfiguration));
+                                            FileSystem::saveToFile(self::FIREWALL_CONFIG_FILE, json_encode($this->firewallConfiguration, JSON_THROW_ON_ERROR));
                                             // preOutput($this->firewallConfiguration["$status-device-count-down-time"]);
                                         }
                                     } //end if
@@ -1330,7 +1308,7 @@ class Firewall
                                     else {
                                         // Autoload::log("Preparing to create firewall configuration file.");
                                         if (FileSystem::IsWriteable(self::FIREWALL_CONFIG_FILE)) {
-                                            file_put_contents(self::FIREWALL_CONFIG_FILE, json_encode(self::BUILT_IN_CONFIG));
+                                            file_put_contents(self::FIREWALL_CONFIG_FILE, json_encode(self::BUILT_IN_CONFIG, JSON_THROW_ON_ERROR));
                                         }
 
                                         // load firewall configuration in runtime
@@ -1348,7 +1326,7 @@ class Firewall
                                             $this->separator = 'seconds';
                                         } //end if
 
-                                        else if ($this->firewallConfiguration["$status-device-limit-time-format"] === 'minute') {
+                                        elseif ($this->firewallConfiguration["$status-device-limit-time-format"] === 'minute') {
                                             $this->duration  = intval((strtotime($now['visit-time']) - strtotime($this->controller)) / 60);
                                             $this->separator = 'minutes';
                                         } // otherwise calculate duration as hours
@@ -1362,7 +1340,7 @@ class Firewall
                                     else {
                                         // Autoload::log("Preparing to create firewall configuration file.");
                                         if (FileSystem::IsWriteable(self::FIREWALL_CONFIG_FILE)) {
-                                            file_put_contents(self::FIREWALL_CONFIG_FILE, json_encode(self::BUILT_IN_CONFIG));
+                                            file_put_contents(self::FIREWALL_CONFIG_FILE, json_encode(self::BUILT_IN_CONFIG, JSON_THROW_ON_ERROR));
                                         }
 
                                         // load firewall configuration in runtime
@@ -1418,37 +1396,38 @@ class Firewall
                 throw new RuntimeException('Permission denied. Unable to read '.self::FIREWALL_LOG_FILE);
             }//end if
         }//end if
-
     }//end accessDefence()
 
 
+    /**
+     * @throws JsonException
+     */
     public function defenceActivate(): void
     {
         if ($this->actionStatus === 'banned' || $this->actionStatus === 'blocked') {
             if (array_key_exists('ui', self::$browser->getBrowserDetails(self::$browser->getBrowserName()))) {
                 if (_String::lower(self::$browser->getBrowserDetails(self::$browser->getBrowserName())['ui']) === _String::lower('FullTextMode')) {
                     $msg_lb        = "\n";
-                    $this->msg_tab = "\t";
+                    $this->msgTab = "\t";
                     $this->defenseMessageShow('', $msg_lb, $this->actionStatus, $this->actionComponent, 'text');
                 } else {
                     $msg_lb        = '<br/>';
-                    $this->msg_tab = '&emsp;';
-                    $this->color   = 'red';
+                    $this->msgTab = '&emsp;';
+                    self::$color   = 'red';
                     $this->defenseMessageShow('Access', $msg_lb, $this->actionStatus, $this->actionComponent, 'graphic');
                 }
             } else {
                 $msg_lb        = '<br/>';
-                $this->msg_tab = '&emsp;';
-                $this->color   = 'red';
+                $this->msgTab = '&emsp;';
+                self::$color   = 'red';
                 $this->defenseMessageShow('Access', $msg_lb, $this->actionStatus, $this->actionComponent, 'graphic');
             }
         } else {
             $msg_lb        = '<br/>';
-            $this->msg_tab = '&emsp;';
-            $this->color   = 'green';
+            $this->msgTab = '&emsp;';
+            self::$color   = 'green';
             $this->defenseMessageShow('Access', $msg_lb, 'fridge', 'browser', 'graphic');
         }//end if
-
     }//end defenceActivate()
 
 
@@ -1461,8 +1440,9 @@ class Firewall
      * @param string $status
      * @param string $component
      * @param string $viewMode
+     * @throws JsonException
      */
-    private function defenseMessageShow(string $title, string $lb, string $status, string $component, string $viewMode)
+    private function defenseMessageShow(string $title, string $lb, string $status, string $component, string $viewMode): void
     {
         if ($component === 'browser') {
             $componentText = "on $component " . self::$browser->getBrowserNameFull();
@@ -1472,9 +1452,9 @@ class Firewall
         $requestMethod  = self::$browser->getRequestMethod();
         $requestAddress = self::$browser::getVisitedPage();
 
-        if (!empty($viewMode) and is_string($viewMode)) {
+        if (!empty($viewMode) && is_string($viewMode)) {
             if (Network::requestHeader('HTTP_SEC_FETCH_MODE') === 'cors') {
-                Media::StreamAsJson(
+                Storage::StreamAsJson(
                     [
                         'message'   => [
                             'type'    => 'error',
@@ -1483,7 +1463,7 @@ class Firewall
                                 'user-agent'     => self::$browser->getUserAgent(),
                                 'request-method' => self::$browser->getRequestMethod(),
                                 'request-url'    => self::$browser::getVisitedPage(),
-                                'ip-addr'        => IP::get(),
+                                'ip-address'        => IP::get(),
                             ],
                         ],
                         'copyright' => [
@@ -1492,7 +1472,7 @@ class Firewall
                         ],
                     ]
                 );
-            } else if ($viewMode === 'text') {
+            } elseif ($viewMode === 'text') {
                 echo PHP_EOL;
                 echo " Your access has been $status $componentText. ".PHP_EOL;
                 for ($i = 0; $i <= 65; $i++) {
@@ -1506,12 +1486,13 @@ class Firewall
                 echo " IP address : $this->msgTab".IP::get().PHP_EOL;
 
                 // avoid error country capturing
+//                if (_String::lower(IP::getCountry()) !== 'unknown' || _String::lower(IP::getInfo('country')) !== 'unknown location') {
+//                    echo " Country : $this->msgTab".IP::getCountry().PHP_EOL;
+//                }
                 if (_String::lower(IP::getCountry()) !== 'unknown') {
                     echo " Country : $this->msgTab".IP::getCountry().PHP_EOL;
-                } else {
-                    if (_String::lower(IP::getInfo('country')) !== 'unknown location') {
-                        echo " Country : $this->msgTab".IP::getCountry().PHP_EOL;
-                    }
+                } elseif (_String::lower(IP::getInfo('country')) !== 'unknown location') {
+                    echo " Country : $this->msgTab".IP::getInfo('country').PHP_EOL;
                 }
 
                 // avoid error browser capturing
@@ -1529,11 +1510,14 @@ class Firewall
                 }
 
                 echo PHP_EOL;
-                echo 'Copyright © '.Time::getCurrentYearNumber().' '.Framework::COMPANY_NAME.'. All Right Reserved.'.PHP_EOL;
+                //echo 'Copyright © '.Time::getCurrentYearNumber().' '.Framework::COMPANY_NAME.'. All Right Reserved.'.PHP_EOL;
+                echo '© '.Time::getCurrentYearNumber().' '.Framework::COMPANY_NAME.'.'.PHP_EOL;
             } else {
+                self::strictProtectionView("$title $status", '','');
+                exit();
                 Ui::HtmlInterface(
                     "$title has been $status!!",
-                    function ($html, $head) use ($lb, $status, $title, $requestAddress, $requestMethod) {
+                    function ($html, $head) use ($status, $title, $requestAddress, $requestMethod) {
                         Ui::text(Ui::element($head, 'style'), 'body{margin: 0;padding: 0;display: flex;justify-content: center;align-items: center;height: 635px;}');
                         $documentBody = Ui::element($html, 'body');
                         // create html dody
@@ -1604,7 +1588,7 @@ class Firewall
                             );
                         }
 
-                        $this->viewVisitorInfo($template_body, $requestMethod, $requestAddress,self::$browser);
+                        $this->viewVisitorInfo($template_body, $requestMethod, $requestAddress, self::$browser);
                         Ui::addDefaultSignature($template_body);
                         Ui::text(
                             Ui::element($documentBody, 'script'),
@@ -1615,8 +1599,72 @@ class Firewall
                 );
             }//end if
         }//end if
-
     }//end defenseMessageShow()
+
+    public static function strictProtectionView(string $documentTitle, string $message, string $reason): void
+    {
+        // Start application web interface.
+        Ui::start();
+        Ui::setDocumentTitle(ucfirst($documentTitle) . '- Mishusoft Firewall');
+
+        $cssContent = 'body{margin: 0;padding: 0;color:black;display: flex;justify-content: center;align-items: center;height: 635px;background-color: #d3d3d357;}';
+        $cssContent .= '.application{position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);box-sizing: border-box;border-radius: 5px;-webkit-border-radius: 5px;-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);line-height:1.5;font-family: Nato Sans, sans-serif;}';
+        $cssContent .= ".application-content{display: block;margin: 0;padding: 10px 35px;text-align: left;background-color:white;width:768px;/*border: 1px solid red;*/-webkit-border-radius: 10px;border-radius: 10px}";
+        $cssContent .= ".application-content-title{color: red;padding: 5px 0px;text-transform: capitalize;font-size: 30px;font-weight: bold;font-family: Nato Sans, sans-serif;}";
+        $cssContent .= ".application-content-body{padding: 15px 0px;font-size:15px;}";
+        $cssContent .= ".application-content-body-message{padding: 15px;border: 1px solid black;border-radius: 5px;text-align: justify;background-color: #d3d3d357;-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 2px 3px rgba(0, 0, 0, 0.24);-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 2px 3px rgba(0, 0, 0, 0.24);box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 2px 3px rgba(0, 0, 0, 0.24);}";
+        $cssContent .= ".application-content-body-details-title{margin: 20px 0 10px 0;font-size: 20px;font-weight: bold;}";
+
+        //Ui::element(Ui::getDocumentHeadElement(), 'style', ['text'=>$cssContent]);
+        Ui::elementList(Ui::getDocumentHeadElement(), array('link'=> Ui::getWebFavicons()));
+
+        Ui::elementList(
+            Ui::getDocumentHeadElement(),
+            array(
+                'link' => array(
+                    array(
+                        'rel'  => 'stylesheet',
+                        'href' => Storage::toDataUri('css/font-face.css'),
+                    ),
+                ),
+                'style' => array(array('text'=>$cssContent))
+            )
+        );
+        //<link rel="icon" type="image/vnd.microsoft.icon" sizes="16x16" href="{$layoutParams.logoFolder}favicon.ico">
+
+        Ui::element(Ui::getDocumentRoot(), 'body', ['child'=>[
+            'section'=> [
+                ['class' => 'application','child'=>[
+                    'article'=> [
+                        ['class' => 'application-content','child'=>[
+                            'div'=> [
+                                ['class' => 'application-content-title','text' => ucfirst($documentTitle) . ' - Mishusoft Firewall',],
+                                ['class' => 'application-content-body','child'=>[
+                                    'div'=> [
+                                        ['class' => 'application-content-body-message','text' => 'If you are the owner (or you manage this site), please whitelist you IP or if you think this block is an error please open a support ticket and make sure to include the block details (displayed in the box below), so we can assist you to troubleshooting the issue.',],
+                                        ['class' => 'application-content-body-details-title','text' => 'Block details:',],
+                                        ['class' => 'application-content-body-details','child'=>[
+                                            'div'=> [
+                                                ['class' => 'application-content-body-details-item','text' => 'Block details',],
+                                                ['class' => 'application-content-body-details-item','text' => 'Block details:',],
+                                                ['class' => 'application-content-body-details-item','text' => 'all info',],
+                                            ]
+                                        ]],
+                                    ]
+                                ]],
+                                ['class' => 'application-content-footer','text' => 'application-footer',],
+                            ]
+                        ]]
+                    ]
+                ]]
+            ]
+        ]]);
+
+
+
+
+        Ui::display();
+    }
 
 
     /**
@@ -1625,7 +1673,6 @@ class Firewall
     public function getDuration(): string
     {
         return $this->duration;
-
     }//end getDuration()
 
 
@@ -1634,8 +1681,7 @@ class Firewall
      */
     public function getLastVisitDuration(): int
     {
-        return $this->last_visit_duration;
-
+        return $this->lastVisitDuration;
     }//end getLastVisitDuration()
 
 
@@ -1645,7 +1691,6 @@ class Firewall
     public function getController(): string
     {
         return $this->controller;
-
     }//end getController()
 
 
@@ -1655,14 +1700,10 @@ class Firewall
     public function getSeparator(): string
     {
         return $this->separator;
-
     }//end getSeparator()
 
 
     public function __destruct()
     {
-
     }//end __destruct()
-
-
 }//end class
