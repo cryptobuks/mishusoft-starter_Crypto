@@ -90,7 +90,7 @@ body {
 }
 
 .details {
-  border: 0.5px solid #00000087;
+  //border: 0.5px solid var(--gray-300);
   text-align: justify;
 
   -webkit-border-radius: .5rem;
@@ -111,20 +111,39 @@ body {
 
   &-item {
     padding: .5rem 1rem;
-    border-bottom: .5px solid var(--gray-300);
+    border-bottom: .1rem solid var(--gray-300);
     display: block;
+
+    &:focus, &:hover {
+      background-color: var(--gray-100);
+    }
+
+    &:nth-child(even) {
+      background-color: var(--gray-100);
+    }
+
 
 
     &-title {
-      display: inline-block;
+      //display: inline-block;
       width: 150px;
       font-size: 15px;
       font-weight: bold;
     }
 
     &-details {
-      display: inline-block;
+      //display: inline-block;
       font-size: 14px;
     }
   }
+}
+
+
+
+table {
+  width: 100%;
+  height: auto;
+  display: table;
+  border-collapse: collapse;
+  text-align: left
 }

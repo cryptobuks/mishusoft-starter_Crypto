@@ -1622,6 +1622,9 @@ class Firewall
         }//end if
     }//end defenseMessageShow()
 
+    /**
+     * @throws JsonException
+     */
     public static function strictProtectionView(string $documentTitle, string $message, string $reason): void
     {
         $documentTitle = ucfirst($documentTitle) . ' - Mishusoft Firewall';
@@ -1713,8 +1716,10 @@ class Firewall
                                     'div'=> [
                                         ['class' => 'message','text' => 'If you are the owner (or you manage this site), please whitelist you IP or if you think this block is an error please open a support ticket and make sure to include the block details (displayed in the box below), so we can assist you to troubleshooting the issue.',],
                                         ['class' => 'details-title','text' => 'Block details:',],
+                                    ],
+                                    'table'=> [
                                         ['class' => 'details','child'=>[
-                                            'div'=> self::getAssignableVisitorDetails()
+                                            'tr'=> self::getAssignableVisitorDetails('Unwanted Access')
                                         ]],
                                     ],
                                 ]],
@@ -1732,16 +1737,30 @@ class Firewall
         Ui::display();
     }
 
-    private static function getAssignableVisitorDetails():array
+    /**
+     * @throws JsonException
+     */
+    private static function getAssignableVisitorDetails(string $reasonOfBlock):array
     {
         $webBrowser = new Browser();
         $visitorDetails = array();
+
+        // Reason of block.
+        $visitorDetails[] = array(
+            'class'  => 'details-item',
+            'child'=>[
+                'td'=> [
+                    ['class' => 'details-item-title','text' => 'Reason :',],
+                    ['class' => 'details-item-details','text' => $reasonOfBlock,],
+                ]
+            ],
+        );
 
         // Client ip address capturing.
         $visitorDetails[] = array(
             'class'  => 'details-item',
             'child'=>[
-                'div'=> [
+                'td'=> [
                     ['class' => 'details-item-title','text' => 'Your IP :',],
                     ['class' => 'details-item-details','text' => IP::get(),],
                 ]
@@ -1752,7 +1771,7 @@ class Firewall
         $visitorDetails[] = array(
             'class'  => 'details-item',
             'child'=>[
-                'div'=> [
+                'td'=> [
                     ['class' => 'details-item-title','text' => 'URL :',],
                     ['class' => 'details-item-details','text' => $webBrowser::getVisitedPage(),],
                 ]
@@ -1763,23 +1782,73 @@ class Firewall
         $visitorDetails[] = array(
             'class'  => 'details-item',
             'child'=>[
-                'div'=> [
-                    ['class' => 'details-item-title','text' => 'URL :',],
+                'td'=> [
+                    ['class' => 'details-item-title','text' => 'User Agent :',],
                     ['class' => 'details-item-details','text' => $webBrowser->getUserAgent(),],
                 ]
             ],
         );
 
-        // Capturing the full name of browser.
-        $visitorDetails[] = array(
-            'class'  => 'details-item',
-            'child'=>[
-                'div'=> [
-                    ['class' => 'details-item-title','text' => 'URL :',],
-                    ['class' => 'details-item-details','text' => $webBrowser->getUserAgent(),],
-                ]
-            ],
-        );
+        // avoid error country capturing
+        if (_String::lower(IP::getCountry()) !== 'unknown') {
+            $visitorDetails[] = array(
+                'class'  => 'details-item',
+                'child'=>[
+                    'td'=> [
+                        ['class' => 'details-item-title','text' => 'Country :',],
+                        ['class' => 'details-item-details','text' => IP::getCountry(),],
+                    ]
+                ],
+            );
+        } elseif (_String::lower(IP::getInfo('country')) !== 'unknown location') {
+            $visitorDetails[] = array(
+                'class'  => 'details-item',
+                'child'=>[
+                    'td'=> [
+                        ['class' => 'details-item-title','text' => 'Country :',],
+                        ['class' => 'details-item-details','text' => IP::getInfo('country'),],
+                    ]
+                ],
+            );
+        } else {
+            $visitorDetails[] = array(
+                'class'  => 'details-item',
+                'child'=>[
+                    'td'=> [
+                        ['class' => 'details-item-title','text' => 'Country :',],
+                        ['class' => 'details-item-details','text' => 'Unknown',],
+                    ]
+                ],
+            );
+        }//end if
+
+        // avoid error browser capturing
+        if (_String::lower($webBrowser->getBrowserName()) !== 'unknown') {
+            $visitorDetails[] = array(
+                'class'  => 'details-item',
+                'child'=>[
+                    'td'=> [
+                        ['class' => 'details-item-title','text' => 'Browser :',],
+                        ['class' => 'details-item-details','text' => $webBrowser->getBrowserName(),],
+                    ]
+                ],
+            );
+        }
+
+        // avoid error device capturing
+        if (_String::lower($webBrowser->getDeviceName()) !== 'unknown') {
+            $visitorDetails[] = array(
+                'class'  => 'details-item',
+                'child'=>[
+                    'td'=> [
+                        ['class' => 'details-item-title','text' => 'Device :',],
+                        ['class' => 'details-item-details','text' => $webBrowser->getDeviceName().' ('.strtolower($webBrowser->getDeviceArchitecture()).')',],
+                    ]
+                ],
+            );
+        }
+
+
 
         return $visitorDetails;
     }

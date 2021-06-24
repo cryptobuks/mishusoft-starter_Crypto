@@ -74,7 +74,6 @@ body {
 }
 
 .details {
-  border: 0.5px solid #00000087;
   text-align: justify;
   -webkit-border-radius: 0.5rem;
   -moz-border-radius: 0.5rem;
@@ -90,18 +89,30 @@ body {
 }
 .details-item {
   padding: 0.5rem 1rem;
-  border-bottom: 0.5px solid var(--gray-300);
+  border-bottom: 0.1rem solid var(--gray-300);
   display: block;
 }
+.details-item:focus, .details-item:hover {
+  background-color: var(--gray-100);
+}
+.details-item:nth-child(even) {
+  background-color: var(--gray-100);
+}
 .details-item-title {
-  display: inline-block;
   width: 150px;
   font-size: 15px;
   font-weight: bold;
 }
 .details-item-details {
-  display: inline-block;
   font-size: 14px;
+}
+
+table {
+  width: 100%;
+  height: auto;
+  display: table;
+  border-collapse: collapse;
+  text-align: left;
 }
 
 /*# sourceMappingURL=app.css.map */
