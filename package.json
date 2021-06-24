@@ -55,6 +55,7 @@
     "webpack-obfuscator": "^3.3.2",
     "webpack-preprocessor": "^0.1.12",
     "webpack-preprocessor-loader": "^1.1.4",
-    "webpack-remove-empty-scripts": "^0.7.1"
+    "webpack-remove-empty-scripts": "^0.7.1",
+    "whatwg-fetch": "^3.6.2"
   }
 }

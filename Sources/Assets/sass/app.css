@@ -52,7 +52,7 @@ body {
 
 .message {
   padding: 1rem;
-  border: 1px solid var(--gray-300);
+  border: 1px solid var(--gray-400);
   text-align: justify;
   background-color: #d3d3d357;
   -webkit-border-radius: 0.5rem;

@@ -173,6 +173,7 @@ const commonFileConfig = {
         'app': [
             './Assets/sass/common/font-face.scss',
             './Assets/sass/common/colors.scss',
+            './Assets/sass/app.scss',
         ],
 
         /**

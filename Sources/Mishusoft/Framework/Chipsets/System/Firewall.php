@@ -1681,7 +1681,7 @@ class Firewall
                                 ['class' => 'application-content-title','text' => ucfirst($documentTitle) . ' - Mishusoft Firewall',],
                                 ['class' => 'application-content-body','child'=>[
                                     'div'=> [
-                                        ['class' => 'application-content-body-message','text' => 'If you are the owner (or you manage this site), please whitelist you IP or if you think this block is an error please open a support ticket and make sure to include the block details (displayed in the box below), so we can assist you to troubleshooting the issue.',],
+                                        ['class' => 'message','text' => 'If you are the owner (or you manage this site), please whitelist you IP or if you think this block is an error please open a support ticket and make sure to include the block details (displayed in the box below), so we can assist you to troubleshooting the issue.',],
                                         ['class' => 'details-title','text' => 'Block details:',],
                                         ['class' => 'details','child'=>[
                                             'div'=> [
