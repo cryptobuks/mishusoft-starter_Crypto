@@ -19,17 +19,17 @@
 /tmp/
 /vendor/
 
-# Runtime cache files
-composer.lock
-package-lock.json
-pwa.webmanifest
-robots.txt
-.env
-.env.example
-.user.ini
-.phpunit.result.cache
-.php-cs-fixer.cache
+# Runtime cache (with lock) files
+*.lock
+*-lock.json
+*.webmanifest
+*.cache
+
 .packages
+.env
+.user.ini
+
+robots.txt
 
 # Linker output
 *.map
