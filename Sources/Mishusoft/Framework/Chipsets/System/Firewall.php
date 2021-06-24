@@ -1624,9 +1624,10 @@ class Firewall
 
     public static function strictProtectionView(string $documentTitle, string $message, string $reason): void
     {
+        $documentTitle = ucfirst($documentTitle) . ' - Mishusoft Firewall';
         // Start application web interface.
         Ui::start();
-        Ui::setDocumentTitle(ucfirst($documentTitle) . '- Mishusoft Firewall');
+        Ui::setDocumentTitle($documentTitle);
 
 
 
@@ -1647,11 +1648,38 @@ class Firewall
 //        $cssContent .= ".item-details{display: inline-block;font-size: 14px;}";
 
         //Ui::element(Ui::getDocumentHeadElement(), 'style', ['text'=>$cssContent]);
-        Ui::elementList(Ui::getDocumentHeadElement(), array('link'=> Storage::getAutomatedWebFavicons()));
+        Ui::elementList(Ui::getDocumentHeadElement(), array('link'=> Storage::getAssignableWebFavicons()));
 
         Ui::elementList(
             Ui::getDocumentHeadElement(),
             array(
+                'meta' => array(
+                    array('charset' => 'UTF-8'),
+                    array(
+                        'name'    => 'viewport',
+                        'content' => 'width=device-width, initial-scale=1.0',
+                    ),
+                    array(
+                        'name'    => 'keywords',
+                        'content' => 'blocked, banned, denied',
+                    ),
+                    array(
+                        'name'    => 'company',
+                        'content' => Framework::COMPANY_NAME,
+                    ),
+                    array(
+                        'name'    => 'author',
+                        'content' => Framework::AUTHOR_NAME,
+                    ),
+                    array(
+                        'name'    => 'description',
+                        'content' => $documentTitle,
+                    ),
+                    //<meta name="keywords" content="Put your keywords here.">
+                    //<meta name="company" content="Put your company name here.">
+                    //<meta name="author" content="Put your author name here.">
+                    //<meta name="description" content="Put your description here.">
+                ),
                 'link' => array(
                     array(
                         'rel'  => 'stylesheet',
@@ -1676,24 +1704,22 @@ class Firewall
                 ['class' => 'application','child'=>[
                     'article'=> [
                         ['class' => 'application-content','child'=>[
+                            'img'=> [
+                                ['class' => 'application-content-title-icon','alt' => 'access denied','src' => Storage::toDataUri('images/icons/restriction-shield.png'),],
+                            ],
                             'div'=> [
-                                ['class' => 'application-content-title-icon','text' => ucfirst($documentTitle) . ' - Mishusoft Firewall',],
-                                ['class' => 'application-content-title','text' => ucfirst($documentTitle) . ' - Mishusoft Firewall',],
+                                ['class' => 'application-content-title','text' => $documentTitle,],
                                 ['class' => 'application-content-body','child'=>[
                                     'div'=> [
                                         ['class' => 'message','text' => 'If you are the owner (or you manage this site), please whitelist you IP or if you think this block is an error please open a support ticket and make sure to include the block details (displayed in the box below), so we can assist you to troubleshooting the issue.',],
                                         ['class' => 'details-title','text' => 'Block details:',],
                                         ['class' => 'details','child'=>[
-                                            'div'=> [
-                                                ['class' => 'details-item','text' => 'Block details',],
-                                                ['class' => 'details-item','text' => 'Block details:',],
-                                                ['class' => 'details-item','text' => 'all info',],
-                                            ]
+                                            'div'=> self::getAssignableVisitorDetails()
                                         ]],
-                                    ]
+                                    ],
                                 ]],
                                 //['class' => 'application-content-footer','text' => 'application-footer',],
-                            ]
+                            ],
                         ]]
                     ]
                 ]]
@@ -1706,66 +1732,54 @@ class Firewall
         Ui::display();
     }
 
-    private function getAutomatedVisitorDetails():array
+    private static function getAssignableVisitorDetails():array
     {
+        $webBrowser = new Browser();
         $visitorDetails = array();
 
         // Client ip address capturing.
         $visitorDetails[] = array(
-            'class'  => 'application-content-body-details-item',
+            'class'  => 'details-item',
             'child'=>[
                 'div'=> [
-                    ['class' => 'item-title','text' => 'Your IP :',],
-                    ['class' => 'item-details','text' => IP::get(),],
+                    ['class' => 'details-item-title','text' => 'Your IP :',],
+                    ['class' => 'details-item-details','text' => IP::get(),],
                 ]
             ],
         );
 
         // Current web url capturing.
         $visitorDetails[] = array(
-            'class'  => 'application-content-body-details-item',
+            'class'  => 'details-item',
             'child'=>[
                 'div'=> [
-                    ['class' => 'item-title','text' => 'URL :',],
-                    ['class' => 'item-details','text' => Browser::getVisitedPage(),],
+                    ['class' => 'details-item-title','text' => 'URL :',],
+                    ['class' => 'details-item-details','text' => $webBrowser::getVisitedPage(),],
                 ]
             ],
         );
 
         // Capturing the user agent of browser.
         $visitorDetails[] = array(
-            'class'  => 'application-content-body-details-item',
+            'class'  => 'details-item',
             'child'=>[
                 'div'=> [
-                    ['class' => 'item-title','text' => 'URL :',],
-                    ['class' => 'item-details','text' => (new Browser())->getUserAgent(),],
+                    ['class' => 'details-item-title','text' => 'URL :',],
+                    ['class' => 'details-item-details','text' => $webBrowser->getUserAgent(),],
                 ]
             ],
         );
 
         // Capturing the full name of browser.
         $visitorDetails[] = array(
-            'class'  => 'application-content-body-details-item',
+            'class'  => 'details-item',
             'child'=>[
                 'div'=> [
-                    ['class' => 'item-title','text' => 'URL :',],
-                    ['class' => 'item-details','text' => (new Browser())->getUserAgent(),],
+                    ['class' => 'details-item-title','text' => 'URL :',],
+                    ['class' => 'details-item-details','text' => $webBrowser->getUserAgent(),],
                 ]
             ],
         );
-
-
-        if (str_starts_with(pathinfo($imageFile, PATHINFO_FILENAME), 'apple-icon') === true) {
-            //    <link rel="apple-touch-icon" sizes="57x57" href="{$layoutParams.logoFolder}apple-icon-57x57.png">
-            //    /home/abir/Development/web-development/lastest.mishusoft.com/Storages/0/media/logos/apple-icon-152x152.png
-            $faviconsList[] = array(
-                'rel'  => 'apple-touch-icon',
-                'type'  => _Array::value($fileDetails, 'mime'),
-                'sizes'  => implode('x', array(_Array::value($fileDetails, 0),_Array::value($fileDetails, 1))),
-                'href' => Storage::toDataUri('logos'. DIRECTORY_SEPARATOR.pathinfo($imageFile, PATHINFO_BASENAME)),
-            );
-        }
-
 
         return $visitorDetails;
     }

@@ -71,7 +71,7 @@ if ($this->templateUse === 'no') {
     (new SEOToolKitService($this))->start();
 
 
-    Ui::elementList(Ui::getDocumentHeadElement(), array('link'=> Ui::getWebFavicons()));
+    Ui::elementList(Ui::getDocumentHeadElement(), array('link'=> Storage::getAssignableWebFavicons()));
 
     /*
         Ui::elementList($this->documentHeadElement, [

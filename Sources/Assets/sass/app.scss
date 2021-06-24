@@ -13,12 +13,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 530px;
+  height: auto;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", SourceSansPro, SolaimanLipi;
 }
 
 // *, ::before, ::after { border-width: 0;border-style: solid;border-color: rgb(232, 229, 239);border-color: var(--gray-300);';
 .application {
+  margin-top: 1rem;
   line-height: 1.5;
   padding: 2.5rem 3rem !important;
   background-color: var(--white);
@@ -38,7 +39,7 @@ body {
     /* padding: 10px 35px; */
     text-align: left;
     /* background-color: white; */
-    width: 768px;
+    width: 700px;
     /* border: 1px solid red; */
 
 
@@ -48,6 +49,18 @@ body {
       text-transform: capitalize;
       font-size: 2rem;
       font-weight: bold;
+
+      &-icon {
+        width: 30px;
+        height: 30px;
+        //border: .2rem solid;
+        float: left;
+        margin: .6rem;
+
+        -webkit-border-radius: .5rem;
+        -moz-border-radius: .5rem;
+        border-radius: .5rem;
+      }
     }
 
 

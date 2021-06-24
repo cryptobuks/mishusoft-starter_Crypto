@@ -294,7 +294,7 @@ class Storage
     }//end getLogosMediaPath()
 
 
-    public static function getAutomatedWebFavicons():array
+    public static function getAssignableWebFavicons():array
     {
         $faviconsList = array();
         $fileList = array();
