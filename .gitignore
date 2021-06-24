@@ -27,8 +27,8 @@ robots.txt
 .env
 .env.example
 .user.ini
-*.phpunit.result.cache
-*.php-cs-fixer.cache
+.phpunit.result.cache
+.php-cs-fixer.cache
 .packages
 
 # Linker output
