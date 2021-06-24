@@ -5,6 +5,7 @@ namespace Mishusoft\Framework\Chipsets;
 use Mishusoft\Framework\Chipsets\Http\Browser;
 use Mishusoft\Framework\Chipsets\Media\Mime;
 use Mishusoft\Framework\Chipsets\System\Firewall;
+use Mishusoft\Framework\Chipsets\Utility\_Array;
 use Mishusoft\Framework\Chipsets\Utility\_String;
 use Mishusoft\Framework\Chipsets\Utility\Number;
 use Mishusoft\Framework\Chipsets\Utility\Stream;
@@ -291,6 +292,72 @@ class Storage
 
         return '';
     }//end getLogosMediaPath()
+
+
+    public static function getAutomatedWebFavicons():array
+    {
+        $faviconsList = array();
+        $fileList = array();
+
+        $list = self::getFiles('media/logos');
+
+        foreach ($list as $item) {
+            if (count(self::getInformationOfImageFile($item))>0) {
+                $fileList[$item] = self::getInformationOfImageFile($item);
+            }
+        }
+
+
+        foreach ($fileList as $imageFile => $fileDetails) {
+            if (str_starts_with(pathinfo($imageFile, PATHINFO_FILENAME), 'apple-icon') === true) {
+                //    <link rel="apple-touch-icon" sizes="57x57" href="{$layoutParams.logoFolder}apple-icon-57x57.png">
+                //    /home/abir/Development/web-development/lastest.mishusoft.com/Storages/0/media/logos/apple-icon-152x152.png
+                $faviconsList[] = array(
+                    'rel'  => 'apple-touch-icon',
+                    'type'  => _Array::value($fileDetails, 'mime'),
+                    'sizes'  => implode('x', array(_Array::value($fileDetails, 0),_Array::value($fileDetails, 1))),
+                    'href' => self::toDataUri('logos'. DIRECTORY_SEPARATOR.pathinfo($imageFile, PATHINFO_BASENAME)),
+                );
+            }
+            if (str_starts_with(pathinfo($imageFile, PATHINFO_FILENAME), 'android-icon') === true) {
+                //    <link rel="icon" type="image/png" sizes="192x192" href="{$layoutParams.logoFolder}android-icon-192x192.png">
+                //    /home/abir/Development/web-development/lastest.mishusoft.com/Storages/0/media/logos/android-icon-192x192.png
+                $faviconsList[] = array(
+                    'rel'  => 'icon',
+                    'type'  => _Array::value($fileDetails, 'mime'),
+                    'sizes'  => implode('x', array(_Array::value($fileDetails, 0),_Array::value($fileDetails, 1))),
+                    'href' => self::toDataUri('logos'. DIRECTORY_SEPARATOR.pathinfo($imageFile, PATHINFO_BASENAME)),
+                );
+            }
+            if (str_starts_with(pathinfo($imageFile, PATHINFO_FILENAME), 'favicon') === true) {
+                //       <link rel="icon" type="image/png" sizes="16x16" href="{$layoutParams.logoFolder}favicon-16x16.png">
+                //    /home/abir/Development/web-development/lastest.mishusoft.com/Storages/0/media/logos/favicon-16x16.png
+
+                //        <link rel="icon" type="image/vnd.microsoft.icon" sizes="16x16" href="{$layoutParams.logoFolder}favicon.ico">
+                //    /home/abir/Development/web-development/lastest.mishusoft.com/Storages/0/media/logos/favicon.ico
+                $faviconsList[] = array(
+                    'rel'  => 'icon',
+                    'type'  => _Array::value($fileDetails, 'mime'),
+                    'sizes'  => implode('x', array(_Array::value($fileDetails, 0),_Array::value($fileDetails, 1))),
+                    'href' => self::toDataUri('logos'. DIRECTORY_SEPARATOR.pathinfo($imageFile, PATHINFO_BASENAME)),
+                );
+            }
+            if (str_starts_with(pathinfo($imageFile, PATHINFO_FILENAME), 'mishusoft-logo-lite') === true) {
+                //    <link rel="icon" type="image/webp" sizes="16x16" href="{$layoutParams.logoFolder}mishusoft-logo-lite.webp">
+                //    /home/abir/Development/web-development/lastest.mishusoft.com/Storages/0/media/logos/mishusoft-logo-lite.webp
+                $faviconsList[] = array(
+                    'rel'  => 'icon',
+                    'type'  => _Array::value($fileDetails, 'mime'),
+                    'sizes'  => implode('x', array(_Array::value($fileDetails, 0),_Array::value($fileDetails, 1))),
+                    'href' => self::toDataUri('logos'. DIRECTORY_SEPARATOR.pathinfo($imageFile, PATHINFO_BASENAME)),
+                );
+            }
+
+        }
+
+
+        return $faviconsList;
+    }
 
     public static function getInformationOfImageFile(string $filename): array
     {

@@ -1534,7 +1534,7 @@ class Firewall
                 //echo 'Copyright © '.Time::getCurrentYearNumber().' '.Framework::COMPANY_NAME.'. All Right Reserved.'.PHP_EOL;
                 echo '© '.Time::getCurrentYearNumber().' '.Framework::COMPANY_NAME.'.'.PHP_EOL;
             } else {
-                self::strictProtectionView("$title $status", '', '');
+                self::strictProtectionView("$title denied", '', '');
                 exit();
                 Ui::HtmlInterface(
                     "$title has been $status!!",
@@ -1628,16 +1628,26 @@ class Firewall
         Ui::start();
         Ui::setDocumentTitle(ucfirst($documentTitle) . '- Mishusoft Firewall');
 
-        $cssContent = 'body{margin: 0;padding: 0;color:black;display: flex;justify-content: center;align-items: center;height: 635px;background-color: #d3d3d357;}';
-        $cssContent .= '.application{position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);box-sizing: border-box;border-radius: 5px;-webkit-border-radius: 5px;-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);line-height:1.5;font-family: Nato Sans, sans-serif;}';
-        $cssContent .= ".application-content{display: block;margin: 0;padding: 10px 35px;text-align: left;background-color:white;width:768px;/*border: 1px solid red;*/-webkit-border-radius: 10px;border-radius: 10px}";
-        $cssContent .= ".application-content-title{color: red;padding: 5px 0px;text-transform: capitalize;font-size: 30px;font-weight: bold;font-family: Nato Sans, sans-serif;}";
-        $cssContent .= ".application-content-body{padding: 15px 0px;font-size:15px;}";
-        $cssContent .= ".application-content-body-message{padding: 15px;border: 1px solid black;border-radius: 5px;text-align: justify;background-color: #d3d3d357;-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 2px 3px rgba(0, 0, 0, 0.24);-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 2px 3px rgba(0, 0, 0, 0.24);box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 2px 3px rgba(0, 0, 0, 0.24);}";
-        $cssContent .= ".application-content-body-details-title{margin: 20px 0 10px 0;font-size: 20px;font-weight: bold;}";
+
+
+
+//        $cssContent = 'html{box-sizing: border-box;font-size: 14px;background-color: rgb(238, 238, 245);background-color: var(--gray-200);overflow-x: hidden;overflow-y: scroll;}';
+//        $cssContent .= 'body{margin: 0;padding: 0;color:black;display: flex;justify-content: center;align-items: center;height: 635px;font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji",SourceSansPro, SolaimanLipi;}';
+//
+//        // $cssContent .= '*, ::before, ::after { border-width: 0;border-style: solid;border-color: rgb(232, 229, 239);border-color: var(--gray-300);';
+//        $cssContent .= '.application{position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);box-sizing: border-box;border-radius: 5px;-webkit-border-radius: 5px;-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);line-height:1.5;}';
+//        $cssContent .= ".application-content{display: block;margin: 0;padding: 10px 35px;text-align: left;background-color:white;width:768px;/*border: 1px solid red;*/-webkit-border-radius: 10px;border-radius: 10px}";
+//        $cssContent .= ".application-content-title{color: red;padding: 5px 0px;text-transform: capitalize;font-size: 30px;font-weight: bold;}";
+//        $cssContent .= ".application-content-body{padding: 15px 0px;font-size:15px;}";
+//        $cssContent .= ".application-content-body-message{padding: 15px;border: 1px solid black;border-radius: 5px;text-align: justify;background-color: #d3d3d357;-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 2px 3px rgba(0, 0, 0, 0.24);-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 2px 3px rgba(0, 0, 0, 0.24);box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 2px 3px rgba(0, 0, 0, 0.24);}";
+//        $cssContent .= ".application-content-body-details-title{margin: 20px 0 10px 0;font-size: 20px;font-weight: bold;}";
+//        $cssContent .= ".application-content-body-details{border: 0.5px solid #00000087;border-radius: 5px;text-align: justify;-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);}";
+//        $cssContent .= ".application-content-body-details-item{padding: 10px 15px;border-bottom: .5px solid lightgray;display: block;}";
+//        $cssContent .= ".item-title{display: inline-block;width: 150px;font-size: 15px;font-weight: bold;}";
+//        $cssContent .= ".item-details{display: inline-block;font-size: 14px;}";
 
         //Ui::element(Ui::getDocumentHeadElement(), 'style', ['text'=>$cssContent]);
-        Ui::elementList(Ui::getDocumentHeadElement(), array('link'=> Ui::getAutomatedWebFavicons()));
+        Ui::elementList(Ui::getDocumentHeadElement(), array('link'=> Storage::getAutomatedWebFavicons()));
 
         Ui::elementList(
             Ui::getDocumentHeadElement(),
@@ -1645,10 +1655,18 @@ class Firewall
                 'link' => array(
                     array(
                         'rel'  => 'stylesheet',
-                        'href' => Storage::toDataUri('css/font-face.css'),
+                        'href' => Storage::toDataUri('css/app.css'),
                     ),
+//                    array(
+//                        'rel'  => 'stylesheet',
+//                        'href' => Storage::toDataUri('css/font-face.css'),
+//                    ),
+//                    array(
+//                        'rel'  => 'stylesheet',
+//                        'href' => Storage::toDataUri('css/colors.css'),
+//                    ),
                 ),
-                'style' => array(array('text'=>$cssContent))
+                //'style' => array(array('text'=>$cssContent))
             )
         );
         //<link rel="icon" type="image/vnd.microsoft.icon" sizes="16x16" href="{$layoutParams.logoFolder}favicon.ico">
@@ -1659,21 +1677,22 @@ class Firewall
                     'article'=> [
                         ['class' => 'application-content','child'=>[
                             'div'=> [
+                                ['class' => 'application-content-title-icon','text' => ucfirst($documentTitle) . ' - Mishusoft Firewall',],
                                 ['class' => 'application-content-title','text' => ucfirst($documentTitle) . ' - Mishusoft Firewall',],
                                 ['class' => 'application-content-body','child'=>[
                                     'div'=> [
                                         ['class' => 'application-content-body-message','text' => 'If you are the owner (or you manage this site), please whitelist you IP or if you think this block is an error please open a support ticket and make sure to include the block details (displayed in the box below), so we can assist you to troubleshooting the issue.',],
-                                        ['class' => 'application-content-body-details-title','text' => 'Block details:',],
-                                        ['class' => 'application-content-body-details','child'=>[
+                                        ['class' => 'details-title','text' => 'Block details:',],
+                                        ['class' => 'details','child'=>[
                                             'div'=> [
-                                                ['class' => 'application-content-body-details-item','text' => 'Block details',],
-                                                ['class' => 'application-content-body-details-item','text' => 'Block details:',],
-                                                ['class' => 'application-content-body-details-item','text' => 'all info',],
+                                                ['class' => 'details-item','text' => 'Block details',],
+                                                ['class' => 'details-item','text' => 'Block details:',],
+                                                ['class' => 'details-item','text' => 'all info',],
                                             ]
                                         ]],
                                     ]
                                 ]],
-                                ['class' => 'application-content-footer','text' => 'application-footer',],
+                                //['class' => 'application-content-footer','text' => 'application-footer',],
                             ]
                         ]]
                     ]
@@ -1691,10 +1710,48 @@ class Firewall
     {
         $visitorDetails = array();
 
-        //['class' => 'application-content-body-details-item','text' => IP::get(),],
+        // Client ip address capturing.
         $visitorDetails[] = array(
             'class'  => 'application-content-body-details-item',
-            'text'  => IP::get(),
+            'child'=>[
+                'div'=> [
+                    ['class' => 'item-title','text' => 'Your IP :',],
+                    ['class' => 'item-details','text' => IP::get(),],
+                ]
+            ],
+        );
+
+        // Current web url capturing.
+        $visitorDetails[] = array(
+            'class'  => 'application-content-body-details-item',
+            'child'=>[
+                'div'=> [
+                    ['class' => 'item-title','text' => 'URL :',],
+                    ['class' => 'item-details','text' => Browser::getVisitedPage(),],
+                ]
+            ],
+        );
+
+        // Capturing the user agent of browser.
+        $visitorDetails[] = array(
+            'class'  => 'application-content-body-details-item',
+            'child'=>[
+                'div'=> [
+                    ['class' => 'item-title','text' => 'URL :',],
+                    ['class' => 'item-details','text' => (new Browser())->getUserAgent(),],
+                ]
+            ],
+        );
+
+        // Capturing the full name of browser.
+        $visitorDetails[] = array(
+            'class'  => 'application-content-body-details-item',
+            'child'=>[
+                'div'=> [
+                    ['class' => 'item-title','text' => 'URL :',],
+                    ['class' => 'item-details','text' => (new Browser())->getUserAgent(),],
+                ]
+            ],
         );
 
 
@@ -1711,7 +1768,6 @@ class Firewall
 
 
         return $visitorDetails;
-        
     }
 
 
