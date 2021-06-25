@@ -615,7 +615,7 @@ class Storage
      * @param $data
      * @throws \JsonException
      */
-    public static function StreamAsJson($data)
+    public static function StreamAsJson($data): void
     {
         header('Content-type:application/json;charset=UTF-8');
         if (empty($data) === false) {

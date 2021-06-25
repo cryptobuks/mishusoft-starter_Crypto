@@ -95,12 +95,13 @@ class Ui
     }//end start()
 
 
-    public static function display(): void
+    public static function display(int $http_response_code = 200): void
     {
         switch (self::$domDocumentType) {
             case 'xml':
                 // Display the compiled xml document.
                 header('Content-Type: text/xml; charset=utf-8', true);
+                http_response_code($http_response_code);
                 echo '<?xml version="1.0" encoding="UTF-8"?>';
                 echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.sitemaps.org/schemas/sitemap/0.9 https://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">';
             break;
@@ -109,6 +110,7 @@ class Ui
             default:
                 // Display the compiled html document.
                 header('Content-Type: text/html; charset=utf-8');
+                http_response_code($http_response_code);
                 echo '<!DOCTYPE html>';
                 echo self::$domDocument->saveHTML();
             break;

@@ -92,6 +92,8 @@ class Firewall
             'blacklist' => [],
         ],
     ];
+    private static string $reasonOfBlock = '';
+    private static string $messageOfBlock = '';
 
     /**
      * Check if access request is granted, else return false
@@ -1627,28 +1629,30 @@ class Firewall
      */
     public static function strictProtectionView(string $documentTitle, string $message, string $reason): void
     {
-        $documentTitle = ucfirst($documentTitle) . ' - Mishusoft Firewall';
+        $documentTitle = sprintf('%s - Mishusoft Firewall', ucfirst($documentTitle));
+
+        // Validating reason of block action.
+        if ($message !=='') {
+            $messageOfBlock = $message;
+        } elseif (self::$messageOfBlock!=='') {
+            $messageOfBlock = self::$messageOfBlock;
+        } else {
+            $messageOfBlock = 'If you are the owner (or you manage this site), please whitelist you IP or if you think this block is an error please open a support ticket and make sure to include the block details (displayed in the box below), so we can assist you to troubleshooting the issue.';
+        }
+
+        // Validating reason of block action.
+        if ($reason !=='') {
+            $reasonOfBlock = $reason;
+        } elseif (self::$reasonOfBlock!=='') {
+            $reasonOfBlock = self::$reasonOfBlock;
+        } else {
+            $reasonOfBlock = 'Unwanted Access';
+        }
+
+
         // Start application web interface.
         Ui::start();
         Ui::setDocumentTitle($documentTitle);
-
-
-
-
-//        $cssContent = 'html{box-sizing: border-box;font-size: 14px;background-color: rgb(238, 238, 245);background-color: var(--gray-200);overflow-x: hidden;overflow-y: scroll;}';
-//        $cssContent .= 'body{margin: 0;padding: 0;color:black;display: flex;justify-content: center;align-items: center;height: 635px;font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji",SourceSansPro, SolaimanLipi;}';
-//
-//        // $cssContent .= '*, ::before, ::after { border-width: 0;border-style: solid;border-color: rgb(232, 229, 239);border-color: var(--gray-300);';
-//        $cssContent .= '.application{position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);box-sizing: border-box;border-radius: 5px;-webkit-border-radius: 5px;-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);line-height:1.5;}';
-//        $cssContent .= ".application-content{display: block;margin: 0;padding: 10px 35px;text-align: left;background-color:white;width:768px;/*border: 1px solid red;*/-webkit-border-radius: 10px;border-radius: 10px}";
-//        $cssContent .= ".application-content-title{color: red;padding: 5px 0px;text-transform: capitalize;font-size: 30px;font-weight: bold;}";
-//        $cssContent .= ".application-content-body{padding: 15px 0px;font-size:15px;}";
-//        $cssContent .= ".application-content-body-message{padding: 15px;border: 1px solid black;border-radius: 5px;text-align: justify;background-color: #d3d3d357;-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 2px 3px rgba(0, 0, 0, 0.24);-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 2px 3px rgba(0, 0, 0, 0.24);box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 2px 3px rgba(0, 0, 0, 0.24);}";
-//        $cssContent .= ".application-content-body-details-title{margin: 20px 0 10px 0;font-size: 20px;font-weight: bold;}";
-//        $cssContent .= ".application-content-body-details{border: 0.5px solid #00000087;border-radius: 5px;text-align: justify;-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);}";
-//        $cssContent .= ".application-content-body-details-item{padding: 10px 15px;border-bottom: .5px solid lightgray;display: block;}";
-//        $cssContent .= ".item-title{display: inline-block;width: 150px;font-size: 15px;font-weight: bold;}";
-//        $cssContent .= ".item-details{display: inline-block;font-size: 14px;}";
 
         //Ui::element(Ui::getDocumentHeadElement(), 'style', ['text'=>$cssContent]);
         Ui::elementList(Ui::getDocumentHeadElement(), array('link'=> Storage::getAssignableWebFavicons()));
@@ -1714,12 +1718,12 @@ class Firewall
                                 ['class' => 'application-content-title','text' => $documentTitle,],
                                 ['class' => 'application-content-body','child'=>[
                                     'div'=> [
-                                        ['class' => 'message','text' => 'If you are the owner (or you manage this site), please whitelist you IP or if you think this block is an error please open a support ticket and make sure to include the block details (displayed in the box below), so we can assist you to troubleshooting the issue.',],
+                                        ['class' => 'message','text' => $messageOfBlock,],
                                         ['class' => 'details-title','text' => 'Block details:',],
                                     ],
                                     'table'=> [
                                         ['class' => 'details','child'=>[
-                                            'tr'=> self::getAssignableVisitorDetails('Unwanted Access')
+                                            'tr'=> self::getAssignableVisitorDetails($reasonOfBlock)
                                         ]],
                                     ],
                                 ]],
