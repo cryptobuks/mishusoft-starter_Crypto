@@ -5,8 +5,9 @@ namespace Mishusoft\Framework\Chipsets\Http;
 
 use ErrorException;
 use JsonException;
+use Mishusoft\Framework\Chipsets\Exceptions\InvalidArgumentException;
+use Mishusoft\Framework\Chipsets\Exceptions\PermissionRequiredException;
 use Mishusoft\Framework\Chipsets\FileSystem;
-use Mishusoft\Framework\Chipsets\Utility\_Debug;
 use Mishusoft\Framework\Chipsets\Utility\_JSON;
 use RuntimeException;
 
@@ -19,9 +20,10 @@ class UAAnalyze extends UATable
     /**
      * UAAnalyze constructor.
      *
-     * @param  string  $userAgent  User agent string from web browser.
-     * @param  boolean $matchFound
+     * @param string $userAgent User agent string from web browser.
+     * @param boolean $matchFound
      * @throws JsonException|ErrorException Throw exception when error occurred.
+     * @throws PermissionRequiredException
      */
     public function __construct(
         public string $userAgent,
@@ -58,6 +60,7 @@ class UAAnalyze extends UATable
      *
      * @return void
      * @throws JsonException|RuntimeException Throw exception when error occurred.
+     * @throws PermissionRequiredException
      */
     private function loadBrowserData(): void
     {
@@ -68,19 +71,19 @@ class UAAnalyze extends UATable
                     if (is_writable(self::DEVICES_LIST_FILE) === true) {
                         FileSystem::saveToFile(self::DEVICES_LIST_FILE, _JSON::encodeToString($this->getDevicesList()));
                     } else {
-                        throw new RuntimeException('Permission denied. Unable to write '.self::DEVICES_LIST_FILE);
+                        throw new PermissionRequiredException('Permission required. Unable to write '.self::DEVICES_LIST_FILE);
                     }
                 }
 
                 $this->devicesList = _JSON::decodeToArray(FileSystem::read(self::DEVICES_LIST_FILE));
             } else {
-                throw new RuntimeException('Permission denied. Unable to read '.self::DEVICES_LIST_FILE);
+                throw new PermissionRequiredException('Permission required. Unable to read '.self::DEVICES_LIST_FILE);
             }
         } else {
             if (is_resource(fopen(self::DEVICES_LIST_FILE, 'wb+')) === true) {
                 FileSystem::saveToFile(self::DEVICES_LIST_FILE, _JSON::encodeToString($this->getDevicesList()));
             } else {
-                throw new RuntimeException('Permission denied. Unable to create '.self::DEVICES_LIST_FILE);
+                throw new PermissionRequiredException('Permission required. Unable to create '.self::DEVICES_LIST_FILE);
             }
 
             $this->devicesList = $this->getDevicesList();
@@ -96,13 +99,13 @@ class UAAnalyze extends UATable
                             _JSON::encodeToString($this->getDevicesArchitectureList())
                         );
                     } else {
-                        throw new RuntimeException('Permission denied. Unable to write '.self::DEVICES_ARCHITECTURE_LIST_FILE);
+                        throw new PermissionRequiredException('Permission required. Unable to write '.self::DEVICES_ARCHITECTURE_LIST_FILE);
                     }
                 }
 
                 $this->devicesArchitectureList = _JSON::decodeToArray(FileSystem::read(self::DEVICES_ARCHITECTURE_LIST_FILE));
             } else {
-                throw new RuntimeException('Permission denied. Unable to read '.self::DEVICES_ARCHITECTURE_LIST_FILE);
+                throw new PermissionRequiredException('Permission required. Unable to read '.self::DEVICES_ARCHITECTURE_LIST_FILE);
             }
         } else {
             if (is_resource(fopen(self::DEVICES_ARCHITECTURE_LIST_FILE, 'wb+')) === true) {
@@ -111,7 +114,7 @@ class UAAnalyze extends UATable
                     _JSON::encodeToString($this->getDevicesArchitectureList())
                 );
             } else {
-                throw new RuntimeException('Permission denied. Unable to create '.self::DEVICES_ARCHITECTURE_LIST_FILE);
+                throw new PermissionRequiredException('Permission required. Unable to create '.self::DEVICES_ARCHITECTURE_LIST_FILE);
             }
 
             $this->devicesArchitectureList = $this->getDevicesArchitectureList();
@@ -127,13 +130,13 @@ class UAAnalyze extends UATable
                             _JSON::encodeToString($this->getDevicesCategoryList())
                         );
                     } else {
-                        throw new RuntimeException('Permission denied. Unable to write '.self::DEVICES_CATEGORY_LIST_FILE);
+                        throw new PermissionRequiredException('Permission required. Unable to write '.self::DEVICES_CATEGORY_LIST_FILE);
                     }
                 }
 
                 $this->devicesCategoryList = _JSON::decodeToArray(FileSystem::read(self::DEVICES_CATEGORY_LIST_FILE));
             } else {
-                throw new RuntimeException('Permission denied. Unable to read '.self::DEVICES_CATEGORY_LIST_FILE);
+                throw new PermissionRequiredException('Permission required. Unable to read '.self::DEVICES_CATEGORY_LIST_FILE);
             }
         } else {
             if (is_resource(fopen(self::DEVICES_CATEGORY_LIST_FILE, 'wb+')) === true) {
@@ -142,7 +145,7 @@ class UAAnalyze extends UATable
                     _JSON::encodeToString($this->getDevicesCategoryList())
                 );
             } else {
-                throw new RuntimeException('Permission denied. Unable to create '.self::DEVICES_CATEGORY_LIST_FILE);
+                throw new PermissionRequiredException('Permission required. Unable to create '.self::DEVICES_CATEGORY_LIST_FILE);
             }
 
             $this->devicesCategoryList = $this->getDevicesCategoryList();
@@ -158,13 +161,13 @@ class UAAnalyze extends UATable
                             _JSON::encodeToString($this->getPlatformWmList())
                         );
                     } else {
-                        throw new RuntimeException('Permission denied. Unable to write '.self::DEVICES_PLATFORM_WM_NAME_LIST_FILE);
+                        throw new PermissionRequiredException('Permission required. Unable to write '.self::DEVICES_PLATFORM_WM_NAME_LIST_FILE);
                     }
                 }
 
                 $this->devicesPlatformWMNameList = _JSON::decodeToArray(FileSystem::read(self::DEVICES_PLATFORM_WM_NAME_LIST_FILE));
             } else {
-                throw new RuntimeException('Permission denied. Unable to read '.self::DEVICES_PLATFORM_WM_NAME_LIST_FILE);
+                throw new PermissionRequiredException('Permission required. Unable to read '.self::DEVICES_PLATFORM_WM_NAME_LIST_FILE);
             }
         } else {
             if (is_resource(fopen(self::DEVICES_PLATFORM_WM_NAME_LIST_FILE, 'wb+')) === true) {
@@ -173,7 +176,7 @@ class UAAnalyze extends UATable
                     _JSON::encodeToString($this->getPlatformWmList())
                 );
             } else {
-                throw new RuntimeException('Permission denied. Unable to create '.self::DEVICES_CATEGORY_LIST_FILE);
+                throw new PermissionRequiredException('Permission required. Unable to create '.self::DEVICES_CATEGORY_LIST_FILE);
             }
 
             $this->devicesPlatformWMNameList = $this->getPlatformWmList();
@@ -189,19 +192,19 @@ class UAAnalyze extends UATable
                             _JSON::encodeToString($this->getWebBrowsersList())
                         );
                     } else {
-                        throw new RuntimeException('Permission denied. Unable to write '.self::DEVICES_PLATFORM_WM_NAME_LIST_FILE);
+                        throw new PermissionRequiredException('Permission required. Unable to write '.self::DEVICES_PLATFORM_WM_NAME_LIST_FILE);
                     }
                 }
 
                 $this->webBrowserList = _JSON::decodeToArray(FileSystem::read(self::WEB_BROWSER_LIST_FILE));
             } else {
-                throw new RuntimeException('Permission denied. Unable to read '.self::WEB_BROWSER_LIST_FILE);
+                throw new PermissionRequiredException('Permission required. Unable to read '.self::WEB_BROWSER_LIST_FILE);
             }
         } else {
             if (is_resource(fopen(self::WEB_BROWSER_LIST_FILE, 'wb+')) === true) {
                 FileSystem::saveToFile(self::WEB_BROWSER_LIST_FILE, _JSON::encodeToString($this->getWebBrowsersList()));
             } else {
-                throw new RuntimeException('Permission denied. Unable to create '.self::DEVICES_CATEGORY_LIST_FILE);
+                throw new PermissionRequiredException('Permission required. Unable to create '.self::DEVICES_CATEGORY_LIST_FILE);
             }
 
             $this->webBrowserList = $this->getWebBrowsersList();
@@ -217,13 +220,13 @@ class UAAnalyze extends UATable
                             _JSON::encodeToString($this->getWebBrowserAppCodeList())
                         );
                     } else {
-                        throw new RuntimeException('Permission denied. Unable to write '.self::DEVICES_PLATFORM_WM_NAME_LIST_FILE);
+                        throw new PermissionRequiredException('Permission required. Unable to write '.self::DEVICES_PLATFORM_WM_NAME_LIST_FILE);
                     }
                 }
 
                 $this->webBrowserAppCodeNameList = _JSON::decodeToArray(FileSystem::read(self::WEB_BROWSER_APP_CODE_LIST_FILE));
             } else {
-                throw new RuntimeException('Permission denied. Unable to read '.self::WEB_BROWSER_APP_CODE_LIST_FILE);
+                throw new PermissionRequiredException('Permission required. Unable to read '.self::WEB_BROWSER_APP_CODE_LIST_FILE);
             }
         } else {
             if (is_resource(fopen(self::WEB_BROWSER_APP_CODE_LIST_FILE, 'wb+')) === true) {
@@ -232,7 +235,7 @@ class UAAnalyze extends UATable
                     _JSON::encodeToString($this->getWebBrowserAppCodeList())
                 );
             } else {
-                throw new RuntimeException('Permission denied. Unable to create '.self::DEVICES_CATEGORY_LIST_FILE);
+                throw new PermissionRequiredException('Permission required. Unable to create '.self::DEVICES_CATEGORY_LIST_FILE);
             }
 
             $this->webBrowserAppCodeNameList = $this->getWebBrowserAppCodeList();
@@ -248,13 +251,13 @@ class UAAnalyze extends UATable
                             _JSON::encodeToString($this->getWebBrowsersLayoutList())
                         );
                     } else {
-                        throw new RuntimeException('Permission denied. Unable to write '.self::DEVICES_PLATFORM_WM_NAME_LIST_FILE);
+                        throw new PermissionRequiredException('Permission required. Unable to write '.self::DEVICES_PLATFORM_WM_NAME_LIST_FILE);
                     }
                 }
 
                 $this->webBrowserLayoutList = _JSON::decodeToArray(FileSystem::read(self::WEB_BROWSER_LAYOUT_LIST_FILE));
             } else {
-                throw new RuntimeException('Permission denied. Unable to read '.self::WEB_BROWSER_APP_CODE_LIST_FILE);
+                throw new PermissionRequiredException('Permission required. Unable to read '.self::WEB_BROWSER_APP_CODE_LIST_FILE);
             }
         } else {
             if (is_resource(fopen(self::WEB_BROWSER_LAYOUT_LIST_FILE, 'wb+')) === true) {
@@ -450,10 +453,11 @@ class UAAnalyze extends UATable
     /**
      * Create pattern of regular expression string for keyword.
      *
-     * @param  string $keyword  Keyword string.
-     * @param  string $haystack
+     * @param string $keyword Keyword string.
+     * @param string $haystack
      * @return string
      * @throws ErrorException Throw exception on error.
+     * @throws InvalidArgumentException
      */
     protected function getPatternOfRegExp(string $keyword, string $haystack): string
     {
@@ -480,9 +484,10 @@ class UAAnalyze extends UATable
                 //Googlebot/2.1
                 //Googlebot/2.X
                 //Googlebot-Video/1.0
+                //Googlebot/Nutch-1.7
                 //Googlebot-Mobile/2.1
                 //Googlebot (gocrawl v0.4)
-                //Googlebot/Nutch-1.7
+                //Google Favicon
                 'googlebot'=>'/(?<name>(googlebot))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
 
                 //AhrefsBot/2.1
@@ -556,7 +561,7 @@ class UAAnalyze extends UATable
                 'alienforce'=>'/(?<name>(alienforce))\/(?<version>(\d+[.]\d+[.]\d+[.]\d+)|(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
                 // 2GDPR/1.2
                 '2gdpr'=>'/(?<name>(2gdpr))\/(?<version>(\d+[.]\d+[.]\d+[.]\d+)|(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
-                default => throw new ErrorException('Unexpected browser : '.$keyword)
+                default => throw new InvalidArgumentException('Unexpected browser : '.$keyword)
             };//end match
         }//end if
 
@@ -594,7 +599,7 @@ class UAAnalyze extends UATable
                 'u3'=>'/(?<name>(ucbrowser))\/(?<version>(\d+[.]\d+[.]\d+[.]\d+)|(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
                 'servo'=>'/(?<name>(servo))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
                 'libwww-fm'=>'/(?<name>(libwww-fm))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
-                default => throw new ErrorException('Unexpected browser : '.$keyword)
+                default => throw new InvalidArgumentException('Unexpected browser : '.$keyword)
             };//end match
         }//end if
 
@@ -602,7 +607,7 @@ class UAAnalyze extends UATable
             return match (strtolower($keyword)) {
                 // Application code of web browsers.
                     'mozilla'=>'/(?<name>(mozilla))\/(?<version>(\d+[.]\d+))/i',
-                    default => throw new ErrorException('Unexpected application code : '.$keyword)
+                    default => throw new InvalidArgumentException('Unexpected application code : '.$keyword)
             };
         }
 
@@ -617,7 +622,7 @@ class UAAnalyze extends UATable
                 'mac'=>'/(?<name>(mac))/i',
                 'android'=>'/(?<name>(android))/i',
                 'mobi'=>'/(?<name>(mobi|mobile))/i',
-                default => throw new ErrorException('Unexpected window manager : '.$keyword)
+                default => throw new InvalidArgumentException('Unexpected window manager : '.$keyword)
             };
         }
 
@@ -656,7 +661,7 @@ class UAAnalyze extends UATable
                 // Windows NT 5.0;
                 'windows 10', 'windows 2000', 'win31', 'win16', 'win32' =>'/(?<name>(windows))\s*(?<version>(nt)\s*(\d+[.]\d+)|(\d+))/i',
 
-                default => throw new ErrorException('Unexpected platform : '.$keyword)
+                default => throw new InvalidArgumentException('Unexpected platform : '.$keyword)
             };//end match
         }//end if
 
@@ -665,7 +670,7 @@ class UAAnalyze extends UATable
                 // Device of platform.
                 'iphone'=>'/(?<name>(iphone))/i',
                 'mobile'=>'/(?<name>(mobile))/i',
-                default => throw new ErrorException('Unexpected device : '.$keyword)
+                default => throw new InvalidArgumentException('Unexpected device : '.$keyword)
             };
         }//end if
 
@@ -674,7 +679,7 @@ class UAAnalyze extends UATable
             return '/(?<type>('.$this->quote(strtolower($keyword)).'))/i';
         }//end if
 
-        throw new ErrorException('Unexpected haystack : '.$haystack);
+        throw new InvalidArgumentException('Unexpected haystack : '.$haystack);
     }//end getPatternOfRegExp()
 
 
@@ -735,6 +740,7 @@ class UAAnalyze extends UATable
      *
      * @return void
      * @throws RuntimeException Throw exception on runtime error.
+     * @throws PermissionRequiredException
      */
     private function saveUserAgent(string $category): void
     {
@@ -764,6 +770,7 @@ class UAAnalyze extends UATable
      *
      * @return void
      * @throws RuntimeException Throw exception on runtime error.
+     * @throws PermissionRequiredException
      */
     private function write(string $filename): void
     {
@@ -778,7 +785,7 @@ class UAAnalyze extends UATable
             }
 
             if (exec('chmod -R 777 '.$requestedFileDirectory) === false) {
-                throw new RuntimeException(sprintf('Unable to change permission of "%s"', $requestedFileDirectory));
+                throw new PermissionRequiredException(sprintf('Unable to change permission of "%s"', $requestedFileDirectory));
             }
         }
 
@@ -805,25 +812,25 @@ class UAAnalyze extends UATable
 
                 exec('chmod -R 777 '.$filename);
             } else {
-                throw new RuntimeException('Permission denied. Unable to write or read '.$filename);
+                throw new PermissionRequiredException('Permission required. Unable to write or read '.$filename);
             }
         } else {
-            throw new RuntimeException('Permission denied. Unable to write or read '.$requestedFileDirectory);
+            throw new PermissionRequiredException('Permission required. Unable to write or read '.$requestedFileDirectory);
         }//end if
     }//end write()
 
 
     /**
-     * @param  string $keyword
+     * @param string $keyword
      * @return array
+     * @throws InvalidArgumentException
      */
     public function getBrowserDetails(string $keyword):array
     {
-        $result = '';
         if (array_key_exists($keyword, $this->getWebBrowsersList()) === true) {
             $result = $this->getWebBrowsersList()[$keyword];
         } else {
-            throw new RuntimeException('Unknown browser : '.$keyword);
+            throw new InvalidArgumentException('Unknown browser : '.$keyword);
         }
 
         return $result;

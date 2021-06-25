@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Mishusoft\Framework\Chipsets\Exception;
+namespace Mishusoft\Framework\Chipsets\Exceptions;
 
 use Exception;
 

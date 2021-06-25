@@ -2459,7 +2459,8 @@ class UATable
                 '2gdpr',
                 'https://2gdpr.com'
             ),
-            $this->getDetailsOfBotCrawlerGroup([
+            $this->getDetailsOfBotCrawlerGroup(
+                [
                 'python-requests'=> 'Python HTTP Requests Library',
                 'python-urllib'=> 'Python HTTP Url library',
                 ],
