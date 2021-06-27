@@ -1,7 +1,9 @@
 <?php
 
 
-namespace Mishusoft\Framework\Chipsets\Exceptions;
+namespace Mishusoft\Framework\Chipsets\Exceptions\RuntimeException\LogicException;
+
+use Mishusoft\Framework\Chipsets\Exceptions\RuntimeException\LogicException;
 
 /**
  * Exception thrown if a callback refers to an undefined function or if some

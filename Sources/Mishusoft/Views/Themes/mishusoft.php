@@ -34,8 +34,8 @@ if ($this->templateUse === 'no') {
     include_once $this->loadTemplateFile();
 
 
-    /*
-        attach to compile*/
+/*
+    attach to compile*/
     // attachToRun(Ui::element($html, "body"), $title, $this->request, $this->variables);
 } else {
     /*
@@ -49,18 +49,18 @@ if ($this->templateUse === 'no') {
      *     <meta http-equiv="X-UA-Compatible" content="ie=edge">
      * */
 
-    Ui::elementList(
-        Ui::getDocumentHeadElement(),
-        [
-            'meta' => [
-                ['charset' => 'UTF-8'],
-                [
-                    'name'    => 'viewport',
-                    'content' => 'width=device-width, initial-scale=1.0',
-                ],
-            ],
-        ]
-    );
+//    Ui::elementList(
+//        Ui::getDocumentHeadElement(),
+//        [
+//            'meta' => [
+//                ['charset' => 'UTF-8'],
+//                [
+//                    'name'    => 'viewport',
+//                    'content' => 'width=device-width, initial-scale=1.0',
+//                ],
+//            ],
+//        ]
+//    );
 
     /*
      * add SEO_TOOL_KIT

@@ -91,6 +91,7 @@ class SEOToolKitService
 
     /**
      *
+     * @throws \JsonException
      */
     public function start(): void
     {
@@ -181,8 +182,13 @@ class SEOToolKitService
             Ui::getDocumentHeadElement(),
             [
                 'meta' => [
-                // ["name" => "viewport", "content" => "width=device-width, initial-scale=1.0"],
-                // /*<meta name=viewport content="width=device-width, initial-scale=1">*/
+                    ['charset' => 'UTF-8'],
+                    // ["name" => "viewport", "content" => "width=device-width, initial-scale=1.0"],
+                    // /*<meta name=viewport content="width=device-width, initial-scale=1">*/
+                    [
+                        'name'    => 'viewport',
+                        'content' => 'width=device-width, initial-scale=1.0',
+                    ],
                     [
                         'http-equiv' => 'X-UA-Compatible',
                         'content'    => 'ie=edge',
@@ -284,6 +290,8 @@ class SEOToolKitService
 
     /**
      *
+     * @throws \JsonException
+     * @throws \ErrorException
      */
     private function twitterCard(): void
     {

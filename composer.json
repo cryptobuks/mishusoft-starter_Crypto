@@ -91,6 +91,7 @@
     "ext-mysqli": "*",
     "ext-intl": "*",
     "ext-gd": "*",
-    "ext-fileinfo": "*"
+    "ext-fileinfo": "*",
+    "ext-http": "*"
   }
 }

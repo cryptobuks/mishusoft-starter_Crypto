@@ -1,7 +1,9 @@
 <?php
 
 
-namespace Mishusoft\Framework\Chipsets\Exceptions;
+namespace Mishusoft\Framework\Chipsets\Exceptions\RuntimeException;
+
+use Mishusoft\Framework\Chipsets\Exceptions\RuntimeException;
 
 /**
  * Exception thrown to indicate range errors during program execution.

@@ -314,10 +314,12 @@ class UATable
         'www.mishusoft.com',
         'localhost',
     ];
+    private UATable\BrowserUATable $browser;
 
 
     public function __construct()
     {
+        $this->browser = new UATable\BrowserUATable;
     }//end __construct()
 
 
@@ -331,8 +333,8 @@ class UATable
         // Application, Bot/Crawler, Browser, Email Client, Feed Reader, Multimedia Player, Offline Browser and Tool List.
 
         return array_merge_recursive(
-            $this->getBrowserTypeApplications(),
-            $this->getBrowserTypeBotCrawlers(),
+            $this->browser->getApplications(),
+            $this->browser->getBotCrawlers(),
             [
                 /*Applications*/
                 /*'1password' => [
@@ -2398,211 +2400,6 @@ class UATable
             ]
         );
     }//end getWebBrowsersList()
-
-    /**
-     * Applications
-     *
-     * @return array[]
-     */
-    protected function getBrowserTypeApplications(): array
-    {
-        return [
-            '1password' => [
-                'name' => '1 Password',
-                'type' => 'Applications',
-                'category' => 'Password Manager',
-                'ui' => 'GraphicalMode',
-                'authors' => [
-                    [
-                        'name' => 'AgileBits Inc',
-                        'link' => 'https://1password.com/',
-                    ],
-                ],
-                'cost' => 'Trialware',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'Trialware',
-                        'link' => 'https://en.wikipedia.org/wiki/Trialware',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'WebKit',
-                        'link' => 'https://en.wikipedia.org/wiki/WebKit',
-                    ],
-                ],
-                'latest-release' => [
-                    'updates' => 'https://app-updates.agilebits.com/'
-                ],
-            ],
-        ];
-    }
-
-    /**
-     * Browser type of Bot/Crawler
-     *
-     * @return array
-     */
-    protected function getBrowserTypeBotCrawlers(): array
-    {
-        return array_merge_recursive(
-            $this->getDetailsOfBotCrawler(
-                '007ac9 crawler',
-                '007ac9 Crawler',
-                '007ac9',
-                'https://crawler.007ac9.net'
-            ),
-            $this->getDetailsOfBotCrawler(
-                '2gdpr',
-                '2gdpr Bot',
-                '2gdpr',
-                'https://2gdpr.com'
-            ),
-            $this->getDetailsOfBotCrawlerGroup(
-                [
-                'python-requests'=> 'Python HTTP Requests Library',
-                'python-urllib'=> 'Python HTTP Url library',
-                ],
-                'Python Software Foundation',
-                'https://www.python.org/psf/'
-            ),
-            $this->getDetailsOfBotCrawler(
-                'googlebot',
-                'Google Bot',
-                'Google Inc',
-                'https://www.google.com'
-            ),
-            $this->getDetailsOfBotCrawler(
-                'ahrefsbot',
-                'Ahrefs Bot',
-                'Ahrefs Pte Ltd',
-                'https://ahrefs.com/robot/'
-            ),
-            $this->getDetailsOfBotCrawler(
-                'bingbot',
-                'Bing Bot',
-                'Microsoft Corporation',
-                'https://www.bing.com/bingbot.htm'
-            ),
-            $this->getDetailsOfBotCrawler(
-                'yandexbot',
-                'Yandex Bot',
-                'Yandex LLC',
-                'https://yandex.com/bots'
-            ),
-            $this->getDetailsOfBotCrawler(
-                'dotbot',
-                'Dot Bot',
-                'SEOmoz, Inc',
-                'https://www.opensiteexplorer.org/dotbot'
-            ),
-            $this->getDetailsOfBotCrawler(
-                'baiduspider',
-                'Baidu Spider',
-                'Baidu',
-                'https://www.baidu.com/search/spider.html'
-            ),
-            $this->getDetailsOfBotCrawler(
-                'grapeshotcrawler',
-                'Grapeshot Crawler',
-                'Grapeshot Limited',
-                'https://www.grapeshot.co.uk/crawler.php'
-            ),
-        );
-    }
-
-    /**
-     * Details builder of Bot/Crawler.
-     *
-     * @param string $uniqueKeyword Unique keyword of bot/crawler for query in useragent string
-     * @param string $qualifiedName Qualified name of bot/crawler
-     * @param string $authorName Author/Developer name of bot/crawler
-     * @param string $authorHomeUrl Author's homepage of bot/crawler
-     *
-     * @return array[] Details array of Bot/Crawler
-     */
-    private function getDetailsOfBotCrawler(string $uniqueKeyword, string $qualifiedName, string $authorName, string $authorHomeUrl): array
-    {
-        return [$uniqueKeyword => $this->makeDetailsOfBotCrawler($qualifiedName, $authorName, $authorHomeUrl)];
-    }
-
-    /**
-     * Details group builder of Bot/Crawler.
-     *
-     * @param array $bots Unique keywords of bot/crawler for query in useragent string
-     * @param string $authorName Author/Developer name of bot/crawler
-     * @param string $authorHomeUrl Author's homepage of bot/crawler
-     *
-     * @return array[] Details array of Bot/Crawler
-     */
-    private function getDetailsOfBotCrawlerGroup(array $bots, string $authorName, string $authorHomeUrl): array
-    {
-        $details = array();
-
-        if (count($bots) > 0) {
-            foreach ($bots as $bot => $qualifiedName) {
-                $details[$bot] = $this->makeDetailsOfBotCrawler($qualifiedName, $authorName, $authorHomeUrl);
-            }
-        }
-
-        return $details;
-    }
-
-    /**
-     * Details of Bot/Crawler.
-     *
-     * @param string $qualifiedName Qualified name of bot/crawler
-     * @param string $authorName Author/Developer name of bot/crawler
-     * @param string $authorHomeUrl Author's homepage of bot/crawler
-     *
-     * @return array Details of Bot/Crawler
-     */
-    private function makeDetailsOfBotCrawler(string $qualifiedName, string $authorName, string $authorHomeUrl):array
-    {
-        return [
-            'name' => $qualifiedName,
-            'type' => 'Bot (Crawler)',
-            'ui' => 'FullTextMode',
-            'authors' => [
-                [
-                    'name' => $authorName,
-                    'link' => $authorHomeUrl,
-                ]
-            ]
-        ];
-    }
-
-    protected function getBrowserTypeWebBrowsers(): array
-    {
-        return [];
-    }
-
-    protected function getBrowserTypeEmailClients(): array
-    {
-        return [];
-    }
-
-    protected function getBrowserTypeFeedReaders(): array
-    {
-        return [];
-    }
-
-    protected function getBrowserTypeMultimediaPlayers(): array
-    {
-        return [];
-    }
-
-    protected function getBrowserTypeOfflineBrowsers(): array
-    {
-        return [];
-    }
-
-    protected function getBrowserTypeTools(): array
-    {
-        return [];
-    }
-
 
     /**
      * List of web browsers.

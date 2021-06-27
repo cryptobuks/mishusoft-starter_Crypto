@@ -3,7 +3,6 @@
 
 namespace Mishusoft\Framework\Chipsets\Utility;
 
-
 class _String
 {
     /**
@@ -136,4 +135,9 @@ class _String
         return '' === $needle || ('' !== $haystack && 0 === substr_compare($haystack, $needle, -strlen($needle)));
     }
 
+    public static function getClassBaseName(string $classname): ?string
+    {
+        $path = explode('\\', $classname);
+        return array_pop($path);
+    }
 }

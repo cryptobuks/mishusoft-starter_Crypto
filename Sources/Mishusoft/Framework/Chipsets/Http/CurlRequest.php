@@ -4,6 +4,8 @@
 namespace Mishusoft\Framework\Chipsets\Http;
 
 use CurlHandle;
+use Mishusoft\Framework\Chipsets\Exceptions\RuntimeException\HttpException\HttpException\RuntimeException\RuntimeException\RuntimeException\RuntimeException\LogicException\LogicException\HttpResponseException;
+use Mishusoft\Framework\Chipsets\Exceptions\RuntimeException\HttpException\HttpException\RuntimeException\RuntimeException\RuntimeException\RuntimeException\LogicException\LogicException\JsonException;
 
 /*
  * Example of use it
@@ -134,7 +136,7 @@ class CurlRequest
                 if (in_array(strtolower($parameters['method']), $this->allowedRequestMethod, true) === false) {
                     throw new \InvalidArgumentException('Invalid argument parsed. Request method must be GET or POST.');
                 }
-                
+
                 if (strtolower($parameters['method'])=== 'post') {
                     $this->requestMethod = strtoupper($parameters['method']);
                     @curl_setopt($this->ch, CURLOPT_POST, true);
@@ -201,6 +203,7 @@ class CurlRequest
 
     /**
      * @throws \JsonException
+     * @throws HttpResponseException
      */
     public static function uploadFile(string $hostUrl, array $files): array
     {
@@ -327,6 +330,9 @@ class CurlRequest
         }
     }
 
+    /**
+     * @throws HttpResponseException
+     */
     public static function response($keyword, $item, $format): string
     {
         $request = new self('https://user-agents.net/download');
@@ -354,6 +360,7 @@ class CurlRequest
     /**
      * @param string $keyword
      * @param string $validateName
+     * @throws HttpResponseException
      */
     private function validate(string $keyword, string $validateName): void
     {
@@ -363,28 +370,36 @@ class CurlRequest
                 throw new \RuntimeException('Cannot convert response to array. Response has:'.$this->getHeaderLine($keyword));
             }
         } else {
-            throw new \RuntimeException(sprintf('Response has been corrupted. Unable to find out %s.', preg_replace('[\#\/\-]', ' ', $keyword)));
+            print_r($this->getResponseHeadArray(), false);
+            throw new HttpResponseException(sprintf('Response has been corrupted. Unable to find out %s.', str_replace('-', ' ', $keyword)));
         }
     }
 
+    /**
+     * @throws HttpResponseException
+     */
     public function responseErrorCheckOut():void
     {
         if ($this->getResponseCode() !== 200) {
             [$errCode, $errMessage] = $this->getErrors();
-            throw new \RuntimeException(sprintf('Error (%d): %s', $errCode, $errMessage));
+            throw new HttpResponseException(sprintf('Error (%d): %s', $errCode, $errMessage));
         }
     }
 
+    /**
+     * @throws JsonException
+     */
     private function jsonLastErrorCheckOut(): void
     {
         if (JSON_ERROR_NONE !== json_last_error()) {
-            throw new \RuntimeException(sprintf('Error (%d) when trying to json_decode response', json_last_error()));
+            throw new JsonException(sprintf('Error (%d) when trying to json_decode response', json_last_error()));
         }
     }
 
 
     /**
-     * @throws \JsonException
+     * @throws HttpResponseException
+     * @throws JsonException|\JsonException
      */
     public function toArray(): array
     {
@@ -398,7 +413,8 @@ class CurlRequest
 
 
     /**
-     * @throws \JsonException
+     * @throws HttpResponseException
+     * @throws JsonException|\JsonException
      */
     public function toObject(): object
     {
@@ -412,7 +428,7 @@ class CurlRequest
 
 
     /**
-     * @throws \JsonException
+     * @throws JsonException | \JsonException
      */
     public function toJson(): string
     {

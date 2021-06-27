@@ -5,7 +5,7 @@ namespace Mishusoft\Framework\Chipsets\Http;
 
 use ErrorException;
 use JsonException;
-use Mishusoft\Framework\Chipsets\Exceptions\InvalidArgumentException;
+use Mishusoft\Framework\Chipsets\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Framework\Chipsets\Exceptions\PermissionRequiredException;
 use Mishusoft\Framework\Chipsets\FileSystem;
 use Mishusoft\Framework\Chipsets\Utility\_JSON;
@@ -23,7 +23,7 @@ class UAAnalyze extends UATable
      * @param string $userAgent User agent string from web browser.
      * @param boolean $matchFound
      * @throws JsonException|ErrorException Throw exception when error occurred.
-     * @throws PermissionRequiredException
+     * @throws PermissionRequiredException|InvalidArgumentException
      */
     public function __construct(
         public string $userAgent,
@@ -275,7 +275,8 @@ class UAAnalyze extends UATable
     /**
      * Analyze
      *
-     * @throws ErrorException
+     * @throws InvalidArgumentException
+     * @throws PermissionRequiredException
      */
     private function analyze(): void
     {
@@ -456,7 +457,6 @@ class UAAnalyze extends UATable
      * @param string $keyword Keyword string.
      * @param string $haystack
      * @return string
-     * @throws ErrorException Throw exception on error.
      * @throws InvalidArgumentException
      */
     protected function getPatternOfRegExp(string $keyword, string $haystack): string
@@ -478,36 +478,157 @@ class UAAnalyze extends UATable
                 //Python-urllib 2.7 ok
                 //Python-urllib 1.17 ok
                 //Python-urllib/3.5 ok
-                'python-requests', 'python-urllib'=>'/(?<name>(python-(requests|urllib)))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+                'python-requests', 'python-urllib'=>'/(?<name>(python-(requests|urllib)))(?<separator>(\s*|\/))(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
 
-                //Googlebot
-                //Googlebot/2.1
-                //Googlebot/2.X
-                //Googlebot-Video/1.0
-                //Googlebot/Nutch-1.7
-                //Googlebot-Mobile/2.1
-                //Googlebot (gocrawl v0.4)
-                //Google Favicon
-                'googlebot'=>'/(?<name>(googlebot))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+                // APIs-Google (+https://developers.google.com/webmasters/APIs-Google.html) ok
+                // FeedFetcher-Google; (+http://www.google.com/feedfetcher.html) ok
+                // AdsBot-Google (+http://www.google.com/adsbot.html) ok
+                // AppEngine-Google; (+http://code.google.com/appengine; appid: s~virustotalcloud) ok
+                'apis-google', 'feedfetcher-google', 'adsbot-google', 'appengine-google'=>'/(?<name>((apis|feedfetcher|adsbot|appengine)\-(google|googlebot)))/i',
+
+                // APIs-Google (+https://developers.google.com/webmasters/APIs-Google.html) ok
+                // Google AdSense (desktop and mobile)
+                // Mediapartners-Google ok
+                // (Various mobile device types) (compatible; Mediapartners-Google/2.1; +http://www.google.com/bot.html) ok
+                // Google StoreBot (desktop and mobile)
+                // Mozilla/5.0 (X11; Linux x86_64; Storebot-Google/1.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36  ok
+                // Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012; Storebot-Google/1.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Mobile Safari/537.36 ok
+                'duplexweb-google', 'mediapartners-google', 'storebot-google'=>'/(?<name>((duplexweb|mediapartners|storebot)-googlebot))(?<separator>(\s*|\/))(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+
+
+                // Google AdsBot Mobile Web Android
+                // Mozilla/5.0 (Linux; Android 5.0; SM-G920A) AppleWebKit (KHTML, like Gecko) Chrome Mobile Safari (compatible; AdsBot-Google-Mobile; +http://www.google.com/mobile/adsbot.html) ok
+                // Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1 (compatible; AdsBot-Google-Mobile; +http://www.google.com/mobile/adsbot.html) ok
+                // Mobile Apps Android
+                // AdsBot-Google-Mobile-Apps  ok
+                'adsbot-google-mobile', 'adsbot-google-mobile-apps'=>'/(?<name>(adsbot-google-(mobile(-apps))))/i',
+
+
+                // Googlebot Desktop
+                // Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html) ok
+                // Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Chrome/W.X.Y.Z Safari/537.36 ok
+                // Googlebot/2.1 (+http://www.google.com/bot.html) ok
+
+                // Googlebot ok
+                // Google-bot ok
+                // Googlebot/2.1 ok
+                // Googlebot/2.X ok
+                // Googlebot-Video/1.0 ok
+                // Googlebot-Mobile/2.1 ok
+                // Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/W.X.Y.Z Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html) ok
+                // Googlebot-Image/1.0 ok
+                // Googlebot-Video/1.0 ok
+                // Googlebot (gocrawl v0.4) ok
+                'googlebot','google-bot','googlebot-image','googlebot-video'=>'/(?<name>(googlebot|google\-bot|googlebot(\-(video|mobile|image))))(?<separator>(\s*|\/|\-))(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+
+
+                // Googlebot-News ok
+                // Google Read Aloud (desktop and mobile) ok
+                // google-speakr [Former agent (deprecated)] ok
+                // Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.118 Safari/537.36 (compatible; Google-Read-Aloud; +https://developers.google.com/search/docs/advanced/crawling/overview-google-crawlers) ok
+                // Mozilla/5.0 (Linux; Android 7.0; SM-G930V Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.125 Mobile Safari/537.36 (compatible; Google-Read-Aloud; +https://developers.google.com/search/docs/advanced/crawling/overview-google-crawlers) ok
+                // Googlebot Web Light ok
+                // Mozilla/5.0 (Linux; Android 4.2.1; en-us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko; googleweblight) Chrome/38.0.1025.166 Mobile Safari/535.19 ok
+                'googlebot-news', 'google-speakr', 'google-read-aloud', 'googleweblight', 'googlekeep'=>'/(?<name>(google(weblight|keep|((bot)-(news|speakr|read-aloud)))))/i',
+
+                //google favicon ok
+                //google talk ok
+                'google favicon','google talk'=>'/(?<name>(google\s*(favicon|talk)))/i',
+
+                //google favicon ok
+                //google talk ok
+                'google chrome'=>'/(?<name>(google\s*chrome))(?<separator>(\s*|\/|\-))(?<version>(\d+[.]\d+[.]\d+[.]\d+)|(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+
+                // Google ok
+                // google.com ok
+                // googal ok
+                'google','google.com','googal'=>'/(?<name>(googal|google|google(\.com)))/i',
+
+                // Google Web Preview Analytics ok
+                // Google PP Default ok
+                // google pixel ok
+                'google web preview analytics','google pp default','google pixel'=>'/(?<name>(google\s*(web preview analytics|pp default|pixel)))/i',
+
+                // GoogleAdwordsExpress ok
+                // GoogleImageProxy ok
+                // GoogleDork ok
+                'googleadwordsexpress','googleimageproxy','googledork'=>'/(?<name>(google(adwordsexpress|imageproxy|dork)))/i',
+
+
+
+                // google-cloud-sdk
+                // Google-Pwa-Bot
+                // Google-Ads-Creatives-Assistant
+                // Google-Adwords-Instant
+                // Google-Adwords-express
+                // Google-Adwords-DisplayAds
+                // Google-Adwords-DisplayAds-WebRender
+                // Google-Apps-Script
+                // Google-AMPHTML
+                // Google-Cloud-ML-Vision
+                'google-cloud-sdk','google-pwa-bot','google-ads-creatives-assistant','google-adwords-instant','google-adwords-express','google-adwords-displayads','google-adwords-displayads-webrender','google-apps-script','google-amphtml','google-cloud-ml-vision'=>'/(?<name>(google\-(adwords\-(instant|express|displayAds|displayAds\-webrender))|(cloud-sdk|pwa-bot|ads-creatives-assistant|apps\-script|amphtml|cloud\-ml\-vision)))/i',
+
+
+                //Go 1.1 package http ok
+                //Go-http-client/1.1 [ip:213.32.4.95] ok
+                //Mozilla/5.0 (compatible; Go-http-client/1.1; +centurybot9@gmail.com) ok
+                'go-http-client'=>'/(?<name>(go|go(\-http\-client)))(?<separator>(\s*|\/|\-))(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+
+
+                //GoogleEarth/7.3.1.4507(Windows;Microsoft Windows (6.2.9200.0);en;kml:2.2;client:Pro;type:default) ok
+                // GoogleAuth/1.4 (U520AS QP1A.190711.020); gzip,gzip(gfe),gzip(gfe) ok
+                // GoogleLoginService/1.3 (sugar-aums JDQ39),gzip(gfe),gzip(gfe) ok
+                'googleearth', 'googleauth', 'googleloginservice'=>'/(?<name>(google(earth|auth|loginservice)))(?<separator>(\s*|\/|\-))(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+
+
+                //GoogleStackdriverMonitoring-UptimeChecks(https://cloud.google.com/monitoring) ok
+                'googlestackdrivermonitoring-uptimechecks'=>'/(?<name>(googlestackdrivermonitoring-uptimechecks))/i',
+
+
+                // Nutch-1.7 //PENDING
+                'nutch'=>'/(?<name>(nutch))(?<separator>(\s*|\/|\-))(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
 
                 //AhrefsBot/2.1
                 'ahrefsbot'=>'/(?<name>(ahrefsbot))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
 
+                //curl/7.69.1
+                'curl'=>'/(?<name>(curl))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+
+
+                //PHP/7.3.66
+                //PHP/6.2.61
+                //PHP/6.3.03
+                //PHP/7.2.68
+                //PHP/7.3.64
+                //PHP/6.3.35
+                //PHP/6.2.29
+                //PHP/7.3.81
+                //PHP/7.2.35
+                //PHP/6.2.37
+                //php-requests/1.7
+                //PHP-Curl-Class/4.13.0 (+https://github.com/php-curl-class/php-curl-class) PHP/7.4.7 curl/7.69.1
+                'php','php-requests','php-curl-class'=>'/(?<name>(php|php\-(requests|curl\-class)))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+
+                //BOT-NAME/VERSION
                 //bingbot/2.0
-                'bingbot'=>'/(?<name>(bingbot))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
-
+                //startmebot/1.0;
                 //yandexbot/3.0
-                'yandexbot'=>'/(?<name>(yandexbot))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
-
                 //DotBot/3.0
-                'dotbot'=>'/(?<name>(dotbot))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+                //AlphaBot/3.2
+                //SemrushBot/1.2~bl
+                'bingbot','startmebot','yandexbot','dotbot','alphabot'=>'/(?<name>((bing|startme|yandex|dot|alpha)bot))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
 
                 //Baiduspider/2.0
-                'baiduspider'=>'/(?<name>(baiduspider))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
-
                 //Baiduspider/2.0
-                'grapeshotcrawler'=>'/(?<name>(grapeshotcrawler))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+                //NetcraftSurveyAgent/1.0
+                'baiduspider','grapeshotcrawler','netcraftsurveyagent'=>'/(?<name>(baiduspider|grapeshotcrawler|netcraftsurveyagent))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
 
+                // 007ac9 Crawler ok
+                // proximic ok
+                '007ac9 crawler','proximic'=>'/(?<name>(007ac9\s*crawler|proximic))/i',
+
+                //coccocbot-web/1.0
+                'coccocbot-web'=>'/(?<name>(coccocbot\-web))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
 
 
 
@@ -524,8 +645,6 @@ class UAAnalyze extends UATable
                 // Browsers.
                 // 1Password/1.2.3. ok
                 '1password'=>'/(?<name>(1password))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
-                // 007ac9 Crawler ok
-                '007ac9 crawler'=>'/(?<name>(007ac9 crawler))/i',
                 // 115Browser/8.6.1 ok
                 '115browser'=>'/(?<name>(115browser))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
                 // 1stBrowser/45.0.2454.160 ok
@@ -645,7 +764,7 @@ class UAAnalyze extends UATable
                 'android'=>'/(?<name>(android))\s*(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
                 // GoogleTV 4.0.4
                 // GoogleTV 3.2
-                'googletv'=>'/(?<name>(android))\s*(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+                'googletv'=>'/(?<name>(googletv))\s*(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
 
                 // CPU OS 11_2_6
                 // CPU iPhone OS 12_5_3
@@ -800,11 +919,11 @@ class UAAnalyze extends UATable
             $contents = file_get_contents($filename);
 
             if ($contents === '') {
-                $contents .= '"Date", "Client", "User-Agent"'.PHP_EOL;
+                $contents .= "'Date', 'Client', 'User-Agent'".PHP_EOL;
             }
 
             // $contents .= sprintf('"%s","%s","%s"', $this->timeOfToday, IP::get(), $this->userAgent).PHP_EOL;
-            $contents .= sprintf('"%s","%s","%s"', $this->timeOfToday, '127.0.0.1', $this->userAgent).PHP_EOL;
+            $contents .= sprintf("'%s','%s','%s'", $this->timeOfToday, '127.0.0.1', $this->userAgent).PHP_EOL;
 
             if (is_writable($filename) === true) {
                 fwrite($resource, $contents);
