@@ -616,7 +616,7 @@ class UAAnalyze extends UATable
                 //DotBot/3.0
                 //AlphaBot/3.2
                 //SemrushBot/1.2~bl
-                'bingbot','startmebot','yandexbot','dotbot','alphabot'=>'/(?<name>((bing|startme|yandex|dot|alpha)bot))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+                'bingbot','startmebot','yandexbot','dotbot','alphabot','semrushbot'=>'/(?<name>((bing|startme|yandex|dot|alpha|semrush)bot))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
 
                 //Baiduspider/2.0
                 //Baiduspider/2.0

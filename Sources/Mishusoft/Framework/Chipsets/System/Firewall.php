@@ -57,9 +57,9 @@ class Firewall
         ],
         'browser'                        => [
             'order'     => 'blacklist',
-            'banned'    => ['curl'],
+            'banned'    => ['curl','zmeu'],
             'whitelist' => [],
-            'blacklist' => ['curl'],
+            'blacklist' => [],
         ],
         'ip'                             => [
             'order'     => 'blacklist',

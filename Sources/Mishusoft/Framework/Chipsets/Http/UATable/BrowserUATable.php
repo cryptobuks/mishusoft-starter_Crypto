@@ -370,6 +370,18 @@ class BrowserUATable
                 'Netcraft',
                 'info@netcraft.com'
             ),
+            $this->getDetailsOfBotCrawler(
+                'SemrushBot',
+                'Semrush Bot',
+                'Semrush',
+                'https://www.semrush.com/bot.html'
+            ),
+            $this->getDetailsOfBotCrawler(
+                'ZmEu',
+                'ZmEu Scanner',
+                'Unknown',
+                'ZmEu@zmeu.eu'
+            ),
         );
     }
 
