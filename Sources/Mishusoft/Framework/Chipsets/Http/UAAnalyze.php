@@ -470,6 +470,7 @@ class UAAnalyze extends UATable
         if ($haystack === 'browser') {
             return match (strtolower($keyword)) {
                 // Bot
+
                 //python-requests/2.7.0 ok
                 //python-requests/2.2.1 CPython/2.7.6 Linux/4.19.0-13-amd64 ok
                 //python-requests/2.6.0 CPython/2.6.6 Linux/2.6.32-754.18.2.el6.x86_64 ok
@@ -606,31 +607,64 @@ class UAAnalyze extends UATable
                 //PHP/7.2.35
                 //PHP/6.2.37
                 //php-requests/1.7
-                //PHP-Curl-Class/4.13.0 (+https://github.com/php-curl-class/php-curl-class) PHP/7.4.7 curl/7.69.1
+                //PHP-Curl-Class/4.13.0
                 'php','php-requests','php-curl-class'=>'/(?<name>(php|php\-(requests|curl\-class)))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
 
                 //BOT-NAME/VERSION
-                //bingbot/2.0
                 //startmebot/1.0;
-                //yandexbot/3.0
                 //DotBot/3.0
                 //AlphaBot/3.2
                 //SemrushBot/1.2~bl
-                'bingbot','startmebot','yandexbot','dotbot','alphabot','semrushbot'=>'/(?<name>((bing|startme|yandex|dot|alpha|semrush)bot))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+                'startmebot','dotbot','alphabot','semrushbot'=>'/(?<name>((startme|dot|alpha|semrush)bot))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+
+                //bingbot/2.0
+                //BingPreview/1.0b
+                'bingbot','bingpreview'=>'/(?<name>(bing(bot|preview)))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+
+                //yandexbot/3.0
+                //YandexImages/3.0
+                'yandexbot','yandeximages'=>'/(?<name>(yandex(bot|images)))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+
+                //Mail.RU_Bot/2.0;
+                //Mail.RU_Bot/Fast/2.0
+                //Mail.RU_Bot/Favicons/2
+                //Mail.RU_Bot/Robots/2.0; +http://go.mail.ru/help/robots)
+                //Mail.RU_Bot/Img/2.0;
+                'mail.ru_bot','mail.ru_bot/fast','mail.ru_bot/favicons','mail.ru_bot/robots','mail.ru_bot/img'=>'/(?<name>(mail.ru_(bot\/(fast|favicons|robots|img)|bot)))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
 
                 //Baiduspider/2.0
-                //Baiduspider/2.0
+                //grapeshotcrawler/2.0
                 //NetcraftSurveyAgent/1.0
-                'baiduspider','grapeshotcrawler','netcraftsurveyagent'=>'/(?<name>(baiduspider|grapeshotcrawler|netcraftsurveyagent))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
-
-                // 007ac9 Crawler ok
-                // proximic ok
-                '007ac9 crawler','proximic'=>'/(?<name>(007ac9\s*crawler|proximic))/i',
-
+                // 2GDPR/1.2
                 //coccocbot-web/1.0
-                'coccocbot-web'=>'/(?<name>(coccocbot\-web))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+                //Mozilla/5.0 (compatible; Abonti/0.91 - http://www.abonti.com)
+                'baiduspider','grapeshotcrawler','netcraftsurveyagent','2gdpr','coccocbot-web','abonti'=>'/(?<name>(2gdpr|baiduspider|grapeshotcrawler|netcraftsurveyagent|abonti))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+
+                //BOT-NAME
+                // 007ac9 Crawler ok
+                // Sistrix Crawler ok
+                // proximic ok
+                // ZmEu ok
+                //    12345 MRA 5.4 (build 02647);
+                //    123456111 SEB/3.0.1 (x64)
+                //    12345'\x22\x5C'\x5C\x22);|]*%00{%0d%0a<%00>%bf%27'\xF0\x9F\x92\xA9
+                //    12345
+                //360Spider(compatible; HaosouSpider; http://www.haosou.com/help/help_3_2.html)
+                //360Spider
+                //A1 Website Analyzer
+                //Ace Explorer
+                '007ac9 crawler','sistrix crawler','proximic','zmeu','12345','360spider','a1 website analyzer','ace explorer'=>'/(?<name>(sistrix|(007ac9|sistrix)\s*crawler|proximic|zmeu|12345|360spider|a1\s+website\s+analyzer|ace\s+explorer))/i',
 
 
+
+                //    A6-Indexer/1.0 (http://www.a6corp.com/a6-web-scraping-policy/)
+                //    A6-Indexer
+                'a6-indexer'=>'/(?<name>(a6\-indexer))(?<separator>(\/))(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
+
+                //    Acoon v4.9.5 (www.acoon.de)
+                //    Acoon v4.10.1 (www.acoon.de)
+                //    Mozilla/5.0 (compatible; AcoonBot/4.12.1; +http://www.acoon.de/robot.asp)
+                'AcoonBot'=>'/(?<name>(AcoonBot))\s*(?<version>(v)\s*(\d+[.]\d+[.]\d+[.]\d+)|(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
 
 
 
@@ -678,8 +712,6 @@ class UAAnalyze extends UATable
                 'acoo-browser'=>'/(?<name>(acoo browser))/i',
                 // Alienforce/9.0.1
                 'alienforce'=>'/(?<name>(alienforce))\/(?<version>(\d+[.]\d+[.]\d+[.]\d+)|(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
-                // 2GDPR/1.2
-                '2gdpr'=>'/(?<name>(2gdpr))\/(?<version>(\d+[.]\d+[.]\d+[.]\d+)|(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
                 default => throw new InvalidArgumentException('Unexpected browser : '.$keyword)
             };//end match
         }//end if
