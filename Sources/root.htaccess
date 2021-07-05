@@ -1,0 +1,21 @@
+#https://httpd.apache.org/docs/trunk/rewrite/intro.html
+#https://httpd.apache.org/docs/trunk/howto/htaccess.html
+#https://httpd.apache.org/docs/trunk/mod/mod_rewrite.html#rewritebase
+
+<IfModule mod_rewrite.c>
+    # RewriteEngine turn on
+    RewriteEngine On
+
+    # Redirect to public folder [root://public]
+
+    # We replace domain.com/$1 with domain.com/public.
+    RewriteRule ^(.*)$ public_html/$1 [L,R=301]
+
+    # Rewrite Rules set
+    # RewriteRule ^ index.php [L]
+    # RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+
+    # Rewrite /foo/bar to /foo/bar.php
+    # RewriteRule ^([^.?]+)$.mfw %{REQUEST_URI} [L]
+
+</IfModule>

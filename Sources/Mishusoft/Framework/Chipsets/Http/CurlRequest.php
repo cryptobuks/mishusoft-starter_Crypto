@@ -4,8 +4,8 @@
 namespace Mishusoft\Framework\Chipsets\Http;
 
 use CurlHandle;
-use Mishusoft\Framework\Chipsets\Exceptions\RuntimeException\HttpException\HttpException\RuntimeException\RuntimeException\RuntimeException\RuntimeException\LogicException\LogicException\HttpResponseException;
-use Mishusoft\Framework\Chipsets\Exceptions\RuntimeException\HttpException\HttpException\RuntimeException\RuntimeException\RuntimeException\RuntimeException\LogicException\LogicException\JsonException;
+use Mishusoft\Framework\Chipsets\Exceptions\HttpException\HttpResponseException;
+use Mishusoft\Framework\Chipsets\Exceptions\JsonException;
 
 /*
  * Example of use it

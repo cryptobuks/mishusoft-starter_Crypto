@@ -105,6 +105,13 @@ html:root {
   --dark-shadow-default: "0 2px 0 var(--gray-50), 2px 4px 0 var(--gray-0)";
   --dark-shadow-lg: "0 2px 0 var(--gray-100), 2px 4px 0 var(--gray-50), 4px 6px 0 var(--gray-0)";
   --dark-shadow-input: "inset 0 2px 0 var(--gray-100)";
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", SourceSansPro, SolaimanLipi;
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
 }
 
 /*# sourceMappingURL=colors.css.map */

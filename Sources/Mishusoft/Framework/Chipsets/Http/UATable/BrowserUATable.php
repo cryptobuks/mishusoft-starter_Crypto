@@ -62,9 +62,9 @@ class BrowserUATable
         return array_merge_recursive(
             $this->getDetailsOfBotCrawlerGroup(
                 [
-                    '007ac9 crawler'=> '007ac9 Crawler',
-                    'Sistrix Crawler'=> 'Sistrix Crawler',
-                    ],
+                    '007ac9 crawler' => '007ac9 Crawler',
+                    'Sistrix Crawler' => 'Sistrix Crawler',
+                ],
                 '007ac9',
                 'https://crawler.007ac9.net'
             ),
@@ -393,8 +393,8 @@ class BrowserUATable
             ),
             $this->getDetailsOfBotCrawlerGroup(
                 [
-                    'YandexBot'=> 'Yandex Bot',
-                    'YandexImages'=> 'Yandex Images',
+                    'YandexBot' => 'Yandex Bot',
+                    'YandexImages' => 'Yandex Images',
                 ],
                 'Yandex LLC',
                 'https://yandex.com/bots'
@@ -437,11 +437,11 @@ class BrowserUATable
             ),
             $this->getDetailsOfBotCrawlerGroup(
                 [
-                    'Mail.RU_Bot'=> 'Mail.Ru Bot',
-                    'Mail.RU_Bot/Fast'=> 'Mail.Ru Bot Fast',
-                    'Mail.RU_Bot/Favicons'=> 'Mail.Ru Bot Favicons',
-                    'Mail.RU_Bot/Robots'=> 'Mail.Ru Bot Robots',
-                    'Mail.RU_Bot/Img'=> 'Mail.Ru Bot Img',
+                    'Mail.RU_Bot' => 'Mail.Ru Bot',
+                    'Mail.RU_Bot/Fast' => 'Mail.Ru Bot Fast',
+                    'Mail.RU_Bot/Favicons' => 'Mail.Ru Bot Favicons',
+                    'Mail.RU_Bot/Robots' => 'Mail.Ru Bot Robots',
+                    'Mail.RU_Bot/Img' => 'Mail.Ru Bot Img',
                 ],
                 'Mail.Ru Group',
                 'https://go.mail.ru/help/robots'
@@ -459,7 +459,7 @@ class BrowserUATable
      *
      * @return array[] Details array of Bot/Crawler
      */
-    private function getDetailsOfBotCrawler(string $uniqueKeyword, string $qualifiedName, string $authorName, string $authorHomeUrl): array
+    private function getDetailsOfBotCrawler(int|string $uniqueKeyword, string $qualifiedName, string $authorName, string $authorHomeUrl): array
     {
         return [$uniqueKeyword => $this->makeDetailsOfBotCrawler($qualifiedName, $authorName, $authorHomeUrl)];
     }

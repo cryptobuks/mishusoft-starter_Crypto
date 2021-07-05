@@ -32,13 +32,13 @@ class RuntimeErrors extends Exception
      * @param string  $trace
      */
     public function __construct(
-        string $message='',
-        int $code=0,
-        int $severity=1,
-        string $filename=__FILE__,
-        int $lineno=__LINE__,
-        string $trace='',
-        string $objectName=''
+        string $message = '',
+        int $code = 0,
+        int $severity = 1,
+        string $filename = __FILE__,
+        int $lineno = __LINE__,
+        string $trace = '',
+        string $objectName = ''
     ) {
         parent::__construct();
         $this->message  = $message;
@@ -61,6 +61,7 @@ class RuntimeErrors extends Exception
         }
 
         echo sprintf('<title>%s</title>', $titleOfErrorMessage);
+        //echo $_SERVER['HTTP_USER_AGENT'];
 
 
         echo '<br/><article style="margin: 0;padding: 5px;border: 1px solid lightgray;border-radius: 5px;background-color: #f4f4f4;">';

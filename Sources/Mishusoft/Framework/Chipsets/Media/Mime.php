@@ -2,9 +2,8 @@
 
 namespace Mishusoft\Framework\Chipsets\Media;
 
-use Mishusoft\Framework\DataObjects\MediaMimeDataObject;
 
-class Mime extends MediaMimeDataObject
+class Mime extends MimeDataObject
 {
 
 
@@ -16,7 +15,6 @@ class Mime extends MediaMimeDataObject
     public static function getApplications(): array
     {
         return self::Applications;
-
     }//end getApplications()
 
 
@@ -28,7 +26,6 @@ class Mime extends MediaMimeDataObject
     public static function getAudios(): array
     {
         return self::Audio;
-
     }//end getAudios()
 
 
@@ -40,7 +37,6 @@ class Mime extends MediaMimeDataObject
     public static function getFonts(): array
     {
         return self::Font;
-
     }//end getFonts()
 
 
@@ -52,7 +48,6 @@ class Mime extends MediaMimeDataObject
     public static function getImages(): array
     {
         return self::Image;
-
     }//end getImages()
 
 
@@ -64,7 +59,6 @@ class Mime extends MediaMimeDataObject
     public static function getMessages(): array
     {
         return self::Message;
-
     }//end getMessages()
 
 
@@ -76,7 +70,6 @@ class Mime extends MediaMimeDataObject
     public static function getModels(): array
     {
         return self::Model;
-
     }//end getModels()
 
 
@@ -88,7 +81,6 @@ class Mime extends MediaMimeDataObject
     public static function getMultipart(): array
     {
         return self::Multipart;
-
     }//end getMultipart()
 
 
@@ -100,7 +92,6 @@ class Mime extends MediaMimeDataObject
     public static function getTexts(): array
     {
         return self::Text;
-
     }//end getTexts()
 
 
@@ -112,7 +103,6 @@ class Mime extends MediaMimeDataObject
     public static function getVideos(): array
     {
         return self::Video;
-
     }//end getVideos()
 
 
@@ -124,7 +114,6 @@ class Mime extends MediaMimeDataObject
     public static function getCommon(): array
     {
         return self::Common;
-
     }//end getCommon()
 
 
@@ -136,8 +125,5 @@ class Mime extends MediaMimeDataObject
     public static function getAll(): array
     {
         return self::All;
-
     }//end getAll()
-
-
 }//end class

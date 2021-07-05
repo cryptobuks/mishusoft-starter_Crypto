@@ -57,6 +57,9 @@
     "update:test:widgets.components": "php ./Sources/Release.php -test-widgets -s ./Sources/Mishusoft/Views/Widgets -d /srv/http/Mishusoft/Widgets/Views",
     "update:test:packages.components": "php ./Sources/Release.php -static -s ./Sources/Mishusoft/Views/Templates/Packages -d /srv/http/Packages",
 
+    "test:user.agent": "php tests/user-agent-test.php > user.agent.log",
+    "test:download:user.agent": "php tests/user-agent-download.php",
+
 
     "copy:storages.all": "php ./Sources/Release.php -copy -s ./Storages/ -d /srv/http/Storages/",
     "copy:assests": "php ./Sources/Release.php -copy -s ./Storages/0/assets -d /srv/http/Storages/0/assets",
@@ -64,7 +67,10 @@
     "copy:errors.page": "php ./Sources/Release.php -copy -s ./Sources/Mishusoft/Views/Errors/SHtml -d /srv/http/Mishusoft/Errors",
     "copy:geoip-db": "sudo -S geoipupdate && sudo cp -r /var/lib/GeoIP ./Storages/0/GeoIP",
 
-    "start:server.dev": "php -S localhost:8080",
+    "start:server.dev": [
+      "Composer\\Config::disableProcessTimeout",
+      "php -S localhost:8080 server.php"
+    ],
 
     "phpcs": "phpcs",
     "phpcbf": "phpcbf"
@@ -91,7 +97,6 @@
     "ext-mysqli": "*",
     "ext-intl": "*",
     "ext-gd": "*",
-    "ext-fileinfo": "*",
-    "ext-http": "*"
+    "ext-fileinfo": "*"
   }
 }
