@@ -3,10 +3,14 @@
 
 namespace Mishusoft\Framework\Chipsets\Http\UAAnalyzer\IdentifiersCollection;
 
-class DevicesIdentifiersCollection
+use Mishusoft\Framework\Chipsets\Exceptions\RuntimeException;
+use Mishusoft\Framework\Chipsets\Http\UAAnalyzer\Collection;
+
+class DevicesIdentifiersCollection extends Collection
 {
     public function __construct()
     {
+        parent::__construct();
     }
 
     public function all(): array
@@ -85,6 +89,17 @@ class DevicesIdentifiersCollection
             'mobi' => 'Mobile',
         ];
     }//end getCategories()
+
+    /**
+     * List of devices architecture
+     *
+     * @return array
+     * @throws RuntimeException
+     */
+    public function architecturesAll():array
+    {
+        return $this->extractArchitectures($this->query('devices', 'architectures'));
+    }
 
 
     /**

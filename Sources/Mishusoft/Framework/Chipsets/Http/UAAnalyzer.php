@@ -11,6 +11,7 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
 {
     private UAAnalyzer\IdentifiersCollection $identifiers;
     private UAAnalyzer\PatternsCollection $patterns;
+    private UAAnalyzer\InformationCollection $resources;
 
     private int $timeOfExecution;
 
@@ -19,7 +20,6 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
      *
      * @param string $userAgent User agent string from web browser.
      * @param boolean $matchFound
-     * @throws PermissionRequiredException|InvalidArgumentException
      * @throws RuntimeException
      */
     public function __construct(
@@ -30,10 +30,7 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
         $this->timeOfExecution = time();
         $this->identifiers = new UAAnalyzer\IdentifiersCollection();
         $this->patterns = new UAAnalyzer\PatternsCollection();
-
-        //$this->collectUA('development');
-        //$this->loadBrowserData();
-        //$this->analyze();
+        $this->resources = new UAAnalyzer\InformationCollection();
     }//end __construct()
 
 
@@ -49,40 +46,35 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
         $this->collectUA('development');
         $cleanUA = $this->cleanUA($this->userAgent, $this->identifiers->browsers->knownBrowserAliases());
         $webBrowserIdentifiers = $this->identifiers->browsers->all();
-        // first step
-        // Detecting browser details from user agent.
-        foreach ($webBrowserIdentifiers as $identifier => $detailsInformation) {
-            if (preg_match($this->patterns->browsers->webBrowser($identifier), $cleanUA, $matches) === 1) {
+        foreach ($webBrowserIdentifiers as $identifier) {
+            if (preg_match($this->patterns->browsers->webBrowserMatch($identifier), $cleanUA, $matches) === 1) {
                 $this->matchFound = true;
+                $details = $this->cleanFilter($matches);
                 // Known browser detected.
                 //echo 'WEB BROWSER DETECTED.'.PHP_EOL;
                 //print_r($identifier.PHP_EOL, false);
-                //print_r($detailsInformation, false);
-                //print_r($webBrowser, false).PHP_EOL;
-                //echo $this->patterns->browsers->webBrowser($identifier).PHP_EOL;
-                $details = $this->cleanFilter($matches);
-                print_r($details, false);
+                //echo $this->patterns->browsers->webBrowserMatch($identifier).PHP_EOL;
+                //print_r($details, false);
                 $this->browserName = ucfirst($details['name']);
                 $this->browserNameFull = $this->cleanImplode($details);
                 if (array_key_exists('version', $details) === true) {
                     $this->browserVersionFull = $details['version'];
                     $this->browserVersion = $this->versionOrigin($details['version']);
                 }
-
-                // $this->browserInfoAll = $this->getBrowserDetails($webBrowser);
-
-                //print_r($details, false);
-                //  print_r($this->cleanFilter($details), false);
+                $browserDetails = $this->resources->browsers->browserDetails($identifier);
+                $this->browserType = $browserDetails['type'];
+                $this->browserUi = $browserDetails['ui'];
+                $this->more = $browserDetails;
 
                 // Second step.
                 // Detecting app parents of web browser from user agent.
-                foreach ($this->identifiers->browsers->parents() as $key => $value) {
-                    if (preg_match($this->patterns->browsers->compatibility($key), $cleanUA, $matches) === 1) {
+                foreach ($this->identifiers->browsers->compatibilitiesAll() as $compatible) {
+                    if (preg_match($this->patterns->browsers->compatibility($compatible), $cleanUA, $matches) === 1) {
                         $details = $this->cleanFilter($matches);
 
-                        // echo 'APP CODE OF WEB BROWSER DETECTED.'.PHP_EOL;
-                        //print_r($key.PHP_EOL, false);
-                        //print_r($this->patterns->browsers->compatibility($key).PHP_EOL, false);
+                        //echo 'APP CODE OF WEB BROWSER DETECTED.'.PHP_EOL;
+                        // print_r($compatible.PHP_EOL, false);
+                        // print_r($this->patterns->browsers->compatibilityMatch($compatible).PHP_EOL, false);
                         // print_r($details, false);
                         $this->browserAppCodeName = $details['name'];
                         $this->browserAppCodeVersion = $this->versionOrigin($details['version']);
@@ -93,12 +85,13 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
 
                 // Third step.
                 // Detecting rendering engine from user agent.
-                foreach ($this->identifiers->browsers->layouts() as $key => $value) {
-                    if (preg_match($this->patterns->browsers->renderingEngine($key), $cleanUA, $matches) === 1) {
+                foreach ($this->identifiers->browsers->browserEnginesAll() as $engine) {
+                    if (preg_match($this->patterns->browsers->browserEngine($engine), $cleanUA, $matches) === 1) {
                         $details = $this->cleanFilter($matches);
                         $this->browserEngineName = $details['name'];
                         $this->browserEngineNameFull = $this->cleanImplode($details);
-                        $this->browserEngineVersion = $this->cleanContent($details['version']);
+                        $this->browserEngineVersion = $this->versionOrigin($details['version']);
+                        $this->browserEngineVersionFull = $this->cleanContent($details['version']);
 
                         //  echo 'RENDERING ENGINE OF WEB BROWSER DETECTED.'.PHP_EOL;
 
@@ -109,10 +102,10 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
 
                 // Fourth step.
                 // Detecting platform and device architecture from user agent.
-                foreach (array_reverse($this->identifiers->devices->architectures()) as $key => $value) {
-                    if (preg_match($this->patterns->devices->architecture($key), $cleanUA, $matches) === 1) {
-                        $this->browserArchitecture = $value;
-                        $this->platformArchitecture = $value;
+                foreach (array_reverse($this->identifiers->devices->architecturesAll()) as $architecture => $word) {
+                    if (preg_match($this->patterns->devices->architecture($architecture), $cleanUA, $matches) === 1) {
+                        $this->browserArchitecture = $word;
+                        $this->platformArchitecture = $word;
 
                         //echo 'ARCHITECTURE OF WEB BROWSER DETECTED.'.PHP_EOL;
 
@@ -186,7 +179,7 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
                         // print_r($key, false);
                         // print_r($value, false);
                         //print_r($this->cleanFilter($matches), false);
-                        $this->deviceName = $key;
+                        $this->deviceName = $this->cleanFilter($matches)['name'];
                         $this->deviceNameFull = $this->cleanFilter($matches)['name'];
                         // print_r($matches, false);
                         // $this->deviceNameFull = $this->finalContent($key, $cleanUA);
@@ -223,33 +216,46 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
     public function details(): array
     {
         if ($this->matchFound === true) {
+
+            unset($this->more['ui'], $this->more['type']);
+
             return array(
                 'ua' => $this->userAgent,
                 'solved' => $this->matchFound,
                 'time' => $this->timeOfExecution,
                 'browser' => array(
-                    'compatibility' => $this->browserAppCodeName,
-                    'compatibility-version' => $this->browserAppCodeVersion,
-                    'browser-name' => $this->browserName,
-                    'browser-name-version' => $this->browserNameFull,
-                    'browser-version' => $this->browserVersion,
-                    'browser-version-full' => $this->browserVersionFull,
-                    'browser-architecture' => $this->browserArchitecture,
-
-                    'browser-engine-name' => $this->browserEngineName,
-                    'browser-engine-name-full' => $this->browserEngineNameFull,
-                    'browser-engine-version' => $this->browserEngineVersion,
+                    'name' => $this->browserName,
+                    'name-version' => $this->browserNameFull,
+                    'version' => $this->browserVersion,
+                    'version-full' => $this->browserVersionFull,
+                    'architecture' => $this->browserArchitecture,
+                    'type' => $this->browserType,
+                    'ui' => $this->browserUi,
+                    'more' => $this->more,
+                    'compatibility' => array(
+                        'name' => $this->browserAppCodeName,
+                        'version' => $this->browserAppCodeVersion,
+                        'version-full' => $this->browserAppCodeVersionFull,
+                    ),
+                    'engine' => array(
+                        'name' => $this->browserEngineName,
+                        'name-full' => $this->browserEngineNameFull,
+                        'version' => $this->browserEngineVersion,
+                        'version-full' => $this->browserEngineVersionFull,
+                    ),
                 ),
                 'device' => array(
-                    'device-name' => $this->deviceName,
-                    'device-name-full' => $this->deviceNameFull,
+                    'name' => $this->deviceName,
+                    'name-full' => $this->deviceNameFull,
                 ),
                 'platform' => array(
-                    'platform-name' => $this->platformName,
-                    'platform-name-full' => $this->platformNameFull,
-                    'platform-architecture' => $this->platformArchitecture,
-                    'platform-window-manager' => $this->platformWindowManager,
-                    'platform-window-manager-name-original' => $this->platformWmNameOriginal,
+                    'name' => $this->platformName,
+                    'name-full' => $this->platformNameFull,
+                    'architecture' => $this->platformArchitecture,
+                    'window-manager' => array(
+                        'name' => $this->platformWindowManager,
+                        'name-detected' => $this->platformWmNameOriginal,
+                    ),
                 ),
             );
         }
@@ -435,6 +441,22 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
     public function getBrowserAppCodeVersionFull(): string
     {
         return $this->browserAppCodeVersionFull;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBrowserType(): mixed
+    {
+        return $this->browserType;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBrowserUi(): mixed
+    {
+        return $this->browserUi;
     }
 
 

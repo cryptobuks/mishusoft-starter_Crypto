@@ -4,12 +4,13 @@
 namespace Mishusoft\Framework\Chipsets\Http\UAAnalyzer\PatternsCollection;
 
 use Mishusoft\Framework\Chipsets\Exceptions\LogicException\InvalidArgumentException;
-use Mishusoft\Framework\Chipsets\Http\UAAnalyzer\PatternsCollection;
+use Mishusoft\Framework\Chipsets\Http\UAAnalyzer\Collection;
 
-class DevicesIdentificationPatternsCollection extends PatternsCollection
+class DevicesIdentificationPatternsCollection extends Collection
 {
     public function __construct()
     {
+        parent::__construct();
     }
 
 

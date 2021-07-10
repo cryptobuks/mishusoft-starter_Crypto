@@ -5,42 +5,97 @@ namespace Mishusoft\Framework\Chipsets\Http\UAAnalyzer\PatternsCollection;
 
 use Mishusoft\Framework\Chipsets\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Framework\Chipsets\Exceptions\RuntimeException;
-use Mishusoft\Framework\Chipsets\Http\UAAnalyzer\PatternsCollection;
+use Mishusoft\Framework\Chipsets\Http\UAAnalyzer\Collection;
 
-class BrowsersIdentificationPatternsCollection extends PatternsCollection
+class BrowsersIdentificationPatternsCollection extends Collection
 {
-    private array $all;
-
     public function __construct()
     {
-        $this->all = array(
-            'browser',
-            'compatibility',
-            'rendering_engine',
-            'window_manager'
-        );
+        parent::__construct();
     }
+
+
     /**
-     * @return string[]
+     * @throws RuntimeException
      */
     public function all(): array
     {
-        return $this->all;
+        return array_merge_recursive(
+            $this->botsAll(),
+            $this->applicationsAll(),
+            $this->emailClientsAll(),
+            $this->feedReadersAll(),
+            $this->multimediaPlayersAll(),
+            $this->offlineBrowsersAll(),
+            $this->toolsAll(),
+            $this->browsersAll(),
+        );
     }
 
     /**
-     * @throws InvalidArgumentException
      * @throws RuntimeException
      */
-    public function details(string $category, string $identifier): string
+    public function botsAll():array
     {
-        return match (strtolower($category)) {
-            'compatibility' => $this->compatibility($identifier),
-            'rendering_engine' => $this->renderingEngine($identifier),
-           // 'window_manager' => $this->windowManager($identifier),
-            'browser' => $this->webBrowser($identifier),
-        };
+        return $this->organisePatterns($this->query('browsers', 'bots'));
     }
+
+    /**
+     * @throws RuntimeException
+     */
+    public function applicationsAll():array
+    {
+        return $this->organisePatterns($this->query('browsers', 'applications'));
+    }
+
+    /**
+     * @throws RuntimeException
+     */
+    public function emailClientsAll():array
+    {
+        return $this->organisePatterns($this->query('browsers', 'email-clients'));
+    }
+
+    /**
+     * @throws RuntimeException
+     */
+    public function feedReadersAll():array
+    {
+        return $this->organisePatterns($this->query('browsers', 'feed-readers'));
+    }
+
+    /**
+     * @throws RuntimeException
+     */
+    public function multimediaPlayersAll():array
+    {
+        return $this->organisePatterns($this->query('browsers', 'multimedia-players'));
+    }
+
+    /**
+     * @throws RuntimeException
+     */
+    public function offlineBrowsersAll():array
+    {
+        return $this->organisePatterns($this->query('browsers', 'offline-browsers'));
+    }
+
+    /**
+     * @throws RuntimeException
+     */
+    public function toolsAll():array
+    {
+        return $this->organisePatterns($this->query('browsers', 'tools'));
+    }
+
+    /**
+     * @throws RuntimeException
+     */
+    public function browsersAll():array
+    {
+        return $this->organisePatterns($this->query('browsers', 'browsers'));
+    }
+
 
     /**
      * @throws InvalidArgumentException
@@ -48,43 +103,45 @@ class BrowsersIdentificationPatternsCollection extends PatternsCollection
      */
     public function compatibility(string $identifier):string
     {
-        return match (strtolower($identifier)) {
-            'ncsa_mosaic'=>$this->makePattern('(ncsa\_mosaic)', true, true),
-            'mozilla'=>$this->makePattern('(mozilla)', true, true),
-            default => throw new InvalidArgumentException('Unexpected browser compatibility : '.$identifier)
-        };
+        $dictionary = $this->organisePatterns($this->query('browsers', 'compatibilities'));
+        if (array_key_exists($identifier, $dictionary)=== true) {
+            return $dictionary[$identifier];
+        }
+
+        throw new InvalidArgumentException('Unexpected browser compatibility : '.$identifier);
+    }
+
+
+    /**
+     * @throws InvalidArgumentException
+     * @throws RuntimeException
+     */
+    public function browserEngine(string $identifier):string
+    {
+        $dictionary = $this->organisePatterns($this->query('browsers', 'browsers-engines'));
+        if (array_key_exists($identifier, $dictionary)=== true) {
+            return $dictionary[$identifier];
+        }
+
+        throw new InvalidArgumentException('Unexpected browser engine : '.$identifier);
     }
 
     /**
      * @throws InvalidArgumentException
      * @throws RuntimeException
      */
-    public function renderingEngine(string $identifier):string
+    public function webBrowserMatch(string $identifier):string
     {
-        // complete job.
-        return match (strtolower($identifier)) {
-            // Rendering engine of browser.
-            // Chrome/91.0.4472.88
-            // Coder Nut/45.41
-            // Edge/12.10240
-            // T5/2.0
-            // T7/7.4
-            // T7/11.11
-            // AppleWebKit/537.36
-            // KHTML/1.2.3, like Gecko
-            // Goanna/2.2
-            // Gecko/1234
-            // NetFront/1.2
-            // Presto/2.12.423
-            // MSIE 5.17
-            // MSIE 5.5b1
-            // Trident/7.0
-            // U2/1.0.0
-            // UCBrowser/11.2.0.915
-            // Servo/1.0
-            'blink','codernut','edgehtml','ekiohflow','t5','t7','webkit','khtml','goanna','gecko','netfront','presto','tasman','trident','u2','u3','servo','libwww-fm'=>$this->makePattern('(chrome|codernut|edge|ekiohflow|t(5|7)|(applewebkit|webkit)|khtml|goanna|gecko|netfront|presto|msie|trident|u(2|cbrowser)|servo|libwww\-fm)', true, true),
-            default => throw new InvalidArgumentException('Unexpected rendering engine : '.$identifier)
-        };
+        //print_r($this->all(), false);
+//        $dictionary = $this->organisePatterns($this->query('browsers', 'browsers'));
+//        print_r($dictionary, false);
+//        print_r($identifier .PHP_EOL, false);
+
+        if (array_key_exists($identifier, $this->all())=== true) {
+            return $this->all()[$identifier];
+        }
+
+        throw new InvalidArgumentException(sprintf('Unexpected browser : "%s"', $identifier));
     }
 
 
@@ -359,13 +416,14 @@ class BrowsersIdentificationPatternsCollection extends PatternsCollection
             // Browsers.
             // 115Browser/8.6.1 ok
             // 115Browser/13.0.0 ok
+            //115Browser/5.1.7
             //115Browser/B0B6B
             //'115browser'=>'/(?<name>(115browser))\/(?<version>(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
             //1stBrowser/45.0.2454.160
             //1stBrowser/42.0.2311.123
             //'1stbrowser'=>'/(?<name>(1stbrowser))\/(?<version>(\d+[.]\d+[.]\d+[.]\d+)|(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
             //Mb2345Browser/8.4oem
-            // Mb2345Browser/14.2.1 ok
+            //Mb2345Browser/14.2.1 ok
             //'mb2345browser'=>'/(?<name>((mb)2345browser))\/(?<version>(\d+[.]\d+[.]\d+[.]\d+)|(\d+[.]\d+[.]\d+)|(\d+[.]\d+)|(\d+))/i',
             '115browser','1stbrowser','2345browser'=>$this->makePattern('((115|1st|mb2345)browser)', true, true),
 
@@ -550,8 +608,4 @@ class BrowsersIdentificationPatternsCollection extends PatternsCollection
         };//end match
     }
 
-    public function query(string $category, string $identifier): array
-    {
-        return [];
-    }
 }

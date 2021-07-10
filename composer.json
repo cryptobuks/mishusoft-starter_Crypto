@@ -34,7 +34,10 @@
   },
   "scripts": {
 
-    "update:htaccess": "php ./Sources/Release.php -compile -s ./Sources/http.htaccess -d /srv/http/.htaccess",
+    "update:composer": "composer self-update",
+    "update:composer.pacakges": "composer update",
+    "update:composer.packages.global": "composer /home/abir/.config/composer update",
+
     "update:robots": "php ./Sources/Release.php -compile -s ./Sources/robots.txt -d /srv/http/robots.txt",
     "update:index.php": "php ./Sources/Release.php -compile -s ./Sources/app.php -d /srv/http/index.php",
     "update:index.html": "php ./Sources/Release.php -compile -s ./Sources/app.html -d /srv/http/index.html",
@@ -57,8 +60,14 @@
     "update:test:widgets.components": "php ./Sources/Release.php -test-widgets -s ./Sources/Mishusoft/Views/Widgets -d /srv/http/Mishusoft/Widgets/Views",
     "update:test:packages.components": "php ./Sources/Release.php -static -s ./Sources/Mishusoft/Views/Templates/Packages -d /srv/http/Packages",
 
-    "test:user.agent": "php tests/user-agent-test.php > user.agent.log",
-    "test:download:user.agent": "php tests/user-agent-download.php",
+    "test:user.agent": [
+      "Composer\\Config::disableProcessTimeout",
+      "php tests/user-agent-test.php > tmp/user.agent.log"
+    ],
+    "test:download:user.agent": [
+      "Composer\\Config::disableProcessTimeout",
+      "php tests/user-agent-download.php"
+    ],
 
 
     "copy:storages.all": "php ./Sources/Release.php -copy -s ./Storages/ -d /srv/http/Storages/",
@@ -69,7 +78,7 @@
 
     "start:server.dev": [
       "Composer\\Config::disableProcessTimeout",
-      "php -S localhost:8080 server.php"
+      "php -S localhost:8080 router.php"
     ],
 
     "phpcs": "phpcs",
@@ -85,8 +94,6 @@
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",
-    "phpunit/phpunit": "^9.5",
-    "friendsofphp/php-cs-fixer": "^3.0",
     "ext-zend-opcache": "*",
     "ext-json": "*",
     "ext-zip": "*",
@@ -97,6 +104,7 @@
     "ext-mysqli": "*",
     "ext-intl": "*",
     "ext-gd": "*",
-    "ext-fileinfo": "*"
+    "ext-fileinfo": "*",
+    "ext-yaml": "*"
   }
 }

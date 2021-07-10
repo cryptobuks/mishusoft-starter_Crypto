@@ -3,11 +3,15 @@
 
 namespace Mishusoft\Framework\Chipsets\Http\UAAnalyzer\IdentifiersCollection;
 
-class PlatformsIdentifiersCollection
+use Mishusoft\Framework\Chipsets\Http\UAAnalyzer\Collection;
+
+class PlatformsIdentifiersCollection extends Collection
 {
     public function __construct()
     {
+        parent::__construct();
     }
+
     public function all(): array
     {
         return [
@@ -145,16 +149,6 @@ class PlatformsIdentifiersCollection
             // 'Xbox OS 10',
             // 'Xbox OS 10 (Mobile View)',
         ];
-    }
-
-    public function samples(): array
-    {
-        return array();
-    }
-
-    public function details(): array
-    {
-        return array();
     }
 
 

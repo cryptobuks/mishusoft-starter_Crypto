@@ -1428,6 +1428,7 @@ class Firewall
     {
         if ($this->actionStatus === 'banned' || $this->actionStatus === 'blocked') {
             if (array_key_exists('ui', self::$browser->getBrowserDetails(self::$browser->getBrowserName()))) {
+                //GranParadiso/3.0.8 is text browser
                 if (_String::lower(self::$browser->getBrowserDetails(self::$browser->getBrowserName())['ui']) === _String::lower('FullTextMode')) {
                     $msg_lb = "\n";
                     $this->msgTab = "\t";

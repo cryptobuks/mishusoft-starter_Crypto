@@ -2,7 +2,6 @@
 
 namespace Mishusoft\Framework\Chipsets;
 
-
 use ErrorException;
 use JsonException;
 use Mishusoft\Framework\Chipsets\System\Logger;
@@ -19,7 +18,7 @@ class FileSystem
      * @param  false  $callback
      * @return false|string
      */
-    public static function file(string $filename, $callback=false): bool|string
+    public static function file(string $filename, $callback = false): bool|string
     {
         if (self::isFileExists($filename) === true) {
             $fp = fopen($filename, 'rb');
@@ -37,7 +36,6 @@ class FileSystem
         }
 
         return false;
-
     }//end file()
 
 
@@ -48,7 +46,6 @@ class FileSystem
     public static function exec(string $filename): string
     {
         return exec('chmod -R 777 '.$filename);
-
     }//end exec()
 
 
@@ -58,10 +55,9 @@ class FileSystem
      * @param  null   $context
      * @return boolean
      */
-    public static function copy(string $fromDestination, string $toDestination, $context=null): bool
+    public static function copy(string $fromDestination, string $toDestination, $context = null): bool
     {
         return copy($fromDestination, $toDestination, $context);
-
     }//end copy()
 
 
@@ -71,10 +67,9 @@ class FileSystem
      * @param  null   $context
      * @return boolean
      */
-    public static function rename(string $fromDestination, string $toDestination, $context=null): bool
+    public static function rename(string $fromDestination, string $toDestination, $context = null): bool
     {
         return rename($fromDestination, $toDestination, $context);
-
     }//end rename()
 
 
@@ -89,7 +84,6 @@ class FileSystem
         }
 
         return false;
-
     }//end isFileExists()
 
 
@@ -104,7 +98,6 @@ class FileSystem
         }
 
         return false;
-
     }//end isDirectory()
 
 
@@ -133,7 +126,6 @@ class FileSystem
         }
 
         return false;
-
     }//end csvtojson()
 
 
@@ -145,7 +137,6 @@ class FileSystem
     public static function saveToFile(string $filename, string $content): bool|int
     {
         return file_put_contents($filename, $content);
-
     }//end saveToFile()
 
 
@@ -162,7 +153,6 @@ class FileSystem
         }
 
         throw new ErrorException($filename.' not readable');
-
     }//end readFromFile()
 
 
@@ -177,7 +167,6 @@ class FileSystem
         }
 
         return false;
-
     }//end isReadable()
 
 
@@ -199,7 +188,6 @@ class FileSystem
         }
 
         return exec('chmod '.$destination.' '.$mode);
-
     }//end chmod()
 
 
@@ -240,7 +228,6 @@ class FileSystem
                 return;
             }
         }//end if
-
     }//end chmodR()
 
 
@@ -255,7 +242,6 @@ class FileSystem
         }
 
         return false;
-
     }//end createFile()
 
 
@@ -270,7 +256,6 @@ class FileSystem
         }
 
         return false;
-
     }//end isWriteable()
 
 
@@ -290,7 +275,6 @@ class FileSystem
         if ((is_string($filename) === true) && is_writable($filename) === true) {
             self::delete($filename);
         }
-
     }//end remove()
 
 
@@ -314,7 +298,6 @@ class FileSystem
         if (is_file($target) === true) {
             unlink($target);
         }
-
     }//end delete()
 
 
@@ -340,7 +323,6 @@ class FileSystem
                 throw new RuntimeException('Permission denied. '.$directory.' creation failed');
             }
         }
-
     }//end directoryCreate()
 
 
@@ -349,7 +331,7 @@ class FileSystem
      * @param integer $permissions
      * @param boolean $recursive
      */
-    public static function createDirectory(string $directory, int $permissions=0777, bool $recursive=true): void
+    public static function createDirectory(string $directory, int $permissions = 0777, bool $recursive = true): void
     {
         if (file_exists($directory) === false) {
             if (mkdir($directory, $permissions, $recursive) === false && is_dir($directory) === false) {
@@ -358,7 +340,6 @@ class FileSystem
 
             self::exec($directory);
         }
-
     }//end createDirectory()
 
 
@@ -367,7 +348,7 @@ class FileSystem
      * @param  string $filter
      * @return boolean|array
      */
-    public static function getList(string $directory, string $filter='both'): bool|array
+    public static function getList(string $directory, string $filter = 'both'): bool|array
     {
         $files = scandir($directory);
 
@@ -392,7 +373,6 @@ class FileSystem
         array_multisort($files, SORT_ASC);
         ksort($files, SORT_ASC);
         return $files;
-
     }//end getList()
 
 
@@ -403,7 +383,6 @@ class FileSystem
     public static function read(string $filename): string|bool
     {
         return file_get_contents($filename);
-
     }//end read()
 
 
@@ -414,14 +393,13 @@ class FileSystem
      * @return false|integer
      * @throws JsonException
      */
-    public static function write(string $filename, array $contents, int|null $length=null): bool|int
+    public static function write(string $filename, array $contents, int|null $length = null): bool|int
     {
         return fwrite(
             fopen($filename, 'wb+'),
             json_encode($contents, JSON_THROW_ON_ERROR),
             $length
         );
-
     }//end write()
 
 
@@ -436,7 +414,6 @@ class FileSystem
         self::exec($filename);
         fwrite($fp, $content);
         fclose($fp);
-
     }//end append()
 
 
@@ -462,7 +439,6 @@ class FileSystem
 
         $currentDirectory = realpath('./');
         return str_replace('./', $currentDirectory.'/', $path);
-
     }//end realpath()
 
 
@@ -473,9 +449,12 @@ class FileSystem
      * @param  integer $flags
      * @return boolean|array
      */
-    public static function globRecursive(string $directory, int $flags=0): bool|array
+    public static function globRecursive(string $directory, int $flags = 0): bool|array
     {
-        $result = glob($directory.'/*', $flags);
+        if (str_ends_with($directory, DIRECTORY_SEPARATOR)=== false) {
+            $directory .= DIRECTORY_SEPARATOR;
+        }
+        $result = glob($directory.'*', $flags);
         foreach ($result as $item) {
             if (is_file($item) === true) {
                 $result[] = $item;
@@ -486,8 +465,7 @@ class FileSystem
             }//end if
         }
 
-        return $result;
-
+        return array_unique(array_values($result), SORT_ASC);
     }//end globRecursive()
 
 
@@ -498,9 +476,12 @@ class FileSystem
      * @param  integer $flags
      * @return boolean|array
      */
-    public static function glob(string $directory, int $flags=0): bool|array
+    public static function glob(string $directory, int $flags = 0): bool|array
     {
-        $result = glob($directory.'/*', $flags);
+        if (str_ends_with($directory, DIRECTORY_SEPARATOR)=== false) {
+            $directory .= DIRECTORY_SEPARATOR;
+        }
+        $result = glob($directory.'*', $flags);
         foreach ($result as $item) {
             if (is_file($item) === true) {
                 $result[] = $item;
@@ -508,7 +489,6 @@ class FileSystem
         }
 
         return array_unique(array_values($result), SORT_ASC);
-
     }//end globRecursive()
 
 
@@ -531,7 +511,6 @@ class FileSystem
             'extension'=> self::getFileExt($path),
             default => self::getFileAll($path),
         };
-
     }//end getFile()
 
 
@@ -542,7 +521,6 @@ class FileSystem
     public static function getFileAll(string $path):array
     {
         return pathinfo($path, PATHINFO_ALL);
-
     }//end getFileAll()
 
 
@@ -553,7 +531,6 @@ class FileSystem
     public static function getFilename(string $path):string
     {
         return pathinfo($path, PATHINFO_FILENAME);
-
     }//end getFilename()
 
 
@@ -564,7 +541,6 @@ class FileSystem
     public static function getFileBase(string $path):string
     {
         return pathinfo($path, PATHINFO_BASENAME);
-
     }//end getFileBase()
 
 
@@ -575,7 +551,6 @@ class FileSystem
     public static function getFileDirectory(string $path):string
     {
         return pathinfo($path, PATHINFO_DIRNAME);
-
     }//end getFileDirectory()
 
 
@@ -586,7 +561,6 @@ class FileSystem
     public static function getFileExt(string $path):string
     {
         return pathinfo($path, PATHINFO_EXTENSION);
-
     }//end getFileExt()
 
 
@@ -595,8 +569,5 @@ class FileSystem
      */
     public function __destruct()
     {
-
     }//end __destruct()
-
-
 }//end class

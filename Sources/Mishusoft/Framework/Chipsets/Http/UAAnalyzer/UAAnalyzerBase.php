@@ -9,24 +9,14 @@ use Mishusoft\Framework\Chipsets\Exceptions\RuntimeException;
 class UAAnalyzerBase
 {
     // Root path of data path
-    public const USER_AGENT_ANALYZE_DATA_PATH = RUNTIME_CACHE_ROOT_PATH . 'UAAnalyzerData' . DIRECTORY_SEPARATOR;
+    public const USER_AGENT_ANALYZE_DATA_PATH = APPLICATION_STORAGE_PATH . '0/UAAnalyzer' . DIRECTORY_SEPARATOR;
+    public const USER_AGENT_ANALYZE_CACHE_DATA_PATH = RUNTIME_CACHE_ROOT_PATH . 'UAAnalyzerData' . DIRECTORY_SEPARATOR;
 
     // File list of various collected data.
     // Files of received, solved and unsolved ua list.
-    public const USER_AGENT_LIST_FILE = self::USER_AGENT_ANALYZE_DATA_PATH . 'ua.list.csv';
-    public const UNSOLVED_USER_AGENT_LIST_FILE = self::USER_AGENT_ANALYZE_DATA_PATH . 'ua.list.unsolved.csv';
-    public const SOLVED_USER_AGENT_LIST_FILE = self::USER_AGENT_ANALYZE_DATA_PATH . 'ua.list.solved.csv';
-
-    // Files of browsers name, app code and layout list.
-    public const WEB_BROWSER_LIST_FILE = self::USER_AGENT_ANALYZE_DATA_PATH . 'browser.all.list.json';
-    public const WEB_BROWSER_APP_CODE_LIST_FILE = self::USER_AGENT_ANALYZE_DATA_PATH . 'browser.app.code.list.json';
-    public const WEB_BROWSER_LAYOUT_LIST_FILE = self::USER_AGENT_ANALYZE_DATA_PATH . 'browser.layout.list.json';
-
-    // Files of devices name, category, platform, architectures list.
-    public const DEVICES_LIST_FILE = self::USER_AGENT_ANALYZE_DATA_PATH . 'devices.list.json';
-    public const DEVICES_CATEGORY_LIST_FILE = self::USER_AGENT_ANALYZE_DATA_PATH . 'devices.category.list.json';
-    public const DEVICES_PLATFORM_WM_NAME_LIST_FILE = self::USER_AGENT_ANALYZE_DATA_PATH . 'devices.platform.wmn.list.json';
-    public const DEVICES_ARCHITECTURE_LIST_FILE = self::USER_AGENT_ANALYZE_DATA_PATH . 'devices.architecture.list.json';
+    public const USER_AGENT_LIST_FILE = self::USER_AGENT_ANALYZE_CACHE_DATA_PATH . 'ua.list.csv';
+    public const UNSOLVED_USER_AGENT_LIST_FILE = self::USER_AGENT_ANALYZE_CACHE_DATA_PATH . 'ua.list.unsolved.csv';
+    public const SOLVED_USER_AGENT_LIST_FILE = self::USER_AGENT_ANALYZE_CACHE_DATA_PATH . 'ua.list.solved.csv';
 
     private const USER_AGENT_HISTORY_LINK ='https://webaim.org/blog/user-agent-string-history/';
 
@@ -45,6 +35,7 @@ class UAAnalyzerBase
     protected string $browserAppCodeVersionFull='Unknown';
     protected string $browserEngineName='Unknown';
     protected string $browserEngineVersion='Unknown';
+    protected string $browserEngineVersionFull='Unknown';
     protected string $browserEngineNameFull='Unknown';
     protected string $browserArchitecture='Unknown';
 
@@ -57,6 +48,10 @@ class UAAnalyzerBase
 
     protected string $deviceNameFull='Unknown';
     protected string $deviceType='Unknown';
+
+    protected array $more = [];
+    protected mixed $browserType = 'Unknown';
+    protected mixed $browserUi = 'Unknown';
 
 
     // Variables.
@@ -80,9 +75,16 @@ class UAAnalyzerBase
         'localhost',
     ];
 
+    /**
+     * @throws RuntimeException
+     */
     public function __construct()
     {
         $this->timeOfToday = date('Y-m-d H:i:s');
+
+        if (file_exists(self::USER_AGENT_ANALYZE_DATA_PATH) === false) {
+            throw new RuntimeException(sprintf('%s not exists', self::USER_AGENT_ANALYZE_DATA_PATH));
+        }
     }
 
 
@@ -177,7 +179,7 @@ class UAAnalyzerBase
             $result = 0;
         }
 
-        print_r($result, false);
+        //print_r($result, false);
         return $result;
     }
 
@@ -290,6 +292,10 @@ class UAAnalyzerBase
         return $result;
     }//end cleanFilter()
 
+    /**
+     * @param string $string
+     * @return string
+     */
     protected function strip(string $string):string
     {
         return trim(preg_replace('/\s+/', ' ', $string));

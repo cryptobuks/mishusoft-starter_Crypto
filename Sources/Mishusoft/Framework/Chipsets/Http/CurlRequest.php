@@ -281,7 +281,7 @@ class CurlRequest
         }
     }
 
-    public static function download(string $item, string $keyword, string $format, string $directory, string $filter, string $filenamePrefix='download'): void
+    public static function download(string $item, string $keyword, string $format, string $directory, string $filter, string $filenamePrefix = 'download'): void
     {
         if ((file_exists($directory) === false) && !mkdir($directory, 077, true) && !is_dir($directory)) {
             throw new \RuntimeException(sprintf('Directory "%s" was not created', $directory));
@@ -381,7 +381,14 @@ class CurlRequest
     public function responseErrorCheckOut():void
     {
         if ($this->getResponseCode() !== 200) {
-            [$errCode, $errMessage] = $this->getErrors();
+            if (is_array($this->getErrors())) {
+                print_r($this->getErrors());
+                [$errCode, $errMessage] = $this->getErrors();
+            } else {
+                $errCode = $this->getResponseCode();
+                $errMessage = 'Unknown error occurred.';
+            }
+
             throw new HttpResponseException(sprintf('Error (%d): %s', $errCode, $errMessage));
         }
     }
