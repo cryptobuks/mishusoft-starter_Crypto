@@ -1,0 +1,417 @@
+# https://en.wikipedia.org/wiki/Comparison_of_browser_engines
+
+#General information
+#Engine	Status[a]	Steward	License	Embedded in
+#WebKit	Active	Apple	GNU LGPL, BSD-style	Safari browser, plus all browsers for iOS[3]
+#Blink	Active	Google	GNU LGPL, BSD-style	Google Chrome and all other Chromium-based browsers, notably Microsoft Edge and Opera
+#Gecko	Active	Mozilla	Mozilla Public	Firefox browser and Thunderbird email client
+#Goanna	Active	M. C. Straver[4]	Mozilla Public	Pale Moon and Basilisk browsers
+#Flow	Active	Ekioh[5]	Proprietary	Flow browser[6]
+#Trident[b]	Maintained	Microsoft	Proprietary	Internet Explorer browser
+#EdgeHTML	Maintained	Microsoft	Proprietary	UWP apps; formerly in the Edge browser[8]
+#KHTML	Maintained	KDE	GNU LGPL	Konqueror browser
+#Servo	Maintained	Linux Foundation	Mozilla Public	experimental browsers[9][10]
+#NetSurf[c]	Maintained	hobbyists[12]	GNU GPLv2	NetSurf browser[13]
+#Presto	Discontinued	Opera	Proprietary	formerly in the Opera browser
+#Operating system support
+#The operating systems that actively-developed engines can run on without emulation.
+
+#Engine	Windows	macOS	iOS[3]	Android	Linux	BSD
+#WebKit	Yes	Yes	Yes	Yes	Yes	Yes
+#Blink	Yes	Yes	No	Yes	Yes	Yes
+#Gecko	Yes	Yes	No	Yes	Yes	Yes
+#Goanna	Yes	No[14]	No	No[15]	Yes	Yes
+#Flow[6]	Yes	Yes	No	Yes	Yes	No
+
+#https://en.wikipedia.org/wiki/Browser_engine
+#Browser engines
+#Active	      Blink, Flow, Gecko, Goanna, WebKit
+#Maintained	  EdgeHTML, KHTML, NetSurf, Servo, Trident
+#Discontinued Mariner, Presto, Tasman, Tkhtml
+#Comparisons
+#General infoSupport HTML, CSS, graphics, typography
+
+#Google Chrome and Opera v.15+: Blink
+#Internet Explorer: Trident
+#Mozilla Firefox: Gecko
+#Chrome for iOS and Safari: WebKit
+
+# * Layout engines
+# *
+# * Gecko is developed by the Mozilla Foundation.
+# * Goanna is a fork of Gecko developed by Moonchild Productions.
+# * KHTML is developed by the KDE project.
+# * Presto was developed by Opera Software for use in Opera. Development stopped as Opera transitioned to Blink.
+# * Tasman was developed by Microsoft for use in Internet Explorer 5 for Macintosh.
+# * Trident is developed by Microsoft for use in the Windows versions of Internet Explorer 4 to Internet Explorer 11.
+# * EdgeHTML is the engine developed by Microsoft for Edge. It is a largely rewritten fork of Trident with all legacy code removed.
+# * WebKit is a fork of KHTML by Apple Inc. used in Apple Safari, and formerly in Chromium and Google Chrome.
+# * Blink is a 2013 fork of WebKit's WebCore component by Google used in Chromium, Google Chrome, Microsoft Edge, Opera, and Vivaldi.[19]
+# * Servo is an experimental web browser layout engine being developed cooperatively by Mozilla and Samsung.
+
+# https://en.wikipedia.org/wiki/WebKit
+qtwebkit:
+  author: The QT Company
+  developers: The QT Company
+  status: Active
+  release:
+    initial: Dec 6, 2012
+    latest: Mar 10, 2020
+  repository: https://github.com/qt/qtwebkit
+  writtenIn: C++
+  operatingSystem: [ Linux, BSD, Windows, macOS ]
+  type: Browser engine
+  License:  LGPL-2.1
+  website: https://doc.qt.io/archives/qt-5.5/qtwebkit-index.html
+
+# https://en.wikipedia.org/wiki/WebKit
+webkit:
+  author: KDE
+  developers: [ Apple Inc., Adobe Systems, Sony, KDE, Igalia, others ]
+  status: Active
+  release:
+    initial:
+      khtmlR: November 4, 1998
+      webKit: June 7, 2005
+    preview:
+      name: Nightly
+      link: https://webkit.org/downloads/
+  repository: svn.webkit.org/repository/webkit
+  writtenIn: C++
+  operatingSystem: [ macOS, Linux ]
+  type: Browser engine
+  License: [ LGPLv2.1, BSD-2-Clause ]
+  website: webkit.org
+
+# https://en.wikipedia.org/wiki/Blink_(browser_engine)
+blink:
+  author: Google Inc
+  developer: The Chromium Project and contributors
+  status: Active
+  release:
+    initial: 3 April 2013
+  repository: chromium.googlesource.com/chromium/src/+/master/third_party/blink/
+  writtenIn: C++
+  operatingSystem: Cross-platform
+  type: Browser engine
+  license: [ BSD, LGPLv2.1 ]
+  website: chromium.org/blink
+
+# https://en.wikipedia.org/wiki/Gecko_(software)
+gecko:
+  author: Netscape
+  developers: [ Mozilla Foundation, Mozilla Corporation, Adobe Systems, other contributors ]
+  status: Active
+  release:
+    stable: June 2020
+  repository: hg.mozilla.org/mozilla-central/
+  writtenIn: C++, JavaScript, Rust
+  operatingSystem: Cross-platform
+  type: Browser engine
+  license: MPL 2.0
+  website: developer.mozilla.org/en-US/docs/Mozilla/Gecko
+
+
+# https://en.wikipedia.org/wiki/Goanna_(software)
+goanna:
+  author: M. C. Straver
+  developer: M. C. Straver
+  status: Active
+  release:
+    initial: January 2016
+  repository: https://repo.palemoon.org/MoonchildProductions/UXP/
+  writtenIn: C++
+  operatingSystem: Cross-platform
+  type: Browser engine
+  license: MPL 2.0
+  website: www.moonchildproductions.info/goanna.shtml
+
+# https://en.wikipedia.org/wiki/Flow_(web_browser)
+# EkiohFlow
+flow:
+  author: Ekioh
+  developer: Ekioh
+  status: Active
+  release:
+    initial: Unknown
+  repository: Unknown
+  writtenIn: C++
+  operatingSystem: Raspberry Pi
+  type: Browser engine
+  license: Proprietary
+  website: www.ekioh.com/flow-browser/
+
+
+#https://en.wikipedia.org/wiki/V8_(JavaScript_engine)
+V8:
+  author: Lars Bak of Google
+  developer: The Chromium Project
+  status: Active
+  initialRelease: 2 September 2008
+  stableRelease: 17 March 2021
+  repository: chromium.googlesource.com/v8/v8
+  writtenIn: C++
+  platform: [ IA-32, x86-64, ARM, AArch64, MIPS, MIPS64 PowerPC, IBM s390 ]
+  type: JavaScript engine
+  License: BSD
+  website: v8.dev
+
+
+# https://en.wikipedia.org/wiki/Trident_(software)
+trident:
+  author: Microsoft
+  developer: Microsoft
+  status: Discontinued
+  knownAs: MSHTML
+  release:
+    initial: October 1997
+  repository: Unknown
+  writtenIn: C++
+  operatingSystem: Microsoft Windows
+  successor: EdgeHTML
+  type: Browser engine
+  license: Proprietary
+  website: www.ekioh.com/flow-browser/
+
+# https://en.wikipedia.org/wiki/EdgeHTML
+edge-html:
+  author: Microsoft
+  developer: Microsoft
+  status: Maintained
+  release:
+    initial: November 12, 2014
+    stable: May 27, 2020
+  repository: Unknown
+  writtenIn: C++
+  operatingSystem: [ Windows 10, Xbox One, Xbox Series system software ]
+  type: Browser engine
+  license: Proprietary
+  website: docs.microsoft.com/en-us/archive/microsoft-edge/legacy/developer/dev-guide/
+
+# https://en.wikipedia.org/wiki/KHTML
+khtml:
+  author: KDE
+  developer: KDE
+  status: Active
+  release:
+    initial: November 4, 1998
+    stable: May 2, 2021
+  repository: https://invent.kde.org/frameworks/khtml
+  writtenIn: C++
+  operatingSystem: Cross-platform
+  type: Browser engine
+  license: GNU Lesser General Public License
+  website: webkit.org
+
+# https://en.wikipedia.org/wiki/Servo_(software)
+servo:
+  author: Mozilla Corporation
+  developer: volunteers
+  status: Maintained
+  release:
+    stable: May 2020
+  repository: github.com/servo/servo
+  writtenIn: C++
+  operatingSystem: Cross-platform
+  type: Browser engine
+  license: MPL 2.0
+  website: servo.org
+
+# https://en.wikipedia.org/wiki/NetSurf
+net-surf:
+  author: hobbyists
+  developer: The NetSurf Developers
+  status: Maintained
+  release:
+    initial: May 19, 2007
+    stable: May 24, 2020
+  repository: git.netsurf-browser.org/netsurf.git
+  writtenIn: ANSI C
+  operatingSystem:
+    official: [ RISC OS, AmigaOS 4, Windows, Linux/Unix-like, BeOS/Haiku, Atari TOS, macOS ]
+    # KolibriOS port in development
+    3rdPartyPorts: [ AmigaOS 3, Caanoo, MorphOS, Samsung TVs, KolibriOS ]
+  type: Browser engine
+  license: GPL-2.0-only
+  website: www.netsurf-browser.org
+
+# https://en.wikipedia.org/wiki/NetFront
+net-front:
+  author: Access Company of Japan
+  developer: Access Co., Ltd
+  status: Active
+  release:
+    initial: 1995
+    stable: May 24, 2020
+  repository: https://www.access-company.com/en/products/browser/netfront-browser-be/
+  writtenIn: C++
+  operatingSystem: [ 'Linux (Access Linux Platform, Android, Qtopia, GTK+, etc.)', Symbian (S60 and UIQ), Garnet OS, REX OS (BREW), VxWorks, Nucleus, ITRON, OS-9, OSE ]
+  type: Browser engine
+  license: Proprietary
+  website: https://gl.access-company.com/products/browser/
+
+
+# https://en.wikipedia.org/wiki/Presto_(browser_engine)
+presto:
+  author: Opera Software ASA
+  developer: Opera Software ASA
+  status: Discontinued
+  release:
+    initial: 28 January 2003
+    stable: 16 March 2015
+  repository: https://github.com/operasoftware/presto-testo
+  writtenIn: C++
+  operatingSystem:
+    official: [ Windows, Linux/Unix-like ]
+  type: Browser engine
+  license: Proprietary
+  website: dev.opera.com
+
+# https://en.wikipedia.org/wiki/Mariner_(browser_engine)
+mariner:
+  author: Netscape
+  developers: Netscape Communicator
+  status: Discontinued
+  release:
+    stable: November 2000
+  repository: https://www-archive.mozilla.org/classic/layout-classic/mariner.html
+  writtenIn: C++
+  operatingSystem: Unknown
+  successor: Gecko
+  type: Browser engine
+  license: MPL 2.0
+  website: developer.mozilla.org/en-US/
+
+# https://en.wikipedia.org/wiki/Tasman_(layout_engine)
+tasman:
+  author: Tantek Çelik
+  developers: Microsoft
+  status: Discontinued
+  release:
+    initial: March 27, 2000
+    stable: May 11, 2004
+  repository: Unknown
+  writtenIn: C++
+  operatingSystem: Mac OS
+  successor: webkit
+  type: Browser engine
+  license: Proprietary
+  website: developer.mozilla.org/en-US/
+
+# t5 layout engine
+t5:
+  author: Baidu
+  developers: Baidu, Inc
+  status: Active
+  release:
+    initial: Unknown
+  repository: Unknown
+  writtenIn: Unknown
+  operatingSystem: Linux
+  successor: webkit
+  type: Browser engine
+  license: Proprietary
+  website: https://www.baidu.com/
+
+# t7 layout engine
+t7:
+  author: Baidu
+  developers: Baidu, Inc
+  status: Active
+  release:
+    initial: Unknown
+  repository: Unknown
+  writtenIn: Unknown
+  operatingSystem: Linux
+  type: Browser engine
+  license: Proprietary
+  website: https://www.baidu.com/
+
+
+# u2 layout engine
+u2:
+  author: UCWeb Inc
+  developers: UCWeb Inc
+  status: Active
+  release:
+    initial: Unknown
+  repository: Unknown
+  writtenIn: Unknown
+  operatingSystem: Linux
+  type: Browser engine
+  license: Proprietary
+  website: https://www.ucweb.com/
+
+# u3 layout engine
+u3:
+  author: UCWeb Inc
+  developers: UCWeb Inc
+  status: Active
+  release:
+    initial: Unknown
+  repository: Unknown
+  writtenIn: Unknown
+  operatingSystem: Linux
+  type: Browser engine
+  license: Proprietary
+  website: https://www.ucweb.com/
+
+# Cobra layout engine
+cobra:
+  author: Lobo Browser
+  developers: Community
+  status: Active
+  release:
+    initial: Jan 18, 2015
+  repository: https://github.com/lobobrowser/Cobra
+  writtenIn: Java
+  operatingSystem: Linux
+  type: Browser engine
+  license: MIT
+  website: https://lobobrowser.org/
+
+# X5 layout engine
+# tbs
+x5:
+  author: Tencent Ltd.
+  developers: Tencent Ltd.
+  status: Active
+  release:
+    initial: Jan 18, 2015
+  repository: https://github.com/lobobrowser/Cobra
+  writtenIn: Java
+  operatingSystem: Linux
+  type: Browser engine
+  license: MIT
+  website: https://lobobrowser.org/
+
+# Lynx/2.8.9dev.8 libwww-FM/2.14 SSL-MM/1.4.1 GNUTLS/3.4.9
+libwww:
+  authors: [ Tim Berners-Lee, Jean-François Groff ]
+  developer: Henrik Frystyk Nielsen
+  status: Active
+  release:
+    initial: November 1992
+    stable: 4 December 2006
+  repository: https://github.com/w3c/libwww
+  writtenIn: C
+  operatingSystem: [ FreeBSD, Solaris, Linux, Mac OS X, Microsoft Windows ]
+  type: Browser engine
+  license: W3C Software Notice and License
+  website: https://www.w3.org/Library/
+
+# tkhtml
+tkhtml:
+  authors: Liem Bahneman
+  #danielk1977@gmail.com (Dan - current maintainer)
+  #drh@hwaci.com (Richard)
+  developer: Dan (danielk1977@gmail.com)
+  status: Discontinued
+  release:
+    initial: 2006
+  repository: https://tkhtml.tcl.tk/fossil/timeline
+  writtenIn: [C, Tcl]
+  operatingSystem: Unix
+  type: Browser engine
+  license: BSD
+  website: https://tkhtml.tcl.tk/

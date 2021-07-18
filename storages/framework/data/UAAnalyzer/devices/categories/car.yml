@@ -1,0 +1,5 @@
+# url : https://developers.whatismybrowser.com/useragents/explore/hardware_type_specific/billboard/
+
+# Tesla Browser
+- name: '(tesla)'
+  type: Car

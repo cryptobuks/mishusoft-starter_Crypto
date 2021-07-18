@@ -1,0 +1,46 @@
+# "Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0 SeaMonkey/2.53.8"
+
+# 1337 Browser
+# 360 Secure Browser (360 Security Browser) or 360 Safe Browser[5] (Chinese: 360安全浏览器) is a web browser developed by
+# the Qihoo 360 Technology Co. Ltd of Beijing, China.[6][7] It was first released in September 2008.[6]
+# The browser by default renders the webpage using the WebKit-based engine adapted for Google Chrome, Blink,
+# and when running in compatibility mode, it renders webpages using the Trident engine found in Internet Explorer.[8][9]
+
+
+# url : https://developers.whatismybrowser.com/useragents/explore/software_name/1337browser/
+# url : https://github.com/kkrypt0nn/Wordlists/blob/master/user_agents/software_name/1337browser.txt
+# url : https://gist.github.com/trietptm/5672969
+# Latest user agent list
+# 2.0.1) Gecko/20100101 1337Browser/3.1
+# Mozilla/5.0 (Windows NT 6.1; rv:2.0.1) Gecko/20100101 1337Browser/3.1
+# Mozilla/5.0 (Windows; U; Windows NT 6.0; en; rv:1.9.1.7) Gecko/20091221 1337Browser/3.1
+# 1337Browser_V3.1
+# Mozilla/5.0 (Windows NT 6.1; rv:2.0.1) Gecko/20100101 1337Browser_V3.1
+# Mozilla/5.0 (Windows; U; Windows NT 6.0; en; rv:1.9.1.7) Gecko/20091221 1337Browser_V3.1
+# Mozilla/5.0 (Windows; U; Windows NT 5.1; he; rv:1.9.2.3) Gecko/20100401 1337Browser_V3.1
+
+- identifiers:
+    # Pattern maker method use it
+    browser-1337-browser:
+      pattern:
+        name: (1337browser)
+        separator: true
+        version: true
+      functional: true
+
+    browser-1337-browser-fallback:
+      pattern:
+        name: (1337browser)
+        separator: false
+        version: false
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: '1337 Browser'
+  space: 'browsers'
+
+  # Information maker method use it
+  info: browser 1337-browser
+
+
+

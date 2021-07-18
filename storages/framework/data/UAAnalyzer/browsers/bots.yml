@@ -1,0 +1,157 @@
+# Bots
+# A bot or a web crawler is a special software application that performs automatic or
+# scheduled HTTP requests in order to download and analyze web pages.
+
+# 007ac9 crawler
+# 007AC9 Crawler is a bot devoloped by SISTRIX GmbH.
+# url : https://user-agents.net/bots/007ac9-crawler
+# Latest user agents:
+# Mozilla/5.0 (compatible; 007ac9 Crawler; http://crawler.007ac9.net/)
+
+# Sistrix Crawler
+# Sistrix Crawler is a bot devoloped by SISTRIX GmbH.
+# url : https://user-agents.net/bots/sistrix-crawler
+# Latest user agents:
+# Sistrix
+# Mozilla/5.0 (compatible; SISTRIX Crawler; http://crawler.sistrix.net/)
+
+- identifiers:
+    # Pattern maker method use it
+    bot-007ac9-crawler:
+      pattern:
+        name: (007ac9\s+crawler)
+        separator: false
+        version: false
+      functional: true
+
+    bot-sistrix-crawler:
+      pattern:
+        name: (sistrix\s+crawler)
+        separator: false
+        version: false
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'Sistrix crawler'
+  space: 'bots'
+
+  # Information maker method use it
+  info:
+    name:   'Sistrix crawler'
+    url:    'https://crawler.007ac9.net'
+    author: sistrix
+
+# 12345Bot
+# 12345 is a bot, but at the moment it is not known who develops it.
+# url : https://user-agents.net/bots/12345
+
+# Latest user agents:
+# 12345 MRA 5.4 (build 02647);
+# 123456111 SEB/3.0.1 (x64)
+# 12345'\x22\x5C'\x5C\x22);|]*%00{%0d%0a<%00>%bf%27'\xF0\x9F\x92\xA9
+# 12345
+
+- identifiers:
+    # Pattern maker method use it
+    bot-12345:
+      pattern:
+        name: (12345)
+        separator: false
+        version: false
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: '12345 Bot'
+  space: 'bots'
+
+  # Information maker method use it
+  info:
+    name:   '12345 Bot'
+    url:    unknown
+    author: unknown
+
+
+# 2GDPR
+# 2GDPR Crawler is a bot devoloped by 2GDPR.com.
+# url : https://user-agents.net/bots/2gdpr
+
+# Latest user agents:
+# Mozilla/5.0 (compatible; 2GDPR/1.2; https://2gdpr.com)
+
+- identifiers:
+    # Pattern maker method use it
+    bot-2gdpr:
+      pattern:
+        name: (2gdpr)
+        separator: false
+        version: false
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: '2gdpr Bot'
+  space: 'bots'
+
+  # Information maker method use it
+  info:
+    name:   '2gdpr Bot'
+    url:    'https://2gdpr.com/'
+    author: 2gdpr
+
+
+# 360Spider
+# 360Spider is a bot devoloped by Qihoo 360 Technology Co. Ltd..
+
+# common user agent list
+# Mozilla/5.0 (Macintosh; Intel Mac OS X) EkiohFlow/5.5.2.28723M Flow/5.5.2 (like Firefox/53.0)
+# Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.2.2661.102 Safari/537.36; 360Spider
+- identifiers:
+    # Pattern maker method use it
+    bot-360-spider:
+      pattern:
+        name: (360spider)
+        separator: false
+        version: false
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: '360 Spider'
+  space: 'bots'
+
+  # Information maker method use it
+  info:
+    name:     '360 Spider'
+    author:   'qihoo-360'
+    url:      'https://www.360.cn/about/englishversion.html'
+
+
+# A1 Website Analyzer
+# A1 Website Analyzer is a bot developed by Microsys..
+
+# url : https://user-agents.net/bots/a1-website-analyzer
+# Latest user agent list
+# A1 Website Analyzer/10.1.4 (+https://www.microsystools.com/products/website-analyzer/)
+
+- identifiers:
+    # Pattern maker method use it
+    bot-a1-website-analyzer:
+      pattern:
+        name: (a1\s+website\s+analyzer)
+        separator: false
+        version: false
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'A1 Website Analyzer'
+  space: 'bots'
+
+  # Information maker method use it
+  info:
+    name:     'A1 Website Analyzer'
+    author:   microsys
+    url:      'https://www.microsystools.com/products/website-analyzer/'
+
+
+
+
+
+

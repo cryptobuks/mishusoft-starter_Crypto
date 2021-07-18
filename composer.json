@@ -24,7 +24,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Mishusoft\\": "Mishusoft/"
+      "Mishusoft\\": "Sources/mishusoft-company/Framework/Mishusoft/"
     }
   },
   "autoload-dev": {
@@ -90,21 +90,21 @@
     "stripe/stripe-php": "^7.77",
     "phpmailer/phpmailer": "^6.4",
     "smarty/smarty": "^3.1",
-    "geoip2/geoip2": "^2.11"
-  },
-  "require-dev": {
-    "roave/security-advisories": "dev-latest",
+    "geoip2/geoip2": "^2.11",
+    "ext-openssl": "*",
+    "ext-yaml": "*",
     "ext-zend-opcache": "*",
     "ext-json": "*",
     "ext-zip": "*",
-    "ext-openssl": "*",
     "ext-dom": "*",
     "ext-curl": "*",
     "ext-pdo": "*",
     "ext-mysqli": "*",
     "ext-intl": "*",
     "ext-gd": "*",
-    "ext-fileinfo": "*",
-    "ext-yaml": "*"
+    "ext-fileinfo": "*"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-latest"
   }
 }

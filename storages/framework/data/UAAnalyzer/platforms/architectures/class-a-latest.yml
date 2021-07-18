@@ -1,0 +1,288 @@
+# url: https://en.wikipedia.org/wiki/List_of_Linux-supported_computer_architectures
+# url: https://en.wikipedia.org/wiki/X86-64
+
+
+- architecture: 'alpha'
+  word: '64 bit'
+  family: DEC Alpha
+  profile: Generic
+
+- architecture: 'ia64'
+  word: '64 bit'
+  family: Intel IA64
+  profile: Generic
+
+- architecture: 'ia-64'
+  word: '64 bit'
+  family: Intel IA64
+  profile: Generic
+
+- architecture: 'IA-32e'
+  word: '64 bit'
+  family: Intel IA64
+  profile: Generic
+
+- architecture: 'EM64T'
+  word: '64 bit'
+  family: Intel IA64
+  profile: Generic
+
+- architecture: 'powerpc64le'
+  word: '64 bit'
+  charSize: '8 bit'
+  family: AIM
+  profile: Generic
+
+- architecture: 'PowerPC64'
+  word: '64 bit'
+  charSize: '8 bit'
+  family: AIM
+  profile: Generic
+
+- architecture: 'riscv64'
+  word: '64 bit'
+  charSize: '8 bit'
+  family: AIM
+  profile: Generic
+
+- architecture: 'x86_64'
+  word: '64 bit'
+  family: Intel
+  profile: Generic
+
+- architecture: 'x86-64'
+  word: '64 bit'
+  family: Intel
+  profile: Generic
+
+- architecture: 'x64/x86'
+  word: '64 bit'
+  family: Intel
+  profile: Generic
+
+- architecture: 'x64'
+  word: '64 bit'
+  family: Intel
+  profile: Generic
+
+- architecture: 'WoW64'
+  word: '64 bit'
+  family: Intel
+  profile: Generic
+
+- architecture: 'Win64'
+  word: '64 bit'
+  family: Intel
+  profile: Generic
+
+- architecture: 'AMD64'
+  word: '64 bit'
+  family: Intel
+  profile: Generic
+
+- architecture: 'Intel64'
+  word: '64 bit'
+  family: Intel
+  profile: Generic
+
+
+#  'x64' => '64 Bit',
+#  'WOW64' => '64 Bit',
+#  'Win64' => '64 Bit',
+#  'x86_64' => '64 Bit',
+#  'x86-64' => '64 Bit',
+#  'x64/x86' => '64 Bit',
+#  'IA-64' => '64 Bit',
+#  'ARM64' => '64 Bit',
+#  'AMD64' => '64 Bit',
+#  'Intel64' => '64 Bit',
+
+
+
+# url: https://en.wikipedia.org/wiki/X86
+
+- architecture: 'blackfin'
+  word: '16/32 bit'
+  family: Blackfin
+  profile: Generic
+
+- architecture: 'avr'
+  word: '32 bit'
+  family: AVR32
+  profile: Generic
+
+- architecture: 'm68k'
+  word: '68 k'
+  family: Freescale
+  profile: Generic
+
+- architecture: 'frv'
+  word: '16 k'
+  family: Fujitsu FR-V
+  profile: Generic
+
+- architecture: 'hexagon'
+  word: '32 bit'
+  family: Qualcomm Hexagon
+  profile: Generic
+
+- architecture: 'parisc'
+  word: '32 bit'
+  family: PA-RISC
+  profile: Generic
+
+- architecture: 'h8300'
+  word: '16/32/64 bit'
+  family: Hitachi
+  profile: Generic
+
+- architecture: 's390'
+  word: '31 bit'
+  family: System/390
+  profile: Generic
+
+- architecture: 'm32r'
+  word: '31 bit'
+  family: M32R
+  profile: Generic
+
+- architecture: 'microblaze'
+  word: '32 bit'
+  family: Microblaze
+  profile: Generic
+
+- architecture: 'mips'
+  word: '32 bit'
+  family: MIPS architecture
+  profile: Generic
+
+- architecture: 'mn10300'
+  word: '32 bit'
+  family: MN103
+  profile: Generic
+
+- architecture: 'openrisc'
+  word: '32 bit'
+  family: OpenRISC
+  profile: Generic
+
+- architecture: 'sparc'
+  word: '32/64 bit'
+  family: SPARC
+  profile: Generic
+
+- architecture: 'arc'
+  word: '32 bit'
+  family: ARC cores
+  profile: Generic
+
+- architecture: 'score'
+  word: '32 bit'
+  family: 'S+core'
+  profile: Generic
+
+- architecture: 'unicore32'
+  word: '32 bit'
+  family: UniCore32
+  profile: Generic
+
+- architecture: 'ia32'
+  word: '32 bit'
+  family: Intel IA32
+  profile: Generic
+
+- architecture: 'ia-32'
+  word: '32 bit'
+  family: Intel IA32
+  profile: Generic
+
+- architecture: 'x86'
+  word: '31 bit'
+  family: Intel
+  profile: Generic
+
+- architecture: 'riscv'
+  word: '31 bit'
+  family: Intel
+  profile: Generic
+
+- architecture: 'PowerPC'
+  word: '32 bit'
+  charSize: '8 bit'
+  year: 1992
+
+- architecture: 'Power'
+  word: '64 bit'
+  charSize: '8 bit'
+  family: AIM
+  profile: Generic
+
+# url: https://myonlineusb.wordpress.com/2011/06/08/what-is-the-difference-between-i386-i486-i586-i686-i786/
+
+# Intel's consumer-grade processors have followed an *86 naming convention,
+# dating back to the 8086 chip released in 1978. Later iterations included the 16-bit i286 in 1983,
+# the 32-bit i386 in 1985, the 32-bit i486 in 1989, the i586 (the original Pentium chip) in 1993,
+# the i686 (the Pentium Pro) in 1995, and the i786 (Pentium 4, or NetBurst) in 2000.
+
+
+- architecture: 'i386'
+  word: '32 Bit'
+  charSize: '8 bit'
+  family: Intel
+  profile: Generic
+
+- architecture: 'i486'
+  word: '32 Bit'
+  charSize: '8 bit'
+  family: Intel
+  profile: Generic
+
+- architecture: 'i586'
+  word: '32 Bit'
+  charSize: '8 bit'
+  family: Intel
+  profile: Generic
+
+- architecture: 'i686'
+  word: '32 Bit'
+  charSize: '8 bit'
+  family: Intel
+  profile: Generic
+
+- architecture: 'i786'
+  word: '32 Bit'
+  charSize: '8 bit'
+  family: Intel
+  profile: Generic
+
+- architecture: 'Win32'
+  word: '32 Bit'
+  charSize: '8 bit'
+  family: Intel
+  profile: Generic
+
+- architecture: 'Win32s'
+  word: '32 Bit'
+  charSize: '8 bit'
+  family: Intel
+  profile: Generic
+
+- architecture: 'x86'
+  word: '32 Bit'
+  charSize: '8 bit'
+  family: Intel
+  profile: Generic
+
+
+# https://en.wikipedia.org/wiki/Intel_80286
+- architecture: 'i286'
+  word: '16 Bit'
+  charSize: '8 bit'
+  family: Intel
+  profile: Generic
+
+- architecture: 'Win16'
+  word: '16 Bit'
+  charSize: '8 bit'
+  family: Intel
+  profile: Generic

@@ -1,0 +1,166 @@
+# url : https://en.wikipedia.org/wiki/List_of_web_browsers
+
+#Blink-based
+#Chromium
+#Amazon Silk
+#Avast Secure Browser
+#Blisk
+#Brave
+#Cốc Cốc
+#Comodo Dragon[27]
+#Epic
+#Google Chrome (based on Blink since Chrome v. 28)
+#JioBrowser
+#Microsoft Edge[28]
+#Opera[29]
+#Puffin Browser
+#Redcore
+#RockMelt
+#Sleipnir
+#SRWare Iron
+#Torch
+#qutebrowser (Blink backend mostly stable)
+#Vivaldi
+#NAVER Whale
+#Yandex Browser
+#Qt WebEngine
+#Dooble (from Version 2.2)
+#Falkon
+
+# Blink Based browsers
+
+# 115 Browser
+# 115 Browser is a web browser developed by 115.com. This browser renders web pages using the Blink engine.
+
+# common user agent list
+# Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36 115Browser/24.1.0.10
+# Mozilla/5.0 (Macintosh; Intel Mac OS X 10_16_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36 115Browser/25.0.0.9
+# Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36 115Browser/23.1.0
+# 115Browser/8.6.1
+# 115Browser/13.0.0
+# 115Browser/5.1.7
+# 115Browser/B0B6B
+- identifiers:
+    # Pattern maker method use it
+    browser-115-browser:
+      pattern:
+        name: (115browser)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser 115-browser
+
+
+# 1stBrowser
+# 1stBrowser is a web browser developed by Sien. This browser renders web pages using the Blink engine.
+
+# Latest user agents:
+# Mozilla/5.0 (Windows NT 6.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.75 1stBrowser/45.0.2454.160 Safari/537.36
+# Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.75 1stBrowser/45.0.2454.171 Safari/537.36
+# Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.75 1stBrowser/45.0.2454.171 Safari/537.36
+# Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 1stBrowser/45.0.2454.146 Safari/537.36
+- identifiers:
+    # Pattern maker method use it
+    browser-1st-browser:
+      pattern:
+        name: (1stbrowser)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser 1st-browser
+
+
+# 2345 Browser
+# 2345 Browser is a web browser developed by 2345 team. This browser renders web pages using the Blink engine.
+
+# Latest user agents:
+# Mozilla/5.0 (Linux; Android 4.4.4; V183 Build/KTU84P) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36 Mb2345Browser/8.4oem
+# Mozilla/5.0 (Linux; Android 8.1.0; Lenovo L78011 Build/OPM1.171019.019; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/64.0.3282.137 Mobile Safari/537.36 Mb2345Browser/14.2.1
+# Mozilla/5.0 (Linux; Android 6.0.1; KIW-TL00 Build/HONORKIW-TL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/55.0.2883.91 Mobile Safari/537.36 Mb2345Browser/14.1.0
+- identifiers:
+    # Pattern maker method use it
+    browser-2345-browser:
+      pattern:
+        name: (mb2345browser)
+        separator: true
+        version: true
+      functional: true
+    browser-2345-browser-fallback:
+      pattern:
+        name: (2345browser)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser 2345-browser
+
+
+# 2345 Browser
+# 2345 Browser is a web browser developed by 2345 team. This browser renders web pages using the Blink engine.
+
+# Latest user agents:
+# Mozilla/5.0 (Linux; Android 4.4.4; V183 Build/KTU84P) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36 Mb2345Browser/8.4oem
+# Mozilla/5.0 (Linux; Android 8.1.0; Lenovo L78011 Build/OPM1.171019.019; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/64.0.3282.137 Mobile Safari/537.36 Mb2345Browser/14.2.1
+# Mozilla/5.0 (Linux; Android 6.0.1; KIW-TL00 Build/HONORKIW-TL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/55.0.2883.91 Mobile Safari/537.36 Mb2345Browser/14.1.0
+- identifiers:
+    # Pattern maker method use it
+    browser-2345-browser:
+      pattern:
+        name: (mb2345browser)
+        separator: true
+        version: true
+      functional: true
+    browser-2345-browser-fallback:
+      pattern:
+        name: (2345browser)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser 2345-browser
+
+# 2345 Chrome
+# 2345 Chrome is a web browser developed by 2345 team. This browser renders web pages using the Blink engine.
+
+# Latest user agents:
+# Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML like Gecko) Chrome/31.0.1650.69 Safari/537.36 2345chrome v2.5.0.5031
+# Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/39.0.2171.99 Safari/537.36 2345chrome v3.0.0.9739
+# Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/31.0.1650.69 Safari/537.36 2345chrome v2.5.0.3433
+- identifiers:
+    # Pattern maker method use it
+    browser-2345-chrome:
+      pattern:
+        name: (2345chrome)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser 2345-chrome
+
+
+# 2345 Explorer
+# 2345 Explorer is a web browser developed by 2345.com. This browser renders web pages using the Blink engine.
+
+# Latest user agents:
+# Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36 2345Explorer/9.8.0.19047
+# Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3947.100 Safari/537.36 2345Explorer/10.19.0.21373
+# Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3947.100 Safari/537.36 2345Explorer/10.18.0.21318
+- identifiers:
+    # Pattern maker method use it
+    browser-2345-explorer:
+      pattern:
+        name: (2345explorer)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser 2345-explorer
+

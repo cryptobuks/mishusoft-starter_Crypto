@@ -1,0 +1,34 @@
+# url : https://developers.whatismybrowser.com/useragents/explore/software_type_specific/analyser/
+
+# OpenLink Profiler SEO Analyser
+# OpenLink Profiler SEO Analyser is a analyser by OpenLink Profiler.
+# url : https://developers.whatismybrowser.com/useragents/explore/software_name/openlink-profiler-seo-analyser-bot/
+
+# Latest user agent list
+# A1 Website Analyzer/10.1.4 (+https://www.microsystools.com/products/website-analyzer/)
+# Mozilla/5.0 (compatible; spbot/5.0.3; +http://OpenLinkProfiler.org/bot )
+# Mozilla/5.0 (compatible; spbot/4.4.2; +http://OpenLinkProfiler.org/bot )
+# Mozilla/5.0 (compatible; spbot/5.0.2; +http://OpenLinkProfiler.org/bot )
+
+- identifiers:
+    # Pattern maker method use it
+    bot-openlink-profiler-seo-analyser:
+      pattern:
+        name: (spbot)
+        separator: true
+        version: true
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'OpenLink Profiler SEO Analyser'
+  space: 'analyser'
+
+  # Information maker method use it
+  info:
+    name:     'OpenLink Profiler SEO Analyser'
+    author:   seoprofiler
+    url:      'https://openlinkprofiler.org/'
+
+
+
+

@@ -1,0 +1,137 @@
+Table of word sizes
+key: bit: bits, d: decimal digits, w: word size of architecture, n: variable size
+Year	Computer    architecture	Word size w 	Integer sizes	Floating­pointsizes	Instruction sizes	Unit of address resolution	Char size
+1837	Babbage
+Analytical engine	50 d	w	—	Five different cards were used for different functions, exact size of cards not known.	w	—
+1941	Zuse Z3	22 bit	—	w	8 bit	w	—
+1942	ABC	50 bit	w	—	—	—	—
+1944	Harvard Mark I	23 d	w	—	24 bit	—	—
+1946
+(1948)
+{1953}	ENIAC
+(w/Panel #16[4])
+{w/Panel #26[5]}	10 d	w, 2w
+(w)
+{w}	—	—
+(2 d, 4 d, 6 d, 8 d)
+{2 d, 4 d, 6 d, 8 d}	—
+—
+{w}	—
+1948	Manchester Baby	32 bit	w	—	w	w	—
+1951	UNIVAC I	12 d	w	—	1⁄2w	w	1 d
+1952	IAS machine	40 bit	w	—	1⁄2w	w	5 bit
+1952	Fast Universal Digital Computer M-2	34 bit	w?	w	34 bit = 4-bit opcode plus 3×10 bit address	10 bit	—
+1952	IBM 701	36 bit	1⁄2w, w	—	1⁄2w	1⁄2w, w	6 bit
+1952	UNIVAC 60	n d	1 d, ... 10 d	—	—	—	2 d, 3 d
+1952	ARRA I	30 bit	w	—	w	w	5 bit
+1953	IBM 702	n d	0 d, ... 511 d	—	5 d	d	1 d
+1953	UNIVAC 120	n d	1 d, ... 10 d	—	—	—	2 d, 3 d
+1953	ARRA II	30 bit	w	2w	1⁄2w	w	5 bit
+1954
+(1955)	IBM 650
+(w/IBM 653)	10 d	w	—
+(w)	w	w	2 d
+1954	IBM 704	36 bit	w	w	w	w	6 bit
+1954	IBM 705	n d	0 d, ... 255 d	—	5 d	d	1 d
+1954	IBM NORC	16 d	w	w, 2w	w	w	—
+1956	IBM 305	n d	1 d, ... 100 d	—	10 d	d	1 d
+1956	ARMAC	34 bit	w	w	1⁄2w	w	5 bit, 6 bit
+1957	Autonetics Recomp I	40 bit	w, 79 bit, 8 d, 15 d	—	1⁄2w	1⁄2w, w	5 bit
+1958	UNIVAC II	12 d	w	—	1⁄2w	w	1 d
+1958	SAGE	32 bit	1⁄2w	—	w	w	6 bit
+1958	Autonetics Recomp II	40 bit	w, 79 bit, 8 d, 15 d	2w	1⁄2w	1⁄2w, w	5 bit
+1958	Setun	6 trit (~9.5 bits)[clarification needed]	up to 6 tryte		up to 3 trytes		4 trit?
+1958	Electrologica X1	27 bit	w	2w	w	w	5 bit, 6 bit
+1959	IBM 1401	n d	1 d, ...	—	1 d, 2 d, 4 d, 5 d, 7 d, 8 d	d	1 d
+1959
+(TBD)	IBM 1620	n d	2 d, ...	—
+(4 d, ... 102 d)	12 d	d	2 d
+1960	LARC	12 d	w, 2w	w, 2w	w	w	2 d
+1960	CDC 1604	48 bit	w	w	1⁄2w	w	6 bit
+1960	IBM 1410	n d	1 d, ...	—	1 d, 2 d, 6 d, 7 d, 11 d, 12 d	d	1 d
+1960	IBM 7070	10 d	w	w	w	w, d	2 d
+1960	PDP-1	18 bit	w	—	w	w	6 bit
+1960	Elliott 803	39 bit
+1961	IBM 7030 64 bit	1 bit,
+(Stretch)	 ... 64 bit,
+1 d, ... 16 d	w	1⁄2w, w	b, 1⁄2w, w	1 bit, ... 8 bit
+1961	IBM 7080	n d	0 d, ... 255 d	—	5 d	d	1 d
+1962	GE-6xx	36 bit	w, 2 w	w, 2 w, 80 bit	w	w	6 bit, 9 bit
+1962	UNIVAC III	25 bit	w, 2w, 3w, 4w, 6 d, 12 d	—	w	w	6 bit
+1962	Autonetics D-17B
+Minuteman I Guidance Computer	27 bit	11 bit, 24 bit	—	24 bit	w	—
+1962	UNIVAC 1107	36 bit	1⁄6w, 1⁄3w, 1⁄2w, w	w	w	w	6 bit
+1962	IBM 7010	n d	1 d, ...	—	1 d, 2 d, 6 d, 7 d, 11 d, 12 d	d	1 d
+1962	IBM 7094	36 bit	w	w, 2w	w	w	6 bit
+1962	SDS 9 Series	24 bit	w	2w	w	w
+1963
+(1966)	Apollo Guidance Computer	15 bit	w	—	w, 2w	w	—
+1963	Saturn Launch Vehicle Digital Computer	26 bit	w	—	13 bit	w	—
+1964/1966	PDP-6/PDP-10	36 bit	w	w, 2 w	w	w	6 bit, 9 bit (typical)
+1964	Titan	48 bit	w	w	w	w	w
+1964	CDC 6600	60 bit	w	w	1⁄4w, 1⁄2w	w	6 bit
+1964	Autonetics D-37C
+Minuteman II Guidance Computer	27 bit	11 bit, 24 bit	—	24 bit	w	4 bit, 5 bit
+1965	Gemini Guidance Computer	39 bit	26 bit	—	13 bit	13 bit, 26	—bit
+1965	IBM 360	32 bit	1⁄2w, w,
+1 d, ... 16 d	w, 2w	1⁄2w, w, 11⁄2w	8 bit	8 bit
+1965	UNIVAC 1108	36 bit	1⁄6w, 1⁄4w, 1⁄3w, 1⁄2w, w, 2w	w, 2w	w	w	6 bit, 9 bit
+1965	PDP-8	12 bit	w	—	w	w	8 bit
+1965	Electrologica X8	27 bit	w	2w	w	w	6 bit, 7 bit
+1966	SDS Sigma 7	32 bit	1⁄2w, w	w, 2w	w	8 bit	8 bit
+1969	Four-Phase Systems AL1	8 bit	w	—	?	?	?
+1970	MP944	20 bit	w	—	?	?	?
+1970	PDP-11	16 bit	w	2w, 4w	w, 2w, 3w	8 bit	8 bit
+
+
+1971	TMS1802NC	4 bit	w	—	?	?	—
+1971	Intel 4004	4 bit	w, d	—	2w, 4w	w	—
+1972	Intel 8008	8 bit	w, 2 d	—	w, 2w, 3w	w	8 bit
+
+1972	Calcomp 900	9 bit	w	—	w, 2w	w	8 bit
+1974	Intel 8080	8 bit	w, 2w, 2 d	—	w, 2w, 3w	w	8 bit
+1975	ILLIAC IV	64 bit	w	w, 1⁄2w	w	w	—
+1975	Motorola 6800	8 bit	w, 2 d	—	w, 2w, 3w	w	8 bit
+1975	MOS Tech. 6501
+MOS Tech. 6502	8 bit	w, 2 d	—	w, 2w, 3w	w	8 bit
+1976	Cray-1	64 bit	24 bit, w	w	1⁄4w, 1⁄2w	w	8 bit
+1976	Zilog Z80	8 bit	w, 2w, 2 d	—	w, 2w, 3w, 4w, 5w	w	8 bit
+1978(1980)	16-bit x86 (Intel 8086)
+(w/floating point: Intel 8087)	16 bit	1⁄2w, w, 2 d	—
+(2w, 4w, 5w, 17 d)	1⁄2w, w, ... 7w	8 bit	8 bit
+1978	VAX	32 bit	1⁄4w, 1⁄2w, w, 1 d, ... 31 d, 1 bit, ... 32 bit	w, 2w	1⁄4w, ... 141⁄4w	8 bit	8 bit
+
+1979
+(1984)	Motorola 68000 series
+(w/floating point)	32 bit	1⁄4w, 1⁄2w, w, 2 d	—
+(w, 2w, 21⁄2w)	1⁄2w, w, ... 71⁄2w	8 bit	8 bit
+
+1985	IA-32 (Intel 80386) (w/floating point)	32 bit	1⁄4w, 1⁄2w, w	—
+(w, 2w, 80 bit)	8 bit, ... 120 bit
+1⁄4w ... 33⁄4w	8 bit	8 bit
+
+1985	ARMv1	32 bit	1⁄4w, w	—	w	8 bit	8 bit
+
+1985	MIPS	32 bit	1⁄4w, 1⁄2w, w	w, 2w	w	8 bit	8 bit
+1991	Cray C90	64 bit	32 bit, w	w	1⁄4w, 1⁄2w, 48 bit	w	8 bit
+1992	Alpha	64 bit	8 bit, 1⁄4w, 1⁄2w, w	1⁄2w, w	1⁄2w	8 bit	8 bit
+
+1992	PowerPC	32 bit	1⁄4w, 1⁄2w, w	w, 2w	w	8 bit	8 bit
+
+1996	ARMv4
+
+(w/Thumb)	32 bit	1⁄4w, 1⁄2w, w	—	w
+(1⁄2w, w)	8 bit	8 bit
+
+2000	IBM z/Architecture
+(w/vector facility)	64 bit	1⁄4w, 1⁄2w, w
+1 d, ... 31 d	1⁄2w, w, 2w	1⁄4w, 1⁄2w, 3⁄4w	8 bit	8 bit, UTF-16, UTF-32
+
+2001	IA-64	64 bit	8 bit, 1⁄4w, 1⁄2w, w	1⁄2w, w	41 bit	8 bit	8 bit
+
+2001	ARMv6
+(w/VFP)	32 bit	8 bit, 1⁄2w, w	—
+(w, 2w)	1⁄2w, w	8 bit	8 bit
+
+2003	x86-64	64 bit	8 bit, 1⁄4w, 1⁄2w, w	1⁄2w, w, 80 bit	8 bit, ... 120 bit	8 bit	8 bit
+2013	ARMv8-A and ARMv9-A	64 bit	8 bit, 1⁄4w, 1⁄2w, w	1⁄2w, w	1⁄2w	8 bit	8 bit

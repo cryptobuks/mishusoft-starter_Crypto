@@ -1,0 +1,144 @@
+#AgileBits Inc (1password creator)
+agile-bits-inc:
+  name: 'AgileBits Inc'
+  website: 'https://1password.com/'
+  headquarter: 'Toronto, Canada'
+  founded: 2006
+  chiefRevenueOfficer: 'Julian Teixeira'
+
+ncsa:
+  name: 'NATIONAL CENTER FOR SUPERCOMPUTING APPLICATIONS'
+  website:	'ncsa.illinois.edu'
+  established:	1986
+  industry:	Research Institute
+  fieldOfResearch: ['cyber-infrastructure','supercomputing','cyber-resources','cyber-environments','visualization']
+  director:	'Bill Gropp'
+  headquarter:	'Urbana, Illinois, United States of America'
+  affiliations:	'University of Illinois at Urbana-Champaign'
+
+
+
+qihoo-360:
+  name: Qihoo 360
+  type:	Private
+  industry:	Computer software
+  services:	Computer security
+  website:	www.360.cn
+  established:	2005
+  founder:	['Zhou Hongyi (Chairman, CEO, co-founder)', 'Qi Xiangdong (President, director, co-founder)']
+  location:	'London, United Kingdom'
+  headquarter:	'Beijing, China'
+
+
+google:
+  name: Google LLC
+  formerly: Google Inc. (1998–2017)
+  type:	Private
+  industry:	[Internet, Cloud computing, Computer software, Computer hardware, Artificial intelligence, Advertising]
+  services:	Computer security
+  parent: Alphabet Inc.
+  website:	google.com
+  established:	September 4, 1998
+  founder:	['Larry Page', 'Sergey Brin']
+  people:
+    ceo: Sundar Pichai
+    cfo: Ruth Porat
+  location:	'Menlo Park, California, United States'
+  headquarter:	'1600 Amphitheatre Parkway, Mountain View, California, U.S'
+
+
+115-team:
+  name: Yulinmufeng Computer Technology
+  formerly: 115 Technology
+  type:	Private
+  industry:	Cloud storage service
+  services:	Cloud storage service
+  website:	115.com
+  established:	2009
+  founder:	Lai Linfeng
+  location:	'Meijiang District, Guangdong Province, China'
+  headquarter:	'fifth floor of Qinyang Peninsula World Merchants Center, Jiangnan New City, Jinshan Street, Meijiang District'
+
+# url : https://www.crunchbase.com/organization/sistrix-gmbh
+sistrix:
+  name: SISTRIX GmbH
+  subsidiary: SEOlytics GmbH
+  type:	Private
+  industry:	SEO professionals
+  services:	SEO
+  website:	https://www.sistrix.com/
+  established:	2004
+  founder:	Johannes Beus
+  location:	'European Union (EU)'
+  headquarter:	'Bonn, Nordrhein-Westfalen, Germany'
+
+# url : https://www.crunchbase.com/organization/sistrix-gmbh
+vietnam-mango:
+  name: Vietnam Mango Co., Ltd
+  type:	Local government office
+  industry:	Unknown
+  services:	Unknown
+  website:	Unknown
+  established:	Unknown
+  founder:	Unknown
+  location:	'Hai Duong, Vietnam'
+  headquarter:	'Cẩm Đông, Cẩm Giàng District, Hai Duong, Vietnam'
+
+# url : https://2gdpr.com/
+2gdpr:
+  name: 2gdpr.com
+  type:	Private
+  industry:	Free online tool
+  services:	Free online tool
+  website:	https://2gdpr.com/
+  established:	2019
+  founder:	Unknown
+  hostIP:	213.166.68.88
+  location:	'Netherlands'
+  headquarter:	'Dronten, Provincie Flevoland, Netherlands'
+
+# url : https://2gdpr.com/
+microsys:
+  name: Micro Sys
+  type:	Private
+  industry:	freelance development
+  services:	specialized custom software
+  website:	https://www.microsystools.com/home/
+  established:	1978
+  founder:	Henning Schulz
+  telephone: +45 22851177
+  email: info@microsystools.com
+  location:	'Denmark'
+  headquarter:	'Micro-Sys ApS, Boegeskov Hoevej 7 C, DK-8260 Viby J, Denmark'
+
+# url : https://broadsign.com/who-we-are/
+# url : https://www.crunchbase.com/organization/broadsign
+broadsign:
+  name: BROAD SIGN
+  type:	Private
+  industry:	Digital Signage Solutions
+  services:	Digital Signage Software Solutions
+  website:	https://broadsign.com/
+  established:	2004
+  founder:	Burr Smith
+  telephone: +1 514-399-1184
+  email: info@microsystools.com
+  location:	'Hotel Fairmont The Queen Elizabeth'
+  headquarter:	'1100 Boulevard Robert-Bourassa, Montréal, QC H3B 3A5, Canada
+'
+# url : https://openlinkprofiler.org/
+# url : https://www.seoprofiler.com/company/about
+# url : https://www.crunchbase.com/organization/seoprofiler
+# url : https://www.owler.com/company/seoprofiler
+seoprofiler:
+  name: SEO Profiler
+  type:	Private
+  parent:	Axandra GmbH
+  industry: A cloud based Internet marketing software tool
+  services: Internet Software
+  website:	https://www.seoprofiler.com/
+  established: 1997
+  founder: Johannes Selbach
+  fax: +49(0)32222821655
+  location:	'Staudt, Rheinland-Pfalz, Germany'
+  headquarter:	'Axandra GmbH, Nordring 21, D-56424 Staudt, Germany'

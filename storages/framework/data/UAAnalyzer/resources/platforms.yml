@@ -1,0 +1,324 @@
+aix-unix-os:
+  name: IBM AIX
+  author: IBM
+  Written in: C
+  OS family: Unix
+  Working state: Current
+  Source model: Closed source
+  release:
+    initial:
+      date: February 1986
+    latest:
+      edition: 7.2 TL5
+      date: November 2020
+  Marketing target: Workstation, Server
+  Platforms	Current: Power ISA (POWER7 and later)
+  Former: IBM ROMP, PowerPC, x86 (IBM PS/2), System/370, ESA/390
+  Kernel type: Monolithic with dynamically loadable modules
+  Userland: POSIX / SUS
+  Default user interface: [ KornShell (ksh88), Common Desktop Environment, (Plasma Workspaces and GNOME optional) ]
+  License: Proprietary
+  Official website: www.ibm.com/it-infrastructure/power/os/aix
+
+amiga-os:
+  name: Amiga OS
+  version: Unknown
+  author: [Commodore International, Hyperion Entertainment]
+  Written in: Assembly language, BCPL, C
+  OS family: Amiga
+  Working state: Current
+  Source model: Closed source
+  release:
+    initial:
+      date: July 23, 1985
+    latest:
+      edition: 4.1 Final Edition Update 2
+      date: January 12, 2021
+  Platforms	M68K: versions 1.0 through 3.9
+  PowerPC: versions 4.0 through 4.1
+  Kernel type: Microkernel
+  Default user interface: Graphical (Workbench)
+  License: Proprietary
+  Official website: www.amigaos.net
+
+gentoo-linux:
+  name: Gentoo Linux
+  version: Unknown
+  author: gentoo-foundation
+  OS family:	Unix-like
+  Working state:	Current
+  Source model:	Open source
+  Initial release:	26 July 2000
+  Repository: gitweb.gentoo.org/repo/gentoo.git
+  Update method:	Rolling release
+  Package manager:	Portage
+  Platforms:	[IA-32, x86-64, IA-64, PA-RISC (HPPA), PowerPC 32/64, SPARC 64-bit, DEC Alpha, ARM 32/64, MIPS]
+  Kernel type:	Monolithic
+  Userland:	GNU
+  Default user interface:	[Xfce, LXQt, KDE, GNOME, Fluxbox, i3, Sway]
+  License:	Free software
+  Official website:	www.gentoo.org
+
+bsd-os:
+  name: BSD Based OS
+  version: Unknown
+  author: berkeley-software
+  Written in:	C
+  OS family: Unix-like
+  Working state:	Discontinued
+  Source model: Source-available
+  release:
+    initial: BSD/386 1.0, March 1993
+  Developer: Berkeley Software Design, Inc
+  Default user interface: Command-line interface
+  Available in: English
+  Marketing target:	Internet server applications
+  Platforms:	[x86, SPARC, PowerPC]
+  Kernel type:	Monolithic
+  License:	Proprietary
+
+commodore64-os:
+  name: Commodore64
+  space: os
+  Manufacturer: Commodore Business Machines (CBM)
+  Type: Home computer
+  Release date: August 1982;
+  Introductory price: US$595 (equivalent to $1,596 in 2020)
+  Discontinued: April 1994; 27 years ago
+  Units sold: 12.5[2] – 17[3] million
+  Operating system: [ Commodore KERNAL/BASIC 2.0, GEOS (optionally) ]
+  CPU: MOS Technology 6510/8500
+  #@ 1.023 MHz (NTSC version)
+  #@ 0.985 MHz (PAL version)
+  Memory: '64 KB (65,536 bytes) (IEC: KiB) RAM + 20 KB ROM'
+  Graphics: 'VIC-II (320×200, 16 colors, sprites, raster interrupt)'
+  Sound: 'SID 6581/8580 (3× osc, 4× wave, filter, ADSR, ring)'
+  #  Connectivity: 2× CIA 6526 (joystick, GPIO/RS-232/keyboard)
+  #  Power (+5V DC & 9V AC)
+  #  ROM cartridge
+  #  Video/audio (RF/A/V)
+  #  Serial IEEE 488 bus (floppy disk/printer)
+  #  Digital tape
+  Predecessor: Commodore VIC-20
+  Successor: [ Commodore 128, Amiga ]
+
+little-webbook-os:
+  name: little webbook
+  author: litl-llc
+  Developer:	litl LLC
+  Manufacturer:	First International Computer
+  Type:	Webbook
+  Release date:	November 9, 2009
+  Introductory price:	$699
+  Operating system:	litl OS
+  CPU:	1.86 GHz Atom Z540
+  Official website:	litl.com
+
+
+linux-os:
+  name: Linux Based OS
+  Developer:	Linux Foundation
+  Written in:	[C, Assembly language]
+  OS family:	Unix-like
+  Working state:	Current
+  Source model:	Open source
+  release:
+    Initial:	September 17, 1991
+  Repository:	https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/
+  Marketing target:	Cloud computing, embedded devices, mainframe computers, mobile devices, personal computers, servers, supercomputers
+  Available in:	Multilingual
+  Platforms:	[Alpha, ARC, ARM, ARM64, C6x, H8/300, Hexagon, Itanium, m68k, Microblaze, MIPS, NDS32, Nios II, OpenRISC, PA-RISC, PowerPC, RISC-V, s390, SuperH, SPARC, Unicore32, x86, x86-64, XBurst, Xtensa]
+  Kernel type:	Monolithic
+  Userland:	GNU
+  Default user interface:	Unix shell
+  License:	GPLv2, the name "Linux" is a trademark
+  Official website:	www.kernel.org
+
+unix-os:
+  name: Unix Based OS
+  Developer:	[Ken Thompson, Dennis Ritchie, Brian Kernighan, Douglas McIlroy, and Joe Ossanna at Bell Labs]
+  Written in:	[C, assembly language]
+  OS family:	Unix
+  Source model:	[Historically proprietary software, while some Unix projects (including BSD family and illumos) are open-source]
+  Initial release:	Development started in 1969
+  #First manual published internally in November 1971[1]
+  #Announced outside Bell Labs in October 1973[2]
+  Available in:	English
+  Kernel type:	'Varies; monolithic, microkernel, hybrid'
+  Influenced by:	Multics
+  Default user interface:	'Command-line interface and Graphical (Wayland and X Window System; Android SurfaceFlinger; macOS Quartz)'
+  License:	'Varies; some versions are proprietary, others are free/open-source software'
+  Official website:	opengroup.org/unix
+
+windows-eleven:
+  name: Windows 11
+  Developer:	Microsoft
+  Written in: [C, C++, C#, assembly language]
+  OS family:	Microsoft Windows
+  Source model: Closed-source
+  Source-available: [(through Shared Source Initiative), Some components open source]
+  General availability:	Late 2021 (expected)
+  Latest preview:	10.0.22000.65 (July 8, 2021)
+  Marketing target:	Personal computing
+  Available in:	110 languages
+  List of languages: [Afrikaans, Albanian, Amharic, Arabic, Armenian, Assamese, Azerbaijani, Bangla (Bangladesh), Bangla (India), Basque, Belarusian, Bosnian, Bulgarian, Catalan, Central Kurdish, Cherokee, Chinese (Simplified), Chinese (Traditional), Croatian, Czech, Danish, Dari - Persian (Afghanistan), Dutch, German, Greek, English (United Kingdom), English (United States), Estonian, Finnish, Filipino, French (Canada), French (France), Galician, Georgian, Gujarati, Hausa, Hebrew, Hindi, Hungarian, Icelandic, Igbo, Indonesian, Irish, Italian, Japanese, Kannada, Kazakh, Khmer, K'iche', Kinyarwanda, Konkani, Korean, Kyrgyz, Lao, Latvian, Lithuanian, Luxembourgish, Macedonian, Malay, Malayalam, Maltese, Maori, Marathi, Mongolian, Nepali, Northern Sotho, Norwegian Bokmål, Norwegian Nynorsk, Odia, Persian (Iran), Punjabi (Arabic), Punjabi (Gurmukhi), Polish, Portuguese (Brazil), Portuguese (Portugal), Quechua, Romanian, Russian, Scottish Gaelic, Serbian (Cyrillic, Bosnia & Herzegovina), Serbian (Cyrillic, Serbia), Serbian (Latin), Sindhi (Arabic), Sinhala, Slovak, Slovenian, Spanish (Spain), Spanish (Mexico), Swahili, Swedish, Tajik, Tamil, Tatar, Telugu, Thai, Tigrinya, Tswana, Turkish, Turkmen, Ukrainian, Urdu, Uyghur, Uzbek, Valencian, Vietnamese, Welsh, Wolof, Xhosa, Yoruba, Zulu]
+  Update method: [Windows Update,  Microsoft Store, Windows Server Update Services (WSUS)]
+  Platforms:	[x64, ARM64]
+  Kernel type:	Hybrid (Windows NT kernel)
+  Userland:	[Native API, Windows API, .NET Framework, Universal Windows Platform, Windows Subsystem for Linux, Windows Subsystem for Android]
+  Default user interface:	Windows shell (graphical)
+  Preceded by:	Windows 10 (2015)
+  Official website:	www.microsoft.com/windows/windows-11
+
+windows-ten:
+  name: Windows 10
+  Developer:	Microsoft
+  Written in: [C, C++, C#, assembly language]
+  OS family:	Microsoft Windows
+  Source model: Closed-source
+  Source-available: (through Shared Source Initiative) Some components open source
+  Released to manufacturing:	July 15, 2015
+  General availability:	July 29, 2015
+  Latest release:	10.0.19043.1083 (July 6, 2021)
+  Latest preview:	10.0.21390.2025 (June 14, 2021)
+  Marketing target:	Personal computing
+  Available in:	110 languages
+  List of languages: [Afrikaans, Albanian, Amharic, Arabic, Armenian, Assamese, Azerbaijani, Bangla (Bangladesh), Bangla (India), Basque, Belarusian, Bosnian, Bulgarian, Catalan, Central Kurdish, Cherokee, Chinese (Simplified), Chinese (Traditional), Croatian, Czech, Danish, Dari - Persian (Afghanistan), Dutch, German, Greek, English (United Kingdom), English (United States), Estonian, Finnish, Filipino, French (Canada), French (France), Galician, Georgian, Gujarati, Hausa, Hebrew, Hindi, Hungarian, Icelandic, Igbo, Indonesian, Irish, Italian, Japanese, Kannada, Kazakh, Khmer, K'iche', Kinyarwanda, Konkani, Korean, Kyrgyz, Lao, Latvian, Lithuanian, Luxembourgish, Macedonian, Malay, Malayalam, Maltese, Maori, Marathi, Mongolian, Nepali, Northern Sotho, Norwegian Bokmål, Norwegian Nynorsk, Odia, Persian (Iran), Punjabi (Arabic), Punjabi (Gurmukhi), Polish, Portuguese (Brazil), Portuguese (Portugal), Quechua, Romanian, Russian, Scottish Gaelic, Serbian (Cyrillic, Bosnia & Herzegovina), Serbian (Cyrillic, Serbia), Serbian (Latin), Sindhi (Arabic), Sinhala, Slovak, Slovenian, Spanish (Spain), Spanish (Mexico), Swahili, Swedish, Tajik, Tamil, Tatar, Telugu, Thai, Tigrinya, Tswana, Turkish, Turkmen, Ukrainian, Urdu, Uyghur, Uzbek, Valencian, Vietnamese, Welsh, Wolof, Xhosa, Yoruba, Zulu]
+  Update method: [Windows Update,  Microsoft Store, Windows Server Update Services (WSUS)]
+  Platforms:	[IA-32, x86-64, ARMv7, ARM64]
+  Kernel type:	Hybrid (Windows NT kernel)
+  Userland:	[Native API, Windows API, .NET Framework, Universal Windows Platform, Windows Subsystem for Linux, NTVDM (IA-32 only)]
+  Default user interface:	Windows shell (graphical)
+  License:	[Trialware, Microsoft Software Assurance, MSDN subscription, Microsoft Imagine]
+  Preceded by:	Windows 8.1 (2013)
+  Succeeded by:	Windows 11 (2021)
+  Official website:	windows.com
+
+windows-eight-point-one:
+  name: Windows 8.1
+  Developer:	Microsoft
+  Written in: [C, C++, C#, assembly language]
+  OS family:	Microsoft Windows
+  Source model: Closed-source
+  Source-available: (through Shared Source Initiative) Some components open source
+  Released to manufacturing:	August 27, 2013
+  General availability:	October 17, 2013
+  Latest release:	6.3.9600 / April 8, 2014
+  Marketing target:	Personal computing
+  Available in:	110 languages
+  List of languages: [Afrikaans, Albanian, Amharic, Arabic, Armenian, Assamese, Azerbaijani, Bangla (Bangladesh), Bangla (India), Basque, Belarusian, Bosnian, Bulgarian, Catalan, Central Kurdish, Cherokee, Chinese (Simplified), Chinese (Traditional), Croatian, Czech, Danish, Dari - Persian (Afghanistan), Dutch, German, Greek, English (United Kingdom), English (United States), Estonian, Finnish, Filipino, French (Canada), French (France), Galician, Georgian, Gujarati, Hausa, Hebrew, Hindi, Hungarian, Icelandic, Igbo, Indonesian, Irish, Italian, Japanese, Kannada, Kazakh, Khmer, K'iche', Kinyarwanda, Konkani, Korean, Kyrgyz, Lao, Latvian, Lithuanian, Luxembourgish, Macedonian, Malay, Malayalam, Maltese, Maori, Marathi, Mongolian, Nepali, Northern Sotho, Norwegian Bokmål, Norwegian Nynorsk, Odia, Persian (Iran), Punjabi (Arabic), Punjabi (Gurmukhi), Polish, Portuguese (Brazil), Portuguese (Portugal), Quechua, Romanian, Russian, Scottish Gaelic, Serbian (Cyrillic, Bosnia & Herzegovina), Serbian (Cyrillic, Serbia), Serbian (Latin), Sindhi (Arabic), Sinhala, Slovak, Slovenian, Spanish (Spain), Spanish (Mexico), Swahili, Swedish, Tajik, Tamil, Tatar, Telugu, Thai, Tigrinya, Tswana, Turkish, Turkmen, Ukrainian, Urdu, Uyghur, Uzbek, Valencian, Vietnamese, Welsh, Wolof, Xhosa, Yoruba, Zulu]
+  Update method: [Windows Update,  Microsoft Store, Windows Server Update Services (WSUS)]
+  Platforms:	[IA-32, x64, ARM (Windows RT)]
+  Kernel type:	Hybrid (Windows NT kernel)
+  Userland:	[Native API, NTVDM]
+  Default user interface:	Windows shell (graphical)
+  License:	[Trialware, Microsoft Software Assurance, MSDN subscription, Microsoft Imagine]
+  Preceded by:	Windows 8 (2012)
+  Succeeded by:	Windows 10 (2015)
+  Official website:	www.microsoft.com/windows
+
+windows-eight:
+  name: Windows 8
+  Developer:	Microsoft
+  Written in: [C, C++, C#, assembly language]
+  OS family:	Microsoft Windows
+  Source model: Closed-source
+  Source-available: (through Shared Source Initiative) Some components open source
+  Released to manufacturing:	August 1, 2012
+  General availability:	October 26, 2012
+  Latest release:	6.2 (Build 9200) / August 1, 2012
+  Marketing target:	Personal computing
+  Available in:	110 languages
+  List of languages: [Afrikaans, Albanian, Amharic, Arabic, Armenian, Assamese, Azerbaijani, Bangla (Bangladesh), Bangla (India), Basque, Belarusian, Bosnian, Bulgarian, Catalan, Central Kurdish, Cherokee, Chinese (Simplified), Chinese (Traditional), Croatian, Czech, Danish, Dari - Persian (Afghanistan), Dutch, German, Greek, English (United Kingdom), English (United States), Estonian, Finnish, Filipino, French (Canada), French (France), Galician, Georgian, Gujarati, Hausa, Hebrew, Hindi, Hungarian, Icelandic, Igbo, Indonesian, Irish, Italian, Japanese, Kannada, Kazakh, Khmer, K'iche', Kinyarwanda, Konkani, Korean, Kyrgyz, Lao, Latvian, Lithuanian, Luxembourgish, Macedonian, Malay, Malayalam, Maltese, Maori, Marathi, Mongolian, Nepali, Northern Sotho, Norwegian Bokmål, Norwegian Nynorsk, Odia, Persian (Iran), Punjabi (Arabic), Punjabi (Gurmukhi), Polish, Portuguese (Brazil), Portuguese (Portugal), Quechua, Romanian, Russian, Scottish Gaelic, Serbian (Cyrillic, Bosnia & Herzegovina), Serbian (Cyrillic, Serbia), Serbian (Latin), Sindhi (Arabic), Sinhala, Slovak, Slovenian, Spanish (Spain), Spanish (Mexico), Swahili, Swedish, Tajik, Tamil, Tatar, Telugu, Thai, Tigrinya, Tswana, Turkish, Turkmen, Ukrainian, Urdu, Uyghur, Uzbek, Valencian, Vietnamese, Welsh, Wolof, Xhosa, Yoruba, Zulu]
+  Update method: [Windows Update,  Microsoft Store, Windows Server Update Services (WSUS)]
+  Platforms:	[IA-32, x64, ARM (Windows RT)]
+  Kernel type:	Hybrid (Windows NT kernel)
+  Userland:	[Native API, NTVDM]
+  Default user interface:	Windows shell (graphical)
+  License:	[Trialware, Microsoft Software Assurance, MSDN subscription, Microsoft Imagine]
+  Preceded by:	Windows 7 (2009)
+  Succeeded by:	Windows 8.1 (2013)
+  Official website: ['windows.microsoft.com/en-US/windows-8/mee', 'https://web.archive.org/web/20121231172223/https://windows.microsoft.com/en-US/windows-8/meet?ocid=GA8_O_WOL_Hero_Home_8Here_Null']
+
+windows-seven:
+  name: Windows 7
+  Developer:	Microsoft
+  Written in: [C, C++, C#, assembly language]
+  OS family:	Microsoft Windows
+  Source model: Closed-source
+  Source-available: (through Shared Source Initiative) Some components open source
+  Released to manufacturing:	July 22, 2009
+  General availability:	October 22, 2009
+  Latest release:	Service Pack 1 (6.1.7601.24499) / February 9, 2011;
+  Marketing target:	Personal computing
+  Available in:	110 languages
+  List of languages: [Afrikaans, Albanian, Amharic, Arabic, Armenian, Assamese, Azerbaijani, Bangla (Bangladesh), Bangla (India), Basque, Belarusian, Bosnian, Bulgarian, Catalan, Central Kurdish, Cherokee, Chinese (Simplified), Chinese (Traditional), Croatian, Czech, Danish, Dari - Persian (Afghanistan), Dutch, German, Greek, English (United Kingdom), English (United States), Estonian, Finnish, Filipino, French (Canada), French (France), Galician, Georgian, Gujarati, Hausa, Hebrew, Hindi, Hungarian, Icelandic, Igbo, Indonesian, Irish, Italian, Japanese, Kannada, Kazakh, Khmer, K'iche', Kinyarwanda, Konkani, Korean, Kyrgyz, Lao, Latvian, Lithuanian, Luxembourgish, Macedonian, Malay, Malayalam, Maltese, Maori, Marathi, Mongolian, Nepali, Northern Sotho, Norwegian Bokmål, Norwegian Nynorsk, Odia, Persian (Iran), Punjabi (Arabic), Punjabi (Gurmukhi), Polish, Portuguese (Brazil), Portuguese (Portugal), Quechua, Romanian, Russian, Scottish Gaelic, Serbian (Cyrillic, Bosnia & Herzegovina), Serbian (Cyrillic, Serbia), Serbian (Latin), Sindhi (Arabic), Sinhala, Slovak, Slovenian, Spanish (Spain), Spanish (Mexico), Swahili, Swedish, Tajik, Tamil, Tatar, Telugu, Thai, Tigrinya, Tswana, Turkish, Turkmen, Ukrainian, Urdu, Uyghur, Uzbek, Valencian, Vietnamese, Welsh, Wolof, Xhosa, Yoruba, Zulu]
+  Update method: Windows Update
+  Platforms:	[IA-32, x86-64]
+  Kernel type:	Hybrid (Windows NT kernel)
+  Userland:	[Native API, NTVDM, SUA]
+  Default user interface:	Windows shell (graphical)
+  License:	Proprietary commercial software
+  Preceded by:	Windows Vista (2007)
+  Succeeded by:	Windows 8 (2012)
+  Official website: windows.com
+
+windows-vista:
+  name: Windows 7
+  Developer:	Microsoft
+  Written in: [C, C++, C#, assembly language]
+  OS family:	Microsoft Windows
+  Source model: Closed-source
+  Source-available: (through Shared Source Initiative) Some components open source
+  Released to manufacturing:	November 8, 2006
+  General availability:	January 30, 2007
+  Latest release:	Service Pack 2 with security update rollup (6.0.6002) / October 18, 2016
+  Marketing target:	Personal computing
+  Available in:	110 languages
+  List of languages: [Afrikaans, Albanian, Amharic, Arabic, Armenian, Assamese, Azerbaijani, Bangla (Bangladesh), Bangla (India), Basque, Belarusian, Bosnian, Bulgarian, Catalan, Central Kurdish, Cherokee, Chinese (Simplified), Chinese (Traditional), Croatian, Czech, Danish, Dari - Persian (Afghanistan), Dutch, German, Greek, English (United Kingdom), English (United States), Estonian, Finnish, Filipino, French (Canada), French (France), Galician, Georgian, Gujarati, Hausa, Hebrew, Hindi, Hungarian, Icelandic, Igbo, Indonesian, Irish, Italian, Japanese, Kannada, Kazakh, Khmer, K'iche', Kinyarwanda, Konkani, Korean, Kyrgyz, Lao, Latvian, Lithuanian, Luxembourgish, Macedonian, Malay, Malayalam, Maltese, Maori, Marathi, Mongolian, Nepali, Northern Sotho, Norwegian Bokmål, Norwegian Nynorsk, Odia, Persian (Iran), Punjabi (Arabic), Punjabi (Gurmukhi), Polish, Portuguese (Brazil), Portuguese (Portugal), Quechua, Romanian, Russian, Scottish Gaelic, Serbian (Cyrillic, Bosnia & Herzegovina), Serbian (Cyrillic, Serbia), Serbian (Latin), Sindhi (Arabic), Sinhala, Slovak, Slovenian, Spanish (Spain), Spanish (Mexico), Swahili, Swedish, Tajik, Tamil, Tatar, Telugu, Thai, Tigrinya, Tswana, Turkish, Turkmen, Ukrainian, Urdu, Uyghur, Uzbek, Valencian, Vietnamese, Welsh, Wolof, Xhosa, Yoruba, Zulu]
+  Update method: [Windows Update, Windows Server Update Services (WSUS), System Center Configuration Manager (SCCM)]
+  Platforms:	[IA-32, x86-64]
+  Kernel type:	Hybrid (Windows NT kernel)
+  Userland:	[Native API, NTVDM, SUA]
+  Default user interface:	Windows shell (graphical)
+  License:	Proprietary commercial software
+  Preceded by:	Windows XP (2001)
+  Succeeded by:	Windows 7 (2009)
+  Official website: https://web.archive.org/web/20080716203229/https://www.microsoft.com/windows/windows-vista/default.aspx
+
+windows-xp:
+  name: Windows 7
+  Developer:	Microsoft
+  Written in: [C, C++, C#, assembly language]
+  OS family:	Microsoft Windows
+  Source model: Closed-source
+  Source-available: (through Shared Source Initiative) Some components open source
+  Released to manufacturing:	November 8, 2006
+  General availability:	January 30, 2007
+  Latest release:	Service Pack 2 with security update rollup (6.0.6002) / October 18, 2016
+  Marketing target:	Personal computing
+  Available in:	110 languages
+  List of languages: [Afrikaans, Albanian, Amharic, Arabic, Armenian, Assamese, Azerbaijani, Bangla (Bangladesh), Bangla (India), Basque, Belarusian, Bosnian, Bulgarian, Catalan, Central Kurdish, Cherokee, Chinese (Simplified), Chinese (Traditional), Croatian, Czech, Danish, Dari - Persian (Afghanistan), Dutch, German, Greek, English (United Kingdom), English (United States), Estonian, Finnish, Filipino, French (Canada), French (France), Galician, Georgian, Gujarati, Hausa, Hebrew, Hindi, Hungarian, Icelandic, Igbo, Indonesian, Irish, Italian, Japanese, Kannada, Kazakh, Khmer, K'iche', Kinyarwanda, Konkani, Korean, Kyrgyz, Lao, Latvian, Lithuanian, Luxembourgish, Macedonian, Malay, Malayalam, Maltese, Maori, Marathi, Mongolian, Nepali, Northern Sotho, Norwegian Bokmål, Norwegian Nynorsk, Odia, Persian (Iran), Punjabi (Arabic), Punjabi (Gurmukhi), Polish, Portuguese (Brazil), Portuguese (Portugal), Quechua, Romanian, Russian, Scottish Gaelic, Serbian (Cyrillic, Bosnia & Herzegovina), Serbian (Cyrillic, Serbia), Serbian (Latin), Sindhi (Arabic), Sinhala, Slovak, Slovenian, Spanish (Spain), Spanish (Mexico), Swahili, Swedish, Tajik, Tamil, Tatar, Telugu, Thai, Tigrinya, Tswana, Turkish, Turkmen, Ukrainian, Urdu, Uyghur, Uzbek, Valencian, Vietnamese, Welsh, Wolof, Xhosa, Yoruba, Zulu]
+  Update method: [Windows Update, Windows Server Update Services (WSUS), System Center Configuration Manager (SCCM)]
+  Platforms:	[IA-32, x86-64]
+  Kernel type:	Hybrid (Windows NT kernel)
+  Userland:	[Native API, NTVDM, SUA]
+  Default user interface:	Windows shell (graphical)
+  License:	Proprietary commercial software
+  Preceded by:	Windows XP (2001)
+  Succeeded by:	Windows 7 (2009)
+  Official website: https://web.archive.org/web/20080716203229/https://www.microsoft.com/windows/windows-vista/default.aspx
+
+windows-cygwin:
+  name: Cygwin
+  Original authors: [Steve Chamberlain, Cygnus Solutions]
+  Developers:	[Cygnus Solutions, Red Hat, Cygwin project volunteers]
+  release:
+    initial:	October 18, 1995
+    stable: 3.2.0 / 29 March 2021
+  Repository: sourceware.org/git/newlib-cygwin.git
+  Written in:	C/C++
+  Operating system:	Microsoft Windows
+  Type:	[POSIX standard utilities, POSIX standard library, C standard library, compatibility layer]
+  License:	LGPLv3
+  Website:	cygwin.com

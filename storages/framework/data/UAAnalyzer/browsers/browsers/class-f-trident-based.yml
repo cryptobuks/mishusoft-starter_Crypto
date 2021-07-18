@@ -1,0 +1,72 @@
+# url : https://en.wikipedia.org/wiki/List_of_web_browsers#Trident_shells
+
+# 360 Secure Browser
+# 360 Secure Browser (360 Security Browser) or 360 Safe Browser[5] (Chinese: 360安全浏览器) is a web browser developed by
+# the Qihoo 360 Technology Co. Ltd of Beijing, China.[6][7] It was first released in September 2008.[6]
+# The browser by default renders the webpage using the WebKit-based engine adapted for Google Chrome, Blink,
+# and when running in compatibility mode, it renders webpages using the Trident engine found in Internet Explorer.[8][9]
+
+# url : https://user-agents.net/browsers/360-secure-browser
+# Latest user agent list
+# Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E; InfoPath.3; 360SE)
+# Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.0; WOW64; Trident/6.0; SLCC2; .NET CLR 2.0.50727; 360SE)
+# Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; .NET CLR 3.0.04506.648; .NET CLR 3.5.21022; .NET4.0C; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729; .NET CLR 2.0.50727; 360SE)
+# Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.2; WOW64; Trident/4.0; .NET4.0E; .NET4.0C; InfoPath.3; 360SE)
+- identifiers:
+    # Pattern maker method use it
+    browser-360-secure-browser:
+      pattern:
+        name: (360se)
+        separator: false
+        version: false
+      functional: true
+
+  # Information maker method use it
+  info: browser 360ee-browser
+
+
+# 360 Speed Browser
+# 360 Speed Browser is a web browser developed by Qihoo 360 Technology Co. Ltd.. This browser renders web pages using the Trident engine.
+
+# url : https://user-agents.net/browsers/360-speed-browser
+# Latest user agent list
+# Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0; .NET4.0C; .NET4.0E; InfoPath.3; QIHU 360EE)
+# Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; InfoPath.3; .NET4.0C; .NET4.0E; QIHU 360EE)
+# Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; QIHU 360EE)
+# Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.101 Safari/537.36 QIHU 360EE
+# Mozilla/5.0 (compatible; MSIE 11.0; Windows NT 6.3; WOW64; Trident/7.0; SLCC2; .NET CLR 2.0.50727; QIHU 360EE)
+- identifiers:
+    # Pattern maker method use it
+    browser-360-speed-browser:
+      pattern:
+        name: (360ee)
+        separator: false
+        version: false
+      functional: true
+
+  # Information maker method use it
+  info: browser 360ee-browser
+
+
+# 126 BROWSER
+# EdgeHTML is a proprietary browser engine from Microsoft that was formerly used in the Edge web browser.
+# The debut of both was in 2015 as part of the Windows 10 release.
+
+# url: https://developers.whatismybrowser.com/useragents/explore/software_name/126-browser/
+# Latest user agents:
+# Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; 126BROWSER; .NET CLR 2.0.50727; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729; .NET4.0C; .NET4.0E)
+# Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; Trident/4.0; 126BROWSER; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0)
+# Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; Trident/4.0; 126BROWSER; .NET CLR 2.0.50727; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729; .NET4.0C; .NET4.0E)
+# Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; WOW64; SV1; 126BROWSER; .NET CLR 2.0.50727)
+
+- identifiers:
+    # Pattern maker method use it
+    browser-126-browser:
+      pattern:
+        name: (126browser)
+        separator: false
+        version: false
+      functional: true
+
+  # Information maker method use it
+  info: browser 126-browser
