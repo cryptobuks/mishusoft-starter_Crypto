@@ -1,0 +1,5 @@
+alexa:
+  name: 'Alexa'
+  author: 'amazon'
+  type: 'Multimedia Player'
+  ui: 'FullTextMode'

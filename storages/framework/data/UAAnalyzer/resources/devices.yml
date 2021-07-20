@@ -1,0 +1,127 @@
+# url : https://developers.whatismybrowser.com/useragents/explore/software_type_specific/analyser/
+
+# billboard
+billboard-boardsign:
+  name: BoardSign Billboard
+  type: Billboard
+  author: board-sign
+  brand: board-sign
+  pointer: Unknown
+
+billboard-mvision-player:
+  name: mVision Player
+  type: Billboard
+  author: mood-media
+  brand: mood-media
+  pointer: Unknown
+
+billboard-outform:
+  name: Outform Digital Display
+  type: Billboard
+  author: outform
+  url: https://www.outform.com/product-solution/idisplay/idisplay-ad-display/
+  brand: outform
+  pointer: Unknown
+
+
+# car
+car-tesla:
+  name: Tesla Car
+  type: Car
+  author: tesla
+  url: https://www.tesla.com/
+  brand: tesla
+  pointer: Unknown
+
+
+#desktop
+desktop-windows:
+  name: Windows Desktop
+  type: Computer
+  author: microsoft
+  url: https://www.windows.com/
+  brand: Windows
+  pointer: Cursor
+
+desktop-macintosh:
+  name: Macintosh Desktop
+  type: Desktop
+  author: apple
+  url: https://www.apple.com/
+  brand: MAC
+  pointer: Cursor
+
+desktop-linux:
+  name: Linux Desktop
+  type: Desktop
+  author: Unknown
+  url: https://www.karnel.org/
+  brand: Linux
+  pointer: Cursor
+
+desktop-bsd:
+  name: BSD Desktop
+  type: Desktop
+  author: Unknown
+  url: https://www.bsd.org/
+  brand: BSD
+  pointer: Cursor
+
+desktop-ubuntu:
+  name: Ubuntu Desktop
+  type: Desktop
+  author: Canonical
+  url: https://www.ubuntu.com/
+  brand: Ubuntu
+  pointer: Cursor
+
+desktop-openbsd:
+  name: OpenBSD Desktop
+  type: Desktop
+  author: OpenBSD
+  url: https://www.openbsd.com/
+  brand: BSD
+  pointer: Cursor
+
+
+#ebook-reader
+ebook-reader-silk:
+  name: Silk Ebook Reader
+  type: Ebook Reader
+  author: amazon
+  url: https://www.amazon.com/Amazon-com-Amazon-Silk-Web-Browser/dp/B01M35MQV4
+  brand: amazon
+  pointer: touch
+
+ebook-reader-kindle:
+  name: Kindle Ebook Reader
+  type: Ebook Reader
+  author: amazon
+  url: https://www.amazon.com/
+  brand: amazon
+  pointer: touch
+
+#game-console
+game-console-play-station:
+  name: Play Station
+  type: Game Console
+  author: Sony Interactive Entertainment LLC
+  url: https://www.playstation.com/en-us/
+  brand: playstation
+  pointer: touch
+
+game-console-xbox:
+  name: Xbox
+  type: Game Console
+  author: microsoft
+  url: https://www.xbox.com/en-us/
+  brand: xbox
+  pointer: touch
+
+game-console-nintendo:
+  name: Nintendo
+  type: Game Console
+  author: Nintendo of America Inc
+  url: https://www.nintendo.com/
+  brand: nintendo
+  pointer: touch

@@ -1,13 +1,13 @@
 <?php
 
 
-namespace Mishusoft\Framework\Drivers;
+namespace Mishusoft\Drivers;
 
 
-use Mishusoft\Framework\Chipsets\System\Memory;
-use Mishusoft\Framework\Chipsets\Utility\_Debug;
-use Mishusoft\Framework\Interfaces\Drivers\UrlHandlerInterface;
-use Mishusoft\Framework\Interfaces\Drivers\MishusoftViewInterface;
+use Mishusoft\System\Memory;
+use Mishusoft\Utility\Debug;
+use Mishusoft\Drivers\UrlHandlerInterface;
+use Mishusoft\Drivers\View\MishusoftViewInterface;
 
 abstract class UrlHandler implements UrlHandlerInterface
 {

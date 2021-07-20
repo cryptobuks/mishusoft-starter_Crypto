@@ -12,18 +12,18 @@
 # Echo/1.0(APNG) [ip:149.100.172.123]
 - identifiers:
     # Pattern maker method use it
-    multimedia-palyer-alexa:
+    multimedia-player-alexa:
       pattern:
         name: (echo)
         separator: true
         version: true
       functional: true
-
-  # if as not matched with extracted name, then new name set into as key.
-  as: 'Alexa'
-  space: 'multimedia-players'
+    multimedia-player-alexa-fallback:
+      pattern:
+        name: (ia\_archiver)
+        separator: true
+        version: true
+      functional: true
 
   # Information maker method use it
-  info:
-    name:     'Alexa'
-    author:   'amazon'
+  info: multimedia-player alexa

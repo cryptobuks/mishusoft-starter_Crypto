@@ -1,0 +1,40 @@
+
+
+# 2345 Explorer
+# 2345 Explorer is a web browser developed by 2345.com. This browser renders web pages using the Blink engine.
+
+# Latest user agents:
+# Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36 2345Explorer/9.8.0.19047
+# Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3947.100 Safari/537.36 2345Explorer/10.19.0.21373
+# Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3947.100 Safari/537.36 2345Explorer/10.18.0.21318
+- identifiers:
+    # Pattern maker method use it
+    browser-2345-explorer:
+      pattern:
+        name: (2345explorer)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser 2345-explorer
+
+
+# abrowse
+# abrowse is a web browser developed by Syllable Project. This browser renders web pages using the AppleWebKit engine.
+# url:https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-13-2
+
+# Latest user agents:
+# Mozilla/5.0 (compatible; ABrowse 0.4; Syllable)
+# Mozilla/5.0 (compatible; U; ABrowse 0.6; Syllable) AppleWebKit/420+ (KHTML, like Gecko)
+- identifiers:
+    # Pattern maker method use it
+    browser-abrowse:
+      pattern:
+        name: (abrowse)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser abrowse

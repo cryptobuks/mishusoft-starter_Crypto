@@ -45,9 +45,11 @@ class PlatformsPatternsCollection extends Collection
      */
     public function windowManager(string $identifier):string
     {
-        return match (strtolower($identifier)) {
-            'x11','linux','windows','cpu','iphone','mac','android','mobi'=> $this->makePattern('(x11|linux|win(dows)|cpu\s*(os|iphone\s*os)|iphone|mac|android|mobi)', false, false),
-            default => throw new InvalidArgumentException('Unexpected window manager : '.$identifier)
-        };
+        $dictionary = $this->extractAttribute($this->query('platforms', 'wm'), 'identifier-with-pattern');
+        if (array_key_exists($identifier, $dictionary)=== true) {
+            return strtolower($dictionary[$identifier]);
+        }
+
+        throw new InvalidArgumentException('Unexpected platform : '.$identifier);
     }
 }

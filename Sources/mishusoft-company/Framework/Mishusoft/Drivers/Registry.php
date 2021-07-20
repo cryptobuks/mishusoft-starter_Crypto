@@ -1,9 +1,8 @@
 <?php
 
-namespace Mishusoft\Framework\Drivers;
+namespace Mishusoft\Drivers;
 
-
-use Mishusoft\Framework\Chipsets\Http\ClientRequest;
+use Mishusoft\Http\ClientRequest;
 
 class Registry
 {
@@ -34,7 +33,6 @@ class Registry
 
     private function __construct()
     {
-
     }//end __construct()
 
 
@@ -48,7 +46,6 @@ class Registry
         }
 
         return self::$instance;
-
     }//end getInstance()
 
 
@@ -59,21 +56,16 @@ class Registry
         }
 
         return false;
-
     }//end __get()
 
 
     public function __set($name, $value)
     {
         $this->data[$name] = $value;
-
     }//end __set()
 
 
     public function __destruct()
     {
-
     }//end __destruct()
-
-
 }//end class

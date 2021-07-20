@@ -3,18 +3,12 @@
 # Mozilla/5.0 (Windows NT 5.1; rv:11.0) Gecko Firefox/11.0 (via ggpht.com GoogleImageProxy)
 - identifiers:
     # Pattern maker method use it
-    mail-client-google-mail:
+    email-client-google-mail:
       pattern:
         name: (ggpht.com)
         separator: false
         version: false
       functional: true
 
-  # if as not matched with extracted name, then new name set into as key.
-  as: 'Google Mail'
-  space: 'email-clients'
-
   # Information maker method use it
-  info:
-    name:     'Google Mail'
-    author:   'google'
+  info: email-client google-mail

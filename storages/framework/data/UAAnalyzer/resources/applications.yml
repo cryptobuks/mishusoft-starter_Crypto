@@ -1,0 +1,11 @@
+one-password:
+  name: '1 Password'
+  type: 'Applications'
+  ui: 'GraphicalMode'
+  url: 'https://1password.com/'
+  category: 'Password Manager'
+  author: 'agile-bits-inc'
+  cost: 'Trialware'
+  status: 'Active'
+  licence: Trialware
+  engines: WebKit

@@ -1,13 +1,12 @@
 <?php
 
-namespace Mishusoft\Framework\Drivers;
+namespace Mishusoft\Drivers;
 
-
-use Mishusoft\Framework\Chipsets\Databases\MishusoftSQLStandalone;
-use Mishusoft\Framework\Chipsets\System\Firewall;
-use Mishusoft\Framework\Chipsets\Utility\_Array;
-use Mishusoft\Framework\Interfaces\Chipsets\Databases\MishusoftSQLStandalone\TableInterface;
-use Mishusoft\Framework\Migration\DB;
+use Mishusoft\Databases\MishusoftSQLStandalone;
+use Mishusoft\System\Firewall;
+use Mishusoft\Utility\ArrayCollection;
+use Mishusoft\Databases\MishusoftSQLStandalone\TableInterface;
+use Mishusoft\Migration\DB;
 
 class Acl
 {
@@ -127,13 +126,14 @@ class Acl
         if ($this->permission($key)) {
             Session::sessionTime();
         } else {
-            Firewall::runtimeFailure("Forbidden",
+            Firewall::runtimeFailure(
+                "Forbidden",
                 [
                     "debug" => ["file" => "NO-FILE-INTERNAL-MATTER", "location" => 'Action file', "description" => "You have no permission to access the requested url!!"],
                     "error" => ["description" => "You have no permission to access the requested url!!"]
-                ]);
+                ]
+            );
         }
-
     }
 
     public function permission($key)
@@ -141,7 +141,7 @@ class Acl
         $key = (string)$key;
         if (array_key_exists($key, $this->permissions)) {
             if ($this->permissions[$key]['value'] === true || $this->permissions[$key]['value'] === (int)'1') {
-                return TRUE;
+                return true;
             }
             return $this->permissions[$key];
         }
@@ -195,7 +195,7 @@ class Acl
      */
     private function getKeyOfPermission(int $idNumberOfPermission): ?string
     {
-        return _Array::value(self::$conOfDatabase->read(DB::PERMISSIONS_LIST_TABLE)->get(["data" => ["get" => ["key"], "where" => ["id" => "{$idNumberOfPermission}"]]]),"key");
+        return _Array::value(self::$conOfDatabase->read(DB::PERMISSIONS_LIST_TABLE)->get(["data" => ["get" => ["key"], "where" => ["id" => "{$idNumberOfPermission}"]]]), "key");
     }
 
     /**
@@ -204,12 +204,11 @@ class Acl
      */
     private function getNameOfPermission(int $idNumberOfPermission): ?string
     {
-        return _Array::value(self::$conOfDatabase->read(DB::PERMISSIONS_LIST_TABLE)->get(["data" => ["get" => ["permission"], "where" => ["id" => "{$idNumberOfPermission}"]]]),"key");
+        return _Array::value(self::$conOfDatabase->read(DB::PERMISSIONS_LIST_TABLE)->get(["data" => ["get" => ["permission"], "where" => ["id" => "{$idNumberOfPermission}"]]]), "key");
     }
 
 
-    function __destruct()
+    public function __destruct()
     {
-
     }
 }

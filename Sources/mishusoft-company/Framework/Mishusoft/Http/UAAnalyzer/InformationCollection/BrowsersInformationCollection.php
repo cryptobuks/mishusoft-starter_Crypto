@@ -3,6 +3,7 @@
 
 namespace Mishusoft\Http\UAAnalyzer\InformationCollection;
 
+use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Http\UAAnalyzer\Collection;
 
@@ -11,271 +12,39 @@ class BrowsersInformationCollection extends Collection
     public function __construct()
     {
         parent::__construct();
-
-        $this->loadSpaces($this->dictionariesAll($this->dataDictionaryDirectory('browsers')));
-    }
-
-
-    /**
-     * @throws RuntimeException
-     */
-    public function browserDetails(string $identifier): array
-    {
-        $resourcesInfo = $this->extractAttribute($this->query('browsers', 'browsers'), 'info-only');
-        if (array_key_exists($identifier, $resourcesInfo) === true) {
-            return $resourcesInfo[$identifier];
-        }
-        return array();
-//        if (array_key_exists($identifier, $this->browserDetailsQuery($identifier)) === true) {
-//            return $this->browserDetailsQuery($identifier)[$identifier];
-//        }
-//        return array();
     }
 
     /**
      * @throws RuntimeException
      */
-    protected function browserDetailsQuery(string $identifier): array
+    public function all():array
     {
-        return $this->extractInformation(
-            $this->query('browsers', $this->getSpace($identifier)),
-            function ($information) use ($identifier) {
-                if ($this->getSpace($identifier) === 'applications') {
-                    return $this->makeApplicationDetails(
-                        $information['name'],
-                        $information['category'],
-                        $information['author'],
-                        $information['url'],
-                        $information['cost'],
-                        $information['status'],
-                        $information['licence'],
-                        $information['engines']
-                    );
-                }
-
-                if ($this->getSpace($identifier) === 'bots') {
-                    $name = $information['name'];
-                    $author = $information['author'];
-                    $homeUrl = $information['url'];
-                    return $this->makeBotDetails($name, $author, $homeUrl);
-                }
-
-                if ($this->getSpace($identifier) === 'browsers-engines') {
-                    $name = $information['name'];
-                    return $this->makeBrowserEngineDetails($name);
-                }
-
-                if ($this->getSpace($identifier) === 'browsers') {
-                    $name = $information['name'];
-                    $ui = $information['ui'];
-                    $author = $information['author'];
-                    $homeUrl = $information['url'];
-                    $cost = $information['cost'];
-                    $status = $information['status'];
-                    $licences = $information['licence'];
-                    $engines = $information['engines'];
-                    return $this->makeBrowserDetails($homeUrl, $ui, $author, $cost, $status, $licences, $engines);
-                }
-
-                if ($this->getSpace($identifier) === 'compatibilities') {
-                    $name = $information['name'];
-                    $code = $information['code'];
-                    $author = $information['author'];
-                    $url = $information['url'];
-                    return $this->makeCompatibilityDetails($name, $code, $author, $url);
-                }
-
-                if ($this->getSpace($identifier) === 'compatibilities') {
-                    $name = $information['name'];
-                    $code = $information['code'];
-                    $author = $information['author'];
-                    $url = $information['url'];
-                    return $this->makeCompatibilityDetails($name, $code, $author, $url);
-                }
-
-                if ($this->getSpace($identifier) === 'email-clients') {
-                    $name = $information['name'];
-                    return $this->makeEmailClientDetails($name);
-                }
-
-                if ($this->getSpace($identifier) === 'feed-readers') {
-                    $name = $information['name'];
-                    return $this->makeFeedReaderDetails($name);
-                }
-
-                if ($this->getSpace($identifier) === 'multimedia-players') {
-                    $name = $information['name'];
-                    return $this->makeMultimedieaPlayerDetails($name);
-                }
-
-                if ($this->getSpace($identifier) === 'offline-browsers') {
-                    $name = $information['name'];
-                    return $this->makeOfflineBrowsersDetails($name);
-                }
-
-                if ($this->getSpace($identifier) === 'tools') {
-                    $name = $information['name'];
-                    return $this->makeToolsDetails($name);
-                }
-
-                return array();
-            }
+        return array_merge_recursive(
+            $this->extractAttribute($this->query('browsers', 'bots'), 'info-only'),
+            $this->extractAttribute($this->query('browsers', 'applications'), 'info-only'),
+            $this->extractAttribute($this->query('browsers', 'email-clients'), 'info-only'),
+            $this->extractAttribute($this->query('browsers', 'feed-readers'), 'info-only'),
+            $this->extractAttribute($this->query('browsers', 'multimedia-players'), 'info-only'),
+            $this->extractAttribute($this->query('browsers', 'offline-browsers'), 'info-only'),
+            $this->extractAttribute($this->query('browsers', 'tools'), 'info-only'),
+            $this->extractAttribute($this->query('browsers', 'browsers'), 'info-only'),
         );
     }
 
-    /**
-     * Details of Applications.
-     *
-     * @param string $qualifiedName Qualified name of Application
-     * @param string $category
-     * @param string $author
-     * @param string $homeUrl
-     * @param string $cost
-     * @param string $status
-     * @param array $licences
-     * @param array $engines
-     * @return array Details of Bot/Crawler
-     */
-    private function makeApplicationDetails(string $qualifiedName, string $category, string $author, string $homeUrl, string $cost, string $status, array $licences, array $engines): array
-    {
-        return [
-            'name' => $qualifiedName,
-            'url' => $homeUrl,
-            'type' => 'Applications',
-            'category' => $category,
-            'ui' => 'GraphicalMode',
-            'authors' => $author,
-            'cost' => $cost,
-            'status' => $status,
-            'licence' => $licences,
-            'layout' => $engines
-        ];
-    }
-
-
-    /**
-     * Details of Bot/Crawler.
-     *
-     * @param string $qualifiedName Qualified name of bot/crawler
-     * @param string $authorName Author/Developer name of bot/crawler
-     * @param string $authorHomeUrl Author's homepage of bot/crawler
-     *
-     * @return array Details of Bot/Crawler
-     * @throws RuntimeException
-     */
-    private function makeBotDetails(string $qualifiedName, string $authorName, string $authorHomeUrl): array
-    {
-        return [
-            // 'name' => $qualifiedName,
-            'type' => 'Bot (Crawler)',
-            'ui' => 'FullTextMode',
-            'link' => $authorHomeUrl,
-            'authors' => $this->attributeDetails('author', $authorName)
-        ];
-    }
-
-    /**
-     * Details of Compatibility.
-     *
-     * @param string $qualifiedName Qualified name of bot/crawler
-     * @param string $codeName
-     * @param string $authorName Author/Developer name of bot/crawler
-     * @param string $homeUrl
-     * @return array Details of Bot/Crawler
-     */
-    public function makeCompatibilityDetails(string $qualifiedName, string $codeName, string $authorName, string $homeUrl): array
-    {
-        return [
-            'name' => $qualifiedName,
-            'code' => $codeName,
-            'author' => $authorName,
-            'homeUrl' => $homeUrl,
-        ];
-    }
-
-    /**
-     * @param string $name
-     * @return string[]
-     */
-    public function makeBrowserEngineDetails(string $name): array
-    {
-        return [
-            'name' => $name,
-        ];
-    }
-
-    /**
-     * @param string $name
-     * @return string[]
-     */
-    public function makeEmailClientDetails(string $name): array
-    {
-        return [
-            'name' => $name,
-        ];
-    }
-
-    /**
-     * @param string $name
-     * @return string[]
-     */
-    public function makeFeedReaderDetails(string $name): array
-    {
-        return [
-            'name' => $name,
-        ];
-    }
-
-    /**
-     * @param string $name
-     * @return string[]
-     */
-    public function makeMultimedieaPlayerDetails(string $name): array
-    {
-        return [
-            'name' => $name,
-        ];
-    }
-
-    /**
-     * @param string $name
-     * @return string[]
-     */
-    public function makeOfflineBrowsersDetails(string $name): array
-    {
-        return [
-            'name' => $name,
-        ];
-    }
-
-    /**
-     * @param string $name
-     * @return string[]
-     */
-    public function makeToolsDetails(string $name): array
-    {
-        return [
-            'name' => $name,
-        ];
-    }
 
     /**
      * @throws RuntimeException
+     * @throws InvalidArgumentException
      */
-    public function makeBrowserDetails(string $homeUrl, string $ui, array|string $author, string $cost, string $status, array|string $licences, array|string $engines): array
+    public function makeDetails(string $identifier): array
     {
-        return [
-            //'name' => $name,
-            'type'      => 'Web Browser',
-            'ui'        => $ui,
-            'url'       => $homeUrl,
-            'creator'   => $this->attributeDetails('author', $author),
-            'cost'      => $cost,
-            'status'    => $status,
-            'licence'   => $this->attributeDetails('licence', $licences),
-            'layout'    => $this->attributeDetails('browser-engine', $engines)
-        ];
+        if (array_key_exists($identifier, $this->all()) === true) {
+            return $this->all()[$identifier];
+        }
+        //return array();
+        throw new InvalidArgumentException(sprintf('Unexpected browser : "%s"', $identifier));
     }
+
 
 
     /**
@@ -790,6 +559,10 @@ class BrowsersInformationCollection extends Collection
                     [
                         'name' => 'Syllable Project',
                         'link' => 'https://www.qixing123.com/',
+                    ],
+                    [
+                        'name' => 'Syllable Project',
+                        'link' => 'http://www.abrowse.org/',
                     ],
                 ],
                 'cost' => 'Free',
@@ -3478,43 +3251,5 @@ class BrowsersInformationCollection extends Collection
                 ],
             ],
         ];
-    }
-
-    /**
-     * Details builder of Bot/Crawler.
-     *
-     * @param string $uniqueKeyword Unique keyword of bot/crawler for query in useragent string
-     * @param string $qualifiedName Qualified name of bot/crawler
-     * @param string $authorName Author/Developer name of bot/crawler
-     * @param string $authorHomeUrl Author's homepage of bot/crawler
-     *
-     * @return array Details array of Bot/Crawler
-     */
-    private function getDetailsOfBotCrawler(string|int $uniqueKeyword, string $qualifiedName, string $authorName, string $authorHomeUrl): array
-    {
-        // print_r(func_get_args(), false);
-        return [$uniqueKeyword => $this->makeDetailsOfBotCrawler($qualifiedName, $authorName, $authorHomeUrl)];
-    }
-
-    /**
-     * Details group builder of Bot/Crawler.
-     *
-     * @param array $bots Unique keywords of bot/crawler for query in useragent string
-     * @param string $authorName Author/Developer name of bot/crawler
-     * @param string $authorHomeUrl Author's homepage of bot/crawler
-     *
-     * @return array[] Details array of Bot/Crawler
-     */
-    private function getDetailsOfBotCrawlerGroup(array $bots, string $authorName, string $authorHomeUrl): array
-    {
-        $details = array();
-
-        if (count($bots) > 0) {
-            foreach ($bots as $bot => $qualifiedName) {
-                $details[$bot] = $this->makeDetailsOfBotCrawler($qualifiedName, $authorName, $authorHomeUrl);
-            }
-        }
-
-        return $details;
     }
 }

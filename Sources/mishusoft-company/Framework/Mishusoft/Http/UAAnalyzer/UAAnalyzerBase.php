@@ -24,12 +24,10 @@ class UAAnalyzerBase extends Base
 
     protected array $replace_pairs = array('/' => ' ', '-' => '.', '_' => '.');
 
-    protected string $deviceName = 'Unknown';
     protected string $browserName = 'Unknown';
     protected string $browserNameFull = 'Unknown';
     protected string $browserVersionFull = 'Unknown';
     protected string $browserVersion = 'Unknown';
-    protected array $browserInfoAll = [];
     protected string $browserAppCodeName = 'Unknown';
     protected string $browserAppCodeVersion = 'Unknown';
     protected string $browserAppCodeVersionFull = 'Unknown';
@@ -38,6 +36,9 @@ class UAAnalyzerBase extends Base
     protected string $browserEngineVersionFull = 'Unknown';
     protected string $browserEngineNameFull = 'Unknown';
     protected string $browserArchitecture = 'Unknown';
+    protected mixed $browserType = 'Unknown';
+    protected mixed $browserUi = 'Unknown';
+    protected array $browserDetails = [];
 
 
     protected string $platformName = 'Unknown';
@@ -47,24 +48,12 @@ class UAAnalyzerBase extends Base
     protected string $platformWmNameOriginal = 'Unknown';
     protected string $platformKernel = 'Unknown';
     protected string $platformVersion = 'Unknown';
+    protected array $platformDetails = [];
 
+    protected string $deviceName = 'Unknown';
     protected string $deviceNameFull = 'Unknown';
     protected string $deviceType = 'Unknown';
-
-    protected array $browserDetails = [];
-    protected array $platformDetails = [];
-    protected mixed $browserType = 'Unknown';
-    protected mixed $browserUi = 'Unknown';
-
-
-    // Variables.
-    protected array $devicesList = [];
-    protected array $devicesArchitectureList = [];
-    protected array $devicesCategoryList = [];
-    protected array $devicesPlatformWMNameList = [];
-    protected array $webBrowserList = [];
-    protected array $webBrowserAppCodeNameList = [];
-    protected array $webBrowserLayoutList = [];
+    protected array $deviceDetails = [];
 
     protected string $uaStoragePath;
     protected string $timeOfToday;
@@ -90,6 +79,17 @@ class UAAnalyzerBase extends Base
         $this->uaStoragePath = $this->frameworkStoragePath . 'data' . DS . 'UAAnalyzer' . DS;
         $this->timeOfToday = date('Y-m-d H:i:s');
 
+        $this->directoryValidation();
+    }
+
+    /**
+     * @throws RuntimeException
+     */
+    private function directoryValidation(): void
+    {
+        if (file_exists($this->frameworkStoragePath) === false) {
+            throw new RuntimeException(sprintf('%s not exists', $this->frameworkStoragePath));
+        }
         if (file_exists($this->uaStoragePath) === false) {
             throw new RuntimeException(sprintf('%s not exists', $this->uaStoragePath));
         }
@@ -196,7 +196,7 @@ class UAAnalyzerBase extends Base
         } elseif (is_int($versionFull)) {
             $result = $versionFull;
         } else {
-            $result = 0;
+            $result = (int) $versionFull;
         }
 
         return $result;

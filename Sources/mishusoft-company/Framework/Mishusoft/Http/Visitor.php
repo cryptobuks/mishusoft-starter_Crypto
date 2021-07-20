@@ -1,10 +1,9 @@
 <?php declare(strict_types=1);
 
 
-namespace Mishusoft\Framework\Chipsets\Http;
+namespace Mishusoft\Http;
 
-
-use Mishusoft\Framework\Chipsets\System\Firewall;
+use Mishusoft\System\Firewall;
 
 class Visitor
 {
@@ -31,7 +30,6 @@ class Visitor
         $browsers = array_unique($browsers, SORT_ASC);
         array_multisort($browsers, SORT_ASC);
         return $browsers;
-
     }//end getVisitedBrowsersList()
 
 
@@ -41,7 +39,6 @@ class Visitor
     public function getDuration(): string
     {
         return (new Firewall())->getDuration();
-
     }//end getDuration()
 
 
@@ -51,7 +48,6 @@ class Visitor
     public function getLastVisitDuration(): int
     {
         return (new Firewall())->getLastVisitDuration();
-
     }//end getLastVisitDuration()
 
 
@@ -61,7 +57,6 @@ class Visitor
     public function getController(): string
     {
         return (new Firewall())->getController();
-
     }//end getController()
 
 
@@ -71,8 +66,5 @@ class Visitor
     public function getSeparator(): string
     {
         return (new Firewall())->getSeparator();
-
     }//end getSeparator()
-
-
 }//end class

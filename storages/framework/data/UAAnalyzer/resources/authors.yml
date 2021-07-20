@@ -142,3 +142,30 @@ seoprofiler:
   fax: +49(0)32222821655
   location:	'Staudt, Rheinland-Pfalz, Germany'
   headquarter:	'Axandra GmbH, Nordring 21, D-56424 Staudt, Germany'
+
+
+syllable-project:
+  name: Syllable Project
+  type:	Private
+  parent:	Unknown
+  industry: A cloud based Internet marketing software tool
+  services: Internet Software
+  website:	https://www.qixing123.com/
+  established: Unknown
+  founder: Unknown
+  fax: Unknown
+  location:	Unknown
+  headquarter:	Unknown
+
+
+murray-hurps-pty-ltd:
+  name: Murray Hurps Software Pty Ltd
+  type:	Private
+  industry: Internet marketing software tool
+  services: Internet Software
+  website:	https://www.admuncher.com/
+  established: 1999
+  founder: Murray Hurps
+  email: murray@admuncher.com
+  location:	Sydney, Australia
+  headquarter:	Sydney, Australia

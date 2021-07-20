@@ -16,14 +16,8 @@
         version: true
       functional: true
 
-  # if as not matched with extracted name, then new name set into as key.
-  as: 'gvfs'
-  space: 'tools'
-
   # Information maker method use it
-  info:
-    name:     'gvfs'
-    author:   'gnome'
+  info: tool gvfs
 
 
 

@@ -15,14 +15,8 @@
         version: true
       functional: true
 
-  # if as not matched with extracted name, then new name set into as key.
-  as: 'Check & Get'
-  space: 'offline-browsers'
-
   # Information maker method use it
-  info:
-    name:     'Check & Get'
-    author:   'unknown'
+  info: offline-browser check-get
 
 
 # HTTrack
@@ -41,14 +35,8 @@
         version: true
       functional: true
 
-  # if as not matched with extracted name, then new name set into as key.
-  as: 'HTTrack'
-  space: 'offline-browsers'
-
   # Information maker method use it
-  info:
-    name:     'HTTrack'
-    author:   'Xavier Roche'
+  info: offline-browser ht-track
 
 
 # iGetter
@@ -65,14 +53,8 @@
         version: true
       functional: true
 
-  # if as not matched with extracted name, then new name set into as key.
-  as: 'iGetter'
-  space: 'offline-browsers'
-
   # Information maker method use it
-  info:
-    name:     'iGetter'
-    author:   'unknown'
+  info: offline-browser i-getter
 
 
 
@@ -96,12 +78,6 @@
         version: true
       functional: true
 
-  # if as not matched with extracted name, then new name set into as key.
-  as: 'wget'
-  space: 'offline-browsers'
-
   # Information maker method use it
-  info:
-    name:     'wget'
-    author:   'Free Software Foundation'
+  info: offline-browser wget
 

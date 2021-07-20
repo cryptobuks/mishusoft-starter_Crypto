@@ -20,11 +20,5 @@
         version: true
       functional: true
 
-  # if as not matched with extracted name, then new name set into as key.
-  as: 'Apple PubSub'
-  space: 'feed-readers'
-
   # Information maker method use it
-  info:
-    name:     'Apple PubSub'
-    author:   'apple'
+  info: feed-reader apple-pub-sub

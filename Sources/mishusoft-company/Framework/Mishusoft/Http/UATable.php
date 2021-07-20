@@ -6,7 +6,7 @@
  * Description of what this module (or file) is doing.
  */
 
-namespace Mishusoft\Framework\Chipsets\Http;
+namespace Mishusoft\Http;
 
 define('USER_AGENT_ANALYZE_DATA_PATH', RUNTIME_CACHE_ROOT_PATH . 'UATable' . DS);
 

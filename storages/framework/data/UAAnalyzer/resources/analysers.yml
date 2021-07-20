@@ -1,0 +1,8 @@
+# url : https://developers.whatismybrowser.com/useragents/explore/software_type_specific/analyser/
+
+openlink-profiler-seo-analyser:
+  name: 'OpenLink Profiler SEO Analyser'
+  url: 'https://openlinkprofiler.org/'
+  type: 'Analyser'
+  ui: FullTextMode
+  author: seoprofiler

@@ -1,24 +1,18 @@
 
-# Windows 10
-# Windows 10 is a platform developed by Microsoft Corporation. Among other things, on this platform are running browsers.
-# url: https://user-agents.net/platforms/win10
+# Unix Based OS
 
 # latest user agent lists
-# iTunes/12.10.8 (Windows; Microsoft Windows 10 x64 Enterprise Edition (Build 18362); x64) AppleWebKit/7609.3005.1003.3
-# Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36/97O6FiBi-25
-# Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0/EXI0IiYx88
-# Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0/vAemCakO26i9
-# Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0/uyWhzBIOuedn
-- identifiers:
-    platform-os-windows-10:
-      name: '(windows)'
-      separator: true
-      version: true
-      functional: true
-  as: windows 10
-  space: os
+# Surf/0.4.1 (X11; U; Unix; en-US) AppleWebKit/531.2+ Compatible (Safari; MSIE 9.0)
+# Mozilla/5.0 (Unknown; U; UNIX BSD/SYSV system; C -) AppleWebKit/527 (KHTML like Gecko Safari/419.3) Arora/0.10.2
+# Mozilla/5.0 (Unknown; UNIX BSD/SYSV system) AppleWebKit/534.34 (KHTML, like Gecko) QupZilla/1.8.6 Safari/534.34
+# Mozilla/5.0 (X11; U; Unix; en-US) AppleWebKit/537.15 (KHTML, like Gecko) Chrome/24.0.1295.0 Safari/537.15 Surf/0.7
 
-  info:
-    name: Windows 10
-    version: !version name
-    author: microsoft
+- identifiers:
+    platform-os-unix-based:
+      pattern:
+        name: '(unix|x11)'
+        separator: false
+        version: false
+      functional: true
+
+  info: platform unix-os

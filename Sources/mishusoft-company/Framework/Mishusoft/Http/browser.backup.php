@@ -3,7 +3,7 @@
 
 
 // Search app code name of web browser from user agent.
-use Mishusoft\Framework\Chipsets\Utility\_Debug;
+use Mishusoft\Utility\_Debug;
 
 foreach ($this->webBrowserAppCodeNameList as $appKey => $appValue) {
     // _Debug::preOutput($appKey);

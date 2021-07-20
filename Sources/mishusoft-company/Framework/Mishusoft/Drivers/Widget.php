@@ -1,13 +1,13 @@
 <?php
 
-namespace Mishusoft\Framework\Drivers;
+namespace Mishusoft\Drivers;
 
 
-use Mishusoft\Framework\Chipsets\FileSystem;
-use Mishusoft\Framework\Chipsets\Preloader;
-use Mishusoft\Framework\Chipsets\System\Firewall;
-use Mishusoft\Framework\Chipsets\Utility\_Debug;
-use Mishusoft\Framework\Interfaces\Drivers\WidgetInterface;
+use Mishusoft\FileSystem;
+use Mishusoft\Preloader;
+use Mishusoft\System\Firewall;
+use Mishusoft\Utility\Debug;
+use Mishusoft\Drivers\WidgetInterface;
 use RuntimeException;
 
 abstract class Widget implements WidgetInterface

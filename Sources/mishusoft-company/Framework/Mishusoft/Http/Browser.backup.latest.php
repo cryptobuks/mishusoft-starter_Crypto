@@ -7,14 +7,14 @@
  * Official Link: https://www.mishusoft.com/libraries/php/browser.php
  */
 
-namespace Mishusoft\Framework\Chipsets\Http;
+namespace Mishusoft\Http;
 
 use ErrorException;
 use JsonException;
-use Mishusoft\Framework\Chipsets\FileSystem;
-use Mishusoft\Framework\Chipsets\Utility\_Debug;
-use Mishusoft\Framework\Chipsets\Utility\_JSON;
-use Mishusoft\Framework\DataObjects\BrowserDataObject;
+use Mishusoft\FileSystem;
+use Mishusoft\Utility\Debug;
+use Mishusoft\Utility\JSON;
+use Mishusoft\DataObjects\BrowserDataObject;
 use RuntimeException;
 
 class BrowserBackup extends BrowserDataObject

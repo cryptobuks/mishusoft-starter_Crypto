@@ -1,5 +1,7 @@
 <?php
 
+// another library : https://github.com/lancedikson/bowser
+
 
 namespace Mishusoft\Http;
 
@@ -25,8 +27,7 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
     public function __construct(
         public string $userAgent,
         private bool $matchFound = false
-    )
-    {
+    ) {
         parent::__construct();
         $this->timeOfExecution = time();
         $this->identifiers = new UAAnalyzer\IdentifiersCollection();
@@ -41,6 +42,7 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
      * @throws InvalidArgumentException
      * @throws PermissionRequiredException
      * @throws RuntimeException
+     * @throws \JsonException
      */
     public function analyze(): static
     {
@@ -48,21 +50,16 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
         $cleanUA = $this->cleanUA($this->userAgent, $this->identifiers->browsers->knownBrowserAliases());
         $webBrowserIdentifiers = $this->identifiers->browsers->all();
         foreach ($webBrowserIdentifiers as $identifier) {
-            if (preg_match($this->patterns->browsers->webBrowserMatch($identifier), $cleanUA, $matches) === 1) {
+            if (preg_match($this->patterns->browsers->match($identifier), $cleanUA, $matches) === 1) {
                 $this->matchFound = true;
                 $details = $this->cleanFilter($matches);
-                // Known browser detected.
-                //echo 'WEB BROWSER DETECTED.'.PHP_EOL;
-                //print_r($identifier.PHP_EOL, false);
-                //echo $this->patterns->browsers->webBrowserMatch($identifier).PHP_EOL;
-                //print_r($details, false);
-                $this->browserName = ucfirst($details['name']);
                 $this->browserNameFull = $this->cleanImplode($details);
                 if (array_key_exists('version', $details) === true) {
                     $this->browserVersionFull = $details['version'];
                     $this->browserVersion = $this->versionOrigin($details['version']);
                 }
-                $browserDetails = $this->resources->browsers->browserDetails($identifier);
+                $browserDetails = $this->resources->browsers->makeDetails($identifier);
+                $this->browserName = ucfirst($browserDetails['name']);
                 $this->browserType = $browserDetails['type'];
                 $this->browserUi = $browserDetails['ui'];
                 $this->browserDetails = $browserDetails;
@@ -72,11 +69,6 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
                 foreach ($this->identifiers->browsers->compatibilitiesAll() as $compatible) {
                     if (preg_match($this->patterns->browsers->compatibility($compatible), $cleanUA, $matches) === 1) {
                         $details = $this->cleanFilter($matches);
-
-                        //echo 'APP CODE OF WEB BROWSER DETECTED.'.PHP_EOL;
-                        // print_r($compatible.PHP_EOL, false);
-                        // print_r($this->patterns->browsers->compatibilityMatch($compatible).PHP_EOL, false);
-                        // print_r($details, false);
                         $this->browserAppCodeName = $details['name'];
                         $this->browserAppCodeVersion = $this->versionOrigin($details['version']);
                         $this->browserAppCodeVersionFull = $details['version'];
@@ -93,10 +85,6 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
                         $this->browserEngineNameFull = $this->cleanImplode($details);
                         $this->browserEngineVersion = $this->versionOrigin($details['version']);
                         $this->browserEngineVersionFull = $this->cleanContent($details['version']);
-
-                        //  echo 'RENDERING ENGINE OF WEB BROWSER DETECTED.'.PHP_EOL;
-
-                        //print_r($details, false);
                         break;
                     }
                 }
@@ -107,26 +95,18 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
                     if (preg_match($this->patterns->platforms->architecture($architecture), $cleanUA, $matches) === 1) {
                         $this->browserArchitecture = $word;
                         $this->platformArchitecture = $word;
-
-                        //echo 'ARCHITECTURE OF WEB BROWSER DETECTED.'.PHP_EOL;
-
-                        // echo $value;
-                        // print_r($this->cleanFilter($matches), false);
                         break;
                     }
                 }
 
                 // Sixth step.
                 // Search window manager name and type from user agent.
-                foreach ($this->identifiers->platforms->windowManagers() as $key => $value) {
-                    if (preg_match($this->patterns->platforms->windowManager($key), $cleanUA, $matches) === 1) {
+                foreach ($this->identifiers->platforms->windowManagers() as $windowManager) {
+                    if (preg_match($this->patterns->platforms->windowManager($windowManager), $cleanUA, $matches) === 1) {
                         $details = $this->cleanFilter($matches);
-                        $this->platformWindowManager = $details['name'];
+                        $browserDetails = $this->resources->platforms->makeWMDetails($windowManager);
+                        $this->platformWindowManager = $browserDetails['type'];
                         $this->platformWmNameOriginal = $this->cleanImplode($details);
-                        //$this->windowManager($value);
-
-                        //echo 'WINDOW MANAGER OF PLATFORM DETECTED.'.PHP_EOL;
-                        //print_r($this->cleanFilter($matches), false);
                         break;
                     }
                 }
@@ -141,8 +121,10 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
                 // Ubuntu
                 // U
                 //foreach ($this->identifiers->platforms->all() as $key => $value) {
+                //print_r($this->identifiers->platforms->nameAll(),false);
                 foreach ($this->identifiers->platforms->nameAll() as $nameIdentifier) {
-                    //print_r($key, false);
+                    //print_r($nameIdentifier, false);
+                    // print_r($this->patterns->platforms->name($nameIdentifier), false);
                     //print_r($value, false);
                     // if (preg_match($this->patterns->devices->platforms($name), $cleanUA, $matches) === 1) {
                     if (preg_match($this->patterns->platforms->name($nameIdentifier), $cleanUA, $matches) === 1) {
@@ -193,29 +175,12 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
                 // Eighth step.
                 // Detecting device details from user agent.
                 // Device name type
-                foreach ($this->identifiers->devices->all() as $key => $value) {
-                    // print_r($key, false);
-                    if (preg_match($this->patterns->devices->match($key), $cleanUA, $matches) === 1) {
-                        //echo 'DEVICE OF WEB BROWSER DETECTED.'.PHP_EOL;
-
-                        // print_r($key, false);
-                        // print_r($value, false);
-                        //print_r($this->cleanFilter($matches), false);
-                        $this->deviceName = $this->cleanFilter($matches)['name'];
-                        $this->deviceNameFull = $this->cleanFilter($matches)['name'];
-                        // print_r($matches, false);
-                        // $this->deviceNameFull = $this->finalContent($key, $cleanUA);
-                        // $this->deviceInfoAll  = (array) $value;
-                        // $this->deviceDetails((array) $value);
-                        // exit();
-                        // $deviceInfo = explode(';', $this->deviceInfo($cleanUA));
-                        // foreach ($deviceInfo as $info) {
-                        // if (preg_match('/'.strtolower($key).'\b/i', $info, $matches) === 1) {
-                        // $this->deviceNameOriginal = ltrim($info);
-                        // break;
-                        // }
-                        // }
-                        // _Debug::preOutput($this->deviceNameOriginal);
+                foreach ($this->identifiers->devices->all() as $device) {
+                    if (preg_match($this->patterns->devices->match($device), $cleanUA, $matches) === 1) {
+                        $details = $this->cleanFilter($matches);
+                        $this->deviceDetails = $this->resources->devices->makeDetails($device);
+                        $this->deviceName = $this->deviceDetails['name'];
+                        $this->deviceNameFull = $details['name'];
                         break;
                     }//end if
                 }//end foreach
@@ -238,14 +203,19 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
     public function details(): array
     {
         if ($this->matchFound === true) {
-            unset($this->browserDetails['ui'], $this->browserDetails['type'], $this->platformDetails['name']);
+            unset(
+                $this->browserDetails['name'],
+                $this->browserDetails['ui'],
+                $this->browserDetails['type'],
+                $this->platformDetails['name']
+            );
             return array(
                 'ua' => $this->userAgent,
                 'solved' => $this->matchFound,
                 'time' => $this->timeOfExecution,
                 'browser' => array_merge_recursive(
                     array(
-                        //'name' => $this->browserName,
+                        'name' => $this->browserName,
                         'name-version' => $this->browserNameFull,
                         'version' => $this->browserVersion,
                         'version-full' => $this->browserVersionFull,
@@ -266,10 +236,7 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
                     ),
                     $this->browserDetails,
                 ),
-                'device' => array(
-                    'name' => $this->deviceName,
-                    'name-full' => $this->deviceNameFull,
-                ),
+                'device' => $this->deviceDetails,
                 'platform' => array_merge_recursive(
                     array(
                         'name' => $this->platformName,
@@ -340,13 +307,6 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
         return $this->browserEngineVersion;
     }
 
-    /**
-     * @return array
-     */
-    public function getBrowserInfoAll(): array
-    {
-        return $this->browserInfoAll;
-    }
 
     /**
      * @return string
@@ -881,261 +841,4 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
     }//end getPatternOfRegExp()
 
 
-    /**
-     * @param string $keyword
-     * @return array
-     * @throws InvalidArgumentException|RuntimeException
-     */
-    public function getBrowserDetails(string $keyword): array
-    {
-        $keyword = strtolower($keyword);
-        $db = array_change_key_case($this->identifiers->browsers->all());
-        if (array_key_exists($keyword, $db) === true) {
-            $result = $this->identifiers->browsers->all()[$keyword];
-        } else {
-            throw new InvalidArgumentException('Unknown browser : ' . $keyword);
-        }
-
-        return $result;
-    }//end getBrowserDetails()
-
-
-    /**
-     * Retrieve device window manager.
-     *
-     * @param array|string $array Devices information..
-     *
-     * @return void
-     */
-    private function windowManager(array|string $array): void
-    {
-        if (is_array($array) === true && count($array) > 0) {
-            if (array_key_exists('name', $array) === true) {
-                $this->deviceType = $array['name'];
-            }
-
-            if (array_key_exists('type', $array) === true) {
-                $this->deviceWindowManager = $array['type'];
-            }
-        } else {
-            $this->deviceType = (string)$array;
-        }
-    }//end windowManager()
-
-
-    /**
-     * Load browser and devices all data from database.
-     *
-     * @return void
-     * @throws PermissionRequiredException
-     * @throws \JsonException
-     */
-//    private function loadBrowserData(): void
-//    {
-//        // Devices list.
-//        if (file_exists(self::DEVICES_LIST_FILE) === true) {
-//            if (is_readable(self::DEVICES_LIST_FILE) === true) {
-//                if (($this->isUpdateDatabase($this->devices->all(), self::DEVICES_LIST_FILE) === true)) {
-//                    if (is_writable(self::DEVICES_LIST_FILE) === true) {
-//                        FileSystem::saveToFile(self::DEVICES_LIST_FILE, _JSON::encodeToString($this->devices->all()));
-//                    } else {
-//                        throw new PermissionRequiredException('Permission required. Unable to write ' . self::DEVICES_LIST_FILE);
-//                    }
-//                }
-//
-//                $this->devicesList = _JSON::decodeToArray(FileSystem::read(self::DEVICES_LIST_FILE));
-//            } else {
-//                throw new PermissionRequiredException('Permission required. Unable to read ' . self::DEVICES_LIST_FILE);
-//            }
-//        } else {
-//            if (is_resource(fopen(self::DEVICES_LIST_FILE, 'wb+')) === true) {
-//                FileSystem::saveToFile(self::DEVICES_LIST_FILE, _JSON::encodeToString($this->devices->all()));
-//            } else {
-//                throw new PermissionRequiredException('Permission required. Unable to create ' . self::DEVICES_LIST_FILE);
-//            }
-//
-//            $this->devicesList = $this->devices->all();
-//        }//end if
-//
-//        // Device's architecture list.
-//        if (file_exists(self::DEVICES_ARCHITECTURE_LIST_FILE) === true) {
-//            if (is_readable(self::DEVICES_ARCHITECTURE_LIST_FILE) === true) {
-//                if ($this->isUpdateDatabase($this->devices->architectures(), self::DEVICES_ARCHITECTURE_LIST_FILE) === true) {
-//                    if (is_writable(self::DEVICES_ARCHITECTURE_LIST_FILE) === true) {
-//                        FileSystem::saveToFile(
-//                            self::DEVICES_ARCHITECTURE_LIST_FILE,
-//                            _JSON::encodeToString($this->devices->architectures())
-//                        );
-//                    } else {
-//                        throw new PermissionRequiredException('Permission required. Unable to write ' . self::DEVICES_ARCHITECTURE_LIST_FILE);
-//                    }
-//                }
-//
-//                $this->devicesArchitectureList = _JSON::decodeToArray(FileSystem::read(self::DEVICES_ARCHITECTURE_LIST_FILE));
-//            } else {
-//                throw new PermissionRequiredException('Permission required. Unable to read ' . self::DEVICES_ARCHITECTURE_LIST_FILE);
-//            }
-//        } else {
-//            if (is_resource(fopen(self::DEVICES_ARCHITECTURE_LIST_FILE, 'wb+')) === true) {
-//                FileSystem::saveToFile(
-//                    self::DEVICES_ARCHITECTURE_LIST_FILE,
-//                    _JSON::encodeToString($this->devices->architectures())
-//                );
-//            } else {
-//                throw new PermissionRequiredException('Permission required. Unable to create ' . self::DEVICES_ARCHITECTURE_LIST_FILE);
-//            }
-//
-//            $this->devicesArchitectureList = $this->devices->architectures();
-//        }//end if
-//
-//        // Devices category list.
-//        if (file_exists(self::DEVICES_CATEGORY_LIST_FILE) === true) {
-//            if (is_readable(self::DEVICES_CATEGORY_LIST_FILE) === true) {
-//                if ($this->isUpdateDatabase($this->devices->categories(), self::DEVICES_CATEGORY_LIST_FILE) === true) {
-//                    if (is_writable(self::DEVICES_CATEGORY_LIST_FILE) === true) {
-//                        FileSystem::saveToFile(
-//                            self::DEVICES_CATEGORY_LIST_FILE,
-//                            _JSON::encodeToString($this->devices->categories())
-//                        );
-//                    } else {
-//                        throw new PermissionRequiredException('Permission required. Unable to write ' . self::DEVICES_CATEGORY_LIST_FILE);
-//                    }
-//                }
-//
-//                $this->devicesCategoryList = _JSON::decodeToArray(FileSystem::read(self::DEVICES_CATEGORY_LIST_FILE));
-//            } else {
-//                throw new PermissionRequiredException('Permission required. Unable to read ' . self::DEVICES_CATEGORY_LIST_FILE);
-//            }
-//        } else {
-//            if (is_resource(fopen(self::DEVICES_CATEGORY_LIST_FILE, 'wb+')) === true) {
-//                FileSystem::saveToFile(
-//                    self::DEVICES_CATEGORY_LIST_FILE,
-//                    _JSON::encodeToString($this->devices->categories())
-//                );
-//            } else {
-//                throw new PermissionRequiredException('Permission required. Unable to create ' . self::DEVICES_CATEGORY_LIST_FILE);
-//            }
-//
-//            $this->devicesCategoryList = $this->devices->categories();
-//        }//end if
-//
-//        // Platform window manager list.
-//        if (file_exists(self::DEVICES_PLATFORM_WM_NAME_LIST_FILE) === true) {
-//            if (is_readable(self::DEVICES_PLATFORM_WM_NAME_LIST_FILE) === true) {
-//                if ($this->isUpdateDatabase($this->platforms->windowManagers(), self::DEVICES_PLATFORM_WM_NAME_LIST_FILE) === true) {
-//                    if (is_writable(self::DEVICES_PLATFORM_WM_NAME_LIST_FILE)) {
-//                        FileSystem::saveToFile(
-//                            self::DEVICES_PLATFORM_WM_NAME_LIST_FILE,
-//                            _JSON::encodeToString($this->platforms->windowManagers())
-//                        );
-//                    } else {
-//                        throw new PermissionRequiredException('Permission required. Unable to write ' . self::DEVICES_PLATFORM_WM_NAME_LIST_FILE);
-//                    }
-//                }
-//
-//                $this->devicesPlatformWMNameList = _JSON::decodeToArray(FileSystem::read(self::DEVICES_PLATFORM_WM_NAME_LIST_FILE));
-//            } else {
-//                throw new PermissionRequiredException('Permission required. Unable to read ' . self::DEVICES_PLATFORM_WM_NAME_LIST_FILE);
-//            }
-//        } else {
-//            if (is_resource(fopen(self::DEVICES_PLATFORM_WM_NAME_LIST_FILE, 'wb+')) === true) {
-//                FileSystem::saveToFile(
-//                    self::DEVICES_PLATFORM_WM_NAME_LIST_FILE,
-//                    _JSON::encodeToString($this->platforms->windowManagers())
-//                );
-//            } else {
-//                throw new PermissionRequiredException('Permission required. Unable to create ' . self::DEVICES_CATEGORY_LIST_FILE);
-//            }
-//
-//            $this->devicesPlatformWMNameList = $this->platforms->windowManagers();
-//        }//end if
-//
-//        // Browsers list.
-//        if (file_exists(self::WEB_BROWSER_LIST_FILE) === true) {
-//            if (is_readable(self::WEB_BROWSER_LIST_FILE) === true) {
-//                if ($this->isUpdateDatabase($this->browsers->all(), self::WEB_BROWSER_LIST_FILE) === true) {
-//                    if (is_writable(self::WEB_BROWSER_LIST_FILE) === true) {
-//                        FileSystem::saveToFile(
-//                            self::WEB_BROWSER_LIST_FILE,
-//                            _JSON::encodeToString($this->browsers->all())
-//                        );
-//                    } else {
-//                        throw new PermissionRequiredException('Permission required. Unable to write ' . self::DEVICES_PLATFORM_WM_NAME_LIST_FILE);
-//                    }
-//                }
-//
-//                $this->webBrowserList = _JSON::decodeToArray(FileSystem::read(self::WEB_BROWSER_LIST_FILE));
-//            } else {
-//                throw new PermissionRequiredException('Permission required. Unable to read ' . self::WEB_BROWSER_LIST_FILE);
-//            }
-//        } else {
-//            if (is_resource(fopen(self::WEB_BROWSER_LIST_FILE, 'wb+')) === true) {
-//                FileSystem::saveToFile(self::WEB_BROWSER_LIST_FILE, _JSON::encodeToString($this->browsers->all()));
-//            } else {
-//                throw new PermissionRequiredException('Permission required. Unable to create ' . self::DEVICES_CATEGORY_LIST_FILE);
-//            }
-//
-//            $this->webBrowserList = $this->browsers->all();
-//        }//end if
-//
-//        // Browsers app code list.
-//        if (file_exists(self::WEB_BROWSER_APP_CODE_LIST_FILE) === true) {
-//            if (is_readable(self::WEB_BROWSER_APP_CODE_LIST_FILE) === true) {
-//                if ($this->isUpdateDatabase($this->browsers->parents(), self::WEB_BROWSER_APP_CODE_LIST_FILE) === true) {
-//                    if (is_writable(self::WEB_BROWSER_APP_CODE_LIST_FILE) === true) {
-//                        FileSystem::saveToFile(
-//                            self::WEB_BROWSER_APP_CODE_LIST_FILE,
-//                            _JSON::encodeToString($this->browsers->parents())
-//                        );
-//                    } else {
-//                        throw new PermissionRequiredException('Permission required. Unable to write ' . self::DEVICES_PLATFORM_WM_NAME_LIST_FILE);
-//                    }
-//                }
-//
-//                $this->webBrowserAppCodeNameList = _JSON::decodeToArray(FileSystem::read(self::WEB_BROWSER_APP_CODE_LIST_FILE));
-//            } else {
-//                throw new PermissionRequiredException('Permission required. Unable to read ' . self::WEB_BROWSER_APP_CODE_LIST_FILE);
-//            }
-//        } else {
-//            if (is_resource(fopen(self::WEB_BROWSER_APP_CODE_LIST_FILE, 'wb+')) === true) {
-//                FileSystem::saveToFile(
-//                    self::WEB_BROWSER_APP_CODE_LIST_FILE,
-//                    _JSON::encodeToString($this->browsers->parents())
-//                );
-//            } else {
-//                throw new PermissionRequiredException('Permission required. Unable to create ' . self::DEVICES_CATEGORY_LIST_FILE);
-//            }
-//
-//            $this->webBrowserAppCodeNameList = $this->browsers->parents();
-//        }//end if
-//
-//        // Browsers layout list.
-//        if (file_exists(self::WEB_BROWSER_LAYOUT_LIST_FILE) === true) {
-//            if (is_readable(self::WEB_BROWSER_LAYOUT_LIST_FILE) === true) {
-//                if ($this->isUpdateDatabase($this->browsers->layouts(), self::WEB_BROWSER_LAYOUT_LIST_FILE) === true) {
-//                    if (is_writable(self::WEB_BROWSER_LAYOUT_LIST_FILE) === true) {
-//                        FileSystem::saveToFile(
-//                            self::WEB_BROWSER_LAYOUT_LIST_FILE,
-//                            _JSON::encodeToString($this->browsers->layouts())
-//                        );
-//                    } else {
-//                        throw new PermissionRequiredException('Permission required. Unable to write ' . self::DEVICES_PLATFORM_WM_NAME_LIST_FILE);
-//                    }
-//                }
-//
-//                $this->webBrowserLayoutList = _JSON::decodeToArray(FileSystem::read(self::WEB_BROWSER_LAYOUT_LIST_FILE));
-//            } else {
-//                throw new PermissionRequiredException('Permission required. Unable to read ' . self::WEB_BROWSER_APP_CODE_LIST_FILE);
-//            }
-//        } else {
-//            if (is_resource(fopen(self::WEB_BROWSER_LAYOUT_LIST_FILE, 'wb+')) === true) {
-//                FileSystem::saveToFile(
-//                    self::WEB_BROWSER_LAYOUT_LIST_FILE,
-//                    _JSON::encodeToString($this->browsers->layouts())
-//                );
-//            }
-//
-//            $this->webBrowserLayoutList = $this->browsers->layouts();
-//        }//end if
-//    }//end loadBrowserData()
 }//end class

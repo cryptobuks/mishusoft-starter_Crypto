@@ -3,6 +3,8 @@
 
 namespace Mishusoft\Http\UAAnalyzer\InformationCollection;
 
+use JsonException;
+use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Http\UAAnalyzer\Collection;
 
 class DevicesInformationCollection extends Collection
@@ -12,70 +14,15 @@ class DevicesInformationCollection extends Collection
         parent::__construct();
     }
 
-    public function all(): array
-    {
-        return [
-            'iphone' => [
-                'name' => 'iPhone',
-                'type' => 'Mobile phone',
-                'pointer' => 'Touch Screen',
-                'vendor' => 'Apple Inc',
-                'brand' => 'Apple',
-            ],
-            'mobile' => [
-                'name' => 'Mobile',
-                'type' => 'Mobile phone',
-                'pointer' => 'Touch Screen',
-                'vendor' => 'Unknown',
-                'brand' => 'Generic',
-            ],
-            'android' => [
-                'name' => 'Android Mobile',
-                'type' => 'Mobile phone',
-                'pointer' => 'Touch Screen',
-                'vendor' => 'Google Inc',
-                'brand' => 'Generic',
-            ],
-            'linux' => [
-                'name' => 'linux Desktop',
-                'type' => 'Desktop',
-                'pointer' => 'Mouse',
-                'vendor' => 'Linux Foundation',
-                'brand' => 'Linux',
-            ],
-            'mac' => [
-                'name' => 'Macintosh',
-                'type' => 'Desktop',
-                'pointer' => 'Mouse',
-                'vendor' => 'Apple Inc',
-                'brand' => 'MAC',
-            ],
-            'win' => [
-                'name' => 'Windows Desktop',
-                'type' => 'Desktop',
-                'pointer' => 'Mouse',
-                'vendor' => 'Microsoft Co',
-                'brand' => 'Windows',
-            ],
-        ];
-    }
-
-
     /**
-     * List of devices category
-     *
-     * @return array
+     * @throws RuntimeException|JsonException
      */
-    public function categories(): array
+    public function makeDetails(string $identifier)
     {
-        // Devices Categories.
-        return [
-            'linux' => 'linux ',
-            'iphone' => 'iPhone',
-            'mac' => 'mac OS',
-            'win' => 'windows',
-            'android' => 'Android',
-            'mobi' => 'Mobile',
-        ];
-    }//end getCategories()
+        $resourcesInfo = $this->extractAttribute($this->query('devices', 'categories'), 'info-only');
+        if (array_key_exists($identifier, $resourcesInfo) === true) {
+            return $resourcesInfo[$identifier];
+        }
+        return array();
+    }
 }

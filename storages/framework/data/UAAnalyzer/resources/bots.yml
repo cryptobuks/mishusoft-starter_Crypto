@@ -1,0 +1,34 @@
+sistrix-crawler:
+  name: 'Sistrix crawler'
+  url: 'https://crawler.007ac9.net'
+  type: 'Bot (Crawler)'
+  ui: FullTextMode
+  author: sistrix
+
+12345-bot:
+  name: '12345 Bot'
+  url: unknown
+  type: 'Bot (Crawler)'
+  ui: FullTextMode
+  author: unknown
+
+2gdpr-bot:
+  name: '2gdpr Bot'
+  url: https://2gdpr.com/
+  type: 'Bot (Crawler)'
+  ui: FullTextMode
+  author: 2gdpr
+
+360-spider:
+  name: '360 Spider'
+  url:      'https://www.360.cn/about/englishversion.html'
+  type: 'Bot (Crawler)'
+  ui: FullTextMode
+  author:   qihoo-360
+
+a1-website-analyzer:
+  name: 'A1 Website Analyzer'
+  url:      'https://www.microsystools.com/products/website-analyzer/'
+  type: 'Bot (Crawler)'
+  ui: FullTextMode
+  author:   microsys

@@ -20,89 +20,16 @@ class BrowsersPatternsCollection extends Collection
     public function all(): array
     {
         return array_merge_recursive(
-            $this->botsAll(),
-            $this->applicationsAll(),
-            $this->emailClientsAll(),
-            $this->feedReadersAll(),
-            $this->multimediaPlayersAll(),
-            $this->offlineBrowsersAll(),
-            $this->toolsAll(),
-            $this->browsersAll(),
+            $this->extractAttribute($this->query('browsers', 'bots'), 'identifier-with-pattern'),
+            $this->extractAttribute($this->query('browsers', 'applications'), 'identifier-with-pattern'),
+            $this->extractAttribute($this->query('browsers', 'email-clients'), 'identifier-with-pattern'),
+            $this->extractAttribute($this->query('browsers', 'feed-readers'), 'identifier-with-pattern'),
+            $this->extractAttribute($this->query('browsers', 'multimedia-players'), 'identifier-with-pattern'),
+            $this->extractAttribute($this->query('browsers', 'offline-browsers'), 'identifier-with-pattern'),
+            $this->extractAttribute($this->query('browsers', 'tools'), 'identifier-with-pattern'),
+            $this->extractAttribute($this->query('browsers', 'browsers'), 'identifier-with-pattern'),
         );
     }
-
-    /**
-     * @throws RuntimeException
-     */
-    public function botsAll():array
-    {
-        //return $this->organisePatterns($this->query('browsers', 'bots'));
-        return $this->extractAttribute($this->query('browsers', 'bots'), 'identifier-with-pattern');
-    }
-
-    /**
-     * @throws RuntimeException
-     */
-    public function applicationsAll():array
-    {
-        //return $this->organisePatterns($this->query('browsers', 'applications'));
-        return $this->extractAttribute($this->query('browsers', 'applications'), 'identifier-with-pattern');
-    }
-
-    /**
-     * @throws RuntimeException
-     */
-    public function emailClientsAll():array
-    {
-        //return $this->organisePatterns($this->query('browsers', 'email-clients'));
-        return $this->extractAttribute($this->query('browsers', 'email-clients'), 'identifier-with-pattern');
-    }
-
-    /**
-     * @throws RuntimeException
-     */
-    public function feedReadersAll():array
-    {
-        //return $this->organisePatterns($this->query('browsers', 'feed-readers'));
-        return $this->extractAttribute($this->query('browsers', 'feed-readers'), 'identifier-with-pattern');
-    }
-
-    /**
-     * @throws RuntimeException
-     */
-    public function multimediaPlayersAll():array
-    {
-        //return $this->organisePatterns($this->query('browsers', 'multimedia-players'));
-        return $this->extractAttribute($this->query('browsers', 'multimedia-players'), 'identifier-with-pattern');
-    }
-
-    /**
-     * @throws RuntimeException
-     */
-    public function offlineBrowsersAll():array
-    {
-        //return $this->organisePatterns($this->query('browsers', 'offline-browsers'));
-        return $this->extractAttribute($this->query('browsers', 'offline-browsers'), 'identifier-with-pattern');
-    }
-
-    /**
-     * @throws RuntimeException
-     */
-    public function toolsAll():array
-    {
-        //return $this->organisePatterns($this->query('browsers', 'tools'));
-        return $this->extractAttribute($this->query('browsers', 'tools'), 'identifier-with-pattern');
-    }
-
-    /**
-     * @throws RuntimeException
-     */
-    public function browsersAll():array
-    {
-        //return $this->organisePatterns($this->query('browsers', 'browsers'));
-        return $this->extractAttribute($this->query('browsers', 'browsers'), 'identifier-with-pattern');
-    }
-
 
     /**
      * @throws InvalidArgumentException
@@ -138,7 +65,7 @@ class BrowsersPatternsCollection extends Collection
      * @throws InvalidArgumentException
      * @throws RuntimeException
      */
-    public function webBrowserMatch(string $identifier):string
+    public function match(string $identifier):string
     {
         //print_r($this->all(), false);
 //        $dictionary = $this->organisePatterns($this->query('browsers', 'browsers'));

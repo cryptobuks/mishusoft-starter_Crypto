@@ -1,0 +1,28 @@
+# Ad Muncher
+# Ad Muncher is a web browser developed by www.acoobrowser.com. This browser renders web pages using the Trident engine.
+Ad Muncher is a bot, but at the moment it is not known who develops it.
+# url: https://www.admuncher.com/
+# url: https://user-agents.net/bots/ad-muncher
+
+# Latest user agents:
+# Ad Muncher v4.94.34121
+# Ad Muncher YB/3.5.1
+# Ad Muncher v4.94.34121/7137 (Free)
+
+- identifiers:
+    # Pattern maker method use it
+    browser-ad-muncher:
+      pattern:
+        name: (ad\s+muncher)
+        separator: true
+        version: true
+      functional: true
+    browser-ad-muncher-fallback:
+      pattern:
+        name: (ad\s+muncher)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser ad-muncher

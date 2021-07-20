@@ -183,35 +183,11 @@ class PlatformsIdentifiersCollection extends Collection
      * List of web browsers window manager
      *
      * @return array
+     * @throws RuntimeException
      */
     public function windowManagers(): array
     {
         // Platform's Window Manager.
-        return [
-            'x11' => [
-                'name' => 'Linux Desktop,',
-                'type' => 'X11 Window Manager.',
-            ],
-            'linux' => [
-                'name' => 'Linux Desktop,',
-                'type' => 'Unknown Window Manager.',
-            ],
-            'windows' => [
-                'name' => 'Windows Desktop,',
-                'type' => 'Windows Window Manager.',
-            ],
-            'android' => [
-                'name' => 'Android Device,',
-                'type' => 'Unknown Window Manager.',
-            ],
-            'cpu' => [
-                'name' => 'iOS,',
-                'type' => 'Mac Window Manager.',
-            ],
-            'mac' => [
-                'name' => 'Macintosh,',
-                'type' => 'Mac Window Manager.',
-            ],
-        ];
+        return $this->extractAttribute($this->query('platforms', 'wm'), 'identifier-only');
     }//end getWindowManagers()
 }

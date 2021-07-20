@@ -1,0 +1,7 @@
+goggle-cloud:
+  developer:	Google
+  release:
+    initial : April 7, 2008
+  type:	Platform as a service
+  ui:	Web Interface
+  website:	cloud.google.com/appengine

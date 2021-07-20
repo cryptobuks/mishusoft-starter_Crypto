@@ -12,23 +12,13 @@
 
 - identifiers:
     # Pattern maker method use it
-    bot-openlink-profiler-seo-analyser:
+    analyser-openlink-profiler-seo-analyser:
       pattern:
         name: (spbot)
         separator: true
         version: true
       functional: true
 
-  # if as not matched with extracted name, then new name set into as key.
-  as: 'OpenLink Profiler SEO Analyser'
-  space: 'analyser'
-
   # Information maker method use it
-  info:
-    name:     'OpenLink Profiler SEO Analyser'
-    author:   seoprofiler
-    url:      'https://openlinkprofiler.org/'
-
-
-
+  info: analyser openlink-profiler-seo-analyser
 

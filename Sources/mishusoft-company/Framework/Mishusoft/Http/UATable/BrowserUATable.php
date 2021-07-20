@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Mishusoft\Framework\Chipsets\Http\UATable;
+namespace Mishusoft\Http\UATable;
 
 class BrowserUATable
 {

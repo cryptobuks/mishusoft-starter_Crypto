@@ -1,0 +1,4 @@
+emailsiphon:
+  name: Email Siphon
+  type: Email Collector
+  ui: FullTextMode

@@ -1,17 +1,17 @@
 <?php
 
-namespace Mishusoft\Framework\Drivers\View;
+namespace Mishusoft\Drivers\View;
 
 use Exception;
-use Mishusoft\Framework\Chipsets\FileSystem;
-use Mishusoft\Framework\Chipsets\Http\ClientRequest;
-use Mishusoft\Framework\Chipsets\Storage;
-use Mishusoft\Framework\Chipsets\MPM;
-use Mishusoft\Framework\Chipsets\Preloader;
-use Mishusoft\Framework\Chipsets\System\Firewall;
-use Mishusoft\Framework\Chipsets\System\Network;
-use Mishusoft\Framework\Drivers\Acl;
-use Mishusoft\Framework\Drivers\Session;
+use Mishusoft\FileSystem;
+use Mishusoft\Http\ClientRequest;
+use Mishusoft\Storage;
+use Mishusoft\MPM;
+use Mishusoft\Preloader;
+use Mishusoft\System\Firewall;
+use Mishusoft\System\Network;
+use Mishusoft\Drivers\Acl;
+use Mishusoft\Drivers\Session;
 use SmartyBC;
 use SmartyException;
 

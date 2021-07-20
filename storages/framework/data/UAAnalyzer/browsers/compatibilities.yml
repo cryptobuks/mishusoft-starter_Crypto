@@ -9,16 +9,8 @@
         version: true
       functional: true
 
-  # if as not matched with extracted name, then new name set into as key.
-  as: 'Mozilla'
-  space: 'compatibilities'
-
   # Information maker method use it
-  info:
-    name:       'Netscape'
-    code:       'Mozilla'
-    author:     'ncsa'
-    url:        'https://www.ncsa.illinois.edu/Projects/mosaic.html'
+  info: compatible mozilla
 
 #NCSA_Mosaic/2.0 (Windows 3.1)
 - identifiers:
@@ -30,13 +22,5 @@
         version: true
       functional: true
 
-  # if as not matched with extracted name, then new name set into as key.
-  as: 'NCSA Mosaic'
-  space: 'compatibilities'
-
   # Information maker method use it
-  info:
-    name:       'NCSA Mosaic'
-    code:       'NCSA Mosaic'
-    author:     'ncsa'
-    url:        'https://www.ncsa.illinois.edu/Projects/mosaic.html'
+  info: compatible ncsa_mosaic

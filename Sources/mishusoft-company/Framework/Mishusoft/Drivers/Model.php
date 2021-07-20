@@ -1,8 +1,8 @@
 <?php
 
-namespace Mishusoft\Framework\Drivers;
+namespace Mishusoft\Drivers;
 
-use Mishusoft\Framework\Chipsets\System\Logger;
+use Mishusoft\System\Logger;
 use PDO;
 use PDOException;
 

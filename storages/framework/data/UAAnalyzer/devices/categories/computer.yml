@@ -1,27 +1,86 @@
 # url : https://developers.whatismybrowser.com/useragents/explore/hardware_type_specific/computer/
 
+
 # Windows
 # Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; InfoPath.1)
-- name: '(windows|win)'
-  type: Computer
+
+- identifiers:
+    device-desktop-windows:
+      pattern:
+        name: '(windows\s+nt|windows|win)'
+        separator: false
+        version: false
+      functional: true
+
+  info: device desktop-windows
+
 
 # mac
 # Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.5 Safari/605.1.15
 # Mozilla/4.0 (compatible; MSIE 5.23; Mac_PowerPC)
 # Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.1 Safari/603.1.30
-- name: '(macintosh|mac)'
-  type: Computer
+- identifiers:
+    device-desktop-macintosh:
+      pattern:
+        name: '(macintosh|mac)'
+        separator: false
+        version: false
+      functional: true
+
+  info: device desktop-macintosh
 
 # Linux
-# A UNIX based OS
+
+# Ubuntu desktop
+# Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:24.0) Gecko/20100101 Firefox/24.0
+
+- identifiers:
+    device-desktop-ubuntu:
+      pattern:
+        name: '(ubuntu)'
+        separator: false
+        version: false
+      functional: true
+
+  info: device desktop-ubuntu
+
+
+# OpenBSD
+# Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36
+# Mozilla/5.0 (X11; OpenBSD amd64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36
+
+- identifiers:
+    device-desktop-openbsd:
+      pattern:
+        name: '(openbsd)'
+        separator: false
+        version: false
+      functional: true
+
+  info: device desktop-openbsd
+
+- identifiers:
+    device-desktop-bsd:
+      pattern:
+        name: '(bsd)'
+        separator: false
+        version: false
+      functional: true
+
+  info: device desktop-bsd
+
+# Linux desktop
 # Thunderstorm/1.0 (Linux)
 # Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9a1) Gecko/20070308 Minefield/3.0a1
 # BrightSign/8.0.69 (XT1143)Mozilla/5.0 (X11; Linux armv7l) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.11.2 Chrome/65.0.3325.230 Safari/537.36
 # Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/75.0.3738.0 Safari/537.36 CloudWatchSynthetics/arn:aws:synthetics:us-west-2:120743116205:canary:1dw_core_mngr_dshbrd
-- name: '(linux)'
-  type: Computer
 
-# OpenBSD
-# Mozilla/5.0 (X11; OpenBSD i386) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125 Safari/537.36
-- name: '(openbsd)'
-  type: Computer
+- identifiers:
+    device-desktop-linux:
+      pattern:
+        name: '(x11|linux)'
+        separator: false
+        version: false
+      functional: true
+
+  info: device desktop-linux

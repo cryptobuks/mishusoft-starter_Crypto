@@ -1,20 +1,19 @@
 <?php declare(strict_types=1);
 
 
-namespace Mishusoft\Framework\Drivers\View;
-
+namespace Mishusoft\Drivers\View;
 
 use InvalidArgumentException;
 use JsonException;
-use Mishusoft\Framework\Chipsets\FileSystem;
-use Mishusoft\Framework\Chipsets\Preloader;
-use Mishusoft\Framework\Chipsets\System\Firewall;
-use Mishusoft\Framework\Chipsets\System\Logger;
-use Mishusoft\Framework\Chipsets\Utility\_Array;
-use Mishusoft\Framework\Chipsets\Utility\_Debug;
-use Mishusoft\Framework\Chipsets\Utility\_JSON;
-use Mishusoft\Framework\Chipsets\Utility\_String;
-use Mishusoft\Framework\Interfaces\Drivers\MishusoftViewInterface;
+use Mishusoft\Drivers\View\MishusoftViewInterface;
+use Mishusoft\FileSystem;
+use Mishusoft\Preloader;
+use Mishusoft\System\Firewall;
+use Mishusoft\System\Logger;
+use Mishusoft\Utility\ArrayCollection;
+use Mishusoft\Utility\Debug;
+use Mishusoft\Utility\JSON;
+use Mishusoft\Utility\Character;
 use RuntimeException;
 
 class MishusoftView extends FileSystem implements MishusoftViewInterface
@@ -181,7 +180,6 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
 
         $this->widget    = [];
         $this->variables = [];
-
     }//end __construct()
 
 
@@ -271,7 +269,7 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
 
         // $widgetFileArray = json_decode(self::read(self::widgetsFile), true, 512, JSON_THROW_ON_ERROR);
         // $widgetConfigArray = json_decode(self::read(self::widgetsConfigFile), true, 512, JSON_THROW_ON_ERROR);
-         // _Debug::preOutput($this->getInstalledWidgets());
+        // _Debug::preOutput($this->getInstalledWidgets());
         Logger::write('Checking '.self::widgetsConfigFile.' is exists in system?');
         if (file_exists(self::widgetsConfigFile) === false) {
             foreach ($this->getInstalledWidgets() as $widget => $config) {
@@ -283,7 +281,7 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
                     $this->installFreshWidgetsConfig($widget, $config);
                 }
             }
-        } else if (count($this->getInstalledWidgetsConfig()) === 0) {
+        } elseif (count($this->getInstalledWidgetsConfig()) === 0) {
             Logger::write('Updating '.self::widgetsConfigFile.' in system.');
             foreach ($this->getInstalledWidgets() as $widget => $config) {
                 $this->updateWidgetsConfig($widget, $config);
@@ -298,7 +296,6 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
         }//end if
 
         return self::widgetsConfigFile;
-
     }//end readWidgetsConfigFile()
 
 
@@ -345,7 +342,6 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
         }
 
         self::write(self::widgetsFile, $this->installedWidgets);
-
     }//end installFreshWidgets()
 
 
@@ -356,7 +352,6 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
     {
         Logger::write('Collecting all data from '.self::widgetsFile.' in system.');
         return _JSON::decodeToArray(self::read(self::widgetsFile));
-
     }//end getInstalledWidgets()
 
 
@@ -367,7 +362,6 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
     {
         Logger::write('Collecting all configuration from '.self::widgetsConfigFile.' in system.');
         return _JSON::decodeToArray(self::read(self::widgetsConfigFile));
-
     }//end getInstalledWidgetsConfig()
 
 
@@ -381,7 +375,6 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
         // _Debug::preOutput(func_get_args());
         Logger::write('Writing '.self::widgetsConfigFile.' in system.');
         self::write(self::widgetsConfigFile, $this->collectAllData($widget, $config));
-
     }//end installFreshWidgetsConfig()
 
 
@@ -402,7 +395,6 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
                 $this->collectAllData($widget, $config)
             )
         );
-
     }//end updateWidgetsConfig()
 
 
@@ -416,7 +408,7 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
         Logger::write('Extract to child wise configuration from '.self::widgetsConfigFile.' in system.');
         $array = [];
         // _Debug::preOutput($widget);
-         // _Debug::preOutput($config);
+        // _Debug::preOutput($config);
         if (array_key_exists('child', $config) === true) {
             if (count($config['child']) > 0) {
                 foreach ($config['child'] as $child) {
@@ -448,7 +440,6 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
 
         // _Debug::preOutput($array);
         return $array;
-
     }//end collectAllData()
 
 
@@ -460,7 +451,6 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
     {
         Logger::write('After verification get all configuration from '.self::widgetsConfigFile.' in system.');
         return _JSON::decodeToArray(self::read($this->readWidgetsConfigFile()));
-
     }//end getWidgetsConfigAll()
 
 
@@ -486,7 +476,6 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
 
         Logger::write('The parent Widget of '.$child.' is '.$parent);
         return $parent;
-
     }//end getWidgetsParent()
 
 
@@ -514,7 +503,6 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
 
         Logger::write('The parents are '.implode(',', $parents));
         return $parents;
-
     }//end getWidgetsParentAll()
 
 
@@ -525,7 +513,7 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
      */
     private function getAllDataOfWidgetsParent(string $parent): array
     {
-         _Debug::preOutput(func_get_args());
+        _Debug::preOutput(func_get_args());
         // _Debug::preOutput(self::read(self::widgetsConfigFile));
         // _Debug::preOutput(json_decode(self::read(self::widgetsFile), true, 512, JSON_THROW_ON_ERROR));
         // Logger::write('Extract to child configuration from '.self::widgetsConfigFile.' of '.$parent);
@@ -539,7 +527,6 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
         }
 
         return _Array::value($elements, $parent);
-
     }//end getAllDataOfWidgetsParent()
 
 
@@ -556,7 +543,6 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
 
         Logger::write('Otherwise return default configuration ');
         return self::defaultWidgetConfig;
-
     }//end getConfig()
 
 
@@ -593,7 +579,6 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
         );
 
         return [];
-
     }//end getAvailableWidgetsPositions()
 
 
@@ -655,7 +640,6 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
                 ]
             );
         }//end if
-
     }//end widget()
 
 
@@ -740,7 +724,6 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
 
         Logger::write('Extract positions from all widgets.');
         return $positions;
-
     }//end getWidgets()
 
 
@@ -771,7 +754,6 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
         }
 
         return $this->widget($content[0], $content[1], $content[2]);
-
     }//end getWidgetContent()
 
 
@@ -783,7 +765,6 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
     {
         Logger::write('Set config for widget.');
         $this->widgetConfig = $config;
-
     }//end setWidgetConfig()
 
 
@@ -795,7 +776,6 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
     {
         Logger::write('Set document title.');
         $this->titleOfCurrentWebPage = $documentTitle;
-
     }//end setDocumentTitle()
 
 
@@ -807,7 +787,6 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
     {
         Logger::write('Set host address.');
         $this->urlOfHostedWebsite = $urlOfHostedWebsite;
-
     }//end setUrlOfHostedWebsite()
 
 
@@ -891,7 +870,6 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
                 ]
             );
         }
-
     }//end display()
 
 
@@ -903,7 +881,6 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
         $routeUrl = implode('/', [_String::ucfirst($this->request['controller']), $this->request['method']]);
         Logger::write('Resolve current page'.$this->templateRenderDirectory.$routeUrl.'.'.$this->templateExt);
         return $this->templateRenderDirectory.$routeUrl.'.'.$this->templateExt;
-
     }//end loadTemplateFile()
 
 
@@ -948,7 +925,6 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
                 ]
             );
         }//end if
-
     }//end compile()
 
 
@@ -961,8 +937,5 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
     {
         // _Debug::preOutput(array_merge($this->variables, array($tpl_key => $tpl_value)));
         return $this->variables = array_merge($this->variables, [$tplKey => $tplValue]);
-
     }//end assign()
-
-
 }//end class

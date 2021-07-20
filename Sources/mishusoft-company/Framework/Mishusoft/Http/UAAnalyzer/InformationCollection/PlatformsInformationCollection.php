@@ -25,44 +25,15 @@ class PlatformsInformationCollection extends Collection
         return array();
     }
 
-
     /**
-     * List of web browsers window manager
-     *
-     * @return array
+     * @throws RuntimeException
      */
-    public function windowManagers(): array
+    public function makeWMDetails(string $identifier)
     {
-        // Platform's Window Manager.
-        return [
-            'x11' => [
-                'name' => 'Linux Desktop,',
-                'type' => 'X11 Window Manager.',
-            ],
-            'linux' => [
-                'name' => 'Linux Desktop,',
-                'type' => 'Unknown Window Manager.',
-            ],
-            'win' => [
-                'name' => 'Windows Desktop,',
-                'type' => 'Windows Window Manager.',
-            ],
-            'android' => [
-                'name' => 'Android Device,',
-                'type' => 'Unknown Window Manager.',
-            ],
-            'cpu' => [
-                'name' => 'iOS,',
-                'type' => 'Mac Window Manager.',
-            ],
-            'mac' => [
-                'name' => 'Macintosh,',
-                'type' => 'Mac Window Manager.',
-            ],
-            'iphone' => [
-                'name' => 'iPhone,',
-                'type' => 'iOS Window Manager.',
-            ],
-        ];
-    }//end getWindowManagers()
+        $resourcesInfo = $this->extractAttribute($this->query('platforms', 'wm'), 'info-only');
+        if (array_key_exists($identifier, $resourcesInfo) === true) {
+            return $resourcesInfo[$identifier];
+        }
+        return array();
+    }
 }

@@ -25,20 +25,9 @@
         version: false
       functional: true
 
-  # if as not matched with extracted name, then new name set into as key.
-  as: '1 Password'
-  space: 'applications'
-
   # Information maker method use it
-  info:
-    name:     '1 Password'
-    url:      'https://1password.com/'
-    category: 'Password Manager'
-    author:   'agile-bits-inc'
-    cost:     'Trialware'
-    status:   'Active'
-    licence:   ['Trialware']
-    engines:    ['WebKit']
+  info: application one-password
+
 
 #  Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Coder Nut/45.41 Safari/537.36	Coder Nut 45	Windows	Computer	Uncommon
 #  Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Coder Nut/88.16 Safari/537.36	Coder Nut 88	Windows	Computer	Uncommon

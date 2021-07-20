@@ -31,15 +31,8 @@
         version: false
       functional: true
 
-  # if as not matched with extracted name, then new name set into as key.
-  as: 'Sistrix crawler'
-  space: 'bots'
-
   # Information maker method use it
-  info:
-    name:   'Sistrix crawler'
-    url:    'https://crawler.007ac9.net'
-    author: sistrix
+  info: bot sistrix-crawler
 
 # 12345Bot
 # 12345 is a bot, but at the moment it is not known who develops it.
@@ -60,16 +53,8 @@
         version: false
       functional: true
 
-  # if as not matched with extracted name, then new name set into as key.
-  as: '12345 Bot'
-  space: 'bots'
-
   # Information maker method use it
-  info:
-    name:   '12345 Bot'
-    url:    unknown
-    author: unknown
-
+  info: bot 12345-bot
 
 # 2GDPR
 # 2GDPR Crawler is a bot devoloped by 2GDPR.com.
@@ -87,16 +72,8 @@
         version: false
       functional: true
 
-  # if as not matched with extracted name, then new name set into as key.
-  as: '2gdpr Bot'
-  space: 'bots'
-
   # Information maker method use it
-  info:
-    name:   '2gdpr Bot'
-    url:    'https://2gdpr.com/'
-    author: 2gdpr
-
+  info: bot 2gdpr-bot
 
 # 360Spider
 # 360Spider is a bot devoloped by Qihoo 360 Technology Co. Ltd..
@@ -113,15 +90,8 @@
         version: false
       functional: true
 
-  # if as not matched with extracted name, then new name set into as key.
-  as: '360 Spider'
-  space: 'bots'
-
   # Information maker method use it
-  info:
-    name:     '360 Spider'
-    author:   'qihoo-360'
-    url:      'https://www.360.cn/about/englishversion.html'
+  info: bot 360-spider
 
 
 # A1 Website Analyzer
@@ -140,18 +110,5 @@
         version: false
       functional: true
 
-  # if as not matched with extracted name, then new name set into as key.
-  as: 'A1 Website Analyzer'
-  space: 'bots'
-
   # Information maker method use it
-  info:
-    name:     'A1 Website Analyzer'
-    author:   microsys
-    url:      'https://www.microsystools.com/products/website-analyzer/'
-
-
-
-
-
-
+  info: bot a1-website-analyzer

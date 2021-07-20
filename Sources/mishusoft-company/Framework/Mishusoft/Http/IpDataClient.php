@@ -16,7 +16,7 @@ class IpDataClient
      * @throws \JsonException
      */
     public function __construct(
-        private string $apiKey=''
+        private string $apiKey = ''
     ) {
         if (empty($this->apiKey) === true) {
             throw new RuntimeException('IpData api can not be empty.');
@@ -27,7 +27,7 @@ class IpDataClient
     /**
      * @throws \JsonException
      */
-    public function lookup(string $ip, array $fields=[]) : array
+    public function lookup(string $ip, array $fields = []) : array
     {
         $response = array();
         $query = [
@@ -65,10 +65,7 @@ class IpDataClient
     }//end lookup()
 
 
-    /**
-     * @throws \JsonException
-     */
-    public function buildLookup(array $ips, array $fields=[]): array
+    public function buildLookup(array $ips, array $fields = []): array
     {
         $query = [
             'api-key' => $this->apiKey,
@@ -105,6 +102,5 @@ class IpDataClient
 
 
         return $response;
-
     }//end buildLookup()
 }//end class

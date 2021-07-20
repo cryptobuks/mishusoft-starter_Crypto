@@ -3,17 +3,18 @@
 
 namespace Mishusoft\Http\UAAnalyzer;
 
-use Closure;
+use JsonException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\FileSystem;
 use Mishusoft\Storage;
+use Mishusoft\Utility\Inflect;
 use Mishusoft\Utility\JSON;
 
 abstract class Collection extends UAAnalyzerBase
 {
     // Root path of data path
     //protected const USER_AGENT_ANALYZE_DATA_PATH = APPLICATION_STORAGE_PATH . '0/UAAnalyzer' . DIRECTORY_SEPARATOR;
-    protected const DATA_FILE_FORMAT ='.yml';
+    protected const DATA_FILE_FORMAT = '.yml';
 
     private string $defaultSeparators = '(\s+|\/|\_|\-|\:|\;|\()';
     //private string $defaultVersionsString
@@ -21,7 +22,60 @@ abstract class Collection extends UAAnalyzerBase
     private string $defaultVersionsString;
 
 
-    private array $spaces = [];
+    private array $dictionaries = [];
+    private array $directoriesWithFiles = [
+        'browsers' => [
+            'analysers',
+            'applications',
+            'browsers',
+            'browsers-engines',
+            'bots',
+            'compatibilities',
+            'cloud-platforms',
+            'email-clients',
+            //'email-collectors',
+            'feed-readers',
+            //'link-checkers',
+            //'libraries',
+            'multimedia-players',
+            'offline-browsers',
+            'tools',
+            //'validators',
+        ],
+        'devices' => [
+            'categories',
+        ],
+        'platforms' => [
+            'architectures',
+            'os',
+            'wm',
+        ],
+        'resources' => [
+            'analysers',
+            'applications',
+            'authors',
+            'bots',
+            'browsers',
+            'browsers-engines',
+            'compatibilities',
+            'cloud-platforms',
+            'devices',
+            'email-clients',
+            //'email-collectors',
+            'feed-readers',
+            'licences',
+            //'link-checkers',
+            //'libraries',
+            'multimedia-players',
+            'offline-browsers',
+            'platforms',
+            'tools',
+            'wm',
+            //'validators',
+        ]
+    ];
+    private array $attributes;
+    private string $detailsBuilderAttribute;
 
     /**
      * @throws RuntimeException
@@ -39,66 +93,81 @@ abstract class Collection extends UAAnalyzerBase
         parent::__construct();
         $this->defaultVersionsString = '(v|y|yb\/|nt)?'; // Add prefix for version number
         $this->defaultVersionsString .= '(\s*|\/|\_|\-|\:|\;|\()?'; // Add additional separator for version number
-        $this->defaultVersionsString .= '((\d+[.-_])?(\d+[.-_])?(\d+[.-])?(\d+[.-_])?(\d+))|(\w+)'; // version number
+        $this->defaultVersionsString .= '((\d+[.-_ ])?(\d+[.-_ ])?(\d+[.-_ ])?(\d+[.-_ ])?(\d+))|(\w+)'; // version number
 
-        $directories = array(
-            $this->uaStoragePath . 'browsers'. DIRECTORY_SEPARATOR,
-            $this->uaStoragePath . 'devices'. DIRECTORY_SEPARATOR,
-            $this->uaStoragePath . 'platforms'. DIRECTORY_SEPARATOR,
-            $this->uaStoragePath . 'resources'. DIRECTORY_SEPARATOR,
-        );
+        $this->attributes = ['author', 'licence', 'engines'];
 
-        foreach ($directories as $directory) {
-            if (file_exists($directory) === false) {
-                throw new RuntimeException(sprintf('%s not exists', $directory));
-            }
-        }
+        $this->loadDictionaries();
+
+//        print_r($this->dictionaries, false);
+//        exit();
     }
 
     /**
      * @throws RuntimeException
      */
-    public function dataDictionaryDirectory(string $name):string
+    private function loadDictionaries(): void
     {
-        if (in_array(strtolower($name), array('browsers','devices','platforms','resources'), true) === false) {
-            throw new RuntimeException(
-                sprintf(
-                    '%s not exists',
-                    sprintf('%s%s%s', $this->uaStoragePath, strtolower($name), DIRECTORY_SEPARATOR)
-                )
-            );
-        }
-        return sprintf('%s%s%s', $this->uaStoragePath, strtolower($name), DIRECTORY_SEPARATOR);
-    }
-
-    /**
-     * @throws RuntimeException
-     */
-    protected function query(string $category, string $item) : array
-    {
-        $loc = sprintf('%s%s/%s', $this->uaStoragePath, $category, $item);
-        if (file_exists($loc) === true) {
-            if (count(FileSystem::globRecursive($loc, GLOB_MARK)) > 0) {
-                return $this->dictionariesAll($loc);
+        if (count($this->directoriesWithFiles) > 0) {
+            foreach ($this->directoriesWithFiles as $directory => $files) {
+                if (is_array($files) === true) {
+                    foreach ($files as $file) {
+                        $this->loadDictionariesBuilder($directory, $file);
+                    }
+                } elseif (is_string($files) === true) {
+                    $this->loadDictionariesBuilder($directory, $files);
+                } else {
+                    throw new RuntimeException('UA Analyzer\'s directory list has been corrupted');
+                }
             }
-
-            throw new RuntimeException(sprintf('%s is empty directory', $loc));
-        } elseif (file_exists(sprintf('%s%s', $loc, self::DATA_FILE_FORMAT)) === true) {
-            $dictionary = FileSystem\Yaml::parseFile(sprintf('%s%s', $loc, self::DATA_FILE_FORMAT));
-            if (is_array($dictionary) === true) {
-                return FileSystem\Yaml::parseFile(sprintf('%s%s', $loc, self::DATA_FILE_FORMAT));
-            }
-
-            return  array();
         } else {
-            throw new RuntimeException(sprintf('%s not exists', $loc));
+            throw new RuntimeException('UA Analyzer\'s directory list not found');
         }
     }
 
     /**
      * @throws RuntimeException
      */
-    protected function dictionariesAll(string $directory):array
+    private function loadDictionariesBuilder(string $directory, string $filename): void
+    {
+        if (file_exists($this->uaStoragePath . $directory . DIRECTORY_SEPARATOR) === true) {
+            $diskLocation = sprintf('%s%s%s%s', $this->uaStoragePath, $directory, DS, $filename);
+            $diskLocationAsFile = sprintf('%s%s', $diskLocation, self::DATA_FILE_FORMAT);
+            if (is_dir($diskLocation) === true) {
+                if (count(FileSystem::globRecursive($diskLocation, GLOB_MARK)) > 0) {
+                    $this->dictionaries[$directory][$filename] = $this->dictionariesAll($diskLocation);
+                } else {
+                    throw new RuntimeException(sprintf('%s is empty directory', $diskLocation));
+                }
+            } elseif (is_file($diskLocationAsFile) === true) {
+                $dictionary = FileSystem\Yaml::parseFile($diskLocationAsFile);
+                if (is_array($dictionary) === true) {
+                    $this->dictionaries[$directory][$filename] = $dictionary;
+                } else {
+                    throw new RuntimeException(
+                        sprintf(
+                            'Data type array required, string found in %s ',
+                            sprintf('%s%s', $diskLocation, self::DATA_FILE_FORMAT)
+                        )
+                    );
+                }
+            } else {
+                throw new RuntimeException(
+                    sprintf(
+                        '%s not exists',
+                        sprintf('%s%s', $diskLocation, self::DATA_FILE_FORMAT)
+                    )
+                );
+            }
+        } else {
+            throw new RuntimeException(sprintf('%s not exists', $directory));
+        }
+    }
+
+    /**
+     * @throws RuntimeException
+     */
+    protected function dictionariesAll(string $directory): array
     {
         $dFiles = FileSystem::globRecursive($directory, GLOB_MARK);
         $dictionaries = array();
@@ -113,10 +182,45 @@ abstract class Collection extends UAAnalyzerBase
     }
 
     /**
+     * @throws RuntimeException
+     */
+    public function dataDictionaryDirectory(string $name): string
+    {
+        if (array_key_exists(strtolower($name), $this->directoriesWithFiles) === false) {
+            throw new RuntimeException(
+                sprintf(
+                    '%s not exists',
+                    sprintf('%s%s%s', $this->uaStoragePath, strtolower($name), DIRECTORY_SEPARATOR)
+                )
+            );
+        }
+        return sprintf('%s%s%s', $this->uaStoragePath, strtolower($name), DIRECTORY_SEPARATOR);
+    }
+
+    /**
+     * @throws RuntimeException
+     */
+    protected function query(string $category, string $item): array
+    {
+        //print_r(func_get_args(), false);
+        if (array_key_exists($category, $this->directoriesWithFiles) === true) {
+            //print_r($this->dictionaries[$category], false);
+            if (array_key_exists($item, $this->dictionaries[$category]) === true) {
+                return $this->dictionaries[$category][$item];
+            }
+
+            throw new RuntimeException(sprintf('Unknown file %s', $item));
+        }
+
+        throw new RuntimeException(sprintf('Unknown directory %s', $category));
+    }
+
+
+    /**
      * @param array $dictionaries
      * @return array
      */
-    protected function merge(array $dictionaries):array
+    protected function merge(array $dictionaries): array
     {
         $result = array();
         foreach ($dictionaries as $dictionary) {
@@ -131,25 +235,9 @@ abstract class Collection extends UAAnalyzerBase
 
     /**
      * @param array $dictionaries
-     */
-    protected function loadSpaces(array $dictionaries):void
-    {
-        foreach ($dictionaries as $dictionary) {
-            if (array_key_exists('identifiers', $dictionary) === true) {
-                foreach ($dictionary['identifiers'] as $identifier => $ignore) {
-                    if (array_key_exists('space', $dictionary) === true) {
-                        $this->setSpaces($identifier, $dictionary['space']);
-                    }
-                }
-            }
-        }
-    }
-
-    /**
-     * @param array $dictionaries
      * @return array
      */
-    protected function extractArchitectures(array $dictionaries):array
+    protected function extractArchitectures(array $dictionaries): array
     {
         $result = array();
         foreach ($dictionaries as $dictionary) {
@@ -160,38 +248,17 @@ abstract class Collection extends UAAnalyzerBase
         return $result;
     }
 
-    /**
-     * @param array $dictionaries
-     * @param Closure $callback
-     * @return array
-     */
-    protected function extractInformation(array $dictionaries, Closure $callback):array
-    {
-        $result = array();
-        foreach ($dictionaries as $dictionary) {
-            if (array_key_exists('info', $dictionary) === true) {
-                $resources = $dictionary['info'];
-                if (array_key_exists('identifiers', $dictionary) === true) {
-                    foreach ($dictionary['identifiers'] as $identifier => $details) {
-                        $result[$identifier] = $callback($resources);
-                        //$result = $callback($resources);
-                    }
-                }
-            }
-        }
-        return $result;
-    }
-
 
     /**
      * @throws RuntimeException
+     * @throws JsonException
      */
-    protected function extractAttribute(array $dictionaries, string $job, Closure|bool $callback = false) : array
+    protected function extractAttribute(array $dictionaries, string $job): array
     {
         $result = array();
         $job = strtolower($job);
 
-        if (in_array($job, array('identifier-only','identifier-with-pattern','info-only','associates-only'))) {
+        if (in_array($job, array('identifier-only', 'identifier-with-pattern', 'info-only')) === true) {
             foreach ($dictionaries as $dictionary) {
                 if ($job === 'identifier-only') {
                     if (array_key_exists('identifiers', $dictionary) === true) {
@@ -199,7 +266,12 @@ abstract class Collection extends UAAnalyzerBase
                             $result[] = $identifier;
                         }
                     } else {
-                        throw new RuntimeException('Identifier attribute not exists in current database');
+                        throw new RuntimeException(
+                            sprintf(
+                                'Identifier attribute not exists in %s',
+                                JSON::encodeToString($dictionary)
+                            )
+                        );
                     }
                 }
                 if ($job === 'identifier-with-pattern') {
@@ -229,88 +301,117 @@ abstract class Collection extends UAAnalyzerBase
 
                                 $result[$identifier] = $regex;
                             } else {
-                                throw new RuntimeException('Pattern attribute not exists in current database');
+                                throw new RuntimeException(
+                                    sprintf(
+                                        'Pattern attribute not exists in %s',
+                                        JSON::encodeToString($properties)
+                                    )
+                                );
                             }
                         }
                     } else {
-                        throw new RuntimeException('Identifier attribute not exists in current database');
+                        throw new RuntimeException(
+                            sprintf(
+                                'Identifier attribute not exists in %s',
+                                JSON::encodeToString($dictionary)
+                            )
+                        );
                     }
                 }
                 if ($job === 'info-only') {
                     if (array_key_exists('info', $dictionary) === true) {
-                        if (is_string($dictionary['info']) === true) {
-                            if (array_key_exists('identifiers', $dictionary) === true) {
-                                foreach ($dictionary['identifiers'] as $identifierKey => $details) {
+                        if (array_key_exists('identifiers', $dictionary) === true) {
+                            foreach ($dictionary['identifiers'] as $component => $details) {
+                                if (is_string($dictionary['info']) === true) {
                                     // Make details about browser/device/platform
                                     [$attribute, $identifier] = $this->makeArguments($dictionary['info']);
-                                    $result[$identifierKey] = $this->attributeDetails($attribute, $identifier);
+                                    $result[$component] = $this->attributeDetails($attribute, $identifier);
 
-                                    // Make details about author/developer
-                                    [$attribute, $identifier] = $this->makeArguments( $result[$identifierKey]['author']);
-                                    $result[$identifierKey]['author'] = $this->attributeDetails($attribute, $identifier);
-
-                                    // Make details about licence
-                                    if (is_array($result[$identifierKey]['licence']) === true) {
-                                        foreach ($result[$identifierKey]['licence'] as $licence) {
-                                            [$attribute, $identifier] = $this->makeArguments( $licence);
-                                            $result[$identifierKey]['licence'] = $this->attributeDetails($attribute, $identifier);
-                                        }
+                                    if (is_array($result[$component]) === true) {
+                                        // Make details about author/licence/engine
+                                        $result[$component] = $this->attributeDetailsBuilder($result[$component]);
                                     } else {
-                                        [$attribute, $identifier] = $this->makeArguments($result[$identifierKey]['licence']);
-                                        $result[$identifierKey]['licence'] = $this->attributeDetails($attribute, $identifier);
+                                        throw new RuntimeException('The details has been string');
                                     }
-                                    // Make details about engines
-                                    if (is_array($result[$identifierKey]['engines']) === true) {
-                                        foreach ($result[$identifierKey]['engines'] as $engine) {
-                                            [$attribute, $identifier] = $this->makeArguments($engine);
-                                            $result[$identifierKey]['engines'][$engine] = $this->attributeDetails($attribute, $identifier);
-                                        }
-                                    } else {
-                                        [$attribute, $identifier] = $this->makeArguments($result[$identifierKey]['engines']);
-                                        $result[$identifierKey]['engines'] = $this->attributeDetails($attribute, $identifier);
-                                    }
+                                } else {
+                                    $result[$component] = $dictionary['info'];
+                                    //throw new RuntimeException('The resource caller has been array');
                                 }
                             }
                         } else {
-                            throw new RuntimeException('Identifier attribute not exists in current database');
+                            throw new RuntimeException(
+                                sprintf(
+                                    'Identifier attribute not exists in %s',
+                                    JSON::encodeToString($dictionary)
+                                )
+                            );
                         }
                     } else {
-                        throw new RuntimeException('Info attribute not exists in current database');
-                    }
-                }
-                if ($job === 'associates-only') {
-                    if (array_key_exists('identifiers', $dictionary) === true) {
-                        foreach ($dictionary['identifiers'] as $identifier => $details) {
-                            $result[$identifier] = $dictionary;
-                            unset($result[$identifier]['identifiers'], $result[$identifier]['info']);
-                        }
-                    } else {
-                        throw new RuntimeException('Attributes not exists in current database');
+                        throw new RuntimeException(
+                            sprintf(
+                                'Info attribute not exists in %s',
+                                JSON::encodeToString($dictionary)
+                            )
+                        );
                     }
                 }
             }
             return $result;
         }
 
-        throw new RuntimeException('Unknown job .' . $job);
+        throw new RuntimeException('Unknown job' . $job);
     }
 
     /**
      * @throws RuntimeException
      */
-    protected function attributeDetails(string $attribute, array|string $identifiers): array
+    protected function attributeDetailsBuilder(array $resources): array
     {
+        // Details builder of specific attributes
+        foreach ($this->attributes as $attribute) {
+            if (array_key_exists($attribute, $resources) === true) {
+                if (is_array($resources[$attribute]) === true) {
+                    foreach ($resources[$attribute] as $attr) {
+                        //remove old position
+                        unset($resources[$attribute][array_search($attr, $resources[$attribute], true)]);
 
-        $attributeDetails  = array_change_key_case($this->attributeDetailsQuery($attribute));
+                        //append new position with details
+                        $resources[$attribute][$attr] = $this->attributeDetails(
+                            Inflect::singularize($attribute),
+                            $attr
+                        );
+                    }
+                } else {
+                    $foundedDetails = $this->attributeDetails(Inflect::singularize($attribute), $resources[$attribute]);
+
+                    if (is_array($foundedDetails) === true) {
+                        $resources[$attribute] = array($resources[$attribute] => $foundedDetails);
+                    } else {
+                        $resources[$attribute] = $foundedDetails;
+                    }
+                }
+            }
+        }
+
+        return $resources;
+    }
+
+    /**
+     * @throws RuntimeException
+     */
+    protected function attributeDetails(string $attribute, array|string $identifiers): array|string
+    {
+        $this->detailsBuilderAttribute = $this->cleanContent($attribute);
+        $attributeDetails = array_change_key_case($this->attributeDetailsQuery());
 
         if (is_string($identifiers)) {
-            return $this->makeAttributeDetails($attribute, $attributeDetails, $identifiers);
+            return $this->makeAttributeDetails($attributeDetails, $identifiers);
         }
 
         if (count($identifiers) > 0) {
             $info = array();
             foreach ($identifiers as $identifier) {
-                $info[$identifier] = $this->makeAttributeDetails($attribute, $attributeDetails, $identifier);
+                $info[$identifier] = $this->makeAttributeDetails($attributeDetails, $identifier);
             }
 
             return $info;
@@ -322,15 +423,34 @@ abstract class Collection extends UAAnalyzerBase
     /**
      * @throws RuntimeException
      */
-    protected function attributeDetailsQuery(string $attribute): array
+    protected function attributeDetailsQuery(): array
     {
-        return match (strtolower($attribute)) {
-            'browser'           => $this->contentQuery('browsers'),
-            'browser-engine'    => $this->contentQuery('browsers-engines'),
-            'licence'           => $this->contentQuery('licenses'),
-            'author'            => $this->contentQuery('authors'),
-            'device'            => $this->contentQuery('devices'),
-            'platform'          => $this->contentQuery('platforms'),
+        return match ($this->detailsBuilderAttribute) {
+            // All about browser related
+            'analyser' => $this->contentQuery('analysers'),
+            'application' => $this->contentQuery('applications'),
+            'bot' => $this->contentQuery('bots'),
+            'browser' => $this->contentQuery('browsers'),
+            'compatible' => $this->contentQuery('compatibilities'),
+            'engine' => $this->contentQuery('browsers-engines'),
+            'email.client' => $this->contentQuery('email-clients'),
+            'feed.reader' => $this->contentQuery('feed-readers'),
+            'multimedia.player' => $this->contentQuery('multimedia-players'),
+            'offline.browser' => $this->contentQuery('offline-browsers'),
+            'tool' => $this->contentQuery('tools'),
+
+            // About licence related
+            'licence' => $this->contentQuery('licences'),
+
+            // About author related
+            'author' => $this->contentQuery('authors'),
+
+            // About device related
+            'device' => $this->contentQuery('devices'),
+
+            // About platform related
+            'platform' => $this->contentQuery('platforms'),
+            'wm' => $this->contentQuery('wm'),
             default => array()
         };
     }
@@ -338,74 +458,56 @@ abstract class Collection extends UAAnalyzerBase
     /**
      * @throws RuntimeException
      */
-    private function contentQuery(string $filename):array
+    private function contentQuery(string $filename): array
     {
-        return FileSystem\Yaml::parseFile(
-            sprintf('%s%s.yml', $this->dataDictionaryDirectory('resources'), $filename)
-        );
+        if (array_key_exists($filename, $this->dictionaries['resources']) === true) {
+            return $this->dictionaries['resources'][$filename];
+        }
+
+        throw new RuntimeException(sprintf('Unknown file %s', $filename));
     }
 
     /**
      * @throws RuntimeException
      */
-    protected function makeAttributeDetails(string $attribute, array $attributeDetails, string $identifier): array
+    protected function makeAttributeDetails(array $attributeDetails, string|array $identifier): array|string
     {
         $identifier = strtolower($identifier);
-        if ($identifier === 'unknown') {
-            return array($identifier);
+
+        if (is_string($identifier) === true) {
+            return $this->makeAttributeDetailsBuilder($attributeDetails, $identifier);
         }
 
-        if (count($attributeDetails) > 0) {
-            if (array_key_exists($identifier, $attributeDetails)) {
-                return $attributeDetails[$identifier];
+        if (is_array($identifier) === true) {
+            foreach ($identifier as $identity) {
+                if (count($attributeDetails) > 0) {
+                    return $this->makeAttributeDetailsBuilder($attributeDetails, $identity);
+                }
+
+                throw new RuntimeException(sprintf('Resources %s is empty', $this->detailsBuilderAttribute));
             }
-
-            throw new RuntimeException(
-                sprintf('Unknown attribute %s (%s)', ucwords(str_replace('-', ' ', $identifier)), $attribute)
-            );
         }
-        
-        throw new RuntimeException(sprintf('Resources %s is empty', $attribute));
+        throw new RuntimeException('Identifier\'s type is corrupted');
     }
 
 
-    /**
-     * Check database are updated.
-     *
-     * @param array $database Loaded database.
-     * @param string $filename Database file name.
-     *
-     * @return boolean
-     * @throws \JsonException Throw exception when json process error occurred.
-     */
-    protected function isUpdateDatabase(array $database, string $filename): bool
+    protected function makeAttributeDetailsBuilder(array $attributeDetails, string $identifier): array|string
     {
-        return ((is_readable($filename) === true)
-                && (FileSystem::read($filename) !== '')
-                && (count(array_keys($database)) > count(array_keys(JSON::decodeToArray(FileSystem::read($filename))))))
-            || (strlen(JSON::encodeToString($database)) > strlen(FileSystem::read($filename)));
-    }//end isUpdateDatabase()
+        $identifier = strtolower($identifier);
+
+        if ($identifier === 'unknown') {
+            return $identifier;
+        }
+        if (array_key_exists($identifier, $attributeDetails) === true) {
+            return $attributeDetails[$identifier];
+        }
+
+        return $identifier;
+    }
 
 
-    protected function makeArguments(string|array $stringContent):array
+    protected function makeArguments(string|array $stringContent): array
     {
-        $this->knownIdentifers = [
-            'browser',
-            'analyser',
-            'compatibility',
-            'application',
-            'bot',
-            'email-client',
-            'feed-reader',
-            'multimedia-player',
-            'offline-browser',
-            'tool',
-            'platform',
-            'device',
-            'author',
-            'licence',
-            'engine',
-        ];
         if (is_string($stringContent)) {
             return explode(' ', $stringContent);
         }
@@ -420,7 +522,7 @@ abstract class Collection extends UAAnalyzerBase
      * @return string
      * @throws RuntimeException
      */
-    protected function makePattern(string $name, string|bool $separator, string|bool $version):string
+    protected function makePattern(string $name, string|bool $separator, string|bool $version): string
     {
         //https://www.php.net/manual/en/regexp.reference.subpatterns.php
         //https://www.php.net/manual/en/reference.pcre.pattern.modifiers.php
@@ -474,9 +576,10 @@ abstract class Collection extends UAAnalyzerBase
         // 2345chrome v3.0.0.9739 ok
         //Silk/1.0.13.81_10003810
         //CPU OS 11_2_2
-        //$defaultVersionPattern = '(v|y|yb\/|nt)?\s*(\d+[.-]\d+[.-]\d+[.-]\d+)|(\d+[.-]\d+[.-]\d+)|(\d+[.-]\d+)|(\d+)|(\w+)';
+        //$defaultVersionPattern = '(v|y|yb\/|nt)?\s*';
+        //$defaultVersionPattern .= '(\d+[.-]\d+[.-]\d+[.-]\d+)|(\d+[.-]\d+[.-]\d+)|(\d+[.-]\d+)|(\d+)|(\w+)';
         //$defaultVersionPattern = 'v?(\d+[.-]\d+[.-]\d+[.-]\d+)|(\d+[.-]\d+[.-]\d+)|(\d+[.-]\d+)|(\d+)|(\w+)';
-        if ($name!=='') {
+        if ($name !== '') {
             $namePattern = sprintf('(?<name>%s)', $name);
         } else {
             throw new RuntimeException('\$name can not be empty');
@@ -488,7 +591,6 @@ abstract class Collection extends UAAnalyzerBase
             $namePattern,
             $this->validate('separator', $this->defaultSeparators, $separator),
             $this->validate('version', $this->defaultVersionsString, $version)
-            //$this->validate('version', $defaultVersionPattern, $version)
         );
     }
 
@@ -498,9 +600,9 @@ abstract class Collection extends UAAnalyzerBase
      * @param string|bool $variable
      * @return string
      */
-    private function validate(string $identifier, string $default, string|bool $variable):string
+    private function validate(string $identifier, string $default, string|bool $variable): string
     {
-        if (is_string($variable) && $variable !=='') {
+        if (is_string($variable) && $variable !== '') {
             return sprintf('(?<%s>%s)', $identifier, $variable);
         }
 
@@ -509,33 +611,5 @@ abstract class Collection extends UAAnalyzerBase
         }
 
         return sprintf('(?<%s>%s)', $identifier, $default);
-    }
-
-    /**
-     * @param string $key
-     * @param mixed $value
-     */
-    private function setSpaces(string $key, mixed $value): void
-    {
-        $this->spaces[$key] = $value;
-    }
-
-    /**
-     * @return array
-     */
-    protected function getSpaces(): array
-    {
-        return $this->spaces;
-    }
-
-    /**
-     * @return array
-     */
-    protected function getSpace(string $key): mixed
-    {
-        if (array_key_exists($key, $this->spaces) === true) {
-            return $this->spaces[$key];
-        }
-        return '';
     }
 }

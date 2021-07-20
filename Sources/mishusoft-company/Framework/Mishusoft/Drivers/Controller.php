@@ -1,14 +1,14 @@
 <?php
 
-namespace Mishusoft\Framework\Drivers;
+namespace Mishusoft\Drivers;
 
 use InvalidArgumentException;
-use Mishusoft\Framework\Chipsets\MPM;
-use Mishusoft\Framework\Chipsets\Preloader;
-use Mishusoft\Framework\Chipsets\System\BIOS;
-use Mishusoft\Framework\Chipsets\System\Firewall;
-use Mishusoft\Framework\Interfaces\Drivers\ControllerInterface;
-use Mishusoft\Framework\Libraries\Runtime;
+use Mishusoft\MPM;
+use Mishusoft\Preloader;
+use Mishusoft\System\BIOS;
+use Mishusoft\System\Firewall;
+use Mishusoft\Drivers\ControllerInterface;
+use Mishusoft\Libraries\Runtime;
 
 abstract class Controller implements ControllerInterface {
     protected View $view;
