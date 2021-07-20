@@ -125,3 +125,12 @@ game-console-nintendo:
   url: https://www.nintendo.com/
   brand: nintendo
   pointer: touch
+
+#Glasses
+glass-google-glass:
+  name: Google Glass
+  type: Glass
+  author: Google LLC
+  url: https://www.google.com/
+  brand: Google
+  pointer: Unknown
