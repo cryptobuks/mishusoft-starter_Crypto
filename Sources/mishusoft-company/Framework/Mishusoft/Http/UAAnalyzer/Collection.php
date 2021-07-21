@@ -331,7 +331,12 @@ abstract class Collection extends UAAnalyzerBase
                                         // Make details about author/licence/engine
                                         $result[$component] = $this->attributeDetailsBuilder($result[$component]);
                                     } else {
-                                        throw new RuntimeException('The details has been string');
+                                        throw new RuntimeException(
+                                            sprintf(
+                                                'The details has been string like {%s}',
+                                                $result[$component]
+                                            )
+                                        );
                                     }
                                 } else {
                                     $result[$component] = $dictionary['info'];

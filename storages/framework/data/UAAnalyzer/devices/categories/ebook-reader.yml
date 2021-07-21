@@ -24,8 +24,8 @@
     device-ebook-reader-kindle:
       pattern:
         name: '(kindle)'
-        separator: true
-        version: true
+        separator: false
+        version: false
       functional: true
 
   info: device ebook-reader-kindle
@@ -39,8 +39,8 @@
     device-ebook-reader-kindle:
       pattern:
         name: '(kindle)'
-        separator: true
-        version: true
+        separator: false
+        version: false
       functional: true
 
   info: device ebook-reader-kindle

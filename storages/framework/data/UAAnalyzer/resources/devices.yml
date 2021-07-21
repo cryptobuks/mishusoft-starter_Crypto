@@ -103,7 +103,7 @@ ebook-reader-kindle:
 
 #game-console
 game-console-play-station:
-  name: Play Station
+  name: PlayStation
   type: Game Console
   author: Sony Interactive Entertainment LLC
   url: https://www.playstation.com/en-us/
@@ -134,3 +134,69 @@ glass-google-glass:
   url: https://www.google.com/
   brand: Google
   pointer: Unknown
+
+#hand-held-game
+hand-held-game-nintendo-3ds:
+  name: Nintendo 3DS
+  type: Hand Held Game Console
+  author: Nintendo of America Inc
+  url: https://www.nintendo.com/
+  brand: nintendo
+  pointer: touch
+
+hand-held-game-nintendo-dsi:
+  name: Nintendo DSi
+  type: Hand Held Game Console
+  author: Nintendo of America Inc
+  url: https://www.nintendo.com/
+  brand: nintendo
+  pointer: touch
+
+hand-held-game-nintendo-switch:
+  name: Nintendo Switch
+  type: Hand Held Game Console
+  author: Nintendo of America Inc
+  url: https://www.nintendo.com/
+  brand: nintendo
+  pointer: touch
+
+hand-held-game-nintendo-wiiu:
+  name: Nintendo WiiU
+  type: Hand Held Game Console
+  author: Nintendo of America Inc
+  url: https://www.nintendo.com/
+  brand: nintendo
+  pointer: touch
+
+hand-held-game-nintendo-game-boy:
+  name: Nintendo Game Boy
+  type: Hand Held Game Console
+  author: Nintendo of America Inc
+  url: https://www.nintendo.com/
+  brand: nintendo
+  pointer: touch
+
+hand-held-game-playstation-portable:
+  name: PlayStation Portable
+  type: Game Console
+  author: Sony Interactive Entertainment LLC
+  url: https://www.playstation.com/en-us/
+  brand: playstation
+  pointer: touch
+
+large-screen-valve-steam-tenfoot:
+  name: Valve Steam Tenfoot Display
+  type: Large Screen
+  author: valve
+  url: https://www.steam.com/
+  brand: valve
+  pointer: touch
+
+# Media player
+media-player-minix-neo-x:
+  name: Minix Neo X
+  type: Media player
+  author: MINIX
+  url: https://www.minix.us/products/NEOX7mini.html
+  brand: Neo
+  pointer: touch
