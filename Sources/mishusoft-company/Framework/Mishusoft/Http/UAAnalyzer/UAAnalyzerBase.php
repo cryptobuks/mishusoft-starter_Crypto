@@ -6,23 +6,16 @@ namespace Mishusoft\Http\UAAnalyzer;
 use Mishusoft\Base;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
+use Mishusoft\Storage;
 
 class UAAnalyzerBase extends Base
 {
-    // Root path of data path
-    public const USER_AGENT_ANALYZE_CACHE_DATA_PATH = RUNTIME_CACHE_ROOT_PATH . 'UAAnalyzerData' . DIRECTORY_SEPARATOR;
-
-    // File list of various collected data.
-    // Files of received, solved and unsolved ua list.
-    public const USER_AGENT_LIST_FILE = self::USER_AGENT_ANALYZE_CACHE_DATA_PATH . 'ua.list.csv';
-    public const UNSOLVED_USER_AGENT_LIST_FILE = self::USER_AGENT_ANALYZE_CACHE_DATA_PATH . 'ua.list.unsolved.csv';
-    public const SOLVED_USER_AGENT_LIST_FILE = self::USER_AGENT_ANALYZE_CACHE_DATA_PATH . 'ua.list.solved.csv';
 
     private const USER_AGENT_HISTORY_LINK = 'https://webaim.org/blog/user-agent-string-history/';
 
     protected string $userAgent;
 
-    protected array $replace_pairs = array('/' => ' ', '-' => '.', '_' => '.');
+    protected array $replace_pairs = ['/' => ' ', '-' => '.', '_' => '.'];
 
     protected string $browserName = 'Unknown';
     protected string $browserNameFull = 'Unknown';
@@ -67,7 +60,6 @@ class UAAnalyzerBase extends Base
         'www.mishusoft.com',
         'localhost',
     ];
-    private string $frameworkStoragePath;
 
     /**
      * @throws RuntimeException
@@ -75,8 +67,7 @@ class UAAnalyzerBase extends Base
     public function __construct()
     {
         parent::__construct();
-        $this->frameworkStoragePath = $this->storagePath . 'framework' . DS;
-        $this->uaStoragePath = $this->frameworkStoragePath . 'data' . DS . 'UAAnalyzer' . DS;
+        $this->uaStoragePath = Storage::dataDriveStoragesPath() . 'UAAnalyzer' . DS;
         $this->timeOfToday = date('Y-m-d H:i:s');
 
         $this->directoryValidation();
@@ -87,8 +78,8 @@ class UAAnalyzerBase extends Base
      */
     private function directoryValidation(): void
     {
-        if (file_exists($this->frameworkStoragePath) === false) {
-            throw new RuntimeException(sprintf('%s not exists', $this->frameworkStoragePath));
+        if (file_exists(Storage::frameworkStoragesPath()) === false) {
+            throw new RuntimeException(sprintf('%s not exists', Storage::frameworkStoragesPath()));
         }
         if (file_exists($this->uaStoragePath) === false) {
             throw new RuntimeException(sprintf('%s not exists', $this->uaStoragePath));
@@ -116,12 +107,13 @@ class UAAnalyzerBase extends Base
             throw new RuntimeException('Unexpected category : ' . $category);
         }
 
+
         if ($category === 'unsolved') {
-            $this->write(self::UNSOLVED_USER_AGENT_LIST_FILE);
+            $this->write(Storage::cachesStoragesPath().'UAAnalyzerData' . DIRECTORY_SEPARATOR . 'ua.list.unsolved.csv');
         } elseif ($category === 'solved') {
-            $this->write(self::SOLVED_USER_AGENT_LIST_FILE);
+            $this->write(Storage::cachesStoragesPath().'UAAnalyzerData' . DIRECTORY_SEPARATOR . 'ua.list.solved.csv');
         } else {
-            $this->write(self::USER_AGENT_LIST_FILE);
+            $this->write(Storage::cachesStoragesPath().'UAAnalyzerData' . DIRECTORY_SEPARATOR . 'ua.list.all.csv');
         }
     }//end collectUA()
 
@@ -180,7 +172,7 @@ class UAAnalyzerBase extends Base
         $string = strtolower($string);
         $string = preg_replace('/\s+/', '', $string);
         return $this->cleanContent(
-            $this->cleanContent($string, array('v' => '', 'y' => '', 'yb' => '', 'nt' => '',))
+            $this->cleanContent($string, ['v' => '', 'y' => '', 'yb' => '', 'nt' => '',])
         );
     }
 
@@ -233,19 +225,7 @@ class UAAnalyzerBase extends Base
         // Verify file directory existent.
         $requestedFileDirectory = dirname($filename);
 
-        if (file_exists($requestedFileDirectory) === false) {
-            if (mkdir($requestedFileDirectory, 0777, true) === false
-                && is_dir($requestedFileDirectory) === false
-            ) {
-                throw new RuntimeException(sprintf('Directory "%s" was not created', $requestedFileDirectory));
-            }
-
-            if (exec('chmod -R 777 ' . $requestedFileDirectory) === false) {
-                throw new PermissionRequiredException(
-                    sprintf('Unable to change permission of "%s"', $requestedFileDirectory)
-                );
-            }
-        }
+        Storage\FileSystem::makeDirectory($requestedFileDirectory);
 
         // Write or append data into file.
         if (is_writable($requestedFileDirectory) === true) {

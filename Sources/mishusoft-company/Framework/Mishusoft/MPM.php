@@ -36,6 +36,11 @@ class MPM
      */
     private static string $packageConfigFileDirectory;
 
+    public static function packageConfigFile():string
+    {
+        return sprintf('%s%s%s%s', Storage::dataDriveStoragesPath(), 'MPM', DS, 'config.json');
+    }
+
 
     /**
      * @throws \JsonException
@@ -65,7 +70,7 @@ class MPM
                         include_once MS_PACKAGES_PATH.self::$content['loader'][self::$content['packages']['default']];
                     }
                 }
-            } else if (is_array(self::packagesAll(['item' => 'new'])) === true) {
+            } elseif (is_array(self::packagesAll(['item' => 'new'])) === true) {
                 if (count(self::packagesAll(['item' => 'new'])) > 0) {
                     foreach (self::packagesAll(['item' => 'new']) as $package) {
                         self::install(ucfirst($package));
@@ -75,7 +80,6 @@ class MPM
                 trigger_error('No package installed');
             }//end if
         }//end if
-
     }//end load()
 
 
@@ -109,7 +113,6 @@ class MPM
                 );
             }
         }
-
     }//end moduleMonitor()
 
 
@@ -120,7 +123,7 @@ class MPM
      * @param  array  $filter
      * @throws \JsonException
      */
-    public static function modulesAll(string $packageName, array $filter=[])
+    public static function modulesAll(string $packageName, array $filter = [])
     {
         $result = '';
         $array  = [];
@@ -186,7 +189,6 @@ class MPM
         }
 
         return $array;
-
     }//end modulesAll()
 
 
@@ -226,7 +228,6 @@ class MPM
 
         return trigger_error('File ('.self::packageConfigFile.' in '.self::$packageConfigFileDirectory.') is not readable.');
         // end if
-
     }//end readConfigure()
 
 
@@ -234,7 +235,7 @@ class MPM
      * @param  string $packageName
      * @return string
      */
-    public static function modulesPath(string $packageName=''): string
+    public static function modulesPath(string $packageName = ''): string
     {
         if (empty($packageName) === true) {
             $packageName = Memory::Data('mpm')->packages->default;
@@ -242,7 +243,6 @@ class MPM
 
         // make temp modules path
         return MS_PACKAGES_PATH.$packageName.'/Modules/';
-
     }//end modulesPath()
 
 
@@ -252,7 +252,6 @@ class MPM
     public static function defaultPackage(): string
     {
         return Memory::data('mpm')->packages->default;
-
     }//end defaultPackage()
 
 
@@ -262,7 +261,6 @@ class MPM
     public static function defaultModule(): string
     {
         return Memory::data('mpm', ['format' => 'array'])['modules'][self::defaultPackage()]['default'];
-
     }//end defaultModule()
 
 
@@ -274,7 +272,6 @@ class MPM
     {
         // Return root controller file of module.
         return self::getControllerOfModule(self::defaultModule(), $module);
-
     }//end moduleRootController()
 
 
@@ -287,7 +284,6 @@ class MPM
     {
         return implode(DIRECTORY_SEPARATOR, [self::modulesPath().$module, 'Controllers', $controller.'Controller.php']);
         // $rootController = join([MPM::modulesPath(), CMOS::Data("mpm", ["format" => "array"])["modules"][CMOS::Data("mpm")->packages->default]["default"],DS, 'Controllers', DS, $controller, '.php']);
-
     }//end getControllerOfModule()
 
 
@@ -296,7 +292,7 @@ class MPM
      * @return mixed
      * @throws \JsonException
      */
-    public static function packagesAll(array $filter=[])
+    public static function packagesAll(array $filter = [])
     {
         $result = '';
         $array  = [];
@@ -339,7 +335,6 @@ class MPM
         }
 
         return $array;
-
     }//end packagesAll()
 
 
@@ -350,7 +345,7 @@ class MPM
      * @param  boolean $setDefault
      * @throws \JsonException
      */
-    public static function install(string $newPackage='', bool $setDefault=false): void
+    public static function install(string $newPackage = '', bool $setDefault = false): void
     {
         // Preparing to check configure file.
         if (file_exists(self::packageConfigFile) === true) {
@@ -427,7 +422,6 @@ class MPM
         } else {
             self::freshInstall();
         }//end if
-
     }//end install()
 
 
@@ -458,7 +452,6 @@ class MPM
                 )
             );
         }//end if
-
     }//end freshInstall()
 
 
@@ -470,7 +463,6 @@ class MPM
     public static function templatesHtmlResourcesRoot(string $moduleName, string $controllerName): mixed
     {
         return implode(DIRECTORY_SEPARATOR, [self::resourcesPath().'Templates', $moduleName, $controllerName.DIRECTORY_SEPARATOR]);
-
     }//end templatesHtmlResourcesRoot()
 
 
@@ -478,7 +470,7 @@ class MPM
      * @param  string $packageName
      * @return string
      */
-    public static function resourcesPath(string $packageName=''): string
+    public static function resourcesPath(string $packageName = ''): string
     {
         if (empty($packageName) === true) {
             $packageName = Memory::Data('mpm')->packages->default;
@@ -486,7 +478,6 @@ class MPM
 
         // make temp modules path
         return MS_PACKAGES_PATH."$packageName/Resources/";
-
     }//end resourcesPath()
 
 
@@ -498,7 +489,6 @@ class MPM
     public static function templatesJavascriptResourcesRoot(string $moduleName, string $controllerName): mixed
     {
         return implode(DIRECTORY_SEPARATOR, [Storage::getWebResourcesPath().'related', 'Javascripts', $moduleName, $controllerName.DIRECTORY_SEPARATOR]);
-
     }//end templatesJavascriptResourcesRoot()
 
 
@@ -508,7 +498,6 @@ class MPM
     public static function templatesJavascriptResourcesRootLocal(): string
     {
         return self::resourcesPath().'Javascripts'.DS;
-
     }//end templatesJavascriptResourcesRootLocal()
 
 
@@ -518,7 +507,7 @@ class MPM
      * @param string  $status
      * @param boolean $set_default
      */
-    public static function addModule(string $module_name, string $packageName, string $status='disabled', bool $set_default=false)
+    public static function addModule(string $module_name, string $packageName, string $status = 'disabled', bool $set_default = false)
     {
         if (!empty($module_name)) {
             self::readConfigure(
@@ -542,7 +531,6 @@ class MPM
         } else {
             trigger_error('Empty module name set.');
         }//end if
-
     }//end addModule()
 
 
@@ -552,7 +540,7 @@ class MPM
      * @param string  $status
      * @param boolean $set_default
      */
-    public static function updateModule(string $module_name, string $packageName, string $status='disabled', bool $set_default=false)
+    public static function updateModule(string $module_name, string $packageName, string $status = 'disabled', bool $set_default = false)
     {
         if (!empty($module_name)) {
             self::readConfigure(
@@ -576,7 +564,6 @@ class MPM
         } else {
             trigger_error('Empty module name set.');
         }//end if
-
     }//end updateModule()
 
 
@@ -620,7 +607,6 @@ class MPM
         } else {
             trigger_error('Empty module name set.');
         }//end if
-
     }//end removeModule()
 
 
@@ -640,7 +626,6 @@ class MPM
                 }
             }
         );
-
     }//end isEnabledModule()
 
 
@@ -660,7 +645,6 @@ class MPM
                 }
             }
         );
-
     }//end isDisabledModule()
 
 
@@ -669,7 +653,7 @@ class MPM
      * @param  string $package
      * @return string|false
      */
-    public static function getProperty(string $property, string $package=''): string
+    public static function getProperty(string $property, string $package = ''): string
     {
         $package = empty($package) ? Memory::Data('mpm')->packages->default : $package;
         if (!empty(Memory::Data('mpm')->packages->default)) {
@@ -682,7 +666,6 @@ class MPM
         }
 
         return false;
-
     }//end getProperty()
 
 
@@ -690,11 +673,10 @@ class MPM
      * @param  string $package
      * @return string
      */
-    public static function propertiesFile(string $package=''): string
+    public static function propertiesFile(string $package = ''): string
     {
         $package = empty($package) ? self::defaultPackage() : $package;
         return MS_PACKAGES_PATH."$package.json";
-
     }//end propertiesFile()
 
 
@@ -702,7 +684,7 @@ class MPM
      * @param  string $packageName
      * @return string
      */
-    public static function databasesPath(string $packageName=''): string
+    public static function databasesPath(string $packageName = ''): string
     {
         // Make temp modules path.
         if (empty($packageName) === true) {
@@ -710,7 +692,6 @@ class MPM
         }
 
         return MS_PACKAGES_PATH."$packageName/Databases/";
-
     }//end databasesPath()
 
 
@@ -719,7 +700,7 @@ class MPM
      * @param  string $module
      * @return string
      */
-    public static function runtimeRootController(string $controller, string $module=''): string
+    public static function runtimeRootController(string $controller, string $module = ''): string
     {
         // Check module is set or not.
         if (empty($module) === true) {
@@ -727,11 +708,10 @@ class MPM
         }
 
         return self::getControllerOfModule($module, $controller);
-
     }//end runtimeRootController()
 
 
-    public static function importMysqlDB($db, $filename, $db_prefix=false, $pattern=false)
+    public static function importMysqlDB($db, $filename, $db_prefix = false, $pattern = false)
     {
         // check prefix variable
         if (!$db_prefix) {
@@ -768,14 +748,10 @@ class MPM
                 }
             }
         }//end if
-
     }//end importMysqlDB()
 
 
     public function __destruct()
     {
-
     }//end __destruct()
-
-
 }//end class

@@ -92,7 +92,7 @@ class Autoload
      */
     private static function retrieveAutoFileUrl(string $directory, string $qualifiedClassName):string
     {
-        return RUNTIME_SYSTEM_PATH.ucfirst($directory).DS.ucfirst($qualifiedClassName).'.php';
+        return Storage::frameworkPath().ucfirst($directory).DS.ucfirst($qualifiedClassName).'.php';
     }//end retrieveAutoFileUrl()
 
 
@@ -106,7 +106,6 @@ class Autoload
      */
     public static function retrieveFileUrl(string $namespace, string $extension = '.php'): string
     {
-        $file = str_replace('\\', DIRECTORY_SEPARATOR, $namespace).$extension;
-        return RUNTIME_ROOT_PATH.$file;
+        return Storage::rootPath().str_replace('\\', DIRECTORY_SEPARATOR, $namespace).$extension;
     }//end retrieveFileUrl()
 }//end class

@@ -1,9 +1,12 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Mishusoft\System;
 
 use InvalidArgumentException;
 use Mishusoft\Http\IP;
+use Mishusoft\Storage;
 use RuntimeException;
 
 class Logger
@@ -56,19 +59,11 @@ class Logger
             throw new RuntimeException('Unexpected flag value.');
         }
 
+        //print_r($logFile . PHP_EOL, false);
+
         $requestedLogDirectory = dirname($logFile);
 
-        if (file_exists($requestedLogDirectory) === false) {
-            if (mkdir($requestedLogDirectory, 0777, true) === false
-                && is_dir($requestedLogDirectory) === false
-            ) {
-                throw new RuntimeException(sprintf('Directory "%s" was not created', $requestedLogDirectory));
-            }
-
-            if (exec('chmod -R 777 '.$requestedLogDirectory) === false) {
-                throw new RuntimeException(sprintf('Unable to change permission of "%s"', $requestedLogDirectory));
-            }
-        }
+        Storage\FileSystem::makeDirectory($requestedLogDirectory);
 
         if (is_writable($requestedLogDirectory) === true) {
             if (file_exists($logFile) === true) {
@@ -184,7 +179,7 @@ class Logger
      */
     private static function getLogFilePath(string $flag):string
     {
-        $logRootPath   = RUNTIME_LOGS_PATH;
+        $logRootPath   = Storage::logsPath();
         $appServerName = APPLICATION_SERVER_NAME;
         $todayDate     = date('Ymd');
 

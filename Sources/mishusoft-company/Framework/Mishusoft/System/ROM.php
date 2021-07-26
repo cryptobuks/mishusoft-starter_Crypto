@@ -4,8 +4,11 @@
 namespace Mishusoft\System;
 
 use JsonException;
+use Mishusoft\Exceptions\PermissionRequiredException;
+use Mishusoft\Exceptions\RuntimeException\NotFoundException;
+use Mishusoft\Storage;
+use Mishusoft\Storage\FileSystem;
 use RuntimeException;
-use Mishusoft\FileSystem;
 use Mishusoft\Framework;
 
 define(
@@ -122,30 +125,13 @@ define('FRAMEWORK_ACCESS_BLOCK_FILE', 'data:image/png;base64,iVBORw0KGgoAAAANSUh
 
 class ROM extends FileSystem
 {
-    /**
-     * Declare version of ROM Class
-     * */
-    public const VERSION = '1.0.2';
-
-    /**
-     * Framework configuration directory [default php runtime registries path]
-     *
-     * @var string
-     */
-    private string $defaultMemoryDir = RUNTIME_REGISTRIES_PATH;
-
-    /**
-     * Absolute path of Framework config json file
-     *
-     * @var string
-     */
-    private string $frameworkConfigFile = Framework::configFile;
-
 
     /**
      * ROM constructor.
      *
      * @throws RuntimeException Throw exception on runtime error.
+     * @throws NotFoundException
+     * @throws PermissionRequiredException
      */
     public function __construct()
     {
@@ -156,9 +142,11 @@ class ROM extends FileSystem
          * throw read error message when not permitted;
          */
 
-        $defaultMemoryDirectory = dirname($this->defaultMemoryDir);
+        $defaultMemoryDirectory = dirname(Storage::dataDriveStoragesPath());
         if ((file_exists($defaultMemoryDirectory) === true) && is_writable($defaultMemoryDirectory) === false) {
-            throw new RuntimeException(sprintf('Permission denied. %s not writable.', $defaultMemoryDirectory));
+            throw new PermissionRequiredException(
+                sprintf('Permission denied. %s not writable.', $defaultMemoryDirectory)
+            );
         }
 
         /*
@@ -166,8 +154,10 @@ class ROM extends FileSystem
          * throw read error message when not permitted
          */
 
-        if ((file_exists($this->defaultMemoryDir) === true) && is_readable($this->defaultMemoryDir) === false) {
-            throw new RuntimeException(sprintf('Permission denied. %s not readable.', $this->defaultMemoryDir));
+        if (is_readable(Storage::dataDriveStoragesPath()) === false) {
+            throw new NotFoundException(
+                sprintf('Not Found. %s not readable.', Storage::dataDriveStoragesPath())
+            );
         }
 
         /*
@@ -176,8 +166,10 @@ class ROM extends FileSystem
          * throw read error message when not permitted
          */
 
-        if ((file_exists($this->frameworkConfigFile) === true) && is_readable($this->frameworkConfigFile) === false) {
-            throw new RuntimeException(sprintf('Permission denied. %s not readable.', $this->frameworkConfigFile));
+        if (is_readable(Framework::configFile()) === false) {
+            throw new NotFoundException(
+                sprintf('Not Found. %s not readable.', Framework::configFile())
+            );
         }
     }//end __construct()
 
@@ -193,15 +185,15 @@ class ROM extends FileSystem
      */
     public function play(): void
     {
-        Logger::write(sprintf('create temporarily folders in %s.', RUNTIME_SYSTEM_TEMP_PATH));
-        self::directoryCreate(
-            [
-                RUNTIME_CACHE_TEMP_PATH,
-                RUNTIME_REGISTRIES_PATH,
-                RUNTIME_LOGS_PATH,
-                RUNTIME_CACHE_TEMPLATES_PATH,
-            ]
-        );
+//        Logger::write(sprintf('create temporarily folders in %s.', RUNTIME_SYSTEM_TEMP_PATH));
+//        self::directoryCreate(
+//            [
+//                RUNTIME_CACHE_TEMP_PATH,
+//                RUNTIME_REGISTRIES_PATH,
+//                RUNTIME_LOGS_PATH,
+//                RUNTIME_CACHE_TEMPLATES_PATH,
+//            ]
+//        );
 
         /*
          * Check framework configuration file,
@@ -210,26 +202,26 @@ class ROM extends FileSystem
          * If the configuration file is corrupted, then rewrite this file.
          */
 
-        Logger::write(sprintf('Check %s file existent.', $this->frameworkConfigFile));
-        if (file_exists($this->frameworkConfigFile) === false) {
-            Logger::write(sprintf('Check failed. %s file not exists.', $this->frameworkConfigFile));
-            Logger::write(sprintf('Creating new %s file with default config.', $this->frameworkConfigFile));
-            self::write($this->frameworkConfigFile, FRAMEWORK_DEFAULT_CONF);
+        Logger::write(sprintf('Check %s file existent.', Framework::configFile()));
+        if (file_exists(Framework::configFile()) === false) {
+            Logger::write(sprintf('Check failed. %s file not exists.', Framework::configFile()));
+            Logger::write(sprintf('Creating new %s file with default config.', Framework::configFile()));
+            self::write(Framework::configFile(), FRAMEWORK_DEFAULT_CONF);
         } else {
-            $content = self::read($this->frameworkConfigFile);
-            Logger::write(sprintf('Check %s file\'s content length.', $this->frameworkConfigFile));
+            $content = self::read(Framework::configFile());
+            Logger::write(sprintf('Check %s file\'s content length.', Framework::configFile()));
             if ($content !== '') {
-                Logger::write(sprintf('The content of %s is not empty.', $this->frameworkConfigFile));
-                Logger::write(sprintf('Check the content of %s are available for array.', $this->frameworkConfigFile));
+                Logger::write(sprintf('The content of %s is not empty.', Framework::configFile()));
+                Logger::write(sprintf('Check the content of %s are available for array.', Framework::configFile()));
                 if (is_array(json_decode($content, true, 512, JSON_THROW_ON_ERROR)) === false) {
-                    Logger::write(sprintf('The content of %s are corrupted.', $this->frameworkConfigFile));
-                    Logger::write(sprintf('Creating new %s file with default config.', $this->frameworkConfigFile));
-                    self::write($this->frameworkConfigFile, FRAMEWORK_DEFAULT_CONF);
+                    Logger::write(sprintf('The content of %s are corrupted.', Framework::configFile()));
+                    Logger::write(sprintf('Creating new %s file with default config.', Framework::configFile()));
+                    self::write(Framework::configFile(), FRAMEWORK_DEFAULT_CONF);
                 }
             } else {
-                Logger::write(sprintf('The content of %s file is empty.', $this->frameworkConfigFile));
-                Logger::write(sprintf('Creating new %s file with default config.', $this->frameworkConfigFile));
-                self::write($this->frameworkConfigFile, FRAMEWORK_DEFAULT_CONF);
+                Logger::write(sprintf('The content of %s file is empty.', Framework::configFile()));
+                Logger::write(sprintf('Creating new %s file with default config.', Framework::configFile()));
+                self::write(Framework::configFile(), FRAMEWORK_DEFAULT_CONF);
             }
         }
     }//end play()

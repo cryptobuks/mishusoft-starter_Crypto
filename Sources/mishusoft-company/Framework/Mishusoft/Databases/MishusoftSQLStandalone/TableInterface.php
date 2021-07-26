@@ -4,8 +4,8 @@ namespace Mishusoft\Databases\MishusoftSQLStandalone;
 
 interface TableInterface
 {
-    const DB_FILE_FORMAT = ".msdb";
-    const DB_TABLE_FILE_FORMAT = ".mstbl";
+    public const DB_FILE_FORMAT = ".msdb";
+    public const DB_TABLE_FILE_FORMAT = ".mstbl";
 
     public function create($table_name);
 

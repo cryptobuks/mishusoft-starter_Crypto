@@ -3,22 +3,23 @@
 
 namespace Mishusoft\Databases;
 
-
 use Mishusoft\Databases\MishusoftSQLStandalone\FileSystem;
 use Mishusoft\Databases\MishusoftSQLStandalone\Table;
 use Mishusoft\Http;
-use Mishusoft\Utility\_Array;
 use Mishusoft\Databases\MishusoftSQLStandalone\TableInterface;
+use Mishusoft\Storage;
+use Mishusoft\Utility\ArrayCollection;
 
-class MishusoftSQLStandalone implements MishusoftSQLStandaloneInterface
+class MishusoftSQLStandalone extends Storage implements MishusoftSQLStandaloneInterface
 {
     /*declare property*/
-    const Name = "Mishusoft Structure Query Language";
-    const ShortName = "MishusoftSQLStandalone";
-    const Category = "DBMS";
-    const VERSION = "1.0.2";
+    public const Name = "Mishusoft Structure Query Language";
+    public const ShortName = "MishusoftSQLStandalone";
+    public const Category = "DBMS";
+    public const VERSION = "1.0.2";
 
-    private array $propertiesDefault = ["databases" => [], "users" => [["username" => "superuser", "password" => "superuser", "permission" => "all"]]];
+    private array $propertiesDefault =
+        ["databases" => [], "users" => [["username" => "superuser", "password" => "superuser", "permission" => "all"]]];
     private string $data_dir = MS_DATABASES_PATH . self::who_am_i;
     private string $propertiesFile = MS_DATABASES_PATH . self::who_am_i . DIRECTORY_SEPARATOR . "properties.json";
     private array $database_all;
@@ -35,6 +36,7 @@ class MishusoftSQLStandalone implements MishusoftSQLStandaloneInterface
      */
     public function __construct(string $username, string $password)
     {
+        parent::__construct();
         $this->username = $username;
         $this->password = $password;
 
@@ -50,7 +52,7 @@ class MishusoftSQLStandalone implements MishusoftSQLStandaloneInterface
         if (!FileSystem::file_exists($this->propertiesFile)) {
             FileSystem::createFile($this->propertiesFile);
             if (FileSystem::is_file($this->propertiesFile)) {
-                self::resetpropertiesFile();
+                $this->resetpropertiesFile();
             } else {
                 FileSystem::remove($this->propertiesFile);
             }
@@ -90,11 +92,12 @@ class MishusoftSQLStandalone implements MishusoftSQLStandaloneInterface
     }
 
     /**
-     * @return false|int
+     * @return void
+     * @throws \JsonException
      */
-    private function resetPropertiesFile()
+    private function resetPropertiesFile(): void
     {
-        return FileSystem::saveToFile($this->propertiesFile, json_encode($this->propertiesDefault));
+        FileSystem::saveToFile($this->propertiesFile, json_encode($this->propertiesDefault, JSON_THROW_ON_ERROR));
     }
 
     /**
@@ -143,22 +146,25 @@ class MishusoftSQLStandalone implements MishusoftSQLStandaloneInterface
 
     /**
      * @param string $database_name
+     * @throws \JsonException
      */
     private function createDatabase(string $database_name)
     {
-        if (!in_array($database_name, $this->database_all)) {
+        if (!in_array($database_name, $this->database_all, true)) {
             FileSystem::readFile($this->propertiesFile, function ($contents) use ($database_name) {
                 if (count($contents) > 0) {
-                    if (_Array::value($contents, "databases")) {
-                        array_push($contents["databases"], $database_name);
+                    if (ArrayCollection::value($contents, "databases")) {
+                        $contents["databases"][] = $database_name;
                     }
-                    FileSystem::saveToFile($this->propertiesFile, json_encode($contents));
+                    FileSystem::saveToFile($this->propertiesFile, json_encode($contents, JSON_THROW_ON_ERROR));
                 }
             });
             FileSystem::createFile(join(DIRECTORY_SEPARATOR, [$this->data_dir, $database_name . self::dbFileFormat]));
-            FileSystem::saveToFile(join(DIRECTORY_SEPARATOR, [$this->data_dir, $database_name . self::dbFileFormat]),
-                json_encode(array("name" => $database_name, "data_dir" => $database_name, "version" => self::version, "tables" => array())));
-            FileSystem::createDirectory(join(DIRECTORY_SEPARATOR, [$this->data_dir, $database_name]));
+            FileSystem::saveToFile(
+                implode(DIRECTORY_SEPARATOR, [$this->data_dir, $database_name . self::dbFileFormat]),
+                json_encode(["name" => $database_name, "data_dir" => $database_name, "version" => self::version, "tables" => []])
+            );
+            FileSystem::createDirectory(implode(DIRECTORY_SEPARATOR, [$this->data_dir, $database_name]));
         } else {
             self::error(Http::NOT_FOUND, "Databases ($database_name) is already exists.");
             exit();
@@ -173,8 +179,8 @@ class MishusoftSQLStandalone implements MishusoftSQLStandaloneInterface
     public function rename($old_database_name, $new_database_name): bool
     {
         // TODO: Implement rename() method.
-        if (in_array($old_database_name, $this->database_all)) {
-            if (FileSystem::file_exists(join(DIRECTORY_SEPARATOR, [$this->data_dir, $old_database_name . self::dbFileFormat]))) {
+        if (in_array($old_database_name, $this->database_all, true)) {
+            if (FileSystem::file_exists(implode(DIRECTORY_SEPARATOR, [$this->data_dir, $old_database_name . self::dbFileFormat]))) {
                 FileSystem::readFile($this->propertiesFile, function ($contents) use ($new_database_name, $old_database_name) {
                     if (count($contents) > 0) {
                         if (_Array::value($contents, "databases")) {
@@ -183,7 +189,7 @@ class MishusoftSQLStandalone implements MishusoftSQLStandaloneInterface
                                 array_push($contents["databases"], $new_database_name);
                             }
                         }
-                        $databases = array();
+                        $databases = [];
                         foreach ($contents["databases"] as $database) {
                             array_push($databases, $database);
                         }
@@ -262,7 +268,7 @@ class MishusoftSQLStandalone implements MishusoftSQLStandaloneInterface
         }
     }
 
-    function __destruct()
+    public function __destruct()
     {
     }
 }

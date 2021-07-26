@@ -15,11 +15,22 @@ class JSON
      * @param array $array Array contents.
      *
      * @return string   Encoded json string.
-     * @throws JsonException Throw exception on json process error.
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     public static function encodeToString(array $array): string
     {
-        return json_encode($array, JSON_THROW_ON_ERROR);
+        try {
+            return json_encode($array, JSON_THROW_ON_ERROR);
+        } catch (JsonException $jsonException) {
+            throw new \Mishusoft\Exceptions\JsonException(
+                $jsonException->getMessage(),
+                $jsonException->getCode(),
+                $jsonException->getCode(),
+                $jsonException->getFile(),
+                $jsonException->getLine(),
+                $jsonException->getTraceAsString()
+            );
+        }
     }//end encodeToString()
 
 
@@ -29,7 +40,7 @@ class JSON
      * @param array $array Array contents.
      *
      * @return object   Decoded json object.
-     * @throws JsonException Throw exception on json process error.
+     * @throws \Mishusoft\Exceptions\JsonException|JsonException Throw exception on json process error.
      */
     public static function encodeToObject(array $array): object
     {
@@ -46,11 +57,23 @@ class JSON
      * @param string $string Encoded json string.
      *
      * @return object   Decoded json object.
-     * @throws JsonException Throw exception on json process error.
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     public static function decodeToObject(string $string): object
     {
-        return json_decode($string, false, 512, JSON_THROW_ON_ERROR);
+
+        try {
+            return json_decode($string, false, 512, JSON_THROW_ON_ERROR);
+        } catch (JsonException $jsonException) {
+            throw new \Mishusoft\Exceptions\JsonException(
+                $jsonException->getMessage(),
+                $jsonException->getCode(),
+                $jsonException->getCode(),
+                $jsonException->getFile(),
+                $jsonException->getLine(),
+                $jsonException->getTraceAsString()
+            );
+        }
     }//end decodeToObject()
 
 
@@ -63,10 +86,21 @@ class JSON
      * @param string $string Encoded json string.
      *
      * @return array Decoded array data.
-     * @throws JsonException Throw exception on json process error.
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     public static function decodeToArray(string $string):array
     {
-        return json_decode($string, true, 512, JSON_THROW_ON_ERROR);
+        try {
+            return json_decode($string, true, 512, JSON_THROW_ON_ERROR);
+        } catch (JsonException $jsonException) {
+            throw new \Mishusoft\Exceptions\JsonException(
+                $jsonException->getMessage(),
+                $jsonException->getCode(),
+                $jsonException->getCode(),
+                $jsonException->getFile(),
+                $jsonException->getLine(),
+                $jsonException->getTraceAsString()
+            );
+        }
     }//end decodeToArray()
 }//end class

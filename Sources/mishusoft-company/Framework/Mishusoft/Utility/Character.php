@@ -140,4 +140,9 @@ class Character
         $path = explode('\\', $classname);
         return array_pop($path);
     }
+
+    public static function search(string $haystack, string $needle, int $offset = 0): bool|int
+    {
+        return strpos($haystack, $needle);
+    }
 }

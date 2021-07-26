@@ -3,16 +3,17 @@
 
 namespace Mishusoft\Databases\MishusoftSQLStandalone;
 
+use JsonException;
 use Mishusoft\Databases\MishusoftSQLStandalone;
 use Mishusoft\Http;
-use Mishusoft\Utility\_Array;
+use Mishusoft\Utility\ArrayCollection;
 use Mishusoft\Utility\Number;
 use Mishusoft\Utility\Stream;
 
 class Data implements DataInterface
 {
     private string $tableFile;
-    private array $output = array();
+    private array $output = [];
     private string $tableName;
 
     /**
@@ -23,7 +24,7 @@ class Data implements DataInterface
     public function __construct(string $data_dir, string $table)
     {
         $this->tableName = $table;
-        $this->tableFile = $data_dir . "/" . $table . self::dbTableFileFormat;
+        $this->tableFile = $data_dir . "/" . $table . self::DB_TABLE_FILE_FORMAT;
         if (!file_exists($this->tableFile)) {
             MishusoftSQLStandalone::error(Http::NOT_FOUND, "Base table $table not exists.");
         }
@@ -40,7 +41,7 @@ class Data implements DataInterface
             if (is_readable($this->tableFile)) {
                 $contents = json_decode(file_get_contents($this->tableFile), true);
                 if (array_key_exists("data", $options)) {
-                    if (_Array::value($options, "data") === "*") {
+                    if (ArrayCollection::value($options, "data") === "*") {
                         $this->output = $contents;
                         //$this->output = $this->DecryptData(json_decode($contents, true));
                     }
@@ -48,14 +49,14 @@ class Data implements DataInterface
                     if (!array_key_exists("get", $options) || !array_key_exists("where", $options)) {
                         MishusoftSQLStandalone::error(Http::NOT_FOUND, "Required parameter not found.");
                     }
-                    if (empty(_Array::value($options, "get")) || empty(_Array::value($options, "where"))) {
+                    if (empty(ArrayCollection::value($options, "get")) || empty(ArrayCollection::value($options, "where"))) {
                         MishusoftSQLStandalone::error(Http::NOT_FOUND, "Invalid parameter parsed.");
                     }
                     if (count($contents) > 0) {
                         foreach ($contents as $key => $value) {
                             if (array_key_exists("fetch", $options) and $options["fetch"] === "all") {
                                 foreach ($options["get"] as $option) {
-                                    if (_Array::value($contents[$key], $option)) {
+                                    if (ArrayCollection::value($contents[$key], $option)) {
                                         foreach ($options["where"] as $k => $v) {
                                             $v = is_numeric($v) ? (string)$v : $v;
                                             if (array_key_exists($k, $contents[$key]) === true && $contents[$key][$k] === $v) {
@@ -63,7 +64,7 @@ class Data implements DataInterface
                                             }
                                         }
                                     }
-                                    /*if (_Array::value($data[$key], Encryption::StaticEncrypt($option))) {
+                                    /*if (ArrayCollection::value($data[$key], Encryption::StaticEncrypt($option))) {
                                         foreach ($options["data"]["where"] as $k => $v) {
                                             if (array_key_exists(Encryption::StaticEncrypt($k),$data[$key]) and $data[$key][Encryption::StaticEncrypt($k)] === Encryption::StaticEncrypt($v)) {
                                                 array_push($this->output, [$option => $data[$key][Encryption::StaticEncrypt($option)]]);
@@ -74,7 +75,7 @@ class Data implements DataInterface
                             } else {
                                 if (is_array($options["get"])) {
                                     foreach ($options["get"] as $option) {
-                                        if (_Array::value($contents[$key], $option)) {
+                                        if (ArrayCollection::value($contents[$key], $option)) {
                                             foreach ($options["where"] as $k => $v) {
                                                 $v = is_numeric($v) ? (string)$v : $v;
                                                 if (array_key_exists($k, $contents[$key]) and $contents[$key][$k] === $v) {
@@ -82,7 +83,7 @@ class Data implements DataInterface
                                                 }
                                             }
                                         }
-                                        /*if (_Array::value($data[$key], Encryption::StaticEncrypt($option))) {
+                                        /*if (ArrayCollection::value($data[$key], Encryption::StaticEncrypt($option))) {
                                             foreach ($options["data"]["where"] as $k => $v) {
                                                 if (array_key_exists(Encryption::StaticEncrypt($k),$data[$key]) and $data[$key][Encryption::StaticEncrypt($k)] === Encryption::StaticEncrypt($v)) {
                                                     $this->output = array_merge($this->output, [$option => $data[$key][Encryption::StaticEncrypt($option)]]);
@@ -130,21 +131,22 @@ class Data implements DataInterface
     /**
      * @param array $options
      * @return bool
+     * @throws JsonException
      */
     public function update(array $options): bool
     {
         // TODO: Implement update() method.
         if (count($options) > 0) {
             if (is_readable($this->tableFile)) {
-                $contents = json_decode(file_get_contents($this->tableFile), true);
+                $contents = json_decode(file_get_contents($this->tableFile), true, 512, JSON_THROW_ON_ERROR);
 
-                if (empty(_Array::value($options, "update")) || empty(_Array::value($options, "where"))) {
+                if (empty(ArrayCollection::value($options, "update")) || empty(ArrayCollection::value($options, "where"))) {
                     MishusoftSQLStandalone::error(Http::NOT_FOUND, "Invalid parameter parsed.");
                 }
 
                 foreach ($contents as $key => $value) {
-                    if (array_intersect($contents[$key], $options["where"])) {
-                        $contents[$key] = array_replace_recursive($contents[$key], $options["update"]);
+                    if (array_intersect($value, $options["where"])) {
+                        $contents[$key] = array_replace_recursive($value, $options["update"]);
                     }
                 }
 
@@ -153,22 +155,23 @@ class Data implements DataInterface
                 array_multisort($contents, SORT_ASC);
                 ksort($contents, SORT_ASC);
 
-                Stream::saveToFile($this->tableFile, json_encode($contents));
+                Stream::saveToFile($this->tableFile, json_encode($contents, JSON_THROW_ON_ERROR));
                 return true;
-            } else {
-                MishusoftSQLStandalone::error(Http::NOT_FOUND, "$this->tableFile is not readable.");
-                return false;
             }
-            //json_decode(file_get_contents($this->tableFile), true)
-        } else {
-            MishusoftSQLStandalone::error(Http::NOT_FOUND, "Empty data parsed.");
+
+            MishusoftSQLStandalone::error(Http::NOT_FOUND, "$this->tableFile is not readable.");
             return false;
+            //json_decode(file_get_contents($this->tableFile), true)
         }
+
+        MishusoftSQLStandalone::error(Http::NOT_FOUND, "Empty data parsed.");
+        return false;
     }
 
     /**
      * @param array $haystack
      * @return bool
+     * @throws JsonException
      */
     public function delete(array $haystack): bool
     {
@@ -176,7 +179,7 @@ class Data implements DataInterface
 
         if (count($haystack) > 0) {
             if (is_readable($this->tableFile)) {
-                $contents = json_decode(file_get_contents($this->tableFile), true);
+                $contents = json_decode(file_get_contents($this->tableFile), true, 512, JSON_THROW_ON_ERROR);
 
                 foreach ($contents as $key => $value) {
                     foreach ($haystack as $ok => $ov) {
@@ -193,14 +196,14 @@ class Data implements DataInterface
 
                 Stream::saveToFile($this->tableFile, json_encode($contents));
                 return true;
-            } else {
-                MishusoftSQLStandalone::error(Http::NOT_FOUND, "$this->tableFile is not readable.");
-                return false;
             }
-        } else {
-            MishusoftSQLStandalone::error(Http::NOT_FOUND, "Empty data parsed.");
+
+            MishusoftSQLStandalone::error(Http::NOT_FOUND, "$this->tableFile is not readable.");
             return false;
         }
+
+        MishusoftSQLStandalone::error(Http::NOT_FOUND, "Empty data parsed.");
+        return false;
     }
 
     /**
@@ -216,8 +219,8 @@ class Data implements DataInterface
                 /*add data unique id for every data row*/
                 array_merge($haystack, ["id" => Number::next($this->getLastInsertedId())]);
                 /*merge all data*/
-                array_push($contents, $haystack);
-                //array_push($data, $this->EncryptData(_Array::value($options["data"], "insert")));
+                $contents[] = $haystack;
+                //array_push($data, $this->EncryptData(ArrayCollection::value($options["data"], "insert")));
 
                 /*remove duplicate data*/
                 $contents = array_unique($contents, SORT_ASC);
@@ -226,28 +229,28 @@ class Data implements DataInterface
 
                 Stream::saveToFile($this->tableFile, json_encode(array_reverse($contents)));
                 return true;
-            } else {
-                MishusoftSQLStandalone::error(Http::NOT_FOUND, "$this->tableFile is not readable.");
-                return false;
             }
-            //json_decode(file_get_contents($this->tableFile), true)
-        } else {
-            MishusoftSQLStandalone::error(Http::NOT_FOUND, "Empty data parsed.");
+
+            MishusoftSQLStandalone::error(Http::NOT_FOUND, "$this->tableFile is not readable.");
             return false;
+            //json_decode(file_get_contents($this->tableFile), true)
         }
+
+        MishusoftSQLStandalone::error(Http::NOT_FOUND, "Empty data parsed.");
+        return false;
         /*
-        if (empty(_Array::value($haystack, "data"))) {
+        if (empty(ArrayCollection::value($haystack, "data"))) {
             MishusoftQL::error(Http::NOT_FOUND, "Data calling error.");
             return false;
         }
 
         FileSystem::readFile($this->tableFile, function ($contents) use ($haystack) {
-            if (is_array(_Array::value($haystack, "data"))) {
-                if (empty(_Array::value($haystack["data"], "insert"))) {
+            if (is_array(ArrayCollection::value($haystack, "data"))) {
+                if (empty(ArrayCollection::value($haystack["data"], "insert"))) {
                     MishusoftQL::error(Http::NOT_FOUND, "Invalid parameter parsed.");
                 }
-                array_push($contents, _Array::value($haystack["data"], "insert"));
-                //array_push($data, $this->EncryptData(_Array::value($options["data"], "insert")));
+                array_push($contents, ArrayCollection::value($haystack["data"], "insert"));
+                //array_push($data, $this->EncryptData(ArrayCollection::value($options["data"], "insert")));
 
                 //remove duplicate data
                 $contents = array_unique($contents, SORT_ASC);
@@ -264,16 +267,19 @@ class Data implements DataInterface
         return true;*/
     }
 
+    /**
+     * @throws JsonException
+     */
     public function getLastInsertedId(): int
     {
         // TODO: Implement getLastInsertedId() method.
-        $contents = json_decode(file_get_contents($this->tableFile), true);
+        $contents = json_decode(file_get_contents($this->tableFile), true, 512, JSON_THROW_ON_ERROR);
         /*remove for upgrade*/
-        //return count($contents) > 0 ? Encryption::StaticDecrypt(_Array::value(end($contents), Encryption::StaticEncrypt("id"))) : 0;
-        return count($contents) > 0 ? _Array::value(end($contents), "id") : 0;
+        //return count($contents) > 0 ? Encryption::StaticDecrypt(ArrayCollection::value(end($contents), Encryption::StaticEncrypt("id"))) : 0;
+        return count($contents) > 0 ? ArrayCollection::value(end($contents), "id") : 0;
     }
 
-    function __destruct()
+    public function __destruct()
     {
     }
 }

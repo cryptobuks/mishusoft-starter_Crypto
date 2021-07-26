@@ -1,14 +1,14 @@
 <?php
 
 
-namespace Mishusoft\Framework\UsedDB\Drivers\Acl;
+namespace Mishusoft\UsedDB\Drivers\Acl;
 
 
-use Mishusoft\Framework\Chipsets\Databases\MishusoftSQLStandalone;
-use Mishusoft\Framework\Interfaces\Chipsets\Databases\MishusoftSQLSandalone\TableInterface;
-use Mishusoft\Framework\Migration\DB;
+use Mishusoft\Databases\MishusoftSQLStandalone;
+use Mishusoft\Databases\MishusoftSQLStandalone\TableInterface;
+use Mishusoft\Migration\DB;
 
-class AclMishusoftDatabase extends MishusoftSQL
+class AclMishusoftDatabase extends MishusoftSQLStandalone
 {
     /**
      * @var TableInterface|mixed

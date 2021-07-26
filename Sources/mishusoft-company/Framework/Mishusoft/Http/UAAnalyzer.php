@@ -50,6 +50,7 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
         $this->collectUA('development');
         $cleanUA = $this->cleanUA($this->userAgent, $this->identifiers->browsers->knownBrowserAliases());
         $webBrowserIdentifiers = $this->identifiers->browsers->all();
+        //User-Agent: Mozilla/5.0 (<system-information>) <platform> (<platform-details>) <extensions>
         foreach ($webBrowserIdentifiers as $identifier) {
             if (preg_match($this->patterns->browsers->match($identifier), $cleanUA, $matches) === 1) {
                 $this->matchFound = true;
@@ -94,7 +95,7 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
                 // Detecting platform and device architecture from user agent.
                 foreach (array_reverse($this->identifiers->platforms->architecturesAll()) as $architecture => $word) {
                     if (preg_match($this->patterns->platforms->architecture($architecture), $cleanUA, $matches) === 1) {
-                        $this->browserArchitecture = $word;
+                        $this->browserArchitecture  = $word;
                         $this->platformArchitecture = $word;
                         break;
                     }
@@ -105,8 +106,8 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
                 foreach ($this->identifiers->platforms->windowManagers() as $windowManager) {
                     if (preg_match($this->patterns->platforms->windowManager($windowManager), $cleanUA, $matches) === 1) {
                         $details = $this->resources->platforms->makeWMDetails($windowManager);
-                        $this->platformWindowManager = $details['type'];
-                        $this->platformWmNameOriginal = $this->cleanImplode($this->cleanFilter($matches));
+                        $this->platformWindowManager    = $details['type'];
+                        $this->platformWmNameOriginal   = $this->cleanImplode($this->cleanFilter($matches));
                         break;
                     }
                 }
@@ -122,12 +123,13 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
                 foreach ($this->identifiers->platforms->all() as $nameIdentifier) {
                     if (preg_match($this->patterns->platforms->name($nameIdentifier), $cleanUA, $matches) === 1) {
                         $details = $this->cleanFilter($matches);
-                        $this->platformDetails = $this->resources->platforms->platformDetails($nameIdentifier);
-                        $this->platformName = $this->platformDetails['name'];
+
+                        $this->platformDetails  = $this->resources->platforms->platformDetails($nameIdentifier);
+                        $this->platformName     = $this->platformDetails['name'];
 
                         if (strtolower($details['name']) === 'windows') {
-                            $this->platformKernel = $this->cleanImplode($this->cleanFilter($matches));
-                            $this->platformVersion = $this->versionOrigin($details['version']);
+                            $this->platformKernel   = $this->cleanImplode($this->cleanFilter($matches));
+                            $this->platformVersion  = $this->versionOrigin($details['version']);
                             $this->platformNameFull = sprintf(
                                 '%s %s',
                                 $this->platformDetails['OS family'],
@@ -136,28 +138,6 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
                         } else {
                             $this->platformNameFull = $this->cleanImplode($this->cleanFilter($matches));
                         }
-
-                        // print_r($key, false);
-                        // print_r($value, false);
-                        //print_r($details, false);
-                        //$this->platformName = $nameIdentifier;
-                        //print_r($this->resources->platforms->getName($nameIdentifier), false);
-                        //$this->platformKernel = $this->cleanImplode($this->cleanFilter($matches));
-                        //$this->platformVersion = $this->cleanImplode($this->cleanFilter($matches));
-
-                        // $this->deviceNameFull = $this->finalContent($key, $cleanUA);
-                        // $this->deviceInfoAll  = (array) $value;
-                        // $this->deviceDetails((array) $value);
-                        // exit();
-                        // $deviceInfo = explode(';', $this->deviceInfo($cleanUA));
-                        // foreach ($deviceInfo as $info) {
-                        // if (preg_match('/'.strtolower($key).'\b/i', $info, $matches) === 1) {
-                        // $this->deviceNameOriginal = ltrim($info);
-                        // break;
-                        // }
-                        // }
-                        // _Debug::preOutput($this->deviceNameOriginal);
-
                         break;
                     }//end if
                 }//end foreach
@@ -169,10 +149,10 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
                 foreach ($this->identifiers->devices->all() as $device) {
                     if (preg_match($this->patterns->devices->match($device), $cleanUA, $matches) === 1) {
                         $details = $this->cleanFilter($matches);
-                        $this->deviceDetails = $this->resources->devices->makeDetails($device);
-                        $this->deviceName = $this->deviceDetails['name'];
-                        $this->deviceNameFull = $details['name'];
-                        $this->deviceType = $this->deviceDetails['type'];
+                        $this->deviceDetails    = $this->resources->devices->makeDetails($device);
+                        $this->deviceName       = $this->deviceDetails['name'];
+                        $this->deviceNameFull   = $details['name'];
+                        $this->deviceType       = $this->deviceDetails['type'];
                         break;
                     }//end if
                 }//end foreach
@@ -452,7 +432,6 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
      * @param string $haystack
      * @return string
      * @throws InvalidArgumentException
-     * @throws RuntimeException
      */
     protected function getPatternOfRegExp(string $keyword, string $haystack): string
     {
@@ -839,6 +818,4 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
 
         throw new InvalidArgumentException('Unexpected haystack : ' . $haystack);
     }//end getPatternOfRegExp()
-
-
 }//end class

@@ -10,9 +10,6 @@ use Mishusoft\Utility\Number;
 class Handler extends Exception
 {
 
-    /**
-     * @var integer
-     */
     protected int $severity;
 
     /* Inherited properties */
@@ -20,6 +17,8 @@ class Handler extends Exception
     protected $code;
     protected $file;
     protected $line;
+    protected string $objectName;
+    private string $anotherTrace;
 
 
     /**
@@ -48,31 +47,29 @@ class Handler extends Exception
         $this->severity = $severity;
         $this->file     = $filename;
         $this->line     = $lineno;
+        $this->anotherTrace   = $trace;
+        $this->objectName     = $objectName;
 
-        //echo '<pre>'.print_r($this->getTrace(), false). PHP_EOL;
-        //echo $this->errorTrace. PHP_EOL;
-        //echo $this->getTraceAsString(). PHP_EOL;
-        //exit();
+        $this->display();
+    }//end __construct()
 
-        // _Debug::preOutput(debug_backtrace());
-
-        if ($objectName !== '') {
-            $titleOfErrorMessage = $objectName;
+    private function display() : void
+    {
+        if ($this->objectName !== '') {
+            $titleOfErrorMessage = $this->objectName;
         } else {
             $titleOfErrorMessage = self::codeAsString($this->getCode());
         }
 
         echo sprintf('<title>%s</title>', $titleOfErrorMessage);
-        //echo $_SERVER['HTTP_USER_AGENT'];
+
+        echo '<article style="margin: 0;padding: 5px;border: 1px solid lightgray;border-radius: 5px;background-color: #f4f4f4;box-shadow: inset 0 -3em 3em rgba(227, 199, 199, 0.1),.3em .3em .3em rgba(157, 151, 151, 0.3);font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji,SourceSansPro,SolaimanLipi;">';
+        echo '<section style="line-height: 1.5;margin: -5px -5px 10px -5px;padding: 8px 5px;text-align: justify;border-bottom: 1px solid lightgray;">';
 
 
-        echo '<br/><article style="margin: 0;padding: 5px;border: 1px solid lightgray;border-radius: 5px;background-color: #f4f4f4;">';
-        echo '<section style="line-height: 1.5;margin: -5px -5px 10px -5px;/*box-shadow: inset 0 -3em 3em rgba(0,0,0,.1),.3em .3em 1em rgba(0,0,0,.3);*/padding: 8px 5px;text-align: justify;border-bottom: 1px solid lightgray;">';
-
-
-        echo sprintf('<div style="font-size: 20px;font-weight: bold; border-bottom: 1px solid lightgray;padding-bottom: 10px;text-transform: uppercase;">%s</div>', $titleOfErrorMessage);
-        echo '<div style="font-family: DejaVu Sans Mono,serif;font-size: 15px;font-weight:normal;padding: 5px 2px;">';
-        echo $this->message.' from '.$this->hideDirectoryName($this->file).' on line '.$this->line;
+        echo sprintf('<div style="font-size: 20px;font-weight: bold; border-bottom: 1px solid lightgray;padding-bottom: 10px;text-transform: capitalize;">%s</div>', $titleOfErrorMessage);
+        echo '<div style="font-size: 18px;font-weight:normal;padding: 5px 2px;">';
+        echo $this->hidePath($this->message).' from '.$this->hidePath($this->file).' on line '.$this->line;
         Logger::write(
             sprintf(
                 '%s [%s] : %s from %s on line %d.',
@@ -89,12 +86,12 @@ class Handler extends Exception
         echo '</section>';
 
 
-        echo '<section style="margin: -5px -5px 10px -5px;padding: 0 5px 5px 5px;">';
-        echo '<div style="font-size: 15px;font-family: DejaVu Sans Mono,serif;font-weight: bold;">Stack Trace</div>';
-        echo '<pre style="line-height: 1.8;overflow-y: auto;">';
+        echo '<section style="margin: -5px -5px 10px -5px;padding: 0 5px 0 5px;">';
+        echo '<div style="font-size: 16px;font-weight: bold;">Stack Trace</div>';
+        echo '<pre style="line-height: 1.8;overflow-y: auto;padding-bottom: 0;margin-bottom: 0;">';
 
-        if ($trace !== '') {
-            $this->beautifyCallStack($trace);
+        if ($this->anotherTrace !== '') {
+            $this->beautifyCallStack($this->anotherTrace);
         } elseif (is_array($this->getTrace()) === true && count($this->getTrace()) > 0) {
             $this->beautifyCallStack($this->getTrace());
         } elseif ($this->getTraceAsString() !== '') {
@@ -106,9 +103,10 @@ class Handler extends Exception
         echo '</pre>';
         echo '</section>';
 
-
         echo '</article>';
-    }//end __construct()
+        echo '<br/>';
+        //exit(0);
+    }
 
 
     /**
@@ -176,6 +174,7 @@ class Handler extends Exception
      */
     private function beautifyCallStack(array|string $trace): void
     {
+        //when trace is array
         if (is_array($trace) === true && count($trace) > 0) {
             $traceArray = self::cleanTraceArray($trace);
             foreach ($traceArray as $key => $value) {
@@ -210,23 +209,24 @@ class Handler extends Exception
                 }
 
 
-                echo $line.PHP_EOL;
+                echo $this->hidePath($line).PHP_EOL;
             }//end foreach
         }//end if
 
+        //when trace is string
         if (is_string($trace) === true && $trace !== '') {
-            $traceArray = self::cleanTraceArray(explode("\n", $trace));
+            $traceArray = self::cleanTraceArray(explode("\n", $this->hidePath($trace)));
             foreach ($traceArray as $key => $value) {
-                echo preg_replace('/[#]\d+/', Number::next($key).')', $this->hideDirectoryName($value)).PHP_EOL;
-            }
-        }
+                echo preg_replace('/[#]\d+/', Number::next($key).')', $value).PHP_EOL;
+            }//end foreach
+        }//end if
     }//end beautifyCallStack()
 
     /**
      * @param string $string
      * @return string
      */
-    private function hideDirectoryName(string $string):string
+    private function hidePath(string $string):string
     {
         return str_replace(RUNTIME_ROOT_PATH, 'app://', $string);
     }

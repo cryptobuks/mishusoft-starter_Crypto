@@ -1,12 +1,13 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 
-namespace Mishusoft\Framework\Chipsets\Databases\MishusoftSQLStandalone;
+namespace Mishusoft\Databases\MishusoftSQLStandalone;
 
-
-use Mishusoft\Framework\Chipsets\Cryptography\OpenSSL\Decryption;
-use Mishusoft\Framework\Chipsets\Cryptography\OpenSSL\Encryption;
-use Mishusoft\Framework\Chipsets\Utility\Stream;
+use Mishusoft\Cryptography\OpenSSL\Decryption;
+use Mishusoft\Cryptography\OpenSSL\Encryption;
+use Mishusoft\Utility\Stream;
 
 class FileSystem
 {
@@ -163,8 +164,7 @@ class FileSystem
      */
     public static function unlink(string $filename, $context = null): bool
     {
-        return unlink($filename,$context);
-        
+        return unlink($filename, $context);
     }
 
 
@@ -207,6 +207,4 @@ class FileSystem
         }
         return $data;
     }
-
-
 }

@@ -3,9 +3,7 @@
 
 namespace Mishusoft\Exceptions;
 
-use Exception;
-
-class DbException extends Exception
+class DbException extends Handler
 {
 
 }//end class

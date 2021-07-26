@@ -1,48 +1,21 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 namespace Mishusoft\System;
 
 use ErrorException;
 use JsonException;
-use Mishusoft\FileSystem;
+use Mishusoft\Storage\FileSystem;
 use Mishusoft\Framework;
 use Mishusoft\MPM;
-use Mishusoft\Exceptions\Handler as ExceptionsHandler;
 use Mishusoft\System;
 use Mishusoft\Utility\JSON;
 use RuntimeException;
 use stdClass;
 
-if (is_readable(Framework::installFile) === true) {
-    try {
-        define('BASEURL', Memory::data('framework', ['file' => Framework::installFile])->host->url);
-    } catch (ErrorException | JsonException $e) {
-        ExceptionsHandler::fetch($e);
-    }
-} else {
-    define('BASEURL', System::getAbsoluteInstalledURL());
-}
-
 
 class Memory
 {
-    // Declare version.
-    public const VERSION = '1.0.0';
-
-    /**
-     * Absolute path of Framework config json file
-     *
-     * @var string
-     */
-    private static string $frameworkConfigFile = Framework::configFile;
-
-    /**
-     * Absolute path of Framework installed json file
-     *
-     * @var string
-     */
-    private static string $frameworkInstallFile = Framework::installFile;
-
 
     /**
      * Memory constructor.
@@ -69,9 +42,9 @@ class Memory
             throw new RuntimeException(__NAMESPACE__.'\ROM not found.');
         }
 
-        Logger::write(sprintf('Check %s file existent.', self::$frameworkConfigFile));
-        if (file_exists(self::$frameworkConfigFile) === false) {
-            throw new RuntimeException(self::$frameworkConfigFile.' not found.');
+        Logger::write(sprintf('Check %s file existent.', Framework::configFile()));
+        if (file_exists(Framework::configFile()) === false) {
+            throw new RuntimeException(Framework::configFile().' not found.');
         }
     }//end __construct()
 
@@ -86,6 +59,7 @@ class Memory
     {
         Logger::write('Load data for defined required contents from memory file.');
         self::loadMemory();
+        self::baseUrlSet();
     }//end enable()
 
 
@@ -137,7 +111,7 @@ class Memory
             if (array_key_exists('file', $options) === true) {
                 $filename = $options['file'];
             } else {
-                $filename = MPM::PACKAGE_CONFIG_FILE;
+                $filename = MPM::packageConfigFile();
             }
 
             if (file_exists($filename) === false) {
@@ -161,7 +135,7 @@ class Memory
             if (array_key_exists('file', $options) === true) {
                 $filename = $options['file'];
             } else {
-                $filename = self::$frameworkInstallFile;
+                $filename = Framework::installFile();
             }
 
             if (file_exists($filename) === false) {
@@ -185,7 +159,7 @@ class Memory
             if (array_key_exists('file', $options) === true) {
                 $filename = $options['file'];
             } else {
-                $filename = self::$frameworkConfigFile;
+                $filename = Framework::configFile();
             }
 
             $result = self::dataLoader($format, $default, $filename);
@@ -271,18 +245,30 @@ class Memory
      * @return void
      * @throws JsonException Throw json exception when json error occurred.
      */
-    public static function loadMemory(string $filename = RUNTIME_REGISTRIES_PATH.'framework.json'): void
+    public static function loadMemory(string $filename = ''): void
     {
-        Logger::write(sprintf('Check read permission of %s file.', self::$frameworkConfigFile));
+        if ($filename ==='') {
+            $filename = Framework::configFile();
+        }
+        Logger::write(sprintf('Check read permission of %s file.', $filename));
         if (is_readable(stream_resolve_include_path($filename)) === true) {
-            Logger::write(sprintf('Load data from %s file.', self::$frameworkConfigFile));
+            Logger::write(sprintf('Load data from %s file.', $filename));
             self::read(JSON::decodeToObject(FileSystem::read(stream_resolve_include_path($filename))));
         } else {
-            Logger::write(sprintf('Not found system data file %s.', self::$frameworkConfigFile));
+            Logger::write(sprintf('Not found system data file %s.', $filename));
             Logger::write('Load default data from system.');
             self::read(JSON::encodeToObject(FRAMEWORK_DEFAULT_CONF));
         }//end if
     }//end loadMemory()
+
+    private static function baseUrlSet()
+    {
+        if (is_readable(Framework::installFile) === true) {
+            define('BASEURL', self::data('framework', ['file' => Framework::installFile])->host->url);
+        } else {
+            define('BASEURL', System::getAbsoluteInstalledURL());
+        }
+    }
 
 
     /**

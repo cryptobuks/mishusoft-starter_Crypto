@@ -24,13 +24,14 @@
   },
   "autoload": {
     "psr-4": {
-      "Mishusoft\\": "Sources/mishusoft-company/Framework/Mishusoft/",
-      "App\\": "app/"
+      "App\\": "app/",
+      "Mishusoft\\": "framework/Mishusoft"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "\\": "Sources/"
+      "App\\": "Sources/mishusoft-company/Application",
+      "Mishusoft\\": "Sources/mishusoft-company/Framework/Mishusoft"
     }
   },
   "scripts": {
@@ -39,27 +40,27 @@
     "update:composer.pacakges": "composer update",
     "update:composer.packages.global": "composer /home/abir/.config/composer update",
 
-    "update:robots": "php ./Sources/Release.php -compile -s ./Sources/robots.txt -d /srv/http/robots.txt",
-    "update:index.php": "php ./Sources/Release.php -compile -s ./Sources/app.php -d /srv/http/index.php",
-    "update:index.html": "php ./Sources/Release.php -compile -s ./Sources/app.html -d /srv/http/index.html",
-    "update:framework": "php ./Sources/Release.php -compile -s ./Sources/Mishusoft/Framework -d /srv/http/Mishusoft/Framework",
-    "update:ema": "php ./Sources/Release.php -compile -s ./Sources/Mishusoft/Ema -d /srv/http/Mishusoft/Ema",
-    "update:packages": "php ./Sources/Release.php -compile -s ./Sources/Mishusoft/Packages -d /srv/http/Packages",
-    "update:themes": "php ./Sources/Release.php -compile-themes -s ./Sources/Mishusoft/Views/Themes -d /srv/http/Mishusoft/Themes",
-    "update:widgets": "php ./Sources/Release.php -compile -s ./Sources/Mishusoft/Widgets -d /srv/http/Mishusoft/Widgets",
-    "update:widgets.components": "php ./Sources/Release.php -compile-widgets -s ./Sources/Mishusoft/Views/Widgets -d /srv/http/Mishusoft/Widgets/Views",
-    "update:packages.components": "php ./Sources/Release.php -static -s ./Sources/Mishusoft/Views/Templates/Packages -d /srv/http/Packages",
+    "update:robots": "php ./Sources/Release.php -compile -s ./Sources/robots.txt -d ./public_html/robots.txt",
+    "update:index.php": "php ./Sources/Release.php -compile -s ./Sources/app.php -d ./public_html/index.php",
+    "update:index.html": "php ./Sources/Release.php -compile -s ./Sources/app.html -d ./public_html/index.html",
+    "update:framework": "php ./Sources/Release.php -compile -s ./Sources/Mishusoft/Framework -d ./public_html/Framework",
+    "update:ema": "php ./Sources/Release.php -compile -s ./Sources/Mishusoft/Ema -d ./public_html/app/Ema",
+    "update:packages": "php ./Sources/Release.php -compile -s ./Sources/Mishusoft/Packages -d ./public_html/app/Packages",
+    "update:themes": "php ./Sources/Release.php -compile-themes -s ./Sources/Mishusoft/Views/Themes -d ./public_html/app/Themes",
+    "update:widgets": "php ./Sources/Release.php -compile -s ./Sources/Mishusoft/Widgets -d ./public_html/app/Widgets",
+    "update:widgets.components": "php ./Sources/Release.php -compile-widgets -s ./Sources/Mishusoft/Views/Widgets -d ./public_html/app/Widgets/Views",
+    "update:packages.components": "php ./Sources/Release.php -static -s ./Sources/Mishusoft/Views/Templates/Packages -d ./public_html/app/Packages && @update:packages",
 
 
-    "update:test:index.php": "php ./Sources/Release.php -test -s ./Sources/app.php -d /srv/http/index.php",
-    "update:test:index-html": "php ./Sources/Release.php -test -s ./Sources/app.html -d /srv/http/index.html",
-    "update:test:framework": "php ./Sources/Release.php -test -s ./Sources/Mishusoft/Framework -d /srv/http/Mishusoft/Framework",
-    "update:test:ema": "php ./Sources/Release.php -test -s ./Sources/Mishusoft/Ema -d /srv/http/Mishusoft/Ema",
-    "update:test:packages": "php ./Sources/Release.php -test -s ./Sources/Mishusoft/Packages -d /srv/http/Packages",
-    "update:test:themes": "php ./Sources/Release.php -test-themes -s ./Sources/Mishusoft/Views/Themes -d /srv/http/Mishusoft/Themes",
-    "update:test:widgets": "php ./Sources/Release.php -test -s ./Sources/Mishusoft/Widgets -d /srv/http/Mishusoft/Widgets",
-    "update:test:widgets.components": "php ./Sources/Release.php -test-widgets -s ./Sources/Mishusoft/Views/Widgets -d /srv/http/Mishusoft/Widgets/Views",
-    "update:test:packages.components": "php ./Sources/Release.php -static -s ./Sources/Mishusoft/Views/Templates/Packages -d /srv/http/Packages",
+    "update:test:index.php": "php ./Sources/Release.php -test -s ./Sources/app.php -d ./public_html/index.php",
+    "update:test:index-html": "php ./Sources/Release.php -test -s ./Sources/app.html -d ./public_html/index.html",
+    "update:test:framework": "php ./Sources/Release.php -test -s ./Sources/Mishusoft/Framework -d ./public_html/Framework",
+    "update:test:ema": "php ./Sources/Release.php -test -s ./Sources/Mishusoft/Ema -d ./public_html/app/Ema",
+    "update:test:packages": "php ./Sources/Release.php -test -s ./Sources/Mishusoft/Packages -d ./public_html/app/Packages",
+    "update:test:themes": "php ./Sources/Release.php -test-themes -s ./Sources/Mishusoft/Views/Themes -d ./public_html/app/Themes",
+    "update:test:widgets": "php ./Sources/Release.php -test -s ./Sources/Mishusoft/Widgets -d ./public_html/app/Widgets",
+    "update:test:widgets.components": "php ./Sources/Release.php -test-widgets -s ./Sources/Mishusoft/Views/Widgets -d ./public_html/app/Widgets/Views",
+    "update:test:packages.components": "php ./Sources/Release.php -static -s ./Sources/Mishusoft/Views/Templates/Packages -d ./public_html/app/Packages",
 
     "test:user.agent": [
       "Composer\\Config::disableProcessTimeout",
@@ -68,6 +69,16 @@
     "test:download:user.agent": [
       "Composer\\Config::disableProcessTimeout",
       "php tests/user-agent-download.php"
+    ],
+
+    "release.app": [
+      "Composer\\Config::disableProcessTimeout",
+      "vendor/bin/rector process app"
+    ],
+
+    "release.framework": [
+      "Composer\\Config::disableProcessTimeout",
+      "vendor/bin/rector process framework"
     ],
 
 
@@ -107,6 +118,8 @@
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",
-    "squizlabs/php_codesniffer": "^3.6"
+    "squizlabs/php_codesniffer": "^3.6",
+    "rector/rector": "^0.11.38",
+    "friendsofphp/php-cs-fixer": "^3.0"
   }
 }

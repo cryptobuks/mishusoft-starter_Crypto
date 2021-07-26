@@ -4,8 +4,10 @@ namespace Mishusoft\System;
 
 use ErrorException;
 use JsonException;
+use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Framework;
 use Mishusoft\Drivers\Session;
+use Mishusoft\Storage;
 
 class BIOS
 {
@@ -13,33 +15,28 @@ class BIOS
     // Declare version.
     public const VERSION = '1.0.2';
 
-    public const URL_SPLITTERS_CONFIG_FILE = RUNTIME_REGISTRIES_PATH.'splitters.json';
-    public const EMA_LOADER_FILE           = RUNTIME_SYSTEM_PATH.'Ema'.DS.'EmaLoader.php';
-
-    public static $initialise;
-
+    //public const URL_SPLITTERS_CONFIG_FILE = RUNTIME_REGISTRIES_PATH.'splitters.json';
+    //public const EMA_LOADER_FILE           = RUNTIME_SYSTEM_PATH.'Ema'.DS.'EmaLoader.php';
 
     /**
      * BIOS initialise function.
      *
-     * @return BIOS           Return \Mishusoft\Framework\Chipsets\System\BIOS as object.
-     * @throws JsonException|ErrorException Throw exception when error occurred..
+     * @throws JsonException|ErrorException|RuntimeException Throw exception when error occurred..
      */
     public static function initialise(): BIOS
     {
         // @codingStandardsIgnoreStart
         // if (self::$initialise instanceof self === false) {self::$initialise = new self();}
-
-        Logger::write('Start system memory.');
-        // Instance system memory.
-        (new Memory())->enable();
-
         Logger::write('Start system firewall.');
         $firewall = new Firewall();
-        $firewall->makeAccessRequest();
 
         Logger::write('Firewall check access validity of client.');
-        if ($firewall->accessRequestProcessed === true) {
+        if ($firewall->isRequestAccepted() === true) {
+
+            Logger::write('Start system memory.');
+            // Instance system memory.
+            (new Memory())->enable();
+
             Logger::write('Access validity of client has been passed.');
             Logger::write('Start system session.');
             Session::init();
@@ -48,14 +45,14 @@ class BIOS
              * Start special url handler [Ema Embed Mishusoft Application].
              */
 
-            Logger::write(sprintf('Check %s existent.', self::EMA_LOADER_FILE));
-            if (file_exists(self::EMA_LOADER_FILE) === true) {
+            Logger::write(sprintf('Check %s existent.', self::emaLoaderFile()));
+            if (file_exists(self::emaLoaderFile()) === true) {
                 // Include ema package loader.
-                Logger::write(sprintf('Found %s in system.', self::EMA_LOADER_FILE));
-                Logger::write(sprintf('Load %s from system.', self::EMA_LOADER_FILE));
+                Logger::write(sprintf('Found %s in system.', self::emaLoaderFile()));
+                Logger::write(sprintf('Load %s from system.', self::emaLoaderFile()));
                 /** @define "self::EMA_LOADER_FILE" ".../Sources/Mishusoft/Ema/EmaLoader.php" */
                 //include_once self::EMA_LOADER_FILE;
-                include_once RUNTIME_SYSTEM_PATH.'Ema'.DS.'EmaLoader.php';
+                include_once self::emaLoaderFile();
             }
 
             /*
@@ -100,8 +97,12 @@ class BIOS
         return new self();
         // return self::$initialise;
         // @codingStandardsIgnoreEnd
-
     }//end initialise()
+
+    private static function emaLoaderFile(): string
+    {
+        return sprintf('%s%s%s%s', Storage::applicationPath(), 'Ema', DS, 'EmaLoader.php');
+    }
 
 
     /**
@@ -116,8 +117,5 @@ class BIOS
         // @codingStandardsIgnoreStart
         return strtolower(substr($filename, 0, strpos($filename, 'UrlHandler')));
         // @codingStandardsIgnoreEnd
-
     }//end getFilenameOnly()
-
-
 }//end class

@@ -18,6 +18,7 @@ use GeoIp2\Database\Reader;
 use GeoIp2\Exception\AddressNotFoundException;
 use MaxMind\Db\Reader\InvalidDatabaseException;
 use Mishusoft\Exceptions\Handler as ExceptionsHandler;
+use Mishusoft\Storage;
 
 class IP
 {
@@ -31,20 +32,6 @@ class IP
      */
     private static string $apiKey = '2f9dde381f67efed325acfb1011a988036b28fc6cc02f07668ef7180';
 
-    /**
-     * Absolute path of geo lite city db file.
-     *
-     * @var string
-     */
-    private static string $cityDbFile = APPLICATION_STORAGE_PATH.'0/GeoIP/GeoLite2-City.mmdb';
-
-    /**
-     * Absolute path of geo lite country db file.
-     *
-     * @var string
-     */
-    private static string $countryDbFile = APPLICATION_STORAGE_PATH.'0/GeoIP/GeoLite2-Country.mmdb';
-
 
     /**
      * IP constructor.
@@ -52,6 +39,23 @@ class IP
     public function __construct()
     {
     }//end __construct()
+
+    /**
+     * Absolute path of geo lite city db file.
+     */
+    public static function cityDbFile():string
+    {
+        return Storage::dataDriveStoragesPath().'GeoIP/GeoLite2-City.mmdb';
+    }
+
+
+    /**
+     * Absolute path of geo lite country db file.
+     */
+    public static function countryDbFile():string
+    {
+        return Storage::dataDriveStoragesPath().'GeoIP/GeoLite2-Country.mmdb';
+    }
 
 
     /**
@@ -65,7 +69,7 @@ class IP
         $country = 'Unknown';
         try {
             if (self::isPublicIp(self::get()) === true) {
-                $reader  = new Reader(self::$countryDbFile);
+                $reader  = new Reader(self::countryDbFile());
                 $record  = $reader->country(self::get());
                 $country = $record->country->name;
             } else {
@@ -142,7 +146,7 @@ class IP
         $output = 'Unknown Location';
         try {
             if (self::isPublicIp(self::get()) === true) {
-                $reader  = new Reader(self::$cityDbFile);
+                $reader  = new Reader(self::cityDbFile());
                 $record  = $reader->city(self::get());
                 $purpose = str_replace(['name', "\n", "\t", ' ', '-', '_'], '', strtolower(trim($purpose)));
                 $support = [

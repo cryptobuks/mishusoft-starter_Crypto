@@ -5,8 +5,8 @@ namespace Mishusoft\Http\UAAnalyzer;
 
 use JsonException;
 use Mishusoft\Exceptions\RuntimeException;
-use Mishusoft\FileSystem;
 use Mishusoft\Storage;
+use Mishusoft\Storage\FileSystem;
 use Mishusoft\Utility\Inflect;
 use Mishusoft\Utility\JSON;
 
@@ -72,7 +72,7 @@ abstract class Collection extends UAAnalyzerBase
             'tools',
             'wm',
             //'validators',
-        ]
+        ],
     ];
     private array $attributes;
     private string $detailsBuilderAttribute;
@@ -170,7 +170,7 @@ abstract class Collection extends UAAnalyzerBase
     protected function dictionariesAll(string $directory): array
     {
         $dFiles = FileSystem::globRecursive($directory, GLOB_MARK);
-        $dictionaries = array();
+        $dictionaries = [];
 
         foreach ($dFiles as $dFile) {
             if (Storage::getExtension($dFile) === 'yml') {
@@ -222,7 +222,7 @@ abstract class Collection extends UAAnalyzerBase
      */
     protected function merge(array $dictionaries): array
     {
-        $result = array();
+        $result = [];
         foreach ($dictionaries as $dictionary) {
             if (is_array($dictionary) === true) {
                 foreach ($dictionary as $value) {
@@ -239,7 +239,7 @@ abstract class Collection extends UAAnalyzerBase
      */
     protected function extractArchitectures(array $dictionaries): array
     {
-        $result = array();
+        $result = [];
         foreach ($dictionaries as $dictionary) {
             if (array_key_exists('architecture', $dictionary) === true) {
                 $result[$dictionary['architecture']] = $dictionary['word'];
@@ -255,10 +255,10 @@ abstract class Collection extends UAAnalyzerBase
      */
     protected function extractAttribute(array $dictionaries, string $job): array
     {
-        $result = array();
+        $result = [];
         $job = strtolower($job);
 
-        if (in_array($job, array('identifier-only', 'identifier-with-pattern', 'info-only')) === true) {
+        if (in_array($job, ['identifier-only', 'identifier-with-pattern', 'info-only']) === true) {
             foreach ($dictionaries as $dictionary) {
                 if ($job === 'identifier-only') {
                     if (array_key_exists('identifiers', $dictionary) === true) {
@@ -390,7 +390,7 @@ abstract class Collection extends UAAnalyzerBase
                     $foundedDetails = $this->attributeDetails(Inflect::singularize($attribute), $resources[$attribute]);
 
                     if (is_array($foundedDetails) === true) {
-                        $resources[$attribute] = array($resources[$attribute] => $foundedDetails);
+                        $resources[$attribute] = [$resources[$attribute] => $foundedDetails];
                     } else {
                         $resources[$attribute] = $foundedDetails;
                     }
@@ -414,7 +414,7 @@ abstract class Collection extends UAAnalyzerBase
         }
 
         if (count($identifiers) > 0) {
-            $info = array();
+            $info = [];
             foreach ($identifiers as $identifier) {
                 $info[$identifier] = $this->makeAttributeDetails($attributeDetails, $identifier);
             }
@@ -456,7 +456,7 @@ abstract class Collection extends UAAnalyzerBase
             // About platform related
             'platform' => $this->contentQuery('platforms'),
             'wm' => $this->contentQuery('wm'),
-            default => array()
+            default => []
         };
     }
 

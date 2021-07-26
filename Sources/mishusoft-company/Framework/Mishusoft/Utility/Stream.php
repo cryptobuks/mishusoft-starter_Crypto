@@ -1,9 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Mishusoft\Framework\Chipsets\Utility;
+namespace Mishusoft\Utility;
 
-
-use Mishusoft\Framework\Chipsets\System\Logger;
+use Mishusoft\System\Logger;
 
 class Stream
 {
@@ -33,7 +32,6 @@ class Stream
         }
 
         return false;
-
     }//end file()
 
 
@@ -44,7 +42,6 @@ class Stream
     public static function exec($filename): string
     {
         return exec("chmod -R 777 $filename");
-
     }//end exec()
 
 
@@ -56,7 +53,6 @@ class Stream
     public static function copy($from_destination, $to_destination): bool
     {
         return copy($from_destination, $to_destination);
-
     }//end copy()
 
 
@@ -69,7 +65,6 @@ class Stream
     public static function rename($from_destination, $to_destination, $context=null): bool
     {
         return rename($from_destination, $to_destination, $context);
-
     }//end rename()
 
 
@@ -84,7 +79,6 @@ class Stream
         }
 
         return false;
-
     }//end isFileExists()
 
 
@@ -99,7 +93,6 @@ class Stream
         } else {
             return false;
         }
-
     }//end isDirectory()
 
 
@@ -127,7 +120,6 @@ class Stream
         }
 
         return false;
-
     }//end csvtojson()
 
 
@@ -139,7 +131,6 @@ class Stream
     public static function saveToFile(string $filename, string $content): bool|int
     {
         return file_put_contents($filename, $content);
-
     }//end saveToFile()
 
 
@@ -154,7 +145,6 @@ class Stream
         }
 
         return trigger_error($filename.' not readable');
-
     }//end readFromFile()
 
 
@@ -173,7 +163,6 @@ class Stream
         }
 
         return false;
-
     }//end IsReadable()
 
 
@@ -194,7 +183,6 @@ class Stream
         }
 
         return exec('chmod '.$destination.' '.$mode);
-
     }//end chmod()
 
 
@@ -235,7 +223,6 @@ class Stream
                 return;
             }
         }//end if
-
     }//end chmod_R()
 
 
@@ -248,7 +235,6 @@ class Stream
         if (self::IsWriteable(dirname($filename))) {
             fopen($filename, 'w+');
         }
-
     }//end createFile()
 
 
@@ -267,7 +253,6 @@ class Stream
         }
 
         return false;
-
     }//end IsWriteable()
 
 
@@ -292,7 +277,6 @@ class Stream
 
             return true;
         }
-
     }//end remove()
 
 
@@ -309,10 +293,9 @@ class Stream
             }
 
             rmdir($target);
-        } else if (is_file($target)) {
+        } elseif (is_file($target)) {
             unlink($target);
         }
-
     }//end delete_files()
 
 
@@ -326,7 +309,6 @@ class Stream
     public static function createDirectory(string $directory, int $permissions=0777, bool $recursive=false, $context=null): bool
     {
         return !file_exists($directory) && mkdir($directory, $permissions, $recursive, $context);
-
     }//end createDirectory()
 
 
@@ -360,7 +342,6 @@ class Stream
         array_multisort($files, SORT_ASC);
         ksort($files, SORT_ASC);
         return $files;
-
     }//end getList()
 
 
@@ -368,10 +349,9 @@ class Stream
      * @param  string $filename
      * @return boolean|string
      */
-    static function read(string $filename): bool|string
+    public static function read(string $filename): bool|string
     {
         return file_get_contents($filename);
-
     }//end read()
 
 
@@ -380,28 +360,23 @@ class Stream
      * @param  array  $contents
      * @return false|integer
      */
-    static function write(string $filename, array $contents): bool|int
+    public static function write(string $filename, array $contents): bool|int
     {
         return fwrite(fopen($filename, 'w+'), json_encode($contents));
-
     }//end write()
 
 
-    static function append(string $filename, string $content)
+    public static function append(string $filename, string $content)
     {
         $fp = fopen($filename, 'a+');
         // opens file in append mode
         exec("chmod -R 777 $filename");
         fwrite($fp, $content);
         fclose($fp);
-
     }//end append()
 
 
-    function __destruct()
+    public function __destruct()
     {
-
     }//end __destruct()
-
-
 }//end class

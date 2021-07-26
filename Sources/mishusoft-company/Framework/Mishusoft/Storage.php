@@ -2,34 +2,126 @@
 
 namespace Mishusoft;
 
+use JsonException;
 use Mishusoft\Http\Browser;
 use Mishusoft\Media\Mime;
+use Mishusoft\Storage\FileSystem;
 use Mishusoft\System\Firewall;
-use Mishusoft\Utility\_Array;
-use Mishusoft\Utility\_String;
+use Mishusoft\Utility\ArrayCollection;
+use Mishusoft\Utility\Character;
 use Mishusoft\Utility\Number;
 use Mishusoft\Utility\Stream;
 
-class Storage
+class Storage extends Base
 {
     // declare version
     public const VERSION = '1.0.2';
 
+    // make static call for directories path
 
-    /**
-     * Media constructor.
-     */
-    public function __construct()
+    public static function rootPath():string
     {
-    }//end __construct()
+        return parent::rootPath();
+    }
+
+    public static function frameworkPath():string
+    {
+        return sprintf(
+            '%1$s%2$s%6$s%3$s%6$s%4$s%6$s%5$s%6$s',
+            self::rootPath(),
+            'Sources',
+            'mishusoft-company',
+            'framework',
+            'Mishusoft',
+            DS
+        );
+    }
+
+    public static function applicationPath():string
+    {
+        return sprintf(
+            '%1$s%2$s%3$s',
+            self::rootPath(),
+            'app',
+            DS
+        );
+    }
+
+    public static function applicationWebPath():string
+    {
+        return parent::applicationWebPath();
+    }
+
+    public static function storagesPath():string
+    {
+        return sprintf(
+            '%1$s%2$s%3$s',
+            RUNTIME_ROOT_PATH,
+            'storages',
+            DS
+        );
+    }
+
+    public static function appStoragesPath():string
+    {
+        return sprintf(
+            '%1$s%2$s%3$s',
+            self::storagesPath(),
+            'app',
+            DS
+        );
+    }
+
+    public static function frameworkStoragesPath():string
+    {
+        return sprintf(
+            '%1$s%2$s%3$s',
+            self::storagesPath(),
+            'framework',
+            DS
+        );
+    }
+
+    public static function dataDriveStoragesPath():string
+    {
+        return sprintf(
+            '%1$s%2$s%3$s',
+            self::frameworkStoragesPath(),
+            'data-drive',
+            DS
+        );
+    }
+
+    public static function cachesStoragesPath():string
+    {
+        return sprintf(
+            '%1$s%2$s%3$s',
+            self::frameworkStoragesPath(),
+            'caches',
+            DS
+        );
+    }
+
+    public static function logsPath():string
+    {
+        return sprintf(
+            '%1$s%2$s%3$s',
+            self::storagesPath(),
+            'logs',
+            DS
+        );
+    }
 
 
     /**
      * @param  string $folderPath
      * @return array|false
      */
-    public static function FileExplore(string $folderPath=APPLICATION_ASSETS_MEDIA_PATH): bool|array
+    public static function fileExplore(string $folderPath = ''): bool|array
     {
+        if ($folderPath === '') {
+            $folderPath = APPLICATION_ASSETS_MEDIA_PATH;
+        }
         if ($folderPath[(strlen($folderPath) - 1)] !== '/') {
             $folderPath .= '/';
         }
@@ -62,7 +154,7 @@ class Storage
      * @param  string $filename
      * @return string
      */
-    public static function getFileSize(string $filename): string
+    public static function fileSize(string $filename): string
     {
         $size = filesize($filename);
         if ($size < 1024) {
@@ -84,7 +176,7 @@ class Storage
     /**
      * @param string $filename
      */
-    public static function StreamOriginalFile(string $filename): void
+    public static function streamOriginalFile(string $filename): void
     {
         if (is_readable($filename)) {
             // Getting headers sent by the client.
@@ -137,7 +229,7 @@ class Storage
      */
     public static function getFileInfo(string $filename): array
     {
-        if (is_array(Mime::Common) and count(Mime::Common) > 0) {
+        if (count(Mime::Common) > 0) {
             foreach (Mime::Common as $content) {
                 // substr($filename, (strpos($filename, '.') + strlen('.')), (strlen($filename) - (strpos($filename, '.') + strlen('.'))))
                 if ($content['extension'] === self::getExtension($filename)) {
@@ -157,7 +249,7 @@ class Storage
 
     public static function in(array $mimeList, string $mime): bool
     {
-        if (is_array($mimeList) and count($mimeList) > 0) {
+        if (count($mimeList) > 0) {
             foreach ($mimeList as $mimeItem) {
                 if ($mimeItem['type'] === $mime) {
                     return true;
@@ -174,9 +266,9 @@ class Storage
      *
      *    static function getMimeContent(string $filename): string
      *    {
-     *    if (is_array(MimeCommon::List) and count(MimeCommon::List) > 0) {
+     *    if (isArrayCollection(MimeCommon::List) and count(MimeCommon::List) > 0) {
      *    foreach (MimeCommon::List as $content) {
-     *    if (preg_match('#\.' . preg_quote(_String::lower($content["extension"])) . '\b#', _String::lower($filename), $matches)) {
+     *    if (preg_match('#\.' . preg_quote(Character::lower($content["extension"])) . '\b#', Character::lower($filename), $matches)) {
      *    return $content["type"];
      *    }
      *    }
@@ -193,7 +285,7 @@ class Storage
      */
     public static function getMimeContentByFormat(string $format): string
     {
-        if (is_array(Mime::Common) and count(Mime::Common) > 0) {
+        if (count(Mime::Common) > 0) {
             foreach (Mime::Common as $content) {
                 if ($content['extension'] === $format) {
                     return $content['type'];
@@ -218,7 +310,11 @@ class Storage
             $searchable = $filename;
         }
 
-        return substr($searchable, (strpos($searchable, '.') + strlen('.')), (strlen($searchable) - (strpos($searchable, '.') + strlen('.'))));
+        $needle = '.';
+        $offset = (strpos($searchable, $needle) + strlen($needle));
+        $length = (strlen($searchable) - (strpos($searchable, $needle) + strlen($needle)));
+
+        return substr($searchable, $offset, $length);
     }//end getExtension()
 
 
@@ -228,15 +324,15 @@ class Storage
      * @param  string $feature
      * @return string
      */
-    public static function getRegistriesPath(string $filename, string $feature, string $indicator='libraries/json/'): string
+    public static function getRegistriesPath(string $filename, string $feature, string $indicator = 'libraries/json/'): string
     {
         if (!empty($filename)) {
             if (file_exists(RUNTIME_REGISTRIES_PATH.$filename)) {
-                if (_String::lower($feature) === 'local') {
+                if (Character::lower($feature) === 'local') {
                     return RUNTIME_REGISTRIES_PATH.$filename;
                 }
 
-                if (_String::lower($feature) === 'remote') {
+                if (Character::lower($feature) === 'remote') {
                     return implode([BASEURL, $indicator, $filename]);
                 }
             } else {
@@ -264,16 +360,16 @@ class Storage
      * @param string $indicator
      * @return string
      * @throws \ErrorException
-     * @throws \JsonException
+     * @throws JsonException
      */
-    public static function getLogosMediaPath(string $filename, string $feature, string $indicator='libraries/logos/'): string
+    public static function getLogosMediaPath(string $filename, string $feature, string $indicator = 'libraries/logos/'): string
     {
         if (file_exists(APPLICATION_PRIVATE_MEDIA_PATH.'logos/'.$filename) === true) {
-            if (_String::lower($feature) === 'local') {
+            if (Character::lower($feature) === 'local') {
                 return APPLICATION_PRIVATE_MEDIA_PATH.'logos/'.$filename;
             }
 
-            if (_String::lower($feature) === 'remote') {
+            if (Character::lower($feature) === 'remote') {
                 return BASEURL.$indicator.$filename;
             }
         } else {
@@ -282,7 +378,7 @@ class Storage
                 [
                     'debug' => [
                         'file'        => (new Browser())->getURLPath(),
-                        'location'    => APPLICATION_PRIVATE_MEDIA_PATH.'logos/'.$filename,
+                        'location'    => self::appStoragesPath().'media/logos/'.$filename,
                         'description' => 'Your requested file not found or deleted!!',
                     ],
                     'error' => ['description' => 'Your requested file not found or deleted!!'],
@@ -296,8 +392,8 @@ class Storage
 
     public static function getAssignableWebFavicons():array
     {
-        $faviconsList = array();
-        $fileList = array();
+        $faviconsList = [];
+        $fileList = [];
 
         $list = self::getFiles('media/logos');
 
@@ -312,22 +408,22 @@ class Storage
             if (str_starts_with(pathinfo($imageFile, PATHINFO_FILENAME), 'apple-icon') === true) {
                 //    <link rel="apple-touch-icon" sizes="57x57" href="{$layoutParams.logoFolder}apple-icon-57x57.png">
                 //    /home/abir/Development/web-development/lastest.mishusoft.com/Storages/0/media/logos/apple-icon-152x152.png
-                $faviconsList[] = array(
+                $faviconsList[] = [
                     'rel'  => 'apple-touch-icon',
-                    'type'  => _Array::value($fileDetails, 'mime'),
-                    'sizes'  => implode('x', array(_Array::value($fileDetails, 0),_Array::value($fileDetails, 1))),
+                    'type'  => ArrayCollection::value($fileDetails, 'mime'),
+                    'sizes'  => implode('x', [ArrayCollection::value($fileDetails, 0),ArrayCollection::value($fileDetails, 1)]),
                     'href' => self::toDataUri('logos'. DIRECTORY_SEPARATOR.pathinfo($imageFile, PATHINFO_BASENAME)),
-                );
+                ];
             }
             if (str_starts_with(pathinfo($imageFile, PATHINFO_FILENAME), 'android-icon') === true) {
                 //    <link rel="icon" type="image/png" sizes="192x192" href="{$layoutParams.logoFolder}android-icon-192x192.png">
                 //    /home/abir/Development/web-development/lastest.mishusoft.com/Storages/0/media/logos/android-icon-192x192.png
-                $faviconsList[] = array(
+                $faviconsList[] = [
                     'rel'  => 'icon',
-                    'type'  => _Array::value($fileDetails, 'mime'),
-                    'sizes'  => implode('x', array(_Array::value($fileDetails, 0),_Array::value($fileDetails, 1))),
+                    'type'  => ArrayCollection::value($fileDetails, 'mime'),
+                    'sizes'  => implode('x', [ArrayCollection::value($fileDetails, 0),ArrayCollection::value($fileDetails, 1)]),
                     'href' => self::toDataUri('logos'. DIRECTORY_SEPARATOR.pathinfo($imageFile, PATHINFO_BASENAME)),
-                );
+                ];
             }
             if (str_starts_with(pathinfo($imageFile, PATHINFO_FILENAME), 'favicon') === true) {
                 //       <link rel="icon" type="image/png" sizes="16x16" href="{$layoutParams.logoFolder}favicon-16x16.png">
@@ -335,24 +431,23 @@ class Storage
 
                 //        <link rel="icon" type="image/vnd.microsoft.icon" sizes="16x16" href="{$layoutParams.logoFolder}favicon.ico">
                 //    /home/abir/Development/web-development/lastest.mishusoft.com/Storages/0/media/logos/favicon.ico
-                $faviconsList[] = array(
+                $faviconsList[] = [
                     'rel'  => 'icon',
-                    'type'  => _Array::value($fileDetails, 'mime'),
-                    'sizes'  => implode('x', array(_Array::value($fileDetails, 0),_Array::value($fileDetails, 1))),
+                    'type'  => ArrayCollection::value($fileDetails, 'mime'),
+                    'sizes'  => implode('x', [ArrayCollection::value($fileDetails, 0),ArrayCollection::value($fileDetails, 1)]),
                     'href' => self::toDataUri('logos'. DIRECTORY_SEPARATOR.pathinfo($imageFile, PATHINFO_BASENAME)),
-                );
+                ];
             }
             if (str_starts_with(pathinfo($imageFile, PATHINFO_FILENAME), 'mishusoft-logo-lite') === true) {
                 //    <link rel="icon" type="image/webp" sizes="16x16" href="{$layoutParams.logoFolder}mishusoft-logo-lite.webp">
                 //    /home/abir/Development/web-development/lastest.mishusoft.com/Storages/0/media/logos/mishusoft-logo-lite.webp
-                $faviconsList[] = array(
+                $faviconsList[] = [
                     'rel'  => 'icon',
-                    'type'  => _Array::value($fileDetails, 'mime'),
-                    'sizes'  => implode('x', array(_Array::value($fileDetails, 0),_Array::value($fileDetails, 1))),
+                    'type'  => ArrayCollection::value($fileDetails, 'mime'),
+                    'sizes'  => implode('x', [ArrayCollection::value($fileDetails, 0),ArrayCollection::value($fileDetails, 1)]),
                     'href' => self::toDataUri('logos'. DIRECTORY_SEPARATOR.pathinfo($imageFile, PATHINFO_BASENAME)),
-                );
+                ];
             }
-
         }
 
 
@@ -361,11 +456,15 @@ class Storage
 
     public static function getInformationOfImageFile(string $filename): array
     {
-        if (in_array(finfo_file(finfo_open(FILEINFO_MIME_TYPE), $filename), array('image/png', 'image/webp', 'image/vnd.microsoft.icon'), true)) {
+        if (in_array(
+            finfo_file(finfo_open(FILEINFO_MIME_TYPE), $filename),
+            ['image/png', 'image/webp', 'image/vnd.microsoft.icon'],
+            true
+        )) {
             return getimagesize($filename);
         }
 
-        return array();
+        return [];
     }
 
 
@@ -375,16 +474,16 @@ class Storage
      * @param string $indicator
      * @return string
      * @throws \ErrorException
-     * @throws \JsonException
+     * @throws JsonException
      */
-    public static function getMediaPathOfUsersPhotos(string $filename, string $feature, string $indicator='libraries/users/'): string
+    public static function getMediaPathOfUsersPhotos(string $filename, string $feature, string $indicator = 'libraries/users/'): string
     {
         if (file_exists(APPLICATION_PRIVATE_MEDIA_PATH.'users/'.$filename)) {
-            if (_String::lower($feature) === 'local') {
+            if (Character::lower($feature) === 'local') {
                 return APPLICATION_PRIVATE_MEDIA_PATH.'users/'.$filename;
             }
 
-            if (_String::lower($feature) === 'remote') {
+            if (Character::lower($feature) === 'remote') {
                 return BASEURL.$indicator.$filename;
             }
         } else {
@@ -436,14 +535,14 @@ class Storage
      * @param  string $feature
      * @return string
      */
-    public static function getMediaPathOfUploads(string $filename, string $feature, string $indicator='libraries/uploads/'): string
+    public static function getMediaPathOfUploads(string $filename, string $feature, string $indicator = 'libraries/uploads/'): string
     {
         if (file_exists(APPLICATION_PRIVATE_MEDIA_PATH.'uploads/'.$filename)) {
-            if (_String::lower($feature) === 'local') {
+            if (Character::lower($feature) === 'local') {
                 return APPLICATION_PRIVATE_MEDIA_PATH.'uploads/'.$filename;
             }
 
-            if (_String::lower($feature) === 'remote') {
+            if (Character::lower($feature) === 'remote') {
                 return BASEURL.$indicator.$filename;
             }
         } else {
@@ -469,7 +568,7 @@ class Storage
      * @param  string $feature
      * @return string
      */
-    public static function toDataUri(string $filename, string $feature='local'): string
+    public static function toDataUri(string $filename, string $feature = 'local'): string
     {
         if ($feature === 'remote') {
             if ((is_readable(self::getAssetsPath($filename)))) {
@@ -508,9 +607,9 @@ class Storage
              $filename = explode("_", $filename);
              $filename = array_filter($filename);
              if (file_exists(APPLICATION_ASSETS_MEDIA_PATH . join(DIRECTORY_SEPARATOR, $filename))) {
-                 if (_String::lower($feature) === "local") {
+                 if (Character::lower($feature) === "local") {
                      return APPLICATION_ASSETS_MEDIA_PATH . join(DIRECTORY_SEPARATOR, $filename);
-                 } elseif (_String::lower($feature) === "remote") {
+                 } elseif (Character::lower($feature) === "remote") {
                      return join([self::getWebResourcesPath() . DIRECTORY_SEPARATOR, join(DIRECTORY_SEPARATOR, $filename)]);
                  }
              } else {
@@ -529,14 +628,14 @@ class Storage
      * @param  string $feature
      * @return string
      */
-    public static function getAssetsPath(string $filename, string $feature='local'): string
+    public static function getAssetsPath(string $filename, string $feature = 'local'): string
     {
         $filename = str_replace(['_', '/'], [DIRECTORY_SEPARATOR, DIRECTORY_SEPARATOR], $filename);
-        if (_String::lower($feature) === 'remote') {
+        if (Character::lower($feature) === 'remote') {
             return implode([self::getWebResourcesPath().DIRECTORY_SEPARATOR, $filename]);
         }
 
-        return APPLICATION_ASSETS_MEDIA_PATH.$filename;
+        return self::appStoragesPath()."assets/$filename";
     }//end getAssetsPath()
 
 
@@ -547,7 +646,7 @@ class Storage
      * @param  string $pathname
      * @return string
      */
-    public static function getWebResourcesPath(string $pathname='assets'): string
+    public static function getWebResourcesPath(string $pathname = 'assets'): string
     {
         return System::getInstalledURL(). $pathname;
     }//end getWebResourcesPath()
@@ -558,14 +657,14 @@ class Storage
      * @param  string $feature
      * @return string
      */
-    public static function getMediaPath(string $filename, string $feature='local'): string
+    public static function getMediaPath(string $filename, string $feature = 'local'): string
     {
         $filename = str_replace('/', DIRECTORY_SEPARATOR, $filename);
-        if (_String::lower($feature) === 'remote') {
+        if (Character::lower($feature) === 'remote') {
             return implode([System::getInstalledURL()."media/$filename"]);
         }
 
-        return APPLICATION_PRIVATE_MEDIA_PATH.$filename;
+        return self::appStoragesPath()."media/$filename";
     }//end getMediaPath()
 
 
@@ -574,14 +673,14 @@ class Storage
      * @param  string $feature
      * @return string
      */
-    public static function getSharedPath(string $filename, string $feature='local'): string
+    public static function getSharedPath(string $filename, string $feature = 'local'): string
     {
         $filename = str_replace('/', DIRECTORY_SEPARATOR, $filename);
-        if (_String::lower($feature) === 'remote') {
+        if (Character::lower($feature) === 'remote') {
             return implode([System::getInstalledURL()."media/$filename"]);
         }
 
-        return APPLICATION_PRIVATE_MEDIA_PATH.$filename;
+        return self::appStoragesPath()."media/$filename";
     }//end getSharedPath()
 
 
@@ -590,14 +689,14 @@ class Storage
      * @param  string $feature
      * @return string
      */
-    public static function getStoragePath(string $filename, string $feature='local'): string
+    public static function getStoragePath(string $filename, string $feature = 'local'): string
     {
         $filename = str_replace('/', DIRECTORY_SEPARATOR, $filename);
-        if (_String::lower($feature) === 'remote') {
+        if (Character::lower($feature) === 'remote') {
             return implode([self::getWebResourcesPath().DIRECTORY_SEPARATOR, $filename]);
         }
 
-        return APPLICATION_STORAGE_PATH."0/$filename";
+        return self::appStoragesPath(). $filename;
     }//end getStoragePath()
 
     public static function getFiles(string $path):array
@@ -613,9 +712,9 @@ class Storage
 
     /**
      * @param $data
-     * @throws \JsonException
+     * @throws JsonException
      */
-    public static function StreamAsJson($data): void
+    public static function streamAsJson($data): void
     {
         header('Content-type:application/json;charset=UTF-8');
         if (empty($data) === false) {
@@ -634,7 +733,7 @@ class Storage
 
     /**
      * @public
-     * @throws \JsonException
+     * @throws JsonException
      */
     private function importCSVDataToJsonFile(string $src_csv_file, string $output_file)
     {

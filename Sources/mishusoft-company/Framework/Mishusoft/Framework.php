@@ -4,10 +4,10 @@ namespace Mishusoft;
 
 use ErrorException;
 use JsonException;
+use Mishusoft\Storage\FileSystem;
 use Mishusoft\System\Memory;
 use Mishusoft\System\Network;
 use Mishusoft\System\Time;
-use Mishusoft\Utility\JSON;
 
 class Framework
 {
@@ -104,6 +104,18 @@ class Framework
     }//end init()
 
 
+    public static function configFile():string
+    {
+        return sprintf('%s%s%s%s', Storage::dataDriveStoragesPath(), 'Framework', DS, 'config.json');
+    }
+
+
+    public static function installFile():string
+    {
+        return sprintf('%s%s%s%s', Storage::dataDriveStoragesPath(), 'Framework', DS, 'install.json');
+    }
+
+
     /**
      * Check whole file system.
      *
@@ -111,7 +123,7 @@ class Framework
      * @return void             Return not arguments.
      * @throws ErrorException   Return error exception.
      */
-    private static function checkFileSystem(string $rootPath=self::installedDocumentRoot): void
+    private static function checkFileSystem(string $rootPath = self::installedDocumentRoot): void
     {
         /*
          * Check root directory is directory or not.

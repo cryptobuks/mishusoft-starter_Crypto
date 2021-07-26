@@ -9,27 +9,23 @@ use ErrorException;
 use Exception;
 use JsonException;
 use Mishusoft\Base;
-use Mishusoft\FileSystem;
+use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Framework;
 use Mishusoft\Http;
 use Mishusoft\Http\Browser;
 use Mishusoft\Http\IP;
 use Mishusoft\Storage;
+use Mishusoft\Storage\FileSystem;
 use Mishusoft\Ui;
 use Mishusoft\Utility\ArrayCollection;
-use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\JSON;
 use Mishusoft\Utility\Character;
 use RuntimeException;
 
 class Firewall extends Base
 {
-    public const FIREWALL_CONFIG_FILE = RUNTIME_REGISTRIES_PATH . 'firewall.json';
-    public const FIREWALL_LOG_FILE = RUNTIME_REGISTRIES_PATH . 'firewall.logs.access.json';
-
     public const REQUIRED_KEYS = [
         'status' => 'enable',
-        'hostname' => INSTALLED_HOST_NAME,
         'granted-device-access-limit-filter' => 'enable',
         'granted-device-access-limit' => '600',
         'granted-device-time-limit' => '60',
@@ -89,7 +85,9 @@ class Firewall extends Base
             'blacklist' => [],
         ],
     ];
+
     private static string $reasonOfBlock = '';
+
     private static string $messageOfBlock = '';
 
     /**
@@ -111,7 +109,7 @@ class Firewall extends Base
      *
      * @var array
      */
-    private array $firewallConfiguration = [];
+    private array $config = [];
 
     /**
      * Action status.
@@ -168,29 +166,43 @@ class Firewall extends Base
      */
     private int $lastVisitDuration = 0;
 
-
     /**
      * Firewall constructor.
      *
-     * @throws JsonException Throw exception when json process error occurred.
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public function __construct()
     {
         parent::__construct();
         Logger::write('Store Browser object in to self::$browser attribute.');
         self::$browser = new Browser();
-        Logger::write(sprintf('Load Firewall configuration from %s.json.', self::FIREWALL_CONFIG_FILE));
+        Logger::write(sprintf('Load Firewall configuration from %s.json.', self::configFile()));
         $this->loadConfig();
-        Logger::write('Filter request of client.');
-        $this->filterHttpRequest(apache_request_headers());
     }//end __construct()
+
+    private static function logFile(): string
+    {
+        return sprintf('%s%s%s%s', Storage::dataDriveStoragesPath(), 'Firewall', DS, 'logs.yml');
+    }
+
+
+    public static function configFile(): string
+    {
+        return sprintf('%s%s%s%s', Storage::dataDriveStoragesPath(), 'Firewall', DS, 'config.yml');
+    }
+
+
+    private static function siteFile(): string
+    {
+        return sprintf('%s%s%s%s', Storage::dataDriveStoragesPath(), 'Firewall', DS, 'sites.yml');
+    }
 
 
     /**
      * Firewall config loader.
      *
      * @return void
-     * @throws JsonException|RuntimeException Throw exception when json process error occurred.
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function loadConfig(): void
     {
@@ -198,66 +210,77 @@ class Firewall extends Base
          * Check firewall configuration file existent.
          */
 
-        Logger::write(sprintf('Start checking if %s file exists.', self::FIREWALL_CONFIG_FILE));
-        if (file_exists(self::FIREWALL_CONFIG_FILE) === false) {
-            Logger::write(sprintf('The file %s is not exists.', self::FIREWALL_CONFIG_FILE));
-            Logger::write(sprintf('Write new file %s.', self::FIREWALL_CONFIG_FILE));
-            FileSystem::write(self::FIREWALL_CONFIG_FILE, []);
+        Logger::write(sprintf('Start checking if %s file exists.', self::configFile()));
+        if (file_exists(self::configFile()) === false) {
+            Logger::write(sprintf('The file %s is not exists.', self::configFile()));
+            Logger::write(sprintf('Write new file %s.', self::configFile()));
+            FileSystem\Yaml::emitFile(self::configFile(), []);
         }
 
-        Logger::write(sprintf('End checking if %s file exists.', self::FIREWALL_CONFIG_FILE));
+        Logger::write(sprintf('End checking if %s file exists.', self::configFile()));
 
         /*
          * Check firewall logs file existent.
          */
 
-        Logger::write(sprintf('Start checking if %s file exists.', self::FIREWALL_LOG_FILE));
-        if (file_exists(self::FIREWALL_LOG_FILE) === false) {
-            Logger::write(sprintf('The file %s is not exists.', self::FIREWALL_LOG_FILE));
-            Logger::write(sprintf('Write new file %s.', self::FIREWALL_LOG_FILE));
-            FileSystem::write(self::FIREWALL_LOG_FILE, []);
+        Logger::write(sprintf('Start checking if %s file exists.', self::logFile()));
+        if (file_exists(self::logFile()) === false) {
+            Logger::write(sprintf('The file %s is not exists.', self::logFile()));
+            Logger::write(sprintf('Write new file %s.', self::logFile()));
+            FileSystem::makeDirectory(dirname(self::logFile()));
+            FileSystem\Yaml::emitFile(self::logFile(), []);
         }
 
-        Logger::write(sprintf('End checking if %s file exists.', self::FIREWALL_LOG_FILE));
+        Logger::write(sprintf('End checking if %s file exists.', self::logFile()));
 
         /*
          * Check read permission of configuration file.
          */
 
-        Logger::write(sprintf('Start checking read permission of %s.', self::FIREWALL_CONFIG_FILE));
-        if (is_readable(self::FIREWALL_CONFIG_FILE) === true) {
+        Logger::write(sprintf('Start checking read permission of %s.', self::configFile()));
+        if (is_readable(self::configFile()) === true) {
             /*
              * check configuration file's content are valid array
              */
 
-            $oldConfiguration = JSON::decodeToArray(FileSystem::read(self::FIREWALL_CONFIG_FILE));
-            Logger::write(sprintf('Start of test whether the content of %s file can be converted to array format.', self::FIREWALL_CONFIG_FILE));
+            $oldConfiguration = FileSystem\Yaml::parseFile(self::configFile());
+            Logger::write(
+                sprintf(
+                    'Start of test whether the content of %s file can be converted to array format.',
+                    self::configFile()
+                )
+            );
             if (is_array($oldConfiguration) === true) {
-                Logger::write(sprintf('Converted %s for content into array format.', self::FIREWALL_CONFIG_FILE));
-                Logger::write(sprintf('Load array format content into runtime from %s.', self::FIREWALL_CONFIG_FILE));
-                $this->firewallConfiguration = $oldConfiguration;
+                Logger::write(sprintf('Converted %s for content into array format.', self::configFile()));
+                Logger::write(sprintf('Load array format content into runtime from %s.', self::configFile()));
+                $this->config = $oldConfiguration;
             }
 
-            Logger::write(sprintf('End of test whether the content of %s file can be converted to array format.', self::FIREWALL_CONFIG_FILE));
+            Logger::write(
+                sprintf(
+                    'End of test whether the content of %s file can be converted to array format.',
+                    self::configFile()
+                )
+            );
             /*
              * Check the firewall configuration is empty or not
              * if it empty, then configuration reset with default
              */
 
-            Logger::write(sprintf('Start checking whether the %s file is empty.', self::FIREWALL_CONFIG_FILE));
-            if (count($this->firewallConfiguration) > 0) {
+            Logger::write(sprintf('Start checking whether the %s file is empty.', self::configFile()));
+            if (count($this->config) > 0) {
                 /*
                  * we need to array match
                  * if return false, then we need to replace and continue
                  */
 
                 Logger::write('Check different of runtime configuration and required keys.');
-                if (count(array_diff_assoc(self::REQUIRED_KEYS, $this->firewallConfiguration)) > 0) {
+                if (count(array_diff_assoc(self::REQUIRED_KEYS, $this->config)) > 0) {
                     Logger::write('Different found from runtime configuration and required keys.');
-                    $replaced = array_replace_recursive($this->firewallConfiguration, self::REQUIRED_KEYS);
+                    $replaced = array_replace_recursive($this->config, self::REQUIRED_KEYS);
                     if ($replaced !== null) {
                         Logger::write('Load changed configuration into runtime configuration.');
-                        $this->firewallConfiguration = $replaced;
+                        $this->config = $replaced;
                     }
                 }
             } else {
@@ -265,111 +288,426 @@ class Firewall extends Base
                  * merge to default configuration
                  */
 
-                Logger::write(sprintf('The content of %s is not empty.', self::FIREWALL_CONFIG_FILE));
+                Logger::write(sprintf('The content of %s is not empty.', self::configFile()));
                 Logger::write('Merging default configuration into runtime configuration.');
-                $this->firewallConfiguration = array_merge_recursive(self::REQUIRED_KEYS, self::BUILT_IN_CONFIG);
+                $this->config = array_merge_recursive(self::REQUIRED_KEYS, self::BUILT_IN_CONFIG);
             }//end if
 
-            Logger::write(sprintf('End checking whether the %s file is empty.', self::FIREWALL_CONFIG_FILE));
+            Logger::write(sprintf('End checking whether the %s file is empty.', self::configFile()));
             /*
              * if loaded firewall configuration is not valid array,
              * then delete configuration file and write new default data
              */
 
             Logger::write('Check required attribute of runtime configuration.');
-            if (count($this->firewallConfiguration) === 10) {
+            if (count($this->config) === 10) {
                 Logger::write('Attribute missing found from runtime configuration.');
-                $config = array_replace_recursive($this->firewallConfiguration, self::BUILT_IN_CONFIG);
+                $config = array_replace_recursive($this->config, self::BUILT_IN_CONFIG);
                 if ($config !== null) {
                     Logger::write('Load changed configuration into runtime configuration.');
-                    $this->firewallConfiguration = $config;
+                    $this->config = $config;
                 }
             }
-
             /*
              * if firewall configuration file is empty,
              * then create configuration file and write new default data
              */
 
-            Logger::write(sprintf('Check content array conversation of %s.', self::FIREWALL_CONFIG_FILE));
-            if (is_array(JSON::decodeToArray(FileSystem::read(self::FIREWALL_CONFIG_FILE))) === true) {
-                $firewallArrayKeys = array_keys($this->firewallConfiguration);
-                $firewallFileArrayKeys = array_keys(JSON::decodeToArray(FileSystem::read(self::FIREWALL_CONFIG_FILE)));
+            Logger::write(sprintf('Check content array conversation of %s.', self::configFile()));
+            if (is_array(FileSystem\Yaml::parseFile(self::configFile())) === true) {
+                $firewallArrayKeys = array_keys($this->config);
+                $firewallFileArrayKeys = array_keys(FileSystem\Yaml::parseFile(self::configFile()));
 
-                Logger::write('Check different of runtime configuration and stored configuraiton.');
+                Logger::write('Check different of runtime configuration and stored configuration.');
                 if (count(array_diff_assoc($firewallArrayKeys, $firewallFileArrayKeys)) > 0) {
-                    Logger::write('Write the difference of runtime configuration and stored configuraiton.');
-                    $this->createConfiguration($this->firewallConfiguration);
+                    Logger::write('Write the difference of runtime configuration and stored configuration.');
+                    $this->createConfiguration($this->config);
                 }
             } else {
                 Logger::write('Write current runtime configuration.');
-                $this->createConfiguration($this->firewallConfiguration);
+                $this->createConfiguration($this->config);
             }
         } else {
-            Logger::write(sprintf('Read permission denied. Unable to read %s.', self::FIREWALL_CONFIG_FILE));
-            throw new RuntimeException('Read permission denied. Unable to read root' . self::FIREWALL_CONFIG_FILE);
+            Logger::write(sprintf('Read permission denied. Unable to read %s.', self::configFile()));
+            throw new RuntimeException('Read permission denied. Unable to read root' . self::configFile());
         }//end if
 
-        Logger::write(sprintf('End checking read permission of %s.', self::FIREWALL_CONFIG_FILE));
+        Logger::write(sprintf('End checking read permission of %s.', self::configFile()));
     }//end loadConfig()
 
 
     /**
-     * Create configuration file.
+     * Create http request to system for the client
      *
-     * @param array $config Array format of Firewall configuration.
-     *
-     * @return void
+     * @return bool
      * @throws JsonException Throw exception when json error occurred.
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    private function createConfiguration(array $config): void
+    public function isRequestAccepted(): bool
     {
-        Logger::write('Check runtime configuration file existent.');
-        if (file_exists(self::FIREWALL_CONFIG_FILE) === true) {
-            Logger::write('Remove exists runtime configuration file.');
-            FileSystem::remove(self::FIREWALL_CONFIG_FILE);
+        Logger::write('Check domain installation file of framework.');
+        if (file_exists(self::siteFile()) === true) {
+            $installedHost = FileSystem\Yaml::parseFile(self::siteFile());
+            if (in_array(INSTALLED_HOST_NAME, $installedHost, true) === true) {
+                //start new worldclass test
+                //print_r($installedHost, false);
+
+                Logger::write('Filter request of client.');
+                $this->filterHttpRequest();
+
+                return $this->makeAction();
+            } else {
+                $this->actionStatus = 'blocked';
+                $this->actionComponent = 'domain';
+                return $this->makeAction();
+            }
+        } else {
+            Logger::write('Adding new domain to install framework.');
+            FileSystem\Yaml::emitFile(self::siteFile(), [
+                INSTALLED_HOST_NAME,
+            ]);
+            return $this->makeAction();
         }
 
-        Logger::write(sprintf('Write firewall configuration into %s.', self::FIREWALL_CONFIG_FILE));
-        FileSystem::write(self::FIREWALL_CONFIG_FILE, $config);
-    }//end createConfiguration()
+
+        Logger::write('Start create http request to system for the client');
+
+        // Start test website's host name
+        Logger::write(
+            sprintf(
+                'Start testing requested hostname [%s] with firewall configuration.',
+                self::$browser->getURLHostname()
+            )
+        );
+
+        if ($this->config['hostname'] !== self::$browser->getURLHostname()) {
+            Logger::write(
+                sprintf(
+                    'Requested hostname [%s] does not matched with firewall configuration.',
+                    self::$browser->getURLHostname()
+                )
+            );
+
+            $this->actionStatus = 'blocked';
+            $this->actionComponent = 'domain';
+            return $this->makeAction();
+
+//            if ($this->isListed(IP::get()) === false) {
+//                Logger::write(
+//                    sprintf(
+//                        'Firewall block the browser %s of client.',
+//                        self::$browser->getBrowserNameFull()
+//                    )
+//                );
+//                $this->actionStatus = 'blocked';
+//                $this->actionComponent = 'browser';
+//            }
+        }
+
+        Logger::write(
+            sprintf(
+                'End testing requested hostname [%s] with firewall configuration.',
+                self::$browser->getURLHostname()
+            )
+        );
+
+        // End test website's host name
+        // Start test the ip address of client.
+        Logger::write(
+            sprintf(
+                'Start searching client ip [%s] in banned list.',
+                IP::get()
+            )
+        );
+
+        if (in_array(IP::get(), $this->config['ip']['banned'], true) === true) {
+            Logger::write(
+                sprintf(
+                    'The client ip address [%s] found in banned list.',
+                    IP::get()
+                )
+            );
+
+            Logger::write('Firewall banned the ip address.');
+            $this->actionStatus = 'banned';
+            $this->actionComponent = 'IP';
+        }
+
+        Logger::write(
+            sprintf(
+                'End searching client ip [%s] in banned list.',
+                IP::get()
+            )
+        );
+        // End test the ip address of client.
+        // Start test the web browser of client.
+        Logger::write(
+            sprintf(
+                'Start searching client browser [%s] in banned list.',
+                self::$browser->getBrowserNameFull()
+            )
+        );
+
+        if (in_array(strtolower(self::$browser->getBrowserName()), $this->config['browser']['banned'], true) === true) {
+            Logger::write(
+                sprintf(
+                    'The client browser [%s] found in banned list.',
+                    self::$browser->getBrowserNameFull()
+                )
+            );
+            Logger::write('Firewall banned the browser.');
+            $this->actionStatus = 'banned';
+            $this->actionComponent = 'browser';
+        }
+
+        Logger::write(
+            sprintf(
+                'End searching client browser [%s] in banned list.',
+                self::$browser->getBrowserNameFull()
+            )
+        );
+
+        // End test the web browser of client.
+        // Start test the device name of client.
+        Logger::write(
+            sprintf(
+                'Start searching client device [%s] in banned list.',
+                self::$browser->getDeviceNameFull()
+            )
+        );
+        if (in_array(Character::lower(self::$browser->getDeviceName()), $this->config['device']['banned'], true) === true) {
+            Logger::write(
+                sprintf(
+                    'The client device [%s] found in banned list.',
+                    self::$browser->getDeviceNameFull()
+                )
+            );
+            Logger::write('Firewall banned the device.');
+            $this->actionStatus = 'banned';
+            $this->actionComponent = 'device';
+        }
+
+        Logger::write(
+            sprintf(
+                'End searching client device [%s] in banned list.',
+                self::$browser->getDeviceNameFull()
+            )
+        );
+
+        // End test the device name of client.
+        // Start test the continent name of client.
+        Logger::write(
+            sprintf(
+                'Start searching client continent [%s] in banned list.',
+                IP::getInfo('continent')
+            )
+        );
+        if (in_array(Character::lower(IP::getInfo('continent')), $this->config['continent']['banned'], true)) {
+            Logger::write(
+                sprintf(
+                    'The client continent [%s] found in banned list.',
+                    IP::getInfo('continent')
+                )
+            );
+            Logger::write('Firewall banned the continent.');
+            $this->actionStatus = 'banned';
+            $this->actionComponent = 'continent';
+        }
+
+        Logger::write(
+            sprintf(
+                'End searching client continent [%s] in banned list.',
+                IP::getInfo('continent')
+            )
+        );
+
+        // End test the continent name of client.
+        // Start test the country name of client.
+        Logger::write('Start searching client country in banned list.');
+        if (in_array(Character::lower(IP::getInfo('country')), $this->config['country']['banned'], true) === true) {
+            Logger::write('The client continent found in banned list.');
+            Logger::write('Firewall banned the country.');
+            $this->actionStatus = 'banned';
+            $this->actionComponent = 'country';
+        }
+
+        Logger::write('End searching client country in banned list.');
+
+        // End test the country name of client.
+        // Start test the country name of client.
+        Logger::write('Start searching client city in banned list.');
+        if (in_array(Character::lower(IP::getInfo('city')), $this->config['city']['banned'], true)) {
+            Logger::write('The client city found in banned list.');
+            Logger::write('Firewall banned the city.');
+            $this->actionStatus = 'banned';
+            $this->actionComponent = 'city';
+        }
+
+        Logger::write('End searching client city in banned list.');
+
+        // End test the city name of client.
+        // Start test the country name of client.
+        Logger::write('Start searching client browser in black list.');
+        if ($this->config['browser']['order'] === 'blacklist') {
+            // we need to check block time of browser,
+            // if the time has been expire, then unblock th browser
+            // or show protection message
+            if (in_array(Character::lower(self::$browser->getBrowserName()), $this->config['browser']['blacklist'], true) === true) {
+                Logger::write('The client browser found in black list.');
+                Logger::write('Firewall banned the browser.');
+                $this->actionStatus = 'blocked';
+                $this->actionComponent = 'browser';
+            }
+        }
+        Logger::write('End searching client browser in banned list.');
+
+        // End test the city name of client.
+
+        if ($this->config['browser']['order'] === 'whitelist') {
+            if (in_array(Character::lower(self::$browser->getBrowserName()), $this->config['browser']['whitelist'], true) === false) {
+                $this->actionStatus = 'blocked';
+                $this->actionComponent = 'browser';
+            }
+        }
+
+        if ($this->config['ip']['order'] === 'blacklist') {
+            // we need to check block time of ip,
+            // if the time has been expire, then unblock the ip
+            // or show protection message
+            if (in_array(IP::get(), $this->config['ip']['blacklist'], true) === false) {
+                $this->actionStatus = 'blocked';
+                $this->actionComponent = 'IP';
+            }
+        }
+
+        if ($this->config['ip']['order'] === 'whitelist') {
+            if (!in_array(IP::get(), $this->config['ip']['whitelist'], true)) {
+                $this->actionStatus = 'blocked';
+                $this->actionComponent = 'IP';
+            }
+        }
+
+        if ($this->config['device']['order'] === 'blacklist') {
+            // we need to check block time of device,
+            // if the time has been expire, then unblock the device
+            // or show protection message
+            if (in_array(IP::get(), $this->config['device']['blacklist'], true)) {
+                $this->actionStatus = 'blocked';
+                $this->actionComponent = 'device';
+            }
+        }
+
+        if ($this->config['device']['order'] === 'whitelist') {
+            if (!in_array(IP::get(), $this->config['device']['whitelist'], true)) {
+                $this->actionStatus = 'blocked';
+                $this->actionComponent = 'device';
+            }
+        }
+
+        if ($this->config['continent']['order'] === 'blacklist') {
+            // we need to check block time of continent,
+            // if the time has been expire, then unblock the continent
+            // or show protection message
+            if (in_array(IP::get(), $this->config['continent']['blacklist'], true)) {
+                $this->actionStatus = 'blocked';
+                $this->actionComponent = 'continent';
+            }
+        }
+
+        if ($this->config['continent']['order'] === 'whitelist') {
+            if (!in_array(IP::get(), $this->config['continent']['whitelist'], true)) {
+                $this->actionStatus = 'blocked';
+                $this->actionComponent = 'continent';
+            }
+        }
+
+        if ($this->config['country']['order'] === 'blacklist') {
+            // we need to check block time of country,
+            // if the time has been expire, then unblock th country
+            // or show protection message
+            if (in_array(IP::get(), $this->config['country']['blacklist'], true)) {
+                $this->actionStatus = 'blocked';
+                $this->actionComponent = 'country';
+            }
+        }
+
+        if ($this->config['country']['order'] === 'whitelist') {
+            if (!in_array(IP::get(), $this->config['country']['whitelist'], true)) {
+                $this->actionStatus = 'blocked';
+                $this->actionComponent = 'country';
+            }
+        }
+
+        if ($this->config['city']['order'] === 'blacklist') {
+            // we need to check block time of city,
+            // if the time has been expire, then unblock the city
+            // or show protection message
+            if (in_array(IP::get(), $this->config['city']['blacklist'], true)) {
+                $this->actionStatus = 'blocked';
+                $this->actionComponent = 'city';
+            }
+        }
+
+        if ($this->config['city']['order'] === 'whitelist') {
+            if (!in_array(IP::get(), $this->config['city']['whitelist'], true)) {
+                $this->actionStatus = 'blocked';
+                $this->actionComponent = 'city';
+            }
+        }
+
+
+        Logger::write('End create http request to system for the client');
+    }//end makeAccessRequest()
+
+    /**
+     * @throws JsonException
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     */
+    private function makeAction(): bool
+    {
+        if (!empty($this->actionStatus) && ($this->actionStatus === 'banned' || 'blocked')) {
+            $this->storeFirewallLogs();
+            $this->accessDefence($this->actionStatus);
+            $this->accessRequestProcessed = false;
+        } else {
+            $this->actionStatus = 'granted';
+            $this->actionComponent = 'browser';
+            $this->storeFirewallLogs();
+            $this->accessDefence($this->actionStatus);
+            $this->accessRequestProcessed = true;
+        }
+
+        return $this->accessRequestProcessed;
+    }
 
 
     /**
      * Filter http request of client.
      *
-     * @param array $request Array format of request.
-     *
      * @return void
      * @throws JsonException Throw exception when json error occurred.
-     * @throws Exception Throw exception when error occurred.
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    private function filterHttpRequest(array $request): void
+    private function filterHttpRequest(): void
     {
         /*
          * Check accept attribute in firewall configuration
          * if not exists, then reset configuration.
          */
 
-        Logger::write('Start checking whether the accept keyword is in the $this->firewallConfiguration variable.');
-        // Debug::preOutput($this->firewallConfiguration);
-        if (array_key_exists('accept', $this->firewallConfiguration) === false) {
-            Logger::write('Check faild. Accept keyword not found in $this->firewallConfiguration variable.');
-            Logger::write('Cteating new config with built in config.');
-            $this->createConfiguration(self::BUILT_IN_CONFIG);
+        Logger::write('Start checking whether the accept keyword is in the $this->config variable.');
+        if (array_key_exists('accept', $this->config) === false) {
+            Logger::write('Check failed. Accept keyword not found in $this->config variable.');
+            Logger::write('Creating new config with built in config.');
+            $this->createConfiguration(array_merge_recursive(self::REQUIRED_KEYS, self::BUILT_IN_CONFIG));
         }
 
-        Logger::write('End checking whether the accept keyword is in the $this->firewallConfiguration variable.');
+        Logger::write('End checking whether the accept keyword is in the $this->config variable.');
 
         Logger::write('Start checking whether REQUEST_METHOD keyword in $_SERVER variable.');
-        // Debug::preOutput($_SERVER);
         Logger::write('Search accept keyword in allowed request method variable.');
-        if (in_array(
-                Character::lower(ArrayCollection::value($_SERVER, 'REQUEST_METHOD')),
-                ArrayCollection::value(ArrayCollection::value($this->firewallConfiguration, 'accept'), 'request-method'),
-                true
-            ) === false
-        ) {
+        $requestMethodAll = $this->config['accept']['request-method'];
+        if (in_array(Character::lower($_SERVER['REQUEST_METHOD']), $requestMethodAll, true) === false) {
             Logger::write('Browser Request Method was not found in the authorized method.');
             Logger::write('Check whether the client\'s IP is blocked');
             if ($this->isListed(IP::get()) === false) {
@@ -381,37 +719,149 @@ class Firewall extends Base
         }
 
         Logger::write('End checking whether REQUEST_METHOD keyword in $_SERVER variable.');
-
-        // Debug::preOutput($request);
-        Logger::write('Start testing whether the request array');
-
-        if (is_array($request) === true) {
-            foreach ($request as $key => $value) {
-                if (strtolower($key) === 'host') {
-                    // Debug::preOutput($key);
-                    // Debug::preOutput($value);
-                    // Debug::preOutput(ArrayCollection::value($this->firewallConfiguration, 'hostname'));
-                    Logger::write('Start testing requested hostname with firewall configuration.');
-                    if (ArrayCollection::value($this->firewallConfiguration, 'hostname') !== $value) {
-                        // Debug::preOutput('Host name did not matched');
-                        // Debug::preOutput('Firewall take a action');
-                        if ($this->isListed(IP::get()) === false) {
-                            Logger::write('Requested hostname not matched with firewall configuration.');
-                            Logger::write(sprintf('Firewall has been block access of %s.', IP::get()));
-                            $this->actionStatus = 'blocked';
-                            $this->actionComponent = 'browser';
-                            $this->addIP(IP::get(), 'blocked');
-                        }
-                    }
-
-                    Logger::write('End testing requested hostname with firewall configuration.');
-                    // exit();
-                }//end if
-            }//end foreach
-        }//end if
-
-        Logger::write('End testing whether the request array');
     }//end filterHttpRequest()
+
+
+    /**
+     * Create configuration file.
+     *
+     * @param array $config Array format of Firewall configuration.
+     *
+     * @return void
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     */
+    private function createConfiguration(array $config): void
+    {
+        Logger::write('Check runtime configuration file existent.');
+        if (file_exists(self::configFile()) === true) {
+            Logger::write('Remove exists runtime configuration file.');
+            FileSystem::remove(self::configFile());
+        }
+
+        Logger::write(sprintf('Write firewall configuration into %s.', self::configFile()));
+        FileSystem\Yaml::emitFile(self::configFile(), $config);
+    }//end createConfiguration()
+
+
+    /**
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws JsonException
+     * @throws PermissionRequiredException
+     */
+    private function storeFirewallLogs(): void
+    {
+        $logs = [];
+        if (is_writable(self::logFile()) === true) {
+            //check point for log file content length
+            if (FileSystem::read(self::logFile()) !== '') {
+                $content = FileSystem\Yaml::parseFile(self::logFile());
+
+                //Merge file's content with logs
+                if (is_array($content) === true) {
+                    $logs = array_merge($logs, $content);
+                }//end if
+
+                if (count($logs) !== 0) {
+                    if (array_key_exists($this->actionStatus, $logs) === true) {
+                        if (is_array($logs[$this->actionStatus]) === true) {
+                            if (array_key_exists(IP::get(), $logs[$this->actionStatus]) === true) {
+                                if (is_array($logs[$this->actionStatus][IP::get()]) === true && array_key_exists(self::$browser->getBrowserNameFull(), $logs[$this->actionStatus][IP::get()]) === true) {
+                                    if (is_array($logs[$this->actionStatus][IP::get()][self::$browser->getBrowserNameFull()]) === true && array_key_exists(Time::getToday(), $logs[$this->actionStatus][IP::get()][self::$browser->getBrowserNameFull()]) === false) {
+                                        $browserNameFull = self::$browser->getBrowserNameFull();
+                                        FileSystem\Yaml::emitFile(
+                                            self::logFile(),
+                                            array_merge(
+                                                $logs,
+                                                [
+                                                    $this->actionStatus => array_merge(
+                                                        $logs[$this->actionStatus],
+                                                        [
+                                                            IP::get() => array_merge(
+                                                                $logs[$this->actionStatus][IP::get()],
+                                                                [
+                                                                    self::$browser->getBrowserNameFull() => array_merge(
+                                                                        $logs[$this->actionStatus][IP::get()][$browserNameFull],
+                                                                        $this->getNewVisitorTimeBased()
+                                                                    ),
+                                                                ]
+                                                            ),
+                                                        ]
+                                                    ),
+                                                ]
+                                            )
+                                        );
+                                    }//end if
+                                }
+                                else {
+                                    FileSystem\Yaml::emitFile(
+                                        self::logFile(),
+                                        array_merge(
+                                            $logs,
+                                            [
+                                                $this->actionStatus => array_merge(
+                                                    $logs[$this->actionStatus],
+                                                    [
+                                                        IP::get() => array_merge(
+                                                            $logs[$this->actionStatus][IP::get()],
+                                                            $this->getNewVisitorBrowserBased()
+                                                        ),
+                                                    ]
+                                                ),
+                                            ]
+                                        )
+                                    );
+                                }//end if
+                            }
+                            else {
+                                // We should write file with ip based user
+                                FileSystem\Yaml::emitFile(
+                                    self::logFile(),
+                                    array_merge(
+                                        $logs[$this->actionStatus],
+                                        $this->getNewVisitorIPBased()
+                                    ),
+                                );
+                            }//end if
+                        } else {
+                            // We should write file with ip based user
+                            FileSystem\Yaml::emitFile(
+                                self::logFile(),
+                                array_merge($logs, [
+                                    $this->actionStatus => array_merge(
+                                        $logs[$this->actionStatus],
+                                        $this->getNewVisitorIPBased()
+                                    ),
+                                ])
+                            );
+                        }//end if
+
+                    } else {
+                        FileSystem\Yaml::emitFile(
+                            self::logFile(),
+                            array_merge($logs, [
+                                $this->actionStatus => $this->getNewVisitorIPBased(),
+                            ])
+                        );
+                    }//end if
+                } else {
+                    FileSystem\Yaml::emitFile(
+                        self::logFile(),
+                        [$this->actionStatus => $this->getNewVisitorIPBased()]
+                    );
+                }//end if
+            } else {
+                FileSystem\Yaml::emitFile(
+                    self::logFile(),
+                    [$this->actionStatus => $this->getNewVisitorIPBased()]
+                );
+            }//end if
+
+            //write file with new data
+
+        } else {
+            throw new PermissionRequiredException('Unable to read/write ' . self::logFile());
+        }//end if
+    }//end storeFirewallLogs()
 
 
     /**
@@ -425,10 +875,10 @@ class Firewall extends Base
     private function isListed(string $ip, string $list = 'banned'): bool
     {
         $list = ($list === 'blocked') ? 'blacklist' : 'banned';
-        foreach ($this->firewallConfiguration as $key => $value) {
-            if (is_array($this->firewallConfiguration[$key]) === true
-                && array_key_exists($list, $this->firewallConfiguration[$key]) === true
-                && in_array($ip, $this->firewallConfiguration[$key][$list], true) === true
+        foreach ($this->config as $key => $value) {
+            if (is_array($this->config[$key]) === true
+                && array_key_exists($list, $this->config[$key]) === true
+                && in_array($ip, $this->config[$key][$list], true) === true
             ) {
                 return true;
             }
@@ -445,7 +895,9 @@ class Firewall extends Base
      * @param string $list List name of action.
      *
      * @return void
-     * @throws JsonException|Exception Throw exception when error occurred.
+     * @throws JsonException Throw exception when error occurred.
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function addIP(string $ip, string $list): void
     {
@@ -470,7 +922,7 @@ class Firewall extends Base
                 break;
 
             default:
-                throw new Exception('Unexpected value');
+                throw new \Mishusoft\Exceptions\RuntimeException('Unexpected value');
         }//end switch
     }//end addIP()
 
@@ -485,11 +937,11 @@ class Firewall extends Base
      */
     private function removeFromList(string $ip, string $list): void
     {
-        if (in_array($ip, $this->firewallConfiguration['ip'][$list], true) === true) {
-            foreach ($this->firewallConfiguration['ip'][$list] as $key => $value) {
-                if ($this->firewallConfiguration['ip'][$list][$key] === $ip) {
-                    unset($this->firewallConfiguration['ip'][$list][$key]);
-                    asort($this->firewallConfiguration['ip'][$list]);
+        if (in_array($ip, $this->config['ip'][$list], true) === true) {
+            foreach ($this->config['ip'][$list] as $key => $value) {
+                if ($this->config['ip'][$list][$key] === $ip) {
+                    unset($this->config['ip'][$list][$key]);
+                    asort($this->config['ip'][$list]);
                 }
             }
         }
@@ -503,13 +955,13 @@ class Firewall extends Base
      * @param string $list List name of action.
      *
      * @return void
-     * @throws JsonException Throw exception when json error occurred.
+     * @throws JsonException|\Mishusoft\Exceptions\JsonException Throw exception when json error occurred.
      */
     private function updateList(string $ip, string $list): void
     {
-        if (in_array($ip, $this->firewallConfiguration['ip'][$list], true) === false) {
-            $this->firewallConfiguration['ip'][$list][] = $ip;
-            FileSystem::saveToFile(self::FIREWALL_CONFIG_FILE, JSON::encodeToString($this->firewallConfiguration));
+        if (in_array($ip, $this->config['ip'][$list], true) === false) {
+            $this->config['ip'][$list][] = $ip;
+            FileSystem::saveToFile(Framework::configFile(), JSON::encodeToString($this->config));
         }
     }//end updateList()
 
@@ -763,441 +1215,6 @@ class Firewall extends Base
 
 
     /**
-     * Create http request to system for the client
-     *
-     * @return void
-     * @throws JsonException Throw exception when json error occurred.
-     */
-    public function makeAccessRequest(): void
-    {
-        Logger::write('Start create http request to system for the client');
-        /*
-         * $cpuLoad = getServerLoad();
-         *         if (is_null($cpuLoad)) {
-         *             echo "CPU load not estimable (maybe too old Windows or missing rights at Linux or Windows)";
-         *         }
-         *         else {
-         *             echo $cpuLoad . "%";
-         *         }*/
-        /*
-            off check cpu load*/
-        /*
-            if ($this->getServerLoad() >= 80) {
-            Firewall::runtimeFailure("Service Unavailable", [
-                "debug" => ["file" => (new Browser())->getURLPath(), "location" => (new Browser())->getVisitedPage(), "description" => "CPU process over loaded!! Current: %" . $this->getServerLoad()],
-                "error" => ["description" => "Server is very busy. Please try again later!!"]
-            ]);
-        }*/
-
-        // Start test website's host name
-        Logger::write(
-            sprintf(
-                'Start testing requested hostname [%s] with firewall configuration.',
-                self::$browser->getURLHostname()
-            )
-        );
-
-        if ($this->firewallConfiguration['hostname'] !== self::$browser->getURLHostname()) {
-            Logger::write(
-                sprintf(
-                    'Requested hostname [%s] does not matched with firewall configuration.',
-                    self::$browser->getURLHostname()
-                )
-            );
-            if ($this->isListed(IP::get()) === false) {
-                Logger::write(
-                    sprintf(
-                        'Firewall block the browser %s of client.',
-                        self::$browser->getBrowserNameFull()
-                    )
-                );
-                $this->actionStatus = 'blocked';
-                $this->actionComponent = 'browser';
-            }
-        }
-
-        Logger::write(
-            sprintf(
-                'End testing requested hostname [%s] with firewall configuration.',
-                self::$browser->getURLHostname()
-            )
-        );
-
-        // End test website's host name
-        // Start test the ip address of client.
-        Logger::write(
-            sprintf(
-                'Start searching client ip [%s] in banned list.',
-                IP::get()
-            )
-        );
-
-        if (in_array(IP::get(), $this->firewallConfiguration['ip']['banned'], true) === true) {
-            Logger::write(
-                sprintf(
-                    'The client ip address [%s] found in banned list.',
-                    IP::get()
-                )
-            );
-
-            Logger::write('Firewall banned the ip address.');
-            $this->actionStatus = 'banned';
-            $this->actionComponent = 'IP';
-        }
-
-        Logger::write(
-            sprintf(
-                'End searching client ip [%s] in banned list.',
-                IP::get()
-            )
-        );
-        // End test the ip address of client.
-        // Start test the web browser of client.
-        Logger::write(
-            sprintf(
-                'Start searching client browser [%s] in banned list.',
-                self::$browser->getBrowserNameFull()
-            )
-        );
-
-        if (in_array(strtolower(self::$browser->getBrowserName()), $this->firewallConfiguration['browser']['banned'], true) === true) {
-            Logger::write(
-                sprintf(
-                    'The client browser [%s] found in banned list.',
-                    self::$browser->getBrowserNameFull()
-                )
-            );
-            Logger::write('Firewall banned the browser.');
-            $this->actionStatus = 'banned';
-            $this->actionComponent = 'browser';
-        }
-
-        Logger::write(
-            sprintf(
-                'End searching client browser [%s] in banned list.',
-                self::$browser->getBrowserNameFull()
-            )
-        );
-
-        // End test the web browser of client.
-        // Start test the device name of client.
-        Logger::write(
-            sprintf(
-                'Start searching client device [%s] in banned list.',
-                self::$browser->getDeviceNameFull()
-            )
-        );
-        if (in_array(Character::lower(self::$browser->getDeviceName()), $this->firewallConfiguration['device']['banned'], true) === true) {
-            Logger::write(
-                sprintf(
-                    'The client device [%s] found in banned list.',
-                    self::$browser->getDeviceNameFull()
-                )
-            );
-            Logger::write('Firewall banned the device.');
-            $this->actionStatus = 'banned';
-            $this->actionComponent = 'device';
-        }
-
-        Logger::write(
-            sprintf(
-                'End searching client device [%s] in banned list.',
-                self::$browser->getDeviceNameFull()
-            )
-        );
-
-        // End test the device name of client.
-        // Start test the continent name of client.
-        Logger::write(
-            sprintf(
-                'Start searching client continent [%s] in banned list.',
-                IP::getInfo('continent')
-            )
-        );
-        if (in_array(Character::lower(IP::getInfo('continent')), $this->firewallConfiguration['continent']['banned'], true)) {
-            Logger::write(
-                sprintf(
-                    'The client continent [%s] found in banned list.',
-                    IP::getInfo('continent')
-                )
-            );
-            Logger::write('Firewall banned the continent.');
-            $this->actionStatus = 'banned';
-            $this->actionComponent = 'continent';
-        }
-
-        Logger::write(
-            sprintf(
-                'End searching client continent [%s] in banned list.',
-                IP::getInfo('continent')
-            )
-        );
-
-        // End test the continent name of client.
-        // Start test the country name of client.
-        Logger::write('Start searching client country in banned list.');
-        if (in_array(Character::lower(IP::getInfo('country')), $this->firewallConfiguration['country']['banned'], true) === true) {
-            Logger::write('The client continent found in banned list.');
-            Logger::write('Firewall banned the country.');
-            $this->actionStatus = 'banned';
-            $this->actionComponent = 'country';
-        }
-
-        Logger::write('End searching client country in banned list.');
-
-        // End test the country name of client.
-        // Start test the country name of client.
-        Logger::write('Start searching client city in banned list.');
-        if (in_array(Character::lower(IP::getInfo('city')), $this->firewallConfiguration['city']['banned'], true)) {
-            Logger::write('The client city found in banned list.');
-            Logger::write('Firewall banned the city.');
-            $this->actionStatus = 'banned';
-            $this->actionComponent = 'city';
-        }
-
-        Logger::write('End searching client city in banned list.');
-
-        // End test the city name of client.
-        // Start test the country name of client.
-        Logger::write('Start searching client browser in black list.');
-        if ($this->firewallConfiguration['browser']['order'] === 'blacklist') {
-            // we need to check block time of browser,
-            // if the time has been expire, then unblock th browser
-            // or show protection message
-            if (in_array(Character::lower(self::$browser->getBrowserName()), $this->firewallConfiguration['browser']['blacklist'], true) === true) {
-                Logger::write('The client browser found in black list.');
-                Logger::write('Firewall banned the browser.');
-                $this->actionStatus = 'blocked';
-                $this->actionComponent = 'browser';
-            }
-        }
-        Logger::write('End searching client browser in banned list.');
-
-        // End test the city name of client.
-
-        if ($this->firewallConfiguration['browser']['order'] === 'whitelist') {
-            if (in_array(Character::lower(self::$browser->getBrowserName()), $this->firewallConfiguration['browser']['whitelist'], true) === false) {
-                $this->actionStatus = 'blocked';
-                $this->actionComponent = 'browser';
-            }
-        }
-
-        if ($this->firewallConfiguration['ip']['order'] === 'blacklist') {
-            // we need to check block time of ip,
-            // if the time has been expire, then unblock the ip
-            // or show protection message
-            if (in_array(IP::get(), $this->firewallConfiguration['ip']['blacklist'], true) === false) {
-                $this->actionStatus = 'blocked';
-                $this->actionComponent = 'IP';
-            }
-        }
-
-        if ($this->firewallConfiguration['ip']['order'] === 'whitelist') {
-            if (!in_array(IP::get(), $this->firewallConfiguration['ip']['whitelist'], true)) {
-                $this->actionStatus = 'blocked';
-                $this->actionComponent = 'IP';
-            }
-        }
-
-        if ($this->firewallConfiguration['device']['order'] === 'blacklist') {
-            // we need to check block time of device,
-            // if the time has been expire, then unblock the device
-            // or show protection message
-            if (in_array(IP::get(), $this->firewallConfiguration['device']['blacklist'], true)) {
-                $this->actionStatus = 'blocked';
-                $this->actionComponent = 'device';
-            }
-        }
-
-        if ($this->firewallConfiguration['device']['order'] === 'whitelist') {
-            if (!in_array(IP::get(), $this->firewallConfiguration['device']['whitelist'], true)) {
-                $this->actionStatus = 'blocked';
-                $this->actionComponent = 'device';
-            }
-        }
-
-        if ($this->firewallConfiguration['continent']['order'] === 'blacklist') {
-            // we need to check block time of continent,
-            // if the time has been expire, then unblock the continent
-            // or show protection message
-            if (in_array(IP::get(), $this->firewallConfiguration['continent']['blacklist'], true)) {
-                $this->actionStatus = 'blocked';
-                $this->actionComponent = 'continent';
-            }
-        }
-
-        if ($this->firewallConfiguration['continent']['order'] === 'whitelist') {
-            if (!in_array(IP::get(), $this->firewallConfiguration['continent']['whitelist'], true)) {
-                $this->actionStatus = 'blocked';
-                $this->actionComponent = 'continent';
-            }
-        }
-
-        if ($this->firewallConfiguration['country']['order'] === 'blacklist') {
-            // we need to check block time of country,
-            // if the time has been expire, then unblock th country
-            // or show protection message
-            if (in_array(IP::get(), $this->firewallConfiguration['country']['blacklist'], true)) {
-                $this->actionStatus = 'blocked';
-                $this->actionComponent = 'country';
-            }
-        }
-
-        if ($this->firewallConfiguration['country']['order'] === 'whitelist') {
-            if (!in_array(IP::get(), $this->firewallConfiguration['country']['whitelist'], true)) {
-                $this->actionStatus = 'blocked';
-                $this->actionComponent = 'country';
-            }
-        }
-
-        if ($this->firewallConfiguration['city']['order'] === 'blacklist') {
-            // we need to check block time of city,
-            // if the time has been expire, then unblock the city
-            // or show protection message
-            if (in_array(IP::get(), $this->firewallConfiguration['city']['blacklist'], true)) {
-                $this->actionStatus = 'blocked';
-                $this->actionComponent = 'city';
-            }
-        }
-
-        if ($this->firewallConfiguration['city']['order'] === 'whitelist') {
-            if (!in_array(IP::get(), $this->firewallConfiguration['city']['whitelist'], true)) {
-                $this->actionStatus = 'blocked';
-                $this->actionComponent = 'city';
-            }
-        }
-
-        if (!empty($this->actionStatus) && ($this->actionStatus === 'banned' || 'blocked')) {
-            $this->storeFirewallLogs();
-            $this->accessDefence($this->actionStatus);
-            $this->accessRequestProcessed = false;
-        } else {
-            $this->actionStatus = 'granted';
-            $this->actionComponent = 'browser';
-            $this->storeFirewallLogs();
-            $this->accessDefence($this->actionStatus);
-            $this->accessRequestProcessed = true;
-        }
-
-        Logger::write('End create http request to system for the client');
-    }//end makeAccessRequest()
-
-
-    /**
-     * @throws JsonException
-     */
-    private function storeFirewallLogs(): void
-    {
-        $logs = [];
-        if (is_readable(self::FIREWALL_LOG_FILE) === true) {
-            if (FileSystem::read(self::FIREWALL_LOG_FILE) !== '') {
-                $content = json_decode(FileSystem::read(self::FIREWALL_LOG_FILE), true, 512, JSON_THROW_ON_ERROR);
-                if (is_array($content) === true) {
-                    $logs = array_merge($logs, $content);
-                } else {
-                    $logs = array_merge($logs, self::BUILT_IN_CONFIG);
-                }
-
-                if (count($logs) !== 0) {
-                    if (array_key_exists($this->actionStatus, $logs) === true) {
-                        if (is_array($logs[$this->actionStatus]) === true
-                            && array_key_exists(IP::get(), $logs[$this->actionStatus]) === true
-                        ) {
-                            if (is_array($logs[$this->actionStatus][IP::get()]) === true
-                                && array_key_exists(self::$browser->getBrowserNameFull(), $logs[$this->actionStatus][IP::get()]) === true
-                            ) {
-                                if (is_array($logs[$this->actionStatus][IP::get()][self::$browser->getBrowserNameFull()]) === true
-                                    && array_key_exists(Time::getToday(), $logs[$this->actionStatus][IP::get()][self::$browser->getBrowserNameFull()]) === false && is_readable(self::FIREWALL_LOG_FILE) === true
-                                ) {
-                                    FileSystem::saveToFile(
-                                        self::FIREWALL_LOG_FILE,
-                                        JSON::encodeToString(
-                                            array_merge(
-                                                $logs,
-                                                [
-                                                    $this->actionStatus => array_merge(
-                                                        $logs[$this->actionStatus],
-                                                        [
-                                                            IP::get() => array_merge(
-                                                                $logs[$this->actionStatus][IP::get()],
-                                                                [
-                                                                    self::$browser->getBrowserNameFull() => array_merge(
-                                                                        $logs[$this->actionStatus][IP::get()][self::$browser->getBrowserNameFull()],
-                                                                        $this->getNewVisitorTimeBased()
-                                                                    ),
-                                                                ]
-                                                            ),
-                                                        ]
-                                                    ),
-                                                ]
-                                            )
-                                        )
-                                    );
-                                }//end if
-                            } elseif (is_writable(self::FIREWALL_LOG_FILE) === true) {
-                                FileSystem::saveToFile(
-                                    self::FIREWALL_LOG_FILE,
-                                    JSON::encodeToString(
-                                        array_merge(
-                                            $logs,
-                                            [
-                                                $this->actionStatus => array_merge(
-                                                    $logs[$this->actionStatus],
-                                                    [
-                                                        IP::get() => array_merge(
-                                                            $logs[$this->actionStatus][IP::get()],
-                                                            $this->getNewVisitorBrowserBased()
-                                                        ),
-                                                    ]
-                                                ),
-                                            ]
-                                        )
-                                    )
-                                );
-                            }//end if
-                        } elseif (is_writable(self::FIREWALL_LOG_FILE) === true) {
-                            FileSystem::saveToFile(
-                                self::FIREWALL_LOG_FILE,
-                                json_encode(
-                                    array_merge(
-                                        $logs,
-                                        [
-                                            $this->actionStatus => array_merge($logs[$this->actionStatus], $this->getNewVisitorIPBased()),
-                                        ]
-                                    )
-                                )
-                            );
-                        }//end if
-                    } elseif (is_writable(self::FIREWALL_LOG_FILE) === true) {
-                        FileSystem::saveToFile(
-                            self::FIREWALL_LOG_FILE,
-                            JSON::encodeToString(
-                                array_merge(
-                                    $logs,
-                                    [$this->actionStatus => $this->getNewVisitorIPBased()]
-                                )
-                            )
-                        );
-                    }//end if
-                } elseif (is_writable(self::FIREWALL_LOG_FILE) === true) {
-                    FileSystem::saveToFile(
-                        self::FIREWALL_LOG_FILE,
-                        JSON::encodeToString([$this->actionStatus => $this->getNewVisitorIPBased()])
-                    );
-                }//end if
-            } elseif (is_writable(self::FIREWALL_LOG_FILE) === true) {
-                FileSystem::saveToFile(
-                    self::FIREWALL_LOG_FILE,
-                    JSON::encodeToString([$this->actionStatus => $this->getNewVisitorIPBased()])
-                );
-            }//end if
-        } else {
-            throw new RuntimeException('Permission denied. Unable to read ' . self::FIREWALL_LOG_FILE);
-        }//end if
-    }//end storeFirewallLogs()
-
-
-    /**
      * @return array[]
      * @throws JsonException
      */
@@ -1243,13 +1260,15 @@ class Firewall extends Base
     /**
      * @param string $status
      * @throws JsonException
+     * @throws \Mishusoft\Exceptions\RuntimeException|\Mishusoft\Exceptions\JsonException
      */
     private function accessDefence(string $status): void
     {
-        if (array_key_exists("$status-device-access-limit-filter", $this->firewallConfiguration) and $this->firewallConfiguration["$status-device-access-limit-filter"] === 'enable') {
-            if (is_readable(self::FIREWALL_LOG_FILE) === true) {
-                if (!empty(file_get_contents(self::FIREWALL_LOG_FILE))) {
-                    $logs = json_decode(file_get_contents(self::FIREWALL_LOG_FILE), true, 512, JSON_THROW_ON_ERROR);
+        if (array_key_exists("$status-device-access-limit-filter", $this->config)
+            && $this->config["$status-device-access-limit-filter"] === 'enable') {
+            if (is_readable(self::logFile()) === true) {
+                if (!empty(file_get_contents(self::logFile()))) {
+                    $logs = FileSystem\Yaml::parseFile(self::logFile());
                     if (is_array($logs) && count($logs) !== 0) {
                         if (array_key_exists($status, $logs)) {
                             if (is_array($logs[$status]) && array_key_exists(IP::get(), $logs[$status])) {
@@ -1259,11 +1278,11 @@ class Firewall extends Base
                                     foreach ($logs[$status][IP::get()][$browser] as $time => $log) {
                                         //$times = array_merge($times, [$time => $log]);
                                         $times[$time] = $log;
-                                        if (!array_key_exists(IP::get(), $this->firewallConfiguration["$status-device-count-down-time"])) {
-                                            $this->firewallConfiguration["$status-device-count-down-time"][IP::get()] = '';
+                                        if (!array_key_exists(IP::get(), $this->config["$status-device-count-down-time"])) {
+                                            $this->config["$status-device-count-down-time"][IP::get()] = '';
                                         }
 
-                                        if ($time >= $this->firewallConfiguration["$status-device-count-down-time"][IP::get()]) {
+                                        if ($time >= $this->config["$status-device-count-down-time"][IP::get()]) {
                                             //$countdownTimes = array_merge($countdownTimes, [$time => $log]);
                                             $countdownTimes[$time] = $log;
                                         }
@@ -1286,16 +1305,16 @@ class Firewall extends Base
                                     /*
                                         check countdown time is set or not*/
                                     // Returns true if $x is greater than or equal to $y
-                                    if (array_key_exists("$status-device-count-down-time", $this->firewallConfiguration)) {
+                                    if (array_key_exists("$status-device-count-down-time", $this->config)) {
                                         // check countdown time is not empty, then calculate accurate time
-                                        if (!empty($this->firewallConfiguration["$status-device-count-down-time"])) {
+                                        if (!empty($this->config["$status-device-count-down-time"])) {
                                             /*
-                                                preOutput($this->firewallConfiguration["$status-device-count-down-time"]);*/
+                                                preOutput($this->config["$status-device-count-down-time"]);*/
                                             // Set new time, if set time to current time more than 60 minutes, set new time as current time
-                                            $this->lastVisitDuration = (int)((strtotime($now['visit-time']) - strtotime($this->firewallConfiguration["$status-device-count-down-time"][IP::get()])) / 60);
-                                            if ($this->lastVisitDuration >= $this->firewallConfiguration["$status-device-time-limit"]) {
-                                                $this->firewallConfiguration["$status-device-count-down-time"][IP::get()] = $now['visit-time'];
-                                                FileSystem::saveToFile(self::FIREWALL_CONFIG_FILE, json_encode($this->firewallConfiguration, JSON_THROW_ON_ERROR));
+                                            $this->lastVisitDuration = (int)((strtotime($now['visit-time']) - strtotime($this->config["$status-device-count-down-time"][IP::get()])) / 60);
+                                            if ($this->lastVisitDuration >= $this->config["$status-device-time-limit"]) {
+                                                $this->config["$status-device-count-down-time"][IP::get()] = $now['visit-time'];
+                                                FileSystem::saveToFile(Framework::configFile(), json_encode($this->config, JSON_THROW_ON_ERROR));
                                             } //end if
 
                                             else {
@@ -1303,9 +1322,9 @@ class Firewall extends Base
                                                 $this->lastVisitDuration = (int)((strtotime($now['visit-time']) - strtotime($previous['visit-time'])) / 60);
                                                 if ($this->lastVisitDuration > 10) {
                                                     // preOutput("Setting previous time!!");
-                                                    $this->firewallConfiguration["$status-device-count-down-time"][IP::get()] = $previous['visit-time'];
-                                                    FileSystem::saveToFile(self::FIREWALL_CONFIG_FILE, json_encode($this->firewallConfiguration, JSON_THROW_ON_ERROR));
-                                                    // preOutput($this->firewallConfiguration);
+                                                    $this->config["$status-device-count-down-time"][IP::get()] = $previous['visit-time'];
+                                                    FileSystem::saveToFile(Framework::configFile(), json_encode($this->config, JSON_THROW_ON_ERROR));
+                                                    // preOutput($this->config);
                                                 }
                                             }
                                         } //end if
@@ -1313,40 +1332,40 @@ class Firewall extends Base
                                         else {
                                             // Set new time, if current time to previous time set more than 60 minutes
                                             $this->lastVisitDuration = (int)((strtotime($now['visit-time']) - strtotime($previous['visit-time'])) / 60);
-                                            if ($this->lastVisitDuration >= $this->firewallConfiguration["$status-device-time-limit"]) {
-                                                $this->firewallConfiguration["$status-device-count-down-time"][IP::get()] = $now['visit-time'];
+                                            if ($this->lastVisitDuration >= $this->config["$status-device-time-limit"]) {
+                                                $this->config["$status-device-count-down-time"][IP::get()] = $now['visit-time'];
                                             } else {
                                                 // Set new time, if current time to previous time set less than 60 minutes
-                                                $this->firewallConfiguration["$status-device-count-down-time"][IP::get()] = $previous['visit-time'];
+                                                $this->config["$status-device-count-down-time"][IP::get()] = $previous['visit-time'];
                                             }
 
-                                            FileSystem::saveToFile(self::FIREWALL_CONFIG_FILE, json_encode($this->firewallConfiguration, JSON_THROW_ON_ERROR));
-                                            // preOutput($this->firewallConfiguration["$status-device-count-down-time"]);
+                                            FileSystem::saveToFile(Framework::configFile(), json_encode($this->config, JSON_THROW_ON_ERROR));
+                                            // preOutput($this->config["$status-device-count-down-time"]);
                                         }
                                     } //end if
 
                                     else {
                                         // Autoload::log("Preparing to create firewall configuration file.");
-                                        if (FileSystem::IsWriteable(self::FIREWALL_CONFIG_FILE)) {
-                                            file_put_contents(self::FIREWALL_CONFIG_FILE, json_encode(self::BUILT_IN_CONFIG, JSON_THROW_ON_ERROR));
+                                        if (FileSystem::IsWriteable(Framework::configFile())) {
+                                            file_put_contents(Framework::configFile(), json_encode(self::BUILT_IN_CONFIG, JSON_THROW_ON_ERROR));
                                         }
 
                                         // load firewall configuration in runtime
-                                        $this->firewallConfiguration = self::BUILT_IN_CONFIG;
+                                        $this->config = self::BUILT_IN_CONFIG;
                                     }
 
-                                    $this->controller = !empty($this->firewallConfiguration["$status-device-count-down-time"][IP::get()]) ? $this->firewallConfiguration["$status-device-count-down-time"][IP::get()] : $previous['visit-time'];
+                                    $this->controller = !empty($this->config["$status-device-count-down-time"][IP::get()]) ? $this->config["$status-device-count-down-time"][IP::get()] : $previous['visit-time'];
                                     /*
                                         check limit time format key and value*/
                                     // $minutes = (strtotime("2012-09-21 12:12:22") - time()) / 60;
-                                    if (array_key_exists("$status-device-limit-time-format", $this->firewallConfiguration)) {
+                                    if (array_key_exists("$status-device-limit-time-format", $this->config)) {
                                         // check limit time format key value and it is second, so calculate duration as seconds
-                                        if ($this->firewallConfiguration["$status-device-limit-time-format"] === 'second') {
+                                        if ($this->config["$status-device-limit-time-format"] === 'second') {
                                             $this->duration = (int)(strtotime($now['visit-time']) - strtotime($this->controller));
                                             $this->separator = 'seconds';
                                         } //end if
 
-                                        elseif ($this->firewallConfiguration["$status-device-limit-time-format"] === 'minute') {
+                                        elseif ($this->config["$status-device-limit-time-format"] === 'minute') {
                                             $this->duration = (int)((strtotime($now['visit-time']) - strtotime($this->controller)) / 60);
                                             $this->separator = 'minutes';
                                         } // otherwise calculate duration as hours
@@ -1359,12 +1378,12 @@ class Firewall extends Base
 
                                     else {
                                         // Autoload::log("Preparing to create firewall configuration file.");
-                                        if (FileSystem::IsWriteable(self::FIREWALL_CONFIG_FILE)) {
-                                            file_put_contents(self::FIREWALL_CONFIG_FILE, json_encode(self::BUILT_IN_CONFIG, JSON_THROW_ON_ERROR));
+                                        if (FileSystem::IsWriteable(Framework::configFile())) {
+                                            file_put_contents(Framework::configFile(), json_encode(self::BUILT_IN_CONFIG, JSON_THROW_ON_ERROR));
                                         }
 
                                         // load firewall configuration in runtime
-                                        $this->firewallConfiguration = self::BUILT_IN_CONFIG;
+                                        $this->config = self::BUILT_IN_CONFIG;
                                     }
                                 }//end if
 
@@ -1380,21 +1399,21 @@ class Firewall extends Base
                                     preOutput("You have last visited $this->last_visit_duration minutes before.");
                                     //preOutput($first);
                                     preOutput("You have visited $this->duration $this->separator.");
-                                    preOutput("Your access time limit: " . $this->firewallConfiguration["$status-device-time-limit"]);
-                                 preOutput("Your access limit: " . $this->firewallConfiguration["$status-device-access-limit"]);*/
+                                    preOutput("Your access time limit: " . $this->config["$status-device-time-limit"]);
+                                 preOutput("Your access limit: " . $this->config["$status-device-access-limit"]);*/
 
                                 /*
                                     make decisions*/
                                 // check time limit is set or not
-                                if (array_key_exists("$status-device-time-limit", $this->firewallConfiguration)) {
+                                if (array_key_exists("$status-device-time-limit", $this->config)) {
                                     /*
                                         check access time is over or not*/
                                     // access time is not over in limited (60 minute) time
-                                    if ($this->firewallConfiguration["$status-device-time-limit"] > $this->duration) {
+                                    if ($this->config["$status-device-time-limit"] > $this->duration) {
                                         // check access time
-                                        if (array_key_exists("$status-device-access-limit", $this->firewallConfiguration)) {
+                                        if (array_key_exists("$status-device-access-limit", $this->config)) {
                                             // Returns true if access is greater than access limit
-                                            if (count($countdownTimes) >= $this->firewallConfiguration["$status-device-access-limit"]) {
+                                            if (count($countdownTimes) >= $this->config["$status-device-access-limit"]) {
                                                 if (!$this->isListed(IP::get()) and $status === 'blocked') {
                                                     $this->addIP(IP::get(), 'banned');
                                                 }
@@ -1410,10 +1429,10 @@ class Firewall extends Base
                         }//end if
                     }//end if
                 } else {
-                    throw new RuntimeException('Unable to continue. ' . self::FIREWALL_LOG_FILE . ' is empty');
+                    throw new RuntimeException('Unable to continue. ' . self::logFile() . ' is empty');
                 }//end if
             } else {
-                throw new RuntimeException('Permission denied. Unable to read ' . self::FIREWALL_LOG_FILE);
+                throw new RuntimeException('Permission denied. Unable to read ' . self::logFile());
             }//end if
         }//end if
     }//end accessDefence()
@@ -1424,12 +1443,16 @@ class Firewall extends Base
      */
     public function defenceActivate(): void
     {
+        print_r($this->actionStatus, false);
+        print_r($this->actionComponent, false);
+
+
         if ($this->actionStatus === 'banned' || $this->actionStatus === 'blocked') {
             //print_r(self::$browser->getUserAgent().PHP_EOL, false);
             //print_r(self::$browser->getBrowserName().PHP_EOL, false);
-            if (array_key_exists('ui', self::$browser->getBrowserDetails(self::$browser->getBrowserName()))) {
+            if (array_key_exists('ui', self::$browser->details())) {
                 //GranParadiso/3.0.8 is text browser
-                if (Character::lower(self::$browser->getBrowserDetails(self::$browser->getBrowserName())['ui']) === Character::lower('FullTextMode')) {
+                if (Character::lower(self::$browser->details()['ui']) === Character::lower('FullTextMode')) {
                     $msg_lb = "\n";
                     $this->msgTab = "\t";
                     $this->defenseMessageShow('', $msg_lb, $this->actionStatus, $this->actionComponent, 'text');
@@ -1437,7 +1460,13 @@ class Firewall extends Base
                     $msg_lb = '<br/>';
                     $this->msgTab = '&emsp;';
                     self::$color = 'red';
-                    $this->defenseMessageShow('Access', $msg_lb, $this->actionStatus, $this->actionComponent, 'graphic');
+                    $this->defenseMessageShow(
+                        'Access',
+                        $msg_lb,
+                        $this->actionStatus,
+                        $this->actionComponent,
+                        'graphic'
+                    );
                 }
             } else {
                 $msg_lb = '<br/>';
@@ -1655,54 +1684,54 @@ class Firewall extends Base
         Ui::setDocumentTitle($documentTitle);
 
         //Ui::element(Ui::getDocumentHeadElement(), 'style', ['text'=>$cssContent]);
-        Ui::elementList(Ui::getDocumentHeadElement(), array('link' => Storage::getAssignableWebFavicons()));
+        Ui::elementList(Ui::getDocumentHeadElement(), ['link' => Storage::getAssignableWebFavicons()]);
 
         Ui::elementList(
             Ui::getDocumentHeadElement(),
-            array(
-                'meta' => array(
-                    array('charset' => 'UTF-8'),
-                    array(
+            [
+                'meta' => [
+                    ['charset' => 'UTF-8'],
+                    [
                         'name' => 'viewport',
                         'content' => 'width=device-width, initial-scale=1.0',
-                    ),
-                    array(
+                    ],
+                    [
                         'name' => 'keywords',
                         'content' => 'blocked, banned, denied',
-                    ),
-                    array(
+                    ],
+                    [
                         'name' => 'company',
                         'content' => Framework::COMPANY_NAME,
-                    ),
-                    array(
+                    ],
+                    [
                         'name' => 'author',
                         'content' => Framework::AUTHOR_NAME,
-                    ),
-                    array(
+                    ],
+                    [
                         'name' => 'description',
                         'content' => $documentTitle,
-                    ),
+                    ],
                     //<meta name="keywords" content="Put your keywords here.">
                     //<meta name="company" content="Put your company name here.">
                     //<meta name="author" content="Put your author name here.">
                     //<meta name="description" content="Put your description here.">
-                ),
-                'link' => array(
-                    array(
+                ],
+                'link' => [
+                    [
                         'rel' => 'stylesheet',
                         'href' => Storage::toDataUri('css/app.css'),
-                    ),
-//                    array(
-//                        'rel'  => 'stylesheet',
-//                        'href' => Storage::toDataUri('css/font-face.css'),
-//                    ),
-//                    array(
-//                        'rel'  => 'stylesheet',
-//                        'href' => Storage::toDataUri('css/colors.css'),
-//                    ),
-                ),
+                    ],
+                    //                    array(
+                    //                        'rel'  => 'stylesheet',
+                    //                        'href' => Storage::toDataUri('css/font-face.css'),
+                    //                    ),
+                    //                    array(
+                    //                        'rel'  => 'stylesheet',
+                    //                        'href' => Storage::toDataUri('css/colors.css'),
+                    //                    ),
+                ],
                 //'style' => array(array('text'=>$cssContent))
-            )
+            ]
         );
         //<link rel="icon" type="image/vnd.microsoft.icon" sizes="16x16" href="{$layoutParams.logoFolder}favicon.ico">
 
@@ -1723,16 +1752,16 @@ class Firewall extends Base
                                     ],
                                     'table' => [
                                         ['class' => 'details', 'child' => [
-                                            'tr' => self::getAssignableVisitorDetails($reasonOfBlock)
+                                            'tr' => self::getAssignableVisitorDetails($reasonOfBlock),
                                         ]],
                                     ],
                                 ]],
                                 //['class' => 'application-content-footer','text' => 'application-footer',],
                             ],
-                        ]]
-                    ]
-                ]]
-            ]
+                        ]],
+                    ],
+                ]],
+            ],
         ]]);
 
 
@@ -1745,101 +1774,101 @@ class Firewall extends Base
     private static function getAssignableVisitorDetails(string $reasonOfBlock): array
     {
         $webBrowser = new Browser();
-        $visitorDetails = array();
+        $visitorDetails = [];
 
         // Reason of block.
-        $visitorDetails[] = array(
+        $visitorDetails[] = [
             'class' => 'details-item',
             'child' => [
                 'td' => [
                     ['class' => 'details-item-title', 'text' => 'Reason :',],
                     ['class' => 'details-item-details', 'text' => $reasonOfBlock,],
-                ]
+                ],
             ],
-        );
+        ];
 
         // Client ip address capturing.
-        $visitorDetails[] = array(
+        $visitorDetails[] = [
             'class' => 'details-item',
             'child' => [
                 'td' => [
                     ['class' => 'details-item-title', 'text' => 'Your IP :',],
                     ['class' => 'details-item-details', 'text' => IP::get(),],
-                ]
+                ],
             ],
-        );
+        ];
 
         // Current web url capturing.
-        $visitorDetails[] = array(
+        $visitorDetails[] = [
             'class' => 'details-item',
             'child' => [
                 'td' => [
                     ['class' => 'details-item-title', 'text' => 'URL :',],
                     ['class' => 'details-item-details', 'text' => $webBrowser::getVisitedPage(),],
-                ]
+                ],
             ],
-        );
+        ];
 
         // Capturing the user agent of browser.
-        $visitorDetails[] = array(
+        $visitorDetails[] = [
             'class' => 'details-item',
             'child' => [
                 'td' => [
                     ['class' => 'details-item-title', 'text' => 'User Agent :',],
                     ['class' => 'details-item-details', 'text' => $webBrowser->getUserAgent(),],
-                ]
+                ],
             ],
-        );
+        ];
 
         // avoid error country capturing
         if (Character::lower(IP::getCountry()) !== 'unknown') {
-            $visitorDetails[] = array(
+            $visitorDetails[] = [
                 'class' => 'details-item',
                 'child' => [
                     'td' => [
                         ['class' => 'details-item-title', 'text' => 'Country :',],
-                        ['class' => 'details-item-details', 'text' => IP::getCountry() . ' ('. IP::get() .')',],
-                    ]
+                        ['class' => 'details-item-details', 'text' => IP::getCountry() . ' (' . IP::get() . ')',],
+                    ],
                 ],
-            );
+            ];
         } elseif (Character::lower(IP::getInfo('country')) !== 'unknown location') {
-            $visitorDetails[] = array(
+            $visitorDetails[] = [
                 'class' => 'details-item',
                 'child' => [
                     'td' => [
                         ['class' => 'details-item-title', 'text' => 'Country :',],
-                        ['class' => 'details-item-details', 'text' => IP::getInfo('country') . ' ('. IP::get() .')',],
-                    ]
+                        ['class' => 'details-item-details', 'text' => IP::getInfo('country') . ' (' . IP::get() . ')',],
+                    ],
                 ],
-            );
+            ];
         } else {
-            $visitorDetails[] = array(
+            $visitorDetails[] = [
                 'class' => 'details-item',
                 'child' => [
                     'td' => [
                         ['class' => 'details-item-title', 'text' => 'Country :',],
-                        ['class' => 'details-item-details', 'text' => 'Unknown' . ' ('. IP::get() .')',],
-                    ]
+                        ['class' => 'details-item-details', 'text' => 'Unknown' . ' (' . IP::get() . ')',],
+                    ],
                 ],
-            );
+            ];
         }//end if
 
         // avoid error browser capturing
         if (Character::lower($webBrowser->getBrowserName()) !== 'unknown') {
-            $visitorDetails[] = array(
+            $visitorDetails[] = [
                 'class' => 'details-item',
                 'child' => [
                     'td' => [
                         ['class' => 'details-item-title', 'text' => 'Browser :',],
                         ['class' => 'details-item-details', 'text' => $webBrowser->getBrowserNameFull(),],
-                    ]
+                    ],
                 ],
-            );
+            ];
         }
 
         // avoid error device capturing
         if (Character::lower($webBrowser->getDeviceName()) !== 'unknown') {
-            $visitorDetails[] = array(
+            $visitorDetails[] = [
                 'class' => 'details-item',
                 'child' => [
                     'td' => [
@@ -1848,9 +1877,9 @@ class Firewall extends Base
                             'class' => 'details-item-details',
                             'text' => $webBrowser->getDeviceName() . ' (' . strtolower($webBrowser->getBrowserArchitecture()) . ')',
                         ],
-                    ]
+                    ],
                 ],
-            );
+            ];
         }
 
 

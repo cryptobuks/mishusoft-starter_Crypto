@@ -85,7 +85,7 @@ class Ui
     /**
      * @param string $document
      */
-    public static function start(string $document='html'): void
+    public static function start(string $document = 'html'): void
     {
         self::$domDocumentType      = $document;
         self::$domDocument          = new DOMDocument('1.0', 'UTF-8');
@@ -104,7 +104,7 @@ class Ui
                 http_response_code($http_response_code);
                 echo '<?xml version="1.0" encoding="UTF-8"?>';
                 echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.sitemaps.org/schemas/sitemap/0.9 https://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">';
-            break;
+                break;
 
             case 'html':
             default:
@@ -113,7 +113,7 @@ class Ui
                 http_response_code($http_response_code);
                 echo '<!DOCTYPE html>';
                 echo self::$domDocument->saveHTML();
-            break;
+                break;
         }
     }//end execute()
 
@@ -171,7 +171,7 @@ class Ui
      * @param callable|null $callback
      * @param null          $http_response_code
      */
-    public static function HtmlInterface(string $title_content='', callable $callback=null, $http_response_code=null): void
+    public static function HtmlInterface(string $title_content = '', callable $callback = null, $http_response_code = null): void
     {
         // self::$domDocument = new DOMDocument($version = '1.0', $encoding = 'UTF-8');
         self::$domDocument = new DOMDocument('1.0', 'UTF-8');
@@ -222,7 +222,7 @@ class Ui
      * @param  array                              $attributes
      * @return mixed
      */
-    public static function element(DOMElement|DOMNode|DOMDocument $parent, string $tag, array $attributes=[]): DOMNode
+    public static function element(DOMElement|DOMNode|DOMDocument $parent, string $tag, array $attributes = []): DOMNode
     {
         //print_r(func_get_args(), false);
         $root = self::make($tag);
@@ -268,7 +268,7 @@ class Ui
      * @param DOMElement $htmlElement
      * @param array      $qualifiedNames
      */
-    public static function updateAttribute(DOMElement $htmlElement, array $qualifiedNames=[]): void
+    public static function updateAttribute(DOMElement $htmlElement, array $qualifiedNames = []): void
     {
         foreach ($qualifiedNames as $qualifiedName => $updatedName) {
             if (self::hasAttribute($htmlElement, $qualifiedName) === true) {
@@ -299,7 +299,7 @@ class Ui
      * @param DOMElement $htmlElement
      * @param array      $qualifiedOptions
      */
-    public static function updateAttributesValue(DOMElement $htmlElement, array $qualifiedOptions=[]): void
+    public static function updateAttributesValue(DOMElement $htmlElement, array $qualifiedOptions = []): void
     {
         foreach ($qualifiedOptions as $qualifiedName => $attributes) {
             if (self::hasAttribute($htmlElement, $qualifiedName) === true) {
@@ -319,7 +319,7 @@ class Ui
      * @param string     $qualifiedName
      * @param array      $values
      */
-    public static function setAttributeValue(DOMElement $htmlElement, string $qualifiedName, array $values=[]): void
+    public static function setAttributeValue(DOMElement $htmlElement, string $qualifiedName, array $values = []): void
     {
         if (self::hasAttribute($htmlElement, $qualifiedName) === true) {
             foreach ($values as $value) {
@@ -342,7 +342,7 @@ class Ui
      * @param  array      $attributes
      * @return DOMNode
      */
-    public static function makeElement(DOMElement $parent, string $tag, array $attributes=[]): DOMNode
+    public static function makeElement(DOMElement $parent, string $tag, array $attributes = []): DOMNode
     {
         $root = self::$domDocument->createElement($tag);
         self::assignAttributes($root, $attributes);
@@ -354,7 +354,7 @@ class Ui
      * @param DOMElement | DOMNode | DOMDocument $parentElement
      * @param array                              $list
      */
-    public static function elementList(DOMElement|DOMNode|DOMDocument $parentElement, array $list=[])
+    public static function elementList(DOMElement|DOMNode|DOMDocument $parentElement, array $list = [])
     {
         self::makeElementBatch($parentElement, $list);
     }//end elementList()
@@ -364,7 +364,7 @@ class Ui
      * @param DOMElement $parentElement
      * @param array      $list
      */
-    public static function makeElementBatch(DOMElement $parentElement, array $list=[])
+    public static function makeElementBatch(DOMElement $parentElement, array $list = [])
     {
         /*
          * $ui->makeElement($body, 'script', ['type' => 'application/javascript', 'src' => join([CMOS::Data("framework")->host->url . 'libraries/js/mishusoft.js'])]);
@@ -409,7 +409,7 @@ class Ui
      * @param  array      $attributes
      * @return DOMElement
      */
-    public static function assignAttributes(DOMElement $htmlElement, array $attributes=[]): DOMElement
+    public static function assignAttributes(DOMElement $htmlElement, array $attributes = []): DOMElement
     {
         if (count($attributes) > 0) {
             if (array_key_exists(strtolower('text'), $attributes) === true) {
@@ -450,7 +450,7 @@ class Ui
      * @param  array      $attributes
      * @return DOMElement
      */
-    public static function _setAttributes(DOMElement $htmlElement, array $attributes=[]): DOMElement
+    public static function _setAttributes(DOMElement $htmlElement, array $attributes = []): DOMElement
     {
         if (count($attributes) !== 0) {
             foreach ($attributes as $node => $value) {

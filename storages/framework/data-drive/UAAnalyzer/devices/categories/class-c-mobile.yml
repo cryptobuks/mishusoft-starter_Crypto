@@ -1,0 +1,80 @@
+# ref : https://developers.whatismybrowser.com/useragents/explore/hardware_type_specific/mobile/
+
+
+# iOS
+# WeatherReport/1.0.2 CFNetwork/485.13.9 Darwin/11.0.0
+
+- identifiers:
+    device-mobile-ios:
+      pattern:
+        name: '(darwin)'
+        separator: true
+        version: true
+      functional: true
+
+  info: device mobile-ios
+
+# iPhone
+# Mozilla/5.0 (iPhone; CPU iPhone OS 14_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Instagram 184.0.0.23.117 (iPhone8,1; iOS 14_1; ru_RU; ru-RU; scale=2.00; 750x1334; 285355179)
+  #Mozilla/5.0 (iPhone; CPU iPhone OS 14_4_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Instagram 189.0.0.28.119 (iPhone10,1; iOS 14_4_2; ru_CN; ru-CN; scale=2.00; 750x1334; 293153398)
+
+- identifiers:
+    device-mobile-iphone:
+      pattern:
+        name: '(iphone)'
+        separator: false
+        version: true
+      functional: true
+    device-mobile-iphone-another:
+      pattern:
+        name: '(iphone)'
+        separator: true
+        version: true
+      functional: true
+#    device-mobile-iphone-os:
+#      pattern:
+#        name: '(iphone\s+os)'
+#        separator: true
+#        version: true
+#      functional: true
+    device-mobile-iphone-fallback:
+      pattern:
+        name: '(iphone)'
+        separator: false
+        version: false
+      functional: true
+
+  info: device mobile-iphone
+
+# Android
+# Mozilla/5.0 (Linux; U; Android 2.2) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1
+# Mozilla/5.0 (Linux; Android 7.1.2; AFTMM Build/NS6265; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/70.0.3538.110 Mobile Safari/537.36
+# Mozilla/5.0 (Android 9; Mobile; rv:68.0) Gecko/68.0 Firefox/68.0
+
+- identifiers:
+    device-mobile-android:
+      pattern:
+        name: '(android)'
+        separator: true
+        version: true
+      functional: true
+    device-mobile-android-fallback:
+      pattern:
+        name: '(android)'
+        separator: false
+        version: false
+      functional: true
+
+  info: device mobile-android
+
+# Mobile
+
+- identifiers:
+    device-mobile:
+      pattern:
+        name: '(mobile|phone)'
+        separator: false
+        version: false
+      functional: true
+
+  info: device mobile
