@@ -40,27 +40,27 @@
     "update:composer.pacakges": "composer update",
     "update:composer.packages.global": "composer /home/abir/.config/composer update",
 
-    "update:robots": "php ./Sources/Release.php -compile -s ./Sources/robots.txt -d ./public_html/robots.txt",
-    "update:index.php": "php ./Sources/Release.php -compile -s ./Sources/app.php -d ./public_html/index.php",
-    "update:index.html": "php ./Sources/Release.php -compile -s ./Sources/app.html -d ./public_html/index.html",
-    "update:framework": "php ./Sources/Release.php -compile -s ./Sources/Mishusoft/Framework -d ./public_html/Framework",
-    "update:ema": "php ./Sources/Release.php -compile -s ./Sources/Mishusoft/Ema -d ./public_html/app/Ema",
-    "update:packages": "php ./Sources/Release.php -compile -s ./Sources/Mishusoft/Packages -d ./public_html/app/Packages",
-    "update:themes": "php ./Sources/Release.php -compile-themes -s ./Sources/Mishusoft/Views/Themes -d ./public_html/app/Themes",
-    "update:widgets": "php ./Sources/Release.php -compile -s ./Sources/Mishusoft/Widgets -d ./public_html/app/Widgets",
-    "update:widgets.components": "php ./Sources/Release.php -compile-widgets -s ./Sources/Mishusoft/Views/Widgets -d ./public_html/app/Widgets/Views",
-    "update:packages.components": "php ./Sources/Release.php -static -s ./Sources/Mishusoft/Views/Templates/Packages -d ./public_html/app/Packages && @update:packages",
+    "update:robots": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/rmishusoft-company/public/obots.txt -d ./public_html/robots.txt",
+    "update:index.php": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/public/app.php -d ./public_html/index.php",
+    "update:index.html": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/public/app.html -d ./public_html/index.html",
+    "update:framework": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Framework -d ./Framework",
+    "update:ema": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Application/Ema -d ./app/Ema",
+    "update:packages": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Application/Packages -d ./app/Packages",
+    "update:themes": "php ./Sources/mishusoft-company/Release.php -compile-themes -s ./Sources/mishusoft-company/Application/Views/Themes -d ./app/Themes",
+    "update:widgets": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Application/Widgets -d ./app/Widgets",
+    "update:widgets.components": "php ./Sources/mishusoft-company/Release.php -compile-widgets -s ./Sources/mishusoft-company/Application/Views/Widgets -d ./app/Widgets/Views",
+    "update:packages.components": "php ./Sources/mishusoft-company/Release.php -static -s ./Sources/mishusoft-company/Application/Views/Templates/Packages -d ./app/Packages && @update:packages",
 
 
-    "update:test:index.php": "php ./Sources/Release.php -test -s ./Sources/app.php -d ./public_html/index.php",
-    "update:test:index-html": "php ./Sources/Release.php -test -s ./Sources/app.html -d ./public_html/index.html",
-    "update:test:framework": "php ./Sources/Release.php -test -s ./Sources/Mishusoft/Framework -d ./public_html/Framework",
-    "update:test:ema": "php ./Sources/Release.php -test -s ./Sources/Mishusoft/Ema -d ./public_html/app/Ema",
-    "update:test:packages": "php ./Sources/Release.php -test -s ./Sources/Mishusoft/Packages -d ./public_html/app/Packages",
-    "update:test:themes": "php ./Sources/Release.php -test-themes -s ./Sources/Mishusoft/Views/Themes -d ./public_html/app/Themes",
-    "update:test:widgets": "php ./Sources/Release.php -test -s ./Sources/Mishusoft/Widgets -d ./public_html/app/Widgets",
-    "update:test:widgets.components": "php ./Sources/Release.php -test-widgets -s ./Sources/Mishusoft/Views/Widgets -d ./public_html/app/Widgets/Views",
-    "update:test:packages.components": "php ./Sources/Release.php -static -s ./Sources/Mishusoft/Views/Templates/Packages -d ./public_html/app/Packages",
+    "update:test:index.php": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/app.php -d ./public_html/index.php",
+    "update:test:index-html": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/app.html -d ./public_html/index.html",
+    "update:test:framework": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/Mishusoft/Framework -d ./public_html/Framework",
+    "update:test:ema": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/Mishusoft/Ema -d ./public_html/app/Ema",
+    "update:test:packages": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/Mishusoft/Packages -d ./public_html/app/Packages",
+    "update:test:themes": "php ./Sources/mishusoft-company/Release.php -test-themes -s ./Sources/Mishusoft/Views/Themes -d ./public_html/app/Themes",
+    "update:test:widgets": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/Mishusoft/Widgets -d ./public_html/app/Widgets",
+    "update:test:widgets.components": "php ./Sources/mishusoft-company/Release.php -test-widgets -s ./Sources/Mishusoft/Views/Widgets -d ./public_html/app/Widgets/Views",
+    "update:test:packages.components": "php ./Sources/mishusoft-company/Release.php -static -s ./Sources/Mishusoft/Views/Templates/Packages -d ./public_html/app/Packages",
 
     "test:user.agent": [
       "Composer\\Config::disableProcessTimeout",
@@ -82,10 +82,10 @@
     ],
 
 
-    "copy:storages.all": "php ./Sources/Release.php -copy -s ./Storages/ -d /srv/http/Storages/",
-    "copy:assests": "php ./Sources/Release.php -copy -s ./Storages/0/assets -d /srv/http/Storages/0/assets",
-    "copy:media": "php ./Sources/Release.php -copy -s ./Sources/Assets/media -d /srv/http/Storages/0/media",
-    "copy:errors.page": "php ./Sources/Release.php -copy -s ./Sources/Mishusoft/Views/Errors/SHtml -d /srv/http/Mishusoft/Errors",
+    "copy:storages.all": "php ./Sources/mishusoft-company/Release.php -copy -s ./storages/ -d ./storages/",
+    "copy:assests": "php ./Sources/mishusoft-company/Release.php -copy -s ./Sources/Assets -d ./storages/app/assets",
+    "copy:media": "php ./Sources/mishusoft-company/Release.php -copy -s ./Sources/Assets/media -d ./storages/app/media",
+    "copy:errors.page": "php ./Sources/mishusoft-company/Release.php -copy -s ./Sources/Mishusoft/Views/Errors/SHtml -d ./app/views/errors",
     "copy:geoip-db": "sudo -S geoipupdate && sudo cp -r /var/lib/GeoIP ./Storages/0/GeoIP",
 
     "start:server.dev": [
@@ -120,6 +120,7 @@
     "roave/security-advisories": "dev-latest",
     "squizlabs/php_codesniffer": "^3.6",
     "rector/rector": "^0.11.38",
-    "friendsofphp/php-cs-fixer": "^3.0"
+    "friendsofphp/php-cs-fixer": "^3.0",
+    "ext-calendar": "*"
   }
 }

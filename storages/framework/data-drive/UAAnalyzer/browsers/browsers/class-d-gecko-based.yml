@@ -42,3 +42,47 @@
 
   # Information maker method use it
   info: browser 1337-browser
+
+
+# Camino Browser
+# Camino Browser is a web browser developed by The Camino Project. This browser renders web pages using the Blink engine.
+
+# ref:http://www.useragentstring.com/pages/useragentstring.php?all=TRUE&name=Camino&vers=
+
+# Latest user agent list
+#//Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:1.8.0.7) Gecko/20060911 Camino/1.0.3
+#//Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:1.7.8) Gecko/20050427 Camino/0.8.4
+# Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.8; it; rv:1.9.2.28) Gecko/20130628 Camino/3.245.226 (MultiLang) (like Firefox/3.621.218)
+# Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; XH; rv:8.578.498) fr, Gecko/20121021 Camino/8.723+ (Firefox compatible)
+
+- identifiers:
+    # Pattern maker method use it
+    browser-camino-browser:
+      pattern:
+        name: (camino)
+        separator: true
+        version: true
+      functional: true
+  # Information maker method use it
+  info: browser camino-browser
+# Camino Browser
+# Camino Browser is a web browser developed by The Camino Project. This browser renders web pages using the Blink engine.
+
+# ref:http://www.useragentstring.com/pages/useragentstring.php?all=TRUE&name=Camino&vers=
+
+# Latest user agent list
+#//Mozilla/5.0 (compatible; Cliqzbot/1.0; +http://cliqz.com/company/cliqzbot)
+#//Mozilla/5.0 (compatible; Cliqzbot/3.0; +http://cliqz.com/company/cliqzbot)
+#//Mozilla/5.0 (compatible; Cliqzbot/0.1 +http://cliqz.com/company/cliqzbot)
+#//Cliqzbot/0.1 (+http://cliqz.com/company/cliqzbot)
+
+- identifiers:
+    # Pattern maker method use it
+    browser-camino-browser:
+      pattern:
+        name: (camino)
+        separator: true
+        version: true
+      functional: true
+  # Information maker method use it
+  info: browser camino-browser

@@ -3,7 +3,8 @@
 
 namespace Mishusoft\System;
 
-use Mishusoft\Utility\Character;
+use Mishusoft\Storage;
+use Mishusoft\Utility\Inflect;
 
 class Device
 {
@@ -12,20 +13,26 @@ class Device
 
     private string $osReleaseFile = '/etc/os-release';
 
-    private string $hostNameCtlFile = RUNTIME_REGISTRIES_PATH.'hostnamectl.txt';
-
-    private string $lsbReleaseFile = RUNTIME_REGISTRIES_PATH.'lsb_release.txt';
-
     private array $data = [];
 
 
     public function __construct()
     {
         if (function_exists('system')) {
-            system("hostnamectl > $this->hostNameCtlFile");
-            system("lsb_release -a > $this->lsbReleaseFile");
+            system(sprintf("hostnamectl > %s", $this->hostNameCtlFile()));
+            system(sprintf("lsb_release -a > %s", $this->lsbReleaseFile()));
         }
     }//end __construct()
+
+    private function hostNameCtlFile():string
+    {
+        return Storage::dataDriveStoragesPath().'hostnamectl.txt';
+    }
+
+    private function lsbReleaseFile():string
+    {
+        return Storage::dataDriveStoragesPath().'lsb_release.txt';
+    }
 
 
     /**
@@ -42,7 +49,7 @@ class Device
             foreach ($contents as $i => $v) {
                 $contents[$i] = explode($delimiter, $v);
                 $this->data[
-                    preg_replace('[\s]', '_', ltrim(Character::lower($contents[$i][0])))
+                    preg_replace('[\s]', '_', ltrim(Inflect::lower($contents[$i][0])))
                 ] = preg_replace('["]', '', ltrim($contents[$i][1]));
             }
 
@@ -105,7 +112,7 @@ class Device
          *     [architecture] =>  x86-64
          * )*/
 
-        return $this->extract($this->hostNameCtlFile, ':');
+        return $this->extract($this->hostNameCtlFile(), ':');
     }//end hostDetails()
 
 
@@ -120,7 +127,7 @@ class Device
          *     [release] =>     20.2
          *     [codename] =>     Nibia
          * )*/
-        return $this->extract($this->lsbReleaseFile, ':');
+        return $this->extract($this->lsbReleaseFile(), ':');
     }//end releaseDetails()
 
 

@@ -3,12 +3,17 @@
 
 namespace Mishusoft;
 
-use JsonException;
-use Mishusoft\Utility\_JSON;
-use Mishusoft\DataObjects\HttpErrorsDataObject;
+use Mishusoft\Http\Browser;
+use Mishusoft\Http\ErrorsData;
+use Mishusoft\Utility\JSON;
 
-class Http extends HttpErrorsDataObject
+class Http extends ErrorsData
 {
+
+    public static function browser():Browser
+    {
+        return new Browser();
+    }
 
 
     /**
@@ -17,16 +22,16 @@ class Http extends HttpErrorsDataObject
      * @param string $format Format of data.
      *
      * @return array|object
-     * @throws JsonException Throw exception when json error occurred.
+     * @throws Exceptions\JsonException
      */
-    public static function getErrorsRecord(string $format = 'array'): array|object
+    public static function errorsRecords(string $format = 'array'): array|object
     {
         if ($format === 'array') {
-            return self::builtInHttpErrorsRecords;
+            return self::BUILT_IN_HTTP_ERRORS_RECORDS;
         }
 
         if ($format === 'object') {
-            return _JSON::encodeToObject(self::builtInHttpErrorsRecords);
+            return JSON::encodeToObject(self::BUILT_IN_HTTP_ERRORS_RECORDS);
         }
 
         return ['container' => 'empty'];
@@ -39,10 +44,11 @@ class Http extends HttpErrorsDataObject
      * @param string $description Error description.
      *
      * @return integer
+     * @throws Exceptions\JsonException
      */
-    public static function getErrorCode(string $description): int
+    public static function errorCode(string $description): int
     {
-        foreach (self::getErrorsRecord() as $errKey => $details) {
+        foreach (self::errorsRecords() as $errKey => $details) {
             if (array_key_exists('Description', $details) === true
                 && strtolower($details['Description']) === strtolower($description)
             ) {

@@ -1,0 +1,48 @@
+---
+::1:
+  Unknown:
+    "2021-07-27 22:45:15":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/test/test
+      status: granted
+      component: browser
+      visit-time: "2021-07-27 22:45:15"
+    "2021-07-27 23:06:20":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/test/test
+      status: granted
+      component: browser
+      visit-time: "2021-07-27 23:06:20"
+    "2021-07-27 23:06:33":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/test/test
+      status: granted
+      component: browser
+      visit-time: "2021-07-27 23:06:33"
+    "2021-07-27 23:17:23":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/test/test
+      status: granted
+      component: browser
+      visit-time: "2021-07-27 23:17:23"
+...

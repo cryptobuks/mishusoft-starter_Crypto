@@ -1,0 +1,21 @@
+# amaya
+# amaya is a web browser renders web pages using the libwww engine.
+
+
+# Latest user agents:
+#//amaya/11.3.1 libwww/5.4.1 11.3
+#//amaya/9.52 libwww/5.4.0
+#//amaya/9.51 libwww/5.4.0
+#//amaya/11.2 amaya/5.4.0
+#//amaya/11.4.7 libwww/5.3.1
+- identifiers:
+    # Pattern maker method use it
+    browser-amaya:
+      pattern:
+        name: (amaya)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser amaya

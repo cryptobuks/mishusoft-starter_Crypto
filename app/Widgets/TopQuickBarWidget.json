@@ -1,0 +1,11 @@
+{
+  "class": "TopQuickBar",
+  "method": "getTopQuickBar",
+  "child": [],
+  "configuration": {
+    "position": "top"
+  },
+  "setting": {
+    "status": "enable"
+  }
+}

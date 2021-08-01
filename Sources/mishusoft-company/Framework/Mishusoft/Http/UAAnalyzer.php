@@ -182,12 +182,12 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
                 $this->deviceDetails['name'],
                 $this->deviceDetails['type'],
             );
-            return array(
+            return [
                 'ua' => $this->userAgent,
                 'solved' => $this->matchFound,
                 'time' => $this->timeOfExecution,
                 'browser' => array_merge_recursive(
-                    array(
+                    [
                         'name' => $this->browserName,
                         'name-version' => $this->browserNameFull,
                         'version' => $this->browserVersion,
@@ -195,48 +195,48 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
                         'architecture' => $this->browserArchitecture,
                         'type' => $this->browserType,
                         'ui' => $this->browserUi,
-                        'compatibility' => array(
+                        'compatibility' => [
                             'name' => $this->browserAppCodeName,
                             'version' => $this->browserAppCodeVersion,
                             'version-full' => $this->browserAppCodeVersionFull,
-                        ),
-                        'engine' => array(
+                        ],
+                        'engine' => [
                             'name' => $this->browserEngineName,
                             'name-full' => $this->browserEngineNameFull,
                             'version' => $this->browserEngineVersion,
                             'version-full' => $this->browserEngineVersionFull,
-                        )
-                    ),
+                        ],
+                    ],
                     $this->browserDetails,
                 ),
                 'device' => array_merge_recursive(
-                    array(
+                    [
                         'name-' => $this->deviceName,
                         'name-full' => $this->deviceNameFull,
-                        'type' => $this->deviceType
-                    ),
+                        'type' => $this->deviceType,
+                    ],
                     $this->deviceDetails
                 ),
                 'platform' => array_merge_recursive(
-                    array(
+                    [
                         'name' => $this->platformName,
                         'name-full' => $this->platformNameFull,
                         'architecture' => $this->platformArchitecture,
-                        'window-manager' => array(
+                        'window-manager' => [
                             'name' => $this->platformWindowManager,
                             'name-detected' => $this->platformWmNameOriginal,
-                        ),
-                    ),
+                        ],
+                    ],
                     $this->platformDetails
-                )
-            );
+                ),
+            ];
         }
 
-        return array(
+        return [
             'ua' => $this->userAgent,
             'solved' => $this->matchFound,
             'time' => $this->timeOfExecution,
-        );
+        ];
     }
 
     /**

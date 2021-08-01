@@ -1,13 +1,12 @@
 <?php
 
 
-use Mishusoft\Framework\Chipsets\Storage;
-use Mishusoft\Framework\Chipsets\Services\SEOToolKitService;
-use Mishusoft\Framework\Chipsets\System\Logger;
-use Mishusoft\Framework\Chipsets\System\Memory;
-use Mishusoft\Framework\Chipsets\Ui;
-use Mishusoft\Framework\Chipsets\Utility\_String;
-use Mishusoft\Framework\Drivers\Session;
+use Mishusoft\Storage;
+use Mishusoft\Services\SEOToolKitService;
+use Mishusoft\System\Logger;
+use Mishusoft\System\Memory;
+use Mishusoft\Ui;
+use Mishusoft\Drivers\Session;
 
 Logger::write('mishusoft.php template is running..');
 Logger::write('UI started');
@@ -71,7 +70,7 @@ if ($this->templateUse === 'no') {
     (new SEOToolKitService($this))->start();
 
 
-    Ui::elementList(Ui::getDocumentHeadElement(), array('link'=> Storage::getAssignableWebFavicons()));
+    Ui::elementList(Ui::getDocumentHeadElement(), ['link'=> Storage::assignableWebFavicons()]);
 
     /*
         Ui::elementList($this->documentHeadElement, [
@@ -215,8 +214,8 @@ if ($this->templateUse === 'no') {
         add pwa manifest*/
     // Ui::element($this->documentHeadElement, "link", ["rel" => "manifest", "href" => "/pwa.webmanifest"]);
     // add css file in head
-    Ui::element(Ui::getDocumentHeadElement(), 'link', ['rel' => 'stylesheet', 'type' => 'text/css', 'href' => Storage::getAssetsPath('css/app-ui-v4.css', 'remote')]);
-    Ui::element(Ui::getDocumentHeadElement(), 'link', ['rel' => 'stylesheet', 'type' => 'text/css', 'href' => Storage::getAssetsPath('css/mishusoft-theme.css', 'remote')]);
+    Ui::element(Ui::getDocumentHeadElement(), 'link', ['rel' => 'stylesheet', 'type' => 'text/css', 'href' => Storage::assetsFullPath('css/app-ui-v4.css', 'remote')]);
+    Ui::element(Ui::getDocumentHeadElement(), 'link', ['rel' => 'stylesheet', 'type' => 'text/css', 'href' => Storage::assetsFullPath('css/mishusoft-theme.css', 'remote')]);
     /*
         Ui::element($this->documentHeadElement, "link", ["rel"=>"stylesheet", "type" => "text/css", "href" => Media::toDataUri("css_app-theme-framework.css", "remote"), "media"=>"orientation:landscape"]);*/
     // Ui::element($this->documentHeadElement, "style", ["text"=>"body{margin:0;padding:0;}"]);
@@ -231,7 +230,7 @@ if ($this->templateUse === 'no') {
     /*
      * add template body
     set id attribute for body*/
-    $this->documentBodyElement = Ui::element(Ui::getDocumentRoot(), 'body', ['id' => _String::lower($this->request['controller']), 'class' => 'ms-app background-image']);
+    $this->documentBodyElement = Ui::element(Ui::getDocumentRoot(), 'body', ['id' => \Mishusoft\Utility\Inflect::lower($this->request['controller']), 'class' => 'ms-app background-image']);
 
 
 
@@ -308,7 +307,7 @@ if ($this->templateUse === 'no') {
                 [
                     'type'  => 'application/javascript',
                     'async' => 'async',
-                    'src'   => Storage::getAssetsPath('js/app-js-v4.js', 'remote'),
+                    'src'   => Storage::assetsFullPath('js/app-js-v4.js', 'remote'),
                 ],
             ],
         ]

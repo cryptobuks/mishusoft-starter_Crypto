@@ -3,25 +3,24 @@
 
 namespace Mishusoft\Databases;
 
-use Mishusoft\Databases\MishusoftSQLStandalone\FileSystem;
 use Mishusoft\Databases\MishusoftSQLStandalone\Table;
+use Mishusoft\Exceptions\DbException;
 use Mishusoft\Http;
 use Mishusoft\Databases\MishusoftSQLStandalone\TableInterface;
 use Mishusoft\Storage;
+use Mishusoft\Storage\FileSystem;
 use Mishusoft\Utility\ArrayCollection;
 
 class MishusoftSQLStandalone extends Storage implements MishusoftSQLStandaloneInterface
 {
     /*declare property*/
-    public const Name = "Mishusoft Structure Query Language";
-    public const ShortName = "MishusoftSQLStandalone";
-    public const Category = "DBMS";
+    public const NAME = "Mishusoft Structure Query Language";
+    public const SHORT_NAME = "MishusoftSQLStandalone";
+    public const CATEGORY = "DBMS";
     public const VERSION = "1.0.2";
 
     private array $propertiesDefault =
         ["databases" => [], "users" => [["username" => "superuser", "password" => "superuser", "permission" => "all"]]];
-    private string $data_dir = MS_DATABASES_PATH . self::who_am_i;
-    private string $propertiesFile = MS_DATABASES_PATH . self::who_am_i . DIRECTORY_SEPARATOR . "properties.json";
     private array $database_all;
     private array $user_all;
     private bool $in_record = false;
@@ -33,6 +32,8 @@ class MishusoftSQLStandalone extends Storage implements MishusoftSQLStandaloneIn
      * MishusoftQL constructor.
      * @param string $username
      * @param string $password
+     * @throws \Mishusoft\Exceptions\RuntimeException|\JsonException
+     * @throws DbException
      */
     public function __construct(string $username, string $password)
     {
@@ -40,26 +41,26 @@ class MishusoftSQLStandalone extends Storage implements MishusoftSQLStandaloneIn
         $this->username = $username;
         $this->password = $password;
 
-        if (!FileSystem::file_exists(MS_DATABASES_PATH)) {
-            FileSystem::createDirectory(MS_DATABASES_PATH);
+        if (!file_exists(Storage::databasesPath())) {
+            FileSystem::makeDirectory(Storage::databasesPath());
         }
 
         /*check databases data dir exists*/
-        if (!FileSystem::file_exists($this->data_dir)) {
-            FileSystem::createDirectory($this->data_dir);
+        if (!file_exists($this->dataDirectory())) {
+            FileSystem::makeDirectory($this->dataDirectory());
         }
         /*check databases propertiesFile exists*/
-        if (!FileSystem::file_exists($this->propertiesFile)) {
-            FileSystem::createFile($this->propertiesFile);
-            if (FileSystem::is_file($this->propertiesFile)) {
+        if (!file_exists($this->propertiesFile())) {
+            FileSystem::createFile($this->propertiesFile());
+            if (is_file($this->propertiesFile())) {
                 $this->resetpropertiesFile();
             } else {
-                FileSystem::remove($this->propertiesFile);
+                FileSystem::remove($this->propertiesFile());
             }
         }
 
         /*use contents of propertiesFile*/
-        FileSystem::readFile($this->propertiesFile, function ($contents) {
+        FileSystem::readFile($this->propertiesFile(), function ($contents) {
             if (count($contents) > 0) {
                 if (array_key_exists("databases", $contents)) {
                     $this->database_all = $contents["databases"];
@@ -91,23 +92,33 @@ class MishusoftSQLStandalone extends Storage implements MishusoftSQLStandaloneIn
         });
     }
 
+    private function dataDirectory()
+    {
+        return Storage::databasesPath() . self::who_am_i;
+    }
+
+    private function propertiesFile()
+    {
+        return self::dFile(Storage::databasesPath() . self::who_am_i . DS . "properties");
+    }
+
     /**
      * @return void
-     * @throws \JsonException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function resetPropertiesFile(): void
     {
-        FileSystem::saveToFile($this->propertiesFile, json_encode($this->propertiesDefault, JSON_THROW_ON_ERROR));
+        FileSystem\Yaml::emitFile($this->propertiesFile(), $this->propertiesDefault);
     }
 
     /**
      * @param int $code
      * @param string $message
+     * @throws DbException
      */
-    public static function error(int $code, string $message)
+    public static function error(int $code, string $message):void
     {
-        echo "DbError[$code]: $message";
-        trigger_error("DbError[$code]: $message");
+        throw new DbException("DbError[$code]: $message");
     }
 
     /**
@@ -119,19 +130,22 @@ class MishusoftSQLStandalone extends Storage implements MishusoftSQLStandaloneIn
     }
 
     /**
-     * @param $database_name
+     * @param string $database_name
      * @return mixed
      */
     public function select(string $database_name): TableInterface
     {
         // TODO: Implement select() method.
-        return new Table($this->data_dir, $database_name);
+        return new Table($this->dataDirectory(), $database_name);
     }
 
     /**
-     * @param $database_name
+     * @param array|string $database_name
+     * @throws DbException
+     * @throws \JsonException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    public function create($database_name)
+    public function create(array|string$database_name):void
     {
         // TODO: Implement create() method.
         if (is_array($database_name)) {
@@ -147,27 +161,25 @@ class MishusoftSQLStandalone extends Storage implements MishusoftSQLStandaloneIn
     /**
      * @param string $database_name
      * @throws \JsonException
+     * @throws \Mishusoft\Exceptions\RuntimeException|DbException
      */
-    private function createDatabase(string $database_name)
+    private function createDatabase(string $database_name): void
     {
         if (!in_array($database_name, $this->database_all, true)) {
-            FileSystem::readFile($this->propertiesFile, function ($contents) use ($database_name) {
-                if (count($contents) > 0) {
-                    if (ArrayCollection::value($contents, "databases")) {
-                        $contents["databases"][] = $database_name;
-                    }
-                    FileSystem::saveToFile($this->propertiesFile, json_encode($contents, JSON_THROW_ON_ERROR));
+            $contents = FileSystem\Yaml::parseFile($this->propertiesFile());
+            if (count($contents) > 0) {
+                if (ArrayCollection::value($contents, "databases")) {
+                    $contents["databases"][] = $database_name;
                 }
-            });
-            FileSystem::createFile(join(DIRECTORY_SEPARATOR, [$this->data_dir, $database_name . self::dbFileFormat]));
-            FileSystem::saveToFile(
-                implode(DIRECTORY_SEPARATOR, [$this->data_dir, $database_name . self::dbFileFormat]),
-                json_encode(["name" => $database_name, "data_dir" => $database_name, "version" => self::version, "tables" => []])
+                FileSystem::saveToFile($this->propertiesFile(), json_encode($contents, JSON_THROW_ON_ERROR));
+            }
+            FileSystem\Yaml::emitFile(
+                $this->dataDirectory() . DS . $database_name . self::dbFileFormat,
+                ["name" => $database_name, "data_dir" => $database_name, "version" => self::version, "tables" => []]
             );
-            FileSystem::createDirectory(implode(DIRECTORY_SEPARATOR, [$this->data_dir, $database_name]));
+            FileSystem::makeDirectory($this->dataDirectory() . DS . $database_name);
         } else {
             self::error(Http::NOT_FOUND, "Databases ($database_name) is already exists.");
-            exit();
         }
     }
 
@@ -175,35 +187,37 @@ class MishusoftSQLStandalone extends Storage implements MishusoftSQLStandaloneIn
      * @param $old_database_name
      * @param $new_database_name
      * @return mixed
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws DbException
      */
     public function rename($old_database_name, $new_database_name): bool
     {
         // TODO: Implement rename() method.
         if (in_array($old_database_name, $this->database_all, true)) {
-            if (FileSystem::file_exists(implode(DIRECTORY_SEPARATOR, [$this->data_dir, $old_database_name . self::dbFileFormat]))) {
+            if (FileSystem::file_exists(implode(DIRECTORY_SEPARATOR, [$this->dataDirectory(), $old_database_name . self::dbFileFormat]))) {
                 FileSystem::readFile($this->propertiesFile, function ($contents) use ($new_database_name, $old_database_name) {
                     if (count($contents) > 0) {
-                        if (_Array::value($contents, "databases")) {
-                            if (!in_array($new_database_name, $contents["databases"])) {
-                                unset($contents["databases"][array_search($old_database_name, $contents["databases"])]);
-                                array_push($contents["databases"], $new_database_name);
+                        if (ArrayCollection::value($contents, "databases")) {
+                            if (!in_array($new_database_name, $contents["databases"], true)) {
+                                unset($contents["databases"][array_search($old_database_name, $contents["databases"], true)]);
+                                $contents["databases"][] = $new_database_name;
                             }
                         }
                         $databases = [];
                         foreach ($contents["databases"] as $database) {
-                            array_push($databases, $database);
+                            $databases[] = $database;
                         }
                         $contents["databases"] = $databases;
-                        FileSystem::saveToFile($this->propertiesFile, json_encode($contents));
+                        FileSystem\Yaml::emitFile($this->propertiesFile, $contents);
                     }
                 });
                 rename(
-                    join(DIRECTORY_SEPARATOR, [$this->data_dir, $old_database_name]),
-                    join(DIRECTORY_SEPARATOR, [$this->data_dir, $new_database_name])
+                    join(DIRECTORY_SEPARATOR, [$this->dataDirectory(), $old_database_name]),
+                    join(DIRECTORY_SEPARATOR, [$this->dataDirectory(), $new_database_name])
                 );
                 rename(
-                    join(DIRECTORY_SEPARATOR, [$this->data_dir, $old_database_name . self::dbFileFormat]),
-                    join(DIRECTORY_SEPARATOR, [$this->data_dir, $new_database_name . self::dbFileFormat])
+                    join(DIRECTORY_SEPARATOR, [$this->dataDirectory(), $old_database_name . self::dbFileFormat]),
+                    join(DIRECTORY_SEPARATOR, [$this->dataDirectory(), $new_database_name . self::dbFileFormat])
                 );
                 return true;
             } else {
@@ -217,9 +231,11 @@ class MishusoftSQLStandalone extends Storage implements MishusoftSQLStandaloneIn
     }
 
     /**
-     * @param $database_name
+     * @param array|string $database_name
+     * @throws \JsonException
+     * @throws DbException
      */
-    public function delete($database_name)
+    public function delete(array|string$database_name)
     {
         // TODO: Implement delete() method.
         if (is_array($database_name)) {
@@ -234,20 +250,22 @@ class MishusoftSQLStandalone extends Storage implements MishusoftSQLStandaloneIn
 
     /**
      * @param string $database_name
+     * @throws \JsonException
+     * @throws DbException
      */
     private function deleteDatabase(string $database_name)
     {
-        if (in_array($database_name, $this->database_all)) {
+        if (in_array($database_name, $this->database_all, true)) {
             FileSystem::readFile($this->propertiesFile, function ($contents) use ($database_name) {
-                $contents = json_decode($contents, true);
-                if (_Array::value($contents, "databases")) {
-                    unset($contents["databases"][array_search($database_name, $contents["databases"])]);
+                $contents = json_decode($contents, true, 512, JSON_THROW_ON_ERROR);
+                if (ArrayCollection::value($contents, "databases")) {
+                    unset($contents["databases"][array_search($database_name, $contents["databases"], true)]);
                 }
-                FileSystem::saveToFile($this->propertiesFile, json_encode($contents));
+                FileSystem::saveToFile($this->propertiesFile, json_encode($contents, JSON_THROW_ON_ERROR));
             });
 
-            FileSystem::remove(join(DIRECTORY_SEPARATOR, [$this->data_dir, $database_name]));
-            FileSystem::remove(join(DIRECTORY_SEPARATOR, [$this->data_dir, $database_name . self::dbFileFormat]));
+            FileSystem::remove(join(DIRECTORY_SEPARATOR, [$this->dataDirectory(), $database_name]));
+            FileSystem::remove(join(DIRECTORY_SEPARATOR, [$this->dataDirectory(), $database_name . self::dbFileFormat]));
         } else {
             self::error(Http::NOT_FOUND, "Databases ($database_name) is not exists.");
             exit();
@@ -255,20 +273,17 @@ class MishusoftSQLStandalone extends Storage implements MishusoftSQLStandaloneIn
     }
 
     /**
-     * @param $database_name
+     * @param array|string $database_name
+     * @throws DbException
      */
-    public function empty($database_name)
+    public function empty(array|string $database_name):void
     {
         // TODO: Implement empty() method.
-        if (in_array($database_name, $this->database_all)) {
-            FileSystem::remove(join(DIRECTORY_SEPARATOR, [$this->data_dir, $database_name]));
+        if (in_array($database_name, $this->database_all, true)) {
+            FileSystem::remove(join(DIRECTORY_SEPARATOR, [$this->dataDirectory(), $database_name]));
         } else {
             self::error(Http::NOT_FOUND, "Databases ($database_name) is not exists.");
             exit();
         }
-    }
-
-    public function __destruct()
-    {
     }
 }

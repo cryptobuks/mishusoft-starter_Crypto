@@ -4,23 +4,23 @@ namespace Mishusoft\Databases\MishusoftSQLStandalone;
 
 use Mishusoft\Databases\MishusoftSQLStandalone;
 use Mishusoft\Http;
-use Mishusoft\Utility\_Array;
+use Mishusoft\Utility\ArrayCollection;
 
 class Table implements TableInterface
 {
     private string $configFile;
     private string $data_dir;
-    private array $table_all = array();
+    private array $table_all = [];
 
     public function __construct(string $data_dir, string $database)
     {
         $this->data_dir = join(DIRECTORY_SEPARATOR, [$data_dir, $database]);
         $this->configFile = join(DIRECTORY_SEPARATOR, [$data_dir, $database . self::DB_FILE_FORMAT]);
-        if (!FileSystem::file_exists($this->configFile)) {
+        if (!file_exists($this->configFile)) {
             MishusoftSQLStandalone::error(Http::NOT_FOUND, "Databases $this->configFile not exists.");
         }
-        FileSystem::readFile($this->configFile, function ($contents) {
-            if (_Array::value($contents, "tables")) {
+        \Mishusoft\Storage\FileSystem::readFile($this->configFile, function ($contents) {
+            if (ArrayCollection::value($contents, "tables")) {
                 $this->table_all = $contents["tables"];
             }
         });
@@ -38,7 +38,7 @@ class Table implements TableInterface
     /**
      * @param string|array $table_name
      */
-    public function create($table_name)
+    public function create(array|string $table_name):void
     {
         // TODO: Implement create() method.
         if (is_array($table_name)) {
@@ -52,22 +52,23 @@ class Table implements TableInterface
 
     /**
      * @param string $table_name
+     * @throws \JsonException
      */
-    private function createTable(string $table_name)
+    private function createTable(string $table_name): void
     {
-        if (!in_array($table_name, $this->table_all)) {
-            FileSystem::readFile($this->configFile, function ($contents) use ($table_name) {
-                $contents = json_decode($contents, true);
-                if (_Array::value($contents, "tables")) {
+        if (!in_array($table_name, $this->table_all, true)) {
+            \Mishusoft\Storage\FileSystem::readFile($this->configFile, function ($contents) use ($table_name) {
+                $contents = json_decode($contents, true, 512, JSON_THROW_ON_ERROR);
+                if (ArrayCollection::value($contents, "tables")) {
                     array_push($contents["tables"], $table_name);
                 }
                 array_multisort($contents["tables"], SORT_ASC);
                 ksort($contents["tables"], SORT_ASC);
-                FileSystem::saveToFile($this->configFile, json_encode($contents));
+                \Mishusoft\Storage\FileSystem::saveToFile($this->configFile, json_encode($contents));
             });
 
-            FileSystem::createFile(join(DIRECTORY_SEPARATOR, [$this->data_dir, $table_name . self::dbTableFileFormat]));
-            FileSystem::saveToFile(join(DIRECTORY_SEPARATOR, [$this->data_dir, $table_name . self::dbTableFileFormat]), json_encode(array()));
+            \Mishusoft\Storage\FileSystem::createFile(join(DIRECTORY_SEPARATOR, [$this->data_dir, $table_name . self::dbTableFileFormat]));
+            \Mishusoft\Storage\FileSystem::saveToFile(join(DIRECTORY_SEPARATOR, [$this->data_dir, $table_name . self::dbTableFileFormat]), json_encode([]));
         } else {
             MishusoftSQLStandalone::error(Http::NOT_FOUND, "Table ($table_name) is already exists.");
             exit();
@@ -99,8 +100,8 @@ class Table implements TableInterface
     {
         // TODO: Implement rename() method.
         if (in_array($old_name, $this->table_all)) {
-            if (FileSystem::file_exists(join(DIRECTORY_SEPARATOR, [$this->data_dir, $old_name . self::dbTableFileFormat]))) {
-                FileSystem::readFile($this->configFile, function ($contents) use ($new_name, $old_name) {
+            if (file_exists(join(DIRECTORY_SEPARATOR, [$this->data_dir, $old_name . self::dbTableFileFormat]))) {
+                \Mishusoft\Storage\FileSystem::readFile($this->configFile, function ($contents) use ($new_name, $old_name) {
                     $contents = json_decode($contents, true);
                     if (_Array::value($contents, "tables")) {
                         if (!in_array($new_name, $contents["tables"])) {
@@ -108,7 +109,7 @@ class Table implements TableInterface
                             array_push($contents["tables"], $new_name);
                         }
                     }
-                    $tables = array();
+                    $tables = [];
                     foreach ($contents["tables"] as $table) {
                         array_push($tables, $table);
                     }
@@ -116,7 +117,7 @@ class Table implements TableInterface
 
                     array_multisort($contents["tables"], SORT_ASC);
                     ksort($contents["tables"], SORT_ASC);
-                    FileSystem::saveToFile($this->configFile, json_encode($contents));
+                    \Mishusoft\Storage\FileSystem::saveToFile($this->configFile, json_encode($contents));
                 });
                 rename(
                     join(DIRECTORY_SEPARATOR, [$this->data_dir, $old_name . self::dbTableFileFormat]),
@@ -155,17 +156,17 @@ class Table implements TableInterface
     private function deleteTable(string $table_name)
     {
         if (in_array($table_name, $this->table_all)) {
-            FileSystem::readFile($this->configFile, function ($contents) use ($table_name) {
+            \Mishusoft\Storage\FileSystem::readFile($this->configFile, function ($contents) use ($table_name) {
                 $contents = json_decode($contents, true);
-                if (_Array::value($contents, "tables")) {
+                if (ArrayCollection::value($contents, "tables")) {
                     unset($contents["tables"][array_search($table_name, $contents["tables"])]);
                 }
                 array_multisort($contents["tables"], SORT_ASC);
                 ksort($contents["tables"], SORT_ASC);
-                FileSystem::saveToFile($this->configFile, json_encode($contents));
+                \Mishusoft\Storage\FileSystem::saveToFile($this->configFile, json_encode($contents));
             });
 
-            FileSystem::unlink(join(DIRECTORY_SEPARATOR, [$this->data_dir, $table_name . self::dbTableFileFormat]));
+            \Mishusoft\Storage\FileSystem::unlink(join(DIRECTORY_SEPARATOR, [$this->data_dir, $table_name . self::dbTableFileFormat]));
         } else {
             MishusoftSQLStandalone::error(Http::NOT_FOUND, "Table ($table_name) is not exists.");
             exit();
@@ -174,10 +175,10 @@ class Table implements TableInterface
 
     public function update()
     {
-        FileSystem::readFile($this->configFile, function ($contents) {
+        \Mishusoft\Storage\FileSystem::readFile($this->configFile, function ($contents) {
             $contents = json_decode($contents, true);
-            if (_Array::value($contents, "tables")) {
-                foreach (FileSystem::getDirectoryList($this->data_dir) as $table_name) {
+            if (ArrayCollection::value($contents, "tables")) {
+                foreach (\Mishusoft\Storage\FileSystem::getDirectoryList($this->data_dir) as $table_name) {
                     if (!in_array(pathinfo($table_name, PATHINFO_FILENAME), $contents["tables"], true)) {
                         array_push($contents["tables"], pathinfo($table_name, PATHINFO_FILENAME));
                     }
@@ -186,11 +187,11 @@ class Table implements TableInterface
             array_multisort($contents["tables"], SORT_ASC);
             ksort($contents["tables"], SORT_ASC);
             $this->table_all = $contents["tables"];
-            FileSystem::saveToFile($this->configFile, json_encode($contents));
+            \Mishusoft\Storage\FileSystem::saveToFile($this->configFile, json_encode($contents));
         });
     }
 
-    function __destruct()
+    public function __destruct()
     {
     }
 }

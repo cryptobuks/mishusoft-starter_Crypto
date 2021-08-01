@@ -6,16 +6,11 @@ namespace Mishusoft\Http\UAAnalyzer;
 use JsonException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Storage;
-use Mishusoft\Storage\FileSystem;
 use Mishusoft\Utility\Inflect;
 use Mishusoft\Utility\JSON;
 
 abstract class Collection extends UAAnalyzerBase
 {
-    // Root path of data path
-    //protected const USER_AGENT_ANALYZE_DATA_PATH = APPLICATION_STORAGE_PATH . '0/UAAnalyzer' . DIRECTORY_SEPARATOR;
-    protected const DATA_FILE_FORMAT = '.yml';
-
     private string $defaultSeparators = '(\s+|\/|\_|\-|\:|\;|\()';
     //private string $defaultVersionsString
     // = '(v|y|yb\/|nt)?\s*(\d+[.-_]\d+[.-]\d+[.-_]\d+)|(\d+[.-_]\d+[.-_]\d+)|(\d+[.-_]\d+)|(\d+)|(\w+)';
@@ -91,16 +86,16 @@ abstract class Collection extends UAAnalyzerBase
         //http://www.zytrax.com/tech/web/browser_ids.htm
 
         parent::__construct();
-        $this->defaultVersionsString = '(v|y|yb\/|nt)?'; // Add prefix for version number
-        $this->defaultVersionsString .= '(\s*|\/|\_|\-|\:|\;|\()?'; // Add additional separator for version number
-        $this->defaultVersionsString .= '((\d+[.-_ ])?(\d+[.-_ ])?(\d+[.-_ ])?(\d+[.-_ ])?(\d+))|(\w+)'; // version number
+        // Add prefix for version number
+        $this->defaultVersionsString = '(v|y|yb\/|nt)?';
+        // Add additional separator for version number
+        $this->defaultVersionsString .= '(\s*|\/|\_|\-|\:|\;|\()?';
+        // version number
+        $this->defaultVersionsString .= '((\d+[.-_ ])?(\d+[.-_ ])?(\d+[.-_ ])?(\d+[.-_ ])?(\d+))|(\w+)';
 
         $this->attributes = ['author', 'licence', 'engines'];
 
         $this->loadDictionaries();
-
-//        print_r($this->dictionaries, false);
-//        exit();
     }
 
     /**
@@ -132,22 +127,22 @@ abstract class Collection extends UAAnalyzerBase
     {
         if (file_exists($this->uaStoragePath . $directory . DIRECTORY_SEPARATOR) === true) {
             $diskLocation = sprintf('%s%s%s%s', $this->uaStoragePath, $directory, DS, $filename);
-            $diskLocationAsFile = sprintf('%s%s', $diskLocation, self::DATA_FILE_FORMAT);
+            $diskLocationAsFile = self::dFile($diskLocation);
             if (is_dir($diskLocation) === true) {
-                if (count(FileSystem::globRecursive($diskLocation, GLOB_MARK)) > 0) {
+                if (count(Storage::globRecursive($diskLocation, GLOB_MARK)) > 0) {
                     $this->dictionaries[$directory][$filename] = $this->dictionariesAll($diskLocation);
                 } else {
                     throw new RuntimeException(sprintf('%s is empty directory', $diskLocation));
                 }
             } elseif (is_file($diskLocationAsFile) === true) {
-                $dictionary = FileSystem\Yaml::parseFile($diskLocationAsFile);
+                $dictionary = Storage\FileSystem\Yaml::parseFile($diskLocationAsFile);
                 if (is_array($dictionary) === true) {
                     $this->dictionaries[$directory][$filename] = $dictionary;
                 } else {
                     throw new RuntimeException(
                         sprintf(
                             'Data type array required, string found in %s ',
-                            sprintf('%s%s', $diskLocation, self::DATA_FILE_FORMAT)
+                            $diskLocationAsFile
                         )
                     );
                 }
@@ -155,7 +150,7 @@ abstract class Collection extends UAAnalyzerBase
                 throw new RuntimeException(
                     sprintf(
                         '%s not exists',
-                        sprintf('%s%s', $diskLocation, self::DATA_FILE_FORMAT)
+                        $diskLocationAsFile
                     )
                 );
             }
@@ -169,12 +164,12 @@ abstract class Collection extends UAAnalyzerBase
      */
     protected function dictionariesAll(string $directory): array
     {
-        $dFiles = FileSystem::globRecursive($directory, GLOB_MARK);
+        $dFiles = Storage::globRecursive($directory, GLOB_MARK);
         $dictionaries = [];
 
         foreach ($dFiles as $dFile) {
-            if (Storage::getExtension($dFile) === 'yml') {
-                $dictionaries[] = FileSystem\Yaml::parseFile($dFile);
+            if (Storage::extension($dFile) === self::SYSTEM_DATA_FILE) {
+                $dictionaries[] = Storage\FileSystem\Yaml::parseFile($dFile);
             }
         }
 
@@ -252,6 +247,7 @@ abstract class Collection extends UAAnalyzerBase
     /**
      * @throws RuntimeException
      * @throws JsonException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     protected function extractAttribute(array $dictionaries, string $job): array
     {

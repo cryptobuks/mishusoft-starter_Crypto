@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Mishusoft\Ema\UrlSplitters;
+namespace App\Ema\UrlSplitters;
 
-use Mishusoft\Framework\Chipsets\Http\Browser;
-use Mishusoft\Framework\Chipsets\System;
-use Mishusoft\Framework\Chipsets\System\Firewall;
-use Mishusoft\Framework\Chipsets\Utility\Uploader;
+use Mishusoft\Http;
+use Mishusoft\Storage\Uploader;
+use Mishusoft\System;
+use Mishusoft\System\Firewall;
 use ZipArchive;
 
 class SystemConfiguration
@@ -17,16 +17,24 @@ class SystemConfiguration
      */
     public function __construct()
     {
-
     }//end __construct()
 
 
     /**
      * @param array $request
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \JsonException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public function install(array $request): void
     {
-        if (strlen(file_get_contents('php://input')) > 0) {
+        if (file_get_contents('php://input') !== '') {
             System::checkSystemRequirements();
             System::communicate();
             exit();
@@ -37,18 +45,26 @@ class SystemConfiguration
             [
                 'debug' => [
                     'file'        => ucfirst($request['controller']),
-                    'location'    => Browser::getVisitedPage(),
+                    'location'    => Http::browser()::getVisitedPage(),
                     'description' => 'Your requested url not found!!',
                 ],
                 'error' => ['description' => 'Your requested url not found!!'],
             ]
         );
-
     }//end install()
 
 
     /**
      * @param array $request
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \JsonException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public function update(array $request): void
     {
@@ -71,18 +87,18 @@ class SystemConfiguration
                 exit();
             }
 
-            if (file_exists(RUNTIME_SYSTEM_TEMP_PATH.$uploader->file_name)) {
+            if (file_exists(APPLICATION_SYSTEM_TEMP_PATH.$uploader->file_name)) {
                 echo "$uploader->file_name already exists.";
                 exit();
             }
 
-            if (move_uploaded_file($uploader->file_temp_name, RUNTIME_SYSTEM_TEMP_PATH.$uploader->file_name)) {
+            if (move_uploaded_file($uploader->file_temp_name, APPLICATION_SYSTEM_TEMP_PATH.$uploader->file_name)) {
                 $filename = strtoupper(str_replace('-', ' ', pathinfo($uploader->file_name, PATHINFO_FILENAME)));
                 $zip      = new ZipArchive();
-                if ($zip->open(RUNTIME_SYSTEM_TEMP_PATH.$uploader->file_name) === true) {
+                if ($zip->open(APPLICATION_SYSTEM_TEMP_PATH.$uploader->file_name) === true) {
                     $zip->extractTo(RUNTIME_ROOT_PATH);
                     $zip->close();
-                    unlink(RUNTIME_SYSTEM_TEMP_PATH.$uploader->file_name);
+                    unlink(APPLICATION_SYSTEM_TEMP_PATH.$uploader->file_name);
                     echo "$filename successfully installed on ".System::getAbsoluteInstalledURL();
                 } else {
                     echo "$filename installation failed on ".System::getAbsoluteInstalledURL();
@@ -99,14 +115,11 @@ class SystemConfiguration
             [
                 'debug' => [
                     'file'        => ucfirst($request['controller']),
-                    'location'    => Browser::getVisitedPage(),
+                    'location'    => Http::browser()::getVisitedPage(),
                     'description' => 'Your requested url not found!!',
                 ],
                 'error' => ['description' => 'Your requested url not found!!'],
             ]
         );//end if
-
     }//end update()
-
-
 }//end class

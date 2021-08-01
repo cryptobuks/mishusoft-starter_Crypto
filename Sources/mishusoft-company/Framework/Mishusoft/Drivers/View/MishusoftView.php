@@ -3,147 +3,69 @@
 
 namespace Mishusoft\Drivers\View;
 
-use InvalidArgumentException;
 use JsonException;
-use Mishusoft\Drivers\View\MishusoftViewInterface;
-use Mishusoft\FileSystem;
+use Mishusoft\Base;
 use Mishusoft\Preloader;
+use Mishusoft\Storage;
 use Mishusoft\System\Firewall;
 use Mishusoft\System\Logger;
 use Mishusoft\Utility\ArrayCollection;
-use Mishusoft\Utility\Debug;
+use Mishusoft\Utility\Inflect;
 use Mishusoft\Utility\JSON;
-use Mishusoft\Utility\Character;
-use RuntimeException;
 
-class MishusoftView extends FileSystem implements MishusoftViewInterface
+class MishusoftView extends Base implements MishusoftViewInterface
 {
     // Declare version.
     public const VERSION = '1.0.0';
 
-    public const widgetsFile       = RUNTIME_REGISTRIES_PATH.'widgets.json';
-    public const widgetsConfigFile = RUNTIME_REGISTRIES_PATH.'widgets-config.json';
-
-    protected const defaultWidgetConfig = [
+    protected const DEFAULT_WIDGET_CONFIG = [
         'position' => 'footer',
-        'show'     => 'all',
-        'hide'     => [],
+        'show' => 'all',
+        'hide' => [],
     ];
 
-    /**
-     * @var array|array[]
-     */
+
     private array $installedWidgets = [
-        'topQuickBar'      => [
-            'class'         => 'topQuickBar',
-            'method'        => 'getTopQuickBar',
-            'child'         => [],
+        'TopQuickBar' => [
+            'class' => 'topQuickBar',
+            'method' => 'getTopQuickBar',
+            'child' => [],
             'configuration' => ['position' => 'top'],
-            'setting'       => ['status' => 'enable'],
+            'setting' => ['status' => 'enable'],
         ],
-        'universalMenuBar' => [
-            'class'         => 'universalMenuBar',
-            'method'        => 'getUniversalMenuBar',
-            'child'         => [
+        'UniversalMenuBar' => [
+            'class' => 'universalMenuBar',
+            'method' => 'getUniversalMenuBar',
+            'child' => [
                 'header',
                 'left',
                 'right',
                 'footer',
             ],
             'configuration' => ['position' => 'header'],
-            'setting'       => ['status' => 'enable'],
+            'setting' => ['status' => 'enable'],
         ],
     ];
 
-    /**
-     * @var array
-     */
     public array $request;
-
-    /**
-     * @var array
-     */
     public array $widgetConfig;
-
-    /**
-     * @var string
-     */
     public string $titleOfCurrentWebPage;
-
-    /**
-     * @var string
-     */
     public string $urlOfHostedWebsite;
-
-    /**
-     * @var object
-     */
     public object $documentTitleElement;
-
-    /**
-     * @var object
-     */
     public object $documentHeadElement;
-
-    /**
-     * @var object
-     */
     public object $documentBodyElement;
-
-    /**
-     * @var object
-     */
     public object $documentTemplateElement;
-
-    /**
-     * @var object
-     */
     public object $documentTemplateBodyElement;
-
-    /**
-     * @var object
-     */
     public object $documentFooterElement;
-
-    /**
-     * @var string
-     */
     private string $templateName;
-
-    /**
-     * @var string
-     */
     private string $templateDirectory;
-
-    /**
-     * @var string
-     */
     private string $templateRenderDirectory;
-
-    /**
-     * @var string
-     */
     private string $templateExt;
-
-    /**
-     * @var string
-     */
     private string $templateLoad;
-
-    /**
-     * @var string
-     */
     private string $templateUse;
-
-    /**
-     * @var array
-     */
     private array $variables;
-
-    /**
-     * @var array
-     */
     private array $widget;
+    private string $templateExtLatest;
 
 
     /**
@@ -151,41 +73,89 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
      *
      * @param string $hostUrl
      * @param string $rootTitle
-     * @param array  $widgetConfig
-     * @param array  $request
+     * @param array $widgetConfig
+     * @param array $request
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public function __construct(string $hostUrl, string $rootTitle, array $widgetConfig, array $request)
     {
+        parent::__construct();
         // Fetching incoming variables.
-        Logger::write('Fetching incomming variables.');
+        Logger::write('Fetching incoming variables.');
 
-        $this->request               = $request;
-        $this->urlOfHostedWebsite    = $hostUrl;
+        $this->request = $request;
+        $this->urlOfHostedWebsite = $hostUrl;
         $this->titleOfCurrentWebPage = $rootTitle;
-        $this->widgetConfig          = $widgetConfig;
+        $this->widgetConfig = $widgetConfig;
 
         // Info of template.
         $this->templateName = strtolower(DEFAULT_APP_NAME);
 
         // Template preset info.
         $this->templateLoad = 'auto';
-        $this->templateUse  = 'yes';
+        $this->templateUse = 'yes';
 
         // Directory allocation.
-        $this->templateDirectory       = APPLICATION_THEMES_PATH;
-        $this->templateRenderDirectory = APPLICATION_DOCUMENT_ROOT.'Ema'.DIRECTORY_SEPARATOR.'Mishusoft/Main/Views/';
+        $this->templateDirectory = Storage::applicationDirectivePath() . 'Themes' . DS;
+        $this->templateRenderDirectory = Storage::applicationDirectivePath() . 'Ema' . DS . 'Mishusoft/Main/Views/';
 
         // File information.
         $this->templateExt = 'php';
+        $this->templateExtLatest = 'rht.php';
 
-        $this->widget    = [];
+        $this->widget = [];
         $this->variables = [];
     }//end __construct()
+
+    /**
+     * @return string
+     */
+    public function widgetsFile(): string
+    {
+        return self::dFile(self::dataFile('Widgets', 'installed'));
+    }
+
+    /**
+     * @return string
+     */
+    public function widgetsConfigFile(): string
+    {
+        return self::dFile(self::dataFile('Widgets', 'config'));
+    }
+
+    /**
+     * @return array
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     */
+    public function installedWidgetsAll():array
+    {
+        Logger::write('Collecting all data from ' . $this->widgetsFile() . ' in system.');
+        return Storage\FileSystem\Yaml::parseFile($this->widgetsFile());
+    }
+
+    /**
+     * @return array
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     */
+    public function widgetsConfigsAll():array
+    {
+        Logger::write('Collecting all configuration from ' . $this->widgetsConfigFile() . ' in system.');
+        return Storage\FileSystem\Yaml::parseFile($this->widgetsConfigFile());
+    }
 
 
     /**
      * @return string
-     * @throws JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     private function readWidgetsConfigFile(): string
     {
@@ -194,35 +164,28 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
          * $widgetsConfigFile = PHP_RUNTIME_REGISTRIES_PATH . "widgets-config.json";
          */
 
-        /*
-         * check the registries path exists
-         * create that path when not exists
-         */
-
-        Logger::write('Creating '.RUNTIME_REGISTRIES_PATH.' if not exists in system.');
-        self::createDirectory(RUNTIME_REGISTRIES_PATH);
 
         /*
          * check the installed widgets list file exists
          * create that path when not exists
          */
 
-        Logger::write('Checking '.self::widgetsFile.' is exists or empty in system?');
-        if (file_exists(self::widgetsFile) === false || self::read(self::widgetsFile) === '') {
-            Logger::write('Creating '.self::widgetsFile.' if not exists or empty in system.');
+        Logger::write('Checking ' . $this->widgetsFile() . ' is exists or empty in system?');
+        if (file_exists($this->widgetsFile()) === false || count($this->installedWidgetsAll()) === 0) {
+            Logger::write('Creating ' . $this->widgetsFile() . ' if not exists or empty in system.');
             $this->installFreshWidgets();
         } else {
-            foreach (self::getList(APPLICATION_WIDGETS_PATH, 'file') as $widgetFile) {
-                if (self::getFileExt($widgetFile) === 'php') {
-                    $filename         = self::getFilename($widgetFile);
-                    $widgetConfigFile = APPLICATION_WIDGETS_PATH.$filename.'.json';
+            foreach (Storage\FileSystem::list(Storage::applicationWidgetsPath(), 'file') as $widgetFile) {
+                if (Storage\FileSystem::fileExt($widgetFile) === self::SYSTEM_APP_FILE) {
+                    $filename = Storage\FileSystem::fileName($widgetFile);
+                    $widgetConfigFile = self::dFile(
+                        Storage::applicationWidgetsPath() . $filename,
+                        self::PUBLIC_DATA_FILE
+                    );
                     if (file_exists($widgetConfigFile) === true) {
                         $filenameOriginal = substr($filename, 0, strpos($filename, 'Widget'));
-                        $configuration    = _JSON::decodeToArray(self::read($widgetConfigFile));
+                        $configuration = JSON::decodeToArray(Storage\FileSystem::read($widgetConfigFile));
 
-                        // _Debug::preOutput($filenameOriginal);
-                        // _Debug::preOutput($configuration);
-                        // _Debug::preOutput(_Array::value($configuration, $filenameOriginal));
                         $lastModification = filemtime($widgetConfigFile);
 
                         /*
@@ -256,7 +219,7 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
                             $this->installFreshWidgets();
                         }
                     } else {
-                        throw new RuntimeException($widgetConfigFile.' not found');
+                        throw new \Mishusoft\Exceptions\RuntimeException($widgetConfigFile . ' not found');
                     }//end if
                 }//end if
             }//end foreach
@@ -266,55 +229,54 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
          * check the installed widgets configuration file exists
          * create that path when not exists
          */
-
-        // $widgetFileArray = json_decode(self::read(self::widgetsFile), true, 512, JSON_THROW_ON_ERROR);
-        // $widgetConfigArray = json_decode(self::read(self::widgetsConfigFile), true, 512, JSON_THROW_ON_ERROR);
-        // _Debug::preOutput($this->getInstalledWidgets());
-        Logger::write('Checking '.self::widgetsConfigFile.' is exists in system?');
-        if (file_exists(self::widgetsConfigFile) === false) {
-            foreach ($this->getInstalledWidgets() as $widget => $config) {
-                if (file_exists(self::widgetsConfigFile) === true && count($this->getInstalledWidgetsConfig()) > 0) {
-                    Logger::write('Updating '.self::widgetsConfigFile.' in system.');
+        Logger::write('Checking ' . $this->widgetsConfigFile() . ' is exists in system?');
+        if (file_exists($this->widgetsConfigFile()) === false) {
+            foreach ($this->installedWidgetsAll() as $widget => $config) {
+                if (file_exists($this->widgetsConfigFile()) === true && count($this->widgetsConfigsAll()) > 0) {
+                    Logger::write('Updating ' . $this->widgetsConfigFile() . ' in system.');
                     $this->updateWidgetsConfig($widget, $config);
                 } else {
-                    Logger::write('Creating '.self::widgetsConfigFile.' reason of not exists in system.');
+                    Logger::write('Creating ' . $this->widgetsConfigFile() . ' reason of not exists in system.');
                     $this->installFreshWidgetsConfig($widget, $config);
                 }
             }
-        } elseif (count($this->getInstalledWidgetsConfig()) === 0) {
-            Logger::write('Updating '.self::widgetsConfigFile.' in system.');
-            foreach ($this->getInstalledWidgets() as $widget => $config) {
+        } elseif (count($this->widgetsConfigsAll()) === 0) {
+            Logger::write('Updating ' . $this->widgetsConfigFile() . ' in system.');
+            foreach ($this->installedWidgetsAll() as $widget => $config) {
                 $this->updateWidgetsConfig($widget, $config);
             }
         } else {
-            Logger::write('Updating '.self::widgetsConfigFile.' in system.');
-            foreach ($this->getInstalledWidgets() as $widget => $config) {
-                if (array_key_exists($widget, $this->getInstalledWidgetsConfig()) === false) {
+            Logger::write('Updating ' . $this->widgetsConfigFile() . ' in system.');
+            foreach ($this->installedWidgetsAll() as $widget => $config) {
+                if (array_key_exists($widget, $this->widgetsConfigsAll()) === false) {
                     $this->updateWidgetsConfig($widget, $config);
                 }
             }
         }//end if
 
-        return self::widgetsConfigFile;
+        return $this->widgetsConfigFile();
     }//end readWidgetsConfigFile()
 
 
     /**
-     * @throws JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     private function installFreshWidgets(): void
     {
-        Logger::write('Fresh install '.self::widgetsFile.' in system.');
+        Logger::write('Fresh install ' . $this->widgetsFile() . ' in system.');
         $newWidget = [];
-        if (count(self::getList(APPLICATION_WIDGETS_PATH, 'file')) > 0) {
-            foreach (self::getList(APPLICATION_WIDGETS_PATH, 'file') as $widgetFile) {
-                if (self::getFileExt($widgetFile) === 'php') {
-                    $filename         = self::getFilename($widgetFile);
-                    $widgetConfigFile = APPLICATION_WIDGETS_PATH.$filename.'.json';
+        if (count(Storage\FileSystem::list(Storage::applicationWidgetsPath(), 'file')) > 0) {
+            foreach (Storage\FileSystem::list(Storage::applicationWidgetsPath(), 'file') as $widgetFile) {
+                if (Storage\FileSystem::fileExt($widgetFile) === 'php') {
+                    $filename = Storage\FileSystem::fileName($widgetFile);
+                    $widgetConfigFile = Storage::applicationWidgetsPath() . $filename . '.json';
                     if (file_exists($widgetConfigFile) === true) {
                         $filenameOriginal = substr($filename, 0, strpos($filename, 'Widget'));
                         $lastModification = filemtime($widgetConfigFile);
-                        $configuration    = _JSON::decodeToArray(self::read($widgetConfigFile));
+                        $configuration = JSON::decodeToArray(Storage\FileSystem::read($widgetConfigFile));
 
                         if ((array_key_exists('setting', $configuration) === true)
                             && array_key_exists('status', $configuration['setting']) === true
@@ -325,10 +287,10 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
                                 $newWidget[$filenameOriginal]['last_modification'] = $lastModification;
                             }
                         } else {
-                            throw new RuntimeException($widgetConfigFile.' is corrupted');
+                            throw new \Mishusoft\Exceptions\RuntimeException($widgetConfigFile . ' is corrupted');
                         }
                     } else {
-                        throw new RuntimeException($widgetConfigFile.' not found');
+                        throw new \Mishusoft\Exceptions\RuntimeException($widgetConfigFile . ' not found');
                     }//end if
                 }//end if
             }//end foreach
@@ -336,62 +298,51 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
 
         Logger::write('Merging new widgets configuration data with install widget data.');
         $this->installedWidgets = array_merge($this->installedWidgets, $newWidget);
-        Logger::write('Writing '.self::widgetsFile.' in system.');
-        if (file_exists(self::widgetsFile) === true) {
-            self::remove(self::widgetsFile);
+        Logger::write('Writing ' . $this->widgetsFile() . ' in system.');
+        if (file_exists(dirname($this->widgetsFile())) === false) {
+            Storage\FileSystem::makeDirectory(dirname($this->widgetsFile()));
         }
 
-        self::write(self::widgetsFile, $this->installedWidgets);
+        if (file_exists($this->widgetsFile()) === true) {
+            Storage\FileSystem::remove($this->widgetsFile());
+        }
+
+        Storage\FileSystem\Yaml::emitFile($this->widgetsFile(), $this->installedWidgets);
     }//end installFreshWidgets()
 
 
-    /**
-     * @throws JsonException
-     */
-    private function getInstalledWidgets(): array
-    {
-        Logger::write('Collecting all data from '.self::widgetsFile.' in system.');
-        return _JSON::decodeToArray(self::read(self::widgetsFile));
-    }//end getInstalledWidgets()
-
 
     /**
-     * @throws JsonException
-     */
-    private function getInstalledWidgetsConfig(): array
-    {
-        Logger::write('Collecting all configuration from '.self::widgetsConfigFile.' in system.');
-        return _JSON::decodeToArray(self::read(self::widgetsConfigFile));
-    }//end getInstalledWidgetsConfig()
-
-
-    /**
-     * @param  string $widget
-     * @param  array  $config
-     * @throws JsonException
+     * @param string $widget
+     * @param array $config
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function installFreshWidgetsConfig(string $widget, array $config): void
     {
-        // _Debug::preOutput(func_get_args());
-        Logger::write('Writing '.self::widgetsConfigFile.' in system.');
-        self::write(self::widgetsConfigFile, $this->collectAllData($widget, $config));
+        Logger::write('Writing ' . $this->widgetsConfigFile() . ' in system.');
+        Storage\FileSystem\Yaml::emitFile($this->widgetsConfigFile(), $this->collectAllData($widget, $config));
     }//end installFreshWidgetsConfig()
 
 
     /**
-     * @param  string $widget
-     * @param  array  $config
+     * @param string $widget
+     * @param array $config
      * @return void
-     * @throws JsonException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function updateWidgetsConfig(string $widget, array $config): void
     {
         // _Debug::preOutput(func_get_args());
-        Logger::write('Updating '.self::widgetsConfigFile.' in system.');
-        self::write(
-            self::widgetsConfigFile,
+        Logger::write('Updating ' . $this->widgetsConfigFile() . ' in system.');
+        Storage\FileSystem\Yaml::emitFile(
+            $this->widgetsConfigFile(),
             array_merge(
-                _JSON::decodeToArray(self::read(self::widgetsConfigFile)),
+                Storage\FileSystem\Yaml::parseFile($this->widgetsConfigFile()),
                 $this->collectAllData($widget, $config)
             )
         );
@@ -399,71 +350,57 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
 
 
     /**
-     * @param  string $widget
-     * @param  array  $config
+     * @param string $widget
+     * @param array $config
      * @return array
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function collectAllData(string $widget, array $config): array
     {
-        Logger::write('Extract to child wise configuration from '.self::widgetsConfigFile.' in system.');
+        Logger::write('Extract to child wise configuration from ' . $this->widgetsConfigFile() . ' in system.');
         $array = [];
-        // _Debug::preOutput($widget);
-        // _Debug::preOutput($config);
         if (array_key_exists('child', $config) === true) {
             if (count($config['child']) > 0) {
                 foreach ($config['child'] as $child) {
-                    $array[$widget.'-'.$child] = array_merge(
-                        self::defaultWidgetConfig,
+                    $array[$widget . '-' . $child] = array_merge(
+                        self::DEFAULT_WIDGET_CONFIG,
                         [
-                            'parent'   => $config['class'],
+                            'parent' => $config['class'],
                             'position' => $child,
                         ]
                     );
-                    /*
-                        $array = array_merge($array,
-                        ["$widget-".$child => array_merge(self::defaultWidgetConfig, ['position' => $child])]
-                    );*/
                 }
             } else {
                 $array[$widget] = array_merge(
-                    self::defaultWidgetConfig,
+                    self::DEFAULT_WIDGET_CONFIG,
                     $config['configuration'],
                     [
                         'parent' => $config['class'],
                     ],
                 );
-                // $array = array_merge($array, [$widget => array_merge(self::defaultWidgetConfig, $config['configuration'])]);
             }//end if
         } else {
-            throw new RuntimeException('Child element not found. Widget configuration corrupted');
+            throw new \Mishusoft\Exceptions\RuntimeException('Child element not found. Widget configuration corrupted');
         }//end if
 
-        // _Debug::preOutput($array);
         return $array;
     }//end collectAllData()
 
 
     /**
-     * @return array
-     * @throws JsonException
-     */
-    private function getWidgetsConfigAll(): array
-    {
-        Logger::write('After verification get all configuration from '.self::widgetsConfigFile.' in system.');
-        return _JSON::decodeToArray(self::read($this->readWidgetsConfigFile()));
-    }//end getWidgetsConfigAll()
-
-
-    /**
-     * @param  string $child
+     * @param string $child
      * @return string
-     * @throws JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function getWidgetsParent(string $child): string
     {
-        Logger::write('Get parent Widget of '.$child);
+        Logger::write('Get parent Widget of ' . $child);
         $parent = '';
-        $wd     = array_keys($this->getWidgetsConfigAll());
+        $wd = array_keys($this->widgetsConfigsAll());
         foreach ($wd as $item) {
             if ($item === $child) {
                 if (str_contains($item, '-') === true) {
@@ -474,20 +411,22 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
             }
         }
 
-        Logger::write('The parent Widget of '.$child.' is '.$parent);
+        Logger::write('The parent Widget of ' . $child . ' is ' . $parent);
         return $parent;
     }//end getWidgetsParent()
 
 
     /**
      * @return array
-     * @throws JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function getWidgetsParentAll(): array
     {
         Logger::write('Get all parent Widget');
         $parents = [];
-        $wd      = array_keys($this->getWidgetsConfigAll());
+        $wd = array_keys($this->widgetsConfigsAll());
         foreach ($wd as $item) {
             if (str_contains($item, '-') === true) {
                 $parents[] = substr($item, 0, strpos($item, '-'));
@@ -501,77 +440,94 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
         array_multisort($parents, SORT_ASC);
         asort($parents, SORT_ASC);
 
-        Logger::write('The parents are '.implode(',', $parents));
+        Logger::write('The parents are ' . implode(',', $parents));
         return $parents;
     }//end getWidgetsParentAll()
 
 
     /**
-     * @param  string $parent
+     * @param string $parent
      * @return array
-     * @throws JsonException
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
      */
     private function getAllDataOfWidgetsParent(string $parent): array
     {
-        _Debug::preOutput(func_get_args());
-        // _Debug::preOutput(self::read(self::widgetsConfigFile));
-        // _Debug::preOutput(json_decode(self::read(self::widgetsFile), true, 512, JSON_THROW_ON_ERROR));
-        // Logger::write('Extract to child configuration from '.self::widgetsConfigFile.' of '.$parent);
-        $elements = _JSON::decodeToArray(self::read(self::widgetsFile));
-        if (array_key_exists($parent, $elements) === false) {
-            throw new InvalidArgumentException('No child of unregistered father was found');
+        //print_r($parent, false);
+        $elements = $this->installedWidgetsAll();
+        if (array_key_exists($parent, $this->installedWidgetsAll()) === false) {
+            throw new \Mishusoft\Exceptions\LogicException\InvalidArgumentException(
+                'No child of unregistered father was found'
+            );
         }
 
-        if (is_array(_Array::value($elements, $parent)) === false) {
-            throw new RuntimeException('Unable to extract parent widget\'s child item');
+        if (is_array(ArrayCollection::value($elements, $parent)) === false) {
+            throw new \Mishusoft\Exceptions\RuntimeException('Unable to extract parent widget\'s child item');
         }
 
-        return _Array::value($elements, $parent);
+        return ArrayCollection::value($elements, $parent);
     }//end getAllDataOfWidgetsParent()
 
 
     /**
+     * @param string $widget
+     * @return array
      * @throws JsonException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function getConfig(string $widget): array
     {
-        Logger::write('Check '.self::widgetsConfigFile.' is readable or not in system.');
+        Logger::write('Check ' . $this->widgetsConfigFile() . ' is readable or not in system.');
         if (is_readable($this->readWidgetsConfigFile()) === true) {
-            Logger::write('If '.self::widgetsConfigFile.' is readable in system, then return configuration of '.$widget);
-            return _Array::value(_JSON::decodeToArray(self::read(self::widgetsFile)), $widget);
+            Logger::write('If ' . $this->widgetsConfigFile() . ' is readable in system, then return configuration of ' . $widget);
+            return ArrayCollection::value($this->installedWidgetsAll(), $widget);
         }
 
         Logger::write('Otherwise return default configuration ');
-        return self::defaultWidgetConfig;
+        return self::DEFAULT_WIDGET_CONFIG;
     }//end getConfig()
 
 
     /**
-     * @param  string $template
+     * @param string $template
      * @return array
+     * @throws JsonException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    public function getAvailableWidgetsPositions(string $template=DEFAULT_SYSTEM_THEME): array
+    public function getAvailableWidgetsPositions(string $template = DEFAULT_SYSTEM_THEME): array
     {
         Logger::write('Check custom template is set or not.');
         if (empty($this->templateName) === false) {
-            Logger::write('New custom template is '.$this->templateName);
+            Logger::write('New custom template is ' . $this->templateName);
             $template = $this->templateName;
         }
 
-        Logger::write('Checking '.APPLICATION_THEMES_PATH.$template.DIRECTORY_SEPARATOR.'configs.php'.' is readable or not in system.');
-        if (is_readable(APPLICATION_THEMES_PATH.$template.DIRECTORY_SEPARATOR.'configs.php') === true) {
-            Logger::write(APPLICATION_THEMES_PATH.$template.DIRECTORY_SEPARATOR.'configs.php is readable and load it.');
-            include_once APPLICATION_THEMES_PATH.$template.DIRECTORY_SEPARATOR.'configs.php';
+        Logger::write('Checking ' . Storage::applicationThemesPath() . $template . DS . 'configs.php is readable or not in system.');
+        if (is_readable(Storage::applicationThemesPath() . $template . DS . 'configs.php') === true) {
+            Logger::write(Storage::applicationThemesPath() . $template . DS . 'configs.php is readable and load it.');
+            include_once Storage::applicationThemesPath() . $template . DS . 'configs.php';
             return get_available_widgets_positions();
         }
 
-        Logger::write(APPLICATION_THEMES_PATH.$template.DIRECTORY_SEPARATOR.'configs.php'.' is not readable.');
+        Logger::write(Storage::applicationThemesPath() . $template . DS . 'configs.php is not readable.');
         Firewall::runtimeFailure(
             'Not Found',
             [
                 'debug' => [
-                    'file'        => "Theme's Configs.php",
-                    'location'    => APPLICATION_THEMES_PATH.$template.DIRECTORY_SEPARATOR.'configs.php',
+                    'file' => "Theme's Configs.php",
+                    'location' => Storage::applicationThemesPath() . $template . DS . 'configs.php',
                     'description' => "Theme's configuration file not found.",
                 ],
                 'error' => ['description' => 'Your requested url is broken!!'],
@@ -583,34 +539,42 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
 
 
     /**
-     * @param  string $widget
-     * @param  string $method
-     * @param  array  $options
+     * @param string $widget
+     * @param string $method
+     * @param array $options
      * @return mixed|void
+     * @throws JsonException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    public function widget(string $widget, string $method, array $options=[])
+    public function widget(string $widget, string $method, array $options = [])
     {
-        // _Debug::preOutput(func_get_args());
         Logger::write('Check widget options is array or not.');
         if (is_array($options) === false) {
             $options = [$options];
         }
 
-        $widgetClass = $widget.'Widget';
+        $widgetClass = $widget . 'Widget';
 
-        Logger::write('Checking '.APPLICATION_WIDGETS_PATH.$widgetClass.'.php is readable or not in system.');
-        if (is_readable(APPLICATION_WIDGETS_PATH.$widgetClass.'.php') === true) {
-            Logger::write(APPLICATION_WIDGETS_PATH.$widgetClass.'.php is readable and load it.');
-            include_once APPLICATION_WIDGETS_PATH.$widgetClass.'.php';
-            $widgetClass = Preloader::getClassNamespaceFromPath(APPLICATION_WIDGETS_PATH.$widgetClass.'.php');
-            Logger::write('Extract class name from'.APPLICATION_WIDGETS_PATH.$widgetClass.'.php');
+        Logger::write('Checking ' . Storage::applicationWidgetsPath() . $widgetClass . '.php is readable or not in system.');
+        if (is_readable(Storage::applicationWidgetsPath() . $widgetClass . '.php') === true) {
+            Logger::write(Storage::applicationWidgetsPath() . $widgetClass . '.php is readable and load it.');
+            include_once Storage::applicationWidgetsPath() . $widgetClass . '.php';
+            $widgetClass = Preloader::getClassNamespaceFromPath(Storage::applicationWidgetsPath() . $widgetClass . '.php');
+            Logger::write('Extract class name from' . Storage::applicationWidgetsPath() . $widgetClass . '.php');
             if (class_exists($widgetClass) === false) {
                 Firewall::runtimeFailure(
                     'Not Found',
                     [
                         'debug' => [
-                            'file'        => $widgetClass,
-                            'location'    => APPLICATION_WIDGETS_PATH.$widgetClass.'.php',
+                            'file' => $widgetClass,
+                            'location' => Storage::applicationWidgetsPath() . $widgetClass . '.php',
                             'description' => 'Widget class not found or Widget class call error',
                         ],
                         'error' => ['description' => 'Your requested url is broken!!'],
@@ -618,7 +582,7 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
                 );
             }
 
-            Logger::write('Checking '.$widgetClass.' and '.$method.'.is callable or not.');
+            Logger::write('Checking ' . $widgetClass . ' and ' . $method . '.is callable or not.');
             if (method_exists($widgetClass, $method) === true) {
                 if (count($options) > 0) {
                     return call_user_func_array([new $widgetClass, $method], $options);
@@ -627,13 +591,13 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
                 return call_user_func([new $widgetClass, $method]);
             }
         } else {
-            Logger::write(APPLICATION_WIDGETS_PATH.$widgetClass.'.php is not readable.');
+            Logger::write(Storage::applicationWidgetsPath() . $widgetClass . '.php is not readable.');
             Firewall::runtimeFailure(
                 'Not Found',
                 [
                     'debug' => [
-                        'file'        => $widgetClass.'.php',
-                        'location'    => APPLICATION_WIDGETS_PATH.$widgetClass.'.php',
+                        'file' => $widgetClass . '.php',
+                        'location' => Storage::applicationWidgetsPath() . $widgetClass . '.php',
                         'description' => "Widget's content not readable or found.",
                     ],
                     'error' => ['description' => 'Your requested url is broken!!'],
@@ -644,7 +608,16 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
 
 
     /**
+     * @return array
      * @throws JsonException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public function getWidgets(): array
     {
@@ -669,7 +642,7 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
 
         $widgets = [];
 
-        foreach ($this->getWidgetsConfigAll() as $wd => $cnf) {
+        foreach ($this->widgetsConfigsAll() as $wd => $cnf) {
             /*
              * Sample
              * $widgets = array(
@@ -680,17 +653,14 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
                 );
              */
 
-            // _Debug::preOutput($wd);
             $widget = $this->getAllDataOfWidgetsParent($this->getWidgetsParent($wd));
-            // _Debug::preOutput($widget);
-            // _Debug::preOutput($this->widget);
             $widgets[$wd] = [
-                'config'  => $cnf,
+                'config' => $cnf,
                 'content' => [
-                    _Array::value($widget, 'class'),
-                    _Array::value($widget, 'method'),
+                    ArrayCollection::value($widget, 'class'),
+                    ArrayCollection::value($widget, 'method'),
                     [
-                        _Array::value($widget, 'class'),
+                        ArrayCollection::value($widget, 'class'),
                         $wd,
                         'php',
                     ],
@@ -699,18 +669,20 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
         }//end foreach
 
         $positions = $this->getAvailableWidgetsPositions();
-        $keys      = [];
+        $keys = [];
         if (is_array($widgets) === true) {
             $keys = array_keys($widgets);
         }
 
+        $currentUrl = sprintf('%s/%s', $this->request['controller'], $this->request['method']);
+
         foreach ($keys as $k) {
             // Verification of widgets position visibility.
-            if (isset($positions[$widgets[$k]['config']['position']]) === true) {
+            if (array_key_exists($widgets[$k]['config']['position'], $positions) === true) {
                 // Verification it's view disability by url [controller/method].
-                if (!isset($widgets[$k]['config']['hide']) || !in_array($this->request['controller'].'/'.$this->request['method'], $widgets[$k]['config']['hide'])) {
+                if (empty($widgets[$k]['config']['hide']) || !in_array($currentUrl, $widgets[$k]['config']['hide'], true)) {
                     // Verification it's view visibility by url [controller/method].
-                    if ($widgets[$k]['config']['show'] === 'all' || in_array($this->request['controller'].'/'.$this->request['method'], $widgets[$k]['config']['show'])) {
+                    if ($widgets[$k]['config']['show'] === 'all' || in_array($currentUrl, $widgets[$k]['config']['show'], true)) {
                         if (array_key_exists($k, $this->widget) === true) {
                             $widgets[$k]['content'][2] = $this->widget[$k];
                         }
@@ -722,14 +694,24 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
             }
         }//end foreach
 
+
         Logger::write('Extract positions from all widgets.');
         return $positions;
     }//end getWidgets()
 
 
     /**
-     * @param  array $content
+     * @param array $content
      * @return mixed|void
+     * @throws JsonException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public function getWidgetContent(array $content)
     {
@@ -740,8 +722,8 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
                 'Not Found',
                 [
                     'debug' => [
-                        'file'        => 'Widget',
-                        'location'    => 'Required file',
+                        'file' => 'Widget',
+                        'location' => 'Required file',
                         'description' => "Widget's content not found.",
                     ],
                     'error' => ['description' => 'Your requested url is broken!!'],
@@ -759,7 +741,10 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
 
     /**
      * @inheritDoc
-     * @param      array $config
+     * @param array $config
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public function setWidgetConfig(array $config): void
     {
@@ -770,7 +755,10 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
 
     /**
      * @inheritDoc
-     * @param      string $documentTitle
+     * @param string $documentTitle
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public function setDocumentTitle(string $documentTitle): void
     {
@@ -781,7 +769,10 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
 
     /**
      * @inheritDoc
-     * @param      string $urlOfHostedWebsite
+     * @param string $urlOfHostedWebsite
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public function setUrlOfHostedWebsite(string $urlOfHostedWebsite): void
     {
@@ -792,8 +783,17 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
 
     /**
      * @param array $options
+     * @throws JsonException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    public function display(array $options=[]): void
+    public function display(array $options = []): void
     {
         Logger::write('Display Html Ui.');
         // _Debug::preOutput(func_get_args());
@@ -802,20 +802,20 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
             // Identify file load auto or manual the current file.
             Logger::write('If parameter array options are not empty.');
             Logger::write('Checking custom load is set or not and is the custom load manual?');
-            if (array_key_exists('load', $options) === true && _Array::value($options, 'load') === 'manual') {
+            if (array_key_exists('load', $options) === true && ArrayCollection::value($options, 'load') === 'manual') {
                 $this->templateLoad = 'manual';
                 Logger::write('Checking custom template directory is set or not ?');
                 if (array_key_exists('templateDirectory', $options) === true) {
                     Logger::write('Set custom templateDirectory to runtime template directory.');
-                    $this->templateRenderDirectory = (string) _Array::value($options, 'templateDirectory');
+                    $this->templateRenderDirectory = (string)ArrayCollection::value($options, 'templateDirectory');
                 } else {
                     Logger::write('Custom templateDirectory is not found.');
                     Firewall::runtimeFailure(
                         'Not Found',
                         [
                             'debug' => [
-                                'file'        => __FILE__,
-                                'location'    => __METHOD__,
+                                'file' => __FILE__,
+                                'location' => __METHOD__,
                                 'description' => 'Invalid $options parsed. template directory location not provided.',
                             ],
                             'error' => ['description' => 'Your requested file not found or deleted!!'],
@@ -826,15 +826,15 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
                 Logger::write('Checking custom template extension is set or not ?');
                 if (array_key_exists('templateExt', $options) === true) {
                     Logger::write('Set custom template extension to runtime template extension.');
-                    $this->templateExt = (string) _Array::value($options, 'templateExt');
+                    $this->templateExt = (string)ArrayCollection::value($options, 'templateExt');
                 } else {
                     Logger::write('Custom template extension is not found.');
                     Firewall::runtimeFailure(
                         'Not Found',
                         [
                             'debug' => [
-                                'file'        => __FILE__,
-                                'location'    => __METHOD__,
+                                'file' => __FILE__,
+                                'location' => __METHOD__,
                                 'description' => 'Invalid $options parsed. template extension not provided.',
                             ],
                             'error' => ['description' => 'Your requested file not found or deleted!!'],
@@ -845,26 +845,27 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
 
             Logger::write('Checking custom template filtering is set or not ?');
             // Identify use theme or not the current file.
-            if (array_key_exists('useTheme', $options) === true && _Array::value($options, 'useTheme') === 'no') {
+            if (array_key_exists('useTheme', $options) === true && ArrayCollection::value($options, 'useTheme') === 'no') {
                 Logger::write('Set custom template filtering is no.');
                 $this->templateUse = 'no';
             }
         }//end if
 
         // _Debug::preOutput($this->loadTemplateFile());
-        Logger::write('Checking current page file ('.$this->loadTemplateFile().') is exists or not ?');
+        Logger::write('Checking current page file (' . $this->loadTemplateFile() . ') is exists or not ?');
         if (file_exists($this->loadTemplateFile()) === true) {
-            Logger::write('Load current page file ('.$this->loadTemplateFile().')');
+            Logger::write('Load current page file (' . $this->loadTemplateFile() . ')');
+            $this->readWidgetsConfigFile();
             $this->compile();
         } else {
-            Logger::write('Current page file ('.$this->loadTemplateFile().') is not exists or not readable.');
+            Logger::write('Current page file (' . $this->loadTemplateFile() . ') is not exists or not readable.');
             Firewall::runtimeFailure(
                 'Not Found',
                 [
                     'debug' => [
-                        'file'        => $this->loadTemplateFile(),
-                        'location'    => $this->templateRenderDirectory,
-                        'description' => $this->loadTemplateFile().' not found.',
+                        'file' => $this->loadTemplateFile(),
+                        'location' => $this->templateRenderDirectory,
+                        'description' => $this->loadTemplateFile() . ' not found.',
                     ],
                     'error' => ['description' => 'Your requested file not found or deleted!!'],
                 ]
@@ -875,36 +876,47 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
 
     /**
      * @return string
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public function loadTemplateFile(): string
     {
-        $routeUrl = implode('/', [_String::ucfirst($this->request['controller']), $this->request['method']]);
-        Logger::write('Resolve current page'.$this->templateRenderDirectory.$routeUrl.'.'.$this->templateExt);
-        return $this->templateRenderDirectory.$routeUrl.'.'.$this->templateExt;
+        $routeUrl = implode('/', [Inflect::ucfirst($this->request['controller']), $this->request['method']]);
+        Logger::write('Resolve current page' . $this->templateRenderDirectory . $routeUrl . '.' . $this->templateExt);
+        return $this->templateRenderDirectory . $routeUrl . '.' . $this->templateExt;
     }//end loadTemplateFile()
 
 
     /**
-     *
+     * @throws JsonException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function compile(): void
     {
-        Logger::write('Checking'.$this->templateDirectory.' is exists and working directory?');
+        Logger::write('Checking' . $this->templateDirectory . ' is exists and working directory?');
         if (is_dir($this->templateDirectory) === true) {
             // _Debug::preOutput($this->templateDirectory);
-            Logger::write('Checking theme template'.$this->templateDirectory.$this->templateName.'/template.php is exists?');
-            if (file_exists($this->templateDirectory.$this->templateName.'/template.php') === true) {
+            Logger::write('Checking theme template' . $this->templateDirectory . $this->templateName . '/template.php is exists?');
+            if (file_exists($this->templateDirectory . $this->templateName . '/template.php') === true) {
                 // _Debug::preOutput($this->templateDirectory.$this->templateName.'/template.php');
-                Logger::write('Load theme template'.$this->templateDirectory.$this->templateName.'/template.php.');
-                include_once $this->templateDirectory.$this->templateName.'/template.php';
+                Logger::write('Load theme template' . $this->templateDirectory . $this->templateName . '/template.php.');
+                include_once $this->templateDirectory . $this->templateName . '/template.php';
             } else {
-                Logger::write('Checking theme template'.$this->templateDirectory.$this->templateName.'/template.php is not exists.');
+                Logger::write('Checking theme template' . $this->templateDirectory . $this->templateName . '/template.php is not exists.');
                 Firewall::runtimeFailure(
                     'Not Found',
                     [
                         'debug' => [
-                            'file'        => 'template.php',
-                            'location'    => $this->templateDirectory.$this->templateName.'/template.php',
+                            'file' => 'template.php',
+                            'location' => $this->templateDirectory . $this->templateName . '/template.php',
                             'description' => 'Template file not found',
                         ],
                         'error' => ['description' => 'Your requested url is broken!!'],
@@ -912,13 +924,13 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
                 );
             }
         } else {
-            Logger::write('Checking'.$this->templateDirectory.' is not exists and not a working directory.');
+            Logger::write('Checking' . $this->templateDirectory . ' is not exists and not a working directory.');
             Firewall::runtimeFailure(
                 'Not Found',
                 [
                     'debug' => [
-                        'file'        => 'template directory',
-                        'location'    => $this->templateDirectory,
+                        'file' => 'template directory',
+                        'location' => $this->templateDirectory,
                         'description' => 'template directory not found',
                     ],
                     'error' => ['description' => 'Your requested url is broken!!'],
@@ -929,8 +941,8 @@ class MishusoftView extends FileSystem implements MishusoftViewInterface
 
 
     /**
-     * @param  string $tplKey
-     * @param  mixed  $tplValue
+     * @param string $tplKey
+     * @param mixed $tplValue
      * @return array
      */
     public function assign(string $tplKey, mixed $tplValue): array

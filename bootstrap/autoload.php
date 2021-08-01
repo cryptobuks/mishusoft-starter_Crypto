@@ -18,8 +18,8 @@ Autoload::register();
 
 // Set customize error controller.
 set_error_handler(
-    static function ($errorNo, $errorMessage, $errorFile, $errorLine) {
-        return new ExceptionsHandler($errorMessage, $errorNo, $errorNo, $errorFile, $errorLine);
+    static function ($errorNo, $errorMessage) {
+        return new ExceptionsHandler($errorMessage, $errorNo);
     },
     E_ALL
 );

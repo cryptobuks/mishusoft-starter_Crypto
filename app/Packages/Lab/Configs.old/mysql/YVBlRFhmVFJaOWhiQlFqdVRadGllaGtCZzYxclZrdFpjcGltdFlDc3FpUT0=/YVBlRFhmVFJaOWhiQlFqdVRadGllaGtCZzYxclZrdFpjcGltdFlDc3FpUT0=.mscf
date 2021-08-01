@@ -1,0 +1,24 @@
+{
+  "db": {
+    "host": "66.165.253.235",
+    "port": "3306",
+    "user": "mishusof",
+    "password": "AP@17011996",
+    "name": "mishusof_main",
+    "char": "utf8mb4",
+    "prefix": "msu_"
+  },
+  "client": {
+    "deviceIP": "45.252.55.249",
+    "deviceOsName": "Linux",
+    "deviceBrowser": "Firefox 79.0"
+  },
+  "server": {
+    "name": "www.mishusoft.com",
+    "ip": "66.165.253.235",
+    "port": "443",
+    "gatewayInterface": "Unavailable",
+    "host": "www.mishusoft.com",
+    "software": "LiteSpeed"
+  }
+}

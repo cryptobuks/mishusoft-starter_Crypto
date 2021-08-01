@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Mishusoft\System;
 
-use InvalidArgumentException;
+use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
+use Mishusoft\Exceptions\PermissionRequiredException;
+use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Http\IP;
 use Mishusoft\Storage;
-use RuntimeException;
 
 class Logger
 {
@@ -39,12 +40,13 @@ class Logger
      * Write log into a file.
      *
      * @param string $message Log message.
-     * @param string $style   Log wiring style.
-     * @param string $flag    Log type flag.
+     * @param string $style Log wiring style.
+     * @param string $flag Log type flag.
      *
      * @return void                     Return void on action.
-     * @throws RuntimeException         Throw a message on runtime execution time.
-     * @throws InvalidArgumentException Throw a message on invalid parameter received.
+     * @throws InvalidArgumentException
+     * @throws RuntimeException
+     * @throws PermissionRequiredException
      */
     public static function write(
         string $message,
@@ -137,16 +139,19 @@ class Logger
 
                 exec('chmod -R 777 '.$logFile);
             } else {
-                throw new RuntimeException('Permission denied. Unable to write or read '.$logFile);
+                throw new PermissionRequiredException('Permission denied. Unable to write or read '.$logFile);
             }
         } else {
-            throw new RuntimeException('Permission denied. Unable to write or read '.realpath(dirname($logFile)));
+            throw new PermissionRequiredException(
+                'Permission denied. Unable to write or read '.realpath(dirname($logFile))
+            );
         }//end if
     }//end write()
 
 
     /**
      * @return string
+     * @throws RuntimeException
      */
     private static function getHttpUserAgent() : string
     {
@@ -175,7 +180,7 @@ class Logger
      * @param string $flag String flag.
      *
      * @return string Absolute path of log file.
-     * @throws RuntimeException Throw exception when error occurred.
+     * @throws RuntimeException
      */
     private static function getLogFilePath(string $flag):string
     {

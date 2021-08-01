@@ -13,11 +13,13 @@ class Element extends Ui
     /**
      * @param string $type
      * @param DOMElement $documentRoot
-     * //     */
+     * //
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     */
     public static function board(string $type, DOMElement $documentRoot): void
     {
         if ($type === 'message') {
-            $root = Ui::element($documentRoot, 'message', ['class' => 'messageZone', 'style' => Ui::css['display-flex'] . 'width:inherit;']);
+            $root = Ui::element($documentRoot, 'message', ['class' => 'messageZone', 'style' => Ui::CSS['display-flex'] . 'width:inherit;']);
             $item = Ui::element($root, 'item', ['class' => array_key_exists("success", $_GET) ? "box-message box-success box-shadow-light" : (array_key_exists("notify", $_GET) ? "box-message box-notify box-shadow-light" : "box-message box-danger box-shadow-light")]);
             Ui::element(Ui::element($item, 'symbol', ['class' => array_key_exists("success", $_GET) ? "box-success-symbol" : (array_key_exists("notify", $_GET) ? "box-notify-symbol" : "box-danger-symbol")]), 'i', ['class' => array_key_exists("success", $_GET) ? "fa fa-check" : (array_key_exists("notify", $_GET) ? "fa fa-i" : "fa fa-times")]);
             Ui::text(Ui::element($item, 'content', ['class' => 'notify-md-content']), Decryption::dynamic(array_key_exists("success", $_GET) ? $_GET["success"] : (array_key_exists("notify", $_GET) ? $_GET["notify"] : $_GET["error"])));

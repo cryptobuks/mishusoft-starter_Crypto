@@ -8,7 +8,6 @@ use Mishusoft\Databases\MishusoftSQLStandalone;
 use Mishusoft\Http;
 use Mishusoft\Utility\ArrayCollection;
 use Mishusoft\Utility\Number;
-use Mishusoft\Utility\Stream;
 
 class Data implements DataInterface
 {
@@ -79,7 +78,8 @@ class Data implements DataInterface
                                             foreach ($options["where"] as $k => $v) {
                                                 $v = is_numeric($v) ? (string)$v : $v;
                                                 if (array_key_exists($k, $contents[$key]) and $contents[$key][$k] === $v) {
-                                                    $this->output = array_merge($this->output, [$option => $contents[$key][$option]]);
+                                                    //$this->output = array_merge($this->output, [$option => $contents[$key][$option]]);
+                                                    $this->output[$option] = $contents[$key][$option];
                                                 }
                                             }
                                         }
@@ -155,7 +155,10 @@ class Data implements DataInterface
                 array_multisort($contents, SORT_ASC);
                 ksort($contents, SORT_ASC);
 
-                Stream::saveToFile($this->tableFile, json_encode($contents, JSON_THROW_ON_ERROR));
+                \Mishusoft\Storage\FileSystem::saveToFile(
+                    $this->tableFile,
+                    json_encode($contents, JSON_THROW_ON_ERROR)
+                );
                 return true;
             }
 
@@ -194,7 +197,10 @@ class Data implements DataInterface
                 array_multisort($contents, SORT_ASC);
                 ksort($contents, SORT_ASC);
 
-                Stream::saveToFile($this->tableFile, json_encode($contents));
+                \Mishusoft\Storage\FileSystem::saveToFile(
+                    $this->tableFile,
+                    json_encode($contents, JSON_THROW_ON_ERROR)
+                );
                 return true;
             }
 
@@ -209,13 +215,14 @@ class Data implements DataInterface
     /**
      * @param array $haystack
      * @return bool
+     * @throws JsonException
      */
     public function insert(array $haystack): bool
     {
         // TODO: Implement insert() method.
         if (count($haystack) > 0) {
             if (is_readable($this->tableFile)) {
-                $contents = json_decode(file_get_contents($this->tableFile), true);
+                $contents = json_decode(file_get_contents($this->tableFile), true, 512, JSON_THROW_ON_ERROR);
                 /*add data unique id for every data row*/
                 array_merge($haystack, ["id" => Number::next($this->getLastInsertedId())]);
                 /*merge all data*/
@@ -227,7 +234,10 @@ class Data implements DataInterface
                 array_multisort($contents, SORT_ASC);
                 ksort($contents, SORT_ASC);
 
-                Stream::saveToFile($this->tableFile, json_encode(array_reverse($contents)));
+                \Mishusoft\Storage\FileSystem::saveToFile(
+                    $this->tableFile,
+                    json_encode(array_reverse($contents), JSON_THROW_ON_ERROR)
+                );
                 return true;
             }
 
@@ -257,7 +267,7 @@ class Data implements DataInterface
                 array_multisort($contents, SORT_ASC);
                 ksort($contents, SORT_ASC);
 
-                Stream::saveToFile($this->tableFile, json_encode($contents));
+                \Mishusoft\Storage\FileSystem::saveToFile($this->tableFile, json_encode($contents));
                 return true;
             } else {
                 MishusoftQL::error(Http::NOT_FOUND, "Invalid parameter parsed.");

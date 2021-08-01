@@ -1,0 +1,11 @@
+{
+  "class": "NavigationBreadcrumb",
+  "method": "getNavigationBreadcrumb",
+  "child": [],
+  "configuration": {
+    "position": "header"
+  },
+  "setting": {
+    "status": "enable"
+  }
+}

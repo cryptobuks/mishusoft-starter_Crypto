@@ -1,147 +1,108 @@
 <?php declare(strict_types=1);
 
-
 namespace Mishusoft\System;
 
-/*var_dump( MessageFormatter::formatMessage(
-    "en_US",
-    "I have {0, spellout} apples",
-    array( 34 )
-) );
-var_dump( MessageFormatter::formatMessage(
-    "bn",
-    "I have {0, spellout} apples",
-    array( 34 )
-) );
-
-var_dump( MessageFormatter::formatMessage(
-    "ar",
-    "I have {0, spellout} apples",
-    array( 34 )
-) );*/
-
-//locale_set_default("en_US");
-
-
-/*var_dump(
-    MessageFormatter::formatMessage(
-        "bn",
-        "I have {number_apples, number, integer} apples.",
-        [ 'number_apples' => 3 ]
-    )
-);*/
-
-
-/*
-            $time = time();
-            var_dump( MessageFormatter::formatMessage(
-                "en_US",
-                "Today is {0, date, full} - {0, time}",
-                array( $time )
-            ) );
-            var_dump( MessageFormatter::formatMessage(
-                "bn",
-                "Today is {0, date, full} - {0, time}",
-                array( $time )
-            ) );
-            var_dump( MessageFormatter::formatMessage(
-                "ar",
-                "Today is {0, date, full} - {0, time}",
-                array( $time )
-            ) );*/
-
-
+use JsonException;
+use Mishusoft\Base;
+use Mishusoft\Exceptions\PermissionRequiredException;
+use Mishusoft\Exceptions\RuntimeException;
+use Mishusoft\Storage;
 use Mishusoft\Utility\ArrayCollection;
 
-class Localization
+class Localization extends Base
 {
-    public const DEFAULT = "en_us";
+    public const DEFAULT = "en";
     public const SUPPORT = [
-        "en_us", "bn"
+        "en", "bn",
     ];
 
-    public const ALL = ["en_us", "bn", "ar"];
-
-    public const DATA_DIRECTORY = APPLICATION_PRIVATE_LOCALIZATIONS_PATH;
+    public const ALL = ["en", "bn", "ar"];
     private string $default_locale;
     private string $filename = "all";
 
     /**
      * Localization constructor.
      * @param string $locale
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
      */
     public function __construct(string $locale = self::DEFAULT)
     {
+        parent::__construct();
         $this->default_locale = $locale;
-        if (!is_readable(APPLICATION_STORAGE_PATH)) {
-            trigger_error("Data directory is not readable.");
-        } elseif (!is_writable(APPLICATION_STORAGE_PATH)) {
-            trigger_error("Data directory is not writable.");
-        } elseif (!is_dir(self::DATA_DIRECTORY)) {
-            if (!mkdir($concurrentDirectory = self::DATA_DIRECTORY, 0777, true) && !is_dir($concurrentDirectory)) {
-                throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
-            }
-        } elseif (!is_dir(self::DATA_DIRECTORY . "$locale")) {
-            if (!mkdir($concurrentDirectory = self::dataDirectory . "$locale", 0777, true) && !is_dir($concurrentDirectory)) {
-                throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
-            }
+        if (!is_readable(Storage::appStoragesPath())) {
+            throw new PermissionRequiredException("Data directory is not readable.");
+        } elseif (!is_writable(Storage::appStoragesPath())) {
+            throw new PermissionRequiredException("Data directory is not writable.");
+        } elseif (!is_dir(Storage::localizationPath())) {
+            Storage\FileSystem::makeDirectory(Storage::localizationPath());
+        } elseif (!is_dir(Storage::localizationPath().$locale)) {
+            Storage\FileSystem::makeDirectory(Storage::localizationPath().$locale);
         }
 
-        if (count(glob(self::DATA_DIRECTORY . "$locale/" . '*', GLOB_MARK)) > !0) {
-            trigger_error("Default localization is empty.");
+        if (count(glob(Storage::localizationPath() . "$locale/" . '*', GLOB_MARK)) > !0) {
+            throw new RuntimeException("Default localization is empty.");
         }
+    }
+
+    /**
+     * @throws RuntimeException
+     */
+    private function dataLoader(string $filename):array
+    {
+        return Storage\FileSystem\Yaml::parseFile(
+            self::dFile(Storage::localizationPath() . $filename)
+        );
     }
 
     /**
      * @param string $filename
      * @return array
-     * @throws \JsonException
+     * @throws RuntimeException
      */
     private function load(string $filename): array
     {
-        if (!file_exists(self::DATA_DIRECTORY . "$this->default_locale/$filename.json")) {
-            trigger_error("Default localization is empty.");
+        if (!file_exists(self::dFile(Storage::localizationPath() . "$this->default_locale/$filename"))) {
+            throw new RuntimeException\NotFoundException("Default localization is not found");
+        }
+        if (count($this->dataLoader(sprintf("%s/%s", $this->default_locale, $filename))) === 0) {
+            throw new RuntimeException("Default localization is empty");
         }
 
-        return json_decode(
-            file_get_contents(self::DATA_DIRECTORY . "$this->default_locale/$filename.json"),
-            true,
-            512,
-            JSON_THROW_ON_ERROR
-        );
+        return $this->dataLoader(sprintf("%s/%s", $this->default_locale, $filename));
     }
 
     /**
      * @param string $filename
      * @param string $keyword
      * @return array
-     * @throws \JsonException
+     * @throws RuntimeException
      */
     private function search(string $filename, string $keyword): array
     {
-        $result = array();
+        $result = [];
         if (count($this->load($filename)) > 0) {
             foreach ($this->load($filename) as $item) {
-                if ((is_array($item) and array_key_exists("keyword", $item))
+                if ((is_array($item) && array_key_exists("keyword", $item))
                     && ArrayCollection::value($item, "keyword") === $keyword) {
                     $result = $item;
                 }
             }
         } else {
-            trigger_error("locale content not found.");
+            throw new RuntimeException\NotFoundException("Locale content not found");
         }
         if (count($result) > 0) {
             return $result;
         }
 
-        return array_merge($result, array("content" => $keyword));
+        return array_merge($result, ["content" => $keyword]);
         //return $result;
     }
 
     /**
      * @param string $filename
      */
-    public function set(string $filename)
+    public function set(string $filename): void
     {
         $this->filename = $filename;
     }
@@ -150,7 +111,7 @@ class Localization
      * @param $keyword
      * @param string $filename
      * @return string
-     * @throws \JsonException
+     * @throws JsonException|RuntimeException
      */
     public function translate($keyword, string $filename = ""): string
     {

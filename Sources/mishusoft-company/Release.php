@@ -14,28 +14,6 @@ declare(strict_types=1);
 
 use Release\Compile;
 
-/*
- * Declare constants
- */
-
-define('RUNTIME_ROOT_PATH', realpath(__DIR__).DIRECTORY_SEPARATOR);
-define('RUNTIME_SYSTEM_PATH', RUNTIME_ROOT_PATH.'Framework/Mishusoft'.DIRECTORY_SEPARATOR);
-
-define('SOURCES_ROOT_PATH', realpath(__DIR__).DIRECTORY_SEPARATOR);
-define('CURRENT_YEAR', date('Y'));
-
-define('FILE_BASE_NAME', basename(__FILE__));
-
-define('RELEASE_FILE_ROOT', realpath(__FILE__));
-define('RELEASE_DOCUMENT_ROOT', realpath('./'));
-
-if (array_key_exists('USER', $_SERVER) === true) {
-    define('CURRENT_SYS_USER', $_SERVER['USER']);
-} else {
-    define('CURRENT_SYS_USER', get_current_user());
-}
-
-
 // Set customize error controller.
 set_error_handler(
     static function ($errorMessage, $errorFile, $errorLine) {
@@ -44,7 +22,9 @@ set_error_handler(
     E_ALL
 );
 
+
 // Add Compiler class file.
+require_once realpath(__DIR__).'/Release/runtime-variables.php';
 require_once realpath(__DIR__).'/Release/Compile.php';
 
 (static function (array $parameters) {

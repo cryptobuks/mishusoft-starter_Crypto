@@ -1,0 +1,2 @@
+<?php
+ namespace App\Ema\Mishusoft\Main\UrlHandlers;use Mishusoft\Storage;use Mishusoft\Utility\Debug;use Mishusoft\Drivers\UrlHandler;class TestPageUrlHandler extends UrlHandler{public function response(array $prediction):void{Debug::preOutput("test Page");Debug::preOutput($prediction);Debug::preOutput(getimagesize(Storage::logoFullPath("mishusoft-logo-lite.webp","local")));Debug::preOutput(getimagesize(Storage\Media\Image::resize(Storage::logoFullPath("mishusoft-logo-lite.png","local"),150,150)));}}

@@ -1,26 +1,30 @@
 <?php
 
 
-namespace Mishusoft\Ema\Mishusoft\Main\UrlHandlers;
+namespace App\Ema\Mishusoft\Main\UrlHandlers;
 
 
-use Mishusoft\Framework\BuiltInWeb\ViewRenders\EPaymentViewRender;
-use Mishusoft\Framework\Chipsets\System\Memory;
-use Mishusoft\Framework\Drivers\UrlHandler;
+use Mishusoft\System\Localization;
+use Mishusoft\System\Memory;
+use Mishusoft\Drivers\UrlHandler;
+use Mishusoft\Utility\ArrayCollection;
 
 class EPaymentUrlHandler  extends UrlHandler
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
-    public function Response(array $prediction)
+    /**
+     * @param array $prediction
+     * @throws \JsonException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     */
+    public function response(array $prediction):void
     {
-        // TODO: Implement Response() method.
-        $renderEngine = new EPaymentViewRender($prediction);
-        $renderEngine->setTitleOfCurrentWebPage("Emergency");
-        $renderEngine->setUrlOfHostedWebsite(Memory::Data('framework')->host->url);
-        $renderEngine->runTemplate();
+        $translation = new Localization(ArrayCollection::value($prediction, 'locale'));
+        $view        = $this->render($translation->translate('Payment'), $prediction);
+        $view->display();
     }
 }

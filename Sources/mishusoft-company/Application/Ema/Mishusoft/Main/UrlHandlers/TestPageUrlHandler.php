@@ -1,29 +1,32 @@
 <?php
 
 
-namespace Mishusoft\Ema\Mishusoft\Main\UrlHandlers;
+namespace App\Ema\Mishusoft\Main\UrlHandlers;
 
+use Mishusoft\Storage;
+use Mishusoft\Utility\Debug;
+use Mishusoft\Drivers\UrlHandler;
 
-use Mishusoft\Framework\Chipsets\Storage;
-use Mishusoft\Framework\Chipsets\Utility\_Debug;
-use Mishusoft\Framework\Drivers\UrlHandler;
-
-class TestPageUrlHandler  extends UrlHandler
+class TestPageUrlHandler extends UrlHandler
 {
-    public function __construct()
+    /**
+     * @param array $prediction
+     * @throws \JsonException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     */
+    public function response(array $prediction):void
     {
-        parent::__construct();
-    }
-    public function Response(array $prediction)
-    {
-        _Debug::preOutput("test Page");
+        Debug::preOutput("test Page");
         //_Debug::preOutput($prediction->getController());
-        _Debug::preOutput($prediction);
+        Debug::preOutput($prediction);
 
-        _Debug::preOutput(getimagesize(Storage::getMediaPath("logos/mishusoft-logo-lite.webp","local")));
-        _Debug::preOutput(getimagesize(Media\Image::resize(Storage::getMediaPath("logos/mishusoft-logo-lite.png","local"),150,150)));
-
-
+        Debug::preOutput(getimagesize(Storage::logoFullPath("mishusoft-logo-lite.webp", "local")));
+        Debug::preOutput(getimagesize(
+            Storage\Media\Image::resize(Storage::logoFullPath("mishusoft-logo-lite.png", "local"), 150, 150)
+        ));
     }
-
 }

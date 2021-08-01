@@ -6,35 +6,10 @@ use JsonException;
 use Mishusoft\Exceptions\ErrorException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\System\Logger;
+use Mishusoft\Utility\Number;
 
 class FileSystem
 {
-
-    /**
-     * @param string $filename
-     * @param false $callback
-     * @return false|string
-     */
-    public static function file(string $filename, $callback = false): bool|string
-    {
-        if (self::isFileExists($filename) === true) {
-            $fp = fopen($filename, 'rb');
-            if (is_resource($fp) === true) {
-                $line = fgets($fp);
-                if ($line !== false) {
-                    if ($callback) {
-                        return $callback($line);
-                    }
-
-                    return $filename;
-                    // Process $line.
-                }
-            }
-        }
-
-        return false;
-    }//end file()
-
 
     /**
      * @param string $filename
@@ -74,29 +49,21 @@ class FileSystem
 
     /**
      * @param string $filename
-     * @return false|string
+     * @return bool
      */
-    public static function isFileExists(string $filename): bool|string
+    public static function isExists(string $filename): bool
     {
-        if (file_exists($filename) === true) {
-            return $filename;
-        }
-
-        return false;
+        return file_exists($filename);
     }//end isFileExists()
 
 
     /**
      * @param string $dirname
-     * @return false|string
+     * @return false
      */
-    public static function isDirectory(string $dirname): bool|string
+    public static function isDirectory(string $dirname): bool
     {
-        if (is_dir($dirname) === true) {
-            return $dirname;
-        }
-
-        return false;
+        return is_dir($dirname);
     }//end isDirectory()
 
 
@@ -105,10 +72,13 @@ class FileSystem
      * @param string $delimiter
      * @return false|string
      * @throws JsonException
+     * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
      */
     public static function csvtojson(string $file, string $delimiter): bool|string
     {
-        if (self::isFileExists($file) === true) {
+        if (self::isExists($file) === true) {
             if (($handle = fopen($file, 'rb')) === false) {
                 Logger::write('Can"t open the file.', LOGGER_WRITE_STYLE_SMART, LOGGER_FLAG_TYPE_COMPILE);
             }
@@ -145,7 +115,7 @@ class FileSystem
      * @return boolean
      * @throws ErrorException
      */
-    public static function readFromFile(string $filename, callable $callback)
+    public static function readFromFile(string $filename, \Closure $callback)
     {
         if (self::isReadable($filename) === true) {
             return $callback(file_get_contents($filename));
@@ -161,7 +131,7 @@ class FileSystem
      */
     public static function isReadable(string $filename): bool
     {
-        if (self::isFileExists($filename) === true) {
+        if (self::isExists($filename) === true) {
             return is_readable($filename) === true;
         }
 
@@ -345,25 +315,25 @@ class FileSystem
 
 
     /**
-     * @param string $directory
+     * @param string $directoryPath
      * @param string $filter
      * @return boolean|array
      * @throws RuntimeException
      */
-    public static function getList(string $directory, string $filter = 'both'): bool|array
+    public static function list(string $directoryPath, string $filter = 'both'): bool|array
     {
-        $files = scandir($directory);
+        $files = scandir($directoryPath);
 
         foreach ($files as $id => $file) {
             if ($file === '.' || $file === '..') {
                 unset($files[$id]);
             }
 
-            if (($filter === 'directory') && is_file($directory . '/' . $file) === true) {
+            if (($filter === 'directory') && is_file($directoryPath . '/' . $file) === true) {
                 unset($files[$id]);
             }
 
-            if (($filter === 'file') && is_dir($directory . '/' . $file) === true) {
+            if (($filter === 'file') && is_dir($directoryPath . '/' . $file) === true) {
                 unset($files[$id]);
             }
 
@@ -375,7 +345,7 @@ class FileSystem
         array_multisort($files, SORT_ASC);
         ksort($files, SORT_ASC);
         return $files;
-    }//end getList()
+    }//end list()
 
 
     /**
@@ -445,61 +415,11 @@ class FileSystem
 
 
     /**
-     *  Does not support flag GLOB_BRACE.
-     *
-     * @param string $directory
-     * @param integer $flags
-     * @return boolean|array
-     */
-    public static function globRecursive(string $directory, int $flags = 0): bool|array
-    {
-        if (str_ends_with($directory, DIRECTORY_SEPARATOR) === false) {
-            $directory .= DIRECTORY_SEPARATOR;
-        }
-        $result = glob($directory . '*', $flags);
-        foreach ($result as $item) {
-            if (is_file($item) === true) {
-                $result[] = $item;
-            }//end if
-
-            if (is_dir($item) === true) {
-                array_push($result, ...self::globRecursive($item, $flags));
-            }//end if
-        }
-
-        return array_unique(array_values($result), SORT_ASC);
-    }//end globRecursive()
-
-
-    /**
-     *  Does not support flag GLOB_BRACE.
-     *
-     * @param string $directory
-     * @param integer $flags
-     * @return boolean|array
-     */
-    public static function glob(string $directory, int $flags = 0): bool|array
-    {
-        if (str_ends_with($directory, DIRECTORY_SEPARATOR) === false) {
-            $directory .= DIRECTORY_SEPARATOR;
-        }
-        $result = glob($directory . '*', $flags);
-        foreach ($result as $item) {
-            if (is_file($item) === true) {
-                $result[] = $item;
-            }//end if
-        }
-
-        return array_unique(array_values($result), SORT_ASC);
-    }//end globRecursive()
-
-
-    /**
      * @param string $path
      * @param string $filter
      * @return string|array
      */
-    public static function getFile(string $path, string $filter): string|array
+    public static function file(string $path, string $filter): string|array
     {
         // echo pathinfo($path, PATHINFO_FILENAME);
         // echo pathinfo($path, PATHINFO_BASENAME);
@@ -507,63 +427,108 @@ class FileSystem
         // echo pathinfo($path, PATHINFO_DIRNAME);
         // echo pathinfo($path, PATHINFO_EXTENSION);
         return match (strtolower($filter)) {
-            'name' => self::getFilename($path),
-            'base' => self::getFileBase($path),
-            'directory' => self::getFileDirectory($path),
-            'extension' => self::getFileExt($path),
-            default => self::getFileAll($path),
+            'name' => self::fileName($path),
+            'base' => self::fileBase($path),
+            'directory' => self::fileDirectory($path),
+            'extension' => self::fileExt($path),
+            default => self::fileInfo($path),
         };
-    }//end getFile()
+    }//end file()
 
 
     /**
      * @param string $path
      * @return array
      */
-    public static function getFileAll(string $path): array
+    public static function fileInfo(string $path): array
     {
         return pathinfo($path, PATHINFO_ALL);
-    }//end getFileAll()
+    }//end fileInfo()
 
 
     /**
      * @param string $path
      * @return string
      */
-    public static function getFilename(string $path): string
+    public static function fileName(string $path): string
     {
         return pathinfo($path, PATHINFO_FILENAME);
-    }//end getFilename()
+    }//end fileName()
 
+
+    /**
+     * @param  string $filename
+     * @return string
+     */
+    public static function fileType(string $filename): string
+    {
+        return filetype($filename);
+    }//end getFileType()
+
+
+    /**
+     * @param  string $filename
+     * @return string
+     */
+    public static function fileOriginalName(string $filename): string
+    {
+        return basename($filename);
+    }//end getOriginalNameOfFile()
 
     /**
      * @param string $path
      * @return string
      */
-    public static function getFileBase(string $path): string
+    public static function fileBase(string $path): string
     {
         return pathinfo($path, PATHINFO_BASENAME);
-    }//end getFileBase()
+    }//end fileBase()
 
 
     /**
      * @param string $path
      * @return string
      */
-    public static function getFileDirectory(string $path): string
+    public static function fileDirectory(string $path): string
     {
         return pathinfo($path, PATHINFO_DIRNAME);
-    }//end getFileDirectory()
+    }//end fileDirectory()
 
 
     /**
      * @param string $path
      * @return string
      */
-    public static function getFileExt(string $path): string
+    public static function fileExt(string $path): string
     {
         return pathinfo($path, PATHINFO_EXTENSION);
-    }//end getFileExt()
+    }//end fileExt()
+
+
+
+    /**
+     * @param  string $filename
+     * @return string
+     */
+    public static function fileSize(string $filename): string
+    {
+        $size = filesize($filename);
+        if ($size < 1024) {
+            return "$size bytes";
+        }
+
+        if ($size < 1048576) {
+            return (Number::format((filesize($filename) / 1024), 2, '.', '') . ' kb');
+        }
+
+        if ($size < 1073741824) {
+            return ((Number::format(((filesize($filename) / 1024) / 1024), 2, '.', '') . ' mb'));
+        }
+
+        return ((Number::format((((filesize($filename) / 1024) / 1024) / 1024), 2, '.', '') . ' gb'));
+    }//end getFileSize()
+
+
 
 
     /**

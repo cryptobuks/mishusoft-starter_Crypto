@@ -11,10 +11,6 @@ namespace Mishusoft\Http;
 
 use ErrorException;
 use JsonException;
-use Mishusoft\FileSystem;
-use Mishusoft\Utility\Debug;
-use Mishusoft\Utility\JSON;
-use Mishusoft\DataObjects\BrowserDataObject;
 use RuntimeException;
 
 class Browser extends UAAnalyzer
@@ -111,7 +107,6 @@ class Browser extends UAAnalyzer
     }//end __construct()
 
 
-
     /**
      * Visited page title.
      *
@@ -159,39 +154,42 @@ class Browser extends UAAnalyzer
     /**
      * Retrieve visited page url.
      *
-     * @param array   $s                Server information.
+     * @param array $s Server information.
      * @param boolean $useForwardedHost Forward host using permission
      *
      * @return string Page url.
      */
     public static function visitedPageURL(array $s, bool $useForwardedHost = false): string
     {
-        return self::urlOrigin($s, $useForwardedHost).$s['REQUEST_URI'];
+        return self::urlOrigin($s, $useForwardedHost) . $s['REQUEST_URI'];
     }//end visitedPageURL()
 
 
     /**
-     * @param  array   $s
-     * @param  boolean $useForwardedHost
+     * @param array $s
+     * @param boolean $useForwardedHost
      * @return string
      */
     public static function urlOrigin(array $s, bool $useForwardedHost = false): string
     {
-        $ssl      = (empty($s['HTTPS']) === false && $s['HTTPS'] === 'on');
-        $sp       = strtolower($s['SERVER_PROTOCOL']);
-        $protocol = substr($sp, 0, strpos($sp, '/')).(($ssl) ? 's' : '');
-        $port     = $s['SERVER_PORT'];
+        $ssl = (empty($s['HTTPS']) === false && $s['HTTPS'] === 'on');
+        $sp = strtolower($s['SERVER_PROTOCOL']);
+        $protocol = substr($sp, 0, strpos($sp, '/')) . (($ssl) ? 's' : '');
+        $port = $s['SERVER_PORT'];
 
         //url:http://localhost:8080
         //url:http://localhost
         //url:https://localhost
 
-        if (!str_contains($s['SERVER_NAME'], $port)) {
-            $port = ':' . $port;
-        }
+        $definedPort = ':' . $port;
+        $definedPortLen = strlen($definedPort);
 
-        if ((!$ssl && $port === '80') || ($ssl && $port === '443')) {
+        if (substr($s['HTTP_HOST'], (strlen($s['HTTP_HOST']) - $definedPortLen)) === $definedPort) {
             $port = '';
+        } elseif ((!$ssl && $port === '80') || ($ssl && $port === '443')) {
+            $port = '';
+        } else {
+            $port = $definedPort;
         }
 
         //$port = (!$ssl && $port === '80') || ($ssl && $port === '443') ? '' : ':' . $port;
@@ -201,8 +199,8 @@ class Browser extends UAAnalyzer
         } else {
             $host = ($s['HTTP_HOST'] ?? null);
         }
-        $host     = ($host ?? $s['SERVER_NAME']).$port;
-        return $protocol.'://'.$host;
+        $host = ($host ?? $s['SERVER_NAME']) . $port;
+        return $protocol . '://' . $host;
     }//end urlOrigin()
 
 
@@ -261,7 +259,7 @@ class Browser extends UAAnalyzer
 
 
     /**
-     * @return mixed|string
+     * @return mixed
      */
     public function getAcceptLanguage(): mixed
     {
@@ -270,7 +268,7 @@ class Browser extends UAAnalyzer
 
 
     /**
-     * @return mixed|string
+     * @return mixed
      */
     public function getAcceptEncoding(): mixed
     {

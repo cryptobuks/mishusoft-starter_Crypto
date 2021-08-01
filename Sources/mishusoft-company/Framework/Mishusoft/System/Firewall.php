@@ -5,10 +5,10 @@ namespace Mishusoft\System;
 use DOMDocument;
 use DOMElement;
 use DOMNode;
-use ErrorException;
-use Exception;
 use JsonException;
 use Mishusoft\Base;
+use Mishusoft\Exceptions\HttpException\HttpResponseException;
+use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Framework;
 use Mishusoft\Http;
@@ -17,8 +17,6 @@ use Mishusoft\Http\IP;
 use Mishusoft\Storage;
 use Mishusoft\Storage\FileSystem;
 use Mishusoft\Ui;
-use Mishusoft\Utility\ArrayCollection;
-use Mishusoft\Utility\JSON;
 use Mishusoft\Utility\Character;
 use RuntimeException;
 
@@ -86,9 +84,9 @@ class Firewall extends Base
         ],
     ];
 
-    private static string $reasonOfBlock = '';
+    protected static string $reasonOfBlock = '';
 
-    private static string $messageOfBlock = '';
+    protected static string $messageOfBlock = '';
 
     /**
      * Check if access request is granted, else return false
@@ -96,13 +94,6 @@ class Firewall extends Base
      * @var boolean
      */
     public bool $accessRequestProcessed = false;
-
-    /**
-     * Browser object.
-     *
-     * @var Browser
-     */
-    private static Browser $browser;
 
     /**
      * Firewall configuration array.
@@ -169,32 +160,58 @@ class Firewall extends Base
     /**
      * Firewall constructor.
      *
+     * @throws InvalidArgumentException
+     * @throws PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public function __construct()
     {
         parent::__construct();
-        Logger::write('Store Browser object in to self::$browser attribute.');
-        self::$browser = new Browser();
         Logger::write(sprintf('Load Firewall configuration from %s.json.', self::configFile()));
         $this->loadConfig();
     }//end __construct()
 
-    private static function logFile(): string
+    private static function logDirectory(): string
     {
-        return sprintf('%s%s%s%s', Storage::dataDriveStoragesPath(), 'Firewall', DS, 'logs.yml');
+        //data-drive/Firewall/logs/
+        return sprintf(
+            '%1$s%2$s%5$s%3$s%5$s%4$s%5$s',
+            Storage::dataDriveStoragesPath(),
+            'Firewall',
+            'logs',
+            Time::todayDateOnly(),
+            DS
+        );
+    }
+
+    private static function logFile(string $underTakenAction): string
+    {
+        //data-drive/Firewall/logs/blocked.yml
+        //data-drive/Firewall/logs/banned.yml
+        //data-drive/Firewall/logs/granted.yml
+        return self::dFile(sprintf(
+            '%1$s%2$s',
+            self::logDirectory(),
+            $underTakenAction
+        ));
     }
 
 
+    /**
+     * @return string
+     */
     public static function configFile(): string
     {
-        return sprintf('%s%s%s%s', Storage::dataDriveStoragesPath(), 'Firewall', DS, 'config.yml');
+        return self::dFile(self::dataFile('Firewall', 'config'));
     }
 
 
+    /**
+     * @return string
+     */
     private static function siteFile(): string
     {
-        return sprintf('%s%s%s%s', Storage::dataDriveStoragesPath(), 'Firewall', DS, 'sites.yml');
+        return self::dFile(self::dataFile('Firewall', 'sites'));
     }
 
 
@@ -202,6 +219,8 @@ class Firewall extends Base
      * Firewall config loader.
      *
      * @return void
+     * @throws InvalidArgumentException
+     * @throws PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function loadConfig(): void
@@ -223,15 +242,14 @@ class Firewall extends Base
          * Check firewall logs file existent.
          */
 
-        Logger::write(sprintf('Start checking if %s file exists.', self::logFile()));
-        if (file_exists(self::logFile()) === false) {
-            Logger::write(sprintf('The file %s is not exists.', self::logFile()));
-            Logger::write(sprintf('Write new file %s.', self::logFile()));
-            FileSystem::makeDirectory(dirname(self::logFile()));
-            FileSystem\Yaml::emitFile(self::logFile(), []);
+        Logger::write(sprintf('Start checking if %s directory exists.', self::logDirectory()));
+        if (file_exists(self::logDirectory()) === false) {
+            Logger::write(sprintf('The directory %s is not exists.', self::logDirectory()));
+            Logger::write(sprintf('Make new directory %s', self::logDirectory()));
+            FileSystem::makeDirectory(self::logDirectory());
         }
 
-        Logger::write(sprintf('End checking if %s file exists.', self::logFile()));
+        Logger::write(sprintf('End checking if %s directory exists.', self::logDirectory()));
 
         /*
          * Check read permission of configuration file.
@@ -264,7 +282,7 @@ class Firewall extends Base
             );
             /*
              * Check the firewall configuration is empty or not
-             * if it empty, then configuration reset with default
+             * if it empties, then configuration reset with default
              */
 
             Logger::write(sprintf('Start checking whether the %s file is empty.', self::configFile()));
@@ -340,7 +358,13 @@ class Firewall extends Base
      * Create http request to system for the client
      *
      * @return bool
+     * @throws HttpResponseException
+     * @throws InvalidArgumentException
      * @throws JsonException Throw exception when json error occurred.
+     * @throws PermissionRequiredException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\JsonException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public function isRequestAccepted(): bool
@@ -349,7 +373,7 @@ class Firewall extends Base
         if (file_exists(self::siteFile()) === true) {
             $installedHost = FileSystem\Yaml::parseFile(self::siteFile());
             if (in_array(INSTALLED_HOST_NAME, $installedHost, true) === true) {
-                //start new worldclass test
+                //start new world-class test
                 //print_r($installedHost, false);
 
                 Logger::write('Filter request of client.');
@@ -376,15 +400,15 @@ class Firewall extends Base
         Logger::write(
             sprintf(
                 'Start testing requested hostname [%s] with firewall configuration.',
-                self::$browser->getURLHostname()
+                Http::browser()->getURLHostname()
             )
         );
 
-        if ($this->config['hostname'] !== self::$browser->getURLHostname()) {
+        if ($this->config['hostname'] !== Http::browser()->getURLHostname()) {
             Logger::write(
                 sprintf(
                     'Requested hostname [%s] does not matched with firewall configuration.',
-                    self::$browser->getURLHostname()
+                    Http::browser()->getURLHostname()
                 )
             );
 
@@ -396,7 +420,7 @@ class Firewall extends Base
 //                Logger::write(
 //                    sprintf(
 //                        'Firewall block the browser %s of client.',
-//                        self::$browser->getBrowserNameFull()
+//                        Http::browser()->getBrowserNameFull()
 //                    )
 //                );
 //                $this->actionStatus = 'blocked';
@@ -407,7 +431,7 @@ class Firewall extends Base
         Logger::write(
             sprintf(
                 'End testing requested hostname [%s] with firewall configuration.',
-                self::$browser->getURLHostname()
+                Http::browser()->getURLHostname()
             )
         );
 
@@ -444,15 +468,15 @@ class Firewall extends Base
         Logger::write(
             sprintf(
                 'Start searching client browser [%s] in banned list.',
-                self::$browser->getBrowserNameFull()
+                Http::browser()->getBrowserNameFull()
             )
         );
 
-        if (in_array(strtolower(self::$browser->getBrowserName()), $this->config['browser']['banned'], true) === true) {
+        if (in_array(strtolower(Http::browser()->getBrowserName()), $this->config['browser']['banned'], true) === true) {
             Logger::write(
                 sprintf(
                     'The client browser [%s] found in banned list.',
-                    self::$browser->getBrowserNameFull()
+                    Http::browser()->getBrowserNameFull()
                 )
             );
             Logger::write('Firewall banned the browser.');
@@ -463,7 +487,7 @@ class Firewall extends Base
         Logger::write(
             sprintf(
                 'End searching client browser [%s] in banned list.',
-                self::$browser->getBrowserNameFull()
+                Http::browser()->getBrowserNameFull()
             )
         );
 
@@ -472,14 +496,14 @@ class Firewall extends Base
         Logger::write(
             sprintf(
                 'Start searching client device [%s] in banned list.',
-                self::$browser->getDeviceNameFull()
+                Http::browser()->getDeviceNameFull()
             )
         );
-        if (in_array(Character::lower(self::$browser->getDeviceName()), $this->config['device']['banned'], true) === true) {
+        if (in_array(Character::lower(Http::browser()->getDeviceName()), $this->config['device']['banned'], true) === true) {
             Logger::write(
                 sprintf(
                     'The client device [%s] found in banned list.',
-                    self::$browser->getDeviceNameFull()
+                    Http::browser()->getDeviceNameFull()
                 )
             );
             Logger::write('Firewall banned the device.');
@@ -490,7 +514,7 @@ class Firewall extends Base
         Logger::write(
             sprintf(
                 'End searching client device [%s] in banned list.',
-                self::$browser->getDeviceNameFull()
+                Http::browser()->getDeviceNameFull()
             )
         );
 
@@ -550,9 +574,9 @@ class Firewall extends Base
         Logger::write('Start searching client browser in black list.');
         if ($this->config['browser']['order'] === 'blacklist') {
             // we need to check block time of browser,
-            // if the time has been expire, then unblock th browser
+            // if the time has been expired, then unblock th browser
             // or show protection message
-            if (in_array(Character::lower(self::$browser->getBrowserName()), $this->config['browser']['blacklist'], true) === true) {
+            if (in_array(Character::lower(Http::browser()->getBrowserName()), $this->config['browser']['blacklist'], true) === true) {
                 Logger::write('The client browser found in black list.');
                 Logger::write('Firewall banned the browser.');
                 $this->actionStatus = 'blocked';
@@ -564,7 +588,7 @@ class Firewall extends Base
         // End test the city name of client.
 
         if ($this->config['browser']['order'] === 'whitelist') {
-            if (in_array(Character::lower(self::$browser->getBrowserName()), $this->config['browser']['whitelist'], true) === false) {
+            if (in_array(Character::lower(Http::browser()->getBrowserName()), $this->config['browser']['whitelist'], true) === false) {
                 $this->actionStatus = 'blocked';
                 $this->actionComponent = 'browser';
             }
@@ -572,7 +596,7 @@ class Firewall extends Base
 
         if ($this->config['ip']['order'] === 'blacklist') {
             // we need to check block time of ip,
-            // if the time has been expire, then unblock the ip
+            // if the time has been expired, then unblock the ip
             // or show protection message
             if (in_array(IP::get(), $this->config['ip']['blacklist'], true) === false) {
                 $this->actionStatus = 'blocked';
@@ -589,7 +613,7 @@ class Firewall extends Base
 
         if ($this->config['device']['order'] === 'blacklist') {
             // we need to check block time of device,
-            // if the time has been expire, then unblock the device
+            // if the time has been expired, then unblock the device
             // or show protection message
             if (in_array(IP::get(), $this->config['device']['blacklist'], true)) {
                 $this->actionStatus = 'blocked';
@@ -606,7 +630,7 @@ class Firewall extends Base
 
         if ($this->config['continent']['order'] === 'blacklist') {
             // we need to check block time of continent,
-            // if the time has been expire, then unblock the continent
+            // if the time has been expired, then unblock the continent
             // or show protection message
             if (in_array(IP::get(), $this->config['continent']['blacklist'], true)) {
                 $this->actionStatus = 'blocked';
@@ -623,7 +647,7 @@ class Firewall extends Base
 
         if ($this->config['country']['order'] === 'blacklist') {
             // we need to check block time of country,
-            // if the time has been expire, then unblock th country
+            // if the time has been expired, then unblock th country
             // or show protection message
             if (in_array(IP::get(), $this->config['country']['blacklist'], true)) {
                 $this->actionStatus = 'blocked';
@@ -640,7 +664,7 @@ class Firewall extends Base
 
         if ($this->config['city']['order'] === 'blacklist') {
             // we need to check block time of city,
-            // if the time has been expire, then unblock the city
+            // if the time has been expired, then unblock the city
             // or show protection message
             if (in_array(IP::get(), $this->config['city']['blacklist'], true)) {
                 $this->actionStatus = 'blocked';
@@ -660,7 +684,13 @@ class Firewall extends Base
     }//end makeAccessRequest()
 
     /**
+     * @return bool
+     * @throws HttpResponseException
      * @throws JsonException
+     * @throws PermissionRequiredException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\JsonException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function makeAction(): bool
@@ -685,7 +715,8 @@ class Firewall extends Base
      * Filter http request of client.
      *
      * @return void
-     * @throws JsonException Throw exception when json error occurred.
+     * @throws InvalidArgumentException
+     * @throws PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function filterHttpRequest(): void
@@ -728,6 +759,8 @@ class Firewall extends Base
      * @param array $config Array format of Firewall configuration.
      *
      * @return void
+     * @throws InvalidArgumentException
+     * @throws PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function createConfiguration(array $config): void
@@ -744,122 +777,85 @@ class Firewall extends Base
 
 
     /**
-     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws HttpResponseException
      * @throws JsonException
      * @throws PermissionRequiredException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function storeFirewallLogs(): void
     {
         $logs = [];
-        if (is_writable(self::logFile()) === true) {
+        $logDataFile = self::logFile($this->actionStatus);
+        $currentVisitor = $this->getNewVisitorIPBased();
+        $browserNameFull = Http::browser()->getBrowserNameFull();
+
+        if (is_writable(dirname($logDataFile)) === true) {
             //check point for log file content length
-            if (FileSystem::read(self::logFile()) !== '') {
-                $content = FileSystem\Yaml::parseFile(self::logFile());
+            if ((file_exists($logDataFile) === true) && FileSystem::read($logDataFile) !== '') {
+                $oldContent = FileSystem\Yaml::parseFile($logDataFile);
 
                 //Merge file's content with logs
-                if (is_array($content) === true) {
-                    $logs = array_merge($logs, $content);
+                if (is_array($oldContent) === true) {
+                    $logs = array_merge($logs, $oldContent);
                 }//end if
 
                 if (count($logs) !== 0) {
-                    if (array_key_exists($this->actionStatus, $logs) === true) {
-                        if (is_array($logs[$this->actionStatus]) === true) {
-                            if (array_key_exists(IP::get(), $logs[$this->actionStatus]) === true) {
-                                if (is_array($logs[$this->actionStatus][IP::get()]) === true && array_key_exists(self::$browser->getBrowserNameFull(), $logs[$this->actionStatus][IP::get()]) === true) {
-                                    if (is_array($logs[$this->actionStatus][IP::get()][self::$browser->getBrowserNameFull()]) === true && array_key_exists(Time::getToday(), $logs[$this->actionStatus][IP::get()][self::$browser->getBrowserNameFull()]) === false) {
-                                        $browserNameFull = self::$browser->getBrowserNameFull();
-                                        FileSystem\Yaml::emitFile(
-                                            self::logFile(),
-                                            array_merge(
-                                                $logs,
+                    if (array_key_exists(IP::get(), $logs) === true) {
+                        if (array_key_exists($browserNameFull, $logs[IP::get()]) === true) {
+                            if (array_key_exists(Time::today(), $logs[IP::get()][$browserNameFull]) === false) {
+                                // Append current(new) access data of current client to logs file.
+                                FileSystem\Yaml::emitFile(
+                                    $logDataFile,
+                                    array_merge(
+                                        $logs,
+                                        [
+                                            IP::get() => array_merge(
+                                                $logs[IP::get()],
                                                 [
-                                                    $this->actionStatus => array_merge(
-                                                        $logs[$this->actionStatus],
-                                                        [
-                                                            IP::get() => array_merge(
-                                                                $logs[$this->actionStatus][IP::get()],
-                                                                [
-                                                                    self::$browser->getBrowserNameFull() => array_merge(
-                                                                        $logs[$this->actionStatus][IP::get()][$browserNameFull],
-                                                                        $this->getNewVisitorTimeBased()
-                                                                    ),
-                                                                ]
-                                                            ),
-                                                        ]
+                                                    $browserNameFull => array_merge(
+                                                        $logs[IP::get()][$browserNameFull],
+                                                        $this->getNewVisitorTimeBased()
                                                     ),
                                                 ]
-                                            )
-                                        );
-                                    }//end if
-                                }
-                                else {
-                                    FileSystem\Yaml::emitFile(
-                                        self::logFile(),
-                                        array_merge(
-                                            $logs,
-                                            [
-                                                $this->actionStatus => array_merge(
-                                                    $logs[$this->actionStatus],
-                                                    [
-                                                        IP::get() => array_merge(
-                                                            $logs[$this->actionStatus][IP::get()],
-                                                            $this->getNewVisitorBrowserBased()
-                                                        ),
-                                                    ]
-                                                ),
-                                            ]
-                                        )
-                                    );
-                                }//end if
-                            }
-                            else {
-                                // We should write file with ip based user
-                                FileSystem\Yaml::emitFile(
-                                    self::logFile(),
-                                    array_merge(
-                                        $logs[$this->actionStatus],
-                                        $this->getNewVisitorIPBased()
-                                    ),
+                                            ),
+                                        ]
+                                    )
                                 );
                             }//end if
                         } else {
-                            // We should write file with ip based user
+                            // Append current(new) browser's data of current client to logs file.
                             FileSystem\Yaml::emitFile(
-                                self::logFile(),
-                                array_merge($logs, [
-                                    $this->actionStatus => array_merge(
-                                        $logs[$this->actionStatus],
-                                        $this->getNewVisitorIPBased()
-                                    ),
-                                ])
+                                $logDataFile,
+                                array_merge(
+                                    $logs,
+                                    [
+                                        IP::get() => array_merge(
+                                            $logs[IP::get()],
+                                            $this->getNewVisitorBrowserBased()
+                                        ),
+                                    ]
+                                )
                             );
                         }//end if
-
                     } else {
-                        FileSystem\Yaml::emitFile(
-                            self::logFile(),
-                            array_merge($logs, [
-                                $this->actionStatus => $this->getNewVisitorIPBased(),
-                            ])
-                        );
+                        // Append new data about current client to logs file.
+                        FileSystem\Yaml::emitFile($logDataFile, array_merge($logs, $currentVisitor));
                     }//end if
                 } else {
-                    FileSystem\Yaml::emitFile(
-                        self::logFile(),
-                        [$this->actionStatus => $this->getNewVisitorIPBased()]
-                    );
+                    //Write new data to empty file.
+                    FileSystem\Yaml::emitFile($logDataFile, $currentVisitor);
                 }//end if
             } else {
-                FileSystem\Yaml::emitFile(
-                    self::logFile(),
-                    [$this->actionStatus => $this->getNewVisitorIPBased()]
-                );
+                //Write new data to empty file.
+                FileSystem\Yaml::emitFile($logDataFile, $currentVisitor);
             }//end if
-
-            //write file with new data
-
         } else {
-            throw new PermissionRequiredException('Unable to read/write ' . self::logFile());
+            throw new PermissionRequiredException(
+                sprintf('Unable to write %s', dirname($logDataFile))
+            );
         }//end if
     }//end storeFirewallLogs()
 
@@ -895,8 +891,6 @@ class Firewall extends Base
      * @param string $list List name of action.
      *
      * @return void
-     * @throws JsonException Throw exception when error occurred.
-     * @throws \Mishusoft\Exceptions\JsonException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function addIP(string $ip, string $list): void
@@ -955,13 +949,13 @@ class Firewall extends Base
      * @param string $list List name of action.
      *
      * @return void
-     * @throws JsonException|\Mishusoft\Exceptions\JsonException Throw exception when json error occurred.
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function updateList(string $ip, string $list): void
     {
         if (in_array($ip, $this->config['ip'][$list], true) === false) {
             $this->config['ip'][$list][] = $ip;
-            FileSystem::saveToFile(Framework::configFile(), JSON::encodeToString($this->config));
+            FileSystem\Yaml::emitFile(Framework::configFile(), $this->config);
         }
     }//end updateList()
 
@@ -973,37 +967,22 @@ class Firewall extends Base
      * @param array $message Error message.
      *
      * @return void
-     * @throws JsonException|ErrorException Throw exception when json error occurred.
+     * @throws HttpResponseException
+     * @throws InvalidArgumentException
+     * @throws JsonException
+     * @throws PermissionRequiredException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public static function runtimeFailure(string $status, array $message): void
     {
-        foreach (Http::getErrorsRecord() as $details) {
-            if (array_key_exists('Description', $details) === true
-                && Character::lower($details['Description']) === Character::lower($status)
-            ) {
-                if (Memory::Data('framework')->debug === true) {
-                    if (array_key_exists('debug', $message) === true) {
-                        if (array_key_exists('file', $message['debug']) === true) {
-                            $message['debug']['file'] = implode(['File name: ', $message['debug']['file']]);
-                        }
-
-                        if (array_key_exists('location', $message['debug']) === true) {
-                            $message['debug']['location'] = implode(['Location: ', $message['debug']['location']]);
-                        }
-
-                        if (array_key_exists('description', $message['debug']) === true) {
-                            $message['debug']['description'] = implode(['Description: ', $message['debug']['description']]);
-                        }
-                    }
-
-                    self::runtimeFailureUi($status, $message);
-                } elseif (array_key_exists('error', $message) === true
-                    && array_key_exists('description', $message['error']) === true
-                ) {
-                    self::runtimeFailureUi($status, $message['error']);
-                } else {
-                    self::runtimeFailureUi('Not Found', ['description' => 'Your requested document not found.']);
-                }//end if
+        foreach (Http::errorsRecords() as $details) {
+            if (Character::lower($details['Description']) === Character::lower($status)) {
+                self::runtimeFailureUi($status, $message);
+                break;
             }//end if
         }//end foreach
     }//end runtimeFailure()
@@ -1016,114 +995,57 @@ class Firewall extends Base
      * @param array $message Error message.
      *
      * @return void
-     * @throws JsonException|ErrorException Throw exception when json error occurred.
+     * @throws HttpResponseException
+     * @throws InvalidArgumentException
+     * @throws JsonException Throw exception when json error occurred.
+     * @throws PermissionRequiredException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private static function runtimeFailureUi(string $title, array $message): void
     {
-        self::$browser = new Browser();
-        $requestMethod = self::$browser->getRequestMethod();
-        $requestAddress = Browser::getVisitedPage();
 
-        if (self::$browser->getRequestMethod() === 'OPTIONS') {
-            // add welcome not for http options method
-            Storage::StreamAsJson(['message' => ['type' => 'success', 'contents' => "The HTTP OPTIONS method requests permitted to communicate for $requestAddress."]]);
-            Logger::write("The HTTP OPTIONS method requests permitted to communicate for $requestAddress.", LOGGER_WRITE_STYLE_FULL, LOGGER_FLAG_TYPE_ACCESS);
-        } else {
-            Logger::write(array_key_exists('debug', $message) ? $message['debug']['description'] : $message['description'] . " for $requestAddress.", LOGGER_WRITE_STYLE_FULL, LOGGER_FLAG_TYPE_ACCESS);
-            if (Memory::Data('framework')->debug) {
-                // add runtime failure ui
-                Ui::HtmlInterface(
-                    $title,
-                    function ($html, $head) use ($message, $requestAddress, $requestMethod, $title) {
-                        Ui::text(Ui::element($head, 'style'), 'body{margin: 0;padding: 0;display: flex;justify-content: center;align-items: center;height: 445px;}');
-                        $body = Ui::element($html, 'body');
-                        $welcome = Ui::element($body, 'ms-app', ['style' => 'width: 650px;box-sizing: border-box;border-radius: 5px;-webkit-border-radius: 5px;-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);line-height:1.5;']);
-                        $template = Ui::element($welcome, 'ms-app-content', ['style' => 'display: block;margin: 0;padding: 0;text-align: left;border: 1px solid #f22b08;-webkit-border-radius: 5px;border-radius: 5px']);
-                        Ui::text(Ui::element($template, 'ms-app-content-header', ['style' => 'text-align:center;font-size: 18px;font-weight: 700;padding: 10px;color: #fff;display: block;background-color: #f22b08;user-select: none;-webkit-user-select: none;']), $title);
-                        $template_body = Ui::element($template, 'ms-app-content-body', ['style' => 'text-align:center;padding: 10px;display: block;']);
-
-                        // add noscript to ui
-                        Ui::setNoScriptText($template_body);
-                        // end of adding noscript
-                        if (array_key_exists('debug', $message)) {
-                            $debug = Ui::element($template_body, 'ms-app-paragraph', ['style' => 'font-size: 15px;line-height: 1.5;display: list-item;text-align: center;background: #f22b08;border-radius: 5px;padding: 5px;margin-top: 10px;color: white;user-select: none;-webkit-user-select: none;']);
-                            foreach ($message['debug'] as $value) {
-                                Ui::text(
-                                    Ui::element(
-                                        $debug,
-                                        'ms-app-paragraph',
-                                        ['style' => 'font-size: 15px;line-height: 1.5;display: flex;padding: 5px;color: white;user-select: none;-webkit-user-select: none;text-align: left;']
-                                    ),
-                                    $value
-                                );
-                            }
-                        } else {
-                            Ui::text(
-                                Ui::element(
-                                    $template_body,
-                                    'ms-app-paragraph',
-                                    ['style' => 'font-size: 15px;line-height: 1.5;display: flex;text-align: center;background: #f22b08;border-radius: 5px;padding: 5px;margin-top: 10px;color: white;user-select: none;-webkit-user-select: none;']
-                                ),
-                                $message['description']
-                            );
-                        }//end if
-
-                        self::viewVisitorInfo($template_body, $requestMethod, $requestAddress, self::$browser);
-                        Ui::addDefaultSignature($template_body);
-                        Ui::text(
-                            Ui::element($body, 'script'),
-                            "function fixWindowSize(){if(window.innerHeight < '445') {document.body.style = 'height:445px;';} else if(window.innerHeight > '445') {document.body.style = 'height:'+window.innerHeight + 'px';} else {if(window.innerHeight > '1024') {document.body.style = 'height:1024px;';}}}
-                    window.addEventListener('resize', fixWindowSize);window.addEventListener('load', fixWindowSize);"
-                        );
-                    },
-                    Http::getErrorCode($title)
-                );
+        if (Memory::Data('framework')->debug === false) {
+            if (array_key_exists('error', $message) === true) {
+                $message = $message['error'];
             } else {
-                Ui::HtmlInterface(
-                    $title,
-                    function ($html, $head) use ($message, $title) {
-                        Ui::text(Ui::element($head, 'style'), 'body{margin: 0;padding: 0;display: flex;justify-content: center;align-items: center;height: 445px;}');
-
-                        // set id attribute for body
-                        $body = Ui::element($html, 'body', ['style' => 'color: ' . Ui::color['black'] . ';margin:0;padding:0;font-family:Noto Sans']);
-
-                        // add noscript to ui
-                        Ui::setNoScriptText($body);
-                        // end of adding noscript
-                        // create mishusoft application with html
-                        $template = Ui::element($body, 'ms-app', ['style' => 'display: flex;flex-direction: column;width: 100%;']);
-
-                        // add template body
-                        $notFoundBody = Ui::element(
-                            Ui::element($template, 'ms-app-body', ['style' => 'display: flex;flex-direction: column;width: 100%;height: 700px;align-items: center;justify-content: center;']),
-                            'ms-app-paragraph',
-                            [
-                                'style' => Ui::htmlHrefStyle . 'color:' . Ui::color['lightgrey'] . ';padding: 35px;text-align: center;font-size: 30px;font-weight: bold;display: flex;flex-direction: column;',
-                            ]
-                        );
-
-                        Ui::element($notFoundBody, 'error-code', ['style' => Ui::htmlHrefStyle . 'font-size: 120px;', 'text' => Http::getErrorCode($title)]);
-                        Ui::element($notFoundBody, 'error-message', ['style' => Ui::htmlHrefStyle, 'text' => $message['description']]);
-
-                        // add template footer
-                        Ui::addDefaultSignature(
-                            Ui::element(
-                                $template,
-                                'ms-app-footer',
-                                ['style' => 'display: flex;flex-direction: column;width: 100%;align-items: center;justify-content: center;padding-top: 10px;font-size: 14px;']
-                            )
-                        );
-                        // text for system default signature
-                        Ui::text(
-                            Ui::element($body, 'script'),
-                            "function fixWindowSize(){if(window.innerHeight < '445') {document.body.style = 'height:445px;';} else if(window.innerHeight > '445') {document.body.style = 'height:'+window.innerHeight + 'px';} else {if(window.innerHeight > '1024') {document.body.style = 'height:1024px;';}}}
-                    window.addEventListener('resize', fixWindowSize);window.addEventListener('load', fixWindowSize);"
-                        );
-                    }
-                );
+                $message = ['description' => 'Your requested document not found.'];
             }//end if
+        } else {
+            $message = $message['debug'];
+        }//end if
 
-            exit();
+        if (Http::browser()->getRequestMethod() === 'OPTIONS') {
+            // add welcome not for http options method
+            Storage\Stream::json(['message' => ['type' => 'error', 'contents' => "An Internal error occurred."]]);
+        } elseif (Http::browser()->getRequestMethod() === 'GET') {
+            if (array_key_exists('caption', $message)) {
+                FirewallView::debug($message['caption'], $message, Http::errorCode($title));
+            } else {
+                FirewallView::runtimeFail($title, $message, Http::errorCode($title));
+            }//end if
+        } else {
+            Storage\Stream::json(
+                [
+                    'message' => [
+                        'type' => 'error',
+                        'details' => $message['debug']['description'],
+                        'visitor' => [
+                            'user-agent' => Http::browser()->getUserAgent(),
+                            'request-method' => Http::browser()->getRequestMethod(),
+                            'request-url' => Http::browser()::getVisitedPage(),
+                            'ip-address' => IP::get(),
+                        ],
+                    ],
+                    'copyright' => [
+                        'year' => Time::currentYearNumber(),
+                        'owner' => Framework::COMPANY_NAME,
+                    ],
+                ]
+            );
         }//end if
     }//end runtimeFailureUi()
 
@@ -1136,7 +1058,11 @@ class Firewall extends Base
      * @param string $requestAddress Requested address.
      * @param object $browser
      * @return void
+     * @throws HttpResponseException
      * @throws JsonException Throw exception when json error occurred.
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     private static function viewVisitorInfo(DOMElement|DOMNode|DOMDocument $body, string $requestMethod, string $requestAddress, object $browser): void
     {
@@ -1216,22 +1142,26 @@ class Firewall extends Base
 
     /**
      * @return array[]
+     * @throws HttpResponseException
      * @throws JsonException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     private function getNewVisitorTimeBased(): array
     {
         return [
-            Time::getToday() => [
+            Time::today() => [
                 'ip' => IP::get(),
                 'country' => IP::getCountry(),
                 'location' => IP::getInfo(),
-                'device' => self::$browser->getDeviceName() . ' (' . self::$browser->getBrowserArchitecture() . ')',
-                'browser' => self::$browser->getBrowserNameFull(),
-                'UUAS' => self::$browser->getUserAgent(),
-                'url' => self::$browser::VisitedPageURL($_SERVER),
+                'device' => Http::browser()->getDeviceName() . ' (' . Http::browser()->getBrowserArchitecture() . ')',
+                'browser' => Http::browser()->getBrowserNameFull(),
+                'UUAS' => Http::browser()->getUserAgent(),
+                'url' => Http::browser()::VisitedPageURL($_SERVER),
                 'status' => $this->actionStatus,
                 'component' => $this->actionComponent,
-                'visit-time' => Time::getToday(),
+                'visit-time' => Time::today(),
             ],
         ];
     }//end getNewVisitorTimeBased()
@@ -1239,17 +1169,25 @@ class Firewall extends Base
 
     /**
      * @return \array[][]
+     * @throws HttpResponseException
      * @throws JsonException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     private function getNewVisitorBrowserBased(): array
     {
-        return [self::$browser->getBrowserNameFull() => $this->getNewVisitorTimeBased()];
+        return [Http::browser()->getBrowserNameFull() => $this->getNewVisitorTimeBased()];
     }//end getNewVisitorBrowserBased()
 
 
     /**
      * @return \array[][][]
+     * @throws HttpResponseException
      * @throws JsonException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     private function getNewVisitorIPBased(): array
     {
@@ -1260,15 +1198,15 @@ class Firewall extends Base
     /**
      * @param string $status
      * @throws JsonException
-     * @throws \Mishusoft\Exceptions\RuntimeException|\Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function accessDefence(string $status): void
     {
         if (array_key_exists("$status-device-access-limit-filter", $this->config)
             && $this->config["$status-device-access-limit-filter"] === 'enable') {
-            if (is_readable(self::logFile()) === true) {
-                if (!empty(file_get_contents(self::logFile()))) {
-                    $logs = FileSystem\Yaml::parseFile(self::logFile());
+            if (is_readable(self::logFile($this->actionStatus)) === true) {
+                if (!empty(file_get_contents(self::logFile($this->actionStatus)))) {
+                    $logs = FileSystem\Yaml::parseFile(self::logFile($this->actionStatus));
                     if (is_array($logs) && count($logs) !== 0) {
                         if (array_key_exists($status, $logs)) {
                             if (is_array($logs[$status]) && array_key_exists(IP::get(), $logs[$status])) {
@@ -1308,14 +1246,13 @@ class Firewall extends Base
                                     if (array_key_exists("$status-device-count-down-time", $this->config)) {
                                         // check countdown time is not empty, then calculate accurate time
                                         if (!empty($this->config["$status-device-count-down-time"])) {
-                                            /*
-                                                preOutput($this->config["$status-device-count-down-time"]);*/
+                                            /* preOutput($this->config["$status-device-count-down-time"]);*/
                                             // Set new time, if set time to current time more than 60 minutes, set new time as current time
                                             $this->lastVisitDuration = (int)((strtotime($now['visit-time']) - strtotime($this->config["$status-device-count-down-time"][IP::get()])) / 60);
                                             if ($this->lastVisitDuration >= $this->config["$status-device-time-limit"]) {
                                                 $this->config["$status-device-count-down-time"][IP::get()] = $now['visit-time'];
                                                 FileSystem::saveToFile(Framework::configFile(), json_encode($this->config, JSON_THROW_ON_ERROR));
-                                            } //end if
+                                            }//end if
 
                                             else {
                                                 // Set new time, if previous time set more than 10 minutes
@@ -1327,7 +1264,7 @@ class Firewall extends Base
                                                     // preOutput($this->config);
                                                 }
                                             }
-                                        } //end if
+                                        }//end if
 
                                         else {
                                             // Set new time, if current time to previous time set more than 60 minutes
@@ -1359,16 +1296,16 @@ class Firewall extends Base
                                         check limit time format key and value*/
                                     // $minutes = (strtotime("2012-09-21 12:12:22") - time()) / 60;
                                     if (array_key_exists("$status-device-limit-time-format", $this->config)) {
-                                        // check limit time format key value and it is second, so calculate duration as seconds
+                                        // check limit time format key value, and it is second, so calculate duration as seconds
                                         if ($this->config["$status-device-limit-time-format"] === 'second') {
-                                            $this->duration = (int)(strtotime($now['visit-time']) - strtotime($this->controller));
+                                            $this->duration = (strtotime($now['visit-time']) - strtotime($this->controller));
                                             $this->separator = 'seconds';
                                         } //end if
 
                                         elseif ($this->config["$status-device-limit-time-format"] === 'minute') {
                                             $this->duration = (int)((strtotime($now['visit-time']) - strtotime($this->controller)) / 60);
                                             $this->separator = 'minutes';
-                                        } // otherwise calculate duration as hours
+                                        } //otherwise calculate duration as hours.
 
                                         else {
                                             $this->duration = (int)(((strtotime($now['visit-time']) - strtotime($this->controller)) / 60) / 60);
@@ -1414,11 +1351,11 @@ class Firewall extends Base
                                         if (array_key_exists("$status-device-access-limit", $this->config)) {
                                             // Returns true if access is greater than access limit
                                             if (count($countdownTimes) >= $this->config["$status-device-access-limit"]) {
-                                                if (!$this->isListed(IP::get()) and $status === 'blocked') {
+                                                if (!$this->isListed(IP::get()) && $status === 'blocked') {
                                                     $this->addIP(IP::get(), 'banned');
                                                 }
 
-                                                if ((!$this->isListed(IP::get()) and !$this->isListed(IP::get(), 'blocked')) && $status === 'granted') {
+                                                if ((!$this->isListed(IP::get()) && !$this->isListed(IP::get(), 'blocked')) && $status === 'granted') {
                                                     $this->addIP(IP::get(), 'blocked');
                                                 }
                                             }
@@ -1429,30 +1366,34 @@ class Firewall extends Base
                         }//end if
                     }//end if
                 } else {
-                    throw new RuntimeException('Unable to continue. ' . self::logFile() . ' is empty');
+                    throw new RuntimeException('Unable to continue. ' . self::logFile($this->actionStatus) . ' is empty');
                 }//end if
             } else {
-                throw new RuntimeException('Permission denied. Unable to read ' . self::logFile());
+                throw new RuntimeException('Permission denied. Unable to read ' . self::logFile($this->actionStatus));
             }//end if
         }//end if
     }//end accessDefence()
 
 
     /**
+     * @throws HttpResponseException
+     * @throws InvalidArgumentException
      * @throws JsonException
+     * @throws PermissionRequiredException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
      */
     public function defenceActivate(): void
     {
-        print_r($this->actionStatus, false);
-        print_r($this->actionComponent, false);
-
 
         if ($this->actionStatus === 'banned' || $this->actionStatus === 'blocked') {
-            //print_r(self::$browser->getUserAgent().PHP_EOL, false);
-            //print_r(self::$browser->getBrowserName().PHP_EOL, false);
-            if (array_key_exists('ui', self::$browser->details())) {
+            if (array_key_exists('ui', Http::browser()->details())) {
                 //GranParadiso/3.0.8 is text browser
-                if (Character::lower(self::$browser->details()['ui']) === Character::lower('FullTextMode')) {
+                if (Character::lower(Http::browser()->details()['ui']) === Character::lower('FullTextMode')) {
                     $msg_lb = "\n";
                     $this->msgTab = "\t";
                     $this->defenseMessageShow('', $msg_lb, $this->actionStatus, $this->actionComponent, 'text');
@@ -1492,34 +1433,48 @@ class Firewall extends Base
      * @param string $status
      * @param string $component
      * @param string $viewMode
+     * @throws HttpResponseException
+     * @throws InvalidArgumentException
      * @throws JsonException
+     * @throws PermissionRequiredException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
      */
     private function defenseMessageShow(string $title, string $lb, string $status, string $component, string $viewMode): void
     {
         if ($component === 'browser') {
-            $componentText = "on $component " . self::$browser->getBrowserNameFull();
+            $componentText = "on $component " . Http::browser()->getBrowserNameFull();
         } else {
             $componentText = "from $component " . IP::get();
         }
-        $requestMethod = self::$browser->getRequestMethod();
-        $requestAddress = self::$browser::getVisitedPage();
+        $requestMethod = Http::browser()->getRequestMethod();
+        $requestAddress = Http::browser()::getVisitedPage();
 
-        if (!empty($viewMode) && is_string($viewMode)) {
-            if (Network::requestHeader('HTTP_SEC_FETCH_MODE') === 'cors') {
-                Storage::StreamAsJson(
+        if (!empty($viewMode)) {
+            if (Http::browser()->getRequestMethod() === 'OPTIONS') {
+                // add welcome not for http options method
+                Storage\Stream::json(['message' => [
+                    'type' => 'error', 'contents' => "The HTTP OPTIONS method requests not permitted to communicate for $requestAddress."
+                ]]);
+            } elseif (Network::requestHeader('HTTP_SEC_FETCH_MODE') === 'cors') {
+                Storage\Stream::json(
                     [
                         'message' => [
                             'type' => 'error',
                             'details' => "Your access has been $status $componentText.",
                             'visitor' => [
-                                'user-agent' => self::$browser->getUserAgent(),
-                                'request-method' => self::$browser->getRequestMethod(),
-                                'request-url' => self::$browser::getVisitedPage(),
+                                'user-agent' => Http::browser()->getUserAgent(),
+                                'request-method' => Http::browser()->getRequestMethod(),
+                                'request-url' => Http::browser()::getVisitedPage(),
                                 'ip-address' => IP::get(),
                             ],
                         ],
                         'copyright' => [
-                            'year' => Time::getCurrentYearNumber(),
+                            'year' => Time::currentYearNumber(),
                             'owner' => Framework::COMPANY_NAME,
                         ],
                     ]
@@ -1532,7 +1487,7 @@ class Firewall extends Base
                 }
 
                 echo PHP_EOL;
-                // echo " User Agent : $this->msg_tab" . self::$browser->getUserAgent() . PHP_EOL;
+                // echo " User Agent : $this->msg_tab" . Http::browser()->getUserAgent() . PHP_EOL;
                 echo " Request URL : $this->msgTab$requestMethod $requestAddress" . PHP_EOL;
                 echo PHP_EOL;
                 echo " IP address : $this->msgTab" . IP::get() . PHP_EOL;
@@ -1548,13 +1503,13 @@ class Firewall extends Base
                 }
 
                 // avoid error browser capturing
-                if (Character::lower(self::$browser->getBrowserName()) !== 'unknown') {
-                    echo " Browser : $this->msgTab" . self::$browser->getBrowserNameFull() . PHP_EOL;
+                if (Character::lower(Http::browser()->getBrowserName()) !== 'unknown') {
+                    echo " Browser : $this->msgTab" . Http::browser()->getBrowserNameFull() . PHP_EOL;
                 }
 
                 // avoid error device capturing
-                if (Character::lower(self::$browser->getDeviceName()) !== 'unknown') {
-                    echo " Device : $this->msgTab" . self::$browser->getDeviceName() . ' (' . Character::lower(self::$browser->getDeviceArchitecture()) . ').' . PHP_EOL;
+                if (Character::lower(Http::browser()->getDeviceName()) !== 'unknown') {
+                    echo " Device : $this->msgTab" . Http::browser()->getDeviceName() . ' (' . Character::lower(Http::browser()->getDeviceArchitecture()) . ').' . PHP_EOL;
                 }
 
                 for ($i = 0; $i <= 65; $i++) {
@@ -1563,98 +1518,29 @@ class Firewall extends Base
 
                 echo PHP_EOL;
                 //echo 'Copyright © '.Time::getCurrentYearNumber().' '.Framework::COMPANY_NAME.'. All Right Reserved.'.PHP_EOL;
-                echo '© ' . Time::getCurrentYearNumber() . ' ' . Framework::COMPANY_NAME . '.' . PHP_EOL;
+                echo '© ' . Time::currentYearNumber() . ' ' . Framework::COMPANY_NAME . '.' . PHP_EOL;
             } else {
-                self::strictProtectionView("$title denied", '', '');
+                FirewallView::protection("$title denied", '',Http::NOT_ACCEPTABLE);
+                //self::strictProtectionView("$title denied", '', '');
                 exit();
-                Ui::HtmlInterface(
-                    "$title has been $status!!",
-                    function ($html, $head) use ($status, $title, $requestAddress, $requestMethod) {
-                        Ui::text(Ui::element($head, 'style'), 'body{margin: 0;padding: 0;display: flex;justify-content: center;align-items: center;height: 635px;}');
-                        $documentBody = Ui::element($html, 'body');
-                        // create html dody
-                        $template = Ui::element(
-                            Ui::element(
-                            // create mishusoft app body
-                                $documentBody,
-                                // create html dody
-                                'ms-app',
-                                ['style' => 'position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);box-sizing: border-box;border-radius: 5px;-webkit-border-radius: 5px;-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);line-height:1.5;']
-                            ),
-                            'ms-app-content',
-                            ['style' => "display: block;margin: 0;padding: 0;text-align: left;border: 1px solid $this->color;-webkit-border-radius: 5px;border-radius: 5px"]
-                        );
-                        Ui::text(
-                            Ui::element(
-                            // create app header
-                                $template,
-                                'ms-app-content-header',
-                                ['style' => "text-align:center;font-size: 18px;font-weight: 700;padding: 10px;color: #fff;display: block;background-color: $this->color;user-select: none;-webkit-user-select: none;"]
-                            ),
-                            "$title has been $status!!"
-                        );
-                        $template_body = Ui::element($template, 'ms-app-content-body', ['style' => 'text-align:center;padding: 10px;display: block;']);
-
-                        // add noscript to ui
-                        Ui::setNoScriptText($template_body);
-                        // end of adding noscript
-                        Ui::text(
-                            Ui::element(
-                                $template_body,
-                                'ms-app-paragraph',
-                                ['style' => "text-align:center;width: 275px;height: 160px;padding: 5px;margin: 0;border-radius: 10px;position: relative;-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);-o-box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);-webkit-transition: all .25s ease;-o-transition: all .25s ease;transition: all .25s ease;margin: 10px;font-size: 100px;font-weight: bolder;color: $this->color;border: 2px solid $this->color;user-select: none;-webkit-user-select: none;text-transform: uppercase;"]
-                            ),
-                            ucfirst($status)
-                        );
-
-                        if ($status === 'blocked') {
-                            Ui::text(
-                                Ui::element(
-                                    $template_body,
-                                    'ms-app-paragraph',
-                                    ['style' => 'font-size: 15px;line-height: 1.5;display: flex;text-align: center;background: bisque;border-radius: 5px;padding: 5px;margin-top: 10px;user-select: none;-webkit-user-select: none;']
-                                ),
-                                'You have violated the security laws of our website. For that reason, we will not allow access to our website at this time. If you are a customer or visitor, make your visit later. Or contact the Mishusoft Support Center if you are a system administrator. Thank you for accepting our service.'
-                            );
-                        }
-
-                        if ($status === 'banned') {
-                            Ui::text(
-                                Ui::element(
-                                    $template_body,
-                                    'ms-app-paragraph',
-                                    ['style' => "font-size: 15px;line-height: 1.5;display: flex;text-align: center;background: $this->color;border-radius: 5px;padding: 5px;margin-top: 10px;color: white;user-select: none;-webkit-user-select: none;"]
-                                ),
-                                'You have violated our security rules. All your information has been banned for the security of our customers. At the same time, all services previously provided to you have been discontinued. We will no longer be able to provide services to you in the future. Contact our support center if you need any help.'
-                            );
-                        }
-
-                        if ($status === 'granted') {
-                            Ui::text(
-                                Ui::element(
-                                    $template_body,
-                                    'ms-app-paragraph',
-                                    ['style' => "font-size: 15px;line-height: 1.5;display: flex;text-align: center;background: $this->color;border-radius: 5px;padding: 5px;margin-top: 10px;user-select: none;-webkit-user-select: none;"]
-                                ),
-                                'Welcome to our family. We are very happy that you have joined our family. We hope you enjoy our content and services. At the same time we will have the opportunity to be by your side all the time.'
-                            );
-                        }
-
-                        $this->viewVisitorInfo($template_body, $requestMethod, $requestAddress, self::$browser);
-                        Ui::addDefaultSignature($template_body);
-                        Ui::text(
-                            Ui::element($documentBody, 'script'),
-                            "function fixWindowSize(){if(window.innerHeight < '635') {document.body.style = 'height:635px;';} else if(window.innerHeight > '635') {document.body.style = 'height:'+window.innerHeight + 'px';} else {if(window.innerHeight > '1024') {document.body.style = 'height:1024px;';}}}
-                    window.addEventListener('resize', fixWindowSize);window.addEventListener('load', fixWindowSize);"
-                        );
-                    }
-                );
             }//end if
         }//end if
     }//end defenseMessageShow()
 
     /**
+     * @param string $documentTitle
+     * @param string $message
+     * @param string $reason
+     * @throws HttpResponseException
+     * @throws InvalidArgumentException
      * @throws JsonException
+     * @throws PermissionRequiredException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
      */
     public static function strictProtectionView(string $documentTitle, string $message, string $reason): void
     {
@@ -1684,7 +1570,7 @@ class Firewall extends Base
         Ui::setDocumentTitle($documentTitle);
 
         //Ui::element(Ui::getDocumentHeadElement(), 'style', ['text'=>$cssContent]);
-        Ui::elementList(Ui::getDocumentHeadElement(), ['link' => Storage::getAssignableWebFavicons()]);
+        Ui::elementList(Ui::getDocumentHeadElement(), ['link' => Storage::assignableWebFavicons()]);
 
         Ui::elementList(
             Ui::getDocumentHeadElement(),
@@ -1719,7 +1605,7 @@ class Firewall extends Base
                 'link' => [
                     [
                         'rel' => 'stylesheet',
-                        'href' => Storage::toDataUri('css/app.css'),
+                        'href' => Storage::toDataUri('assets','css/app.css'),
                     ],
                     //                    array(
                     //                        'rel'  => 'stylesheet',
@@ -1741,7 +1627,7 @@ class Firewall extends Base
                     'article' => [
                         ['class' => 'application-content', 'child' => [
                             'img' => [
-                                ['class' => 'application-content-title-icon', 'alt' => 'access denied', 'src' => Storage::toDataUri('images/icons/restriction-shield.png'),],
+                                ['class' => 'application-content-title-icon', 'alt' => 'access denied', 'src' => Storage::toDataUri('assets','images/icons/restriction-shield.png'),],
                             ],
                             'div' => [
                                 ['class' => 'application-content-title', 'text' => $documentTitle,],
@@ -1769,11 +1655,16 @@ class Firewall extends Base
     }
 
     /**
+     * @param string $reasonOfBlock
+     * @return array
+     * @throws HttpResponseException
      * @throws JsonException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     private static function getAssignableVisitorDetails(string $reasonOfBlock): array
     {
-        $webBrowser = new Browser();
         $visitorDetails = [];
 
         // Reason of block.
@@ -1804,7 +1695,7 @@ class Firewall extends Base
             'child' => [
                 'td' => [
                     ['class' => 'details-item-title', 'text' => 'URL :',],
-                    ['class' => 'details-item-details', 'text' => $webBrowser::getVisitedPage(),],
+                    ['class' => 'details-item-details', 'text' => Http::browser()::getVisitedPage(),],
                 ],
             ],
         ];
@@ -1815,7 +1706,7 @@ class Firewall extends Base
             'child' => [
                 'td' => [
                     ['class' => 'details-item-title', 'text' => 'User Agent :',],
-                    ['class' => 'details-item-details', 'text' => $webBrowser->getUserAgent(),],
+                    ['class' => 'details-item-details', 'text' => Http::browser()->getUserAgent(),],
                 ],
             ],
         ];
@@ -1854,20 +1745,23 @@ class Firewall extends Base
         }//end if
 
         // avoid error browser capturing
-        if (Character::lower($webBrowser->getBrowserName()) !== 'unknown') {
+        if (Character::lower(Http::browser()->getBrowserName()) !== 'unknown') {
             $visitorDetails[] = [
                 'class' => 'details-item',
                 'child' => [
                     'td' => [
                         ['class' => 'details-item-title', 'text' => 'Browser :',],
-                        ['class' => 'details-item-details', 'text' => $webBrowser->getBrowserNameFull(),],
+                        ['class' => 'details-item-details', 'text' => Http::browser()->getBrowserNameFull(),],
                     ],
                 ],
             ];
         }
 
         // avoid error device capturing
-        if (Character::lower($webBrowser->getDeviceName()) !== 'unknown') {
+        if (Character::lower(Http::browser()->getDeviceName()) !== 'unknown') {
+            $deviceAndArchitecture = Http::browser()->getDeviceName();
+            $deviceAndArchitecture .= ' (' . strtolower(Http::browser()->getBrowserArchitecture()) . ')';
+
             $visitorDetails[] = [
                 'class' => 'details-item',
                 'child' => [
@@ -1875,7 +1769,7 @@ class Firewall extends Base
                         ['class' => 'details-item-title', 'text' => 'Device :',],
                         [
                             'class' => 'details-item-details',
-                            'text' => $webBrowser->getDeviceName() . ' (' . strtolower($webBrowser->getBrowserArchitecture()) . ')',
+                            'text' => $deviceAndArchitecture,
                         ],
                     ],
                 ],

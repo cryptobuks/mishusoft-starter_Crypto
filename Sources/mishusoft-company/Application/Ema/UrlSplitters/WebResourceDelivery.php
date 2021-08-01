@@ -1,25 +1,24 @@
 <?php declare(strict_types=1);
 
-namespace Mishusoft\Ema\UrlSplitters;
+namespace App\Ema\UrlSplitters;
 
 use DOMElement;
 use DOMNode;
-use Mishusoft\Framework\Chipsets\Http\Browser;
-use Mishusoft\Framework\Chipsets\Storage;
-use Mishusoft\Framework\Chipsets\MPM;
-use Mishusoft\Framework\Chipsets\System\Memory;
-use Mishusoft\Framework\Chipsets\System\Firewall;
-use Mishusoft\Framework\Chipsets\System\Time;
-use Mishusoft\Framework\Chipsets\Ui;
-use Mishusoft\Framework\Chipsets\Utility\_Array;
-use Mishusoft\Framework\Chipsets\Utility\_String;
-use Mishusoft\Framework\Chipsets\Utility\Stream;
-use Mishusoft\Framework\Libraries\Runtime;
-use Mishusoft\Widgets\UniversalWidget;
+use Mishusoft\Http;
+use Mishusoft\Storage;
+use Mishusoft\MPM;
+use Mishusoft\System\Memory;
+use Mishusoft\System\Firewall;
+use Mishusoft\System\Time;
+use Mishusoft\Ui;
+use Mishusoft\Libraries\Runtime;
+use App\Widgets\UniversalWidget;
+use Mishusoft\Utility\ArrayCollection;
+use Mishusoft\Utility\Inflect;
 
 class WebResourceDelivery
 {
-    public const welcomeText = 'Welcome to Mishusoft Media Library';
+    public const WELCOME_TEXT = 'Welcome to Mishusoft Media Library';
 
     /**
      * Store default app logo form memory
@@ -38,7 +37,7 @@ class WebResourceDelivery
      * @throws \JsonException
      */
     public function __construct(
-        private string $defaultDirectoryIndex=DEFAULT_CONTROLLER
+        private string $defaultDirectoryIndex = DEFAULT_CONTROLLER
     ) {
         $this->defaultApplicationIcon = Memory::data()->preset->logo;
     }//end __construct()
@@ -46,6 +45,15 @@ class WebResourceDelivery
 
     /**
      * @param array $request
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \JsonException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public function assets(array $request): void
     {
@@ -55,6 +63,15 @@ class WebResourceDelivery
 
     /**
      * @param array $request
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \JsonException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public function media(array $request): void
     {
@@ -64,10 +81,19 @@ class WebResourceDelivery
 
     /**
      * @param array $request
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \JsonException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function browse(array $request): void
     {
-        if (file_exists(MS_STORAGE_PATH) === true && is_readable(MS_STORAGE_PATH) === true) {
+        if (file_exists(Storage::storagesPath()) === true && is_readable(Storage::storagesPath()) === true) {
             if (strtolower($request['method']) === strtolower($this->defaultDirectoryIndex)) {
                 $this->webExplore($request['method'], $request);
             } else {
@@ -78,8 +104,8 @@ class WebResourceDelivery
                 'Not Found',
                 [
                     'debug' => [
-                        'file'        => Browser::getVisitedPage(),
-                        'location'    => MS_STORAGE_PATH,
+                        'file'        => Http::browser()::getVisitedPage(),
+                        'location'    => Storage::storagesPath(),
                         'description' => 'The web data center is not set!!',
                     ],
                     'error' => ['description' => 'Your requested url is broken!!'],
@@ -91,20 +117,29 @@ class WebResourceDelivery
 
     /**
      * @param array $request
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \JsonException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public function shared(array $request): void
     {
-        if (file_exists(MS_STORAGE_PATH) && is_readable(MS_STORAGE_PATH) === true) {
+        if (file_exists(Storage::storagesPath()) && is_readable(Storage::storagesPath()) === true) {
             switch (strtolower($request['method'])) {
                 case strtolower($this->defaultDirectoryIndex):
                     Runtime::redirect('assets');
-                break;
+                    break;
 
                 case strtolower('json'):
                     if (count($request['arguments']) > 0) {
                         if (str_contains(implode($request['arguments']), '-') === true) {
-                            Storage::StreamOriginalFile(
-                                Storage::getRegistriesPath(
+                            Storage\Stream::originalFile(
+                                Storage::sharedFullPath(
                                     str_replace('-', '.', implode($request['arguments'])),
                                     'local'
                                 )
@@ -114,8 +149,8 @@ class WebResourceDelivery
                                 'Not Found',
                                 [
                                     'debug' => [
-                                        'file'        => (new Browser())->getURLPath(),
-                                        'location'    => Browser::getVisitedPage(),
+                                        'file'        => Http::browser()->getURLPath(),
+                                        'location'    => Http::browser()::getVisitedPage(),
                                         'description' => 'The web data center is not set!!',
                                     ],
                                     'error' => ['description' => 'Your requested url is broken!!'],
@@ -127,20 +162,20 @@ class WebResourceDelivery
                             'Not Found',
                             [
                                 'debug' => [
-                                    'file'        => (new Browser())->getURLPath(),
-                                    'location'    => Browser::getVisitedPage(),
+                                    'file'        => Http::browser()->getURLPath(),
+                                    'location'    => Http::browser()::getVisitedPage(),
                                     'description' => 'Your requested url is broken!!',
                                 ],
                                 'error' => ['description' => 'Your requested url is broken!!'],
                             ]
                         );
                     }//end if
-                break;
+                    break;
 
                 case strtolower('logos'):
                     $array = $request['arguments'];
-                    if (file_exists(MS_PRIVATE_MEDIA_PATH.'logos'.DIRECTORY_SEPARATOR.end($array)) == true) {
-                        Storage::StreamOriginalFile(Storage::getMediaPath('logos/'.end($array), 'local'));
+                    if (file_exists(Storage::logosPath().end($array)) === true) {
+                        Storage\Stream::originalFile(Storage::mediaFullPath('logos/'.end($array)));
                     } elseif (str_contains(end($array), '-') === true) {
                         $filename = end($array);
                         $ext      = pathinfo(end($array), PATHINFO_EXTENSION);
@@ -152,23 +187,23 @@ class WebResourceDelivery
                                 $width,
                                 $height,
                             ] = explode('x', preg_replace('[.'.$ext.']', '', $expected));
-                            if (file_exists(Storage::getMediaPath('logos/'.$this->defaultApplicationIcon)) === true) {
-                                Storage::StreamOriginalFile(
-                                    Media\Image::resize(
-                                        Storage::getMediaPath('logos/'.$this->defaultApplicationIcon),
-                                        $width,
-                                        $height,
-                                        MS_PRIVATE_MEDIA_PATH.'logos'.DIRECTORY_SEPARATOR.$filename
+                            if (file_exists(Storage::mediaFullPath('logos/'.$this->defaultApplicationIcon)) === true) {
+                                Storage\Stream::originalFile(
+                                    Storage\Media\Image::resize(
+                                        Storage::mediaFullPath('logos/'.$this->defaultApplicationIcon),
+                                        (int)$width,
+                                        (int)$height,
+                                        Storage::logosPath().'logos'.DS.$filename
                                     )
                                 );
                             }
                         } else {
-                            Storage::StreamOriginalFile(
-                                Media\Image::resize(
-                                    Storage::getMediaPath('logos/'.$this->defaultApplicationIcon),
+                            Storage\Stream::originalFile(
+                                Storage\Media\Image::resize(
+                                    Storage::logoFullPath($this->defaultApplicationIcon),
                                     16,
                                     16,
-                                    MS_PRIVATE_MEDIA_PATH.'logos'.DIRECTORY_SEPARATOR.$filename
+                                    Storage::logosPath().'logos'.DS.$filename
                                 )
                             );
                         }//end if
@@ -177,33 +212,33 @@ class WebResourceDelivery
                             'Not Found',
                             [
                                 'debug' => [
-                                    'file'        => (new Browser())->getURLPath(),
-                                    'location'    => Browser::getVisitedPage(),
+                                    'file'        => Http::browser()->getURLPath(),
+                                    'location'    => Http::browser()::getVisitedPage(),
                                     'description' => 'Your requested url is not exists in the web data center!!',
                                 ],
                                 'error' => ['description' => 'Your requested url is broken!!'],
                             ]
                         );
                     }//end if
-                break;
+                    break;
 
                 case strtolower('related'):
-                    if (file_exists(MPM::TemplatesJavascriptResourcesRootLocal().implode(DS, $request['arguments'])) === true) {
-                        Storage::StreamOriginalFile(Storage::getMediaPathOfTemplatesJavascriptResourcesRoot(implode(DS, $request['arguments'])));
+                    if (file_exists(MPM::templatesJavascriptResourcesRootLocal().implode(DS, $request['arguments'])) === true) {
+                        Storage\Stream::originalFile(MPM::templatesJavascriptResourcesRoot($request['module'], $request['controller']));
                     } else {
                         Firewall::runtimeFailure(
                             'Not Found',
                             [
                                 'debug' => [
-                                    'file'        => (new Browser())->getURLPath(),
-                                    'location'    => Browser::getVisitedPage(),
+                                    'file'        => Http::browser()->getURLPath(),
+                                    'location'    => Http::browser()::getVisitedPage(),
                                     'description' => 'Your requested url is not exists in the web data center!!',
                                 ],
                                 'error' => ['description' => 'Your requested url is broken!!'],
                             ]
                         );
                     }
-                break;
+                    break;
 
                 default:
                     Firewall::runtimeFailure(
@@ -211,13 +246,13 @@ class WebResourceDelivery
                         [
                             'debug' => [
                                 'file'        => ucfirst($request['controller']),
-                                'location'    => MS_STORAGE_PATH,
+                                'location'    => Storage::storagesPath(),
                                 'description' => 'The web data center is not set!!',
                             ],
                             'error' => ['description' => 'Your requested url is broken!!'],
                         ]
                     );
-                break;
+                    break;
             }//end switch
         } else {
             Firewall::runtimeFailure(
@@ -225,7 +260,7 @@ class WebResourceDelivery
                 [
                     'debug' => [
                         'file'        => ucfirst($request['controller']),
-                        'location'    => MS_STORAGE_PATH,
+                        'location'    => Storage::storagesPath(),
                         'description' => 'The web data center is not set!!',
                     ],
                     'error' => ['description' => 'Your requested url is broken!!'],
@@ -235,24 +270,37 @@ class WebResourceDelivery
     }//end shared()
 
 
+    /**
+     * @param array $request
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \JsonException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
+     */
     private function webExploreLoader(array $request): void
     {
-        $requestedFile = Storage::getStoragePath(
-            strtolower($request['controller']).DIRECTORY_SEPARATOR.strtolower($request['method']).DIRECTORY_SEPARATOR.implode(DIRECTORY_SEPARATOR, $request['arguments'])
+        $requestedFile = Storage::storageFullPath(
+            strtolower($request['controller']).DS.strtolower($request['method']).DS.implode(DS, $request['arguments'])
         );
 
         if (file_exists($requestedFile) === true) {
             if (filetype($requestedFile) === 'dir') {
                 $this->webExplore($requestedFile, $request);
             } else {
-                Storage::StreamOriginalFile($requestedFile);
+                Storage\Stream::originalFile($requestedFile);
             }
         } else {
             Firewall::runtimeFailure(
                 'Not Found',
                 [
                     'debug' => [
-                        'file'        => strtolower($request['controller']).DIRECTORY_SEPARATOR.strtolower($request['method']).DIRECTORY_SEPARATOR.implode(DIRECTORY_SEPARATOR, $request['arguments']),
+                        'file'        => strtolower($request['controller']).DS.strtolower($request['method']).DS.implode(DS, $request['arguments']),
                         'location'    => $requestedFile,
                         'description' => 'The web data center is not set!!',
                     ],
@@ -267,14 +315,22 @@ class WebResourceDelivery
      * WebExplorer of CDN.
      *
      * @param string $dirname
-     * @param array  $request
+     * @param array $request
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \JsonException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
      */
-
-
     private function webExplore(string $dirname, array $request): void
     {
         if ($dirname === $this->defaultDirectoryIndex) {
-            $dirname = APPLICATION_STORAGE_PATH.'0/'.$request['controller'];
+            $dirname = Storage::appStoragesPath().$request['controller'];
         }
 
         Ui::start();
@@ -290,11 +346,11 @@ class WebResourceDelivery
                 'link' => [
                     [
                         'rel'  => 'stylesheet',
-                        'href' => Storage::getAssetsPath('css/mishusoft-theme.css', 'remote'),
+                        'href' => Storage::assetsFullPath('css/mishusoft-theme.css', 'remote'),
                     ],
                     [
                         'rel'  => 'stylesheet',
-                        'href' => Storage::getAssetsPath('css/app-ui-v4.css', 'remote'),
+                        'href' => Storage::assetsFullPath('css/app-ui-v4.css', 'remote'),
                     ],
                 ],
             ]
@@ -338,7 +394,7 @@ class WebResourceDelivery
             $template_header,
             'a',
             [
-                'style' => 'color: '.Ui::color['default'].';',
+                'style' => 'color: '.Ui::COLOR['default'].';',
                 'class' => 'protect mishusoft-logo mishusoft-root-link mishusoft-root-link-primary animate',
                 'href'  => Runtime::link('default_home'),
             ]
@@ -381,7 +437,7 @@ class WebResourceDelivery
 
 
         // take action in index page on account area
-        if (_String::lower($request['method']) === _String::lower('index')) {
+        if (Inflect::lower($request['method']) === Inflect::lower('index')) {
             // set text for title
             Ui::updateDocumentTitle(' || '.'Home');
 
@@ -392,7 +448,7 @@ class WebResourceDelivery
                     'ms-app-paragraph' => [
                         [
                             'style' => 'width: 100%;padding: 50px;text-align: center;font-size: 40px;font-weight: bold;',
-                            'text'  => str_replace('media', $request['controller'], self::welcomeText),
+                            'text'  => str_replace('media', $request['controller'], self::WELCOME_TEXT),
                         ],
                         // set welcome text
                         [
@@ -412,13 +468,13 @@ class WebResourceDelivery
         (new UniversalWidget($templateBody))->breadcrumb();
 
         // optimize web link
-        if (substr(_String::lower(Browser::getVisitedPage()), (strlen(_String::lower(Browser::getVisitedPage())) - 1), 1) !== '/') {
-            $parentURL = _String::lower(Browser::getVisitedPage()).'/';
+        if (substr(Inflect::lower(Http::browser()::getVisitedPage()), (strlen(Inflect::lower(Http::browser()::getVisitedPage())) - 1), 1) !== '/') {
+            $parentURL = Inflect::lower(Http::browser()::getVisitedPage()).'/';
         } else {
-            $parentURL = _String::lower(Browser::getVisitedPage());
+            $parentURL = Inflect::lower(Http::browser()::getVisitedPage());
         }
 
-        // add media browser
+        // add media Http::browser()
         $table = Ui::element($templateBody, 'table', ['class' => 'table table-striped table-radius', 'style' => 'background: gainsboro;']);
 
         $table_header = Ui::element(Ui::element($table, 'thead', ['class' => 'bg-default', 'style' => 'font-size: 14px;font-weight: bold;']), 'tr');
@@ -430,7 +486,7 @@ class WebResourceDelivery
 
         $table_body = Ui::element($table, 'tbody', ['style' => 'font-size: 12px;']);
 
-        if (count(Stream::getList($dirname)) > 0) {
+        if (count(Storage\FileSystem::list($dirname)) > 0) {
             $this->viewDirOrFileList($dirname, $table_body, $parentURL);
         } else {
             Ui::element(
@@ -449,7 +505,7 @@ class WebResourceDelivery
                 'a',
                 [
                     'class' => 'protect',
-                    'style' => 'color: '.Ui::color['black'].';',
+                    'style' => 'color: '.Ui::COLOR['black'].';',
                     'text'  => 'Empty folder',
                 ]
             );
@@ -474,7 +530,7 @@ class WebResourceDelivery
             ]
         );
 
-        Ui::HtmlInterface(
+        Ui::htmlInterface(
             ucfirst($request['controller']),
             function ($html, $head, $title) use ($request, $dirname) {
                 Ui::elementList(
@@ -483,11 +539,11 @@ class WebResourceDelivery
                         'link' => [
                             [
                                 'rel'  => 'stylesheet',
-                                'href' => Storage::getAssetsPath('css/mishusoft-theme.css', 'remote'),
+                                'href' => Storage::assetsFullPath('css/mishusoft-theme.css', 'remote'),
                             ],
                             [
                                 'rel'  => 'stylesheet',
-                                'href' => Storage::getAssetsPath('css/app-ui-v4.css', 'remote'),
+                                'href' => Storage::assetsFullPath('css/app-ui-v4.css', 'remote'),
                             ],
                         ],
                     ]
@@ -526,7 +582,7 @@ class WebResourceDelivery
                     $template_header,
                     'a',
                     [
-                        'style' => 'color: '.Ui::color['default'].';',
+                        'style' => 'color: '.Ui::COLOR['default'].';',
                         // 'style' => Ui::htmlHrefStyle . 'color: ' . Ui::color["default"] . ';width: 30%;font-family: Saira Stencil One,Arial,serif;font-size: 43px;font-weight: bold;text-transform: uppercase;display: flex;align-items: center;justify-content: left;transition: all .15s ease;'
                         // ,'href' => Memory::Data("framework")->host->url
                         'class' => 'protect mishusoft-logo mishusoft-root-link mishusoft-root-link-primary animate',
@@ -560,7 +616,7 @@ class WebResourceDelivery
                 $templateBody = Ui::element($template, 'article', ['style' => 'width: 1024px;', 'class' => 'flex-center-all flex-column']);
 
                 // take action in index page on account area
-                if (_String::lower($request['method']) === _String::lower('index')) {
+                if (Inflect::lower($request['method']) === Inflect::lower('index')) {
                     // set text for title
                     Ui::text($title, ' || '.'Home');
 
@@ -571,7 +627,7 @@ class WebResourceDelivery
                             'ms-app-paragraph' => [
                                 [
                                     'style' => 'width: 100%;padding: 50px;text-align: center;font-size: 40px;font-weight: bold;',
-                                    'text'  => str_replace('media', $request['controller'], self::welcomeText),
+                                    'text'  => str_replace('media', $request['controller'], self::WELCOME_TEXT),
                                 ],
                                 // set welcome text
                                 [
@@ -591,13 +647,13 @@ class WebResourceDelivery
                 (new UniversalWidget($templateBody))->breadcrumb();
 
                 // optimize web link
-                if (substr(_String::lower((new Browser())->getVisitedPage()), (strlen(_String::lower((new Browser())->getVisitedPage())) - 1), 1) !== '/') {
-                    $parentURL = _String::lower((new Browser())->getVisitedPage()).'/';
+                if (substr(Inflect::lower(Http::browser()->getVisitedPage()), (strlen(Inflect::lower(Http::browser()->getVisitedPage())) - 1), 1) !== '/') {
+                    $parentURL = Inflect::lower(Http::browser()()->getVisitedPage()).'/';
                 } else {
-                    $parentURL = _String::lower((new Browser())->getVisitedPage());
+                    $parentURL = Inflect::lower(Http::browser()()->getVisitedPage());
                 }
 
-                // add media browser
+                // add media Http::browser()
                 $table = Ui::element($templateBody, 'table', ['class' => 'table table-striped table-radius', 'style' => 'background: gainsboro;']);
 
                 $table_header = Ui::element(Ui::element($table, 'thead', ['class' => 'bg-default', 'style' => 'font-size: 14px;font-weight: bold;']), 'tr');
@@ -609,7 +665,7 @@ class WebResourceDelivery
 
                 $table_body = Ui::element($table, 'tbody', ['style' => 'font-size: 12px;']);
 
-                if (count(Stream::getList($dirname)) > 0) {
+                if (count(Storage\FileSystem::list($dirname)) > 0) {
                     $this->viewDirOrFileList($dirname, $table_body, $parentURL);
                 } else {
                     Ui::element(
@@ -628,7 +684,7 @@ class WebResourceDelivery
                         'a',
                         [
                             'class' => 'protect',
-                            'style' => 'color: '.Ui::color['black'].';',
+                            'style' => 'color: '.Ui::COLOR['black'].';',
                             'text'  => 'Empty folder',
                         ]
                     );
@@ -657,32 +713,32 @@ class WebResourceDelivery
     }//end webExplore()
 
 
-    private function viewDirOrFileList(string $dirname, DOMElement|DOMNode $table_body, string $parentURL)
+    private function viewDirOrFileList(string $dirname, DOMElement|DOMNode $table_body, string $parentURL): void
     {
-        foreach ((array) Storage::FileExplore($dirname) as $file) {
+        foreach ((array) Storage::explore($dirname) as $file) {
             $list = Ui::element($table_body, 'tr');
-            if (Storage::in(Media\Mime::Image, Storage::getMimeContent($file))) {
-                Ui::element(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', ['style' => Ui::htmlHrefStyle.'color: '.Ui::color['black'].';', 'href' => $parentURL.basename($file)]), 'img', ['style' => 'width:20px;height:20px;', 'src' => $parentURL.basename($file)]);
+            if (Storage\Media::in(Storage\Media\Mime::Image, Storage\Media::mimeContent($file))) {
+                Ui::element(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', ['style' => Ui::HTML_HREF_STYLE.'color: '.Ui::COLOR['black'].';', 'href' => $parentURL.basename($file)]), 'img', ['style' => 'width:20px;height:20px;', 'src' => $parentURL.basename($file)]);
             } else {
-                if (Storage::getFileType($file) === 'dir') {
-                    Ui::element(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', ['style' => Ui::htmlHrefStyle.'color: '.Ui::color['black'].';', 'href' => $parentURL.basename($file)]), 'img', ['style' => 'width:20px;height:20px;', 'src' => Storage::toDataUri('images/folder.png', 'remote')]);
-                } elseif (Storage::getFileType($file) === 'file') {
-                    Ui::element(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', ['style' => Ui::htmlHrefStyle.'color: '.Ui::color['black'].';', 'href' => $parentURL.basename($file)]), 'img', ['style' => 'width:20px;height:20px;', 'src' => Storage::toDataUri('images/code-file.png', 'remote')]);
+                if (Storage\FileSystem::fileType($file) === 'dir') {
+                    Ui::element(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', ['style' => Ui::HTML_HREF_STYLE.'color: '.Ui::COLOR['black'].';', 'href' => $parentURL.basename($file)]), 'img', ['style' => 'width:20px;height:20px;', 'src' => Storage::toDataUri('media','images/folder.png', 'remote')]);
+                } elseif (Storage\FileSystem::fileType($file) === 'file') {
+                    Ui::element(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', ['style' => Ui::HTML_HREF_STYLE.'color: '.Ui::COLOR['black'].';', 'href' => $parentURL.basename($file)]), 'img', ['style' => 'width:20px;height:20px;', 'src' => Storage::toDataUri('media','images/code-file.png', 'remote')]);
                 } else {
-                    Ui::text(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', ['style' => Ui::htmlHrefStyle.'color: '.Ui::color['black'].';', 'href' => $parentURL.basename($file)]), Storage::getFileType($file));
+                    Ui::text(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', ['style' => Ui::HTML_HREF_STYLE.'color: '.Ui::COLOR['black'].';', 'href' => $parentURL.basename($file)]), Storage\FileSystem::fileType($file));
                 }
             }
 
-            Ui::text(Ui::element(Ui::element($list, 'td', ['style' => 'width:400px;']), 'a', ['class' => 'protect', 'style' => 'color: '.Ui::color['black'].';', 'href' => $parentURL.basename($file)]), Storage::getOriginalNameOfFile($file));
+            Ui::text(Ui::element(Ui::element($list, 'td', ['style' => 'width:400px;']), 'a', ['class' => 'protect', 'style' => 'color: '.Ui::COLOR['black'].';', 'href' => $parentURL.basename($file)]), Storage\FileSystem::fileOriginalName($file));
 
-            if (Storage::getFileType($file) === 'dir') {
+            if (Storage\FileSystem::fileType($file) === 'dir') {
                 Ui::text(Ui::element($list, 'td', ['style' => 'width:200px;']), 'File Folder');
             } else {
-                Ui::text(Ui::element($list, 'td', ['style' => 'width:200px;']), _Array::value(Storage::getFileInfo($file), 'document'));
+                Ui::text(Ui::element($list, 'td', ['style' => 'width:200px;']), ArrayCollection::value(Storage\FileSystem::fileInfo($file), 'document'));
             }
 
-            Ui::text(Ui::element($list, 'td'), Storage::getFileSize($file));
-            Ui::text(Ui::element($list, 'td', ['style' => 'width:200px;']), Time::getTodayFullBeautify(filemtime($file)));
+            Ui::text(Ui::element($list, 'td'), Storage\FileSystem::fileSize($file));
+            Ui::text(Ui::element($list, 'td', ['style' => 'width:200px;']), Time::todayFullBeautify(filemtime($file)));
         }//end foreach
     }//end viewDirOrFileList()
 }//end class

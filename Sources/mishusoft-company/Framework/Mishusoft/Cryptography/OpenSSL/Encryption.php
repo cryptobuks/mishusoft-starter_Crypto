@@ -26,9 +26,10 @@ class Encryption extends OpenSSL
     /**
      * Encrypt data dynamically.
      *
-     * @param  string $data String for encryption.
-     * @param  string $type Action filter.
+     * @param string $data String for encryption.
+     * @param string $type Action filter.
      * @return string Encrypted string.
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public static function dynamic(string $data, string $type = 'advanced'): string
     {
@@ -68,8 +69,9 @@ class Encryption extends OpenSSL
     /**
      * Encrypt data statically.
      *
-     * @param  string $data String for encryption.
+     * @param string $data String for encryption.
      * @return string Encrypted string.
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public static function static(string $data): string
     {

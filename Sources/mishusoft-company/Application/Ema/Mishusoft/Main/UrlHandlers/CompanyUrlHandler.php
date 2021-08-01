@@ -1,44 +1,52 @@
 <?php
 
 
-namespace Mishusoft\Ema\Mishusoft\Main\UrlHandlers;
+namespace App\Ema\Mishusoft\Main\UrlHandlers;
 
-
-use Mishusoft\Framework\Chipsets\System\Localization;
-use Mishusoft\Framework\Chipsets\Utility\_Array;
-use Mishusoft\Framework\Chipsets\Utility\_String;
-use Mishusoft\Framework\Chipsets\Utility\Stream;
-use Mishusoft\Framework\Drivers\UrlHandler;
+use Mishusoft\Storage;
+use Mishusoft\System\Localization;
+use Mishusoft\Drivers\UrlHandler;
+use Mishusoft\Utility\ArrayCollection;
+use Mishusoft\Utility\Inflect;
 
 class CompanyUrlHandler extends UrlHandler
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    public function Response(array $prediction)
+    /**
+     * @param array $prediction
+     * @throws \JsonException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     */
+    public function response(array $prediction):void
     {
         // TODO: Implement Response() method.
-        $translation = new Localization(_Array::value($prediction, "locale"));
+        $translation = new Localization(ArrayCollection::value($prediction, "locale"));
         $view = $this->render($translation->translate("Mishusoft"), $prediction);
         //$this->LinkList($prediction);
-        if (_String::lower($prediction["method"]) === _String::lower("sitemap")) {
+        if (Inflect::lower($prediction["method"]) === Inflect::lower("sitemap")) {
             $this->generateSitemap();
-        } elseif (_String::lower($prediction["method"]) === _String::lower("rss")) {
+        } elseif (Inflect::lower($prediction["method"]) === Inflect::lower("rss")) {
             $this->generateRSSFeed();
         } else {
             $view->display();
         }
     }
 
-    private function LinkList(array $prediction)
+    /**
+     * @param array $prediction
+     * @return mixed
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     */
+    private function linkList(array $prediction): mixed
     {
-        return Stream::getList(MS_DOCUMENT_ROOT . "Ema" . DIRECTORY_SEPARATOR . "Mishusoft/ViewRenders/".ucfirst($prediction["controller"]),"file");
-
+        $path = RUNTIME_ROOT_PATH . "Ema" . DS . "Mishusoft/ViewRenders/".ucfirst($prediction["controller"]);
+        return Storage\FileSystem::list($path, "file");
     }
 
-    private function generateSitemap()
+    private function generateSitemap(): void
     {
         header('Content-Type: text/xml; charset=utf-8', true);
         echo '<?xml version="1.0" encoding="UTF-8"?>';
@@ -47,13 +55,12 @@ class CompanyUrlHandler extends UrlHandler
         $pages = $this->db->getWebAppPages();
         foreach ($pages as $page) {
             echo '<url>';
-            echo '<loc>' . BaseURL . strtolower($page['url']) . '</loc>';
+            echo '<loc>' . BASE_URL . strtolower($page['url']) . '</loc>';
             echo '<changefreq>always</changefreq>';
             echo '<priority>1.0</priority>';
             echo '</url>';
         }
         echo '</urlset>';
-
     }
 
     private function generateRSSFeed()
@@ -61,21 +68,19 @@ class CompanyUrlHandler extends UrlHandler
         header('Content-Type: text/xml; charset=utf-8', true);
         echo '<?xml version="1.0" encoding="UTF-8"?>';
         echo '<rss version="2.0">';
-        echo '<channel title="Welcome to Mishusoft Platform" link="' . BaseURL . '">';
+        echo '<channel title="Welcome to Mishusoft Platform" link="' . BASE_URL . '">';
 
         $pages = $this->db->getWebAppPages();
         foreach ($pages as $page) {
             echo '<item>';
-            echo '<guid>' . BaseURL . strtolower($page['url']) . '</guid>';
+            echo '<guid>' . BASE_URL . strtolower($page['url']) . '</guid>';
             echo '<title>' . $page['url'] . '</title>';
-            echo '<link>' . BaseURL . strtolower($page['url']) . '</link>';
+            echo '<link>' . BASE_URL . strtolower($page['url']) . '</link>';
             echo '<description>' . $page['description'] . '</description>';
             echo '</item>';
         }
 
         echo '</channel>';
         echo '</rss>';
-
     }
-
 }

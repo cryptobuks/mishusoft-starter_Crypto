@@ -15,6 +15,7 @@ class Decryption extends OpenSSL
      *
      * @return string Return decrypted string.
      * @throws RuntimeException \Throwable Exception.
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public static function dynamic(string $data, string $type = 'advanced'): string
     {
@@ -49,7 +50,9 @@ class Decryption extends OpenSSL
                     );
                 }
             } else {
-                throw new RuntimeException('Non-cryptographically strong algorithm used for iv generation.');
+                throw new \Mishusoft\Exceptions\RuntimeException(
+                    'Non-cryptographically strong algorithm used for iv generation.'
+                );
             }//end if
         }//end if
 

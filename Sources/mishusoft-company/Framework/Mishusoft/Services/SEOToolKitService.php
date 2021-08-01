@@ -4,19 +4,18 @@
 namespace Mishusoft\Services;
 
 use JsonException;
-use Mishusoft\FileSystem;
-use Mishusoft\Http\Browser;
+use Mishusoft\Base;
+use Mishusoft\Drivers\View\MishusoftView;
+use Mishusoft\Http;
 use Mishusoft\Storage;
+use Mishusoft\Storage\FileSystem;
 use Mishusoft\System\Memory;
 use Mishusoft\Ui;
 use Mishusoft\Utility\ArrayCollection;
-use Mishusoft\Framework\Drivers\View\MishusoftView;
 
-class SEOToolKitService
+class SEOToolKitService extends Base
 {
-    public const SEO_CONFIG_FILE         = RUNTIME_REGISTRIES_PATH.'seo.json';
-    public const AD_SENSE_CONFIG_FILE    = RUNTIME_REGISTRIES_PATH.'seo-ad-sense.json';
-    public const SEARCH_ENGINE_LIST_FILE = RUNTIME_REGISTRIES_PATH.'seo-se-list.json';
+
 
     private object $view;
 
@@ -46,11 +45,13 @@ class SEOToolKitService
     /**
      * SEOToolKitService constructor.
      *
-     * @param  MishusoftView $view
+     * @param MishusoftView $view
      * @throws JsonException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public function __construct(MishusoftView $view)
     {
+        parent::__construct();
         // Verify seo config, seo ad sense, seo se list file
         $this->check();
 
@@ -59,23 +60,45 @@ class SEOToolKitService
         }
     }//end __construct()
 
+    //    public const SEO_CONFIG_FILE         = RUNTIME_REGISTRIES_PATH.'seo.json';
+    //    public const AD_SENSE_CONFIG_FILE    = RUNTIME_REGISTRIES_PATH.'seo-ad-sense.json';
+    //    public const SEARCH_ENGINE_LIST_FILE = RUNTIME_REGISTRIES_PATH.'seo-se-list.json';
+
+    private function seoConfigFile(): string
+    {
+        return self::dFile(self::dataFile('SEOToolKitService', 'seo'));
+    }
+
+    private function adSenseConfigFile(): string
+    {
+        return self::dFile(self::dataFile('SEOToolKitService', 'ad-sense'));
+    }
+
+    private function searchEngineListFile(): string
+    {
+        return self::dFile(self::dataFile('SEOToolKitService', 'se-list'));
+    }
+
 
     /**
      * @throws JsonException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function check(): void
     {
         $fileList = [
-            self::SEO_CONFIG_FILE,
-            self::AD_SENSE_CONFIG_FILE,
-            self::SEARCH_ENGINE_LIST_FILE,
+            $this->seoConfigFile(),
+            $this->adSenseConfigFile(),
+            $this->searchEngineListFile(),
         ];
         if (count($fileList) > 0) {
             foreach ($fileList as $file) {
                 if (file_exists($file) === false) {
+                    FileSystem\Yaml::emitFile($file, []);
                     FileSystem::saveToFile($file, json_encode([], JSON_THROW_ON_ERROR));
-                } elseif ((is_array(FileSystem::read($file)) === false) && FileSystem::remove($file) === true) {
-                    FileSystem::saveToFile($file, json_encode([], JSON_THROW_ON_ERROR));
+                } elseif ((is_array(FileSystem\Yaml::parseFile($file)) === false)
+                    && FileSystem::remove($file) === true) {
+                    FileSystem\Yaml::emitFile($file, []);
                 }
             }
         }
@@ -85,6 +108,12 @@ class SEOToolKitService
     /**
      *
      * @throws JsonException
+     * @throws \ErrorException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public function start(): void
     {
@@ -96,7 +125,13 @@ class SEOToolKitService
 
 
     /**
-     *
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws JsonException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \ErrorException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     private function socialNetworkManager(): void
     {
@@ -143,18 +178,18 @@ class SEOToolKitService
     /**
      *
      */
-    private function AdSenseManager(): void
+    private function adSenseManager(): void
     {
         Ui::elementList(
             Ui::getDocumentHeadElement(),
             [
                 'meta' => [
                     [
-                        'name'    => 'google-site-verification',
+                        'name' => 'google-site-verification',
                         'content' => '920ooXJv6lcqtSwPRaqe_b5EJwKNB367u-F7qhfdQGA',
                     ],
                     [
-                        'name'    => 'google-signin-client_id',
+                        'name' => 'google-signin-client_id',
                         'content' => '490685818841-9ck0mpi283mogcoskgk8kso236m5bvn4.apps.googleusercontent.com',
                     ],
                 ],
@@ -176,16 +211,16 @@ class SEOToolKitService
                     // ["name" => "viewport", "content" => "width=device-width, initial-scale=1.0"],
                     // /*<meta name=viewport content="width=device-width, initial-scale=1">*/
                     [
-                        'name'    => 'viewport',
+                        'name' => 'viewport',
                         'content' => 'width=device-width, initial-scale=1.0',
                     ],
                     [
                         'http-equiv' => 'X-UA-Compatible',
-                        'content'    => 'ie=edge',
+                        'content' => 'ie=edge',
                     ],
                     [
                         'http-equiv' => 'Content-Type',
-                        'content'    => 'text/html; charset=utf-8',
+                        'content' => 'text/html; charset=utf-8',
                     ],
                     // <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
                 ],
@@ -197,6 +232,11 @@ class SEOToolKitService
     /**
      *
      * @throws JsonException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function default(): void
     {
@@ -217,20 +257,20 @@ class SEOToolKitService
             [
                 'meta' => [
                     [
-                        'name'    => 'title',
+                        'name' => 'title',
                         'content' => $this->view->titleOfCurrentWebPage,
                     ],
                     [
-                        'name'    => 'keywords',
+                        'name' => 'keywords',
                         'content' => $this->view->titleOfCurrentWebPage,
                     ],
                     [
-                        'name'    => 'company',
+                        'name' => 'company',
                         'content' => Memory::data()->company->name,
                     ],
                     [
-                        'name'    => 'description',
-                        'content' => (array_key_exists('description', $this->getAbout(Browser::getVisitedPage()))) ? ArrayCollection::value($this->getAbout(Browser::getVisitedPage()), 'description') : Memory::data()->company->detailsDescription,
+                        'name' => 'description',
+                        'content' => (array_key_exists('description', $this->getAbout(Http::browser()::getVisitedPage()))) ? ArrayCollection::value($this->getAbout(Http::browser()::getVisitedPage()), 'description') : Memory::data()->company->detailsDescription,
                     ],
                     // <meta name="description"content="This is an example of a meta description.This will often show up in search results.">
                 ],
@@ -240,7 +280,12 @@ class SEOToolKitService
 
 
     /**
-     *
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws JsonException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     private function markupForGoogle(): void
     {
@@ -258,15 +303,15 @@ class SEOToolKitService
                 'meta' => [
                     [
                         'itemprop' => 'name',
-                        'content'  => $this->view->titleOfCurrentWebPage,
+                        'content' => $this->view->titleOfCurrentWebPage,
                     ],
                     [
                         'itemprop' => 'image',
-                        'content'  => Storage::getLogosMediaPath('favicon.ico', 'remote'),
+                        'content' => Storage::logoFullPath('favicon.ico', 'remote'),
                     ],
                     [
                         'itemprop' => 'description',
-                        'content'  => (array_key_exists('description', $this->getAbout(Browser::getVisitedPage()))) ? ArrayCollection::value($this->getAbout(Browser::getVisitedPage()), 'description') : Memory::data()->company->detailsDescription,
+                        'content' => $this->getDescriptionDetails(),
                     ],
                     // <meta name="description"content="This is an example of a meta description.This will often show up in search results.">
                 ],
@@ -279,6 +324,11 @@ class SEOToolKitService
      *
      * @throws JsonException
      * @throws \ErrorException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function twitterCard(): void
     {
@@ -300,29 +350,29 @@ class SEOToolKitService
             [
                 'meta' => [
                     [
-                        'name'    => 'twitter:card',
-                        'content' => Storage::getLogosMediaPath('mishusoft-logo-lite.webp', 'remote'),
+                        'name' => 'twitter:card',
+                        'content' => Storage::logoFullPath('mishusoft-logo-lite.webp', 'remote'),
                     ],
                     [
-                        'name'    => 'twitter:site',
+                        'name' => 'twitter:site',
                         'content' => Memory::data('framework')->host->url,
                     ],
                     [
-                        'name'    => 'twitter:title',
+                        'name' => 'twitter:title',
                         'content' => $this->view->titleOfCurrentWebPage,
                     ],
                     [
-                        'name'    => 'twitter:description',
-                        'content' => (array_key_exists('description', $this->getAbout(Browser::getVisitedPage()))) ? ArrayCollection::value($this->getAbout(Browser::getVisitedPage()), 'description') : Memory::data()->company->detailsDescription,
+                        'name' => 'twitter:description',
+                        'content' => $this->getDescriptionDetails(),
                     ],
                     // <meta name="description"content="This is an example of a meta description.This will often show up in search results.">
                     [
-                        'name'    => 'twitter:creator',
+                        'name' => 'twitter:creator',
                         'content' => Memory::data()->author->name,
                     ],
                     [
-                        'name'    => 'twitter:image:src',
-                        'content' => Storage::getLogosMediaPath('mishusoft-logo-lite.png', 'remote'),
+                        'name' => 'twitter:image:src',
+                        'content' => Storage::logoFullPath('mishusoft-logo-lite.png', 'remote'),
                     ],
                 ],
             ]
@@ -331,7 +381,13 @@ class SEOToolKitService
 
 
     /**
-     *
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws JsonException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \ErrorException
      */
     private function openGraphData(): void
     {
@@ -358,28 +414,28 @@ class SEOToolKitService
                 'meta' => [
                     [
                         'property' => 'og:title',
-                        'content'  => $this->view->titleOfCurrentWebPage,
+                        'content' => $this->view->titleOfCurrentWebPage,
                     ],
                     [
                         'property' => 'og:type',
-                        'content'  => 'article',
+                        'content' => 'article',
                     ],
                     [
                         'property' => 'og:url',
-                        'content'  => Memory::data('framework')->host->url,
+                        'content' => Memory::data('framework')->host->url,
                     ],
                     [
                         'property' => 'og:image',
-                        'content'  => Storage::getLogosMediaPath('mishusoft-logo-lite.png', 'remote'),
+                        'content' => Storage::logoFullPath('mishusoft-logo-lite.png', 'remote'),
                     ],
                     [
                         'property' => 'og:description',
-                        'content'  => (array_key_exists('description', $this->getAbout(Browser::getVisitedPage()))) ? ArrayCollection::value($this->getAbout(Browser::getVisitedPage()), 'description') : Memory::data()->company->detailsDescription,
+                        'content' => $this->getDescriptionDetails(),
                     ],
                     // <meta name="description"content="This is an example of a meta description.This will often show up in search results.">
                     [
                         'property' => 'og:site_name',
-                        'content'  => Memory::data()->name,
+                        'content' => Memory::data()->name,
                     ],
                     // <meta name="description"content="This is an example of a meta description.This will often show up in search results.">
                 ],
@@ -387,16 +443,33 @@ class SEOToolKitService
         );
     }//end openGraphData()
 
+    /**
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws JsonException
+     */
+    private function getDescriptionDetails(): string
+    {
+        if ((array_key_exists('description', $this->getAbout(Http::browser()::getVisitedPage())))) {
+            return ArrayCollection::value($this->getAbout(Http::browser()::getVisitedPage()), 'description');
+        }
+
+        return Memory::data()->company->detailsDescription;
+    }
+
 
     /**
-     * @param  string $url
+     * @param string $url
      * @return array
-     * @throws JsonException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function getAbout(string $url): array
     {
         $result = [];
-        foreach (json_decode(FileSystem::read(self::SEO_CONFIG_FILE), true, 512, JSON_THROW_ON_ERROR) as $inf) {
+        foreach (FileSystem\Yaml::parseFile($this->seoConfigFile()) as $inf) {
             if (array_key_exists($url, $inf) === true) {
                 $result = $inf;
             }
@@ -412,4 +485,12 @@ class SEOToolKitService
     public function __destruct()
     {
     }//end __destruct()
+
+    /**
+     * @return array|string[]
+     */
+    public function getSearchEngineList(): array
+    {
+        return $this->SearchEngineList;
+    }
 }//end class

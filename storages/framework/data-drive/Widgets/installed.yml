@@ -1,0 +1,42 @@
+---
+TopQuickBar:
+  class: TopQuickBar
+  method: getTopQuickBar
+  child: []
+  configuration:
+    position: top
+  setting:
+    status: enable
+  last_modification: 1627668374
+UniversalMenuBar:
+  class: UniversalMenuBar
+  method: getUniversalMenuBar
+  child:
+  - header
+  - left
+  - right
+  - footer
+  configuration:
+    position: header
+  setting:
+    status: enable
+  last_modification: 1627668465
+SocialNetworkShare:
+  class: SocialNetworkShare
+  method: getSocialNetworkShare
+  child: []
+  configuration:
+    position: header
+  setting:
+    status: enable
+  last_modification: 1614797644
+Universal:
+  class: Universal
+  method: getMenu
+  child: []
+  configuration:
+    position: header
+  setting:
+    status: enable
+  last_modification: 1627696254
+...

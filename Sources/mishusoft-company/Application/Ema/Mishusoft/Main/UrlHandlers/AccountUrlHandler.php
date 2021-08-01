@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Mishusoft\Ema\Mishusoft\Main\UrlHandlers;
+namespace App\Ema\Mishusoft\Main\UrlHandlers;
 
-use Mishusoft\Framework\Chipsets\System\Localization;
-use Mishusoft\Framework\Chipsets\Utility\_Array;
-use Mishusoft\Framework\Drivers\UrlHandler;
+use Mishusoft\System\Localization;
+use Mishusoft\Drivers\UrlHandler;
+use Mishusoft\Utility\ArrayCollection;
 
 class AccountUrlHandler extends UrlHandler
 {
@@ -18,7 +18,7 @@ class AccountUrlHandler extends UrlHandler
     public function Response(array $prediction)
     {
         // TODO: Implement Response() method.
-        $translation = new Localization(_Array::value($prediction, "locale"));
+        $translation = new Localization(ArrayCollection::value($prediction, "locale"));
         $view = $this->render($translation->translate("Account"), $prediction, ['login', 'create']);
         $view->display();
     }

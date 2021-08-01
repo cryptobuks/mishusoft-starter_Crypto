@@ -3,16 +3,17 @@ declare(strict_types=1);
 
 namespace Mishusoft\System;
 
-use ErrorException;
 use JsonException;
+use Mishusoft\Exceptions\ErrorException;
+use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
+use Mishusoft\Exceptions\PermissionRequiredException;
+use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Storage\FileSystem;
 use Mishusoft\Framework;
 use Mishusoft\MPM;
 use Mishusoft\System;
 use Mishusoft\Utility\JSON;
-use RuntimeException;
 use stdClass;
-
 
 class Memory
 {
@@ -20,31 +21,24 @@ class Memory
     /**
      * Memory constructor.
      *
-     * @throws RuntimeException|JsonException Throw exception in runtime process.
+     * @throws InvalidArgumentException
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
      */
     public function __construct()
     {
-        /*
-         * all version list
-         * Framework - 1.0.2 <-Init from Framework::VERSION->
-         * Mishusoft - 1.0.2 <-Init from Mishusoft::VERSION->
-         * mpm - 1.0.0 <-Init from MPM::VERSION->
-         * MishusoftSQLStandalone - 1.0.0 <-Init from MishusoftSQLStandalone::VERSION->
-         * ..................................
-         */
-
         Logger::write(sprintf('Check %s class existent.', ROM::class));
         if (class_exists(ROM::class) === true) {
             Logger::write(sprintf('Found %s class in system.', ROM::class));
             Logger::write(sprintf('Play with %s class.', ROM::class));
             (new ROM())->play();
         } else {
-            throw new RuntimeException(__NAMESPACE__.'\ROM not found.');
+            throw new RuntimeException(__NAMESPACE__ . '\ROM not found.');
         }
 
         Logger::write(sprintf('Check %s file existent.', Framework::configFile()));
         if (file_exists(Framework::configFile()) === false) {
-            throw new RuntimeException(Framework::configFile().' not found.');
+            throw new RuntimeException(Framework::configFile() . ' not found.');
         }
     }//end __construct()
 
@@ -54,6 +48,11 @@ class Memory
      *
      * @return void
      * @throws JsonException Throw exception on json error.
+     * @throws ErrorException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws InvalidArgumentException
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
      */
     public function enable(): void
     {
@@ -67,11 +66,15 @@ class Memory
      * Load Data.
      *
      * @param string $carrier Carrier name of data loader.
-     * @param array  $options Options of data loader.
+     * @param array $options Options of data loader.
      *
      * @return array|object
-     * @throws ErrorException Throw exception on runtime error.
+     * @throws InvalidArgumentException
      * @throws JsonException Throw exception on json error.
+     * @throws PermissionRequiredException
+     * @throws ErrorException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws RuntimeException
      */
     public static function data(string $carrier = 'memory', array $options = []): array|object
     {
@@ -111,7 +114,7 @@ class Memory
             if (array_key_exists('file', $options) === true) {
                 $filename = $options['file'];
             } else {
-                $filename = MPM::packageConfigFile();
+                $filename = MPM::configFile();
             }
 
             if (file_exists($filename) === false) {
@@ -153,7 +156,7 @@ class Memory
             if (array_key_exists('default', $options) === true) {
                 $default = $options['default'];
             } else {
-                $default = FRAMEWORK_DEFAULT_CONF;
+                $default = FRAMEWORK::defaultConfig();
             }
 
             if (array_key_exists('file', $options) === true) {
@@ -174,12 +177,16 @@ class Memory
     /**
      * Data loader of system memory.
      *
-     * @param string $format   Format for data load.
-     * @param array  $default  Default array data for fallback.
+     * @param string $format Format for data load.
+     * @param array $default Default array data for fallback.
      * @param string $filename Absolute data file path.
      *
      * @return object|array Return data on demand.
-     * @throws JsonException|ErrorException Throw json exception when error occurred.
+     * @throws InvalidArgumentException
+     * @throws PermissionRequiredException
+     * @throws ErrorException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws RuntimeException
      */
     private static function dataLoader(string $format, array $default, string $filename): object|array
     {
@@ -195,14 +202,15 @@ class Memory
                 )
             );
             Logger::write(sprintf('Collect content from %s file.', $filename));
-            $contents = file_get_contents($filename);
+            $contents = FileSystem::read($filename);
+            $contentsArray = FileSystem\Yaml::parseFile($filename);
 
             Logger::write(sprintf('Check content length of %s file.', $filename));
             if ($contents !== '') {
                 if (strtolower($format) === 'object') {
                     if (is_string($contents) === true) {
                         Logger::write(sprintf('Create a data object from %s file\'s content.', $filename));
-                        $result = JSON::decodeToObject($contents);
+                        $result = JSON::encodeToObject($contentsArray);
                     } else {
                         Logger::write('Create a data object from default content.');
                         $result = JSON::encodeToObject($default);
@@ -216,7 +224,7 @@ class Memory
                 if (strtolower($format) === 'array') {
                     if (is_string($contents) === true) {
                         Logger::write(sprintf('Create a data array from %s file\'s content.', $filename));
-                        $result = JSON::decodeToArray($contents);
+                        $result = $contentsArray;
                     } else {
                         Logger::write('Create a data object from default content.');
                         $result = $default;
@@ -227,11 +235,15 @@ class Memory
                     }
                 }
             } else {
-                throw new ErrorException($filename.' not empty.');
+                throw new ErrorException($filename . ' not empty.');
             }//end if
         } else {
-            throw new ErrorException($filename.' not readable.');
+            throw new ErrorException($filename . ' not readable.');
         }//end if
+
+        Logger::write('End the process of data grabber from'.$filename);
+        //var_dump(debug_backtrace());
+        //var_dump($result);
 
         return $result;
     }//end dataLoader()
@@ -243,30 +255,47 @@ class Memory
      * @param string $filename Valid file name.
      *
      * @return void
-     * @throws JsonException Throw json exception when json error occurred.
+     * @throws InvalidArgumentException
+     * @throws PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\JsonException Throw json exception when json error occurred.
+     * @throws RuntimeException
      */
     public static function loadMemory(string $filename = ''): void
     {
-        if ($filename ==='') {
+        if ($filename === '') {
             $filename = Framework::configFile();
         }
         Logger::write(sprintf('Check read permission of %s file.', $filename));
         if (is_readable(stream_resolve_include_path($filename)) === true) {
             Logger::write(sprintf('Load data from %s file.', $filename));
-            self::read(JSON::decodeToObject(FileSystem::read(stream_resolve_include_path($filename))));
+            self::read(JSON::encodeToObject(FileSystem\Yaml::parseFile(stream_resolve_include_path($filename))));
         } else {
             Logger::write(sprintf('Not found system data file %s.', $filename));
             Logger::write('Load default data from system.');
-            self::read(JSON::encodeToObject(FRAMEWORK_DEFAULT_CONF));
+            self::read(JSON::encodeToObject(FRAMEWORK::defaultConfig()));
         }//end if
     }//end loadMemory()
 
-    private static function baseUrlSet()
+    /**
+     * @throws InvalidArgumentException
+     * @throws JsonException
+     * @throws PermissionRequiredException
+     * @throws ErrorException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws RuntimeException
+     */
+    private static function baseUrlSet(): void
     {
-        if (is_readable(Framework::installFile) === true) {
-            define('BASEURL', self::data('framework', ['file' => Framework::installFile])->host->url);
+        if (!defined('BASE_URL')) {
+            if (is_readable(Framework::installFile()) === true) {
+                define('BASE_URL', self::data('framework', ['file' => Framework::installFile()])->host->url);
+            } elseif (file_exists(System::getRequiresFile('SECURITY_FILE_PATH'))) {
+                define('BASE_URL', System::getInstalledURL());
+            } else {
+                define('BASE_URL', System::getAbsoluteInstalledURL());
+            }
         } else {
-            define('BASEURL', System::getAbsoluteInstalledURL());
+            print_r(BASE_URL, false);
         }
     }
 
@@ -298,8 +327,8 @@ class Memory
             define('DEFAULT_SYSTEM_THEME', $framework->preset->theme);
 
             // Alias of default system layout.
-            define('APP_USERNAME_PREFIX', $framework->prefix->char.$framework->prefix->separator);
-            define('DEFAULT_OPERATING_SYSTEM_USER', APP_USERNAME_PREFIX.$framework->preset->user);
+            define('APP_USERNAME_PREFIX', $framework->prefix->char . $framework->prefix->separator);
+            define('DEFAULT_OPERATING_SYSTEM_USER', APP_USERNAME_PREFIX . $framework->preset->user);
             define('DEFAULT_OPERATING_SYSTEM_PASSWORD', $framework->preset->user);
             define('DEFAULT_CONTROLLER', $framework->preset->directoryIndex);
             define('DEFAULT_DIRECTORY_INDEX', $framework->preset->directoryIndex);

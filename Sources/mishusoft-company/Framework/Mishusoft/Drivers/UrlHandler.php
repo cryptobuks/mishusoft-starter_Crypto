@@ -3,10 +3,7 @@
 
 namespace Mishusoft\Drivers;
 
-
 use Mishusoft\System\Memory;
-use Mishusoft\Utility\Debug;
-use Mishusoft\Drivers\UrlHandlerInterface;
 use Mishusoft\Drivers\View\MishusoftViewInterface;
 
 abstract class UrlHandler implements UrlHandlerInterface
@@ -18,7 +15,6 @@ abstract class UrlHandler implements UrlHandlerInterface
      */
     public function __construct()
     {
-
     }//end __construct()
 
 
@@ -48,13 +44,15 @@ abstract class UrlHandler implements UrlHandlerInterface
      * @param array $request
      * @param array $noMenuList
      * @return MishusoftViewInterface
+     * @throws \JsonException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    protected function render(string $rootTitle, array $request, array $noMenuList=[]): MishusoftViewInterface
+    protected function render(string $rootTitle, array $request, array $noMenuList = []): MishusoftViewInterface
     {
-       // _Debug::preOutput(func_get_args());
         return new View\MishusoftView(Memory::Data('framework')->host->url, $rootTitle, $noMenuList, $request);
-
     }//end render()
-
-
 }//end class

@@ -109,3 +109,41 @@
   info: browser acoo-browser
 
 
+
+# Avant Browser
+# Avant Browser is a web browser developed by Avant Force. This browser renders web pages using the Trident engine.
+
+# Latest user agents:
+#//Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; Avant Browser; Avant Browser; .NET CLR 1.1.4322)
+#//Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0; Avant Browser [avantbrowser.com]; Hotbar 4.4.5.0)
+#//Avant Browser (http://www.avantbrowser.com)
+#//Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; Avant Browser; Avant Browser)
+#//Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; Avant Browser)
+#//Advanced Browser (http://www.avantbrowser.com)
+#//Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0; AvantBrowser)
+
+- identifiers:
+    # Pattern maker method use it
+    browser-avant-browser:
+      pattern:
+        name: (avant\s+browser)
+        separator: true
+        version: true
+      functional: true
+    browser-avant-browser-fallback-one:
+      pattern:
+        name: (avant\s+browser)
+        separator: false
+        version: false
+      functional: true
+    browser-avant-browser-fallback-two:
+      pattern:
+        name: (acoobrowser)
+        separator: false
+        version: false
+      functional: true
+
+  # Information maker method use it
+  info: browser avant
+
+

@@ -238,11 +238,11 @@ class UAAnalyzerBase extends Base
             $contents = file_get_contents($filename);
 
             if ($contents === '') {
-                $contents .= "'Date', 'Client', 'User-Agent'" . PHP_EOL;
+                $contents .= '"Date", "Client", "User-Agent"' . PHP_EOL;
             }
 
             // $contents .= sprintf('"%s","%s","%s"', $this->timeOfToday, IP::get(), $this->userAgent).PHP_EOL;
-            $contents .= sprintf("'%s','%s','%s'", $this->timeOfToday, '127.0.0.1', $this->userAgent) . PHP_EOL;
+            $contents .= sprintf('""%s","%s","%s""', $this->timeOfToday, "127.0.0.1", $this->userAgent) . PHP_EOL;
 
             if (is_writable($filename) === true) {
                 fwrite($resource, $contents);

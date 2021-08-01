@@ -9,8 +9,7 @@ use DOMNode;
 use DOMNodeList;
 use Mishusoft\System\Memory;
 use Mishusoft\System\Time;
-use Mishusoft\Utility\_Array;
-use Mishusoft\Utility\_String;
+use Mishusoft\Utility\Inflect;
 
 class Ui
 {
@@ -18,7 +17,7 @@ class Ui
     public const VERSION = '1.0.2';
 
     // declare color
-    public const color = [
+    public const COLOR = [
         'default'       => '#0777cc',
         'deepBlue'      => '#34abe6',
         'deepBlackBlue' => '#006194',
@@ -36,9 +35,9 @@ class Ui
         'yellow'        => '#ffff00',
     ];
 
-    public const htmlHrefStyle = 'text-decoration: none;border-style: none;user-select: none;-webkit-user-select: none;-ms-user-select: none;outline-style: none;';
+    public const HTML_HREF_STYLE = 'text-decoration: none;border-style: none;user-select: none;-webkit-user-select: none;-ms-user-select: none;outline-style: none;';
 
-    public const css = [
+    public const CSS = [
         'box-shadow'   => 'box-shadow: 0 3px 4px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24);',
         'center'       => 'align-items: center;justify-content: center;',
         'text-center'  => 'text-align: center;',
@@ -162,7 +161,7 @@ class Ui
      */
     public static function updateDocumentTitle(string $content): DOMNode
     {
-        return self::text(self::$documentTitleElement, ' || '._String::ucwords($content));
+        return self::text(self::$documentTitleElement, ' || '.Inflect::ucwords($content));
     }//end updateDocumentTitle()
 
 
@@ -171,8 +170,11 @@ class Ui
      * @param callable|null $callback
      * @param null          $http_response_code
      */
-    public static function HtmlInterface(string $title_content = '', callable $callback = null, $http_response_code = null): void
-    {
+    public static function htmlInterface(
+        string   $title_content = '',
+        callable $callback = null,
+        $http_response_code = null
+    ): void {
         // self::$domDocument = new DOMDocument($version = '1.0', $encoding = 'UTF-8');
         self::$domDocument = new DOMDocument('1.0', 'UTF-8');
         $html              = self::element(self::$domDocument, 'html', ['lang' => 'en']);
@@ -183,26 +185,6 @@ class Ui
         if (is_callable($callback) === true) {
             $callback($html, $head, $title);
         }
-
-        /*
-            $body = $ui->makeElement($html, 'body', ['id' => 'welcome']);
-
-            $welcome = $ui->makeElement($body, 'ms-app', ['style' => 'position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);box-sizing: border-box;border-radius: 5px;-webkit-border-radius: 5px;-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);line-height:1.5;']);
-            $welcome_body = $ui->makeElement($welcome, 'ms-app-content', ['style' => '  display: block;margin: 0;padding: 0;text-align: left;border: 1px solid #0777cc;-webkit-border-radius: 5px;border-radius: 5px']);
-            $welcome_body_header = $ui->makeElement($welcome_body, 'ms-app-content-header', ['style' => 'text-align:center;font-size: 18px;font-weight: 700;padding: 10px;color: #fff;display: block;background-color: #0777cc']);
-            $ui->text($welcome_body_header, "Welcome to ". FRAMEWORK_NAME);
-            $welcome_body_main = $ui->makeElement($welcome_body, 'ms-app-content-body', ['style' => 'text-align:center;padding: 10px;display: block;'])
-
-            //add noscript to ui
-            $noscript = $ui->makeElement($welcome_body_main, 'noscript');
-            $warning = $ui->makeElement($noscript, 'ms-app-content-warning', ['id' => 'warning', 'style' => 'background:red;padding: 5px 5px 5px 10px;color: white;border-radius: 5px;text-align: left;']);
-            $ui->text($warning, "Sorry! Your web browser doesn't support MishuScript.");
-            //end of adding noscript
-
-            $ui->makeElement($welcome_body_main, 'img', ['src' => FRAMEWORK_FAVICON_FILE,'alt'=>'mishusoft-company-logo-m','style' => 'text-align:center;  width: 100px;height: 100px;padding: 2px;margin: 0;border-radius: 50%;position: relative;-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);-o-box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);-webkit-transition: all .25s ease;-o-transition: all .25s ease;transition: all .25s ease;margin: 10px;']);
-
-            $ui->text($ui->makeElement($welcome_body_main, 'ms-app-paragraph', ['style' => 'font-size: 16px;line-height: 1.5;display: flex;']), FRAMEWORK_DESCRIPTION);
-        $ui->text($ui->makeElement($welcome_body_main, 'ms-app-paragraph', ['style' => 'font-size: 15px;line-height: 1.5;display: flex;text-align: left;background: bisque;border-radius: 5px;padding: 5px;margin-top: 10px;']), 'Notice: This welcome interface has been shown after successful installation of this framework. Now you need to install our package(s) got getting start. If you would install any package but this page shown, you should to follow our getting start guideline.');*/
 
         if (!is_null($http_response_code)) {
             http_response_code($http_response_code);
@@ -354,7 +336,7 @@ class Ui
      * @param DOMElement | DOMNode | DOMDocument $parentElement
      * @param array                              $list
      */
-    public static function elementList(DOMElement|DOMNode|DOMDocument $parentElement, array $list = [])
+    public static function elementList(DOMElement|DOMNode|DOMDocument $parentElement, array $list = []): void
     {
         self::makeElementBatch($parentElement, $list);
     }//end elementList()
@@ -364,7 +346,7 @@ class Ui
      * @param DOMElement $parentElement
      * @param array      $list
      */
-    public static function makeElementBatch(DOMElement $parentElement, array $list = [])
+    public static function makeElementBatch(DOMElement $parentElement, array $list = []): void
     {
         /*
          * $ui->makeElement($body, 'script', ['type' => 'application/javascript', 'src' => join([CMOS::Data("framework")->host->url . 'libraries/js/mishusoft.js'])]);
@@ -415,29 +397,22 @@ class Ui
             if (array_key_exists(strtolower('text'), $attributes) === true) {
                 $text = $attributes['text'];
                 unset($attributes['text']);
-                self::_setAttributes($htmlElement, $attributes);
+                self::setAttributes($htmlElement, $attributes);
                 self::text($htmlElement, $text);
             } elseif (array_key_exists(strtolower('html'), $attributes) === true) {
                 $html = $attributes['html'];
                 unset($attributes['html']);
-                self::_setAttributes($htmlElement, $attributes);
+                self::setAttributes($htmlElement, $attributes);
                 self::html($htmlElement, $html);
             } elseif (array_key_exists(strtolower('child'), $attributes) === true) {
                 $htmlChild = $attributes['child'];
                 unset($attributes['child']);
-                self::_setAttributes($htmlElement, $attributes);
-                self::makeElementBatch($htmlElement, $htmlChild);
-
-            /*
-                add child*/
-                /*
-                 *             "meta" => [
-                                ["name" => "google-site-verification", "content" => "920ooXJv6lcqtSwPRaqe_b5EJwKNB367u-F7qhfdQGA"],
-                                ["name" => "google-signin-client_id", "content" => "490685818841-9ck0mpi283mogcoskgk8kso236m5bvn4.apps.googleusercontent.com"]
-                            ]
-                 */
+                if (count($htmlChild)>0) {
+                    self::setAttributes($htmlElement, $attributes);
+                    self::makeElementBatch($htmlElement, $htmlChild);
+                }
             } else {
-                self::_setAttributes($htmlElement, $attributes);
+                self::setAttributes($htmlElement, $attributes);
             }//end if
         }//end if
 
@@ -450,7 +425,7 @@ class Ui
      * @param  array      $attributes
      * @return DOMElement
      */
-    public static function _setAttributes(DOMElement $htmlElement, array $attributes = []): DOMElement
+    public static function setAttributes(DOMElement $htmlElement, array $attributes = []): DOMElement
     {
         if (count($attributes) !== 0) {
             foreach ($attributes as $node => $value) {
@@ -509,6 +484,12 @@ class Ui
 
     /**
      * @param DOMElement $templateBody
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\JsonException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
+     * @throws \JsonException
      */
     public static function addDefaultSignature(DOMElement $templateBody): void
     {
@@ -521,7 +502,7 @@ class Ui
                 ['style' => 'font-size: 14px;line-height: 1.5;margin-top: 5px;display: block;']
             ),
             // Text for system default signature
-            'Copyright © '.Time::getCurrentYearNumber().' '.Memory::Data()->company->name.'. All Right Reserved.'
+            'Copyright © '.Time::currentYearNumber().' '.Memory::Data()->company->name.'. All Right Reserved.'
             // Copyright © 2020 Winstarit LTD. All Right Reserved.
         );
     }//end addDefaultSignature()

@@ -25,7 +25,7 @@ class Debug
      */
     public static function get_passwd_info($user)
     {
-        $fp = fopen("/etc/passwd", "r");
+        $fp = fopen("/etc/passwd", 'rb');
         //preOutput($fp);
         while (!feof($fp)) {
             $line = fgets($fp);

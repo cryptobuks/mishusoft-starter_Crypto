@@ -6,13 +6,7 @@
 
 # Mishusoft Framework associates
 /dist-src/
-/home/
-/Mishusoft/
 /node_modules/
-/public_html/
-/public_html_themes/
-/Storages/
-/task/
 /tests/
 /tmp/
 /vendor/
@@ -27,8 +21,6 @@
 .env
 .user.ini
 
-robots.txt
 
 # Linker output
 *.map
-/task/phpdotenv/

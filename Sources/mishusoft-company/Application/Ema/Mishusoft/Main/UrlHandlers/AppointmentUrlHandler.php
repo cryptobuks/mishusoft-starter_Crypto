@@ -1,25 +1,27 @@
 <?php
 
 
-namespace Mishusoft\Ema\Mishusoft\Main\UrlHandlers;
+namespace App\Ema\Mishusoft\Main\UrlHandlers;
 
-
-use Mishusoft\Framework\Chipsets\System\Localization;
-use Mishusoft\Framework\Chipsets\Utility\_Array;
-use Mishusoft\Framework\Chipsets\Utility\_Debug;
-use Mishusoft\Framework\Drivers\UrlHandler;
+use Mishusoft\System\Localization;
+use Mishusoft\Utility\ArrayCollection;
+use Mishusoft\Drivers\UrlHandler;
 
 class AppointmentUrlHandler extends UrlHandler
 {
 
     /**
-     * @inheritDoc
+     * @param array $prediction
+     * @throws \JsonException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    public function Response(array $prediction)
+    public function response(array $prediction):void
     {
-       // _Debug::preOutput($prediction);
-        // TODO: Implement Response() method.
-        $translation = new Localization(_Array::value($prediction, "locale"));
+        $translation = new Localization(ArrayCollection::value($prediction, "locale"));
         $view = $this->render($translation->translate("Appointment"), $prediction);
         $view->display();
     }

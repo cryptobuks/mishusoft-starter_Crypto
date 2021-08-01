@@ -12,12 +12,12 @@ class JSON
     /**
      * Encode array to json string.
      *
-     * @param array $array Array contents.
+     * @param array|object $array $array Array contents.
      *
      * @return string   Encoded json string.
      * @throws \Mishusoft\Exceptions\JsonException
      */
-    public static function encodeToString(array $array): string
+    public static function encodeToString(array|object $array): string
     {
         try {
             return json_encode($array, JSON_THROW_ON_ERROR);
@@ -40,7 +40,7 @@ class JSON
      * @param array $array Array contents.
      *
      * @return object   Decoded json object.
-     * @throws \Mishusoft\Exceptions\JsonException|JsonException Throw exception on json process error.
+     * @throws \Mishusoft\Exceptions\JsonException Throw exception on json process error.
      */
     public static function encodeToObject(array $array): object
     {

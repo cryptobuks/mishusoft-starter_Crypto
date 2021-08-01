@@ -6,20 +6,17 @@ use Exception;
 use JsonException;
 use Mishusoft\Cryptography\OpenSSL\Encryption;
 use Mishusoft\Databases\MishusoftSQLStandalone;
-use Mishusoft\Databases\MySqli;
-use Mishusoft\Databases\PdoMySQL;
-use Mishusoft\Http\Browser;
 use Mishusoft\Http\IP;
+use Mishusoft\Storage\FileSystem;
+use Mishusoft\Storage\Stream;
 use Mishusoft\System\Memory;
 use Mishusoft\System\Network;
 use Mishusoft\System\Time;
-use Mishusoft\Utility\_Array;
-use Mishusoft\Utility\_JSON;
-use Mishusoft\Utility\_String;
-use Mishusoft\Utility\Stream;
+use Mishusoft\Utility\ArrayCollection;
+use Mishusoft\Utility\JSON;
 use RuntimeException;
 
-class System
+class System extends Base
 {
     // Set Mishusoft version
     public const VERSION                   = '4.0.0';
@@ -107,11 +104,10 @@ class System
      * @var string
      */
     private static string $configServerDir;
-    private Browser $browser;
 
     public function __construct()
     {
-        $this->browser =  new Browser();
+        parent::__construct();
     }
 
 
@@ -125,15 +121,19 @@ class System
         self::getProgressedSystemStatus(self::getRequiresFile('SECURITY_FILE_PATH'));
 
         return new self();
-
     }//end activate()
 
 
     /**
      * @param string $status
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\JsonException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
      * @throws JsonException
      */
-    private static function initializeSecurity(string $status='Installing'): void
+    private static function initializeSecurity(string $status = 'Installing'): void
     {
         $data = [
             'app'    => [
@@ -145,13 +145,12 @@ class System
             ],
             'client' => [
                 'IP'      => IP::get(),
-                'OS'      => (new Browser())->getDeviceNameFull(),
-                'browser' => (new Browser())->getBrowserNameFull(),
+                'OS'      => Http::browser()->getDeviceNameFull(),
+                'browser' => Http::browser()->getBrowserNameFull(),
             ],
         ];
 
         self::verifySecurityFile(json_encode($data, JSON_THROW_ON_ERROR));
-
     }//end initializeSecurity()
 
 
@@ -160,13 +159,18 @@ class System
      */
     public static function getAbsoluteInstalledURL(): string
     {
-        return Browser::urlOrigin($_SERVER).APPLICATION_SERVER_PATH;
-
+        return Http::browser()::urlOrigin($_SERVER).Storage::applicationWebDirectivePath();
     }//end getAbsoluteInstalledURL()
 
 
     /**
      * @param string $data
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\JsonException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
+     * @throws JsonException
      */
     private static function verifySecurityFile(string $data): void
     {
@@ -175,7 +179,7 @@ class System
             && file_exists(self::getRequiresFile('SECURITY_BACKUP_FILE_PATH')) === true
             && file_get_contents(self::getRequiresFile('SECURITY_BACKUP_FILE_PATH')) !== 0
         ) {
-            Stream::copy(
+            FileSystem::copy(
                 self::getRequiresFile('SECURITY_BACKUP_FILE_PATH'),
                 self::getRequiresFile('SECURITY_FILE_PATH')
             );
@@ -183,36 +187,41 @@ class System
             self::storeSecurityData($data);
             self::backupSecurityFile();
         }
-
     }//end verifySecurityFile()
 
 
     /**
-     * @param  string      $filename
-     * @param  string $dirname
+     * @param string $filename
+     * @param string $dirname
      * @return string
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\JsonException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
+     * @throws JsonException
      */
-    public static function getRequiresFile(string $filename, string $dirname=''): string
+    public static function getRequiresFile(string $filename, string $dirname = ''): string
     {
         // Packages configuration.
-        self::$configDir       = implode(DIRECTORY_SEPARATOR, [APPLICATION_PACKAGES_PATH, Memory::Data('mpm')->packages->default, 'Configs'.DIRECTORY_SEPARATOR]);
-        self::$configServerDir = self::$configDir.md5((new Browser())->getURLHostname()).DIRECTORY_SEPARATOR;
+        self::$configDir       = implode(DS, [Storage::applicationPackagesPath(), Memory::Data('mpm')->packages->default, 'Configs'.DS]);
+        self::$configServerDir = self::$configDir.md5(Http::browser()->getURLHostname()).DS;
         if (empty($dirname) === true) {
-            self::$setupFile = self::$configServerDir.$dirname.DIRECTORY_SEPARATOR.Encryption::static((new Browser())->getURLHostname()).MISHUSOFT_CONFIGURATION_FILE_FORMAT;
+            self::$setupFile = self::dFile(self::$configServerDir.$dirname.DS.Encryption::static(Http::browser()->getURLHostname()));
         }
 
         // Application security.
-        self::$appSecurityDirectory      = APPLICATION_PACKAGES_PATH.Memory::Data('mpm')->packages->default.DIRECTORY_SEPARATOR.'Security'.DIRECTORY_SEPARATOR;
+        self::$appSecurityDirectory      = Storage::applicationPackagesPath().Memory::Data('mpm')->packages->default.DS.'Security'.DS;
         self::$appSecurityFileName       = ucfirst(DEFAULT_APP_NAME).'ApplicationSecurity.lock';
-        self::$appSecurityBackupFileName = ucfirst(DEFAULT_APP_NAME).'ApplicationSecurity.lock.backup';
+        self::$appSecurityBackupFileName = ucfirst(DEFAULT_APP_NAME).'ApplicationSecurity.lock.cache';
         self::$appSecurityFile           = self::$appSecurityDirectory.self::$appSecurityFileName;
-        self::$appSecurityFileBackup     = APPLICATION_FRAMEWORK_PATH.'Backups'.DIRECTORY_SEPARATOR.self::$appSecurityBackupFileName;
+        self::$appSecurityFileBackup     = Storage::frameworkPath().'Backups'.DIRECTORY_SEPARATOR.self::$appSecurityBackupFileName;
 
         // Configuration properties.
         self::$configurePropertiesFileName = 'properties.json';
         self::$configurePropertiesFile     = self::$configServerDir.self::$configurePropertiesFileName;
         // Backup location of security file.
-        self::$appSecurityFileBackupDirectory = APPLICATION_FRAMEWORK_PATH.'Backups'.DIRECTORY_SEPARATOR;
+        self::$appSecurityFileBackupDirectory = Storage::frameworkPath().'Backups'.DIRECTORY_SEPARATOR;
 
         return match (strtoupper($filename)) {
             'CONFIG_SERVER_DIR_PATH' => self::$configServerDir,
@@ -228,12 +237,12 @@ class System
             'SECURITY_BACKUP_FILE_PATH' => self::$appSecurityFileBackup,
             default => throw new RuntimeException('invalid argument parsed.'),
         };//end match
-
     }//end getRequiresFile()
 
 
     /**
      * @param string $data
+     * @throws Exceptions\RuntimeException
      */
     private static function storeSecurityData(string $data): void
     {
@@ -245,7 +254,7 @@ class System
         }
 
         if (file_exists(self::getRequiresFile('SECURITY_FILE_DIR_PATH')) === false) {
-            FileSystem::createDirectory(self::getRequiresFile('SECURITY_FILE_DIR_PATH'));
+            FileSystem::makeDirectory(self::getRequiresFile('SECURITY_FILE_DIR_PATH'));
             FileSystem::exec(self::getRequiresFile('SECURITY_FILE_DIR_PATH'));
         }
 
@@ -262,14 +271,16 @@ class System
 
             FileSystem::exec(self::getRequiresFile('SECURITY_FILE_PATH'));
         }
-
     }//end storeSecurityData()
 
 
+    /**
+     * @throws Exceptions\RuntimeException
+     */
     private static function backupSecurityFile(): void
     {
         if (file_exists(self::getRequiresFile('SECURITY_BACKUP_DIR_PATH')) === false) {
-            FileSystem::createDirectory(self::getRequiresFile('SECURITY_BACKUP_DIR_PATH'));
+            FileSystem::makeDirectory(self::getRequiresFile('SECURITY_BACKUP_DIR_PATH'));
             FileSystem::exec(self::getRequiresFile('SECURITY_BACKUP_DIR_PATH'));
         }
 
@@ -280,22 +291,27 @@ class System
             );
             FileSystem::exec(self::getRequiresFile('SECURITY_BACKUP_FILE_PATH'));
         }
-
     }//end backupSecurityFile()
 
 
     /**
-     * @param  string $appSecurityFile
+     * @param string $appSecurityFile
      * @return array
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\JsonException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
+     * @throws JsonException
      */
     private static function getProgressedSystemStatus(string $appSecurityFile): array
     {
-        if ((int) ((disk_free_space(APPLICATION_DOCUMENT_ROOT) / 1024) / 1024) > 50) {
+        if ((int) ((disk_free_space(RUNTIME_ROOT_PATH) / 1024) / 1024) > 50) {
             if (Memory::Data('mpm')->config->database->activation === true) {
                 // Check database activation.
                 if (file_exists($appSecurityFile) && !empty(file_get_contents($appSecurityFile))) {
                     // check security file and its data
-                    $security = json_decode(file_get_contents($appSecurityFile));
+                    $security = json_decode(file_get_contents($appSecurityFile), true, 512, JSON_THROW_ON_ERROR);
                     // get all data from security file and decode them.
                     if (is_object($security)) {
                         // verify security data
@@ -358,12 +374,16 @@ class System
         }//end if
 
         return self::$event;
-
     }//end getProgressedSystemStatus()
 
 
     /**
-     * @return array|string[]
+     * @return array
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\JsonException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
      * @throws JsonException
      */
     private static function checkSystemConfiguration(): array
@@ -371,7 +391,7 @@ class System
         if (file_exists(self::getRequiresFile('CONFIG_DIR_PATH')) and file_exists(self::getRequiresFile('CONFIG_SERVER_DIR_PATH'))) {
             if (file_exists(self::getRequiresFile('CONFIG_PROPERTIES_FILE_PATH'))) {
                 $properties = file_get_contents(self::getRequiresFile('CONFIG_PROPERTIES_FILE_PATH'));
-                if (strlen($properties) > 0 and is_string($properties)) {
+                if ($properties != '' and is_string($properties)) {
                     $properties = json_decode($properties, true);
 
                     if (is_array(_Array::value($properties, 'dbms')) and count(array_filter(_Array::value($properties, 'dbms'))) > 0) {
@@ -388,7 +408,7 @@ class System
                                         /**/
                                         /**/
 
-                                        switch (strtolower(_Array::value($properties, 'default'))) {
+                                        switch (strtolower(ArrayCollection::value($properties, 'default'))) {
                                             case 'mishusoftsql':
                                                 $configure  = Memory::Data('config', ['file' => self::getRequiresFile('SETUP_FILE_PATH', _Array::value($properties, 'default'))]);
                                                 $connection = (new MishusoftSQLStandalone($configure->db->user, $configure->db->password));
@@ -444,10 +464,9 @@ class System
                                                         'message' => 'app-database-not-exist',
                                                     ];
                                                 }//end if
-                                            break;
+                                                break;
 
                                             case 'mysql':
-
                                                 self::makeDbConnectionRequest(
                                                     _Array::value(self::getDbConfigArgument('db', self::getRequiresFile('SETUP_FILE_PATH', _Array::value($properties, 'default'))), 'host'),
                                                     _Array::value(self::getDbConfigArgument('db', self::getRequiresFile('SETUP_FILE_PATH', _Array::value($properties, 'default'))), 'port'),
@@ -483,14 +502,14 @@ class System
                                                         }//end if
                                                     }
                                                 );
-                                            break;
+                                                break;
 
                                             default:
                                                 self::$event = [
                                                     'type'    => 'error',
                                                     'message' => 'config-file-not-set',
                                                 ];
-                                            break;
+                                                break;
                                         }//end switch
                                     } else {
                                         self::$event = [
@@ -574,7 +593,6 @@ class System
         }//end if
 
         return self::$event;
-
     }//end checkSystemConfiguration()
 
 
@@ -596,7 +614,6 @@ class System
         } else {
             self::initializeSecurity($current_status);
         }
-
     }//end updateSecurity()
 
 
@@ -625,14 +642,13 @@ class System
         } catch (Exception $exception) {
             self::setRuntimeErrors(['cors' => $exception->getMessage(), 'normal' => 'app-required-database-connection-failed']);
         }
-
     }//end makeDbConnectionRequest()
 
 
     public static function setRuntimeErrors(array $message)
     {
         if (Network::getValOfSrv('HTTP-SEC-FETCH-MODE') === 'cors') {
-            Storage::StreamAsJson(
+            Stream::json(
                 [
                     'env' => [
                         'installation' => [
@@ -655,7 +671,6 @@ class System
             ];
             self::setProgressStep();
         }//end if
-
     }//end setRuntimeErrors()
 
 
@@ -669,79 +684,78 @@ class System
         // preOutput(self::$event);
         switch (_Array::value(self::$event, 'message')) {
             case 'one-of-module-broken':
-            return self::setRuntimeInstallationEvent(_String::ucfirst(_Array::value(self::$event, 'type')), '<setup-error> Orphan module exists on module directory. Pleas remove it.</setup-error>');
+                return self::setRuntimeInstallationEvent(_String::ucfirst(_Array::value(self::$event, 'type')), '<setup-error> Orphan module exists on module directory. Pleas remove it.</setup-error>');
 
             case 'app-info-not-exist':
-            return self::setStepForInstallation('Installer', 'website');
+                return self::setStepForInstallation('Installer', 'website');
 
             case 'app-user-info-not-exist':
-            return self::setStepForInstallation('Installer', 'account');
+                return self::setStepForInstallation('Installer', 'account');
 
             case 'app-database-not-exist':
-            return self::setRuntimeInstallationEvent(_String::ucfirst(_Array::value(self::$event, 'type')), '<setup-error> Configured database is not found.</setup-error>');
+                return self::setRuntimeInstallationEvent(_String::ucfirst(_Array::value(self::$event, 'type')), '<setup-error> Configured database is not found.</setup-error>');
 
             case 'invalid-database-configured':
-            return self::setRuntimeInstallationEvent(_String::ucfirst(_Array::value(self::$event, 'type')), '<setup-error> Invalid database is configured.</setup-error>');
+                return self::setRuntimeInstallationEvent(_String::ucfirst(_Array::value(self::$event, 'type')), '<setup-error> Invalid database is configured.</setup-error>');
 
             case 'app-required-database-configure-failed':
-            return self::setRuntimeInstallationEvent(_String::ucfirst(_Array::value(self::$event, 'type')), "<setup-error> Framework couldn't configure with database script languages. Please check your database script from <Packages_Root_Directory><Packages_Name>Databases Directory..</setup-error>");
+                return self::setRuntimeInstallationEvent(_String::ucfirst(_Array::value(self::$event, 'type')), "<setup-error> Framework couldn't configure with database script languages. Please check your database script from <Packages_Root_Directory><Packages_Name>Databases Directory..</setup-error>");
 
             case 'app-required-database-connection-failed':
-            return self::setRuntimeInstallationEvent(_String::ucfirst(_Array::value(self::$event, 'type')), "<setup-error> Framework couldn't connect with database. Please check your database server and account details.</setup-error>");
+                return self::setRuntimeInstallationEvent(_String::ucfirst(_Array::value(self::$event, 'type')), "<setup-error> Framework couldn't connect with database. Please check your database server and account details.</setup-error>");
 
             case 'default-database-not-configure':
-            return self::setRuntimeInstallationEvent(_String::ucfirst(_Array::value(self::$event, 'type')), '<setup-error> Default database is not configure.</setup-error>');
+                return self::setRuntimeInstallationEvent(_String::ucfirst(_Array::value(self::$event, 'type')), '<setup-error> Default database is not configure.</setup-error>');
 
             case 'database-not-configure':
-            return self::setStepForInstallation('Installer', 'database-select');
+                return self::setStepForInstallation('Installer', 'database-select');
 
             case 'config-file-not-exist':
-            return self::setStepForInstallation('Installer', 'database');
+                return self::setStepForInstallation('Installer', 'database');
 
             case 'config-properties-write-permission-denied':
             case 'config-properties-create-permission-denied':
             case 'config-dir-create-permission-denied':
-            return self::setRuntimeInstallationEvent(
-                _String::ucfirst(_Array::value(self::$event, 'type')),
-                '<setup-error> Data write permission denied. The Application could not create configuration files.</setup-error>'
-            );
+                return self::setRuntimeInstallationEvent(
+                    _String::ucfirst(_Array::value(self::$event, 'type')),
+                    '<setup-error> Data write permission denied. The Application could not create configuration files.</setup-error>'
+                );
 
             case 'app-installation-running':
-            return self::setRuntimeInstallationEvent(
-                _String::ucfirst(_Array::value(self::$event, 'type')),
-                '<setup-error> Access denied. The Application installation running by Mishusoft Administrator.</setup-error>'
-            );
+                return self::setRuntimeInstallationEvent(
+                    _String::ucfirst(_Array::value(self::$event, 'type')),
+                    '<setup-error> Access denied. The Application installation running by Mishusoft Administrator.</setup-error>'
+                );
 
             case 'already-configured':
             case 'app-installed-by-sys-admin':
-            return self::setRuntimeInstallationEvent(
-                _String::ucfirst(_Array::value(self::$event, 'type')),
-                '<setup-error> The application has been installed by the system administrator in different address.'.' <br/> Are you want to visit the installed address?? Please go now > '.self::getInstalledURL().'</setup-error>'
-            );
+                return self::setRuntimeInstallationEvent(
+                    _String::ucfirst(_Array::value(self::$event, 'type')),
+                    '<setup-error> The application has been installed by the system administrator in different address.'.' <br/> Are you want to visit the installed address?? Please go now > '.self::getInstalledURL().'</setup-error>'
+                );
 
             case 'config-file-empty':
             case 'app-security-data-empty':
-            return self::setRuntimeInstallationEvent(_String::ucfirst(_Array::value(self::$event, 'type')), '<setup-error>  The Access of application is disabled. </setup-error>');
+                return self::setRuntimeInstallationEvent(_String::ucfirst(_Array::value(self::$event, 'type')), '<setup-error>  The Access of application is disabled. </setup-error>');
 
             case 'app-security-disabled':
-            return self::setRuntimeInstallationEvent(
-                _String::ucfirst(_Array::value(self::$event, 'type')),
-                '<setup-error>  Access denied. The Application security is disabled. <br/> The security file not exist. <br/>'.'File Name: '.self::getRequiresFile('SECURITY_FILE_NAME').' <br/> File Location: '.self::getRequiresFile('SECURITY_FILE_PATH').'  </setup-error>'
-            );
+                return self::setRuntimeInstallationEvent(
+                    _String::ucfirst(_Array::value(self::$event, 'type')),
+                    '<setup-error>  Access denied. The Application security is disabled. <br/> The security file not exist. <br/>'.'File Name: '.self::getRequiresFile('SECURITY_FILE_NAME').' <br/> File Location: '.self::getRequiresFile('SECURITY_FILE_PATH').'  </setup-error>'
+                );
 
             case 'database-deactivated':
-            return self::setRuntimeInstallationEvent(_String::ucfirst(_Array::value(self::$event, 'type')), '<setup-error> Databases connection rejected. </setup-error>');
+                return self::setRuntimeInstallationEvent(_String::ucfirst(_Array::value(self::$event, 'type')), '<setup-error> Databases connection rejected. </setup-error>');
 
             case 'space-not-available':
-            return self::setRuntimeInstallationEvent(
-                _String::ucfirst(_Array::value(self::$event, 'type')),
-                '<setup-error> Required space not available in your server. We need at least 50.00 mb space to run the application. </setup-error>'
-            );
+                return self::setRuntimeInstallationEvent(
+                    _String::ucfirst(_Array::value(self::$event, 'type')),
+                    '<setup-error> Required space not available in your server. We need at least 50.00 mb space to run the application. </setup-error>'
+                );
 
             default:
-            return self::setRuntimeInstallationEvent(_String::ucfirst(_Array::value(self::$event, 'type')), 'The application is unable to start correctly.');
+                return self::setRuntimeInstallationEvent(_String::ucfirst(_Array::value(self::$event, 'type')), 'The application is unable to start correctly.');
         }//end switch
-
     }//end setProgressStep()
 
 
@@ -761,7 +775,6 @@ class System
         }
 
         return self::$stepTitle && self::$message;
-
     }//end setRuntimeInstallationEvent()
 
 
@@ -782,21 +795,26 @@ class System
         }
 
         return self::$stepTitle && self::$Step;
-
     }//end setStepForInstallation()
 
 
     /**
      * @return string
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\JsonException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
+     * @throws JsonException
      */
     public static function getInstalledURL(): string
     {
         if (file_exists(self::getRequiresFile('SECURITY_FILE_PATH'))) {
-            return json_decode(file_get_contents(self::getRequiresFile('SECURITY_FILE_PATH')))->app->installedLocation;
-        } else {
-            return Memory::Data('framework')->host->url;
+            return JSON::decodeToObject(Storage\FileSystem::read(self::getRequiresFile('SECURITY_FILE_PATH')))
+                ->app->installedLocation;
         }
 
+        return Memory::Data('framework')->host->url;
     }//end getInstalledURL()
 
 
@@ -813,7 +831,6 @@ class System
         }
 
         return null;
-
     }//end getDbConfigArgument()
 
 
@@ -831,7 +848,6 @@ class System
 
         array_multisort($list, SORT_ASC);
         return $list;
-
     }//end getRealDbmsList()
 
 
@@ -839,7 +855,6 @@ class System
     {
         self::getProgressedSystemStatus(self::getRequiresFile('SECURITY_FILE_PATH'));
         self::setProgressStep();
-
     }//end checkSystemRequirements()
 
 
@@ -1698,7 +1713,7 @@ class System
                                         ],
                                     ]
                                 );
-                            break;
+                                break;
 
                             case 'account':
                                 Storage::StreamAsJson(
@@ -1722,7 +1737,7 @@ class System
                                         ],
                                     ]
                                 );
-                            break;
+                                break;
 
                             case 'database-select':
                                 Storage::StreamAsJson(
@@ -1746,7 +1761,7 @@ class System
                                         ],
                                     ]
                                 );
-                            break;
+                                break;
 
                             case 'database':
                                 Storage::StreamAsJson(
@@ -1770,7 +1785,7 @@ class System
                                         ],
                                     ]
                                 );
-                            break;
+                                break;
 
                             default:
                                 Storage::StreamAsJson(
@@ -1787,13 +1802,12 @@ class System
                                         ],
                                     ]
                                 );
-                            break;
+                                break;
                         }//end switch
                     }//end if
                 }//end if
             }//end if
         }//end if
-
     }//end communicate()
 
 
@@ -1808,7 +1822,6 @@ class System
         }
 
         return null;
-
     }//end getDefaultDb()
 
 
@@ -1817,7 +1830,7 @@ class System
      * @param  boolean $default
      * @return boolean
      */
-    private static function updateConfigProperties(string $name, bool $default=false): bool
+    private static function updateConfigProperties(string $name, bool $default = false): bool
     {
         $current_data = json_decode(file_get_contents(self::getRequiresFile('CONFIG_PROPERTIES_FILE_PATH')), true);
         if (is_array($current_data) and count($current_data) > 0) {
@@ -1854,7 +1867,6 @@ class System
         }
 
         return false;//end if
-
     }//end updateConfigProperties()
 
 
@@ -1950,7 +1962,7 @@ class System
                                 ],
                             ]
                         );
-                    } else if (self::getProgressedSystemStatus(self::getRequiresFile('SECURITY_FILE_PATH')) and _Array::value(self::$event, 'message') === 'app-info-not-exist') {
+                    } elseif (self::getProgressedSystemStatus(self::getRequiresFile('SECURITY_FILE_PATH')) and _Array::value(self::$event, 'message') === 'app-info-not-exist') {
                         Storage::StreamAsJson(
                             [
                                 'env' => [
@@ -1998,7 +2010,6 @@ class System
                 }//end if
             }
         );
-
     }//end setupDatabaseConfigure()
 
 
@@ -2025,7 +2036,6 @@ class System
         }
 
         return false;
-
     }//end configure()
 
 
@@ -2057,7 +2067,6 @@ class System
             );
             exit();
         }
-
     }//end configureUpdate()
 
 
@@ -2076,7 +2085,6 @@ class System
                 }
             }
         );
-
     }//end DropPreviousTables()
 
 
@@ -2090,7 +2098,6 @@ class System
             _Array::value(self::getDbConfigArgument('db', self::getRequiresFile('SETUP_FILE_PATH', self::getDefaultDb())), 'password'),
             $callBack
         );
-
     }//end makeDbConnectionRequestAuto()
 
 
@@ -2109,7 +2116,6 @@ class System
         } catch (Exception $exception) {
             self::setRuntimeErrors(['cors' => $exception->getMessage(), 'normal' => 'app-required-database-configure-failed']);
         }
-
     }//end SetupAppRequiredTables()
 
 
@@ -2120,7 +2126,6 @@ class System
     private static function databaseFile(string $file): string
     {
         return self::$databaseFile = implode(DIRECTORY_SEPARATOR, [APPLICATION_PACKAGES_PATH.MPM::defaultPackage(), 'Databases', "{$file}.sql"]);
-
     }//end databaseFile()
 
 
@@ -2163,7 +2168,6 @@ class System
                 }//end try
             }
         );
-
     }//end ConfigWebUserQuery()
 
 
@@ -2201,7 +2205,6 @@ class System
                 $connection->query('INSERT INTO `'.$db_prefix.WEB_CONFIG_TABLE."` VALUES (null, '$name', '$description', '$company', '$doccumentRoot', '$http_host_name', '$http_host_add', '$http_host_ip', '$default_home', '$default_layout', '$icon_remote_dir', '$icon_local_dir', '$favicon');");
             }
         );
-
     }//end ConfigWebApp()
 
 
@@ -2213,7 +2216,6 @@ class System
             'database-not-configure',
             'config-file-not-exist',
         ];
-
     }//end getExcludeErrors()
 
 

@@ -2,9 +2,8 @@
 
 namespace Mishusoft\Cryptography;
 
-use Mishusoft\Framework\Chipsets\Framework;
-use Mishusoft\Framework\Chipsets\Utility\_Debug;
-use RuntimeException;
+use Mishusoft\Exceptions\RuntimeException;
+use Mishusoft\Framework;
 
 class OpenSSL
 {
@@ -60,7 +59,6 @@ class OpenSSL
     public function __construct()
     {
         // self::$encryption_key_256bit = base64_encode(openssl_random_pseudo_bytes(32));
-
     }//end __construct()
 
 
@@ -72,7 +70,6 @@ class OpenSSL
     protected static function getSecretIv(): string
     {
         return self::$secretIv;
-
     }//end getSecretIv()
 
 
@@ -85,26 +82,26 @@ class OpenSSL
     {
         // Remove the base64 encoding from our key.
         return base64_decode(self::$encryptionKey256bit);
-
     }//end getDecodedEncryptKey()
 
 
     /**
      * Generate cipher iv length.
      *
-     * @return string Generated cipher iv length.
-     * @throws RuntimeException \Throwable Exception.
+     * @return int Generated cipher iv length.
+     * @throws RuntimeException
      */
-    protected static function getCipherLength(): string
+    protected static function getCipherLength(): int
     {
         // Generate an initialization vector.
         $cipherIvLength = openssl_cipher_iv_length(self::$cipherAlgo1);
         if (is_int($cipherIvLength) === false) {
-            throw new RuntimeException('Non-cryptographically strong algorithm used for iv generation.');
+            throw new RuntimeException(
+                'Non-cryptographically strong algorithm used for iv generation.'
+            );
         }//end if
 
         return $cipherIvLength;
-
     }//end getCipherLength()
 
 
@@ -112,7 +109,7 @@ class OpenSSL
      * Get random pseudo bytes.
      *
      * @return string Generated random bytes.
-     * @throws RuntimeException \Throwable Exception.
+     * @throws RuntimeException
      */
     protected static function getRandomNumber(): string
     {
@@ -122,7 +119,6 @@ class OpenSSL
         }//end if
 
         return $random;
-
     }//end getRandomNumber()
 
 
@@ -134,8 +130,5 @@ class OpenSSL
     protected static function getStaticNumber(): string
     {
         return substr(hash(self::$cipherAlgo2, self::$secretIv), 0, 16);
-
     }//end getStaticNumber()
-
-
 }//end class

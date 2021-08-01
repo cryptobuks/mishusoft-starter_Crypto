@@ -74,9 +74,9 @@ class Character
      * @param string $haystack
      * @param mixed $needle
      * @param int $offset [optional]
-     * @return int|false
+     * @return int
      */
-    public static function position(string $haystack, $needle, $offset = 0): int
+    public static function position(string $haystack, mixed $needle, int $offset = 0): int
     {
         return strpos($haystack, $needle, $offset);
     }
@@ -96,7 +96,7 @@ class Character
     }
 
     /**
-     * @param $contents
+     * @param string $contents
      * @return string
      */
     public static function toHtml(string $contents): string

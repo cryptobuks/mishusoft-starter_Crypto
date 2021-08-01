@@ -13,7 +13,7 @@ class Time extends DateTime
     /**
      * @return string
      */
-    public static function getFullTime(): string
+    public static function fullTime(): string
     {
         return date('d-m-Y h:i A', time());
     }//end getFullTime()
@@ -22,7 +22,7 @@ class Time extends DateTime
     /**
      * @return string
      */
-    public static function getToday(): string
+    public static function today(): string
     {
         return date('Y-m-d H:i:s');
     }//end getToday()
@@ -31,7 +31,7 @@ class Time extends DateTime
     /**
      * @return string
      */
-    public static function getTodayFull(): string
+    public static function todayFull(): string
     {
         return date('Y-m-d H:i:s A');
     }//end getTodayFull()
@@ -41,7 +41,7 @@ class Time extends DateTime
      * @param int $date
      * @return string
      */
-    public static function getTodayFullBeautify(int $date): string
+    public static function todayFullBeautify(int $date): string
     {
         return date('D d, M Y H:i:s A', $date);
     }//end getTodayFullBeautify()
@@ -59,7 +59,7 @@ class Time extends DateTime
     /**
      * @return string
      */
-    public static function getCurrentMonthNumber(): string
+    public static function currentMonthNumber(): string
     {
         return date('m');
     }//end getCurrentMonthNumber()
@@ -69,7 +69,7 @@ class Time extends DateTime
      * @param string $date
      * @return string
      */
-    public static function getDateOnly(string $date): string
+    public static function dateOnly(string $date): string
     {
         return date('Y-m-d', strtotime($date));
     }//end getDateOnly()
@@ -79,7 +79,7 @@ class Time extends DateTime
      * @param int $time
      * @return string
      */
-    public static function getDateOnlyFromTime(int $time): string
+    public static function dateOnlyFromTime(int $time): string
     {
         return date('Y-m-d', $time);
     }//end getDateOnlyFromTime()
@@ -89,7 +89,7 @@ class Time extends DateTime
      * @param string $date
      * @return string
      */
-    public static function getHours(string $date): string
+    public static function hours(string $date): string
     {
         return date('h', strtotime($date));
     }//end getHours()
@@ -99,7 +99,7 @@ class Time extends DateTime
      * @param string $date
      * @return float|int
      */
-    public static function getMinutes(string $date): float|int
+    public static function minutes(string $date): float|int
     {
         return ((time() - strtotime($date)) / 60);
     }//end getMinutes()
@@ -108,7 +108,7 @@ class Time extends DateTime
     /**
      * @return string
      */
-    public static function getCurrentMonthName(): string
+    public static function currentMonthName(): string
     {
         return date('M');
     }//end getCurrentMonthName()
@@ -117,7 +117,7 @@ class Time extends DateTime
     /**
      * @return string
      */
-    public static function getCurrentYearNumber(): string
+    public static function currentYearNumber(): string
     {
         return date('Y');
     }//end getCurrentYearNumber()
@@ -126,7 +126,7 @@ class Time extends DateTime
     /**
      * @return string
      */
-    public static function getTodayDateOnly(): string
+    public static function todayDateOnly(): string
     {
         return date('Y-m-d');
     }//end getTodayDateOnly()
@@ -135,7 +135,7 @@ class Time extends DateTime
     /**
      * @return string
      */
-    public function getYesterdayDate(): string
+    public function yesterdayDate(): string
     {
         return date('F j, Y', (time() - 60 * 60 * 24));
     }//end getYesterdayDate()
@@ -144,19 +144,19 @@ class Time extends DateTime
     /**
      * @return int
      */
-    public function getDaysInMonth(): int
+    public function daysInMonth(): int
     {
-        return cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'));
+        return cal_days_in_month(CAL_GREGORIAN, (int)date('m'), (int)date('Y'));
     }//end getDaysInMonth()
 
 
     /**
      * @return string
      */
-    public static function getNextMonthDate(): string
+    public static function nextMonthDate(): string
     {
         // minutes = minutes < 10 ? "0" + minutes : minutes;
-        $m = (date('m') + 1);
+        $m = ((int)date('m') + 1);
         return date('Y-'.($m < 10 ? '0'.$m : $m).'-d H:i:s');
     }//end getNextMonthDate()
 
@@ -164,15 +164,15 @@ class Time extends DateTime
     /**
      * @return string
      */
-    public static function getNextDayDate(): string
+    public static function nextDayDate(): string
     {
         // minutes = minutes < 10 ? "0" + minutes : minutes;
-        $d = (date('d') + 1);
+        $d = ((int)date('d') + 1);
         return date('Y-m-'.($d < 10 ? '0'.$d : $d).' H:i:s');
     }//end getNextDayDate()
 
 
-    function __destruct()
+    public function __destruct()
     {
     }//end __destruct()
 }//end class

@@ -30,7 +30,7 @@ const WEBPACK_STATIC_ASSETS_SRC_ROOT = path.join(DOCUMENT_ROOT, './Sources/Asset
 /* const WEBPACK_STATIC_MEDIA_SRC_ROOT = path.join(DOCUMENT_ROOT, './Sources/Assets/media');*/
 /*webpack output destinations*/
 /*export direct to production*/
-const ASSETS_PATH = path.join(DOCUMENT_ROOT, './Storages/0/assets');
+const ASSETS_PATH = path.join(DOCUMENT_ROOT, './storages/app/assets');
 /*const MEDIA_PATH = path.join(DOCUMENT_ROOT, './Storages/0/media');*/
 
 const commonConfig = {
@@ -68,7 +68,7 @@ const commonConfig = {
                     loader: 'file-loader',
                     options: {
                         name: '[name].[ext]',
-                        outputPath: 'webfonts/'
+                        outputPath: '../webfonts/'
                     }
                 }}]
     },
@@ -168,7 +168,7 @@ const commonFileConfig = {
          * CSS framework for application
          */
         /**
-         * Build stylesheet v3 module for application support
+         * Build stylesheet for embedded application support
          */
         'app': [
             './Assets/sass/common/font-face.scss',

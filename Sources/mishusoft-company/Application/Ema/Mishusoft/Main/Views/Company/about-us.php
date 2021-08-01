@@ -1,22 +1,21 @@
 <?php
 
-use Mishusoft\Framework\Chipsets\FileSystem;
-use Mishusoft\Framework\Chipsets\System\Localization;
-use Mishusoft\Framework\Chipsets\Ui;
-use Mishusoft\Framework\Chipsets\Utility\_Array;
-use Mishusoft\Framework\Chipsets\Utility\_String;
+use Mishusoft\Storage;
+use Mishusoft\System\Localization;
+use Mishusoft\Ui;
+use Mishusoft\Utility\ArrayCollection;
+use Mishusoft\Utility\Inflect;
 
-
-$translation = new Localization(_Array::value($this->request, "locale"));
-if (is_array(json_decode(FileSystem::read(RUNTIME_REGISTRIES_PATH . "company-about.json"),true))){
-    $aboutInfo = json_decode(FileSystem::read(RUNTIME_REGISTRIES_PATH . "company-about.json"),true);
+$translation = new Localization(ArrayCollection::value($this->request, "locale"));
+if (is_array(json_decode(Storage\FileSystem::read(Storage::dataDriveStoragesPath() . "company-about.json"), true, 512, JSON_THROW_ON_ERROR))) {
+    $aboutInfo = json_decode(Storage\FileSystem::read(Storage::dataDriveStoragesPath() . "company-about.json"), true, 512, JSON_THROW_ON_ERROR);
 } else {
-    $aboutInfo = array();
+    $aboutInfo = [];
 }
 
 
 /*set text for title*/
-Ui::updateDocumentTitle(" || " . _String::ucwords("About"));
+Ui::updateDocumentTitle(" || " . Inflect::ucwords("About"));
 //Ui::text($this->documentTitleElement, " || " . _String::ucwords("About"));
 
 Ui::setAttributeValue($this->documentTemplateBodyElement, "class", ["width-1024px", "flex-center-left"]);

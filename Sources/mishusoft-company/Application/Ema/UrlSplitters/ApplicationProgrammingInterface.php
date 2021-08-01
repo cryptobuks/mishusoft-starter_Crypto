@@ -1,21 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Mishusoft\Ema\UrlSplitters;
+namespace App\Ema\UrlSplitters;
 
-use Mishusoft\Framework\Chipsets\Services\SecureDataTransferService;
+use Mishusoft\Services\SecureDataTransferService;
 
 class ApplicationProgrammingInterface extends SecureDataTransferService
 {
-
-
-    /**
-     * ApplicationProgrammingInterface constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-    }//end __construct()
 
 
     /**
@@ -24,18 +14,15 @@ class ApplicationProgrammingInterface extends SecureDataTransferService
     public function api(array $request)
     {
         parent::api($request);
-
     }//end api()
 
 
     /**
      * @param array $request
+     * @throws \JsonException
      */
     public function monitor(array $request)
     {
         parent::monitor($request);
-
     }//end monitor()
-
-
 }//end class

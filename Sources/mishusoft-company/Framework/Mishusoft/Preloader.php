@@ -21,7 +21,7 @@ class Preloader
         ));
         return substr(
             $namespace,
-            (strpos($namespace, rtrim(RUNTIME_ROOT_PATH, DIRECTORY_SEPARATOR)) + strlen(rtrim(RUNTIME_ROOT_PATH, DIRECTORY_SEPARATOR))),
+            (strpos($namespace, rtrim(RUNTIME_ROOT_PATH, DS)) + strlen(rtrim(RUNTIME_ROOT_PATH, DS))),
             strlen($namespace)
         );
     }//end getClassNamespaceFromPath()
@@ -34,8 +34,7 @@ class Preloader
      */
     public static function getPathFromClassNamespace(string $name_space, string $extension = '.php'): string
     {
-        $file = str_replace('\\', DIRECTORY_SEPARATOR, $name_space).$extension;
-        // return PHP_RUNTIME_ROOT_PATH . substr($file, strlen(WHO_AM_I) + 1, strlen($file)); /*old version for remove mishusoft form namespace*/
+        $file = str_replace('\\', DS, $name_space).$extension;
         return RUNTIME_ROOT_PATH.$file;
     }//end getPathFromClassNamespace()
 
@@ -47,31 +46,24 @@ class Preloader
 
 
     /**
-     * @param $path
+     * @param string $path
      */
     public static function loadGlobals(string $path): void
     {
         if (is_dir($path)=== false) {
             trigger_error("$path not found.");
-            // exit;
         }
 
         if ($path[(strlen($path) - 1)] !== '/') {
             $path .= '/';
         }
 
-        // self::log("Checking $folderpath.");
         $files = glob($path.'*', GLOB_MARK);
         foreach ($files as $file) {
             if (is_dir($file) === true) {
                 self::loadGlobals($file);
             } else {
-                if (is_file($file) === true) {
-                    /*
-                        self::log("Found $file.");
-                    self::log("including $file.");*/
-                    include_once $file;
-                }
+                include_once $file;
             }
         }
     }//end loadGlobals()

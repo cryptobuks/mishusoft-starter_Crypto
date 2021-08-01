@@ -13,7 +13,6 @@ class IpDataClient
     /**
      *
      * @param  string $apiKey
-     * @throws \JsonException
      */
     public function __construct(
         private string $apiKey = ''
@@ -25,11 +24,16 @@ class IpDataClient
 
 
     /**
+     * @param string $ip
+     * @param array $fields
+     * @return array
      * @throws \JsonException
+     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function lookup(string $ip, array $fields = []) : array
     {
-        $response = array();
+        $response = [];
         $query = [
             'api-key' => $this->apiKey,
         ];
@@ -65,6 +69,11 @@ class IpDataClient
     }//end lookup()
 
 
+    /**
+     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \JsonException
+     */
     public function buildLookup(array $ips, array $fields = []): array
     {
         $query = [
@@ -76,10 +85,11 @@ class IpDataClient
         }
 
 
-        $response = array();
+        $response = [];
         $curlHandle = new CurlRequest;
         $curlHandle->setHost(sprintf('%s/bulk?%s', self::BASE_URL, http_build_query($query)));
-        $curlHandle->makeRequest(['timeout' => 20])->with('method', ['method' => 'post', 'post_fields' => json_encode($ips, JSON_THROW_ON_ERROR)]);
+        $curlHandle->makeRequest(['timeout' => 20])
+            ->with('method', ['method' => 'post', 'post_fields' => json_encode($ips, JSON_THROW_ON_ERROR)]);
         $curlHandle->setHeaders(['Content-Type' => 'text/plain']);
         $curlHandle->sendRequest();
         if ($curlHandle->getResponseCode() !== 200) {

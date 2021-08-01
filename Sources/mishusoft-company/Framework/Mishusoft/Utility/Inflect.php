@@ -3,30 +3,6 @@
   // original source: http://kuwamoto.org/2007/12/17/improved-pluralizing-in-php-actionscript-and-ror/
   // collected source: https://gist.github.com/tbrianjones/ba0460cc1d55f357e00b
 
-  /*
-    The MIT License (MIT)
-
-    Copyright (c) 2015
-
-    Permission is hereby granted, free of charge, to any person obtaining a copy
-    of this software and associated documentation files (the "Software"), to deal
-    in the Software without restriction, including without limitation the rights
-    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    copies of the Software, and to permit persons to whom the Software is
-    furnished to do so, subject to the following conditions:
-
-    The above copyright notice and this permission notice shall be included in
-    all copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-    THE SOFTWARE.
-  */
-  
   // ORIGINAL NOTES
   //
   // Thanks to http://www.eval.ca/articles/php-pluralize (MIT license)
@@ -34,33 +10,13 @@
   //           http://www.fortunecity.com/bally/durrus/153/gramch13.html
   //           http://www2.gsu.edu/~wwwesl/egw/crump.htm
   //
-  // Changes (12/17/07)
-  //   Major changes
-  //   --
-  //   Fixed irregular noun algorithm to use regular expressions just like the original Ruby source.
-  //       (this allows for things like fireman -> firemen
-  //   Fixed the order of the singular array, which was backwards.
-  //
-  //   Minor changes
-  //   --
-  //   Removed incorrect pluralization rule for /([^aeiouy]|qu)ies$/ => $1y
-  //   Expanded on the list of exceptions for *o -> *oes, and removed rule for buffalo -> buffaloes
-  //   Removed dangerous singularization rule for /([^f])ves$/ => $1fe
-  //   Added more specific rules for singularizing lives, wives, knives, sheaves, loaves, and leaves and thieves
-  //   Added exception to /(us)es$/ => $1 rule for houses => house and blouses => blouse
-  //   Added excpetions for feet, geese and teeth
-  //   Added rule for deer -> deer
-  
-  // Changes:
-  //   Removed rule for virus -> viri
-  //   Added rule for potato -> potatoes
-  //   Added rule for *us -> *uses
+
 
 namespace Mishusoft\Utility;
 
 class Inflect
 {
-    private static array $plural = array(
+    private static array $plural = [
         '/(quiz)$/i'               => "$1zes",
         '/^(ox)$/i'                => "$1en",
         '/([m|l])ouse$/i'          => "$1ice",
@@ -79,10 +35,10 @@ class Inflect
         '/(ax|test)is$/i'          => "$1es",
         '/(us)$/i'                 => "$1es",
         '/s$/i'                    => "s",
-        '/$/'                      => "s"
-    );
+        '/$/'                      => "s",
+    ];
 
-    private static array $singular = array(
+    private static array $singular = [
         '/(quiz)zes$/i'             => "$1",
         '/(matr)ices$/i'            => "$1ix",
         '/(vert|ind)ices$/i'        => "$1ex",
@@ -110,10 +66,10 @@ class Inflect
         '/(h|bl)ouses$/i'           => "$1ouse",
         '/(corpse)s$/i'             => "$1",
         '/(us)es$/i'                => "$1",
-        '/s$/i'                     => ""
-    );
+        '/s$/i'                     => "",
+    ];
 
-    private static array $irregular = array(
+    private static array $irregular = [
         'move'   => 'moves',
         'foot'   => 'feet',
         'goose'  => 'geese',
@@ -122,10 +78,10 @@ class Inflect
         'man'    => 'men',
         'tooth'  => 'teeth',
         'person' => 'people',
-        'valve'  => 'valves'
-    );
+        'valve'  => 'valves',
+    ];
 
-    private static array $uncountable = array(
+    private static array $uncountable = [
         'sheep',
         'fish',
         'deer',
@@ -134,8 +90,8 @@ class Inflect
         'money',
         'rice',
         'information',
-        'equipment'
-    );
+        'equipment',
+    ];
       
     public static function pluralize($string)
     {
@@ -190,12 +146,154 @@ class Inflect
         return $string;
     }
       
-    public static function pluralize_if($count, $string)
+    public static function pluralizeIf($count, $string): string
     {
         if ($count === 1) {
             return "1 $string";
         }
 
         return $count . " " . self::pluralize($string);
+    }
+
+
+    /**
+     * Make a string lowercase
+     * @link https://php.net/manual/en/function.strtolower.php
+     * @param string $string
+     * @return string the lowercased string.
+     */
+    public static function lower(string $string): string
+    {
+        return "" !== $string ? strtolower($string) : "";
+    }
+
+    /**
+     * Make a string uppercase
+     * @link https://php.net/manual/en/function.strtoupper.php
+     * @param string $string
+     * @return string the uppercased string.
+     */
+    public static function upper(string $string): string
+    {
+        return "" !== $string ? strtoupper($string) : "";
+    }
+
+
+    /**
+     * Make a string's first character uppercase
+     * @link https://php.net/manual/en/function.ucfirst.php
+     * @param string $string <p>
+     * The input string.
+     * </p>
+     * @return string the resulting string.
+     */
+    public static function ucfirst(string $string): string
+    {
+        return "" !== $string ? ucfirst($string) : "";
+    }
+
+    /**
+     * Make a string's first character lowercase
+     * @link https://php.net/manual/en/function.lcfirst.php
+     * @param string $string <p>
+     * The input string.
+     * </p>
+     * @return string the resulting string.
+     */
+    public static function lcfirst(string $string): string
+    {
+        return "" !== $string ? lcfirst($string) : "";
+    }
+
+    /**
+     * Uppercase the first character of each word in a string
+     * @link https://php.net/manual/en/function.ucwords.php
+     * @param string $string <p>
+     * The input string.
+     * </p>
+     * @param string $separators [optional] <p>
+     * @return string the modified string.
+     */
+    public static function ucwords(string $string, $separators = " \t\r\n\f\v"): string
+    {
+        return "" !== $string ? ucwords($string, $separators) : "";
+    }
+
+    /**
+     * Find the position of the first occurrence of a substring in a string
+     * @link https://php.net/manual/en/function.strpos.php
+     * @param string $haystack
+     * @param mixed $needle
+     * @param int $offset [optional]
+     * @return int
+     */
+    public static function position(string $haystack, mixed $needle, int $offset = 0): int
+    {
+        return strpos($haystack, $needle, $offset);
+    }
+
+    /**
+     * @param string $contents
+     * @return string
+     */
+    public static function removeTags(string $contents): string
+    {
+        return "" !== $contents ? trim(strip_tags($contents)) : "";
+    }
+
+    public static function strpos(string $needle, string $string): int
+    {
+        return strpos($string, $needle);
+    }
+
+    /**
+     * @param string $contents
+     * @return string
+     */
+    public static function toHtml(string $contents): string
+    {
+        return "" !== $contents ? htmlspecialchars($contents, ENT_QUOTES) : "";
+    }
+
+
+    /**
+     * @param string $haystack
+     * @param string $needle
+     * @return bool
+     */
+    public static function contains(string $haystack, string $needle): bool
+    {
+        return '' === $needle || false !== strpos($haystack, $needle);
+    }
+
+    /**
+     * @param string $haystack
+     * @param string $needle
+     * @return bool
+     */
+    public static function startsWith(string $haystack, string $needle): bool
+    {
+        return 0 === strncmp($haystack, $needle, strlen($needle));
+    }
+
+    /**
+     * @param string $haystack
+     * @param string $needle
+     * @return bool
+     */
+    public static function endsWith(string $haystack, string $needle): bool
+    {
+        return '' === $needle || ('' !== $haystack && 0 === substr_compare($haystack, $needle, -strlen($needle)));
+    }
+
+    public static function getClassBaseName(string $classname): ?string
+    {
+        $path = explode('\\', $classname);
+        return array_pop($path);
+    }
+
+    public static function search(string $haystack, string $needle, int $offset = 0): bool|int
+    {
+        return strpos($haystack, $needle);
     }
 }

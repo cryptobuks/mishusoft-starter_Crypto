@@ -3,111 +3,191 @@
 
 namespace Mishusoft\Exceptions;
 
-use Exception;
+use ErrorException;
+use Mishusoft\System\Firewall;
 use Mishusoft\System\Logger;
-use Mishusoft\Utility\Number;
 
-class Handler extends Exception
+class Handler extends ErrorException
 {
-
-    protected int $severity;
-
-    /* Inherited properties */
-    protected $message;
-    protected $code;
-    protected $file;
-    protected $line;
-    protected string $objectName;
-    private string $anotherTrace;
-
+    private string $objectName;
+    private string|array $anotherTrace;
 
     /**
-     * RuntimeErrors constructor.
+     * Fetch error on runtime catch area.
      *
-     * @param string $message
-     * @param integer $code
-     * @param integer $severity
-     * @param string $filename
-     * @param integer $lineno
-     * @param string $trace
-     * @param string $objectName
+     * @param object $exception Object of exception error.
      */
-    public function __construct(
-        string $message = '',
-        int $code = 0,
-        int $severity = 1,
-        string $filename = __FILE__,
-        int $lineno = __LINE__,
-        string $trace = '',
-        string $objectName = ''
-    ) {
-        parent::__construct();
-        $this->message  = $message;
-        $this->code     = $code;
-        $this->severity = $severity;
-        $this->file     = $filename;
-        $this->line     = $lineno;
-        $this->anotherTrace   = $trace;
-        $this->objectName     = $objectName;
-
-        $this->display();
-    }//end __construct()
-
-    private function display() : void
+    public static function fetch(object $exception): void
     {
+        (new self(
+            $exception->getMessage(),
+            $exception->getCode(),
+            //$exception->getSeverity(),
+            $exception->getCode(),
+            $exception->getFile(),
+            $exception->getLine()
+        )
+        )
+            ->addExtra($exception->getTrace(), (new \ReflectionClass($exception))->getShortName())
+            ->display();
+    }//end fetch()
+
+    private function addExtra(string|array $trace = '', string $objectName = ''): static
+    {
+        $this->anotherTrace = $trace;
+        $this->objectName = $objectName;
+
+        return $this;
+    }
+
+
+    public function display(): void
+    {
+        $description = $this->hidePath(sprintf('%s from %s on line %d', $this->message, $this->file, $this->line));
+
         if ($this->objectName !== '') {
             $titleOfErrorMessage = $this->objectName;
         } else {
             $titleOfErrorMessage = self::codeAsString($this->getCode());
         }
 
-        echo sprintf('<title>%s</title>', $titleOfErrorMessage);
-
-        echo '<article style="margin: 0;padding: 5px;border: 1px solid lightgray;border-radius: 5px;background-color: #f4f4f4;box-shadow: inset 0 -3em 3em rgba(227, 199, 199, 0.1),.3em .3em .3em rgba(157, 151, 151, 0.3);font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji,SourceSansPro,SolaimanLipi;">';
-        echo '<section style="line-height: 1.5;margin: -5px -5px 10px -5px;padding: 8px 5px;text-align: justify;border-bottom: 1px solid lightgray;">';
-
-
-        echo sprintf('<div style="font-size: 20px;font-weight: bold; border-bottom: 1px solid lightgray;padding-bottom: 10px;text-transform: capitalize;">%s</div>', $titleOfErrorMessage);
-        echo '<div style="font-size: 18px;font-weight:normal;padding: 5px 2px;">';
-        echo $this->hidePath($this->message).' from '.$this->hidePath($this->file).' on line '.$this->line;
-        Logger::write(
-            sprintf(
-                '%s [%s] : %s from %s on line %d.',
-                self::codeAsString($this->getCode()),
-                $this->code,
-                $this->message,
-                $this->file,
-                $this->line
-            ),
-            LOGGER_WRITE_STYLE_FULL,
-            LOGGER_FLAG_TYPE_RUNTIME
-        );
-        echo '</div>';
-        echo '</section>';
-
-
-        echo '<section style="margin: -5px -5px 10px -5px;padding: 0 5px 0 5px;">';
-        echo '<div style="font-size: 16px;font-weight: bold;">Stack Trace</div>';
-        echo '<pre style="line-height: 1.8;overflow-y: auto;padding-bottom: 0;margin-bottom: 0;">';
-
         if ($this->anotherTrace !== '') {
-            $this->beautifyCallStack($this->anotherTrace);
+            $stack = $this->makeBeautifulStackTrace($this->anotherTrace);
         } elseif (is_array($this->getTrace()) === true && count($this->getTrace()) > 0) {
-            $this->beautifyCallStack($this->getTrace());
+            $stack = $this->makeBeautifulStackTrace($this->getTrace());
         } elseif ($this->getTraceAsString() !== '') {
-            $this->beautifyCallStack($this->getTraceAsString());
+            $stack = $this->makeBeautifulStackTrace($this->getTraceAsString());
         } else {
-            echo 'No trace of this error could be detected.';
+            $stack =  ['No trace of this error could be detected.'];
         }
 
-        echo '</pre>';
-        echo '</section>';
+        $message = ['debug'=> ['caption'=> $titleOfErrorMessage, 'description'=> $description, 'stack'=> $stack],];
 
-        echo '</article>';
-        echo '<br/>';
-        //exit(0);
+        Logger::write($description, LOGGER_WRITE_STYLE_SMART, LOGGER_FLAG_TYPE_RUNTIME);
+        Firewall::runtimeFailure('Service Unavailable', $message);
+
+        exit(0);
     }
 
+
+    /**
+     * Make beautiful view of error call stack
+     *
+     * @param array|string $trace Error call stack.
+     *
+     */
+    private function makeBeautifulStackTrace(array|string $trace): array
+    {
+        $traceArray = [];
+        //when trace is array
+        if (is_array($trace) === true && count($trace) > 0) {
+            $traceArray = self::cleanTraceArray($trace);
+            foreach ($traceArray as $key => $value) {
+                $line = '';
+                if (array_key_exists('file', $value) === true) {
+                    $line .= $value['file'];
+                } else {
+                    $line .= '[internal function]';
+                }
+
+                if (array_key_exists('line', $value) === true) {
+                    $line .= '(' . $value['line'] . ')';
+                }
+
+                $line .= ': ';
+
+                if (array_key_exists('class', $value) === true) {
+                    $line .= $value['class'];
+                }
+
+                if (array_key_exists('type', $value) === true) {
+                    $line .= $value['type'];
+                }
+
+                if (array_key_exists('function', $value) === true) {
+                    if (array_key_exists('args', $value) === true) {
+                        $line .= $value['function'];
+                        $line .= '(' . implode(',', $value['args']) . ')';
+                    } else {
+                        $line .= $value['function'] . '()';
+                    }
+                }
+
+                $traceArray[$key] = $this->hidePath($line);
+            }//end foreach
+        }//end if
+
+        //when trace is string
+        if (is_string($trace) === true && $trace !== '') {
+            $traceArray = self::cleanTraceArray(explode("\n", $trace));
+            foreach ($traceArray as $key => $value) {
+                $traceArray[$key] = $this->hidePath(preg_replace('/[#]\d+/', $key, $value));
+            }//end foreach
+        }//end if
+
+        return $traceArray;
+    }//end makeBeautifulStackTrace()
+
+    /**
+     * @param string $string
+     * @return string
+     */
+    private function hidePath(string $string): string
+    {
+        return str_replace(RUNTIME_ROOT_PATH, 'app://', $string);
+    }
+
+    /**
+     * Make writeable string
+     *
+     * @param object $exception Object of exception error.
+     *
+     * @return string Writable string.
+     */
+    public static function toWriteable(object $exception): string
+    {
+        $output = self::codeAsString($exception->getCode());
+        $output .= ' [' . $exception->getCode() . '] : ';
+        $output .= $exception->getMessage() . ' from ';
+        $output .= $exception->getFile() . ' on line ' . $exception->getLine() . '.';
+        return $output;
+    }//end toWriteable()
+
+
+    /**
+     * Clean call trace.
+     *
+     * @param array $traceArray Array format of error trace.
+     *
+     * @return array
+     */
+    private static function cleanTraceArray(array $traceArray): array
+    {
+        foreach ($traceArray as $key => $value) {
+            if (is_array($value) === true) {
+                if (array_key_exists('function', $value) === true) {
+                    if (str_contains($value['function'], '{closure}()') === true) {
+                        unset($traceArray[$key]);
+                    }
+                    if (str_contains($value['function'], '{main}') === true) {
+                        unset($traceArray[$key]);
+                    }
+                }
+            } else {
+                if (str_contains($value, '{closure}()') === true) {
+                    unset($traceArray[$key]);
+                }
+
+                if (str_contains($value, '{main}') === true) {
+                    unset($traceArray[$key]);
+                }
+            }
+        }//end foreach
+
+        //array_multisort($traceArray, SORT_DESC);
+        // ksort($traceArray, SORT_ASC);
+        return array_reverse($traceArray);
+    }//end cleanTraceArray()
 
     /**
      * Error code to name assignment.
@@ -163,151 +243,6 @@ class Handler extends Exception
             default => 'Unexpected Error',
         };//end match
     }//end codeAsString()
-
-
-    /**
-     * Make beautiful view of error call stack
-     *
-     * @param array|string $trace Error call stack.
-     *
-     * @return void
-     */
-    private function beautifyCallStack(array|string $trace): void
-    {
-        //when trace is array
-        if (is_array($trace) === true && count($trace) > 0) {
-            $traceArray = self::cleanTraceArray($trace);
-            foreach ($traceArray as $key => $value) {
-                $line = Number::next($key).') ';
-                if (array_key_exists('file', $value) === true) {
-                    $line .= $value['file'];
-                } else {
-                    $line .= '[internal function]';
-                }
-
-                if (array_key_exists('line', $value) === true) {
-                    $line .= '('.$value['line'].')';
-                }
-
-                $line .= ': ';
-
-                if (array_key_exists('class', $value) === true) {
-                    $line .= $value['class'];
-                }
-
-                if (array_key_exists('type', $value) === true) {
-                    $line .= $value['type'];
-                }
-
-                if (array_key_exists('function', $value) === true) {
-                    if (array_key_exists('args', $value) === true) {
-                        $line .= $value['function'];
-                        $line .= '('.implode(',', $value['args']).')';
-                    } else {
-                        $line .= $value['function'].'()';
-                    }
-                }
-
-
-                echo $this->hidePath($line).PHP_EOL;
-            }//end foreach
-        }//end if
-
-        //when trace is string
-        if (is_string($trace) === true && $trace !== '') {
-            $traceArray = self::cleanTraceArray(explode("\n", $this->hidePath($trace)));
-            foreach ($traceArray as $key => $value) {
-                echo preg_replace('/[#]\d+/', Number::next($key).')', $value).PHP_EOL;
-            }//end foreach
-        }//end if
-    }//end beautifyCallStack()
-
-    /**
-     * @param string $string
-     * @return string
-     */
-    private function hidePath(string $string):string
-    {
-        return str_replace(RUNTIME_ROOT_PATH, 'app://', $string);
-    }
-
-
-    /**
-     * Clean call trace.
-     *
-     * @param array $traceArray Array format of error trace.
-     *
-     * @return array
-     */
-    private static function cleanTraceArray(array $traceArray):array
-    {
-        foreach ($traceArray as $key => $value) {
-            if (is_array($value) === true) {
-                if (array_key_exists('function', $value) === true) {
-                    if (str_contains($value['function'], '{closure}()') === true) {
-                        unset($traceArray[$key]);
-                    }
-                    if (str_contains($value['function'], '{main}') === true) {
-                        unset($traceArray[$key]);
-                    }
-                }
-            } else {
-                if (str_contains($value, '{closure}()') === true) {
-                    unset($traceArray[$key]);
-                }
-
-                if (str_contains($value, '{main}') === true) {
-                    unset($traceArray[$key]);
-                }
-            }
-        }//end foreach
-
-        //array_multisort($traceArray, SORT_DESC);
-        // ksort($traceArray, SORT_ASC);
-        return array_reverse($traceArray);
-    }//end cleanTraceArray()
-
-
-    /**
-     * Make writeable string
-     *
-     * @param object $exception Object of exception error.
-     *
-     * @return string Writable string.
-     */
-    public static function toWriteable(object $exception): string
-    {
-        $output  = self::codeAsString($exception->getCode());
-        $output .= ' ['.$exception->getCode().'] : ';
-        $output .= $exception->getMessage().' from ';
-        $output .= $exception->getFile().' on line '.$exception->getLine().'.';
-        return $output;
-    }//end toWriteable()
-
-
-    /**
-     * Fetch error on runtime catch area.
-     *
-     * @param object $exception Object of exception error.
-     *
-     * @return Handler Return runtime error class.
-     */
-    public static function fetch(object $exception): static
-    {
-        //echo get_class($exception). PHP_EOL;
-        //echo $exception->getTraceAsString(). PHP_EOL;
-        //print_r(func_get_args(), false);exit();
-        return new self(
-            $exception->getMessage(),
-            $exception->getCode(),
-            $exception->getCode(),
-            $exception->getFile(),
-            $exception->getLine(),
-            $exception->getTraceAsString(),
-            get_class($exception)
-        );
-    }//end fetch()
-
 
     /**
      * Destruct runtime errors class.

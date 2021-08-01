@@ -17,7 +17,10 @@ namespace Mishusoft\Http;
 use GeoIp2\Database\Reader;
 use GeoIp2\Exception\AddressNotFoundException;
 use MaxMind\Db\Reader\InvalidDatabaseException;
-use Mishusoft\Exceptions\Handler as ExceptionsHandler;
+use Mishusoft\Exceptions\HttpException\HttpResponseException;
+use Mishusoft\Exceptions\JsonException;
+use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
+use Mishusoft\Exceptions\RuntimeException\NotFoundException;
 use Mishusoft\Storage;
 
 class IP
@@ -63,6 +66,8 @@ class IP
      *
      * @return string
      * @throws \JsonException Throw exception when json error occurred.
+     * @throws HttpResponseException
+     * @throws JsonException|InvalidDatabaseException
      */
     public static function getCountry(): string
     {
@@ -75,15 +80,11 @@ class IP
             } else {
                 $country = 'Private IP';
             }
-        } catch (AddressNotFoundException $e) {
+        } catch (AddressNotFoundException) {
             if (empty($record->country->name) === true) {
                 $remoteData = new IpDataClient(self::$apiKey);
                 $country    = $remoteData->lookup(self::get())['country_name'];
-            } else {
-                ExceptionsHandler::fetch($e);
             }
-        } catch (InvalidDatabaseException $e) {
-            ExceptionsHandler::fetch($e);
         } finally {
             return $country;
         }//end try
@@ -140,106 +141,104 @@ class IP
      * @param string $purpose The purpose of data.
      *
      * @return array|float|string|null
+     * @throws InvalidDatabaseException|AddressNotFoundException
      */
     public static function getInfo(string $purpose = 'location'): float|array|string|null
     {
         $output = 'Unknown Location';
-        try {
-            if (self::isPublicIp(self::get()) === true) {
-                $reader  = new Reader(self::cityDbFile());
-                $record  = $reader->city(self::get());
-                $purpose = str_replace(['name', "\n", "\t", ' ', '-', '_'], '', strtolower(trim($purpose)));
-                $support = [
-                    'latitude',
-                    'longitude',
-                    'timezone',
-                    'postalcode',
-                    'city',
-                    'state',
-                    'country',
-                    'countrycode',
-                    'continent',
-                    'continentcode',
-                    'location',
-                    'address',
-                ];
-                if (filter_var(self::get(), FILTER_VALIDATE_IP) && in_array($purpose, $support, true)) {
-                    switch ($purpose) {
-                        case 'location':
-                            $output = [
-                                'latitude'       => $record->location->latitude,
-                                'longitude'      => $record->location->longitude,
-                                'time_zone'      => $record->location->timeZone,
-                                'postal_code'    => $record->postal->code,
-                                'city'           => $record->city->name,
-                                'state'          => $record->mostSpecificSubdivision->name,
-                                'country'        => $record->country->name,
-                                'country_code'   => $record->country->isoCode,
-                                'continent'      => $record->continent->name,
-                                'continent_code' => $record->continent->code,
-                            ];
-                            break;
 
-                        case 'address':
-                            $address   = [$record->country->name];
-                            $address[] = $record->mostSpecificSubdivision->name;
-                            $address[] = $record->city->name;
-                            $output    = implode(', ', array_reverse($address));
-                            break;
+        if (self::isPublicIp(self::get()) === true) {
+            $reader = new Reader(self::cityDbFile());
+            $record = $reader->city(self::get());
+            $purpose = str_replace(['name', "\n", "\t", ' ', '-', '_'], '', strtolower(trim($purpose)));
+            $support = [
+                'latitude',
+                'longitude',
+                'timezone',
+                'postalcode',
+                'city',
+                'state',
+                'country',
+                'countrycode',
+                'continent',
+                'continentcode',
+                'location',
+                'address',
+            ];
+            if (in_array($purpose, $support, true) && filter_var(self::get(), FILTER_VALIDATE_IP)) {
+                switch ($purpose) {
+                    case 'location':
+                        $output = [
+                            'latitude'       => $record->location->latitude,
+                            'longitude'      => $record->location->longitude,
+                            'time_zone'      => $record->location->timeZone,
+                            'postal_code'    => $record->postal->code,
+                            'city'           => $record->city->name,
+                            'state'          => $record->mostSpecificSubdivision->name,
+                            'country'        => $record->country->name,
+                            'country_code'   => $record->country->isoCode,
+                            'continent'      => $record->continent->name,
+                            'continent_code' => $record->continent->code,
+                        ];
+                        break;
 
-                        case 'latitude':
-                            $output = $record->location->latitude;
-                            break;
+                    case 'address':
+                        $address   = [$record->country->name];
+                        $address[] = $record->mostSpecificSubdivision->name;
+                        $address[] = $record->city->name;
+                        $output    = implode(', ', array_reverse($address));
+                        break;
 
-                        case 'longitude':
-                            $output = $record->location->longitude;
-                            break;
+                    case 'latitude':
+                        $output = $record->location->latitude;
+                        break;
 
-                        case 'timezone':
-                            $output = $record->location->timeZone;
-                            break;
+                    case 'longitude':
+                        $output = $record->location->longitude;
+                        break;
 
-                        case 'city':
-                            $output = $record->city->name;
-                            break;
+                    case 'timezone':
+                        $output = $record->location->timeZone;
+                        break;
 
-                        case 'postalcode':
-                            $output = $record->postal->code;
-                            break;
+                    case 'city':
+                        $output = $record->city->name;
+                        break;
 
-                        case 'state':
-                            $output = $record->mostSpecificSubdivision->name;
-                            break;
+                    case 'postalcode':
+                        $output = $record->postal->code;
+                        break;
 
-                        case 'country':
-                            $output = $record->country->name;
-                            break;
+                    case 'state':
+                        $output = $record->mostSpecificSubdivision->name;
+                        break;
 
-                        case 'countrycode':
-                            $output = $record->country->isoCode;
-                            break;
+                    case 'country':
+                        $output = $record->country->name;
+                        break;
 
-                        case 'continent':
-                            $output = $record->continent->name;
-                            break;
+                    case 'countrycode':
+                        $output = $record->country->isoCode;
+                        break;
 
-                        case 'continentcode':
-                            $output = $record->continent->code;
-                            break;
+                    case 'continent':
+                        $output = $record->continent->name;
+                        break;
 
-                        default:
-                            $output = 'Unknown';
-                            break;
-                    }//end switch
-                }//end if
-            } else {
-                $output = 'Private IP';
+                    case 'continentcode':
+                        $output = $record->continent->code;
+                        break;
+
+                    default:
+                        $output = 'Unknown';
+                        break;
+                }//end switch
             }//end if
-        } catch (AddressNotFoundException | InvalidDatabaseException $e) {
-            ExceptionsHandler::fetch($e);
-        } finally {
-            return $output;
-        }//end try
+        } else {
+            $output = 'Private IP';
+        }//end if
+
+        return $output;
     }//end getInfo()
 
 

@@ -2,13 +2,10 @@
 
 namespace Mishusoft\Drivers;
 
-
-use Mishusoft\FileSystem;
 use Mishusoft\Preloader;
+use Mishusoft\Storage;
+use Mishusoft\Storage\FileSystem;
 use Mishusoft\System\Firewall;
-use Mishusoft\Utility\Debug;
-use Mishusoft\Drivers\WidgetInterface;
-use RuntimeException;
 
 abstract class Widget implements WidgetInterface
 {
@@ -28,57 +25,57 @@ abstract class Widget implements WidgetInterface
     {
         $this->registry = Registry::getInstance();
         $this->acl      = $this->registry->acl;
-
     }//end __construct()
 
 
     /**
-     * @param  string $model
+     * @param string $model
      * @return mixed
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     protected function loadModel(string $model): mixed
     {
         $modelClass      = $model.'ModelWidget';
-        $widgetModelFile = MS_WIDGETS_PATH.'Models'.DS.$modelClass.'.php';
-        _Debug::preOutput($widgetModelFile);
-        // _Debug::preOutput(debug_backtrace());
+        $widgetModelFile = Storage::applicationWidgetsPath().'Models'.DS.$modelClass.'.php';
         if (is_readable($widgetModelFile) === true) {
             include_once $widgetModelFile;
             $modelClass = Preloader::getClassNamespaceFromPath($widgetModelFile);
-            _Debug::preOutput($modelClass);
-            _Debug::preOutput(get_included_files());
             if (in_array($widgetModelFile, get_included_files()) === true) {
                 if (class_exists($modelClass, false) === true) {
-                    _Debug::preOutput("class $modelClass loading");
-                    _Debug::preOutput(new $modelClass);
                     return new $modelClass;
                 }
 
-                _Debug::preOutput("class $modelClass loading failed");
-                throw new RuntimeException("class $modelClass loading failed");
+                throw new \Mishusoft\Exceptions\RuntimeException("class $modelClass loading failed");
             }
 
-            _Debug::preOutput("$widgetModelFile inclusion failed.");
-            throw new RuntimeException($widgetModelFile.' inclusion failed');
+            throw new \Mishusoft\Exceptions\RuntimeException($widgetModelFile.' inclusion failed');
         } else {
-            throw new RuntimeException($widgetModelFile.' not found');
+            throw new \Mishusoft\Exceptions\RuntimeException($widgetModelFile.' not found');
         }//end if
-
     }//end loadModel()
 
 
     /**
-     * @param  string $menu
-     * @param  string $view
-     * @param  array  $data
-     * @param  string $ext
+     * @param string $menu
+     * @param string $view
+     * @param array $data
+     * @param string $ext
      * @return false|string
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \JsonException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    protected function render(string $menu, string $view, array $data=[], string $ext='phtml'): bool|string
+    protected function render(string $menu, string $view, array $data = [], string $ext = 'phtml'): bool|string
     {
-        $widgetViewFile = MS_WIDGETS_PATH.'Views'.DS.$menu.DS.$view.'.'.$ext;
+        $widgetViewFile = Storage::applicationWidgetsPath().'Views'.DS.$menu.DS.$view.'.'.$ext;
         if (is_readable($widgetViewFile) === true) {
-            if (FileSystem::getFileExt($widgetViewFile) === 'php') {
+            if (FileSystem::fileExt($widgetViewFile) === 'php') {
                 return $widgetViewFile;
             }
 
@@ -100,7 +97,6 @@ abstract class Widget implements WidgetInterface
             ]
         );
         return '';
-
     }//end render()
 
 
@@ -109,8 +105,5 @@ abstract class Widget implements WidgetInterface
      */
     public function __destruct()
     {
-
     }//end __destruct()
-
-
 }//end class

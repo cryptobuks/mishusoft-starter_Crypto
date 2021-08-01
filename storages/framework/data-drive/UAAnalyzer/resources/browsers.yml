@@ -174,120 +174,60 @@ ad-muncher:
   licence: Freeware
   engines: Unknown
 
+amaya:
+  name: 'Amaya Browser'
+  url: 'https://www.admuncher.com/'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: inria
+  #    'creator' => [
+  #    [
+  #        'name' => 'W3C',
+  #        'link' => 'https://www.w3.org/',
+  #    ],
+  #    [
+  #        'name' => 'INRIA',
+  #        'link' => 'https://www.inria.fr/en/',
+  #    ],
+  #  ],
+  cost: Free
+  status: Discontinued
+  licence: W3C
+  engines: Unknown
 
-#
-#    //amaya/11.3.1 libwww/5.4.1 11.3
-#      //amaya/9.52 libwww/5.4.0
-#      //amaya/9.51 libwww/5.4.0
-#      //amaya/11.2 amaya/5.4.0
-#      //amaya/11.4.7 libwww/5.3.1
-#    'Amaya' => [
-#    'name' => 'Amaya',
-#    'type' => 'Web Browser',
-#    'ui' => 'GraphicalMode',
-#    'creator' => [
-#    [
-#        'name' => 'W3C',
-#        'link' => 'https://www.w3.org/',
-#    ],
-#    [
-#        'name' => 'INRIA',
-#        'link' => 'https://www.inria.fr/en/',
-#    ],
-#  ],
-#    'cost' => 'Free',
-#    'status' => 'discontinued',
-#    'licence' => [
-#    [
-#        'name' => 'W3C',
-#        'link' => 'https://en.wikipedia.org/wiki/W3C_Software_Notice_and_License',
-#    ],
-#  ],
-#    'layout' => 'custom',
-#    'latest-release' => [
-#      'version' => '11.4.4',
-#      'date' => 'January 18, 2012',
-#  ],
-#],
-#
-#    //Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; Avant Browser; Avant Browser; .NET CLR 1.1.4322)
-#      //Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0; Avant Browser [ avantbrowser.com ]; Hotbar 4.4.5.0)
-#                                                                                               //Avant Browser (http://www.avantbrowser.com)
-#                                                                                               //Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; Avant Browser; Avant Browser)
-#                                                                                               //Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; Avant Browser)
-#    'Avant' => [
-#    'name' => 'Avant ',
-#    'type' => 'Web Browser',
-#    'ui' => 'GraphicalMode',
-#    'creator' => [
-#    [ 'name' => 'Benjamin C. Meyer' ],
-#  ],
-#    'cost' => 'Free',
-#    'status' => 'Active',
-#    'licence' => [
-#    [
-#        'name' => 'GPL',
-#        'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
-#    ],
-#  ],
-#    'layout' => [
-#    [
-#        'name' => 'WebKit',
-#        'link' => 'https://en.wikipedia.org/wiki/Blink_(layout_engine)',
-#    ],
-#    [
-#        'name' => 'Gecko',
-#        'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
-#    ],
-#    [
-#        'name' => 'Trident',
-#        'link' => 'https://en.wikipedia.org/wiki/Trident_(layout_engine)',
-#    ],
-#  ],
-#    'latest-release' => [
-#      'version' => '2020 build 3',
-#      'date' => 'March 17, 2020',
-#  ],
-#],
-#
-#    //Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:1.8.0.7) Gecko/20060911 Camino/1.0.3
-#      //Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:1.7.8) Gecko/20050427 Camino/0.8.4
-#      //Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:1.8.0.1) Gecko/20060214 Camino/1.0
-#      //Mozilla/5.0 (Macintosh; U; PPC Mac OS X Mach-O; en-US; rv:1.0.1) Gecko/20030306 Camino/0.7
-#    'Camino' => [
-#    'name' => 'Camino',
-#    'type' => 'Web Browser',
-#    'ui' => 'GraphicalMode',
-#    'creator' => [
-#    [ 'name' => 'The Camino Project' ],
-#  ],
-#    'cost' => 'Free',
-#    'status' => 'discontinued',
-#    'licence' => [
-#    [
-#        'name' => 'MPL 1.1',
-#        'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
-#    ],
-#    [
-#        'name' => 'GPL',
-#        'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
-#    ],
-#    [
-#        'name' => 'LGPL',
-#        'link' => 'https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License',
-#    ],
-#  ],
-#    'layout' => [
-#    [
-#        'name' => 'Gecko',
-#        'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
-#    ],
-#  ],
-#    'latest-release' => [
-#      'version' => '2.1.2',
-#      'date' => '14 March 2012',
-#  ],
-#],
+avant:
+  name: 'Avant Browser'
+  url: 'https://avantbrowser.com/'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: Avant Force
+  cost: Free
+  status: Active
+  licence: 	Freeware
+  engines: [ 'Trident' ]
+
+camino-browser:
+  name: 'Camino Browser'
+  url: 'https://en.wikipedia.org/wiki/Camino_(web_browser)'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: The Camino Project
+  cost: Free
+  status: Discontinued
+  licence: 	MPL 1.1/ GPL 2.0/ LGPL 2.1 tri-license
+  engines: [ 'Gecko' ]
+
+cliqz-browser:
+  name: 'Cliqz Browser'
+  url: 'https://en.wikipedia.org/wiki/Camino_(web_browser)'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: Cliqz GmbH
+  cost: Free
+  status: Discontinued
+  licence: 	MPL 2.0
+  engines: [ 'Gecko' ]
+
 #
 #    //Mozilla/5.0 (compatible; Cliqzbot/1.0; +http://cliqz.com/company/cliqzbot)
 #      //Mozilla/5.0 (compatible; Cliqzbot/3.0; +http://cliqz.com/company/cliqzbot)

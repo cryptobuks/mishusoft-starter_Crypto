@@ -1,26 +1,29 @@
 <?php
 
 
-namespace Mishusoft\Ema\Mishusoft\Main\UrlHandlers;
+namespace App\Ema\Mishusoft\Main\UrlHandlers;
 
+use Mishusoft\System\Localization;
+use Mishusoft\Drivers\UrlHandler;
+use Mishusoft\Utility\ArrayCollection;
 
-use Mishusoft\Framework\BuiltInWeb\ViewRenders\MonitorViewRender;
-use Mishusoft\Framework\Chipsets\System\Memory;
-use Mishusoft\Framework\Drivers\UrlHandler;
-
-class MonitorUrlHandler  extends UrlHandler
+class MonitorUrlHandler extends UrlHandler
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
-    public function Response(array $prediction)
+    /**
+     * @param array $prediction
+     * @throws \JsonException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     */
+    public function response(array $prediction):void
     {
         // TODO: Implement Response() method.
-        $renderEngine = new  MonitorViewRender($prediction);
-        $renderEngine->setTitleOfCurrentWebPage("Under Maintenance");
-        $renderEngine->setUrlOfHostedWebsite(Memory::Data('framework')->host->url);
-        $renderEngine->runTemplate();
+        $translation = new Localization(ArrayCollection::value($prediction, 'locale'));
+        $view        = $this->render($translation->translate('Monitor'), $prediction);
+        $view->display();
     }
 }

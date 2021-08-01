@@ -1,10 +1,10 @@
 <?php
 
-use Mishusoft\Framework\Chipsets\System\Localization;
-use Mishusoft\Framework\Chipsets\Ui;
-use Mishusoft\Framework\Chipsets\Utility\_Array;
+use Mishusoft\System\Localization;
+use Mishusoft\Ui;
+use Mishusoft\Utility\ArrayCollection;
 
-$translation = new Localization(_Array::value($this->request, "locale"));
+$translation = new Localization(ArrayCollection::value($this->request, "locale"));
 /*set text for title*/
 Ui::updateDocumentTitle(" || " . $translation->translate("Welcome to You."));
 //Ui::text($this->documentTitleElement, " || " . $translation->translate("Welcome to You."));
@@ -15,14 +15,16 @@ Ui::updateDocumentTitle(" || " . $translation->translate("Welcome to You."));
 
 /*Set separate paragraph for index page.*/
 Ui::elementList(
-    $this->documentTemplateBodyElement, [
+    $this->documentTemplateBodyElement,
+    [
     "article" => [
-        ["style" => "padding: 20px;text-align: center;font-size: 37px;font-weight: bold;width: 1024px;border: 1px solid lightgray;display: flex;justify-content: center;align-items: center;margin-top: 10px;", "text" => $translation->translate("Treding product")],/*set welcome text*/
+        ["style" => "padding: 20px;text-align: center;font-size: 37px;font-weight: bold;width: 1024px;border: 1px solid lightgray;display: flex;justify-content: center;align-items: center;margin-top: 10px;", "text" => $translation->translate("Trending product")],/*set welcome text*/
     ],
     "ms-app-paragraph" => [
         ["style" => "padding: 50px;text-align: center;font-size: 37px;font-weight: bold;", "text" => $translation->translate("Welcome to Mishusoft.")],/*set welcome text*/
     ],
-]);
+]
+);
 
 ///*
 //

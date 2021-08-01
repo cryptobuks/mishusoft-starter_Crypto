@@ -1,0 +1,37 @@
+---
+SocialNetworkShare:
+  position: header
+  show: all
+  hide: []
+  parent: SocialNetworkShare
+TopQuickBar:
+  position: top
+  show: all
+  hide: []
+  parent: TopQuickBar
+UniversalMenuBar-header:
+  position: header
+  show: all
+  hide: []
+  parent: UniversalMenuBar
+UniversalMenuBar-left:
+  position: left
+  show: all
+  hide: []
+  parent: UniversalMenuBar
+UniversalMenuBar-right:
+  position: right
+  show: all
+  hide: []
+  parent: UniversalMenuBar
+UniversalMenuBar-footer:
+  position: footer
+  show: all
+  hide: []
+  parent: UniversalMenuBar
+Universal:
+  position: header
+  show: all
+  hide: []
+  parent: Universal
+...

@@ -1,0 +1,13 @@
+{
+  "class": "UniversalMenuBar",
+  "method": "getUniversalMenuBar",
+  "child": [
+    "header","left","right","footer"
+  ],
+  "configuration": {
+    "position": "header"
+  },
+  "setting": {
+    "status": "enable"
+  }
+}
