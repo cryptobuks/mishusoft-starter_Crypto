@@ -60,7 +60,7 @@ if (file_exists(Storage::emaPath()) === true) {
             Logger::write(sprintf('Remove old splitters config file from %s directory.', Storage::dataDriveStoragesPath()));
             FileSystem::remove(MPM::splittersFile());
             Logger::write(sprintf('Write new splitters config file in %s directory.', Storage::dataDriveStoragesPath()));
-            FileSystem::saveToFile(MPM::splittersFile(), JSON::encodeToString($configs));
+            FileSystem\Yaml::emitFile(MPM::splittersFile(), $configs);
         }
 
         /*

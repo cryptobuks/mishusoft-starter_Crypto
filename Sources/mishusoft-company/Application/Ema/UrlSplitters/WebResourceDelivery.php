@@ -42,7 +42,6 @@ class WebResourceDelivery
         $this->defaultApplicationIcon = Memory::data()->preset->logo;
     }//end __construct()
 
-
     /**
      * @param array $request
      * @throws \GeoIp2\Exception\AddressNotFoundException
@@ -187,13 +186,13 @@ class WebResourceDelivery
                                 $width,
                                 $height,
                             ] = explode('x', preg_replace('[.'.$ext.']', '', $expected));
-                            if (file_exists(Storage::mediaFullPath('logos/'.$this->defaultApplicationIcon)) === true) {
+                            if (file_exists(Storage::logoFullPath($this->defaultApplicationIcon)) === true) {
                                 Storage\Stream::originalFile(
                                     Storage\Media\Image::resize(
-                                        Storage::mediaFullPath('logos/'.$this->defaultApplicationIcon),
+                                        Storage::logoFullPath($this->defaultApplicationIcon),
                                         (int)$width,
                                         (int)$height,
-                                        Storage::logosPath().'logos'.DS.$filename
+                                        Storage::logosPath().$filename
                                     )
                                 );
                             }
@@ -203,7 +202,7 @@ class WebResourceDelivery
                                     Storage::logoFullPath($this->defaultApplicationIcon),
                                     16,
                                     16,
-                                    Storage::logosPath().'logos'.DS.$filename
+                                    Storage::logosPath().$filename
                                 )
                             );
                         }//end if
@@ -223,8 +222,10 @@ class WebResourceDelivery
                     break;
 
                 case strtolower('related'):
-                    if (file_exists(MPM::templatesJavascriptResourcesRootLocal().implode(DS, $request['arguments'])) === true) {
-                        Storage\Stream::originalFile(MPM::templatesJavascriptResourcesRoot($request['module'], $request['controller']));
+                    $requestArgument=implode(DS, $request['arguments']);
+                    $requestedWebFile=MPM::templatesJavascriptResourcesRoot($request['module'], $request['controller']);
+                    if (file_exists(MPM::templatesJavascriptResourcesRootLocal().$requestArgument) === true) {
+                        Storage\Stream::originalFile($requestedWebFile);
                     } else {
                         Firewall::runtimeFailure(
                             'Not Found',
@@ -285,9 +286,9 @@ class WebResourceDelivery
      */
     private function webExploreLoader(array $request): void
     {
-        $requestedFile = Storage::storageFullPath(
-            strtolower($request['controller']).DS.strtolower($request['method']).DS.implode(DS, $request['arguments'])
-        );
+        $implodedRequestDirectory=$request['controller'].DS.$request['method'].DS;
+        $implodedRequestArgument=strtolower($implodedRequestDirectory).implode(DS, $request['arguments']);
+        $requestedFile = Storage::storageFullPath($implodedRequestArgument);
 
         if (file_exists($requestedFile) === true) {
             if (filetype($requestedFile) === 'dir') {
@@ -300,7 +301,7 @@ class WebResourceDelivery
                 'Not Found',
                 [
                     'debug' => [
-                        'file'        => strtolower($request['controller']).DS.strtolower($request['method']).DS.implode(DS, $request['arguments']),
+                        'file'        => $implodedRequestArgument,
                         'location'    => $requestedFile,
                         'description' => 'The web data center is not set!!',
                     ],
@@ -334,7 +335,7 @@ class WebResourceDelivery
         }
 
         Ui::start();
-        Ui::setDocumentTitle(ucfirst($request['controller']));
+        Ui::setDocumentTitle(ucfirst($request['controller']) . DEFAULT_APP_NAME);
 
         /*
          * Add stylesheet files.
@@ -413,7 +414,7 @@ class WebResourceDelivery
         Ui::text($header_logo_zone, $request['controller']);
 
         Ui::elementList(
-            Ui::element($template_header, 'nav', ['class' => 'nav-right width-70percent', /*'style' => 'width:70%;font-size:18px;font-weight:bold;align-items: center;display: flex;justify-content: flex-end;'*/]),
+            Ui::element($template_header, 'nav', ['class' => 'nav-right width-70percent',]),
             [
                 'a' => [
                     [
@@ -648,9 +649,9 @@ class WebResourceDelivery
 
                 // optimize web link
                 if (substr(Inflect::lower(Http::browser()->getVisitedPage()), (strlen(Inflect::lower(Http::browser()->getVisitedPage())) - 1), 1) !== '/') {
-                    $parentURL = Inflect::lower(Http::browser()()->getVisitedPage()).'/';
+                    $parentURL = Inflect::lower(Http::browser()->getVisitedPage()).'/';
                 } else {
-                    $parentURL = Inflect::lower(Http::browser()()->getVisitedPage());
+                    $parentURL = Inflect::lower(Http::browser()->getVisitedPage());
                 }
 
                 // add media Http::browser()
@@ -721,9 +722,9 @@ class WebResourceDelivery
                 Ui::element(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', ['style' => Ui::HTML_HREF_STYLE.'color: '.Ui::COLOR['black'].';', 'href' => $parentURL.basename($file)]), 'img', ['style' => 'width:20px;height:20px;', 'src' => $parentURL.basename($file)]);
             } else {
                 if (Storage\FileSystem::fileType($file) === 'dir') {
-                    Ui::element(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', ['style' => Ui::HTML_HREF_STYLE.'color: '.Ui::COLOR['black'].';', 'href' => $parentURL.basename($file)]), 'img', ['style' => 'width:20px;height:20px;', 'src' => Storage::toDataUri('media','images/folder.png', 'remote')]);
+                    Ui::element(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', ['style' => Ui::HTML_HREF_STYLE.'color: '.Ui::COLOR['black'].';', 'href' => $parentURL.basename($file)]), 'img', ['style' => 'width:20px;height:20px;', 'src' => Storage::toDataUri('media','images/icons/folder.png', 'remote')]);
                 } elseif (Storage\FileSystem::fileType($file) === 'file') {
-                    Ui::element(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', ['style' => Ui::HTML_HREF_STYLE.'color: '.Ui::COLOR['black'].';', 'href' => $parentURL.basename($file)]), 'img', ['style' => 'width:20px;height:20px;', 'src' => Storage::toDataUri('media','images/code-file.png', 'remote')]);
+                    Ui::element(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', ['style' => Ui::HTML_HREF_STYLE.'color: '.Ui::COLOR['black'].';', 'href' => $parentURL.basename($file)]), 'img', ['style' => 'width:20px;height:20px;', 'src' => Storage::toDataUri('media','images/icons/code-file.png', 'remote')]);
                 } else {
                     Ui::text(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', ['style' => Ui::HTML_HREF_STYLE.'color: '.Ui::COLOR['black'].';', 'href' => $parentURL.basename($file)]), Storage\FileSystem::fileType($file));
                 }
@@ -734,7 +735,7 @@ class WebResourceDelivery
             if (Storage\FileSystem::fileType($file) === 'dir') {
                 Ui::text(Ui::element($list, 'td', ['style' => 'width:200px;']), 'File Folder');
             } else {
-                Ui::text(Ui::element($list, 'td', ['style' => 'width:200px;']), ArrayCollection::value(Storage\FileSystem::fileInfo($file), 'document'));
+                Ui::text(Ui::element($list, 'td', ['style' => 'width:200px;']), ArrayCollection::value(Storage\Media::fileInfo($file), 'document'));
             }
 
             Ui::text(Ui::element($list, 'td'), Storage\FileSystem::fileSize($file));

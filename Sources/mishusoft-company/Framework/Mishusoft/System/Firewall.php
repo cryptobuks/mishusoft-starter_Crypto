@@ -84,9 +84,7 @@ class Firewall extends Base
         ],
     ];
 
-    protected static string $reasonOfBlock = '';
-
-    protected static string $messageOfBlock = '';
+    protected static array|string $messageOfBlock = '';
 
     /**
      * Check if access request is granted, else return false
@@ -121,13 +119,6 @@ class Firewall extends Base
      * @var string
      */
     private string $msgTab = '';
-
-    /**
-     * Color.
-     *
-     * @var string
-     */
-    private static string $color = '#f22b08';
 
     /**
      * Duration
@@ -679,7 +670,6 @@ class Firewall extends Base
             }
         }
 
-
         Logger::write('End create http request to system for the client');
     }//end makeAccessRequest()
 
@@ -1007,7 +997,6 @@ class Firewall extends Base
      */
     private static function runtimeFailureUi(string $title, array $message): void
     {
-
         if (Memory::Data('framework')->debug === false) {
             if (array_key_exists('error', $message) === true) {
                 $message = $message['error'];
@@ -1048,96 +1037,6 @@ class Firewall extends Base
             );
         }//end if
     }//end runtimeFailureUi()
-
-
-    /**
-     * View visitor information for html display
-     *
-     * @param DOMElement|DOMNode|DOMDocument $body Html body.
-     * @param string $requestMethod Requested method name.
-     * @param string $requestAddress Requested address.
-     * @param object $browser
-     * @return void
-     * @throws HttpResponseException
-     * @throws JsonException Throw exception when json error occurred.
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
-     * @throws \Mishusoft\Exceptions\JsonException
-     */
-    private static function viewVisitorInfo(DOMElement|DOMNode|DOMDocument $body, string $requestMethod, string $requestAddress, object $browser): void
-    {
-        Ui::text(
-            Ui::element(
-                $body,
-                'ms-app-paragraph',
-                ['style' => 'font-size: 15px;line-height: 1.5;display: flex;text-align: left;padding: 5px;border-top: groove;margin-top: 10px;']
-            ),
-            'User Agent: ' . $browser->getUserAgent()
-        );
-        Ui::text(
-            Ui::element(
-                $body,
-                'ms-app-paragraph',
-                ['style' => 'font-size: 15px;line-height: 1.5;display: flex;text-align: left;padding: 5px;']
-            ),
-            "Request URL: $requestMethod \"$requestAddress\""
-        );
-        Ui::text(
-            Ui::element(
-                $body,
-                'ms-app-paragraph',
-                ['style' => 'font-size: 15px;line-height: 1.5;display: flex;text-align: left;padding: 5px;']
-            ),
-            'IP address: ' . IP::get()
-        );
-
-        // avoid error country capturing
-        if (Character::lower(IP::getCountry()) !== 'unknown') {
-            Ui::text(
-                Ui::element(
-                    $body,
-                    'ms-app-paragraph',
-                    ['style' => 'font-size: 15px;line-height: 1.5;display: flex;text-align: left;padding: 5px;']
-                ),
-                'Country: ' . IP::getCountry()
-            );
-        } else {
-            if (Character::lower(IP::getInfo('country')) !== 'unknown location') {
-                Ui::text(
-                    Ui::element(
-                        $body,
-                        'ms-app-paragraph',
-                        ['style' => 'font-size: 15px;line-height: 1.5;display: flex;text-align: left;padding: 5px;']
-                    ),
-                    'Country: ' . IP::getInfo('country')
-                );
-            }
-        }//end if
-
-        // avoid error browser capturing
-        if (Character::lower($browser->getBrowserName()) !== 'unknown') {
-            Ui::text(
-                Ui::element(
-                    $body,
-                    'ms-app-paragraph',
-                    ['style' => 'font-size: 15px;line-height: 1.5;display: flex;text-align: left;padding: 5px;']
-                ),
-                'Browser: ' . $browser->getBrowserNameFull()
-            );
-        }
-
-        // avoid error device capturing
-        if (Character::lower($browser->getDeviceName()) !== 'unknown') {
-            Ui::text(
-                Ui::element(
-                    $body,
-                    'ms-app-paragraph',
-                    ['style' => 'font-size: 15px;line-height: 1.5;display: flex;text-align: left;padding: 5px;']
-                ),
-                'Device: ' . $browser->getDeviceName() . ' (' . strtolower($browser->getDeviceArchitecture()) . ')'
-            );
-        }
-    }//end viewVisitorInfo()
 
 
     /**
@@ -1394,32 +1293,24 @@ class Firewall extends Base
             if (array_key_exists('ui', Http::browser()->details())) {
                 //GranParadiso/3.0.8 is text browser
                 if (Character::lower(Http::browser()->details()['ui']) === Character::lower('FullTextMode')) {
-                    $msg_lb = "\n";
                     $this->msgTab = "\t";
-                    $this->defenseMessageShow('', $msg_lb, $this->actionStatus, $this->actionComponent, 'text');
+                    $this->defenseMessageShow('', $this->actionStatus, $this->actionComponent, 'text');
                 } else {
-                    $msg_lb = '<br/>';
                     $this->msgTab = '&emsp;';
-                    self::$color = 'red';
                     $this->defenseMessageShow(
                         'Access',
-                        $msg_lb,
                         $this->actionStatus,
                         $this->actionComponent,
                         'graphic'
                     );
                 }
             } else {
-                $msg_lb = '<br/>';
                 $this->msgTab = '&emsp;';
-                self::$color = 'red';
-                $this->defenseMessageShow('Access', $msg_lb, $this->actionStatus, $this->actionComponent, 'graphic');
+                $this->defenseMessageShow('Access', $this->actionStatus, $this->actionComponent, 'graphic');
             }
         } else {
-            $msg_lb = '<br/>';
             $this->msgTab = '&emsp;';
-            self::$color = 'green';
-            $this->defenseMessageShow('Access', $msg_lb, 'fridge', 'browser', 'graphic');
+            $this->defenseMessageShow('Access', 'fridge', 'browser', 'graphic');
         }//end if
     }//end defenceActivate()
 
@@ -1429,7 +1320,6 @@ class Firewall extends Base
 
     /**
      * @param string $title
-     * @param string $lb
      * @param string $status
      * @param string $component
      * @param string $viewMode
@@ -1444,7 +1334,7 @@ class Firewall extends Base
      * @throws \Mishusoft\Exceptions\RuntimeException
      * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
      */
-    private function defenseMessageShow(string $title, string $lb, string $status, string $component, string $viewMode): void
+    private function defenseMessageShow(string $title, string $status, string $component, string $viewMode): void
     {
         if ($component === 'browser') {
             $componentText = "on $component " . Http::browser()->getBrowserNameFull();
@@ -1492,10 +1382,6 @@ class Firewall extends Base
                 echo PHP_EOL;
                 echo " IP address : $this->msgTab" . IP::get() . PHP_EOL;
 
-                // avoid error country capturing
-//                if (Character::lower(IP::getCountry()) !== 'unknown' || Character::lower(IP::getInfo('country')) !== 'unknown location') {
-//                    echo " Country : $this->msgTab".IP::getCountry().PHP_EOL;
-//                }
                 if (Character::lower(IP::getCountry()) !== 'unknown') {
                     echo " Country : $this->msgTab" . IP::getCountry() . PHP_EOL;
                 } elseif (Character::lower(IP::getInfo('country')) !== 'unknown location') {
@@ -1509,7 +1395,7 @@ class Firewall extends Base
 
                 // avoid error device capturing
                 if (Character::lower(Http::browser()->getDeviceName()) !== 'unknown') {
-                    echo " Device : $this->msgTab" . Http::browser()->getDeviceName() . ' (' . Character::lower(Http::browser()->getDeviceArchitecture()) . ').' . PHP_EOL;
+                    echo " Device : $this->msgTab" . Http::browser()->getDeviceName() . ' (' . Character::lower(Http::browser()->getPlatformArchitecture()) . ').' . PHP_EOL;
                 }
 
                 for ($i = 0; $i <= 65; $i++) {
@@ -1520,265 +1406,18 @@ class Firewall extends Base
                 //echo 'Copyright © '.Time::getCurrentYearNumber().' '.Framework::COMPANY_NAME.'. All Right Reserved.'.PHP_EOL;
                 echo '© ' . Time::currentYearNumber() . ' ' . Framework::COMPANY_NAME . '.' . PHP_EOL;
             } else {
-                FirewallView::protection("$title denied", '',Http::NOT_ACCEPTABLE);
-                //self::strictProtectionView("$title denied", '', '');
+                FirewallView::protection(
+                    "$title denied",
+                    [
+                        'caption'=>"$component has been $status",
+                        'message'=> "This is internal error occurred. if you are developer or owner of this website, please fix this problem.",
+                    ],
+                    Http::NOT_ACCEPTABLE
+                );
                 exit();
             }//end if
         }//end if
     }//end defenseMessageShow()
-
-    /**
-     * @param string $documentTitle
-     * @param string $message
-     * @param string $reason
-     * @throws HttpResponseException
-     * @throws InvalidArgumentException
-     * @throws JsonException
-     * @throws PermissionRequiredException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
-     * @throws \Mishusoft\Exceptions\ErrorException
-     * @throws \Mishusoft\Exceptions\JsonException
-     * @throws \Mishusoft\Exceptions\RuntimeException
-     * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
-     */
-    public static function strictProtectionView(string $documentTitle, string $message, string $reason): void
-    {
-        $documentTitle = sprintf('%s - Mishusoft Firewall', ucfirst($documentTitle));
-
-        // Validating reason of block action.
-        if ($message !== '') {
-            $messageOfBlock = $message;
-        } elseif (self::$messageOfBlock !== '') {
-            $messageOfBlock = self::$messageOfBlock;
-        } else {
-            $messageOfBlock = 'If you are the owner (or you manage this site), please whitelist you IP or if you think this block is an error please open a support ticket and make sure to include the block details (displayed in the box below), so we can assist you to troubleshooting the issue.';
-        }
-
-        // Validating reason of block action.
-        if ($reason !== '') {
-            $reasonOfBlock = $reason;
-        } elseif (self::$reasonOfBlock !== '') {
-            $reasonOfBlock = self::$reasonOfBlock;
-        } else {
-            $reasonOfBlock = 'Unwanted Access';
-        }
-
-
-        // Start application web interface.
-        Ui::start();
-        Ui::setDocumentTitle($documentTitle);
-
-        //Ui::element(Ui::getDocumentHeadElement(), 'style', ['text'=>$cssContent]);
-        Ui::elementList(Ui::getDocumentHeadElement(), ['link' => Storage::assignableWebFavicons()]);
-
-        Ui::elementList(
-            Ui::getDocumentHeadElement(),
-            [
-                'meta' => [
-                    ['charset' => 'UTF-8'],
-                    [
-                        'name' => 'viewport',
-                        'content' => 'width=device-width, initial-scale=1.0',
-                    ],
-                    [
-                        'name' => 'keywords',
-                        'content' => 'blocked, banned, denied',
-                    ],
-                    [
-                        'name' => 'company',
-                        'content' => Framework::COMPANY_NAME,
-                    ],
-                    [
-                        'name' => 'author',
-                        'content' => Framework::AUTHOR_NAME,
-                    ],
-                    [
-                        'name' => 'description',
-                        'content' => $documentTitle,
-                    ],
-                    //<meta name="keywords" content="Put your keywords here.">
-                    //<meta name="company" content="Put your company name here.">
-                    //<meta name="author" content="Put your author name here.">
-                    //<meta name="description" content="Put your description here.">
-                ],
-                'link' => [
-                    [
-                        'rel' => 'stylesheet',
-                        'href' => Storage::toDataUri('assets','css/app.css'),
-                    ],
-                    //                    array(
-                    //                        'rel'  => 'stylesheet',
-                    //                        'href' => Storage::toDataUri('css/font-face.css'),
-                    //                    ),
-                    //                    array(
-                    //                        'rel'  => 'stylesheet',
-                    //                        'href' => Storage::toDataUri('css/colors.css'),
-                    //                    ),
-                ],
-                //'style' => array(array('text'=>$cssContent))
-            ]
-        );
-        //<link rel="icon" type="image/vnd.microsoft.icon" sizes="16x16" href="{$layoutParams.logoFolder}favicon.ico">
-
-        Ui::element(Ui::getDocumentRoot(), 'body', ['child' => [
-            'section' => [
-                ['class' => 'application', 'child' => [
-                    'article' => [
-                        ['class' => 'application-content', 'child' => [
-                            'img' => [
-                                ['class' => 'application-content-title-icon', 'alt' => 'access denied', 'src' => Storage::toDataUri('assets','images/icons/restriction-shield.png'),],
-                            ],
-                            'div' => [
-                                ['class' => 'application-content-title', 'text' => $documentTitle,],
-                                ['class' => 'application-content-body', 'child' => [
-                                    'div' => [
-                                        ['class' => 'message', 'text' => $messageOfBlock,],
-                                        ['class' => 'details-title', 'text' => 'Block details:',],
-                                    ],
-                                    'table' => [
-                                        ['class' => 'details', 'child' => [
-                                            'tr' => self::getAssignableVisitorDetails($reasonOfBlock),
-                                        ]],
-                                    ],
-                                ]],
-                                //['class' => 'application-content-footer','text' => 'application-footer',],
-                            ],
-                        ]],
-                    ],
-                ]],
-            ],
-        ]]);
-
-
-        Ui::display();
-    }
-
-    /**
-     * @param string $reasonOfBlock
-     * @return array
-     * @throws HttpResponseException
-     * @throws JsonException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
-     * @throws \Mishusoft\Exceptions\JsonException
-     */
-    private static function getAssignableVisitorDetails(string $reasonOfBlock): array
-    {
-        $visitorDetails = [];
-
-        // Reason of block.
-        $visitorDetails[] = [
-            'class' => 'details-item',
-            'child' => [
-                'td' => [
-                    ['class' => 'details-item-title', 'text' => 'Reason :',],
-                    ['class' => 'details-item-details', 'text' => $reasonOfBlock,],
-                ],
-            ],
-        ];
-
-        // Client ip address capturing.
-        $visitorDetails[] = [
-            'class' => 'details-item',
-            'child' => [
-                'td' => [
-                    ['class' => 'details-item-title', 'text' => 'Your IP :',],
-                    ['class' => 'details-item-details', 'text' => IP::get(),],
-                ],
-            ],
-        ];
-
-        // Current web url capturing.
-        $visitorDetails[] = [
-            'class' => 'details-item',
-            'child' => [
-                'td' => [
-                    ['class' => 'details-item-title', 'text' => 'URL :',],
-                    ['class' => 'details-item-details', 'text' => Http::browser()::getVisitedPage(),],
-                ],
-            ],
-        ];
-
-        // Capturing the user agent of browser.
-        $visitorDetails[] = [
-            'class' => 'details-item',
-            'child' => [
-                'td' => [
-                    ['class' => 'details-item-title', 'text' => 'User Agent :',],
-                    ['class' => 'details-item-details', 'text' => Http::browser()->getUserAgent(),],
-                ],
-            ],
-        ];
-
-        // avoid error country capturing
-        if (Character::lower(IP::getCountry()) !== 'unknown') {
-            $visitorDetails[] = [
-                'class' => 'details-item',
-                'child' => [
-                    'td' => [
-                        ['class' => 'details-item-title', 'text' => 'Country :',],
-                        ['class' => 'details-item-details', 'text' => IP::getCountry() . ' (' . IP::get() . ')',],
-                    ],
-                ],
-            ];
-        } elseif (Character::lower(IP::getInfo('country')) !== 'unknown location') {
-            $visitorDetails[] = [
-                'class' => 'details-item',
-                'child' => [
-                    'td' => [
-                        ['class' => 'details-item-title', 'text' => 'Country :',],
-                        ['class' => 'details-item-details', 'text' => IP::getInfo('country') . ' (' . IP::get() . ')',],
-                    ],
-                ],
-            ];
-        } else {
-            $visitorDetails[] = [
-                'class' => 'details-item',
-                'child' => [
-                    'td' => [
-                        ['class' => 'details-item-title', 'text' => 'Country :',],
-                        ['class' => 'details-item-details', 'text' => 'Unknown' . ' (' . IP::get() . ')',],
-                    ],
-                ],
-            ];
-        }//end if
-
-        // avoid error browser capturing
-        if (Character::lower(Http::browser()->getBrowserName()) !== 'unknown') {
-            $visitorDetails[] = [
-                'class' => 'details-item',
-                'child' => [
-                    'td' => [
-                        ['class' => 'details-item-title', 'text' => 'Browser :',],
-                        ['class' => 'details-item-details', 'text' => Http::browser()->getBrowserNameFull(),],
-                    ],
-                ],
-            ];
-        }
-
-        // avoid error device capturing
-        if (Character::lower(Http::browser()->getDeviceName()) !== 'unknown') {
-            $deviceAndArchitecture = Http::browser()->getDeviceName();
-            $deviceAndArchitecture .= ' (' . strtolower(Http::browser()->getBrowserArchitecture()) . ')';
-
-            $visitorDetails[] = [
-                'class' => 'details-item',
-                'child' => [
-                    'td' => [
-                        ['class' => 'details-item-title', 'text' => 'Device :',],
-                        [
-                            'class' => 'details-item-details',
-                            'text' => $deviceAndArchitecture,
-                        ],
-                    ],
-                ],
-            ];
-        }
-
-
-        return $visitorDetails;
-    }
 
 
     /**

@@ -27,8 +27,7 @@ class JSON
                 $jsonException->getCode(),
                 $jsonException->getCode(),
                 $jsonException->getFile(),
-                $jsonException->getLine(),
-                $jsonException->getTraceAsString()
+                $jsonException->getLine()
             );
         }
     }//end encodeToString()
@@ -70,8 +69,7 @@ class JSON
                 $jsonException->getCode(),
                 $jsonException->getCode(),
                 $jsonException->getFile(),
-                $jsonException->getLine(),
-                $jsonException->getTraceAsString()
+                $jsonException->getLine()
             );
         }
     }//end decodeToObject()
@@ -98,8 +96,7 @@ class JSON
                 $jsonException->getCode(),
                 $jsonException->getCode(),
                 $jsonException->getFile(),
-                $jsonException->getLine(),
-                $jsonException->getTraceAsString()
+                $jsonException->getLine()
             );
         }
     }//end decodeToArray()

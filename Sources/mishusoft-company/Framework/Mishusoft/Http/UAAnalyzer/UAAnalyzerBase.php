@@ -248,7 +248,7 @@ class UAAnalyzerBase extends Base
                 fwrite($resource, $contents);
                 fclose($resource);
 
-                exec('chmod -R 777 ' . $filename);
+                //exec('chmod -R 777 ' . $filename);
             } else {
                 throw new PermissionRequiredException('Permission required. Unable to write or read ' . $filename);
             }

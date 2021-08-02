@@ -528,7 +528,7 @@ class MPM extends Base
      */
     public static function templatesHtmlResourcesRoot(string $moduleName, string $controllerName): string
     {
-        return implode(DIRECTORY_SEPARATOR, [self::resourcesPath().'Templates', $moduleName, $controllerName.DIRECTORY_SEPARATOR]);
+        return implode(DS, [self::resourcesPath().'Templates', $moduleName, $controllerName.DS]);
     }//end templatesHtmlResourcesRoot()
 
 
@@ -566,7 +566,7 @@ class MPM extends Base
      */
     public static function templatesJavascriptResourcesRoot(string $moduleName, string $controllerName): string
     {
-        return implode(DS, [Storage::webResourcesPath().'related', 'Javascripts', $moduleName, $controllerName.DIRECTORY_SEPARATOR]);
+        return implode(DS, [Storage::webResourcesPath().'related', 'Javascripts', $moduleName, $controllerName.DS]);
     }//end templatesJavascriptResourcesRoot()
 
 

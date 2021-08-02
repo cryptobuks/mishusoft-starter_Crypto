@@ -262,7 +262,7 @@ class Framework extends Base
         }
 
         /*
-         * Check last string of root directory is back slash or not.
+         * Check last string of root directory is backslash or not.
          * */
         if ($rootPath[(strlen($rootPath) - 1)] !== '/') {
             $rootPath .= '/';

@@ -19,9 +19,9 @@ class Logger
      * @var array|string[]
      */
     private static array $allowedStyle = [
-        LOGGER_WRITE_STYLE_SMART,
-        LOGGER_WRITE_STYLE_SHORTCUT,
-        LOGGER_WRITE_STYLE_FULL,
+        LOG_STYLE_SMART,
+        LOG_STYLE_SHORTCUT,
+        LOG_STYLE_FULL,
     ];
 
     /**
@@ -30,9 +30,9 @@ class Logger
      * @var array
      */
     private static array $allowedFlags = [
-        LOGGER_FLAG_TYPE_COMPILE,
-        LOGGER_FLAG_TYPE_ACCESS,
-        LOGGER_FLAG_TYPE_RUNTIME,
+        LOG_TYPE_COMPILE,
+        LOG_TYPE_ACCESS,
+        LOG_TYPE_RUNTIME,
     ];
 
 
@@ -50,8 +50,8 @@ class Logger
      */
     public static function write(
         string $message,
-        string $style = LOGGER_WRITE_STYLE_SMART,
-        string $flag = LOGGER_FLAG_TYPE_COMPILE
+        string $style = LOG_STYLE_SMART,
+        string $flag = LOG_TYPE_COMPILE
     ): void {
         date_default_timezone_set('Asia/Dhaka');
 
@@ -107,13 +107,13 @@ class Logger
 
             $contents = file_get_contents($logFile);
 
-            if (strtolower($style) === LOGGER_WRITE_STYLE_SMART) {
+            if (strtolower($style) === LOG_STYLE_SMART) {
                 // [2021-05-29 04:34 PM]    192.168.0.1 "localhost  GET /"  Filter request of client.
                 $contents .= sprintf("[%s]\t%s\t\"%s\t%s\t%s\"\t%s\r", $time, $ip, $server, $mode, $url, $message);
-            } elseif (strtolower($style) === LOGGER_WRITE_STYLE_SHORTCUT) {
+            } elseif (strtolower($style) === LOG_STYLE_SHORTCUT) {
                 // [2021-05-29 04:34 PM]    "localhost GET /"   Filter request of client.
                 $contents .= sprintf("[%s]\t\"%s\t%s\t%s\"\t%s\r", $time, $server, $mode, $url, $message);
-            } elseif (strtolower($style) === LOGGER_WRITE_STYLE_FULL) {
+            } elseif (strtolower($style) === LOG_STYLE_FULL) {
                 // [2021-05-29 05:44AM]<tab>127.0.0.1<tab>Mozilla/5.0 (X11; Linux x86_64; rv:88.0) Gecko/20100101
                 // Firefox/88.0<tab>http 200<tab>"localhost<tab>GET<tab>/"
                 // <tab>Description: Widget's content not readable or found.
@@ -137,7 +137,7 @@ class Logger
                 fwrite($resource, $contents);
                 fclose($resource);
 
-                exec('chmod -R 777 '.$logFile);
+                //exec('chmod -R 777 '.$logFile);
             } else {
                 throw new PermissionRequiredException('Permission denied. Unable to write or read '.$logFile);
             }
@@ -189,9 +189,9 @@ class Logger
         $todayDate     = date('Ymd');
 
         // @codingStandardsIgnoreStart
-        // LOGGER_FLAG_TYPE_COMPILE => PHP_RUNTIME_LOGS_PATH.$todayDate.DS.'php_compile_'.APPLICATION_SERVER_NAME.'.log',
-        // LOGGER_FLAG_TYPE_ACCESS => PHP_RUNTIME_LOGS_PATH.$todayDate.DS.'php_access_'.APPLICATION_SERVER_NAME.'.log',
-        // LOGGER_FLAG_TYPE_RUNTIME => PHP_RUNTIME_LOGS_PATH.$todayDate.DS.'php_runtime_'.APPLICATION_SERVER_NAME.'.log',
+        // LOG_TYPE_COMPILE => PHP_RUNTIME_LOGS_PATH.$todayDate.DS.'php_compile_'.APPLICATION_SERVER_NAME.'.log',
+        // LOG_TYPE_ACCESS => PHP_RUNTIME_LOGS_PATH.$todayDate.DS.'php_access_'.APPLICATION_SERVER_NAME.'.log',
+        // LOG_TYPE_RUNTIME => PHP_RUNTIME_LOGS_PATH.$todayDate.DS.'php_runtime_'.APPLICATION_SERVER_NAME.'.log',
         // @codingStandardsIgnoreEnd
 
         return match ($flag) {

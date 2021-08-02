@@ -10,9 +10,16 @@ use Mishusoft\Utility\JSON;
 class Http extends ErrorsData
 {
 
+    private static Browser $browser;
+
+    public static function makeCacheBrowser(): void
+    {
+        self::$browser = new Browser();
+    }
+
     public static function browser():Browser
     {
-        return new Browser();
+        return self::$browser;
     }
 
 

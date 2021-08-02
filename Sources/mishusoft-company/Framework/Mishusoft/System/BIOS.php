@@ -19,10 +19,25 @@ class BIOS
      * BIOS initialise function.
      *
      * @return BIOS
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \JsonException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public static function initialise(): BIOS
     {
         try {
+            //Runtime cache system is on
+            Http::makeCacheBrowser();
+            // Instance system memory.
+            Logger::write('Start system memory.');
+            Memory::enable();
+
             Logger::write('Start system firewall.');
             $firewall = new Firewall();
 
@@ -39,14 +54,10 @@ class BIOS
                     ]);
                     Logger::write(
                         sprintf("%s for %s.", $note, Http::browser()::getVisitedPage()),
-                        LOGGER_WRITE_STYLE_FULL,
-                        LOGGER_FLAG_TYPE_ACCESS
+                        LOG_STYLE_FULL,
+                        LOG_TYPE_ACCESS
                     );
                 } else {
-                    Logger::write('Start system memory.');
-                    // Instance system memory.
-                    (new Memory())->enable();
-
                     Logger::write('Access validity of client has been passed.');
                     Logger::write('Start system session.');
                     Session::init();

@@ -84,7 +84,7 @@ const commonConfig = {
             {
                 patterns: [
                 /*copy webfonts file from sources directory*/
-                {from: WEBPACK_STATIC_ASSETS_SRC_ROOT + '/webfonts/', to: ASSETS_PATH + '/webfonts/[name].[ext]'},
+                {from: path.join(DOCUMENT_ROOT, './storages/app/webfonts/'), to: path.join(DOCUMENT_ROOT, './storages/app/assets/webfonts/')},
                 ]
             }
         ),

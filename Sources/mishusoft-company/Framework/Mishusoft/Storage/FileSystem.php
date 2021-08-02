@@ -313,6 +313,11 @@ class FileSystem
         }
     }//end createDirectory()
 
+    public static function permission(string $pathname): bool|int
+    {
+        return fileperms($pathname);
+    }
+
 
     /**
      * @param string $directoryPath

@@ -8,6 +8,7 @@ use Mishusoft\Exceptions\ErrorException;
 use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
+use Mishusoft\Storage;
 use Mishusoft\Storage\FileSystem;
 use Mishusoft\Framework;
 use Mishusoft\MPM;
@@ -18,49 +19,113 @@ use stdClass;
 class Memory
 {
 
-    /**
-     * Memory constructor.
-     *
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
-     */
-    public function __construct()
-    {
-        Logger::write(sprintf('Check %s class existent.', ROM::class));
-        if (class_exists(ROM::class) === true) {
-            Logger::write(sprintf('Found %s class in system.', ROM::class));
-            Logger::write(sprintf('Play with %s class.', ROM::class));
-            (new ROM())->play();
-        } else {
-            throw new RuntimeException(__NAMESPACE__ . '\ROM not found.');
-        }
-
-        Logger::write(sprintf('Check %s file existent.', Framework::configFile()));
-        if (file_exists(Framework::configFile()) === false) {
-            throw new RuntimeException(Framework::configFile() . ' not found.');
-        }
-    }//end __construct()
+    private static array $data = [];
 
 
     /**
      * Enable system memory.
      *
      * @return void
-     * @throws JsonException Throw exception on json error.
      * @throws ErrorException
-     * @throws \Mishusoft\Exceptions\JsonException
      * @throws InvalidArgumentException
+     * @throws JsonException
      * @throws PermissionRequiredException
      * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
-    public function enable(): void
+    public static function enable(): void
     {
-        Logger::write('Load data for defined required contents from memory file.');
-        self::loadMemory();
+        Logger::write('Start data collecting and load to memory');
+        self::validate();
+        self::loadFrameworkMemory();
         self::baseUrlSet();
+        Logger::write('End data collecting and load to memory');
     }//end enable()
 
+
+    /**
+     * Check memory directory, create directory when not found.
+     * Check config file, create and store default data when not found.
+     * Check validation of stored data, restore to default data when configuration data corrupted
+     * @throws ErrorException
+     * @throws InvalidArgumentException
+     * @throws JsonException
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
+     */
+    private static function validate(): void
+    {
+
+        /*
+         * Framework configuration directory [default data path]
+         *
+         * Check read permission of parent directory of Framework configuration directory;
+         * throw read error message when not permitted;
+         */
+
+        // Reduce time and space
+        $defaultMemoryDirectory = Storage::dataDriveStoragesPath();
+        $rootMemoryDirectory = dirname($defaultMemoryDirectory);
+        $configFile = Framework::configFile();
+        $installFile = Framework::configFile();
+        $configs = FRAMEWORK::defaultConfig();
+
+        if (is_writable($defaultMemoryDirectory) === false) {
+            throw new PermissionRequiredException(
+                sprintf('Unable to write %s', $defaultMemoryDirectory)
+            );
+        }
+
+        /*
+         * Check read permission of Framework configuration directory [default php runtime registries path]
+         * throw read error message when not permitted
+         */
+
+        if (is_readable($rootMemoryDirectory) === false) {
+            throw new PermissionRequiredException(
+                sprintf('Unable to read %s', $rootMemoryDirectory)
+            );
+        }
+
+        /*
+          * Check framework configuration file,
+          * If the configuration not found, then create this file.
+          * If the configuration file is empty, then rewrite this file.
+          * If the configuration file is corrupted, then rewrite this file.
+          */
+
+
+        Logger::write(sprintf('Check %s file existent.', $configFile));
+        if (file_exists($configFile) === false) {
+            Logger::write(sprintf('Check failed. %s file not exists.', $configFile));
+            Logger::write(sprintf('Creating new %s file with default config.', $configFile));
+            FileSystem\Yaml::emitFile($configFile, $configs);
+        } else {
+            $content = FileSystem\Yaml::parseFile($configFile);
+            Logger::write(sprintf('Check %s file\'s content length.', $configFile));
+            if (count($content) === 0) {
+                Logger::write(sprintf('The content of %s file is empty.', $configFile));
+                Logger::write(sprintf('Creating new %s file with default config.', $configFile));
+                FileSystem\Yaml::emitFile($configFile, $configs);
+            }
+        }
+
+        Logger::write(sprintf('Check %s file existent.', $installFile));
+        if (file_exists($installFile) === false) {
+            Logger::write(sprintf('Check failed. %s file not exists', $installFile));
+            Logger::write(sprintf('Creating new %s file', $installFile));
+            Framework::install();
+        } else {
+            $installContent = FileSystem\Yaml::parseFile($installFile);
+            Logger::write(sprintf('Check %s file\'s content length', $installFile));
+            if (count($installContent) === 0) {
+                Logger::write(sprintf('The content of %s file is empty', $installFile));
+                Logger::write(sprintf('Creating new %s file', $installFile));
+                Framework::install();
+            }
+        }
+    }
 
     /**
      * Load Data.
@@ -97,7 +162,7 @@ class Memory
                 $filename = System::getRequiresFile('SETUP_FILE_PATH', System::getDefaultDb());
             }
 
-            $result = self::dataLoader($format, $default, $filename);
+            $result = self::dataLoader($carrier, $format, $default, $filename);
         } elseif ($carrier === 'mpm') {
             if (array_key_exists('format', $options) === true) {
                 $format = $options['format'];
@@ -121,7 +186,7 @@ class Memory
                 MPM::install();
             }
 
-            $result = self::dataLoader($format, $default, $filename);
+            $result = self::dataLoader($carrier, $format, $default, $filename);
         } elseif ($carrier === 'framework') {
             if (array_key_exists('format', $options) === true) {
                 $format = $options['format'];
@@ -145,7 +210,7 @@ class Memory
                 Framework::install();
             }
 
-            $result = self::dataLoader($format, $default, $filename);
+            $result = self::dataLoader($carrier, $format, $default, $filename);
         } elseif ($carrier === 'memory') {
             if (array_key_exists('format', $options) === true) {
                 $format = $options['format'];
@@ -165,9 +230,9 @@ class Memory
                 $filename = Framework::configFile();
             }
 
-            $result = self::dataLoader($format, $default, $filename);
+            $result = self::dataLoader($carrier, $format, $default, $filename);
         } else {
-            $result = self::dataLoader($options['format'], $options['default'], $options['file']);
+            $result = self::dataLoader($carrier, $options['format'], $options['default'], $options['file']);
         }//end if
 
         return $result;
@@ -188,115 +253,113 @@ class Memory
      * @throws \Mishusoft\Exceptions\JsonException
      * @throws RuntimeException
      */
-    private static function dataLoader(string $format, array $default, string $filename): object|array
+    private static function dataLoader(string $carrier, string $format, array $default, string $filename): object|array
     {
         $result = [];
-
-        Logger::write(sprintf('Check read permission of %s file.', $filename));
-        if (is_readable($filename) === true) {
-            Logger::write(
-                sprintf(
-                    'Get permission %s from %s file.',
-                    substr(sprintf('%o', fileperms($filename)), -4),
-                    $filename
-                )
-            );
-            Logger::write(sprintf('Collect content from %s file.', $filename));
-            $contents = FileSystem::read($filename);
-            $contentsArray = FileSystem\Yaml::parseFile($filename);
-
-            Logger::write(sprintf('Check content length of %s file.', $filename));
-            if ($contents !== '') {
-                if (strtolower($format) === 'object') {
-                    if (is_string($contents) === true) {
-                        Logger::write(sprintf('Create a data object from %s file\'s content.', $filename));
-                        $result = JSON::encodeToObject($contentsArray);
-                    } else {
-                        Logger::write('Create a data object from default content.');
-                        $result = JSON::encodeToObject($default);
-                    }
-
-                    if (is_object($result) === false) {
-                        $result = new stdClass();
-                    }
-                }
-
-                if (strtolower($format) === 'array') {
-                    if (is_string($contents) === true) {
-                        Logger::write(sprintf('Create a data array from %s file\'s content.', $filename));
-                        $result = $contentsArray;
-                    } else {
-                        Logger::write('Create a data object from default content.');
-                        $result = $default;
-                    }
-
-                    if (is_array($result) === false) {
-                        $result = [];
-                    }
-                }
-            } else {
-                throw new ErrorException($filename . ' not empty.');
-            }//end if
+        if (self::isValid($carrier, $format, $filename)) {
+            $result = self::$data[$carrier][$format];
         } else {
-            throw new ErrorException($filename . ' not readable.');
-        }//end if
+            Logger::write(sprintf('Check read permission of %s file.', $filename));
+            if (is_readable($filename) === true) {
+                Logger::write(
+                    sprintf(
+                        'Get permission %s from %s file.',
+                        substr(sprintf('%o', fileperms($filename)), -4),
+                        $filename
+                    )
+                );
+                Logger::write(sprintf('Collect content from %s file.', $filename));
+                $contents = FileSystem::read($filename);
+                $contentsArray = FileSystem\Yaml::parseFile($filename);
 
-        Logger::write('End the process of data grabber from'.$filename);
-        //var_dump(debug_backtrace());
-        //var_dump($result);
+                Logger::write(sprintf('Check content length of %s file.', $filename));
+                if ($contents !== '') {
+                    if (strtolower($format) === 'object') {
+                        if (is_string($contents) === true) {
+                            Logger::write(sprintf('Create a data object from %s file\'s content.', $filename));
+                            $result = JSON::encodeToObject($contentsArray);
+                        } else {
+                            Logger::write('Create a data object from default content.');
+                            $result = JSON::encodeToObject($default);
+                        }
+
+                        if (is_object($result) === false) {
+                            $result = new stdClass();
+                        }
+                    }
+
+                    if (strtolower($format) === 'array') {
+                        if (is_string($contents) === true) {
+                            Logger::write(sprintf('Create a data array from %s file\'s content.', $filename));
+                            $result = $contentsArray;
+                        } else {
+                            Logger::write('Create a data object from default content.');
+                            $result = $default;
+                        }
+
+                        if (is_array($result) === false) {
+                            $result = [];
+                        }
+                    }
+
+                    self::$data[$carrier]['default'] = $default;
+                    self::$data[$carrier]['filename'] = $filename;
+                    self::$data[$carrier][$format] = $result;
+                } else {
+                    throw new ErrorException($filename . ' not empty.');
+                }//end if
+            } else {
+                throw new ErrorException($filename . ' not readable.');
+            }//end if
+
+            Logger::write('End the process of data grabber from' . $filename);
+        }
 
         return $result;
     }//end dataLoader()
 
+    /**
+     * @param string $carrier
+     * @param string $format
+     * @return bool
+     */
+    private static function isValid(string $carrier, string $format): bool
+    {
+        //self::$data[$carrier][$format][$default][$filename]
+        return array_key_exists($carrier, self::$data) && array_key_exists($format, self::$data[$carrier])
+            && array_key_exists('default', self::$data[$carrier])
+            && array_key_exists('filename', self::$data[$carrier]);
+    }
 
     /**
-     * Load memory data.
-     *
-     * @param string $filename Valid file name.
+     * Load framework memory data.
      *
      * @return void
      * @throws InvalidArgumentException
      * @throws PermissionRequiredException
-     * @throws \Mishusoft\Exceptions\JsonException Throw json exception when json error occurred.
      * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException Throw json exception when json error occurred.
      */
-    public static function loadMemory(string $filename = ''): void
+    private static function loadFrameworkMemory(): void
     {
-        if ($filename === '') {
-            $filename = Framework::configFile();
-        }
-        Logger::write(sprintf('Check read permission of %s file.', $filename));
-        if (is_readable(stream_resolve_include_path($filename)) === true) {
-            Logger::write(sprintf('Load data from %s file.', $filename));
-            self::read(JSON::encodeToObject(FileSystem\Yaml::parseFile(stream_resolve_include_path($filename))));
+        Logger::write(sprintf('Check read permission of %s file.', Framework::configFile()));
+        if (is_readable(stream_resolve_include_path(Framework::configFile())) === true) {
+            Logger::write(sprintf('Load data from %s file.', Framework::configFile()));
+            self::read(JSON::encodeToObject(FileSystem\Yaml::parseFile(Framework::configFile())));
         } else {
-            Logger::write(sprintf('Not found system data file %s.', $filename));
+            Logger::write(sprintf('Not found system data file %s.', Framework::configFile()));
             Logger::write('Load default data from system.');
             self::read(JSON::encodeToObject(FRAMEWORK::defaultConfig()));
         }//end if
     }//end loadMemory()
 
     /**
-     * @throws InvalidArgumentException
-     * @throws JsonException
-     * @throws PermissionRequiredException
-     * @throws ErrorException
      * @throws \Mishusoft\Exceptions\JsonException
      * @throws RuntimeException
      */
     private static function baseUrlSet(): void
     {
-        if (!defined('BASE_URL')) {
-            if (is_readable(Framework::installFile()) === true) {
-                define('BASE_URL', self::data('framework', ['file' => Framework::installFile()])->host->url);
-            } elseif (file_exists(System::getRequiresFile('SECURITY_FILE_PATH'))) {
-                define('BASE_URL', System::getInstalledURL());
-            } else {
-                define('BASE_URL', System::getAbsoluteInstalledURL());
-            }
-        } else {
-            print_r(BASE_URL, false);
-        }
+        define('BASE_URL', JSON::encodeToObject(FileSystem\Yaml::parseFile(Framework::installFile()))->host->url);
     }
 
 

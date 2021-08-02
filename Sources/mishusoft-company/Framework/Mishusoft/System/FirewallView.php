@@ -130,16 +130,6 @@ class FirewallView extends Firewall
             self::$documentTitle = sprintf('%s - Mishusoft Firewall', ucfirst(self::$documentTitle));
         }
 
-
-        // Validating reason of block action.
-        if ($message !== '') {
-            $messageOfBlock = $message;
-        } elseif (self::$messageOfBlock !== '') {
-            $messageOfBlock = self::$messageOfBlock;
-        } else {
-            $messageOfBlock = 'This is internal error occurred. if you are developer or owner of this website, please fix this problem.';
-        }
-
         // Start application web interface.
         Ui::start();
         Ui::setDocumentTitle(self::$documentTitle);
@@ -164,7 +154,7 @@ class FirewallView extends Firewall
                 //'style' => array(array('text'=>$cssContent))
             ]
         );
-        //<link rel="icon" type="image/vnd.microsoft.icon" sizes="16x16" href="{$layoutParams.logoFolder}favicon.ico">
+        //<link rel="icon" type="image/vnd.microsoft.icon" sizes="16x16" href="{logoFolder}favicon.ico">
 
         Ui::element(Ui::getDocumentRoot(), 'body', ['child' => self::childElement()]);
 
@@ -219,27 +209,19 @@ class FirewallView extends Firewall
     {
         if (self::$launcher === 'protection') {
             return [
-                'img' => [
-                    [
-                        'class' => 'application-content-title-icon',
-                        'alt' => 'access denied',
-                        'src' => Storage::toDataUri('media', 'images/icons/restriction-shield.png'),
-                    ],
-                ],
                 'div' => [
-                    ['class' => 'application-content-title', 'text' => self::$documentTitle,],
-                    ['class' => 'application-content-body', 'child' => [
-                        'div' => [
-                            ['class' => 'message', 'text' => self::$messageOfBlock,],
-                            ['class' => 'details-title', 'text' => 'Block details',],
-                        ],
-                        'table' => [
-                            ['class' => 'details', 'child' => [
-                                'tr' => self::assignableVisitorDetails(),
-                            ]],
-                        ],
-                    ]],
-                    //['class' => 'application-content-footer','text' => 'application-footer',],
+                    ['class' => 'flex-justify-center', 'child' => [
+                        'img' => [
+                            'class' => 'application-content-title-icon',
+                            'alt' => 'access denied',
+                            'src' => Storage::toDataUri('media', 'images/icons/restriction-shield.png'),
+                        ],],
+                    ],
+                    ['child' => self::assignableProtectionContentBuilder()],
+                    [
+                        'class' => 'application-content-body',
+                        'child' => self::assignableVisitorContentBuilder('Block details'),
+                    ],
                 ],];
         }
 
@@ -349,19 +331,19 @@ class FirewallView extends Firewall
                             ],
                         ],],
                         ['class' => 'application application-concat', 'child' => [
-                                'article' => [
-                                    ['class' => 'application-content-concat', 'child' => [
-                                        'div' => [
-                                            [
-                                                'class' => 'application-content-body application-content-body-concat',
-                                                'child' => self::assignableStackTraceBuilder(),
-                                            ],
+                            'article' => [
+                                ['class' => 'application-content-concat', 'child' => [
+                                    'div' => [
+                                        [
+                                            'class' => 'application-content-body application-content-body-concat',
+                                            'child' => self::assignableStackTraceBuilder(),
                                         ],
-                                    ],],
-                                ],
+                                    ],
+                                ],],
                             ],
                         ],
-                        ['class' => 'application application-concat','style' => 'margin-bottom:20px', 'child' => [
+                        ],
+                        ['class' => 'application application-concat', 'style' => 'margin-bottom:20px', 'child' => [
                             'article' => [
                                 ['class' => 'application-content application-content-width-auto', 'child' => [
                                     'div' => [
@@ -422,6 +404,28 @@ class FirewallView extends Firewall
         return self::lowerDocumentTitle() === 'not found' || str_contains(self::lowerDocumentTitle(), 'unavailable');
     }
 
+    private static function assignableProtectionContentBuilder(): array
+    {
+        $contents = [];
+
+        if (array_key_exists('caption', self::$messageDetails) === true) {
+            $contents['div'][] = ['class' => 'flex-justify-center error-title', 'text' => self::$messageDetails['caption']];
+        }
+        if (array_key_exists('message', self::$messageDetails) === true) {
+            if (is_array(self::$messageDetails['message']) === true) {
+                foreach (self::$messageDetails['message'] as $message) {
+                    $contents['div'][] = ['class' => 'flex-justify-center message', 'text' => $message];
+                }
+            } else {
+                $contents['div'][] = ['class' => 'flex-justify-center message', 'text' => self::$messageDetails['message']];
+            }
+
+        } else {
+            $contents['div'][] = ['class' => 'flex-justify-center message', 'text' => 'An error occurred'];
+        }
+
+        return $contents;
+    }
 
     /**
      * @return array
@@ -450,7 +454,7 @@ class FirewallView extends Firewall
                 ['class' => 'details-title error-title-replacement', 'text' => 'Stack Trace',],
             ],
             'table' => [
-                ['class' => 'details','style' => 'box-shadow:none;', 'child' => [
+                ['class' => 'details', 'style' => 'box-shadow:none;', 'child' => [
                     'tr' => self::assignableStackTraceDetails(),
                 ]],
             ],
@@ -550,7 +554,7 @@ class FirewallView extends Firewall
                 'child' => [
                     'td' => [
                         ['class' => 'details-item-title', 'text' => 'Reason :',],
-                        ['class' => 'details-item-details', 'text' => self::$reasonOfBlock,],
+                        ['class' => 'details-item-details', 'text' => ucfirst(self::$messageDetails['caption']),],
                     ],
                 ],
             ];

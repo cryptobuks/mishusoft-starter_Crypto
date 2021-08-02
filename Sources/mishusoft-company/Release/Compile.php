@@ -225,8 +225,8 @@ class Compile extends FileSystem
                             $this->log('Source:: '.$sourcesDirectory);
                             $this->log('Output:: '.$outputDirectory);
 
-                            if (count(self::getList($sourcesDirectory, 'directory')) > 0) {
-                                foreach (self::getList($sourcesDirectory, 'directory') as $widget) {
+                            if (count(self::list($sourcesDirectory, 'directory')) > 0) {
+                                foreach (self::list($sourcesDirectory, 'directory') as $widget) {
                                     $widgetDirectory = pathinfo($widget, PATHINFO_FILENAME);
                                     $sourceRoot      = $sourcesPathBase.'/'.$widget;
                                     $outputRoot      = $outputPathBase.'/'.$widgetDirectory;
@@ -261,9 +261,9 @@ class Compile extends FileSystem
                             $this->log('Source:: '.$sourcesDirectory);
                             $this->log('Output:: '.$outputDirectory);
 
-                            if (count(self::getList($sourcesDirectory, 'directory')) > 0) {
-                                foreach (self::getList($sourcesDirectory, 'directory') as $package) {
-                                    foreach (self::getList($sourcesDirectory.'/'.$package, 'directory') as $module) {
+                            if (count(self::list($sourcesDirectory, 'directory')) > 0) {
+                                foreach (self::list($sourcesDirectory, 'directory') as $package) {
+                                    foreach (self::list($sourcesDirectory.'/'.$package, 'directory') as $module) {
                                         $sourceRoot          = $sourcesPathBase.'/'.$package.'/'.$module;
                                         $outputPathCommon    = $package.'/Resources/Templates/'.$module;
                                         $outputPathRoot      = $outputPathBase.'/'.$outputPathCommon;
@@ -330,7 +330,7 @@ class Compile extends FileSystem
      */
     private function getThemesList(string $directory): bool|array
     {
-        $files = self::getList($directory, 'file');
+        $files = self::list($directory, 'file');
 
         foreach ($files as $id => $file) {
             if ($file === 'positions.config.standard.php') {
@@ -350,7 +350,7 @@ class Compile extends FileSystem
      */
     public function updatePRVALlPackages(string $directory): void
     {
-        $packages = self::getList($directory, 'directory');
+        $packages = self::list($directory, 'directory');
 
         // Update package release version for all packages.
         foreach ($packages as $package) {
