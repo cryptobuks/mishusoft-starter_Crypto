@@ -117,7 +117,7 @@ class Framework extends Base
      */
     private static function originalFile(string $filename):string
     {
-        return sprintf('%s%s', RUNTIME_ROOT_PATH, $filename);
+        return sprintf('%s%s', RUNTIME_ROOT_PATH /*. 'public_html'*/, $filename);
     }
 
 
@@ -367,7 +367,7 @@ class Framework extends Base
                 'name'        => 'Framework Installer',
                 'version'     => self::VERSION,
                 'debug'       => !(MPM::getProperty('release') === 'stable'),
-                'date'        => Time::getTodayDateOnly(),
+                'date'        => Time::todayDateOnly(),
                 'host'        => [
                     'url'  => System::getAbsoluteInstalledURL(),
                     'name' => Network::getValOfSrv('HTTP_HOST'),
