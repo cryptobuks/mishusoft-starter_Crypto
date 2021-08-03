@@ -21,8 +21,10 @@ class PlatformsIdentifiersCollection extends Collection
     //Developer
 
     /**
-     * @throws RuntimeException
+     * @return array
      * @throws JsonException
+     * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function all():array
     {
@@ -36,7 +38,7 @@ class PlatformsIdentifiersCollection extends Collection
      * @return array
      * @throws RuntimeException
      */
-    public function architecturesAll():array
+    public function archAll():array
     {
         return $this->extractArchitectures($this->query('platforms', 'architectures'));
     }
@@ -46,8 +48,9 @@ class PlatformsIdentifiersCollection extends Collection
      * List of web browsers window manager
      *
      * @return array
-     * @throws RuntimeException
      * @throws JsonException
+     * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function windowManagers(): array
     {

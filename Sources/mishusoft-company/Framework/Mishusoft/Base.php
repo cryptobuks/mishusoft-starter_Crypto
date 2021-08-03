@@ -27,12 +27,12 @@ abstract class Base
 
     /**
      * @param string $path
-     * @param string $format
+     * @param string $extension
      * @return string
      */
-    protected static function dFile(string $path, string $format = 'yml'):string
+    protected static function dFile(string $path, string $extension = 'yml'):string
     {
-        return sprintf('%s.%s', $path, $format);
+        return sprintf('%s.%s', $path, $extension);
     }
 
     /**
@@ -57,6 +57,43 @@ abstract class Base
             'framework',
             'data-drive',
             $directive,
+            $filename,
+            DS
+        );
+    }
+
+    /**
+     * @param string $directive
+     * @param string $filename
+     * @return string
+     */
+    protected static function cacheDataFile(string $directive, string $filename):string
+    {
+        return sprintf(
+            '%1$s%2$s%7$s%3$s%7$s%4$s%7$s%5$s%7$s%6$s',
+            RUNTIME_ROOT_PATH,
+            'storages',
+            'framework',
+            'cache',
+            $directive,
+            $filename,
+            DS
+        );
+    }
+
+
+    /**
+     * @param string $filename
+     * @return string
+     */
+    protected static function cacheFile(string $filename):string
+    {
+        return sprintf(
+            '%1$s%2$s%6$s%3$s%6$s%4$s%6$s%5$s.cache',
+            RUNTIME_ROOT_PATH,
+            'storages',
+            'framework',
+            'cache',
             $filename,
             DS
         );

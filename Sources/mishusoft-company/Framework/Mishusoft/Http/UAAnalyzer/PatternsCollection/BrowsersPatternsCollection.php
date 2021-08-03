@@ -15,7 +15,10 @@ class BrowsersPatternsCollection extends Collection
     }
 
     /**
+     * @return array
      * @throws RuntimeException
+     * @throws \JsonException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function all(): array
     {
@@ -32,10 +35,14 @@ class BrowsersPatternsCollection extends Collection
     }
 
     /**
+     * @param string $identifier
+     * @return string
      * @throws InvalidArgumentException
      * @throws RuntimeException
+     * @throws \JsonException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
-    public function compatibility(string $identifier):string
+    public function compat(string $identifier):string
     {
         //$dictionary = $this->organisePatterns($this->query('browsers', 'compatibilities'));
         $dictionary = $this->extractAttribute($this->query('browsers', 'compatibilities'), 'identifier-with-pattern');
@@ -47,8 +54,12 @@ class BrowsersPatternsCollection extends Collection
     }
 
     /**
+     * @param string $identifier
+     * @return string
      * @throws InvalidArgumentException
      * @throws RuntimeException
+     * @throws \JsonException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function browserEngine(string $identifier):string
     {
@@ -62,8 +73,12 @@ class BrowsersPatternsCollection extends Collection
     }
 
     /**
+     * @param string $identifier
+     * @return string
      * @throws InvalidArgumentException
      * @throws RuntimeException
+     * @throws \JsonException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function match(string $identifier):string
     {

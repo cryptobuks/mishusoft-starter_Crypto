@@ -34,6 +34,7 @@ define('LOG_TYPE_RUNTIME', 'runtime');
 
 
 
+
 // Constants for Mishusoft associates.
 //
 //define('RUNTIME_SYSTEM_TEMP_PATH', RUNTIME_ROOT_PATH . 'tmp' . DS);

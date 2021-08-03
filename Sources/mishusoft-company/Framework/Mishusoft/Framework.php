@@ -120,14 +120,6 @@ class Framework extends Base
         return sprintf('%s%s', RUNTIME_ROOT_PATH, $filename);
     }
 
-    /**
-     * @param string $filename
-     * @return string
-     */
-    private static function cacheFile(string $filename):string
-    {
-        return sprintf('%s%s.cache', Storage::cachesStoragesPath(), $filename);
-    }
 
     /**
      * @return array

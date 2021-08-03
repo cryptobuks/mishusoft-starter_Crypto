@@ -55,9 +55,7 @@ class SEOToolKitService extends Base
         // Verify seo config, seo ad sense, seo se list file
         $this->check();
 
-        if ($view instanceof MishusoftView) {
-            $this->view = $view;
-        }
+        $this->view = $view;
     }//end __construct()
 
     //    public const SEO_CONFIG_FILE         = RUNTIME_REGISTRIES_PATH.'seo.json';
@@ -92,6 +90,7 @@ class SEOToolKitService extends Base
             $this->searchEngineListFile(),
         ];
         if (count($fileList) > 0) {
+            FileSystem::makeDirectory(dirname($this->seoConfigFile()));
             foreach ($fileList as $file) {
                 if (file_exists($file) === false) {
                     FileSystem\Yaml::emitFile($file, []);

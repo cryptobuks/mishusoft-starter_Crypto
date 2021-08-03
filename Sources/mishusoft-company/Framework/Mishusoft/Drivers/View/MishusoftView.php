@@ -484,7 +484,9 @@ class MishusoftView extends Base implements MishusoftViewInterface
     {
         Logger::write('Check ' . $this->widgetsConfigFile() . ' is readable or not in system.');
         if (is_readable($this->readWidgetsConfigFile()) === true) {
-            Logger::write('If ' . $this->widgetsConfigFile() . ' is readable in system, then return configuration of ' . $widget);
+            Logger::write('If '
+                . $this->widgetsConfigFile()
+                . ' is readable in system, then return configuration of ' . $widget);
             return ArrayCollection::value($this->installedWidgetsAll(), $widget);
         }
 
@@ -514,7 +516,9 @@ class MishusoftView extends Base implements MishusoftViewInterface
             $template = $this->templateName;
         }
 
-        Logger::write('Checking ' . Storage::applicationThemesPath() . $template . DS . 'configs.php is readable or not in system.');
+        Logger::write('Checking '
+            . Storage::applicationThemesPath()
+            . $template . DS . 'configs.php is readable or not in system.');
         if (is_readable(Storage::applicationThemesPath() . $template . DS . 'configs.php') === true) {
             Logger::write(Storage::applicationThemesPath() . $template . DS . 'configs.php is readable and load it.');
             include_once Storage::applicationThemesPath() . $template . DS . 'configs.php';
@@ -562,7 +566,9 @@ class MishusoftView extends Base implements MishusoftViewInterface
 
         $widgetClass = $widget . 'Widget';
 
-        Logger::write('Checking ' . Storage::applicationWidgetsPath() . $widgetClass . '.php is readable or not in system.');
+        Logger::write('Checking '
+            . Storage::applicationWidgetsPath()
+            . $widgetClass . '.php is readable or not in system.');
         if (is_readable(Storage::applicationWidgetsPath() . $widgetClass . '.php') === true) {
             Logger::write(Storage::applicationWidgetsPath() . $widgetClass . '.php is readable and load it.');
             include_once Storage::applicationWidgetsPath() . $widgetClass . '.php';

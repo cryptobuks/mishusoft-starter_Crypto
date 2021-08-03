@@ -16,8 +16,12 @@ class PlatformsPatternsCollection extends Collection
     }
 
     /**
+     * @param string $identifier
+     * @return string
+     * @throws InvalidArgumentException
+     * @throws JsonException
      * @throws RuntimeException
-     * @throws InvalidArgumentException|JsonException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function name(string $identifier):string
     {
@@ -31,20 +35,26 @@ class PlatformsPatternsCollection extends Collection
 
 
     /**
+     * Architecture pattern maker
+     *
      * @param string $identifier
      * @return string
      */
-    public function architecture(string $identifier):string
+    public function arch(string $identifier):string
     {
         return '/(?<type>('.$this->quote(strtolower($identifier)).'))/i';
     }
 
 
     /**
+     * @param string $identifier
+     * @return string
      * @throws InvalidArgumentException
-     * @throws RuntimeException|JsonException
+     * @throws JsonException
+     * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
-    public function windowManager(string $identifier):string
+    public function wm(string $identifier):string
     {
         $dictionary = $this->extractAttribute($this->query('platforms', 'wm'), 'identifier-with-pattern');
         if (array_key_exists($identifier, $dictionary)=== true) {

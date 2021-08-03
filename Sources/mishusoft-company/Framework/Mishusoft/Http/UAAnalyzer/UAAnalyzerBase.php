@@ -61,14 +61,23 @@ class UAAnalyzerBase extends Base
         'localhost',
     ];
 
+    protected string $uaAllFile;
+    protected string $uaSolvableListFile;
+    protected string $uaUnsolvableListFile;
+
     /**
      * @throws RuntimeException
      */
     public function __construct()
     {
         parent::__construct();
+        //$this->uaStoragePath = self::dataFile('UAAnalyzer','');
         $this->uaStoragePath = Storage::dataDriveStoragesPath() . 'UAAnalyzer' . DS;
         $this->timeOfToday = date('Y-m-d H:i:s');
+
+        $this->uaAllFile  = self::dFile(self::cacheDataFile('UAAnalyzerData', 'ua.list.all'), 'csv');
+        $this->uaSolvableListFile  = self::dFile(self::cacheDataFile('UAAnalyzerData', 'ua.list.solved'));
+        $this->uaUnsolvableListFile  = self::dFile(self::cacheDataFile('UAAnalyzerData', 'ua.list.unsolved'), 'csv');
 
         $this->directoryValidation();
     }
@@ -91,12 +100,12 @@ class UAAnalyzerBase extends Base
      * Store user agent into a file
      *
      * @param string $category Category name of stored user agent.
-     *
+     * @param array $details
      * @return void
-     * @throws RuntimeException Throw exception on runtime error.
      * @throws PermissionRequiredException
+     * @throws RuntimeException Throw exception on runtime error.
      */
-    protected function collectUA(string $category): void
+    protected function collectUA(string $category, array $details = []): void
     {
         $allowed = [
             'unsolved',
@@ -109,11 +118,11 @@ class UAAnalyzerBase extends Base
 
 
         if ($category === 'unsolved') {
-            $this->write(Storage::cachesStoragesPath().'UAAnalyzerData' . DIRECTORY_SEPARATOR . 'ua.list.unsolved.csv');
+            $this->write($this->uaUnsolvableListFile);
         } elseif ($category === 'solved') {
-            $this->write(Storage::cachesStoragesPath().'UAAnalyzerData' . DIRECTORY_SEPARATOR . 'ua.list.solved.csv');
+            $this->write($this->uaSolvableListFile, $details);
         } else {
-            $this->write(Storage::cachesStoragesPath().'UAAnalyzerData' . DIRECTORY_SEPARATOR . 'ua.list.all.csv');
+            $this->write($this->uaAllFile);
         }
     }//end collectUA()
 
@@ -206,6 +215,7 @@ class UAAnalyzerBase extends Base
             '6.2' => 8,
             '6.3' => 8.1,
             '10.0' => 10,
+            '11.0' => 11,
             default => 0
         };
     }
@@ -215,12 +225,12 @@ class UAAnalyzerBase extends Base
      * Write user agent into file.
      *
      * @param string $filename Stored filename.
-     *
+     * @param array $details
      * @return void
-     * @throws RuntimeException Throw exception on runtime error.
      * @throws PermissionRequiredException
+     * @throws RuntimeException Throw exception on runtime error.
      */
-    private function write(string $filename): void
+    private function write(string $filename, array $details = []): void
     {
         // Verify file directory existent.
         $requestedFileDirectory = dirname($filename);
@@ -237,20 +247,30 @@ class UAAnalyzerBase extends Base
 
             $contents = file_get_contents($filename);
 
-            if ($contents === '') {
-                $contents .= '"Date", "Client", "User-Agent"' . PHP_EOL;
-            }
-
-            // $contents .= sprintf('"%s","%s","%s"', $this->timeOfToday, IP::get(), $this->userAgent).PHP_EOL;
-            $contents .= sprintf('""%s","%s","%s""', $this->timeOfToday, "127.0.0.1", $this->userAgent) . PHP_EOL;
-
-            if (is_writable($filename) === true) {
-                fwrite($resource, $contents);
-                fclose($resource);
-
-                //exec('chmod -R 777 ' . $filename);
+            if (count($details)>0) {
+                if ($contents === '') {
+                    Storage\FileSystem\Yaml::emitFile($this->uaSolvableListFile, [$details['ua']=>$details]);
+                } else {
+                    $data = Storage\FileSystem\Yaml::parseFile($this->uaSolvableListFile);
+                    $data[$details['ua']]=$details;
+                    Storage\FileSystem\Yaml::emitFile($this->uaSolvableListFile, $data);
+                }
             } else {
-                throw new PermissionRequiredException('Permission required. Unable to write or read ' . $filename);
+                if ($contents === '') {
+                    $contents .= '"Date", "Client", "User-Agent"' . PHP_EOL;
+                }
+
+                // $contents .= sprintf('"%s","%s","%s"', $this->timeOfToday, IP::get(), $this->userAgent).PHP_EOL;
+                $contents .= sprintf('"%s","%s","%s"', $this->timeOfToday, "127.0.0.1", $this->userAgent) . PHP_EOL;
+
+                if (is_writable($filename) === true) {
+                    fwrite($resource, $contents);
+                    fclose($resource);
+
+                    //exec('chmod -R 777 ' . $filename);
+                } else {
+                    throw new PermissionRequiredException('Permission required. Unable to write or read ' . $filename);
+                }
             }
         } else {
             throw new PermissionRequiredException(
@@ -312,5 +332,43 @@ class UAAnalyzerBase extends Base
     protected function strip(string $string): string
     {
         return trim(preg_replace('/\s+/', ' ', $string));
+    }
+
+    /**
+     * @param array $array
+     * @param string $key
+     * @return string|array
+     */
+    protected function value(array $array, string $key): string|array
+    {
+        $results = '';
+        $original = $array;
+        if (strpos($key, '.')) {
+            $parts = explode('.', $key);
+            $results = (array)$results;
+            $temp = $original;
+
+            // clean up before each pass
+            while (count($parts) > 0) {
+                $part = array_shift($parts);
+
+                if (array_key_exists($part, $temp)) {
+                    if (is_array($temp[$part])) {
+                        $temp = $temp[$part];
+                    } else {
+                        $results = $temp[$part];
+                    }
+                }
+            }
+            if (is_array($results) === true) {
+                $results = $temp;
+            }
+        }
+
+        if (array_key_exists($key, $array) === true) {
+            $results = $original[$key];
+        }
+
+        return $results;
     }
 }

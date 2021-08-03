@@ -21,14 +21,39 @@ class ArrayCollection
     /**
      * @param array $haystack
      * @param string $key
-     * @return mixed
+     * @return string|array|int
      */
-    public static function value(array $haystack, string $key): mixed
+    public static function value(array $haystack, string $key): string|array|int
     {
-        if (array_key_exists($key, $haystack)) {
-            return $haystack[$key];
+        $results = '';
+        $original = $haystack;
+        if (strpos($key, '.')) {
+            $parts = explode('.', $key);
+            $results = (array)$results;
+            $temp = $original;
+
+            // clean up before each pass
+            while (count($parts) > 0) {
+                $part = array_shift($parts);
+
+                if (array_key_exists($part, $temp)) {
+                    if (is_array($temp[$part])) {
+                        $temp = $temp[$part];
+                    } else {
+                        $results = $temp[$part];
+                    }
+                }
+            }
+            if (is_array($results) === true) {
+                $results = $temp;
+            }
         }
-        return null;
+
+        if (array_key_exists($key, $haystack) === true) {
+            $results = $haystack[$key];
+        }
+
+        return $results;
     }
 
 

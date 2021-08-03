@@ -1,1 +1,1 @@
-{"name":"Lab","version":"10.0.26","release":"beta","loader":{"Lab":"Lab.loader.php"},"modules":{"Lab":{"default":"Main","all":{"Main":{"status":"enable"},"System":{"status":"disabled"},"Mailbox":{"status":"disabled"}}}}}
+{"name":"Lab","version":"10.0.27","release":"beta","loader":{"Lab":"Lab.loader.php"},"modules":{"Lab":{"default":"Main","all":{"Main":{"status":"enable"},"System":{"status":"disabled"},"Mailbox":{"status":"disabled"}}}}}
