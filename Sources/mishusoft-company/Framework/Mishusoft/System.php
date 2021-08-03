@@ -112,6 +112,12 @@ class System extends Base
 
 
     /**
+     * @return System
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\JsonException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
      * @throws JsonException
      */
     public static function activate(): System

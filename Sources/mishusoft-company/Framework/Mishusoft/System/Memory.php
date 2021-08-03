@@ -164,7 +164,8 @@ class Memory
             }
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
-        } elseif ($carrier === 'mpm') {
+        }
+        elseif ($carrier === 'mpm') {
             if (array_key_exists('format', $options) === true) {
                 $format = $options['format'];
             } else {
@@ -188,7 +189,8 @@ class Memory
             }
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
-        } elseif ($carrier === 'framework') {
+        }
+        elseif ($carrier === 'framework') {
             if (array_key_exists('format', $options) === true) {
                 $format = $options['format'];
             } else {
@@ -212,7 +214,8 @@ class Memory
             }
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
-        } elseif ($carrier === 'memory') {
+        }
+        elseif ($carrier === 'memory') {
             if (array_key_exists('format', $options) === true) {
                 $format = $options['format'];
             } else {
@@ -232,7 +235,8 @@ class Memory
             }
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
-        } else {
+        }
+        else {
             $result = self::dataLoader($carrier, $options['format'], $options['default'], $options['file']);
         }//end if
 

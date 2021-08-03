@@ -4,7 +4,6 @@ namespace Mishusoft\Ema;
 
 use Mishusoft\Http;
 use Mishusoft\Http\Request;
-use Mishusoft\Libraries\Runtime;
 use Mishusoft\MPM;
 use Mishusoft\Preloader;
 use Mishusoft\Storage;
@@ -12,7 +11,6 @@ use Mishusoft\Storage\FileSystem;
 use Mishusoft\System\BIOS;
 use Mishusoft\System\Firewall;
 use Mishusoft\System\Logger;
-use Mishusoft\System\Memory;
 use Mishusoft\Utility\ArrayCollection;
 use Mishusoft\Utility\Inflect;
 use Mishusoft\Utility\JSON;
@@ -36,7 +34,7 @@ if (file_exists(Storage::emaPath()) === true) {
     /*
      * We need to check Url Splitters (Built-In web interface) root path,
      * if exists this path,
-     * The System will be execute all active splitters that is locate at <APP_DIRECTORY>/Ema/UrlSplitters
+     * The System will be executed all active splitters that is located at <APP_DIRECTORY>/Ema/UrlSplitters
      * */
     $urlSplitterRootPath = Storage::emaPath().'UrlSplitters'.DS;
     Logger::write(sprintf('Check %s directory existent.', $urlSplitterRootPath));
@@ -57,9 +55,13 @@ if (file_exists(Storage::emaPath()) === true) {
             ksort($configs, SORT_ASC);
 
 
-            Logger::write(sprintf('Remove old splitters config file from %s directory.', Storage::dataDriveStoragesPath()));
+            Logger::write(
+                sprintf('Remove old splitters config file from %s directory.', Storage::dataDriveStoragesPath())
+            );
             FileSystem::remove(MPM::splittersFile());
-            Logger::write(sprintf('Write new splitters config file in %s directory.', Storage::dataDriveStoragesPath()));
+            Logger::write(
+                sprintf('Write new splitters config file in %s directory.', Storage::dataDriveStoragesPath())
+            );
             FileSystem\Yaml::emitFile(MPM::splittersFile(), $configs);
         }
 
@@ -175,20 +177,3 @@ if (file_exists(Storage::emaPath()) === true) {
         }//end if
     }//end if
 }//end if
-
-/*
- * Execute maintenance interface
- * we create an individual interface for special web interface
- * that is locate at <APP_SERVER_ADDR>/maintenance
- *
- * if the application which is default non-DVU (MVC Classic) package are under maintenance mode,
- * then following interface will be execute.
- *
- * this interface exclude maintenance and emergency pages
- */
-
-if ((Memory::data('framework')->maintenance === true)
-    && $prediction->getController() !== 'maintenance'
-) {
-    Runtime::redirect('maintenance');
-}

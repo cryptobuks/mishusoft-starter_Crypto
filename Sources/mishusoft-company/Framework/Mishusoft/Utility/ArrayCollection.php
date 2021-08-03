@@ -57,6 +57,11 @@ class ArrayCollection
     }
 
 
+    /**
+     * @param array $array
+     * @param array $excludes
+     * @return array
+     */
     public static function cleanArray(array $array, array $excludes): array
     {
         if (count($array) > 0) {
@@ -71,6 +76,77 @@ class ArrayCollection
         return $array;
     }
 
+    /**
+     * Returns values for $needle key in a multidimensional array, recursively.
+     * More info and example: https://github.com/NinoSkopac/array_column_recursive
+     *
+     * @param array $haystack
+     * @param string $needle
+     * @return array
+     */
+    public static function columnRecursive(array $haystack, string $needle): array
+    {
+        $found = [];
+        array_walk_recursive($haystack, static function ($value, $key) use (&$found, $needle) {
+            if ($key === $needle) {
+                $found[] = $value;
+            }
+        });
+
+        return $found;
+    }
+
+    /**
+     * @param array $array
+     * @param $columnkey
+     * @param null $indexkey
+     * @return array
+     */
+    public static function columnExt(array $array, $columnkey, $indexkey = null): array
+    {
+        $result = [];
+        foreach ($array as $subarray => $value) {
+            if (array_key_exists($columnkey, $value)) {
+                $val = $array[$subarray][$columnkey];
+            } elseif ($columnkey === null) {
+                $val = $value;
+            } else {
+                continue;
+            }
+
+            if ($indexkey === null) {
+                $result[] = $val;
+            } elseif ($indexkey === -1 || array_key_exists($indexkey, $value)) {
+                $result[($indexkey === -1)?$subarray:$array[$subarray][$indexkey]] = $val;
+            }
+        }
+        return $result;
+    }
+
+    /**
+     * @param array $keys
+     * @param array $values
+     * @return array
+     */
+    public static function combine(array $keys, array $values):array
+    {
+        return array_combine($keys, $values);
+    }
+
+    /**
+     * @param array $array
+     * @return array
+     */
+    public static function countValues(array $array): array
+    {
+        return array_count_values($array);
+    }
+
+    /**
+     * @param int $limit
+     * @param array $haystack
+     * @return array
+     */
     public static function getValues(int $limit, array $haystack): array
     {
         $result = [];

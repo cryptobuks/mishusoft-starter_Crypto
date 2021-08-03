@@ -1,0 +1,8 @@
+{
+  "configure": false,
+  "dbms": [
+    "mishusoftdb",
+    "mysql"
+  ],
+  "default": "mishusoftdb"
+}

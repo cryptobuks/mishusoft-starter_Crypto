@@ -387,8 +387,12 @@ class Framework extends Base
 
     /**
      *
-     * @throws Exceptions\RuntimeException
      * @throws Exceptions\ErrorException
+     * @throws Exceptions\JsonException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
+     * @throws JsonException
      */
     private static function backupFilesCheck(): void
     {
@@ -449,11 +453,11 @@ class Framework extends Base
                     'to'    => self::cacheFile('robots.txt'),
                 ],
                 // Check Application Security Backup file.
-                [
-                    'check' => self::cacheFile(self::NAME.'ApplicationSecurity.lock'),
-                    'from'  => System::getRequiresFile('SECURITY_FILE_PATH'),
-                    'to'    => self::cacheFile(self::NAME.'ApplicationSecurity.lock'),
-                ],
+            //                [
+            //                    'check' => self::cacheFile(self::NAME.'ApplicationSecurity.lock'),
+            //                    'from'  => System::getRequiresFile('SECURITY_FILE_PATH'),
+            //                    'to'    => self::cacheFile(self::NAME.'ApplicationSecurity.lock'),
+            //                ],
             ]
         );
     }//end backupFilesCheck()
@@ -468,38 +472,34 @@ class Framework extends Base
      */
     private static function fileHandler(array $requiredFiles): void
     {
-        if (is_array($requiredFiles) === true) {
-            foreach ($requiredFiles as $requiredFile) {
-                // Check new file url.
-                if (array_key_exists('check', $requiredFile) === true) {
-                    if (file_exists($requiredFile['check']) === false) {
-                        // Check backup file url.
-                        if (array_key_exists('from', $requiredFile) === true) {
-                            if (file_exists($requiredFile['from']) === true) {
-                                // Check backup file url.
-                                if (array_key_exists('to', $requiredFile) === true) {
-                                    if (file_exists(dirname($requiredFile['to'])) === false) {
-                                        FileSystem::makeDirectory(dirname($requiredFile['to']));
-                                    }
-
-                                    // Copy and change permission.
-                                    FileSystem::copy($requiredFile['from'], $requiredFile['to']);
-                                    FileSystem::exec($requiredFile['to']);
-                                } else {
-                                    throw new Exceptions\ErrorException('$to not found in $required argument');
+        foreach ($requiredFiles as $requiredFile) {
+            // Check new file url.
+            if (array_key_exists('check', $requiredFile) === true) {
+                if (file_exists($requiredFile['check']) === false) {
+                    // Check backup file url.
+                    if (array_key_exists('from', $requiredFile) === true) {
+                        if (file_exists($requiredFile['from']) === true) {
+                            // Check backup file url.
+                            if (array_key_exists('to', $requiredFile) === true) {
+                                if (file_exists(dirname($requiredFile['to'])) === false) {
+                                    FileSystem::makeDirectory(dirname($requiredFile['to']));
                                 }
+
+                                // Copy and change permission.
+                                FileSystem::copy($requiredFile['from'], $requiredFile['to']);
+                                FileSystem::exec($requiredFile['to']);
+                            } else {
+                                throw new Exceptions\ErrorException('$to not found in $required argument');
                             }
-                        } else {
-                            throw new Exceptions\ErrorException('$from not found in $required argument');
-                        }//end if
+                        }
+                    } else {
+                        throw new Exceptions\ErrorException('$from not found in $required argument');
                     }//end if
-                } else {
-                    throw new Exceptions\ErrorException('$check not found in $required argument');
                 }//end if
-            }//end foreach
-        } else {
-            throw new Exceptions\ErrorException('Invalid $requiredFiles argument 1 parsed');
-        }//end if
+            } else {
+                throw new Exceptions\ErrorException('$check not found in $required argument');
+            }//end if
+        }//end foreach
     }//end fileHandler()
 
 
@@ -644,14 +644,14 @@ class Framework extends Base
                     Ui::element($template_body, 'img', ['src' => FRAMEWORK_FAVICON_FILE, 'alt' => 'mishusoft-company-logo-m', 'style' => 'text-align:center;  width: 100px;height: 100px;padding: 2px;margin: 0;border-radius: 50%;position: relative;-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);-o-box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);-webkit-transition: all .25s ease;-o-transition: all .25s ease;transition: all .25s ease;margin: 10px;']);
 
                     // create text element tag in template body for client view
-                    Ui::text(Ui::element($template_body, 'ms-app-paragraph', ['style' => 'font-size: 16px;line-height: 1.5;display: flex;']), Framework::DESCRIPTION);
+                    Ui::text(Ui::element($template_body, 'ms-app-paragraph', ['style' => 'font-size: 16px;line-height: 1.5;display: flex;']), Framework::description());
                     Ui::text(Ui::element($template_body, 'ms-app-paragraph', ['style' => 'font-size: 15px;line-height: 1.5;display: flex;text-align: left;background: bisque;border-radius: 5px;padding: 5px;margin-top: 10px;']), 'Notice: This welcome interface has been shown after successful installation of this framework. Now you need to install our package(s) to getting start. If you would install any package but this page shown, you should to follow our getting start guideline.');
 
                     // add system default signature
                     Ui::addDefaultSignature($template_body);
                 }
             );
-            exit();
+            exit(0);
         }//end if
 
         MPM::load();
