@@ -56,6 +56,208 @@ class MPM extends Base
 
 
     /**
+     * @return string
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\JsonException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
+     * @throws JsonException
+     */
+    public static function defaultPackage(): string
+    {
+        return Memory::data('mpm')->packages->default;
+    }//end defaultPackage()
+
+    /**
+     * @return string
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\JsonException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
+     * @throws JsonException
+     */
+    public static function defaultModule(): string
+    {
+        return Memory::data('mpm', ['format' => 'array'])['modules'][self::defaultPackage()]['default'];
+    }//end defaultModule()
+
+
+    /**
+     * @param string $package
+     * @return string
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\JsonException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
+     * @throws JsonException
+     */
+    public static function propertiesFile(string $package = ''): string
+    {
+        $package = empty($package) ? self::defaultPackage() : $package;
+        //return app databases path [root://app/Packages/databases/]
+        return sprintf('%1$s%2$s.json', Storage::applicationPackagesPath(), $package);
+    }//end propertiesFile()
+
+
+    /**
+     * @param string $packageName
+     * @return string
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\JsonException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
+     * @throws JsonException
+     */
+    public static function modulesPath(string $packageName = ''): string
+    {
+        $packageName = empty($packageName) ? self::defaultPackage() : $packageName;
+        // return app modules path [root://app/Packages/PackageName/Modules/]
+        return sprintf('%1$s%2$sModules%3$s', Storage::applicationPackagesPath(), $packageName, DS);
+    }//end modulesPath()
+
+
+    /**
+     * @param string $packageName
+     * @return string
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\JsonException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
+     * @throws JsonException
+     */
+    public static function databasesPath(string $packageName = ''): string
+    {
+        $packageName = empty($packageName) ? self::defaultPackage() : $packageName;
+        //return app databases path [root://app/Packages/PackageName/databases/]
+        return sprintf('%1$s%2$s%3$sDatabases%3$s', Storage::applicationPackagesPath(), $packageName, DS);
+    }//end databasesPath()
+
+    /**
+     * @param string $packageName
+     * @return string
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\JsonException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
+     * @throws JsonException
+     */
+    public static function resourcesPath(string $packageName = ''): string
+    {
+        $packageName = empty($packageName) ? self::defaultPackage() : $packageName;
+        // return app resources path [root://app/Packages/PackageName/Modules/]
+        return sprintf('%1$s%2$sResources%3$s', Storage::applicationPackagesPath(), $packageName, DS);
+    }//end resourcesPath()
+
+
+
+    /**
+     * @param string $moduleName
+     * @param string $controllerName
+     * @return string
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\JsonException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
+     * @throws JsonException
+     */
+    public static function templatesHtmlResourcesRoot(string $moduleName, string $controllerName): string
+    {
+        return implode(DS, [self::resourcesPath() . 'Templates', $moduleName, $controllerName . DS]);
+    }//end templatesHtmlResourcesRoot()
+
+    /**
+     * @param string $moduleName
+     * @param string $controllerName
+     * @return string
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\JsonException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws JsonException
+     * @throws RuntimeException
+     */
+    public static function templatesJavascriptResourcesRoot(string $moduleName, string $controllerName): string
+    {
+        return implode(DS, [Storage::webResourcesPath() . 'related', 'Javascripts', $moduleName, $controllerName . DS]);
+    }//end templatesJavascriptResourcesRoot()
+
+
+    /**
+     * @return string
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\JsonException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
+     * @throws JsonException
+     */
+    public static function templatesJavascriptResourcesRootLocal(): string
+    {
+        return self::resourcesPath() . 'Javascripts' . DS;
+    }//end templatesJavascriptResourcesRootLocal()
+
+    
+    /**
+     * @param string $module
+     * @return string
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\JsonException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
+     * @throws JsonException
+     */
+    public static function moduleRootController(string $module): string
+    {
+        // Return root controller file of module.
+        return self::getControllerOfModule(self::defaultModule(), $module);
+    }//end moduleRootController()
+
+    /**
+     * @param string $module
+     * @param string $controller
+     * @return string
+     */
+    private static function getControllerOfModule(string $module, string $controller): string
+    {
+        //return app databases path [like root://app/Packages/Modules/ModuleName/Controllers/NameController.php]
+        return sprintf(
+            '%1$s%2$s%4$sControllers%3$sController.php',
+            Storage::applicationPackagesPath(),
+            $module,
+            $controller,
+            DS
+        );
+    }//end getControllerOfModule()
+
+
+    /**
+     * @param string $controller
+     * @param string $module
+     * @return string
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\JsonException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
+     * @throws JsonException
+     */
+    public static function runtimeRootController(string $controller, string $module = ''): string
+    {
+        // Check module is set or not.
+        $module = empty($module) ? self::defaultModule() : $module;
+        return self::getControllerOfModule($module, $controller);
+    }//end runtimeRootController()
+
+
+    /**
      * Get all records from configure file
      *
      * @return boolean
@@ -123,7 +325,7 @@ class MPM extends Base
                 // Verify validation of current package directory.
                 if (empty(self::$content['packages']['default']) === false) {
                     $defaultPackage = self::$content['packages']['default'];
-                    $packageDirectory = Storage::applicationPackagesPath().$defaultPackage;
+                    $packageDirectory = Storage::applicationPackagesPath() . $defaultPackage;
                     if (in_array($defaultPackage, self::$content['packages']['all'], true) === true) {
                         if (is_dir($packageDirectory) === true) {
                             // Verify validation of current package loader.
@@ -293,91 +495,6 @@ class MPM extends Base
 
 
     /**
-     * @param string $packageName
-     * @return string
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
-     * @throws JsonException
-     */
-    public static function modulesPath(string $packageName = ''): string
-    {
-        if (empty($packageName) === true) {
-            $packageName = Memory::Data('mpm')->packages->default;
-        }
-
-        // make temp modules path
-        return Storage::applicationPackagesPath() . $packageName . '/Modules/';
-    }//end modulesPath()
-
-
-    /**
-     * @return string
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
-     * @throws JsonException
-     */
-    public static function defaultPackage(): string
-    {
-        return Memory::data('mpm')->packages->default;
-    }//end defaultPackage()
-
-
-    /**
-     * @return string
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
-     * @throws JsonException
-     */
-    public static function defaultModule(): string
-    {
-        return Memory::data('mpm', ['format' => 'array'])['modules'][self::defaultPackage()]['default'];
-    }//end defaultModule()
-
-
-    /**
-     * @param string $module
-     * @return string
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
-     * @throws JsonException
-     */
-    public static function moduleRootController(string $module): string
-    {
-        // Return root controller file of module.
-        return self::getControllerOfModule(self::defaultModule(), $module);
-    }//end moduleRootController()
-
-
-    /**
-     * @param string $module
-     * @param string $controller
-     * @return string
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws JsonException
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
-     */
-    private static function getControllerOfModule(string $module, string $controller): string
-    {
-        return implode(DS, [self::modulesPath() . $module, 'Controllers', $controller . 'Controller.php']);
-    }//end getControllerOfModule()
-
-
-    /**
      * @param array $filter
      * @return mixed
      * @throws Exceptions\ErrorException
@@ -493,7 +610,9 @@ class MPM extends Base
                                             );
                                         }
                                     } else {
-                                        throw new RuntimeException("The {$newPackage} loader property not found");
+                                        throw new RuntimeException(
+                                            sprintf('The %s loader property not found', $newPackage)
+                                        );
                                     }
 
                                     // Add package modules to mpm register.
@@ -587,103 +706,36 @@ class MPM extends Base
         ]);
     }//end freshInstall()
 
-
-    /**
-     * @param string $moduleName
-     * @param string $controllerName
-     * @return string
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
-     * @throws JsonException
-     */
-    public static function templatesHtmlResourcesRoot(string $moduleName, string $controllerName): string
-    {
-        return implode(DS, [self::resourcesPath() . 'Templates', $moduleName, $controllerName . DS]);
-    }//end templatesHtmlResourcesRoot()
-
-
-    /**
-     * @param string $packageName
-     * @return string
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
-     * @throws JsonException
-     */
-    public static function resourcesPath(string $packageName = ''): string
-    {
-        if (empty($packageName) === true) {
-            $packageName = Memory::Data('mpm')->packages->default;
-        }
-
-        // make temp modules path
-        return Storage::applicationPackagesPath() . "$packageName/Resources/";
-    }//end resourcesPath()
-
-
-    /**
-     * @param string $moduleName
-     * @param string $controllerName
-     * @return string
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws JsonException
-     * @throws RuntimeException
-     */
-    public static function templatesJavascriptResourcesRoot(string $moduleName, string $controllerName): string
-    {
-        return implode(DS, [Storage::webResourcesPath() . 'related', 'Javascripts', $moduleName, $controllerName . DS]);
-    }//end templatesJavascriptResourcesRoot()
-
-
-    /**
-     * @return string
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
-     * @throws JsonException
-     */
-    public static function templatesJavascriptResourcesRootLocal(): string
-    {
-        return self::resourcesPath() . 'Javascripts' . DS;
-    }//end templatesJavascriptResourcesRootLocal()
-
-
     /**
      * @param string $module_name
      * @param string $packageName
      * @param string $status
      * @param boolean $set_default
+     * @throws PermissionRequiredException
      * @throws RuntimeException
      */
-    public static function addModule(string $module_name, string $packageName, string $status = 'disabled', bool $set_default = false)
-    {
-        if (!empty($module_name)) {
-            if (self::readConfigure() === true) {
-                if (in_array($packageName, self::$content['modules'], true)) {
-                    if (is_array(self::$content['modules'][$packageName]['all'])) {
-                        if (in_array($module_name, self::$content['modules'][$packageName]['all'], true)) {
-                            throw new RuntimeException(
-                                "New module \"$module_name\" is already exists on " . self::configFile() . ' file.'
-                            );
-                        } else {
-                            array_push(self::$content['modules'][$packageName]['all'], [$module_name => ['status' => $status]]);
-                            if ($set_default) {
-                                self::$content['modules'][$packageName]['default'] = $module_name;
-                            }
+    public static function addModule(
+        string $module_name,
+        string $packageName,
+        string $status = 'disabled',
+        bool $set_default = false
+    ) : void {
+        if (empty($module_name)=== false) {
+            if ((self::readConfigure() === true)
+                && in_array($packageName, self::$content['modules'], true)
+                && is_array(self::$content['modules'][$packageName]['all'])) {
+                if (in_array($module_name, self::$content['modules'][$packageName]['all'], true)) {
+                    throw new RuntimeException(
+                        sprintf('New module "%s" is already exists on %s file', $module_name, self::configFile())
+                    );
+                } else {
+                    self::$content['modules'][$packageName]['all'][$module_name]['status'] = $status;
 
-                            FileSystem\Yaml::emitFile(self::configFile(), self::$content);
-                        }
+                    if ($set_default === true) {
+                        self::$content['modules'][$packageName]['default'] = $module_name;
                     }
+
+                    FileSystem\Yaml::emitFile(self::configFile(), self::$content);
                 }
             }
         } else {
@@ -697,28 +749,31 @@ class MPM extends Base
      * @param string $packageName
      * @param string $status
      * @param boolean $set_default
-     * @throws RuntimeException\NotFoundException
+     * @throws PermissionRequiredException
      * @throws RuntimeException
+     * @throws RuntimeException\NotFoundException
      */
-    public static function updateModule(string $module_name, string $packageName, string $status = 'disabled', bool $set_default = false): void
-    {
-        if (!empty($module_name)) {
-            if (self::readConfigure()) {
-                if (in_array($packageName, self::$content['modules'])) {
-                    if (is_array(self::$content['modules'][$packageName]['all'])) {
-                        if (in_array($module_name, self::$content['modules'][$packageName]['all'])) {
-                            self::$content['modules'][$packageName]['all'][$module_name]['status'] = $status;
-                            if ($set_default) {
-                                self::$content['modules'][$packageName]['default'] = $module_name;
-                            }
-
-                            FileSystem\Yaml::emitFile(self::configFile(), self::$content);
-                        } else {
-                            throw new RuntimeException\NotFoundException(
-                                "Module \"$module_name\" is not exists on " . self::configFile() . ' file.'
-                            );
-                        }
+    public static function updateModule(
+        string $module_name,
+        string $packageName,
+        string $status = 'disabled',
+        bool $set_default = false
+    ): void {
+        if (empty($module_name) === false) {
+            if (self::readConfigure()
+                && in_array($packageName, self::$content['modules'], true)
+                && is_array(self::$content['modules'][$packageName]['all'])) {
+                if (in_array($module_name, self::$content['modules'][$packageName]['all'], true)) {
+                    self::$content['modules'][$packageName]['all'][$module_name]['status'] = $status;
+                    if ($set_default === true) {
+                        self::$content['modules'][$packageName]['default'] = $module_name;
                     }
+
+                    FileSystem\Yaml::emitFile(self::configFile(), self::$content);
+                } else {
+                    throw new RuntimeException\NotFoundException(
+                        "Module \"$module_name\" is not exists on " . self::configFile() . ' file.'
+                    );
                 }
             }
         } else {
@@ -730,41 +785,41 @@ class MPM extends Base
     /**
      * @param string $module_name
      * @param string $packageName
+     * @throws PermissionRequiredException
      * @throws RuntimeException
+     * @throws RuntimeException\NotFoundException
      */
     public static function removeModule(string $module_name, string $packageName): void
     {
         if (!empty($module_name)) {
-            if (self::readConfigure()) {
-                if (in_array($packageName, self::$content['modules'])) {
-                    if (is_array(self::$content['modules'][$packageName]['all'])) {
-                        if (in_array($module_name, self::$content['modules'][$packageName]['all'])) {
-                            foreach (self::$content['modules'][$packageName]['all'] as $module => $details) {
-                                if ($module === $module_name) {
-                                    unset(self::$content['modules'][$packageName]['all'][$module]);
-                                    if (self::$content['modules'][$packageName]['default'] === $module_name) {
-                                        if (in_array('Main', self::$content['modules'][$packageName]['all'])) {
-                                            self::$content['modules'][$packageName]['default'] = 'Main';
-                                            self::$content['modules'][$packageName]['all']['Main']['status'] = 'enable';
-                                        } else {
-                                            if (in_array('Mishusoft', self::$content['modules'][$packageName]['all'])) {
-                                                self::$content['modules'][$packageName]['default'] = 'Mishusoft';
-                                                self::$content['modules'][$packageName]['all']['Mishusoft']['status'] = 'enable';
-                                            }
-                                        }
-                                    }
+            if (self::readConfigure()
+                && in_array($packageName, self::$content['modules'], true)
+                && is_array(self::$content['modules'][$packageName]['all'])) {
+                if (in_array($module_name, self::$content['modules'][$packageName]['all'], true)) {
+                    foreach (self::$content['modules'][$packageName]['all'] as $module => $details) {
+                        if ($module === $module_name) {
+                            unset(self::$content['modules'][$packageName]['all'][$module]);
+                            if (self::$content['modules'][$packageName]['default'] === $module_name) {
+                                if (in_array('Main', self::$content['modules'][$packageName]['all'], true)) {
+                                    self::$content['modules'][$packageName]['default'] = 'Main';
+                                    self::$content['modules'][$packageName]['all']['Main']['status'] = 'enable';
+                                } elseif (in_array('Mishusoft', self::$content['modules'][$packageName]['all'], true)) {
+                                    self::$content['modules'][$packageName]['default'] = 'Mishusoft';
+                                    self::$content['modules'][$packageName]['all']['Mishusoft']['status'] = 'enable';
                                 }
                             }
+                        }
+                    }
 
-                            FileSystem\Yaml::emitFile(self::configFile(), self::$content);
-                        } else {
-                            throw new RuntimeException\NotFoundException("Module \"$module_name\" is not exists on " . self::configFile() . ' file.');
-                        }//end if
-                    }//end if
+                    FileSystem\Yaml::emitFile(self::configFile(), self::$content);
+                } else {
+                    throw new RuntimeException(
+                        sprintf('Module "%s" is not exists on %s file', $module_name, self::configFile())
+                    );
                 }//end if
             }
         } else {
-            trigger_error('Empty module name set.');
+            throw new RuntimeException('Empty module name set.');
         }//end if
     }//end removeModule()
 
@@ -772,10 +827,11 @@ class MPM extends Base
     /**
      * @param string $module_name
      * @param string $packageName
-     * @return mixed
+     * @return bool
+     * @throws PermissionRequiredException
      * @throws RuntimeException
      */
-    public static function isEnabledModule(string $module_name, string $packageName): mixed
+    public static function isEnabledModule(string $module_name, string $packageName): bool
     {
         if (self::readConfigure()) {
             if (self::$content['modules'][$packageName]['all'][$module_name]['status'] = 'enable') {
@@ -792,6 +848,7 @@ class MPM extends Base
      * @param string $module_name
      * @param string $packageName
      * @return bool
+     * @throws PermissionRequiredException
      * @throws RuntimeException
      */
     public static function isDisabledModule(string $module_name, string $packageName): bool
@@ -822,90 +879,32 @@ class MPM extends Base
     {
         $package = empty($package) ? Memory::Data('mpm')->packages->default : $package;
         if (!empty(Memory::Data('mpm')->packages->default)) {
-            $properties = json_decode(file_get_contents(self::propertiesFile($package)), true, 512, JSON_THROW_ON_ERROR);
+            $properties = JSON::decodeToArray(Storage\FileSystem::read(self::propertiesFile($package)));
             if (is_array($properties) && count($properties) > 0) {
                 if (array_key_exists($property, $properties)) {
                     return $properties[$property];
                 }
+            } else {
+                throw new RuntimeException(sprintf('Property %s not exists', $property));
             }
         }
 
-        return false;
+        return '';
     }//end getProperty()
 
 
     /**
-     * @param string $package
-     * @return string
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
-     * @throws JsonException
+     * @param object $db
+     * @param string $filename
+     * @param string $db_prefix
+     * @param string $pattern
      */
-    public static function propertiesFile(string $package = ''): string
-    {
-        $package = empty($package) ? self::defaultPackage() : $package;
-        return Storage::applicationPackagesPath() . "$package.json";
-    }//end propertiesFile()
-
-
-    /**
-     * @param string $packageName
-     * @return string
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
-     * @throws JsonException
-     */
-    public static function databasesPath(string $packageName = ''): string
-    {
-        // Make temp modules path.
-        if (empty($packageName) === true) {
-            $packageName = Memory::Data('mpm')->packages->default;
-        }
-
-        return Storage::applicationPackagesPath() . "$packageName/Databases/";
-    }//end databasesPath()
-
-
-    /**
-     * @param string $controller
-     * @param string $module
-     * @return string
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
-     * @throws JsonException
-     */
-    public static function runtimeRootController(string $controller, string $module = ''): string
-    {
-        // Check module is set or not.
-        if (empty($module) === true) {
-            $module = self::defaultModule();
-        }
-
-        return self::getControllerOfModule($module, $controller);
-    }//end runtimeRootController()
-
-
-    public static function importMysqlDB($db, $filename, $db_prefix = false, $pattern = false): void
-    {
-        // check prefix variable
-        if (!$db_prefix) {
-            $db_prefix = DbPREFIX;
-        }
-
-        // check $pattern variable
-        if (!$pattern) {
-            $pattern = '/{DB_PREFIX}/';
-        }
-
+    public static function importMysqlDB(
+        object $db,
+        string $filename,
+        string $db_prefix = DbPREFIX,
+        string $pattern = '/\{DB_PREFIX\}/'
+    ): void {
         // check $filename
         if (file_exists($filename)) {
             $tempLine = '';
@@ -913,7 +912,7 @@ class MPM extends Base
             // Read entire file.
             foreach ($lines as $line) {
                 // Skip it if it's a comment
-                if (substr($line, 0, 2) === '--' || $line === '' || substr($line, 0, 2) === '/*') {
+                if ($line === '' || str_starts_with($line, '--') || str_starts_with($line, '/*')) {
                     continue;
                 }
 

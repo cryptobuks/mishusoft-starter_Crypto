@@ -1,0 +1,70 @@
+---
+::1:
+  Unknown:
+    "2021-08-04 08:57:33":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-04 08:57:33"
+    "2021-08-04 10:20:59":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-04 10:20:59"
+    "2021-08-04 10:22:05":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-04 10:22:05"
+    "2021-08-04 10:22:29":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-04 10:22:29"
+    "2021-08-04 10:22:54":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-04 10:22:54"
+    "2021-08-04 10:23:01":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-04 10:23:01"
+...

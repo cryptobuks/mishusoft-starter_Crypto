@@ -1,0 +1,23 @@
+---
+name: Mishusoft Packages Manager
+version: 1.0.0
+packages:
+  default: Lab
+  all:
+  - Lab
+loader:
+  Lab: Lab.loader.php
+modules:
+  Lab:
+    default: Main
+    all:
+      Main:
+        status: enable
+      System:
+        status: disabled
+      Mailbox:
+        status: disabled
+config:
+  database:
+    activation: true
+...
