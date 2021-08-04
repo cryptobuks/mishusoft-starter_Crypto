@@ -4,7 +4,7 @@ namespace Mishusoft;
 
 use JsonException;
 use Mishusoft\Exceptions\RuntimeException\NotFoundException;
-use Mishusoft\Ui\Firewall;
+use Mishusoft\System\Firewall;
 use Mishusoft\Utility\ArrayCollection;
 use Mishusoft\Utility\Inflect;
 
@@ -716,21 +716,15 @@ class Storage extends Base
     }//end getStoragePath()
 
     /**
-     * @param string $pathname
      * @return string
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
-     * @throws JsonException
      */
-    public static function webResourcesPath(string $pathname = 'assets/'): string
+    public static function webResourcesPath(): string
     {
-        if (str_starts_with($pathname, '/')) {
-            return System::getInstalledURL() . $pathname;
+        $pathname = 'assets/';
+        if (str_ends_with(BASE_URL, '/')) {
+            return BASE_URL . $pathname;
         }
-        return System::getInstalledURL(). DS . $pathname;
+        return BASE_URL. DS . $pathname;
     }//end getWebResourcesPath()
 
 

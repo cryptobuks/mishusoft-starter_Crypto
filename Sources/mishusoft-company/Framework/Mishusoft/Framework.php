@@ -4,9 +4,10 @@ namespace Mishusoft;
 
 use JsonException;
 use Mishusoft\Storage\FileSystem;
-use Mishusoft\Ui\Memory;
-use Mishusoft\Ui\Network;
-use Mishusoft\Ui\Time;
+use Mishusoft\System\Memory;
+use Mishusoft\System\Network;
+use Mishusoft\System\Time;
+use Mishusoft\Ui\EmbeddedView;
 use Mishusoft\Utility\JSON;
 
 class Framework extends Base
@@ -43,11 +44,15 @@ class Framework extends Base
      *
      * @return Framework
      * @throws Exceptions\ErrorException
+     * @throws Exceptions\HttpException\HttpResponseException
      * @throws Exceptions\JsonException
      * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
+     * @throws Exceptions\RuntimeException\NotFoundException
      * @throws JsonException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
      */
     public static function init(): static
     {
@@ -598,63 +603,40 @@ class Framework extends Base
 
     /**
      * @throws Exceptions\ErrorException
+     * @throws Exceptions\HttpException\HttpResponseException
      * @throws Exceptions\JsonException
      * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
+     * @throws Exceptions\RuntimeException\NotFoundException
      * @throws JsonException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
      */
     private static function execute(): void
     {
         if (file_exists(MPM::configFile()) === false) {
-            Ui::htmlInterface(
-                'Welcome to '.self::FULL_NAME,
-                function ($html) {
-                    // create html template for client view
-                    $template = Ui::element(
-                        Ui::element(
-                            Ui::element($html, 'body', ['id' => 'welcome']),
-                            // create app tag for template for client view
-                            'ms-app',
-                            ['style' => 'position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);box-sizing: border-box;border-radius: 5px;-webkit-border-radius: 5px;-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);line-height:1.5;']
-                        ),
-                        // create app-content tag for template for client view
-                        'ms-app-content',
-                        ['style' => '  display: block;/*width: 525px;*/margin: 0;padding: 0;text-align: left;border: 1px solid #0777cc;-webkit-border-radius: 5px;border-radius: 5px']
-                    );
-
-                    // create template header for client view
-                    Ui::text(
-                        Ui::element(
-                            $template,
-                            'ms-app-content-header',
-                            ['style' => 'text-align:center;font-size: 18px;font-weight: 700;padding: 10px;color: #fff;display: block;background-color: #0777cc']
-                        ),
-                        'Welcome to '.self::FULL_NAME
-                    );
-
-                    // create template body for client view
-                    $template_body = Ui::element($template, 'ms-app-content-body', ['style' => 'text-align:center;padding: 10px;display: block;']);
-
-                    // create no script tag for show alert in disabled-javascript mode for client view
-                    Ui::setNoScriptText($template_body);
-
-                    // create image in template body for client view
-                    Ui::element($template_body, 'img', ['src' => FRAMEWORK_FAVICON_FILE, 'alt' => 'mishusoft-company-logo-m', 'style' => 'text-align:center;  width: 100px;height: 100px;padding: 2px;margin: 0;border-radius: 50%;position: relative;-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);-o-box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);-webkit-transition: all .25s ease;-o-transition: all .25s ease;transition: all .25s ease;margin: 10px;']);
-
-                    // create text element tag in template body for client view
-                    Ui::text(Ui::element($template_body, 'ms-app-paragraph', ['style' => 'font-size: 16px;line-height: 1.5;display: flex;']), Framework::description());
-                    Ui::text(Ui::element($template_body, 'ms-app-paragraph', ['style' => 'font-size: 15px;line-height: 1.5;display: flex;text-align: left;background: bisque;border-radius: 5px;padding: 5px;margin-top: 10px;']), 'Notice: This welcome interface has been shown after successful installation of this framework. Now you need to install our package(s) to getting start. If you would install any package but this page shown, you should to follow our getting start guideline.');
-
-                    // add system default signature
-                    Ui::addDefaultSignature($template_body);
-                }
-            );
+            EmbeddedView::welcomeToFramework(self::FULL_NAME, [
+                'caption' => self::FULL_NAME,
+                'description' => self::description(),
+                'warning' =>self::installWaring(),
+                'copyright' => Ui::copyRightText(),
+            ]);
             exit(0);
         }//end if
 
         MPM::load();
     }//end execute()
+
+    private static function installWaring():string
+    {
+        $message = 'Notice: This welcome interface has been shown after successful installation of this framework. ';
+        $message .= 'Now you need to install our package(s) to getting start. ';
+        $message .= 'If you would install any package but this page shown, ';
+        $message .= 'you should to follow our getting start guideline.';
+
+        return $message;
+    }
 
 
     /**

@@ -100,9 +100,29 @@ class EmbeddedView
      * @throws \Mishusoft\Exceptions\RuntimeException
      * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
      */
-    public static function protection(string $title, array|string $message, int $http_response_code): void
+    public static function protection(string $title, array|string $message, int $http_response_code = 403): void
     {
         self::$launcher = 'protection';
+        self::$documentTitle = $title;
+
+        self::template($message, $http_response_code);
+    }
+
+    /**
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \JsonException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws HttpResponseException
+     * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\JsonException
+     */
+    public static function welcomeToFramework(string $title, array|string $message, int $http_response_code = 200): void
+    {
+        self::$launcher = 'welcome-to-framework';
         self::$documentTitle = $title;
 
         self::template($message, $http_response_code);
@@ -193,6 +213,37 @@ class EmbeddedView
     }
 
     /**
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \JsonException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws HttpResponseException
+     * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\JsonException
+     */
+    private static function debugIconAndAppDir(): array
+    {
+        return [
+            'div' => [
+                ['class' => 'flex-justify-center', 'style' => 'margin-right: .2em;', 'child' => [
+                    'img' =>  self::makeImageElement(
+                        'application-content-title-icon application-content-title-icon-concat',
+                        'bug',
+                        'images/icons/bug.png'
+                    ),
+                ]],
+                [
+                    'class' => 'flex-justify-center error-title-concat',
+                    'text' => RUNTIME_ROOT_PATH,
+                ],
+            ],
+        ];
+    }
+
+    /**
      * @return array
      * @throws HttpResponseException
      * @throws \GeoIp2\Exception\AddressNotFoundException
@@ -211,11 +262,11 @@ class EmbeddedView
             return [
                 'div' => [
                     ['class' => 'flex-justify-center', 'child' => [
-                        'img' => [
-                            'class' => 'application-content-title-icon',
-                            'alt' => 'access denied',
-                            'src' => Storage::toDataUri('media', 'images/icons/restriction-shield.png'),
-                        ],],
+                        'img' => self::makeImageElement(
+                            'application-content-title-icon',
+                            'access denied',
+                            'images/icons/restriction-shield.png'
+                        ),],
                     ],
                     ['child' => self::assignableProtectionContentBuilder()],
                     [
@@ -229,26 +280,19 @@ class EmbeddedView
             if (self::isFailureMessage() === false) {
                 if (self::isUnavailable()) {
                     $imageNode = [
-                        'img' => [
-                            [
-                                'class' => 'application-content-title-icon',
-                                'alt' => 'Unavailable',
-                                'src' => Storage::toDataUri('media', 'images/icons/unavailable.png'),
-                            ],
-                        ],
+                        'img' => self::makeImageElement(
+                            'application-content-title-icon',
+                            'Unavailable',
+                            'images/icons/unavailable.png'
+                        ),
                     ];
                 } else {
                     $imageNode = [
-                        'img' => [
-                            [
-                                'class' => 'application-content-title-icon',
-                                'alt' => self::$documentTitle,
-                                'src' => Storage::toDataUri(
-                                    'media',
-                                    'images/icons/' . self::lowerDocumentTitle() . '.png'
-                                ),
-                            ],
-                        ],
+                        'img' => self::makeImageElement(
+                            'application-content-title-icon',
+                            self::$documentTitle,
+                            'images/icons/' . self::lowerDocumentTitle() . '.png'
+                        ),
                     ];
                 }
 
@@ -266,13 +310,11 @@ class EmbeddedView
             return [
                 'div' => [
                     ['class' => 'flex-justify-center', 'child' => [
-                        'img' => [
-                            [
-                                'class' => 'application-content-title-icon',
-                                'alt' => 'information',
-                                'src' => Storage::toDataUri('media', 'images/icons/nothing-found.png'),
-                            ],
-                        ],
+                        'img' => self::makeImageElement(
+                            'application-content-title-icon',
+                            'information',
+                            'images/icons/nothing-found.png'
+                        ),
                     ],],
                     ['class' => 'application-content-body', 'child' => [
                         'article' => [
@@ -292,23 +334,7 @@ class EmbeddedView
                                 [
                                     'class' => 'application-content application-content-width-auto border-grey-300',
                                     'style' => 'flex-direction: row;',
-                                    'child' => [
-                                        'div' => [
-                                            ['class' => 'flex-justify-center', 'style' => 'margin-right: .2em;', 'child' => [
-                                                'img' => [
-                                                    [
-                                                        'class' => 'application-content-title-icon application-content-title-icon-concat',
-                                                        'alt' => 'bug',
-                                                        'src' => Storage::toDataUri('media', 'images/icons/bug.png'),
-                                                    ],
-                                                ],
-                                            ]],
-                                            [
-                                                'class' => 'flex-justify-center error-title-concat',
-                                                'text' => RUNTIME_ROOT_PATH,
-                                            ],
-                                        ],
-                                    ],],
+                                    'child' => self::debugIconAndAppDir(),],
                                 [
                                     'class' => 'application-content application-content-width-auto',
                                     'style' => 'padding:1.25rem 2.5rem;',
@@ -367,6 +393,61 @@ class EmbeddedView
             return [];
         }
 
+        if (self::$launcher === 'welcome-to-framework') {
+            $contents = [
+                'div' => [
+                    ['class' => 'flex-justify-center', 'child' => [
+                        'img' => self::makeImageElement(
+                            'application-content-title-icon',
+                            'welcome',
+                            'logos/mishusoft-logo-lite.png'
+                        ),
+                        ],],
+                ],];
+            $common = 'flex-justify-center';
+            $commonMessage = 'flex-justify-center message';
+            $boxshadowNone = 'box-shadow: none;';
+            $additionalCommon = $boxshadowNone . 'margin-bottom: 20px;';
+
+            if (is_array(self::$messageDetails) === true) {
+                foreach (self::$messageDetails as $type => $message) {
+                    if ($type === 'caption') {
+                        $contents['div'][] = [
+                            'class' => $common . ' error-title',
+                            'style' => 'color: var(--blue-deep);',
+                            'text' => $message,
+                        ];
+                    }
+                    if ($type === 'description') {
+                        $additional = $additionalCommon . 'background: none;border: none;text-align: center;';
+                        $contents['div'][] = ['class' => $commonMessage, 'style' => $additional, 'text' => $message,];
+                    }
+                    if ($type === 'warning') {
+                        $additional = $additionalCommon . 'background: #f9d8b1;color: #fb8e0d;';
+                        $contents['div'][] = ['class' => $commonMessage, 'style' => $additional, 'text' => $message,];
+                    }
+                    if ($type === 'copyright') {
+                        $additional = 'align-items: center;';
+                        $contents['div'][] = ['class' => 'flex-column-center', 'style' => $additional, 'child' => [
+                            'div' => [
+                                ['class' => 'flex-row-center', 'child' => self::assignableSocialMediaLinkWithIcons(),],
+                                ['text' => $message,],
+                            ],
+                        ],];
+                    }
+                }
+            }
+            if (is_string(self::$messageDetails) === true) {
+                $contents['div'][] = [
+                    'class' => $common . ' message',
+                    'style' => $boxshadowNone,
+                    'text' => self::$messageDetails,
+                ];
+            }
+
+            return $contents;
+        }
+
         return [];
     }
 
@@ -389,42 +470,174 @@ class EmbeddedView
         return 'An error occurred!';
     }
 
+    /**
+     * @return bool
+     */
     private static function isFailureMessage(): bool
     {
         return array_key_exists('file', self::$messageDetails) && array_key_exists('location', self::$messageDetails);
     }
 
+    /**
+     * @return bool
+     */
     private static function isDebugMessage(): bool
     {
         return array_key_exists('caption', self::$messageDetails) && array_key_exists('stack', self::$messageDetails);
     }
 
+    /**
+     * @return bool
+     */
     private static function isUnavailable(): bool
     {
         return self::lowerDocumentTitle() === 'not found' || str_contains(self::lowerDocumentTitle(), 'unavailable');
     }
 
+    /**
+     * @return array
+     */
     private static function assignableProtectionContentBuilder(): array
     {
         $contents = [];
+        $common = 'flex-justify-center';
 
-        if (array_key_exists('caption', self::$messageDetails) === true) {
-            $contents['div'][] = ['class' => 'flex-justify-center error-title', 'text' => self::$messageDetails['caption']];
-        }
-        if (array_key_exists('message', self::$messageDetails) === true) {
-            if (is_array(self::$messageDetails['message']) === true) {
-                foreach (self::$messageDetails['message'] as $message) {
-                    $contents['div'][] = ['class' => 'flex-justify-center message', 'text' => $message];
+        if (is_array(self::$messageDetails) === true) {
+            if (array_key_exists('caption', self::$messageDetails) === true) {
+                $contents['div'][] = ['class' => $common . ' error-title', 'text' => self::$messageDetails['caption']];
+            }
+            if (array_key_exists('message', self::$messageDetails) === true) {
+                if (is_array(self::$messageDetails['message']) === true) {
+                    foreach (self::$messageDetails['message'] as $message) {
+                        $contents['div'][] = ['class' => $common . ' message', 'text' => $message];
+                    }
+                } else {
+                    $contents['div'][] = ['class' => $common . ' message', 'text' => self::$messageDetails['message']];
                 }
             } else {
-                $contents['div'][] = ['class' => 'flex-justify-center message', 'text' => self::$messageDetails['message']];
+                $contents['div'][] = ['class' => $common . ' message', 'text' => 'An error occurred'];
             }
-        } else {
-            $contents['div'][] = ['class' => 'flex-justify-center message', 'text' => 'An error occurred'];
+        }
+        if (is_string(self::$messageDetails) === true) {
+            $contents['div'][] = ['class' => $common . ' message', 'text' => self::$messageDetails];
         }
 
         return $contents;
     }
+
+    /**
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \JsonException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws HttpResponseException
+     */
+    private static function assignableSocialMediaLinkWithIcons():array
+    {
+        return [
+            'a' => [
+                self::makeAnchorElement(
+                    'link',
+                    'https://www.facebook.com/mralaminahamed/',
+                    'facebook',
+                    self::makeChildElement(
+                        'img',
+                        self::makeImageElement(
+                            'social-link-img',
+                            'facebook',
+                            'images/icons/social-media/facebook-new.png'
+                        ),
+                    )
+                ),
+                self::makeAnchorElement(
+                    'link',
+                    'https://www.instagram.com/mralaminahamed/',
+                    'instagram',
+                    self::makeChildElement(
+                        'img',
+                        self::makeImageElement(
+                            'social-link-img',
+                            'instagram',
+                            'images/icons/social-media/instagram-new.png'
+                        ),
+                    )
+                ),
+                self::makeAnchorElement(
+                    'link',
+                    'https://www.linkedin.com/in/mralaminahamed/',
+                    'linkedin',
+                    self::makeChildElement(
+                        'img',
+                        self::makeImageElement(
+                            'social-link-img',
+                            'linkedin',
+                            'images/icons/social-media/linkedin.png'
+                        ),
+                    )
+                ),
+                self::makeAnchorElement(
+                    'link',
+                    'https://twitter.com/mralaminahamed',
+                    'twitter',
+                    self::makeChildElement(
+                        'img',
+                        self::makeImageElement(
+                            'social-link-img',
+                            'twitter',
+                            'images/icons/social-media/twitter.png'
+                        ),
+                    )
+                ),
+            ],
+        ];
+    }
+
+    /**
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \JsonException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws HttpResponseException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
+     * @throws \Mishusoft\Exceptions\JsonException
+     */
+    private static function makeImageElement(string $classname, string $alternate, string $src):array
+    {
+        return [
+            'class' => $classname,
+            'alt' => ucfirst($alternate),
+            'title' => ucfirst($alternate),
+            'src' => Storage::toDataUri('media', $src),
+        ];
+    }
+
+
+    private static function makeAnchorElement(string $class, string $href, string $title, array $childElement = []):array
+    {
+        return [
+            'class' => $class,
+            'title' => ucfirst($title),
+            'href' => $href,
+            'child' => $childElement,
+        ];
+    }
+
+
+    private static function makeChildElement(string $tagname, array $childElement = []):array
+    {
+        return [
+            $tagname => $childElement,
+        ];
+    }
+
 
     /**
      * @return array
@@ -546,6 +759,7 @@ class EmbeddedView
         $webBrowser = Http::browser();
         $visitorDetails = [];
 
+
         if (self::$launcher === 'protection') {
             // Reason of block.
             $visitorDetails[] = [
@@ -553,7 +767,10 @@ class EmbeddedView
                 'child' => [
                     'td' => [
                         ['class' => 'details-item-title', 'text' => 'Reason :',],
-                        ['class' => 'details-item-details', 'text' => ucfirst(self::$messageDetails['caption']),],
+                        [
+                            'class' => 'details-item-details',
+                            'text' => ucfirst(is_array(self::$messageDetails) ? self::$messageDetails['caption'] : self::$messageDetails),
+                        ],
                     ],
                 ],
             ];

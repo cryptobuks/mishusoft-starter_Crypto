@@ -6,7 +6,7 @@ use JsonException;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Storage\FileSystem;
-use Mishusoft\Ui\Memory;
+use Mishusoft\System\Memory;
 use Mishusoft\Utility\JSON;
 
 class MPM extends Base
@@ -567,7 +567,6 @@ class MPM extends Base
      */
     public static function install(string $newPackage = '', bool $setDefault = false): void
     {
-        //var_dump(debug_backtrace());exit(0);
         // Preparing to check configure file.
         if (file_exists(self::configFile()) === true) {
             if (self::readConfigure() === true) {

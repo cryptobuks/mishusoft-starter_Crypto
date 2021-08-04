@@ -80,14 +80,14 @@ const commonConfig = {
     plugins: [
         new CleanWebpackPlugin(),
 
-        new CopyWebpackPlugin(
-            {
-                patterns: [
-                /*copy webfonts file from sources directory*/
-                {from: path.join(DOCUMENT_ROOT, './storages/app/webfonts/'), to: path.join(DOCUMENT_ROOT, './storages/app/assets/webfonts/')},
-                ]
-            }
-        ),
+        // new CopyWebpackPlugin(
+        //     {
+        //         patterns: [
+        //         /*copy webfonts file from sources directory*/
+        //         {from: path.join(DOCUMENT_ROOT, './storages/app/webfonts/'), to: path.join(DOCUMENT_ROOT, './storages/app/assets/webfonts/')},
+        //         ]
+        //     }
+        // ),
         /*webpack 4*/
         //new FixStyleOnlyEntriesPlugin(),
         /*webpack 5*/

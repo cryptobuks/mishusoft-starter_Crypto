@@ -7,8 +7,8 @@ use DOMDocument;
 use DOMElement;
 use DOMNode;
 use DOMNodeList;
-use Mishusoft\Ui\Memory;
-use Mishusoft\Ui\Time;
+use Mishusoft\System\Memory;
+use Mishusoft\System\Time;
 use Mishusoft\Utility\Inflect;
 
 class Ui
@@ -102,7 +102,7 @@ class Ui
                 header('Content-Type: text/xml; charset=utf-8', true);
                 http_response_code($http_response_code);
                 echo '<?xml version="1.0" encoding="UTF-8"?>';
-                echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.sitemaps.org/schemas/sitemap/0.9 https://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">';
+                echo '<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.sitemaps.org/schemas/sitemap/0.9 https://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">';
                 break;
 
             case 'html':
@@ -253,10 +253,9 @@ class Ui
     public static function updateAttribute(DOMElement $htmlElement, array $qualifiedNames = []): void
     {
         foreach ($qualifiedNames as $qualifiedName => $updatedName) {
-            if (self::hasAttribute($htmlElement, $qualifiedName) === true) {
-                if (self::removeAttribute($htmlElement, $qualifiedName) === true) {
-                    $htmlElement->setAttribute($updatedName, '');
-                }
+            if ((self::hasAttribute($htmlElement, $qualifiedName) === true)
+                && self::removeAttribute($htmlElement, $qualifiedName) === true) {
+                $htmlElement->setAttribute($updatedName, '');
             }
         }
     }//end updateAttribute()
@@ -451,9 +450,9 @@ class Ui
     /**
      * @param  DOMElement $parentHtmlElement
      * @param  string     $content
-     * @return mixed
+     * @return bool|DOMDocument|DOMNode
      */
-    public static function html(DOMElement $parentHtmlElement, string $content): mixed
+    public static function html(DOMElement $parentHtmlElement, string $content): bool|DOMDocument|DOMNode
     {
         return $parentHtmlElement->appendChild(self::$domDocument->loadHTML($content));
     }//end html()
@@ -506,6 +505,11 @@ class Ui
             // Copyright © 2020 Winstarit LTD. All Right Reserved.
         );
     }//end addDefaultSignature()
+
+    public static function copyRightText():string
+    {
+        return 'Copyright © '.Time::currentYearNumber().' '.Memory::Data()->company->name.'. All Right Reserved.';
+    }
 
 
     /**
