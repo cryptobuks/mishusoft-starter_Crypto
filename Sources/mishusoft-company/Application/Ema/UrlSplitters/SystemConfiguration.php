@@ -4,8 +4,8 @@ namespace App\Ema\UrlSplitters;
 
 use Mishusoft\Http;
 use Mishusoft\Storage\Uploader;
-use Mishusoft\System;
-use Mishusoft\System\Firewall;
+use Mishusoft\Ui;
+use Mishusoft\Ui\Firewall;
 use ZipArchive;
 
 class SystemConfiguration

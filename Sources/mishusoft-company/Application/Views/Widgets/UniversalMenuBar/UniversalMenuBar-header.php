@@ -3,7 +3,7 @@
 
 // we need configuration file to multiple positioning and links
 use Mishusoft\Storage;
-use Mishusoft\System\Localization;
+use Mishusoft\Ui\Localization;
 use Mishusoft\Ui;
 use Mishusoft\Drivers\Session;
 use Mishusoft\Libraries\Runtime;

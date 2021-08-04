@@ -4,9 +4,9 @@ namespace Mishusoft;
 
 use JsonException;
 use Mishusoft\Storage\FileSystem;
-use Mishusoft\System\Memory;
-use Mishusoft\System\Network;
-use Mishusoft\System\Time;
+use Mishusoft\Ui\Memory;
+use Mishusoft\Ui\Network;
+use Mishusoft\Ui\Time;
 use Mishusoft\Utility\JSON;
 
 class Framework extends Base
@@ -595,7 +595,6 @@ class Framework extends Base
             }//end if
         }//end if
     }//end opcacheStatusCheck()
-
 
     /**
      * @throws Exceptions\ErrorException

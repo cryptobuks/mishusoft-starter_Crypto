@@ -7,7 +7,7 @@ use Mishusoft\Exceptions\ErrorException;
 use Mishusoft\Exceptions\JsonException;
 use Mishusoft\Storage;
 use Mishusoft\Storage\FileSystem;
-use Mishusoft\System\Firewall;
+use Mishusoft\Ui\Firewall;
 use Mishusoft\Libraries\Runtime;
 use Mishusoft\Utility\ArrayCollection;
 

@@ -6,7 +6,7 @@ use JsonException;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Storage\FileSystem;
-use Mishusoft\System\Memory;
+use Mishusoft\Ui\Memory;
 use Mishusoft\Utility\JSON;
 
 class MPM extends Base

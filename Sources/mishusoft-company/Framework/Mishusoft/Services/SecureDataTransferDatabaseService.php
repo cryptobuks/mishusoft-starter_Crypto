@@ -4,7 +4,7 @@
 namespace Mishusoft\Services;
 
 use Mishusoft\Databases\MishusoftSQLStandalone;
-use Mishusoft\System\Time;
+use Mishusoft\Ui\Time;
 use Mishusoft\Utility\ArrayCollection;
 use Mishusoft\Databases\MishusoftSQLStandalone\TableInterface;
 use Mishusoft\Migration\DB;

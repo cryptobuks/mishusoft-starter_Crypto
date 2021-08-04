@@ -5,7 +5,7 @@ namespace Mishusoft\Storage;
 use JsonException;
 use Mishusoft\Exceptions\ErrorException;
 use Mishusoft\Exceptions\RuntimeException;
-use Mishusoft\System\Logger;
+use Mishusoft\Ui\Logger;
 use Mishusoft\Utility\Number;
 
 class FileSystem

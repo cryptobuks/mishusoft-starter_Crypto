@@ -3,7 +3,7 @@
 
 namespace App\Ema\Mishusoft\Main\UrlHandlers;
 
-use Mishusoft\System\Localization;
+use Mishusoft\Ui\Localization;
 use Mishusoft\Drivers\UrlHandler;
 use Mishusoft\Utility\ArrayCollection;
 

@@ -5,8 +5,8 @@ namespace Mishusoft\Libraries;
 
 use Mishusoft\Cryptography\OpenSSL\Encryption;
 use Mishusoft\Storage;
-use Mishusoft\System\Localization;
-use Mishusoft\System\Memory;
+use Mishusoft\Ui\Localization;
+use Mishusoft\Ui\Memory;
 use Mishusoft\Utility\ArrayCollection;
 
 class Runtime

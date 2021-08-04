@@ -3,9 +3,9 @@
 
 namespace App\Ema\Mishusoft\Main\UrlHandlers;
 
-use Mishusoft\System\Localization;
-use Mishusoft\System\Memory;
-use Mishusoft\System\Firewall;
+use Mishusoft\Ui\Localization;
+use Mishusoft\Ui\Memory;
+use Mishusoft\Ui\Firewall;
 use Mishusoft\Drivers\UrlHandler;
 use Mishusoft\Utility\ArrayCollection;
 

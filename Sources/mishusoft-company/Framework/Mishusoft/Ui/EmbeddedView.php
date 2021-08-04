@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Mishusoft\System;
+namespace Mishusoft\Ui;
 
 use Mishusoft\Exceptions\HttpException\HttpResponseException;
 use Mishusoft\Framework;
@@ -12,7 +12,7 @@ use Mishusoft\Ui;
 use Mishusoft\Utility\Inflect;
 use Mishusoft\Utility\Number;
 
-class Embeddedview extends Firewall
+class EmbeddedView
 {
     private static string $launcher;
     private static string $documentTitle;
@@ -419,7 +419,6 @@ class Embeddedview extends Firewall
             } else {
                 $contents['div'][] = ['class' => 'flex-justify-center message', 'text' => self::$messageDetails['message']];
             }
-
         } else {
             $contents['div'][] = ['class' => 'flex-justify-center message', 'text' => 'An error occurred'];
         }

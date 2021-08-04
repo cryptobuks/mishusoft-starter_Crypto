@@ -4,7 +4,7 @@ namespace Mishusoft;
 
 use JsonException;
 use Mishusoft\Exceptions\RuntimeException\NotFoundException;
-use Mishusoft\System\Firewall;
+use Mishusoft\Ui\Firewall;
 use Mishusoft\Utility\ArrayCollection;
 use Mishusoft\Utility\Inflect;
 

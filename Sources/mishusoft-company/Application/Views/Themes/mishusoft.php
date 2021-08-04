@@ -3,8 +3,8 @@
 
 use Mishusoft\Storage;
 use Mishusoft\Services\SEOToolKitService;
-use Mishusoft\System\Logger;
-use Mishusoft\System\Memory;
+use Mishusoft\Ui\Logger;
+use Mishusoft\Ui\Memory;
 use Mishusoft\Ui;
 use Mishusoft\Drivers\Session;
 

@@ -5,8 +5,8 @@ namespace Mishusoft\Http;
 use Locale;
 use Mishusoft\MPM;
 use Mishusoft\Storage;
-use Mishusoft\System\Memory;
-use Mishusoft\System\Localization;
+use Mishusoft\Ui\Memory;
+use Mishusoft\Ui\Localization;
 use Mishusoft\Utility\Inflect;
 
 class Request

@@ -1,7 +1,7 @@
 <?php
 
 use Mishusoft\Storage;
-use Mishusoft\System\Localization;
+use Mishusoft\Ui\Localization;
 use Mishusoft\Ui;
 use Mishusoft\Utility\ArrayCollection;
 use Mishusoft\Utility\Inflect;

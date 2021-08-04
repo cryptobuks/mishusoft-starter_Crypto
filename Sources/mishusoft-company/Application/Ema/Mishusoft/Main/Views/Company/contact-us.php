@@ -1,6 +1,6 @@
 <?php
 
-use Mishusoft\System\Localization;
+use Mishusoft\Ui\Localization;
 use Mishusoft\Ui;
 
 $translation = new Localization(_Array::value($this->request, "locale"));

@@ -3,7 +3,7 @@
 
 namespace Mishusoft\Http;
 
-use Mishusoft\System\Firewall;
+use Mishusoft\Ui\Firewall;
 
 class Visitor
 {

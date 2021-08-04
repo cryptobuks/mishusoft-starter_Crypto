@@ -7,8 +7,8 @@ use DOMDocument;
 use DOMElement;
 use DOMNode;
 use DOMNodeList;
-use Mishusoft\System\Memory;
-use Mishusoft\System\Time;
+use Mishusoft\Ui\Memory;
+use Mishusoft\Ui\Time;
 use Mishusoft\Utility\Inflect;
 
 class Ui

@@ -5,7 +5,7 @@ namespace Mishusoft\Drivers;
 use Mishusoft\Preloader;
 use Mishusoft\Storage;
 use Mishusoft\Storage\FileSystem;
-use Mishusoft\System\Firewall;
+use Mishusoft\Ui\Firewall;
 
 abstract class Widget implements WidgetInterface
 {

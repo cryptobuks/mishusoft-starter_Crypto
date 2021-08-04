@@ -9,7 +9,7 @@ use Mishusoft\Drivers\View\MishusoftView;
 use Mishusoft\Http;
 use Mishusoft\Storage;
 use Mishusoft\Storage\FileSystem;
-use Mishusoft\System\Memory;
+use Mishusoft\Ui\Memory;
 use Mishusoft\Ui;
 use Mishusoft\Utility\ArrayCollection;
 

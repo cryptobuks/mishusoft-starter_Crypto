@@ -1,7 +1,7 @@
 <?php
 
 use Mishusoft\Storage;
-use Mishusoft\System\Memory;
+use Mishusoft\Ui\Memory;
 use Mishusoft\Ui;
 
 /*

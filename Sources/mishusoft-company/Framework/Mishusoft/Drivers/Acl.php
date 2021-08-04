@@ -3,7 +3,7 @@
 namespace Mishusoft\Drivers;
 
 use Mishusoft\Databases\MishusoftSQLStandalone;
-use Mishusoft\System\Firewall;
+use Mishusoft\Ui\Firewall;
 use Mishusoft\Utility\ArrayCollection;
 use Mishusoft\Databases\MishusoftSQLStandalone\TableInterface;
 use Mishusoft\Migration\DB;

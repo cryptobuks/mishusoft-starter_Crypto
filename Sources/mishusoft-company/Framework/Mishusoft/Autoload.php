@@ -2,7 +2,7 @@
 
 namespace Mishusoft;
 
-use Mishusoft\System\Logger;
+use Mishusoft\Ui\Logger;
 use RuntimeException;
 
 /**

@@ -2,7 +2,7 @@
 
 namespace Mishusoft\Drivers;
 
-use Mishusoft\System\Logger;
+use Mishusoft\Ui\Logger;
 use PDO;
 use PDOException;
 

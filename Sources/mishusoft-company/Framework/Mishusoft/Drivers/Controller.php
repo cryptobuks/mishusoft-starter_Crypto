@@ -5,8 +5,8 @@ namespace Mishusoft\Drivers;
 use InvalidArgumentException;
 use Mishusoft\MPM;
 use Mishusoft\Preloader;
-use Mishusoft\System\BIOS;
-use Mishusoft\System\Firewall;
+use Mishusoft\Ui\BIOS;
+use Mishusoft\Ui\Firewall;
 use Mishusoft\Drivers\ControllerInterface;
 use Mishusoft\Libraries\Runtime;
 

@@ -4,8 +4,8 @@
 namespace Mishusoft\Exceptions;
 
 use ErrorException;
-use Mishusoft\System\Firewall;
-use Mishusoft\System\Logger;
+use Mishusoft\Ui\Firewall;
+use Mishusoft\Ui\Logger;
 
 class Handler extends ErrorException
 {
