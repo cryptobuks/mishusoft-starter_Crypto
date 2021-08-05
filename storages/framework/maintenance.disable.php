@@ -3,11 +3,12 @@
 $imageMimeType = 'image/png';
 
 $rootMediaDirectory = sprintf(
-    '%1$s%5$s%2$s%5$s%3$s%5$s%4$s%5$s',
+    '%1$s%6$s%2$s%6$s%3$s%6$s%4$s%6$s%5$s%6$s',
     dirname(__DIR__),
     'app',
     'media',
     'logos',
+    'default',
     DIRECTORY_SEPARATOR
 );
 $rootImagesDirectory = sprintf(

@@ -202,9 +202,9 @@ class EmbeddedView
         }
 
         return [
-            'section' => [
+            'article' => [
                 ['class' => 'application', 'child' => [
-                    'article' => [
+                    'section' => [
                         ['class' => 'application-content', 'child' => self::viewContentBuilder()],
                     ],
                 ]],
@@ -229,16 +229,16 @@ class EmbeddedView
         return [
             'div' => [
                 ['class' => 'flex-justify-center', 'style' => 'margin-right: .2em;', 'child' => [
-                    'img' =>  self::makeImageElement(
+                    'img' => self::makeImageElement(
                         'application-content-title-icon application-content-title-icon-concat',
                         'bug',
                         'images/icons/bug.png'
                     ),
                 ]],
-                [
+                self::setAttributes([
                     'class' => 'flex-justify-center error-title-concat',
                     'text' => RUNTIME_ROOT_PATH,
-                ],
+                ]),
             ],
         ];
     }
@@ -328,9 +328,9 @@ class EmbeddedView
         if (self::$launcher === 'debug') {
             if (self::isDebugMessage() === true) {
                 return [
-                    'section' => [
+                    'article' => [
                         ['class' => 'application application-concat', 'child' => [
-                            'article' => [
+                            'section' => [
                                 [
                                     'class' => 'application-content application-content-width-auto border-grey-300',
                                     'style' => 'flex-direction: row;',
@@ -402,12 +402,25 @@ class EmbeddedView
                             'welcome',
                             'logos/mishusoft-logo-lite.png'
                         ),
-                        ],],
+                    ],],
                 ],];
+//            $contents = self::mergeChild(
+//                self::makeElement(
+//                    'div',
+//                    self::setAttributes(['class' => 'flex-justify-center'], self::makeElement(
+//                        'img',
+//                        self::makeImageElement(
+//                            'application-content-title-icon',
+//                            'welcome',
+//                            'logos/mishusoft-logo-lite.png'
+//                        )
+//                    )),
+//                )
+//            );
             $common = 'flex-justify-center';
             $commonMessage = 'flex-justify-center message';
-            $boxshadowNone = 'box-shadow: none;';
-            $additionalCommon = $boxshadowNone . 'margin-bottom: 20px;';
+            $boxShadowNone = 'box-shadow: none;';
+            $additionalCommon = $boxShadowNone . 'margin-bottom: 20px;';
 
             if (is_array(self::$messageDetails) === true) {
                 foreach (self::$messageDetails as $type => $message) {
@@ -420,29 +433,41 @@ class EmbeddedView
                     }
                     if ($type === 'description') {
                         $additional = $additionalCommon . 'background: none;border: none;text-align: center;';
-                        $contents['div'][] = ['class' => $commonMessage, 'style' => $additional, 'text' => $message,];
+                        $contents['div'][] = self::setAttributes(
+                            ['class' => $commonMessage, 'style' => $additional, 'text' => $message,]
+                        );
                     }
                     if ($type === 'warning') {
                         $additional = $additionalCommon . 'background: #f9d8b1;color: #fb8e0d;';
-                        $contents['div'][] = ['class' => $commonMessage, 'style' => $additional, 'text' => $message,];
+                        $contents['div'][] = self::setAttributes(
+                            ['class' => $commonMessage, 'style' => $additional, 'text' => $message,]
+                        );
                     }
                     if ($type === 'copyright') {
-                        $additional = 'align-items: center;';
-                        $contents['div'][] = ['class' => 'flex-column-center', 'style' => $additional, 'child' => [
-                            'div' => [
-                                ['class' => 'flex-row-center', 'child' => self::assignableSocialMediaLinkWithIcons(),],
-                                ['text' => $message,],
-                            ],
-                        ],];
+                        $contents['div'][] = self::setAttributes(
+                            ['class' => 'flex-column-center', 'style' => 'align-items: center;'],
+                            self::makeElement(
+                                'div',
+                                self::attachChild(
+                                    self::setAttributes(
+                                        [
+                                            'class' => 'flex-row-center',
+                                            'child' => self::assignableSocialMediaLinkWithIcons(),
+                                        ]
+                                    ),
+                                    self::setAttributes(['text' => $message,]),
+                                )
+                            )
+                        );
                     }
                 }
             }
             if (is_string(self::$messageDetails) === true) {
-                $contents['div'][] = [
+                $contents['div'][] = self::setAttributes([
                     'class' => $common . ' message',
-                    'style' => $boxshadowNone,
+                    'style' => $boxShadowNone,
                     'text' => self::$messageDetails,
-                ];
+                ]);
             }
 
             return $contents;
@@ -504,22 +529,30 @@ class EmbeddedView
 
         if (is_array(self::$messageDetails) === true) {
             if (array_key_exists('caption', self::$messageDetails) === true) {
-                $contents['div'][] = ['class' => $common . ' error-title', 'text' => self::$messageDetails['caption']];
+                $contents['div'][] = self::setAttributes(
+                    ['class' => $common . ' error-title', 'text' => self::$messageDetails['caption']]
+                );
             }
             if (array_key_exists('message', self::$messageDetails) === true) {
                 if (is_array(self::$messageDetails['message']) === true) {
                     foreach (self::$messageDetails['message'] as $message) {
-                        $contents['div'][] = ['class' => $common . ' message', 'text' => $message];
+                        $contents['div'][] = self::setAttributes(['class' => $common . ' message', 'text' => $message]);
                     }
                 } else {
-                    $contents['div'][] = ['class' => $common . ' message', 'text' => self::$messageDetails['message']];
+                    $contents['div'][] = self::setAttributes(
+                        ['class' => $common . ' message', 'text' => self::$messageDetails['message']]
+                    );
                 }
             } else {
-                $contents['div'][] = ['class' => $common . ' message', 'text' => 'An error occurred'];
+                $contents['div'][] = self::setAttributes(
+                    ['class' => $common . ' message', 'text' => 'An error occurred']
+                );
             }
         }
         if (is_string(self::$messageDetails) === true) {
-            $contents['div'][] = ['class' => $common . ' message', 'text' => self::$messageDetails];
+            $contents['div'][] = self::setAttributes(
+                ['class' => $common . ' message', 'text' => self::$messageDetails]
+            );
         }
 
         return $contents;
@@ -537,64 +570,63 @@ class EmbeddedView
      * @throws \MaxMind\Db\Reader\InvalidDatabaseException
      * @throws HttpResponseException
      */
-    private static function assignableSocialMediaLinkWithIcons():array
+    private static function assignableSocialMediaLinkWithIcons(): array
     {
-        return [
-            'a' => [
-                self::makeAnchorElement(
-                    'link',
-                    'https://www.facebook.com/mralaminahamed/',
-                    'facebook',
-                    self::makeChildElement(
-                        'img',
-                        self::makeImageElement(
-                            'social-link-img',
-                            'facebook',
-                            'images/icons/social-media/facebook-new.png'
-                        ),
-                    )
-                ),
-                self::makeAnchorElement(
-                    'link',
-                    'https://www.instagram.com/mralaminahamed/',
-                    'instagram',
-                    self::makeChildElement(
-                        'img',
-                        self::makeImageElement(
-                            'social-link-img',
-                            'instagram',
-                            'images/icons/social-media/instagram-new.png'
-                        ),
-                    )
-                ),
-                self::makeAnchorElement(
-                    'link',
-                    'https://www.linkedin.com/in/mralaminahamed/',
-                    'linkedin',
-                    self::makeChildElement(
-                        'img',
-                        self::makeImageElement(
-                            'social-link-img',
-                            'linkedin',
-                            'images/icons/social-media/linkedin.png'
-                        ),
-                    )
-                ),
-                self::makeAnchorElement(
-                    'link',
-                    'https://twitter.com/mralaminahamed',
-                    'twitter',
-                    self::makeChildElement(
-                        'img',
-                        self::makeImageElement(
-                            'social-link-img',
-                            'twitter',
-                            'images/icons/social-media/twitter.png'
-                        ),
-                    )
-                ),
-            ],
-        ];
+
+        return self::makeElement('a', self::setAttributes([
+            self::makeAnchorElement(
+                'link',
+                'https://www.facebook.com/mralaminahamed/',
+                'facebook',
+                self::makeElement(
+                    'img',
+                    self::makeImageElement(
+                        'social-link-img',
+                        'facebook',
+                        'images/icons/social-media/facebook-new.png'
+                    ),
+                )
+            ),
+            self::makeAnchorElement(
+                'link',
+                'https://www.instagram.com/mralaminahamed/',
+                'instagram',
+                self::makeElement(
+                    'img',
+                    self::makeImageElement(
+                        'social-link-img',
+                        'instagram',
+                        'images/icons/social-media/instagram-new.png'
+                    ),
+                )
+            ),
+            self::makeAnchorElement(
+                'link',
+                'https://www.linkedin.com/in/mralaminahamed/',
+                'linkedin',
+                self::makeElement(
+                    'img',
+                    self::makeImageElement(
+                        'social-link-img',
+                        'linkedin',
+                        'images/icons/social-media/linkedin.png'
+                    ),
+                )
+            ),
+            self::makeAnchorElement(
+                'link',
+                'https://twitter.com/mralaminahamed',
+                'twitter',
+                self::makeElement(
+                    'img',
+                    self::makeImageElement(
+                        'social-link-img',
+                        'twitter',
+                        'images/icons/social-media/twitter.png'
+                    ),
+                )
+            ),
+        ]));
     }
 
     /**
@@ -609,7 +641,7 @@ class EmbeddedView
      * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
      * @throws \Mishusoft\Exceptions\JsonException
      */
-    private static function makeImageElement(string $classname, string $alternate, string $src):array
+    private static function makeImageElement(string $classname, string $alternate, string $src): array
     {
         return [
             'class' => $classname,
@@ -620,21 +652,56 @@ class EmbeddedView
     }
 
 
-    private static function makeAnchorElement(string $class, string $href, string $title, array $childElement = []):array
+    private static function makeAnchorElement(string $class, string $href, string $title, array $child = []): array
     {
-        return [
-            'class' => $class,
-            'title' => ucfirst($title),
-            'href' => $href,
-            'child' => $childElement,
-        ];
+        $attributes = ['class' => $class, 'title' => ucfirst($title), 'href' => $href,];
+        return self::any($attributes, $child);
     }
 
 
-    private static function makeChildElement(string $tagname, array $childElement = []):array
+    /**
+     * @param array $attributes
+     * @param array $childElement
+     * @return array
+     */
+    public static function any(array &$attributes = [], array $childElement = []): array
+    {
+        if (count($childElement) > 0) {
+            $attributes['child'] = $childElement;
+        }
+
+        return $attributes;
+    }
+
+    public static function attachChild(array ...$child): array
+    {
+        return $child;
+    }
+
+    public static function mergeChild(array ...$child): array
+    {
+        return array_merge_recursive($child);
+    }
+
+    /**
+     * @param array $attributes
+     * @param array $childElement
+     * @return array
+     */
+    public static function setAttributes(array $attributes = [], array $childElement = []): array
+    {
+        return self::any($attributes, $childElement);
+    }
+
+    /**
+     * @param string $tag
+     * @param array $attributes
+     * @return array[]
+     */
+    public static function makeElement(string $tag, array $attributes = []): array
     {
         return [
-            $tagname => $childElement,
+            $tag => $attributes,
         ];
     }
 
@@ -644,16 +711,21 @@ class EmbeddedView
      */
     private static function assignableInfoContentBuilder(): array
     {
-        return [
-            'div' => [
-                ['class' => 'details-title', 'text' => 'Information',],
-            ],
-            'table' => [
-                ['class' => 'details', 'child' => [
-                    'tr' => self::assignableMessageDetails(),
-                ]],
-            ],
-        ];
+//        return [
+//            'div' => ['class' => 'details-title', 'text' => 'Information',],
+//            'table' => [
+//                ['class' => 'details', 'child' => [
+//                    'tr' => self::assignableMessageDetails(),
+//                ]],
+//            ],
+//        ];
+        return array_merge(
+            self::makeElement('div', self::setAttributes(['class' => 'details-title', 'text' => 'Information',])),
+            self::makeElement('table', self::setAttributes(['class' => 'details',], self::makeElement(
+                'tr',
+                self::assignableMessageDetails()
+            ))),
+        );
     }
 
     /**
@@ -661,16 +733,29 @@ class EmbeddedView
      */
     private static function assignableStackTraceBuilder(): array
     {
-        return [
-            'div' => [
-                ['class' => 'details-title error-title-replacement', 'text' => 'Stack Trace',],
-            ],
-            'table' => [
-                ['class' => 'details', 'style' => 'box-shadow:none;', 'child' => [
-                    'tr' => self::assignableStackTraceDetails(),
-                ]],
-            ],
-        ];
+//        return [
+//            'div' => [
+//                ['class' => 'details-title error-title-replacement', 'text' => 'Stack Trace',],
+//            ],
+//            'table' => [
+//                ['class' => 'details', 'style' => 'box-shadow:none;', 'child' => [
+//                    'tr' => self::assignableStackTraceDetails(),
+//                ]],
+//            ],
+//        ];
+        return self::mergeChild(
+            self::makeElement(
+                'div',
+                self::setAttributes(['class' => 'details-title error-title-replacement', 'text' => 'Stack Trace',])
+            ),
+            self::makeElement(
+                'table',
+                self::setAttributes(['class' => 'details', 'style' => 'box-shadow:none;',], self::makeElement(
+                    'tr',
+                    self::assignableStackTraceDetails()
+                ))
+            ),
+        );
     }
 
     /**
@@ -680,21 +765,41 @@ class EmbeddedView
     {
         $traceDetails = [];
         foreach (self::$messageDetails['stack'] as $key => $value) {
-            $traceDetails[] = [
-                'class' => 'details-item',
-                'child' => [
-                    'td' => [
-                        [
-                            'class' => 'details-item-details details-item-details-concat details-item-serial',
-                            'text' => Number::next($key),
-                        ],
-                        [
-                            'class' => 'details-item-details details-item-details-concat padding-left-10px',
-                            'text' => $value,
-                        ],
-                    ],
-                ],
-            ];
+//            $traceDetails[] = [
+//                'class' => 'details-item',
+//                'child' => [
+//                    'td' => [
+//                        [
+//                            'class' => 'details-item-details details-item-details-concat details-item-serial',
+//                            'text' => Number::next($key),
+//                        ],
+//                        [
+//                            'class' => 'details-item-details details-item-details-concat padding-left-10px',
+//                            'text' => $value,
+//                        ],
+//                    ],
+//                ],
+//            ];
+            $traceDetails[] = self::setAttributes(
+                ['class' => 'details-item',],
+                self::makeElement(
+                    'td',
+                    self::attachChild(
+                        self::setAttributes(
+                            [
+                                'class' => 'details-item-details details-item-details-concat details-item-serial',
+                                'text' => Number::next($key),
+                            ],
+                        ),
+                        self::setAttributes(
+                            [
+                                'class' => 'details-item-details details-item-details-concat padding-left-10px',
+                                'text' => $value,
+                            ],
+                        ),
+                    )
+                )
+            );
         }
 
         return $traceDetails;
@@ -712,16 +817,30 @@ class EmbeddedView
      */
     protected static function assignableVisitorContentBuilder(string $title): array
     {
-        return [
-            'div' => [
-                ['class' => 'details-title', 'text' => ucfirst($title),],
-            ],
-            'table' => [
-                ['class' => 'details', 'child' => [
-                    'tr' => self::assignableVisitorDetails(),
-                ]],
-            ],
-        ];
+//        return [
+//            'div' => [
+//                ['class' => 'details-title', 'text' => ucfirst($title),],
+//            ],
+//            'table' => [
+//                ['class' => 'details', 'child' => [
+//                    'tr' => self::assignableVisitorDetails(),
+//                ],
+//                ],
+//            ],
+//        ];
+        return self::attachChild(
+            self::makeElement(
+                'div',
+                self::setAttributes(['class' => 'details-title', 'text' => ucfirst($title),])
+            ),
+            self::makeElement(
+                'table',
+                self::setAttributes(['class' => 'details',], self::makeElement(
+                    'tr',
+                    self::assignableVisitorDetails()
+                ))
+            ),
+        );
     }
 
     /**
@@ -731,15 +850,29 @@ class EmbeddedView
     {
         $messageDetails = [];
         foreach (self::$messageDetails as $key => $value) {
-            $messageDetails[] = [
-                'class' => 'details-item',
-                'child' => [
-                    'td' => [
-                        ['class' => 'details-item-title', 'text' => sprintf('%s:', ucfirst($key)),],
-                        ['class' => 'details-item-details', 'text' => $value,],
-                    ],
-                ],
-            ];
+//            $messageDetails[] = [
+//                'class' => 'details-item',
+//                'child' => [
+//                    'td' => [
+//                        ['class' => 'details-item-title', 'text' => sprintf('%s:', ucfirst($key)),],
+//                        ['class' => 'details-item-details', 'text' => $value,],
+//                    ],
+//                ],
+//            ];
+            $messageDetails[] = self::setAttributes(
+                ['class' => 'details-item',],
+                self::makeElement(
+                    'td',
+                    self::attachChild(
+                        self::setAttributes(
+                            ['class' => 'details-item-title', 'text' => sprintf('%s:', ucfirst($key)),],
+                        ),
+                        self::setAttributes(
+                            ['class' => 'details-item-details', 'text' => $value,],
+                        ),
+                    )
+                )
+            );
         }
 
         return $messageDetails;
@@ -762,98 +895,222 @@ class EmbeddedView
 
         if (self::$launcher === 'protection') {
             // Reason of block.
-            $visitorDetails[] = [
-                'class' => 'details-item',
-                'child' => [
-                    'td' => [
-                        ['class' => 'details-item-title', 'text' => 'Reason :',],
-                        [
-                            'class' => 'details-item-details',
-                            'text' => ucfirst(is_array(self::$messageDetails) ? self::$messageDetails['caption'] : self::$messageDetails),
-                        ],
-                    ],
-                ],
-            ];
+            if (is_array(self::$messageDetails)) {
+                $captionOrMessage = ucfirst(self::$messageDetails['caption']);
+            } else {
+                $captionOrMessage = ucfirst(self::$messageDetails);
+            }
+//            $visitorDetails[] = [
+//                'class' => 'details-item',
+//                'child' => [
+//                    'td' => [
+//                        ['class' => 'details-item-title', 'text' => 'Reason :',],
+//                        [
+//                            'class' => 'details-item-details',
+//                            'text' => $captionOrMessage,
+//                        ],
+//                    ],
+//                ],
+//            ];
+
+            $visitorDetails[] = self::setAttributes(
+                ['class' => 'details-item',],
+                self::makeElement(
+                    'td',
+                    self::attachChild(
+                        self::setAttributes(
+                            ['class' => 'details-item-title', 'text' => 'Reason :',],
+                        ),
+                        self::setAttributes(
+                            [
+                                'class' => 'details-item-details',
+                                'text' => $captionOrMessage,
+                            ],
+                        ),
+                    )
+                )
+            );
         }
 
 
         // Client ip address capturing.
-        $visitorDetails[] = [
-            'class' => 'details-item',
-            'child' => [
-                'td' => [
-                    ['class' => 'details-item-title', 'text' => 'Your IP :',],
-                    ['class' => 'details-item-details', 'text' => IP::get(),],
-                ],
-            ],
-        ];
+//        $visitorDetails[] = [
+//            'class' => 'details-item',
+//            'child' => [
+//                'td' => [
+//                    ['class' => 'details-item-title', 'text' => 'Your IP :',],
+//                    ['class' => 'details-item-details', 'text' => IP::get(),],
+//                ],
+//            ],
+//        ];
+        $visitorDetails[] = self::setAttributes(
+            ['class' => 'details-item',],
+            self::makeElement(
+                'td',
+                self::attachChild(
+                    self::setAttributes(
+                        ['class' => 'details-item-title', 'text' => 'Your IP :',],
+                    ),
+                    self::setAttributes(
+                        ['class' => 'details-item-details', 'text' => IP::get(),],
+                    ),
+                )
+            )
+        );
 
         // Current web url capturing.
-        $visitorDetails[] = [
-            'class' => 'details-item',
-            'child' => [
-                'td' => [
-                    ['class' => 'details-item-title', 'text' => 'URL :',],
-                    ['class' => 'details-item-details', 'text' => $webBrowser::getVisitedPage(),],
-                ],
-            ],
-        ];
+//        $visitorDetails[] = [
+//            'class' => 'details-item',
+//            'child' => [
+//                'td' => [
+//                    ['class' => 'details-item-title', 'text' => 'URL :',],
+//                    ['class' => 'details-item-details', 'text' => $webBrowser::getVisitedPage(),],
+//                ],
+//            ],
+//        ];
+        $visitorDetails[] = self::setAttributes(
+            ['class' => 'details-item',],
+            self::makeElement(
+                'td',
+                self::attachChild(
+                    self::setAttributes(
+                        ['class' => 'details-item-title', 'text' => 'URL :',],
+                    ),
+                    self::setAttributes(
+                        ['class' => 'details-item-details', 'text' => $webBrowser::getVisitedPage(),],
+                    ),
+                )
+            )
+        );
 
         // Capturing the user agent of browser.
-        $visitorDetails[] = [
-            'class' => 'details-item',
-            'child' => [
-                'td' => [
-                    ['class' => 'details-item-title', 'text' => 'User Agent :',],
-                    ['class' => 'details-item-details', 'text' => $webBrowser->getUserAgent(),],
-                ],
-            ],
-        ];
+//        $visitorDetails[] = [
+//            'class' => 'details-item',
+//            'child' => [
+//                'td' => [
+//                    ['class' => 'details-item-title', 'text' => 'User Agent :',],
+//                    ['class' => 'details-item-details', 'text' => $webBrowser->getUserAgent(),],
+//                ],
+//            ],
+//        ];
+        $visitorDetails[] = self::setAttributes(
+            ['class' => 'details-item',],
+            self::makeElement(
+                'td',
+                self::attachChild(
+                    self::setAttributes(
+                        ['class' => 'details-item-title', 'text' => 'User Agent :',],
+                    ),
+                    self::setAttributes(
+                        ['class' => 'details-item-details', 'text' => $webBrowser->getUserAgent(),],
+                    ),
+                )
+            )
+        );
 
         // avoid error country capturing
         if (Inflect::lower(IP::getCountry()) !== 'unknown') {
-            $visitorDetails[] = [
-                'class' => 'details-item',
-                'child' => [
-                    'td' => [
-                        ['class' => 'details-item-title', 'text' => 'Country :',],
-                        ['class' => 'details-item-details', 'text' => IP::getCountry() . ' (' . IP::get() . ')',],
-                    ],
-                ],
-            ];
+//            $visitorDetails[] = [
+//                'class' => 'details-item',
+//                'child' => [
+//                    'td' => [
+//                        ['class' => 'details-item-title', 'text' => 'Country :',],
+//                        ['class' => 'details-item-details', 'text' => IP::getCountry() . ' (' . IP::get() . ')',],
+//                    ],
+//                ],
+//            ];
+            $visitorDetails[] = self::setAttributes(
+                ['class' => 'details-item',],
+                self::makeElement(
+                    'td',
+                    self::attachChild(
+                        self::setAttributes(
+                            ['class' => 'details-item-title', 'text' => 'Country :',],
+                        ),
+                        self::setAttributes(
+                            ['class' => 'details-item-details', 'text' => IP::getCountry() . ' (' . IP::get() . ')',],
+                        ),
+                    )
+                )
+            );
         } elseif (Inflect::lower(IP::getInfo('country')) !== 'unknown location') {
-            $visitorDetails[] = [
-                'class' => 'details-item',
-                'child' => [
-                    'td' => [
-                        ['class' => 'details-item-title', 'text' => 'Country :',],
-                        ['class' => 'details-item-details', 'text' => IP::getInfo('country') . ' (' . IP::get() . ')',],
-                    ],
-                ],
-            ];
+//            $visitorDetails[] = [
+//                'class' => 'details-item',
+//                'child' => [
+//                    'td' => [
+//                        ['class' => 'details-item-title', 'text' => 'Country :',],
+//                        ['class' => 'details-item-details', 'text' => IP::getInfo('country') . ' (' . IP::get() . ')',],
+//                    ],
+//                ],
+//            ];
+            $visitorDetails[] = self::setAttributes(
+                ['class' => 'details-item',],
+                self::makeElement(
+                    'td',
+                    self::attachChild(
+                        self::setAttributes(
+                            ['class' => 'details-item-title', 'text' => 'Country :',],
+                        ),
+                        self::setAttributes(
+                            [
+                                'class' => 'details-item-details',
+                                'text' => IP::getInfo('country') . ' (' . IP::get() . ')',
+                            ],
+                        ),
+                    )
+                )
+            );
         } else {
-            $visitorDetails[] = [
-                'class' => 'details-item',
-                'child' => [
-                    'td' => [
-                        ['class' => 'details-item-title', 'text' => 'Country :',],
-                        ['class' => 'details-item-details', 'text' => 'Unknown' . ' (' . IP::get() . ')',],
-                    ],
-                ],
-            ];
+//            $visitorDetails[] = [
+//                'class' => 'details-item',
+//                'child' => [
+//                    'td' => [
+//                        ['class' => 'details-item-title', 'text' => 'Country :',],
+//                        ['class' => 'details-item-details', 'text' => 'Unknown' . ' (' . IP::get() . ')',],
+//                    ],
+//                ],
+//            ];
+            $visitorDetails[] = self::setAttributes(
+                ['class' => 'details-item',],
+                self::makeElement(
+                    'td',
+                    self::attachChild(
+                        self::setAttributes(
+                            ['class' => 'details-item-title', 'text' => 'Country :',],
+                        ),
+                        self::setAttributes(
+                            ['class' => 'details-item-details', 'text' => 'Unknown' . ' (' . IP::get() . ')',],
+                        ),
+                    )
+                )
+            );
         }//end if
 
         // avoid error browser capturing
         if (Inflect::lower($webBrowser->getBrowserName()) !== 'unknown') {
-            $visitorDetails[] = [
-                'class' => 'details-item',
-                'child' => [
-                    'td' => [
-                        ['class' => 'details-item-title', 'text' => 'Browser :',],
-                        ['class' => 'details-item-details', 'text' => $webBrowser->getBrowserNameFull(),],
-                    ],
-                ],
-            ];
+//            $visitorDetails[] = [
+//                'class' => 'details-item',
+//                'child' => [
+//                    'td' => [
+//                        ['class' => 'details-item-title', 'text' => 'Browser :',],
+//                        ['class' => 'details-item-details', 'text' => $webBrowser->getBrowserNameFull(),],
+//                    ],
+//                ],
+//            ];
+            $visitorDetails[] = self::setAttributes(
+                ['class' => 'details-item',],
+                self::makeElement(
+                    'td',
+                    self::attachChild(
+                        self::setAttributes(
+                            ['class' => 'details-item-title', 'text' => 'Browser :',],
+                        ),
+                        self::setAttributes(
+                            ['class' => 'details-item-details', 'text' => $webBrowser->getBrowserNameFull(),],
+                        ),
+                    )
+                )
+            );
         }
 
         // avoid error device capturing
@@ -861,18 +1118,32 @@ class EmbeddedView
             $deviceAndArchitecture = $webBrowser->getDeviceName();
             $deviceAndArchitecture .= ' (' . strtolower($webBrowser->getBrowserArchitecture()) . ')';
 
-            $visitorDetails[] = [
-                'class' => 'details-item',
-                'child' => [
-                    'td' => [
-                        ['class' => 'details-item-title', 'text' => 'Device :',],
-                        [
-                            'class' => 'details-item-details',
-                            'text' => $deviceAndArchitecture,
-                        ],
-                    ],
-                ],
-            ];
+//            $visitorDetails[] = [
+//                'class' => 'details-item',
+//                'child' => [
+//                    'td' => [
+//                        ['class' => 'details-item-title', 'text' => 'Device :',],
+//                        [
+//                            'class' => 'details-item-details',
+//                            'text' => $deviceAndArchitecture,
+//                        ],
+//                    ],
+//                ],
+//            ];
+            $visitorDetails[] = self::setAttributes(
+                ['class' => 'details-item',],
+                self::makeElement(
+                    'td',
+                    self::attachChild(
+                        self::setAttributes(
+                            ['class' => 'details-item-title', 'text' => 'Device :',],
+                        ),
+                        self::setAttributes(
+                            ['class' => 'details-item-details', 'text' => $deviceAndArchitecture,],
+                        ),
+                    )
+                )
+            );
         }
 
 

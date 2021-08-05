@@ -7,8 +7,8 @@ use JsonException;
 use Mishusoft\Base;
 use Mishusoft\Preloader;
 use Mishusoft\Storage;
-use Mishusoft\Ui\Firewall;
-use Mishusoft\Ui\Logger;
+use Mishusoft\System\Firewall;
+use Mishusoft\System\Logger;
 use Mishusoft\Utility\ArrayCollection;
 use Mishusoft\Utility\Inflect;
 use Mishusoft\Utility\JSON;
@@ -99,7 +99,7 @@ class MishusoftView extends Base implements MishusoftViewInterface
 
         // Directory allocation.
         $this->templateDirectory = Storage::applicationDirectivePath() . 'Themes' . DS;
-        $this->templateRenderDirectory = Storage::applicationDirectivePath() . 'Ema' . DS . 'Mishusoft/Main/Views/';
+        $this->templateRenderDirectory = Storage::applicationPackagesPath() . 'Ema' . DS . 'Modules/Main/Views/';
 
         // File information.
         $this->templateExt = 'php';

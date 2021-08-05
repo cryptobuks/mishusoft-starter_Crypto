@@ -47,7 +47,7 @@ class Storage extends Base
     {
         return sprintf(
             '%1$s%2$s%3$s',
-            self::applicationDirectivePath(),
+            self::applicationPackagesPath(),
             'Ema',
             DS
         );
@@ -165,13 +165,29 @@ class Storage extends Base
         );
     }
 
-    public static function logosPath():string
+    public static function logosPath(bool $isRemote = false):string
     {
+        if ($isRemote) {
+            return sprintf(
+                '%1$s%2$s',
+                BASE_URL,
+                'media/logos/'
+            );
+        }
         return sprintf(
             '%1$s%2$s%3$s',
             self::mediaPath(),
             'logos',
             DS
+        );
+    }
+
+    public static function logosDefaultPath(bool $isRemote = false):string
+    {
+        return sprintf(
+            '%1$s%2$s',
+            self::logosPath($isRemote),
+            'default/'
         );
     }
 
@@ -414,7 +430,7 @@ class Storage extends Base
         $faviconsList = [];
         $fileList = [];
 
-        $list = self::files(self::logosPath());
+        $list = self::files(self::logosDefaultPath());
 
         foreach ($list as $item) {
             if (count(Storage\Media::imageFileInformation($item)) > 0) {
@@ -426,45 +442,57 @@ class Storage extends Base
         foreach ($fileList as $imageFile => $fileDetails) {
             if (str_starts_with(pathinfo($imageFile, PATHINFO_FILENAME), 'apple-icon') === true) {
                 //<link rel="apple-touch-icon" sizes="57x57" href="{logoFolder}apple-icon-57x57.png">
-                ///home/abir/Development/web-development/lastest.mishusoft.com/Storages/0/media/logos/apple-icon-152x152.png
+                ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/apple-icon-152x152.png
                 $faviconsList[] = [
                     'rel'  => 'apple-touch-icon',
                     'type'  => ArrayCollection::value($fileDetails, 'mime'),
                     'sizes'  => self::imageSizeBuilder($fileDetails),
-                    'href' => self::toDataUri('media', 'logos'. DS.pathinfo($imageFile, PATHINFO_BASENAME)),
+                    'href' => self::toDataUri(
+                        'media',
+                        'logos'. DS.'default'. DS.pathinfo($imageFile, PATHINFO_BASENAME)
+                    ),
                 ];
             }
             if (str_starts_with(pathinfo($imageFile, PATHINFO_FILENAME), 'android-icon') === true) {
                 //<link rel="icon" type="image/png" sizes="192x192" href="{logoFolder}android-icon-192x192.png">
-                ///home/abir/Development/web-development/lastest.mishusoft.com/Storages/0/media/logos/android-icon-192x192.png
+                ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/android-icon-192x192.png
                 $faviconsList[] = [
                     'rel'  => 'icon',
                     'type'  => ArrayCollection::value($fileDetails, 'mime'),
                     'sizes'  => self::imageSizeBuilder($fileDetails),
-                    'href' => self::toDataUri('media', 'logos'. DS.pathinfo($imageFile, PATHINFO_BASENAME)),
+                    'href' => self::toDataUri(
+                        'media',
+                        'logos'. DS.'default'. DS.pathinfo($imageFile, PATHINFO_BASENAME)
+                    ),
                 ];
             }
             if (str_starts_with(pathinfo($imageFile, PATHINFO_FILENAME), 'favicon') === true) {
                 //<link rel="icon" type="image/png" sizes="16x16" href="{logoFolder}favicon-16x16.png">
-                ///home/abir/Development/web-development/lastest.mishusoft.com/Storages/0/media/logos/favicon-16x16.png
+                ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/favicon-16x16.png
 
                 //<link rel="icon" type="image/vnd.microsoft.icon" sizes="16x16" href="{logoFolder}favicon.ico">
-                ///home/abir/Development/web-development/lastest.mishusoft.com/Storages/0/media/logos/favicon.ico
+                ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/favicon.ico
                 $faviconsList[] = [
                     'rel'  => 'icon',
                     'type'  => ArrayCollection::value($fileDetails, 'mime'),
                     'sizes'  => self::imageSizeBuilder($fileDetails),
-                    'href' => self::toDataUri('media', 'logos'. DS.pathinfo($imageFile, PATHINFO_BASENAME)),
+                    'href' => self::toDataUri(
+                        'media',
+                        'logos'. DS.'default'. DS.pathinfo($imageFile, PATHINFO_BASENAME)
+                    ),
                 ];
             }
             if (str_starts_with(pathinfo($imageFile, PATHINFO_FILENAME), 'mishusoft-logo-lite') === true) {
                 //<link rel="icon" type="image/webp" sizes="16x16" href="{logoFolder}mishusoft-logo-lite.webp">
-                ///home/abir/Development/web-development/lastest.mishusoft.com/Storages/0/media/logos/mishusoft-logo-lite.webp
+                ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/mishusoft-logo-lite.webp
                 $faviconsList[] = [
                     'rel'  => 'icon',
                     'type'  => ArrayCollection::value($fileDetails, 'mime'),
                     'sizes'  => self::imageSizeBuilder($fileDetails),
-                    'href' => self::toDataUri('media', 'logos'. DS.pathinfo($imageFile, PATHINFO_BASENAME)),
+                    'href' => self::toDataUri(
+                        'media',
+                        'logos'. DS.'default'. DS.pathinfo($imageFile, PATHINFO_BASENAME)
+                    ),
                 ];
             }
         }
@@ -501,9 +529,9 @@ class Storage extends Base
     public static function logoFullPath(
         string $filename,
         string $feature = 'local',
-        string $indicator = 'media/logos/'
+        string $indicator = 'media/logos/default'
     ): string {
-        return self::fullPathBuilder(self::logosPath(), false, $filename, $feature, $indicator);
+        return self::fullPathBuilder(self::logosDefaultPath(), false, $filename, $feature, $indicator);
     }//end getLogosMediaPath()
 
     /**

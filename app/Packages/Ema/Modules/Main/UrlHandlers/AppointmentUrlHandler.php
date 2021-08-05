@@ -1,0 +1,2 @@
+<?php
+ namespace App\Ema\Mishusoft\Main\UrlHandlers;use Mishusoft\Ui\Localization;use Mishusoft\Utility\ArrayCollection;use Mishusoft\Drivers\UrlHandler;class AppointmentUrlHandler extends UrlHandler{public function response(array $prediction):void{$translation=new Localization(ArrayCollection::value($prediction,"locale"));$view=$this->render($translation->translate("Appointment"),$prediction);$view->display();}}

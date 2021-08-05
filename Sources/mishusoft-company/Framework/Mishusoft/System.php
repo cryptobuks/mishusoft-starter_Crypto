@@ -1618,8 +1618,8 @@ class System extends Base
                                 $http_host_ip,
                                 $default_home,
                                 $default_layout,
-                                Storage::logosPath(),
-                                Storage::logosPath(),
+                                Storage::logosDefaultPath(true),
+                                Storage::logosDefaultPath(),
                                 $defaultFavicon
                             );
                             self::configureUpdate(
@@ -1634,8 +1634,8 @@ class System extends Base
                                         'http_host_ip'    => $http_host_ip,
                                         'default_home'    => $default_home,
                                         'default_layout'  => $default_layout,
-                                        'icon_remote_dir' => Storage::getLogosMediaPath('', 'remote'),
-                                        'icon_local_dir'  => Storage::getLogosMediaPath('', 'local'),
+                                        'icon_remote_dir' => Storage::logosDefaultPath(true),
+                                        'icon_local_dir'  => Storage::logosDefaultPath(),
                                         'favicon'         => $defaultFavicon,
                                     ],
                                 ]

@@ -1013,8 +1013,10 @@ class Firewall extends Base
         } elseif (Http::browser()->getRequestMethod() === 'GET') {
             if (array_key_exists('caption', $message)) {
                 FirewallView::debug($message['caption'], $message, Http::errorCode($title));
+                //Ui\EmbeddedView::debug($message['caption'], $message, Http::errorCode($title));
             } else {
                 FirewallView::runtimeFail($title, $message, Http::errorCode($title));
+                //Ui\EmbeddedView::runtimeFail($title, $message, Http::errorCode($title));
             }//end if
         } else {
             Storage\Stream::json(
@@ -1406,7 +1408,7 @@ class Firewall extends Base
                 //echo 'Copyright © '.Time::getCurrentYearNumber().' '.Framework::COMPANY_NAME.'. All Right Reserved.'.PHP_EOL;
                 echo '© ' . Time::currentYearNumber() . ' ' . Framework::COMPANY_NAME . '.' . PHP_EOL;
             } else {
-                FirewallView::protection(
+                Ui\EmbeddedView::protection(
                     "$title denied",
                     [
                         'caption'=>"$component has been $status",

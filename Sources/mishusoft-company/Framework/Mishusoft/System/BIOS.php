@@ -72,6 +72,7 @@ class BIOS
                         Logger::write(sprintf('Found %s in system.', self::emaLoaderFile()));
                         Logger::write(sprintf('Load %s from system.', self::emaLoaderFile()));
                         include_once self::emaLoaderFile();
+                        exit();
                     }
 
                     // Communicate with framework.
@@ -92,7 +93,7 @@ class BIOS
 
     private static function emaLoaderFile(): string
     {
-        return sprintf('%s%s%s%s', Storage::applicationDirectivePath(), 'Ema', DS, 'EmaLoader.php');
+        return sprintf('%s%s', Storage::applicationPackagesPath(), 'Ema.loader.php');
     }
 
 

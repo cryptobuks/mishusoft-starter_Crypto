@@ -44,7 +44,7 @@
     "update:index.php": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/public/app.php -d ./public_html/index.php",
     "update:index.html": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/public/app.html -d ./public_html/index.html",
     "update:framework": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Framework -d ./Framework",
-    "update:ema": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Application/Ema -d ./app/Ema",
+    "update:ema": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Application/Packages/Ema -d ./app/Packages/Ema",
     "update:packages": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Application/Packages -d ./app/Packages",
     "update:themes": "php ./Sources/mishusoft-company/Release.php -compile-themes -s ./Sources/mishusoft-company/Application/Views/Themes -d ./app/Themes",
     "update:widgets": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Application/Widgets -d ./app/Widgets",
@@ -54,13 +54,13 @@
 
     "update:test:index.php": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/app.php -d ./public_html/index.php",
     "update:test:index-html": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/app.html -d ./public_html/index.html",
-    "update:test:framework": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/Mishusoft/Framework -d ./public_html/Framework",
-    "update:test:ema": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/Mishusoft/Ema -d ./public_html/app/Ema",
-    "update:test:packages": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/Mishusoft/Packages -d ./public_html/app/Packages",
-    "update:test:themes": "php ./Sources/mishusoft-company/Release.php -test-themes -s ./Sources/Mishusoft/Views/Themes -d ./public_html/app/Themes",
+    "update:test:framework": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/mishusoft-company/Framework -d ./Framework",
+    "update:test:ema": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/Mishusoft/Application/Packages/Ema -d ./app/Packages/Ema",
+    "update:test:packages": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/Mishusoft/Application/Packages -d ./app/Packages",
+    "update:test:themes": "php ./Sources/mishusoft-company/Release.php -test-themes -s ./Sources/mishusoft-company/Application/Views/Themes -d ./app/Themes",
     "update:test:widgets": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/Mishusoft/Widgets -d ./public_html/app/Widgets",
-    "update:test:widgets.components": "php ./Sources/mishusoft-company/Release.php -test-widgets -s ./Sources/Mishusoft/Views/Widgets -d ./public_html/app/Widgets/Views",
-    "update:test:packages.components": "php ./Sources/mishusoft-company/Release.php -static -s ./Sources/Mishusoft/Views/Templates/Packages -d ./public_html/app/Packages",
+    "update:test:widgets.components": "php ./Sources/mishusoft-company/Release.php -test-widgets -s ./Sources/mishusoft-company/Application/Views/Widgets -d ./app/Widgets/Views",
+    "update:test:packages.components": "php ./Sources/mishusoft-company/Release.php -static -s ./Sources/mishusoft-company/Application/Views/Templates/Packages -d ./app/Packages",
 
     "test:user.agent": [
       "Composer\\Config::disableProcessTimeout",
