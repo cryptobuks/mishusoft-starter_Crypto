@@ -1,5 +1,5 @@
 {
-  "class": "menu",
+  "class": "Menu",
   "method": "getMenu",
   "child": [],
   "configuration": {

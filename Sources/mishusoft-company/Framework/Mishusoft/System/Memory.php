@@ -9,10 +9,12 @@ use Mishusoft\Exceptions\ErrorException;
 use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
+use Mishusoft\Http;
 use Mishusoft\Storage;
 use Mishusoft\Storage\FileSystem;
 use Mishusoft\Framework;
 use Mishusoft\MPM;
+use Mishusoft\System;
 use Mishusoft\Ui;
 use Mishusoft\Utility\JSON;
 use stdClass;
@@ -37,7 +39,7 @@ class Memory
     public static function enable(): void
     {
         Logger::write('Start data collecting and load to memory');
-        self::validate();
+        self::validation();
         self::loadFrameworkMemory();
         self::baseUrlSet();
         Logger::write('End data collecting and load to memory');
@@ -55,7 +57,7 @@ class Memory
      * @throws RuntimeException
      * @throws \Mishusoft\Exceptions\JsonException
      */
-    private static function validate(): void
+    private static function validation(): void
     {
 
         /*
@@ -96,6 +98,7 @@ class Memory
           * If the configuration file is corrupted, then rewrite this file.
           */
 
+        FileSystem::makeDirectory(dirname(Framework::configFile()));
 
         Logger::write(sprintf('Check %s file existent.', $configFile));
         if (file_exists($configFile) === false) {
@@ -126,6 +129,8 @@ class Memory
                 Framework::install();
             }
         }
+
+        FileSystem::chmod(dirname($installFile), 0777);
     }
 
     /**
@@ -164,8 +169,7 @@ class Memory
             }
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
-        }
-        elseif ($carrier === 'mpm') {
+        } elseif ($carrier === 'mpm') {
             if (array_key_exists('format', $options) === true) {
                 $format = $options['format'];
             } else {
@@ -189,8 +193,7 @@ class Memory
             }
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
-        }
-        elseif ($carrier === 'framework') {
+        } elseif ($carrier === 'framework') {
             if (array_key_exists('format', $options) === true) {
                 $format = $options['format'];
             } else {
@@ -214,8 +217,7 @@ class Memory
             }
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
-        }
-        elseif ($carrier === 'memory') {
+        } elseif ($carrier === 'memory') {
             if (array_key_exists('format', $options) === true) {
                 $format = $options['format'];
             } else {
@@ -235,8 +237,7 @@ class Memory
             }
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
-        }
-        else {
+        } else {
             $result = self::dataLoader($carrier, $options['format'], $options['default'], $options['file']);
         }//end if
 
@@ -348,7 +349,7 @@ class Memory
     private static function loadFrameworkMemory(): void
     {
         Logger::write(sprintf('Check read permission of %s file.', Framework::configFile()));
-        if (is_readable(stream_resolve_include_path(Framework::configFile())) === true) {
+        if (is_readable(Framework::configFile()) === true) {
             Logger::write(sprintf('Load data from %s file.', Framework::configFile()));
             self::read(JSON::encodeToObject(FileSystem\Yaml::parseFile(Framework::configFile())));
         } else {
@@ -364,7 +365,11 @@ class Memory
      */
     private static function baseUrlSet(): void
     {
-        define('BASE_URL', JSON::encodeToObject(FileSystem\Yaml::parseFile(Framework::installFile()))->host->url);
+        if (file_exists(Framework::installFile())) {
+            define('BASE_URL', JSON::encodeToObject(FileSystem\Yaml::parseFile(Framework::installFile()))->host->url);
+        } else {
+            define('BASE_URL', Http::browser()->getURLHostname());
+        }
     }
 
 

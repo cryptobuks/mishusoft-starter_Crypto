@@ -43,6 +43,12 @@ class Storage extends Base
         );
     }
 
+    public static function embeddedWebUrlDirectory():string
+    {
+        return self::applicationDirectivePath().'EmbeddedWebUrlDirectory'.DS;
+    }
+
+
     public static function emaPath():string
     {
         return sprintf(

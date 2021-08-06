@@ -6,6 +6,7 @@ use JsonException;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Storage\FileSystem;
+use Mishusoft\System\Logger;
 use Mishusoft\System\Memory;
 use Mishusoft\Utility\JSON;
 
@@ -46,12 +47,13 @@ class MPM extends Base
         return self::dFile(self::dataFile('MPM', 'config'));
     }
 
+
     /**
      * @return string
      */
-    public static function splittersFile(): string
+    public static function embeddedWebUrlListFile(): string
     {
-        return self::dFile(self::dataFile('MPM', 'splitters'));
+        return self::dFile(self::dataFile('MPM', 'embeddedWebUrls'));
     }
 
 
@@ -176,14 +178,8 @@ class MPM extends Base
      * @param string $moduleName
      * @param string $controllerName
      * @return string
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws JsonException
-     * @throws RuntimeException
      */
-    public static function templatesJavascriptResourcesRoot(string $moduleName, string $controllerName): string
+    public static function templatesJSResourcesRoot(string $moduleName, string $controllerName): string
     {
         return implode(DS, [Storage::webResourcesPath() . 'related', 'Javascripts', $moduleName, $controllerName . DS]);
     }//end templatesJavascriptResourcesRoot()
@@ -198,7 +194,7 @@ class MPM extends Base
      * @throws Exceptions\RuntimeException
      * @throws JsonException
      */
-    public static function templatesJavascriptResourcesRootLocal(): string
+    public static function templatesJSResourcesRootLocal(): string
     {
         return self::resourcesPath() . 'Javascripts' . DS;
     }//end templatesJavascriptResourcesRootLocal()
@@ -930,6 +926,49 @@ class MPM extends Base
             }
         }//end if
     }//end importMysqlDB()
+
+
+    /**
+     * @throws RuntimeException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws PermissionRequiredException
+     * @throws Exceptions\JsonException
+     */
+    public static function autoUpdateEmbeddedWebUrl(): void
+    {
+        /*
+         * Auto update splitters configurations
+         */
+        if (!file_exists(self::embeddedWebUrlListFile())) {
+            $configs = [];
+            Logger::write(sprintf('Count all exists files from %s directory.', Storage::embeddedWebUrlDirectory()));
+            if (count(FileSystem::list(Storage::embeddedWebUrlDirectory(), 'file')) > 0) {
+                foreach (FileSystem::list(Storage::embeddedWebUrlDirectory(), 'file') as $filename) {
+                    if (pathinfo($filename, PATHINFO_EXTENSION) === 'json') {
+                        $configs[] = JSON::decodeToArray(
+                            FileSystem::read(Storage::embeddedWebUrlDirectory().$filename)
+                        );
+                    }
+                }
+
+                array_multisort($configs, SORT_ASC);
+                ksort($configs, SORT_ASC);
+
+
+                Logger::write(
+                    sprintf(
+                        'Remove old embedded web url config file from %s directory.',
+                        Storage::dataDriveStoragesPath()
+                    )
+                );
+                FileSystem::remove(self::embeddedWebUrlListFile());
+                Logger::write(
+                    sprintf('Write new embedded web url config file in %s directory.', Storage::dataDriveStoragesPath())
+                );
+                FileSystem\Yaml::emitFile(self::embeddedWebUrlListFile(), $configs);
+            }
+        }
+    }
 
 
     public function __destruct()

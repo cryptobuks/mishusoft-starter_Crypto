@@ -1,1 +1,104 @@
-const a3_0x111a=['open','push','5GTQlSn','473956DsAWYZ','clients','openWindow','add','509RpIlsr','1150478IxBylu','waitUntil','notification','5944JTTSnc','focus','Fetch\x20failed;\x20returning\x20offline\x20page\x20instead.','mode','notificationclick','Sample\x20PWA','88254upiKSb','text','request','28wAkbMD','enable','permission','skipWaiting','2129StOGKU','log','claim','http://localhost/','offline','match','addEventListener','reload','granted','navigationPreload','matchAll','registration','window','755369ueDAec','respondWith','274284TcBzCP','fetch','length'];function a3_0x3559(_0x23e739,_0x1e915c){return a3_0x3559=function(_0x111acb,_0x35592e){_0x111acb=_0x111acb-0xdb;let _0x440e01=a3_0x111a[_0x111acb];return _0x440e01;},a3_0x3559(_0x23e739,_0x1e915c);}(function(_0x42e710,_0x213ce3){const _0x3dd5e3=a3_0x3559;while(!![]){try{const _0x194ba0=-parseInt(_0x3dd5e3(0xfc))*-parseInt(_0x3dd5e3(0xeb))+parseInt(_0x3dd5e3(0xe7))+-parseInt(_0x3dd5e3(0xf5))*parseInt(_0x3dd5e3(0xe6))+-parseInt(_0x3dd5e3(0xec))+-parseInt(_0x3dd5e3(0xef))*-parseInt(_0x3dd5e3(0xf8))+-parseInt(_0x3dd5e3(0xe1))+parseInt(_0x3dd5e3(0xdf));if(_0x194ba0===_0x213ce3)break;else _0x42e710['push'](_0x42e710['shift']());}catch(_0x46e1cb){_0x42e710['push'](_0x42e710['shift']());}}}(a3_0x111a,0x95c0a),(()=>{const _0x488940=a3_0x3559,_0x232499=_0x488940(0x100),_0x1de30a='../../../offline.html';self[_0x488940(0x102)]('install',_0x33bd78=>{const _0x5af698=_0x488940;_0x33bd78[_0x5af698(0xed)]((async()=>{const _0x246902=_0x5af698,_0x4a31c7=await caches['open'](_0x232499);await _0x4a31c7[_0x246902(0xea)](new Request(_0x1de30a,{'cache':_0x246902(0x103)}));})()),self[_0x5af698(0xfb)]();}),self[_0x488940(0x102)]('activate',_0x34da55=>{const _0x594e9a=_0x488940;_0x34da55[_0x594e9a(0xed)]((async()=>{const _0x45df76=_0x594e9a;'navigationPreload'in self['registration']&&await self[_0x45df76(0xdd)][_0x45df76(0xdb)][_0x45df76(0xf9)]();})()),self[_0x594e9a(0xe8)][_0x594e9a(0xfe)]();}),self['addEventListener'](_0x488940(0xe2),_0x4c52de=>{const _0x1fb870=_0x488940;'navigate'===_0x4c52de[_0x1fb870(0xf7)][_0x1fb870(0xf2)]&&_0x4c52de[_0x1fb870(0xe0)]((async()=>{const _0x36b1ac=_0x1fb870;try{const _0x549e5e=await _0x4c52de['preloadResponse'];return _0x549e5e||await fetch(_0x4c52de['request']);}catch(_0x531fa2){console['log'](_0x36b1ac(0xf1),_0x531fa2);const _0x2c1bba=await caches[_0x36b1ac(0xe4)](_0x232499);return await _0x2c1bba[_0x36b1ac(0x101)](_0x1de30a);}})());}),self['addEventListener'](_0x488940(0xe5),function(_0x120a7f){const _0x14d4ab=_0x488940;if(_0x14d4ab(0x104)===Notification[_0x14d4ab(0xfa)]){const _0x30f71d=_0x120a7f['data'][_0x14d4ab(0xf6)](),_0x33552f=self[_0x14d4ab(0xdd)]['showNotification'](_0x14d4ab(0xf4),{'body':_0x30f71d,'icon':'/libraries/images/info.png'});_0x120a7f[_0x14d4ab(0xed)](_0x33552f);}}),self[_0x488940(0x102)](_0x488940(0xf3),function(_0x5a752a){const _0x9db1c3=_0x488940;console[_0x9db1c3(0xfd)]('On\x20notification\x20click:\x20',_0x5a752a[_0x9db1c3(0xee)]['tag']),_0x5a752a[_0x9db1c3(0xee)]['close'](),_0x5a752a[_0x9db1c3(0xed)](clients[_0x9db1c3(0xdc)]({'type':_0x9db1c3(0xde)})['then'](function(_0x1042f8){const _0x3a4800=_0x9db1c3;for(var _0x40f5a9=0x0;_0x40f5a9<_0x1042f8[_0x3a4800(0xe3)];_0x40f5a9++){var _0x3ad7a2=_0x1042f8[_0x40f5a9];if(_0x3a4800(0xff)==_0x3ad7a2['url']&&_0x3a4800(0xf0)in _0x3ad7a2)return _0x3ad7a2[_0x3a4800(0xf0)]();}if(clients[_0x3a4800(0xe9)])return clients[_0x3a4800(0xe9)]('/');}));});})());
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!**********************************************!*\
+  !*** ./Assets/typescripts/service-worker.ts ***!
+  \**********************************************/
+// @typescripts-ignore
+const OFFLINE_VERSION = 1;
+const CACHE_NAME = "offline";
+// Customize this with a different URL if needed.
+const OFFLINE_URL = "../../../offline.html";
+self.addEventListener("install", (event) => {
+    event.waitUntil((async () => {
+        const cache = await caches.open(CACHE_NAME);
+        // Setting {cache: 'reload'} in the new request will ensure that the
+        // response isn't fulfilled from the HTTP cache; i.e., it will be from
+        // the network.
+        await cache.add(new Request(OFFLINE_URL, { cache: "reload" }));
+    })());
+    // Force the waiting service worker to become the active service worker.
+    // @ts-ignore
+    self.skipWaiting();
+});
+self.addEventListener("activate", (event) => {
+    event.waitUntil((async () => {
+        // Enable navigation preload if it's supported.
+        // See https://developers.google.com/web/updates/2017/02/navigation-preload
+        // @ts-ignore
+        if ("navigationPreload" in self.registration) {
+            // @ts-ignore
+            await self.registration.navigationPreload.enable();
+        }
+    })());
+    // Tell the active service worker to take control of the page immediately.
+    // @ts-ignore
+    self.clients.claim();
+});
+self.addEventListener("fetch", (event) => {
+    // We only want to call event.respondWith() if this is a navigation request
+    // for an HTML page.
+    if (event.request.mode === "navigate") {
+        event.respondWith((async () => {
+            try {
+                // First, try to use the navigation preload response if it's supported.
+                const preloadResponse = await event.preloadResponse;
+                if (preloadResponse) {
+                    return preloadResponse;
+                }
+                // Always try the network first.
+                return await fetch(event.request);
+            }
+            catch (error) {
+                // catch is only triggered if an exception is thrown, which is likely
+                // due to a network error.
+                // If fetch() returns a valid HTTP response with a response code in
+                // the 4xx or 5xx range, the catch() will NOT be called.
+                console.log("Fetch failed; returning offline page instead.", error);
+                const cache = await caches.open(CACHE_NAME);
+                return await cache.match(OFFLINE_URL);
+            }
+        })());
+    }
+    // If our if() condition is false, then this fetch handler won't intercept the
+    // request. If there are any other fetch handlers registered, they will get a
+    // chance to call event.respondWith(). If no fetch handlers call
+    // event.respondWith(), the request will be handled by the browser as if there
+    // were no service worker involvement.
+});
+// Respond to a server push with a user notification.
+self.addEventListener('push', function (event) {
+    if (Notification.permission === "granted") {
+        const notificationText = event.data.text();
+        // @ts-ignore
+        const showNotification = self.registration.showNotification('Sample PWA', {
+            body: notificationText,
+            icon: '/libraries/images/info.png'
+        });
+        // Ensure the toast notification is displayed before exiting the function.
+        event.waitUntil(showNotification);
+    }
+});
+// Respond to the user selecting the toast notification.
+self.addEventListener('notificationclick', function (event) {
+    console.log('On notification click: ', event.notification.tag);
+    event.notification.close();
+    // This attempts to display the current notification if it is already open and then focuses on it.
+    // @ts-ignore
+    event.waitUntil(clients.matchAll({
+        type: 'window'
+    }).then(function (clientList) {
+        for (var i = 0; i < clientList.length; i++) {
+            var client = clientList[i];
+            if (client.url == 'http://localhost/' && 'focus' in client)
+                return client.focus();
+        }
+        // @ts-ignore
+        if (clients.openWindow) { // @ts-ignore
+            return clients.openWindow('/');
+        }
+    }));
+});
+
+/******/ })()
+;
+//# sourceMappingURL=sw.js.map

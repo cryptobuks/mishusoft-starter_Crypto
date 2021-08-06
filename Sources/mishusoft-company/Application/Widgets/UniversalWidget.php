@@ -1,15 +1,15 @@
 <?php
 
 
-namespace Mishusoft\Widgets;
-
+namespace App\Widgets;
 
 use DOMElement;
 use DOMNode;
-use Mishusoft\Framework\Chipsets\Http\Browser;
-use Mishusoft\Framework\Chipsets\Ui;
-use Mishusoft\Framework\Chipsets\Utility\_Array;
-use Mishusoft\Framework\Libraries\Runtime;
+use Mishusoft\Http;
+use Mishusoft\Storage;
+use Mishusoft\Ui;
+use Mishusoft\Libraries\Runtime;
+use Mishusoft\Utility\ArrayCollection;
 
 class UniversalWidget
 {
@@ -27,12 +27,17 @@ class UniversalWidget
     public function __construct(DOMElement $bodyElement)
     {
         $this->htmlBody = $bodyElement;
-
     }//end __construct()
 
 
     /**
      * @return DOMElement|DOMNode
+     * @throws \JsonException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public function breadcrumb(): DOMElement|DOMNode
     {
@@ -52,27 +57,25 @@ class UniversalWidget
         );
 
         // Collect navigation url list.
-        $urlPath = (new Browser())->getURLPath();
+        $urlPath = Http::browser()->getURLPath();
+        $webRoot = Storage::applicationWebDirectivePath();
+        if (str_starts_with($urlPath, $webRoot)) {
+            $urlPath = substr($urlPath, strlen($webRoot));
+        }
         $urlList = explode('/', $urlPath);
         $urlList = array_filter($urlList);
         $urlList = array_values($urlList);
 
         foreach ($urlList as $id => $url) {
             Ui::text($breadcrumb, '/');
-            Ui::element($breadcrumb, 'a', ['href' => Runtime::link(implode('/', _Array::getValues(array_search($url, $urlList), $urlList))), 'text' => $url]);
-            /*
-                if ($id === 1) {
-                Ui::text($breadcrumb, "/");
-                Ui::element($breadcrumb, 'a', ['href' => Runtime::link($url), 'text' => $url]);
-                } else {
-                Ui::text($breadcrumb, "/");
-                Ui::element($breadcrumb, 'a', ['href' => Runtime::link(implode("/", _Array::getValues(array_search($url, $urlList), $urlList))) , 'text' => $url]);
-            }*/
+            Ui::element($breadcrumb, 'a', [
+                'href' => Runtime::link(
+                    implode('/', ArrayCollection::getValues(array_search($url, $urlList), $urlList))
+                ),
+                'text' => $url,
+            ]);
         }
 
         return $breadcrumb;
-
     }//end breadcrumb()
-
-
 }//end class

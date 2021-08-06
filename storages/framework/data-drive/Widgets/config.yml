@@ -1,9 +1,4 @@
 ---
-SocialNetworkShare:
-  position: header
-  show: all
-  hide: []
-  parent: SocialNetworkShare
 TopQuickBar:
   position: top
   show: all
@@ -29,6 +24,11 @@ UniversalMenuBar-footer:
   show: all
   hide: []
   parent: UniversalMenuBar
+SocialNetworkShare:
+  position: header
+  show: all
+  hide: []
+  parent: SocialNetworkShare
 Universal:
   position: header
   show: all

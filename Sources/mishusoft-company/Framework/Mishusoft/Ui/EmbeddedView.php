@@ -168,6 +168,12 @@ class EmbeddedView
                     ['name' => 'author', 'content' => Framework::AUTHOR_NAME,],
                     ['name' => 'description', 'content' => self::$documentTitle,],
                 ],
+                'link' => [
+                    [
+                        'rel' => 'stylesheet', 'type' => 'text/css',
+                        'href' => Storage::assetsFullPath('css/font-face.css', 'remote'),
+                    ],
+                ],
                 'style' => [
                     ['text' => Storage\FileSystem::read(Storage::assetsFullPath('css/app.css')),],
                 ],

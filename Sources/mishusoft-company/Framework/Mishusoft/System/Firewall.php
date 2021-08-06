@@ -337,8 +337,8 @@ class Firewall extends Base
                 $this->createConfiguration($this->config);
             }
         } else {
-            Logger::write(sprintf('Read permission denied. Unable to read %s.', self::configFile()));
-            throw new RuntimeException('Read permission denied. Unable to read root' . self::configFile());
+            Logger::write(sprintf('Read permission required. Unable to read %s.', self::configFile()));
+            throw new PermissionRequiredException('Read permission required. Unable to read root' . self::configFile());
         }//end if
 
         Logger::write(sprintf('End checking read permission of %s.', self::configFile()));
@@ -1152,7 +1152,7 @@ class Firewall extends Base
                                             $this->lastVisitDuration = (int)((strtotime($now['visit-time']) - strtotime($this->config["$status-device-count-down-time"][IP::get()])) / 60);
                                             if ($this->lastVisitDuration >= $this->config["$status-device-time-limit"]) {
                                                 $this->config["$status-device-count-down-time"][IP::get()] = $now['visit-time'];
-                                                FileSystem::saveToFile(Framework::configFile(), json_encode($this->config, JSON_THROW_ON_ERROR));
+                                                FileSystem\Yaml::emitFile(Framework::configFile(), $this->config);
                                             }//end if
 
                                             else {
@@ -1161,7 +1161,7 @@ class Firewall extends Base
                                                 if ($this->lastVisitDuration > 10) {
                                                     // preOutput("Setting previous time!!");
                                                     $this->config["$status-device-count-down-time"][IP::get()] = $previous['visit-time'];
-                                                    FileSystem::saveToFile(Framework::configFile(), json_encode($this->config, JSON_THROW_ON_ERROR));
+                                                    FileSystem\Yaml::emitFile(Framework::configFile(), $this->config);
                                                     // preOutput($this->config);
                                                 }
                                             }
@@ -1177,7 +1177,7 @@ class Firewall extends Base
                                                 $this->config["$status-device-count-down-time"][IP::get()] = $previous['visit-time'];
                                             }
 
-                                            FileSystem::saveToFile(Framework::configFile(), json_encode($this->config, JSON_THROW_ON_ERROR));
+                                            FileSystem\Yaml::emitFile(Framework::configFile(), $this->config);
                                             // preOutput($this->config["$status-device-count-down-time"]);
                                         }
                                     } //end if
@@ -1185,7 +1185,7 @@ class Firewall extends Base
                                     else {
                                         // Autoload::log("Preparing to create firewall configuration file.");
                                         if (FileSystem::IsWriteable(Framework::configFile())) {
-                                            file_put_contents(Framework::configFile(), json_encode(self::BUILT_IN_CONFIG, JSON_THROW_ON_ERROR));
+                                            FileSystem\Yaml::emitFile(Framework::configFile(), self::BUILT_IN_CONFIG);
                                         }
 
                                         // load firewall configuration in runtime
@@ -1217,7 +1217,7 @@ class Firewall extends Base
                                     else {
                                         // Autoload::log("Preparing to create firewall configuration file.");
                                         if (FileSystem::IsWriteable(Framework::configFile())) {
-                                            file_put_contents(Framework::configFile(), json_encode(self::BUILT_IN_CONFIG, JSON_THROW_ON_ERROR));
+                                            FileSystem\Yaml::emitFile(Framework::configFile(), self::BUILT_IN_CONFIG);
                                         }
 
                                         // load firewall configuration in runtime
@@ -1252,7 +1252,7 @@ class Firewall extends Base
                                         if (array_key_exists("$status-device-access-limit", $this->config)) {
                                             // Returns true if access is greater than access limit
                                             if (count($countdownTimes) >= $this->config["$status-device-access-limit"]) {
-                                                if (!$this->isListed(IP::get()) && $status === 'blocked') {
+                                                if ($status === 'blocked' && !$this->isListed(IP::get())) {
                                                     $this->addIP(IP::get(), 'banned');
                                                 }
 
@@ -1350,7 +1350,7 @@ class Firewall extends Base
             if (Http::browser()->getRequestMethod() === 'OPTIONS') {
                 // add welcome not for http options method
                 Storage\Stream::json(['message' => [
-                    'type' => 'error', 'contents' => "The HTTP OPTIONS method requests not permitted to communicate for $requestAddress."
+                    'type' => 'error', 'contents' => "The HTTP OPTIONS method requests not permitted to communicate for $requestAddress.",
                 ]]);
             } elseif (Network::requestHeader('HTTP_SEC_FETCH_MODE') === 'cors') {
                 Storage\Stream::json(

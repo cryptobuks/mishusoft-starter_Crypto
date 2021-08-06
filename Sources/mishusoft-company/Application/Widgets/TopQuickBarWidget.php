@@ -1,23 +1,25 @@
 <?php
 
 
-namespace Mishusoft\Widgets;
+namespace App\Widgets;
 
-
-use Mishusoft\Framework\Drivers\Widget;
+use Mishusoft\Drivers\Widget;
 
 class TopQuickBarWidget extends Widget
 {
 
-
-    public function __construct()
-    {
-        parent::__construct();
-
-    }//end __construct()
-
-
-    public function getTopQuickBar(string $name, string $view, string $format='phtml', $inverse=null, $siteInfo=null): bool|string
+    /**
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \JsonException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\JsonException
+     */
+    public function getTopQuickBar(string $name, string $view, string $format = 'phtml', $inverse = null, $siteInfo = null): bool|string
     {
         $data['name']      = $name;
         $data['inverse']   = $inverse;
@@ -25,8 +27,5 @@ class TopQuickBarWidget extends Widget
         $data['languages'] = $siteInfo;
         // $data['siteInfo'] = $this->menu->getSiteInfo();
         return $this->render($name, $view, $data, $format);
-
     }//end getTopQuickBar()
-
-
 }//end class

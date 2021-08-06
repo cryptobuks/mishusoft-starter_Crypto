@@ -367,6 +367,7 @@ class Framework extends Base
                 define('INSTALLED_HOST_NAME', Memory::data('framework')->host->name);
             }
         } else {
+            FileSystem::makeDirectory(dirname(self::installFile()));
             // Preparing to create framework install file.
             FileSystem\Yaml::emitFile(self::installFile(), [
                 'name'        => 'Framework Installer',
@@ -393,11 +394,7 @@ class Framework extends Base
     /**
      *
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws JsonException
      */
     private static function backupFilesCheck(): void
     {

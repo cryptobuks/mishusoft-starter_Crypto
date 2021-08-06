@@ -1,23 +1,12 @@
 <?php
 
 
-namespace Mishusoft\Widgets;
+namespace App\Widgets;
 
-
-use Mishusoft\Framework\Drivers\Widget;
+use Mishusoft\Drivers\Widget;
 
 class SocialNetworkShareWidget extends Widget
 {
-
-
-    /**
-     * socialNetworkShareWidget constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-    }//end __construct()
 
 
     /**
@@ -27,13 +16,19 @@ class SocialNetworkShareWidget extends Widget
      * @param null $inverse
      * @param null $siteInfo
      * @return bool|string
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \JsonException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    public function getSocialNetworkShare(string $name, string $view, string $format='phtml', $inverse=null, $siteInfo=null): bool|string
+    public function getSocialNetworkShare(string $name, string $view, string $format = 'phtml', $inverse = null, $siteInfo = null): bool|string
     {
         $data['name'] = $name;
         return $this->render($name, $view, $data, $format);
-
     }//end getSocialNetworkShare()
-
-
 }//end class

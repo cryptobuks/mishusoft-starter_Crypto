@@ -1,5 +1,5 @@
 {
-  "class": "topQuickBar",
+  "class": "TopQuickBar",
   "method": "getTopQuickBar",
   "child": [],
   "configuration": {

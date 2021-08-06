@@ -1,22 +1,22 @@
 <?php
 
 use Mishusoft\Storage;
-use Mishusoft\Ui\Memory;
+use Mishusoft\System\Memory;
 use Mishusoft\Ui;
 
 /*
  * root element of quick bar
  * */
 
-$root = Ui::element($this->documentBodyElement, 'header', ['class' => 'header header-quick-tool-bar']);
+$root = Ui::element(Ui::getDocumentContentHeader(), 'article', ['class' => 'header header-quick-tool-bar']);
 $left = Ui::element($root, 'left');
 
 /*email address*/
 Ui::elementList(Ui::element($left, 'div'), ["img" => [
     [
-        "src" => Storage::mediaFullPath(
-            "images/icons/companies/mail-contact.png",
-            "remote"
+        "src" => Storage::toDataUri(
+            'media',
+            "images/icons/companies/mail-contact.png"
         ),"height"=>"15px","width"=>"15px", "alt" => Memory::Data()->company->mail,
     ],
 ], "a" => [
@@ -29,7 +29,10 @@ Ui::elementList(Ui::element($left, 'div'), ["img" => [
 /*cell phone*/
 Ui::elementList(Ui::element($left, 'div'), ["img" => [
     [
-        "src" => Storage::mediaFullPath("images/icons/companies/ringing-phone.png", "remote"),
+        "src" => Storage::toDataUri(
+            'media',
+            "images/icons/companies/ringing-phone.png"
+        ),
         "height"=>"15px","width"=>"15px", "alt" => Memory::Data()->company->care,
     ],
 ], "a" => [
@@ -42,7 +45,10 @@ Ui::elementList(Ui::element($left, 'div'), ["img" => [
 /*map marker*/
 Ui::elementList(Ui::element($left, 'div'), ["img" => [
     [
-        "src" => Storage::mediaFullPath("images/icons/companies/map-marker.png", "remote"),
+        "src" => Storage::toDataUri(
+            'media',
+            "images/icons/companies/map-marker.png"
+        ),
         "height"=>"15px","width"=>"15px", "alt" => Memory::Data()->company->address,
     ],
 ], "a" => [
@@ -54,59 +60,103 @@ Ui::elementList(Ui::element($left, 'div'), ["img" => [
 
 $socialMediaBar = Ui::element(Ui::element($root, 'right'), 'div');
 
-//$StyleForSocialMediaLink = Ui::htmlHrefStyle . "color:" . Ui::color["white"] . ";margin-left:5px;margin-right:5px;box-shadow: 0 3px 4px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);border-radius: 50%;";
-//$StyleForSocialMediaIcon = "height: inherit;width:15px;";
 
 /*facebook*/
 Ui::element(
-    Ui::element($socialMediaBar, "a", ["class" => "protect box-shadow1", "href" => "https://www.facebook.com/alamin.ahamed.abir", "target" => "_blank", "rel" => "noreferrer"]),
+    Ui::element($socialMediaBar, "a", [
+        "class" => "protect box-shadow1", "href" => "https://www.facebook.com/mralaminahamed/",
+            "target" => "_blank", "rel" => "noreferrer",
+    ]),
     "img",
-    ["src" => Storage::mediaFullPath("images/icons/social-media/facebook-new.png", "remote"),"height"=>"20px","width"=>"20px", "alt" => "facebook"]
+    ["src" => Storage::toDataUri(
+        'media',
+        "images/icons/social-media/facebook-new.png"
+    ),"height"=>"20px","width"=>"20px", "alt" => "facebook"]
 );
 /*github*/
 Ui::element(
     Ui::element($socialMediaBar, "a", [
-        "class" => "protect box-shadow1", "href" => "https://github.com/mrabirahamed", "target" => "_blank", "rel" => "noreferrer"
+        "class" => "protect box-shadow1", "href" => "https://github.com/mrabirahamed",
+        "target" => "_blank", "rel" => "noreferrer",
     ]),
     "img",
-    ["src" => Storage::mediaFullPath("images/icons/social-media/github.png", "remote"),"height"=>"20px","width"=>"20px", "alt" => "github"]
+    ["src" => Storage::toDataUri(
+        'media',
+        "images/icons/social-media/github.png"
+    ),"height"=>"20px","width"=>"20px", "alt" => "github"]
 );
 
 /*instagram*/
 Ui::element(
-    Ui::element($socialMediaBar, "a", ["class" => "protect box-shadow1", "href" => "https://www.instagram.com/mrabir.ahmed", "target" => "_blank", "rel" => "noreferrer"]),
+    Ui::element($socialMediaBar, "a", [
+        "class" => "protect box-shadow1", "href" => "https://www.instagram.com/mralaminahamed/",
+        "target" => "_blank", "rel" => "noreferrer",
+    ]),
     "img",
-    ["src" => Storage::mediaFullPath("images/icons/social-media/instagram-new.png", "remote"),"height"=>"20px","width"=>"20px", "alt" => "instagram"]
+    ["src" => Storage::toDataUri(
+        'media',
+        "images/icons/social-media/instagram-new.png"
+    ),"height"=>"20px","width"=>"20px", "alt" => "instagram"]
 );
 /*linkedin*/
 Ui::element(
-    Ui::element($socialMediaBar, "a", ["class" => "protect box-shadow1", "href" => "https://www.linkedin.com/in/mrabirahamed/", "target" => "_blank", "rel" => "noreferrer"]),
+    Ui::element($socialMediaBar, "a", [
+        "class" => "protect box-shadow1", "href" => "https://www.linkedin.com/in/mralaminahamed/",
+        "target" => "_blank", "rel" => "noreferrer",
+        ]),
     "img",
-    ["src" => Storage::mediaFullPath("images/icons/social-media/linkedin.png", "remote"),"height"=>"20px","width"=>"20px", "alt" => "linkedin"]
+    ["src" => Storage::toDataUri(
+        'media',
+        "images/icons/social-media/linkedin.png"
+    ),"height"=>"20px","width"=>"20px", "alt" => "linkedin"]
 );
 /*pinterest*/
 Ui::element(
-    Ui::element($socialMediaBar, "a", ["class" => "protect box-shadow1", "href" => "https://www.pinterest.com/mrabirahamed", "target" => "_blank", "rel" => "noreferrer"]),
+    Ui::element($socialMediaBar, "a", [
+        "class" => "protect box-shadow1", "href" => "https://www.pinterest.com/mrabirahamed",
+        "target" => "_blank", "rel" => "noreferrer",
+    ]),
     "img",
-    ["src" => Storage::mediaFullPath("images/icons/social-media/pinterest.png", "remote"),"height"=>"20px","width"=>"20px", "alt" => "pinterest"]
+    ["src" => Storage::toDataUri(
+        'media',
+        "images/icons/social-media/pinterest.png"
+    ),"height"=>"20px","width"=>"20px", "alt" => "pinterest"]
 );
 /*reddit*/
 Ui::element(
-    Ui::element($socialMediaBar, "a", ["class" => "protect box-shadow1", "href" => "https://www.reddit.com/user/mrabirahamed", "target" => "_blank", "rel" => "noreferrer"]),
+    Ui::element($socialMediaBar, "a", [
+        "class" => "protect box-shadow1", "href" => "https://www.reddit.com/user/mrabirahamed",
+        "target" => "_blank", "rel" => "noreferrer",
+        ]),
     "img",
-    ["src" => Storage::mediaFullPath("images/icons/social-media/reddit.png", "remote"),"height"=>"20px","width"=>"20px", "alt" => "reddit"]
+    ["src" => Storage::toDataUri(
+        'media',
+        "images/icons/social-media/reddit.png"
+    ),"height"=>"20px","width"=>"20px", "alt" => "reddit"]
 );
 /*tiktok*/
 Ui::element(
-    Ui::element($socialMediaBar, "a", ["class" => "protect box-shadow1", "href" => "https://www.tiktok.com/@user7594632514421?lang=en", "target" => "_blank", "rel" => "noreferrer"]),
+    Ui::element($socialMediaBar, "a", [
+        "class" => "protect box-shadow1", "href" => "https://www.tiktok.com/@user7594632514421?lang=en",
+        "target" => "_blank", "rel" => "noreferrer",
+        ]),
     "img",
-    ["src" => Storage::mediaFullPath("images/icons/social-media/tiktok.png", "remote"),"height"=>"20px","width"=>"20px", "alt" => "tiktok"]
+    ["src" => Storage::toDataUri(
+        'media',
+        "images/icons/social-media/tiktok.png"
+    ),"height"=>"20px","width"=>"20px", "alt" => "tiktok"]
 );
 /*twitter*/
 Ui::element(
-    Ui::element($socialMediaBar, "a", ["class" => "protect box-shadow1", "href" => "https://twitter.com/mrabir_ahamed", "target" => "_blank", "rel" => "noreferrer"]),
+    Ui::element($socialMediaBar, "a", [
+        "class" => "protect box-shadow1", "href" => "https://twitter.com/mralaminahamed/",
+        "target" => "_blank", "rel" => "noreferrer",
+        ]),
     "img",
-    ["src" => Storage::mediaFullPath("images/icons/social-media/twitter.png", "remote"),"height"=>"20px","width"=>"20px", "alt" => "twitter"]
+    ["src" => Storage::toDataUri(
+        'media',
+        "images/icons/social-media/twitter.png"
+    ),"height"=>"20px","width"=>"20px", "alt" => "twitter"]
 );
 
 /*Ui::elementList(Ui::element($right, 'right-social-network', ['style' => 'height: inherit;background:inherit;color: inherit;display: flex;flex-direction:row;']), ["img" => [

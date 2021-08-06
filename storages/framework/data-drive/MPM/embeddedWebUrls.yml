@@ -1,0 +1,24 @@
+---
+- base: api
+  descriptions: receive client request and response
+  class: ApplicationProgrammingInterface
+  route:
+  - api
+  - monitor
+- base: cdn
+  descriptions: This is built-in uninterrupted web resources delivery system. Every
+    request communicate with public css, images and js libraries and other permitted
+    resources
+  class: WebResourceDelivery
+  route:
+  - assets
+  - shared
+  - media
+  - webfonts
+- base: setup
+  descriptions: communicate with app installer with it called
+  class: SystemConfiguration
+  route:
+  - install
+  - update
+...

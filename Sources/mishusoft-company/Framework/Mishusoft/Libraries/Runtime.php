@@ -5,8 +5,8 @@ namespace Mishusoft\Libraries;
 
 use Mishusoft\Cryptography\OpenSSL\Encryption;
 use Mishusoft\Storage;
-use Mishusoft\Ui\Localization;
-use Mishusoft\Ui\Memory;
+use Mishusoft\System\Localization;
+use Mishusoft\System\Memory;
 use Mishusoft\Utility\ArrayCollection;
 
 class Runtime
@@ -54,7 +54,7 @@ class Runtime
                 }
 
                 /*
-                 * if locale language exists but it is not exists in supported locale languages,
+                 * if locale language exists, but it is not exists in supported locale languages,
                  * then locale set to empty
                  */
                 return "";
@@ -86,14 +86,19 @@ class Runtime
     public static function link(string $link): string
     {
         $link = trim($link);
+        $webRootUrl = Memory::Data("framework")->host->url;
 
-        if (strtolower($link) === "default_home") {
-            $Url = self::getLocaleOnly() . "/";
-        } else {
-            $Url = self::getLocaleOnly() . "/$link";
+        if (str_ends_with($webRootUrl, '/') === false) {
+            $webRootUrl .= '/';
         }
 
-        return (Memory::Data("framework")->host->url . $Url);
+        if (strtolower($link) === "default_home") {
+            $Url = self::getLocaleOnly();
+        } else {
+            $Url = self::getLocaleOnly() . $link;
+        }
+
+        return ($webRootUrl . $Url);
     }
 
     /**
@@ -105,7 +110,7 @@ class Runtime
      * @throws \Mishusoft\Exceptions\PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    public static function redirect(string $url = ""): void
+    public static function redirect(string $url = ''): void
     {
         header('location:' . self::link($url));
         exit(0);
@@ -182,9 +187,9 @@ class Runtime
         if (count(ArrayCollection::cleanArray(self::update($_GET, $message), ["url"])) > 0) {
             foreach (ArrayCollection::cleanArray(self::update($_GET, $message), ["url"]) as $key => $value) {
                 if (array_key_last(ArrayCollection::cleanArray(self::update($_GET, $message), ["url"])) === $key) {
-                    $url .= "$key=$value";
+                    $url .= sprintf("%s=%s", $key, $value);
                 } else {
-                    $url .= "$key=$value&";
+                    $url .= sprintf("%s=%s&", $key, $value);
                 }
             }
         }

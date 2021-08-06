@@ -7,7 +7,7 @@ TopQuickBar:
     position: top
   setting:
     status: enable
-  last_modification: 1627668374
+  last_modification: 1628215763
 UniversalMenuBar:
   class: UniversalMenuBar
   method: getUniversalMenuBar
@@ -20,7 +20,7 @@ UniversalMenuBar:
     position: header
   setting:
     status: enable
-  last_modification: 1627668465
+  last_modification: 1628215763
 SocialNetworkShare:
   class: SocialNetworkShare
   method: getSocialNetworkShare
@@ -29,7 +29,7 @@ SocialNetworkShare:
     position: header
   setting:
     status: enable
-  last_modification: 1614797644
+  last_modification: 1628215763
 Universal:
   class: Universal
   method: getMenu
@@ -38,5 +38,5 @@ Universal:
     position: header
   setting:
     status: enable
-  last_modification: 1627696254
+  last_modification: 1628215763
 ...

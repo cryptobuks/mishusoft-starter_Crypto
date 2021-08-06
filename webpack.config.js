@@ -68,7 +68,8 @@ const commonConfig = {
                     loader: 'file-loader',
                     options: {
                         name: '[name].[ext]',
-                        outputPath: '../webfonts/'
+                        outputPath: 'webfonts/'
+                        //outputPath: 'assets/webfonts/'
                     }
                 }}]
     },
@@ -84,7 +85,7 @@ const commonConfig = {
         //     {
         //         patterns: [
         //         /*copy webfonts file from sources directory*/
-        //         {from: path.join(DOCUMENT_ROOT, './storages/app/webfonts/'), to: path.join(DOCUMENT_ROOT, './storages/app/assets/webfonts/')},
+        //        // {from: path.join(DOCUMENT_ROOT, './storages/app/webfonts/'), to: path.join(DOCUMENT_ROOT, './storages/app/assets/webfonts/')},
         //         ]
         //     }
         // ),
@@ -164,16 +165,22 @@ const commonFileConfig = {
 
 
         // CSS developments
-        /**
+        /*
          * CSS framework for application
          */
-        /**
+        /*
          * Build stylesheet for embedded application support
          */
         'app': [
-            './Assets/sass/common/font-face.scss',
+            //'./Assets/sass/common/font-face.scss',
             './Assets/sass/common/colors.scss',
             './Assets/sass/app.scss',
+        ],
+        /*
+         * Build stylesheet for embedded resources support
+         */
+        'resources': [
+            './Assets/sass/resources.scss',
         ],
 
         /**

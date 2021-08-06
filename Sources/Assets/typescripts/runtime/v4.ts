@@ -12,29 +12,65 @@ import {showMessage} from "../common/app-required";
 import {captureElement, checkDuplicate, IsJsonString} from "../common/app-common-required";
 import {sendRequest} from "../common/app-common-required-send";
 
-/*runtime included bundle*/
-//import {Google_oauth} from "./runtime-include/core/user/google_oauth"
-
-//Google_oauth.init();
-
 
 let publicSocialLinksInterval: any, visitorsAccessLogsInterval: any, contactMessageInterval: any,
     serverDatabaseInterval: any;
 const background93c = "background: #93c";
 
 
-// set service worker
-if ('serviceWorker' in navigator) {
-    // Use the window load event to keep the page load performant
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register(app.content.folder.js + 'sw.js')
-            .then((swr) => {
-                console.info("ServiceWorker [" + swr?.active?.scriptURL + "] is " + swr?.active?.state + " successfully."/* It's now *//* + swr?.active?.state*/);
-            })
-            .catch((err) => console.error("service worker not registered", err))
-    });
-}
+//hide app loader on document completed
+(function () {
+    let interval = setInterval(function () {
+        if(document.readyState=== 'complete'){
+            clearInterval(interval);
+            //initialize app loader image & application
+            if (captureElement('#app-loader')) {
+                captureElement('#app-loader').setAttribute('style', 'display:none;');
+            }
 
+            /*add required script tag to head*/
+            if (window.navigator) {
+                /*font-fontawesome private cdn*/
+                /*fetch('https://kit.fontawesome.com/b4c8f8449f.js')
+                    .then(() => {
+                        document.head.appendChild(createElement([{
+                            'script': {
+                                'rel': 'preconnect',
+                                'type': 'application/javascript',
+                                'src': 'https://kit.fontawesome.com/b4c8f8449f.js',
+                                'crossorigin': 'anonymous',
+                                'async': 'async',
+                            }
+                        }]));
+                    })
+                    .catch((err) => {
+                        console.info('fontawesome kit load failed. ' + err)
+                    })*/
+            }
+            /*ending to declare required script tag to head*/
+        }
+    }, 1000);
+
+}());
+
+
+// set service worker
+const webServiceWorker = new Worker(app.content.folder.js + 'sw.js');
+if (typeof webServiceWorker =='undefined') {
+    if ('serviceWorker' in navigator) {
+        // Use the window load event to keep the page load performant
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register(app.content.folder.js + 'sw.js')
+                .then((swr) => {
+                    console.info(
+                        "ServiceWorker [" + swr?.active?.scriptURL + "] is " + swr?.active?.state + " successfully."
+                        /* It's now *//* + swr?.active?.state*/
+                    );
+                })
+                .catch((err) => console.error("service worker not registered", err))
+        });
+    }
+}
 //const worker = new Worker(app.content.folder.js + 'sw.js');
 
 /*if (typeof worker =='undefined'){
@@ -52,214 +88,6 @@ if ('serviceWorker' in navigator) {
     }
 }*/
 
-
-(function () {
-    if (document.readyState === 'interactive') {
-
-        //initialize app loader image & application
-        if (captureElement('#app-loader')) {
-            captureElement('#app-loader').setAttribute('style', 'display:none;');
-        }
-
-        /*sendRequest({
-            method: "POST",
-            url: __appHostedServerRoot + 'api/index',
-            async: true,
-            header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
-            data: {
-                security_code: 101,
-                javascriptEnabled: true
-            }
-        });*/
-        /*add required script tag to head*/
-        if (window.navigator) {
-            /*font-fontawesome private cdn*/
-            /*fetch('https://kit.fontawesome.com/b4c8f8449f.js')
-                .then(() => {
-                    document.head.appendChild(createElement([{
-                        'script': {
-                            'rel': 'preconnect',
-                            'type': 'application/javascript',
-                            'src': 'https://kit.fontawesome.com/b4c8f8449f.js',
-                            'crossorigin': 'anonymous',
-                            'async': 'async',
-                        }
-                    }]));
-                })
-                .catch((err) => {
-                    console.info('fontawesome kit load failed. ' + err)
-                })*/
-        }
-        /*ending to declare required script tag to head*/
-
-        /*fire public profile links request!!*/
-        if (captureElement("#public-social-links") !== undefined) {
-            publicSocialLinksInterval = setInterval(function () {
-            }, 1000);
-            sendRequest({
-                method: "GET",
-                url: __appHostedServerRoot + 'api/geSocialLinks',
-                async: true,
-                header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
-            }, function (response: any) {
-                if (response.length !== 0 && IsJsonString(response)) {
-                    if (JSON.parse(response).length !== 0) {
-                        captureElement("#public-social-links").textContent = '';
-                        JSON.parse(response).forEach(function (socialLink: any) {
-                            let i1 = createElement([{
-                                'li': {
-                                    'class': 'li-social ' + socialLink.name.toLowerCase() + '-social',
-                                }
-                            }]);
-                            let i1a1 = createElement([{
-                                'a': {
-                                    'rel': 'noreferrer',
-                                    'href': socialLink.link,
-                                    'target': '_blank',
-                                    'title': socialLink.name[0].toUpperCase() + socialLink.name.slice(1)
-                                }
-                            }]);
-                            i1.appendChild(i1a1);
-                            i1a1.appendChild(createElement([{
-                                'span': {
-                                    'class': 'fab fa-' + socialLink.name.toLowerCase() + ' icon-social',
-                                }
-                            }]));
-                            let i1a1s2 = createElement([{
-                                'span': {
-                                    'class': 'name-social',
-                                }
-                            }]);
-                            i1a1s2.textContent = socialLink.name[0].toUpperCase() + socialLink.name.slice(1);
-                            i1a1.appendChild(i1a1s2);
-                            captureElement("#public-social-links").appendChild(i1);
-                        });
-                    }
-                }
-            });
-        }
-        /*ending to fire public profile links request*/
-        /*fire public payment icons request!!*/
-        if (captureElement("#pgHeaderMainInfoItemsDetails") !== undefined) {
-            captureElement("#pgHeaderMainInfoItemsDetails").textContent = '';
-            /*captureElement("#pgHeaderMainInfoItemsDetails").appendChild(createElement([{
-                'img': {
-                    'alt': 'visa',
-                    'src': app.content.folder.images + 'visa.png',
-                    'width': '20',
-                    'height': '18',
-                }
-            }]));*/
-            captureElement("#pgHeaderMainInfoItemsDetails").appendChild(createElement([{
-                'img': {
-                    'alt': 'mastercard',
-                    'src': app.content.folder.images + 'mastercard.png',
-                    'width': '20',
-                    'height': '18',
-                }
-            }]));
-            captureElement("#pgHeaderMainInfoItemsDetails").appendChild(createElement([{
-                'img': {
-                    'alt': 'maestro',
-                    'src': app.content.folder.images + 'maestro.png',
-                    'width': '20',
-                    'height': '18',
-                }
-            }]));
-            captureElement("#pgHeaderMainInfoItemsDetails").appendChild(createElement([{
-                'img': {
-                    'alt': 'amex',
-                    'src': app.content.folder.images + 'amex.png',
-                    'width': '20',
-                    'height': '18',
-                }
-            }]));
-            captureElement("#pgHeaderMainInfoItemsDetails").appendChild(createElement([{
-                'img': {
-                    'alt': 'discover',
-                    'src': app.content.folder.images + 'discover.png',
-                    'width': '20',
-                    'height': '18',
-                }
-            }]));
-            captureElement("#pgHeaderMainInfoItemsDetails").appendChild(createElement([{
-                'img': {
-                    'alt': 'giropay',
-                    'src': app.content.folder.images + 'giropay.png',
-                    'width': '20',
-                    'height': '18',
-                }
-            }]));
-            captureElement("#pgHeaderMainInfoItemsDetails").appendChild(createElement([{
-                'img': {
-                    'alt': 'klarna',
-                    'src': app.content.folder.images + 'klarna.png',
-                    'width': '20',
-                    'height': '18',
-                }
-            }]));
-            captureElement("#pgHeaderMainInfoItemsDetails").appendChild(createElement([{
-                'img': {
-                    'alt': 'sofort',
-                    'src': app.content.folder.images + 'sofort.png',
-                    'width': '20',
-                    'height': '18',
-                }
-            }]));
-        }
-        /*ending to fire public payment icons request*/
-
-
-        /*fire public payment icons request!!*/
-        if (captureElement("#document-last-modified") !== undefined) {
-            captureElement("#document-last-modified").textContent = 'Last updated: (' + document.lastModified + ' UTC)';
-        }
-        /*ending to fire public payment icons request*/
-    }
-}());
-
-(function () {
-    /*mishusoft-app-css-file*/
-
-    const UIDb = createElement([{
-        'link': {
-            'rel': 'stylesheet',
-            'type': 'text/css',
-            'href': app.content.folder.css + "mishusoft.css",
-        }
-    }]);
-    UIDb.addEventListener('load', function () {
-        //initialize app loader image & application
-        if (captureElement('#app-loader')) {
-            captureElement('#app-loader').setAttribute('style', 'display:none;');
-        }
-        if (captureElement('#app-setup-box')) {
-            captureElement('#app-setup-box').removeAttribute('style');
-        }
-        if (captureElement('#' + app.default.name + '-app-content')) {
-            captureElement('#' + app.default.name + '-app-content').removeAttribute('style');
-            //document.title = captureElement('#meta-title').content + ' || ' + captureElement('#meta-app-name').content;
-        }
-
-        // if (captureElement('#mishusoft-app-content') !== undefined) {
-        //     //console.log(window.innerHeight);
-        //     /*console.log('Window Inner Height : ' + window.innerHeight);
-        //     console.log('App Inner Height : ' + captureElement('#mishusoft-app-content').clientHeight);
-        //     console.log('Footer Inner Height : ' + captureElement('#footer').clientHeight);*/
-        //     if (window.innerHeight <= captureElement('#mishusoft-app-content').clientHeight) {
-        //         /*console.log('-------------------------------');
-        //         console.log('we reached target!!')
-        //         console.log('Window Inner Height : ' + window.innerHeight);
-        //         console.log('App Inner Height : ' + captureElement('#mishusoft-app-content').clientHeight);
-        //         console.log('-------------------------------');*/
-        //         captureElement('#footer')?.removeAttribute('style');
-        //     } else {
-        //         captureElement('#footer')?.setAttribute('style', 'position: fixed;bottom: 0;width: inherit;');
-        //     }
-        // }
-    });
-    //document.head.appendChild(UIDb);
-}());
 
 /*(function (__location) {
     if (__location === window.location) {

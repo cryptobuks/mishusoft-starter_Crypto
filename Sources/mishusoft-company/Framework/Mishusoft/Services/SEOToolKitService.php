@@ -350,7 +350,7 @@ class SEOToolKitService extends Base
                 'meta' => [
                     [
                         'name' => 'twitter:card',
-                        'content' => Storage::logoFullPath('mishusoft-logo-lite.webp', 'remote'),
+                        'content' => Storage::toDataUri('media', 'logos/mishusoft-logo-lite.webp'),
                     ],
                     [
                         'name' => 'twitter:site',
@@ -371,7 +371,7 @@ class SEOToolKitService extends Base
                     ],
                     [
                         'name' => 'twitter:image:src',
-                        'content' => Storage::logoFullPath('mishusoft-logo-lite.png', 'remote'),
+                        'content' => Storage::toDataUri('media', 'logos/mishusoft-logo-lite.webp'),
                     ],
                 ],
             ]
@@ -425,7 +425,7 @@ class SEOToolKitService extends Base
                     ],
                     [
                         'property' => 'og:image',
-                        'content' => Storage::logoFullPath('mishusoft-logo-lite.png', 'remote'),
+                        'content' => Storage::toDataUri('media', 'logos/mishusoft-logo-lite.webp'),
                     ],
                     [
                         'property' => 'og:description',

@@ -1,25 +1,20 @@
 <?php declare(strict_types=1);
 
-namespace Mishusoft\Widgets\Models;
+namespace App\Widgets\Models;
 
-use Mishusoft\Framework\Chipsets\Databases\PdoMySQL;
-use Mishusoft\Framework\Chipsets\System;
-use Mishusoft\Framework\Chipsets\Utility\_Array;
-use Mishusoft\Framework\Drivers\Model;
+use Mishusoft\Databases\PdoMySQL;
+use Mishusoft\System;
+use Mishusoft\Drivers\Model;
 
 class menuModelWidget extends Model
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
     public function getAllMenus(): array
     {
-        $data = array();
+        $data = [];
         $result = $this->db->query("SELECT DISTINCT `position` FROM `" . DbPREFIX . "pages` WHERE `status` = 'enable' ORDER BY `position`")->fetchAll(PdoMySQL::FETCH_ASSOC);
         if ($result !== false && count($result) > 0) {
-            for ($i = 0, $iMax = count($result); $i < $iMax; $i++) {
+            foreach ($result as $i => $iValue) {
                 $position_id = $result[$i]['position'];
                 if ($this->getPositionStatusById($position_id) !== false) {
                     $data = $this->getMenusByPositionId($position_id);
@@ -34,10 +29,7 @@ class menuModelWidget extends Model
         $id = (int)$id;
         $data = $this->db->query("SELECT `status` FROM `" . DbPREFIX . "menu_position` WHERE `id` = '{$id}'");
         $data = $data->fetch(PdoMySQL::FETCH_ASSOC);
-        if ($data !== false && $data['status'] === 'enable') {
-            return true;
-        }
-        return false;
+        return $data !== false && $data['status'] === 'enable';
     }
 
     /**
@@ -48,18 +40,18 @@ class menuModelWidget extends Model
     {
         $position = (int)$position;
         $menus = $this->db->query("SELECT `id`, `parent_id`, `title`, `url`, `icon` FROM `" . DbPREFIX . "pages` WHERE `position` = '{$position}' AND  `status` = 'enable';")->fetchAll(PdoMySQL::FETCH_ASSOC);
-        $data = array();
+        $data = [];
         //$sub = array();
 
         if (count($menus) > (int)'0') {
             for ($i = 0, $iMax = count($menus); $iMax > $i; $i++) {
                 $parent = (int)$menus[$i]['parent_id'];
                 if (($menus[$i]['parent_id'] === "$parent") === true || ($menus[$i]['parent_id'] === $parent) === true) { // server fetch problem with $parent variable out of invite comma
-                    $data[$i] = array(
+                    $data[$i] = [
                         'title' => $menus[$i]['title'],
                         'url' => $menus[$i]['url'],
-                        'icon' => $menus[$i]['icon']
-                    );
+                        'icon' => $menus[$i]['icon'],
+                    ];
                 }
                 if ($this->isHaveChildMenu($menus[$i]['id']) !== false) {
                     $data[$i]['submenu'] = $this->getChildMenusByParentId($menus[$i]['id']);
@@ -80,10 +72,7 @@ class menuModelWidget extends Model
     {
         $menu = (int)$menu;
         $data = $this->db->query("SELECT * FROM `" . DbPREFIX . "pages` WHERE `parent_id` = '{$menu}' AND  `status` = 'enable';")->fetch(PdoMySQL::FETCH_ASSOC);
-        if ($data !== false) {
-            return true;
-        }
-        return false;
+        return $data !== false;
 
     }
 
@@ -119,9 +108,9 @@ class menuModelWidget extends Model
         $position_id = $this->getPositionIdByName($position);
         if ($this->getPositionStatusById($position_id) !== false) {
             return $this->getMenusConfigByPositionId($position_id);
-        } else {
-            return [];
         }
+
+        return [];
     }
 
     public function getMenusConfigByPositionId($position): array
@@ -130,16 +119,16 @@ class menuModelWidget extends Model
         $data = $this->db->query("SELECT * FROM `" . DbPREFIX . "menu_config` WHERE `position` = '{$position}';")->fetch(PdoMySQL::FETCH_ASSOC);
         $hides = $this->db->query("SELECT `hide_item` FROM `" . DbPREFIX . "menu_config_hides` WHERE `position` = '{$position}';")->fetchAll(PdoMySQL::FETCH_ASSOC);
 
-        $hide_items = array();
+        $hide_items = [];
         foreach ($hides as $hd) {
             $hide_items[] = $this->getMenusConfigHideItemsNameById($hd['hide_item']);
         }
 
-        return array(
+        return [
             'position' => $this->getPositionNameById($position),
             'show' => $data['show'],
-            'hide' => $hide_items
-        );
+            'hide' => $hide_items,
+        ];
     }
 
     public function getMenusConfigHideItemsNameById($id)
@@ -157,6 +146,12 @@ class menuModelWidget extends Model
     /**
      * @public
      * @return mixed
+     * @throws \JsonException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public function getSiteInfo(): mixed
     {

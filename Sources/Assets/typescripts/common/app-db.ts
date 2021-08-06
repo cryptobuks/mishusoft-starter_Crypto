@@ -16,6 +16,10 @@ if (__appHostedServerRoot === undefined) {
     /*required variables*/
 }
 
+if (__appHostedServerRoot.substr(-1) !== '/'){
+    __appHostedServerRoot += '/';
+}
+
 
 export const app = {
     "default": {

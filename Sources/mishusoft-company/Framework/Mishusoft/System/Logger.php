@@ -61,8 +61,6 @@ class Logger
             throw new RuntimeException('Unexpected flag value.');
         }
 
-        //print_r($logFile . PHP_EOL, false);
-
         $requestedLogDirectory = dirname($logFile);
 
         Storage\FileSystem::makeDirectory($requestedLogDirectory);
@@ -139,11 +137,11 @@ class Logger
 
                 //exec('chmod -R 777 '.$logFile);
             } else {
-                throw new PermissionRequiredException('Permission denied. Unable to write or read '.$logFile);
+                throw new PermissionRequiredException('Permission Required. Unable to write or read '.$logFile);
             }
         } else {
             throw new PermissionRequiredException(
-                'Permission denied. Unable to write or read '.realpath(dirname($logFile))
+                'Permission Required. Unable to write or read '.realpath(dirname($logFile))
             );
         }//end if
     }//end write()

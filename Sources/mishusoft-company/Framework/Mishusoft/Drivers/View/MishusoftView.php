@@ -27,14 +27,14 @@ class MishusoftView extends Base implements MishusoftViewInterface
 
     private array $installedWidgets = [
         'TopQuickBar' => [
-            'class' => 'topQuickBar',
+            'class' => 'TopQuickBar',
             'method' => 'getTopQuickBar',
             'child' => [],
             'configuration' => ['position' => 'top'],
             'setting' => ['status' => 'enable'],
         ],
         'UniversalMenuBar' => [
-            'class' => 'universalMenuBar',
+            'class' => 'UniversalMenuBar',
             'method' => 'getUniversalMenuBar',
             'child' => [
                 'header',
@@ -51,12 +51,6 @@ class MishusoftView extends Base implements MishusoftViewInterface
     public array $widgetConfig;
     public string $titleOfCurrentWebPage;
     public string $urlOfHostedWebsite;
-    public object $documentTitleElement;
-    public object $documentHeadElement;
-    public object $documentBodyElement;
-    public object $documentTemplateElement;
-    public object $documentTemplateBodyElement;
-    public object $documentFooterElement;
     private string $templateName;
     private string $templateDirectory;
     private string $templateRenderDirectory;

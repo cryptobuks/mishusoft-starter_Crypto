@@ -71,6 +71,10 @@ class Ui
      */
     private static DOMNode $documentTitleElement;
     private static string $domDocumentType;
+    private static DOMNode $templateBodyElement;
+    private static DOMNode $documentContentBody;
+    private static DOMNode $documentContentHeader;
+    private static DOMNode $documentContentFooter;
 
 
     /**
@@ -164,6 +168,78 @@ class Ui
     {
         return self::text(self::$documentTitleElement, ' || '.Inflect::ucwords($content));
     }//end updateDocumentTitle()
+
+
+    /**
+     * @param DOMNode $templateBodyElement
+     * @return void
+     */
+    public static function setTemplateBody(DOMNode $templateBodyElement): void
+    {
+        self::$templateBodyElement = $templateBodyElement;
+    }//end updateDocumentTitle()
+
+    /**
+     * @return DOMNode
+     */
+    public static function getTemplateBody():DOMNode
+    {
+        return self::$templateBodyElement;
+    }
+    /**
+     * @param DOMNode $documentContentHeader
+     * @return void
+     */
+    public static function setDocumentContentHeader(DOMNode $documentContentHeader): void
+    {
+        self::$documentContentHeader = $documentContentHeader;
+    }//end setDocumentContentHeader()
+
+    /**
+     * @return DOMNode
+     */
+    public static function getDocumentContentHeader():DOMNode
+    {
+        return self::$documentContentHeader;
+    }//end getDocumentContentHeader()
+
+
+    /**
+     * @param DOMNode $documentContentBody
+     * @return void
+     */
+    public static function setDocumentContentBody(DOMNode $documentContentBody): void
+    {
+        self::$documentContentBody = $documentContentBody;
+    }//end updateDocumentTitle()
+
+    /**
+     * @return DOMNode
+     */
+    public static function getDocumentContentBody():DOMNode
+    {
+        return self::$documentContentBody;
+    }
+
+
+    /**
+     * @param DOMNode $documentContentFooter
+     * @return void
+     */
+    public static function setDocumentContentFooter(DOMNode $documentContentFooter): void
+    {
+        self::$documentContentFooter = $documentContentFooter;
+    }//end updateDocumentTitle()
+
+    /**
+     * @return DOMNode
+     */
+    public static function getDocumentContentFooter():DOMNode
+    {
+        return self::$documentContentFooter;
+    }
+
+
 
 
     /**
@@ -459,12 +535,10 @@ class Ui
     }//end html()
 
 
-
-
     /**
-     * @param DOMElement $templateBody
+     * @param DOMElement|DOMNode $templateBody
      */
-    public static function setNoScriptText(DOMElement $templateBody): void
+    public static function setNoScriptText(DOMElement|DOMNode $templateBody): void
     {
         // add noscript to ui
         self::text(
@@ -497,18 +571,27 @@ class Ui
         self::text(
             self::element(
                 $templateBody,
-                'ms-app-paragraph',
+                'section',
                 // Css context for system default signature.
                 ['style' => 'font-size: 14px;line-height: 1.5;margin-top: 5px;display: block;']
             ),
             // Text for system default signature
-            'Copyright © '.Time::currentYearNumber().' '.Memory::Data()->company->name.'. All Right Reserved.'
-            // Copyright © 2020 Winstarit LTD. All Right Reserved.
+            self::copyRightText()
         );
     }//end addDefaultSignature()
 
+    /**
+     * @return string
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\JsonException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
+     * @throws \JsonException
+     */
     public static function copyRightText():string
     {
+        // Copyright © 2020 Winstarit LTD. All Right Reserved.
         return 'Copyright © '.Time::currentYearNumber().' '.Memory::Data()->company->name.'. All Right Reserved.';
     }
 

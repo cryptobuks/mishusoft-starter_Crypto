@@ -1,1 +1,64 @@
-const a2_0x27d1=['473153tdTfMK','log','1LeZSaU','(display-mode:\x20standalone)','appinstalled','332905hklOIA','1856442gUyfaV','765385gvTXXH','829039qCDIke','change','700841YmUdKM','matches','addEventListener','browser','1QyrYDl','656045QZZKzS','matchMedia','standalone','DISPLAY_MODE_CHANGED'];function a2_0x319e(_0x5789d0,_0x5b0b3f){return a2_0x319e=function(_0x27d1e2,_0x319eab){_0x27d1e2=_0x27d1e2-0x156;let _0x51ce65=a2_0x27d1[_0x27d1e2];return _0x51ce65;},a2_0x319e(_0x5789d0,_0x5b0b3f);}(function(_0x4a1a82,_0x19d8fe){const _0x58bcc3=a2_0x319e;while(!![]){try{const _0xf04233=-parseInt(_0x58bcc3(0x164))+-parseInt(_0x58bcc3(0x166))+parseInt(_0x58bcc3(0x15f))+parseInt(_0x58bcc3(0x167))*-parseInt(_0x58bcc3(0x15a))+parseInt(_0x58bcc3(0x156))+-parseInt(_0x58bcc3(0x161))*parseInt(_0x58bcc3(0x15b))+parseInt(_0x58bcc3(0x165));if(_0xf04233===_0x19d8fe)break;else _0x4a1a82['push'](_0x4a1a82['shift']());}catch(_0x54a2fa){_0x4a1a82['push'](_0x4a1a82['shift']());}}}(a2_0x27d1,0x6d256),(()=>{const _0x385831=a2_0x319e;let _0x1a0d20;self[_0x385831(0x158)](_0x385831(0x163),()=>{const _0x1b10a0=_0x385831;_0x1a0d20=null,console[_0x1b10a0(0x160)]('PWA\x20was\x20installed');}),self[_0x385831(0x15c)](_0x385831(0x162))['addEventListener'](_0x385831(0x168),_0x37bd58=>{const _0x3240b2=_0x385831;let _0xb6904e=_0x3240b2(0x159);_0x37bd58[_0x3240b2(0x157)]&&(_0xb6904e=_0x3240b2(0x15d)),console[_0x3240b2(0x160)](_0x3240b2(0x15e),_0xb6904e);});})());
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!***********************************!*\
+  !*** ./Assets/typescripts/pwa.ts ***!
+  \***********************************/
+let deferredPrompt;
+// const addBtn : any = document.querySelector('.add-button');
+// addBtn.addEventListener('click', async () => {
+//     // Hide the app provided install promotion
+//    // hideInstallPromotion();
+//     // Show the install prompt
+//     deferredPrompt.prompt();
+//     // Wait for the user to respond to the prompt
+//     const { outcome } = await deferredPrompt.userChoice;
+//     // Optionally, send analytics event with outcome of user choice
+//     console.log(`User response to the install prompt: ${outcome}`);
+//     // We've used the prompt, and can't use it again, throw it away
+//     deferredPrompt = null;
+// });
+//
+// window.addEventListener('beforeinstallprompt', (e:any) => {
+//     // Prevent Chrome 67 and earlier from automatically showing the prompt
+//     e.preventDefault();
+//     // Stash the event so it can be triggered later.
+//     deferredPrompt = e;
+//     // Update UI to notify the user they can add to home screen
+//     addBtn.style.display = 'block';
+//
+//     addBtn.addEventListener('click', (e:any) => {
+//         // hide our user interface that shows our A2HS button
+//         addBtn.style.display = 'none';
+//         // Show the prompt
+//         deferredPrompt.prompt();
+//         // Wait for the user to respond to the prompt
+//         deferredPrompt.userChoice.then((choiceResult:any) => {
+//             if (choiceResult.outcome === 'accepted') {
+//                 console.log('User accepted the A2HS prompt');
+//             } else {
+//                 console.log('User dismissed the A2HS prompt');
+//             }
+//             deferredPrompt = null;
+//         });
+//     });
+// });
+self.addEventListener('appinstalled', () => {
+    // Hide the app-provided install promotion
+    //hideInstallPromotion();
+    // Clear the deferredPrompt so it can be garbage collected
+    deferredPrompt = null;
+    // Optionally, send analytics event to indicate successful install
+    console.log('PWA was installed');
+});
+self.matchMedia('(display-mode: standalone)').addEventListener("change", (evt) => {
+    let displayMode = 'browser';
+    if (evt.matches) {
+        displayMode = 'standalone';
+    }
+    // Log display mode change to analytics
+    console.log('DISPLAY_MODE_CHANGED', displayMode);
+});
+
+/******/ })()
+;
+//# sourceMappingURL=pwa.js.map

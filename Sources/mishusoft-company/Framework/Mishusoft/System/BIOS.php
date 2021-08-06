@@ -8,6 +8,7 @@ use Mishusoft\Framework;
 use Mishusoft\Drivers\Session;
 use Mishusoft\Http;
 use Mishusoft\Storage;
+use Mishusoft\System\BIOS\EmbeddedWebUrlService;
 
 class BIOS
 {
@@ -61,6 +62,11 @@ class BIOS
                     Logger::write('Access validity of client has been passed.');
                     Logger::write('Start system session.');
                     Session::init();
+
+                    /*
+                     * Start special url handler [EmbeddedWebUrlService].
+                     */
+                    EmbeddedWebUrlService::run();
 
                     /*
                      * Start special url handler [Ema Embed Mishusoft Application].

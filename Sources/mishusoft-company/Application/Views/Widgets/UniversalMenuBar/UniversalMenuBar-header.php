@@ -3,7 +3,7 @@
 
 // we need configuration file to multiple positioning and links
 use Mishusoft\Storage;
-use Mishusoft\Ui\Localization;
+use Mishusoft\System\Localization;
 use Mishusoft\Ui;
 use Mishusoft\Drivers\Session;
 use Mishusoft\Libraries\Runtime;
@@ -22,24 +22,46 @@ $authenticate = [
 ];
 
 
-$template_header = Ui::element($this->documentBodyElement, 'header', ['class' => 'header header-navigation-bar box-shadow box-shadow-inset']);
+$template_header = Ui::element(
+    Ui::getDocumentContentHeader(),
+    'article',
+    ['class' => 'header header-navigation-bar box-shadow box-shadow-inset']
+);
 // add logo, menu section in navigation bar in header area
-$header_logo_zone = Ui::element($template_header, 'a', ['class' => 'protect mishusoft-logo mishusoft-root-link mishusoft-root-link-primary animate', 'href' => Runtime::link('default_home')]);
-$header_logo      = Ui::element($header_logo_zone, 'img', ['src' => Storage::logoFullPath('mishusoft-logo-lite.webp', 'remote'), 'class' => ' box-shadow1', 'height' => '50px', 'width' => '50px', 'alt' => 'm'/* 'alt' => 'mishusoft\'s official logo'*/]);
+$header_logo_zone = Ui::element(
+    $template_header,
+    'a',
+    [
+        'class' => 'protect mishusoft-logo mishusoft-root-link mishusoft-root-link-primary animate',
+        'href' => Runtime::link('default_home'),
+    ]
+);
+$header_logo      = Ui::element(
+    $header_logo_zone,
+    'img',
+    [
+        'src' => Storage::toDataUri('media', 'logos/mishusoft-logo-lite.webp'),
+        'class' => ' box-shadow1', 'height' => '50px', 'width' => '50px', 'alt' => 'm',
+    ]
+);
 Ui::text($header_logo_zone, $this->titleOfCurrentWebPage);
 
 if (Session::get('auth')) {
     if (in_array(Character::lower($this->request['controller']), $authenticate)) {
         Ui::assignAttributes($template_header, ['style' => 'height: 40px;']);
-        Ui::assignAttributes($header_logo_zone, ['style' => Ui::HTML_HREF_STYLE.'color: '.Ui::COLOR['default'].';width: 30%;font-family: Saira Stencil One, SolaimanLipi, Arial,serif;font-size: 25px;font-weight: bold;text-transform: uppercase;display: flex;align-items: center;justify-content: left;transition: all .15s ease;']);
-        Ui::assignAttributes($header_logo, ['style' => 'margin: 10px;text-align: center;width: 25px;height: 25px;float: left;border-radius: 50%;box-shadow: 0 2px 4px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);transition: all .15s ease;']);
+        Ui::assignAttributes($header_logo_zone,
+            ['style' => Ui::HTML_HREF_STYLE.'color: '.Ui::COLOR['default'].';width: 30%;font-family: Saira Stencil One, SolaimanLipi, Arial,serif;font-size: 25px;font-weight: bold;text-transform: uppercase;display: flex;align-items: center;justify-content: left;transition: all .15s ease;']
+        );
+        Ui::assignAttributes($header_logo,
+            ['style' => 'margin: 10px;text-align: center;width: 25px;height: 25px;float: left;border-radius: 50%;box-shadow: 0 2px 4px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);transition: all .15s ease;'])
+        ;
         Ui::elementList(
             Ui::element($template_header, 'nav', ['class' => 'nav-right width-70percent']),
             [
                 'a' => [
                     [
                         'class' => 'protect',
-                        'href'  => Runtime::link('account/profile?a='.time().'&t=view&sc='._Array::value((array) Session::get('me'), 'code').'&tab=summery'),
+                        'href'  => Runtime::link('account/profile?a='.time().'&t=view&sc='.ArrayCollection::value((array) Session::get('me'), 'code').'&tab=summery'),
                         'text'  => $translation->translate('Profile'),
                     ],
                     [

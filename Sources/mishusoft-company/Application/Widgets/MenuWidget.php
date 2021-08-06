@@ -1,9 +1,9 @@
 <?php
 
-namespace Mishusoft\Widgets;
+namespace App\Widgets;
 
-use Mishusoft\Framework\Drivers\Widget;
-use Mishusoft\Widgets\Models\menuModelWidget;
+use Mishusoft\Drivers\Widget;
+use App\Widgets\Models\menuModelWidget;
 
 class MenuWidget extends Widget
 {
@@ -13,12 +13,12 @@ class MenuWidget extends Widget
 
     /**
      * menuWidget constructor.
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public function __construct()
     {
         parent::__construct();
         $this->menu = $this->loadModel('menu');
-
     }//end __construct()
 
 
@@ -29,8 +29,17 @@ class MenuWidget extends Widget
      * @param null $inverse
      * @param null $siteInfo
      * @return bool|string
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \JsonException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    public function getMenu(string $menu, string $view, string $format='phtml', $inverse=null, $siteInfo=null): bool|string
+    public function getMenu(string $menu, string $view, string $format = 'phtml', $inverse = null, $siteInfo = null): bool|string
     {
         return $this->render(
             $menu,
@@ -43,7 +52,6 @@ class MenuWidget extends Widget
             ],
             $format
         );
-
     }//end getMenu()
 
 
@@ -127,8 +135,5 @@ class MenuWidget extends Widget
         ];
 
         return $menus[$menu];
-
     }//end getConfig()
-
-
 }//end class
