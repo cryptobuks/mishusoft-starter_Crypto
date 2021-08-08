@@ -23,6 +23,7 @@ use Mishusoft\Ui;
 use Mishusoft\Libraries\Runtime;
 use App\Widgets\UniversalWidget;
 use Mishusoft\Utility\ArrayCollection;
+use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\Inflect;
 
 class WebResourceDelivery
@@ -311,10 +312,13 @@ class WebResourceDelivery
      */
     private function webExploreLoader(array $request): void
     {
+        //Debug::preOutput($request);
         //add webfonts url
         if ($request['controller'] === 'webfonts') {
+            //http://host/webfonts/fotname.ext
             $implodedRequestArgument = 'assets' . DS . 'webfonts' . DS . $request['method'];
         } else {
+            //http://host/directory/sub/filenameOrsub
             $implodedRequestDirectory = $request['controller'] . DS . $request['method'] . DS;
             $implodedRequestArgument = strtolower($implodedRequestDirectory) . implode(DS, $request['arguments']);
         }
@@ -665,7 +669,7 @@ class WebResourceDelivery
                     ), 'a', [
                         'style' => Ui::HTML_HREF_STYLE . 'color: #000;', 'href' => $parentURL . basename($file),
                     ]), 'img', ['style' => 'width:20px;height:20px;',
-                        'src' => Storage::toDataUri('media', 'images/icons/code-file.png', 'remote'),
+                        'src' => Storage::toDataUri('media', 'images/icons/code-file.png'),
                     ]);
                 } else {
                     Ui::text(Ui::element(Ui::element(

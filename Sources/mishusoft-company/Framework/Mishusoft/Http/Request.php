@@ -201,7 +201,10 @@ class Request
 
     private function uriOrigin():string
     {
-        return str_replace(Storage::applicationWebDirectivePath(), '', $_SERVER['REQUEST_URI']);
+        if (Storage::applicationWebDirectivePath() !== '/') {
+            return str_replace(Storage::applicationWebDirectivePath(), '', $_SERVER['REQUEST_URI']);
+        }
+        return $_SERVER['REQUEST_URI'];
     }
 
     public function getLocale(): string

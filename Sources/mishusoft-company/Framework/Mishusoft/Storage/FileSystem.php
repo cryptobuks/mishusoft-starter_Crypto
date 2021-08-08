@@ -5,7 +5,7 @@ namespace Mishusoft\Storage;
 use JsonException;
 use Mishusoft\Exceptions\ErrorException;
 use Mishusoft\Exceptions\RuntimeException;
-use Mishusoft\Ui\Logger;
+use Mishusoft\System\Logger;
 use Mishusoft\Utility\Number;
 
 class FileSystem
@@ -80,7 +80,7 @@ class FileSystem
     {
         if (self::isExists($file) === true) {
             if (($handle = fopen($file, 'rb')) === false) {
-                Logger::write('Can"t open the file.', LOGGER_WRITE_STYLE_SMART, LOGGER_FLAG_TYPE_COMPILE);
+                Logger::write('Can"t open the file.', LOG_STYLE_SMART, LOG_TYPE_COMPILE);
             }
 
             $csv_headers = fgetcsv($handle, 4000, $delimiter);
@@ -111,11 +111,11 @@ class FileSystem
 
     /**
      * @param string $filename
-     * @param callable $callback
-     * @return boolean
+     * @param \Closure $callback
+     * @return bool|null
      * @throws ErrorException
      */
-    public static function readFromFile(string $filename, \Closure $callback)
+    public static function readFromFile(string $filename, \Closure $callback): ?bool
     {
         if (self::isReadable($filename) === true) {
             return $callback(file_get_contents($filename));
@@ -142,9 +142,9 @@ class FileSystem
     /**
      * @param string $destination
      * @param integer $mode
-     * @return boolean|string
+     * @return bool
      */
-    public static function chmod(string $destination, int $mode): bool|string
+    public static function chmod(string $destination, int $mode): bool
     {
         /*
          * chmod("test.txt",0600); // Read and write for owner, nothing for everybody else
@@ -152,11 +152,8 @@ class FileSystem
          * chmod("test.txt",0755);// Everything for owner, read and execute for everybody else
          * chmod("test.txt",0740);// Everything for owner, read for owner's group
          * */
-        if (@chmod($destination, $mode) === true) {
-            return @chmod($destination, $mode);
-        }
 
-        return exec('chmod ' . $destination . ' ' . $mode);
+        return @chmod($destination, $mode);
     }//end chmod()
 
 
@@ -169,8 +166,8 @@ class FileSystem
     {
         if (is_dir($path) === true) {
             if (chmod($path, $dirMde) === false) {
-                $dirmode = decoct($dirMde);
-                print "Failed applying filemode '$dirmode' on directory '$path'\n";
+                $dirMode = decoct($dirMde);
+                print "Failed applying file mode '$dirMode' on directory '$path'\n";
                 print "  `-> the directory '$path' will be skipped from recursive chmod\n";
                 return;
             }
@@ -192,8 +189,8 @@ class FileSystem
             }
 
             if (chmod($path, $fileMode) === false) {
-                $filemode = decoct($fileMode);
-                print "Failed applying filemode '$filemode' on file '$path'\n";
+                $file_mode = decoct($fileMode);
+                print "Failed applying file mode '$file_mode' on file '$path'\n";
                 return;
             }
         }//end if
@@ -383,6 +380,7 @@ class FileSystem
     /**
      * @param string $filename
      * @param string $content
+     * @throws RuntimeException
      */
     public static function append(string $filename, string $content): void
     {

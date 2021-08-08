@@ -147,3 +147,25 @@
   info: browser avant
 
 
+
+# BIG-IP Edge Client
+# BIG-IP Edge Client is a web browser developed by BIG-IP. This browser renders web pages using the Trident engine.
+
+# Latest user agents:
+#//Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 10.0; WOW64; Trident/7.0) EdgeClient/7140.2017.0415.0051
+#//Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko EdgeClient/7190.2020.0225.0642
+#//Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko EdgeClient/7183.2020.0108.2059
+
+- identifiers:
+    # Pattern maker method use it
+    browser-edge-client:
+      pattern:
+        name: (edgeclient)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser edge-client
+
+

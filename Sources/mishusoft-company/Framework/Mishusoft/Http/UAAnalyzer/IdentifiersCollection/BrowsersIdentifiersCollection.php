@@ -21,19 +21,20 @@ class BrowsersIdentifiersCollection extends Collection
     }
 
     /**
+     * @return array
      * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function all(): array
     {
-        return array_merge_recursive(
-            $this->botsAll(),
-            $this->applicationsAll(),
-            $this->emailClientsAll(),
-            $this->feedReadersAll(),
-            $this->multimediaPlayersAll(),
-            $this->offlineBrowsersAll(),
-            $this->toolsAll(),
-            $this->browsersAll(),
+        return $this->extractAttributeRecursive(
+            'browsers',
+            [
+                /*'analysers',*/'bots','applications','email-clients',
+                'feed-readers','multimedia-players',
+                'offline-browsers','tools','browsers',
+            ],
+            'identifier-only'
         );
     }
 
@@ -54,9 +55,10 @@ class BrowsersIdentifiersCollection extends Collection
     // about all kind of browsers
 
 
-
     /**
+     * @return array
      * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function analyserAll():array
     {
@@ -65,7 +67,9 @@ class BrowsersIdentifiersCollection extends Collection
     }
 
     /**
+     * @return array
      * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function botsAll():array
     {
@@ -74,7 +78,9 @@ class BrowsersIdentifiersCollection extends Collection
     }
 
     /**
+     * @return array
      * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function applicationsAll():array
     {
@@ -83,7 +89,9 @@ class BrowsersIdentifiersCollection extends Collection
     }
 
     /**
+     * @return array
      * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function emailClientsAll():array
     {
@@ -92,7 +100,9 @@ class BrowsersIdentifiersCollection extends Collection
     }
 
     /**
+     * @return array
      * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function feedReadersAll():array
     {
@@ -101,7 +111,9 @@ class BrowsersIdentifiersCollection extends Collection
     }
 
     /**
+     * @return array
      * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function multimediaPlayersAll():array
     {
@@ -110,7 +122,9 @@ class BrowsersIdentifiersCollection extends Collection
     }
 
     /**
+     * @return array
      * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function offlineBrowsersAll():array
     {
@@ -119,7 +133,9 @@ class BrowsersIdentifiersCollection extends Collection
     }
 
     /**
+     * @return array
      * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function toolsAll():array
     {
@@ -128,7 +144,9 @@ class BrowsersIdentifiersCollection extends Collection
     }
 
     /**
+     * @return array
      * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function browsersAll():array
     {
@@ -137,7 +155,9 @@ class BrowsersIdentifiersCollection extends Collection
     }
 
     /**
+     * @return array
      * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function compatibilitiesAll():array
     {
@@ -146,7 +166,9 @@ class BrowsersIdentifiersCollection extends Collection
     }
 
     /**
+     * @return array
      * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function browserEnginesAll():array
     {

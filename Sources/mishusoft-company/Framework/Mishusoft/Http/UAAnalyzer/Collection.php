@@ -246,7 +246,6 @@ abstract class Collection extends UAAnalyzerBase
 
     /**
      * @throws RuntimeException
-     * @throws JsonException
      * @throws \Mishusoft\Exceptions\JsonException
      */
     protected function extractAttribute(array $dictionaries, string $job): array
@@ -361,6 +360,35 @@ abstract class Collection extends UAAnalyzerBase
         }
 
         throw new RuntimeException('Unknown job' . $job);
+    }
+
+
+    /**
+     * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
+     */
+    protected function extractAttributeRecursive(string $category, array $items, string $job): array
+    {
+        $result = [];
+        $category = strtolower($category);
+        $job = strtolower($job);
+
+        if (count($items) > 0) {
+            foreach ($items as $item) {
+                $item = strtolower($item);
+                $temp = $this->extractAttribute($this->query($category, $item), $job);
+                if (count($temp) > 0) {
+                    foreach ($temp as $key => $value) {
+                        if (is_int($key)) {
+                            $result[]=$value;
+                        } else {
+                            $result[$key]=$value;
+                        }
+                    }
+                }
+            }
+        }
+        return $result;
     }
 
     /**

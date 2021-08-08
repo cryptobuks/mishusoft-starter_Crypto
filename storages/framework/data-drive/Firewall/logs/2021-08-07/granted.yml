@@ -1,0 +1,48 @@
+---
+::1:
+  Unknown:
+    "2021-08-07 22:18:57":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/company
+      status: granted
+      component: browser
+      visit-time: "2021-08-07 22:18:57"
+    "2021-08-07 23:36:33":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-07 23:36:33"
+    "2021-08-07 23:36:34":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/font-face.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-07 23:36:34"
+    "2021-08-07 23:36:35":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/js/sw.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-07 23:36:35"
+...

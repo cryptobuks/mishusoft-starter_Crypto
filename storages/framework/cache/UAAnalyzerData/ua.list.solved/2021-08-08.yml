@@ -1,0 +1,4971 @@
+---
+Mozilla/5.0 (compatible; 007ac9 Crawler; http://crawler.007ac9.net/):
+  ua: Mozilla/5.0 (compatible; 007ac9 Crawler; http://crawler.007ac9.net/)
+  solved: true
+  time: 1628405251
+  browser:
+    name: Sistrix crawler
+    name-version: 007ac9 Crawler
+    version: Unknown
+    version-full: Unknown
+    architecture: Unknown
+    type: Bot (Crawler)
+    ui: FullTextMode
+    compatibility:
+      name: Mozilla
+      version: "5"
+      version-full: "5.0"
+    engine:
+      name: Unknown
+      name-full: Unknown
+      version: Unknown
+      version-full: Unknown
+    url: https://crawler.007ac9.net
+    author:
+      sistrix:
+        name: SISTRIX GmbH
+        subsidiary: SEOlytics GmbH
+        type: Private
+        industry: SEO professionals
+        services: SEO
+        website: https://www.sistrix.com/
+        established: 2004
+        founder: Johannes Beus
+        location: European Union (EU)
+        headquarter: Bonn, Nordrhein-Westfalen, Germany
+  device:
+    name: Unknown
+    name-full: Unknown
+    type: Unknown
+  platform:
+    name: Unknown
+    name-full: Unknown
+    architecture: Unknown
+    window-manager:
+      name: Unknown
+      name-detected: Unknown
+Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36 115Browser/8.6.1:
+  ua: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59
+    Safari/537.36 115Browser/8.6.1
+  solved: true
+  time: 1628405251
+  browser:
+    name: 115 Browser
+    name-version: 115Browser 8.6.1
+    version: "8"
+    version-full: 8.6.1
+    architecture: 64 bit
+    type: Web Browser
+    ui: GraphicalMode
+    compatibility:
+      name: Mozilla
+      version: "5"
+      version-full: "5.0"
+    engine:
+      name: Chrome
+      name-full: Chrome 54.0.2840.59
+      version: "54"
+      version-full: 54.0.2840.59
+    url: https://pc.115.com/
+    author:
+      115-team:
+        name: Yulinmufeng Computer Technology
+        formerly: 115 Technology
+        type: Private
+        industry: Cloud storage service
+        services: Cloud storage service
+        website: 115.com
+        established: 2009
+        founder: Lai Linfeng
+        location: Meijiang District, Guangdong Province, China
+        headquarter: fifth floor of Qinyang Peninsula World Merchants Center, Jiangnan
+          New City, Jinshan Street, Meijiang District
+    cost: Free
+    status: Active
+    licence: unknown
+    engines:
+      Blink:
+        author: Google Inc
+        developer: The Chromium Project and contributors
+        status: Active
+        release:
+          initial: 3 April 2013
+        repository: chromium.googlesource.com/chromium/src/+/master/third_party/blink/
+        writtenIn: C++
+        operatingSystem: Cross-platform
+        type: Browser engine
+        license:
+        - BSD
+        - LGPLv2.1
+        website: chromium.org/blink
+  device:
+    name: Windows Desktop
+    name-full: Windows NT
+    type: Computer
+    author: microsoft
+    url: https://www.windows.com/
+    brand: Windows
+    pointer: Cursor
+  platform:
+    name: Windows 7
+    name-full: Microsoft Windows 7
+    architecture: 64 bit
+    window-manager:
+      name: Windows Window Manager
+      name-detected: Windows
+    Codename: Windows 7
+    Developer: Microsoft
+    Written in:
+    - C
+    - C++
+    - C#
+    - assembly language
+    OS family: Microsoft Windows
+    Source model: Closed-source
+    Source-available: (through Shared Source Initiative) Some components open source
+    Released to manufacturing: July 22, 2009
+    General availability: October 22, 2009
+    Latest release: Service Pack 1 (6.1.7601.24499) / February 9, 2011;
+    Marketing target: Personal computing
+    Available in: 110 languages
+    List of languages:
+    - Afrikaans
+    - Albanian
+    - Amharic
+    - Arabic
+    - Armenian
+    - Assamese
+    - Azerbaijani
+    - Bangla (Bangladesh)
+    - Bangla (India)
+    - Basque
+    - Belarusian
+    - Bosnian
+    - Bulgarian
+    - Catalan
+    - Central Kurdish
+    - Cherokee
+    - Chinese (Simplified)
+    - Chinese (Traditional)
+    - Croatian
+    - Czech
+    - Danish
+    - Dari - Persian (Afghanistan)
+    - Dutch
+    - German
+    - Greek
+    - English (United Kingdom)
+    - English (United States)
+    - Estonian
+    - Finnish
+    - Filipino
+    - French (Canada)
+    - French (France)
+    - Galician
+    - Georgian
+    - Gujarati
+    - Hausa
+    - Hebrew
+    - Hindi
+    - Hungarian
+    - Icelandic
+    - Igbo
+    - Indonesian
+    - Irish
+    - Italian
+    - Japanese
+    - Kannada
+    - Kazakh
+    - Khmer
+    - K'iche'
+    - Kinyarwanda
+    - Konkani
+    - Korean
+    - Kyrgyz
+    - Lao
+    - Latvian
+    - Lithuanian
+    - Luxembourgish
+    - Macedonian
+    - Malay
+    - Malayalam
+    - Maltese
+    - Maori
+    - Marathi
+    - Mongolian
+    - Nepali
+    - Northern Sotho
+    - "Norwegian Bokm\xE5l"
+    - Norwegian Nynorsk
+    - Odia
+    - Persian (Iran)
+    - Punjabi (Arabic)
+    - Punjabi (Gurmukhi)
+    - Polish
+    - Portuguese (Brazil)
+    - Portuguese (Portugal)
+    - Quechua
+    - Romanian
+    - Russian
+    - Scottish Gaelic
+    - Serbian (Cyrillic
+    - Bosnia & Herzegovina)
+    - Serbian (Cyrillic
+    - Serbia)
+    - Serbian (Latin)
+    - Sindhi (Arabic)
+    - Sinhala
+    - Slovak
+    - Slovenian
+    - Spanish (Spain)
+    - Spanish (Mexico)
+    - Swahili
+    - Swedish
+    - Tajik
+    - Tamil
+    - Tatar
+    - Telugu
+    - Thai
+    - Tigrinya
+    - Tswana
+    - Turkish
+    - Turkmen
+    - Ukrainian
+    - Urdu
+    - Uyghur
+    - Uzbek
+    - Valencian
+    - Vietnamese
+    - Welsh
+    - Wolof
+    - Xhosa
+    - Yoruba
+    - Zulu
+    Update method: Windows Update
+    Platforms:
+    - IA-32
+    - x86-64
+    Kernel type: Hybrid (Windows NT kernel)
+    Userland:
+    - Native API
+    - NTVDM
+    - SUA
+    Default user interface: Windows shell (graphical)
+    License: Proprietary commercial software
+    Preceded by: Windows Vista (2007)
+    Succeeded by: Windows 8 (2012)
+    Official website: windows.com
+Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36 115Browser/8.6.2:
+  ua: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59
+    Safari/537.36 115Browser/8.6.2
+  solved: true
+  time: 1628405251
+  browser:
+    name: 115 Browser
+    name-version: 115Browser 8.6.2
+    version: "8"
+    version-full: 8.6.2
+    architecture: 64 bit
+    type: Web Browser
+    ui: GraphicalMode
+    compatibility:
+      name: Mozilla
+      version: "5"
+      version-full: "5.0"
+    engine:
+      name: Chrome
+      name-full: Chrome 54.0.2840.59
+      version: "54"
+      version-full: 54.0.2840.59
+    url: https://pc.115.com/
+    author:
+      115-team:
+        name: Yulinmufeng Computer Technology
+        formerly: 115 Technology
+        type: Private
+        industry: Cloud storage service
+        services: Cloud storage service
+        website: 115.com
+        established: 2009
+        founder: Lai Linfeng
+        location: Meijiang District, Guangdong Province, China
+        headquarter: fifth floor of Qinyang Peninsula World Merchants Center, Jiangnan
+          New City, Jinshan Street, Meijiang District
+    cost: Free
+    status: Active
+    licence: unknown
+    engines:
+      Blink:
+        author: Google Inc
+        developer: The Chromium Project and contributors
+        status: Active
+        release:
+          initial: 3 April 2013
+        repository: chromium.googlesource.com/chromium/src/+/master/third_party/blink/
+        writtenIn: C++
+        operatingSystem: Cross-platform
+        type: Browser engine
+        license:
+        - BSD
+        - LGPLv2.1
+        website: chromium.org/blink
+  device:
+    name: Windows Desktop
+    name-full: Windows NT
+    type: Computer
+    author: microsoft
+    url: https://www.windows.com/
+    brand: Windows
+    pointer: Cursor
+  platform:
+    name: Windows 7
+    name-full: Microsoft Windows 7
+    architecture: 64 bit
+    window-manager:
+      name: Windows Window Manager
+      name-detected: Windows
+    Codename: Windows 7
+    Developer: Microsoft
+    Written in:
+    - C
+    - C++
+    - C#
+    - assembly language
+    OS family: Microsoft Windows
+    Source model: Closed-source
+    Source-available: (through Shared Source Initiative) Some components open source
+    Released to manufacturing: July 22, 2009
+    General availability: October 22, 2009
+    Latest release: Service Pack 1 (6.1.7601.24499) / February 9, 2011;
+    Marketing target: Personal computing
+    Available in: 110 languages
+    List of languages:
+    - Afrikaans
+    - Albanian
+    - Amharic
+    - Arabic
+    - Armenian
+    - Assamese
+    - Azerbaijani
+    - Bangla (Bangladesh)
+    - Bangla (India)
+    - Basque
+    - Belarusian
+    - Bosnian
+    - Bulgarian
+    - Catalan
+    - Central Kurdish
+    - Cherokee
+    - Chinese (Simplified)
+    - Chinese (Traditional)
+    - Croatian
+    - Czech
+    - Danish
+    - Dari - Persian (Afghanistan)
+    - Dutch
+    - German
+    - Greek
+    - English (United Kingdom)
+    - English (United States)
+    - Estonian
+    - Finnish
+    - Filipino
+    - French (Canada)
+    - French (France)
+    - Galician
+    - Georgian
+    - Gujarati
+    - Hausa
+    - Hebrew
+    - Hindi
+    - Hungarian
+    - Icelandic
+    - Igbo
+    - Indonesian
+    - Irish
+    - Italian
+    - Japanese
+    - Kannada
+    - Kazakh
+    - Khmer
+    - K'iche'
+    - Kinyarwanda
+    - Konkani
+    - Korean
+    - Kyrgyz
+    - Lao
+    - Latvian
+    - Lithuanian
+    - Luxembourgish
+    - Macedonian
+    - Malay
+    - Malayalam
+    - Maltese
+    - Maori
+    - Marathi
+    - Mongolian
+    - Nepali
+    - Northern Sotho
+    - "Norwegian Bokm\xE5l"
+    - Norwegian Nynorsk
+    - Odia
+    - Persian (Iran)
+    - Punjabi (Arabic)
+    - Punjabi (Gurmukhi)
+    - Polish
+    - Portuguese (Brazil)
+    - Portuguese (Portugal)
+    - Quechua
+    - Romanian
+    - Russian
+    - Scottish Gaelic
+    - Serbian (Cyrillic
+    - Bosnia & Herzegovina)
+    - Serbian (Cyrillic
+    - Serbia)
+    - Serbian (Latin)
+    - Sindhi (Arabic)
+    - Sinhala
+    - Slovak
+    - Slovenian
+    - Spanish (Spain)
+    - Spanish (Mexico)
+    - Swahili
+    - Swedish
+    - Tajik
+    - Tamil
+    - Tatar
+    - Telugu
+    - Thai
+    - Tigrinya
+    - Tswana
+    - Turkish
+    - Turkmen
+    - Ukrainian
+    - Urdu
+    - Uyghur
+    - Uzbek
+    - Valencian
+    - Vietnamese
+    - Welsh
+    - Wolof
+    - Xhosa
+    - Yoruba
+    - Zulu
+    Update method: Windows Update
+    Platforms:
+    - IA-32
+    - x86-64
+    Kernel type: Hybrid (Windows NT kernel)
+    Userland:
+    - Native API
+    - NTVDM
+    - SUA
+    Default user interface: Windows shell (graphical)
+    License: Proprietary commercial software
+    Preceded by: Windows Vista (2007)
+    Succeeded by: Windows 8 (2012)
+    Official website: windows.com
+Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML like Gecko) Chrome/31.0.1650.63 Safari/537.36 115Browser/5.1.7:
+  ua: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML like Gecko) Chrome/31.0.1650.63
+    Safari/537.36 115Browser/5.1.7
+  solved: true
+  time: 1628405251
+  browser:
+    name: 115 Browser
+    name-version: 115Browser 5.1.7
+    version: "5"
+    version-full: 5.1.7
+    architecture: Unknown
+    type: Web Browser
+    ui: GraphicalMode
+    compatibility:
+      name: Mozilla
+      version: "5"
+      version-full: "5.0"
+    engine:
+      name: Chrome
+      name-full: Chrome 31.0.1650.63
+      version: "31"
+      version-full: 31.0.1650.63
+    url: https://pc.115.com/
+    author:
+      115-team:
+        name: Yulinmufeng Computer Technology
+        formerly: 115 Technology
+        type: Private
+        industry: Cloud storage service
+        services: Cloud storage service
+        website: 115.com
+        established: 2009
+        founder: Lai Linfeng
+        location: Meijiang District, Guangdong Province, China
+        headquarter: fifth floor of Qinyang Peninsula World Merchants Center, Jiangnan
+          New City, Jinshan Street, Meijiang District
+    cost: Free
+    status: Active
+    licence: unknown
+    engines:
+      Blink:
+        author: Google Inc
+        developer: The Chromium Project and contributors
+        status: Active
+        release:
+          initial: 3 April 2013
+        repository: chromium.googlesource.com/chromium/src/+/master/third_party/blink/
+        writtenIn: C++
+        operatingSystem: Cross-platform
+        type: Browser engine
+        license:
+        - BSD
+        - LGPLv2.1
+        website: chromium.org/blink
+  device:
+    name: Windows Desktop
+    name-full: Windows NT
+    type: Computer
+    author: microsoft
+    url: https://www.windows.com/
+    brand: Windows
+    pointer: Cursor
+  platform:
+    name: Windows 7
+    name-full: Microsoft Windows 7
+    architecture: Unknown
+    window-manager:
+      name: Windows Window Manager
+      name-detected: Windows
+    Codename: Windows 7
+    Developer: Microsoft
+    Written in:
+    - C
+    - C++
+    - C#
+    - assembly language
+    OS family: Microsoft Windows
+    Source model: Closed-source
+    Source-available: (through Shared Source Initiative) Some components open source
+    Released to manufacturing: July 22, 2009
+    General availability: October 22, 2009
+    Latest release: Service Pack 1 (6.1.7601.24499) / February 9, 2011;
+    Marketing target: Personal computing
+    Available in: 110 languages
+    List of languages:
+    - Afrikaans
+    - Albanian
+    - Amharic
+    - Arabic
+    - Armenian
+    - Assamese
+    - Azerbaijani
+    - Bangla (Bangladesh)
+    - Bangla (India)
+    - Basque
+    - Belarusian
+    - Bosnian
+    - Bulgarian
+    - Catalan
+    - Central Kurdish
+    - Cherokee
+    - Chinese (Simplified)
+    - Chinese (Traditional)
+    - Croatian
+    - Czech
+    - Danish
+    - Dari - Persian (Afghanistan)
+    - Dutch
+    - German
+    - Greek
+    - English (United Kingdom)
+    - English (United States)
+    - Estonian
+    - Finnish
+    - Filipino
+    - French (Canada)
+    - French (France)
+    - Galician
+    - Georgian
+    - Gujarati
+    - Hausa
+    - Hebrew
+    - Hindi
+    - Hungarian
+    - Icelandic
+    - Igbo
+    - Indonesian
+    - Irish
+    - Italian
+    - Japanese
+    - Kannada
+    - Kazakh
+    - Khmer
+    - K'iche'
+    - Kinyarwanda
+    - Konkani
+    - Korean
+    - Kyrgyz
+    - Lao
+    - Latvian
+    - Lithuanian
+    - Luxembourgish
+    - Macedonian
+    - Malay
+    - Malayalam
+    - Maltese
+    - Maori
+    - Marathi
+    - Mongolian
+    - Nepali
+    - Northern Sotho
+    - "Norwegian Bokm\xE5l"
+    - Norwegian Nynorsk
+    - Odia
+    - Persian (Iran)
+    - Punjabi (Arabic)
+    - Punjabi (Gurmukhi)
+    - Polish
+    - Portuguese (Brazil)
+    - Portuguese (Portugal)
+    - Quechua
+    - Romanian
+    - Russian
+    - Scottish Gaelic
+    - Serbian (Cyrillic
+    - Bosnia & Herzegovina)
+    - Serbian (Cyrillic
+    - Serbia)
+    - Serbian (Latin)
+    - Sindhi (Arabic)
+    - Sinhala
+    - Slovak
+    - Slovenian
+    - Spanish (Spain)
+    - Spanish (Mexico)
+    - Swahili
+    - Swedish
+    - Tajik
+    - Tamil
+    - Tatar
+    - Telugu
+    - Thai
+    - Tigrinya
+    - Tswana
+    - Turkish
+    - Turkmen
+    - Ukrainian
+    - Urdu
+    - Uyghur
+    - Uzbek
+    - Valencian
+    - Vietnamese
+    - Welsh
+    - Wolof
+    - Xhosa
+    - Yoruba
+    - Zulu
+    Update method: Windows Update
+    Platforms:
+    - IA-32
+    - x86-64
+    Kernel type: Hybrid (Windows NT kernel)
+    Userland:
+    - Native API
+    - NTVDM
+    - SUA
+    Default user interface: Windows shell (graphical)
+    License: Proprietary commercial software
+    Preceded by: Windows Vista (2007)
+    Succeeded by: Windows 8 (2012)
+    Official website: windows.com
+Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/49.0.2623.75 Safari/537.36 115Browser/7.2.4:
+  ua: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/49.0.2623.75
+    Safari/537.36 115Browser/7.2.4
+  solved: true
+  time: 1628405251
+  browser:
+    name: 115 Browser
+    name-version: 115Browser 7.2.4
+    version: "7"
+    version-full: 7.2.4
+    architecture: 64 bit
+    type: Web Browser
+    ui: GraphicalMode
+    compatibility:
+      name: Mozilla
+      version: "5"
+      version-full: "5.0"
+    engine:
+      name: Chrome
+      name-full: Chrome 49.0.2623.75
+      version: "49"
+      version-full: 49.0.2623.75
+    url: https://pc.115.com/
+    author:
+      115-team:
+        name: Yulinmufeng Computer Technology
+        formerly: 115 Technology
+        type: Private
+        industry: Cloud storage service
+        services: Cloud storage service
+        website: 115.com
+        established: 2009
+        founder: Lai Linfeng
+        location: Meijiang District, Guangdong Province, China
+        headquarter: fifth floor of Qinyang Peninsula World Merchants Center, Jiangnan
+          New City, Jinshan Street, Meijiang District
+    cost: Free
+    status: Active
+    licence: unknown
+    engines:
+      Blink:
+        author: Google Inc
+        developer: The Chromium Project and contributors
+        status: Active
+        release:
+          initial: 3 April 2013
+        repository: chromium.googlesource.com/chromium/src/+/master/third_party/blink/
+        writtenIn: C++
+        operatingSystem: Cross-platform
+        type: Browser engine
+        license:
+        - BSD
+        - LGPLv2.1
+        website: chromium.org/blink
+  device:
+    name: Windows Desktop
+    name-full: Windows NT
+    type: Computer
+    author: microsoft
+    url: https://www.windows.com/
+    brand: Windows
+    pointer: Cursor
+  platform:
+    name: Windows 7
+    name-full: Microsoft Windows 7
+    architecture: 64 bit
+    window-manager:
+      name: Windows Window Manager
+      name-detected: Windows
+    Codename: Windows 7
+    Developer: Microsoft
+    Written in:
+    - C
+    - C++
+    - C#
+    - assembly language
+    OS family: Microsoft Windows
+    Source model: Closed-source
+    Source-available: (through Shared Source Initiative) Some components open source
+    Released to manufacturing: July 22, 2009
+    General availability: October 22, 2009
+    Latest release: Service Pack 1 (6.1.7601.24499) / February 9, 2011;
+    Marketing target: Personal computing
+    Available in: 110 languages
+    List of languages:
+    - Afrikaans
+    - Albanian
+    - Amharic
+    - Arabic
+    - Armenian
+    - Assamese
+    - Azerbaijani
+    - Bangla (Bangladesh)
+    - Bangla (India)
+    - Basque
+    - Belarusian
+    - Bosnian
+    - Bulgarian
+    - Catalan
+    - Central Kurdish
+    - Cherokee
+    - Chinese (Simplified)
+    - Chinese (Traditional)
+    - Croatian
+    - Czech
+    - Danish
+    - Dari - Persian (Afghanistan)
+    - Dutch
+    - German
+    - Greek
+    - English (United Kingdom)
+    - English (United States)
+    - Estonian
+    - Finnish
+    - Filipino
+    - French (Canada)
+    - French (France)
+    - Galician
+    - Georgian
+    - Gujarati
+    - Hausa
+    - Hebrew
+    - Hindi
+    - Hungarian
+    - Icelandic
+    - Igbo
+    - Indonesian
+    - Irish
+    - Italian
+    - Japanese
+    - Kannada
+    - Kazakh
+    - Khmer
+    - K'iche'
+    - Kinyarwanda
+    - Konkani
+    - Korean
+    - Kyrgyz
+    - Lao
+    - Latvian
+    - Lithuanian
+    - Luxembourgish
+    - Macedonian
+    - Malay
+    - Malayalam
+    - Maltese
+    - Maori
+    - Marathi
+    - Mongolian
+    - Nepali
+    - Northern Sotho
+    - "Norwegian Bokm\xE5l"
+    - Norwegian Nynorsk
+    - Odia
+    - Persian (Iran)
+    - Punjabi (Arabic)
+    - Punjabi (Gurmukhi)
+    - Polish
+    - Portuguese (Brazil)
+    - Portuguese (Portugal)
+    - Quechua
+    - Romanian
+    - Russian
+    - Scottish Gaelic
+    - Serbian (Cyrillic
+    - Bosnia & Herzegovina)
+    - Serbian (Cyrillic
+    - Serbia)
+    - Serbian (Latin)
+    - Sindhi (Arabic)
+    - Sinhala
+    - Slovak
+    - Slovenian
+    - Spanish (Spain)
+    - Spanish (Mexico)
+    - Swahili
+    - Swedish
+    - Tajik
+    - Tamil
+    - Tatar
+    - Telugu
+    - Thai
+    - Tigrinya
+    - Tswana
+    - Turkish
+    - Turkmen
+    - Ukrainian
+    - Urdu
+    - Uyghur
+    - Uzbek
+    - Valencian
+    - Vietnamese
+    - Welsh
+    - Wolof
+    - Xhosa
+    - Yoruba
+    - Zulu
+    Update method: Windows Update
+    Platforms:
+    - IA-32
+    - x86-64
+    Kernel type: Hybrid (Windows NT kernel)
+    Userland:
+    - Native API
+    - NTVDM
+    - SUA
+    Default user interface: Windows shell (graphical)
+    License: Proprietary commercial software
+    Preceded by: Windows Vista (2007)
+    Succeeded by: Windows 8 (2012)
+    Official website: windows.com
+? Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like
+  Gecko) Chrome/54.0.2840.59 Safari/537.36 115Browser/8.6.2
+: ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like
+    Gecko) Chrome/54.0.2840.59 Safari/537.36 115Browser/8.6.2
+  solved: true
+  time: 1628405251
+  browser:
+    name: 115 Browser
+    name-version: 115Browser 8.6.2
+    version: "8"
+    version-full: 8.6.2
+    architecture: Unknown
+    type: Web Browser
+    ui: GraphicalMode
+    compatibility:
+      name: Mozilla
+      version: "5"
+      version-full: "5.0"
+    engine:
+      name: Chrome
+      name-full: Chrome 54.0.2840.59
+      version: "54"
+      version-full: 54.0.2840.59
+    url: https://pc.115.com/
+    author:
+      115-team:
+        name: Yulinmufeng Computer Technology
+        formerly: 115 Technology
+        type: Private
+        industry: Cloud storage service
+        services: Cloud storage service
+        website: 115.com
+        established: 2009
+        founder: Lai Linfeng
+        location: Meijiang District, Guangdong Province, China
+        headquarter: fifth floor of Qinyang Peninsula World Merchants Center, Jiangnan
+          New City, Jinshan Street, Meijiang District
+    cost: Free
+    status: Active
+    licence: unknown
+    engines:
+      Blink:
+        author: Google Inc
+        developer: The Chromium Project and contributors
+        status: Active
+        release:
+          initial: 3 April 2013
+        repository: chromium.googlesource.com/chromium/src/+/master/third_party/blink/
+        writtenIn: C++
+        operatingSystem: Cross-platform
+        type: Browser engine
+        license:
+        - BSD
+        - LGPLv2.1
+        website: chromium.org/blink
+  device:
+    name: Macintosh Desktop
+    name-full: Macintosh
+    type: Desktop
+    author: apple
+    url: https://www.apple.com/
+    brand: MAC
+    pointer: Cursor
+  platform:
+    name: Unknown
+    name-full: Unknown
+    architecture: Unknown
+    window-manager:
+      name: Mac Window Manager
+      name-detected: Mac
+? Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/537.36 (KHTML, like
+  Gecko) Chrome/54.0.2840.59 Safari/537.36 115Browser/8.6.4
+: ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/537.36 (KHTML, like
+    Gecko) Chrome/54.0.2840.59 Safari/537.36 115Browser/8.6.4
+  solved: true
+  time: 1628405252
+  browser:
+    name: 115 Browser
+    name-version: 115Browser 8.6.4
+    version: "8"
+    version-full: 8.6.4
+    architecture: Unknown
+    type: Web Browser
+    ui: GraphicalMode
+    compatibility:
+      name: Mozilla
+      version: "5"
+      version-full: "5.0"
+    engine:
+      name: Chrome
+      name-full: Chrome 54.0.2840.59
+      version: "54"
+      version-full: 54.0.2840.59
+    url: https://pc.115.com/
+    author:
+      115-team:
+        name: Yulinmufeng Computer Technology
+        formerly: 115 Technology
+        type: Private
+        industry: Cloud storage service
+        services: Cloud storage service
+        website: 115.com
+        established: 2009
+        founder: Lai Linfeng
+        location: Meijiang District, Guangdong Province, China
+        headquarter: fifth floor of Qinyang Peninsula World Merchants Center, Jiangnan
+          New City, Jinshan Street, Meijiang District
+    cost: Free
+    status: Active
+    licence: unknown
+    engines:
+      Blink:
+        author: Google Inc
+        developer: The Chromium Project and contributors
+        status: Active
+        release:
+          initial: 3 April 2013
+        repository: chromium.googlesource.com/chromium/src/+/master/third_party/blink/
+        writtenIn: C++
+        operatingSystem: Cross-platform
+        type: Browser engine
+        license:
+        - BSD
+        - LGPLv2.1
+        website: chromium.org/blink
+  device:
+    name: Macintosh Desktop
+    name-full: Macintosh
+    type: Desktop
+    author: apple
+    url: https://www.apple.com/
+    brand: MAC
+    pointer: Cursor
+  platform:
+    name: Unknown
+    name-full: Unknown
+    architecture: Unknown
+    window-manager:
+      name: Mac Window Manager
+      name-detected: Mac
+Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36 115Browser/9.0.0:
+  ua: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)
+    Chrome/62.0.3202.94 Safari/537.36 115Browser/9.0.0
+  solved: true
+  time: 1628405252
+  browser:
+    name: 115 Browser
+    name-version: 115Browser 9.0.0
+    version: "9"
+    version-full: 9.0.0
+    architecture: 64 bit
+    type: Web Browser
+    ui: GraphicalMode
+    compatibility:
+      name: Mozilla
+      version: "5"
+      version-full: "5.0"
+    engine:
+      name: Chrome
+      name-full: Chrome 62.0.3202.94
+      version: "62"
+      version-full: 62.0.3202.94
+    url: https://pc.115.com/
+    author:
+      115-team:
+        name: Yulinmufeng Computer Technology
+        formerly: 115 Technology
+        type: Private
+        industry: Cloud storage service
+        services: Cloud storage service
+        website: 115.com
+        established: 2009
+        founder: Lai Linfeng
+        location: Meijiang District, Guangdong Province, China
+        headquarter: fifth floor of Qinyang Peninsula World Merchants Center, Jiangnan
+          New City, Jinshan Street, Meijiang District
+    cost: Free
+    status: Active
+    licence: unknown
+    engines:
+      Blink:
+        author: Google Inc
+        developer: The Chromium Project and contributors
+        status: Active
+        release:
+          initial: 3 April 2013
+        repository: chromium.googlesource.com/chromium/src/+/master/third_party/blink/
+        writtenIn: C++
+        operatingSystem: Cross-platform
+        type: Browser engine
+        license:
+        - BSD
+        - LGPLv2.1
+        website: chromium.org/blink
+  device:
+    name: Windows Desktop
+    name-full: Windows NT
+    type: Computer
+    author: microsoft
+    url: https://www.windows.com/
+    brand: Windows
+    pointer: Cursor
+  platform:
+    name: Windows 10
+    name-full: Microsoft Windows 10
+    architecture: 64 bit
+    window-manager:
+      name: Windows Window Manager
+      name-detected: Windows
+    Codename: Threshold 1
+    Developer: Microsoft
+    Written in:
+    - C
+    - C++
+    - C#
+    - assembly language
+    OS family: Microsoft Windows
+    Source model: Closed-source
+    Source-available: (through Shared Source Initiative) Some components open source
+    Released to manufacturing: July 15, 2015
+    General availability: July 29, 2015
+    Latest release: 10.0.19043.1083 (July 6, 2021)
+    Latest preview: 10.0.21390.2025 (June 14, 2021)
+    Marketing target: Personal computing
+    Available in: 110 languages
+    List of languages:
+    - Afrikaans
+    - Albanian
+    - Amharic
+    - Arabic
+    - Armenian
+    - Assamese
+    - Azerbaijani
+    - Bangla (Bangladesh)
+    - Bangla (India)
+    - Basque
+    - Belarusian
+    - Bosnian
+    - Bulgarian
+    - Catalan
+    - Central Kurdish
+    - Cherokee
+    - Chinese (Simplified)
+    - Chinese (Traditional)
+    - Croatian
+    - Czech
+    - Danish
+    - Dari - Persian (Afghanistan)
+    - Dutch
+    - German
+    - Greek
+    - English (United Kingdom)
+    - English (United States)
+    - Estonian
+    - Finnish
+    - Filipino
+    - French (Canada)
+    - French (France)
+    - Galician
+    - Georgian
+    - Gujarati
+    - Hausa
+    - Hebrew
+    - Hindi
+    - Hungarian
+    - Icelandic
+    - Igbo
+    - Indonesian
+    - Irish
+    - Italian
+    - Japanese
+    - Kannada
+    - Kazakh
+    - Khmer
+    - K'iche'
+    - Kinyarwanda
+    - Konkani
+    - Korean
+    - Kyrgyz
+    - Lao
+    - Latvian
+    - Lithuanian
+    - Luxembourgish
+    - Macedonian
+    - Malay
+    - Malayalam
+    - Maltese
+    - Maori
+    - Marathi
+    - Mongolian
+    - Nepali
+    - Northern Sotho
+    - "Norwegian Bokm\xE5l"
+    - Norwegian Nynorsk
+    - Odia
+    - Persian (Iran)
+    - Punjabi (Arabic)
+    - Punjabi (Gurmukhi)
+    - Polish
+    - Portuguese (Brazil)
+    - Portuguese (Portugal)
+    - Quechua
+    - Romanian
+    - Russian
+    - Scottish Gaelic
+    - Serbian (Cyrillic
+    - Bosnia & Herzegovina)
+    - Serbian (Cyrillic
+    - Serbia)
+    - Serbian (Latin)
+    - Sindhi (Arabic)
+    - Sinhala
+    - Slovak
+    - Slovenian
+    - Spanish (Spain)
+    - Spanish (Mexico)
+    - Swahili
+    - Swedish
+    - Tajik
+    - Tamil
+    - Tatar
+    - Telugu
+    - Thai
+    - Tigrinya
+    - Tswana
+    - Turkish
+    - Turkmen
+    - Ukrainian
+    - Urdu
+    - Uyghur
+    - Uzbek
+    - Valencian
+    - Vietnamese
+    - Welsh
+    - Wolof
+    - Xhosa
+    - Yoruba
+    - Zulu
+    Update method:
+    - Windows Update
+    - Microsoft Store
+    - Windows Server Update Services (WSUS)
+    Platforms:
+    - IA-32
+    - x86-64
+    - ARMv7
+    - ARM64
+    Kernel type: Hybrid (Windows NT kernel)
+    Userland:
+    - Native API
+    - Windows API
+    - .NET Framework
+    - Universal Windows Platform
+    - Windows Subsystem for Linux
+    - NTVDM (IA-32 only)
+    Default user interface: Windows shell (graphical)
+    License:
+    - Trialware
+    - Microsoft Software Assurance
+    - MSDN subscription
+    - Microsoft Imagine
+    Preceded by: Windows 8.1 (2013)
+    Succeeded by: Windows 11 (2021)
+    Official website: windows.com
+Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36 115Browser/8.3.0:
+  ua: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59
+    Safari/537.36 115Browser/8.3.0
+  solved: true
+  time: 1628405252
+  browser:
+    name: 115 Browser
+    name-version: 115Browser 8.3.0
+    version: "8"
+    version-full: 8.3.0
+    architecture: 64 bit
+    type: Web Browser
+    ui: GraphicalMode
+    compatibility:
+      name: Mozilla
+      version: "5"
+      version-full: "5.0"
+    engine:
+      name: Chrome
+      name-full: Chrome 54.0.2840.59
+      version: "54"
+      version-full: 54.0.2840.59
+    url: https://pc.115.com/
+    author:
+      115-team:
+        name: Yulinmufeng Computer Technology
+        formerly: 115 Technology
+        type: Private
+        industry: Cloud storage service
+        services: Cloud storage service
+        website: 115.com
+        established: 2009
+        founder: Lai Linfeng
+        location: Meijiang District, Guangdong Province, China
+        headquarter: fifth floor of Qinyang Peninsula World Merchants Center, Jiangnan
+          New City, Jinshan Street, Meijiang District
+    cost: Free
+    status: Active
+    licence: unknown
+    engines:
+      Blink:
+        author: Google Inc
+        developer: The Chromium Project and contributors
+        status: Active
+        release:
+          initial: 3 April 2013
+        repository: chromium.googlesource.com/chromium/src/+/master/third_party/blink/
+        writtenIn: C++
+        operatingSystem: Cross-platform
+        type: Browser engine
+        license:
+        - BSD
+        - LGPLv2.1
+        website: chromium.org/blink
+  device:
+    name: Windows Desktop
+    name-full: Windows NT
+    type: Computer
+    author: microsoft
+    url: https://www.windows.com/
+    brand: Windows
+    pointer: Cursor
+  platform:
+    name: Windows 7
+    name-full: Microsoft Windows 7
+    architecture: 64 bit
+    window-manager:
+      name: Windows Window Manager
+      name-detected: Windows
+    Codename: Windows 7
+    Developer: Microsoft
+    Written in:
+    - C
+    - C++
+    - C#
+    - assembly language
+    OS family: Microsoft Windows
+    Source model: Closed-source
+    Source-available: (through Shared Source Initiative) Some components open source
+    Released to manufacturing: July 22, 2009
+    General availability: October 22, 2009
+    Latest release: Service Pack 1 (6.1.7601.24499) / February 9, 2011;
+    Marketing target: Personal computing
+    Available in: 110 languages
+    List of languages:
+    - Afrikaans
+    - Albanian
+    - Amharic
+    - Arabic
+    - Armenian
+    - Assamese
+    - Azerbaijani
+    - Bangla (Bangladesh)
+    - Bangla (India)
+    - Basque
+    - Belarusian
+    - Bosnian
+    - Bulgarian
+    - Catalan
+    - Central Kurdish
+    - Cherokee
+    - Chinese (Simplified)
+    - Chinese (Traditional)
+    - Croatian
+    - Czech
+    - Danish
+    - Dari - Persian (Afghanistan)
+    - Dutch
+    - German
+    - Greek
+    - English (United Kingdom)
+    - English (United States)
+    - Estonian
+    - Finnish
+    - Filipino
+    - French (Canada)
+    - French (France)
+    - Galician
+    - Georgian
+    - Gujarati
+    - Hausa
+    - Hebrew
+    - Hindi
+    - Hungarian
+    - Icelandic
+    - Igbo
+    - Indonesian
+    - Irish
+    - Italian
+    - Japanese
+    - Kannada
+    - Kazakh
+    - Khmer
+    - K'iche'
+    - Kinyarwanda
+    - Konkani
+    - Korean
+    - Kyrgyz
+    - Lao
+    - Latvian
+    - Lithuanian
+    - Luxembourgish
+    - Macedonian
+    - Malay
+    - Malayalam
+    - Maltese
+    - Maori
+    - Marathi
+    - Mongolian
+    - Nepali
+    - Northern Sotho
+    - "Norwegian Bokm\xE5l"
+    - Norwegian Nynorsk
+    - Odia
+    - Persian (Iran)
+    - Punjabi (Arabic)
+    - Punjabi (Gurmukhi)
+    - Polish
+    - Portuguese (Brazil)
+    - Portuguese (Portugal)
+    - Quechua
+    - Romanian
+    - Russian
+    - Scottish Gaelic
+    - Serbian (Cyrillic
+    - Bosnia & Herzegovina)
+    - Serbian (Cyrillic
+    - Serbia)
+    - Serbian (Latin)
+    - Sindhi (Arabic)
+    - Sinhala
+    - Slovak
+    - Slovenian
+    - Spanish (Spain)
+    - Spanish (Mexico)
+    - Swahili
+    - Swedish
+    - Tajik
+    - Tamil
+    - Tatar
+    - Telugu
+    - Thai
+    - Tigrinya
+    - Tswana
+    - Turkish
+    - Turkmen
+    - Ukrainian
+    - Urdu
+    - Uyghur
+    - Uzbek
+    - Valencian
+    - Vietnamese
+    - Welsh
+    - Wolof
+    - Xhosa
+    - Yoruba
+    - Zulu
+    Update method: Windows Update
+    Platforms:
+    - IA-32
+    - x86-64
+    Kernel type: Hybrid (Windows NT kernel)
+    Userland:
+    - Native API
+    - NTVDM
+    - SUA
+    Default user interface: Windows shell (graphical)
+    License: Proprietary commercial software
+    Preceded by: Windows Vista (2007)
+    Succeeded by: Windows 8 (2012)
+    Official website: windows.com
+Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/31.0.1650.63 Safari/537.36 115Browser/5.2.6:
+  ua: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/31.0.1650.63
+    Safari/537.36 115Browser/5.2.6
+  solved: true
+  time: 1628405252
+  browser:
+    name: 115 Browser
+    name-version: 115Browser 5.2.6
+    version: "5"
+    version-full: 5.2.6
+    architecture: 64 bit
+    type: Web Browser
+    ui: GraphicalMode
+    compatibility:
+      name: Mozilla
+      version: "5"
+      version-full: "5.0"
+    engine:
+      name: Chrome
+      name-full: Chrome 31.0.1650.63
+      version: "31"
+      version-full: 31.0.1650.63
+    url: https://pc.115.com/
+    author:
+      115-team:
+        name: Yulinmufeng Computer Technology
+        formerly: 115 Technology
+        type: Private
+        industry: Cloud storage service
+        services: Cloud storage service
+        website: 115.com
+        established: 2009
+        founder: Lai Linfeng
+        location: Meijiang District, Guangdong Province, China
+        headquarter: fifth floor of Qinyang Peninsula World Merchants Center, Jiangnan
+          New City, Jinshan Street, Meijiang District
+    cost: Free
+    status: Active
+    licence: unknown
+    engines:
+      Blink:
+        author: Google Inc
+        developer: The Chromium Project and contributors
+        status: Active
+        release:
+          initial: 3 April 2013
+        repository: chromium.googlesource.com/chromium/src/+/master/third_party/blink/
+        writtenIn: C++
+        operatingSystem: Cross-platform
+        type: Browser engine
+        license:
+        - BSD
+        - LGPLv2.1
+        website: chromium.org/blink
+  device:
+    name: Windows Desktop
+    name-full: Windows NT
+    type: Computer
+    author: microsoft
+    url: https://www.windows.com/
+    brand: Windows
+    pointer: Cursor
+  platform:
+    name: Windows 7
+    name-full: Microsoft Windows 7
+    architecture: 64 bit
+    window-manager:
+      name: Windows Window Manager
+      name-detected: Windows
+    Codename: Windows 7
+    Developer: Microsoft
+    Written in:
+    - C
+    - C++
+    - C#
+    - assembly language
+    OS family: Microsoft Windows
+    Source model: Closed-source
+    Source-available: (through Shared Source Initiative) Some components open source
+    Released to manufacturing: July 22, 2009
+    General availability: October 22, 2009
+    Latest release: Service Pack 1 (6.1.7601.24499) / February 9, 2011;
+    Marketing target: Personal computing
+    Available in: 110 languages
+    List of languages:
+    - Afrikaans
+    - Albanian
+    - Amharic
+    - Arabic
+    - Armenian
+    - Assamese
+    - Azerbaijani
+    - Bangla (Bangladesh)
+    - Bangla (India)
+    - Basque
+    - Belarusian
+    - Bosnian
+    - Bulgarian
+    - Catalan
+    - Central Kurdish
+    - Cherokee
+    - Chinese (Simplified)
+    - Chinese (Traditional)
+    - Croatian
+    - Czech
+    - Danish
+    - Dari - Persian (Afghanistan)
+    - Dutch
+    - German
+    - Greek
+    - English (United Kingdom)
+    - English (United States)
+    - Estonian
+    - Finnish
+    - Filipino
+    - French (Canada)
+    - French (France)
+    - Galician
+    - Georgian
+    - Gujarati
+    - Hausa
+    - Hebrew
+    - Hindi
+    - Hungarian
+    - Icelandic
+    - Igbo
+    - Indonesian
+    - Irish
+    - Italian
+    - Japanese
+    - Kannada
+    - Kazakh
+    - Khmer
+    - K'iche'
+    - Kinyarwanda
+    - Konkani
+    - Korean
+    - Kyrgyz
+    - Lao
+    - Latvian
+    - Lithuanian
+    - Luxembourgish
+    - Macedonian
+    - Malay
+    - Malayalam
+    - Maltese
+    - Maori
+    - Marathi
+    - Mongolian
+    - Nepali
+    - Northern Sotho
+    - "Norwegian Bokm\xE5l"
+    - Norwegian Nynorsk
+    - Odia
+    - Persian (Iran)
+    - Punjabi (Arabic)
+    - Punjabi (Gurmukhi)
+    - Polish
+    - Portuguese (Brazil)
+    - Portuguese (Portugal)
+    - Quechua
+    - Romanian
+    - Russian
+    - Scottish Gaelic
+    - Serbian (Cyrillic
+    - Bosnia & Herzegovina)
+    - Serbian (Cyrillic
+    - Serbia)
+    - Serbian (Latin)
+    - Sindhi (Arabic)
+    - Sinhala
+    - Slovak
+    - Slovenian
+    - Spanish (Spain)
+    - Spanish (Mexico)
+    - Swahili
+    - Swedish
+    - Tajik
+    - Tamil
+    - Tatar
+    - Telugu
+    - Thai
+    - Tigrinya
+    - Tswana
+    - Turkish
+    - Turkmen
+    - Ukrainian
+    - Urdu
+    - Uyghur
+    - Uzbek
+    - Valencian
+    - Vietnamese
+    - Welsh
+    - Wolof
+    - Xhosa
+    - Yoruba
+    - Zulu
+    Update method: Windows Update
+    Platforms:
+    - IA-32
+    - x86-64
+    Kernel type: Hybrid (Windows NT kernel)
+    Userland:
+    - Native API
+    - NTVDM
+    - SUA
+    Default user interface: Windows shell (graphical)
+    License: Proprietary commercial software
+    Preceded by: Windows Vista (2007)
+    Succeeded by: Windows 8 (2012)
+    Official website: windows.com
+Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML like Gecko) Chrome/49.0.2623.75 Safari/537.36 115Browser/7.0.0:
+  ua: Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML like Gecko) Chrome/49.0.2623.75
+    Safari/537.36 115Browser/7.0.0
+  solved: true
+  time: 1628405252
+  browser:
+    name: 115 Browser
+    name-version: 115Browser 7.0.0
+    version: "7"
+    version-full: 7.0.0
+    architecture: Unknown
+    type: Web Browser
+    ui: GraphicalMode
+    compatibility:
+      name: Mozilla
+      version: "5"
+      version-full: "5.0"
+    engine:
+      name: Chrome
+      name-full: Chrome 49.0.2623.75
+      version: "49"
+      version-full: 49.0.2623.75
+    url: https://pc.115.com/
+    author:
+      115-team:
+        name: Yulinmufeng Computer Technology
+        formerly: 115 Technology
+        type: Private
+        industry: Cloud storage service
+        services: Cloud storage service
+        website: 115.com
+        established: 2009
+        founder: Lai Linfeng
+        location: Meijiang District, Guangdong Province, China
+        headquarter: fifth floor of Qinyang Peninsula World Merchants Center, Jiangnan
+          New City, Jinshan Street, Meijiang District
+    cost: Free
+    status: Active
+    licence: unknown
+    engines:
+      Blink:
+        author: Google Inc
+        developer: The Chromium Project and contributors
+        status: Active
+        release:
+          initial: 3 April 2013
+        repository: chromium.googlesource.com/chromium/src/+/master/third_party/blink/
+        writtenIn: C++
+        operatingSystem: Cross-platform
+        type: Browser engine
+        license:
+        - BSD
+        - LGPLv2.1
+        website: chromium.org/blink
+  device:
+    name: Windows Desktop
+    name-full: Windows NT
+    type: Computer
+    author: microsoft
+    url: https://www.windows.com/
+    brand: Windows
+    pointer: Cursor
+  platform:
+    name: Windows 10
+    name-full: Microsoft Windows 10
+    architecture: Unknown
+    window-manager:
+      name: Windows Window Manager
+      name-detected: Windows
+    Codename: Threshold 1
+    Developer: Microsoft
+    Written in:
+    - C
+    - C++
+    - C#
+    - assembly language
+    OS family: Microsoft Windows
+    Source model: Closed-source
+    Source-available: (through Shared Source Initiative) Some components open source
+    Released to manufacturing: July 15, 2015
+    General availability: July 29, 2015
+    Latest release: 10.0.19043.1083 (July 6, 2021)
+    Latest preview: 10.0.21390.2025 (June 14, 2021)
+    Marketing target: Personal computing
+    Available in: 110 languages
+    List of languages:
+    - Afrikaans
+    - Albanian
+    - Amharic
+    - Arabic
+    - Armenian
+    - Assamese
+    - Azerbaijani
+    - Bangla (Bangladesh)
+    - Bangla (India)
+    - Basque
+    - Belarusian
+    - Bosnian
+    - Bulgarian
+    - Catalan
+    - Central Kurdish
+    - Cherokee
+    - Chinese (Simplified)
+    - Chinese (Traditional)
+    - Croatian
+    - Czech
+    - Danish
+    - Dari - Persian (Afghanistan)
+    - Dutch
+    - German
+    - Greek
+    - English (United Kingdom)
+    - English (United States)
+    - Estonian
+    - Finnish
+    - Filipino
+    - French (Canada)
+    - French (France)
+    - Galician
+    - Georgian
+    - Gujarati
+    - Hausa
+    - Hebrew
+    - Hindi
+    - Hungarian
+    - Icelandic
+    - Igbo
+    - Indonesian
+    - Irish
+    - Italian
+    - Japanese
+    - Kannada
+    - Kazakh
+    - Khmer
+    - K'iche'
+    - Kinyarwanda
+    - Konkani
+    - Korean
+    - Kyrgyz
+    - Lao
+    - Latvian
+    - Lithuanian
+    - Luxembourgish
+    - Macedonian
+    - Malay
+    - Malayalam
+    - Maltese
+    - Maori
+    - Marathi
+    - Mongolian
+    - Nepali
+    - Northern Sotho
+    - "Norwegian Bokm\xE5l"
+    - Norwegian Nynorsk
+    - Odia
+    - Persian (Iran)
+    - Punjabi (Arabic)
+    - Punjabi (Gurmukhi)
+    - Polish
+    - Portuguese (Brazil)
+    - Portuguese (Portugal)
+    - Quechua
+    - Romanian
+    - Russian
+    - Scottish Gaelic
+    - Serbian (Cyrillic
+    - Bosnia & Herzegovina)
+    - Serbian (Cyrillic
+    - Serbia)
+    - Serbian (Latin)
+    - Sindhi (Arabic)
+    - Sinhala
+    - Slovak
+    - Slovenian
+    - Spanish (Spain)
+    - Spanish (Mexico)
+    - Swahili
+    - Swedish
+    - Tajik
+    - Tamil
+    - Tatar
+    - Telugu
+    - Thai
+    - Tigrinya
+    - Tswana
+    - Turkish
+    - Turkmen
+    - Ukrainian
+    - Urdu
+    - Uyghur
+    - Uzbek
+    - Valencian
+    - Vietnamese
+    - Welsh
+    - Wolof
+    - Xhosa
+    - Yoruba
+    - Zulu
+    Update method:
+    - Windows Update
+    - Microsoft Store
+    - Windows Server Update Services (WSUS)
+    Platforms:
+    - IA-32
+    - x86-64
+    - ARMv7
+    - ARM64
+    Kernel type: Hybrid (Windows NT kernel)
+    Userland:
+    - Native API
+    - Windows API
+    - .NET Framework
+    - Universal Windows Platform
+    - Windows Subsystem for Linux
+    - NTVDM (IA-32 only)
+    Default user interface: Windows shell (graphical)
+    License:
+    - Trialware
+    - Microsoft Software Assurance
+    - MSDN subscription
+    - Microsoft Imagine
+    Preceded by: Windows 8.1 (2013)
+    Succeeded by: Windows 11 (2021)
+    Official website: windows.com
+Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML like Gecko) Chrome/49.0.2623.75 Safari/537.36 115Browser/7.0.0:
+  ua: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML like Gecko) Chrome/49.0.2623.75
+    Safari/537.36 115Browser/7.0.0
+  solved: true
+  time: 1628405252
+  browser:
+    name: 115 Browser
+    name-version: 115Browser 7.0.0
+    version: "7"
+    version-full: 7.0.0
+    architecture: Unknown
+    type: Web Browser
+    ui: GraphicalMode
+    compatibility:
+      name: Mozilla
+      version: "5"
+      version-full: "5.0"
+    engine:
+      name: Chrome
+      name-full: Chrome 49.0.2623.75
+      version: "49"
+      version-full: 49.0.2623.75
+    url: https://pc.115.com/
+    author:
+      115-team:
+        name: Yulinmufeng Computer Technology
+        formerly: 115 Technology
+        type: Private
+        industry: Cloud storage service
+        services: Cloud storage service
+        website: 115.com
+        established: 2009
+        founder: Lai Linfeng
+        location: Meijiang District, Guangdong Province, China
+        headquarter: fifth floor of Qinyang Peninsula World Merchants Center, Jiangnan
+          New City, Jinshan Street, Meijiang District
+    cost: Free
+    status: Active
+    licence: unknown
+    engines:
+      Blink:
+        author: Google Inc
+        developer: The Chromium Project and contributors
+        status: Active
+        release:
+          initial: 3 April 2013
+        repository: chromium.googlesource.com/chromium/src/+/master/third_party/blink/
+        writtenIn: C++
+        operatingSystem: Cross-platform
+        type: Browser engine
+        license:
+        - BSD
+        - LGPLv2.1
+        website: chromium.org/blink
+  device:
+    name: Windows Desktop
+    name-full: Windows NT
+    type: Computer
+    author: microsoft
+    url: https://www.windows.com/
+    brand: Windows
+    pointer: Cursor
+  platform:
+    name: Windows 7
+    name-full: Microsoft Windows 7
+    architecture: Unknown
+    window-manager:
+      name: Windows Window Manager
+      name-detected: Windows
+    Codename: Windows 7
+    Developer: Microsoft
+    Written in:
+    - C
+    - C++
+    - C#
+    - assembly language
+    OS family: Microsoft Windows
+    Source model: Closed-source
+    Source-available: (through Shared Source Initiative) Some components open source
+    Released to manufacturing: July 22, 2009
+    General availability: October 22, 2009
+    Latest release: Service Pack 1 (6.1.7601.24499) / February 9, 2011;
+    Marketing target: Personal computing
+    Available in: 110 languages
+    List of languages:
+    - Afrikaans
+    - Albanian
+    - Amharic
+    - Arabic
+    - Armenian
+    - Assamese
+    - Azerbaijani
+    - Bangla (Bangladesh)
+    - Bangla (India)
+    - Basque
+    - Belarusian
+    - Bosnian
+    - Bulgarian
+    - Catalan
+    - Central Kurdish
+    - Cherokee
+    - Chinese (Simplified)
+    - Chinese (Traditional)
+    - Croatian
+    - Czech
+    - Danish
+    - Dari - Persian (Afghanistan)
+    - Dutch
+    - German
+    - Greek
+    - English (United Kingdom)
+    - English (United States)
+    - Estonian
+    - Finnish
+    - Filipino
+    - French (Canada)
+    - French (France)
+    - Galician
+    - Georgian
+    - Gujarati
+    - Hausa
+    - Hebrew
+    - Hindi
+    - Hungarian
+    - Icelandic
+    - Igbo
+    - Indonesian
+    - Irish
+    - Italian
+    - Japanese
+    - Kannada
+    - Kazakh
+    - Khmer
+    - K'iche'
+    - Kinyarwanda
+    - Konkani
+    - Korean
+    - Kyrgyz
+    - Lao
+    - Latvian
+    - Lithuanian
+    - Luxembourgish
+    - Macedonian
+    - Malay
+    - Malayalam
+    - Maltese
+    - Maori
+    - Marathi
+    - Mongolian
+    - Nepali
+    - Northern Sotho
+    - "Norwegian Bokm\xE5l"
+    - Norwegian Nynorsk
+    - Odia
+    - Persian (Iran)
+    - Punjabi (Arabic)
+    - Punjabi (Gurmukhi)
+    - Polish
+    - Portuguese (Brazil)
+    - Portuguese (Portugal)
+    - Quechua
+    - Romanian
+    - Russian
+    - Scottish Gaelic
+    - Serbian (Cyrillic
+    - Bosnia & Herzegovina)
+    - Serbian (Cyrillic
+    - Serbia)
+    - Serbian (Latin)
+    - Sindhi (Arabic)
+    - Sinhala
+    - Slovak
+    - Slovenian
+    - Spanish (Spain)
+    - Spanish (Mexico)
+    - Swahili
+    - Swedish
+    - Tajik
+    - Tamil
+    - Tatar
+    - Telugu
+    - Thai
+    - Tigrinya
+    - Tswana
+    - Turkish
+    - Turkmen
+    - Ukrainian
+    - Urdu
+    - Uyghur
+    - Uzbek
+    - Valencian
+    - Vietnamese
+    - Welsh
+    - Wolof
+    - Xhosa
+    - Yoruba
+    - Zulu
+    Update method: Windows Update
+    Platforms:
+    - IA-32
+    - x86-64
+    Kernel type: Hybrid (Windows NT kernel)
+    Userland:
+    - Native API
+    - NTVDM
+    - SUA
+    Default user interface: Windows shell (graphical)
+    License: Proprietary commercial software
+    Preceded by: Windows Vista (2007)
+    Succeeded by: Windows 8 (2012)
+    Official website: windows.com
+Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/49.0.2623.75 Safari/537.36 115Browser/7.0.0:
+  ua: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/49.0.2623.75
+    Safari/537.36 115Browser/7.0.0
+  solved: true
+  time: 1628405252
+  browser:
+    name: 115 Browser
+    name-version: 115Browser 7.0.0
+    version: "7"
+    version-full: 7.0.0
+    architecture: 64 bit
+    type: Web Browser
+    ui: GraphicalMode
+    compatibility:
+      name: Mozilla
+      version: "5"
+      version-full: "5.0"
+    engine:
+      name: Chrome
+      name-full: Chrome 49.0.2623.75
+      version: "49"
+      version-full: 49.0.2623.75
+    url: https://pc.115.com/
+    author:
+      115-team:
+        name: Yulinmufeng Computer Technology
+        formerly: 115 Technology
+        type: Private
+        industry: Cloud storage service
+        services: Cloud storage service
+        website: 115.com
+        established: 2009
+        founder: Lai Linfeng
+        location: Meijiang District, Guangdong Province, China
+        headquarter: fifth floor of Qinyang Peninsula World Merchants Center, Jiangnan
+          New City, Jinshan Street, Meijiang District
+    cost: Free
+    status: Active
+    licence: unknown
+    engines:
+      Blink:
+        author: Google Inc
+        developer: The Chromium Project and contributors
+        status: Active
+        release:
+          initial: 3 April 2013
+        repository: chromium.googlesource.com/chromium/src/+/master/third_party/blink/
+        writtenIn: C++
+        operatingSystem: Cross-platform
+        type: Browser engine
+        license:
+        - BSD
+        - LGPLv2.1
+        website: chromium.org/blink
+  device:
+    name: Windows Desktop
+    name-full: Windows NT
+    type: Computer
+    author: microsoft
+    url: https://www.windows.com/
+    brand: Windows
+    pointer: Cursor
+  platform:
+    name: Windows 10
+    name-full: Microsoft Windows 10
+    architecture: 64 bit
+    window-manager:
+      name: Windows Window Manager
+      name-detected: Windows
+    Codename: Threshold 1
+    Developer: Microsoft
+    Written in:
+    - C
+    - C++
+    - C#
+    - assembly language
+    OS family: Microsoft Windows
+    Source model: Closed-source
+    Source-available: (through Shared Source Initiative) Some components open source
+    Released to manufacturing: July 15, 2015
+    General availability: July 29, 2015
+    Latest release: 10.0.19043.1083 (July 6, 2021)
+    Latest preview: 10.0.21390.2025 (June 14, 2021)
+    Marketing target: Personal computing
+    Available in: 110 languages
+    List of languages:
+    - Afrikaans
+    - Albanian
+    - Amharic
+    - Arabic
+    - Armenian
+    - Assamese
+    - Azerbaijani
+    - Bangla (Bangladesh)
+    - Bangla (India)
+    - Basque
+    - Belarusian
+    - Bosnian
+    - Bulgarian
+    - Catalan
+    - Central Kurdish
+    - Cherokee
+    - Chinese (Simplified)
+    - Chinese (Traditional)
+    - Croatian
+    - Czech
+    - Danish
+    - Dari - Persian (Afghanistan)
+    - Dutch
+    - German
+    - Greek
+    - English (United Kingdom)
+    - English (United States)
+    - Estonian
+    - Finnish
+    - Filipino
+    - French (Canada)
+    - French (France)
+    - Galician
+    - Georgian
+    - Gujarati
+    - Hausa
+    - Hebrew
+    - Hindi
+    - Hungarian
+    - Icelandic
+    - Igbo
+    - Indonesian
+    - Irish
+    - Italian
+    - Japanese
+    - Kannada
+    - Kazakh
+    - Khmer
+    - K'iche'
+    - Kinyarwanda
+    - Konkani
+    - Korean
+    - Kyrgyz
+    - Lao
+    - Latvian
+    - Lithuanian
+    - Luxembourgish
+    - Macedonian
+    - Malay
+    - Malayalam
+    - Maltese
+    - Maori
+    - Marathi
+    - Mongolian
+    - Nepali
+    - Northern Sotho
+    - "Norwegian Bokm\xE5l"
+    - Norwegian Nynorsk
+    - Odia
+    - Persian (Iran)
+    - Punjabi (Arabic)
+    - Punjabi (Gurmukhi)
+    - Polish
+    - Portuguese (Brazil)
+    - Portuguese (Portugal)
+    - Quechua
+    - Romanian
+    - Russian
+    - Scottish Gaelic
+    - Serbian (Cyrillic
+    - Bosnia & Herzegovina)
+    - Serbian (Cyrillic
+    - Serbia)
+    - Serbian (Latin)
+    - Sindhi (Arabic)
+    - Sinhala
+    - Slovak
+    - Slovenian
+    - Spanish (Spain)
+    - Spanish (Mexico)
+    - Swahili
+    - Swedish
+    - Tajik
+    - Tamil
+    - Tatar
+    - Telugu
+    - Thai
+    - Tigrinya
+    - Tswana
+    - Turkish
+    - Turkmen
+    - Ukrainian
+    - Urdu
+    - Uyghur
+    - Uzbek
+    - Valencian
+    - Vietnamese
+    - Welsh
+    - Wolof
+    - Xhosa
+    - Yoruba
+    - Zulu
+    Update method:
+    - Windows Update
+    - Microsoft Store
+    - Windows Server Update Services (WSUS)
+    Platforms:
+    - IA-32
+    - x86-64
+    - ARMv7
+    - ARM64
+    Kernel type: Hybrid (Windows NT kernel)
+    Userland:
+    - Native API
+    - Windows API
+    - .NET Framework
+    - Universal Windows Platform
+    - Windows Subsystem for Linux
+    - NTVDM (IA-32 only)
+    Default user interface: Windows shell (graphical)
+    License:
+    - Trialware
+    - Microsoft Software Assurance
+    - MSDN subscription
+    - Microsoft Imagine
+    Preceded by: Windows 8.1 (2013)
+    Succeeded by: Windows 11 (2021)
+    Official website: windows.com
+Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML like Gecko) Chrome/31.0.1650.63 Safari/537.36 115Browser/5.2.6:
+  ua: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML like Gecko) Chrome/31.0.1650.63
+    Safari/537.36 115Browser/5.2.6
+  solved: true
+  time: 1628405252
+  browser:
+    name: 115 Browser
+    name-version: 115Browser 5.2.6
+    version: "5"
+    version-full: 5.2.6
+    architecture: Unknown
+    type: Web Browser
+    ui: GraphicalMode
+    compatibility:
+      name: Mozilla
+      version: "5"
+      version-full: "5.0"
+    engine:
+      name: Chrome
+      name-full: Chrome 31.0.1650.63
+      version: "31"
+      version-full: 31.0.1650.63
+    url: https://pc.115.com/
+    author:
+      115-team:
+        name: Yulinmufeng Computer Technology
+        formerly: 115 Technology
+        type: Private
+        industry: Cloud storage service
+        services: Cloud storage service
+        website: 115.com
+        established: 2009
+        founder: Lai Linfeng
+        location: Meijiang District, Guangdong Province, China
+        headquarter: fifth floor of Qinyang Peninsula World Merchants Center, Jiangnan
+          New City, Jinshan Street, Meijiang District
+    cost: Free
+    status: Active
+    licence: unknown
+    engines:
+      Blink:
+        author: Google Inc
+        developer: The Chromium Project and contributors
+        status: Active
+        release:
+          initial: 3 April 2013
+        repository: chromium.googlesource.com/chromium/src/+/master/third_party/blink/
+        writtenIn: C++
+        operatingSystem: Cross-platform
+        type: Browser engine
+        license:
+        - BSD
+        - LGPLv2.1
+        website: chromium.org/blink
+  device:
+    name: Windows Desktop
+    name-full: Windows NT
+    type: Computer
+    author: microsoft
+    url: https://www.windows.com/
+    brand: Windows
+    pointer: Cursor
+  platform:
+    name: Windows 7
+    name-full: Microsoft Windows 7
+    architecture: Unknown
+    window-manager:
+      name: Windows Window Manager
+      name-detected: Windows
+    Codename: Windows 7
+    Developer: Microsoft
+    Written in:
+    - C
+    - C++
+    - C#
+    - assembly language
+    OS family: Microsoft Windows
+    Source model: Closed-source
+    Source-available: (through Shared Source Initiative) Some components open source
+    Released to manufacturing: July 22, 2009
+    General availability: October 22, 2009
+    Latest release: Service Pack 1 (6.1.7601.24499) / February 9, 2011;
+    Marketing target: Personal computing
+    Available in: 110 languages
+    List of languages:
+    - Afrikaans
+    - Albanian
+    - Amharic
+    - Arabic
+    - Armenian
+    - Assamese
+    - Azerbaijani
+    - Bangla (Bangladesh)
+    - Bangla (India)
+    - Basque
+    - Belarusian
+    - Bosnian
+    - Bulgarian
+    - Catalan
+    - Central Kurdish
+    - Cherokee
+    - Chinese (Simplified)
+    - Chinese (Traditional)
+    - Croatian
+    - Czech
+    - Danish
+    - Dari - Persian (Afghanistan)
+    - Dutch
+    - German
+    - Greek
+    - English (United Kingdom)
+    - English (United States)
+    - Estonian
+    - Finnish
+    - Filipino
+    - French (Canada)
+    - French (France)
+    - Galician
+    - Georgian
+    - Gujarati
+    - Hausa
+    - Hebrew
+    - Hindi
+    - Hungarian
+    - Icelandic
+    - Igbo
+    - Indonesian
+    - Irish
+    - Italian
+    - Japanese
+    - Kannada
+    - Kazakh
+    - Khmer
+    - K'iche'
+    - Kinyarwanda
+    - Konkani
+    - Korean
+    - Kyrgyz
+    - Lao
+    - Latvian
+    - Lithuanian
+    - Luxembourgish
+    - Macedonian
+    - Malay
+    - Malayalam
+    - Maltese
+    - Maori
+    - Marathi
+    - Mongolian
+    - Nepali
+    - Northern Sotho
+    - "Norwegian Bokm\xE5l"
+    - Norwegian Nynorsk
+    - Odia
+    - Persian (Iran)
+    - Punjabi (Arabic)
+    - Punjabi (Gurmukhi)
+    - Polish
+    - Portuguese (Brazil)
+    - Portuguese (Portugal)
+    - Quechua
+    - Romanian
+    - Russian
+    - Scottish Gaelic
+    - Serbian (Cyrillic
+    - Bosnia & Herzegovina)
+    - Serbian (Cyrillic
+    - Serbia)
+    - Serbian (Latin)
+    - Sindhi (Arabic)
+    - Sinhala
+    - Slovak
+    - Slovenian
+    - Spanish (Spain)
+    - Spanish (Mexico)
+    - Swahili
+    - Swedish
+    - Tajik
+    - Tamil
+    - Tatar
+    - Telugu
+    - Thai
+    - Tigrinya
+    - Tswana
+    - Turkish
+    - Turkmen
+    - Ukrainian
+    - Urdu
+    - Uyghur
+    - Uzbek
+    - Valencian
+    - Vietnamese
+    - Welsh
+    - Wolof
+    - Xhosa
+    - Yoruba
+    - Zulu
+    Update method: Windows Update
+    Platforms:
+    - IA-32
+    - x86-64
+    Kernel type: Hybrid (Windows NT kernel)
+    Userland:
+    - Native API
+    - NTVDM
+    - SUA
+    Default user interface: Windows shell (graphical)
+    License: Proprietary commercial software
+    Preceded by: Windows Vista (2007)
+    Succeeded by: Windows 8 (2012)
+    Official website: windows.com
+Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/45.0.2454.85 Safari/537.36 115Browser/6.0.4:
+  ua: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/45.0.2454.85
+    Safari/537.36 115Browser/6.0.4
+  solved: true
+  time: 1628405252
+  browser:
+    name: 115 Browser
+    name-version: 115Browser 6.0.4
+    version: "6"
+    version-full: 6.0.4
+    architecture: 64 bit
+    type: Web Browser
+    ui: GraphicalMode
+    compatibility:
+      name: Mozilla
+      version: "5"
+      version-full: "5.0"
+    engine:
+      name: Chrome
+      name-full: Chrome 45.0.2454.85
+      version: "45"
+      version-full: 45.0.2454.85
+    url: https://pc.115.com/
+    author:
+      115-team:
+        name: Yulinmufeng Computer Technology
+        formerly: 115 Technology
+        type: Private
+        industry: Cloud storage service
+        services: Cloud storage service
+        website: 115.com
+        established: 2009
+        founder: Lai Linfeng
+        location: Meijiang District, Guangdong Province, China
+        headquarter: fifth floor of Qinyang Peninsula World Merchants Center, Jiangnan
+          New City, Jinshan Street, Meijiang District
+    cost: Free
+    status: Active
+    licence: unknown
+    engines:
+      Blink:
+        author: Google Inc
+        developer: The Chromium Project and contributors
+        status: Active
+        release:
+          initial: 3 April 2013
+        repository: chromium.googlesource.com/chromium/src/+/master/third_party/blink/
+        writtenIn: C++
+        operatingSystem: Cross-platform
+        type: Browser engine
+        license:
+        - BSD
+        - LGPLv2.1
+        website: chromium.org/blink
+  device:
+    name: Windows Desktop
+    name-full: Windows NT
+    type: Computer
+    author: microsoft
+    url: https://www.windows.com/
+    brand: Windows
+    pointer: Cursor
+  platform:
+    name: Windows 7
+    name-full: Microsoft Windows 7
+    architecture: 64 bit
+    window-manager:
+      name: Windows Window Manager
+      name-detected: Windows
+    Codename: Windows 7
+    Developer: Microsoft
+    Written in:
+    - C
+    - C++
+    - C#
+    - assembly language
+    OS family: Microsoft Windows
+    Source model: Closed-source
+    Source-available: (through Shared Source Initiative) Some components open source
+    Released to manufacturing: July 22, 2009
+    General availability: October 22, 2009
+    Latest release: Service Pack 1 (6.1.7601.24499) / February 9, 2011;
+    Marketing target: Personal computing
+    Available in: 110 languages
+    List of languages:
+    - Afrikaans
+    - Albanian
+    - Amharic
+    - Arabic
+    - Armenian
+    - Assamese
+    - Azerbaijani
+    - Bangla (Bangladesh)
+    - Bangla (India)
+    - Basque
+    - Belarusian
+    - Bosnian
+    - Bulgarian
+    - Catalan
+    - Central Kurdish
+    - Cherokee
+    - Chinese (Simplified)
+    - Chinese (Traditional)
+    - Croatian
+    - Czech
+    - Danish
+    - Dari - Persian (Afghanistan)
+    - Dutch
+    - German
+    - Greek
+    - English (United Kingdom)
+    - English (United States)
+    - Estonian
+    - Finnish
+    - Filipino
+    - French (Canada)
+    - French (France)
+    - Galician
+    - Georgian
+    - Gujarati
+    - Hausa
+    - Hebrew
+    - Hindi
+    - Hungarian
+    - Icelandic
+    - Igbo
+    - Indonesian
+    - Irish
+    - Italian
+    - Japanese
+    - Kannada
+    - Kazakh
+    - Khmer
+    - K'iche'
+    - Kinyarwanda
+    - Konkani
+    - Korean
+    - Kyrgyz
+    - Lao
+    - Latvian
+    - Lithuanian
+    - Luxembourgish
+    - Macedonian
+    - Malay
+    - Malayalam
+    - Maltese
+    - Maori
+    - Marathi
+    - Mongolian
+    - Nepali
+    - Northern Sotho
+    - "Norwegian Bokm\xE5l"
+    - Norwegian Nynorsk
+    - Odia
+    - Persian (Iran)
+    - Punjabi (Arabic)
+    - Punjabi (Gurmukhi)
+    - Polish
+    - Portuguese (Brazil)
+    - Portuguese (Portugal)
+    - Quechua
+    - Romanian
+    - Russian
+    - Scottish Gaelic
+    - Serbian (Cyrillic
+    - Bosnia & Herzegovina)
+    - Serbian (Cyrillic
+    - Serbia)
+    - Serbian (Latin)
+    - Sindhi (Arabic)
+    - Sinhala
+    - Slovak
+    - Slovenian
+    - Spanish (Spain)
+    - Spanish (Mexico)
+    - Swahili
+    - Swedish
+    - Tajik
+    - Tamil
+    - Tatar
+    - Telugu
+    - Thai
+    - Tigrinya
+    - Tswana
+    - Turkish
+    - Turkmen
+    - Ukrainian
+    - Urdu
+    - Uyghur
+    - Uzbek
+    - Valencian
+    - Vietnamese
+    - Welsh
+    - Wolof
+    - Xhosa
+    - Yoruba
+    - Zulu
+    Update method: Windows Update
+    Platforms:
+    - IA-32
+    - x86-64
+    Kernel type: Hybrid (Windows NT kernel)
+    Userland:
+    - Native API
+    - NTVDM
+    - SUA
+    Default user interface: Windows shell (graphical)
+    License: Proprietary commercial software
+    Preceded by: Windows Vista (2007)
+    Succeeded by: Windows 8 (2012)
+    Official website: windows.com
+Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/31.0.1650.63 Safari/537.36 115Browser/5.2.6:
+  ua: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/31.0.1650.63
+    Safari/537.36 115Browser/5.2.6
+  solved: true
+  time: 1628405253
+  browser:
+    name: 115 Browser
+    name-version: 115Browser 5.2.6
+    version: "5"
+    version-full: 5.2.6
+    architecture: 64 bit
+    type: Web Browser
+    ui: GraphicalMode
+    compatibility:
+      name: Mozilla
+      version: "5"
+      version-full: "5.0"
+    engine:
+      name: Chrome
+      name-full: Chrome 31.0.1650.63
+      version: "31"
+      version-full: 31.0.1650.63
+    url: https://pc.115.com/
+    author:
+      115-team:
+        name: Yulinmufeng Computer Technology
+        formerly: 115 Technology
+        type: Private
+        industry: Cloud storage service
+        services: Cloud storage service
+        website: 115.com
+        established: 2009
+        founder: Lai Linfeng
+        location: Meijiang District, Guangdong Province, China
+        headquarter: fifth floor of Qinyang Peninsula World Merchants Center, Jiangnan
+          New City, Jinshan Street, Meijiang District
+    cost: Free
+    status: Active
+    licence: unknown
+    engines:
+      Blink:
+        author: Google Inc
+        developer: The Chromium Project and contributors
+        status: Active
+        release:
+          initial: 3 April 2013
+        repository: chromium.googlesource.com/chromium/src/+/master/third_party/blink/
+        writtenIn: C++
+        operatingSystem: Cross-platform
+        type: Browser engine
+        license:
+        - BSD
+        - LGPLv2.1
+        website: chromium.org/blink
+  device:
+    name: Windows Desktop
+    name-full: Windows NT
+    type: Computer
+    author: microsoft
+    url: https://www.windows.com/
+    brand: Windows
+    pointer: Cursor
+  platform:
+    name: Windows 8.1
+    name-full: Microsoft Windows 8
+    architecture: 64 bit
+    window-manager:
+      name: Windows Window Manager
+      name-detected: Windows
+    Codename: Blue
+    Developer: Microsoft
+    Written in:
+    - C
+    - C++
+    - C#
+    - assembly language
+    OS family: Microsoft Windows
+    Source model: Closed-source
+    Source-available: (through Shared Source Initiative) Some components open source
+    Released to manufacturing: August 27, 2013
+    General availability: October 17, 2013
+    Latest release: 6.3.9600 / April 8, 2014
+    Marketing target: Personal computing
+    Available in: 110 languages
+    List of languages:
+    - Afrikaans
+    - Albanian
+    - Amharic
+    - Arabic
+    - Armenian
+    - Assamese
+    - Azerbaijani
+    - Bangla (Bangladesh)
+    - Bangla (India)
+    - Basque
+    - Belarusian
+    - Bosnian
+    - Bulgarian
+    - Catalan
+    - Central Kurdish
+    - Cherokee
+    - Chinese (Simplified)
+    - Chinese (Traditional)
+    - Croatian
+    - Czech
+    - Danish
+    - Dari - Persian (Afghanistan)
+    - Dutch
+    - German
+    - Greek
+    - English (United Kingdom)
+    - English (United States)
+    - Estonian
+    - Finnish
+    - Filipino
+    - French (Canada)
+    - French (France)
+    - Galician
+    - Georgian
+    - Gujarati
+    - Hausa
+    - Hebrew
+    - Hindi
+    - Hungarian
+    - Icelandic
+    - Igbo
+    - Indonesian
+    - Irish
+    - Italian
+    - Japanese
+    - Kannada
+    - Kazakh
+    - Khmer
+    - K'iche'
+    - Kinyarwanda
+    - Konkani
+    - Korean
+    - Kyrgyz
+    - Lao
+    - Latvian
+    - Lithuanian
+    - Luxembourgish
+    - Macedonian
+    - Malay
+    - Malayalam
+    - Maltese
+    - Maori
+    - Marathi
+    - Mongolian
+    - Nepali
+    - Northern Sotho
+    - "Norwegian Bokm\xE5l"
+    - Norwegian Nynorsk
+    - Odia
+    - Persian (Iran)
+    - Punjabi (Arabic)
+    - Punjabi (Gurmukhi)
+    - Polish
+    - Portuguese (Brazil)
+    - Portuguese (Portugal)
+    - Quechua
+    - Romanian
+    - Russian
+    - Scottish Gaelic
+    - Serbian (Cyrillic
+    - Bosnia & Herzegovina)
+    - Serbian (Cyrillic
+    - Serbia)
+    - Serbian (Latin)
+    - Sindhi (Arabic)
+    - Sinhala
+    - Slovak
+    - Slovenian
+    - Spanish (Spain)
+    - Spanish (Mexico)
+    - Swahili
+    - Swedish
+    - Tajik
+    - Tamil
+    - Tatar
+    - Telugu
+    - Thai
+    - Tigrinya
+    - Tswana
+    - Turkish
+    - Turkmen
+    - Ukrainian
+    - Urdu
+    - Uyghur
+    - Uzbek
+    - Valencian
+    - Vietnamese
+    - Welsh
+    - Wolof
+    - Xhosa
+    - Yoruba
+    - Zulu
+    Update method:
+    - Windows Update
+    - Microsoft Store
+    - Windows Server Update Services (WSUS)
+    Platforms:
+    - IA-32
+    - x64
+    - ARM (Windows RT)
+    Kernel type: Hybrid (Windows NT kernel)
+    Userland:
+    - Native API
+    - NTVDM
+    Default user interface: Windows shell (graphical)
+    License:
+    - Trialware
+    - Microsoft Software Assurance
+    - MSDN subscription
+    - Microsoft Imagine
+    Preceded by: Windows 8 (2012)
+    Succeeded by: Windows 10 (2015)
+    Official website: www.microsoft.com/windows
+Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML like Gecko) Chrome/31.0.1650.63 Safari/537.36 115Browser/5.2.7:
+  ua: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML like Gecko) Chrome/31.0.1650.63
+    Safari/537.36 115Browser/5.2.7
+  solved: true
+  time: 1628405253
+  browser:
+    name: 115 Browser
+    name-version: 115Browser 5.2.7
+    version: "5"
+    version-full: 5.2.7
+    architecture: Unknown
+    type: Web Browser
+    ui: GraphicalMode
+    compatibility:
+      name: Mozilla
+      version: "5"
+      version-full: "5.0"
+    engine:
+      name: Chrome
+      name-full: Chrome 31.0.1650.63
+      version: "31"
+      version-full: 31.0.1650.63
+    url: https://pc.115.com/
+    author:
+      115-team:
+        name: Yulinmufeng Computer Technology
+        formerly: 115 Technology
+        type: Private
+        industry: Cloud storage service
+        services: Cloud storage service
+        website: 115.com
+        established: 2009
+        founder: Lai Linfeng
+        location: Meijiang District, Guangdong Province, China
+        headquarter: fifth floor of Qinyang Peninsula World Merchants Center, Jiangnan
+          New City, Jinshan Street, Meijiang District
+    cost: Free
+    status: Active
+    licence: unknown
+    engines:
+      Blink:
+        author: Google Inc
+        developer: The Chromium Project and contributors
+        status: Active
+        release:
+          initial: 3 April 2013
+        repository: chromium.googlesource.com/chromium/src/+/master/third_party/blink/
+        writtenIn: C++
+        operatingSystem: Cross-platform
+        type: Browser engine
+        license:
+        - BSD
+        - LGPLv2.1
+        website: chromium.org/blink
+  device:
+    name: Windows Desktop
+    name-full: Windows NT
+    type: Computer
+    author: microsoft
+    url: https://www.windows.com/
+    brand: Windows
+    pointer: Cursor
+  platform:
+    name: Windows 7
+    name-full: Microsoft Windows 7
+    architecture: Unknown
+    window-manager:
+      name: Windows Window Manager
+      name-detected: Windows
+    Codename: Windows 7
+    Developer: Microsoft
+    Written in:
+    - C
+    - C++
+    - C#
+    - assembly language
+    OS family: Microsoft Windows
+    Source model: Closed-source
+    Source-available: (through Shared Source Initiative) Some components open source
+    Released to manufacturing: July 22, 2009
+    General availability: October 22, 2009
+    Latest release: Service Pack 1 (6.1.7601.24499) / February 9, 2011;
+    Marketing target: Personal computing
+    Available in: 110 languages
+    List of languages:
+    - Afrikaans
+    - Albanian
+    - Amharic
+    - Arabic
+    - Armenian
+    - Assamese
+    - Azerbaijani
+    - Bangla (Bangladesh)
+    - Bangla (India)
+    - Basque
+    - Belarusian
+    - Bosnian
+    - Bulgarian
+    - Catalan
+    - Central Kurdish
+    - Cherokee
+    - Chinese (Simplified)
+    - Chinese (Traditional)
+    - Croatian
+    - Czech
+    - Danish
+    - Dari - Persian (Afghanistan)
+    - Dutch
+    - German
+    - Greek
+    - English (United Kingdom)
+    - English (United States)
+    - Estonian
+    - Finnish
+    - Filipino
+    - French (Canada)
+    - French (France)
+    - Galician
+    - Georgian
+    - Gujarati
+    - Hausa
+    - Hebrew
+    - Hindi
+    - Hungarian
+    - Icelandic
+    - Igbo
+    - Indonesian
+    - Irish
+    - Italian
+    - Japanese
+    - Kannada
+    - Kazakh
+    - Khmer
+    - K'iche'
+    - Kinyarwanda
+    - Konkani
+    - Korean
+    - Kyrgyz
+    - Lao
+    - Latvian
+    - Lithuanian
+    - Luxembourgish
+    - Macedonian
+    - Malay
+    - Malayalam
+    - Maltese
+    - Maori
+    - Marathi
+    - Mongolian
+    - Nepali
+    - Northern Sotho
+    - "Norwegian Bokm\xE5l"
+    - Norwegian Nynorsk
+    - Odia
+    - Persian (Iran)
+    - Punjabi (Arabic)
+    - Punjabi (Gurmukhi)
+    - Polish
+    - Portuguese (Brazil)
+    - Portuguese (Portugal)
+    - Quechua
+    - Romanian
+    - Russian
+    - Scottish Gaelic
+    - Serbian (Cyrillic
+    - Bosnia & Herzegovina)
+    - Serbian (Cyrillic
+    - Serbia)
+    - Serbian (Latin)
+    - Sindhi (Arabic)
+    - Sinhala
+    - Slovak
+    - Slovenian
+    - Spanish (Spain)
+    - Spanish (Mexico)
+    - Swahili
+    - Swedish
+    - Tajik
+    - Tamil
+    - Tatar
+    - Telugu
+    - Thai
+    - Tigrinya
+    - Tswana
+    - Turkish
+    - Turkmen
+    - Ukrainian
+    - Urdu
+    - Uyghur
+    - Uzbek
+    - Valencian
+    - Vietnamese
+    - Welsh
+    - Wolof
+    - Xhosa
+    - Yoruba
+    - Zulu
+    Update method: Windows Update
+    Platforms:
+    - IA-32
+    - x86-64
+    Kernel type: Hybrid (Windows NT kernel)
+    Userland:
+    - Native API
+    - NTVDM
+    - SUA
+    Default user interface: Windows shell (graphical)
+    License: Proprietary commercial software
+    Preceded by: Windows Vista (2007)
+    Succeeded by: Windows 8 (2012)
+    Official website: windows.com
+Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36 115Browser/5.2.7:
+  ua: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63
+    Safari/537.36 115Browser/5.2.7
+  solved: true
+  time: 1628405253
+  browser:
+    name: 115 Browser
+    name-version: 115Browser 5.2.7
+    version: "5"
+    version-full: 5.2.7
+    architecture: 64 bit
+    type: Web Browser
+    ui: GraphicalMode
+    compatibility:
+      name: Mozilla
+      version: "5"
+      version-full: "5.0"
+    engine:
+      name: Chrome
+      name-full: Chrome 31.0.1650.63
+      version: "31"
+      version-full: 31.0.1650.63
+    url: https://pc.115.com/
+    author:
+      115-team:
+        name: Yulinmufeng Computer Technology
+        formerly: 115 Technology
+        type: Private
+        industry: Cloud storage service
+        services: Cloud storage service
+        website: 115.com
+        established: 2009
+        founder: Lai Linfeng
+        location: Meijiang District, Guangdong Province, China
+        headquarter: fifth floor of Qinyang Peninsula World Merchants Center, Jiangnan
+          New City, Jinshan Street, Meijiang District
+    cost: Free
+    status: Active
+    licence: unknown
+    engines:
+      Blink:
+        author: Google Inc
+        developer: The Chromium Project and contributors
+        status: Active
+        release:
+          initial: 3 April 2013
+        repository: chromium.googlesource.com/chromium/src/+/master/third_party/blink/
+        writtenIn: C++
+        operatingSystem: Cross-platform
+        type: Browser engine
+        license:
+        - BSD
+        - LGPLv2.1
+        website: chromium.org/blink
+  device:
+    name: Windows Desktop
+    name-full: Windows NT
+    type: Computer
+    author: microsoft
+    url: https://www.windows.com/
+    brand: Windows
+    pointer: Cursor
+  platform:
+    name: Windows 7
+    name-full: Microsoft Windows 7
+    architecture: 64 bit
+    window-manager:
+      name: Windows Window Manager
+      name-detected: Windows
+    Codename: Windows 7
+    Developer: Microsoft
+    Written in:
+    - C
+    - C++
+    - C#
+    - assembly language
+    OS family: Microsoft Windows
+    Source model: Closed-source
+    Source-available: (through Shared Source Initiative) Some components open source
+    Released to manufacturing: July 22, 2009
+    General availability: October 22, 2009
+    Latest release: Service Pack 1 (6.1.7601.24499) / February 9, 2011;
+    Marketing target: Personal computing
+    Available in: 110 languages
+    List of languages:
+    - Afrikaans
+    - Albanian
+    - Amharic
+    - Arabic
+    - Armenian
+    - Assamese
+    - Azerbaijani
+    - Bangla (Bangladesh)
+    - Bangla (India)
+    - Basque
+    - Belarusian
+    - Bosnian
+    - Bulgarian
+    - Catalan
+    - Central Kurdish
+    - Cherokee
+    - Chinese (Simplified)
+    - Chinese (Traditional)
+    - Croatian
+    - Czech
+    - Danish
+    - Dari - Persian (Afghanistan)
+    - Dutch
+    - German
+    - Greek
+    - English (United Kingdom)
+    - English (United States)
+    - Estonian
+    - Finnish
+    - Filipino
+    - French (Canada)
+    - French (France)
+    - Galician
+    - Georgian
+    - Gujarati
+    - Hausa
+    - Hebrew
+    - Hindi
+    - Hungarian
+    - Icelandic
+    - Igbo
+    - Indonesian
+    - Irish
+    - Italian
+    - Japanese
+    - Kannada
+    - Kazakh
+    - Khmer
+    - K'iche'
+    - Kinyarwanda
+    - Konkani
+    - Korean
+    - Kyrgyz
+    - Lao
+    - Latvian
+    - Lithuanian
+    - Luxembourgish
+    - Macedonian
+    - Malay
+    - Malayalam
+    - Maltese
+    - Maori
+    - Marathi
+    - Mongolian
+    - Nepali
+    - Northern Sotho
+    - "Norwegian Bokm\xE5l"
+    - Norwegian Nynorsk
+    - Odia
+    - Persian (Iran)
+    - Punjabi (Arabic)
+    - Punjabi (Gurmukhi)
+    - Polish
+    - Portuguese (Brazil)
+    - Portuguese (Portugal)
+    - Quechua
+    - Romanian
+    - Russian
+    - Scottish Gaelic
+    - Serbian (Cyrillic
+    - Bosnia & Herzegovina)
+    - Serbian (Cyrillic
+    - Serbia)
+    - Serbian (Latin)
+    - Sindhi (Arabic)
+    - Sinhala
+    - Slovak
+    - Slovenian
+    - Spanish (Spain)
+    - Spanish (Mexico)
+    - Swahili
+    - Swedish
+    - Tajik
+    - Tamil
+    - Tatar
+    - Telugu
+    - Thai
+    - Tigrinya
+    - Tswana
+    - Turkish
+    - Turkmen
+    - Ukrainian
+    - Urdu
+    - Uyghur
+    - Uzbek
+    - Valencian
+    - Vietnamese
+    - Welsh
+    - Wolof
+    - Xhosa
+    - Yoruba
+    - Zulu
+    Update method: Windows Update
+    Platforms:
+    - IA-32
+    - x86-64
+    Kernel type: Hybrid (Windows NT kernel)
+    Userland:
+    - Native API
+    - NTVDM
+    - SUA
+    Default user interface: Windows shell (graphical)
+    License: Proprietary commercial software
+    Preceded by: Windows Vista (2007)
+    Succeeded by: Windows 8 (2012)
+    Official website: windows.com
+Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/45.0.2454.85 Safari/537.36 115Browser/6.0.3:
+  ua: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/45.0.2454.85
+    Safari/537.36 115Browser/6.0.3
+  solved: true
+  time: 1628405253
+  browser:
+    name: 115 Browser
+    name-version: 115Browser 6.0.3
+    version: "6"
+    version-full: 6.0.3
+    architecture: 64 bit
+    type: Web Browser
+    ui: GraphicalMode
+    compatibility:
+      name: Mozilla
+      version: "5"
+      version-full: "5.0"
+    engine:
+      name: Chrome
+      name-full: Chrome 45.0.2454.85
+      version: "45"
+      version-full: 45.0.2454.85
+    url: https://pc.115.com/
+    author:
+      115-team:
+        name: Yulinmufeng Computer Technology
+        formerly: 115 Technology
+        type: Private
+        industry: Cloud storage service
+        services: Cloud storage service
+        website: 115.com
+        established: 2009
+        founder: Lai Linfeng
+        location: Meijiang District, Guangdong Province, China
+        headquarter: fifth floor of Qinyang Peninsula World Merchants Center, Jiangnan
+          New City, Jinshan Street, Meijiang District
+    cost: Free
+    status: Active
+    licence: unknown
+    engines:
+      Blink:
+        author: Google Inc
+        developer: The Chromium Project and contributors
+        status: Active
+        release:
+          initial: 3 April 2013
+        repository: chromium.googlesource.com/chromium/src/+/master/third_party/blink/
+        writtenIn: C++
+        operatingSystem: Cross-platform
+        type: Browser engine
+        license:
+        - BSD
+        - LGPLv2.1
+        website: chromium.org/blink
+  device:
+    name: Windows Desktop
+    name-full: Windows NT
+    type: Computer
+    author: microsoft
+    url: https://www.windows.com/
+    brand: Windows
+    pointer: Cursor
+  platform:
+    name: Windows 7
+    name-full: Microsoft Windows 7
+    architecture: 64 bit
+    window-manager:
+      name: Windows Window Manager
+      name-detected: Windows
+    Codename: Windows 7
+    Developer: Microsoft
+    Written in:
+    - C
+    - C++
+    - C#
+    - assembly language
+    OS family: Microsoft Windows
+    Source model: Closed-source
+    Source-available: (through Shared Source Initiative) Some components open source
+    Released to manufacturing: July 22, 2009
+    General availability: October 22, 2009
+    Latest release: Service Pack 1 (6.1.7601.24499) / February 9, 2011;
+    Marketing target: Personal computing
+    Available in: 110 languages
+    List of languages:
+    - Afrikaans
+    - Albanian
+    - Amharic
+    - Arabic
+    - Armenian
+    - Assamese
+    - Azerbaijani
+    - Bangla (Bangladesh)
+    - Bangla (India)
+    - Basque
+    - Belarusian
+    - Bosnian
+    - Bulgarian
+    - Catalan
+    - Central Kurdish
+    - Cherokee
+    - Chinese (Simplified)
+    - Chinese (Traditional)
+    - Croatian
+    - Czech
+    - Danish
+    - Dari - Persian (Afghanistan)
+    - Dutch
+    - German
+    - Greek
+    - English (United Kingdom)
+    - English (United States)
+    - Estonian
+    - Finnish
+    - Filipino
+    - French (Canada)
+    - French (France)
+    - Galician
+    - Georgian
+    - Gujarati
+    - Hausa
+    - Hebrew
+    - Hindi
+    - Hungarian
+    - Icelandic
+    - Igbo
+    - Indonesian
+    - Irish
+    - Italian
+    - Japanese
+    - Kannada
+    - Kazakh
+    - Khmer
+    - K'iche'
+    - Kinyarwanda
+    - Konkani
+    - Korean
+    - Kyrgyz
+    - Lao
+    - Latvian
+    - Lithuanian
+    - Luxembourgish
+    - Macedonian
+    - Malay
+    - Malayalam
+    - Maltese
+    - Maori
+    - Marathi
+    - Mongolian
+    - Nepali
+    - Northern Sotho
+    - "Norwegian Bokm\xE5l"
+    - Norwegian Nynorsk
+    - Odia
+    - Persian (Iran)
+    - Punjabi (Arabic)
+    - Punjabi (Gurmukhi)
+    - Polish
+    - Portuguese (Brazil)
+    - Portuguese (Portugal)
+    - Quechua
+    - Romanian
+    - Russian
+    - Scottish Gaelic
+    - Serbian (Cyrillic
+    - Bosnia & Herzegovina)
+    - Serbian (Cyrillic
+    - Serbia)
+    - Serbian (Latin)
+    - Sindhi (Arabic)
+    - Sinhala
+    - Slovak
+    - Slovenian
+    - Spanish (Spain)
+    - Spanish (Mexico)
+    - Swahili
+    - Swedish
+    - Tajik
+    - Tamil
+    - Tatar
+    - Telugu
+    - Thai
+    - Tigrinya
+    - Tswana
+    - Turkish
+    - Turkmen
+    - Ukrainian
+    - Urdu
+    - Uyghur
+    - Uzbek
+    - Valencian
+    - Vietnamese
+    - Welsh
+    - Wolof
+    - Xhosa
+    - Yoruba
+    - Zulu
+    Update method: Windows Update
+    Platforms:
+    - IA-32
+    - x86-64
+    Kernel type: Hybrid (Windows NT kernel)
+    Userland:
+    - Native API
+    - NTVDM
+    - SUA
+    Default user interface: Windows shell (graphical)
+    License: Proprietary commercial software
+    Preceded by: Windows Vista (2007)
+    Succeeded by: Windows 8 (2012)
+    Official website: windows.com
+Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36 115Browser/9.1.0:
+  ua: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94
+    Safari/537.36 115Browser/9.1.0
+  solved: true
+  time: 1628405253
+  browser:
+    name: 115 Browser
+    name-version: 115Browser 9.1.0
+    version: "9"
+    version-full: 9.1.0
+    architecture: 64 bit
+    type: Web Browser
+    ui: GraphicalMode
+    compatibility:
+      name: Mozilla
+      version: "5"
+      version-full: "5.0"
+    engine:
+      name: Chrome
+      name-full: Chrome 62.0.3202.94
+      version: "62"
+      version-full: 62.0.3202.94
+    url: https://pc.115.com/
+    author:
+      115-team:
+        name: Yulinmufeng Computer Technology
+        formerly: 115 Technology
+        type: Private
+        industry: Cloud storage service
+        services: Cloud storage service
+        website: 115.com
+        established: 2009
+        founder: Lai Linfeng
+        location: Meijiang District, Guangdong Province, China
+        headquarter: fifth floor of Qinyang Peninsula World Merchants Center, Jiangnan
+          New City, Jinshan Street, Meijiang District
+    cost: Free
+    status: Active
+    licence: unknown
+    engines:
+      Blink:
+        author: Google Inc
+        developer: The Chromium Project and contributors
+        status: Active
+        release:
+          initial: 3 April 2013
+        repository: chromium.googlesource.com/chromium/src/+/master/third_party/blink/
+        writtenIn: C++
+        operatingSystem: Cross-platform
+        type: Browser engine
+        license:
+        - BSD
+        - LGPLv2.1
+        website: chromium.org/blink
+  device:
+    name: Windows Desktop
+    name-full: Windows NT
+    type: Computer
+    author: microsoft
+    url: https://www.windows.com/
+    brand: Windows
+    pointer: Cursor
+  platform:
+    name: Windows 7
+    name-full: Microsoft Windows 7
+    architecture: 64 bit
+    window-manager:
+      name: Windows Window Manager
+      name-detected: Windows
+    Codename: Windows 7
+    Developer: Microsoft
+    Written in:
+    - C
+    - C++
+    - C#
+    - assembly language
+    OS family: Microsoft Windows
+    Source model: Closed-source
+    Source-available: (through Shared Source Initiative) Some components open source
+    Released to manufacturing: July 22, 2009
+    General availability: October 22, 2009
+    Latest release: Service Pack 1 (6.1.7601.24499) / February 9, 2011;
+    Marketing target: Personal computing
+    Available in: 110 languages
+    List of languages:
+    - Afrikaans
+    - Albanian
+    - Amharic
+    - Arabic
+    - Armenian
+    - Assamese
+    - Azerbaijani
+    - Bangla (Bangladesh)
+    - Bangla (India)
+    - Basque
+    - Belarusian
+    - Bosnian
+    - Bulgarian
+    - Catalan
+    - Central Kurdish
+    - Cherokee
+    - Chinese (Simplified)
+    - Chinese (Traditional)
+    - Croatian
+    - Czech
+    - Danish
+    - Dari - Persian (Afghanistan)
+    - Dutch
+    - German
+    - Greek
+    - English (United Kingdom)
+    - English (United States)
+    - Estonian
+    - Finnish
+    - Filipino
+    - French (Canada)
+    - French (France)
+    - Galician
+    - Georgian
+    - Gujarati
+    - Hausa
+    - Hebrew
+    - Hindi
+    - Hungarian
+    - Icelandic
+    - Igbo
+    - Indonesian
+    - Irish
+    - Italian
+    - Japanese
+    - Kannada
+    - Kazakh
+    - Khmer
+    - K'iche'
+    - Kinyarwanda
+    - Konkani
+    - Korean
+    - Kyrgyz
+    - Lao
+    - Latvian
+    - Lithuanian
+    - Luxembourgish
+    - Macedonian
+    - Malay
+    - Malayalam
+    - Maltese
+    - Maori
+    - Marathi
+    - Mongolian
+    - Nepali
+    - Northern Sotho
+    - "Norwegian Bokm\xE5l"
+    - Norwegian Nynorsk
+    - Odia
+    - Persian (Iran)
+    - Punjabi (Arabic)
+    - Punjabi (Gurmukhi)
+    - Polish
+    - Portuguese (Brazil)
+    - Portuguese (Portugal)
+    - Quechua
+    - Romanian
+    - Russian
+    - Scottish Gaelic
+    - Serbian (Cyrillic
+    - Bosnia & Herzegovina)
+    - Serbian (Cyrillic
+    - Serbia)
+    - Serbian (Latin)
+    - Sindhi (Arabic)
+    - Sinhala
+    - Slovak
+    - Slovenian
+    - Spanish (Spain)
+    - Spanish (Mexico)
+    - Swahili
+    - Swedish
+    - Tajik
+    - Tamil
+    - Tatar
+    - Telugu
+    - Thai
+    - Tigrinya
+    - Tswana
+    - Turkish
+    - Turkmen
+    - Ukrainian
+    - Urdu
+    - Uyghur
+    - Uzbek
+    - Valencian
+    - Vietnamese
+    - Welsh
+    - Wolof
+    - Xhosa
+    - Yoruba
+    - Zulu
+    Update method: Windows Update
+    Platforms:
+    - IA-32
+    - x86-64
+    Kernel type: Hybrid (Windows NT kernel)
+    Userland:
+    - Native API
+    - NTVDM
+    - SUA
+    Default user interface: Windows shell (graphical)
+    License: Proprietary commercial software
+    Preceded by: Windows Vista (2007)
+    Succeeded by: Windows 8 (2012)
+    Official website: windows.com
+Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36 115Browser/9.2.1:
+  ua: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94
+    Safari/537.36 115Browser/9.2.1
+  solved: true
+  time: 1628405253
+  browser:
+    name: 115 Browser
+    name-version: 115Browser 9.2.1
+    version: "9"
+    version-full: 9.2.1
+    architecture: 64 bit
+    type: Web Browser
+    ui: GraphicalMode
+    compatibility:
+      name: Mozilla
+      version: "5"
+      version-full: "5.0"
+    engine:
+      name: Chrome
+      name-full: Chrome 62.0.3202.94
+      version: "62"
+      version-full: 62.0.3202.94
+    url: https://pc.115.com/
+    author:
+      115-team:
+        name: Yulinmufeng Computer Technology
+        formerly: 115 Technology
+        type: Private
+        industry: Cloud storage service
+        services: Cloud storage service
+        website: 115.com
+        established: 2009
+        founder: Lai Linfeng
+        location: Meijiang District, Guangdong Province, China
+        headquarter: fifth floor of Qinyang Peninsula World Merchants Center, Jiangnan
+          New City, Jinshan Street, Meijiang District
+    cost: Free
+    status: Active
+    licence: unknown
+    engines:
+      Blink:
+        author: Google Inc
+        developer: The Chromium Project and contributors
+        status: Active
+        release:
+          initial: 3 April 2013
+        repository: chromium.googlesource.com/chromium/src/+/master/third_party/blink/
+        writtenIn: C++
+        operatingSystem: Cross-platform
+        type: Browser engine
+        license:
+        - BSD
+        - LGPLv2.1
+        website: chromium.org/blink
+  device:
+    name: Windows Desktop
+    name-full: Windows NT
+    type: Computer
+    author: microsoft
+    url: https://www.windows.com/
+    brand: Windows
+    pointer: Cursor
+  platform:
+    name: Windows 7
+    name-full: Microsoft Windows 7
+    architecture: 64 bit
+    window-manager:
+      name: Windows Window Manager
+      name-detected: Windows
+    Codename: Windows 7
+    Developer: Microsoft
+    Written in:
+    - C
+    - C++
+    - C#
+    - assembly language
+    OS family: Microsoft Windows
+    Source model: Closed-source
+    Source-available: (through Shared Source Initiative) Some components open source
+    Released to manufacturing: July 22, 2009
+    General availability: October 22, 2009
+    Latest release: Service Pack 1 (6.1.7601.24499) / February 9, 2011;
+    Marketing target: Personal computing
+    Available in: 110 languages
+    List of languages:
+    - Afrikaans
+    - Albanian
+    - Amharic
+    - Arabic
+    - Armenian
+    - Assamese
+    - Azerbaijani
+    - Bangla (Bangladesh)
+    - Bangla (India)
+    - Basque
+    - Belarusian
+    - Bosnian
+    - Bulgarian
+    - Catalan
+    - Central Kurdish
+    - Cherokee
+    - Chinese (Simplified)
+    - Chinese (Traditional)
+    - Croatian
+    - Czech
+    - Danish
+    - Dari - Persian (Afghanistan)
+    - Dutch
+    - German
+    - Greek
+    - English (United Kingdom)
+    - English (United States)
+    - Estonian
+    - Finnish
+    - Filipino
+    - French (Canada)
+    - French (France)
+    - Galician
+    - Georgian
+    - Gujarati
+    - Hausa
+    - Hebrew
+    - Hindi
+    - Hungarian
+    - Icelandic
+    - Igbo
+    - Indonesian
+    - Irish
+    - Italian
+    - Japanese
+    - Kannada
+    - Kazakh
+    - Khmer
+    - K'iche'
+    - Kinyarwanda
+    - Konkani
+    - Korean
+    - Kyrgyz
+    - Lao
+    - Latvian
+    - Lithuanian
+    - Luxembourgish
+    - Macedonian
+    - Malay
+    - Malayalam
+    - Maltese
+    - Maori
+    - Marathi
+    - Mongolian
+    - Nepali
+    - Northern Sotho
+    - "Norwegian Bokm\xE5l"
+    - Norwegian Nynorsk
+    - Odia
+    - Persian (Iran)
+    - Punjabi (Arabic)
+    - Punjabi (Gurmukhi)
+    - Polish
+    - Portuguese (Brazil)
+    - Portuguese (Portugal)
+    - Quechua
+    - Romanian
+    - Russian
+    - Scottish Gaelic
+    - Serbian (Cyrillic
+    - Bosnia & Herzegovina)
+    - Serbian (Cyrillic
+    - Serbia)
+    - Serbian (Latin)
+    - Sindhi (Arabic)
+    - Sinhala
+    - Slovak
+    - Slovenian
+    - Spanish (Spain)
+    - Spanish (Mexico)
+    - Swahili
+    - Swedish
+    - Tajik
+    - Tamil
+    - Tatar
+    - Telugu
+    - Thai
+    - Tigrinya
+    - Tswana
+    - Turkish
+    - Turkmen
+    - Ukrainian
+    - Urdu
+    - Uyghur
+    - Uzbek
+    - Valencian
+    - Vietnamese
+    - Welsh
+    - Wolof
+    - Xhosa
+    - Yoruba
+    - Zulu
+    Update method: Windows Update
+    Platforms:
+    - IA-32
+    - x86-64
+    Kernel type: Hybrid (Windows NT kernel)
+    Userland:
+    - Native API
+    - NTVDM
+    - SUA
+    Default user interface: Windows shell (graphical)
+    License: Proprietary commercial software
+    Preceded by: Windows Vista (2007)
+    Succeeded by: Windows 8 (2012)
+    Official website: windows.com
+Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36 115Browser/9.2.1:
+  ua: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)
+    Chrome/62.0.3202.94 Safari/537.36 115Browser/9.2.1
+  solved: true
+  time: 1628405253
+  browser:
+    name: 115 Browser
+    name-version: 115Browser 9.2.1
+    version: "9"
+    version-full: 9.2.1
+    architecture: 64 bit
+    type: Web Browser
+    ui: GraphicalMode
+    compatibility:
+      name: Mozilla
+      version: "5"
+      version-full: "5.0"
+    engine:
+      name: Chrome
+      name-full: Chrome 62.0.3202.94
+      version: "62"
+      version-full: 62.0.3202.94
+    url: https://pc.115.com/
+    author:
+      115-team:
+        name: Yulinmufeng Computer Technology
+        formerly: 115 Technology
+        type: Private
+        industry: Cloud storage service
+        services: Cloud storage service
+        website: 115.com
+        established: 2009
+        founder: Lai Linfeng
+        location: Meijiang District, Guangdong Province, China
+        headquarter: fifth floor of Qinyang Peninsula World Merchants Center, Jiangnan
+          New City, Jinshan Street, Meijiang District
+    cost: Free
+    status: Active
+    licence: unknown
+    engines:
+      Blink:
+        author: Google Inc
+        developer: The Chromium Project and contributors
+        status: Active
+        release:
+          initial: 3 April 2013
+        repository: chromium.googlesource.com/chromium/src/+/master/third_party/blink/
+        writtenIn: C++
+        operatingSystem: Cross-platform
+        type: Browser engine
+        license:
+        - BSD
+        - LGPLv2.1
+        website: chromium.org/blink
+  device:
+    name: Windows Desktop
+    name-full: Windows NT
+    type: Computer
+    author: microsoft
+    url: https://www.windows.com/
+    brand: Windows
+    pointer: Cursor
+  platform:
+    name: Windows 10
+    name-full: Microsoft Windows 10
+    architecture: 64 bit
+    window-manager:
+      name: Windows Window Manager
+      name-detected: Windows
+    Codename: Threshold 1
+    Developer: Microsoft
+    Written in:
+    - C
+    - C++
+    - C#
+    - assembly language
+    OS family: Microsoft Windows
+    Source model: Closed-source
+    Source-available: (through Shared Source Initiative) Some components open source
+    Released to manufacturing: July 15, 2015
+    General availability: July 29, 2015
+    Latest release: 10.0.19043.1083 (July 6, 2021)
+    Latest preview: 10.0.21390.2025 (June 14, 2021)
+    Marketing target: Personal computing
+    Available in: 110 languages
+    List of languages:
+    - Afrikaans
+    - Albanian
+    - Amharic
+    - Arabic
+    - Armenian
+    - Assamese
+    - Azerbaijani
+    - Bangla (Bangladesh)
+    - Bangla (India)
+    - Basque
+    - Belarusian
+    - Bosnian
+    - Bulgarian
+    - Catalan
+    - Central Kurdish
+    - Cherokee
+    - Chinese (Simplified)
+    - Chinese (Traditional)
+    - Croatian
+    - Czech
+    - Danish
+    - Dari - Persian (Afghanistan)
+    - Dutch
+    - German
+    - Greek
+    - English (United Kingdom)
+    - English (United States)
+    - Estonian
+    - Finnish
+    - Filipino
+    - French (Canada)
+    - French (France)
+    - Galician
+    - Georgian
+    - Gujarati
+    - Hausa
+    - Hebrew
+    - Hindi
+    - Hungarian
+    - Icelandic
+    - Igbo
+    - Indonesian
+    - Irish
+    - Italian
+    - Japanese
+    - Kannada
+    - Kazakh
+    - Khmer
+    - K'iche'
+    - Kinyarwanda
+    - Konkani
+    - Korean
+    - Kyrgyz
+    - Lao
+    - Latvian
+    - Lithuanian
+    - Luxembourgish
+    - Macedonian
+    - Malay
+    - Malayalam
+    - Maltese
+    - Maori
+    - Marathi
+    - Mongolian
+    - Nepali
+    - Northern Sotho
+    - "Norwegian Bokm\xE5l"
+    - Norwegian Nynorsk
+    - Odia
+    - Persian (Iran)
+    - Punjabi (Arabic)
+    - Punjabi (Gurmukhi)
+    - Polish
+    - Portuguese (Brazil)
+    - Portuguese (Portugal)
+    - Quechua
+    - Romanian
+    - Russian
+    - Scottish Gaelic
+    - Serbian (Cyrillic
+    - Bosnia & Herzegovina)
+    - Serbian (Cyrillic
+    - Serbia)
+    - Serbian (Latin)
+    - Sindhi (Arabic)
+    - Sinhala
+    - Slovak
+    - Slovenian
+    - Spanish (Spain)
+    - Spanish (Mexico)
+    - Swahili
+    - Swedish
+    - Tajik
+    - Tamil
+    - Tatar
+    - Telugu
+    - Thai
+    - Tigrinya
+    - Tswana
+    - Turkish
+    - Turkmen
+    - Ukrainian
+    - Urdu
+    - Uyghur
+    - Uzbek
+    - Valencian
+    - Vietnamese
+    - Welsh
+    - Wolof
+    - Xhosa
+    - Yoruba
+    - Zulu
+    Update method:
+    - Windows Update
+    - Microsoft Store
+    - Windows Server Update Services (WSUS)
+    Platforms:
+    - IA-32
+    - x86-64
+    - ARMv7
+    - ARM64
+    Kernel type: Hybrid (Windows NT kernel)
+    Userland:
+    - Native API
+    - Windows API
+    - .NET Framework
+    - Universal Windows Platform
+    - Windows Subsystem for Linux
+    - NTVDM (IA-32 only)
+    Default user interface: Windows shell (graphical)
+    License:
+    - Trialware
+    - Microsoft Software Assurance
+    - MSDN subscription
+    - Microsoft Imagine
+    Preceded by: Windows 8.1 (2013)
+    Succeeded by: Windows 11 (2021)
+    Official website: windows.com
+Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36 115Browser/11.0.0:
+  ua: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)
+    Chrome/62.0.3202.94 Safari/537.36 115Browser/11.0.0
+  solved: true
+  time: 1628405253
+  browser:
+    name: 115 Browser
+    name-version: 115Browser 11.0.0
+    version: "11"
+    version-full: 11.0.0
+    architecture: 64 bit
+    type: Web Browser
+    ui: GraphicalMode
+    compatibility:
+      name: Mozilla
+      version: "5"
+      version-full: "5.0"
+    engine:
+      name: Chrome
+      name-full: Chrome 62.0.3202.94
+      version: "62"
+      version-full: 62.0.3202.94
+    url: https://pc.115.com/
+    author:
+      115-team:
+        name: Yulinmufeng Computer Technology
+        formerly: 115 Technology
+        type: Private
+        industry: Cloud storage service
+        services: Cloud storage service
+        website: 115.com
+        established: 2009
+        founder: Lai Linfeng
+        location: Meijiang District, Guangdong Province, China
+        headquarter: fifth floor of Qinyang Peninsula World Merchants Center, Jiangnan
+          New City, Jinshan Street, Meijiang District
+    cost: Free
+    status: Active
+    licence: unknown
+    engines:
+      Blink:
+        author: Google Inc
+        developer: The Chromium Project and contributors
+        status: Active
+        release:
+          initial: 3 April 2013
+        repository: chromium.googlesource.com/chromium/src/+/master/third_party/blink/
+        writtenIn: C++
+        operatingSystem: Cross-platform
+        type: Browser engine
+        license:
+        - BSD
+        - LGPLv2.1
+        website: chromium.org/blink
+  device:
+    name: Windows Desktop
+    name-full: Windows NT
+    type: Computer
+    author: microsoft
+    url: https://www.windows.com/
+    brand: Windows
+    pointer: Cursor
+  platform:
+    name: Windows 10
+    name-full: Microsoft Windows 10
+    architecture: 64 bit
+    window-manager:
+      name: Windows Window Manager
+      name-detected: Windows
+    Codename: Threshold 1
+    Developer: Microsoft
+    Written in:
+    - C
+    - C++
+    - C#
+    - assembly language
+    OS family: Microsoft Windows
+    Source model: Closed-source
+    Source-available: (through Shared Source Initiative) Some components open source
+    Released to manufacturing: July 15, 2015
+    General availability: July 29, 2015
+    Latest release: 10.0.19043.1083 (July 6, 2021)
+    Latest preview: 10.0.21390.2025 (June 14, 2021)
+    Marketing target: Personal computing
+    Available in: 110 languages
+    List of languages:
+    - Afrikaans
+    - Albanian
+    - Amharic
+    - Arabic
+    - Armenian
+    - Assamese
+    - Azerbaijani
+    - Bangla (Bangladesh)
+    - Bangla (India)
+    - Basque
+    - Belarusian
+    - Bosnian
+    - Bulgarian
+    - Catalan
+    - Central Kurdish
+    - Cherokee
+    - Chinese (Simplified)
+    - Chinese (Traditional)
+    - Croatian
+    - Czech
+    - Danish
+    - Dari - Persian (Afghanistan)
+    - Dutch
+    - German
+    - Greek
+    - English (United Kingdom)
+    - English (United States)
+    - Estonian
+    - Finnish
+    - Filipino
+    - French (Canada)
+    - French (France)
+    - Galician
+    - Georgian
+    - Gujarati
+    - Hausa
+    - Hebrew
+    - Hindi
+    - Hungarian
+    - Icelandic
+    - Igbo
+    - Indonesian
+    - Irish
+    - Italian
+    - Japanese
+    - Kannada
+    - Kazakh
+    - Khmer
+    - K'iche'
+    - Kinyarwanda
+    - Konkani
+    - Korean
+    - Kyrgyz
+    - Lao
+    - Latvian
+    - Lithuanian
+    - Luxembourgish
+    - Macedonian
+    - Malay
+    - Malayalam
+    - Maltese
+    - Maori
+    - Marathi
+    - Mongolian
+    - Nepali
+    - Northern Sotho
+    - "Norwegian Bokm\xE5l"
+    - Norwegian Nynorsk
+    - Odia
+    - Persian (Iran)
+    - Punjabi (Arabic)
+    - Punjabi (Gurmukhi)
+    - Polish
+    - Portuguese (Brazil)
+    - Portuguese (Portugal)
+    - Quechua
+    - Romanian
+    - Russian
+    - Scottish Gaelic
+    - Serbian (Cyrillic
+    - Bosnia & Herzegovina)
+    - Serbian (Cyrillic
+    - Serbia)
+    - Serbian (Latin)
+    - Sindhi (Arabic)
+    - Sinhala
+    - Slovak
+    - Slovenian
+    - Spanish (Spain)
+    - Spanish (Mexico)
+    - Swahili
+    - Swedish
+    - Tajik
+    - Tamil
+    - Tatar
+    - Telugu
+    - Thai
+    - Tigrinya
+    - Tswana
+    - Turkish
+    - Turkmen
+    - Ukrainian
+    - Urdu
+    - Uyghur
+    - Uzbek
+    - Valencian
+    - Vietnamese
+    - Welsh
+    - Wolof
+    - Xhosa
+    - Yoruba
+    - Zulu
+    Update method:
+    - Windows Update
+    - Microsoft Store
+    - Windows Server Update Services (WSUS)
+    Platforms:
+    - IA-32
+    - x86-64
+    - ARMv7
+    - ARM64
+    Kernel type: Hybrid (Windows NT kernel)
+    Userland:
+    - Native API
+    - Windows API
+    - .NET Framework
+    - Universal Windows Platform
+    - Windows Subsystem for Linux
+    - NTVDM (IA-32 only)
+    Default user interface: Windows shell (graphical)
+    License:
+    - Trialware
+    - Microsoft Software Assurance
+    - MSDN subscription
+    - Microsoft Imagine
+    Preceded by: Windows 8.1 (2013)
+    Succeeded by: Windows 11 (2021)
+    Official website: windows.com
+Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36 115Browser/240B7:
+  ua: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59
+    Safari/537.36 115Browser/240B7
+  solved: true
+  time: 1628405253
+  browser:
+    name: 115 Browser
+    name-version: 115Browser 240B7
+    version: "240"
+    version-full: 240B7
+    architecture: 64 bit
+    type: Web Browser
+    ui: GraphicalMode
+    compatibility:
+      name: Mozilla
+      version: "5"
+      version-full: "5.0"
+    engine:
+      name: Chrome
+      name-full: Chrome 54.0.2840.59
+      version: "54"
+      version-full: 54.0.2840.59
+    url: https://pc.115.com/
+    author:
+      115-team:
+        name: Yulinmufeng Computer Technology
+        formerly: 115 Technology
+        type: Private
+        industry: Cloud storage service
+        services: Cloud storage service
+        website: 115.com
+        established: 2009
+        founder: Lai Linfeng
+        location: Meijiang District, Guangdong Province, China
+        headquarter: fifth floor of Qinyang Peninsula World Merchants Center, Jiangnan
+          New City, Jinshan Street, Meijiang District
+    cost: Free
+    status: Active
+    licence: unknown
+    engines:
+      Blink:
+        author: Google Inc
+        developer: The Chromium Project and contributors
+        status: Active
+        release:
+          initial: 3 April 2013
+        repository: chromium.googlesource.com/chromium/src/+/master/third_party/blink/
+        writtenIn: C++
+        operatingSystem: Cross-platform
+        type: Browser engine
+        license:
+        - BSD
+        - LGPLv2.1
+        website: chromium.org/blink
+  device:
+    name: Windows Desktop
+    name-full: Windows NT
+    type: Computer
+    author: microsoft
+    url: https://www.windows.com/
+    brand: Windows
+    pointer: Cursor
+  platform:
+    name: Windows 7
+    name-full: Microsoft Windows 7
+    architecture: 64 bit
+    window-manager:
+      name: Windows Window Manager
+      name-detected: Windows
+    Codename: Windows 7
+    Developer: Microsoft
+    Written in:
+    - C
+    - C++
+    - C#
+    - assembly language
+    OS family: Microsoft Windows
+    Source model: Closed-source
+    Source-available: (through Shared Source Initiative) Some components open source
+    Released to manufacturing: July 22, 2009
+    General availability: October 22, 2009
+    Latest release: Service Pack 1 (6.1.7601.24499) / February 9, 2011;
+    Marketing target: Personal computing
+    Available in: 110 languages
+    List of languages:
+    - Afrikaans
+    - Albanian
+    - Amharic
+    - Arabic
+    - Armenian
+    - Assamese
+    - Azerbaijani
+    - Bangla (Bangladesh)
+    - Bangla (India)
+    - Basque
+    - Belarusian
+    - Bosnian
+    - Bulgarian
+    - Catalan
+    - Central Kurdish
+    - Cherokee
+    - Chinese (Simplified)
+    - Chinese (Traditional)
+    - Croatian
+    - Czech
+    - Danish
+    - Dari - Persian (Afghanistan)
+    - Dutch
+    - German
+    - Greek
+    - English (United Kingdom)
+    - English (United States)
+    - Estonian
+    - Finnish
+    - Filipino
+    - French (Canada)
+    - French (France)
+    - Galician
+    - Georgian
+    - Gujarati
+    - Hausa
+    - Hebrew
+    - Hindi
+    - Hungarian
+    - Icelandic
+    - Igbo
+    - Indonesian
+    - Irish
+    - Italian
+    - Japanese
+    - Kannada
+    - Kazakh
+    - Khmer
+    - K'iche'
+    - Kinyarwanda
+    - Konkani
+    - Korean
+    - Kyrgyz
+    - Lao
+    - Latvian
+    - Lithuanian
+    - Luxembourgish
+    - Macedonian
+    - Malay
+    - Malayalam
+    - Maltese
+    - Maori
+    - Marathi
+    - Mongolian
+    - Nepali
+    - Northern Sotho
+    - "Norwegian Bokm\xE5l"
+    - Norwegian Nynorsk
+    - Odia
+    - Persian (Iran)
+    - Punjabi (Arabic)
+    - Punjabi (Gurmukhi)
+    - Polish
+    - Portuguese (Brazil)
+    - Portuguese (Portugal)
+    - Quechua
+    - Romanian
+    - Russian
+    - Scottish Gaelic
+    - Serbian (Cyrillic
+    - Bosnia & Herzegovina)
+    - Serbian (Cyrillic
+    - Serbia)
+    - Serbian (Latin)
+    - Sindhi (Arabic)
+    - Sinhala
+    - Slovak
+    - Slovenian
+    - Spanish (Spain)
+    - Spanish (Mexico)
+    - Swahili
+    - Swedish
+    - Tajik
+    - Tamil
+    - Tatar
+    - Telugu
+    - Thai
+    - Tigrinya
+    - Tswana
+    - Turkish
+    - Turkmen
+    - Ukrainian
+    - Urdu
+    - Uyghur
+    - Uzbek
+    - Valencian
+    - Vietnamese
+    - Welsh
+    - Wolof
+    - Xhosa
+    - Yoruba
+    - Zulu
+    Update method: Windows Update
+    Platforms:
+    - IA-32
+    - x86-64
+    Kernel type: Hybrid (Windows NT kernel)
+    Userland:
+    - Native API
+    - NTVDM
+    - SUA
+    Default user interface: Windows shell (graphical)
+    License: Proprietary commercial software
+    Preceded by: Windows Vista (2007)
+    Succeeded by: Windows 8 (2012)
+    Official website: windows.com
+Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36 115Browser/B0B6B:
+  ua: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59
+    Safari/537.36 115Browser/B0B6B
+  solved: true
+  time: 1628405254
+  browser:
+    name: 115 Browser
+    name-version: 115Browser B0B6B
+    version: "0"
+    version-full: B0B6B
+    architecture: 64 bit
+    type: Web Browser
+    ui: GraphicalMode
+    compatibility:
+      name: Mozilla
+      version: "5"
+      version-full: "5.0"
+    engine:
+      name: Chrome
+      name-full: Chrome 54.0.2840.59
+      version: "54"
+      version-full: 54.0.2840.59
+    url: https://pc.115.com/
+    author:
+      115-team:
+        name: Yulinmufeng Computer Technology
+        formerly: 115 Technology
+        type: Private
+        industry: Cloud storage service
+        services: Cloud storage service
+        website: 115.com
+        established: 2009
+        founder: Lai Linfeng
+        location: Meijiang District, Guangdong Province, China
+        headquarter: fifth floor of Qinyang Peninsula World Merchants Center, Jiangnan
+          New City, Jinshan Street, Meijiang District
+    cost: Free
+    status: Active
+    licence: unknown
+    engines:
+      Blink:
+        author: Google Inc
+        developer: The Chromium Project and contributors
+        status: Active
+        release:
+          initial: 3 April 2013
+        repository: chromium.googlesource.com/chromium/src/+/master/third_party/blink/
+        writtenIn: C++
+        operatingSystem: Cross-platform
+        type: Browser engine
+        license:
+        - BSD
+        - LGPLv2.1
+        website: chromium.org/blink
+  device:
+    name: Windows Desktop
+    name-full: Windows NT
+    type: Computer
+    author: microsoft
+    url: https://www.windows.com/
+    brand: Windows
+    pointer: Cursor
+  platform:
+    name: Windows 7
+    name-full: Microsoft Windows 7
+    architecture: 64 bit
+    window-manager:
+      name: Windows Window Manager
+      name-detected: Windows
+    Codename: Windows 7
+    Developer: Microsoft
+    Written in:
+    - C
+    - C++
+    - C#
+    - assembly language
+    OS family: Microsoft Windows
+    Source model: Closed-source
+    Source-available: (through Shared Source Initiative) Some components open source
+    Released to manufacturing: July 22, 2009
+    General availability: October 22, 2009
+    Latest release: Service Pack 1 (6.1.7601.24499) / February 9, 2011;
+    Marketing target: Personal computing
+    Available in: 110 languages
+    List of languages:
+    - Afrikaans
+    - Albanian
+    - Amharic
+    - Arabic
+    - Armenian
+    - Assamese
+    - Azerbaijani
+    - Bangla (Bangladesh)
+    - Bangla (India)
+    - Basque
+    - Belarusian
+    - Bosnian
+    - Bulgarian
+    - Catalan
+    - Central Kurdish
+    - Cherokee
+    - Chinese (Simplified)
+    - Chinese (Traditional)
+    - Croatian
+    - Czech
+    - Danish
+    - Dari - Persian (Afghanistan)
+    - Dutch
+    - German
+    - Greek
+    - English (United Kingdom)
+    - English (United States)
+    - Estonian
+    - Finnish
+    - Filipino
+    - French (Canada)
+    - French (France)
+    - Galician
+    - Georgian
+    - Gujarati
+    - Hausa
+    - Hebrew
+    - Hindi
+    - Hungarian
+    - Icelandic
+    - Igbo
+    - Indonesian
+    - Irish
+    - Italian
+    - Japanese
+    - Kannada
+    - Kazakh
+    - Khmer
+    - K'iche'
+    - Kinyarwanda
+    - Konkani
+    - Korean
+    - Kyrgyz
+    - Lao
+    - Latvian
+    - Lithuanian
+    - Luxembourgish
+    - Macedonian
+    - Malay
+    - Malayalam
+    - Maltese
+    - Maori
+    - Marathi
+    - Mongolian
+    - Nepali
+    - Northern Sotho
+    - "Norwegian Bokm\xE5l"
+    - Norwegian Nynorsk
+    - Odia
+    - Persian (Iran)
+    - Punjabi (Arabic)
+    - Punjabi (Gurmukhi)
+    - Polish
+    - Portuguese (Brazil)
+    - Portuguese (Portugal)
+    - Quechua
+    - Romanian
+    - Russian
+    - Scottish Gaelic
+    - Serbian (Cyrillic
+    - Bosnia & Herzegovina)
+    - Serbian (Cyrillic
+    - Serbia)
+    - Serbian (Latin)
+    - Sindhi (Arabic)
+    - Sinhala
+    - Slovak
+    - Slovenian
+    - Spanish (Spain)
+    - Spanish (Mexico)
+    - Swahili
+    - Swedish
+    - Tajik
+    - Tamil
+    - Tatar
+    - Telugu
+    - Thai
+    - Tigrinya
+    - Tswana
+    - Turkish
+    - Turkmen
+    - Ukrainian
+    - Urdu
+    - Uyghur
+    - Uzbek
+    - Valencian
+    - Vietnamese
+    - Welsh
+    - Wolof
+    - Xhosa
+    - Yoruba
+    - Zulu
+    Update method: Windows Update
+    Platforms:
+    - IA-32
+    - x86-64
+    Kernel type: Hybrid (Windows NT kernel)
+    Userland:
+    - Native API
+    - NTVDM
+    - SUA
+    Default user interface: Windows shell (graphical)
+    License: Proprietary commercial software
+    Preceded by: Windows Vista (2007)
+    Succeeded by: Windows 8 (2012)
+    Official website: windows.com
+? Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like
+  Gecko) Chrome/62.0.3202.94 Safari/537.36 115Browser/12.0.0
+: ua: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/537.36 (KHTML, like
+    Gecko) Chrome/62.0.3202.94 Safari/537.36 115Browser/12.0.0
+  solved: true
+  time: 1628405254
+  browser:
+    name: 115 Browser
+    name-version: 115Browser 12.0.0
+    version: "12"
+    version-full: 12.0.0
+    architecture: Unknown
+    type: Web Browser
+    ui: GraphicalMode
+    compatibility:
+      name: Mozilla
+      version: "5"
+      version-full: "5.0"
+    engine:
+      name: Chrome
+      name-full: Chrome 62.0.3202.94
+      version: "62"
+      version-full: 62.0.3202.94
+    url: https://pc.115.com/
+    author:
+      115-team:
+        name: Yulinmufeng Computer Technology
+        formerly: 115 Technology
+        type: Private
+        industry: Cloud storage service
+        services: Cloud storage service
+        website: 115.com
+        established: 2009
+        founder: Lai Linfeng
+        location: Meijiang District, Guangdong Province, China
+        headquarter: fifth floor of Qinyang Peninsula World Merchants Center, Jiangnan
+          New City, Jinshan Street, Meijiang District
+    cost: Free
+    status: Active
+    licence: unknown
+    engines:
+      Blink:
+        author: Google Inc
+        developer: The Chromium Project and contributors
+        status: Active
+        release:
+          initial: 3 April 2013
+        repository: chromium.googlesource.com/chromium/src/+/master/third_party/blink/
+        writtenIn: C++
+        operatingSystem: Cross-platform
+        type: Browser engine
+        license:
+        - BSD
+        - LGPLv2.1
+        website: chromium.org/blink
+  device:
+    name: Macintosh Desktop
+    name-full: Macintosh
+    type: Desktop
+    author: apple
+    url: https://www.apple.com/
+    brand: MAC
+    pointer: Cursor
+  platform:
+    name: Unknown
+    name-full: Unknown
+    architecture: Unknown
+    window-manager:
+      name: Mac Window Manager
+      name-detected: Mac
+...

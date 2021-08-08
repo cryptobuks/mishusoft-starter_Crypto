@@ -65,8 +65,10 @@
       functional: true
   # Information maker method use it
   info: browser camino-browser
-# Camino Browser
-# Camino Browser is a web browser developed by The Camino Project. This browser renders web pages using the Blink engine.
+
+
+# Cliqz Browser
+# Cliqz Browser is a web browser developed by Cliqz GmbH. This browser renders web pages using the Gecko engine.
 
 # ref:http://www.useragentstring.com/pages/useragentstring.php?all=TRUE&name=Camino&vers=
 
@@ -74,15 +76,16 @@
 #//Mozilla/5.0 (compatible; Cliqzbot/1.0; +http://cliqz.com/company/cliqzbot)
 #//Mozilla/5.0 (compatible; Cliqzbot/3.0; +http://cliqz.com/company/cliqzbot)
 #//Mozilla/5.0 (compatible; Cliqzbot/0.1 +http://cliqz.com/company/cliqzbot)
+#//Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0
 #//Cliqzbot/0.1 (+http://cliqz.com/company/cliqzbot)
 
 - identifiers:
     # Pattern maker method use it
-    browser-camino-browser:
+    browser-cliqz-browser:
       pattern:
-        name: (camino)
+        name: (cliqz)
         separator: true
         version: true
       functional: true
   # Information maker method use it
-  info: browser camino-browser
+  info: browser cliqz-browser

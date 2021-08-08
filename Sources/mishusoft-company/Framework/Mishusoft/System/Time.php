@@ -15,7 +15,7 @@ class Time extends DateTime
      */
     public static function fullTime(): string
     {
-        return date('d-m-Y h:i A', time());
+        return date('d-m-Y h:i A');
     }//end getFullTime()
 
 
@@ -129,6 +129,15 @@ class Time extends DateTime
     public static function todayDateOnly(): string
     {
         return date('Y-m-d');
+    }//end getTodayDateOnly()
+
+
+    /**
+     * @return string
+     */
+    public static function todayTimeOnly(): string
+    {
+        return date('H:i:s');
     }//end getTodayDateOnly()
 
 

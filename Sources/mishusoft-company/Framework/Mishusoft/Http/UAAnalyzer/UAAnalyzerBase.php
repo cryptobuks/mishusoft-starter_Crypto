@@ -6,7 +6,9 @@ namespace Mishusoft\Http\UAAnalyzer;
 use Mishusoft\Base;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
+use Mishusoft\Http\IP;
 use Mishusoft\Storage;
+use Mishusoft\System\Time;
 
 class UAAnalyzerBase extends Base
 {
@@ -49,7 +51,6 @@ class UAAnalyzerBase extends Base
     protected array $deviceDetails = [];
 
     protected string $uaStoragePath;
-    protected string $timeOfToday;
 
     /**
      * Allowed domains for mishusoft
@@ -64,6 +65,8 @@ class UAAnalyzerBase extends Base
     protected string $uaAllFile;
     protected string $uaSolvableListFile;
     protected string $uaUnsolvableListFile;
+    private string $todayDateOnly;
+    private string $todayTimeOnly;
 
     /**
      * @throws RuntimeException
@@ -73,13 +76,25 @@ class UAAnalyzerBase extends Base
         parent::__construct();
         //$this->uaStoragePath = self::dataFile('UAAnalyzer','');
         $this->uaStoragePath = Storage::dataDriveStoragesPath() . 'UAAnalyzer' . DS;
-        $this->timeOfToday = date('Y-m-d H:i:s');
+        $this->todayDateOnly = date('Y-m-d');
+        $this->todayTimeOnly = date('H:i:s');
 
-        $this->uaAllFile  = self::dFile(self::cacheDataFile('UAAnalyzerData', 'ua.list.all'), 'csv');
-        $this->uaSolvableListFile  = self::dFile(self::cacheDataFile('UAAnalyzerData', 'ua.list.solved'));
-        $this->uaUnsolvableListFile  = self::dFile(self::cacheDataFile('UAAnalyzerData', 'ua.list.unsolved'), 'csv');
+        $this->uaAllFile  = self::dFile(
+            self::cacheDataFile('UAAnalyzerData', $this->cFile('ua.list.all'))
+        );
+        $this->uaSolvableListFile  = self::dFile(
+            self::cacheDataFile('UAAnalyzerData', $this->cFile('ua.list.solved'))
+        );
+        $this->uaUnsolvableListFile  = self::dFile(
+            self::cacheDataFile('UAAnalyzerData', $this->cFile('ua.list.unsolved'))
+        );
 
         $this->directoryValidation();
+    }
+
+    protected function cFile(string $name):string
+    {
+        return $name.DS.$this->todayDateOnly;
     }
 
     /**
@@ -95,6 +110,28 @@ class UAAnalyzerBase extends Base
         }
     }
 
+    /**
+     * @throws RuntimeException
+     */
+    protected function solvedUA():array
+    {
+        $result = [];
+        $files = Storage::globRecursive(dirname($this->uaSolvableListFile));
+
+        if (count($files) > 0) {
+            foreach ($files as $file) {
+                $temp = Storage\FileSystem\Yaml::parseFile($file);
+                if (count($temp) > 0) {
+                    foreach ($temp as $key => $value) {
+                        $result[$key]=$value;
+                    }
+                }
+            }
+        }
+
+        return $result;
+    }
+
 
     /**
      * Store user agent into a file
@@ -103,7 +140,7 @@ class UAAnalyzerBase extends Base
      * @param array $details
      * @return void
      * @throws PermissionRequiredException
-     * @throws RuntimeException Throw exception on runtime error.
+     * @throws RuntimeException
      */
     protected function collectUA(string $category, array $details = []): void
     {
@@ -239,42 +276,24 @@ class UAAnalyzerBase extends Base
 
         // Write or append data into file.
         if (is_writable($requestedFileDirectory) === true) {
-            if (file_exists($filename) === true) {
-                $resource = fopen($filename, 'rb+');
-            } else {
-                $resource = fopen($filename, 'wb+');
+            //wire, read and inserting new data in file
+            $newYamlData =[];
+            if ((file_exists($filename) === true) && Storage\FileSystem::read($filename) !== '') {
+                $newYamlData = Storage\FileSystem\Yaml::parseFile($filename);
             }
-
-            $contents = file_get_contents($filename);
-
-            if (count($details)>0) {
-                if ($contents === '') {
-                    Storage\FileSystem\Yaml::emitFile($this->uaSolvableListFile, [$details['ua']=>$details]);
-                } else {
-                    $data = Storage\FileSystem\Yaml::parseFile($this->uaSolvableListFile);
-                    $data[$details['ua']]=$details;
-                    Storage\FileSystem\Yaml::emitFile($this->uaSolvableListFile, $data);
+            if (basename(dirname($filename)) ==='ua.list.solved') {
+                if (count($details)>0) {
+                    $newYamlData[$details['ua']]=$details;
+                    Storage\FileSystem\Yaml::emitFile($filename, $newYamlData);
                 }
             } else {
-                if ($contents === '') {
-                    $contents .= '"Date", "Client", "User-Agent"' . PHP_EOL;
-                }
-
-                // $contents .= sprintf('"%s","%s","%s"', $this->timeOfToday, IP::get(), $this->userAgent).PHP_EOL;
-                $contents .= sprintf('"%s","%s","%s"', $this->timeOfToday, "127.0.0.1", $this->userAgent) . PHP_EOL;
-
-                if (is_writable($filename) === true) {
-                    fwrite($resource, $contents);
-                    fclose($resource);
-
-                    //exec('chmod -R 777 ' . $filename);
-                } else {
-                    throw new PermissionRequiredException('Permission required. Unable to write or read ' . $filename);
-                }
+                //$newYamlData[IP::get()][]=['when'=>$this->todayTimeOnly,'who'=>$this->userAgent];
+                $newYamlData['::1'][]=['time'=>$this->todayTimeOnly,'carrier'=>$this->userAgent];
+                Storage\FileSystem\Yaml::emitFile($filename, $newYamlData);
             }
         } else {
             throw new PermissionRequiredException(
-                sprintf('Permission required. Unable to write or read "%s"', $requestedFileDirectory)
+                sprintf('Unable to write or read "%s"', $requestedFileDirectory)
             );
         }//end if
     }//end write()

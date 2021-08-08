@@ -200,3 +200,45 @@ media-player-minix-neo-x:
   url: https://www.minix.us/products/NEOX7mini.html
   brand: Neo
   pointer: touch
+
+# mobile phone
+mobile-ios:
+  name: iOS
+  type: iPhone OS
+  author: apple
+  url: https://www.apple.com/ios/
+  brand: iOS
+  pointer: touch
+
+mobile-iphone:
+  name: iPhone
+  type: Smartphone
+  author: apple
+  url: https://apple.com/iphone/
+  brand: iPhone
+  pointer: touch
+
+mobile-android:
+  name: Android
+  type: operating system
+  author: google
+  url: https://www.android.com/
+  brand: Android
+  pointer: touch
+
+mobile:
+  name: Mobile phone
+  type: phone
+  author:  Eric Tigerstedt
+  url: https://en.wikipedia.org/wiki/Mobile_phone
+  brand: Generic
+  pointer: varius
+
+# Music player
+music-player-ipod:
+  name: iPod
+  type: Portable media player
+  author: apple
+  url: https://www.apple.com/ipod-touch/
+  brand: iPod
+  pointer: Unknown

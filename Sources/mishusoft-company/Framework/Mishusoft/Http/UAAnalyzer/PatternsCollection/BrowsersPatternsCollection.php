@@ -22,15 +22,14 @@ class BrowsersPatternsCollection extends Collection
      */
     public function all(): array
     {
-        return array_merge_recursive(
-            $this->extractAttribute($this->query('browsers', 'bots'), 'identifier-with-pattern'),
-            $this->extractAttribute($this->query('browsers', 'applications'), 'identifier-with-pattern'),
-            $this->extractAttribute($this->query('browsers', 'email-clients'), 'identifier-with-pattern'),
-            $this->extractAttribute($this->query('browsers', 'feed-readers'), 'identifier-with-pattern'),
-            $this->extractAttribute($this->query('browsers', 'multimedia-players'), 'identifier-with-pattern'),
-            $this->extractAttribute($this->query('browsers', 'offline-browsers'), 'identifier-with-pattern'),
-            $this->extractAttribute($this->query('browsers', 'tools'), 'identifier-with-pattern'),
-            $this->extractAttribute($this->query('browsers', 'browsers'), 'identifier-with-pattern'),
+        return $this->extractAttributeRecursive(
+            'browsers',
+            [
+                'bots','applications','email-clients',
+                'feed-readers','multimedia-players',
+                'offline-browsers','tools','browsers',
+            ],
+            'identifier-with-pattern'
         );
     }
 
@@ -44,7 +43,6 @@ class BrowsersPatternsCollection extends Collection
      */
     public function compat(string $identifier):string
     {
-        //$dictionary = $this->organisePatterns($this->query('browsers', 'compatibilities'));
         $dictionary = $this->extractAttribute($this->query('browsers', 'compatibilities'), 'identifier-with-pattern');
         if (array_key_exists($identifier, $dictionary)=== true) {
             return strtolower($dictionary[$identifier]);
@@ -63,7 +61,6 @@ class BrowsersPatternsCollection extends Collection
      */
     public function browserEngine(string $identifier):string
     {
-       // $dictionary = $this->organisePatterns($this->query('browsers', 'browsers-engines'));
         $dictionary = $this->extractAttribute($this->query('browsers', 'browsers-engines'), 'identifier-with-pattern');
         if (array_key_exists($identifier, $dictionary)=== true) {
             return strtolower($dictionary[$identifier]);
@@ -82,11 +79,6 @@ class BrowsersPatternsCollection extends Collection
      */
     public function match(string $identifier):string
     {
-        //print_r($this->all(), false);
-//        $dictionary = $this->organisePatterns($this->query('browsers', 'browsers'));
-//        print_r($dictionary, false);
-//        print_r($identifier .PHP_EOL, false);
-
         if (array_key_exists($identifier, $this->all())=== true) {
             return strtolower($this->all()[$identifier]);
         }

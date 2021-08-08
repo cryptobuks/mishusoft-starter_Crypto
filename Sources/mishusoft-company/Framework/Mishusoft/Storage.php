@@ -349,6 +349,7 @@ class Storage extends Base
 
 
     /**
+     *  Get all files form directory.
      *  Does not support flag GLOB_BRACE.
      *
      * @param string $directory

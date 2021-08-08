@@ -228,81 +228,18 @@ cliqz-browser:
   licence: 	MPL 2.0
   engines: [ 'Gecko' ]
 
-#
-#    //Mozilla/5.0 (compatible; Cliqzbot/1.0; +http://cliqz.com/company/cliqzbot)
-#      //Mozilla/5.0 (compatible; Cliqzbot/3.0; +http://cliqz.com/company/cliqzbot)
-#      //Mozilla/5.0 (compatible; Cliqzbot/0.1 +http://cliqz.com/company/cliqzbot)
-#      //Cliqzbot/0.1 (+http://cliqz.com/company/cliqzbot)
-#    'Cliqz' => [
-#    'name' => 'Cliqz',
-#    'type' => 'Web Browser',
-#    'ui' => 'GraphicalMode',
-#    'creator' => [
-#    [ 'name' => 'Cliqz GmbH', 'link' => 'https://github.com/cliqz-oss' ],
-#  ],
-#    'cost' => 'Free',
-#    'status' => 'discontinued',
-#    'licence' => [
-#    [
-#        'name' => 'MPL 2.0',
-#        'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
-#    ],
-#  ],
-#    'layout' => [
-#    [
-#        'name' => 'Gecko',
-#        'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
-#    ],
-#  ],
-#    'latest-release' => [
-#      'Android' => [
-#        'version' => '1.9.7',
-#        'date' => 'April 4, 2020',
-#    ],
-#      'iOS' => [
-#        'version' => '3.6.3',
-#        'date' => 'June 30, 2020',
-#    ],
-#      'macOS' => [
-#        'version' => '1.38.0',
-#        'date' => 'July 22, 2020',
-#    ],
-#      'Windows' => [
-#        'version' => '1.38.0',
-#        'date' => 'July 22, 2020',
-#    ],
-#      'Linux' => [
-#        'version' => '1.38.0',
-#        'date' => 'July 22, 2020',
-#    ],
-#  ],
-#],
-#
-#    //Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 10.0; WOW64; Trident/7.0) EdgeClient/7140.2017.0415.0051
-#      //Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko EdgeClient/7190.2020.0225.0642
-#      //Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko EdgeClient/7183.2020.0108.2059
-#    'Edge-Client' => [
-#    'name' => 'BIG-IP Edge Client',
-#    'type' => 'Web Browser',
-#    'ui' => 'GraphicalMode',
-#    'creator' => [
-#    [
-#        'name' => 'F5',
-#        'link' => 'https://www.f5.com',
-#    ],
-#  ],
-#    'cost' => 'Free',
-#    'status' => 'Active',
-#    'licence' => [
-#    [
-#        'name' => 'Proprietary',
-#        'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
-#    ],
-#  ],
-#    'layout' => 'unknown',
-#    'latest-release' => 'unknown',
-#],
-#
+edge-client:
+  name: 'BIG-IP Edge Client'
+  url: 'https://www.f5.com'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: F5
+  cost: Free
+  status: Active
+  licence: 	Proprietary
+  engines: [ 'Trident' ]
+
+
 #    //Mozilla/5.0 (compatible; Konqueror/4.4; Linux) KHTML/4.4.5 (like Gecko) Kubuntu
 #      //Mozilla/5.0 (compatible; Konqueror/3.2; Linux) (KHTML, like Gecko)
 #                                                                 //Mozilla/5.0 (compatible; Konqueror/3.1; Linux)

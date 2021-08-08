@@ -130,7 +130,7 @@ class Memory
             }
         }
 
-        FileSystem::chmod(dirname($installFile), 0777);
+        //FileSystem::chmod(dirname($installFile, 2), 0777);
     }
 
     /**

@@ -19,8 +19,6 @@ use GeoIp2\Exception\AddressNotFoundException;
 use MaxMind\Db\Reader\InvalidDatabaseException;
 use Mishusoft\Exceptions\HttpException\HttpResponseException;
 use Mishusoft\Exceptions\JsonException;
-use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
-use Mishusoft\Exceptions\RuntimeException\NotFoundException;
 use Mishusoft\Storage;
 
 class IP
@@ -65,7 +63,7 @@ class IP
      * Get country name of client.
      *
      * @return string
-     * @throws \JsonException Throw exception when json error occurred.
+     * @throws \JsonException
      * @throws HttpResponseException
      * @throws JsonException|InvalidDatabaseException
      */

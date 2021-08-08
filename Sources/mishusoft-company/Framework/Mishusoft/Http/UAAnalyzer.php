@@ -9,7 +9,6 @@ use JsonException;
 use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
-use Mishusoft\Storage\FileSystem\Yaml;
 
 class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
 {
@@ -53,67 +52,8 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
         //If current user agent are stored in solved list,
         //then we should not solve this,
         //we load the solved data from solve list
-        if ((file_exists($this->uaSolvableListFile) === true)
-            && array_key_exists($this->userAgent, Yaml::parseFile($this->uaSolvableListFile)) === true) {
-            $solvableList = Yaml::parseFile($this->uaSolvableListFile);
-            $this->matchFound = $solvableList['solved'];
-            $this->timeOfExecution = $solvableList['time'];
-
-            //$this->browserName = $solvableList['browser']['name'];
-            $this->browserName = $this->value($solvableList, 'browser.name');
-            //$this->browserNameFull = $solvableList['browser']['name-version'];
-            $this->browserNameFull = $this->value($solvableList, 'browser.name-version');
-            //$this->browserVersion = $solvableList['browser']['version'];
-            $this->browserVersion = $this->value($solvableList, 'browser.version');
-            //$this->browserVersionFull = $solvableList['browser']['version-full'];
-            $this->browserVersionFull = $this->value($solvableList, 'browser.version-full');
-           // $this->browserArchitecture = $solvableList['browser']['architecture'];
-            $this->browserArchitecture = $this->value($solvableList, 'browser.architecture');
-            //$this->browserType = $solvableList['browser']['type'];
-            $this->browserType = $this->value($solvableList, 'browser.type');
-            //$this->browserUi = $solvableList['browser']['ui'];
-            $this->browserUi = $this->value($solvableList, 'browser.ui');
-
-           // $this->browserAppCodeName = $solvableList['browser']['compatibility']['name'];
-            $this->browserAppCodeName = $this->value($solvableList, 'browser.compatibility.name');
-            //$this->browserAppCodeVersion = $solvableList['browser']['compatibility']['version'];
-            $this->browserAppCodeVersion = $this->value($solvableList, 'browser.compatibility.version');
-            //$this->browserAppCodeVersionFull = $solvableList['browser']['compatibility']['version-full'];
-            $this->browserAppCodeVersionFull = $this->value($solvableList, 'browser.compatibility.version-full');
-
-           // $this->browserEngineName = $solvableList['browser']['engine']['name'];
-            $this->browserEngineName = $this->value($solvableList, 'browser.engine.name');
-            //$this->browserEngineNameFull = $solvableList['browser']['engine']['name-full'];
-            $this->browserEngineNameFull = $this->value($solvableList, 'browser.engine.name-full');
-            //$this->browserEngineVersion = $solvableList['browser']['engine']['version'];
-            $this->browserEngineVersion = $this->value($solvableList, 'browser.engine.version');
-            //$this->browserEngineVersionFull = $solvableList['browser']['engine']['version-full'];
-            $this->browserEngineVersionFull = $this->value($solvableList, 'browser.engine.version-full');
-
-           // $this->browserDetails = $solvableList['browser'];
-            $this->browserDetails = $this->value($solvableList, 'browser');
-
-            $this->deviceName = $solvableList['device']['name'];
-            $this->deviceNameFull = $solvableList['device']['name-full'];
-            $this->deviceType = $solvableList['device']['type'];
-
-           // $this->deviceDetails = $solvableList['device'];
-            $this->deviceDetails = $this->value($solvableList, 'device');
-
-            //$this->platformName = $solvableList['platform']['name'];
-            $this->platformName = $this->value($solvableList, 'platform.name');
-            //$this->platformNameFull = $solvableList['platform']['name-full'];
-            $this->platformNameFull = $this->value($solvableList, 'platform.name-full');
-            //$this->platformArchitecture = $solvableList['platform']['architecture'];
-            $this->platformArchitecture = $this->value($solvableList, 'platform.architecture');
-
-            //$this->platformWindowManager = $solvableList['platform']['window-manager']['name'];
-            $this->platformWindowManager = $this->value($solvableList, 'platform.window-manager.name');
-            //$this->platformWmNameOriginal = $solvableList['platform']['window-manager']['name-detected'];
-            $this->platformWmNameOriginal = $this->value($solvableList, 'platform.window-manager.name-detected');
-
-            //$this->platformDetails = $solvableList['platform'];
-            $this->platformDetails = $this->value($solvableList, 'platform');
+        if (array_key_exists($this->userAgent, $this->solvedUA()) === true) {
+            $this->makeDetails($this->solvedUA()[$this->userAgent]);
         } else {
             $this->collectUA('development');
             $cleanUA = $this->cleanUA($this->userAgent, $this->identifiers->browsers->knownBrowserAliases());
@@ -231,7 +171,7 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
         }
 
         if ($this->matchFound === true) {
-            $this->collectUA('solved');
+            $this->collectUA('solved', $this->details());
         } else {
             $this->collectUA('unsolved');
             // make research for future
@@ -240,16 +180,97 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
         return $this;
     }//end analyze()
 
+    private function makeDetails(array $solvableList):void
+    {
+        $this->matchFound = $solvableList['solved'];
+        $this->timeOfExecution = $solvableList['time'];
+
+        //$this->browserName = $solvableList['browser']['name'];
+        $this->browserName = $this->value($solvableList, 'browser.name');
+        //$this->browserNameFull = $solvableList['browser']['name-version'];
+        $this->browserNameFull = $this->value($solvableList, 'browser.name-version');
+        //$this->browserVersion = $solvableList['browser']['version'];
+        $this->browserVersion = $this->value($solvableList, 'browser.version');
+        //$this->browserVersionFull = $solvableList['browser']['version-full'];
+        $this->browserVersionFull = $this->value($solvableList, 'browser.version-full');
+        // $this->browserArchitecture = $solvableList['browser']['architecture'];
+        $this->browserArchitecture = $this->value($solvableList, 'browser.architecture');
+        //$this->browserType = $solvableList['browser']['type'];
+        $this->browserType = $this->value($solvableList, 'browser.type');
+        //$this->browserUi = $solvableList['browser']['ui'];
+        $this->browserUi = $this->value($solvableList, 'browser.ui');
+
+        // $this->browserAppCodeName = $solvableList['browser']['compatibility']['name'];
+        $this->browserAppCodeName = $this->value($solvableList, 'browser.compatibility.name');
+        //$this->browserAppCodeVersion = $solvableList['browser']['compatibility']['version'];
+        $this->browserAppCodeVersion = $this->value($solvableList, 'browser.compatibility.version');
+        //$this->browserAppCodeVersionFull = $solvableList['browser']['compatibility']['version-full'];
+        $this->browserAppCodeVersionFull = $this->value($solvableList, 'browser.compatibility.version-full');
+
+        // $this->browserEngineName = $solvableList['browser']['engine']['name'];
+        $this->browserEngineName = $this->value($solvableList, 'browser.engine.name');
+        //$this->browserEngineNameFull = $solvableList['browser']['engine']['name-full'];
+        $this->browserEngineNameFull = $this->value($solvableList, 'browser.engine.name-full');
+        //$this->browserEngineVersion = $solvableList['browser']['engine']['version'];
+        $this->browserEngineVersion = $this->value($solvableList, 'browser.engine.version');
+        //$this->browserEngineVersionFull = $solvableList['browser']['engine']['version-full'];
+        $this->browserEngineVersionFull = $this->value($solvableList, 'browser.engine.version-full');
+
+        // $this->browserDetails = $solvableList['browser'];
+        $this->browserDetails = $this->value($solvableList, 'browser');
+
+        //$this->deviceName = $solvableList['device']['name'];
+        $this->deviceName = $this->value($solvableList, 'device.name');
+        //$this->deviceNameFull = $solvableList['device']['name-full'];
+        $this->deviceNameFull = $this->value($solvableList, 'device.name-full');
+        //$this->deviceType = $solvableList['device']['type'];
+        $this->deviceType = $this->value($solvableList, 'device.type');
+
+        // $this->deviceDetails = $solvableList['device'];
+        $this->deviceDetails = $this->value($solvableList, 'device');
+
+        //$this->platformName = $solvableList['platform']['name'];
+        $this->platformName = $this->value($solvableList, 'platform.name');
+        //$this->platformNameFull = $solvableList['platform']['name-full'];
+        $this->platformNameFull = $this->value($solvableList, 'platform.name-full');
+        //$this->platformArchitecture = $solvableList['platform']['architecture'];
+        $this->platformArchitecture = $this->value($solvableList, 'platform.architecture');
+
+        //$this->platformWindowManager = $solvableList['platform']['window-manager']['name'];
+        $this->platformWindowManager = $this->value($solvableList, 'platform.window-manager.name');
+        //$this->platformWmNameOriginal = $solvableList['platform']['window-manager']['name-detected'];
+        $this->platformWmNameOriginal = $this->value($solvableList, 'platform.window-manager.name-detected');
+
+        //$this->platformDetails = $solvableList['platform'];
+        $this->platformDetails = $this->value($solvableList, 'platform');
+    }
+
     public function details(): array
     {
         if ($this->matchFound === true) {
             unset(
                 $this->browserDetails['name'],
+                $this->browserDetails['name-version'],
+                $this->browserDetails['version'],
+                $this->browserDetails['version-full'],
+                $this->browserDetails['architecture'],
+                $this->browserDetails['compatibility']['name'],
+                $this->browserDetails['compatibility']['version'],
+                $this->browserDetails['compatibility']['version-full'],
+                $this->browserDetails['engine']['name'],
+                $this->browserDetails['engine']['name-full'],
+                $this->browserDetails['engine']['version'],
+                $this->browserDetails['engine']['version-full'],
                 $this->browserDetails['ui'],
                 $this->browserDetails['type'],
-                $this->platformDetails['name'],
                 $this->deviceDetails['name'],
+                $this->deviceDetails['name-full'],
                 $this->deviceDetails['type'],
+                $this->platformDetails['name'],
+                $this->platformDetails['name-full'],
+                $this->platformDetails['architecture'],
+                $this->platformDetails['window-manager']['name'],
+                $this->platformDetails['window-manager']['name-detected'],
             );
             return [
                 'ua' => $this->userAgent,
@@ -280,7 +301,7 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
                 ),
                 'device' => array_merge_recursive(
                     [
-                        'name-' => $this->deviceName,
+                        'name' => $this->deviceName,
                         'name-full' => $this->deviceNameFull,
                         'type' => $this->deviceType,
                     ],

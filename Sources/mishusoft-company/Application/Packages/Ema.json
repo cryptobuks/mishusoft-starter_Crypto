@@ -1,1 +1,1 @@
-{"name":"Ema","version":"1.0.8","release":"beta","loader":{"Ema":"Ema.Loader.php"},"modules":{"Ema":{"default":"Main","all":{"Main":{"status":"enable"}}}}}
+{"name":"Ema","version":"1.0.10","release":"beta","loader":{"Ema":"Ema.Loader.php"},"modules":{"Ema":{"default":"Main","all":{"Main":{"status":"enable"}}}}}

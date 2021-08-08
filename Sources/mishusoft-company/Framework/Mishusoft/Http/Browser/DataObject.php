@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 
-namespace Mishusoft\Framework\Chipsets\Http\Browser;
+namespace Mishusoft\Http\Browser;
 
 
 class DataObject
