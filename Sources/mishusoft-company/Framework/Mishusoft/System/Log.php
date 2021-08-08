@@ -15,6 +15,7 @@ namespace Mishusoft\System;
 use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
+use Mishusoft\Http;
 use Mishusoft\Http\IP;
 use Mishusoft\RAM;
 use Mishusoft\Storage;
@@ -150,7 +151,7 @@ class Log
             // @codingStandardsIgnoreStart
             $ip         = IP::get();
             // @codingStandardsIgnoreEnd
-            $useragent  = RAM::http()->browser()->getUserAgent();
+            $useragent  = Http::browser()->getUserAgent();
             $httpStatus = http_response_code();
             $time       = date('Y-m-d h:i A');
 
@@ -161,7 +162,7 @@ class Log
                 $contents .= sprintf("[%s]\t%s\t\"%s\t%s\t%s\"\t%s\r", $time, $ip, $server, $mode, $url, $this->message);
             } elseif (strtolower($this->logStyle) === LOG_STYLE_SHORTCUT) {
                 // [2021-05-29 04:34 PM]    "localhost GET /"   Filter request of client.
-                $contents .= sprintf("[%s]\t\"%s\t%s\t%s\"\t%s\r", $time, $server, $mode, $url, $message);
+                $contents .= sprintf("[%s]\t\"%s\t%s\t%s\"\t%s\r", $time, $server, $mode, $url, $this->message);
             } elseif (strtolower($this->logStyle) === LOG_STYLE_FULL) {
                 // [2021-05-29 05:44AM]<tab>127.0.0.1<tab>Mozilla/5.0 (X11; Linux x86_64; rv:88.0) Gecko/20100101
                 // Firefox/88.0<tab>http 200<tab>"localhost<tab>GET<tab>/"
@@ -186,7 +187,7 @@ class Log
                 fwrite($resource, $contents);
                 fclose($resource);
 
-                exec('chmod -R 777 '.$logFile);
+                //exec('chmod -R 777 '.$logFile);
             } else {
                 throw new PermissionRequiredException('Permission denied. Unable to write or read '.$logFile);
             }

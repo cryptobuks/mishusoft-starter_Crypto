@@ -1,12 +1,12 @@
 'use strict';
 import {Browser} from "./browser";
-import {__appHostedServerRoot, app} from "./common/app-db";
-import {sendRequest} from "./common/app-common-required-send";
+import {appHost, app} from "./common/db";
+import {sendRequest} from "./common/request";
 
 /*required variables*/
 const BrJS = new Browser();
 const appTracker = app.default.name + '@' + app.default.version;
-let globalAppMonitorMainURL: string = __appHostedServerRoot + 'monitor/browser/';
+let globalAppMonitorMainURL: string = appHost + 'monitor/browser/';
 
 const authFormAttribute = [
     {

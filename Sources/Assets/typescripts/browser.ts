@@ -59,13 +59,13 @@ export class Browser {
 
 
     private UserAgentList: any;
-    private devicesList: any;
-    private devicesCategoryList: any;
-    private devicesArchitectureList: any;
-    private devicesPlatformWMNameList: any;
-    private webBrowserList: any;
-    private webBrowserLayoutList: any;
-    private webBrowserAppCodeNameList: any;
+    private readonly devicesList: any;
+    private readonly devicesCategoryList: any;
+    private readonly devicesArchitectureList: any;
+    private readonly devicesPlatformWMNameList: any;
+    private readonly webBrowserList: any;
+    private readonly webBrowserLayoutList: any;
+    private readonly webBrowserAppCodeNameList: any;
 
 
     constructor() {

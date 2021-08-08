@@ -3,7 +3,6 @@
 namespace Mishusoft\System;
 
 use DateTime;
-use DateTimeZone;
 
 class Time extends DateTime
 {

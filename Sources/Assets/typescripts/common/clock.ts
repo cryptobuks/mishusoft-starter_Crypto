@@ -1,8 +1,9 @@
-import {captureElement} from "./app-common-required";
+import {captureElement} from "./dom";
+
 
 export function refreshDigitalClock() {
     let refresh = 1000; // Refresh rate in milli seconds
-    setTimeout('Mishusoft.DigitalClock()', refresh)
+    setTimeout('DigitalClock()', refresh)
 }
 
 export function DigitalClock() {

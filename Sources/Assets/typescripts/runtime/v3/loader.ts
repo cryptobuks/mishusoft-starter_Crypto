@@ -1,2 +1,0 @@
-/*@typescripts-ignore*/
-//Mishusoft.appLoaderActivate();

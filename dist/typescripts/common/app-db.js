@@ -1,13 +1,10 @@
 /* global _root_ */
 /*initialize on extension installed*/
-import {captureElement} from "./app-common-required";
-
+import { captureElement } from "./app-common-required";
 export let __appHostedServerRoot = captureElement('#mishusoft-web-root').content;
-
 /*backup plan*/
 if (__appHostedServerRoot === undefined) {
     //__appHostedServerRoot = 'http://localhost/';
-
     /*#!if ENV === 'production'*/
     __appHostedServerRoot = 'https://www.mishusoft.com/';
     /*#!else*/
@@ -15,12 +12,9 @@ if (__appHostedServerRoot === undefined) {
     /*#!endif*/
     /*required variables*/
 }
-
-if (__appHostedServerRoot.substr(-1) !== '/'){
+if (__appHostedServerRoot.substr(-1) !== '/') {
     __appHostedServerRoot += '/';
 }
-
-
 export const app = {
     "default": {
         "name": 'mishusoft',
@@ -138,7 +132,6 @@ export const app = {
                     },
                 ],
             },
-
         },
     },
     "website": {
@@ -147,7 +140,6 @@ export const app = {
         "donate": "https://www.mishusoft.com/payment/donate",
         "IpInfo": "https://api.ipdata.co/?api-key=2f9dde381f67efed325acfb1011a988036b28fc6cc02f07668ef7180",
         "IpInfoKey": "2f9dde381f67efed325acfb1011a988036b28fc6cc02f07668ef7180",
-
         "temporary": {
             "home": "http://localhost/",
             "monitorURL": "http://localhost/monitor/browser/",
@@ -162,4 +154,5 @@ export const app = {
     "runtime": {
         "request": ""
     }
-}
+};
+//# sourceMappingURL=app-db.js.map

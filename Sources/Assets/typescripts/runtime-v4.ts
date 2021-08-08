@@ -1,17 +1,11 @@
-import {
-    checkInputDataAbility,
-    createElement,
-    paginationDriver,
-    popUpDialogBoxDriver,
-    previewImage,
-    setUploadProgressSystem,
-    uploadFile
-} from "../common/app-common";
-import {__appHostedServerRoot, app} from "../common/app-db";
-import {showMessage} from "../common/app-required";
-import {captureElement, checkDuplicate, IsJsonString} from "../common/app-common-required";
-import {sendRequest} from "../common/app-common-required-send";
-
+import {app, appHost} from "./common/db";
+import {captureElement, createElement} from "./common/dom";
+import { sendRequest } from "./common/request";
+import {checkDuplicate, IsJsonString} from "./common/validation";
+import {showMessage} from "./common/message";
+import {checkInputDataAbility, previewImage} from "./common/common";
+import {paginationDriver, popUpDialogBoxDriver} from "./common/pagination";
+import {setUploadProgressSystem, uploadFile} from "./common/upload";
 
 let publicSocialLinksInterval: any, visitorsAccessLogsInterval: any, contactMessageInterval: any,
     serverDatabaseInterval: any;
@@ -233,7 +227,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
 
                 return sendRequest({
                     method: "POST",
-                    url: __appHostedServerRoot + 'user/verifyUserAuth',
+                    url: appHost + 'user/verifyUserAuth',
                     async: true,
                     header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
                     data: {
@@ -249,9 +243,9 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                         let data = JSON.parse(response);
                         if (data.type === 'success' && data.message === 'LOGGED_IN') {
                             if (data.url !== '/') {
-                                window.location.replace(__appHostedServerRoot + data.url);
+                                window.location.replace(appHost + data.url);
                             } else {
-                                window.location.replace(__appHostedServerRoot);
+                                window.location.replace(appHost);
                             }
                         } else {
                             captureElement('#login-button').removeAttribute('disabled');
@@ -442,7 +436,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
 
                             return sendRequest({
                                 method: "POST",
-                                url: __appHostedServerRoot + 'user/registrationValidation',
+                                url: appHost + 'user/registrationValidation',
                                 async: true,
                                 header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
                                 data: {
@@ -514,7 +508,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                 /*#!endif*/
                 return sendRequest({
                     method: "POST",
-                    url: __appHostedServerRoot + 'user/passwordRecoveryValidation',
+                    url: appHost + 'user/passwordRecoveryValidation',
                     async: true,
                     header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
                     data: {
@@ -614,7 +608,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
 
                     return sendRequest({
                         method: "POST",
-                        url: __appHostedServerRoot + 'user/newPasswordValidation',
+                        url: appHost + 'user/newPasswordValidation',
                         async: true,
                         header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
                         data: {
@@ -664,7 +658,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                 /*#!endif*/
                 return sendRequest({
                     method: "POST",
-                    url: __appHostedServerRoot + 'contact/receiveMessage',
+                    url: appHost + 'contact/receiveMessage',
                     async: true,
                     header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
                     data: {
@@ -784,7 +778,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                 if (emailAddressCheck === 'OK') {
                     return sendRequest({
                         method: "POST",
-                        url: __appHostedServerRoot + 'payment/verifyClient',
+                        url: appHost + 'payment/verifyClient',
                         async: true,
                         header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
                         data: {
@@ -808,7 +802,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                             captureElement('#user-select-done').textContent = 'Redirecting...';
                             setTimeout(function () {
                                 window.location.replace(
-                                    __appHostedServerRoot + 'payment/paynow/' + JSON.parse(response).appIdEncrypt + '/' +
+                                    appHost + 'payment/paynow/' + JSON.parse(response).appIdEncrypt + '/' +
                                     JSON.parse(response).emailEncrypt + '/' + JSON.parse(response).paymentPlanTypeEncrypt + '/' +
                                     JSON.parse(response).paymentPlanEncrypt + '/'
                                 );
@@ -856,7 +850,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
             }, 1000);
             sendRequest({
                 method: "GET",
-                url: __appHostedServerRoot + 'api/getVisitorsAccessLogsLimited',
+                url: appHost + 'api/getVisitorsAccessLogsLimited',
                 async: true,
                 header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
             }, function (response: any) {
@@ -868,7 +862,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                 'a': {
                                     'class': 'box-message ' + ((log.message_type.toLowerCase() === 'error') ? 'box-danger' : ((log.message_type.toLowerCase() === 'success') ? 'box-success' : ((log.message_type.toLowerCase() === 'notify') ? 'box-notify' : ' '))) + ' box-shadow-light',
                                     /*'style': 'padding: 0 0 0 4px;',*/
-                                    'href': __appHostedServerRoot + 'system/log/view/' + log.id,
+                                    'href': appHost + 'system/log/view/' + log.id,
                                     'title': '[' + log.ip + '] [' + log.browser + '] [' + log.time + ']',
                                 }
                             }]);
@@ -890,7 +884,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                             const ipLink = createElement([{
                                 'a': {
                                     'class': 'link',
-                                    'href': __appHostedServerRoot + 'addons/ipinfo/' + log.ip,
+                                    'href': appHost + 'addons/ipinfo/' + log.ip,
                                 }
                             }]);
                             ipLink.textContent = log.author + ' with ' + log.browser /*+  ' from ' + log.country*/;
@@ -936,7 +930,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
             }, 1000);
             sendRequest({
                 method: "GET",
-                url: __appHostedServerRoot + 'api/getContactMessagesLimited',
+                url: appHost + 'api/getContactMessagesLimited',
                 async: true,
                 header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
             }, function (response: any) {
@@ -947,7 +941,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                             const messageBody = createElement([{
                                 'a': {
                                     'class': 'box-message box-success box-shadow-light',
-                                    'href': __appHostedServerRoot + 'system/contactmessage/view/' + message.id,
+                                    'href': appHost + 'system/contactmessage/view/' + message.id,
                                 }
                             }]);
                             const messageIcon = createElement([{
@@ -969,7 +963,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                             const sender = createElement([{
                                 'a': {
                                     'class': 'link',
-                                    /*'href': __appHostedServerRoot + 'addons/ipinfo/' + message.ip,*/
+                                    /*'href': appHost + 'addons/ipinfo/' + message.ip,*/
                                 }
                             }]);
                             sender.textContent = message.f_name + ' ' + message.l_name + ' send a ' + message.subject;
@@ -1013,7 +1007,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
             }, 1000);
             sendRequest({
                 method: "GET",
-                url: __appHostedServerRoot + 'system/index/getMainItemTabs',
+                url: appHost + 'system/index/getMainItemTabs',
                 async: true,
                 header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
             }, function (response: any) {
@@ -1024,7 +1018,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                             const systemMenu = createElement([{
                                 'a': {
                                     'class': 'thumbnail-md box-shadow-light',
-                                    'href': __appHostedServerRoot + 'system/' + menu.url,
+                                    'href': appHost + 'system/' + menu.url,
                                     'title': menu.title,
                                 }
                             }]);
@@ -1057,7 +1051,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
             }, 1000);
             sendRequest({
                 method: "GET",
-                url: __appHostedServerRoot + 'system/index/getExtraItemTabs',
+                url: appHost + 'system/index/getExtraItemTabs',
                 async: true,
                 header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
             }, function (response: any) {
@@ -1068,7 +1062,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                             const extraMenu = createElement([{
                                 'a': {
                                     'class': 'thumbnail-md box-shadow-light',
-                                    'href': __appHostedServerRoot + 'system/' + menu.url,
+                                    'href': appHost + 'system/' + menu.url,
                                     'title': menu.title,
                                 }
                             }]);
@@ -1108,7 +1102,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                 ['keyup', 'change', 'paste'].forEach(function (__event) {
                     captureElement('#branchName').addEventListener(__event, function () {
                         return checkInputDataAbility(
-                            __appHostedServerRoot + "system/branches/checkBranchNameInputAbility",
+                            appHost + "system/branches/checkBranchNameInputAbility",
                             {
                                 security_code: 1,
                                 name: "name",
@@ -1126,7 +1120,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                     captureElement('#app-loader').style.display = 'block';
                     return sendRequest({
                         method: "POST",
-                        url: __appHostedServerRoot + 'system/branches/manageBranch',
+                        url: appHost + 'system/branches/manageBranch',
                         async: true,
                         header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
                         data: {
@@ -1206,17 +1200,17 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                 }
 
                 popUpDialogBoxDriver(
-                    '#branch-delete-btn', 'Message', __appHostedServerRoot + 'system/branches/deleteBranch',
+                    '#branch-delete-btn', 'Message', appHost + 'system/branches/deleteBranch',
                     '#message3', function (response: any) {
                         showMessage(response, captureElement("#message"));
                     }
                 );
-                paginationDriver('ajax', __appHostedServerRoot + 'system/branches/indexPaginationAJAX',
+                paginationDriver('ajax', appHost + 'system/branches/indexPaginationAJAX',
                     'branch-data-table', function (response: any) {
                         showMessage(response, captureElement("#message"));
                     }, function () {
                         popUpDialogBoxDriver(
-                            '#branch-delete-btn', 'Message', __appHostedServerRoot + 'system/branches/deleteBranch',
+                            '#branch-delete-btn', 'Message', appHost + 'system/branches/deleteBranch',
                             '#message3', function (response: any) {
                                 showMessage(response, captureElement("#message"));
                             }
@@ -1264,17 +1258,17 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
             }
             if (captureElement('#busers-data-table') !== undefined) {
                 popUpDialogBoxDriver(
-                    '#transferBranchStuff', 'Message', __appHostedServerRoot + 'system/branches/transferBranchStuff',
+                    '#transferBranchStuff', 'Message', appHost + 'system/branches/transferBranchStuff',
                     '#message3', function (response: any) {
                         showMessage(response, captureElement("#message"));
                     }
                 );
-                paginationDriver('ajax', __appHostedServerRoot + 'system/branches/usersPaginationAJAX',
+                paginationDriver('ajax', appHost + 'system/branches/usersPaginationAJAX',
                     'busers-data-table', function (response: any) {
                         showMessage(response, captureElement("#message"));
                     }, function () {
                         popUpDialogBoxDriver(
-                            '#transferBranchStuff', 'Message', __appHostedServerRoot + 'system/branches/transferBranchStuff',
+                            '#transferBranchStuff', 'Message', appHost + 'system/branches/transferBranchStuff',
                             '#message3', function (response: any) {
                                 showMessage(response, captureElement("#message"));
                             }
@@ -1297,7 +1291,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                     captureElement('#app-loader').style.display = 'block';
                     return sendRequest({
                         method: "POST",
-                        url: __appHostedServerRoot + 'system/modules/updateModule',
+                        url: appHost + 'system/modules/updateModule',
                         async: true,
                         header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
                         data: {
@@ -1340,7 +1334,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
 
                 //upload file by clicking button
                 captureElement('#uploadModuleFile').addEventListener('click', function () {
-                    uploadFile('moduleFile', 'moduleFile', __appHostedServerRoot + 'system/modules/uploadTARGZ');
+                    uploadFile('moduleFile', 'moduleFile', appHost + 'system/modules/uploadTARGZ');
                 });
 
                 //select data by clicking select button
@@ -1393,17 +1387,17 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                     });
                 }
                 popUpDialogBoxDriver(
-                    '#module-delete-btn', 'Message', __appHostedServerRoot + 'system/modules/deleteModule',
+                    '#module-delete-btn', 'Message', appHost + 'system/modules/deleteModule',
                     '#message3', function (response: any) {
                         showMessage(response, captureElement("#message"));
                     }
                 );
-                paginationDriver('ajax', __appHostedServerRoot + 'system/modules/indexPaginationAJAX',
+                paginationDriver('ajax', appHost + 'system/modules/indexPaginationAJAX',
                     'modules-data-table', function (response: any) {
                         showMessage(response, captureElement("#message"));
                     }, function () {
                         popUpDialogBoxDriver(
-                            '#module-delete-btn', 'Message', __appHostedServerRoot + 'system/modules/deleteModule',
+                            '#module-delete-btn', 'Message', appHost + 'system/modules/deleteModule',
                             '#message3', function (response: any) {
                                 showMessage(response, captureElement("#message"));
                             }
@@ -1503,7 +1497,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                         if (captureElement('#page-url').value.length !== 0) {
                             if (this.value.length !== 0 && this.value !== '0') {
                                 return checkInputDataAbility(
-                                    __appHostedServerRoot + "system/pages/getPageNameById",
+                                    appHost + "system/pages/getPageNameById",
                                     {
                                         security_code: 1,
                                         page: this.value
@@ -1511,8 +1505,8 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                     function (response: any) {
                                         if (JSON.parse(response).type === 'success') {
                                             captureElement('#page-produce-link').setAttribute('actual-url', 'page/' + JSON.parse(response).name.replace(' ','-').toLowerCase() + '/' + captureElement('#page-url').value.toLowerCase());
-                                            captureElement('#page-produce-link').href = __appHostedServerRoot + 'page/' + JSON.parse(response).name.replace(' ','-').toLowerCase() + '/' + captureElement('#page-url').value.toLowerCase();
-                                            captureElement('#page-produce-link').textContent = 'URL : ' + __appHostedServerRoot + 'page/' + JSON.parse(response).name.replace(' ','-').toLowerCase() + '/' + captureElement('#page-url').value.toLowerCase();
+                                            captureElement('#page-produce-link').href = appHost + 'page/' + JSON.parse(response).name.replace(' ','-').toLowerCase() + '/' + captureElement('#page-url').value.toLowerCase();
+                                            captureElement('#page-produce-link').textContent = 'URL : ' + appHost + 'page/' + JSON.parse(response).name.replace(' ','-').toLowerCase() + '/' + captureElement('#page-url').value.toLowerCase();
                                         } else {
                                             showMessage(response, captureElement("#message2"));
                                         }
@@ -1528,7 +1522,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                         if (this.value.length !== 0) {
                             this.value = this.value[0].toUpperCase() + this.value.slice(1);
                             return checkInputDataAbility(
-                                __appHostedServerRoot + "system/pages/checkPageTitleURLInputAbility",
+                                appHost + "system/pages/checkPageTitleURLInputAbility",
                                 {
                                     security_code: 1,
                                     name: "title",
@@ -1549,7 +1543,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                         captureElement('#page-produce-link').setAttribute('style', 'display:block;');
                         if (captureElement('#page-parent-id').value.length !== 0 && captureElement('#page-parent-id').value !== '0') {
                             checkInputDataAbility(
-                                __appHostedServerRoot + "system/pages/getPageNameById",
+                                appHost + "system/pages/getPageNameById",
                                 {
                                     security_code: 1,
                                     page: captureElement('#page-parent-id').value
@@ -1557,20 +1551,20 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                 function (response: any) {
                                     if (JSON.parse(response).type === 'success') {
                                         captureElement('#page-produce-link').setAttribute('actual-url', 'page/' + JSON.parse(response).name.replace(' ','-').toLowerCase() + '/' + captureElement('#page-url').value.toLowerCase());
-                                        captureElement('#page-produce-link').href = __appHostedServerRoot + 'page/' + JSON.parse(response).name.replace(' ','-').toLowerCase() + '/' + captureElement('#page-url').value.toLowerCase();
-                                        captureElement('#page-produce-link').textContent = 'URL : ' + __appHostedServerRoot + 'page/' + JSON.parse(response).name.replace(' ','-').toLowerCase() + '/' + captureElement('#page-url').value.toLowerCase();
+                                        captureElement('#page-produce-link').href = appHost + 'page/' + JSON.parse(response).name.replace(' ','-').toLowerCase() + '/' + captureElement('#page-url').value.toLowerCase();
+                                        captureElement('#page-produce-link').textContent = 'URL : ' + appHost + 'page/' + JSON.parse(response).name.replace(' ','-').toLowerCase() + '/' + captureElement('#page-url').value.toLowerCase();
                                     } else {
                                         showMessage(response, captureElement("#message2"));
                                     }
                                 });
                         } else {
                             captureElement('#page-produce-link').setAttribute('actual-url', 'page/' + this.value.replace(' ','-').toLowerCase());
-                            captureElement('#page-produce-link').href = __appHostedServerRoot + 'page/' + this.value.replace(' ','-').toLowerCase();
-                            captureElement('#page-produce-link').textContent = 'URL : ' + __appHostedServerRoot + 'page/' + this.value.replace(' ','-').toLowerCase();
+                            captureElement('#page-produce-link').href = appHost + 'page/' + this.value.replace(' ','-').toLowerCase();
+                            captureElement('#page-produce-link').textContent = 'URL : ' + appHost + 'page/' + this.value.replace(' ','-').toLowerCase();
                         }
 
                         return checkInputDataAbility(
-                            __appHostedServerRoot + "system/pages/checkPageTitleURLInputAbility",
+                            appHost + "system/pages/checkPageTitleURLInputAbility",
                             {
                                 security_code: 1,
                                 name: "url",
@@ -1587,7 +1581,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                     captureElement('#app-loader').style.display = 'block';
                     return sendRequest({
                         method: "POST",
-                        url: __appHostedServerRoot + 'system/pages/managePages',
+                        url: appHost + 'system/pages/managePages',
                         async: true,
                         header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
                         data: {
@@ -1675,17 +1669,17 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                 }
 
                 popUpDialogBoxDriver(
-                    '#page-delete-btn', 'Message', __appHostedServerRoot + 'system/pages/deletePage',
+                    '#page-delete-btn', 'Message', appHost + 'system/pages/deletePage',
                     '#message3', function (response: any) {
                         showMessage(response, captureElement("#message"));
                     }
                 );
-                paginationDriver('ajax', __appHostedServerRoot + 'system/pages/indexPaginationAJAX',
+                paginationDriver('ajax', appHost + 'system/pages/indexPaginationAJAX',
                     'pages-data-table', function (response: any) {
                         showMessage(response, captureElement("#message"));
                     }, function () {
                         popUpDialogBoxDriver(
-                            '#page-delete-btn', 'Message', __appHostedServerRoot + 'system/pages/deletePage',
+                            '#page-delete-btn', 'Message', appHost + 'system/pages/deletePage',
                             '#message3', function (response: any) {
                                 showMessage(response, captureElement("#message"));
                             }
@@ -1744,7 +1738,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
             if (__url.indexOf('sources')!==-1){
                 [/*'focus', 'click','keyup',*/'paste','change'].forEach(function (__event){
                     captureElement('#page-content')?.addEventListener(__event,function (){
-                        return this.textContent = this.textContent.replace('{$layoutParams.root}',__appHostedServerRoot);
+                        return this.textContent = this.textContent.replace('{$layoutParams.root}',appHost);
                     });
                 });
             }
@@ -1792,7 +1786,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                     captureElement('#app-loader').style.display = 'block';
                     sendRequest({
                         method: "POST",
-                        url: __appHostedServerRoot + 'system/tracking/manageServerDatabase',
+                        url: appHost + 'system/tracking/manageServerDatabase',
                         async: true,
                         header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
                         data: {
@@ -1828,7 +1822,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                     captureElement('#app-loader').style.display = 'block';
                     sendRequest({
                         method: "GET",
-                        url: __appHostedServerRoot + 'system/tracking/backupData/' + captureElement('#databaseStorage').value + '/' + captureElement('#databaseBackup').value,
+                        url: appHost + 'system/tracking/backupData/' + captureElement('#databaseStorage').value + '/' + captureElement('#databaseBackup').value,
                         async: true,
                         header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
                     }, function (response: any) {
@@ -1845,7 +1839,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                 }, 1000);
                 sendRequest({
                     method: "GET",
-                    url: __appHostedServerRoot + 'system/tracking/getServerDatabases',
+                    url: appHost + 'system/tracking/getServerDatabases',
                     async: true,
                     header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
                 }, function (response: any) {
@@ -1872,7 +1866,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                         captureElement('#app-loader').style.display = 'block';
                                         sendRequest({
                                             method: "POST",
-                                            url: __appHostedServerRoot + 'system/tracking/dbServerStatus',
+                                            url: appHost + 'system/tracking/dbServerStatus',
                                             async: true,
                                             header: [{
                                                 name: "Content-type",
@@ -1925,7 +1919,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                         captureElement('#app-loader').style.display = 'block';
                                         sendRequest({
                                             method: "POST",
-                                            url: __appHostedServerRoot + 'system/tracking/dbConnectionTest',
+                                            url: appHost + 'system/tracking/dbConnectionTest',
                                             async: true,
                                             header: [{
                                                 name: "Content-type",
@@ -1942,7 +1936,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                             if (response.length !== 0 && IsJsonString(response)) {
                                                 if (JSON.parse(response).length !== 0) {
                                                     if (JSON.parse(response).message === 'connected') {
-                                                        window.open(__appHostedServerRoot + 'system/tracking/view/' + server.db, '_blank');
+                                                        window.open(appHost + 'system/tracking/view/' + server.db, '_blank');
                                                     }
                                                 }
                                             }
@@ -1991,7 +1985,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                         captureElement('#app-loader').style.display = 'block';
                                         sendRequest({
                                             method: "POST",
-                                            url: __appHostedServerRoot + 'system/tracking/deleteServerDatabase',
+                                            url: appHost + 'system/tracking/deleteServerDatabase',
                                             async: true,
                                             header: [{
                                                 name: "Content-type",
@@ -2032,7 +2026,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                     }, 1000);
                     sendRequest({
                         method: "GET",
-                        url: __appHostedServerRoot + 'system/tracking/getTables/' + captureElement("#dbInfoDb").value,
+                        url: appHost + 'system/tracking/getTables/' + captureElement("#dbInfoDb").value,
                         async: true,
                         header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
                     }, function (response: any) {
@@ -2096,7 +2090,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                             captureElement('#app-loader').style.display = 'block';
                                             sendRequest({
                                                 method: "POST",
-                                                url: __appHostedServerRoot + 'system/tracking/dbConnectionTest',
+                                                url: appHost + 'system/tracking/dbConnectionTest',
                                                 async: true,
                                                 header: [{
                                                     name: "Content-type",
@@ -2113,7 +2107,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                                 if (response.length !== 0 && IsJsonString(response)) {
                                                     if (JSON.parse(response).length !== 0) {
                                                         if (JSON.parse(response).message === 'connected') {
-                                                            window.open(__appHostedServerRoot + 'system/tracking/viewDbTable/' + captureElement('#dbInfoDb').value + '/' + table.TABLE_NAME.replace('msu_', ''), '_self');
+                                                            window.open(appHost + 'system/tracking/viewDbTable/' + captureElement('#dbInfoDb').value + '/' + table.TABLE_NAME.replace('msu_', ''), '_self');
                                                         }
                                                     }
                                                 }
@@ -2162,7 +2156,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                             captureElement('#app-loader').style.display = 'block';
                                             sendRequest({
                                                 method: "POST",
-                                                url: __appHostedServerRoot + 'system/tracking/deleteTable',
+                                                url: appHost + 'system/tracking/deleteTable',
                                                 async: true,
                                                 header: [{
                                                     name: "Content-type",
@@ -2243,7 +2237,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                             captureElement('#app-loader').style.display = 'block';
                                             sendRequest({
                                                 method: "POST",
-                                                url: __appHostedServerRoot + 'system/tracking/dbConnectionTest',
+                                                url: appHost + 'system/tracking/dbConnectionTest',
                                                 async: true,
                                                 header: [{
                                                     name: "Content-type",
@@ -2260,7 +2254,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                                 if (response.length !== 0 && IsJsonString(response)) {
                                                     if (JSON.parse(response).length !== 0) {
                                                         if (JSON.parse(response).message === 'connected') {
-                                                            window.open(__appHostedServerRoot + 'system/tracking/viewDbTable/' + captureElement('#dbInfoDb').value + '/' + table.Name.replace('msu_', ''), '_self');
+                                                            window.open(appHost + 'system/tracking/viewDbTable/' + captureElement('#dbInfoDb').value + '/' + table.Name.replace('msu_', ''), '_self');
                                                         }
                                                     }
                                                 }
@@ -2309,7 +2303,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                             captureElement('#app-loader').style.display = 'block';
                                             sendRequest({
                                                 method: "POST",
-                                                url: __appHostedServerRoot + 'system/tracking/deleteTable',
+                                                url: appHost + 'system/tracking/deleteTable',
                                                 async: true,
                                                 header: [{
                                                     name: "Content-type",
@@ -2355,7 +2349,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                         captureElement('#app-loader').style.display = 'block';
                         sendRequest({
                             method: "POST",
-                            url: __appHostedServerRoot + 'system/tracking/showCreateTable',
+                            url: appHost + 'system/tracking/showCreateTable',
                             async: true,
                             header: [{
                                 name: "Content-type",
@@ -2378,7 +2372,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                         captureElement('#app-loader').style.display = 'block';
                         sendRequest({
                             method: "POST",
-                            url: __appHostedServerRoot + 'system/tracking/renameTable',
+                            url: appHost + 'system/tracking/renameTable',
                             async: true,
                             header: [{
                                 name: "Content-type",
@@ -2402,7 +2396,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                     }, 1000);
                     sendRequest({
                         method: "GET",
-                        url: __appHostedServerRoot + 'system/tracking/getTableData/' + captureElement("#dbInfoDb").value + '/' + captureElement("#runtimeTableName").value,
+                        url: appHost + 'system/tracking/getTableData/' + captureElement("#dbInfoDb").value + '/' + captureElement("#runtimeTableName").value,
                         async: true,
                         header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
                     }, function (response: any) {
@@ -2496,7 +2490,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                                 captureElement('#app-loader').style.display = 'block';
                                                 sendRequest({
                                                     method: "POST",
-                                                    url: __appHostedServerRoot + 'system/tracking/deleteTableRow',
+                                                    url: appHost + 'system/tracking/deleteTableRow',
                                                     async: true,
                                                     header: [{
                                                         name: "Content-type",
@@ -2630,7 +2624,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                                 captureElement('#app-loader').style.display = 'block';
                                                 sendRequest({
                                                     method: "POST",
-                                                    url: __appHostedServerRoot + 'system/tracking/deleteTableRow',
+                                                    url: appHost + 'system/tracking/deleteTableRow',
                                                     async: true,
                                                     header: [{
                                                         name: "Content-type",
@@ -2731,7 +2725,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                                 captureElement('#app-loader').style.display = 'block';
                                                 sendRequest({
                                                     method: "POST",
-                                                    url: __appHostedServerRoot + 'system/tracking/deleteTableRow',
+                                                    url: appHost + 'system/tracking/deleteTableRow',
                                                     async: true,
                                                     header: [{
                                                         name: "Content-type",
@@ -2853,7 +2847,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                                 captureElement('#app-loader').style.display = 'block';
                                                 sendRequest({
                                                     method: "POST",
-                                                    url: __appHostedServerRoot + 'system/tracking/deleteTableRow',
+                                                    url: appHost + 'system/tracking/deleteTableRow',
                                                     async: true,
                                                     header: [{
                                                         name: "Content-type",
@@ -2975,7 +2969,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                                 captureElement('#app-loader').style.display = 'block';
                                                 sendRequest({
                                                     method: "POST",
-                                                    url: __appHostedServerRoot + 'system/tracking/deleteTableRow',
+                                                    url: appHost + 'system/tracking/deleteTableRow',
                                                     async: true,
                                                     header: [{
                                                         name: "Content-type",
@@ -3116,7 +3110,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                                 captureElement('#app-loader').style.display = 'block';
                                                 sendRequest({
                                                     method: "POST",
-                                                    url: __appHostedServerRoot + 'system/tracking/deleteTableRow',
+                                                    url: appHost + 'system/tracking/deleteTableRow',
                                                     async: true,
                                                     header: [{
                                                         name: "Content-type",
@@ -3242,7 +3236,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                                 captureElement('#app-loader').style.display = 'block';
                                                 sendRequest({
                                                     method: "POST",
-                                                    url: __appHostedServerRoot + 'system/tracking/deleteTableRow',
+                                                    url: appHost + 'system/tracking/deleteTableRow',
                                                     async: true,
                                                     header: [{
                                                         name: "Content-type",
@@ -3340,7 +3334,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                                 captureElement('#app-loader').style.display = 'block';
                                                 sendRequest({
                                                     method: "POST",
-                                                    url: __appHostedServerRoot + 'system/tracking/deleteTableRow',
+                                                    url: appHost + 'system/tracking/deleteTableRow',
                                                     async: true,
                                                     header: [{
                                                         name: "Content-type",
@@ -3445,7 +3439,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                                 captureElement('#app-loader').style.display = 'block';
                                                 sendRequest({
                                                     method: "POST",
-                                                    url: __appHostedServerRoot + 'system/tracking/deleteTableRow',
+                                                    url: appHost + 'system/tracking/deleteTableRow',
                                                     async: true,
                                                     header: [{
                                                         name: "Content-type",
@@ -3546,7 +3540,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                                 captureElement('#app-loader').style.display = 'block';
                                                 sendRequest({
                                                     method: "POST",
-                                                    url: __appHostedServerRoot + 'system/tracking/deleteTableRow',
+                                                    url: appHost + 'system/tracking/deleteTableRow',
                                                     async: true,
                                                     header: [{
                                                         name: "Content-type",
@@ -3656,7 +3650,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                                 captureElement('#app-loader').style.display = 'block';
                                                 sendRequest({
                                                     method: "POST",
-                                                    url: __appHostedServerRoot + 'system/tracking/deleteTableRow',
+                                                    url: appHost + 'system/tracking/deleteTableRow',
                                                     async: true,
                                                     header: [{
                                                         name: "Content-type",
@@ -3800,7 +3794,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                                 captureElement('#app-loader').style.display = 'block';
                                                 sendRequest({
                                                     method: "POST",
-                                                    url: __appHostedServerRoot + 'system/tracking/deleteTableRow',
+                                                    url: appHost + 'system/tracking/deleteTableRow',
                                                     async: true,
                                                     header: [{
                                                         name: "Content-type",
@@ -3988,7 +3982,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                                 captureElement('#app-loader').style.display = 'block';
                                                 sendRequest({
                                                     method: "POST",
-                                                    url: __appHostedServerRoot + 'system/tracking/deleteTableRow',
+                                                    url: appHost + 'system/tracking/deleteTableRow',
                                                     async: true,
                                                     header: [{
                                                         name: "Content-type",
@@ -4105,7 +4099,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                                 captureElement('#app-loader').style.display = 'block';
                                                 sendRequest({
                                                     method: "POST",
-                                                    url: __appHostedServerRoot + 'system/tracking/deleteTableRow',
+                                                    url: appHost + 'system/tracking/deleteTableRow',
                                                     async: true,
                                                     header: [{
                                                         name: "Content-type",
@@ -4169,7 +4163,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                         captureElement('#database-data-btn').addEventListener('click', function () {
                                             sendRequest({
                                                 method: "POST",
-                                                url: __appHostedServerRoot + 'system/tracking/manageServerDatabase',
+                                                url: appHost + 'system/tracking/manageServerDatabase',
                                                 async: true,
                                                 header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
                                                 data: {
@@ -4197,7 +4191,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
             if (captureElement("#webapp-data-table") !== undefined) {
                 sendRequest({
                     method: "POST",
-                    url: __appHostedServerRoot + 'system/webapp/getWebAppInfo',
+                    url: appHost + 'system/webapp/getWebAppInfo',
                     async: true,
                     header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
                 }, function (response: any) {
@@ -4309,7 +4303,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
 
                                 let content_overview_table_tr21_webapp_company = createElement([{
                                     'a': {
-                                        'href': __appHostedServerRoot,
+                                        'href': appHost,
                                         'target': '_blank'
                                     }
                                 }]);
@@ -4742,7 +4736,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                 }, 1000);
                                 sendRequest({
                                     method: "POST",
-                                    url: __appHostedServerRoot + 'system/webapp/getWebAppTables',
+                                    url: appHost + 'system/webapp/getWebAppTables',
                                     async: true,
                                     header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
                                 }, function (response: any) {
@@ -4799,7 +4793,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                 }, 1000)
                                 sendRequest({
                                     method: "POST",
-                                    url: __appHostedServerRoot + 'system/webapp/getWebAppSocialLinks',
+                                    url: appHost + 'system/webapp/getWebAppSocialLinks',
                                     async: true,
                                     header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
                                 }, function (response: any) {
@@ -4864,7 +4858,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                                                 t2td4a2.addEventListener('click', function () {
                                                     sendRequest({
                                                         method: "POST",
-                                                        url: __appHostedServerRoot + 'system/webapp/deleteSocialLink',
+                                                        url: appHost + 'system/webapp/deleteSocialLink',
                                                         async: true,
                                                         header: [{
                                                             name: "Content-type",
@@ -4976,7 +4970,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                 captureElement('#webapp-data-btn').textContent = 'Updating..'
                 sendRequest({
                     method: "POST",
-                    url: __appHostedServerRoot + 'system/webapp/manageSite',
+                    url: appHost + 'system/webapp/manageSite',
                     async: true,
                     header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
                     data: {
@@ -5036,7 +5030,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                 captureElement('#UploadStatusBoard').removeAttribute('style');
                 captureElement('#progressbar').style.display = 'block';
                 captureElement('#upload_status').innerHTML = captureElement('#databaseFile').files[0].name + ' selected';
-                uploadFile('databaseFile', 'databaseFile', __appHostedServerRoot + 'system/webapp/databaseUpgrade');
+                uploadFile('databaseFile', 'databaseFile', appHost + 'system/webapp/databaseUpgrade');
             });
 
             //restore system database by click
@@ -5053,7 +5047,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
 
                 sendRequest({
                     method: "POST",
-                    url: __appHostedServerRoot + 'system/webapp/databaseRestore',
+                    url: appHost + 'system/webapp/databaseRestore',
                     async: true,
                     header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
                     data: {
@@ -5079,7 +5073,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
                 captureElement('#UploadStatusBoard').removeAttribute('style');
                 captureElement('#upload_status').innerHTML = file.name + ' uploading...';
                 previewImage('web-app-selected-logo', 'web-app-logo-preview-image');
-                uploadFile('logoImage', 'web-app-selected-logo', __appHostedServerRoot + 'system/webapp/uploadLogoImage');
+                uploadFile('logoImage', 'web-app-selected-logo', appHost + 'system/webapp/uploadLogoImage');
             });
 
 
@@ -5105,7 +5099,7 @@ if (document.querySelectorAll('#flex-center').length !== 0) {
             captureElement('#web-app-social-links-data-btn').addEventListener('click', function () {
                 sendRequest({
                     method: "POST",
-                    url: __appHostedServerRoot + 'system/webapp/manageSocialLinks',
+                    url: appHost + 'system/webapp/manageSocialLinks',
                     async: true,
                     header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
                     data: {

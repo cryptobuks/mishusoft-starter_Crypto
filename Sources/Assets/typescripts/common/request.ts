@@ -1,4 +1,3 @@
-
 export function sendRequest(options: any, callback?: any) {
 
     /*worker.postMessage({
@@ -66,4 +65,3 @@ export function sendRequest(options: any, callback?: any) {
         console.log(event)
     })*/
 }
-

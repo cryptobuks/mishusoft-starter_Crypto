@@ -1,6 +1,7 @@
 import swal from "sweetalert";
-import {IsJsonString} from "./app-common-required";
-import {sendRequest} from "./app-common-required-send";
+import {createElement} from "./dom";
+import {IsJsonString} from "./validation";
+import {sendRequest} from "./request";
 
 /**
  * @param response any
@@ -95,22 +96,4 @@ export function sendMessage(self: any, data: any, __appHostUrl: string) {
 
 export function viewMessage(title: any, data: any, icon: any) {
     return swal(title, data, icon);
-}
-
-function createElement(node_data: any) {
-    let element, i, j, k;
-    for (i in node_data) {
-        let data: any = node_data[i];
-        for (j in data) {
-            let elementName = j;
-            let elementData = data[j];
-            element = document.createElement(elementName);
-            for (k in elementData) {
-                let element_attribute = k;
-                let element_attribute_value = elementData[k];
-                element.setAttribute(element_attribute, element_attribute_value);
-            }
-        }
-    }
-    return (element as HTMLElement);
 }

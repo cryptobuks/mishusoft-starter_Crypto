@@ -100,9 +100,9 @@ const commonConfig = {
             }
         ),
 
-        new HtmlWebpackPlugin({
-            title: 'Development',
-        }),
+        // new HtmlWebpackPlugin({
+        //     title: 'Development',
+        // }),
     ],
 
     //Enable debug mode
@@ -124,7 +124,7 @@ const commonFileConfig = {
     entry: {
 
         // Themes developments
-        index: './Assets/themes/index.js',
+        //index: './Assets/themes/index.js',
 
         // Typescripts developments
         /**
@@ -152,15 +152,15 @@ const commonFileConfig = {
         'installer': ['./Assets/typescripts/installer.ts'], /*build mishusoft installer module for installation mode support*/
 
         'app-js': ['./Assets/typescripts/mishusoft.ts',/*'./Assets/sass/themes/mishusoft.scss'*/], /*build mishusoft css framework supporter module for ui support*/
-        'app-js-v3': ['./Assets/typescripts/runtime/v3.ts',/*'./Assets/sass/v3/v3.scss'*/],/*build js and stylesheet v3 module for application support*/
-        'app-js-v4': ['./Assets/typescripts/runtime/v4.ts',/*'./Assets/sass/v4/v4.scss'*/], /*build js and  stylesheet v4 module for application support*/
+        'app-js-v3': ['./Assets/typescripts/runtime-v3.ts',/*'./Assets/sass/v3/v3.scss'*/],/*build js and stylesheet v3 module for application support*/
+        'app-js-v4': ['./Assets/typescripts/runtime-v4.ts',/*'./Assets/sass/v4/v4.scss'*/], /*build js and  stylesheet v4 module for application support*/
 
         /**
          * Special javascript framework for application
          */
 
         'monitor': ['./Assets/typescripts/tracker.ts'], /*build monitor module for monitor visitor's activities*/
-        'emergency': ['./Assets/typescripts/runtime/v3/emergency.ts'], /*build emergency module for emergency mode support*/
+        //'emergency': ['./Assets/typescripts/runtime/v3/emergency.ts'], /*build emergency module for emergency mode support*/
 
 
 
