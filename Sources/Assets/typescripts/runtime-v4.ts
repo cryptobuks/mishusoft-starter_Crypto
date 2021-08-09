@@ -1,4 +1,4 @@
-import {app, appHost} from "./common/db";
+import {app, appHost} from "./db/app";
 import {captureElement, createElement} from "./common/dom";
 import { sendRequest } from "./common/request";
 import {checkDuplicate, IsJsonString} from "./common/validation";

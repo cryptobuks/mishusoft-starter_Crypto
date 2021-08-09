@@ -2,7 +2,7 @@ import {
     checkInputDataAbility,
     previewImage
 } from "./common/common";
-import {app, appHost} from "./common/db";
+import {app, appHost} from "./db/app";
 import {captureElement, createElement} from "./common/dom";
 import { showMessage } from "./common/message";
 import { sendRequest } from "./common/request";

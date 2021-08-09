@@ -1,7 +1,7 @@
 /* global _root_ */
 /*initialize on extension installed*/
 
-import {captureElement} from "./dom";
+import {captureElement} from "../common/dom";
 
 let __appHostedServerRoot = captureElement('#mishusoft-web-root').content;
 

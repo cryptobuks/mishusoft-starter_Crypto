@@ -1,4 +1,4 @@
-import {app, appHost} from "./common/db";
+import {app, appHost} from "./db/app";
 import {captureElement} from "./common/dom";
 import {MishusoftInstaller} from "./classes/installer";
 

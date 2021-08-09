@@ -1,4 +1,4 @@
-import swal from "sweetalert";
+import sweetAlert from "sweetalert";
 import {createElement} from "./dom";
 import {IsJsonString} from "./validation";
 import {sendRequest} from "./request";
@@ -33,7 +33,7 @@ export function showMessage(response: any, element: { innerHTML: string; }, call
                 return callback(data);
             }
         } else {
-            return swal('Your data!', response, 'success');
+            return sweetAlert('Your data!', response, 'success');
         }
     } else {
         if (response.indexOf('<!doctype html>') !== -1 && response.indexOf('flex-center') !== -1) {
@@ -62,7 +62,7 @@ export function showMessage(response: any, element: { innerHTML: string; }, call
                 document.body.appendChild(popup);
             }
         } else {
-            return swal('Oop! Something went wrong!', response, 'error');
+            return sweetAlert('Oop! Something went wrong!', response, 'error');
         }
         //console.log(data);
     }
@@ -86,14 +86,14 @@ export function sendMessage(self: any, data: any, __appHostUrl: string) {
                 document.querySelector('#app-loader')?.setAttribute('style', 'display:none;');
                 return self.appRuntimeEventManager(JSON.parse(response));
             } else {
-                return swal("Oops! Something went wrong!", response, "error");
+                return sweetAlert("Oops! Something went wrong!", response, "error");
             }
         });
     } else {
-        return swal("Oops! We can't send request!", "error");
+        return sweetAlert("Oops! We can't send request!", "error");
     }
 }
 
 export function viewMessage(title: any, data: any, icon: any) {
-    return swal(title, data, icon);
+    return sweetAlert(title, data, icon);
 }
