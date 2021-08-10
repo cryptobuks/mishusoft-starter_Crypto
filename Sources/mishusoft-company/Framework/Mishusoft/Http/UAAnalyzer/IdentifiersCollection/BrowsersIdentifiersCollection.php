@@ -51,6 +51,9 @@ class BrowsersIdentifiersCollection extends Collection
         ];
     }
 
+    //google bots list
+    //https://developers.google.com/search/docs/advanced/crawling/overview-google-crawlers#crawlers
+
 
     // about all kind of browsers
 
@@ -62,7 +65,6 @@ class BrowsersIdentifiersCollection extends Collection
      */
     public function analyserAll():array
     {
-        //return $this->extractIdentifiers($this->query('browsers', 'analysers'));
         return $this->extractAttribute($this->query('browsers', 'analysers'), 'identifier-only');
     }
 
@@ -73,7 +75,6 @@ class BrowsersIdentifiersCollection extends Collection
      */
     public function botsAll():array
     {
-        //return $this->extractIdentifiers($this->query('browsers', 'bots'));
         return $this->extractAttribute($this->query('browsers', 'bots'), 'identifier-only');
     }
 
@@ -84,7 +85,6 @@ class BrowsersIdentifiersCollection extends Collection
      */
     public function applicationsAll():array
     {
-        //return $this->extractIdentifiers($this->query('browsers', 'applications'));
         return $this->extractAttribute($this->query('browsers', 'applications'), 'identifier-only');
     }
 
@@ -95,7 +95,6 @@ class BrowsersIdentifiersCollection extends Collection
      */
     public function emailClientsAll():array
     {
-        //return $this->extractIdentifiers($this->query('browsers', 'email-clients'));
         return $this->extractAttribute($this->query('browsers', 'email-clients'), 'identifier-only');
     }
 
@@ -106,7 +105,6 @@ class BrowsersIdentifiersCollection extends Collection
      */
     public function feedReadersAll():array
     {
-        //return $this->extractIdentifiers($this->query('browsers', 'feed-readers'));
         return $this->extractAttribute($this->query('browsers', 'feed-readers'), 'identifier-only');
     }
 
@@ -117,7 +115,6 @@ class BrowsersIdentifiersCollection extends Collection
      */
     public function multimediaPlayersAll():array
     {
-        //return $this->extractIdentifiers($this->query('browsers', 'multimedia-players'));
         return $this->extractAttribute($this->query('browsers', 'multimedia-players'), 'identifier-only');
     }
 
@@ -128,7 +125,6 @@ class BrowsersIdentifiersCollection extends Collection
      */
     public function offlineBrowsersAll():array
     {
-        //return $this->extractIdentifiers($this->query('browsers', 'offline-browsers'));
         return $this->extractAttribute($this->query('browsers', 'offline-browsers'), 'identifier-only');
     }
 
@@ -139,7 +135,6 @@ class BrowsersIdentifiersCollection extends Collection
      */
     public function toolsAll():array
     {
-        //return $this->extractIdentifiers($this->query('browsers', 'tools'));
         return $this->extractAttribute($this->query('browsers', 'tools'), 'identifier-only');
     }
 
@@ -150,7 +145,6 @@ class BrowsersIdentifiersCollection extends Collection
      */
     public function browsersAll():array
     {
-        //return $this->extractIdentifiers($this->query('browsers', 'browsers'));
         return $this->extractAttribute($this->query('browsers', 'browsers'), 'identifier-only');
     }
 
@@ -161,7 +155,6 @@ class BrowsersIdentifiersCollection extends Collection
      */
     public function compatibilitiesAll():array
     {
-        //return $this->extractIdentifiers($this->query('browsers', 'compatibilities'));
         return $this->extractAttribute($this->query('browsers', 'compatibilities'), 'identifier-only');
     }
 
@@ -172,7 +165,6 @@ class BrowsersIdentifiersCollection extends Collection
      */
     public function browserEnginesAll():array
     {
-        //return $this->extractIdentifiers($this->query('browsers', 'browsers-engines'));
         return $this->extractAttribute($this->query('browsers', 'browsers-engines'), 'identifier-only');
     }
 }

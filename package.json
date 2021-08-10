@@ -57,6 +57,7 @@
     "ts-loader": "^9.2.3",
     "typescript": "^4.3.4",
     "webpack": "^5.40.0",
+    "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2",
     "webpack-fix-style-only-entries": "^0.6.1",
@@ -64,6 +65,8 @@
     "webpack-preprocessor": "^0.1.12",
     "webpack-preprocessor-loader": "^1.1.4",
     "webpack-remove-empty-scripts": "^0.7.1",
-    "whatwg-fetch": "^3.6.2"
+    "whatwg-fetch": "^3.6.2",
+    "lodash": "^4.17.21",
+    "lodash-webpack-plugin": "^0.11.6"
   }
 }

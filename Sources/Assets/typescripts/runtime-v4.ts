@@ -12,7 +12,8 @@ let publicSocialLinksInterval: any, visitorsAccessLogsInterval: any, contactMess
 const background93c = "background: #93c";
 
 
-//hide app loader on document completed
+
+
 (function () {
     let interval = setInterval(function () {
         if(document.readyState=== 'complete'){

@@ -1,0 +1,460 @@
+---
+::1:
+  Unknown:
+    "2021-08-10 08:08:34":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:08:34"
+    "2021-08-10 08:08:35":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/css/app-ui-v4.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:08:35"
+    "2021-08-10 08:08:36":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/css/font-face.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:08:36"
+    "2021-08-10 08:08:37":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:08:37"
+    "2021-08-10 08:08:38":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/css/font-face.css.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:08:38"
+    "2021-08-10 08:08:41":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:08:41"
+    "2021-08-10 08:08:42":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/js/readystate.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:08:42"
+    "2021-08-10 08:08:43":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/js/readystate.js.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:08:43"
+    "2021-08-10 08:09:05":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:05"
+    "2021-08-10 08:09:06":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/loader.css.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:06"
+    "2021-08-10 08:09:07":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/js/sw.js.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:07"
+    "2021-08-10 08:09:08":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:08"
+    "2021-08-10 08:09:09":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/css/font-face.css.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:09"
+    "2021-08-10 08:09:11":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:11"
+    "2021-08-10 08:09:12":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/js/app-js.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:12"
+    "2021-08-10 08:09:13":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/js/sw.js.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:13"
+    "2021-08-10 08:09:19":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:19"
+    "2021-08-10 08:09:20":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/js/app-js.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:20"
+    "2021-08-10 08:09:21":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/js/readystate.js.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:21"
+    "2021-08-10 08:09:24":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:24"
+    "2021-08-10 08:09:25":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/css/app-ui-v4.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:25"
+    "2021-08-10 08:09:26":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/css/mishusoft-theme.css.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:26"
+    "2021-08-10 08:09:32":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (Linux; Android 7.0; Moto G (4)) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/90.0.4420.0 Mobile Safari/537.36 Chrome-Lighthouse
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:32"
+    "2021-08-10 08:09:33":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (Linux; Android 7.0; Moto G (4)) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/90.0.4420.0 Mobile Safari/537.36 Chrome-Lighthouse
+      url: http://localhost:8080/assets/css/font-face.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:33"
+    "2021-08-10 08:09:34":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (Linux; Android 7.0; Moto G (4)) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/90.0.4420.0 Mobile Safari/537.36 Chrome-Lighthouse
+      url: http://localhost:8080/assets/webfonts/SairaStencilOne-Regular.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:34"
+    "2021-08-10 08:09:37":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (Linux; Android 7.0; Moto G (4)) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/90.0.4420.0 Mobile Safari/537.36 Chrome-Lighthouse
+      url: http://localhost:8080/assets/css/font-face.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:37"
+    "2021-08-10 08:09:38":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/js/readystate.js.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:38"
+    "2021-08-10 08:09:39":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (Linux; Android 7.0; Moto G (4)) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/90.0.4420.0 Mobile Safari/537.36 Chrome-Lighthouse
+      url: http://localhost:8080/assets/css/font-face.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:39"
+    "2021-08-10 08:09:40":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (Linux; Android 7.0; Moto G (4)) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/90.0.4420.0 Mobile Safari/537.36 Chrome-Lighthouse
+      url: http://localhost:8080/assets/js/readystate.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:40"
+    "2021-08-10 08:09:41":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (Linux; Android 7.0; Moto G (4)) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/90.0.4420.0 Mobile Safari/537.36 Chrome-Lighthouse
+      url: http://localhost:8080/assets/js/readystate.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:41"
+    "2021-08-10 08:09:42":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (Linux; Android 7.0; Moto G (4)) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/90.0.4420.0 Mobile Safari/537.36 Chrome-Lighthouse
+      url: http://localhost:8080/assets/js/app-js.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:42"
+    "2021-08-10 08:09:44":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (Linux; Android 6.0.1; Moto G (4)) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/92.0.4515.131 Mobile Safari/537.36
+      url: http://localhost:8080/assets/css/font-face.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:44"
+    "2021-08-10 08:09:45":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/js/app-js.js.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:45"
+    "2021-08-10 08:09:46":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:46"
+    "2021-08-10 08:09:47":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/mishusoft-theme.css.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:47"
+    "2021-08-10 08:09:48":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:48"
+    "2021-08-10 08:09:49":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/webfonts/SairaStencilOne-Regular.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:49"
+    "2021-08-10 08:09:50":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/js/sw.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-10 08:09:50"
+...

@@ -113,22 +113,33 @@ if ($this->templateUse === 'no') {
                     'rel' => 'stylesheet', 'type' => 'text/css',
                     'href' => Storage::assetsFullPath('css/font-face.css', 'remote'),
                 ],
+                [
+                    'rel' => 'stylesheet', 'type' => 'text/css',
+                    'href' => Storage::assetsFullPath('css/mishusoft-theme.css', 'remote'),
+                ],
+                [
+                    'rel' => 'stylesheet', 'type' => 'text/css',
+                    'href' => Storage::assetsFullPath('css/app-ui-v4.css', 'remote'),
+                ],
             ],
-            'style' => [
-                [
-                    'rel' => 'stylesheet', 'type' => 'text/css',
-                    'text' => file_get_contents(Storage::assetsFullPath('css/app-ui-v4.css')),
-                ],
-                [
-                    'rel' => 'stylesheet', 'type' => 'text/css',
-                    'text' => file_get_contents(Storage::assetsFullPath('css/mishusoft-theme.css')),
-                ],
-            ],]
+        //            'style' => [
+        //                [
+        //                    'rel' => 'stylesheet', 'type' => 'text/css',
+        //                    'text' => file_get_contents(Storage::assetsFullPath('css/app-ui-v4.css')),
+        //                ],
+        //                [
+        //                    'rel' => 'stylesheet', 'type' => 'text/css',
+        //                    'text' => file_get_contents(Storage::assetsFullPath('css/mishusoft-theme.css')),
+        //                ],
+        //            ],
+        ]
     );
 
     Ui::element(Ui::getDocumentHeadElement(), 'style', [
-        'text' => '.app-loader{/*display:none;*//* Hidden by default */position: fixed; /* Stay in place */z-index: 1000; /* Sit on top */padding-top: 15%; /* Location of the box */top: 50%;left: 50%;transform: translate(-50%, -50%);width: 100%; /* Full width */height: 100%; /* Full height */overflow: auto; /* Enable scroll if needed */background-color: rgb(135, 206, 250); /* Fallback color */background-color: rgba(135, 206, 250, 1); /* Black w/ opacity */}.app-loader-image{cursor: progress;width: 100px;height: 100px;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);box-sizing: border-box;-webkit-border-radius: 50%;border-radius: 50%;-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);}'
+        'text' => file_get_contents(Storage::assetsFullPath('css/loader.css')),
     ]);
+
+
     /*
      * adsence link
      * <script data-ad-client="ca-pub-7478244803438159" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -198,6 +209,7 @@ if ($this->templateUse === 'no') {
         }
     }
 
+
     Ui::elementList(
         Ui::getTemplateBody(),
         [
@@ -207,8 +219,14 @@ if ($this->templateUse === 'no') {
                     'text' => 0,
                 ],
                 [
-                    'type' => 'application/javascript',
-                    'text' => file_get_contents(Storage::assetsFullPath('js/app-js-v4.js')),
+                    'type' => 'application/javascript', 'rel' => 'prefetch',
+                    //'text' => file_get_contents(Storage::assetsFullPath('js/readystate.js')),
+                    'src' => Storage::assetsFullPath('js/readystate.js', 'remote'),
+                ],
+                [
+                    'type' => 'application/javascript', 'rel' => 'prefetch',
+                    //'text' => file_get_contents(Storage::assetsFullPath('js/app-js.js')),
+                    'src' => Storage::assetsFullPath('js/app-js.js', 'remote'),
                 ],
             ],
         ]

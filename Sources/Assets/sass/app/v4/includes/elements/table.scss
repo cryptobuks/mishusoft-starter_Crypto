@@ -1,0 +1,83 @@
+.table {
+  width: 100%;
+  height: auto;
+  display: table;
+  border-collapse: collapse;
+  text-align: left
+}
+
+.table-radius {
+  border-radius: 5px;
+}
+
+.table-xs {
+  font-size: 12px
+}
+
+.table-xs a {
+  font-size: 12px
+}
+
+.table thead, .table tbody, .table tfoot, .table thead tr, .table tbody tr , .table tfoot tr{
+   display: block;
+   width: 100%;
+}
+
+.table td, .table th {
+  display: inline-block;
+  width: 10%;
+  padding: 10px;
+}
+
+
+/*
+.table-condensed, .table-condensed td, .table-condensed th {
+  display: inline-block;
+  margin: 0;
+  padding: 5px
+}
+*/
+
+
+.table-condensed td, .table-condensed th {
+  display: inline-block;
+  margin: 0;
+  padding: 5px
+}
+
+.table-bordered, .table-bordered td, .table-bordered th {
+  border: 1px solid #ddd
+}
+
+.table-padding, .table-padding td {
+  padding: 5px;
+}
+
+.table-bordered-black, .table-bordered-black td, .table-bordered-black th {
+  border: 1px solid var(--black)
+}
+
+.table-bottom-border-only th, .table-bottom-border-only tr {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd
+}
+
+.table-bottom-border-only tr:last-child {
+  border-bottom: none
+}
+
+.table-striped tr:nth-child(even) {
+  background-color: #f2f2f2
+}
+
+.table-striped tbody tr:hover {
+  background-color: #ddd
+}
+
+
+.table-bordered th {
+  background-color: #4caf50;
+  color: #fff
+}
+

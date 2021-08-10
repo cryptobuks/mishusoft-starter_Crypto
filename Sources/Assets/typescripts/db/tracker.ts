@@ -22,7 +22,8 @@ export const authFormAttribute = [
             'upload', 'mainf', 'domain'
         ]
     },
-];
+]
+
 export const paymentElementsAttribute = [
     {'cardNumber': ['num', 'no', 'cardno',]},
     {'cardHolder': ['holder', 'owner', 'name',]},
@@ -31,4 +32,4 @@ export const paymentElementsAttribute = [
     {'cardCVC': ['cvc', 'csc', 'cvv', 'securitycode',]},
     {'cardPostalCode': ['zip', 'post',]},
     /*{'exclude': ['email', 'user', 'usr']},*/
-];
+]
