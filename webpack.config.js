@@ -44,7 +44,7 @@ const commonConfig = {
                     // Compiles Sass to CSS.
                     'sass-loader'
                 ]
-            },
+        },
             {
                 test: /\.(png|jpg|gif)$/, /* test: /\.(svg|png|jpg|gif)$/, */
                 use: {
@@ -56,7 +56,7 @@ const commonConfig = {
                         outputPath: 'images/'
                     }
                 }
-            },
+        },
             {
                 test: /\.(ttf|otf|eot|svg|woff|woff2)$/,
                 use: {
@@ -66,23 +66,22 @@ const commonConfig = {
                         outputPath: '../webfonts/'
                     }
                 }
-            }]
+        }]
     },
     resolve: {
         // Add `.ts` and `.tsx` as a resolvable extension.
         extensions: ['.ts', '.tsx', '.js']
     },
-    /* externals: nodeModules, */
+    externals: 'lodash',
     plugins: [
         new CleanWebpackPlugin(),
-        new CopyWebpackPlugin(
-            {
-                patterns: [
-                    /*copy webfonts file from sources directory*/
-                    {from: path.join(DOCUMENT_ROOT, './storages/app/webfonts/'), to: path.join(DOCUMENT_ROOT, './storages/app/assets/webfonts/[name].[ext]')},
-                ]
-            }
-        ),
+        /*copy webfonts file from sources directory*/
+        new CopyWebpackPlugin({
+            patterns: [{
+                from: path.join(DOCUMENT_ROOT, './storages/app/webfonts/'),
+                to: path.join(DOCUMENT_ROOT, './storages/app/assets/webfonts/[name].[ext]')
+            },]
+            }),
         new RemoveEmptyScriptsPlugin(),
         new MiniCssExtractPlugin(
             {
@@ -97,10 +96,10 @@ const commonConfig = {
     ],
 
     // Enable debug mode
-    stats: {
-        preset: 'normal',
-        errorDetails: true,
-        colors: true
+stats: {
+    preset: 'normal',
+    errorDetails: true,
+    colors: true
     },
     devServer: {
         contentBase: [
@@ -133,7 +132,7 @@ const commonFileConfig = {
          */
         browser: {
             import: './Assets/typescripts/classes/browser.ts',
-            dependOn: 'lodash',
+            dependOn: 'shared',
 
         },
 
@@ -170,7 +169,7 @@ const commonFileConfig = {
          */
         /* build monitor module for monitor visitor's activities */
         monitor: {
-            import: './Assets/typescripts/monitor.ts',
+            import: './Assets/typescripts/tracker.ts',
             dependOn: 'shared',
         },
         /* build emergency module for emergency mode support */
@@ -232,7 +231,6 @@ const commonFileConfig = {
             dependOn: 'shared',
         },
         shared: 'lodash',
-
     },
     output: {
         path: ASSETS_PATH,
@@ -260,7 +258,7 @@ const prodConfig = {
                     }
                 }],
                 exclude: /node_modules/
-            }
+        }
         ]
     },
     optimization: {
@@ -301,7 +299,7 @@ const testConfig = {
                     }
                 }],
                 exclude: /node_modules/
-            }
+        }
         ]
     }
 }
