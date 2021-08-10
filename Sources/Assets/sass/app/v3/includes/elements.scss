@@ -1,6 +1,3 @@
-@import "../../common/lib";
-
-
 .input-control {
   width: 100% !important;
   font-size: 15px;
@@ -11,19 +8,19 @@
   box-sizing: border-box;
   -webkit-border-radius: 4px;
   border-radius: 4px;
-  background-color: $white;
+  background-color: var(--white);
 
   &:focus, &:active, &:hover {
-    background-color: $white;
-    border: 1px solid $RootColorBlue
+    background-color: var(--white);
+    border: 1px solid var(--blue-deep)
   }
 }
 
 
 .input-control:disabled,.input-control:disabled:hover {
-  color: $white;
-  background: $lightgrey;
-  border: 1px solid $lightgrey;
+  color: var(--white);
+  background: var(--grey-light);
+  border: 1px solid var(--grey-light);
 }
 
 .input-control-padding-low {
@@ -155,7 +152,7 @@ fieldset > legend {
 }
 
 .link, .link:active, .link:visited {
-  color: $black;
+  color: var(--black);
   font-size: 15px;
   padding: 5px;
   cursor: pointer;
@@ -164,7 +161,7 @@ fieldset > legend {
 }
 
 .link:hover {
-  color: #93c;
+  color: var(--darkorchid);
 }
 
 
@@ -200,7 +197,7 @@ fieldset > legend {
 }
 
 .table-bordered-black, .table-bordered-black td, .table-bordered-black th {
-  border: 1px solid $black
+  border: 1px solid var(--black)
 }
 
 .table-bottom-border-only th, .table-bottom-border-only tr {
@@ -251,24 +248,24 @@ input, select, textarea {
 .pagination > a {
   margin: 2px 4px;
   font-size: 15px;
-  color: $black;
+  color: var(--black);
   float: left;
   padding: 8px 16px;
   text-decoration: none;
   transition: background-color .3s;
   border-radius: 5px;
-  border: 1px solid $lightgrey;
+  border: 1px solid var(--grey-light);
 }
 
 .pagination a.active {
   border-radius: 5px;
   border-style: none;
-  background-color: $RootColorBlue;
+  background-color: var(--blue-deep);
   color: #fff;
 }
 
 .pagination a:hover:not(.active) {
-  background-color: $lightgrey;
+  background-color: var(--grey-light);
 }
 
 .pagination a:first-child {
@@ -283,7 +280,7 @@ input, select, textarea {
 
 
 .action-button {
-  color: $black;
+  color: var(--black);
   font-size: 15px;
   padding: 7px 12px;
   cursor: pointer;
@@ -292,8 +289,8 @@ input, select, textarea {
 }
 
 .action-button:hover {
-  color: $white;
-  background-color: $RootColorBlue
+  color: var(--white);
+  background-color: var(--blue-deep)
 }
 
 

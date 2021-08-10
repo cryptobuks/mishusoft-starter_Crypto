@@ -1,4 +1,3 @@
-@import "../../common/lib";
 
 .button {
   display: inline-block;
@@ -46,12 +45,12 @@
 
   &:disabled {
     cursor: not-allowed;
-    color: $lightgrey;
-    border: 2px solid $lightgrey;
+    color: var(--grey-light);
+    border: 2px solid var(--grey-light);
 
     &:hover {
-      color: $lightgrey;
-      border: 2px solid $lightgrey
+      color: var(--grey-light);
+      border: 2px solid var(--grey-light)
     }
   }
 
@@ -79,17 +78,17 @@
 
   &-default {
     color: #515151;
-    background: $lightgrey;
-    /*  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, $lightgrey), color-stop(100%, #8a8a8a));
-      background: -webkit-linear-gradient(top, $lightgrey 0, #8a8a8a 100%);
-      background: -o-linear-gradient(top, $lightgrey 0, #8a8a8a 100%);
-      background: -ms-linear-gradient(top, $lightgrey 0, #8a8a8a 100%);
-      background: linear-gradient(top, $lightgrey 0, #8a8a8a 100%)*/
+    background: var(--grey-light);
+    /*  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, var(--grey-light)), color-stop(100%, #8a8a8a));
+      background: -webkit-linear-gradient(top, var(--grey-light) 0, #8a8a8a 100%);
+      background: -o-linear-gradient(top, var(--grey-light) 0, #8a8a8a 100%);
+      background: -ms-linear-gradient(top, var(--grey-light) 0, #8a8a8a 100%);
+      background: linear-gradient(top, var(--grey-light) 0, #8a8a8a 100%)*/
   }
 
   &-danger {
-    color: $white;
-    background: $red;
+    color: var(--white);
+    background: var(--red);
     /*  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(255, 36, 44, .63)), color-stop(100%, #ff5154));
       background: -webkit-linear-gradient(top, rgba(255, 36, 44, .63) 0, #ff5154 100%);
       background: -o-linear-gradient(top, rgba(255, 36, 44, .63) 0, #ff5154 100%);
@@ -98,8 +97,8 @@
   }
 
   &-warning {
-    color: $black;
-    background: $yellow;
+    color: var(--black);
+    background: var(--yellow);
     /*  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(255, 36, 44, .63)), color-stop(100%, #ff5154));
       background: -webkit-linear-gradient(top, rgba(255, 36, 44, .63) 0, #ff5154 100%);
       background: -o-linear-gradient(top, rgba(255, 36, 44, .63) 0, #ff5154 100%);
@@ -139,12 +138,12 @@
 
     &:disabled {
       cursor: not-allowed;
-      color: $lightgrey;
-      border: 2px solid $lightgrey;
+      color: var(--grey-light);
+      border: 2px solid var(--grey-light);
 
       &:hover {
-        color: $lightgrey;
-        border: 2px solid $lightgrey
+        color: var(--grey-light);
+        border: 2px solid var(--grey-light)
       }
 
     }
@@ -156,221 +155,221 @@
     }
 
     &-primary {
-      color: $black;
-      border: 2px solid $RootColorBlue;
-      background-color: $white;
+      color: var(--black);
+      border: 2px solid var(--blue-deep);
+      background-color: var(--white);
 
       &:disabled {
-        color: $lightgrey;
-        background-color: $white;
-        border: 2px solid $lightgrey;
+        color: var(--grey-light);
+        background-color: var(--white);
+        border: 2px solid var(--grey-light);
 
         &:hover {
-          color: $lightgrey;
+          color: var(--grey-light);
           cursor: not-allowed;
-          border: 2px solid $lightgrey;
+          border: 2px solid var(--grey-light);
         }
       }
 
       &:hover {
-        color: $white;
-        background-color: $RootColorBlue;
+        color: var(--white);
+        background-color: var(--blue-deep);
       }
     }
 
     &-secondary {
-      color: $black;
+      color: var(--black);
       border: 2px solid rgba(0, 0, 0, .58);
-      background-color: $white;
+      background-color: var(--white);
 
       &:disabled {
-        color: $lightgrey;
-        border: 2px solid $lightgrey;
-        background-color: $white;
+        color: var(--grey-light);
+        border: 2px solid var(--grey-light);
+        background-color: var(--white);
 
         &:hover {
-          color: $lightgrey;
+          color: var(--grey-light);
           cursor: not-allowed;
-          border: 2px solid $lightgrey;
-          background-color: $white
+          border: 2px solid var(--grey-light);
+          background-color: var(--white)
         }
       }
 
       &:hover {
-        color: $white;
+        color: var(--white);
         border: none;
         background-color: rgba(0, 0, 0, .58)
       }
     }
 
     &-success {
-      color: $black;
+      color: var(--black);
       border: 2px solid #4caf50;
-      background-color: $white;
+      background-color: var(--white);
 
       &:disabled {
-        color: $lightgrey;
-        border: 2px solid $lightgrey;
-        background-color: $white;
+        color: var(--grey-light);
+        border: 2px solid var(--grey-light);
+        background-color: var(--white);
 
         &:hover {
-          color: $lightgrey;
+          color: var(--grey-light);
           cursor: not-allowed;
-          border: 2px solid $lightgrey;
-          background-color: $white
+          border: 2px solid var(--grey-light);
+          background-color: var(--white)
         }
       }
 
       &:hover {
-        color: $white;
+        color: var(--white);
         background-color: #4caf50
       }
     }
 
     &-danger {
-      color: $black;
-      border: 2px solid $red;
-      background-color: $white;
+      color: var(--black);
+      border: 2px solid var(--red);
+      background-color: var(--white);
 
       &:disabled {
-        color: $lightgrey;
-        border: 2px solid $lightgrey;
-        background-color: $white;
+        color: var(--grey-light);
+        border: 2px solid var(--grey-light);
+        background-color: var(--white);
 
         &:hover {
-          color: $lightgrey;
+          color: var(--grey-light);
           cursor: not-allowed;
-          border: 2px solid $lightgrey;
-          background-color: $white
+          border: 2px solid var(--grey-light);
+          background-color: var(--white)
         }
       }
 
       &:hover {
-        color: $white;
-        background-color: $red
+        color: var(--white);
+        background-color: var(--red)
       }
 
     }
 
     &-warning {
-      color: $black;
+      color: var(--black);
       border: 2px solid #ff0;
-      background-color: $white;
+      background-color: var(--white);
 
       &:disabled {
-        color: $lightgrey;
-        border: 2px solid $lightgrey;
-        background-color: $white;
+        color: var(--grey-light);
+        border: 2px solid var(--grey-light);
+        background-color: var(--white);
 
         &:hover {
-          color: $lightgrey;
+          color: var(--grey-light);
           cursor: not-allowed;
-          border: 2px solid $lightgrey;
-          background-color: $white
+          border: 2px solid var(--grey-light);
+          background-color: var(--white)
         }
 
       }
 
       &:hover {
-        color: $black;
+        color: var(--black);
         background-color: #ff0
       }
 
     }
 
     &-info {
-      color: $black;
-      border: 2px solid $RootColorBlue;
-      background-color: $white;
+      color: var(--black);
+      border: 2px solid var(--blue-deep);
+      background-color: var(--white);
 
       &:disabled {
-        color: $lightgrey;
-        border: 2px solid $lightgrey;
-        background-color: $white;
+        color: var(--grey-light);
+        border: 2px solid var(--grey-light);
+        background-color: var(--white);
 
         &:hover {
-          color: $lightgrey;
+          color: var(--grey-light);
           cursor: not-allowed;
-          border: 2px solid $lightgrey;
-          background-color: $white
+          border: 2px solid var(--grey-light);
+          background-color: var(--white)
         }
       }
 
       &:hover {
-        color: $white;
-        background-color: $RootColorBlue
+        color: var(--white);
+        background-color: var(--blue-deep)
       }
     }
 
     &-light {
-      color: $black;
-      border: 2px solid $lightgrey;
-      background-color: $white;
+      color: var(--black);
+      border: 2px solid var(--grey-light);
+      background-color: var(--white);
 
       &:disabled {
-        color: $lightgrey;
-        border: 2px solid $lightgrey;
-        background-color: $white;
+        color: var(--grey-light);
+        border: 2px solid var(--grey-light);
+        background-color: var(--white);
 
         &:hover {
-          color: $lightgrey;
+          color: var(--grey-light);
           cursor: not-allowed;
-          border: 2px solid $lightgrey;
-          background-color: $white
+          border: 2px solid var(--grey-light);
+          background-color: var(--white)
         }
       }
 
       &:hover {
-        color: $white;
-        background-color: $lightgrey
+        color: var(--white);
+        background-color: var(--grey-light)
       }
     }
 
     &-black {
-      color: $black;
-      border: 2px solid $black;
-      background-color: $white;
+      color: var(--black);
+      border: 2px solid var(--black);
+      background-color: var(--white);
 
       &:disabled {
-        color: $lightgrey;
-        border: 2px solid $lightgrey;
-        background-color: $white;
+        color: var(--grey-light);
+        border: 2px solid var(--grey-light);
+        background-color: var(--white);
 
         &:hover {
-          color: $lightgrey;
+          color: var(--grey-light);
           cursor: not-allowed;
-          border: 2px solid $lightgrey;
-          background-color: $white
+          border: 2px solid var(--grey-light);
+          background-color: var(--white)
         }
       }
 
       &:hover {
-        color: $white;
-        background-color: $black
+        color: var(--white);
+        background-color: var(--black)
       }
     }
 
     &-default {
-      color: $black;
-      border: 2px solid $white;
-      background-color: $white;
+      color: var(--black);
+      border: 2px solid var(--white);
+      background-color: var(--white);
 
       &:disabled {
-        color: $lightgrey;
-        border: 2px solid $lightgrey;
-        background-color: $white;
+        color: var(--grey-light);
+        border: 2px solid var(--grey-light);
+        background-color: var(--white);
 
         &:hover {
-          color: $lightgrey;
+          color: var(--grey-light);
           cursor: not-allowed;
-          border: 2px solid $lightgrey;
-          background-color: $white
+          border: 2px solid var(--grey-light);
+          background-color: var(--white)
         }
       }
 
       &:hover {
-        color: $black;
-        background-color: $white
+        color: var(--black);
+        background-color: var(--white)
       }
     }
   }

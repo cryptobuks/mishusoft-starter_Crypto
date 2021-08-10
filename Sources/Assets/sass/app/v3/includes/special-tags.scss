@@ -1,6 +1,4 @@
-@import "../../common/lib";
-
-ms-app {
+.ms-app {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,13 +50,9 @@ breadcrumb {
 }*/
 
 
-login {
-
-}
 
 
-
-alternative {
+.alternative {
   display: flex;
   flex-direction: column;
   text-decoration: none;

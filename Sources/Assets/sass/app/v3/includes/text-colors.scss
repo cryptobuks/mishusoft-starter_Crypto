@@ -1,11 +1,10 @@
-@import "../../common/lib";
 
 .text-red {
-  color: $red !important
+  color: var(--red) !important
 }
 
 .text-blue {
-  color: $RootColorBlue !important
+  color: var(--blue-deep) !important
 }
 
 .text-notify {
@@ -13,27 +12,27 @@
 }
 
 .text-safe {
-  color: $white !important
+  color: var(--white) !important
 }
 
 .text-success {
-  color: $green
+  color: var(--green)
 }
 
 .text-danger {
-  color: $red !important
+  color: var(--red) !important
 }
 
 .text-black, .text-black > a, .text-black > p > a {
-  color: $black !important
+  color: var(--black) !important
 }
 
 .bg-success {
-  background-color: $green !important
+  background-color: var(--green) !important
 }
 
 .bg-danger {
-  background-color: $red !important
+  background-color: var(--red) !important
 }
 
 .bg-info {

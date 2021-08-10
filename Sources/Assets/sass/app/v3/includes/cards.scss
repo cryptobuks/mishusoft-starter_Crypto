@@ -1,4 +1,3 @@
-@import "../../common/lib";
 
 .simple-card1 {
   margin: 10px;
@@ -17,9 +16,9 @@
   font-size: 80px;
   font-weight: 700;
   text-align: center;
-  color: $white;
+  color: var(--white);
   padding: 5px;
-  background-color: $RootColorBlue;
+  background-color: var(--blue-deep);
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   -webkit-border-top-right-radius: 5px;
@@ -73,8 +72,8 @@
 }
 
 .simple-card1-link-text {
-  background-color: $RootColorBlue;
-  color: $white;
+  background-color: var(--blue-deep);
+  color: var(--white);
   font-size: 16px;
   padding: 16px 32px
 }
@@ -85,12 +84,12 @@
 }
 
 .simple-card1:hover > .simple-card1-logo {
-  border-bottom: 2px solid $white
+  border-bottom: 2px solid var(--white)
 }
 
 .simple-card1:hover > .simple-card1-text {
-  color: $white;
-  background-color: $RootColorBlue;
+  color: var(--white);
+  background-color: var(--blue-deep);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   -webkit-border-bottom-right-radius: 5px;
@@ -124,9 +123,9 @@
   font-size: 100px;
   font-weight: 700;
   text-align: center;
-  color: $white;
+  color: var(--white);
   padding: 5px;
-  background-color: $RootColorBlue;
+  background-color: var(--blue-deep);
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   -webkit-border-top-right-radius: 5px;
@@ -171,7 +170,7 @@
   text-align: center;
 
   padding: 10px 5px;
-  background-color: $RootColorBlue;
+  background-color: var(--blue-deep);
   cursor: pointer;
   border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -183,8 +182,8 @@
 }
 
 .simple-card2-link-text {
-  background-color: $RootColorBlue;
-  color: $white;
+  background-color: var(--blue-deep);
+  color: var(--white);
   font-size: 16px;
   padding: 10px 28px;
   border-style: none;
@@ -196,7 +195,7 @@
 }
 
 .simple-card2:hover > .simple-card2-logo {
-  border-bottom: 2px solid $white
+  border-bottom: 2px solid var(--white)
 }
 
 .simple-card2:hover > .simple-card2-text {
@@ -242,18 +241,18 @@
 }
 
 .simple-card3-text, .simple-card3-url-text {
-  color: $black
+  color: var(--black)
 }
 
 .simple-card3-text:hover {
-  color: $white;
-  background-color: $RootColorBlue;
+  color: var(--white);
+  background-color: var(--blue-deep);
   -webkit-border-radius: 0 5px 5px 0;
   border-radius: 0 5px 5px 0
 }
 
 .simple-card3-text:hover .simple-card3-url-text {
-  color: $white
+  color: var(--white)
 }
 
 .simple-card3-title-text {
@@ -272,8 +271,8 @@
 
 .simple-card3-url-text:hover {
   font-weight: 700;
-  background-color: $green;
-  color: $white;
+  background-color: var(--green);
+  color: var(--white);
   font-size: 15px;
   padding: 4px 10px
 }
@@ -311,10 +310,10 @@
   font-size: 50px;
   font-weight: 700;
   text-align: center;
-  color: $white;
+  color: var(--white);
   padding: 5px;
   display: block;
-  background-color: $RootColorBlue;
+  background-color: var(--blue-deep);
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   -webkit-border-top-right-radius: 5px;
@@ -326,16 +325,16 @@
   font-size: 15px;
   text-align: center;
   padding: 9px 5px;
-  color: $black;
+  color: var(--black);
 }
 
 .thumbnail:hover > .thumbnail-image {
-  border-bottom: 2px solid $white
+  border-bottom: 2px solid var(--white)
 }
 
 .thumbnail:hover > .thumbnail-text {
-  color: $white;
-  background-color: $RootColorBlue;
+  color: var(--white);
+  background-color: var(--blue-deep);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   -webkit-border-bottom-right-radius: 5px;

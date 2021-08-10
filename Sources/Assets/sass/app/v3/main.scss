@@ -3,7 +3,7 @@
 //@import '../common/font-face';
 //@import '../common/font-assets';
 //@import '../common/icons';
-@import "../includes/common/lib";
+//@import "../../includes/common/lib";
 ////@import './old';
 //
 //@import 'includes/button';
@@ -79,7 +79,7 @@ h1, h2, h3, h4, h5, h6 {
 
 hr {
   /*border-style: none;*/
-  border-bottom: 2px solid $RootColorBlue;
+  border-bottom: 2px solid var(--blue-deep);
 }
 
 .box-shadow {
@@ -150,7 +150,7 @@ hr {
   color: #fff;
   text-align: center;
   padding: 15px;
-  background-color: $RootColorBlue
+  background-color: var(--blue-deep);
 }
 
 .footer a {
@@ -160,21 +160,21 @@ hr {
 
 .footer1 {
   width: 100%;
-  color: $white
+  color: var(--white)
 }
 
 .footer1 .blank {
   height: 130px;
   width: 50%;
   float: left;
-  background: $darkorchid
+  background: var(--darkorchid)
 }
 
 .footer1 .blank .bg1 {
   height: 130px;
   width: 100%;
   float: left;
-  background: $RootColorBlue;
+  background: var(--blue-deep);
   border-bottom-right-radius: 50px;
   -webkit-border-bottom-right-radius: 50px
 }
@@ -185,7 +185,7 @@ hr {
   margin-top: -1px;
   margin-bottom: 10px;
   float: left;
-  background: $white;
+  background: var(--white);
   border-bottom-right-radius: 50px;
   -webkit-border-bottom-right-radius: 50px
 }
@@ -195,7 +195,7 @@ hr {
   width: 50%;
   text-align: left;
   float: left;
-  background: $RootColorBlue;
+  background: var(--blue-deep);
   -webkit-border-top-left-radius: 50px;
   border-top-left-radius: 50px
 }
@@ -207,7 +207,7 @@ hr {
   padding: 5px 10px 5px 40px;
   line-height: 1.35;
   float: left;
-  background: $darkorchid;
+  background: var(--darkorchid);
   -webkit-border-top-left-radius: 50px;
   border-top-left-radius: 50px
 }
@@ -253,11 +253,11 @@ hr {
 
 
 .read_more {
-  color: $white;
+  color: var(--white);
   width: 100px;
   padding: 5px 10px 5px 10px;
   font-size: 15px;
-  background: $RootColorBlue;
+  background: var(--blue-deep);
   -webkit-border-radius: 5px;
   border-radius: 5px
 }
@@ -313,7 +313,7 @@ hr {
 
 .ms-title {
   padding: 4px 5px 5px 5px;
-  color: $RootColorBlue;
+  color: var(--blue-deep);
   font-size: 35px;
   font-weight: 700;
   text-decoration: none;
@@ -362,7 +362,7 @@ hr {
 .app-body table tfoot, .app-body table thead {
   text-align: left;
   padding: 2px 5px 0 5px;
-  background-color: $lightgrey
+  background-color: var(--grey-light)
 }
 
 .app-body table td, .app-body table th {

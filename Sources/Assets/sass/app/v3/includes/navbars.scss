@@ -1,11 +1,9 @@
-@import "../../common/lib";
-
 .navbar1 {
   width: 100%;
   height: 30px;
 
-  color: $white;
-  background-image: linear-gradient($black, $grey);
+  color: var(--white);
+  background-image: linear-gradient(#000, #808080);
 
   /*display: flex;
   flex-direction: row;
@@ -13,7 +11,7 @@
   align-content: space-between;*/
 
   & a {
-    color: $white;
+    color: var(--white);
     & i {
       margin-right: 5px;
     }
@@ -42,10 +40,10 @@
     cursor: pointer;
 
     &-content {
-      color: $white;
+      color: var(--white);
       display: none;
       position: absolute;
-      background-color: $black;
+      background-color: var(--black);
       width: 100px;
       text-align: right;
       /*left: 8px;*/
@@ -60,8 +58,8 @@
         width: 100%;
 
         &:hover {
-          background-color: $lightgrey;
-          color: $black;
+          background-color: var(--grey-light);
+          color: var(--black);
         }
       }
     }
