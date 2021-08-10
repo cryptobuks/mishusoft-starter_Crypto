@@ -83,7 +83,7 @@ class Handler extends ErrorException
 
         $message = ['debug'=> ['caption'=> $titleOfErrorMessage, 'description'=> $description, 'stack'=> $stack],];
 
-        Logger::write($description, LOG_STYLE_SMART, LOG_TYPE_RUNTIME);
+        //Logger::write($description, LOG_STYLE_SMART, LOG_TYPE_RUNTIME);
         Firewall::runtimeFailure('Service Unavailable', $message);
 
         exit(0);

@@ -72,14 +72,14 @@ const commonConfig = {
         // Add `.ts` and `.tsx` as a resolvable extension.
         extensions: ['.ts', '.tsx', '.js']
     },
-    externals: 'lodash',
+    //externals: 'lodash',
     plugins: [
         new CleanWebpackPlugin(),
         /*copy webfonts file from sources directory*/
         new CopyWebpackPlugin({
             patterns: [{
                 from: path.join(DOCUMENT_ROOT, './storages/app/webfonts/'),
-                to: path.join(DOCUMENT_ROOT, './storages/app/assets/webfonts/[name].[ext]')
+                to: path.join(DOCUMENT_ROOT, './storages/app/assets/webfonts/')
             },]
             }),
         new RemoveEmptyScriptsPlugin(),
@@ -140,15 +140,21 @@ const commonFileConfig = {
          * Javascript serviceworker framework
          */
         // 'pwa': ['./Assets/typescripts/pwa.ts'], /*build serviceworker module for background mode support*/
-        // 'sw': ['./Assets/typescripts/service-worker.ts'], /*build serviceworker module for background mode support*/
+        'sw': ['./Assets/typescripts/trash/service-worker.ts'], /*build serviceworker module for background mode support*/
 
         /**
          * Javascript framework for application
          */
 
-        /* build mishusoft installer module for installation mode support */
+        /* Build mishusoft installer module for installation mode support */
         installer: {
             import: './Assets/typescripts/installer.ts',
+            dependOn: 'shared',
+        },
+
+        /* Build module for runtime support */
+        'readystate': {
+            import: './Assets/typescripts/readystate.ts',
             dependOn: 'shared',
         },
         'app-js': {
@@ -179,48 +185,13 @@ const commonFileConfig = {
         /**
          * CSS framework for application
          */
-        /**
-         * Build stylesheet for embedded resources support
-         */
-        resources: {
-            import: './Assets/sass/resources.scss',
-            dependOn: 'shared',
-        },
-        /**
-         * Build stylesheet for embedded application support
-         */
-        app: {
-            import: './Assets/sass/app.scss',
-            dependOn: 'shared',
-        },
 
-        /**
-         * Build stylesheet v3 module for application support
-         */
-        'app-ui-v3': {
-            import: './Assets/sass/app-v3.scss',
-            dependOn: 'shared',
-        },
 
-        /**
-         * Build stylesheet v4 module for application support
-         */
-        'app-ui-v4': {
-            import: './Assets/sass/app-v4.scss',
-            dependOn: 'shared',
-        },
-        /**
-         * Build mishusoft theme css framework supporter module for ui support
-         */
-        'mishusoft-theme': [
-            './Assets/sass/themes/mishusoft.scss',
-            './Assets/sass/themes/mishusoft/responsive.scss'
-        ],
         /**
          * Build font face css framework supporter module for ui support
          */
         'font-face': {
-            import: './Assets/sass/includes/common/font-face.scss',
+            import: './Assets/sass/font-face.scss',
             dependOn: 'shared',
         },
         /**
@@ -230,6 +201,54 @@ const commonFileConfig = {
             import: './Assets/sass/includes/common/colors.scss',
             dependOn: 'shared',
         },
+
+
+        /**
+         * Build stylesheet for application loader
+         */
+        loader: {
+            import: './Assets/sass/loader.scss',
+            dependOn: 'shared',
+        },
+
+
+        /**
+         * Build stylesheet for embedded application support
+         */
+        embedded: {
+            import: './Assets/sass/embedded.scss',
+            dependOn: 'shared',
+        },
+        resources: {
+            import: './Assets/sass/resources.scss',
+            dependOn: 'shared',
+        },
+
+
+
+        /**
+         * Build stylesheet for application support
+         */
+        'app-ui-v3': {
+            import: './Assets/sass/app-v3.scss',
+            dependOn: 'shared',
+        },
+        'app-ui-v4': {
+            import: './Assets/sass/app-v4.scss',
+            dependOn: 'shared',
+        },
+
+
+        /**
+         * Build stylesheet for themes
+         */
+        'mishusoft-theme': {
+            import: './Assets/sass/theme-mishusoft.scss',
+            dependOn: 'shared',
+        },
+
+
+
         shared: 'lodash',
     },
     output: {

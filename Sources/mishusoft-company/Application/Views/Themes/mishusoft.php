@@ -110,9 +110,29 @@ if ($this->templateUse === 'no') {
         [
             'link' => [
                 [
-                    'rel' => 'stylesheet', 'type' => 'text/css',
-                    'href' => Storage::assetsFullPath('css/font-face.css', 'remote'),
+                    'rel' => 'preload', 'as' => 'font', 'type' => 'font/woff', 'crossorigin' => '',
+                    'href' => Storage::assetsFullPath('webfonts/SairaStencilOne-Regular.woff', 'remote'),
                 ],
+                [
+                    'rel' => 'preload', 'as' => 'font', 'type' => 'font/woff2', 'crossorigin' => '',
+                    'href' => Storage::assetsFullPath('webfonts/SairaStencilOne-Regular.woff2', 'remote'),
+                ],
+                [
+                    'rel' => 'preload', 'as' => 'font', 'type' => 'font/woff', 'crossorigin' => '',
+                    'href' => Storage::assetsFullPath('webfonts/SolaimanLipi.woff', 'remote'),
+                ],
+                [
+                    'rel' => 'preload', 'as' => 'font', 'type' => 'font/woff', 'crossorigin' => '',
+                    'href' => Storage::assetsFullPath('webfonts/SourceSansPro.woff', 'remote'),
+                ],
+                [
+                    'rel' => 'preload', 'as' => 'font', 'type' => 'font/woff2', 'crossorigin' => '',
+                    'href' => Storage::assetsFullPath('webfonts/SourceSansPro.woff2', 'remote'),
+                ],
+//                [
+//                    'rel' => 'stylesheet', 'type' => 'text/css',
+//                    'href' => Storage::assetsFullPath('css/font-face.css', 'remote'),
+//                ],
                 [
                     'rel' => 'stylesheet', 'type' => 'text/css',
                     'href' => Storage::assetsFullPath('css/mishusoft-theme.css', 'remote'),
@@ -122,6 +142,8 @@ if ($this->templateUse === 'no') {
                     'href' => Storage::assetsFullPath('css/app-ui-v4.css', 'remote'),
                 ],
             ],
+        //        <link rel="preload" href="/css/opensans-light-webfont.woff2" as="font" type="font/woff2" crossorigin="">
+            //        <link rel="preload" href="/css/opensans-semibold-webfont.woff2" as="font" type="font/woff2" crossorigin="">
         //            'style' => [
         //                [
         //                    'rel' => 'stylesheet', 'type' => 'text/css',

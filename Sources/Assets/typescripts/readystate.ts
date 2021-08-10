@@ -4,6 +4,8 @@ import {app} from './db/app';
 //Variable, Constants declaration
 const webServiceWorker = new Worker(app.content.folder.js + 'sw.js');
 
+console.log('ready state is runing............')
+
 document.addEventListener('readystatechange', () => {
     //console.log(`readystate: ${document.readyState}\n`)
 
