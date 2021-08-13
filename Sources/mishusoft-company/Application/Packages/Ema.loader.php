@@ -2,18 +2,17 @@
 
 namespace Mishusoft\Ema;
 
-
 use Mishusoft\Http\Request;
 use Mishusoft\Preloader;
 use Mishusoft\Storage;
 use Mishusoft\Storage\FileSystem;
 use Mishusoft\System\BIOS;
-use Mishusoft\System\Logger;
+use Mishusoft\System\Log;
 use Mishusoft\Utility\Inflect;
 
-Logger::write('Ema loader started');
+Log::info('Ema loader started');
 
-Logger::write('Request store in $redirection variable');
+Log::info('Request store in $redirection variable');
 $request = new Request();
 
 /*
@@ -23,9 +22,9 @@ $request = new Request();
  *
  * */
 
-Logger::write(sprintf('Check %s directory existent.', Storage::emaPath()));
+Log::info(sprintf('Check %s directory existent.', Storage::emaPath()));
 if (file_exists(Storage::emaPath()) === true) {
-    Logger::write(sprintf('Found %s directory existent.', Storage::emaPath()));
+    Log::info(sprintf('Found %s directory existent.', Storage::emaPath()));
     /*
      * We need to check Mishusoft DVO (Mishusoft-App) root path,
      * if exists this path,
@@ -34,32 +33,32 @@ if (file_exists(Storage::emaPath()) === true) {
 
     $mishusoftAppPath = Storage::emaPath().'Modules'.DS;
     $defaultPackage   = 'Main';
-    Logger::write(sprintf('Check %s directory existent.', $mishusoftAppPath));
+    Log::info(sprintf('Check %s directory existent.', $mishusoftAppPath));
     if (file_exists($mishusoftAppPath) === true) {
-        Logger::write(sprintf('Count all exists files from %s directory.', $mishusoftAppPath));
+        Log::info(sprintf('Count all exists files from %s directory.', $mishusoftAppPath));
         $requestedHandleDirectory = $mishusoftAppPath.$defaultPackage.'/UrlHandlers/';
         if (count(FileSystem::list($requestedHandleDirectory, 'file')) > 0) {
             foreach (FileSystem::list($requestedHandleDirectory, 'file') as $filename) {
-                if (Inflect::lower(BIOS::getFilenameOnly($filename)) === Inflect::lower($prediction->getController())) {
+                if (Inflect::lower(BIOS::getFilenameOnly($filename)) === Inflect::lower($request->getController())) {
                     $currentRequestedFile = $mishusoftAppPath.$defaultPackage.'/UrlHandlers/'.$filename;
                     if (is_readable($currentRequestedFile) === true) {
-                        Logger::write(
+                        Log::info(
                             sprintf('Load %s form %s directory.', $currentRequestedFile, $mishusoftAppPath)
                         );
                         include_once $currentRequestedFile;
-                        Logger::write(sprintf('Extract class from %s.', $currentRequestedFile));
-                        $urlHandler = Preloader::getClassNamespaceFromPath($currentRequestedFile);
-                        Logger::write(sprintf('Execute class from %s.', $currentRequestedFile));
+                        Log::info(sprintf('Extract class from %s.', $currentRequestedFile));
+                        $urlHandler = Preloader::getClassNamespace($currentRequestedFile);
+                        Log::info(sprintf('Execute class from %s.', $currentRequestedFile));
                         call_user_func(
                             [
                                 new $urlHandler(),
                                 'Response',
                             ],
                             [
-                                'locale'     => $prediction->getLocale(),
-                                'controller' => $prediction->getController(),
-                                'method'     => $prediction->getMethod(),
-                                'arguments'  => $prediction->getArguments(),
+                                'locale'     => $request->getLocale(),
+                                'controller' => $request->getController(),
+                                'method'     => $request->getMethod(),
+                                'arguments'  => $request->getArguments(),
                             ]
                         );
                         exit();

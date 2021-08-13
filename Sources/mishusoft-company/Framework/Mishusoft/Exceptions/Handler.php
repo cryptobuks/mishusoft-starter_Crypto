@@ -154,7 +154,7 @@ class Handler extends ErrorException
      */
     private function hidePath(string $string): string
     {
-        return str_replace(RUNTIME_ROOT_PATH, 'app://', $string);
+        return str_replace(RUNTIME_ROOT_PATH, ROOT_IDENTITY, $string);
     }
 
     /**
@@ -246,7 +246,8 @@ class Handler extends ErrorException
 
             //Error Level: E_NOTICE
             //Value: 8
-            //Description:  A run-time notice indicating that the script encountered something that could possibly an error,
+            //Description:  A run-time notice indicating that
+            // the script encountered something that could possibly an error,
             // although the situation could also occur when running a script normally.
             8 => 'Notice',
 

@@ -1,1 +1,363 @@
-'use strict';function a3_0xa8b4(){const _0x11cf33=['32x32','2941224yWFIIa','https://www.mishusoft.com/monitor/browser/','2trRqTN','Welcome\x20to\x20Mishusoft\x20Platform','libraries/logos/apple-icon-76x76.png','\x20successfully.','icon','180x180','libraries/logos/ms-icon-144x144.png','libraries/logos/apple-icon-120x120.png','https://www.mishusoft.com/payment/donate','libraries/logos/apple-icon-57x57.png','libraries/logos/favicon.ico','libraries/logos/apple-icon-152x152.png','assets/css/','setAttribute','manifest','createElement','querySelector','The\x20application\x20is\x20ready\x20to\x20be\x20installed\x20on\x20your\x20device\x20at\x20this\x20time.','msu','webpackChunk','#ffffff','substr','#mishusoft-web-root','#app-loader','60x60','active','load','161631bHKRoH','addEventListener','82608ZDgkKm','readystatechange','libraries/logos/favicon-96x96.png','686117Zlsxzv','144x144','57x57','2f9dde381f67efed325acfb1011a988036b28fc6cc02f07668ef7180','image/png','media/logos/','state','Mishusoft\x20Platform\x20is\x20a\x20robust\x20multi-web\x20platform\x20developed\x20by\x20Mishusoft\x20Systems\x20Inc.\x20This\x20platform\x20is\x20capable\x20of\x20getting\x20your\x20work\x20done\x20quickly\x20and\x20accurately.','libraries/logos/apple-icon-114x114.png','support@mishusoft.com','msapplication-TileColor','info','theme-color','192x192','msapplication-TileImage','log','readyState','mishusoft','libraries/logos/manifest.json','register','152x152','libraries/logos/apple-icon-72x72.png','image/vnd.microsoft.icon','3353872zuYXEm','libraries/logos/favicon-32x32.png','96x96','b4c8f8449f','official','error',']\x20is\x20','content','16x16','sw.js','libraries/logos/apple-icon-60x60.png','apple-touch-icon','libraries/logos/android-icon-192x192.png','138XXdpns','Mishusoft\x20Systems\x20Incorporate.','utf8mb4','120x120','assets/js/','5573440nEHcyl','push','catch','libraries/logos/apple-icon-144x144.png','https://www.mishusoft.com/','7187705InFDWO','72x72'];a3_0xa8b4=function(){return _0x11cf33;};return a3_0xa8b4();}const a3_0x4c96cc=a3_0x5823;(function(_0x5b686e,_0x4bc3b8){const _0x2a9355=a3_0x5823,_0x34859d=_0x5b686e();while(!![]){try{const _0x366b5d=-parseInt(_0x2a9355(0xfa))/0x1*(-parseInt(_0x2a9355(0x12d))/0x2)+-parseInt(_0x2a9355(0x11e))/0x3*(-parseInt(_0x2a9355(0xf7))/0x4)+-parseInt(_0x2a9355(0x123))/0x5+-parseInt(_0x2a9355(0x12b))/0x6+parseInt(_0x2a9355(0x128))/0x7+-parseInt(_0x2a9355(0x111))/0x8+-parseInt(_0x2a9355(0xf5))/0x9;if(_0x366b5d===_0x4bc3b8)break;else _0x34859d['push'](_0x34859d['shift']());}catch(_0x3eda58){_0x34859d['push'](_0x34859d['shift']());}}}(a3_0xa8b4,0x97927));function a3_0x5823(_0x2ee423,_0x4f21ee){const _0xa8b47a=a3_0xa8b4();return a3_0x5823=function(_0x5823cf,_0xb58315){_0x5823cf=_0x5823cf-0xe0;let _0x29411e=_0xa8b47a[_0x5823cf];return _0x29411e;},a3_0x5823(_0x2ee423,_0x4f21ee);}(self[a3_0x4c96cc(0xed)]=self[a3_0x4c96cc(0xed)]||[])[a3_0x4c96cc(0x124)]([[0xe1],{0x321:(_0x8a6072,_0x50c504,_0x327935)=>{function _0x2181f8(_0xaeb54a){const _0x12099d=a3_0x5823;let _0x51bea1,_0x9ec9,_0x3dc806,_0x3f4ba6;for(_0x9ec9 in _0xaeb54a){let _0xd19c68=_0xaeb54a[_0x9ec9];for(_0x3dc806 in _0xd19c68){let _0x5c31c2=_0x3dc806,_0x110dae=_0xd19c68[_0x3dc806];for(_0x3f4ba6 in(_0x51bea1=document[_0x12099d(0xe9)](_0x5c31c2),_0x110dae)){let _0x5c6a79=_0x3f4ba6,_0x43ea70=_0x110dae[_0x3f4ba6];_0x51bea1[_0x12099d(0xe7)](_0x5c6a79,_0x43ea70);}}}return _0x51bea1;}function _0x5c3081(_0x3a82fe){const _0x35e106=a3_0x5823;if(null!==document['querySelector'](_0x3a82fe))return document[_0x35e106(0xea)](_0x3a82fe);}_0x327935['d'](_0x50c504,{'az':()=>_0x2181f8,'hh':()=>_0x5c3081});},0xd0:(_0x10d319,_0x21bbc7,_0x2056a0)=>{const _0x3b5acc=a3_0x4c96cc;_0x2056a0['d'](_0x21bbc7,{'M':()=>_0xac9cc9,'l':()=>_0x102029});let _0x491e31=(0x0,_0x2056a0(0x321)['hh'])(_0x3b5acc(0xf0))[_0x3b5acc(0x118)];void 0x0===_0x491e31&&(_0x491e31='https://www.mishusoft.com/'),'/'!==_0x491e31[_0x3b5acc(0xef)](-0x1)&&(_0x491e31+='/');const _0xac9cc9=_0x491e31,_0x102029={'default':{'name':_0x3b5acc(0x10b),'version':_0x3b5acc(0x115),'author':'Mr.\x20Al\x20Amin\x20Ahamed\x20Abir','charset':_0x3b5acc(0x120),'prefix':_0x3b5acc(0xec),'companyName':_0x3b5acc(0x11f),'text':{'welcome':_0x3b5acc(0x12e),'description':_0x3b5acc(0x101),'install_state':_0x3b5acc(0xeb)}},'content':{'folder':{'logos':_0x491e31+_0x3b5acc(0xff),'css':_0x491e31+_0x3b5acc(0xe6),'js':_0x491e31+_0x3b5acc(0x122),'images':_0x491e31+'assets/images/'},'file':{'default':{'link':[{'href':_0x491e31+_0x3b5acc(0xe3),'rel':_0x3b5acc(0x11c),'size':_0x3b5acc(0xfc)},{'href':_0x491e31+_0x3b5acc(0x11b),'rel':'apple-touch-icon','size':_0x3b5acc(0xf2)},{'href':_0x491e31+_0x3b5acc(0x10f),'rel':_0x3b5acc(0x11c),'size':_0x3b5acc(0x129)},{'href':_0x491e31+_0x3b5acc(0x12f),'rel':'apple-touch-icon','size':'76x76'},{'href':_0x491e31+_0x3b5acc(0x102),'rel':'apple-touch-icon','size':'114x114'},{'href':_0x491e31+_0x3b5acc(0xe1),'rel':_0x3b5acc(0x11c),'size':_0x3b5acc(0x121)},{'href':_0x491e31+_0x3b5acc(0x126),'rel':'apple-touch-icon','size':_0x3b5acc(0xfb)},{'href':_0x491e31+_0x3b5acc(0xe5),'rel':_0x3b5acc(0x11c),'size':_0x3b5acc(0x10e)},{'href':_0x491e31+'libraries/logos/apple-icon-180x180.png','rel':'apple-touch-icon','size':_0x3b5acc(0x132)},{'href':_0x491e31+_0x3b5acc(0x11d),'rel':_0x3b5acc(0x131),'size':_0x3b5acc(0x107),'type':_0x3b5acc(0xfe)},{'href':_0x491e31+'libraries/logos/favicon-16x16.png','rel':_0x3b5acc(0x131),'size':'16x16','type':_0x3b5acc(0xfe)},{'href':_0x491e31+_0x3b5acc(0x112),'rel':'icon','size':_0x3b5acc(0x12a),'type':_0x3b5acc(0xfe)},{'href':_0x491e31+_0x3b5acc(0xf9),'rel':_0x3b5acc(0x131),'size':_0x3b5acc(0x113),'type':_0x3b5acc(0xfe)},{'href':_0x491e31+_0x3b5acc(0xe4),'rel':_0x3b5acc(0x131),'size':_0x3b5acc(0x119),'type':_0x3b5acc(0x110)},{'href':_0x491e31+_0x3b5acc(0x10c),'rel':_0x3b5acc(0xe8)},{'name':_0x3b5acc(0x104),'content':_0x3b5acc(0xee)},{'name':_0x3b5acc(0x108),'content':_0x491e31+_0x3b5acc(0xe0)},{'name':_0x3b5acc(0x106),'content':_0x3b5acc(0xee)}]}}},'website':{'home':_0x3b5acc(0x127),'support':_0x3b5acc(0x103),'donate':_0x3b5acc(0xe2),'IpInfo':'https://api.ipdata.co/?api-key=2f9dde381f67efed325acfb1011a988036b28fc6cc02f07668ef7180','IpInfoKey':_0x3b5acc(0xfd),'fontAwesome':'https://kit.fontawesome.com/b4c8f8449f.js','fontAwesomeKey':_0x3b5acc(0x114),'temporary':{'home':'http://localhost/','monitorURL':'http://localhost/monitor/browser/','paymentURL':'http://localhost/payment/'},'publish':{'home':_0x3b5acc(0x127),'monitorURL':_0x3b5acc(0x12c),'paymentURL':'https://www.mishusoft.com/payment/'}},'runtime':{'request':''}};},0x1e6:(_0x3c28f3,_0x3df561,_0x1fedfe)=>{const _0x44ed6a=a3_0x4c96cc;var _0x18c337=_0x1fedfe(0x321),_0x4e43be=_0x1fedfe(0xd0);const _0x57428c=new Worker(_0x4e43be['l'][_0x44ed6a(0x118)]['folder']['js']+_0x44ed6a(0x11a));console[_0x44ed6a(0x109)]('ready\x20state\x20is\x20runing............'),document['addEventListener'](_0x44ed6a(0xf8),()=>{const _0x2efdad=_0x44ed6a;for(;'complete'===document[_0x2efdad(0x10a)];)if((0x0,_0x18c337['hh'])(_0x2efdad(0xf1))){(0x0,_0x18c337['hh'])('#app-loader')[_0x2efdad(0xe7)]('style','display:none;');break;}}),void 0x0===_0x57428c&&'serviceWorker'in navigator&&window[_0x44ed6a(0xf6)](_0x44ed6a(0xf4),()=>{const _0x506fb4=_0x44ed6a;navigator['serviceWorker'][_0x506fb4(0x10d)](_0x4e43be['l'][_0x506fb4(0x118)]['folder']['js']+'sw.js')['then'](_0x103baa=>{const _0x480612=_0x506fb4;console[_0x480612(0x105)]('ServiceWorker\x20['+_0x103baa?.[_0x480612(0xf3)]?.['scriptURL']+_0x480612(0x117)+_0x103baa?.[_0x480612(0xf3)]?.[_0x480612(0x100)]+_0x480612(0x130));})[_0x506fb4(0x125)](_0x33fb35=>console[_0x506fb4(0x116)]('service\x20worker\x20not\x20registered',_0x33fb35));});}},_0x317d03=>{var _0x19fffb;_0x19fffb=0x1e6,_0x317d03(_0x317d03['s']=_0x19fffb);}]);
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./Assets/typescripts/common/dom.ts":
+/*!******************************************!*\
+  !*** ./Assets/typescripts/common/dom.ts ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createElement": () => (/* binding */ createElement),
+/* harmony export */   "captureElement": () => (/* binding */ captureElement),
+/* harmony export */   "captureElements": () => (/* binding */ captureElements)
+/* harmony export */ });
+/**
+ * @param details
+ * */
+function createElement(details) {
+    let element, i, j, k;
+    for (i in details) {
+        let data = details[i];
+        for (j in data) {
+            let elementName = j;
+            let elementData = data[j];
+            element = document.createElement(elementName);
+            for (k in elementData) {
+                let element_attribute = k;
+                let element_attribute_value = elementData[k];
+                element.setAttribute(element_attribute, element_attribute_value);
+            }
+        }
+    }
+    return element;
+}
+/**
+ * @param selectors HTML valid element selector
+ * */
+function captureElement(selectors) {
+    if (document.querySelector(selectors) !== null) {
+        return document.querySelector(selectors);
+    }
+}
+/**
+ * @param selectors
+ * */
+function captureElements(selectors) {
+    if (document.querySelectorAll(selectors) !== null) {
+        return document.querySelectorAll(selectors);
+    }
+}
+
+
+/***/ }),
+
+/***/ "./Assets/typescripts/db/app.ts":
+/*!**************************************!*\
+  !*** ./Assets/typescripts/db/app.ts ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "appHost": () => (/* binding */ appHost),
+/* harmony export */   "app": () => (/* binding */ app)
+/* harmony export */ });
+/* harmony import */ var _common_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../common/dom */ "./Assets/typescripts/common/dom.ts");
+/* global _root_ */
+/*initialize on extension installed*/
+
+let __appHostedServerRoot = (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#mishusoft-web-root').content;
+/*backup plan*/
+if (__appHostedServerRoot === undefined) {
+    //__appHostedServerRoot = 'http://localhost/';
+    __appHostedServerRoot = 'http://localhost/';
+    /*required variables*/
+}
+if (__appHostedServerRoot.substr(-1) !== '/') {
+    __appHostedServerRoot += '/';
+}
+const appHost = __appHostedServerRoot;
+const app = {
+    "default": {
+        "name": 'mishusoft',
+        "version": 'official',
+        "author": 'Mr. Al Amin Ahamed Abir',
+        "charset": 'utf8mb4',
+        "prefix": 'msu',
+        "companyName": 'Mishusoft Systems Incorporate.',
+        "text": {
+            "welcome": "Welcome to Mishusoft Platform",
+            "description": "Mishusoft Platform is a robust multi-web platform developed by Mishusoft Systems Inc. This platform is capable of getting your work done quickly and accurately.",
+            "install_state": "The application is ready to be installed on your device at this time.",
+        }
+    },
+    "content": {
+        "folder": {
+            "logos": __appHostedServerRoot + 'media/logos/',
+            "css": __appHostedServerRoot + 'assets/css/',
+            "js": __appHostedServerRoot + 'assets/js/',
+            "images": __appHostedServerRoot + 'assets/images/',
+        },
+        "file": {
+            "default": {
+                "link": [
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-57x57.png",
+                        "rel": "apple-touch-icon",
+                        "size": "57x57"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-60x60.png",
+                        "rel": "apple-touch-icon",
+                        "size": "60x60"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-72x72.png",
+                        "rel": "apple-touch-icon",
+                        "size": "72x72"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-76x76.png",
+                        "rel": "apple-touch-icon",
+                        "size": "76x76"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-114x114.png",
+                        "rel": "apple-touch-icon",
+                        "size": "114x114"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-120x120.png",
+                        "rel": "apple-touch-icon",
+                        "size": "120x120"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-144x144.png",
+                        "rel": "apple-touch-icon",
+                        "size": "144x144"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-152x152.png",
+                        "rel": "apple-touch-icon",
+                        "size": "152x152"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-180x180.png",
+                        "rel": "apple-touch-icon",
+                        "size": "180x180"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/android-icon-192x192.png",
+                        "rel": "icon",
+                        "size": "192x192",
+                        "type": "image/png"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/favicon-16x16.png",
+                        "rel": "icon",
+                        "size": "16x16",
+                        "type": "image/png"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/favicon-32x32.png",
+                        "rel": "icon",
+                        "size": "32x32",
+                        "type": "image/png"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/favicon-96x96.png",
+                        "rel": "icon",
+                        "size": "96x96",
+                        "type": "image/png"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/favicon.ico",
+                        "rel": "icon",
+                        "size": "16x16",
+                        "type": "image/vnd.microsoft.icon"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/manifest.json",
+                        "rel": "manifest",
+                    },
+                    {
+                        "name": "msapplication-TileColor",
+                        "content": "#ffffff",
+                    },
+                    {
+                        "name": "msapplication-TileImage",
+                        "content": __appHostedServerRoot + "libraries/logos/ms-icon-144x144.png"
+                    },
+                    {
+                        "name": "theme-color",
+                        "content": "#ffffff",
+                    },
+                ],
+            },
+        },
+    },
+    "website": {
+        "home": "https://www.mishusoft.com/",
+        "support": "support@mishusoft.com",
+        "donate": "https://www.mishusoft.com/payment/donate",
+        "IpInfo": "https://api.ipdata.co/?api-key=2f9dde381f67efed325acfb1011a988036b28fc6cc02f07668ef7180",
+        "IpInfoKey": "2f9dde381f67efed325acfb1011a988036b28fc6cc02f07668ef7180",
+        "fontAwesome": "https://kit.fontawesome.com/b4c8f8449f.js",
+        "fontAwesomeKey": "b4c8f8449f",
+        "temporary": {
+            "home": "http://localhost/",
+            "monitorURL": "http://localhost/monitor/browser/",
+            "paymentURL": "http://localhost/payment/"
+        },
+        "publish": {
+            "home": "https://www.mishusoft.com/",
+            "monitorURL": "https://www.mishusoft.com/monitor/browser/",
+            "paymentURL": "https://www.mishusoft.com/payment/"
+        }
+    },
+    "runtime": {
+        "request": ""
+    }
+};
+
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
+/*!******************************************!*\
+  !*** ./Assets/typescripts/readystate.ts ***!
+  \******************************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _common_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common/dom */ "./Assets/typescripts/common/dom.ts");
+/* harmony import */ var _db_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./db/app */ "./Assets/typescripts/db/app.ts");
+
+
+//console.log('ready state is running............')
+//console.log('preparing is running............')
+document.querySelector('#theme.css')?.addEventListener('load', function (event) {
+    console.log(event);
+});
+document.querySelector('#framework.css')?.addEventListener('load', function (event) {
+    console.log(event);
+});
+document.addEventListener('readystatechange', () => {
+    //console.log(`readystate: ${document.readyState}\n`)
+    //hide app loader on document completed
+    //while (document.readyState === 'interactive') {
+    /*add required script tag to head*/
+    /*font-fontawesome private cdn*/
+    // fetch(app.website.fontAwesome)
+    //     .then(() => {
+    //         document.head.appendChild(createElement([{
+    //             'script': {
+    //                 'rel': 'preconnect',
+    //                 'type': 'application/javascript',
+    //                 'src': app.website.fontAwesome,
+    //                 'crossorigin': 'anonymous',
+    //                 'async': 'async',
+    //             }
+    //         }]));
+    //     })
+    //     .catch((err) => {
+    //         console.info('Fontawesome kit load failed. ' + err)
+    //     })
+    //}
+    if (document.readyState === 'interactive') {
+        console.info(document.body.getAttribute('theme'));
+        console.log('Preparing css load...');
+    }
+    //hide app loader on document completed
+    if (document.readyState === 'complete') {
+        //initialize app loader image & application
+        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#app-loader')) {
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#app-loader').setAttribute('style', 'display:none;');
+        }
+    }
+});
+//Variable, Constants declaration
+const webServiceWorker = new Worker(new URL(_db_app__WEBPACK_IMPORTED_MODULE_1__.app.content.folder.js + 'sw.js', "file:///home/abir/Development/web-development/lastest.mishusoft.com/Sources/Assets/typescripts/readystate.ts"));
+if (typeof webServiceWorker == 'undefined') {
+    if ('serviceWorker' in navigator) {
+        // Use the window load event to keep the page load performant
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register(_db_app__WEBPACK_IMPORTED_MODULE_1__.app.content.folder.js + 'sw.js')
+                .then((swr) => {
+                console.info("ServiceWorker [" + swr?.active?.scriptURL + "] is " + swr?.active?.state + " successfully.");
+            })
+                .catch((err) => console.error("service worker not registered", err));
+        });
+    }
+}
+webServiceWorker.postMessage({
+    question: 'The Answer to the Ultimate Question of Life, The Universe, and Everything.',
+});
+webServiceWorker.onmessage = ({ data: { answer } }) => {
+    console.log(answer);
+};
+
+})();
+
+/******/ })()
+;
+//# sourceMappingURL=readystate.js.map

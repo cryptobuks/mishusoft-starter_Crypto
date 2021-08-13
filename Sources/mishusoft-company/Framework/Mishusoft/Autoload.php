@@ -2,7 +2,7 @@
 
 namespace Mishusoft;
 
-use Mishusoft\System\Logger;
+use Mishusoft\System\Log;
 use RuntimeException;
 
 /**
@@ -31,29 +31,29 @@ class Autoload
     {
         spl_autoload_register(
             static function (string $class) {
-                Logger::write('Want to load'.$class);
+                Log::info('Want to load'.$class);
                 // Check file is use namespace.
                 if (strpos($class, '\\') === true) {
                     // Extract file namespace to file location.
                     // Retrieve class name to file name: $class.
-                    Logger::write('Retrieve PSR-04 class name to file name '.$class);
+                    Log::info('Retrieve PSR-04 class name to file name '.$class);
                     $originalFile = self::retrieveFileUrl($class);
                     // Checking local file: $originalFile.
-                    Logger::write('Checking local file '.$originalFile);
+                    Log::info('Checking local file '.$originalFile);
                     if (is_file($originalFile) === true) {
-                        Logger::write('Load local file '.$originalFile);
+                        Log::info('Load local file '.$originalFile);
                         include_once $originalFile;
                         // Include local file: $originalFile.
                     }
                 } else {
                     // Want to load normal File $class.
-                    Logger::write('Checking non-PSR 4 local file '.$class);
+                    Log::info('Checking non-PSR 4 local file '.$class);
                     foreach (scandir(realpath(dirname(__FILE__, 2))) as $directory) {
                         if (in_array($directory, self::EXCLUDES, true) === false
                             && file_exists(self::retrieveAutoFileUrl($directory, $class)) === true
                         ) {
                             // Include local file: $originalFile.
-                            Logger::write('Load local file '.self::retrieveAutoFileUrl($directory, $class));
+                            Log::info('Load local file '.self::retrieveAutoFileUrl($directory, $class));
                             include_once self::retrieveAutoFileUrl($directory, $class);
                         }
                     }

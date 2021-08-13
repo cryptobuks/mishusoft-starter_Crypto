@@ -4,11 +4,10 @@
 namespace Mishusoft\Http\UAAnalyzer;
 
 use Mishusoft\Base;
+use Mishusoft\CacheManager as Cache;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
-use Mishusoft\Http\IP;
 use Mishusoft\Storage;
-use Mishusoft\System\Time;
 
 class UAAnalyzerBase extends Base
 {
@@ -80,13 +79,13 @@ class UAAnalyzerBase extends Base
         $this->todayTimeOnly = date('H:i:s');
 
         $this->uaAllFile  = self::dFile(
-            self::cacheDataFile('UAAnalyzerData', $this->cFile('ua.list.all'))
+            Cache::directiveDataFile('UAAnalyzerData', $this->cFile('ua.list.all'))
         );
         $this->uaSolvableListFile  = self::dFile(
-            self::cacheDataFile('UAAnalyzerData', $this->cFile('ua.list.solved'))
+            Cache::directiveDataFile('UAAnalyzerData', $this->cFile('ua.list.solved'))
         );
         $this->uaUnsolvableListFile  = self::dFile(
-            self::cacheDataFile('UAAnalyzerData', $this->cFile('ua.list.unsolved'))
+            Cache::directiveDataFile('UAAnalyzerData', $this->cFile('ua.list.unsolved'))
         );
 
         $this->directoryValidation();

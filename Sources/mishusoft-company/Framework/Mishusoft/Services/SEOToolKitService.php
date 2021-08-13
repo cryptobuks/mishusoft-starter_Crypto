@@ -3,9 +3,16 @@
 
 namespace Mishusoft\Services;
 
+use GeoIp2\Exception\AddressNotFoundException;
 use JsonException;
+use MaxMind\Db\Reader\InvalidDatabaseException;
 use Mishusoft\Base;
 use Mishusoft\Drivers\View\MishusoftView;
+use Mishusoft\Exceptions\ErrorException;
+use Mishusoft\Exceptions\HttpException\HttpResponseException;
+use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
+use Mishusoft\Exceptions\PermissionRequiredException;
+use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Http;
 use Mishusoft\Storage;
 use Mishusoft\Storage\FileSystem;
@@ -47,7 +54,7 @@ class SEOToolKitService extends Base
      *
      * @param MishusoftView $view
      * @throws JsonException
-     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws RuntimeException
      */
     public function __construct(MishusoftView $view)
     {
@@ -80,7 +87,7 @@ class SEOToolKitService extends Base
 
     /**
      * @throws JsonException
-     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws RuntimeException
      */
     private function check(): void
     {
@@ -106,13 +113,17 @@ class SEOToolKitService extends Base
 
     /**
      *
+     * @throws AddressNotFoundException
+     * @throws ErrorException
+     * @throws HttpResponseException
+     * @throws InvalidArgumentException
+     * @throws InvalidDatabaseException
      * @throws JsonException
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
+     * @throws RuntimeException\NotFoundException
      * @throws \ErrorException
-     * @throws \Mishusoft\Exceptions\ErrorException
      * @throws \Mishusoft\Exceptions\JsonException
-     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
-     * @throws \Mishusoft\Exceptions\PermissionRequiredException
-     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public function start(): void
     {
@@ -124,11 +135,15 @@ class SEOToolKitService extends Base
 
 
     /**
-     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws AddressNotFoundException
+     * @throws ErrorException
+     * @throws HttpResponseException
+     * @throws InvalidArgumentException
+     * @throws InvalidDatabaseException
      * @throws JsonException
-     * @throws \Mishusoft\Exceptions\ErrorException
-     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
-     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
+     * @throws RuntimeException\NotFoundException
      * @throws \ErrorException
      * @throws \Mishusoft\Exceptions\JsonException
      */
@@ -231,11 +246,11 @@ class SEOToolKitService extends Base
     /**
      *
      * @throws JsonException
-     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws ErrorException
      * @throws \Mishusoft\Exceptions\JsonException
-     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
-     * @throws \Mishusoft\Exceptions\PermissionRequiredException
-     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws InvalidArgumentException
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
      */
     private function default(): void
     {
@@ -269,9 +284,8 @@ class SEOToolKitService extends Base
                     ],
                     [
                         'name' => 'description',
-                        'content' => (array_key_exists('description', $this->getAbout(Http::browser()::getVisitedPage()))) ? ArrayCollection::value($this->getAbout(Http::browser()::getVisitedPage()), 'description') : Memory::data()->company->detailsDescription,
+                        'content' => $this->loadDescription(),
                     ],
-                    // <meta name="description"content="This is an example of a meta description.This will often show up in search results.">
                 ],
             ]
         );
@@ -279,23 +293,18 @@ class SEOToolKitService extends Base
 
 
     /**
-     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws AddressNotFoundException
+     * @throws ErrorException
+     * @throws HttpResponseException
+     * @throws InvalidArgumentException
+     * @throws InvalidDatabaseException
      * @throws JsonException
-     * @throws \Mishusoft\Exceptions\ErrorException
-     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
-     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
      * @throws \Mishusoft\Exceptions\JsonException
      */
     private function markupForGoogle(): void
     {
-        /*
-         *
-            <!-- Schema.org markup for Google+ -->
-            <meta itemprop="name" content="The Name or Title Here">
-            <meta itemprop="description" content="This is the page description">
-            <meta itemprop="image" content="http://www.example.com/image.jpg">
-         */
-
         Ui::elementList(
             Ui::getDocumentHeadElement(),
             [
@@ -306,13 +315,12 @@ class SEOToolKitService extends Base
                     ],
                     [
                         'itemprop' => 'image',
-                        'content' => Storage::logoFullPath('favicon.ico', 'remote'),
+                        'content' => Storage::logoFullPath('favicon.ico', 'remote', 'remote'),
                     ],
                     [
                         'itemprop' => 'description',
                         'content' => $this->getDescriptionDetails(),
                     ],
-                    // <meta name="description"content="This is an example of a meta description.This will often show up in search results.">
                 ],
             ]
         );
@@ -321,36 +329,26 @@ class SEOToolKitService extends Base
 
     /**
      *
+     * @throws AddressNotFoundException
+     * @throws ErrorException
+     * @throws HttpResponseException
+     * @throws InvalidArgumentException
+     * @throws InvalidDatabaseException
      * @throws JsonException
-     * @throws \ErrorException
-     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
+     * @throws RuntimeException\NotFoundException
      * @throws \Mishusoft\Exceptions\JsonException
-     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
-     * @throws \Mishusoft\Exceptions\PermissionRequiredException
-     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function twitterCard(): void
     {
-        /*
-         *
-
-            <!-- Twitter Card data -->
-            <meta name="twitter:card" content="summary_large_image">
-            <meta name="twitter:site" content="@publisher_handle">
-            <meta name="twitter:title" content="Page Title">
-            <meta name="twitter:description" content="Page description less than 200 characters">
-            <meta name="twitter:creator" content="@author_handle">
-            <!-- Twitter summary card with large image must be at least 280x150px -->
-            <meta name="twitter:image:src" content="http://www.example.com/image.jpg">
-         */
-
         Ui::elementList(
             Ui::getDocumentHeadElement(),
             [
                 'meta' => [
                     [
                         'name' => 'twitter:card',
-                        'content' => Storage::toDataUri('media', 'logos/mishusoft-logo-lite.webp'),
+                        'content' => Storage::toDataUri('media', 'logos/mishusoft-logo-lite.webp', 'remote'),
                     ],
                     [
                         'name' => 'twitter:site',
@@ -364,14 +362,13 @@ class SEOToolKitService extends Base
                         'name' => 'twitter:description',
                         'content' => $this->getDescriptionDetails(),
                     ],
-                    // <meta name="description"content="This is an example of a meta description.This will often show up in search results.">
                     [
                         'name' => 'twitter:creator',
                         'content' => Memory::data()->author->name,
                     ],
                     [
                         'name' => 'twitter:image:src',
-                        'content' => Storage::toDataUri('media', 'logos/mishusoft-logo-lite.webp'),
+                        'content' => Storage::toDataUri('media', 'logos/mishusoft-logo-lite.webp', 'remote'),
                     ],
                 ],
             ]
@@ -380,33 +377,19 @@ class SEOToolKitService extends Base
 
 
     /**
-     * @throws \Mishusoft\Exceptions\RuntimeException
-     * @throws \Mishusoft\Exceptions\PermissionRequiredException
-     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws ErrorException
+     * @throws InvalidArgumentException
      * @throws JsonException
-     * @throws \Mishusoft\Exceptions\ErrorException
-     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
-     * @throws \ErrorException
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
+     * @throws RuntimeException\NotFoundException
+     * @throws AddressNotFoundException
+     * @throws InvalidDatabaseException
+     * @throws HttpResponseException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     private function openGraphData(): void
     {
-        /*
-         *
-
-            <!-- Open Graph data -->
-            <meta property="og:title" content="Title Here" />
-            <meta property="og:type" content="article" />
-            <meta property="og:url" content="http://www.example.com/" />
-            <meta property="og:image" content="http://example.com/image.jpg" />
-            <meta property="og:description" content="Description Here" />
-            <meta property="og:site_name" content="Site Name, i.e. Moz" />
-            <meta property="article:published_time" content="2013-09-17T05:59:00+01:00" />
-            <meta property="article:modified_time" content="2013-09-16T19:08:47+01:00" />
-            <meta property="article:section" content="Article Section" />
-            <meta property="article:tag" content="Article Tag" />
-            <meta property="fb:admins" content="Facebook numberic ID" />
-         */
-
         Ui::elementList(
             Ui::getDocumentHeadElement(),
             [
@@ -425,28 +408,26 @@ class SEOToolKitService extends Base
                     ],
                     [
                         'property' => 'og:image',
-                        'content' => Storage::toDataUri('media', 'logos/mishusoft-logo-lite.webp'),
+                        'content' => Storage::toDataUri('media', 'logos/mishusoft-logo-lite.webp', 'remote'),
                     ],
                     [
                         'property' => 'og:description',
                         'content' => $this->getDescriptionDetails(),
                     ],
-                    // <meta name="description"content="This is an example of a meta description.This will often show up in search results.">
                     [
                         'property' => 'og:site_name',
                         'content' => Memory::data()->name,
                     ],
-                    // <meta name="description"content="This is an example of a meta description.This will often show up in search results.">
                 ],
             ]
         );
     }//end openGraphData()
 
     /**
-     * @throws \Mishusoft\Exceptions\ErrorException
-     * @throws \Mishusoft\Exceptions\RuntimeException
-     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
-     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws ErrorException
+     * @throws RuntimeException
+     * @throws InvalidArgumentException
+     * @throws PermissionRequiredException
      * @throws \Mishusoft\Exceptions\JsonException
      * @throws JsonException
      */
@@ -463,7 +444,7 @@ class SEOToolKitService extends Base
     /**
      * @param string $url
      * @return array
-     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws RuntimeException
      */
     private function getAbout(string $url): array
     {
@@ -477,6 +458,23 @@ class SEOToolKitService extends Base
         return $result;
     }//end getAbout()
 
+    /**
+     * @throws ErrorException
+     * @throws RuntimeException
+     * @throws InvalidArgumentException
+     * @throws PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws JsonException
+     */
+    private function loadDescription():mixed
+    {
+        if ((array_key_exists('description', $this->getAbout(Http::browser()::getVisitedPage())))) {
+            return $this->getAbout(Http::browser()::getVisitedPage())['description'];
+        }
+
+        return Memory::data()->company->detailsDescription;
+    }
+
 
     /**
      *
@@ -486,7 +484,7 @@ class SEOToolKitService extends Base
     }//end __destruct()
 
     /**
-     * @return array|string[]
+     * @return array
      */
     public function getSearchEngineList(): array
     {

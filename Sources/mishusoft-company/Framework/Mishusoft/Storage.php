@@ -4,6 +4,7 @@ namespace Mishusoft;
 
 use JsonException;
 use Mishusoft\Exceptions\RuntimeException\NotFoundException;
+use Mishusoft\Storage\FileSystem;
 use Mishusoft\System\Firewall;
 use Mishusoft\Utility\ArrayCollection;
 use Mishusoft\Utility\Inflect;
@@ -137,6 +138,36 @@ class Storage extends Base
             '%1$s%2$s%3$s',
             self::appStoragesPath(),
             'assets',
+            DS
+        );
+    }
+
+    public static function cssAssetsPath():string
+    {
+        return sprintf(
+            '%1$s%2$s%3$s',
+            self::assetsPath(),
+            'css',
+            DS
+        );
+    }
+
+    public static function jsAssetsPath():string
+    {
+        return sprintf(
+            '%1$s%2$s%3$s',
+            self::assetsPath(),
+            'js',
+            DS
+        );
+    }
+
+    public static function webfontsAssetsPath():string
+    {
+        return sprintf(
+            '%1$s%2$s%3$s',
+            self::assetsPath(),
+            'webfonts',
             DS
         );
     }
@@ -456,11 +487,12 @@ class Storage extends Base
                     'sizes'  => self::imageSizeBuilder($fileDetails),
                     'href' => self::toDataUri(
                         'media',
-                        'logos'. DS.'default'. DS.pathinfo($imageFile, PATHINFO_BASENAME)
+                        'logos'. DS.'default'. DS.FileSystem::fileBase($imageFile),
+                        'remote'
                     ),
                 ];
             }
-            if (str_starts_with(pathinfo($imageFile, PATHINFO_FILENAME), 'android-icon') === true) {
+            if (str_starts_with(FileSystem::fileName($imageFile), 'android-icon') === true) {
                 //<link rel="icon" type="image/png" sizes="192x192" href="{logoFolder}android-icon-192x192.png">
                 ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/android-icon-192x192.png
                 $faviconsList[] = [
@@ -469,11 +501,12 @@ class Storage extends Base
                     'sizes'  => self::imageSizeBuilder($fileDetails),
                     'href' => self::toDataUri(
                         'media',
-                        'logos'. DS.'default'. DS.pathinfo($imageFile, PATHINFO_BASENAME)
+                        'logos'. DS.'default'. DS.FileSystem::fileBase($imageFile),
+                        'remote'
                     ),
                 ];
             }
-            if (str_starts_with(pathinfo($imageFile, PATHINFO_FILENAME), 'favicon') === true) {
+            if (str_starts_with(FileSystem::fileName($imageFile), 'favicon') === true) {
                 //<link rel="icon" type="image/png" sizes="16x16" href="{logoFolder}favicon-16x16.png">
                 ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/favicon-16x16.png
 
@@ -485,11 +518,12 @@ class Storage extends Base
                     'sizes'  => self::imageSizeBuilder($fileDetails),
                     'href' => self::toDataUri(
                         'media',
-                        'logos'. DS.'default'. DS.pathinfo($imageFile, PATHINFO_BASENAME)
+                        'logos'. DS.'default'. DS.FileSystem::fileBase($imageFile),
+                        'remote'
                     ),
                 ];
             }
-            if (str_starts_with(pathinfo($imageFile, PATHINFO_FILENAME), 'mishusoft-logo-lite') === true) {
+            if (str_starts_with(FileSystem::fileName($imageFile), 'mishusoft-logo-lite') === true) {
                 //<link rel="icon" type="image/webp" sizes="16x16" href="{logoFolder}mishusoft-logo-lite.webp">
                 ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/mishusoft-logo-lite.webp
                 $faviconsList[] = [
@@ -498,7 +532,8 @@ class Storage extends Base
                     'sizes'  => self::imageSizeBuilder($fileDetails),
                     'href' => self::toDataUri(
                         'media',
-                        'logos'. DS.'default'. DS.pathinfo($imageFile, PATHINFO_BASENAME)
+                        'logos'. DS.'default'. DS.FileSystem::fileBase($imageFile),
+                        'remote'
                     ),
                 ];
             }
@@ -506,6 +541,50 @@ class Storage extends Base
 
 
         return $faviconsList;
+    }
+
+    /**
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\JsonException
+     * @throws JsonException
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws NotFoundException
+     * @throws Exceptions\RuntimeException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws Exceptions\HttpException\HttpResponseException
+     */
+    public static function assignableWebFonts():array
+    {
+        $webfonts = [];
+        $fileList = [];
+
+        $list = self::files(self::webfontsAssetsPath());
+
+        foreach ($list as $item) {
+            if (in_array(self::extension($item), ['woff','woff2'])) {
+                $fileList[$item] = Storage\Media::imageFileInformation($item);
+            }
+        }
+
+        foreach ($fileList as $file => $fileDetails) {
+            //                [
+//                    'rel' => 'preload', 'as' => 'font', 'type' => 'font/woff2', 'crossorigin' => '',
+//                    'href' => Storage::assetsFullPath('webfonts/SourceSansPro.woff2', 'remote'),
+//                ],
+            $webfonts[] = [
+                'rel'  => 'preload', 'as'  => 'font', 'crossorigin' => '',
+                'type'  => ArrayCollection::value($fileDetails, 'mime'),
+                'href' => self::toDataUri(
+                    'assets',
+                    'webfonts'. DS.FileSystem::fileBase($file),
+                    'remote'
+                ),
+            ];
+        }
+
+        return $webfonts;
     }
 
     /**

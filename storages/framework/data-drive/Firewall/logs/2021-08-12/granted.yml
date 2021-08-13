@@ -1,0 +1,1546 @@
+---
+::1:
+  Unknown:
+    "2021-08-12 07:35:39":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:35:39"
+    "2021-08-12 07:35:40":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/js/app-js.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:35:40"
+    "2021-08-12 07:36:50":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:36:50"
+    "2021-08-12 07:36:56":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:36:56"
+    "2021-08-12 07:36:57":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:36:57"
+    "2021-08-12 07:37:32":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:37:32"
+    "2021-08-12 07:37:34":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/webfonts/SairaStencilOne-Regular.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:37:34"
+    "2021-08-12 07:37:39":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:37:39"
+    "2021-08-12 07:37:50":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:37:50"
+    "2021-08-12 07:37:51":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/css/app-ui-v4.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:37:51"
+    "2021-08-12 07:38:06":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/90.0.4420.0 Safari/537.36 Chrome-Lighthouse
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:38:06"
+    "2021-08-12 07:38:07":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/90.0.4420.0 Safari/537.36 Chrome-Lighthouse
+      url: http://localhost:8080/assets/js/readystate.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:38:07"
+    "2021-08-12 07:38:10":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/90.0.4420.0 Safari/537.36 Chrome-Lighthouse
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:38:10"
+    "2021-08-12 07:38:11":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/90.0.4420.0 Safari/537.36 Chrome-Lighthouse
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:38:11"
+    "2021-08-12 07:38:12":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/90.0.4420.0 Safari/537.36 Chrome-Lighthouse
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:38:12"
+    "2021-08-12 07:38:13":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/90.0.4420.0 Safari/537.36 Chrome-Lighthouse
+      url: http://localhost:8080/assets/js/readystate.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:38:13"
+    "2021-08-12 07:38:14":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:38:14"
+    "2021-08-12 07:38:15":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:38:15"
+    "2021-08-12 07:38:16":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/js/readystate.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:38:16"
+    "2021-08-12 07:42:50":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:42:50"
+    "2021-08-12 07:42:51":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:42:51"
+    "2021-08-12 07:42:52":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/webfonts/SairaStencilOne-Regular.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:42:52"
+    "2021-08-12 07:42:55":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:42:55"
+    "2021-08-12 07:42:56":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:42:56"
+    "2021-08-12 07:43:16":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:43:16"
+    "2021-08-12 07:43:17":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/css/app-ui-v4.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:43:17"
+    "2021-08-12 07:43:36":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:43:36"
+    "2021-08-12 07:43:37":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:43:37"
+    "2021-08-12 07:43:38":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/webfonts/SairaStencilOne-Regular.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:43:38"
+    "2021-08-12 07:43:41":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:43:41"
+    "2021-08-12 07:43:42":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:43:42"
+    "2021-08-12 07:43:43":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/js/app-js.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:43:43"
+    "2021-08-12 07:48:33":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:48:33"
+    "2021-08-12 07:48:34":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/app-ui-v4.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:48:34"
+    "2021-08-12 07:48:35":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/app-ui-v4.css.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:48:35"
+    "2021-08-12 07:50:06":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:50:06"
+    "2021-08-12 07:50:07":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:50:07"
+    "2021-08-12 07:50:08":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/webfonts/SairaStencilOne-Regular.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:50:08"
+    "2021-08-12 07:50:48":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:50:48"
+    "2021-08-12 07:50:49":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:50:49"
+    "2021-08-12 07:50:50":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/js/readystate.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:50:50"
+    "2021-08-12 07:50:51":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/app-ui-v4.css.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:50:51"
+    "2021-08-12 07:51:50":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:51:50"
+    "2021-08-12 07:51:52":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:51:52"
+    "2021-08-12 07:51:53":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/webfonts/SairaStencilOne-Regular.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:51:53"
+    "2021-08-12 07:52:02":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:52:02"
+    "2021-08-12 07:52:07":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:52:07"
+    "2021-08-12 07:52:08":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/webfonts/SairaStencilOne-Regular.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:52:08"
+    "2021-08-12 07:52:12":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:52:12"
+    "2021-08-12 07:52:15":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/js
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:52:15"
+    "2021-08-12 07:52:23":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/js/readystate.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:52:23"
+    "2021-08-12 07:52:25":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/js
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:52:25"
+    "2021-08-12 07:53:33":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/js
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:53:33"
+    "2021-08-12 07:53:34":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/font-face.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:53:34"
+    "2021-08-12 07:53:36":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/js
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:53:36"
+    "2021-08-12 07:53:43":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/js
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:53:43"
+    "2021-08-12 07:53:46":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/loader.css.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:53:46"
+    "2021-08-12 07:53:49":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/js
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:53:49"
+    "2021-08-12 07:53:50":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/font-face.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:53:50"
+    "2021-08-12 07:53:51":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/mishusoft-theme.css.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:53:51"
+    "2021-08-12 07:55:39":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/loader.css.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 07:55:39"
+    "2021-08-12 08:16:11":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:16:11"
+    "2021-08-12 08:16:13":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/webfonts/NotoSans-Black.woff
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:16:13"
+    "2021-08-12 08:16:14":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/webfonts/NotoSans-Black.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:16:14"
+    "2021-08-12 08:16:15":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/webfonts/NotoSans-Italic.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:16:15"
+    "2021-08-12 08:16:16":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/webfonts/NotoSans-LightItalic.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:16:16"
+    "2021-08-12 08:16:17":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/webfonts/NotoSans-MediumItalic.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:16:17"
+    "2021-08-12 08:16:18":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/webfonts/NotoSans-Thin.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:16:18"
+    "2021-08-12 08:16:19":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/webfonts/NotoSansOldItalic-Regular.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:16:19"
+    "2021-08-12 08:16:20":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/webfonts/SolaimanLipi.woff
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:16:20"
+    "2021-08-12 08:16:21":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/app-ui-v4.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:16:21"
+    "2021-08-12 08:16:22":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/webfonts/SairaStencilOne-Regular.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:16:22"
+    "2021-08-12 08:17:43":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:17:43"
+    "2021-08-12 08:17:45":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/app-ui-v4.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:17:45"
+    "2021-08-12 08:17:46":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/js/app-js.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:17:46"
+    "2021-08-12 08:17:47":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/loader.css.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:17:47"
+    "2021-08-12 08:18:24":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:18:24"
+    "2021-08-12 08:18:26":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:18:26"
+    "2021-08-12 08:18:27":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/js/app-js.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:18:27"
+    "2021-08-12 08:18:28":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/mishusoft-theme.css.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:18:28"
+    "2021-08-12 08:18:56":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/js
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:18:56"
+    "2021-08-12 08:18:57":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/font-face.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:18:57"
+    "2021-08-12 08:18:58":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/loader.css.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:18:58"
+    "2021-08-12 08:19:00":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/js
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:19:00"
+    "2021-08-12 08:19:01":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/loader.css.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:19:01"
+    "2021-08-12 08:19:10":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/js
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:19:10"
+    "2021-08-12 08:19:11":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/font-face.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:19:11"
+    "2021-08-12 08:19:12":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/loader.css.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:19:12"
+    "2021-08-12 08:19:55":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/js
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:19:55"
+    "2021-08-12 08:19:56":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/font-face.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:19:56"
+    "2021-08-12 08:19:57":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/app-ui-v4.css.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:19:57"
+    "2021-08-12 08:19:59":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:19:59"
+    "2021-08-12 08:20:01":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:20:01"
+    "2021-08-12 08:20:02":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/js/app-js.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:20:02"
+    "2021-08-12 08:20:03":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/app-ui-v4.css.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:20:03"
+    "2021-08-12 08:22:42":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:22:42"
+    "2021-08-12 08:22:45":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:22:45"
+    "2021-08-12 08:22:46":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/js/app-js.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:22:46"
+    "2021-08-12 08:22:47":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/mishusoft-theme.css.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:22:47"
+    "2021-08-12 08:25:39":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:25:39"
+    "2021-08-12 08:25:42":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:25:42"
+    "2021-08-12 08:25:43":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/webfonts/SairaStencilOne-Regular.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:25:43"
+    "2021-08-12 08:25:44":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/app-ui-v4.css.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:25:44"
+    "2021-08-12 08:25:54":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:25:54"
+    "2021-08-12 08:25:57":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:25:57"
+    "2021-08-12 08:25:58":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/app-ui-v4.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:25:58"
+    "2021-08-12 08:25:59":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/webfonts/SairaStencilOne-Regular.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:25:59"
+    "2021-08-12 08:26:01":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:26:01"
+    "2021-08-12 08:26:04":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:26:04"
+    "2021-08-12 08:26:05":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/js/app-js.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:26:05"
+    "2021-08-12 08:26:06":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/mishusoft-theme.css.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:26:06"
+    "2021-08-12 08:26:54":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:26:54"
+    "2021-08-12 08:26:57":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:26:57"
+    "2021-08-12 08:26:58":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/js/app-js.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:26:58"
+    "2021-08-12 08:27:01":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:27:01"
+    "2021-08-12 08:27:03":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:27:03"
+    "2021-08-12 08:27:04":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/app-ui-v4.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:27:04"
+    "2021-08-12 08:27:05":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/webfonts/SairaStencilOne-Regular.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:27:05"
+    "2021-08-12 08:27:16":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:27:16"
+    "2021-08-12 08:27:19":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:27:19"
+    "2021-08-12 08:27:20":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36
+      url: http://localhost:8080/assets/js/app-js.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:27:20"
+    "2021-08-12 08:28:28":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:28:28"
+    "2021-08-12 08:28:31":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:28:31"
+    "2021-08-12 08:28:32":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/app-ui-v4.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:28:32"
+    "2021-08-12 08:28:33":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/webfonts/SairaStencilOne-Regular.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:28:33"
+    "2021-08-12 08:28:35":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:28:35"
+    "2021-08-12 08:28:38":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:28:38"
+    "2021-08-12 08:28:39":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/app-ui-v4.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:28:39"
+    "2021-08-12 08:28:40":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/webfonts/SairaStencilOne-Regular.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:28:40"
+    "2021-08-12 08:29:46":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:29:46"
+    "2021-08-12 08:29:49":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/app-ui-v4.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:29:49"
+    "2021-08-12 08:29:50":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:29:50"
+    "2021-08-12 08:29:51":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/webfonts/SairaStencilOne-Regular.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:29:51"
+    "2021-08-12 08:31:31":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/js
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:31:31"
+    "2021-08-12 08:31:32":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/webfonts/SairaStencilOne-Regular.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:31:32"
+    "2021-08-12 08:31:35":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:31:35"
+    "2021-08-12 08:31:38":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/css/mishusoft-theme.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:31:38"
+    "2021-08-12 08:31:39":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:90.0) Gecko/20100101 Firefox/90.0
+      url: http://localhost:8080/assets/js/app-js.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-12 08:31:39"
+...

@@ -17,8 +17,8 @@ use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Http;
 use Mishusoft\Http\IP;
-use Mishusoft\RAM;
 use Mishusoft\Storage;
+use Mishusoft\Utility\Inflect;
 
 class Log
 {
@@ -62,8 +62,61 @@ class Log
 
     public function __construct(
         protected string $message,
-        protected string $logFilename,
+        protected string $logType,
     ) {
+    }
+
+    /**
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
+     * @throws InvalidArgumentException
+     */
+    public static function emergency(
+        string $message,
+        string $style = LOG_STYLE_SMART,
+        string $flag = LOG_TYPE_COMPILE
+    ): void {
+        self::make($message, self::makeLogType(__METHOD__), $style, $flag);
+    }
+
+    /**
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
+     * @throws InvalidArgumentException
+     */
+    public static function alert(
+        string $message,
+        string $style = LOG_STYLE_SMART,
+        string $flag = LOG_TYPE_COMPILE
+    ): void {
+        self::make($message, self::makeLogType(__METHOD__), $style, $flag);
+    }
+
+    /**
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
+     * @throws InvalidArgumentException
+     */
+    public static function critical(
+        string $message,
+        string $style = LOG_STYLE_SMART,
+        string $flag = LOG_TYPE_COMPILE
+    ): void {
+        self::make($message, self::makeLogType(__METHOD__), $style, $flag);
+    }
+
+
+    /**
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
+     * @throws InvalidArgumentException
+     */
+    public static function error(
+        string $message,
+        string $style = LOG_STYLE_SMART,
+        string $flag = LOG_TYPE_COMPILE
+    ): void {
+        self::make($message, self::makeLogType(__METHOD__), $style, $flag);
     }
 
     /**
@@ -76,8 +129,58 @@ class Log
         string $style = LOG_STYLE_SMART,
         string $flag = LOG_TYPE_COMPILE
     ): void {
-        $registrar = new self($message, __METHOD__);
-        $registrar->setStyle($style)->setFlag($flag)->writer();
+        self::make($message, self::makeLogType(__METHOD__), $style, $flag);
+    }
+
+    /**
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
+     * @throws InvalidArgumentException
+     */
+    public static function notice(
+        string $message,
+        string $style = LOG_STYLE_SMART,
+        string $flag = LOG_TYPE_COMPILE
+    ): void {
+        self::make($message, self::makeLogType(__METHOD__), $style, $flag);
+    }
+
+    /**
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
+     * @throws InvalidArgumentException
+     */
+    public static function info(
+        string $message,
+        string $style = LOG_STYLE_SMART,
+        string $flag = LOG_TYPE_COMPILE
+    ): void {
+        self::make($message, self::makeLogType(__METHOD__), $style, $flag);
+    }
+
+    /**
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
+     * @throws InvalidArgumentException
+     */
+    public static function debug(
+        string $message,
+        string $style = LOG_STYLE_SMART,
+        string $flag = LOG_TYPE_COMPILE
+    ): void {
+        self::make($message, self::makeLogType(__METHOD__), $style, $flag);
+    }
+
+    /**
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
+     * @throws InvalidArgumentException
+     */
+    private static function make(string $message, string $logType, string $style, string $flag):void
+    {
+        if (LOGGING_ON_OPERATION) {
+            (new self($message, $logType))->setStyle($style)->setFlag($flag)->writer();
+        }
     }
 
     private function setStyle(string $name = LOG_STYLE_SMART): static
@@ -90,6 +193,15 @@ class Log
     {
         $this->logFlag  = $flag;
         return $this;
+    }
+
+    private static function makeLogType(string $methodName):string
+    {
+        return basename(
+            Inflect::lower(
+                Inflect::replace(Inflect::replace($methodName, '::', DS), '\\', DS)
+            )
+        );
     }
 
 
@@ -106,12 +218,10 @@ class Log
         date_default_timezone_set('Asia/Dhaka');
 
         if (in_array($this->logFlag, self::$allowedFlags, true) === true) {
-            $logFile = $this->logFilePath($this->logFlag);
+            $logFile = $this->logFilePath();
         } else {
             throw new RuntimeException('Unexpected flag value.');
         }
-
-        //print_r($logFile . PHP_EOL, false);
 
         $requestedLogDirectory = dirname($logFile);
 
@@ -149,7 +259,8 @@ class Log
             }
 
             // @codingStandardsIgnoreStart
-            $ip         = IP::get();
+            //$ip         = IP::get();
+            $ip         = '::1';
             // @codingStandardsIgnoreEnd
             $useragent  = Http::browser()->getUserAgent();
             $httpStatus = http_response_code();
@@ -159,17 +270,35 @@ class Log
 
             if (strtolower($this->logStyle) === LOG_STYLE_SMART) {
                 // [2021-05-29 04:34 PM]    192.168.0.1 "localhost  GET /"  Filter request of client.
-                $contents .= sprintf("[%s]\t%s\t\"%s\t%s\t%s\"\t%s\r", $time, $ip, $server, $mode, $url, $this->message);
+                $contents .= sprintf(
+                    "[%s]\t%s\t%s\t\"%s\t%s\t%s\"\t%s\r",
+                    $time,
+                    $ip,
+                    $this->logType,
+                    $server,
+                    $mode,
+                    $url,
+                    $this->message
+                );
             } elseif (strtolower($this->logStyle) === LOG_STYLE_SHORTCUT) {
                 // [2021-05-29 04:34 PM]    "localhost GET /"   Filter request of client.
-                $contents .= sprintf("[%s]\t\"%s\t%s\t%s\"\t%s\r", $time, $server, $mode, $url, $this->message);
+                $contents .= sprintf(
+                    "[%s]\t%s\t\"%s\t%s\t%s\"\t%s\r",
+                    $time,
+                    $this->logType,
+                    $server,
+                    $mode,
+                    $url,
+                    $this->message
+                );
             } elseif (strtolower($this->logStyle) === LOG_STYLE_FULL) {
                 // [2021-05-29 05:44AM]<tab>127.0.0.1<tab>Mozilla/5.0 (X11; Linux x86_64; rv:88.0) Gecko/20100101
                 // Firefox/88.0<tab>http 200<tab>"localhost<tab>GET<tab>/"
                 // <tab>Description: Widget's content not readable or found.
                 $contents .= sprintf(
-                    "[%s]\t%s\t%s\t%s %s\t\"%s\t%s\t%s\"\t%s\r",
+                    "[%s]\t%s\t%s\t%s\t%s %s\t\"%s\t%s\t%s\"\t%s\r",
                     $time,
+                    $this->logType,
                     $ip,
                     $useragent,
                     $protocol,
@@ -202,28 +331,21 @@ class Log
     /**
      * Get absolute path of log file by logger flag.
      *
-     * @param string $flag String flag.
-     *
      * @return string Absolute path of log file.
-     * @throws RuntimeException
      */
-    private function logFilePath(string $flag):string
+    private function logFilePath():string
     {
-        $logRootPath   = Storage::logsPath();
-        $appServerName = APPLICATION_SERVER_NAME;
-        $todayDate     = date('Ymd');
+        //filename
+        // [root/] date > type > flag > host.ext
 
-        // @codingStandardsIgnoreStart
-        // LOGGER_FLAG_TYPE_COMPILE => PHP_RUNTIME_LOGS_PATH.$todayDate.DS.'php_compile_'.APPLICATION_SERVER_NAME.'.log',
-        // LOGGER_FLAG_TYPE_ACCESS => PHP_RUNTIME_LOGS_PATH.$todayDate.DS.'php_access_'.APPLICATION_SERVER_NAME.'.log',
-        // LOGGER_FLAG_TYPE_RUNTIME => PHP_RUNTIME_LOGS_PATH.$todayDate.DS.'php_runtime_'.APPLICATION_SERVER_NAME.'.log',
-        // @codingStandardsIgnoreEnd
-
-        return match ($flag) {
-            'compile' => sprintf('%s%s%sphp_compile_%s.log', $logRootPath, $todayDate, DS, $appServerName),
-            'access' => sprintf('%s%s%sphp_access_%s.log', $logRootPath, $todayDate, DS, $appServerName),
-            'runtime' => sprintf('%s%s%sphp_runtime_%s.log', $logRootPath, $todayDate, DS, $appServerName),
-            default => throw new RuntimeException('Invalid flag value.')
-        };
+        return sprintf(
+            '%1$s%2$s%6$s%3$s%6$s%4$s%6$s%5$s.log',
+            Storage::logsPath(),
+            date('Ymd'),
+            $this->logType,
+            $this->logFlag,
+            APPLICATION_SERVER_NAME,
+            DS
+        );
     }//end getLogFilePath()
 }

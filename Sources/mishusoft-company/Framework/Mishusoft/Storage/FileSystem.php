@@ -5,7 +5,7 @@ namespace Mishusoft\Storage;
 use JsonException;
 use Mishusoft\Exceptions\ErrorException;
 use Mishusoft\Exceptions\RuntimeException;
-use Mishusoft\System\Logger;
+use Mishusoft\System\Log;
 use Mishusoft\Utility\Number;
 
 class FileSystem
@@ -80,7 +80,7 @@ class FileSystem
     {
         if (self::isExists($file) === true) {
             if (($handle = fopen($file, 'rb')) === false) {
-                Logger::write('Can"t open the file.', LOG_STYLE_SMART, LOG_TYPE_COMPILE);
+                Log::info('Can"t open the file.', LOG_STYLE_SMART, LOG_TYPE_COMPILE);
             }
 
             $csv_headers = fgetcsv($handle, 4000, $delimiter);
@@ -506,6 +506,11 @@ class FileSystem
     {
         return pathinfo($path, PATHINFO_EXTENSION);
     }//end fileExt()
+
+    public static function lastModifiedAt(string $path):int
+    {
+        return filemtime($path);
+    }
 
 
 

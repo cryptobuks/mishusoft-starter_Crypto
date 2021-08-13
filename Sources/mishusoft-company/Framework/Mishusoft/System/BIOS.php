@@ -4,6 +4,7 @@ namespace Mishusoft\System;
 
 use Error;
 use Exception;
+use Mishusoft\CacheManager;
 use Mishusoft\Framework;
 use Mishusoft\Drivers\Session;
 use Mishusoft\Http;
@@ -36,13 +37,17 @@ class BIOS
             //Runtime cache system is on
             Http::makeCacheBrowser();
             // Instance system memory.
-            Logger::write('Start system memory.');
+            Log::info('Start system memory.');
             Memory::enable();
 
-            Logger::write('Start system firewall.');
+
+            //Logger::write('Start system cache manager.');
+            //CacheManager::start();
+
+            Log::info('Start system firewall.');
             $firewall = new Firewall();
 
-            Logger::write('Firewall check access validity of client.');
+            Log::info('Firewall check access validity of client.');
             if ($firewall->isRequestAccepted() === true) {
                 if (Http::browser()->getRequestMethod() === 'OPTIONS') {
                     $note = 'The HTTP OPTIONS method requests permitted to communicate';
@@ -53,14 +58,14 @@ class BIOS
                             'contents' => sprintf("%s for %s.", $note, Http::browser()::getVisitedPage()),
                         ],
                     ]);
-                    Logger::write(
+                    Log::info(
                         sprintf("%s for %s.", $note, Http::browser()::getVisitedPage()),
                         LOG_STYLE_FULL,
                         LOG_TYPE_ACCESS
                     );
                 } else {
-                    Logger::write('Access validity of client has been passed.');
-                    Logger::write('Start system session.');
+                    Log::info('Access validity of client has been passed.');
+                    Log::info('Start system session.');
                     Session::init();
 
                     /*
@@ -72,22 +77,22 @@ class BIOS
                      * Start special url handler [Ema Embed Mishusoft Application].
                      */
 
-                    Logger::write(sprintf('Check %s existent.', self::emaLoaderFile()));
+                    Log::info(sprintf('Check %s existent.', self::emaLoaderFile()));
                     if (file_exists(self::emaLoaderFile()) === true) {
                         // Include ema package loader.
-                        Logger::write(sprintf('Found %s in system.', self::emaLoaderFile()));
-                        Logger::write(sprintf('Load %s from system.', self::emaLoaderFile()));
+                        Log::info(sprintf('Found %s in system.', self::emaLoaderFile()));
+                        Log::info(sprintf('Load %s from system.', self::emaLoaderFile()));
                         include_once self::emaLoaderFile();
                         exit();
                     }
 
                     // Communicate with framework.
-                    Logger::write('Start framework application.');
+                    Log::info('Start framework application.');
                     Framework::init();
                 }
             } else {
-                Logger::write('Access validity of client has been failed.');
-                Logger::write('Make a action against client.');
+                Log::error('Access validity of client has been failed.');
+                Log::alert('Make a action against client.');
                 $firewall->defenceActivate();
             }//end if
         } catch (Error | Exception $e) {

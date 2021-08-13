@@ -81,21 +81,4 @@ abstract class Base
         );
     }
 
-
-    /**
-     * @param string $filename
-     * @return string
-     */
-    protected static function cacheFile(string $filename):string
-    {
-        return sprintf(
-            '%1$s%2$s%6$s%3$s%6$s%4$s%6$s%5$s.cache',
-            RUNTIME_ROOT_PATH,
-            'storages',
-            'framework',
-            'cache',
-            $filename,
-            DS
-        );
-    }
 }

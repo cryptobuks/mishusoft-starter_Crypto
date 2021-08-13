@@ -1,1 +1,5764 @@
-const a5_0x42bc03=a5_0x4840;function a5_0x4840(_0x1f0721,_0x5cf740){const _0x2ead71=a5_0x2ead();return a5_0x4840=function(_0x484086,_0x573301){_0x484086=_0x484086-0x15d;let _0x455cc4=_0x2ead71[_0x484086];return _0x455cc4;},a5_0x4840(_0x1f0721,_0x5cf740);}(function(_0x4e7cff,_0x51e3d0){const _0x2b8835=a5_0x4840,_0x1e5878=_0x4e7cff();while(!![]){try{const _0x3286cd=-parseInt(_0x2b8835(0x3f2))/0x1*(parseInt(_0x2b8835(0x2cd))/0x2)+-parseInt(_0x2b8835(0x17c))/0x3*(-parseInt(_0x2b8835(0x2dc))/0x4)+-parseInt(_0x2b8835(0x465))/0x5*(parseInt(_0x2b8835(0x37c))/0x6)+-parseInt(_0x2b8835(0x276))/0x7*(-parseInt(_0x2b8835(0x50c))/0x8)+parseInt(_0x2b8835(0x55d))/0x9*(parseInt(_0x2b8835(0x4a4))/0xa)+parseInt(_0x2b8835(0x341))/0xb*(-parseInt(_0x2b8835(0x2ea))/0xc)+-parseInt(_0x2b8835(0x3f8))/0xd;if(_0x3286cd===_0x51e3d0)break;else _0x1e5878['push'](_0x1e5878['shift']());}catch(_0x5e829b){_0x1e5878['push'](_0x1e5878['shift']());}}}(a5_0x2ead,0xbed6c),(self[a5_0x42bc03(0x4ef)]=self[a5_0x42bc03(0x4ef)]||[])['push']([[0x30d],{0x252:function(_0x31e1f4){const _0x54c4d4=a5_0x42bc03;_0x31e1f4[_0x54c4d4(0x51b)]=function(_0xbd5727){function _0x4f9e61(_0x3a0db6){const _0x2d8c07=a5_0x4840;if(_0x88f77[_0x3a0db6])return _0x88f77[_0x3a0db6][_0x2d8c07(0x51b)];var _0x4a3ca2=_0x88f77[_0x3a0db6]={'i':_0x3a0db6,'l':!0x1,'exports':{}};return _0xbd5727[_0x3a0db6][_0x2d8c07(0x1eb)](_0x4a3ca2[_0x2d8c07(0x51b)],_0x4a3ca2,_0x4a3ca2[_0x2d8c07(0x51b)],_0x4f9e61),_0x4a3ca2['l']=!0x0,_0x4a3ca2[_0x2d8c07(0x51b)];}var _0x88f77={};return _0x4f9e61['m']=_0xbd5727,_0x4f9e61['c']=_0x88f77,_0x4f9e61['d']=function(_0x2a933b,_0x3fe717,_0x2d28f4){_0x4f9e61['o'](_0x2a933b,_0x3fe717)||Object['defineProperty'](_0x2a933b,_0x3fe717,{'configurable':!0x1,'enumerable':!0x0,'get':_0x2d28f4});},_0x4f9e61['n']=function(_0x3f157d){const _0x5b5a36=a5_0x4840;var _0x2b035d=_0x3f157d&&_0x3f157d[_0x5b5a36(0x491)]?function(){const _0x2fe4f8=_0x5b5a36;return _0x3f157d[_0x2fe4f8(0x560)];}:function(){return _0x3f157d;};return _0x4f9e61['d'](_0x2b035d,'a',_0x2b035d),_0x2b035d;},_0x4f9e61['o']=function(_0x12d872,_0x5ccf28){const _0x29ecbf=a5_0x4840;return Object[_0x29ecbf(0x160)][_0x29ecbf(0x2b3)]['call'](_0x12d872,_0x5ccf28);},_0x4f9e61['p']='',_0x4f9e61(_0x4f9e61['s']=0x8);}([function(_0x222b8d,_0x4cde9b,_0x449ddd){'use strict';const _0xcff10=_0x54c4d4;Object[_0xcff10(0x274)](_0x4cde9b,_0xcff10(0x491),{'value':!0x0});var _0x1be48c=_0xcff10(0x4e6);_0x4cde9b[_0xcff10(0x3aa)]={'MODAL':_0xcff10(0x3ff),'OVERLAY':_0xcff10(0x4e4),'SHOW_MODAL':_0xcff10(0x304),'MODAL_TITLE':_0xcff10(0x501),'MODAL_TEXT':_0xcff10(0x475),'ICON':_0xcff10(0x33a),'ICON_CUSTOM':_0xcff10(0x1f6),'CONTENT':_0xcff10(0x1f9),'FOOTER':_0xcff10(0x248),'BUTTON_CONTAINER':'swal-button-container','BUTTON':_0x1be48c,'CONFIRM_BUTTON':_0x1be48c+_0xcff10(0x555),'CANCEL_BUTTON':_0x1be48c+_0xcff10(0x259),'DANGER_BUTTON':_0x1be48c+_0xcff10(0x552),'BUTTON_LOADING':_0x1be48c+_0xcff10(0x226),'BUTTON_LOADER':_0x1be48c+_0xcff10(0x1d5)},_0x4cde9b[_0xcff10(0x560)]=_0x4cde9b[_0xcff10(0x3aa)];},function(_0x148488,_0x3a3269,_0x565541){'use strict';const _0x347287=_0x54c4d4;Object[_0x347287(0x274)](_0x3a3269,'__esModule',{'value':!0x0}),_0x3a3269[_0x347287(0x4ae)]=function(_0x517682){const _0x54cc89=_0x347287;var _0x1672fa='.'+_0x517682;return document[_0x54cc89(0x549)](_0x1672fa);},_0x3a3269['stringToNode']=function(_0x4cb017){const _0x5a9926=_0x347287;var _0x5b1c71=document['createElement'](_0x5a9926(0x3ce));return _0x5b1c71[_0x5a9926(0x3bf)]=_0x4cb017[_0x5a9926(0x363)](),_0x5b1c71[_0x5a9926(0x503)];},_0x3a3269[_0x347287(0x2bd)]=function(_0x12ec01,_0x454707){const _0x33e01c=_0x347287;var _0xbe4865=_0x454707['nextSibling'];_0x454707[_0x33e01c(0x547)][_0x33e01c(0x2cf)](_0x12ec01,_0xbe4865);},_0x3a3269['removeNode']=function(_0x2175d4){const _0x1bf96b=_0x347287;_0x2175d4[_0x1bf96b(0x184)]['removeChild'](_0x2175d4);},_0x3a3269['throwErr']=function(_0x27a1a6){const _0x2879af=_0x347287;throw'SweetAlert:\x20'+(_0x27a1a6=_0x27a1a6[_0x2879af(0x426)](/ +(?= )/g,''))[_0x2879af(0x363)]();},_0x3a3269[_0x347287(0x16b)]=function(_0x1db03c){const _0x4c0232=_0x347287;if('[object\x20Object]'!==Object['prototype']['toString'][_0x4c0232(0x1eb)](_0x1db03c))return!0x1;var _0x1bee9d=Object[_0x4c0232(0x2c4)](_0x1db03c);return null===_0x1bee9d||_0x1bee9d===Object[_0x4c0232(0x160)];},_0x3a3269[_0x347287(0x3f9)]=function(_0x1a853d){var _0x203aef=_0x1a853d%0xa,_0x1364ab=_0x1a853d%0x64;return 0x1===_0x203aef&&0xb!==_0x1364ab?_0x1a853d+'st':0x2===_0x203aef&&0xc!==_0x1364ab?_0x1a853d+'nd':0x3===_0x203aef&&0xd!==_0x1364ab?_0x1a853d+'rd':_0x1a853d+'th';};},function(_0x3156d9,_0x4c236a,_0x1ac832){'use strict';const _0x52b4b3=_0x54c4d4;function _0x265c6d(_0x522263){for(var _0x25952b in _0x522263)_0x4c236a['hasOwnProperty'](_0x25952b)||(_0x4c236a[_0x25952b]=_0x522263[_0x25952b]);}Object['defineProperty'](_0x4c236a,_0x52b4b3(0x491),{'value':!0x0}),_0x265c6d(_0x1ac832(0x19));var _0x58bdba=_0x1ac832(0x1a);_0x4c236a['overlayMarkup']=_0x58bdba[_0x52b4b3(0x560)],_0x265c6d(_0x1ac832(0x1b)),_0x265c6d(_0x1ac832(0x1c)),_0x265c6d(_0x1ac832(0x1d));var _0x9feac2=_0x1ac832(0x0),_0x1bec3e=_0x9feac2[_0x52b4b3(0x560)]['MODAL_TITLE'],_0x1f2fe1=_0x9feac2['default'][_0x52b4b3(0x1a6)],_0x483603=_0x9feac2[_0x52b4b3(0x560)][_0x52b4b3(0x4a0)],_0x3be958=_0x9feac2[_0x52b4b3(0x560)][_0x52b4b3(0x28c)];_0x4c236a['iconMarkup']=_0x52b4b3(0x219)+_0x483603+_0x52b4b3(0x561),_0x4c236a[_0x52b4b3(0x33d)]=_0x52b4b3(0x219)+_0x1bec3e+_0x52b4b3(0x344),_0x4c236a['textMarkup']=_0x52b4b3(0x219)+_0x1f2fe1+_0x52b4b3(0x561),_0x4c236a[_0x52b4b3(0x3b5)]=_0x52b4b3(0x219)+_0x3be958+_0x52b4b3(0x344);},function(_0x38cad6,_0x5a7a96,_0xff55e0){'use strict';const _0x2f0316=_0x54c4d4;Object[_0x2f0316(0x274)](_0x5a7a96,'__esModule',{'value':!0x0});var _0x135d55=_0xff55e0(0x1);_0x5a7a96['CONFIRM_KEY']='confirm',_0x5a7a96[_0x2f0316(0x279)]=_0x2f0316(0x525);var _0x1c664b={'visible':!0x0,'text':null,'value':null,'className':'','closeModal':!0x0},_0x12deb2=Object[_0x2f0316(0x429)]({},_0x1c664b,{'visible':!0x1,'text':_0x2f0316(0x315),'value':null}),_0x497263=Object[_0x2f0316(0x429)]({},_0x1c664b,{'text':'OK','value':!0x0});_0x5a7a96[_0x2f0316(0x246)]={'cancel':_0x12deb2,'confirm':_0x497263};var _0xa43c18=function(_0x3591d4){const _0x1ba439=_0x2f0316;switch(_0x3591d4){case _0x5a7a96['CONFIRM_KEY']:return _0x497263;case _0x5a7a96['CANCEL_KEY']:return _0x12deb2;default:var _0x576bb8=_0x3591d4[_0x1ba439(0x4f0)](0x0)[_0x1ba439(0x1d7)]()+_0x3591d4[_0x1ba439(0x36e)](0x1);return Object[_0x1ba439(0x429)]({},_0x1c664b,{'text':_0x576bb8,'value':_0x3591d4});}},_0xed3cfb=function(_0x4309dc,_0x136a49){const _0x175789=_0x2f0316;var _0x3bb556=_0xa43c18(_0x4309dc);return!0x0===_0x136a49?Object[_0x175789(0x429)]({},_0x3bb556,{'visible':!0x0}):'string'==typeof _0x136a49?Object[_0x175789(0x429)]({},_0x3bb556,{'visible':!0x0,'text':_0x136a49}):_0x135d55['isPlainObject'](_0x136a49)?Object[_0x175789(0x429)]({'visible':!0x0},_0x3bb556,_0x136a49):Object['assign']({},_0x3bb556,{'visible':!0x1});},_0x1e30f8=function(_0x4de1d7){const _0x23b3d4=_0x2f0316;for(var _0x441ff3={},_0x186487=0x0,_0x377146=Object[_0x23b3d4(0x42c)](_0x4de1d7);_0x186487<_0x377146[_0x23b3d4(0x2b8)];_0x186487++){var _0x125ab8=_0x377146[_0x186487],_0x192ab7=_0x4de1d7[_0x125ab8],_0x40da10=_0xed3cfb(_0x125ab8,_0x192ab7);_0x441ff3[_0x125ab8]=_0x40da10;}return _0x441ff3[_0x23b3d4(0x525)]||(_0x441ff3['cancel']=_0x12deb2),_0x441ff3;},_0x1a1728=function(_0x407712){const _0x4727ef=_0x2f0316;var _0x91b5c0={};switch(_0x407712[_0x4727ef(0x2b8)]){case 0x1:_0x91b5c0[_0x5a7a96[_0x4727ef(0x279)]]=Object[_0x4727ef(0x429)]({},_0x12deb2,{'visible':!0x1});break;case 0x2:_0x91b5c0[_0x5a7a96[_0x4727ef(0x279)]]=_0xed3cfb(_0x5a7a96[_0x4727ef(0x279)],_0x407712[0x0]),_0x91b5c0[_0x5a7a96[_0x4727ef(0x42a)]]=_0xed3cfb(_0x5a7a96[_0x4727ef(0x42a)],_0x407712[0x1]);break;default:_0x135d55[_0x4727ef(0x186)](_0x4727ef(0x1e1)+_0x407712[_0x4727ef(0x2b8)]+_0x4727ef(0x44b));}return _0x91b5c0;};_0x5a7a96['getButtonListOpts']=function(_0x3aa287){const _0x871607=_0x2f0316;var _0x42dcbf=_0x5a7a96[_0x871607(0x246)];return _0x871607(0x27f)==typeof _0x3aa287?_0x42dcbf[_0x5a7a96['CONFIRM_KEY']]=_0xed3cfb(_0x5a7a96['CONFIRM_KEY'],_0x3aa287):Array[_0x871607(0x432)](_0x3aa287)?_0x42dcbf=_0x1a1728(_0x3aa287):_0x135d55['isPlainObject'](_0x3aa287)?_0x42dcbf=_0x1e30f8(_0x3aa287):!0x0===_0x3aa287?_0x42dcbf=_0x1a1728([!0x0,!0x0]):!0x1===_0x3aa287?_0x42dcbf=_0x1a1728([!0x1,!0x1]):void 0x0===_0x3aa287&&(_0x42dcbf=_0x5a7a96[_0x871607(0x246)]),_0x42dcbf;};},function(_0x3b0b76,_0x469ab9,_0x584664){'use strict';const _0x18c4a1=_0x54c4d4;Object[_0x18c4a1(0x274)](_0x469ab9,_0x18c4a1(0x491),{'value':!0x0});var _0x3640fd=_0x584664(0x1),_0x1178f9=_0x584664(0x2),_0x1803af=_0x584664(0x0),_0x414857=_0x1803af[_0x18c4a1(0x560)][_0x18c4a1(0x335)],_0x1edf05=_0x1803af['default'][_0x18c4a1(0x21c)],_0x3ffeb9=_0x584664(0x1e),_0x494192=_0x584664(0x1f),_0x70d018=_0x584664(0x20),_0x2302f6=_0x584664(0x21);_0x469ab9[_0x18c4a1(0x222)]=function(_0x3e8bca){const _0x181c10=_0x18c4a1;var _0x4c79f5=_0x3640fd[_0x181c10(0x4ae)](_0x414857),_0x2e3241=_0x3640fd[_0x181c10(0x37d)](_0x3e8bca);return _0x4c79f5[_0x181c10(0x28b)](_0x2e3241),_0x2e3241;};var _0x27376a=function(_0x57ea06){const _0x4d126b=_0x18c4a1;_0x57ea06[_0x4d126b(0x374)]=_0x414857,_0x57ea06['textContent']='';},_0x490041=function(_0x21e319,_0x395c2c){const _0xa4d17e=_0x18c4a1;_0x27376a(_0x21e319);var _0x29cc90=_0x395c2c[_0xa4d17e(0x374)];_0x29cc90&&_0x21e319[_0xa4d17e(0x319)][_0xa4d17e(0x294)](_0x29cc90);};_0x469ab9['initModalContent']=function(_0x1a953f){const _0x24a6cd=_0x18c4a1;var _0x4fadab=_0x3640fd[_0x24a6cd(0x4ae)](_0x414857);_0x490041(_0x4fadab,_0x1a953f),_0x3ffeb9[_0x24a6cd(0x560)](_0x1a953f[_0x24a6cd(0x466)]),_0x494192[_0x24a6cd(0x1d3)](_0x1a953f[_0x24a6cd(0x479)]),_0x494192['initText'](_0x1a953f[_0x24a6cd(0x245)]),_0x2302f6[_0x24a6cd(0x560)](_0x1a953f[_0x24a6cd(0x3cc)]),_0x70d018[_0x24a6cd(0x560)](_0x1a953f[_0x24a6cd(0x386)],_0x1a953f[_0x24a6cd(0x2e1)]);};var _0x37ab0d=function(){const _0x1975ef=_0x18c4a1;var _0x5bdff3=_0x3640fd[_0x1975ef(0x4ae)](_0x1edf05),_0x279864=_0x3640fd[_0x1975ef(0x37d)](_0x1178f9['modalMarkup']);_0x5bdff3[_0x1975ef(0x28b)](_0x279864);};_0x469ab9['default']=_0x37ab0d;},function(_0x116cf0,_0x5d2439,_0x3b00ab){'use strict';const _0x56ec07=_0x54c4d4;Object[_0x56ec07(0x274)](_0x5d2439,'__esModule',{'value':!0x0});var _0x1646c4=_0x3b00ab(0x3),_0x1a7eb8={'isOpen':!0x1,'promise':null,'actions':{},'timer':null},_0x3203b6=Object[_0x56ec07(0x429)]({},_0x1a7eb8);_0x5d2439['resetState']=function(){_0x3203b6=Object['assign']({},_0x1a7eb8);},_0x5d2439[_0x56ec07(0x27e)]=function(_0x2b4c16){const _0x3aba5b=_0x56ec07;if('string'==typeof _0x2b4c16)return _0x96bfc9(_0x1646c4[_0x3aba5b(0x42a)],_0x2b4c16);for(var _0x4a4df7 in _0x2b4c16)_0x96bfc9(_0x4a4df7,_0x2b4c16[_0x4a4df7]);};var _0x96bfc9=function(_0x2a6c3a,_0xd99584){const _0x19a3fc=_0x56ec07;_0x3203b6[_0x19a3fc(0x2da)][_0x2a6c3a]||(_0x3203b6[_0x19a3fc(0x2da)][_0x2a6c3a]={}),Object[_0x19a3fc(0x429)](_0x3203b6[_0x19a3fc(0x2da)][_0x2a6c3a],{'value':_0xd99584});};_0x5d2439[_0x56ec07(0x1ce)]=function(_0x1a2ee6,_0x331d96){const _0x5541e7=_0x56ec07;var _0x193402=(void 0x0===_0x331d96?{}:_0x331d96)['closeModal'],_0xb71905=void 0x0===_0x193402||_0x193402;Object[_0x5541e7(0x429)](_0x3203b6['actions'][_0x1a2ee6],{'closeModal':_0xb71905});},_0x5d2439[_0x56ec07(0x560)]=_0x3203b6;},function(_0x58dda7,_0x47fcd8,_0xaba0a0){'use strict';const _0x51fcaa=_0x54c4d4;Object[_0x51fcaa(0x274)](_0x47fcd8,_0x51fcaa(0x491),{'value':!0x0});var _0x3bcce2=_0xaba0a0(0x1),_0x461664=_0xaba0a0(0x3),_0x3d49cd=_0xaba0a0(0x0),_0x558f83=_0x3d49cd[_0x51fcaa(0x560)][_0x51fcaa(0x21c)],_0x156e59=_0x3d49cd['default'][_0x51fcaa(0x3c0)],_0x50c060=_0x3d49cd['default']['BUTTON'],_0x565a3f=_0x3d49cd[_0x51fcaa(0x560)][_0x51fcaa(0x474)],_0x24ad32=_0xaba0a0(0x5);_0x47fcd8[_0x51fcaa(0x3eb)]=function(){const _0x3267c7=_0x51fcaa;_0x3bcce2['getNode'](_0x558f83)[_0x3267c7(0x319)][_0x3267c7(0x294)](_0x156e59),_0x24ad32[_0x3267c7(0x560)][_0x3267c7(0x461)]=!0x0;};var _0x6ee575=function(){const _0xb09e06=_0x51fcaa;_0x3bcce2['getNode'](_0x558f83)['classList']['remove'](_0x156e59),_0x24ad32[_0xb09e06(0x560)][_0xb09e06(0x461)]=!0x1;};_0x47fcd8[_0x51fcaa(0x174)]=function(_0x314295){const _0x4ed57a=_0x51fcaa;void 0x0===_0x314295&&(_0x314295=_0x461664[_0x4ed57a(0x279)]);var _0x3c5816=_0x24ad32[_0x4ed57a(0x560)][_0x4ed57a(0x2da)][_0x314295],_0x56e26e=_0x3c5816[_0x4ed57a(0x389)];if(!0x1===_0x3c5816[_0x4ed57a(0x4d9)]){var _0x273d14=_0x50c060+'--'+_0x314295;_0x3bcce2[_0x4ed57a(0x4ae)](_0x273d14)[_0x4ed57a(0x319)]['add'](_0x565a3f);}else _0x6ee575();_0x24ad32[_0x4ed57a(0x560)][_0x4ed57a(0x1b2)][_0x4ed57a(0x207)](_0x56e26e);},_0x47fcd8[_0x51fcaa(0x178)]=function(){const _0x58ffe2=_0x51fcaa;var _0x972e15=Object['assign']({},_0x24ad32['default']);return delete _0x972e15[_0x58ffe2(0x1b2)],delete _0x972e15[_0x58ffe2(0x332)],_0x972e15;},_0x47fcd8[_0x51fcaa(0x2e6)]=function(){const _0x174da0=_0x51fcaa;for(var _0x2f8239=document[_0x174da0(0x1d8)]('.'+_0x50c060),_0x120726=0x0;_0x120726<_0x2f8239[_0x174da0(0x2b8)];_0x120726++)_0x2f8239[_0x120726][_0x174da0(0x319)][_0x174da0(0x403)](_0x565a3f);};},function(_0x4a8190,_0x104341){const _0x49e56c=_0x54c4d4;var _0x631375;_0x631375=function(){return this;}();try{_0x631375=_0x631375||Function(_0x49e56c(0x4ed))()||(0x0,eval)(_0x49e56c(0x1c0));}catch(_0x44ab53){_0x49e56c(0x2b1)==typeof window&&(_0x631375=window);}_0x4a8190[_0x49e56c(0x51b)]=_0x631375;},function(_0x30f952,_0x5013eb,_0x1e764f){const _0x16eb95=_0x54c4d4;(function(_0x2e2692){const _0x17f591=a5_0x4840;_0x30f952[_0x17f591(0x51b)]=_0x2e2692[_0x17f591(0x40a)]=_0x1e764f(0x9);}[_0x16eb95(0x1eb)](_0x5013eb,_0x1e764f(0x7)));},function(_0x4065c8,_0x52d3cd,_0x14c6eb){(function(_0x28b9b3){const _0x888107=a5_0x4840;_0x4065c8['exports']=_0x28b9b3[_0x888107(0x33c)]=_0x14c6eb(0xa);}['call'](_0x52d3cd,_0x14c6eb(0x7)));},function(_0x328cbd,_0x5a8bd3,_0x59b7be){const _0x42e317=_0x54c4d4;_0x42e317(0x42d)!=typeof window&&_0x59b7be(0xb),_0x59b7be(0x10);var _0x3ac1f3=_0x59b7be(0x17)[_0x42e317(0x560)];_0x328cbd['exports']=_0x3ac1f3;},function(_0x51d3c0,_0x3ad8fb,_0x16c410){const _0x4b531d=_0x54c4d4;var _0x1d08ab=_0x16c410(0xc);_0x4b531d(0x27f)==typeof _0x1d08ab&&(_0x1d08ab=[[_0x51d3c0['i'],_0x1d08ab,'']]);var _0x45ceac={'insertAt':'top','transform':void 0x0};_0x16c410(0xe)(_0x1d08ab,_0x45ceac),_0x1d08ab['locals']&&(_0x51d3c0[_0x4b531d(0x51b)]=_0x1d08ab[_0x4b531d(0x46f)]);},function(_0x550169,_0xf4b8d7,_0x3db56d){const _0x25b047=_0x54c4d4;(_0x550169[_0x25b047(0x51b)]=_0x3db56d(0xd)(void 0x0))[_0x25b047(0x4a7)]([_0x550169['i'],'.swal-icon--error{border-color:#f27474;-webkit-animation:animateErrorIcon\x20.5s;animation:animateErrorIcon\x20.5s}.swal-icon--error__x-mark{position:relative;display:block;-webkit-animation:animateXMark\x20.5s;animation:animateXMark\x20.5s}.swal-icon--error__line{position:absolute;height:5px;width:47px;background-color:#f27474;display:block;top:37px;border-radius:2px}.swal-icon--error__line--left{-webkit-transform:rotate(45deg);transform:rotate(45deg);left:17px}.swal-icon--error__line--right{-webkit-transform:rotate(-45deg);transform:rotate(-45deg);right:16px}@-webkit-keyframes\x20animateErrorIcon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}to{-webkit-transform:rotateX(0deg);transform:rotateX(0deg);opacity:1}}@keyframes\x20animateErrorIcon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}to{-webkit-transform:rotateX(0deg);transform:rotateX(0deg);opacity:1}}@-webkit-keyframes\x20animateXMark{0%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}50%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}80%{-webkit-transform:scale(1.15);transform:scale(1.15);margin-top:-6px}to{-webkit-transform:scale(1);transform:scale(1);margin-top:0;opacity:1}}@keyframes\x20animateXMark{0%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}50%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}80%{-webkit-transform:scale(1.15);transform:scale(1.15);margin-top:-6px}to{-webkit-transform:scale(1);transform:scale(1);margin-top:0;opacity:1}}.swal-icon--warning{border-color:#f8bb86;-webkit-animation:pulseWarning\x20.75s\x20infinite\x20alternate;animation:pulseWarning\x20.75s\x20infinite\x20alternate}.swal-icon--warning__body{width:5px;height:47px;top:10px;border-radius:2px;margin-left:-2px}.swal-icon--warning__body,.swal-icon--warning__dot{position:absolute;left:50%;background-color:#f8bb86}.swal-icon--warning__dot{width:7px;height:7px;border-radius:50%;margin-left:-4px;bottom:-11px}@-webkit-keyframes\x20pulseWarning{0%{border-color:#f8d486}to{border-color:#f8bb86}}@keyframes\x20pulseWarning{0%{border-color:#f8d486}to{border-color:#f8bb86}}.swal-icon--success{border-color:#a5dc86}.swal-icon--success:after,.swal-icon--success:before{content:\x22\x22;border-radius:50%;position:absolute;width:60px;height:120px;background:#fff;-webkit-transform:rotate(45deg);transform:rotate(45deg)}.swal-icon--success:before{border-radius:120px\x200\x200\x20120px;top:-7px;left:-33px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:60px\x2060px;transform-origin:60px\x2060px}.swal-icon--success:after{border-radius:0\x20120px\x20120px\x200;top:-11px;left:30px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:0\x2060px;transform-origin:0\x2060px;-webkit-animation:rotatePlaceholder\x204.25s\x20ease-in;animation:rotatePlaceholder\x204.25s\x20ease-in}.swal-icon--success__ring{width:80px;height:80px;border:4px\x20solid\x20hsla(98,55%,69%,.2);border-radius:50%;box-sizing:content-box;position:absolute;left:-4px;top:-4px;z-index:2}.swal-icon--success__hide-corners{width:5px;height:90px;background-color:#fff;padding:1px;position:absolute;left:28px;top:8px;z-index:1;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}.swal-icon--success__line{height:5px;background-color:#a5dc86;display:block;border-radius:2px;position:absolute;z-index:2}.swal-icon--success__line--tip{width:25px;left:14px;top:46px;-webkit-transform:rotate(45deg);transform:rotate(45deg);-webkit-animation:animateSuccessTip\x20.75s;animation:animateSuccessTip\x20.75s}.swal-icon--success__line--long{width:47px;right:8px;top:38px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-animation:animateSuccessLong\x20.75s;animation:animateSuccessLong\x20.75s}@-webkit-keyframes\x20rotatePlaceholder{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}to{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@keyframes\x20rotatePlaceholder{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}to{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@-webkit-keyframes\x20animateSuccessTip{0%{width:0;left:1px;top:19px}54%{width:0;left:1px;top:19px}70%{width:50px;left:-8px;top:37px}84%{width:17px;left:21px;top:48px}to{width:25px;left:14px;top:45px}}@keyframes\x20animateSuccessTip{0%{width:0;left:1px;top:19px}54%{width:0;left:1px;top:19px}70%{width:50px;left:-8px;top:37px}84%{width:17px;left:21px;top:48px}to{width:25px;left:14px;top:45px}}@-webkit-keyframes\x20animateSuccessLong{0%{width:0;right:46px;top:54px}65%{width:0;right:46px;top:54px}84%{width:55px;right:0;top:35px}to{width:47px;right:8px;top:38px}}@keyframes\x20animateSuccessLong{0%{width:0;right:46px;top:54px}65%{width:0;right:46px;top:54px}84%{width:55px;right:0;top:35px}to{width:47px;right:8px;top:38px}}.swal-icon--info{border-color:#c9dae1}.swal-icon--info:before{width:5px;height:29px;bottom:17px;border-radius:2px;margin-left:-2px}.swal-icon--info:after,.swal-icon--info:before{content:\x22\x22;position:absolute;left:50%;background-color:#c9dae1}.swal-icon--info:after{width:7px;height:7px;border-radius:50%;margin-left:-3px;top:19px}.swal-icon{width:80px;height:80px;border-width:4px;border-style:solid;border-radius:50%;padding:0;position:relative;box-sizing:content-box;margin:20px\x20auto}.swal-icon:first-child{margin-top:32px}.swal-icon--custom{width:auto;height:auto;max-width:100%;border:none;border-radius:0}.swal-icon\x20img{max-width:100%;max-height:100%}.swal-title{color:rgba(0,0,0,.65);font-weight:600;text-transform:none;position:relative;display:block;padding:13px\x2016px;font-size:27px;line-height:normal;text-align:center;margin-bottom:0}.swal-title:first-child{margin-top:26px}.swal-title:not(:first-child){padding-bottom:0}.swal-title:not(:last-child){margin-bottom:13px}.swal-text{font-size:16px;position:relative;float:none;line-height:normal;vertical-align:top;text-align:left;display:inline-block;margin:0;padding:0\x2010px;font-weight:400;color:rgba(0,0,0,.64);max-width:calc(100%\x20-\x2020px);overflow-wrap:break-word;box-sizing:border-box}.swal-text:first-child{margin-top:45px}.swal-text:last-child{margin-bottom:45px}.swal-footer{text-align:right;padding-top:13px;margin-top:13px;padding:13px\x2016px;border-radius:inherit;border-top-left-radius:0;border-top-right-radius:0}.swal-button-container{margin:5px;display:inline-block;position:relative}.swal-button{background-color:#7cd1f9;color:#fff;border:none;box-shadow:none;border-radius:5px;font-weight:600;font-size:14px;padding:10px\x2024px;margin:0;cursor:pointer}.swal-button:not([disabled]):hover{background-color:#78cbf2}.swal-button:active{background-color:#70bce0}.swal-button:focus{outline:none;box-shadow:0\x200\x200\x201px\x20#fff,0\x200\x200\x203px\x20rgba(43,114,165,.29)}.swal-button[disabled]{opacity:.5;cursor:default}.swal-button::-moz-focus-inner{border:0}.swal-button--cancel{color:#555;background-color:#efefef}.swal-button--cancel:not([disabled]):hover{background-color:#e8e8e8}.swal-button--cancel:active{background-color:#d7d7d7}.swal-button--cancel:focus{box-shadow:0\x200\x200\x201px\x20#fff,0\x200\x200\x203px\x20rgba(116,136,150,.29)}.swal-button--danger{background-color:#e64942}.swal-button--danger:not([disabled]):hover{background-color:#df4740}.swal-button--danger:active{background-color:#cf423b}.swal-button--danger:focus{box-shadow:0\x200\x200\x201px\x20#fff,0\x200\x200\x203px\x20rgba(165,43,43,.29)}.swal-content{padding:0\x2020px;margin-top:20px;font-size:medium}.swal-content:last-child{margin-bottom:20px}.swal-content__input,.swal-content__textarea{-webkit-appearance:none;background-color:#fff;border:none;font-size:14px;display:block;box-sizing:border-box;width:100%;border:1px\x20solid\x20rgba(0,0,0,.14);padding:10px\x2013px;border-radius:2px;transition:border-color\x20.2s}.swal-content__input:focus,.swal-content__textarea:focus{outline:none;border-color:#6db8ff}.swal-content__textarea{resize:vertical}.swal-button--loading{color:transparent}.swal-button--loading~.swal-button__loader{opacity:1}.swal-button__loader{position:absolute;height:auto;width:43px;z-index:2;left:50%;top:50%;-webkit-transform:translateX(-50%)\x20translateY(-50%);transform:translateX(-50%)\x20translateY(-50%);text-align:center;pointer-events:none;opacity:0}.swal-button__loader\x20div{display:inline-block;float:none;vertical-align:baseline;width:9px;height:9px;padding:0;border:none;margin:2px;opacity:.4;border-radius:7px;background-color:hsla(0,0%,100%,.9);transition:background\x20.2s;-webkit-animation:swal-loading-anim\x201s\x20infinite;animation:swal-loading-anim\x201s\x20infinite}.swal-button__loader\x20div:nth-child(3n+2){-webkit-animation-delay:.15s;animation-delay:.15s}.swal-button__loader\x20div:nth-child(3n+3){-webkit-animation-delay:.3s;animation-delay:.3s}@-webkit-keyframes\x20swal-loading-anim{0%{opacity:.4}20%{opacity:.4}50%{opacity:1}to{opacity:.4}}@keyframes\x20swal-loading-anim{0%{opacity:.4}20%{opacity:.4}50%{opacity:1}to{opacity:.4}}.swal-overlay{position:fixed;top:0;bottom:0;left:0;right:0;text-align:center;font-size:0;overflow-y:auto;background-color:rgba(0,0,0,.4);z-index:10000;pointer-events:none;opacity:0;transition:opacity\x20.3s}.swal-overlay:before{content:\x22\x20\x22;display:inline-block;vertical-align:middle;height:100%}.swal-overlay--show-modal{opacity:1;pointer-events:auto}.swal-overlay--show-modal\x20.swal-modal{opacity:1;pointer-events:auto;box-sizing:border-box;-webkit-animation:showSweetAlert\x20.3s;animation:showSweetAlert\x20.3s;will-change:transform}.swal-modal{width:478px;opacity:0;pointer-events:none;background-color:#fff;text-align:center;border-radius:5px;position:static;margin:20px\x20auto;display:inline-block;vertical-align:middle;-webkit-transform:scale(1);transform:scale(1);-webkit-transform-origin:50%\x2050%;transform-origin:50%\x2050%;z-index:10001;transition:opacity\x20.2s,-webkit-transform\x20.3s;transition:transform\x20.3s,opacity\x20.2s;transition:transform\x20.3s,opacity\x20.2s,-webkit-transform\x20.3s}@media\x20(max-width:500px){.swal-modal{width:calc(100%\x20-\x2020px)}}@-webkit-keyframes\x20showSweetAlert{0%{-webkit-transform:scale(1);transform:scale(1)}1%{-webkit-transform:scale(.5);transform:scale(.5)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}to{-webkit-transform:scale(1);transform:scale(1)}}@keyframes\x20showSweetAlert{0%{-webkit-transform:scale(1);transform:scale(1)}1%{-webkit-transform:scale(.5);transform:scale(.5)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}to{-webkit-transform:scale(1);transform:scale(1)}}','']);},function(_0x26eed9,_0x5c7080){function _0x190386(_0x2bb975,_0x1b2d3f){const _0x375f32=a5_0x4840;var _0x3714ce=_0x2bb975[0x1]||'',_0x552481=_0x2bb975[0x3];if(!_0x552481)return _0x3714ce;if(_0x1b2d3f&&_0x375f32(0x1e7)==typeof btoa){var _0x21cdb2=_0x17160a(_0x552481);return[_0x3714ce][_0x375f32(0x1d0)](_0x552481[_0x375f32(0x272)][_0x375f32(0x4d6)](function(_0x4db961){const _0x51873a=_0x375f32;return _0x51873a(0x1a9)+_0x552481[_0x51873a(0x47f)]+_0x4db961+_0x51873a(0x47d);}))['concat']([_0x21cdb2])['join']('\x0a');}return[_0x3714ce][_0x375f32(0x15d)]('\x0a');}function _0x17160a(_0x55ffdd){const _0x2b8f0d=a5_0x4840;return _0x2b8f0d(0x421)+btoa(unescape(encodeURIComponent(JSON[_0x2b8f0d(0x4de)](_0x55ffdd))))+'\x20*/';}_0x26eed9['exports']=function(_0x2bc772){const _0x1f4216=a5_0x4840;var _0x344553=[];return _0x344553[_0x1f4216(0x48f)]=function(){const _0x4f6615=_0x1f4216;return this[_0x4f6615(0x4d6)](function(_0x4184f1){const _0x37ecbc=_0x4f6615;var _0x4a404a=_0x190386(_0x4184f1,_0x2bc772);return _0x4184f1[0x2]?_0x37ecbc(0x500)+_0x4184f1[0x2]+'{'+_0x4a404a+'}':_0x4a404a;})['join']('');},_0x344553['i']=function(_0x46de15,_0x2a9a3a){const _0x3372ab=_0x1f4216;_0x3372ab(0x27f)==typeof _0x46de15&&(_0x46de15=[[null,_0x46de15,'']]);for(var _0x512685={},_0x1ef8fd=0x0;_0x1ef8fd<this['length'];_0x1ef8fd++){var _0x12f6da=this[_0x1ef8fd][0x0];'number'==typeof _0x12f6da&&(_0x512685[_0x12f6da]=!0x0);}for(_0x1ef8fd=0x0;_0x1ef8fd<_0x46de15[_0x3372ab(0x2b8)];_0x1ef8fd++){var _0x547d71=_0x46de15[_0x1ef8fd];'number'==typeof _0x547d71[0x0]&&_0x512685[_0x547d71[0x0]]||(_0x2a9a3a&&!_0x547d71[0x2]?_0x547d71[0x2]=_0x2a9a3a:_0x2a9a3a&&(_0x547d71[0x2]='('+_0x547d71[0x2]+_0x3372ab(0x270)+_0x2a9a3a+')'),_0x344553[_0x3372ab(0x4a7)](_0x547d71));}},_0x344553;};},function(_0x161485,_0x5162a9,_0x653347){const _0x5258da=_0x54c4d4;function _0x3bb81c(_0x541273,_0x483e4b){const _0x3ff21a=a5_0x4840;for(var _0x1a780b=0x0;_0x1a780b<_0x541273[_0x3ff21a(0x2b8)];_0x1a780b++){var _0x46611d=_0x541273[_0x1a780b],_0x4e5a8e=_0x57a0cb[_0x46611d['id']];if(_0x4e5a8e){_0x4e5a8e[_0x3ff21a(0x2a8)]++;for(var _0x53bec8=0x0;_0x53bec8<_0x4e5a8e['parts'][_0x3ff21a(0x2b8)];_0x53bec8++)_0x4e5a8e['parts'][_0x53bec8](_0x46611d[_0x3ff21a(0x3fb)][_0x53bec8]);for(;_0x53bec8<_0x46611d[_0x3ff21a(0x3fb)][_0x3ff21a(0x2b8)];_0x53bec8++)_0x4e5a8e[_0x3ff21a(0x3fb)][_0x3ff21a(0x4a7)](_0x23e4ed(_0x46611d[_0x3ff21a(0x3fb)][_0x53bec8],_0x483e4b));}else{var _0x1fc7af=[];for(_0x53bec8=0x0;_0x53bec8<_0x46611d[_0x3ff21a(0x3fb)][_0x3ff21a(0x2b8)];_0x53bec8++)_0x1fc7af[_0x3ff21a(0x4a7)](_0x23e4ed(_0x46611d['parts'][_0x53bec8],_0x483e4b));_0x57a0cb[_0x46611d['id']]={'id':_0x46611d['id'],'refs':0x1,'parts':_0x1fc7af};}}}function _0x53033a(_0x434448,_0x390404){const _0x46f71d=a5_0x4840;for(var _0x301833=[],_0x18bd66={},_0x4c1207=0x0;_0x4c1207<_0x434448[_0x46f71d(0x2b8)];_0x4c1207++){var _0x5875e3=_0x434448[_0x4c1207],_0x127723=_0x390404[_0x46f71d(0x34e)]?_0x5875e3[0x0]+_0x390404[_0x46f71d(0x34e)]:_0x5875e3[0x0],_0x2f70a6={'css':_0x5875e3[0x1],'media':_0x5875e3[0x2],'sourceMap':_0x5875e3[0x3]};_0x18bd66[_0x127723]?_0x18bd66[_0x127723][_0x46f71d(0x3fb)][_0x46f71d(0x4a7)](_0x2f70a6):_0x301833[_0x46f71d(0x4a7)](_0x18bd66[_0x127723]={'id':_0x127723,'parts':[_0x2f70a6]});}return _0x301833;}function _0x11255f(_0x2ba58a,_0x2c9120){const _0x345943=a5_0x4840;var _0x44e3ea=_0x391b89(_0x2ba58a[_0x345943(0x269)]);if(!_0x44e3ea)throw new Error(_0x345943(0x433));var _0x2b8b19=_0x1020e8[_0x1020e8['length']-0x1];if(_0x345943(0x370)===_0x2ba58a[_0x345943(0x38c)])_0x2b8b19?_0x2b8b19[_0x345943(0x513)]?_0x44e3ea[_0x345943(0x2cf)](_0x2c9120,_0x2b8b19[_0x345943(0x513)]):_0x44e3ea[_0x345943(0x28b)](_0x2c9120):_0x44e3ea[_0x345943(0x2cf)](_0x2c9120,_0x44e3ea[_0x345943(0x503)]),_0x1020e8[_0x345943(0x4a7)](_0x2c9120);else{if(_0x345943(0x1da)!==_0x2ba58a[_0x345943(0x38c)])throw new Error(_0x345943(0x175));_0x44e3ea[_0x345943(0x28b)](_0x2c9120);}}function _0x321326(_0x3c2571){const _0x6e422b=a5_0x4840;if(null===_0x3c2571[_0x6e422b(0x547)])return!0x1;_0x3c2571['parentNode']['removeChild'](_0x3c2571);var _0x53f4a5=_0x1020e8[_0x6e422b(0x53e)](_0x3c2571);_0x53f4a5>=0x0&&_0x1020e8['splice'](_0x53f4a5,0x1);}function _0x3283f6(_0x52c43b){const _0xab07ba=a5_0x4840;var _0x34053a=document[_0xab07ba(0x44e)](_0xab07ba(0x338));return _0x52c43b['attrs'][_0xab07ba(0x2d8)]=_0xab07ba(0x460),_0x25cd2e(_0x34053a,_0x52c43b[_0xab07ba(0x553)]),_0x11255f(_0x52c43b,_0x34053a),_0x34053a;}function _0x1bee35(_0xd2a668){const _0x13fb0f=a5_0x4840;var _0x1043b3=document['createElement'](_0x13fb0f(0x24e));return _0xd2a668[_0x13fb0f(0x553)]['type']='text/css',_0xd2a668[_0x13fb0f(0x553)][_0x13fb0f(0x2ed)]='stylesheet',_0x25cd2e(_0x1043b3,_0xd2a668['attrs']),_0x11255f(_0xd2a668,_0x1043b3),_0x1043b3;}function _0x25cd2e(_0x13c669,_0x275f81){const _0x5071a8=a5_0x4840;Object[_0x5071a8(0x42c)](_0x275f81)['forEach'](function(_0x12f188){const _0xb8255f=_0x5071a8;_0x13c669[_0xb8255f(0x422)](_0x12f188,_0x275f81[_0x12f188]);});}function _0x23e4ed(_0x28e824,_0x8785ea){const _0x3cf210=a5_0x4840;var _0x21ab44,_0x2fc430,_0x4b29fb,_0x5bef4c;if(_0x8785ea['transform']&&_0x28e824[_0x3cf210(0x266)]){if(!(_0x5bef4c=_0x8785ea[_0x3cf210(0x232)](_0x28e824[_0x3cf210(0x266)])))return function(){};_0x28e824[_0x3cf210(0x266)]=_0x5bef4c;}if(_0x8785ea[_0x3cf210(0x40b)]){var _0x3e5bbc=_0xedc4f++;_0x21ab44=_0x4d87b2||(_0x4d87b2=_0x3283f6(_0x8785ea)),_0x2fc430=_0x5d8c61[_0x3cf210(0x4dd)](null,_0x21ab44,_0x3e5bbc,!0x1),_0x4b29fb=_0x5d8c61[_0x3cf210(0x4dd)](null,_0x21ab44,_0x3e5bbc,!0x0);}else _0x28e824[_0x3cf210(0x518)]&&_0x3cf210(0x1e7)==typeof URL&&_0x3cf210(0x1e7)==typeof URL['createObjectURL']&&_0x3cf210(0x1e7)==typeof URL[_0x3cf210(0x361)]&&_0x3cf210(0x1e7)==typeof Blob&&_0x3cf210(0x1e7)==typeof btoa?(_0x21ab44=_0x1bee35(_0x8785ea),_0x2fc430=_0x479ff5[_0x3cf210(0x4dd)](null,_0x21ab44,_0x8785ea),_0x4b29fb=function(){const _0xe5df7a=_0x3cf210;_0x321326(_0x21ab44),_0x21ab44[_0xe5df7a(0x3c7)]&&URL[_0xe5df7a(0x361)](_0x21ab44[_0xe5df7a(0x3c7)]);}):(_0x21ab44=_0x3283f6(_0x8785ea),_0x2fc430=_0x20a08c[_0x3cf210(0x4dd)](null,_0x21ab44),_0x4b29fb=function(){_0x321326(_0x21ab44);});return _0x2fc430(_0x28e824),function(_0x4089dd){const _0x1b7759=_0x3cf210;if(_0x4089dd){if(_0x4089dd[_0x1b7759(0x266)]===_0x28e824[_0x1b7759(0x266)]&&_0x4089dd['media']===_0x28e824[_0x1b7759(0x365)]&&_0x4089dd['sourceMap']===_0x28e824['sourceMap'])return;_0x2fc430(_0x28e824=_0x4089dd);}else _0x4b29fb();};}function _0x5d8c61(_0xfad687,_0x5dcaca,_0x5583f5,_0x8e377b){const _0x149209=a5_0x4840;var _0x4fb41d=_0x5583f5?'':_0x8e377b[_0x149209(0x266)];if(_0xfad687[_0x149209(0x345)])_0xfad687[_0x149209(0x345)][_0x149209(0x237)]=_0x603e2a(_0x5dcaca,_0x4fb41d);else{var _0x3dee3f=document[_0x149209(0x1c5)](_0x4fb41d),_0x53c270=_0xfad687['childNodes'];_0x53c270[_0x5dcaca]&&_0xfad687[_0x149209(0x23c)](_0x53c270[_0x5dcaca]),_0x53c270[_0x149209(0x2b8)]?_0xfad687['insertBefore'](_0x3dee3f,_0x53c270[_0x5dcaca]):_0xfad687[_0x149209(0x28b)](_0x3dee3f);}}function _0x20a08c(_0xa9c195,_0x5ac11d){const _0x4d07a4=a5_0x4840;var _0x1f1931=_0x5ac11d[_0x4d07a4(0x266)],_0x3d59cc=_0x5ac11d[_0x4d07a4(0x365)];if(_0x3d59cc&&_0xa9c195[_0x4d07a4(0x422)](_0x4d07a4(0x365),_0x3d59cc),_0xa9c195[_0x4d07a4(0x345)])_0xa9c195[_0x4d07a4(0x345)][_0x4d07a4(0x237)]=_0x1f1931;else{for(;_0xa9c195['firstChild'];)_0xa9c195[_0x4d07a4(0x23c)](_0xa9c195[_0x4d07a4(0x503)]);_0xa9c195[_0x4d07a4(0x28b)](document['createTextNode'](_0x1f1931));}}function _0x479ff5(_0x1164ef,_0x5b403d,_0x1cf430){const _0xdc1742=a5_0x4840;var _0x375989=_0x1cf430[_0xdc1742(0x266)],_0x571e8c=_0x1cf430[_0xdc1742(0x518)],_0x33b270=void 0x0===_0x5b403d[_0xdc1742(0x35f)]&&_0x571e8c;(_0x5b403d[_0xdc1742(0x35f)]||_0x33b270)&&(_0x375989=_0x1c5edc(_0x375989)),_0x571e8c&&(_0x375989+='\x0a/*#\x20sourceMappingURL=data:application/json;base64,'+btoa(unescape(encodeURIComponent(JSON[_0xdc1742(0x4de)](_0x571e8c))))+_0xdc1742(0x47d));var _0x2aa039=new Blob([_0x375989],{'type':_0xdc1742(0x460)}),_0x5f0622=_0x1164ef['href'];_0x1164ef[_0xdc1742(0x3c7)]=URL[_0xdc1742(0x508)](_0x2aa039),_0x5f0622&&URL[_0xdc1742(0x361)](_0x5f0622);}var _0x57a0cb={},_0x55d0ed=function(_0x59853f){var _0x13f461;return function(){const _0x1ff02a=a5_0x4840;return void 0x0===_0x13f461&&(_0x13f461=_0x59853f[_0x1ff02a(0x39d)](this,arguments)),_0x13f461;};}(function(){const _0xb5014=a5_0x4840;return window&&document&&document[_0xb5014(0x350)]&&!window[_0xb5014(0x16a)];}),_0x391b89=function(_0x5185be){var _0x341542={};return function(_0x4ad721){const _0x2c201e=a5_0x4840;return void 0x0===_0x341542[_0x4ad721]&&(_0x341542[_0x4ad721]=_0x5185be[_0x2c201e(0x1eb)](this,_0x4ad721)),_0x341542[_0x4ad721];};}(function(_0x244e6d){const _0x4327e5=a5_0x4840;return document[_0x4327e5(0x549)](_0x244e6d);}),_0x4d87b2=null,_0xedc4f=0x0,_0x1020e8=[],_0x1c5edc=_0x653347(0xf);_0x161485[_0x5258da(0x51b)]=function(_0x4e1908,_0xcae77f){const _0x49f2e4=_0x5258da;if(_0x49f2e4(0x42d)!=typeof DEBUG&&DEBUG&&_0x49f2e4(0x2b1)!=typeof document)throw new Error(_0x49f2e4(0x42b));(_0xcae77f=_0xcae77f||{})[_0x49f2e4(0x553)]=_0x49f2e4(0x2b1)==typeof _0xcae77f['attrs']?_0xcae77f[_0x49f2e4(0x553)]:{},_0xcae77f['singleton']||(_0xcae77f[_0x49f2e4(0x40b)]=_0x55d0ed()),_0xcae77f[_0x49f2e4(0x269)]||(_0xcae77f[_0x49f2e4(0x269)]='head'),_0xcae77f[_0x49f2e4(0x38c)]||(_0xcae77f['insertAt']=_0x49f2e4(0x1da));var _0xa51da8=_0x53033a(_0x4e1908,_0xcae77f);return _0x3bb81c(_0xa51da8,_0xcae77f),function(_0x4b96c6){const _0x52849c=_0x49f2e4;for(var _0x55d14d=[],_0x416d07=0x0;_0x416d07<_0xa51da8['length'];_0x416d07++){var _0xe5b41=_0xa51da8[_0x416d07];(_0x5df290=_0x57a0cb[_0xe5b41['id']])[_0x52849c(0x2a8)]--,_0x55d14d['push'](_0x5df290);}for(_0x4b96c6&&_0x3bb81c(_0x53033a(_0x4b96c6,_0xcae77f),_0xcae77f),_0x416d07=0x0;_0x416d07<_0x55d14d[_0x52849c(0x2b8)];_0x416d07++){var _0x5df290;if(0x0===(_0x5df290=_0x55d14d[_0x416d07])[_0x52849c(0x2a8)]){for(var _0x4f7a18=0x0;_0x4f7a18<_0x5df290[_0x52849c(0x3fb)][_0x52849c(0x2b8)];_0x4f7a18++)_0x5df290['parts'][_0x4f7a18]();delete _0x57a0cb[_0x5df290['id']];}}};};var _0x603e2a=function(){var _0x4786d5=[];return function(_0x56a9c9,_0x3cc4da){const _0xa74d20=a5_0x4840;return _0x4786d5[_0x56a9c9]=_0x3cc4da,_0x4786d5['filter'](Boolean)[_0xa74d20(0x15d)]('\x0a');};}();},function(_0x37eb8f,_0x3af039){_0x37eb8f['exports']=function(_0x35ca6c){const _0x57a593=a5_0x4840;var _0x3ba101=_0x57a593(0x42d)!=typeof window&&window[_0x57a593(0x44a)];if(!_0x3ba101)throw new Error(_0x57a593(0x4fd));if(!_0x35ca6c||_0x57a593(0x27f)!=typeof _0x35ca6c)return _0x35ca6c;var _0x3521a3=_0x3ba101['protocol']+'//'+_0x3ba101[_0x57a593(0x26b)],_0x154b18=_0x3521a3+_0x3ba101[_0x57a593(0x1a3)]['replace'](/\/[^\/]*$/,'/');return _0x35ca6c['replace'](/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi,function(_0x370ef0,_0x42bac1){const _0x49ad9a=_0x57a593;var _0x430b3d,_0x245a0b=_0x42bac1[_0x49ad9a(0x363)]()[_0x49ad9a(0x426)](/^"(.*)"$/,function(_0x45cd25,_0x5800e5){return _0x5800e5;})[_0x49ad9a(0x426)](/^'(.*)'$/,function(_0x5400e3,_0xdd1ef0){return _0xdd1ef0;});return/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/)/i[_0x49ad9a(0x410)](_0x245a0b)?_0x370ef0:(_0x430b3d=0x0===_0x245a0b['indexOf']('//')?_0x245a0b:0x0===_0x245a0b[_0x49ad9a(0x53e)]('/')?_0x3521a3+_0x245a0b:_0x154b18+_0x245a0b[_0x49ad9a(0x426)](/^\.\//,''),_0x49ad9a(0x330)+JSON[_0x49ad9a(0x4de)](_0x430b3d)+')');});};},function(_0x16c961,_0x38ebc8,_0x526487){const _0x3b4659=_0x54c4d4;var _0x494c05=_0x526487(0x11);_0x3b4659(0x42d)==typeof window||window[_0x3b4659(0x257)]||(window[_0x3b4659(0x257)]=_0x494c05),_0x526487(0x15),String[_0x3b4659(0x160)]['includes']||(String[_0x3b4659(0x160)]['includes']=function(_0x54248b,_0x119b7c){'use strict';const _0x27a90a=_0x3b4659;return _0x27a90a(0x1e3)!=typeof _0x119b7c&&(_0x119b7c=0x0),!(_0x119b7c+_0x54248b['length']>this['length'])&&-0x1!==this[_0x27a90a(0x53e)](_0x54248b,_0x119b7c);}),Array[_0x3b4659(0x160)][_0x3b4659(0x373)]||Object[_0x3b4659(0x274)](Array[_0x3b4659(0x160)],'includes',{'value':function(_0x5ea06f,_0x369300){const _0x3ab53c=_0x3b4659;if(null==this)throw new TypeError(_0x3ab53c(0x4e2));var _0x363cf3=Object(this),_0x5779b5=_0x363cf3['length']>>>0x0;if(0x0===_0x5779b5)return!0x1;for(var _0x43c4fe=0x0|_0x369300,_0x937faf=Math['max'](_0x43c4fe>=0x0?_0x43c4fe:_0x5779b5-Math['abs'](_0x43c4fe),0x0);_0x937faf<_0x5779b5;){if(function(_0x2e5acd,_0x458d1e){const _0x333d39=_0x3ab53c;return _0x2e5acd===_0x458d1e||_0x333d39(0x1e3)==typeof _0x2e5acd&&_0x333d39(0x1e3)==typeof _0x458d1e&&isNaN(_0x2e5acd)&&isNaN(_0x458d1e);}(_0x363cf3[_0x937faf],_0x5ea06f))return!0x0;_0x937faf++;}return!0x1;}}),'undefined'!=typeof window&&[Element[_0x3b4659(0x160)],CharacterData[_0x3b4659(0x160)],DocumentType[_0x3b4659(0x160)]][_0x3b4659(0x45c)](function(_0xe18e07){const _0x5f4f8a=_0x3b4659;_0xe18e07[_0x5f4f8a(0x2b3)]('remove')||Object['defineProperty'](_0xe18e07,'remove',{'configurable':!0x0,'enumerable':!0x0,'writable':!0x0,'value':function(){const _0x36b3fe=_0x5f4f8a;this[_0x36b3fe(0x547)][_0x36b3fe(0x23c)](this);}});});},function(_0x2fd3af,_0x49a195,_0x440ee6){const _0x40eeb3=_0x54c4d4;(function(_0x325960){!function(_0x339949){const _0x2c1448=a5_0x4840;function _0x4b7f0b(){}function _0x4b88c5(_0x585723,_0x19b943){return function(){const _0x7f8dd2=a5_0x4840;_0x585723[_0x7f8dd2(0x39d)](_0x19b943,arguments);};}function _0x5ca27f(_0x3cfebc){const _0x1c7e7e=a5_0x4840;if(_0x1c7e7e(0x2b1)!=typeof this)throw new TypeError(_0x1c7e7e(0x3ca));if(_0x1c7e7e(0x1e7)!=typeof _0x3cfebc)throw new TypeError(_0x1c7e7e(0x27c));this['_state']=0x0,this[_0x1c7e7e(0x3d8)]=!0x1,this['_value']=void 0x0,this[_0x1c7e7e(0x2de)]=[],_0x3873ba(_0x3cfebc,this);}function _0x1b1ca1(_0x40969c,_0x3e1f01){const _0x5e1786=a5_0x4840;for(;0x3===_0x40969c['_state'];)_0x40969c=_0x40969c[_0x5e1786(0x212)];0x0!==_0x40969c['_state']?(_0x40969c[_0x5e1786(0x3d8)]=!0x0,_0x5ca27f[_0x5e1786(0x42f)](function(){const _0x3478e8=_0x5e1786;var _0x5a3541=0x1===_0x40969c[_0x3478e8(0x455)]?_0x3e1f01['onFulfilled']:_0x3e1f01['onRejected'];if(null!==_0x5a3541){var _0x1e44fb;try{_0x1e44fb=_0x5a3541(_0x40969c[_0x3478e8(0x212)]);}catch(_0x35ca8f){return void _0x358477(_0x3e1f01[_0x3478e8(0x1b2)],_0x35ca8f);}_0x9ecdde(_0x3e1f01[_0x3478e8(0x1b2)],_0x1e44fb);}else(0x1===_0x40969c['_state']?_0x9ecdde:_0x358477)(_0x3e1f01[_0x3478e8(0x1b2)],_0x40969c[_0x3478e8(0x212)]);})):_0x40969c['_deferreds'][_0x5e1786(0x4a7)](_0x3e1f01);}function _0x9ecdde(_0x5519b2,_0x5830c1){const _0x43daaf=a5_0x4840;try{if(_0x5830c1===_0x5519b2)throw new TypeError('A\x20promise\x20cannot\x20be\x20resolved\x20with\x20itself.');if(_0x5830c1&&('object'==typeof _0x5830c1||_0x43daaf(0x1e7)==typeof _0x5830c1)){var _0x3c9306=_0x5830c1[_0x43daaf(0x4fa)];if(_0x5830c1 instanceof _0x5ca27f)return _0x5519b2['_state']=0x3,_0x5519b2['_value']=_0x5830c1,void _0x46bafc(_0x5519b2);if(_0x43daaf(0x1e7)==typeof _0x3c9306)return void _0x3873ba(_0x4b88c5(_0x3c9306,_0x5830c1),_0x5519b2);}_0x5519b2[_0x43daaf(0x455)]=0x1,_0x5519b2['_value']=_0x5830c1,_0x46bafc(_0x5519b2);}catch(_0x52d0b6){_0x358477(_0x5519b2,_0x52d0b6);}}function _0x358477(_0x2ed7d4,_0x4eb86){const _0x17dede=a5_0x4840;_0x2ed7d4[_0x17dede(0x455)]=0x2,_0x2ed7d4[_0x17dede(0x212)]=_0x4eb86,_0x46bafc(_0x2ed7d4);}function _0x46bafc(_0x39c06a){const _0x32d102=a5_0x4840;0x2===_0x39c06a['_state']&&0x0===_0x39c06a[_0x32d102(0x2de)][_0x32d102(0x2b8)]&&_0x5ca27f['_immediateFn'](function(){const _0x53c2d2=_0x32d102;_0x39c06a[_0x53c2d2(0x3d8)]||_0x5ca27f[_0x53c2d2(0x3e1)](_0x39c06a[_0x53c2d2(0x212)]);});for(var _0x3e32a2=0x0,_0x174092=_0x39c06a['_deferreds']['length'];_0x3e32a2<_0x174092;_0x3e32a2++)_0x1b1ca1(_0x39c06a,_0x39c06a[_0x32d102(0x2de)][_0x3e32a2]);_0x39c06a[_0x32d102(0x2de)]=null;}function _0x3031f4(_0x1d21c8,_0x5245dc,_0x2bb6ab){const _0x2212be=a5_0x4840;this[_0x2212be(0x281)]='function'==typeof _0x1d21c8?_0x1d21c8:null,this['onRejected']=_0x2212be(0x1e7)==typeof _0x5245dc?_0x5245dc:null,this[_0x2212be(0x1b2)]=_0x2bb6ab;}function _0x3873ba(_0x45d758,_0xdb402d){var _0x22809d=!0x1;try{_0x45d758(function(_0x244e09){_0x22809d||(_0x22809d=!0x0,_0x9ecdde(_0xdb402d,_0x244e09));},function(_0x12baaf){_0x22809d||(_0x22809d=!0x0,_0x358477(_0xdb402d,_0x12baaf));});}catch(_0x4da812){if(_0x22809d)return;_0x22809d=!0x0,_0x358477(_0xdb402d,_0x4da812);}}var _0x36b6e=setTimeout;_0x5ca27f[_0x2c1448(0x160)][_0x2c1448(0x3e3)]=function(_0xdfeb73){const _0x45061f=_0x2c1448;return this[_0x45061f(0x4fa)](null,_0xdfeb73);},_0x5ca27f[_0x2c1448(0x160)][_0x2c1448(0x4fa)]=function(_0x475f8a,_0x298e24){const _0xc597ff=_0x2c1448;var _0x5b1c79=new this[(_0xc597ff(0x2f0))](_0x4b7f0b);return _0x1b1ca1(this,new _0x3031f4(_0x475f8a,_0x298e24,_0x5b1c79)),_0x5b1c79;},_0x5ca27f['all']=function(_0x4d6d1f){const _0x248141=_0x2c1448;var _0x2c6a01=Array[_0x248141(0x160)][_0x248141(0x36e)][_0x248141(0x1eb)](_0x4d6d1f);return new _0x5ca27f(function(_0x5c2c50,_0x1cb37b){const _0x5eb0f7=_0x248141;function _0x52f190(_0xc6dcb0,_0x7295ac){const _0x197980=a5_0x4840;try{if(_0x7295ac&&(_0x197980(0x2b1)==typeof _0x7295ac||_0x197980(0x1e7)==typeof _0x7295ac)){var _0x169aff=_0x7295ac[_0x197980(0x4fa)];if(_0x197980(0x1e7)==typeof _0x169aff)return void _0x169aff[_0x197980(0x1eb)](_0x7295ac,function(_0x996f64){_0x52f190(_0xc6dcb0,_0x996f64);},_0x1cb37b);}_0x2c6a01[_0xc6dcb0]=_0x7295ac,0x0==--_0x1a62e1&&_0x5c2c50(_0x2c6a01);}catch(_0xad6575){_0x1cb37b(_0xad6575);}}if(0x0===_0x2c6a01[_0x5eb0f7(0x2b8)])return _0x5c2c50([]);for(var _0x1a62e1=_0x2c6a01['length'],_0xdc9523=0x0;_0xdc9523<_0x2c6a01['length'];_0xdc9523++)_0x52f190(_0xdc9523,_0x2c6a01[_0xdc9523]);});},_0x5ca27f[_0x2c1448(0x207)]=function(_0x59718e){const _0x49611a=_0x2c1448;return _0x59718e&&_0x49611a(0x2b1)==typeof _0x59718e&&_0x59718e[_0x49611a(0x2f0)]===_0x5ca27f?_0x59718e:new _0x5ca27f(function(_0xe18428){_0xe18428(_0x59718e);});},_0x5ca27f[_0x2c1448(0x360)]=function(_0x4a51a6){return new _0x5ca27f(function(_0x3867ee,_0x4259cc){_0x4259cc(_0x4a51a6);});},_0x5ca27f[_0x2c1448(0x1e6)]=function(_0x47d3db){return new _0x5ca27f(function(_0xde86a3,_0x4668a0){const _0x440d16=a5_0x4840;for(var _0x512dab=0x0,_0x517891=_0x47d3db[_0x440d16(0x2b8)];_0x512dab<_0x517891;_0x512dab++)_0x47d3db[_0x512dab][_0x440d16(0x4fa)](_0xde86a3,_0x4668a0);});},_0x5ca27f[_0x2c1448(0x42f)]=_0x2c1448(0x1e7)==typeof _0x325960&&function(_0x5026f6){_0x325960(_0x5026f6);}||function(_0x5f17fa){_0x36b6e(_0x5f17fa,0x0);},_0x5ca27f['_unhandledRejectionFn']=function(_0x1d6990){const _0x2cce98=_0x2c1448;'undefined'!=typeof console&&console&&console[_0x2cce98(0x2f8)](_0x2cce98(0x20c),_0x1d6990);},_0x5ca27f[_0x2c1448(0x185)]=function(_0x2fcbd0){_0x5ca27f['_immediateFn']=_0x2fcbd0;},_0x5ca27f['_setUnhandledRejectionFn']=function(_0x23948){const _0x2a6725=_0x2c1448;_0x5ca27f[_0x2a6725(0x3e1)]=_0x23948;},void 0x0!==_0x2fd3af&&_0x2fd3af[_0x2c1448(0x51b)]?_0x2fd3af[_0x2c1448(0x51b)]=_0x5ca27f:_0x339949[_0x2c1448(0x257)]||(_0x339949[_0x2c1448(0x257)]=_0x5ca27f);}(this);}[_0x40eeb3(0x1eb)](_0x49a195,_0x440ee6(0x12)[_0x40eeb3(0x230)]));},function(_0x30c936,_0x4d1aa1,_0x1f5fb4){const _0x32a350=_0x54c4d4;function _0x1595cf(_0x273ee3,_0x538b57){const _0x32697f=a5_0x4840;this[_0x32697f(0x3a8)]=_0x273ee3,this[_0x32697f(0x286)]=_0x538b57;}var _0x55763e=Function['prototype'][_0x32a350(0x39d)];_0x4d1aa1[_0x32a350(0x204)]=function(){const _0x297202=_0x32a350;return new _0x1595cf(_0x55763e[_0x297202(0x1eb)](setTimeout,window,arguments),clearTimeout);},_0x4d1aa1['setInterval']=function(){const _0x34ddfe=_0x32a350;return new _0x1595cf(_0x55763e[_0x34ddfe(0x1eb)](setInterval,window,arguments),clearInterval);},_0x4d1aa1[_0x32a350(0x1d6)]=_0x4d1aa1[_0x32a350(0x2d2)]=function(_0x4acff4){const _0x1071e4=_0x32a350;_0x4acff4&&_0x4acff4[_0x1071e4(0x27d)]();},_0x1595cf[_0x32a350(0x160)]['unref']=_0x1595cf[_0x32a350(0x160)][_0x32a350(0x300)]=function(){},_0x1595cf[_0x32a350(0x160)][_0x32a350(0x27d)]=function(){const _0x5076a9=_0x32a350;this[_0x5076a9(0x286)]['call'](window,this[_0x5076a9(0x3a8)]);},_0x4d1aa1[_0x32a350(0x4f7)]=function(_0x138d6f,_0x56844c){clearTimeout(_0x138d6f['_idleTimeoutId']),_0x138d6f['_idleTimeout']=_0x56844c;},_0x4d1aa1[_0x32a350(0x412)]=function(_0x22b8c5){const _0x2e0e79=_0x32a350;clearTimeout(_0x22b8c5[_0x2e0e79(0x4a2)]),_0x22b8c5[_0x2e0e79(0x271)]=-0x1;},_0x4d1aa1[_0x32a350(0x550)]=_0x4d1aa1[_0x32a350(0x2be)]=function(_0x5c4882){const _0x103651=_0x32a350;clearTimeout(_0x5c4882[_0x103651(0x4a2)]);var _0x1eae80=_0x5c4882['_idleTimeout'];_0x1eae80>=0x0&&(_0x5c4882[_0x103651(0x4a2)]=setTimeout(function(){const _0x57519c=_0x103651;_0x5c4882[_0x57519c(0x260)]&&_0x5c4882[_0x57519c(0x260)]();},_0x1eae80));},_0x1f5fb4(0x13),_0x4d1aa1['setImmediate']=setImmediate,_0x4d1aa1[_0x32a350(0x3d0)]=clearImmediate;},function(_0x93a208,_0x24bc59,_0x1980bc){const _0x484f50=_0x54c4d4;(function(_0x5d4fa9,_0x49939e){const _0x3c8f93=a5_0x4840;!function(_0x3fabfe,_0x35fb5d){'use strict';const _0x438cde=a5_0x4840;function _0x53a373(_0x1b51e3){const _0xaf5fb7=a5_0x4840;'function'!=typeof _0x1b51e3&&(_0x1b51e3=new Function(''+_0x1b51e3));for(var _0x1515b8=new Array(arguments[_0xaf5fb7(0x2b8)]-0x1),_0x343f63=0x0;_0x343f63<_0x1515b8[_0xaf5fb7(0x2b8)];_0x343f63++)_0x1515b8[_0x343f63]=arguments[_0x343f63+0x1];var _0x1a7ab8={'callback':_0x1b51e3,'args':_0x1515b8};return _0x31303e[_0x1d2a73]=_0x1a7ab8,_0x451bd2(_0x1d2a73),_0x1d2a73++;}function _0x288abb(_0x1dbdb5){delete _0x31303e[_0x1dbdb5];}function _0x2fa22d(_0x3e89f3){const _0x3967db=a5_0x4840;var _0x59907a=_0x3e89f3[_0x3967db(0x27a)],_0x34ab9e=_0x3e89f3['args'];switch(_0x34ab9e[_0x3967db(0x2b8)]){case 0x0:_0x59907a();break;case 0x1:_0x59907a(_0x34ab9e[0x0]);break;case 0x2:_0x59907a(_0x34ab9e[0x0],_0x34ab9e[0x1]);break;case 0x3:_0x59907a(_0x34ab9e[0x0],_0x34ab9e[0x1],_0x34ab9e[0x2]);break;default:_0x59907a[_0x3967db(0x39d)](_0x35fb5d,_0x34ab9e);}}function _0x20710b(_0x2f6371){if(_0x9fd51d)setTimeout(_0x20710b,0x0,_0x2f6371);else{var _0x3ffda8=_0x31303e[_0x2f6371];if(_0x3ffda8){_0x9fd51d=!0x0;try{_0x2fa22d(_0x3ffda8);}finally{_0x288abb(_0x2f6371),_0x9fd51d=!0x1;}}}}if(!_0x3fabfe[_0x438cde(0x230)]){var _0x451bd2,_0x1d2a73=0x1,_0x31303e={},_0x9fd51d=!0x1,_0x167f9c=_0x3fabfe['document'],_0x1fed50=Object[_0x438cde(0x2c4)]&&Object['getPrototypeOf'](_0x3fabfe);_0x1fed50=_0x1fed50&&_0x1fed50[_0x438cde(0x204)]?_0x1fed50:_0x3fabfe,'[object\x20process]'==={}[_0x438cde(0x48f)][_0x438cde(0x1eb)](_0x3fabfe['process'])?_0x451bd2=function(_0x331c3d){_0x49939e['nextTick'](function(){_0x20710b(_0x331c3d);});}:function(){const _0x42a379=_0x438cde;if(_0x3fabfe[_0x42a379(0x29f)]&&!_0x3fabfe['importScripts']){var _0x34f9d8=!0x0,_0x29bd85=_0x3fabfe[_0x42a379(0x236)];return _0x3fabfe['onmessage']=function(){_0x34f9d8=!0x1;},_0x3fabfe[_0x42a379(0x29f)]('','*'),_0x3fabfe[_0x42a379(0x236)]=_0x29bd85,_0x34f9d8;}}()?function(){const _0x5c00ba=_0x438cde;var _0x35a904=_0x5c00ba(0x4a5)+Math[_0x5c00ba(0x1cf)]()+'$',_0x33d833=function(_0x3bfa76){const _0x36eddb=_0x5c00ba;_0x3bfa76[_0x36eddb(0x523)]===_0x3fabfe&&_0x36eddb(0x27f)==typeof _0x3bfa76[_0x36eddb(0x424)]&&0x0===_0x3bfa76['data'][_0x36eddb(0x53e)](_0x35a904)&&_0x20710b(+_0x3bfa76[_0x36eddb(0x424)]['slice'](_0x35a904[_0x36eddb(0x2b8)]));};_0x3fabfe[_0x5c00ba(0x4c9)]?_0x3fabfe[_0x5c00ba(0x4c9)](_0x5c00ba(0x3d4),_0x33d833,!0x1):_0x3fabfe['attachEvent']('onmessage',_0x33d833),_0x451bd2=function(_0x58475a){const _0x56ded0=_0x5c00ba;_0x3fabfe[_0x56ded0(0x29f)](_0x35a904+_0x58475a,'*');};}():_0x3fabfe['MessageChannel']?function(){const _0x238ad7=_0x438cde;var _0x4e2fae=new MessageChannel();_0x4e2fae['port1'][_0x238ad7(0x236)]=function(_0x54c9aa){const _0x3c07b0=_0x238ad7;_0x20710b(_0x54c9aa[_0x3c07b0(0x424)]);},_0x451bd2=function(_0x162512){const _0x5f4da8=_0x238ad7;_0x4e2fae[_0x5f4da8(0x411)][_0x5f4da8(0x29f)](_0x162512);};}():_0x167f9c&&'onreadystatechange'in _0x167f9c['createElement'](_0x438cde(0x19b))?function(){var _0x66171b=_0x167f9c['documentElement'];_0x451bd2=function(_0x254457){const _0x467aeb=a5_0x4840;var _0x3f8106=_0x167f9c[_0x467aeb(0x44e)](_0x467aeb(0x19b));_0x3f8106['onreadystatechange']=function(){const _0x4dbaf7=_0x467aeb;_0x20710b(_0x254457),_0x3f8106[_0x4dbaf7(0x3be)]=null,_0x66171b[_0x4dbaf7(0x23c)](_0x3f8106),_0x3f8106=null;},_0x66171b[_0x467aeb(0x28b)](_0x3f8106);};}():_0x451bd2=function(_0x5000ab){setTimeout(_0x20710b,0x0,_0x5000ab);},_0x1fed50[_0x438cde(0x230)]=_0x53a373,_0x1fed50[_0x438cde(0x3d0)]=_0x288abb;}}(_0x3c8f93(0x42d)==typeof self?void 0x0===_0x5d4fa9?this:_0x5d4fa9:self);}[_0x484f50(0x1eb)](_0x24bc59,_0x1980bc(0x7),_0x1980bc(0x14)));},function(_0x426cc2,_0x4ad245){const _0x59b6c5=_0x54c4d4;function _0x3d920f(){const _0x1120ab=a5_0x4840;throw new Error(_0x1120ab(0x493));}function _0x2b319e(){throw new Error('clearTimeout\x20has\x20not\x20been\x20defined');}function _0x1280b1(_0x2d726c){const _0x6db2ce=a5_0x4840;if(_0x5d6e5d===setTimeout)return setTimeout(_0x2d726c,0x0);if((_0x5d6e5d===_0x3d920f||!_0x5d6e5d)&&setTimeout)return _0x5d6e5d=setTimeout,setTimeout(_0x2d726c,0x0);try{return _0x5d6e5d(_0x2d726c,0x0);}catch(_0x451685){try{return _0x5d6e5d[_0x6db2ce(0x1eb)](null,_0x2d726c,0x0);}catch(_0x190b77){return _0x5d6e5d[_0x6db2ce(0x1eb)](this,_0x2d726c,0x0);}}}function _0x51d7fd(_0x2591b6){const _0x1bf7de=a5_0x4840;if(_0x2ed0c6===clearTimeout)return clearTimeout(_0x2591b6);if((_0x2ed0c6===_0x2b319e||!_0x2ed0c6)&&clearTimeout)return _0x2ed0c6=clearTimeout,clearTimeout(_0x2591b6);try{return _0x2ed0c6(_0x2591b6);}catch(_0xc95da8){try{return _0x2ed0c6['call'](null,_0x2591b6);}catch(_0x46454c){return _0x2ed0c6[_0x1bf7de(0x1eb)](this,_0x2591b6);}}}function _0x18d6b0(){const _0x19868e=a5_0x4840;_0x5f1a41&&_0x4869d1&&(_0x5f1a41=!0x1,_0x4869d1['length']?_0x310b40=_0x4869d1['concat'](_0x310b40):_0x31c22=-0x1,_0x310b40[_0x19868e(0x2b8)]&&_0x4a27a2());}function _0x4a27a2(){const _0x434acb=a5_0x4840;if(!_0x5f1a41){var _0x3e9ba9=_0x1280b1(_0x18d6b0);_0x5f1a41=!0x0;for(var _0x245e4a=_0x310b40[_0x434acb(0x2b8)];_0x245e4a;){for(_0x4869d1=_0x310b40,_0x310b40=[];++_0x31c22<_0x245e4a;)_0x4869d1&&_0x4869d1[_0x31c22]['run']();_0x31c22=-0x1,_0x245e4a=_0x310b40[_0x434acb(0x2b8)];}_0x4869d1=null,_0x5f1a41=!0x1,_0x51d7fd(_0x3e9ba9);}}function _0x4d3496(_0x213c05,_0xa72993){this['fun']=_0x213c05,this['array']=_0xa72993;}function _0x1b82e7(){}var _0x5d6e5d,_0x2ed0c6,_0x84f6ed=_0x426cc2[_0x59b6c5(0x51b)]={};!function(){const _0x3807f2=_0x59b6c5;try{_0x5d6e5d=_0x3807f2(0x1e7)==typeof setTimeout?setTimeout:_0x3d920f;}catch(_0x324ea2){_0x5d6e5d=_0x3d920f;}try{_0x2ed0c6=_0x3807f2(0x1e7)==typeof clearTimeout?clearTimeout:_0x2b319e;}catch(_0x4334c4){_0x2ed0c6=_0x2b319e;}}();var _0x4869d1,_0x310b40=[],_0x5f1a41=!0x1,_0x31c22=-0x1;_0x84f6ed[_0x59b6c5(0x400)]=function(_0x4fb399){const _0x5a3b43=_0x59b6c5;var _0x45730c=new Array(arguments['length']-0x1);if(arguments[_0x5a3b43(0x2b8)]>0x1){for(var _0x225560=0x1;_0x225560<arguments['length'];_0x225560++)_0x45730c[_0x225560-0x1]=arguments[_0x225560];}_0x310b40['push'](new _0x4d3496(_0x4fb399,_0x45730c)),0x1!==_0x310b40['length']||_0x5f1a41||_0x1280b1(_0x4a27a2);},_0x4d3496['prototype'][_0x59b6c5(0x2d3)]=function(){const _0x159599=_0x59b6c5;this[_0x159599(0x49f)]['apply'](null,this[_0x159599(0x3f1)]);},_0x84f6ed[_0x59b6c5(0x479)]=_0x59b6c5(0x17d),_0x84f6ed['browser']=!0x0,_0x84f6ed[_0x59b6c5(0x258)]={},_0x84f6ed['argv']=[],_0x84f6ed[_0x59b6c5(0x36f)]='',_0x84f6ed['versions']={},_0x84f6ed['on']=_0x1b82e7,_0x84f6ed[_0x59b6c5(0x4ba)]=_0x1b82e7,_0x84f6ed['once']=_0x1b82e7,_0x84f6ed[_0x59b6c5(0x254)]=_0x1b82e7,_0x84f6ed[_0x59b6c5(0x1e5)]=_0x1b82e7,_0x84f6ed[_0x59b6c5(0x405)]=_0x1b82e7,_0x84f6ed[_0x59b6c5(0x517)]=_0x1b82e7,_0x84f6ed['prependListener']=_0x1b82e7,_0x84f6ed[_0x59b6c5(0x30f)]=_0x1b82e7,_0x84f6ed[_0x59b6c5(0x49a)]=function(_0x46db60){return[];},_0x84f6ed['binding']=function(_0x1b495d){const _0x4ab3d9=_0x59b6c5;throw new Error(_0x4ab3d9(0x324));},_0x84f6ed['cwd']=function(){return'/';},_0x84f6ed[_0x59b6c5(0x32d)]=function(_0x26fddb){const _0x19ee04=_0x59b6c5;throw new Error(_0x19ee04(0x2f6));},_0x84f6ed[_0x59b6c5(0x278)]=function(){return 0x0;};},function(_0x11d3ab,_0x3940ec,_0x2626a7){'use strict';const _0x2065b8=_0x54c4d4;_0x2626a7(0x16)[_0x2065b8(0x472)]();},function(_0x5aa6fe,_0x5fad1f,_0x7a858){'use strict';function _0x15ee1e(_0x1757b4,_0x2aca3c){const _0x37a2bb=a5_0x4840;if(null==_0x1757b4)throw new TypeError(_0x37a2bb(0x4e0));for(var _0x4a3ef7=Object(_0x1757b4),_0x508c83=0x1;_0x508c83<arguments[_0x37a2bb(0x2b8)];_0x508c83++){var _0x24e4b9=arguments[_0x508c83];if(null!=_0x24e4b9)for(var _0x430b54=Object[_0x37a2bb(0x42c)](Object(_0x24e4b9)),_0x28b39c=0x0,_0x1e87a5=_0x430b54[_0x37a2bb(0x2b8)];_0x28b39c<_0x1e87a5;_0x28b39c++){var _0x39fe44=_0x430b54[_0x28b39c],_0x4d5b80=Object[_0x37a2bb(0x46b)](_0x24e4b9,_0x39fe44);void 0x0!==_0x4d5b80&&_0x4d5b80[_0x37a2bb(0x3de)]&&(_0x4a3ef7[_0x39fe44]=_0x24e4b9[_0x39fe44]);}}return _0x4a3ef7;}function _0x3fd062(){const _0x4c63ea=a5_0x4840;Object['assign']||Object[_0x4c63ea(0x274)](Object,_0x4c63ea(0x429),{'enumerable':!0x1,'configurable':!0x0,'writable':!0x0,'value':_0x15ee1e});}_0x5aa6fe['exports']={'assign':_0x15ee1e,'polyfill':_0x3fd062};},function(_0x13146a,_0x51362d,_0x2af08d){'use strict';const _0x4a3362=_0x54c4d4;Object[_0x4a3362(0x274)](_0x51362d,_0x4a3362(0x491),{'value':!0x0});var _0x3f574b=_0x2af08d(0x18),_0x4ebf29=_0x2af08d(0x6),_0xbd8786=_0x2af08d(0x5),_0x55cb3c=_0x2af08d(0x24),_0x43b301=function(){const _0x136a65=_0x4a3362;for(var _0xd16466=[],_0x3d9180=0x0;_0x3d9180<arguments[_0x136a65(0x2b8)];_0x3d9180++)_0xd16466[_0x3d9180]=arguments[_0x3d9180];if(_0x136a65(0x42d)!=typeof window){var _0x1d4e60=_0x55cb3c[_0x136a65(0x20b)][_0x136a65(0x39d)](void 0x0,_0xd16466);return new Promise(function(_0x358f5d,_0x33ea1b){const _0x177a38=_0x136a65;_0xbd8786[_0x177a38(0x560)]['promise']={'resolve':_0x358f5d,'reject':_0x33ea1b},_0x3f574b[_0x177a38(0x560)](_0x1d4e60),setTimeout(function(){_0x4ebf29['openModal']();});});}};_0x43b301[_0x4a3362(0x27d)]=_0x4ebf29['onAction'],_0x43b301[_0x4a3362(0x178)]=_0x4ebf29['getState'],_0x43b301[_0x4a3362(0x27e)]=_0xbd8786[_0x4a3362(0x27e)],_0x43b301['stopLoading']=_0x4ebf29[_0x4a3362(0x2e6)],_0x43b301[_0x4a3362(0x25f)]=_0x55cb3c[_0x4a3362(0x25f)],_0x51362d[_0x4a3362(0x560)]=_0x43b301;},function(_0x190140,_0x3c0c63,_0x2fbf2a){'use strict';const _0x262855=_0x54c4d4;Object['defineProperty'](_0x3c0c63,_0x262855(0x491),{'value':!0x0});var _0xc7a915=_0x2fbf2a(0x1),_0xdb0d07=_0x2fbf2a(0x0)[_0x262855(0x560)][_0x262855(0x335)],_0x15b977=_0x2fbf2a(0x4),_0x331a15=_0x2fbf2a(0x22),_0x2a474a=_0x2fbf2a(0x23),_0x807a=_0x2fbf2a(0x1);_0x3c0c63[_0x262855(0x535)]=function(_0x2048be){const _0x522926=_0x262855;_0xc7a915[_0x522926(0x4ae)](_0xdb0d07)||(document['body']||_0x807a['throwErr'](_0x522926(0x390)),_0x331a15[_0x522926(0x560)](),_0x15b977[_0x522926(0x560)]()),_0x15b977[_0x522926(0x379)](_0x2048be),_0x2a474a['default'](_0x2048be);},_0x3c0c63[_0x262855(0x560)]=_0x3c0c63['init'];},function(_0x1dc672,_0x1e2ab8,_0x16af2e){'use strict';const _0x53c735=_0x54c4d4;Object['defineProperty'](_0x1e2ab8,'__esModule',{'value':!0x0});var _0x4e2694=_0x16af2e(0x0)['default'][_0x53c735(0x335)];_0x1e2ab8[_0x53c735(0x295)]=_0x53c735(0x219)+_0x4e2694+_0x53c735(0x3a5),_0x1e2ab8[_0x53c735(0x560)]=_0x1e2ab8[_0x53c735(0x295)];},function(_0x4c3f1f,_0x592458,_0x3e35b5){'use strict';const _0x105bc3=_0x54c4d4;Object[_0x105bc3(0x274)](_0x592458,_0x105bc3(0x491),{'value':!0x0});var _0x1f8f06='<div\x20\x0a\x20\x20\x20\x20class=\x22'+_0x3e35b5(0x0)[_0x105bc3(0x560)]['OVERLAY']+_0x105bc3(0x28e);_0x592458[_0x105bc3(0x560)]=_0x1f8f06;},function(_0x1c290b,_0x1a225b,_0x1e8ef9){'use strict';const _0x35b803=_0x54c4d4;Object['defineProperty'](_0x1a225b,_0x35b803(0x491),{'value':!0x0});var _0x5147fb=_0x1e8ef9(0x0)[_0x35b803(0x560)][_0x35b803(0x4a0)];_0x1a225b[_0x35b803(0x543)]=function(){const _0x3f8f24=_0x35b803;var _0x43c62b=_0x5147fb+_0x3f8f24(0x4cc),_0x2b83e7=_0x43c62b+_0x3f8f24(0x378);return'\x0a\x20\x20\x20\x20<div\x20class=\x22'+_0x43c62b+'__x-mark\x22>\x0a\x20\x20\x20\x20\x20\x20<span\x20class=\x22'+_0x2b83e7+'\x20'+_0x2b83e7+'--left\x22></span>\x0a\x20\x20\x20\x20\x20\x20<span\x20class=\x22'+_0x2b83e7+'\x20'+_0x2b83e7+_0x3f8f24(0x47b);},_0x1a225b['warningIconMarkup']=function(){const _0x203be2=_0x35b803;var _0x3961e6=_0x5147fb+_0x203be2(0x351);return _0x203be2(0x377)+_0x3961e6+_0x203be2(0x3a2)+_0x3961e6+_0x203be2(0x524);},_0x1a225b[_0x35b803(0x2ff)]=function(){const _0x5d1ca0=_0x35b803;var _0x49a2ee=_0x5147fb+_0x5d1ca0(0x227);return'\x0a\x20\x20\x20\x20<span\x20class=\x22'+_0x49a2ee+_0x5d1ca0(0x190)+_0x49a2ee+_0x5d1ca0(0x551)+_0x49a2ee+_0x5d1ca0(0x190)+_0x49a2ee+_0x5d1ca0(0x36a)+_0x49a2ee+_0x5d1ca0(0x275)+_0x49a2ee+_0x5d1ca0(0x3a6);};},function(_0x10c648,_0x2f1b03,_0x41edb7){'use strict';const _0x479576=_0x54c4d4;Object[_0x479576(0x274)](_0x2f1b03,'__esModule',{'value':!0x0});var _0x171e7e=_0x41edb7(0x0)['default']['CONTENT'];_0x2f1b03['contentMarkup']=_0x479576(0x219)+_0x171e7e+_0x479576(0x372);},function(_0x8d19fa,_0x231868,_0x2a8546){'use strict';const _0xf0ae83=_0x54c4d4;Object[_0xf0ae83(0x274)](_0x231868,_0xf0ae83(0x491),{'value':!0x0});var _0xa8abcb=_0x2a8546(0x0),_0x216365=_0xa8abcb[_0xf0ae83(0x560)][_0xf0ae83(0x38d)],_0x3b882c=_0xa8abcb['default'][_0xf0ae83(0x498)],_0x452151=_0xa8abcb[_0xf0ae83(0x560)]['BUTTON_LOADER'];_0x231868[_0xf0ae83(0x1a0)]=_0xf0ae83(0x219)+_0x216365+_0xf0ae83(0x165)+_0x3b882c+_0xf0ae83(0x2fb)+_0x452151+_0xf0ae83(0x38e);},function(_0x3dac39,_0x18501a,_0x51ff93){'use strict';const _0x180f07=_0x54c4d4;Object[_0x180f07(0x274)](_0x18501a,_0x180f07(0x491),{'value':!0x0});var _0x297984=_0x51ff93(0x4),_0x554b44=_0x51ff93(0x2),_0x4c96dc=_0x51ff93(0x0),_0xd993ab=_0x4c96dc['default'][_0x180f07(0x4a0)],_0x597051=_0x4c96dc[_0x180f07(0x560)][_0x180f07(0x4bd)],_0x1d9afe=[_0x180f07(0x469),_0x180f07(0x47a),_0x180f07(0x529),_0x180f07(0x38a)],_0x37ad49={'error':_0x554b44[_0x180f07(0x543)](),'warning':_0x554b44[_0x180f07(0x34d)](),'success':_0x554b44['successIconMarkup']()},_0x31f1c6=function(_0x5cec6f,_0x5aad6b){const _0x30e9c7=_0x180f07;var _0x488c86=_0xd993ab+'--'+_0x5cec6f;_0x5aad6b[_0x30e9c7(0x319)][_0x30e9c7(0x294)](_0x488c86);var _0x4b9d8a=_0x37ad49[_0x5cec6f];_0x4b9d8a&&(_0x5aad6b[_0x30e9c7(0x3bf)]=_0x4b9d8a);},_0x1d251c=function(_0x354f54,_0x3eed9d){const _0x294379=_0x180f07;_0x3eed9d[_0x294379(0x319)][_0x294379(0x294)](_0x597051);var _0x4fb2d=document[_0x294379(0x44e)]('img');_0x4fb2d['src']=_0x354f54,_0x3eed9d[_0x294379(0x28b)](_0x4fb2d);},_0x2360db=function(_0x2d4647){const _0x55147b=_0x180f07;if(_0x2d4647){var _0x17cc10=_0x297984['injectElIntoModal'](_0x554b44[_0x55147b(0x1d4)]);_0x1d9afe[_0x55147b(0x373)](_0x2d4647)?_0x31f1c6(_0x2d4647,_0x17cc10):_0x1d251c(_0x2d4647,_0x17cc10);}};_0x18501a[_0x180f07(0x560)]=_0x2360db;},function(_0x166c45,_0x36f027,_0x35e56c){'use strict';const _0x48a19b=_0x54c4d4;Object[_0x48a19b(0x274)](_0x36f027,_0x48a19b(0x491),{'value':!0x0});var _0x302e57=_0x35e56c(0x2),_0xf959b9=_0x35e56c(0x4),_0xd686d=function(_0x51da7a){const _0x272355=_0x48a19b;navigator['userAgent'][_0x272355(0x373)](_0x272355(0x3d9))&&(_0x51da7a['style'][_0x272355(0x3a7)]=_0x272355(0x510),_0x51da7a[_0x272355(0x533)],_0x51da7a['style'][_0x272355(0x3a7)]='');};_0x36f027[_0x48a19b(0x1d3)]=function(_0x1fe2fa){const _0x3d6c8f=_0x48a19b;if(_0x1fe2fa){var _0x4e35ea=_0xf959b9[_0x3d6c8f(0x222)](_0x302e57['titleMarkup']);_0x4e35ea[_0x3d6c8f(0x41f)]=_0x1fe2fa,_0xd686d(_0x4e35ea);}},_0x36f027[_0x48a19b(0x1fe)]=function(_0x11eb8b){const _0x98df72=_0x48a19b;if(_0x11eb8b){var _0x21c852=document[_0x98df72(0x3d7)]();_0x11eb8b['split']('\x0a')['forEach'](function(_0xe127ae,_0x1e3a29,_0xc61780){const _0xcb5d68=_0x98df72;_0x21c852[_0xcb5d68(0x28b)](document[_0xcb5d68(0x1c5)](_0xe127ae)),_0x1e3a29<_0xc61780[_0xcb5d68(0x2b8)]-0x1&&_0x21c852['appendChild'](document[_0xcb5d68(0x44e)]('br'));});var _0x3aa436=_0xf959b9[_0x98df72(0x222)](_0x302e57[_0x98df72(0x1bf)]);_0x3aa436[_0x98df72(0x28b)](_0x21c852),_0xd686d(_0x3aa436);}};},function(_0x5d8b9b,_0x4f20d6,_0x1d6309){'use strict';const _0x2ce349=_0x54c4d4;Object[_0x2ce349(0x274)](_0x4f20d6,'__esModule',{'value':!0x0});var _0x154787=_0x1d6309(0x1),_0x5009cb=_0x1d6309(0x4),_0x4105ff=_0x1d6309(0x0),_0x3509c1=_0x4105ff['default'][_0x2ce349(0x498)],_0x1ea276=_0x4105ff['default'][_0x2ce349(0x4a9)],_0x24e8db=_0x1d6309(0x3),_0x24b118=_0x1d6309(0x2),_0x25cd54=_0x1d6309(0x6),_0x4c1b62=_0x1d6309(0x5),_0x4f7bc=function(_0x2fed56,_0xad4bcb,_0x182b1b){const _0x43e6fe=_0x2ce349;var _0xba9c4=_0xad4bcb['text'],_0x23ea93=_0xad4bcb[_0x43e6fe(0x389)],_0x659b06=_0xad4bcb['className'],_0x481ca8=_0xad4bcb['closeModal'],_0x51a029=_0x154787['stringToNode'](_0x24b118[_0x43e6fe(0x1a0)]),_0xfb6086=_0x51a029[_0x43e6fe(0x549)]('.'+_0x3509c1),_0x32f86e=_0x3509c1+'--'+_0x2fed56;_0xfb6086['classList'][_0x43e6fe(0x294)](_0x32f86e),_0x659b06&&(Array[_0x43e6fe(0x432)](_0x659b06)?_0x659b06:_0x659b06[_0x43e6fe(0x546)]('\x20'))['filter'](function(_0x3bb7e4){const _0x7d2590=_0x43e6fe;return _0x3bb7e4[_0x7d2590(0x2b8)]>0x0;})[_0x43e6fe(0x45c)](function(_0x1ac4ae){const _0x414678=_0x43e6fe;_0xfb6086[_0x414678(0x319)][_0x414678(0x294)](_0x1ac4ae);}),_0x182b1b&&_0x2fed56===_0x24e8db[_0x43e6fe(0x42a)]&&_0xfb6086[_0x43e6fe(0x319)]['add'](_0x1ea276),_0xfb6086[_0x43e6fe(0x41f)]=_0xba9c4;var _0x5c60b6={};return _0x5c60b6[_0x2fed56]=_0x23ea93,_0x4c1b62[_0x43e6fe(0x27e)](_0x5c60b6),_0x4c1b62[_0x43e6fe(0x1ce)](_0x2fed56,{'closeModal':_0x481ca8}),_0xfb6086[_0x43e6fe(0x4c9)](_0x43e6fe(0x346),function(){return _0x25cd54['onAction'](_0x2fed56);}),_0x51a029;},_0x2cadd3=function(_0x2f66a9,_0x17fdd9){const _0x2c1cee=_0x2ce349;var _0x190781=_0x5009cb['injectElIntoModal'](_0x24b118[_0x2c1cee(0x3b5)]);for(var _0x1b7237 in _0x2f66a9){var _0x2e9120=_0x2f66a9[_0x1b7237],_0x103f21=_0x4f7bc(_0x1b7237,_0x2e9120,_0x17fdd9);_0x2e9120[_0x2c1cee(0x2e5)]&&_0x190781[_0x2c1cee(0x28b)](_0x103f21);}0x0===_0x190781[_0x2c1cee(0x448)]['length']&&_0x190781['remove']();};_0x4f20d6[_0x2ce349(0x560)]=_0x2cadd3;},function(_0x5604ef,_0x446211,_0x17aec0){'use strict';const _0x376fe9=_0x54c4d4;Object['defineProperty'](_0x446211,_0x376fe9(0x491),{'value':!0x0});var _0x3d2574=_0x17aec0(0x3),_0x2cec32=_0x17aec0(0x4),_0xd14e2=_0x17aec0(0x2),_0x299eaa=_0x17aec0(0x5),_0x120069=_0x17aec0(0x6),_0x179b20=_0x17aec0(0x0)[_0x376fe9(0x560)][_0x376fe9(0x164)],_0x41c033=function(_0x271af4){const _0x1e5619=_0x376fe9;_0x271af4[_0x1e5619(0x4c9)](_0x1e5619(0x3d5),function(_0x31b083){const _0x21f6fc=_0x1e5619;var _0xb14f9d=_0x31b083[_0x21f6fc(0x32b)][_0x21f6fc(0x389)];_0x299eaa['setActionValue'](_0xb14f9d);}),_0x271af4[_0x1e5619(0x4c9)](_0x1e5619(0x23d),function(_0x5818aa){const _0x2edb98=_0x1e5619;if(_0x2edb98(0x299)===_0x5818aa[_0x2edb98(0x3db)])return _0x120069[_0x2edb98(0x174)](_0x3d2574[_0x2edb98(0x42a)]);}),setTimeout(function(){const _0x44c12f=_0x1e5619;_0x271af4[_0x44c12f(0x449)](),_0x299eaa[_0x44c12f(0x27e)]('');},0x0);},_0x1f167f=function(_0x1a8a67,_0x57a46f,_0xbff1e9){const _0x246337=_0x376fe9;var _0x1729e0=document['createElement'](_0x57a46f),_0x121cd4=_0x179b20+'__'+_0x57a46f;for(var _0x1a5918 in(_0x1729e0['classList'][_0x246337(0x294)](_0x121cd4),_0xbff1e9)){var _0x1b5047=_0xbff1e9[_0x1a5918];_0x1729e0[_0x1a5918]=_0x1b5047;}'input'===_0x57a46f&&_0x41c033(_0x1729e0),_0x1a8a67[_0x246337(0x28b)](_0x1729e0);},_0x5927ed=function(_0x2de265){const _0x5725c0=_0x376fe9;if(_0x2de265){var _0x5994ac=_0x2cec32[_0x5725c0(0x222)](_0xd14e2['contentMarkup']),_0x1e23e6=_0x2de265['element'],_0x29bdfb=_0x2de265[_0x5725c0(0x32f)];_0x5725c0(0x27f)==typeof _0x1e23e6?_0x1f167f(_0x5994ac,_0x1e23e6,_0x29bdfb):_0x5994ac[_0x5725c0(0x28b)](_0x1e23e6);}};_0x446211[_0x376fe9(0x560)]=_0x5927ed;},function(_0x5a2a46,_0x9853db,_0x752a47){'use strict';const _0x4c237d=_0x54c4d4;Object[_0x4c237d(0x274)](_0x9853db,_0x4c237d(0x491),{'value':!0x0});var _0x4dea16=_0x752a47(0x1),_0x249218=_0x752a47(0x2),_0x22009e=function(){const _0x2fccba=_0x4c237d;var _0x4030c2=_0x4dea16[_0x2fccba(0x37d)](_0x249218[_0x2fccba(0x32e)]);document[_0x2fccba(0x507)][_0x2fccba(0x28b)](_0x4030c2);};_0x9853db[_0x4c237d(0x560)]=_0x22009e;},function(_0x5e5c23,_0x39c80b,_0x51fe11){'use strict';const _0x40d38c=_0x54c4d4;Object['defineProperty'](_0x39c80b,_0x40d38c(0x491),{'value':!0x0});var _0x4ae446=_0x51fe11(0x5),_0x532f86=_0x51fe11(0x6),_0x25faa9=_0x51fe11(0x1),_0x1fd841=_0x51fe11(0x3),_0x3b807f=_0x51fe11(0x0),_0x5f2522=_0x3b807f[_0x40d38c(0x560)][_0x40d38c(0x335)],_0x55ef43=_0x3b807f[_0x40d38c(0x560)]['BUTTON'],_0xd2e2aa=_0x3b807f[_0x40d38c(0x560)][_0x40d38c(0x21c)],_0x5284dd=function(_0x1a0229){const _0x2bbf06=_0x40d38c;_0x1a0229[_0x2bbf06(0x47c)](),_0xd16e09();},_0x21699a=function(_0xfce5ac){const _0x389fc5=_0x40d38c;_0xfce5ac[_0x389fc5(0x47c)](),_0x372b21();},_0x5e6abe=function(_0x1951f0){const _0x26b37d=_0x40d38c;if(_0x4ae446['default'][_0x26b37d(0x461)])switch(_0x1951f0[_0x26b37d(0x3db)]){case'Escape':return _0x532f86[_0x26b37d(0x174)](_0x1fd841['CANCEL_KEY']);}},_0x5bc790=function(_0x594f02){const _0x2ec155=_0x40d38c;if(_0x4ae446[_0x2ec155(0x560)][_0x2ec155(0x461)])switch(_0x594f02['key']){case _0x2ec155(0x427):return _0x5284dd(_0x594f02);}},_0x394f48=function(_0x3380c4){const _0x471e2d=_0x40d38c;if(_0x4ae446[_0x471e2d(0x560)][_0x471e2d(0x461)])return _0x471e2d(0x427)===_0x3380c4[_0x471e2d(0x3db)]&&_0x3380c4[_0x471e2d(0x187)]?_0x21699a(_0x3380c4):void 0x0;},_0xd16e09=function(){const _0x1eb4fd=_0x40d38c;var _0x518821=_0x25faa9[_0x1eb4fd(0x4ae)](_0x55ef43);_0x518821&&(_0x518821['tabIndex']=0x0,_0x518821[_0x1eb4fd(0x449)]());},_0x372b21=function(){const _0x3f665f=_0x40d38c;var _0xda340d=_0x25faa9[_0x3f665f(0x4ae)](_0x5f2522)[_0x3f665f(0x1d8)]('.'+_0x55ef43),_0x540e44=_0xda340d[_0xda340d[_0x3f665f(0x2b8)]-0x1];_0x540e44&&_0x540e44[_0x3f665f(0x449)]();},_0x1c1066=function(_0x20e8e){const _0x1b4a51=_0x40d38c;_0x20e8e[_0x20e8e['length']-0x1]['addEventListener'](_0x1b4a51(0x496),_0x5bc790);},_0x4aacdb=function(_0x3594c3){const _0x65c8a9=_0x40d38c;_0x3594c3[0x0][_0x65c8a9(0x4c9)]('keydown',_0x394f48);},_0x736efe=function(){const _0xb29b9e=_0x40d38c;var _0x552148=_0x25faa9[_0xb29b9e(0x4ae)](_0x5f2522)[_0xb29b9e(0x1d8)]('.'+_0x55ef43);_0x552148[_0xb29b9e(0x2b8)]&&(_0x1c1066(_0x552148),_0x4aacdb(_0x552148));},_0x96c81b=function(_0x203b4d){const _0x2bf278=_0x40d38c;if(_0x25faa9[_0x2bf278(0x4ae)](_0xd2e2aa)===_0x203b4d[_0x2bf278(0x32b)])return _0x532f86[_0x2bf278(0x174)](_0x1fd841[_0x2bf278(0x279)]);},_0x4de9ba=function(_0x2d2271){const _0x5a1a15=_0x40d38c;var _0x2e459b=_0x25faa9[_0x5a1a15(0x4ae)](_0xd2e2aa);_0x2e459b[_0x5a1a15(0x30c)](_0x5a1a15(0x346),_0x96c81b),_0x2d2271&&_0x2e459b['addEventListener'](_0x5a1a15(0x346),_0x96c81b);},_0x208216=function(_0x3762b5){const _0x1f7aab=_0x40d38c;_0x4ae446[_0x1f7aab(0x560)][_0x1f7aab(0x332)]&&clearTimeout(_0x4ae446['default'][_0x1f7aab(0x332)]),_0x3762b5&&(_0x4ae446[_0x1f7aab(0x560)]['timer']=window[_0x1f7aab(0x204)](function(){const _0x481632=_0x1f7aab;return _0x532f86[_0x481632(0x174)](_0x1fd841[_0x481632(0x279)]);},_0x3762b5));},_0x37241d=function(_0x7285e4){const _0x9b4e27=_0x40d38c;_0x7285e4[_0x9b4e27(0x321)]?document[_0x9b4e27(0x4c9)]('keyup',_0x5e6abe):document[_0x9b4e27(0x30c)](_0x9b4e27(0x23d),_0x5e6abe),_0x7285e4[_0x9b4e27(0x2e1)]?_0xd16e09():_0x372b21(),_0x736efe(),_0x4de9ba(_0x7285e4['closeOnClickOutside']),_0x208216(_0x7285e4['timer']);};_0x39c80b['default']=_0x37241d;},function(_0x5a63c5,_0x30a161,_0x36d875){'use strict';const _0xc207cf=_0x54c4d4;Object[_0xc207cf(0x274)](_0x30a161,_0xc207cf(0x491),{'value':!0x0});var _0x4407d3=_0x36d875(0x1),_0x47045c=_0x36d875(0x3),_0x475d6e=_0x36d875(0x25),_0x131541=_0x36d875(0x26),_0x57629e={'title':null,'text':null,'icon':null,'buttons':_0x47045c[_0xc207cf(0x246)],'content':null,'className':null,'closeOnClickOutside':!0x0,'closeOnEsc':!0x0,'dangerMode':!0x1,'timer':null},_0x51a49d=Object['assign']({},_0x57629e);_0x30a161[_0xc207cf(0x25f)]=function(_0x3d55d7){const _0x3e872f=_0xc207cf;_0x51a49d=Object[_0x3e872f(0x429)]({},_0x57629e,_0x3d55d7);};var _0x20f998=function(_0x40d0fa){const _0x19eaa4=_0xc207cf;var _0x4b22c9=_0x40d0fa&&_0x40d0fa[_0x19eaa4(0x4b6)],_0x43a289=_0x40d0fa&&_0x40d0fa[_0x19eaa4(0x386)];return void 0x0!==_0x4b22c9&&void 0x0!==_0x43a289&&_0x4407d3[_0x19eaa4(0x186)](_0x19eaa4(0x18a)),void 0x0!==_0x4b22c9?{'confirm':_0x4b22c9}:_0x43a289;},_0x34757e=function(_0x51eb0b){const _0x596483=_0xc207cf;return _0x4407d3[_0x596483(0x3f9)](_0x51eb0b+0x1);},_0x473f62=function(_0x235345,_0x18a705){const _0x347c6=_0xc207cf;_0x4407d3[_0x347c6(0x186)](_0x34757e(_0x18a705)+_0x347c6(0x481)+_0x235345+_0x347c6(0x342));},_0x57de8d=function(_0x119445,_0x199f9b){const _0x2e49a0=_0xc207cf;var _0xc6e7fe=_0x119445+0x1,_0x859657=_0x199f9b[_0xc6e7fe];_0x4407d3[_0x2e49a0(0x16b)](_0x859657)||void 0x0===_0x859657||_0x4407d3['throwErr'](_0x2e49a0(0x358)+_0x34757e(_0xc6e7fe)+'\x20argument\x20(\x27'+_0x859657+'\x27)\x20to\x20be\x20a\x20plain\x20object');},_0x520cf9=function(_0x1aa77e,_0x16852f){const _0x58ebd4=_0xc207cf;var _0x1c0e3a=_0x1aa77e+0x1,_0x53bfac=_0x16852f[_0x1c0e3a];void 0x0!==_0x53bfac&&_0x4407d3[_0x58ebd4(0x186)]('Unexpected\x20'+_0x34757e(_0x1c0e3a)+_0x58ebd4(0x388)+_0x53bfac+')');},_0x51f023=function(_0x49c3ea,_0x2d2edd,_0x5b9f8a,_0x48940f){const _0x47cbad=_0xc207cf;var _0x15416d=_0x2d2edd instanceof Element;if('string'==typeof _0x2d2edd){if(0x0===_0x5b9f8a)return{'text':_0x2d2edd};if(0x1===_0x5b9f8a)return{'text':_0x2d2edd,'title':_0x48940f[0x0]};if(0x2===_0x5b9f8a)return _0x57de8d(_0x5b9f8a,_0x48940f),{'icon':_0x2d2edd};_0x473f62(_0x2d2edd,_0x5b9f8a);}else{if(_0x15416d&&0x0===_0x5b9f8a)return _0x57de8d(_0x5b9f8a,_0x48940f),{'content':_0x2d2edd};if(_0x4407d3[_0x47cbad(0x16b)](_0x2d2edd))return _0x520cf9(_0x5b9f8a,_0x48940f),_0x2d2edd;_0x473f62(_0x2d2edd,_0x5b9f8a);}};_0x30a161[_0xc207cf(0x20b)]=function(){const _0x346d86=_0xc207cf;for(var _0x5b8cf6=[],_0x28022d=0x0;_0x28022d<arguments[_0x346d86(0x2b8)];_0x28022d++)_0x5b8cf6[_0x28022d]=arguments[_0x28022d];var _0x33c51d={};_0x5b8cf6['forEach'](function(_0x49c230,_0x475b2d){var _0x5654f2=_0x51f023(0x0,_0x49c230,_0x475b2d,_0x5b8cf6);Object['assign'](_0x33c51d,_0x5654f2);});var _0x286994=_0x20f998(_0x33c51d);_0x33c51d['buttons']=_0x47045c[_0x346d86(0x3e4)](_0x286994),delete _0x33c51d[_0x346d86(0x4b6)],_0x33c51d[_0x346d86(0x3cc)]=_0x475d6e[_0x346d86(0x2a1)](_0x33c51d[_0x346d86(0x3cc)]);var _0x570ab0=Object[_0x346d86(0x429)]({},_0x57629e,_0x51a49d,_0x33c51d);return Object['keys'](_0x570ab0)['forEach'](function(_0x3dff4f){_0x131541['DEPRECATED_OPTS'][_0x3dff4f]&&_0x131541['logDeprecation'](_0x3dff4f);}),_0x570ab0;};},function(_0x1243be,_0xbaa630,_0x3401c0){'use strict';const _0x5be077=_0x54c4d4;Object['defineProperty'](_0xbaa630,'__esModule',{'value':!0x0});var _0x1f6bc2=_0x3401c0(0x1),_0x29e434={'element':_0x5be077(0x3d5),'attributes':{'placeholder':''}};_0xbaa630[_0x5be077(0x2a1)]=function(_0x3fe4b2){const _0x5998ee=_0x5be077;var _0x872a6b={};return _0x1f6bc2[_0x5998ee(0x16b)](_0x3fe4b2)?Object['assign'](_0x872a6b,_0x3fe4b2):_0x3fe4b2 instanceof Element?{'element':_0x3fe4b2}:_0x5998ee(0x3d5)===_0x3fe4b2?_0x29e434:null;};},function(_0x6c09f5,_0x25fe3a,_0x4ed11f){'use strict';const _0x18086b=_0x54c4d4;Object['defineProperty'](_0x25fe3a,_0x18086b(0x491),{'value':!0x0}),_0x25fe3a[_0x18086b(0x1d9)]=function(_0x1a67b9){const _0x2f7a00=_0x18086b;var _0x4d1585=_0x25fe3a['DEPRECATED_OPTS'][_0x1a67b9],_0x21559a=_0x4d1585[_0x2f7a00(0x264)],_0x5ec465=_0x4d1585['replacement'],_0x1c7721=_0x4d1585['subOption'],_0x3c0b21=_0x4d1585[_0x2f7a00(0x24e)],_0x56936c=_0x2f7a00(0x1fb)+_0x1a67b9+'\x22\x20option\x20has\x20been\x20'+(_0x21559a?_0x2f7a00(0x467):_0x2f7a00(0x1b7))+'.';_0x5ec465&&(_0x56936c+=_0x2f7a00(0x202)+(_0x1c7721?'\x20\x22'+_0x1c7721+_0x2f7a00(0x21e):'\x20')+'\x22'+_0x5ec465+_0x2f7a00(0x43a));var _0x1f54b8='https://sweetalert.js.org';_0x56936c+=_0x3c0b21?'\x20More\x20details:\x20'+_0x1f54b8+_0x3c0b21:_0x2f7a00(0x25e)+_0x1f54b8+_0x2f7a00(0x39a),console[_0x2f7a00(0x2f8)](_0x56936c);},_0x25fe3a['DEPRECATED_OPTS']={'type':{'replacement':_0x18086b(0x466),'link':_0x18086b(0x287)},'imageUrl':{'replacement':'icon','link':_0x18086b(0x287)},'customClass':{'replacement':'className','onlyRename':!0x0,'link':_0x18086b(0x15f)},'imageSize':{},'showCancelButton':{'replacement':'buttons','link':'/docs/#buttons'},'showConfirmButton':{'replacement':_0x18086b(0x4b6),'link':_0x18086b(0x3ac)},'confirmButtonText':{'replacement':_0x18086b(0x4b6),'link':'/docs/#button'},'confirmButtonColor':{},'cancelButtonText':{'replacement':'buttons','link':_0x18086b(0x1ef)},'closeOnConfirm':{'replacement':_0x18086b(0x4b6),'subOption':_0x18086b(0x4d9),'link':'/docs/#button'},'closeOnCancel':{'replacement':'buttons','subOption':_0x18086b(0x4d9),'link':_0x18086b(0x1ef)},'showLoaderOnConfirm':{'replacement':_0x18086b(0x386)},'animation':{},'inputType':{'replacement':_0x18086b(0x3cc),'link':_0x18086b(0x51d)},'inputValue':{'replacement':'content','link':_0x18086b(0x51d)},'inputPlaceholder':{'replacement':_0x18086b(0x3cc),'link':_0x18086b(0x51d)},'html':{'replacement':_0x18086b(0x3cc),'link':_0x18086b(0x51d)},'allowEscapeKey':{'replacement':'closeOnEsc','onlyRename':!0x0,'link':_0x18086b(0x420)},'allowClickOutside':{'replacement':'closeOnClickOutside','onlyRename':!0x0,'link':_0x18086b(0x289)}};}]);},0x2f7:(_0x10ef96,_0x3e2d01,_0x176d0f)=>{'use strict';_0x176d0f['d'](_0x3e2d01,{'EO':()=>_0x443e6f,'TD':()=>_0x3f1eb5});var _0x2f9110=_0x176d0f(0x321),_0x5ac98c=_0x176d0f(0x135);function _0x443e6f(_0x578a1a,_0x1ef51b){const _0x3a48a0=a5_0x4840;let _0x3a6dc8=(0x0,_0x2f9110['hh'])('#'+_0x578a1a);if(_0x3a6dc8[_0x3a48a0(0x298)]&&_0x3a6dc8['files'][0x0]){let _0x46f231=new FileReader();_0x46f231['onload']=function(_0x1c7e05){const _0x2e7232=_0x3a48a0;(0x0,_0x2f9110['hh'])('#'+_0x1ef51b)['setAttribute'](_0x2e7232(0x1c8),_0x1c7e05?.[_0x2e7232(0x32b)]?.[_0x2e7232(0x24f)]);},_0x46f231['readAsDataURL'](_0x3a6dc8[_0x3a48a0(0x298)][0x0]);}}function _0x3f1eb5(_0x1fa89c,_0x442f67,_0x299514){const _0x13fae6=a5_0x4840;return(0x0,_0x5ac98c['w'])({'method':_0x13fae6(0x392),'url':_0x1fa89c,'async':!0x0,'header':[{'name':_0x13fae6(0x1f1),'value':_0x13fae6(0x262)}],'data':_0x442f67},function(_0x584f12){_0x299514(_0x584f12);});}},0x321:(_0x110ab7,_0x1ce27e,_0x1a0fca)=>{'use strict';function _0x555c5d(_0x5281ed){const _0x528dfc=a5_0x4840;let _0x14aa63,_0x5eb206,_0xbed980,_0x24a0b5;for(_0x5eb206 in _0x5281ed){let _0x5a1524=_0x5281ed[_0x5eb206];for(_0xbed980 in _0x5a1524){let _0x1e9de0=_0xbed980,_0x558c92=_0x5a1524[_0xbed980];for(_0x24a0b5 in(_0x14aa63=document[_0x528dfc(0x44e)](_0x1e9de0),_0x558c92)){let _0xe6eeb7=_0x24a0b5,_0x37e712=_0x558c92[_0x24a0b5];_0x14aa63[_0x528dfc(0x422)](_0xe6eeb7,_0x37e712);}}}return _0x14aa63;}function _0x4d5281(_0x129d9a){const _0x488bea=a5_0x4840;if(null!==document[_0x488bea(0x549)](_0x129d9a))return document['querySelector'](_0x129d9a);}_0x1a0fca['d'](_0x1ce27e,{'az':()=>_0x555c5d,'hh':()=>_0x4d5281});},0xad:(_0x379431,_0x12f82d,_0xdfbfc0)=>{'use strict';_0xdfbfc0['d'](_0x12f82d,{'PV':()=>_0x52428d,'bG':()=>_0x348f85});var _0x1b2131=_0xdfbfc0(0x252),_0x3cd79c=_0xdfbfc0['n'](_0x1b2131),_0x269ba0=_0xdfbfc0(0x321),_0x1d7e6a=_0xdfbfc0(0x39),_0x451d0d=_0xdfbfc0(0x135);function _0x52428d(_0x2d797f,_0x5bff92,_0x505c23){const _0x17c72b=a5_0x4840;if((0x0,_0x1d7e6a['cU'])(_0x2d797f)){let _0x259c3b=JSON[_0x17c72b(0x23f)](_0x2d797f),_0x579847='',_0x2e6121='',_0x548575='';if(void 0x0===_0x259c3b[_0x17c72b(0x2d8)])return _0x3cd79c()(_0x17c72b(0x1b0),_0x2d797f,_0x17c72b(0x529));if(_0x17c72b(0x469)===_0x259c3b[_0x17c72b(0x2d8)]&&(_0x2e6121+=_0x17c72b(0x3c4),_0x548575+=_0x17c72b(0x265)),'success'===_0x259c3b['type']&&(_0x2e6121+=_0x17c72b(0x529),_0x548575+=_0x17c72b(0x2ad)),_0x579847+=_0x17c72b(0x3ad)+_0x2e6121+_0x17c72b(0x33b),_0x579847+=_0x17c72b(0x4fe)+_0x2e6121+_0x17c72b(0x2fc)+_0x548575+'</span>',_0x579847+=_0x17c72b(0x2f3)+_0x259c3b[_0x17c72b(0x3d4)]+_0x17c72b(0x2e7),_0x579847+='</div>',_0x5bff92&&(_0x5bff92[_0x17c72b(0x3bf)]=_0x579847),_0x505c23)return _0x505c23(_0x259c3b);}else{if(-0x1===_0x2d797f[_0x17c72b(0x53e)]('<!doctype\x20html>')||-0x1===_0x2d797f['indexOf'](_0x17c72b(0x1d2)))return _0x3cd79c()(_0x17c72b(0x35c),_0x2d797f,_0x17c72b(0x469));if(null===document[_0x17c72b(0x549)](_0x17c72b(0x21b))){const _0x247425=(0x0,_0x269ba0['az'])([{'div':{'id':_0x17c72b(0x1dc),'class':_0x17c72b(0x355),'style':_0x17c72b(0x383)}}]),_0x420320=(0x0,_0x269ba0['az'])([{'div':{'class':_0x17c72b(0x385),'style':_0x17c72b(0x30a)}}]);_0x247425[_0x17c72b(0x28b)](_0x420320);const _0x4a539c=(0x0,_0x269ba0['az'])([{'div':{'class':_0x17c72b(0x1db)}}]);_0x4a539c['innerHTML']=_0x2d797f[_0x17c72b(0x2f2)](_0x2d797f['indexOf'](_0x17c72b(0x54f)),_0x2d797f[_0x17c72b(0x53e)]('</div>\x20</section>')-_0x2d797f[_0x17c72b(0x53e)](_0x17c72b(0x54f)))[_0x17c72b(0x426)]('logInBox\x20box-shadow\x20box-shadow-light','logInBox')[_0x17c72b(0x426)]('<div\x20class=\x22float-right\x20text-right\x22><input\x20type=\x22submit\x22',_0x17c72b(0x283)),_0x420320[_0x17c72b(0x28b)](_0x4a539c),document['body'][_0x17c72b(0x28b)](_0x247425);}}}function _0x348f85(_0x2a60b3,_0x1a5b9f,_0x482357){const _0x5700de=a5_0x4840;return null!=_0x1a5b9f&&_0x1a5b9f['constructor']===Object&&null!==_0x482357?(0x0,_0x451d0d['w'])({'method':_0x5700de(0x392),'url':_0x482357,'async':!0x0,'header':[{'name':_0x5700de(0x1f1),'value':_0x5700de(0x262)}],'data':_0x1a5b9f},function(_0x2efed4){const _0xd8c27e=_0x5700de;return(0x0,_0x1d7e6a['cU'])(_0x2efed4)?(document[_0xd8c27e(0x549)]('#app-loader')?.['setAttribute'](_0xd8c27e(0x338),_0xd8c27e(0x499)),_0x2a60b3['appRuntimeEventManager'](JSON[_0xd8c27e(0x23f)](_0x2efed4))):_0x3cd79c()('Oops!\x20Something\x20went\x20wrong!',_0x2efed4,_0xd8c27e(0x469));}):_0x3cd79c()(_0x5700de(0x538),_0x5700de(0x469));}},0x2be:(_0x1de6c0,_0x462375,_0x553654)=>{'use strict';_0x553654['d'](_0x462375,{'Sn':()=>_0x5523c6,'S$':()=>_0xaa492});var _0x2a8961=_0x553654(0x321),_0x58be57=_0x553654(0x135),_0x21409a=_0x553654(0x39);function _0x5523c6(_0xedfbd8,_0x29be45,_0x77adf2,_0x1b5934,_0x39acf1){const _0x46eed2=a5_0x4840;0x0!==document['querySelectorAll'](_0xedfbd8)[_0x46eed2(0x2b8)]&&document[_0x46eed2(0x1d8)](_0xedfbd8)[_0x46eed2(0x45c)](function(_0x354962){const _0x20931f=_0x46eed2;_0x354962[_0x20931f(0x4c9)](_0x20931f(0x346),function(){const _0x1f55d0=_0x20931f;!function(_0x5483ff,_0xd0213c,_0x42ce79,_0xe21cd9,_0x330ed9,_0x32ee40,_0x593f2f,_0x5a072f){const _0x45e458=a5_0x4840;(0x0,_0x2a8961['hh'])('#PopUpDialogBox')[_0x45e458(0x338)]['display']=_0x45e458(0x35d),(0x0,_0x2a8961['hh'])('#PopUpDialogBoxTitle')['innerHTML']=_0x5483ff,(0x0,_0x2a8961['hh'])(_0x32ee40)['innerHTML']='<div\x20style=\x22font-size:15px;\x22>'+_0xd0213c+_0x45e458(0x20a),(0x0,_0x2a8961['hh'])(_0x45e458(0x3e5))['innerHTML']=_0xe21cd9;let _0x54d074={'security_code':0x1};[..._0x42ce79[_0x45e458(0x32f)]][_0x45e458(0x45c)](function(_0x4dbceb){const _0x83002e=_0x45e458;-0x1!==_0x4dbceb[_0x83002e(0x313)]['toLowerCase']()[_0x83002e(0x53e)](_0x83002e(0x424))&&(_0x54d074[_0x4dbceb[_0x83002e(0x313)][_0x83002e(0x426)](_0x83002e(0x49b),'')]=_0x4dbceb[_0x83002e(0x389)]);}),(0x0,_0x2a8961['hh'])('#message-done-btn')[_0x45e458(0x4c9)](_0x45e458(0x346),function(){const _0x16f903=_0x45e458;if((0x0,_0x2a8961['hh'])(_0x16f903(0x4c2))['style']['display']=_0x16f903(0x35d),this['textContent']===_0xe21cd9)return(0x0,_0x58be57['w'])({'method':_0x16f903(0x392),'url':_0x330ed9,'async':!0x0,'header':[{'name':_0x16f903(0x1f1),'value':_0x16f903(0x262)}],'data':_0x54d074},_0x1757c4=>{const _0x15a79f=_0x16f903;(0x0,_0x2a8961['hh'])(_0x15a79f(0x545))['style']['display']='none',(0x0,_0x2a8961['hh'])(_0x15a79f(0x4c2))[_0x15a79f(0x338)][_0x15a79f(0x3a7)]=_0x15a79f(0x510),_0x593f2f(),_0x5a072f(_0x1757c4);});});}(_0x29be45,_0x1f55d0(0x3df)+this[_0x1f55d0(0x369)](_0x1f55d0(0x1ad))?.[_0x1f55d0(0x559)]()+_0x1f55d0(0x53a),this,this['getAttribute'](_0x1f55d0(0x1ad)),_0x77adf2,_0x1b5934,function(){_0x5523c6(_0xedfbd8,_0x29be45,_0x77adf2,_0x1b5934,_0x39acf1);},function(_0x3fd0cc){_0x39acf1(_0x3fd0cc);});});});}function _0xaa492(_0x5318cc,_0x3fa21f,_0x12af2d,_0x28093b,_0x3e95f8){const _0x50a993=a5_0x4840;0x0!==document[_0x50a993(0x1d8)](_0x50a993(0x4d3))[_0x50a993(0x2b8)]&&document[_0x50a993(0x1d8)](_0x50a993(0x4d3))[_0x50a993(0x45c)](function(_0x15c2f7){const _0x1657af=_0x50a993;[_0x1657af(0x346),_0x1657af(0x544),'touchstart']['forEach'](function(_0x50ec0a){const _0x1dc16f=_0x1657af;_0x15c2f7[_0x1dc16f(0x4c9)](_0x50ec0a,function(){const _0x424444=_0x1dc16f;return function(_0x3f7660,_0x106a83,_0x1b82c9,_0x460756,_0x303c15,_0x19bed2){const _0x4b33c6=a5_0x4840;return(0x0,_0x58be57['w'])({'method':'POST','url':_0x1b82c9,'async':!0x0,'header':[{'name':_0x4b33c6(0x1f1),'value':_0x4b33c6(0x262)}],'data':{'security_code':0x1,'pageNumber':_0x106a83,'viewMode':_0x3f7660}},function(_0xf16b05){const _0x2590c8=_0x4b33c6;(0x0,_0x21409a['cU'])(_0xf16b05)&&JSON[_0x2590c8(0x23f)](_0xf16b05)['type']?_0x19bed2(_0xf16b05):((0x0,_0x2a8961['hh'])('#'+_0x460756)[_0x2590c8(0x3bf)]=_0xf16b05,_0x303c15());});}(_0x5318cc,this[_0x424444(0x369)](_0x424444(0x26e)),_0x3fa21f,_0x12af2d,()=>{_0xaa492(_0x5318cc,_0x3fa21f,_0x12af2d,_0x28093b,_0x3e95f8),_0x3e95f8();},_0x28093b);});});});}},0x135:(_0x374936,_0x32f40e,_0x34f1fa)=>{'use strict';function _0x460b24(_0x3dc21e,_0x37d45a){const _0x5e3401=a5_0x4840;if(null!==_0x3dc21e[_0x5e3401(0x4da)]&&null!==_0x3dc21e[_0x5e3401(0x4aa)])try{let _0x542c22,_0x1279ec=new XMLHttpRequest();if(_0x1279ec[_0x5e3401(0x45d)](_0x3dc21e['method'],_0x3dc21e[_0x5e3401(0x4aa)],_0x3dc21e[_0x5e3401(0x31b)]),null!==_0x3dc21e[_0x5e3401(0x347)]&&'object'==typeof _0x3dc21e[_0x5e3401(0x347)]){for(let _0x4c2653=0x0;_0x4c2653<_0x3dc21e['header']['length'];_0x4c2653++)_0x1279ec[_0x5e3401(0x4fb)](_0x3dc21e['header'][_0x4c2653][_0x5e3401(0x313)],_0x3dc21e[_0x5e3401(0x347)][_0x4c2653][_0x5e3401(0x389)]),-0x1!==_0x3dc21e['header'][_0x4c2653][_0x5e3401(0x389)][_0x5e3401(0x53e)]('form')&&(_0x542c22=_0x5e3401(0x1cd)),-0x1!==_0x3dc21e[_0x5e3401(0x347)][_0x4c2653]['value'][_0x5e3401(0x53e)]('json')&&(_0x542c22=_0x5e3401(0x48b));}if(null!==_0x3dc21e[_0x5e3401(0x424)]&&_0x5e3401(0x2b1)==typeof _0x3dc21e[_0x5e3401(0x424)]){if(_0x5e3401(0x48b)===_0x542c22&&_0x1279ec[_0x5e3401(0x489)](JSON[_0x5e3401(0x4de)](_0x3dc21e[_0x5e3401(0x424)])),_0x5e3401(0x1cd)===_0x542c22){let _0xdfdc17=new FormData();Object[_0x5e3401(0x42c)](_0x3dc21e['data'])[_0x5e3401(0x45c)](function(_0xba3847){const _0x34cd80=_0x5e3401;_0xdfdc17[_0x34cd80(0x2f9)](_0xba3847,_0x3dc21e[_0x34cd80(0x424)][_0xba3847]);}),_0x1279ec[_0x5e3401(0x489)](_0xdfdc17);}}else _0x1279ec['send']();_0x1279ec['onreadystatechange']=function(){const _0x4e8f5d=_0x5e3401;0x4===this[_0x4e8f5d(0x3f4)]&&0xc8===this[_0x4e8f5d(0x4cd)]&&_0x37d45a&&_0x37d45a(this[_0x4e8f5d(0x494)]);};}catch(_0x3da1c5){console[_0x5e3401(0x469)](_0x5e3401(0x2bb)+_0x3da1c5);}else console[_0x5e3401(0x469)](_0x5e3401(0x3d6));}_0x34f1fa['d'](_0x32f40e,{'w':()=>_0x460b24});},0x343:(_0x529c46,_0x22ba00,_0x5c4c67)=>{'use strict';_0x5c4c67['d'](_0x22ba00,{'vx':()=>_0x2dae66,'cT':()=>_0x3fde53});var _0x154f57=_0x5c4c67(0x321);function _0x2dae66(_0x177ae9){const _0x12f0d4=a5_0x4840;let _0x2fb54c=(0x0,_0x154f57['hh'])('#'+_0x177ae9),_0x373fef=(0x0,_0x154f57['az'])([{'div':{'id':'UploadStatusBoard','style':_0x12f0d4(0x499)}}]);return _0x373fef[_0x12f0d4(0x28b)]((0x0,_0x154f57['az'])([{'progress':{'id':_0x12f0d4(0x3ab),'max':'100','value':'0'}}])),_0x373fef[_0x12f0d4(0x28b)]((0x0,_0x154f57['az'])([{'h3':{'id':_0x12f0d4(0x4cf)}}])),_0x373fef[_0x12f0d4(0x28b)]((0x0,_0x154f57['az'])([{'p':{'id':_0x12f0d4(0x30b)}}])),_0x2fb54c[_0x12f0d4(0x28b)](_0x373fef);}function _0x3fde53(_0x249b20,_0x556983,_0xda7f50){const _0xe4c8a7=a5_0x4840;(0x0,_0x154f57['hh'])(_0xe4c8a7(0x48d))[_0xe4c8a7(0x338)][_0xe4c8a7(0x3a7)]=_0xe4c8a7(0x35d),(0x0,_0x154f57['hh'])(_0xe4c8a7(0x3ea))[_0xe4c8a7(0x338)][_0xe4c8a7(0x3a7)]=_0xe4c8a7(0x35d);let _0x5014ca=(0x0,_0x154f57['hh'])('#'+_0x556983)[_0xe4c8a7(0x298)][0x0],_0x797b09=new FormData();_0x797b09[_0xe4c8a7(0x2f9)](_0x249b20,_0x5014ca);let _0x369a73=new XMLHttpRequest();_0x369a73[_0xe4c8a7(0x4d0)][_0xe4c8a7(0x4c9)](_0xe4c8a7(0x425),_0x1318be,!0x1),_0x369a73[_0xe4c8a7(0x4c9)](_0xe4c8a7(0x40e),_0x535aad,!0x1),_0x369a73[_0xe4c8a7(0x4c9)](_0xe4c8a7(0x469),_0x5ed36d,!0x1),_0x369a73['addEventListener']('abort',_0x21b51d,!0x1),_0x369a73['open'](_0xe4c8a7(0x392),_0xda7f50,!0x0),_0x369a73[_0xe4c8a7(0x489)](_0x797b09);}function _0x1318be(_0x3ef4f8){const _0x2a15b8=a5_0x4840;let _0x35a974=_0x3ef4f8[_0x2a15b8(0x380)]/0x400/0x400,_0x420bd0=_0x3ef4f8['total']/0x400/0x400;(0x0,_0x154f57['hh'])(_0x2a15b8(0x50b))['innerHTML']=_0x2a15b8(0x349)+_0x35a974[_0x2a15b8(0x28f)](0x2)+_0x2a15b8(0x4f8)+_0x420bd0['toFixed'](0x2)+_0x2a15b8(0x367);let _0x38d43a=_0x3ef4f8[_0x2a15b8(0x380)]/_0x3ef4f8[_0x2a15b8(0x540)]*0x64;(0x0,_0x154f57['hh'])(_0x2a15b8(0x3ea))[_0x2a15b8(0x389)]=Math[_0x2a15b8(0x2f4)](_0x38d43a),(0x0,_0x154f57['hh'])(_0x2a15b8(0x1ca))[_0x2a15b8(0x3bf)]=Math[_0x2a15b8(0x2f4)](_0x38d43a)+_0x2a15b8(0x18c);}function _0x535aad(_0x3f3716){const _0x12e5ca=a5_0x4840;(0x0,_0x154f57['hh'])(_0x12e5ca(0x1ca))[_0x12e5ca(0x3bf)]=_0x3f3716[_0x12e5ca(0x32b)][_0x12e5ca(0x494)],(0x0,_0x154f57['hh'])(_0x12e5ca(0x3ea))[_0x12e5ca(0x389)]=0x0,(0x0,_0x154f57['hh'])(_0x12e5ca(0x3ea))['style']['display']=_0x12e5ca(0x510);}function _0x5ed36d(){const _0x33181e=a5_0x4840;(0x0,_0x154f57['hh'])(_0x33181e(0x1ca))[_0x33181e(0x3bf)]='Upload\x20failed';}function _0x21b51d(){const _0x3a8b44=a5_0x4840;(0x0,_0x154f57['hh'])(_0x3a8b44(0x1ca))['innerHTML']=_0x3a8b44(0x1e9);}},0x39:(_0x482d2e,_0x45cee8,_0x301677)=>{'use strict';function _0x1c67cf(_0x56a1dd){const _0xef2259=a5_0x4840;for(let _0x466c84=0x0;_0x466c84<_0x56a1dd[_0xef2259(0x2b8)];_0x466c84++){let _0xc197fb=new RegExp('[^'+_0x56a1dd[_0x466c84]+']','g');if(_0x56a1dd['replace'](_0xc197fb,'')['length']>=0x2)return!0x0;}return!0x1;}function _0x438f90(_0x271695){const _0x251fe6=a5_0x4840;try{JSON[_0x251fe6(0x23f)](_0x271695);}catch(_0x345834){return!0x1;}return!0x0;}_0x301677['d'](_0x45cee8,{'QW':()=>_0x1c67cf,'cU':()=>_0x438f90});},0xd0:(_0x5b549f,_0x57a9ac,_0x256d48)=>{'use strict';const _0x297970=a5_0x42bc03;_0x256d48['d'](_0x57a9ac,{'M':()=>_0x4a6511,'l':()=>_0x309fba});let _0xa9c3ae=(0x0,_0x256d48(0x321)['hh'])('#mishusoft-web-root')[_0x297970(0x3cc)];void 0x0===_0xa9c3ae&&(_0xa9c3ae=_0x297970(0x4ce)),'/'!==_0xa9c3ae[_0x297970(0x2f2)](-0x1)&&(_0xa9c3ae+='/');const _0x4a6511=_0xa9c3ae,_0x309fba={'default':{'name':'mishusoft','version':_0x297970(0x4c1),'author':'Mr.\x20Al\x20Amin\x20Ahamed\x20Abir','charset':'utf8mb4','prefix':'msu','companyName':_0x297970(0x33f),'text':{'welcome':_0x297970(0x325),'description':_0x297970(0x48e),'install_state':_0x297970(0x2f7)}},'content':{'folder':{'logos':_0xa9c3ae+'media/logos/','css':_0xa9c3ae+_0x297970(0x51e),'js':_0xa9c3ae+'assets/js/','images':_0xa9c3ae+'assets/images/'},'file':{'default':{'link':[{'href':_0xa9c3ae+_0x297970(0x441),'rel':_0x297970(0x181),'size':_0x297970(0x450)},{'href':_0xa9c3ae+'libraries/logos/apple-icon-60x60.png','rel':_0x297970(0x181),'size':_0x297970(0x2ba)},{'href':_0xa9c3ae+_0x297970(0x34b),'rel':_0x297970(0x181),'size':_0x297970(0x4e7)},{'href':_0xa9c3ae+_0x297970(0x520),'rel':_0x297970(0x181),'size':'76x76'},{'href':_0xa9c3ae+_0x297970(0x46a),'rel':_0x297970(0x181),'size':'114x114'},{'href':_0xa9c3ae+_0x297970(0x307),'rel':_0x297970(0x181),'size':_0x297970(0x169)},{'href':_0xa9c3ae+_0x297970(0x409),'rel':'apple-touch-icon','size':_0x297970(0x562)},{'href':_0xa9c3ae+_0x297970(0x2eb),'rel':_0x297970(0x181),'size':_0x297970(0x27b)},{'href':_0xa9c3ae+'libraries/logos/apple-icon-180x180.png','rel':_0x297970(0x181),'size':'180x180'},{'href':_0xa9c3ae+_0x297970(0x1c9),'rel':_0x297970(0x466),'size':_0x297970(0x3f5),'type':_0x297970(0x1fc)},{'href':_0xa9c3ae+_0x297970(0x22c),'rel':_0x297970(0x466),'size':_0x297970(0x509),'type':'image/png'},{'href':_0xa9c3ae+'libraries/logos/favicon-32x32.png','rel':_0x297970(0x466),'size':_0x297970(0x31a),'type':'image/png'},{'href':_0xa9c3ae+'libraries/logos/favicon-96x96.png','rel':_0x297970(0x466),'size':_0x297970(0x4b4),'type':_0x297970(0x1fc)},{'href':_0xa9c3ae+_0x297970(0x407),'rel':_0x297970(0x466),'size':_0x297970(0x509),'type':'image/vnd.microsoft.icon'},{'href':_0xa9c3ae+_0x297970(0x19c),'rel':'manifest'},{'name':_0x297970(0x3c3),'content':'#ffffff'},{'name':_0x297970(0x434),'content':_0xa9c3ae+_0x297970(0x554)},{'name':_0x297970(0x244),'content':_0x297970(0x316)}]}}},'website':{'home':'https://www.mishusoft.com/','support':'support@mishusoft.com','donate':_0x297970(0x199),'IpInfo':_0x297970(0x291),'IpInfoKey':_0x297970(0x397),'fontAwesome':_0x297970(0x2a3),'fontAwesomeKey':'b4c8f8449f','temporary':{'home':_0x297970(0x512),'monitorURL':_0x297970(0x516),'paymentURL':_0x297970(0x24d)},'publish':{'home':_0x297970(0x4ce),'monitorURL':_0x297970(0x221),'paymentURL':_0x297970(0x2bf)}},'runtime':{'request':''}};},0x236:(_0x259b06,_0xf00c5a,_0x3b5fcd)=>{'use strict';const _0x13fbf8=a5_0x42bc03;var _0x2c0dbc=_0x3b5fcd(0x2f7),_0x50d720=_0x3b5fcd(0xd0),_0x14359a=_0x3b5fcd(0x321),_0x54ee15=_0x3b5fcd(0xad),_0x1cb41c=_0x3b5fcd(0x135),_0x2359f8=_0x3b5fcd(0x39),_0x581963=_0x3b5fcd(0x2be),_0x33ddd5=_0x3b5fcd(0x343);let _0x4748eb,_0x2c0cb6,_0x5d8cb4,_0x366b20;const _0x456394=_0x13fbf8(0x2e3);var _0x3539f5;function _0xbde5fe(){const _0x47759f=_0x13fbf8;(0x0,_0x14359a['hh'])('#ip-info-plus-app-bottom')[_0x47759f(0x41f)]=_0x47759f(0x301),(0x0,_0x14359a['hh'])(_0x47759f(0x188))?.[_0x47759f(0x422)]('style',_0x47759f(0x499));let _0x2a2894=((0x0,_0x14359a['hh'])('#ipd-address')[_0x47759f(0x389)],(0x0,_0x14359a['hh'])('#ipd-address')['value']);(0x0,_0x1cb41c['w'])({'method':'GET','url':_0x47759f(0x4ac)+_0x2a2894+_0x47759f(0x2af),'async':!0x0,'header':[{'name':_0x47759f(0x48c),'value':'application/json'}]},function(_0x446444){const _0x4c57de=_0x47759f;console[_0x4c57de(0x29e)](_0x446444);const _0x24b7cd=JSON[_0x4c57de(0x23f)](_0x446444);(0x0,_0x14359a['hh'])('#ip-info-plus-app-data-table')[_0x4c57de(0x1f2)](_0x4c57de(0x338)),(0x0,_0x14359a['hh'])(_0x4c57de(0x4b0))[_0x4c57de(0x41f)]='IP\x20INFORMATION:',(0x0,_0x14359a['hh'])(_0x4c57de(0x253))[_0x4c57de(0x389)]=_0x24b7cd['ip'],(0x0,_0x14359a['hh'])(_0x4c57de(0x4ea))[_0x4c57de(0x41f)]=_0x24b7cd['ip'],(0x0,_0x14359a['hh'])(_0x4c57de(0x532))[_0x4c57de(0x3c7)]=_0x4c57de(0x1ab)+_0x24b7cd[_0x4c57de(0x3cb)]+','+_0x24b7cd[_0x4c57de(0x416)]+_0x4c57de(0x34a),(0x0,_0x14359a['hh'])('#client-city')['textContent']=_0x24b7cd[_0x4c57de(0x464)],(0x0,_0x14359a['hh'])('#client-region')[_0x4c57de(0x41f)]=_0x24b7cd[_0x4c57de(0x43d)],(0x0,_0x14359a['hh'])(_0x4c57de(0x4b5))[_0x4c57de(0x41f)]=_0x24b7cd[_0x4c57de(0x490)]+'\x20('+_0x24b7cd[_0x4c57de(0x282)]+')\x20';let _0x2b9bb1=(0x0,_0x14359a['az'])([{'img':{'style':_0x4c57de(0x451),'src':_0x24b7cd[_0x4c57de(0x452)],'alt':_0x4c57de(0x506)}}]);(0x0,_0x14359a['hh'])('#client-country')[_0x4c57de(0x28b)](_0x2b9bb1),(0x0,_0x14359a['hh'])(_0x4c57de(0x2c8))[_0x4c57de(0x41f)]=_0x24b7cd[_0x4c57de(0x2fd)]+'\x20('+_0x24b7cd['continent_code']+')',(0x0,_0x14359a['hh'])(_0x4c57de(0x437))['textContent']=_0x24b7cd[_0x4c57de(0x203)];let _0x185c09='';for(let _0x1baf3d in _0x24b7cd[_0x4c57de(0x2cc)])_0x185c09+=_0x24b7cd[_0x4c57de(0x2cc)][_0x1baf3d][_0x4c57de(0x313)]+'['+_0x24b7cd[_0x4c57de(0x2cc)][_0x1baf3d][_0x4c57de(0x334)]+'];\x20';(0x0,_0x14359a['hh'])('#client-language')['textContent']=_0x185c09,(0x0,_0x14359a['hh'])(_0x4c57de(0x312))[_0x4c57de(0x41f)]=_0x24b7cd[_0x4c57de(0x391)][_0x4c57de(0x313)],(0x0,_0x14359a['hh'])(_0x4c57de(0x468))[_0x4c57de(0x41f)]=_0x24b7cd[_0x4c57de(0x391)][_0x4c57de(0x519)],(0x0,_0x14359a['hh'])(_0x4c57de(0x3c6))[_0x4c57de(0x41f)]=_0x24b7cd['currency'][_0x4c57de(0x395)],(0x0,_0x14359a['hh'])(_0x4c57de(0x200))['textContent']=_0x24b7cd[_0x4c57de(0x3e0)][_0x4c57de(0x313)],(0x0,_0x14359a['hh'])(_0x4c57de(0x28d))['textContent']=_0x24b7cd['time_zone'][_0x4c57de(0x173)],(0x0,_0x14359a['hh'])(_0x4c57de(0x305))[_0x4c57de(0x41f)]=_0x24b7cd[_0x4c57de(0x3e0)][_0x4c57de(0x354)],(0x0,_0x14359a['hh'])(_0x4c57de(0x20e))[_0x4c57de(0x41f)]=_0x24b7cd[_0x4c57de(0x3e0)]['is_dst'],(0x0,_0x14359a['hh'])(_0x4c57de(0x198))[_0x4c57de(0x41f)]=_0x24b7cd[_0x4c57de(0x3e0)][_0x4c57de(0x34c)];});}function _0x3d6472(_0x14e90b){const _0x275df2=_0x13fbf8;0x0!==_0x14e90b[_0x275df2(0x2b8)]&&_0x14e90b[_0x275df2(0x45c)](function(_0x3cea82){const _0x27bb6b=_0x275df2;(0x0,_0x14359a['hh'])('#'+_0x3cea82['id'])[_0x27bb6b(0x1f2)](_0x3cea82[_0x27bb6b(0x3e9)]);});}function _0x43d39a(_0x58e590){const _0x5703d3=_0x13fbf8;0x0!==_0x58e590[_0x5703d3(0x2b8)]&&_0x58e590[_0x5703d3(0x45c)](function(_0x467a6e){const _0x1bff41=_0x5703d3;(0x0,_0x14359a['hh'])('#'+_0x467a6e['id'])[_0x1bff41(0x338)][_0x1bff41(0x3a7)]=_0x467a6e[_0x1bff41(0x3a7)];});}function _0x3ea9e6(_0x54e769){const _0x250b55=_0x13fbf8;0x0!==_0x54e769['length']&&_0x54e769[_0x250b55(0x45c)](function(_0x4803bd){const _0x14b6e2=_0x250b55;(0x0,_0x14359a['hh'])('#'+_0x4803bd['id'])[_0x14b6e2(0x389)]=_0x4803bd[_0x14b6e2(0x389)];});}function _0x476a5c(){const _0xcfcb42=_0x13fbf8;(0x0,_0x14359a['hh'])(_0xcfcb42(0x24a))[_0xcfcb42(0x2bc)][_0xcfcb42(0x338)]=_0xcfcb42(0x3d3)+(+(0x0,_0x14359a['hh'])(_0xcfcb42(0x24a))[_0xcfcb42(0x2bc)][_0xcfcb42(0x1b1)]+0x19)+'px';}_0x13fbf8(0x34f)in navigator&&window['addEventListener'](_0x13fbf8(0x40e),()=>{const _0x2c9069=_0x13fbf8;navigator['serviceWorker']['register'](_0x50d720['l'][_0x2c9069(0x3cc)]['folder']['js']+_0x2c9069(0x51a))[_0x2c9069(0x4fa)](_0xb04e27=>{const _0x358c12=_0x2c9069;console[_0x358c12(0x38a)](_0x358c12(0x42e)+_0xb04e27?.[_0x358c12(0x2be)]?.['scriptURL']+_0x358c12(0x52d)+_0xb04e27?.[_0x358c12(0x2be)]?.[_0x358c12(0x322)]+_0x358c12(0x314));})['catch'](_0x5ad0d9=>console[_0x2c9069(0x469)](_0x2c9069(0x40f),_0x5ad0d9));}),_0x13fbf8(0x1ed)===document[_0x13fbf8(0x3f4)]&&(window[_0x13fbf8(0x396)]&&fetch(_0x13fbf8(0x2a3))[_0x13fbf8(0x4fa)](()=>{const _0x547022=_0x13fbf8;document[_0x547022(0x3b9)][_0x547022(0x28b)]((0x0,_0x14359a['az'])([{'script':{'rel':_0x547022(0x1fd),'type':_0x547022(0x21a),'src':_0x547022(0x2a3),'crossorigin':_0x547022(0x31c),'async':_0x547022(0x31b)}}]));})[_0x13fbf8(0x3e3)](_0x4a6173=>{const _0x353967=_0x13fbf8;console[_0x353967(0x38a)](_0x353967(0x30d)+_0x4a6173);}),void 0x0!==(0x0,_0x14359a['hh'])('#public-social-links')&&(_0x4748eb=setInterval(function(){},0x3e8),(0x0,_0x1cb41c['w'])({'method':'GET','url':_0x50d720['M']+'api/geSocialLinks','async':!0x0,'header':[{'name':_0x13fbf8(0x1f1),'value':_0x13fbf8(0x262)}]},function(_0x3fcf95){const _0x1c89e9=_0x13fbf8;0x0!==_0x3fcf95[_0x1c89e9(0x2b8)]&&(0x0,_0x2359f8['cU'])(_0x3fcf95)&&0x0!==JSON['parse'](_0x3fcf95)[_0x1c89e9(0x2b8)]&&((0x0,_0x14359a['hh'])(_0x1c89e9(0x52a))['textContent']='',JSON['parse'](_0x3fcf95)[_0x1c89e9(0x45c)](function(_0x25b13b){const _0x3e11e7=_0x1c89e9;let _0x3677e0=(0x0,_0x14359a['az'])([{'li':{'class':_0x3e11e7(0x514)+_0x25b13b[_0x3e11e7(0x313)][_0x3e11e7(0x559)]()+_0x3e11e7(0x182)}}]),_0x2abb6c=(0x0,_0x14359a['az'])([{'a':{'rel':_0x3e11e7(0x462),'href':_0x25b13b[_0x3e11e7(0x24e)],'target':_0x3e11e7(0x4e8),'title':_0x25b13b['name'][0x0][_0x3e11e7(0x1d7)]()+_0x25b13b['name']['slice'](0x1)}}]);_0x3677e0['appendChild'](_0x2abb6c),_0x2abb6c[_0x3e11e7(0x28b)]((0x0,_0x14359a['az'])([{'span':{'class':'fab\x20fa-'+_0x25b13b[_0x3e11e7(0x313)]['toLowerCase']()+_0x3e11e7(0x329)}}]));let _0x2eefaa=(0x0,_0x14359a['az'])([{'span':{'class':'name-social'}}]);_0x2eefaa[_0x3e11e7(0x41f)]=_0x25b13b['name'][0x0][_0x3e11e7(0x1d7)]()+_0x25b13b['name']['slice'](0x1),_0x2abb6c[_0x3e11e7(0x28b)](_0x2eefaa),(0x0,_0x14359a['hh'])('#public-social-links')[_0x3e11e7(0x28b)](_0x3677e0);}));})),void 0x0!==(0x0,_0x14359a['hh'])(_0x13fbf8(0x482))&&((0x0,_0x14359a['hh'])('#pgHeaderMainInfoItemsDetails')['textContent']='',(0x0,_0x14359a['hh'])('#pgHeaderMainInfoItemsDetails')[_0x13fbf8(0x28b)]((0x0,_0x14359a['az'])([{'img':{'alt':_0x13fbf8(0x49d),'src':_0x50d720['l'][_0x13fbf8(0x3cc)][_0x13fbf8(0x54a)][_0x13fbf8(0x366)]+_0x13fbf8(0x381),'width':'20','height':'18'}}])),(0x0,_0x14359a['hh'])(_0x13fbf8(0x482))[_0x13fbf8(0x28b)]((0x0,_0x14359a['az'])([{'img':{'alt':_0x13fbf8(0x47e),'src':_0x50d720['l'][_0x13fbf8(0x3cc)][_0x13fbf8(0x54a)][_0x13fbf8(0x366)]+'maestro.png','width':'20','height':'18'}}])),(0x0,_0x14359a['hh'])('#pgHeaderMainInfoItemsDetails')[_0x13fbf8(0x28b)]((0x0,_0x14359a['az'])([{'img':{'alt':'amex','src':_0x50d720['l'][_0x13fbf8(0x3cc)]['folder'][_0x13fbf8(0x366)]+_0x13fbf8(0x3b3),'width':'20','height':'18'}}])),(0x0,_0x14359a['hh'])('#pgHeaderMainInfoItemsDetails')[_0x13fbf8(0x28b)]((0x0,_0x14359a['az'])([{'img':{'alt':'discover','src':_0x50d720['l']['content'][_0x13fbf8(0x54a)][_0x13fbf8(0x366)]+_0x13fbf8(0x478),'width':'20','height':'18'}}])),(0x0,_0x14359a['hh'])(_0x13fbf8(0x482))[_0x13fbf8(0x28b)]((0x0,_0x14359a['az'])([{'img':{'alt':'giropay','src':_0x50d720['l']['content'][_0x13fbf8(0x54a)][_0x13fbf8(0x366)]+_0x13fbf8(0x37a),'width':'20','height':'18'}}])),(0x0,_0x14359a['hh'])(_0x13fbf8(0x482))['appendChild']((0x0,_0x14359a['az'])([{'img':{'alt':'klarna','src':_0x50d720['l'][_0x13fbf8(0x3cc)][_0x13fbf8(0x54a)]['images']+_0x13fbf8(0x25d),'width':'20','height':'18'}}])),(0x0,_0x14359a['hh'])(_0x13fbf8(0x482))[_0x13fbf8(0x28b)]((0x0,_0x14359a['az'])([{'img':{'alt':_0x13fbf8(0x4ab),'src':_0x50d720['l'][_0x13fbf8(0x3cc)][_0x13fbf8(0x54a)][_0x13fbf8(0x366)]+_0x13fbf8(0x55e),'width':'20','height':'18'}}]))),void 0x0!==(0x0,_0x14359a['hh'])(_0x13fbf8(0x328))&&((0x0,_0x14359a['hh'])('#document-last-modified')[_0x13fbf8(0x41f)]='Last\x20updated:\x20('+document['lastModified']+_0x13fbf8(0x31e))),function(){const _0x95c83a=_0x13fbf8,_0x2233f3=(0x0,_0x14359a['az'])([{'link':{'rel':_0x95c83a(0x50e),'type':_0x95c83a(0x460),'id':_0x50d720['l'][_0x95c83a(0x560)][_0x95c83a(0x313)]+_0x95c83a(0x336),'href':_0x50d720['l'][_0x95c83a(0x3cc)][_0x95c83a(0x54a)][_0x95c83a(0x266)]+_0x95c83a(0x3a4)}}]);_0x2233f3['addEventListener'](_0x95c83a(0x40e),function(){const _0x4e1b00=_0x95c83a;(0x0,_0x14359a['hh'])(_0x4e1b00(0x4c2))&&(0x0,_0x14359a['hh'])(_0x4e1b00(0x4c2))['setAttribute'](_0x4e1b00(0x338),_0x4e1b00(0x499)),(0x0,_0x14359a['hh'])(_0x4e1b00(0x541))&&(0x0,_0x14359a['hh'])(_0x4e1b00(0x541))[_0x4e1b00(0x1f2)](_0x4e1b00(0x338)),(0x0,_0x14359a['hh'])('#'+_0x50d720['l'][_0x4e1b00(0x560)][_0x4e1b00(0x313)]+'-app-content')&&(0x0,_0x14359a['hh'])('#'+_0x50d720['l']['default'][_0x4e1b00(0x313)]+_0x4e1b00(0x46d))[_0x4e1b00(0x1f2)](_0x4e1b00(0x338)),void 0x0!==(0x0,_0x14359a['hh'])(_0x4e1b00(0x1f7))&&(window['innerHeight']<=(0x0,_0x14359a['hh'])('#mishusoft-app-content')[_0x4e1b00(0x1b1)]?(0x0,_0x14359a['hh'])(_0x4e1b00(0x241))?.[_0x4e1b00(0x1f2)](_0x4e1b00(0x338)):(0x0,_0x14359a['hh'])(_0x4e1b00(0x241))?.[_0x4e1b00(0x422)](_0x4e1b00(0x338),_0x4e1b00(0x303)));}),document[_0x95c83a(0x3b9)]['appendChild'](_0x2233f3);}(),function(_0xab66e2){const _0x3d5a2d=_0x13fbf8;let _0x5c141c;for(_0x5c141c=0x0;_0x5c141c<_0xab66e2['length'];_0x5c141c++)_0xab66e2[_0x5c141c][_0x3d5a2d(0x4c9)](_0x3d5a2d(0x346),function(){const _0x39c99b=_0x3d5a2d;let _0x4625eb=this[_0x39c99b(0x25a)];_0x39c99b(0x35d)===_0x4625eb[_0x39c99b(0x338)][_0x39c99b(0x3a7)]?(this[_0x39c99b(0x3bf)]='+',_0x4625eb['style'][_0x39c99b(0x3a7)]=_0x39c99b(0x510)):(this['innerHTML']='-',_0x4625eb['style'][_0x39c99b(0x3a7)]=_0x39c99b(0x35d));});}(document['querySelectorAll'](_0x13fbf8(0x399))),-0x1!==window['location'][_0x13fbf8(0x3c7)][_0x13fbf8(0x53e)](_0x13fbf8(0x539))&&(document['textContent']=_0x13fbf8(0x255)),0x0!==document[_0x13fbf8(0x1d8)](_0x13fbf8(0x24a))[_0x13fbf8(0x2b8)]&&document[_0x13fbf8(0x1d8)](_0x13fbf8(0x24a))[_0x13fbf8(0x45c)](function(_0x55083f){const _0x3d036b=_0x13fbf8;_0x55083f['setAttribute']('style',_0x3d036b(0x3d3)+window[_0x3d036b(0x1a7)]+'px;');}),function(_0x30c96a){let _0x43d312=setInterval(function(){const _0x3da993=a5_0x4840;clearInterval(_0x43d312),_0x30c96a?.[_0x3da993(0x4c9)]('submit',function(_0x48ce56){const _0x4e0282=_0x3da993;_0x48ce56[_0x4e0282(0x47c)]();let _0x38c659=(0x0,_0x14359a['hh'])(_0x4e0282(0x413));if(null===_0x38c659[_0x4e0282(0x2bc)]){let _0x32ef3e=document[_0x4e0282(0x44e)]('div');_0x38c659[_0x4e0282(0x28b)](_0x32ef3e);}return _0x38c659[_0x4e0282(0x2bc)][_0x4e0282(0x319)][_0x4e0282(0x294)](_0x4e0282(0x2fa)),(0x0,_0x14359a['hh'])(_0x4e0282(0x37e))[_0x4e0282(0x422)]('disabled','disabled'),(0x0,_0x14359a['hh'])(_0x4e0282(0x18d))[_0x4e0282(0x422)]('disabled',_0x4e0282(0x52c)),(0x0,_0x14359a['hh'])(_0x4e0282(0x4e5))[_0x4e0282(0x422)](_0x4e0282(0x52c),_0x4e0282(0x52c)),_0x38c659[_0x4e0282(0x338)]=_0x4e0282(0x383),_0x38c659[_0x4e0282(0x2bc)]['textContent']=_0x4e0282(0x45e),void 0x0!==(0x0,_0x14359a['hh'])(_0x4e0282(0x24a))&&((0x0,_0x14359a['hh'])('#flex-center')[_0x4e0282(0x2bc)][_0x4e0282(0x338)]=_0x4e0282(0x3d3)+(+(0x0,_0x14359a['hh'])(_0x4e0282(0x413))[_0x4e0282(0x1b1)]+ +(0x0,_0x14359a['hh'])(_0x4e0282(0x24a))['firstElementChild'][_0x4e0282(0x369)]('data-height'))+'px','br'===(0x0,_0x14359a['hh'])(_0x4e0282(0x413))[_0x4e0282(0x25a)][_0x4e0282(0x239)][_0x4e0282(0x559)]()&&(0x0,_0x14359a['hh'])('#messageZone')[_0x4e0282(0x25a)]['remove']()),setTimeout(function(){const _0x2ff36d=_0x4e0282;(0x0,_0x14359a['hh'])(_0x2ff36d(0x413))[_0x2ff36d(0x41f)]='';},0xbb8),(0x0,_0x1cb41c['w'])({'method':'POST','url':_0x50d720['M']+_0x4e0282(0x209),'async':!0x0,'header':[{'name':_0x4e0282(0x1f1),'value':_0x4e0282(0x262)}],'data':{'security_code':0x1,'username':(0x0,_0x14359a['hh'])(_0x4e0282(0x18d))[_0x4e0282(0x389)],'password':(0x0,_0x14359a['hh'])(_0x4e0282(0x4e5))[_0x4e0282(0x389)],'redirectURL':(0x0,_0x14359a['hh'])(_0x4e0282(0x235))[_0x4e0282(0x389)],'RememberMe':(0x0,_0x14359a['hh'])('#RememberMe')[_0x4e0282(0x389)],'btnName':(0x0,_0x14359a['hh'])('#login-button')['value']}},function(_0x18dc85){const _0x5e5ecb=_0x4e0282;if((0x0,_0x2359f8['cU'])(_0x18dc85)){let _0x47f99f=JSON['parse'](_0x18dc85);'success'===_0x47f99f[_0x5e5ecb(0x2d8)]&&_0x5e5ecb(0x22d)===_0x47f99f[_0x5e5ecb(0x3d4)]?'/'!==_0x47f99f[_0x5e5ecb(0x4aa)]?window[_0x5e5ecb(0x44a)][_0x5e5ecb(0x426)](_0x50d720['M']+_0x47f99f[_0x5e5ecb(0x4aa)]):window[_0x5e5ecb(0x44a)][_0x5e5ecb(0x426)](_0x50d720['M']):((0x0,_0x14359a['hh'])(_0x5e5ecb(0x37e))[_0x5e5ecb(0x1f2)]('disabled'),(0x0,_0x14359a['hh'])(_0x5e5ecb(0x18d))[_0x5e5ecb(0x1f2)]('disabled'),(0x0,_0x14359a['hh'])('#password')['removeAttribute']('disabled'),(0x0,_0x54ee15['PV'])(_0x18dc85,(0x0,_0x14359a['hh'])(_0x5e5ecb(0x413))),void 0x0!==(0x0,_0x14359a['hh'])(_0x5e5ecb(0x24a))&&((0x0,_0x14359a['hh'])(_0x5e5ecb(0x24a))['firstElementChild'][_0x5e5ecb(0x338)]='height:'+(+(0x0,_0x14359a['hh'])(_0x5e5ecb(0x413))[_0x5e5ecb(0x1b1)]+ +(0x0,_0x14359a['hh'])(_0x5e5ecb(0x24a))[_0x5e5ecb(0x2bc)][_0x5e5ecb(0x369)](_0x5e5ecb(0x17f)))+'px'));}});});},0x64);}((0x0,_0x14359a['hh'])(_0x13fbf8(0x530))),function(_0x781c75){let _0xf328a2=setInterval(function(){const _0x444eb0=a5_0x4840;clearInterval(_0xf328a2),_0x781c75?.[_0x444eb0(0x4c9)]('submit',function(_0x336d87){_0x336d87['preventDefault']();}),void 0x0!==(0x0,_0x14359a['hh'])(_0x444eb0(0x418))&&[_0x444eb0(0x346),'dblclick',_0x444eb0(0x1fa)]['forEach'](function(_0x1d0311){(0x0,_0x14359a['hh'])('#signup-button')['addEventListener'](_0x1d0311,function(){const _0xc9989c=a5_0x4840;(0x0,_0x14359a['hh'])('#flex-center')[_0xc9989c(0x2bc)][_0xc9989c(0x1f2)](_0xc9989c(0x338));let _0x199461,_0x1e7c80,_0x406047,_0x42e1b6,_0x8e9e1d,_0x133047,_0x1e5143=(0x0,_0x14359a['hh'])(_0xc9989c(0x413));if(null===_0x1e5143[_0xc9989c(0x2bc)]){let _0x53a8d6=document['createElement'](_0xc9989c(0x3ce));_0x1e5143[_0xc9989c(0x28b)](_0x53a8d6);}if(_0x1e5143[_0xc9989c(0x2bc)][_0xc9989c(0x41f)]='',_0x1e5143[_0xc9989c(0x338)]=_0xc9989c(0x499),''===(0x0,_0x14359a['hh'])('#first-name')['value']?(_0x1e5143[_0xc9989c(0x2bc)]['className']=_0xc9989c(0x447),_0x1e5143[_0xc9989c(0x338)][_0xc9989c(0x3a7)]='block',_0x1e5143[_0xc9989c(0x2bc)][_0xc9989c(0x3bf)]+=_0xc9989c(0x4d7),_0x476a5c()):(0x0,_0x2359f8['QW'])((0x0,_0x14359a['hh'])(_0xc9989c(0x453))[_0xc9989c(0x389)])?(_0x1e5143[_0xc9989c(0x2bc)][_0xc9989c(0x374)]='box-message\x20box-danger\x20box-shadow-light',_0x1e5143['style'][_0xc9989c(0x3a7)]=_0xc9989c(0x35d),_0x1e5143[_0xc9989c(0x2bc)]['innerHTML']+=_0xc9989c(0x50f),_0x476a5c()):(0x0,_0x14359a['hh'])(_0xc9989c(0x453))[_0xc9989c(0x389)][_0xc9989c(0x2b8)]<=0x3?(_0x1e5143[_0xc9989c(0x2bc)][_0xc9989c(0x374)]=_0xc9989c(0x447),_0x1e5143['style'][_0xc9989c(0x3a7)]=_0xc9989c(0x35d),_0x1e5143['firstElementChild']['innerHTML']+='Error\x20:\x20Enter\x20your\x20first\x20name\x20more\x20than\x204\x20characters.<br/>',_0x476a5c()):_0x199461='OK',''===(0x0,_0x14359a['hh'])(_0xc9989c(0x161))['value']?(_0x1e5143['firstElementChild'][_0xc9989c(0x374)]=_0xc9989c(0x447),_0x1e5143[_0xc9989c(0x338)][_0xc9989c(0x3a7)]=_0xc9989c(0x35d),_0x1e5143[_0xc9989c(0x2bc)][_0xc9989c(0x3bf)]+=_0xc9989c(0x19f),_0x476a5c()):(0x0,_0x2359f8['QW'])((0x0,_0x14359a['hh'])(_0xc9989c(0x161))[_0xc9989c(0x389)])?(_0x1e5143['firstElementChild']['className']=_0xc9989c(0x447),_0x1e5143[_0xc9989c(0x338)]['display']=_0xc9989c(0x35d),_0x1e5143[_0xc9989c(0x2bc)]['innerHTML']+=_0xc9989c(0x384),_0x476a5c()):(0x0,_0x14359a['hh'])(_0xc9989c(0x161))[_0xc9989c(0x389)]['length']<=0x3?(_0x1e5143[_0xc9989c(0x2bc)]['className']=_0xc9989c(0x447),_0x1e5143['style']['display']=_0xc9989c(0x35d),_0x1e5143['firstElementChild']['innerHTML']+=_0xc9989c(0x4a1),_0x476a5c()):_0x1e7c80='OK',''===(0x0,_0x14359a['hh'])(_0xc9989c(0x2c3))[_0xc9989c(0x389)]?(_0x1e5143[_0xc9989c(0x2bc)][_0xc9989c(0x374)]=_0xc9989c(0x447),_0x1e5143[_0xc9989c(0x338)]['display']=_0xc9989c(0x35d),_0x1e5143[_0xc9989c(0x2bc)]['innerHTML']+=_0xc9989c(0x1c6),_0x476a5c()):-0x1===(0x0,_0x14359a['hh'])(_0xc9989c(0x2c3))[_0xc9989c(0x389)][_0xc9989c(0x53e)]('@')||-0x1===(0x0,_0x14359a['hh'])('#email')[_0xc9989c(0x389)][_0xc9989c(0x53e)]('.')||(0x0,_0x14359a['hh'])(_0xc9989c(0x2c3))[_0xc9989c(0x389)]['length']<=0xe?(_0x1e5143[_0xc9989c(0x2bc)]['className']=_0xc9989c(0x447),_0x1e5143['style'][_0xc9989c(0x3a7)]=_0xc9989c(0x35d),_0x1e5143[_0xc9989c(0x2bc)][_0xc9989c(0x3bf)]+='Error\x20:\x20Enter\x20valid\x20email\x20address.<br/>',_0x476a5c()):_0x406047='OK',''===(0x0,_0x14359a['hh'])(_0xc9989c(0x18d))[_0xc9989c(0x389)]?(_0x1e5143[_0xc9989c(0x2bc)][_0xc9989c(0x374)]='box-message\x20box-danger\x20box-shadow-light',_0x1e5143[_0xc9989c(0x338)][_0xc9989c(0x3a7)]=_0xc9989c(0x35d),_0x1e5143[_0xc9989c(0x2bc)]['innerHTML']+=_0xc9989c(0x24b),_0x476a5c()):(0x0,_0x14359a['hh'])('#username')['value'][_0xc9989c(0x2b8)]<0x8?(_0x1e5143[_0xc9989c(0x2bc)][_0xc9989c(0x374)]='box-message\x20box-danger\x20box-shadow-light',_0x1e5143[_0xc9989c(0x338)][_0xc9989c(0x3a7)]='block',_0x1e5143['firstElementChild'][_0xc9989c(0x3bf)]+=_0xc9989c(0x16e),_0x476a5c()):_0x42e1b6='OK',''===(0x0,_0x14359a['hh'])(_0xc9989c(0x4d2))[_0xc9989c(0x389)]?(_0x1e5143[_0xc9989c(0x2bc)][_0xc9989c(0x374)]='box-message\x20box-danger\x20box-shadow-light',_0x1e5143['style'][_0xc9989c(0x3a7)]=_0xc9989c(0x35d),_0x1e5143[_0xc9989c(0x2bc)][_0xc9989c(0x3bf)]+=_0xc9989c(0x233),_0x476a5c()):_0x133047='OK',''===(0x0,_0x14359a['hh'])(_0xc9989c(0x4e5))[_0xc9989c(0x389)]?(_0x1e5143[_0xc9989c(0x2bc)]['className']=_0xc9989c(0x447),_0x1e5143['style'][_0xc9989c(0x3a7)]=_0xc9989c(0x35d),_0x1e5143[_0xc9989c(0x2bc)]['innerHTML']+=_0xc9989c(0x1f5),_0x476a5c()):''!==(0x0,_0x14359a['hh'])('#password')[_0xc9989c(0x389)]&&-0x1===(0x0,_0x14359a['hh'])('#password')['value']['indexOf']('@')?(_0x1e5143[_0xc9989c(0x2bc)]['className']=_0xc9989c(0x447),_0x1e5143['style'][_0xc9989c(0x3a7)]='block',_0x1e5143['firstElementChild'][_0xc9989c(0x3bf)]+='Error\x20:\x20Enter\x20password\x20with\x20(@)\x20character.<br/>',_0x476a5c()):''!==(0x0,_0x14359a['hh'])(_0xc9989c(0x4e5))['value']&&-0x1===(0x0,_0x14359a['hh'])('#password')[_0xc9989c(0x389)][_0xc9989c(0x53e)]('_')?(_0x1e5143[_0xc9989c(0x2bc)][_0xc9989c(0x374)]=_0xc9989c(0x447),_0x1e5143[_0xc9989c(0x338)][_0xc9989c(0x3a7)]=_0xc9989c(0x35d),_0x1e5143[_0xc9989c(0x2bc)]['innerHTML']+=_0xc9989c(0x192),_0x476a5c()):(0x0,_0x2359f8['QW'])((0x0,_0x14359a['hh'])('#password')[_0xc9989c(0x389)])?(_0x1e5143[_0xc9989c(0x2bc)]['className']=_0xc9989c(0x447),_0x1e5143['style'][_0xc9989c(0x3a7)]='block',_0x1e5143[_0xc9989c(0x2bc)][_0xc9989c(0x3bf)]+='Error\x20:\x20A\x20character\x20has\x20been\x20used\x20more\x20than\x20twice\x20in\x20your\x20password.<br/>',_0x476a5c()):''!==(0x0,_0x14359a['hh'])(_0xc9989c(0x4e5))[_0xc9989c(0x389)]&&(0x0,_0x14359a['hh'])(_0xc9989c(0x4e5))['value'][_0xc9989c(0x2b8)]<=0x6?(_0x1e5143[_0xc9989c(0x2bc)][_0xc9989c(0x374)]=_0xc9989c(0x447),_0x1e5143[_0xc9989c(0x338)]['display']=_0xc9989c(0x35d),_0x1e5143['firstElementChild'][_0xc9989c(0x3bf)]+=_0xc9989c(0x50a),_0x476a5c()):_0x8e9e1d='OK',(0x0,_0x14359a['hh'])('#password')[_0xc9989c(0x389)]!==(0x0,_0x14359a['hh'])(_0xc9989c(0x1ea))[_0xc9989c(0x389)]&&(_0x1e5143[_0xc9989c(0x2bc)][_0xc9989c(0x374)]=_0xc9989c(0x447),_0x1e5143[_0xc9989c(0x338)]['display']=_0xc9989c(0x35d),_0x1e5143[_0xc9989c(0x2bc)][_0xc9989c(0x3bf)]+=_0xc9989c(0x1e8)),(0x0,_0x14359a['hh'])('#agree')[_0xc9989c(0x53b)]||(_0x1e5143['style']=_0xc9989c(0x383),_0x1e5143[_0xc9989c(0x2bc)][_0xc9989c(0x374)]=_0xc9989c(0x447),_0x1e5143[_0xc9989c(0x2bc)][_0xc9989c(0x3bf)]+='Error\x20:\x20Please\x20check\x20i\x20agree\x20button\x20to\x20continue.<br/>',_0x476a5c()),(0x0,_0x14359a['hh'])(_0xc9989c(0x49e))['checked']&&'OK'===_0x199461&&'OK'===_0x1e7c80&&'OK'===_0x406047&&'OK'===_0x42e1b6&&'OK'===_0x8e9e1d&&'OK'===_0x133047)return _0x1e5143[_0xc9989c(0x2bc)][_0xc9989c(0x319)][_0xc9989c(0x294)]('box-runtime'),(0x0,_0x14359a['hh'])(_0xc9989c(0x418))[_0xc9989c(0x422)](_0xc9989c(0x52c),_0xc9989c(0x52c)),(0x0,_0x14359a['hh'])(_0xc9989c(0x453))['setAttribute'](_0xc9989c(0x52c),'disabled'),(0x0,_0x14359a['hh'])(_0xc9989c(0x161))[_0xc9989c(0x422)](_0xc9989c(0x52c),_0xc9989c(0x52c)),(0x0,_0x14359a['hh'])(_0xc9989c(0x2c3))[_0xc9989c(0x422)](_0xc9989c(0x52c),_0xc9989c(0x52c)),(0x0,_0x14359a['hh'])(_0xc9989c(0x18d))['setAttribute'](_0xc9989c(0x52c),_0xc9989c(0x52c)),(0x0,_0x14359a['hh'])(_0xc9989c(0x4d2))[_0xc9989c(0x422)](_0xc9989c(0x52c),'disabled'),(0x0,_0x14359a['hh'])(_0xc9989c(0x527))[_0xc9989c(0x422)]('disabled',_0xc9989c(0x52c)),(0x0,_0x14359a['hh'])(_0xc9989c(0x4e5))[_0xc9989c(0x422)](_0xc9989c(0x52c),_0xc9989c(0x52c)),(0x0,_0x14359a['hh'])(_0xc9989c(0x1ea))[_0xc9989c(0x422)](_0xc9989c(0x52c),_0xc9989c(0x52c)),(0x0,_0x14359a['hh'])(_0xc9989c(0x49e))[_0xc9989c(0x422)](_0xc9989c(0x52c),_0xc9989c(0x52c)),_0x1e5143[_0xc9989c(0x338)]=_0xc9989c(0x383),_0x1e5143[_0xc9989c(0x2bc)][_0xc9989c(0x41f)]='Please\x20wait......','block'===_0x1e5143['style']['display']&&void 0x0!==(0x0,_0x14359a['hh'])(_0xc9989c(0x24a))&&((0x0,_0x14359a['hh'])(_0xc9989c(0x24a))[_0xc9989c(0x2bc)]['style']=_0xc9989c(0x3d3)+(+(0x0,_0x14359a['hh'])(_0xc9989c(0x413))[_0xc9989c(0x1b1)]+ +(0x0,_0x14359a['hh'])(_0xc9989c(0x24a))['firstElementChild'][_0xc9989c(0x369)]('data-height'))+'px','br'===(0x0,_0x14359a['hh'])('#messageZone')[_0xc9989c(0x25a)]['nodeName']['toLowerCase']()&&(0x0,_0x14359a['hh'])(_0xc9989c(0x413))[_0xc9989c(0x25a)][_0xc9989c(0x403)]()),setTimeout(function(){const _0x51dfda=_0xc9989c;(0x0,_0x14359a['hh'])('#messageZone')[_0x51dfda(0x41f)]='';},0xbb8),(0x0,_0x1cb41c['w'])({'method':_0xc9989c(0x392),'url':_0x50d720['M']+_0xc9989c(0x168),'async':!0x0,'header':[{'name':_0xc9989c(0x1f1),'value':_0xc9989c(0x262)}],'data':{'security_code':0x1,'patch':(0x0,_0x14359a['hh'])(_0xc9989c(0x537))[_0xc9989c(0x389)],'time':(0x0,_0x14359a['hh'])(_0xc9989c(0x256))[_0xc9989c(0x389)],'firstName':(0x0,_0x14359a['hh'])(_0xc9989c(0x453))['value'],'lastName':(0x0,_0x14359a['hh'])('#last-name')[_0xc9989c(0x389)],'email':(0x0,_0x14359a['hh'])('#email')[_0xc9989c(0x389)],'username':(0x0,_0x14359a['hh'])(_0xc9989c(0x18d))[_0xc9989c(0x389)],'password':(0x0,_0x14359a['hh'])(_0xc9989c(0x4e5))['value'],'confirmPassword':(0x0,_0x14359a['hh'])(_0xc9989c(0x1ea))['value'],'dateOfBirth':(0x0,_0x14359a['hh'])(_0xc9989c(0x4d2))[_0xc9989c(0x389)],'gender':(0x0,_0x14359a['hh'])(_0xc9989c(0x527))[_0xc9989c(0x389)],'agree':(0x0,_0x14359a['hh'])(_0xc9989c(0x49e))[_0xc9989c(0x389)],'btnName':(0x0,_0x14359a['hh'])('#signup-button')[_0xc9989c(0x389)]}},function(_0x21aefc){const _0x7fcf63=_0xc9989c;(0x0,_0x14359a['hh'])(_0x7fcf63(0x418))[_0x7fcf63(0x1f2)](_0x7fcf63(0x52c)),(0x0,_0x14359a['hh'])('#first-name')[_0x7fcf63(0x1f2)](_0x7fcf63(0x52c)),(0x0,_0x14359a['hh'])(_0x7fcf63(0x161))[_0x7fcf63(0x1f2)](_0x7fcf63(0x52c)),(0x0,_0x14359a['hh'])(_0x7fcf63(0x2c3))[_0x7fcf63(0x1f2)]('disabled'),(0x0,_0x14359a['hh'])(_0x7fcf63(0x18d))[_0x7fcf63(0x1f2)]('disabled'),(0x0,_0x14359a['hh'])(_0x7fcf63(0x4d2))['removeAttribute']('disabled'),(0x0,_0x14359a['hh'])(_0x7fcf63(0x527))['removeAttribute']('disabled'),(0x0,_0x14359a['hh'])(_0x7fcf63(0x4e5))[_0x7fcf63(0x1f2)](_0x7fcf63(0x52c)),(0x0,_0x14359a['hh'])('#c_password')[_0x7fcf63(0x1f2)](_0x7fcf63(0x52c)),(0x0,_0x14359a['hh'])(_0x7fcf63(0x49e))[_0x7fcf63(0x1f2)]('disabled'),(0x0,_0x54ee15['PV'])(_0x21aefc,(0x0,_0x14359a['hh'])('#messageZone')),void 0x0!==(0x0,_0x14359a['hh'])(_0x7fcf63(0x24a))&&((0x0,_0x14359a['hh'])(_0x7fcf63(0x24a))['firstElementChild']['style']='height:'+(+(0x0,_0x14359a['hh'])(_0x7fcf63(0x413))['clientHeight']+ +(0x0,_0x14359a['hh'])(_0x7fcf63(0x24a))['firstElementChild'][_0x7fcf63(0x369)](_0x7fcf63(0x17f)))+'px');});},{'passive':!0x0});});},0x64);}((0x0,_0x14359a['hh'])(_0x13fbf8(0x4a6))),function(_0x4048ac){let _0x548dcf=setInterval(function(){const _0x53b294=a5_0x4840;clearInterval(_0x548dcf),_0x4048ac?.[_0x53b294(0x4c9)]('submit',function(_0x186898){const _0x1d29ee=_0x53b294;_0x186898[_0x1d29ee(0x47c)]();let _0x1e92b9=(0x0,_0x14359a['hh'])(_0x1d29ee(0x413));if(null===_0x1e92b9[_0x1d29ee(0x2bc)]){let _0x4adbf7=document[_0x1d29ee(0x44e)](_0x1d29ee(0x3ce));_0x1e92b9[_0x1d29ee(0x28b)](_0x4adbf7);}return _0x1e92b9[_0x1d29ee(0x2bc)]['textContent']='',0x0===(0x0,_0x14359a['hh'])(_0x1d29ee(0x18d))[_0x1d29ee(0x389)][_0x1d29ee(0x2b8)]&&0x0===(0x0,_0x14359a['hh'])(_0x1d29ee(0x2c3))[_0x1d29ee(0x389)][_0x1d29ee(0x2b8)]&&(_0x1e92b9['firstElementChild']['className']=_0x1d29ee(0x447),_0x1e92b9[_0x1d29ee(0x338)][_0x1d29ee(0x3a7)]='block',_0x1e92b9[_0x1d29ee(0x2bc)][_0x1d29ee(0x3bf)]+=_0x1d29ee(0x243)),_0x1e92b9[_0x1d29ee(0x338)]=_0x1d29ee(0x383),_0x1e92b9['firstElementChild'][_0x1d29ee(0x41f)]=_0x1d29ee(0x45e),(0x0,_0x14359a['hh'])(_0x1d29ee(0x24a))[_0x1d29ee(0x2bc)]['style']='height:500px',setTimeout(function(){const _0x148fc2=_0x1d29ee;(0x0,_0x14359a['hh'])(_0x148fc2(0x413))[_0x148fc2(0x41f)]='';},0xbb8),(0x0,_0x1cb41c['w'])({'method':_0x1d29ee(0x392),'url':_0x50d720['M']+_0x1d29ee(0x53c),'async':!0x0,'header':[{'name':_0x1d29ee(0x1f1),'value':_0x1d29ee(0x262)}],'data':{'security_code':0x1,'patch':(0x0,_0x14359a['hh'])(_0x1d29ee(0x2f1))[_0x1d29ee(0x389)],'time':(0x0,_0x14359a['hh'])(_0x1d29ee(0x256))[_0x1d29ee(0x389)],'email':(0x0,_0x14359a['hh'])(_0x1d29ee(0x2c3))[_0x1d29ee(0x389)],'username':(0x0,_0x14359a['hh'])('#username')[_0x1d29ee(0x389)],'btnName':(0x0,_0x14359a['hh'])(_0x1d29ee(0x414))[_0x1d29ee(0x389)]}},function(_0x27ae6a){const _0xfae9d8=_0x1d29ee;(0x0,_0x14359a['hh'])('#email')[_0xfae9d8(0x1f2)](_0xfae9d8(0x52c)),(0x0,_0x14359a['hh'])('#username')[_0xfae9d8(0x1f2)]('disabled'),(0x0,_0x54ee15['PV'])(_0x27ae6a,(0x0,_0x14359a['hh'])(_0xfae9d8(0x413))),void 0x0!==(0x0,_0x14359a['hh'])(_0xfae9d8(0x24a))&&((0x0,_0x14359a['hh'])('#flex-center')['firstElementChild']['style']='height:'+(+(0x0,_0x14359a['hh'])('#messageZone')['clientHeight']+ +(0x0,_0x14359a['hh'])(_0xfae9d8(0x24a))[_0xfae9d8(0x2bc)][_0xfae9d8(0x369)](_0xfae9d8(0x17f)))+'px','br'===(0x0,_0x14359a['hh'])('#messageZone')[_0xfae9d8(0x25a)][_0xfae9d8(0x239)]['toLowerCase']()&&(0x0,_0x14359a['hh'])(_0xfae9d8(0x413))[_0xfae9d8(0x25a)][_0xfae9d8(0x403)]());});});},0x64);}((0x0,_0x14359a['hh'])(_0x13fbf8(0x4e9))),function(_0x74a963){let _0x2655f7=setInterval(function(){const _0x3e1d4a=a5_0x4840;clearInterval(_0x2655f7),_0x74a963?.[_0x3e1d4a(0x4c9)](_0x3e1d4a(0x548),function(_0x3e7ff3){const _0x1d992c=_0x3e1d4a;_0x3e7ff3['preventDefault']();let _0x14ed35,_0x311cb1=(0x0,_0x14359a['hh'])(_0x1d992c(0x413));if(null===_0x311cb1[_0x1d992c(0x2bc)]){let _0x3099af=document[_0x1d992c(0x44e)](_0x1d992c(0x3ce));_0x311cb1['appendChild'](_0x3099af);}if(_0x311cb1['firstElementChild'][_0x1d992c(0x41f)]='',''===(0x0,_0x14359a['hh'])(_0x1d992c(0x4e5))[_0x1d992c(0x389)]?(_0x311cb1[_0x1d992c(0x2bc)][_0x1d992c(0x374)]=_0x1d992c(0x447),_0x311cb1[_0x1d992c(0x338)]['display']=_0x1d992c(0x35d),_0x311cb1[_0x1d992c(0x2bc)]['innerHTML']+=_0x1d992c(0x1f5),_0x476a5c()):''!==(0x0,_0x14359a['hh'])('#password')[_0x1d992c(0x389)]&&-0x1===(0x0,_0x14359a['hh'])(_0x1d992c(0x4e5))['value'][_0x1d992c(0x53e)]('@')?(_0x311cb1[_0x1d992c(0x2bc)][_0x1d992c(0x374)]=_0x1d992c(0x447),_0x311cb1['style'][_0x1d992c(0x3a7)]='block',_0x311cb1[_0x1d992c(0x2bc)][_0x1d992c(0x3bf)]+=_0x1d992c(0x3a3),_0x476a5c()):''!==(0x0,_0x14359a['hh'])(_0x1d992c(0x4e5))['value']&&-0x1===(0x0,_0x14359a['hh'])(_0x1d992c(0x4e5))[_0x1d992c(0x389)][_0x1d992c(0x53e)]('_')?(_0x311cb1['firstElementChild'][_0x1d992c(0x374)]=_0x1d992c(0x447),_0x311cb1[_0x1d992c(0x338)]['display']=_0x1d992c(0x35d),_0x311cb1[_0x1d992c(0x2bc)]['innerHTML']+=_0x1d992c(0x192),_0x476a5c()):(0x0,_0x2359f8['QW'])((0x0,_0x14359a['hh'])(_0x1d992c(0x4e5))[_0x1d992c(0x389)])?(_0x311cb1['firstElementChild'][_0x1d992c(0x374)]=_0x1d992c(0x447),_0x311cb1[_0x1d992c(0x338)][_0x1d992c(0x3a7)]=_0x1d992c(0x35d),_0x311cb1['firstElementChild'][_0x1d992c(0x3bf)]+=_0x1d992c(0x52b),_0x476a5c()):''!==(0x0,_0x14359a['hh'])(_0x1d992c(0x4e5))['value']&&(0x0,_0x14359a['hh'])(_0x1d992c(0x4e5))[_0x1d992c(0x389)][_0x1d992c(0x2b8)]<=0x6?(_0x311cb1[_0x1d992c(0x2bc)][_0x1d992c(0x374)]='box-message\x20box-danger\x20box-shadow-light',_0x311cb1['style']['display']=_0x1d992c(0x35d),_0x311cb1[_0x1d992c(0x2bc)][_0x1d992c(0x3bf)]+='Error\x20:\x20Enter\x20password\x20more\x20than\x206\x20character.<br/>',_0x476a5c()):_0x14ed35='OK',(0x0,_0x14359a['hh'])('#password')['value']!==(0x0,_0x14359a['hh'])('#c_password')['value']&&(_0x311cb1[_0x1d992c(0x2bc)][_0x1d992c(0x374)]=_0x1d992c(0x447),_0x311cb1[_0x1d992c(0x338)][_0x1d992c(0x3a7)]=_0x1d992c(0x35d),_0x311cb1['firstElementChild'][_0x1d992c(0x3bf)]+=_0x1d992c(0x1e8)),_0x311cb1[_0x1d992c(0x338)]=_0x1d992c(0x383),_0x311cb1[_0x1d992c(0x2bc)][_0x1d992c(0x41f)]=_0x1d992c(0x45e),(0x0,_0x14359a['hh'])(_0x1d992c(0x24a))[_0x1d992c(0x2bc)]['style']=_0x1d992c(0x3f0),setTimeout(function(){const _0x4e0710=_0x1d992c;(0x0,_0x14359a['hh'])(_0x4e0710(0x413))[_0x4e0710(0x41f)]='';},0xbb8),'OK'===_0x14ed35)return _0x311cb1['firstElementChild'][_0x1d992c(0x319)][_0x1d992c(0x294)](_0x1d992c(0x2fa)),(0x0,_0x14359a['hh'])(_0x1d992c(0x28a))['setAttribute'](_0x1d992c(0x52c),_0x1d992c(0x52c)),(0x0,_0x14359a['hh'])(_0x1d992c(0x4e5))[_0x1d992c(0x422)]('disabled',_0x1d992c(0x52c)),(0x0,_0x14359a['hh'])(_0x1d992c(0x1ea))['setAttribute'](_0x1d992c(0x52c),'disabled'),_0x311cb1[_0x1d992c(0x338)]='display:block;',_0x311cb1[_0x1d992c(0x2bc)][_0x1d992c(0x41f)]=_0x1d992c(0x45e),(0x0,_0x14359a['hh'])(_0x1d992c(0x24a))[_0x1d992c(0x2bc)][_0x1d992c(0x338)]=_0x1d992c(0x176),setTimeout(function(){const _0x3cff84=_0x1d992c;(0x0,_0x14359a['hh'])(_0x3cff84(0x413))[_0x3cff84(0x41f)]='';},0xbb8),(0x0,_0x1cb41c['w'])({'method':_0x1d992c(0x392),'url':_0x50d720['M']+'user/newPasswordValidation','async':!0x0,'header':[{'name':'Content-type','value':_0x1d992c(0x262)}],'data':{'security_code':0x1,'patch':(0x0,_0x14359a['hh'])('#set-password')[_0x1d992c(0x389)],'time':(0x0,_0x14359a['hh'])('#time')[_0x1d992c(0x389)],'userId':(0x0,_0x14359a['hh'])(_0x1d992c(0x273))[_0x1d992c(0x389)],'password':(0x0,_0x14359a['hh'])(_0x1d992c(0x4e5))[_0x1d992c(0x389)],'confirmPassword':(0x0,_0x14359a['hh'])(_0x1d992c(0x1ea))[_0x1d992c(0x389)],'btnName':(0x0,_0x14359a['hh'])(_0x1d992c(0x28a))[_0x1d992c(0x389)]}},function(_0x2b8170){const _0x5790c3=_0x1d992c;(0x0,_0x14359a['hh'])(_0x5790c3(0x28a))[_0x5790c3(0x1f2)](_0x5790c3(0x52c)),(0x0,_0x14359a['hh'])(_0x5790c3(0x4e5))[_0x5790c3(0x1f2)]('disabled'),(0x0,_0x14359a['hh'])(_0x5790c3(0x1ea))['removeAttribute'](_0x5790c3(0x52c)),(0x0,_0x54ee15['PV'])(_0x2b8170,(0x0,_0x14359a['hh'])(_0x5790c3(0x413))),void 0x0!==(0x0,_0x14359a['hh'])(_0x5790c3(0x24a))&&((0x0,_0x14359a['hh'])(_0x5790c3(0x24a))[_0x5790c3(0x2bc)][_0x5790c3(0x338)]='height:'+(+(0x0,_0x14359a['hh'])(_0x5790c3(0x413))['clientHeight']+ +(0x0,_0x14359a['hh'])(_0x5790c3(0x24a))['firstElementChild'][_0x5790c3(0x369)](_0x5790c3(0x17f)))+'px','br'===(0x0,_0x14359a['hh'])(_0x5790c3(0x413))[_0x5790c3(0x25a)][_0x5790c3(0x239)][_0x5790c3(0x559)]()&&(0x0,_0x14359a['hh'])('#messageZone')[_0x5790c3(0x25a)][_0x5790c3(0x403)]());});});},0x64);}((0x0,_0x14359a['hh'])('#SetPasswordForm')),function(_0x4fcacb){let _0x51ec04=setInterval(function(){const _0x45315f=a5_0x4840;clearInterval(_0x51ec04),_0x4fcacb?.[_0x45315f(0x4c9)]('click',function(){const _0x5692cb=_0x45315f;let _0x5e9eee=(0x0,_0x14359a['hh'])('#messageZone');if(null===_0x5e9eee[_0x5692cb(0x2bc)]){let _0x553b86=document[_0x5692cb(0x44e)](_0x5692cb(0x3ce));_0x5e9eee[_0x5692cb(0x28b)](_0x553b86);}return _0x5e9eee[_0x5692cb(0x2bc)][_0x5692cb(0x319)][_0x5692cb(0x294)]('box-runtime'),_0x5e9eee['firstElementChild'][_0x5692cb(0x41f)]=_0x5692cb(0x45e),_0x5e9eee[_0x5692cb(0x338)][_0x5692cb(0x3a7)]='block',setTimeout(function(){const _0x42ce06=_0x5692cb;(0x0,_0x14359a['hh'])('#messageZone')[_0x42ce06(0x41f)]='';},0xbb8),(0x0,_0x1cb41c['w'])({'method':_0x5692cb(0x392),'url':_0x50d720['M']+_0x5692cb(0x2e8),'async':!0x0,'header':[{'name':_0x5692cb(0x1f1),'value':_0x5692cb(0x262)}],'data':{'security_code':0x1,'firstName':(0x0,_0x14359a['hh'])(_0x5692cb(0x3bc))[_0x5692cb(0x389)],'lastName':(0x0,_0x14359a['hh'])('#cl_lst_nm')[_0x5692cb(0x389)],'email':(0x0,_0x14359a['hh'])(_0x5692cb(0x166))[_0x5692cb(0x389)],'mobileNumber':(0x0,_0x14359a['hh'])(_0x5692cb(0x4c7))[_0x5692cb(0x389)],'messageSubject':(0x0,_0x14359a['hh'])(_0x5692cb(0x26d))[_0x5692cb(0x389)],'messageContent':(0x0,_0x14359a['hh'])('#cl_msg')[_0x5692cb(0x389)],'btnName':(0x0,_0x14359a['hh'])(_0x5692cb(0x1ec))[_0x5692cb(0x41f)]}},function(_0x2e8077){const _0x1abdd3=_0x5692cb;(0x0,_0x54ee15['PV'])(_0x2e8077,(0x0,_0x14359a['hh'])(_0x1abdd3(0x413)));});});},0x64);}((0x0,_0x14359a['hh'])('#cl_msg_snd_btn')),-0x1!==window[_0x13fbf8(0x44a)][_0x13fbf8(0x3c7)][_0x13fbf8(0x53e)](_0x13fbf8(0x4af))&&(void 0x0!==(0x0,_0x14359a['hh'])(_0x13fbf8(0x29d))&&['click',_0x13fbf8(0x544),_0x13fbf8(0x1fa)][_0x13fbf8(0x45c)](function(_0x30109d){const _0x594b2c=_0x13fbf8;(0x0,_0x14359a['hh'])(_0x594b2c(0x296))?.[_0x594b2c(0x4c9)](_0x30109d,function(){const _0x576304=_0x594b2c;(0x0,_0x14359a['hh'])(_0x576304(0x29d))[_0x576304(0x338)][_0x576304(0x3a7)]=_0x576304(0x510),(0x0,_0x14359a['hh'])('#payment-categories')[_0x576304(0x1f2)](_0x576304(0x338));},{'passive':!0x0});}),void 0x0!==(0x0,_0x14359a['hh'])(_0x13fbf8(0x3e8))&&[_0x13fbf8(0x346),'dblclick',_0x13fbf8(0x1fa)][_0x13fbf8(0x45c)](function(_0x329998){const _0x264d92=_0x13fbf8;(0x0,_0x14359a['hh'])(_0x264d92(0x3fd))?.['addEventListener'](_0x329998,function(){const _0x252dde=_0x264d92;(0x0,_0x14359a['hh'])(_0x252dde(0x3e8))['style']['display']=_0x252dde(0x510),(0x0,_0x14359a['hh'])(_0x252dde(0x487))[_0x252dde(0x338)][_0x252dde(0x3a7)]=_0x252dde(0x35d);},{'passive':!0x0});}),void 0x0!==(0x0,_0x14359a['hh'])(_0x13fbf8(0x487))&&([_0x13fbf8(0x346),_0x13fbf8(0x544),_0x13fbf8(0x1fa)][_0x13fbf8(0x45c)](function(_0x5f1dd1){const _0x1bf3b3=_0x13fbf8;(0x0,_0x14359a['hh'])(_0x1bf3b3(0x1b6))?.[_0x1bf3b3(0x4c9)](_0x5f1dd1,function(){const _0xccb82a=_0x1bf3b3;(0x0,_0x14359a['hh'])(_0xccb82a(0x487))[_0xccb82a(0x338)][_0xccb82a(0x3a7)]=_0xccb82a(0x510),(0x0,_0x14359a['hh'])(_0xccb82a(0x3e8))[_0xccb82a(0x1f2)](_0xccb82a(0x338));},{'passive':!0x0});}),(0x0,_0x14359a['hh'])('#payment-appid-email')?.[_0x13fbf8(0x4c9)]('submit',function(_0xac4ee1){const _0x2a3fbe=_0x13fbf8;_0xac4ee1[_0x2a3fbe(0x47c)]();let _0x24771e,_0x34b74d=(0x0,_0x14359a['hh'])(_0x2a3fbe(0x3b0));if(_0x34b74d[_0x2a3fbe(0x374)]=_0x2a3fbe(0x435),null===_0x34b74d['firstElementChild']){let _0x73c888=document['createElement'](_0x2a3fbe(0x3ce));_0x34b74d[_0x2a3fbe(0x28b)](_0x73c888);}if(_0x34b74d['firstElementChild'][_0x2a3fbe(0x41f)]='',0x0===(0x0,_0x14359a['hh'])(_0x2a3fbe(0x442))['value'][_0x2a3fbe(0x2b8)]&&(_0x34b74d[_0x2a3fbe(0x2bc)]['className']=_0x2a3fbe(0x447),_0x34b74d[_0x2a3fbe(0x338)][_0x2a3fbe(0x3a7)]='block',_0x34b74d[_0x2a3fbe(0x2bc)][_0x2a3fbe(0x3bf)]+=_0x2a3fbe(0x19e)),''===(0x0,_0x14359a['hh'])(_0x2a3fbe(0x331))[_0x2a3fbe(0x389)]?(_0x34b74d[_0x2a3fbe(0x2bc)][_0x2a3fbe(0x374)]='box-message\x20box-danger\x20box-shadow-light',_0x34b74d[_0x2a3fbe(0x338)][_0x2a3fbe(0x3a7)]=_0x2a3fbe(0x35d),_0x34b74d[_0x2a3fbe(0x2bc)]['innerHTML']+=_0x2a3fbe(0x1c6),_0x476a5c()):-0x1===(0x0,_0x14359a['hh'])('#email-address')['value'][_0x2a3fbe(0x53e)]('@')||-0x1===(0x0,_0x14359a['hh'])(_0x2a3fbe(0x331))[_0x2a3fbe(0x389)]['indexOf']('.')||(0x0,_0x14359a['hh'])(_0x2a3fbe(0x331))[_0x2a3fbe(0x389)]['length']<=0xe?(_0x34b74d[_0x2a3fbe(0x2bc)][_0x2a3fbe(0x374)]=_0x2a3fbe(0x447),_0x34b74d[_0x2a3fbe(0x338)][_0x2a3fbe(0x3a7)]=_0x2a3fbe(0x35d),_0x34b74d[_0x2a3fbe(0x2bc)]['innerHTML']+=_0x2a3fbe(0x3d2),_0x476a5c()):_0x24771e='OK',0x0===(0x0,_0x14359a['hh'])('#client-plan-type')[_0x2a3fbe(0x389)]['length']&&(_0x34b74d['firstElementChild'][_0x2a3fbe(0x374)]=_0x2a3fbe(0x447),_0x34b74d['style'][_0x2a3fbe(0x3a7)]='block',_0x34b74d['firstElementChild'][_0x2a3fbe(0x3bf)]+=_0x2a3fbe(0x3dc)),0x0===(0x0,_0x14359a['hh'])(_0x2a3fbe(0x3fa))[_0x2a3fbe(0x389)][_0x2a3fbe(0x2b8)]&&(_0x34b74d[_0x2a3fbe(0x2bc)][_0x2a3fbe(0x374)]=_0x2a3fbe(0x447),_0x34b74d['style'][_0x2a3fbe(0x3a7)]=_0x2a3fbe(0x35d),_0x34b74d[_0x2a3fbe(0x2bc)][_0x2a3fbe(0x3bf)]+='Error\x20:\x20Please\x20select\x20your\x20plan\x20to\x20continue.<br/>'),_0x34b74d[_0x2a3fbe(0x2bc)]['classList'][_0x2a3fbe(0x294)](_0x2a3fbe(0x2fa)),(0x0,_0x14359a['hh'])('#user-select-done')['setAttribute'](_0x2a3fbe(0x52c),_0x2a3fbe(0x52c)),(0x0,_0x14359a['hh'])(_0x2a3fbe(0x331))[_0x2a3fbe(0x422)](_0x2a3fbe(0x52c),_0x2a3fbe(0x52c)),(0x0,_0x14359a['hh'])(_0x2a3fbe(0x442))[_0x2a3fbe(0x422)]('disabled',_0x2a3fbe(0x52c)),(0x0,_0x14359a['hh'])(_0x2a3fbe(0x3fa))['setAttribute'](_0x2a3fbe(0x52c),_0x2a3fbe(0x52c)),(0x0,_0x14359a['hh'])(_0x2a3fbe(0x4a8))[_0x2a3fbe(0x422)]('disabled',_0x2a3fbe(0x52c)),(0x0,_0x14359a['hh'])(_0x2a3fbe(0x1b6))[_0x2a3fbe(0x422)]('disabled',_0x2a3fbe(0x52c)),_0x34b74d[_0x2a3fbe(0x338)]=_0x2a3fbe(0x383),_0x34b74d[_0x2a3fbe(0x2bc)][_0x2a3fbe(0x41f)]=_0x2a3fbe(0x45e),setTimeout(function(){const _0x1e8c7c=_0x2a3fbe;(0x0,_0x14359a['hh'])(_0x1e8c7c(0x3b0))[_0x1e8c7c(0x41f)]='';},0xbb8),'OK'===_0x24771e)return(0x0,_0x1cb41c['w'])({'method':_0x2a3fbe(0x392),'url':_0x50d720['M']+'payment/verifyClient','async':!0x0,'header':[{'name':_0x2a3fbe(0x1f1),'value':_0x2a3fbe(0x262)}],'data':{'security_code':0x1,'userEmail':(0x0,_0x14359a['hh'])('#email-address')[_0x2a3fbe(0x389)],'appId':(0x0,_0x14359a['hh'])('#app-id')[_0x2a3fbe(0x389)],'plan':(0x0,_0x14359a['hh'])('#client-plan')[_0x2a3fbe(0x389)],'planType':(0x0,_0x14359a['hh'])(_0x2a3fbe(0x4a8))[_0x2a3fbe(0x389)],'btnName':(0x0,_0x14359a['hh'])('#user-select-done')[_0x2a3fbe(0x41f)]}},function(_0x55be45){const _0x39aa30=_0x2a3fbe;(0x0,_0x2359f8['cU'])(_0x55be45)&&_0x39aa30(0x529)===JSON[_0x39aa30(0x23f)](_0x55be45)[_0x39aa30(0x2d8)]?((0x0,_0x14359a['hh'])(_0x39aa30(0x477))[_0x39aa30(0x41f)]=_0x39aa30(0x41b),setTimeout(function(){const _0x53e89b=_0x39aa30;window[_0x53e89b(0x44a)]['replace'](_0x50d720['M']+'payment/paynow/'+JSON[_0x53e89b(0x23f)](_0x55be45)[_0x53e89b(0x191)]+'/'+JSON[_0x53e89b(0x23f)](_0x55be45)[_0x53e89b(0x4ca)]+'/'+JSON[_0x53e89b(0x23f)](_0x55be45)[_0x53e89b(0x4ee)]+'/'+JSON[_0x53e89b(0x23f)](_0x55be45)['paymentPlanEncrypt']+'/');},0x7d0)):((0x0,_0x14359a['hh'])('#email-address')[_0x39aa30(0x1f2)](_0x39aa30(0x52c)),(0x0,_0x14359a['hh'])(_0x39aa30(0x442))['removeAttribute'](_0x39aa30(0x52c)),(0x0,_0x14359a['hh'])(_0x39aa30(0x3fa))[_0x39aa30(0x1f2)](_0x39aa30(0x52c)),(0x0,_0x14359a['hh'])(_0x39aa30(0x4a8))['removeAttribute'](_0x39aa30(0x52c)),(0x0,_0x14359a['hh'])(_0x39aa30(0x477))[_0x39aa30(0x1f2)]('disabled'),(0x0,_0x14359a['hh'])(_0x39aa30(0x1b6))['removeAttribute'](_0x39aa30(0x52c))),(0x0,_0x54ee15['PV'])(_0x55be45,(0x0,_0x14359a['hh'])(_0x39aa30(0x3b0)));});}))),function(_0x10352a){const _0xc9f2d3=_0x13fbf8;if(-0x1!==window['location']['href'][_0xc9f2d3(0x53e)](_0xc9f2d3(0x290))){let _0x101e72=setInterval(function(){const _0x93358d=_0xc9f2d3;(0x0,_0x14359a['hh'])(_0x93358d(0x253)),clearInterval(_0x101e72),[_0x93358d(0x23d),_0x93358d(0x1b3),_0x93358d(0x4f9)][_0x93358d(0x45c)](function(_0x16d1c4){const _0x625a59=_0x93358d;(0x0,_0x14359a['hh'])(_0x625a59(0x253))?.[_0x625a59(0x4c9)](_0x16d1c4,function(){return _0xbde5fe();});}),_0xbde5fe();},0x64);}}(),-0x1!==(_0x3539f5=window['location']['href'])[_0x13fbf8(0x53e)](_0x13fbf8(0x2a9))&&(void 0x0!==(0x0,_0x14359a['hh'])('#system-notification-viewer')&&(_0x2c0cb6=setInterval(function(){},0x3e8),(0x0,_0x1cb41c['w'])({'method':'GET','url':_0x50d720['M']+_0x13fbf8(0x197),'async':!0x0,'header':[{'name':_0x13fbf8(0x1f1),'value':_0x13fbf8(0x262)}]},function(_0x3bf79d){const _0x591b37=_0x13fbf8;if(0x0!==_0x3bf79d[_0x591b37(0x2b8)]&&(0x0,_0x2359f8['cU'])(_0x3bf79d)){if(0x0!==JSON[_0x591b37(0x23f)](_0x3bf79d)[_0x591b37(0x2b8)])(0x0,_0x14359a['hh'])(_0x591b37(0x3f3))[_0x591b37(0x41f)]='',JSON[_0x591b37(0x23f)](_0x3bf79d)[_0x591b37(0x45c)](function(_0x2947f1){const _0x25158d=_0x591b37,_0x28e4c8=(0x0,_0x14359a['az'])([{'a':{'class':'box-message\x20'+(_0x25158d(0x469)===_0x2947f1[_0x25158d(0x3e6)][_0x25158d(0x559)]()?_0x25158d(0x1a1):_0x25158d(0x529)===_0x2947f1[_0x25158d(0x3e6)][_0x25158d(0x559)]()?_0x25158d(0x1a5):'notify'===_0x2947f1[_0x25158d(0x3e6)][_0x25158d(0x559)]()?_0x25158d(0x40c):'\x20')+_0x25158d(0x4ad),'href':_0x50d720['M']+_0x25158d(0x3bd)+_0x2947f1['id'],'title':'['+_0x2947f1['ip']+_0x25158d(0x463)+_0x2947f1['browser']+_0x25158d(0x463)+_0x2947f1[_0x25158d(0x431)]+']'}}]),_0x50e00d=(0x0,_0x14359a['az'])([{'span':{'class':_0x25158d(0x469)===_0x2947f1[_0x25158d(0x3e6)][_0x25158d(0x559)]()?'box-danger-symbol':_0x25158d(0x529)===_0x2947f1['message_type'][_0x25158d(0x559)]()?_0x25158d(0x348):'notify'===_0x2947f1[_0x25158d(0x3e6)]['toLowerCase']()?_0x25158d(0x36c):'\x20'}}]);_0x28e4c8[_0x25158d(0x28b)](_0x50e00d);const _0x5b244b=(0x0,_0x14359a['az'])([{'i':{'class':_0x25158d(0x469)===_0x2947f1['message_type'][_0x25158d(0x559)]()?_0x25158d(0x3b1):_0x25158d(0x529)===_0x2947f1[_0x25158d(0x3e6)]['toLowerCase']()?_0x25158d(0x2c5):_0x25158d(0x531)===_0x2947f1[_0x25158d(0x3e6)][_0x25158d(0x559)]()?_0x25158d(0x23e):''}}]);_0x50e00d[_0x25158d(0x28b)](_0x5b244b);const _0x45f77f=(0x0,_0x14359a['az'])([{'div':{'class':void 0x0!==(0x0,_0x14359a['hh'])(_0x25158d(0x542))?(0x0,_0x14359a['hh'])(_0x25158d(0x542))[_0x25158d(0x389)]:_0x25158d(0x19a)}}]);_0x28e4c8[_0x25158d(0x28b)](_0x45f77f);const _0x24f1c1=(0x0,_0x14359a['az'])([{'a':{'class':_0x25158d(0x24e),'href':_0x50d720['M']+'addons/ipinfo/'+_0x2947f1['ip']}}]);_0x24f1c1[_0x25158d(0x41f)]=_0x2947f1['author']+_0x25158d(0x2b0)+_0x2947f1[_0x25158d(0x17d)],_0x45f77f[_0x25158d(0x28b)](_0x24f1c1);const _0x447032=(0x0,_0x14359a['az'])([{'span':{'class':_0x25158d(0x24e)}}]);_0x45f77f['appendChild'](_0x447032);const _0x25848e=(0x0,_0x14359a['az'])([{'p':{'class':_0x25158d(0x24e)}}]);_0x25848e[_0x25158d(0x41f)]=_0x2947f1['message'][_0x25158d(0x426)](/\s*\<.*?\>\s*/g,'\x20')['substr'](0x0,0x23)+_0x25158d(0x2a4),_0x45f77f[_0x25158d(0x28b)](_0x25848e),(0x0,_0x14359a['hh'])('#system-notification-viewer')['appendChild'](_0x28e4c8);});else{(0x0,_0x14359a['hh'])('#system-notification-viewer')[_0x591b37(0x41f)]='';const _0x397c3a=(0x0,_0x14359a['az'])([{'div':{'class':_0x591b37(0x447)}}]),_0x27f06d=(0x0,_0x14359a['az'])([{'span':{'class':'box-danger-symbol'}}]);_0x397c3a['appendChild'](_0x27f06d);const _0x382110=(0x0,_0x14359a['az'])([{'i':{'class':_0x591b37(0x3b1)}}]);_0x27f06d[_0x591b37(0x28b)](_0x382110);const _0x4ba930=(0x0,_0x14359a['az'])([{'div':{'class':_0x591b37(0x19a)}}]);_0x4ba930[_0x591b37(0x41f)]=_0x591b37(0x240),_0x397c3a[_0x591b37(0x28b)](_0x4ba930),(0x0,_0x14359a['hh'])(_0x591b37(0x3f3))[_0x591b37(0x28b)](_0x397c3a);}}})),void 0x0!==(0x0,_0x14359a['hh'])('#system-contact-message-viewer')&&(_0x5d8cb4=setInterval(function(){},0x3e8),(0x0,_0x1cb41c['w'])({'method':_0x13fbf8(0x23a),'url':_0x50d720['M']+_0x13fbf8(0x4b8),'async':!0x0,'header':[{'name':_0x13fbf8(0x1f1),'value':_0x13fbf8(0x262)}]},function(_0x426f04){const _0x43e4fa=_0x13fbf8;if(0x0!==_0x426f04[_0x43e4fa(0x2b8)]&&(0x0,_0x2359f8['cU'])(_0x426f04)){if(0x0!==JSON[_0x43e4fa(0x23f)](_0x426f04)[_0x43e4fa(0x2b8)])(0x0,_0x14359a['hh'])(_0x43e4fa(0x3b7))['textContent']='',JSON[_0x43e4fa(0x23f)](_0x426f04)[_0x43e4fa(0x45c)](function(_0x550400){const _0x29d8b2=_0x43e4fa,_0x3cfc49=(0x0,_0x14359a['az'])([{'a':{'class':_0x29d8b2(0x4f4),'href':_0x50d720['M']+_0x29d8b2(0x288)+_0x550400['id']}}]),_0x3c704a=(0x0,_0x14359a['az'])([{'span':{'class':_0x29d8b2(0x348)}}]);_0x3cfc49['appendChild'](_0x3c704a);const _0x518d51=(0x0,_0x14359a['az'])([{'i':{'class':_0x29d8b2(0x2c5)}}]);_0x3c704a['appendChild'](_0x518d51);const _0x180d2c=(0x0,_0x14359a['az'])([{'div':{'class':void 0x0!==(0x0,_0x14359a['hh'])(_0x29d8b2(0x542))?(0x0,_0x14359a['hh'])(_0x29d8b2(0x542))[_0x29d8b2(0x389)]:'notify-md-content'}}]);_0x3cfc49[_0x29d8b2(0x28b)](_0x180d2c);const _0xb89536=(0x0,_0x14359a['az'])([{'a':{'class':_0x29d8b2(0x24e)}}]);_0xb89536[_0x29d8b2(0x41f)]=_0x550400[_0x29d8b2(0x497)]+'\x20'+_0x550400[_0x29d8b2(0x29a)]+_0x29d8b2(0x1dd)+_0x550400[_0x29d8b2(0x2d7)],_0x180d2c['appendChild'](_0xb89536);const _0x3cf9a8=(0x0,_0x14359a['az'])([{'p':{}}]);_0x3cf9a8[_0x29d8b2(0x41f)]=_0x550400['message'],_0x180d2c[_0x29d8b2(0x28b)](_0x3cf9a8),(0x0,_0x14359a['hh'])(_0x29d8b2(0x3b7))[_0x29d8b2(0x28b)](_0x3cfc49);});else{(0x0,_0x14359a['hh'])(_0x43e4fa(0x3b7))[_0x43e4fa(0x41f)]='';const _0x4f4b36=(0x0,_0x14359a['az'])([{'div':{'class':_0x43e4fa(0x447)}}]),_0x28fc7a=(0x0,_0x14359a['az'])([{'span':{'class':_0x43e4fa(0x1c4)}}]);_0x4f4b36[_0x43e4fa(0x28b)](_0x28fc7a);const _0x5e16f1=(0x0,_0x14359a['az'])([{'i':{'class':'fa\x20fa-times'}}]);_0x28fc7a[_0x43e4fa(0x28b)](_0x5e16f1);const _0x336bf6=(0x0,_0x14359a['az'])([{'div':{'class':'notify-md-content'}}]);_0x336bf6[_0x43e4fa(0x41f)]=_0x43e4fa(0x217),_0x4f4b36['appendChild'](_0x336bf6),(0x0,_0x14359a['hh'])(_0x43e4fa(0x3b7))[_0x43e4fa(0x28b)](_0x4f4b36);}}})),void 0x0!==(0x0,_0x14359a['hh'])(_0x13fbf8(0x17e))&&(setInterval(function(){},0x3e8),(0x0,_0x1cb41c['w'])({'method':_0x13fbf8(0x23a),'url':_0x50d720['M']+_0x13fbf8(0x488),'async':!0x0,'header':[{'name':_0x13fbf8(0x1f1),'value':_0x13fbf8(0x262)}]},function(_0x311b38){const _0x47a21d=_0x13fbf8;if(0x0!==_0x311b38[_0x47a21d(0x2b8)]&&(0x0,_0x2359f8['cU'])(_0x311b38)){if(0x0!==JSON[_0x47a21d(0x23f)](_0x311b38)[_0x47a21d(0x2b8)])(0x0,_0x14359a['hh'])('#system-default-menus')[_0x47a21d(0x41f)]='',JSON['parse'](_0x311b38)[_0x47a21d(0x45c)](function(_0xae3c82){const _0x5dd994=_0x47a21d,_0x17a410=(0x0,_0x14359a['az'])([{'a':{'class':'thumbnail-md\x20box-shadow-light','href':_0x50d720['M']+'system/'+_0xae3c82[_0x5dd994(0x4aa)],'title':_0xae3c82[_0x5dd994(0x479)]}}]),_0x45febc=(0x0,_0x14359a['az'])([{'span':{'class':_0x5dd994(0x306)}}]);_0x17a410[_0x5dd994(0x28b)](_0x45febc);const _0x5f5c13=(0x0,_0x14359a['az'])([{'i':{'class':_0xae3c82[_0x5dd994(0x466)]}}]);_0x45febc[_0x5dd994(0x28b)](_0x5f5c13);const _0x343ad0=(0x0,_0x14359a['az'])([{'div':{'class':'thumbnail-text'}}]);_0x343ad0[_0x5dd994(0x41f)]=_0xae3c82[_0x5dd994(0x313)],_0x17a410[_0x5dd994(0x28b)](_0x343ad0),(0x0,_0x14359a['hh'])(_0x5dd994(0x17e))[_0x5dd994(0x28b)](_0x17a410);});else{const _0xda7194=(0x0,_0x14359a['az'])([{'div':{'class':_0x47a21d(0x371),'style':_0x47a21d(0x39e)}}]);_0xda7194[_0x47a21d(0x41f)]=_0x47a21d(0x41d),(0x0,_0x14359a['hh'])(_0x47a21d(0x17e))['appendChild'](_0xda7194);}}})),void 0x0!==(0x0,_0x14359a['hh'])(_0x13fbf8(0x393))&&(setInterval(function(){},0x3e8),(0x0,_0x1cb41c['w'])({'method':_0x13fbf8(0x23a),'url':_0x50d720['M']+'system/index/getExtraItemTabs','async':!0x0,'header':[{'name':_0x13fbf8(0x1f1),'value':'application/json;charset=UTF-8'}]},function(_0xb16b9b){const _0x1e62be=_0x13fbf8;if(0x0!==_0xb16b9b[_0x1e62be(0x2b8)]&&(0x0,_0x2359f8['cU'])(_0xb16b9b)){if(0x0!==JSON[_0x1e62be(0x23f)](_0xb16b9b)['length'])(0x0,_0x14359a['hh'])('#system-extra-menus')['textContent']='',JSON['parse'](_0xb16b9b)[_0x1e62be(0x45c)](function(_0x450670){const _0x40dfe6=_0x1e62be,_0xf8df86=(0x0,_0x14359a['az'])([{'a':{'class':_0x40dfe6(0x371),'href':_0x50d720['M']+_0x40dfe6(0x382)+_0x450670['url'],'title':_0x450670[_0x40dfe6(0x479)]}}]),_0x315cda=(0x0,_0x14359a['az'])([{'span':{'class':'thumbnail-image'}}]);_0xf8df86[_0x40dfe6(0x28b)](_0x315cda);const _0x3052bc=(0x0,_0x14359a['az'])([{'i':{'class':_0x450670[_0x40dfe6(0x466)]}}]);_0x315cda['appendChild'](_0x3052bc);const _0xc5c116=(0x0,_0x14359a['az'])([{'div':{'class':_0x40dfe6(0x440)}}]);_0xc5c116[_0x40dfe6(0x41f)]=_0x450670['name'],_0xf8df86[_0x40dfe6(0x28b)](_0xc5c116),(0x0,_0x14359a['hh'])(_0x40dfe6(0x393))[_0x40dfe6(0x28b)](_0xf8df86);});else{const _0x364a5a=(0x0,_0x14359a['az'])([{'div':{'class':_0x1e62be(0x371),'style':_0x1e62be(0x39e)}}]);_0x364a5a[_0x1e62be(0x41f)]=_0x1e62be(0x41d),(0x0,_0x14359a['hh'])(_0x1e62be(0x393))[_0x1e62be(0x28b)](_0x364a5a);}}})),-0x1!==_0x3539f5[_0x13fbf8(0x53e)](_0x13fbf8(0x1aa))&&(void 0x0!==(0x0,_0x14359a['hh'])(_0x13fbf8(0x3a9))&&((0x0,_0x14359a['hh'])('#branchEditMode')&&((0x0,_0x14359a['hh'])(_0x13fbf8(0x3fe))['innerHTML']='New',(0x0,_0x14359a['hh'])(_0x13fbf8(0x1c7))['innerHTML']=_0x13fbf8(0x2ce),(0x0,_0x14359a['hh'])(_0x13fbf8(0x177))[_0x13fbf8(0x3bf)]=_0x13fbf8(0x4b7)),[_0x13fbf8(0x23d),'change','paste']['forEach'](function(_0x6c0d36){const _0x188e67=_0x13fbf8;(0x0,_0x14359a['hh'])(_0x188e67(0x35e))[_0x188e67(0x4c9)](_0x6c0d36,function(){const _0x4a1bb7=_0x188e67;return(0x0,_0x2c0dbc['TD'])(_0x50d720['M']+'system/branches/checkBranchNameInputAbility',{'security_code':0x1,'name':_0x4a1bb7(0x313),'value':(0x0,_0x14359a['hh'])('#branchName')['value']},function(_0x45f6d9){const _0x3ece64=_0x4a1bb7;(0x0,_0x54ee15['PV'])(_0x45f6d9,(0x0,_0x14359a['hh'])(_0x3ece64(0x4f2)));});});}),(0x0,_0x14359a['hh'])(_0x13fbf8(0x1c7))[_0x13fbf8(0x4c9)](_0x13fbf8(0x346),function(){const _0xd2e123=_0x13fbf8;return(0x0,_0x14359a['hh'])(_0xd2e123(0x4c2))[_0xd2e123(0x338)]['display']=_0xd2e123(0x35d),(0x0,_0x1cb41c['w'])({'method':'POST','url':_0x50d720['M']+_0xd2e123(0x41c),'async':!0x0,'header':[{'name':'Content-type','value':_0xd2e123(0x262)}],'data':{'security_code':0x1,'id':(0x0,_0x14359a['hh'])('#branchID')[_0xd2e123(0x389)],'name':(0x0,_0x14359a['hh'])('#branchName')['value'],'status':(0x0,_0x14359a['hh'])(_0xd2e123(0x476))[_0xd2e123(0x389)],'location':(0x0,_0x14359a['hh'])(_0xd2e123(0x3b8))[_0xd2e123(0x389)],'btnName':(0x0,_0x14359a['hh'])(_0xd2e123(0x1c7))[_0xd2e123(0x41f)]}},_0x5ca072=>{const _0x8adb0e=_0xd2e123;(0x0,_0x54ee15['PV'])(_0x5ca072,(0x0,_0x14359a['hh'])(_0x8adb0e(0x4f2))),(0x0,_0x14359a['hh'])('#app-loader')[_0x8adb0e(0x338)][_0x8adb0e(0x3a7)]=_0x8adb0e(0x510);});}),(0x0,_0x14359a['hh'])(_0x13fbf8(0x177))[_0x13fbf8(0x4c9)](_0x13fbf8(0x346),function(){const _0x44abc1=_0x13fbf8;_0x3ea9e6([{'id':_0x44abc1(0x284),'value':''},{'id':'branchName','value':''},{'id':_0x44abc1(0x502),'value':''},{'id':'branchLocation','value':''}]);}),(0x0,_0x14359a['hh'])(_0x13fbf8(0x2b7))[_0x13fbf8(0x4c9)](_0x13fbf8(0x346),function(){const _0x5a7546=_0x13fbf8;(0x0,_0x14359a['hh'])(_0x5a7546(0x4f2))[_0x5a7546(0x3bf)]='',(0x0,_0x14359a['hh'])(_0x5a7546(0x4b2))[_0x5a7546(0x338)][_0x5a7546(0x3a7)]=_0x5a7546(0x35d),(0x0,_0x14359a['hh'])(_0x5a7546(0x3fe))['innerHTML']=_0x5a7546(0x443),(0x0,_0x14359a['hh'])(_0x5a7546(0x1c7))[_0x5a7546(0x3bf)]=_0x5a7546(0x2ce),_0x3ea9e6([{'id':_0x5a7546(0x284),'value':''},{'id':_0x5a7546(0x1a4),'value':''},{'id':_0x5a7546(0x502),'value':''},{'id':_0x5a7546(0x25b),'value':''}]);}),0x0!==document['querySelectorAll'](_0x13fbf8(0x337))[_0x13fbf8(0x2b8)]&&document[_0x13fbf8(0x1d8)](_0x13fbf8(0x337))['forEach'](function(_0x324c00){const _0x3ee0e4=_0x13fbf8;[_0x3ee0e4(0x346),_0x3ee0e4(0x544),_0x3ee0e4(0x1fa)][_0x3ee0e4(0x45c)](function(_0xb2f60e){const _0x1ca4fe=_0x3ee0e4;_0x324c00[_0x1ca4fe(0x4c9)](_0xb2f60e,function(){const _0x57a02b=_0x1ca4fe;this['checked']&&((0x0,_0x14359a['hh'])(_0x57a02b(0x4f2))[_0x57a02b(0x3bf)]='',(0x0,_0x14359a['hh'])(_0x57a02b(0x4b2))[_0x57a02b(0x338)]['display']=_0x57a02b(0x35d),(0x0,_0x14359a['hh'])('#branchEditMode')['innerHTML']=_0x57a02b(0x19d),(0x0,_0x14359a['hh'])('#branch-data-btn')[_0x57a02b(0x3bf)]=_0x57a02b(0x229),(0x0,_0x14359a['hh'])('#branchID')['value']=this['getAttribute'](_0x57a02b(0x1cc)),(0x0,_0x14359a['hh'])('#branchName')[_0x57a02b(0x389)]=this['getAttribute'](_0x57a02b(0x2b9)),(0x0,_0x14359a['hh'])(_0x57a02b(0x476))['value']=this['getAttribute'](_0x57a02b(0x402)),(0x0,_0x14359a['hh'])(_0x57a02b(0x3b8))[_0x57a02b(0x389)]=this[_0x57a02b(0x369)](_0x57a02b(0x4cb)));},{'passive':!0x0});});}),0x0!==document[_0x13fbf8(0x1d8)]('#branch-edit-btn')[_0x13fbf8(0x2b8)]&&document['querySelectorAll'](_0x13fbf8(0x2dd))[_0x13fbf8(0x45c)](function(_0x1da1de){const _0x2656d0=_0x13fbf8;[_0x2656d0(0x346),'dblclick',_0x2656d0(0x1fa)][_0x2656d0(0x45c)](function(_0x18c811){const _0x432dd7=_0x2656d0;_0x1da1de[_0x432dd7(0x4c9)](_0x18c811,function(){const _0x328b95=_0x432dd7;(0x0,_0x14359a['hh'])(_0x328b95(0x4f2))[_0x328b95(0x3bf)]='',(0x0,_0x14359a['hh'])(_0x328b95(0x4b2))['style']['display']=_0x328b95(0x35d),(0x0,_0x14359a['hh'])(_0x328b95(0x3fe))[_0x328b95(0x3bf)]=_0x328b95(0x19d),(0x0,_0x14359a['hh'])(_0x328b95(0x1c7))['innerHTML']=_0x328b95(0x229),(0x0,_0x14359a['hh'])(_0x328b95(0x444))['value']=this[_0x328b95(0x369)](_0x328b95(0x1cc)),(0x0,_0x14359a['hh'])(_0x328b95(0x35e))[_0x328b95(0x389)]=this[_0x328b95(0x369)](_0x328b95(0x2b9)),(0x0,_0x14359a['hh'])(_0x328b95(0x476))[_0x328b95(0x389)]=this[_0x328b95(0x369)](_0x328b95(0x402)),(0x0,_0x14359a['hh'])(_0x328b95(0x3b8))[_0x328b95(0x389)]=this[_0x328b95(0x369)](_0x328b95(0x4cb));},{'passive':!0x0});});}),(0x0,_0x581963['Sn'])(_0x13fbf8(0x356),_0x13fbf8(0x2c0),_0x50d720['M']+_0x13fbf8(0x2df),_0x13fbf8(0x41e),function(_0x276d32){(0x0,_0x54ee15['PV'])(_0x276d32,(0x0,_0x14359a['hh'])('#message'));}),(0x0,_0x581963['S$'])(_0x13fbf8(0x48a),_0x50d720['M']+_0x13fbf8(0x3d1),_0x13fbf8(0x534),function(_0x5941a5){const _0x352db3=_0x13fbf8;(0x0,_0x54ee15['PV'])(_0x5941a5,(0x0,_0x14359a['hh'])(_0x352db3(0x2e0)));},function(){const _0x4ea624=_0x13fbf8;(0x0,_0x581963['Sn'])('#branch-delete-btn',_0x4ea624(0x2c0),_0x50d720['M']+_0x4ea624(0x2df),_0x4ea624(0x41e),function(_0x410d9e){const _0x534f86=_0x4ea624;(0x0,_0x54ee15['PV'])(_0x410d9e,(0x0,_0x14359a['hh'])(_0x534f86(0x2e0)));}),0x0!==document[_0x4ea624(0x1d8)](_0x4ea624(0x337))[_0x4ea624(0x2b8)]&&document['querySelectorAll']('#branch-select')[_0x4ea624(0x45c)](function(_0x3f9f42){const _0x1ee0e7=_0x4ea624;[_0x1ee0e7(0x346),'dblclick',_0x1ee0e7(0x1fa)][_0x1ee0e7(0x45c)](function(_0x316d95){_0x3f9f42['addEventListener'](_0x316d95,function(){const _0x18356a=a5_0x4840;this[_0x18356a(0x53b)]&&((0x0,_0x14359a['hh'])(_0x18356a(0x4f2))['innerHTML']='',(0x0,_0x14359a['hh'])(_0x18356a(0x4b2))[_0x18356a(0x338)]['display']=_0x18356a(0x35d),(0x0,_0x14359a['hh'])(_0x18356a(0x3fe))[_0x18356a(0x3bf)]=_0x18356a(0x19d),(0x0,_0x14359a['hh'])(_0x18356a(0x1c7))[_0x18356a(0x3bf)]=_0x18356a(0x229),(0x0,_0x14359a['hh'])('#branchID')[_0x18356a(0x389)]=this[_0x18356a(0x369)](_0x18356a(0x1cc)),(0x0,_0x14359a['hh'])(_0x18356a(0x35e))[_0x18356a(0x389)]=this[_0x18356a(0x369)](_0x18356a(0x2b9)),(0x0,_0x14359a['hh'])('#branchStatus')[_0x18356a(0x389)]=this[_0x18356a(0x369)]('data-status'),(0x0,_0x14359a['hh'])(_0x18356a(0x3b8))[_0x18356a(0x389)]=this[_0x18356a(0x369)](_0x18356a(0x4cb)));},{'passive':!0x0});});}),0x0!==document[_0x4ea624(0x1d8)](_0x4ea624(0x2dd))['length']&&document[_0x4ea624(0x1d8)](_0x4ea624(0x2dd))[_0x4ea624(0x45c)](function(_0x4a2452){const _0x2b565a=_0x4ea624;['click',_0x2b565a(0x544),_0x2b565a(0x1fa)][_0x2b565a(0x45c)](function(_0x28583b){const _0x2ba58d=_0x2b565a;_0x4a2452[_0x2ba58d(0x4c9)](_0x28583b,function(){const _0x37877b=_0x2ba58d;(0x0,_0x14359a['hh'])(_0x37877b(0x4f2))[_0x37877b(0x3bf)]='',(0x0,_0x14359a['hh'])('#modal01')[_0x37877b(0x338)][_0x37877b(0x3a7)]=_0x37877b(0x35d),(0x0,_0x14359a['hh'])('#branchEditMode')['innerHTML']=_0x37877b(0x19d),(0x0,_0x14359a['hh'])(_0x37877b(0x1c7))[_0x37877b(0x3bf)]=_0x37877b(0x229),(0x0,_0x14359a['hh'])(_0x37877b(0x444))[_0x37877b(0x389)]=this[_0x37877b(0x369)]('data-id'),(0x0,_0x14359a['hh'])(_0x37877b(0x35e))['value']=this[_0x37877b(0x369)](_0x37877b(0x2b9)),(0x0,_0x14359a['hh'])(_0x37877b(0x476))[_0x37877b(0x389)]=this[_0x37877b(0x369)](_0x37877b(0x402)),(0x0,_0x14359a['hh'])(_0x37877b(0x3b8))[_0x37877b(0x389)]=this['getAttribute'](_0x37877b(0x4cb));},{'passive':!0x0});});});})),void 0x0!==(0x0,_0x14359a['hh'])(_0x13fbf8(0x54c))&&((0x0,_0x581963['Sn'])(_0x13fbf8(0x438),_0x13fbf8(0x2c0),_0x50d720['M']+_0x13fbf8(0x1b8),_0x13fbf8(0x41e),function(_0x508577){const _0x32984f=_0x13fbf8;(0x0,_0x54ee15['PV'])(_0x508577,(0x0,_0x14359a['hh'])(_0x32984f(0x2e0)));}),(0x0,_0x581963['S$'])(_0x13fbf8(0x48a),_0x50d720['M']+_0x13fbf8(0x1a2),_0x13fbf8(0x44f),function(_0x21ec83){const _0x331c68=_0x13fbf8;(0x0,_0x54ee15['PV'])(_0x21ec83,(0x0,_0x14359a['hh'])(_0x331c68(0x2e0)));},function(){const _0x3f094e=_0x13fbf8;(0x0,_0x581963['Sn'])(_0x3f094e(0x438),'Message',_0x50d720['M']+_0x3f094e(0x1b8),_0x3f094e(0x41e),function(_0x36713d){const _0x106c1e=_0x3f094e;(0x0,_0x54ee15['PV'])(_0x36713d,(0x0,_0x14359a['hh'])(_0x106c1e(0x2e0)));});}))),-0x1!==_0x3539f5['indexOf'](_0x13fbf8(0x2d0))&&void 0x0!==(0x0,_0x14359a['hh'])(_0x13fbf8(0x528))&&((0x0,_0x14359a['hh'])(_0x13fbf8(0x213))&&((0x0,_0x14359a['hh'])(_0x13fbf8(0x213))[_0x13fbf8(0x3bf)]=_0x13fbf8(0x443),(0x0,_0x14359a['hh'])(_0x13fbf8(0x4db))['innerHTML']=_0x13fbf8(0x2ce),(0x0,_0x14359a['hh'])(_0x13fbf8(0x250))[_0x13fbf8(0x3bf)]='Reset'),(0x0,_0x14359a['hh'])('#module-data-btn')[_0x13fbf8(0x4c9)](_0x13fbf8(0x346),function(){const _0x2c5954=_0x13fbf8;return(0x0,_0x14359a['hh'])(_0x2c5954(0x4c2))[_0x2c5954(0x338)]['display']=_0x2c5954(0x35d),(0x0,_0x1cb41c['w'])({'method':_0x2c5954(0x392),'url':_0x50d720['M']+_0x2c5954(0x51c),'async':!0x0,'header':[{'name':_0x2c5954(0x1f1),'value':_0x2c5954(0x262)}],'data':{'security_code':0x1,'id':(0x0,_0x14359a['hh'])(_0x2c5954(0x4f5))[_0x2c5954(0x389)],'status':(0x0,_0x14359a['hh'])(_0x2c5954(0x167))['value'],'btnName':_0x2c5954(0x229)}},_0x4d1eef=>{const _0x2780d8=_0x2c5954;(0x0,_0x54ee15['PV'])(_0x4d1eef,(0x0,_0x14359a['hh'])(_0x2780d8(0x4f2))),(0x0,_0x14359a['hh'])('#app-loader')[_0x2780d8(0x338)]['display']='none';});}),(0x0,_0x14359a['hh'])('#module-reset-btn')[_0x13fbf8(0x4c9)](_0x13fbf8(0x346),function(){_0x3ea9e6([{'id':'moduleStatus','value':''}]);}),(0x0,_0x14359a['hh'])(_0x13fbf8(0x3f6))[_0x13fbf8(0x4c9)]('click',function(){const _0x200913=_0x13fbf8;(0x0,_0x14359a['hh'])('#message2')['innerHTML']='',(0x0,_0x14359a['hh'])(_0x200913(0x4b2))[_0x200913(0x338)][_0x200913(0x3a7)]=_0x200913(0x35d),(0x0,_0x14359a['hh'])(_0x200913(0x293))[_0x200913(0x338)][_0x200913(0x3a7)]=_0x200913(0x35d),(0x0,_0x14359a['hh'])(_0x200913(0x48d))[_0x200913(0x338)][_0x200913(0x3a7)]=_0x200913(0x510),(0x0,_0x14359a['hh'])('#moduleEditPAD')['style'][_0x200913(0x3a7)]=_0x200913(0x510),(0x0,_0x14359a['hh'])('#module-data-btn')[_0x200913(0x338)][_0x200913(0x3a7)]='none',(0x0,_0x14359a['hh'])(_0x200913(0x250))[_0x200913(0x338)][_0x200913(0x3a7)]=_0x200913(0x510);}),(0x0,_0x14359a['hh'])(_0x13fbf8(0x318))[_0x13fbf8(0x4c9)]('change',function(){const _0x3829f5=_0x13fbf8;let _0x4d95ad=(0x0,_0x14359a['hh'])('#moduleFile')['files'][0x0];(0x0,_0x14359a['hh'])(_0x3829f5(0x48d))[_0x3829f5(0x338)][_0x3829f5(0x3a7)]='block',(0x0,_0x14359a['hh'])(_0x3829f5(0x3ea))['style'][_0x3829f5(0x3a7)]=_0x3829f5(0x510),(0x0,_0x14359a['hh'])('#upload_status')[_0x3829f5(0x3bf)]=_0x4d95ad[_0x3829f5(0x313)]+_0x3829f5(0x31d);}),(0x0,_0x14359a['hh'])('#uploadModuleFile')[_0x13fbf8(0x4c9)](_0x13fbf8(0x346),function(){const _0x5908e1=_0x13fbf8;(0x0,_0x33ddd5['cT'])(_0x5908e1(0x1de),_0x5908e1(0x1de),_0x50d720['M']+_0x5908e1(0x33e));}),0x0!==document['querySelectorAll'](_0x13fbf8(0x193))['length']&&document[_0x13fbf8(0x1d8)](_0x13fbf8(0x193))[_0x13fbf8(0x45c)](function(_0x2dfa81){const _0x5ebcc2=_0x13fbf8;['click',_0x5ebcc2(0x544),_0x5ebcc2(0x1fa)]['forEach'](function(_0x335e38){_0x2dfa81['addEventListener'](_0x335e38,function(){const _0x2b3b38=a5_0x4840;this[_0x2b3b38(0x53b)]&&((0x0,_0x14359a['hh'])(_0x2b3b38(0x4f2))[_0x2b3b38(0x3bf)]='',(0x0,_0x14359a['hh'])(_0x2b3b38(0x4b2))[_0x2b3b38(0x338)][_0x2b3b38(0x3a7)]=_0x2b3b38(0x35d),(0x0,_0x14359a['hh'])(_0x2b3b38(0x293))[_0x2b3b38(0x338)][_0x2b3b38(0x3a7)]=_0x2b3b38(0x510),(0x0,_0x14359a['hh'])('#moduleEditPAD')['style']['display']='block',(0x0,_0x14359a['hh'])('#moduleEditMode')['innerHTML']=_0x2b3b38(0x19d),(0x0,_0x14359a['hh'])('#module-data-btn')[_0x2b3b38(0x3bf)]=_0x2b3b38(0x229),(0x0,_0x14359a['hh'])(_0x2b3b38(0x4db))['style'][_0x2b3b38(0x3a7)]=_0x2b3b38(0x35d),(0x0,_0x14359a['hh'])(_0x2b3b38(0x250))[_0x2b3b38(0x338)][_0x2b3b38(0x3a7)]='block',(0x0,_0x14359a['hh'])('#moduleID')['value']=this[_0x2b3b38(0x369)](_0x2b3b38(0x1cc)),(0x0,_0x14359a['hh'])(_0x2b3b38(0x3f7))['value']=this['getAttribute'](_0x2b3b38(0x2b9)),(0x0,_0x14359a['hh'])('#moduleName')['setAttribute'](_0x2b3b38(0x52c),_0x2b3b38(0x52c)),(0x0,_0x14359a['hh'])(_0x2b3b38(0x46e))[_0x2b3b38(0x389)]=this['getAttribute'](_0x2b3b38(0x4cb)),(0x0,_0x14359a['hh'])(_0x2b3b38(0x46e))[_0x2b3b38(0x422)](_0x2b3b38(0x52c),'disabled'),(0x0,_0x14359a['hh'])(_0x2b3b38(0x167))[_0x2b3b38(0x389)]=this[_0x2b3b38(0x369)](_0x2b3b38(0x402)));},{'passive':!0x0});});}),0x0!==document[_0x13fbf8(0x1d8)](_0x13fbf8(0x2c9))['length']&&document[_0x13fbf8(0x1d8)](_0x13fbf8(0x2c9))[_0x13fbf8(0x45c)](function(_0x3fd0b7){const _0x28627b=_0x13fbf8;['click',_0x28627b(0x544),_0x28627b(0x1fa)]['forEach'](function(_0x547f5a){_0x3fd0b7['addEventListener'](_0x547f5a,function(){const _0x1e0607=a5_0x4840;(0x0,_0x14359a['hh'])(_0x1e0607(0x4f2))[_0x1e0607(0x3bf)]='',(0x0,_0x14359a['hh'])(_0x1e0607(0x4b2))[_0x1e0607(0x338)]['display']=_0x1e0607(0x35d),(0x0,_0x14359a['hh'])(_0x1e0607(0x293))[_0x1e0607(0x338)][_0x1e0607(0x3a7)]='none',(0x0,_0x14359a['hh'])(_0x1e0607(0x210))[_0x1e0607(0x338)][_0x1e0607(0x3a7)]='block',(0x0,_0x14359a['hh'])('#moduleEditMode')['innerHTML']=_0x1e0607(0x19d),(0x0,_0x14359a['hh'])(_0x1e0607(0x4db))[_0x1e0607(0x3bf)]=_0x1e0607(0x229),(0x0,_0x14359a['hh'])(_0x1e0607(0x4db))[_0x1e0607(0x338)][_0x1e0607(0x3a7)]=_0x1e0607(0x35d),(0x0,_0x14359a['hh'])('#module-reset-btn')[_0x1e0607(0x338)][_0x1e0607(0x3a7)]='block',(0x0,_0x14359a['hh'])('#moduleID')['value']=this[_0x1e0607(0x369)](_0x1e0607(0x1cc)),(0x0,_0x14359a['hh'])(_0x1e0607(0x3f7))[_0x1e0607(0x389)]=this[_0x1e0607(0x369)](_0x1e0607(0x2b9)),(0x0,_0x14359a['hh'])('#moduleName')['setAttribute']('disabled',_0x1e0607(0x52c)),(0x0,_0x14359a['hh'])(_0x1e0607(0x46e))[_0x1e0607(0x389)]=this[_0x1e0607(0x369)](_0x1e0607(0x4cb)),(0x0,_0x14359a['hh'])('#moduleLocation')[_0x1e0607(0x422)](_0x1e0607(0x52c),_0x1e0607(0x52c)),(0x0,_0x14359a['hh'])(_0x1e0607(0x167))[_0x1e0607(0x389)]=this[_0x1e0607(0x369)](_0x1e0607(0x402));},{'passive':!0x0});});}),(0x0,_0x581963['Sn'])(_0x13fbf8(0x183),_0x13fbf8(0x2c0),_0x50d720['M']+_0x13fbf8(0x3ec),_0x13fbf8(0x41e),function(_0x279c22){const _0x967dc9=_0x13fbf8;(0x0,_0x54ee15['PV'])(_0x279c22,(0x0,_0x14359a['hh'])(_0x967dc9(0x2e0)));}),(0x0,_0x581963['S$'])('ajax',_0x50d720['M']+_0x13fbf8(0x556),_0x13fbf8(0x484),function(_0x56f6a0){const _0x2add50=_0x13fbf8;(0x0,_0x54ee15['PV'])(_0x56f6a0,(0x0,_0x14359a['hh'])(_0x2add50(0x2e0)));},function(){const _0x20aaba=_0x13fbf8;(0x0,_0x581963['Sn'])(_0x20aaba(0x183),_0x20aaba(0x2c0),_0x50d720['M']+_0x20aaba(0x3ec),'#message3',function(_0x3ac680){const _0x2a41c7=_0x20aaba;(0x0,_0x54ee15['PV'])(_0x3ac680,(0x0,_0x14359a['hh'])(_0x2a41c7(0x2e0)));}),0x0!==document['querySelectorAll']('#module-select')[_0x20aaba(0x2b8)]&&document[_0x20aaba(0x1d8)](_0x20aaba(0x193))[_0x20aaba(0x45c)](function(_0x2e1b25){const _0x409942=_0x20aaba;['click',_0x409942(0x544),_0x409942(0x1fa)][_0x409942(0x45c)](function(_0x56b54d){_0x2e1b25['addEventListener'](_0x56b54d,function(){const _0x21f285=a5_0x4840;this['checked']&&((0x0,_0x14359a['hh'])(_0x21f285(0x4f2))[_0x21f285(0x3bf)]='',(0x0,_0x14359a['hh'])(_0x21f285(0x4b2))[_0x21f285(0x338)][_0x21f285(0x3a7)]=_0x21f285(0x35d),(0x0,_0x14359a['hh'])('#moduleUploadPad')[_0x21f285(0x338)][_0x21f285(0x3a7)]=_0x21f285(0x510),(0x0,_0x14359a['hh'])(_0x21f285(0x210))[_0x21f285(0x338)][_0x21f285(0x3a7)]=_0x21f285(0x35d),(0x0,_0x14359a['hh'])(_0x21f285(0x213))[_0x21f285(0x3bf)]=_0x21f285(0x19d),(0x0,_0x14359a['hh'])(_0x21f285(0x4db))[_0x21f285(0x3bf)]=_0x21f285(0x229),(0x0,_0x14359a['hh'])(_0x21f285(0x4db))[_0x21f285(0x338)][_0x21f285(0x3a7)]='block',(0x0,_0x14359a['hh'])('#module-reset-btn')['style'][_0x21f285(0x3a7)]=_0x21f285(0x35d),(0x0,_0x14359a['hh'])(_0x21f285(0x4f5))[_0x21f285(0x389)]=this[_0x21f285(0x369)](_0x21f285(0x1cc)),(0x0,_0x14359a['hh'])(_0x21f285(0x3f7))[_0x21f285(0x389)]=this[_0x21f285(0x369)](_0x21f285(0x2b9)),(0x0,_0x14359a['hh'])(_0x21f285(0x3f7))['setAttribute'](_0x21f285(0x52c),_0x21f285(0x52c)),(0x0,_0x14359a['hh'])(_0x21f285(0x46e))['value']=this['getAttribute'](_0x21f285(0x4cb)),(0x0,_0x14359a['hh'])(_0x21f285(0x46e))[_0x21f285(0x422)](_0x21f285(0x52c),_0x21f285(0x52c)),(0x0,_0x14359a['hh'])(_0x21f285(0x167))[_0x21f285(0x389)]=this['getAttribute'](_0x21f285(0x402)));},{'passive':!0x0});});}),0x0!==document['querySelectorAll'](_0x20aaba(0x2c9))['length']&&document[_0x20aaba(0x1d8)](_0x20aaba(0x2c9))[_0x20aaba(0x45c)](function(_0x20dd91){const _0x2028fb=_0x20aaba;[_0x2028fb(0x346),_0x2028fb(0x544),_0x2028fb(0x1fa)][_0x2028fb(0x45c)](function(_0x1dcd03){const _0x50fb50=_0x2028fb;_0x20dd91[_0x50fb50(0x4c9)](_0x1dcd03,function(){const _0x3e1b4d=_0x50fb50;(0x0,_0x14359a['hh'])(_0x3e1b4d(0x4f2))[_0x3e1b4d(0x3bf)]='',(0x0,_0x14359a['hh'])(_0x3e1b4d(0x4b2))[_0x3e1b4d(0x338)]['display']=_0x3e1b4d(0x35d),(0x0,_0x14359a['hh'])(_0x3e1b4d(0x293))[_0x3e1b4d(0x338)]['display']='none',(0x0,_0x14359a['hh'])(_0x3e1b4d(0x210))[_0x3e1b4d(0x338)][_0x3e1b4d(0x3a7)]=_0x3e1b4d(0x35d),(0x0,_0x14359a['hh'])(_0x3e1b4d(0x213))['innerHTML']=_0x3e1b4d(0x19d),(0x0,_0x14359a['hh'])('#module-data-btn')['innerHTML']=_0x3e1b4d(0x229),(0x0,_0x14359a['hh'])('#module-data-btn')[_0x3e1b4d(0x338)][_0x3e1b4d(0x3a7)]='block',(0x0,_0x14359a['hh'])(_0x3e1b4d(0x250))[_0x3e1b4d(0x338)][_0x3e1b4d(0x3a7)]=_0x3e1b4d(0x35d),(0x0,_0x14359a['hh'])(_0x3e1b4d(0x4f5))[_0x3e1b4d(0x389)]=this['getAttribute'](_0x3e1b4d(0x1cc)),(0x0,_0x14359a['hh'])(_0x3e1b4d(0x3f7))[_0x3e1b4d(0x389)]=this['getAttribute']('data-name'),(0x0,_0x14359a['hh'])(_0x3e1b4d(0x3f7))[_0x3e1b4d(0x422)](_0x3e1b4d(0x52c),'disabled'),(0x0,_0x14359a['hh'])(_0x3e1b4d(0x46e))[_0x3e1b4d(0x389)]=this['getAttribute']('data-location'),(0x0,_0x14359a['hh'])('#moduleLocation')[_0x3e1b4d(0x422)](_0x3e1b4d(0x52c),_0x3e1b4d(0x52c)),(0x0,_0x14359a['hh'])(_0x3e1b4d(0x167))[_0x3e1b4d(0x389)]=this[_0x3e1b4d(0x369)](_0x3e1b4d(0x402));},{'passive':!0x0});});});})),-0x1!==_0x3539f5[_0x13fbf8(0x53e)]('pages')&&(void 0x0!==(0x0,_0x14359a['hh'])('#pages-data-table')&&((0x0,_0x14359a['hh'])(_0x13fbf8(0x18f))&&((0x0,_0x14359a['hh'])(_0x13fbf8(0x18f))[_0x13fbf8(0x3bf)]=_0x13fbf8(0x443),(0x0,_0x14359a['hh'])('#page-data-btn')[_0x13fbf8(0x3bf)]='Save',(0x0,_0x14359a['hh'])(_0x13fbf8(0x3c8))[_0x13fbf8(0x3bf)]='Reset'),(0x0,_0x14359a['hh'])('#pageSEOEditMode')&&((0x0,_0x14359a['hh'])(_0x13fbf8(0x21f))[_0x13fbf8(0x3bf)]=_0x13fbf8(0x443),(0x0,_0x14359a['hh'])(_0x13fbf8(0x2e2))[_0x13fbf8(0x3bf)]=_0x13fbf8(0x2ce),(0x0,_0x14359a['hh'])('#page-seo-reset-btn')[_0x13fbf8(0x3bf)]=_0x13fbf8(0x4b7)),(0x0,_0x14359a['hh'])(_0x13fbf8(0x50d))['addEventListener']('click',function(){const _0x2addd3=_0x13fbf8;(0x0,_0x14359a['hh'])(_0x2addd3(0x4f2))[_0x2addd3(0x3bf)]='',(0x0,_0x14359a['hh'])(_0x2addd3(0x4b2))[_0x2addd3(0x338)][_0x2addd3(0x3a7)]=_0x2addd3(0x35d),(0x0,_0x14359a['hh'])('#pageEditMode')['innerHTML']=_0x2addd3(0x443),(0x0,_0x14359a['hh'])(_0x2addd3(0x515))['innerHTML']='Save',_0x3ea9e6([{'id':_0x2addd3(0x4e1),'value':''},{'id':'page-position-id','value':''},{'id':_0x2addd3(0x436),'value':''},{'id':_0x2addd3(0x1af),'value':''},{'id':_0x2addd3(0x326),'value':''},{'id':_0x2addd3(0x2a5),'value':''},{'id':_0x2addd3(0x4bf),'value':''},{'id':_0x2addd3(0x1b9),'value':''}]);}),[_0x13fbf8(0x1b3)][_0x13fbf8(0x45c)](function(_0x448f83){const _0x17cc30=_0x13fbf8;(0x0,_0x14359a['hh'])('#page-parent-id')[_0x17cc30(0x4c9)](_0x448f83,function(){const _0x615e80=_0x17cc30;if(0x0!==(0x0,_0x14359a['hh'])('#page-url')['value'][_0x615e80(0x2b8)]&&0x0!==this[_0x615e80(0x389)]['length']&&'0'!==this[_0x615e80(0x389)])return(0x0,_0x2c0dbc['TD'])(_0x50d720['M']+'system/pages/getPageNameById',{'security_code':0x1,'page':this[_0x615e80(0x389)]},function(_0x34e8e7){const _0x577316=_0x615e80;_0x577316(0x529)===JSON[_0x577316(0x23f)](_0x34e8e7)[_0x577316(0x2d8)]?((0x0,_0x14359a['hh'])(_0x577316(0x2fe))[_0x577316(0x422)]('actual-url','page/'+JSON[_0x577316(0x23f)](_0x34e8e7)[_0x577316(0x313)][_0x577316(0x426)]('\x20','-')[_0x577316(0x559)]()+'/'+(0x0,_0x14359a['hh'])(_0x577316(0x44d))['value']['toLowerCase']()),(0x0,_0x14359a['hh'])(_0x577316(0x2fe))['href']=_0x50d720['M']+_0x577316(0x2b5)+JSON[_0x577316(0x23f)](_0x34e8e7)[_0x577316(0x313)][_0x577316(0x426)]('\x20','-')[_0x577316(0x559)]()+'/'+(0x0,_0x14359a['hh'])(_0x577316(0x44d))[_0x577316(0x389)][_0x577316(0x559)](),(0x0,_0x14359a['hh'])(_0x577316(0x2fe))[_0x577316(0x41f)]='URL\x20:\x20'+_0x50d720['M']+_0x577316(0x2b5)+JSON[_0x577316(0x23f)](_0x34e8e7)['name'][_0x577316(0x426)]('\x20','-')['toLowerCase']()+'/'+(0x0,_0x14359a['hh'])(_0x577316(0x44d))['value'][_0x577316(0x559)]()):(0x0,_0x54ee15['PV'])(_0x34e8e7,(0x0,_0x14359a['hh'])(_0x577316(0x4f2)));});});}),[_0x13fbf8(0x23d),_0x13fbf8(0x1b3),_0x13fbf8(0x4f9),_0x13fbf8(0x449)][_0x13fbf8(0x45c)](function(_0x1c2195){const _0x39b41a=_0x13fbf8;(0x0,_0x14359a['hh'])(_0x39b41a(0x4c5))['addEventListener'](_0x1c2195,function(){const _0x51ff6b=_0x39b41a;if(0x0!==this[_0x51ff6b(0x389)][_0x51ff6b(0x2b8)])return this[_0x51ff6b(0x389)]=this['value'][0x0][_0x51ff6b(0x1d7)]()+this['value'][_0x51ff6b(0x36e)](0x1),(0x0,_0x2c0dbc['TD'])(_0x50d720['M']+'system/pages/checkPageTitleURLInputAbility',{'security_code':0x1,'name':'title','value':this[_0x51ff6b(0x389)][0x0][_0x51ff6b(0x1d7)]()+this[_0x51ff6b(0x389)][_0x51ff6b(0x36e)](0x1)},function(_0x4f1790){(0x0,_0x54ee15['PV'])(_0x4f1790,(0x0,_0x14359a['hh'])('#message2'));});}),(0x0,_0x14359a['hh'])(_0x39b41a(0x44d))[_0x39b41a(0x4c9)](_0x1c2195,function(){const _0x3287be=_0x39b41a;return 0x0===this[_0x3287be(0x389)][_0x3287be(0x2b8)]?this[_0x3287be(0x389)]=(0x0,_0x14359a['hh'])(_0x3287be(0x4c5))[_0x3287be(0x389)][_0x3287be(0x426)]('\x20','-')[_0x3287be(0x559)]():this[_0x3287be(0x389)]=this[_0x3287be(0x389)]['replace']('\x20','-')['toLowerCase'](),(0x0,_0x14359a['hh'])(_0x3287be(0x2fe))['setAttribute'](_0x3287be(0x338),_0x3287be(0x383)),0x0!==(0x0,_0x14359a['hh'])('#page-parent-id')[_0x3287be(0x389)][_0x3287be(0x2b8)]&&'0'!==(0x0,_0x14359a['hh'])(_0x3287be(0x40d))['value']?(0x0,_0x2c0dbc['TD'])(_0x50d720['M']+'system/pages/getPageNameById',{'security_code':0x1,'page':(0x0,_0x14359a['hh'])(_0x3287be(0x40d))['value']},function(_0x488009){const _0x3cc751=_0x3287be;_0x3cc751(0x529)===JSON[_0x3cc751(0x23f)](_0x488009)[_0x3cc751(0x2d8)]?((0x0,_0x14359a['hh'])(_0x3cc751(0x2fe))['setAttribute'](_0x3cc751(0x2e9),'page/'+JSON[_0x3cc751(0x23f)](_0x488009)[_0x3cc751(0x313)][_0x3cc751(0x426)]('\x20','-')[_0x3cc751(0x559)]()+'/'+(0x0,_0x14359a['hh'])('#page-url')[_0x3cc751(0x389)]['toLowerCase']()),(0x0,_0x14359a['hh'])(_0x3cc751(0x2fe))[_0x3cc751(0x3c7)]=_0x50d720['M']+'page/'+JSON[_0x3cc751(0x23f)](_0x488009)[_0x3cc751(0x313)][_0x3cc751(0x426)]('\x20','-')[_0x3cc751(0x559)]()+'/'+(0x0,_0x14359a['hh'])(_0x3cc751(0x44d))[_0x3cc751(0x389)]['toLowerCase'](),(0x0,_0x14359a['hh'])('#page-produce-link')[_0x3cc751(0x41f)]=_0x3cc751(0x327)+_0x50d720['M']+_0x3cc751(0x2b5)+JSON['parse'](_0x488009)['name']['replace']('\x20','-')[_0x3cc751(0x559)]()+'/'+(0x0,_0x14359a['hh'])(_0x3cc751(0x44d))[_0x3cc751(0x389)][_0x3cc751(0x559)]()):(0x0,_0x54ee15['PV'])(_0x488009,(0x0,_0x14359a['hh'])(_0x3cc751(0x4f2)));}):((0x0,_0x14359a['hh'])(_0x3287be(0x2fe))['setAttribute'](_0x3287be(0x2e9),_0x3287be(0x2b5)+this[_0x3287be(0x389)][_0x3287be(0x426)]('\x20','-')[_0x3287be(0x559)]()),(0x0,_0x14359a['hh'])('#page-produce-link')[_0x3287be(0x3c7)]=_0x50d720['M']+_0x3287be(0x2b5)+this['value'][_0x3287be(0x426)]('\x20','-')[_0x3287be(0x559)](),(0x0,_0x14359a['hh'])(_0x3287be(0x2fe))[_0x3287be(0x41f)]='URL\x20:\x20'+_0x50d720['M']+_0x3287be(0x2b5)+this[_0x3287be(0x389)][_0x3287be(0x426)]('\x20','-')['toLowerCase']()),(0x0,_0x2c0dbc['TD'])(_0x50d720['M']+_0x3287be(0x309),{'security_code':0x1,'name':'url','value':this[_0x3287be(0x389)][_0x3287be(0x559)]()},function(_0x5a28a6){const _0x16a82e=_0x3287be;(0x0,_0x54ee15['PV'])(_0x5a28a6,(0x0,_0x14359a['hh'])(_0x16a82e(0x4f2)));});});}),(0x0,_0x14359a['hh'])(_0x13fbf8(0x515))['addEventListener']('click',function(){const _0x427419=_0x13fbf8;return(0x0,_0x14359a['hh'])('#app-loader')[_0x427419(0x338)][_0x427419(0x3a7)]=_0x427419(0x35d),(0x0,_0x1cb41c['w'])({'method':'POST','url':_0x50d720['M']+_0x427419(0x171),'async':!0x0,'header':[{'name':_0x427419(0x1f1),'value':_0x427419(0x262)}],'data':{'security_code':0x1,'id':(0x0,_0x14359a['hh'])(_0x427419(0x22a))[_0x427419(0x389)],'parent':(0x0,_0x14359a['hh'])(_0x427419(0x40d))[_0x427419(0x389)],'position':(0x0,_0x14359a['hh'])('#page-position-id')[_0x427419(0x389)],'status':(0x0,_0x14359a['hh'])(_0x427419(0x394))['value'],'seo':(0x0,_0x14359a['hh'])(_0x427419(0x189))[_0x427419(0x389)],'title':(0x0,_0x14359a['hh'])(_0x427419(0x4c5))[_0x427419(0x389)],'icon':(0x0,_0x14359a['hh'])(_0x427419(0x251))['value'],'url':null!==(0x0,_0x14359a['hh'])(_0x427419(0x2fe))[_0x427419(0x369)](_0x427419(0x2e9))?(0x0,_0x14359a['hh'])('#page-produce-link')[_0x427419(0x369)](_0x427419(0x2e9))['toLowerCase']():'','type':(0x0,_0x14359a['hh'])(_0x427419(0x54d))['value'],'btnName':(0x0,_0x14359a['hh'])(_0x427419(0x515))[_0x427419(0x41f)]}},_0x25cb0d=>{const _0x586a21=_0x427419;(0x0,_0x54ee15['PV'])(_0x25cb0d,(0x0,_0x14359a['hh'])(_0x586a21(0x4f2))),(0x0,_0x14359a['hh'])(_0x586a21(0x4c2))[_0x586a21(0x338)][_0x586a21(0x3a7)]='none',console[_0x586a21(0x29e)](document[_0x586a21(0x1c2)]);});}),(0x0,_0x14359a['hh'])('#page-reset-btn')['addEventListener'](_0x13fbf8(0x346),function(){const _0x54b362=_0x13fbf8;_0x3ea9e6([{'id':_0x54b362(0x4e1),'value':''},{'id':_0x54b362(0x1f0),'value':''},{'id':_0x54b362(0x436),'value':''},{'id':'page-seo','value':''},{'id':_0x54b362(0x326),'value':''},{'id':_0x54b362(0x2a5),'value':''},{'id':_0x54b362(0x4bf),'value':''},{'id':_0x54b362(0x1b9),'value':''}]);}),0x0!==document[_0x13fbf8(0x1d8)]('#page-select')[_0x13fbf8(0x2b8)]&&document[_0x13fbf8(0x1d8)]('#page-select')[_0x13fbf8(0x45c)](function(_0x329bb6){const _0x81902=_0x13fbf8;['click',_0x81902(0x544),_0x81902(0x1fa)][_0x81902(0x45c)](function(_0x586e6a){const _0x23a8bc=_0x81902;_0x329bb6[_0x23a8bc(0x4c9)](_0x586e6a,function(){const _0x13176b=_0x23a8bc;this['checked']&&((0x0,_0x14359a['hh'])('#message2')[_0x13176b(0x3bf)]='',(0x0,_0x14359a['hh'])('#modal01')['style'][_0x13176b(0x3a7)]=_0x13176b(0x35d),(0x0,_0x14359a['hh'])(_0x13176b(0x18f))[_0x13176b(0x3bf)]=_0x13176b(0x19d),(0x0,_0x14359a['hh'])('#page-data-btn')['innerHTML']='Update',(0x0,_0x14359a['hh'])(_0x13176b(0x22a))[_0x13176b(0x389)]=this[_0x13176b(0x369)]('data-id'),(0x0,_0x14359a['hh'])('#page-parent-id')[_0x13176b(0x389)]=this[_0x13176b(0x369)]('data-parent-id'),(0x0,_0x14359a['hh'])(_0x13176b(0x1bd))[_0x13176b(0x389)]=this[_0x13176b(0x369)](_0x13176b(0x16c)),(0x0,_0x14359a['hh'])(_0x13176b(0x394))[_0x13176b(0x389)]=this['getAttribute']('data-status'),(0x0,_0x14359a['hh'])(_0x13176b(0x189))[_0x13176b(0x389)]=this[_0x13176b(0x369)](_0x13176b(0x2d4)),(0x0,_0x14359a['hh'])('#page-title')['value']=this[_0x13176b(0x369)]('data-title'),(0x0,_0x14359a['hh'])(_0x13176b(0x44d))[_0x13176b(0x389)]=this[_0x13176b(0x369)]('data-url'),(0x0,_0x14359a['hh'])(_0x13176b(0x54d))[_0x13176b(0x389)]=this[_0x13176b(0x369)](_0x13176b(0x18b)),(0x0,_0x14359a['hh'])('#page-icon')['value']=this[_0x13176b(0x369)](_0x13176b(0x485)));},{'passive':!0x0});});}),0x0!==document[_0x13fbf8(0x1d8)](_0x13fbf8(0x404))['length']&&document['querySelectorAll'](_0x13fbf8(0x404))['forEach'](function(_0x41a112){const _0x6f8930=_0x13fbf8;['click',_0x6f8930(0x544),_0x6f8930(0x1fa)][_0x6f8930(0x45c)](function(_0x3d2c0d){const _0x177c7c=_0x6f8930;_0x41a112[_0x177c7c(0x4c9)](_0x3d2c0d,function(){const _0x5dfff1=_0x177c7c;(0x0,_0x14359a['hh'])('#message2')[_0x5dfff1(0x3bf)]='',(0x0,_0x14359a['hh'])(_0x5dfff1(0x4b2))['style'][_0x5dfff1(0x3a7)]=_0x5dfff1(0x35d),(0x0,_0x14359a['hh'])(_0x5dfff1(0x18f))[_0x5dfff1(0x3bf)]=_0x5dfff1(0x19d),(0x0,_0x14359a['hh'])('#page-data-btn')[_0x5dfff1(0x3bf)]=_0x5dfff1(0x229),(0x0,_0x14359a['hh'])('#pageID')['value']=this['getAttribute'](_0x5dfff1(0x1cc)),(0x0,_0x14359a['hh'])(_0x5dfff1(0x40d))['value']=this[_0x5dfff1(0x369)](_0x5dfff1(0x30e)),(0x0,_0x14359a['hh'])('#page-position-id')[_0x5dfff1(0x389)]=this['getAttribute'](_0x5dfff1(0x16c)),(0x0,_0x14359a['hh'])('#page-status')['value']=this[_0x5dfff1(0x369)](_0x5dfff1(0x402)),(0x0,_0x14359a['hh'])(_0x5dfff1(0x189))['value']=this[_0x5dfff1(0x369)](_0x5dfff1(0x2d4)),(0x0,_0x14359a['hh'])(_0x5dfff1(0x4c5))[_0x5dfff1(0x389)]=this[_0x5dfff1(0x369)](_0x5dfff1(0x4be)),(0x0,_0x14359a['hh'])(_0x5dfff1(0x44d))[_0x5dfff1(0x389)]=this['getAttribute'](_0x5dfff1(0x242)),(0x0,_0x14359a['hh'])(_0x5dfff1(0x54d))['value']=this[_0x5dfff1(0x369)](_0x5dfff1(0x18b)),(0x0,_0x14359a['hh'])(_0x5dfff1(0x251))[_0x5dfff1(0x389)]=this[_0x5dfff1(0x369)](_0x5dfff1(0x485));},{'passive':!0x0});});}),(0x0,_0x581963['Sn'])('#page-delete-btn',_0x13fbf8(0x2c0),_0x50d720['M']+_0x13fbf8(0x297),_0x13fbf8(0x41e),function(_0xbd4f4a){(0x0,_0x54ee15['PV'])(_0xbd4f4a,(0x0,_0x14359a['hh'])('#message'));}),(0x0,_0x581963['S$'])(_0x13fbf8(0x48a),_0x50d720['M']+_0x13fbf8(0x37f),_0x13fbf8(0x292),function(_0x58cffd){const _0x435fe9=_0x13fbf8;(0x0,_0x54ee15['PV'])(_0x58cffd,(0x0,_0x14359a['hh'])(_0x435fe9(0x2e0)));},function(){const _0x1a7a7d=_0x13fbf8;(0x0,_0x581963['Sn'])('#page-delete-btn',_0x1a7a7d(0x2c0),_0x50d720['M']+_0x1a7a7d(0x297),'#message3',function(_0x310ca7){const _0x5d89d5=_0x1a7a7d;(0x0,_0x54ee15['PV'])(_0x310ca7,(0x0,_0x14359a['hh'])(_0x5d89d5(0x2e0)));}),0x0!==document[_0x1a7a7d(0x1d8)](_0x1a7a7d(0x2ac))[_0x1a7a7d(0x2b8)]&&document[_0x1a7a7d(0x1d8)](_0x1a7a7d(0x2ac))['forEach'](function(_0x37cb6c){const _0x10a29d=_0x1a7a7d;['click',_0x10a29d(0x544),_0x10a29d(0x1fa)][_0x10a29d(0x45c)](function(_0x2b5ddf){const _0x162f66=_0x10a29d;_0x37cb6c[_0x162f66(0x4c9)](_0x2b5ddf,function(){const _0x46f8dc=_0x162f66;this['checked']&&((0x0,_0x14359a['hh'])(_0x46f8dc(0x4f2))['innerHTML']='',(0x0,_0x14359a['hh'])(_0x46f8dc(0x4b2))[_0x46f8dc(0x338)][_0x46f8dc(0x3a7)]='block',(0x0,_0x14359a['hh'])(_0x46f8dc(0x18f))[_0x46f8dc(0x3bf)]='Edit',(0x0,_0x14359a['hh'])(_0x46f8dc(0x515))['innerHTML']=_0x46f8dc(0x229),(0x0,_0x14359a['hh'])('#pageID')[_0x46f8dc(0x389)]=this[_0x46f8dc(0x369)](_0x46f8dc(0x1cc)),(0x0,_0x14359a['hh'])(_0x46f8dc(0x40d))['value']=this[_0x46f8dc(0x369)](_0x46f8dc(0x30e)),(0x0,_0x14359a['hh'])('#page-position-id')[_0x46f8dc(0x389)]=this[_0x46f8dc(0x369)](_0x46f8dc(0x16c)),(0x0,_0x14359a['hh'])(_0x46f8dc(0x394))[_0x46f8dc(0x389)]=this[_0x46f8dc(0x369)](_0x46f8dc(0x402)),(0x0,_0x14359a['hh'])(_0x46f8dc(0x189))[_0x46f8dc(0x389)]=this[_0x46f8dc(0x369)](_0x46f8dc(0x2d4)),(0x0,_0x14359a['hh'])(_0x46f8dc(0x4c5))[_0x46f8dc(0x389)]=this['getAttribute'](_0x46f8dc(0x4be)),(0x0,_0x14359a['hh'])('#page-url')[_0x46f8dc(0x389)]=this[_0x46f8dc(0x369)]('data-url'),(0x0,_0x14359a['hh'])(_0x46f8dc(0x54d))[_0x46f8dc(0x389)]=this[_0x46f8dc(0x369)](_0x46f8dc(0x18b)),(0x0,_0x14359a['hh'])(_0x46f8dc(0x251))['value']=this[_0x46f8dc(0x369)](_0x46f8dc(0x485)));},{'passive':!0x0});});}),0x0!==document['querySelectorAll'](_0x1a7a7d(0x404))[_0x1a7a7d(0x2b8)]&&document['querySelectorAll'](_0x1a7a7d(0x404))[_0x1a7a7d(0x45c)](function(_0x4a95b1){const _0xe2dc9c=_0x1a7a7d;[_0xe2dc9c(0x346),'dblclick',_0xe2dc9c(0x1fa)]['forEach'](function(_0xb7e02){const _0x1dd87b=_0xe2dc9c;_0x4a95b1[_0x1dd87b(0x4c9)](_0xb7e02,function(){const _0x447b72=_0x1dd87b;(0x0,_0x14359a['hh'])('#message2')['innerHTML']='',(0x0,_0x14359a['hh'])(_0x447b72(0x4b2))['style'][_0x447b72(0x3a7)]='block',(0x0,_0x14359a['hh'])('#pageEditMode')[_0x447b72(0x3bf)]=_0x447b72(0x19d),(0x0,_0x14359a['hh'])(_0x447b72(0x515))['innerHTML']=_0x447b72(0x229),(0x0,_0x14359a['hh'])(_0x447b72(0x22a))[_0x447b72(0x389)]=this[_0x447b72(0x369)](_0x447b72(0x1cc)),(0x0,_0x14359a['hh'])('#page-parent-id')[_0x447b72(0x389)]=this['getAttribute'](_0x447b72(0x30e)),(0x0,_0x14359a['hh'])(_0x447b72(0x1bd))[_0x447b72(0x389)]=this[_0x447b72(0x369)](_0x447b72(0x16c)),(0x0,_0x14359a['hh'])(_0x447b72(0x394))['value']=this[_0x447b72(0x369)](_0x447b72(0x402)),(0x0,_0x14359a['hh'])(_0x447b72(0x189))[_0x447b72(0x389)]=this[_0x447b72(0x369)](_0x447b72(0x2d4)),(0x0,_0x14359a['hh'])(_0x447b72(0x4c5))[_0x447b72(0x389)]=this[_0x447b72(0x369)](_0x447b72(0x4be)),(0x0,_0x14359a['hh'])(_0x447b72(0x44d))[_0x447b72(0x389)]=this['getAttribute']('data-url'),(0x0,_0x14359a['hh'])(_0x447b72(0x54d))[_0x447b72(0x389)]=this['getAttribute'](_0x447b72(0x18b)),(0x0,_0x14359a['hh'])(_0x447b72(0x251))[_0x447b72(0x389)]=this[_0x447b72(0x369)]('data-icon');},{'passive':!0x0});});});})),-0x1!==_0x3539f5['indexOf'](_0x13fbf8(0x272))&&[_0x13fbf8(0x4f9),'change'][_0x13fbf8(0x45c)](function(_0x4f8770){const _0x2cba67=_0x13fbf8;(0x0,_0x14359a['hh'])(_0x2cba67(0x4ec))?.[_0x2cba67(0x4c9)](_0x4f8770,function(){const _0x2dc7ac=_0x2cba67;return this[_0x2dc7ac(0x41f)]=this[_0x2dc7ac(0x41f)]['replace'](_0x2dc7ac(0x1be),_0x50d720['M']);});})),-0x1!==_0x3539f5['indexOf'](_0x13fbf8(0x3e2))&&(void 0x0!==(0x0,_0x14359a['hh'])('#table-view-databases')&&((0x0,_0x14359a['hh'])(_0x13fbf8(0x23b))&&((0x0,_0x14359a['hh'])(_0x13fbf8(0x2a2))['innerHTML']=_0x13fbf8(0x2ce),(0x0,_0x14359a['hh'])(_0x13fbf8(0x495))['innerHTML']=_0x13fbf8(0x4b7)),(0x0,_0x14359a['hh'])(_0x13fbf8(0x419))&&((0x0,_0x14359a['hh'])(_0x13fbf8(0x4d8))['innerHTML']='Backup',(0x0,_0x14359a['hh'])(_0x13fbf8(0x1bc))[_0x13fbf8(0x3bf)]=_0x13fbf8(0x4b7)),(0x0,_0x14359a['hh'])('#server-db-add-btn')[_0x13fbf8(0x4c9)](_0x13fbf8(0x346),function(){const _0x57dd31=_0x13fbf8;(0x0,_0x14359a['hh'])('#message2')['innerHTML']='',(0x0,_0x14359a['hh'])(_0x57dd31(0x4b2))[_0x57dd31(0x338)]['display']=_0x57dd31(0x35d),(0x0,_0x14359a['hh'])(_0x57dd31(0x23b))[_0x57dd31(0x3bf)]=_0x57dd31(0x4b3),_0x3ea9e6([{'id':_0x57dd31(0x228),'value':''},{'id':_0x57dd31(0x357),'value':''},{'id':_0x57dd31(0x2b4),'value':''},{'id':_0x57dd31(0x4d1),'value':''},{'id':'databasePassword','value':''}]);}),(0x0,_0x14359a['hh'])(_0x13fbf8(0x4f1))[_0x13fbf8(0x4c9)](_0x13fbf8(0x346),function(){const _0x1b12ee=_0x13fbf8;(0x0,_0x14359a['hh'])(_0x1b12ee(0x41e))['innerHTML']='',(0x0,_0x14359a['hh'])(_0x1b12ee(0x1ff))[_0x1b12ee(0x338)][_0x1b12ee(0x3a7)]=_0x1b12ee(0x35d),(0x0,_0x14359a['hh'])(_0x1b12ee(0x419))[_0x1b12ee(0x3bf)]=_0x1b12ee(0x179),_0x3ea9e6([{'id':_0x1b12ee(0x4eb),'value':''},{'id':_0x1b12ee(0x1f8),'value':''}]);}),(0x0,_0x14359a['hh'])(_0x13fbf8(0x2a2))[_0x13fbf8(0x4c9)](_0x13fbf8(0x346),function(){const _0x318e0b=_0x13fbf8;(0x0,_0x14359a['hh'])(_0x318e0b(0x4c2))[_0x318e0b(0x338)][_0x318e0b(0x3a7)]=_0x318e0b(0x35d),(0x0,_0x1cb41c['w'])({'method':_0x318e0b(0x392),'url':_0x50d720['M']+_0x318e0b(0x521),'async':!0x0,'header':[{'name':'Content-type','value':_0x318e0b(0x262)}],'data':{'security_code':0x1,'id':(0x0,_0x14359a['hh'])('#databaseID')[_0x318e0b(0x389)],'name':(0x0,_0x14359a['hh'])(_0x318e0b(0x408))[_0x318e0b(0x389)],'user':(0x0,_0x14359a['hh'])('#databaseUser')[_0x318e0b(0x389)],'db':(0x0,_0x14359a['hh'])(_0x318e0b(0x473))[_0x318e0b(0x389)],'password':(0x0,_0x14359a['hh'])(_0x318e0b(0x406))[_0x318e0b(0x389)],'btnName':(0x0,_0x14359a['hh'])(_0x318e0b(0x2a2))[_0x318e0b(0x41f)]}},function(_0x7e1f90){const _0x217858=_0x318e0b;(0x0,_0x14359a['hh'])('#database-data-btn')[_0x217858(0x41f)]=(0x0,_0x14359a['hh'])('#database-data-btn')[_0x217858(0x41f)]+'d',setTimeout(function(){const _0x47f665=_0x217858;(0x0,_0x14359a['hh'])(_0x47f665(0x2a2))[_0x47f665(0x41f)]=(0x0,_0x14359a['hh'])('#database-data-btn')[_0x47f665(0x41f)]['slice'](0x0,-0x1);},0x7d0),(0x0,_0x14359a['hh'])(_0x217858(0x4c2))['style'][_0x217858(0x3a7)]=_0x217858(0x510),(0x0,_0x54ee15['PV'])(_0x7e1f90,(0x0,_0x14359a['hh'])(_0x217858(0x4f2)));});}),(0x0,_0x14359a['hh'])('#databaseBackup-data-btn')[_0x13fbf8(0x4c9)](_0x13fbf8(0x346),function(){const _0x316ef1=_0x13fbf8;clearInterval(_0x4748eb),_0x4748eb=0x0,clearInterval(_0x2c0cb6),_0x2c0cb6=0x0,clearInterval(_0x5d8cb4),_0x5d8cb4=0x0,clearInterval(_0x366b20),_0x366b20=0x0,(0x0,_0x14359a['hh'])(_0x316ef1(0x4c2))[_0x316ef1(0x338)][_0x316ef1(0x3a7)]=_0x316ef1(0x35d),(0x0,_0x1cb41c['w'])({'method':_0x316ef1(0x23a),'url':_0x50d720['M']+_0x316ef1(0x180)+(0x0,_0x14359a['hh'])(_0x316ef1(0x505))[_0x316ef1(0x389)]+'/'+(0x0,_0x14359a['hh'])(_0x316ef1(0x4f3))[_0x316ef1(0x389)],'async':!0x0,'header':[{'name':'Content-type','value':_0x316ef1(0x262)}]},function(_0x1d56ce){const _0x5a5581=_0x316ef1;(0x0,_0x14359a['hh'])(_0x5a5581(0x2a2))[_0x5a5581(0x41f)]=(0x0,_0x14359a['hh'])('#database-data-btn')[_0x5a5581(0x41f)]+'d',setTimeout(function(){const _0x1a894b=_0x5a5581;(0x0,_0x14359a['hh'])(_0x1a894b(0x2a2))[_0x1a894b(0x41f)]=(0x0,_0x14359a['hh'])(_0x1a894b(0x2a2))[_0x1a894b(0x41f)][_0x1a894b(0x36e)](0x0,-0x1);},0x7d0),(0x0,_0x14359a['hh'])(_0x5a5581(0x4c2))['style'][_0x5a5581(0x3a7)]=_0x5a5581(0x510),(0x0,_0x54ee15['PV'])(_0x1d56ce,(0x0,_0x14359a['hh'])(_0x5a5581(0x41e)));});}),_0x366b20=setInterval(function(){},0x3e8),(0x0,_0x1cb41c['w'])({'method':_0x13fbf8(0x23a),'url':_0x50d720['M']+_0x13fbf8(0x55a),'async':!0x0,'header':[{'name':_0x13fbf8(0x1f1),'value':_0x13fbf8(0x262)}]},function(_0x529c38){const _0x3772eb=_0x13fbf8;if(0x0!==_0x529c38[_0x3772eb(0x2b8)]&&(0x0,_0x2359f8['cU'])(_0x529c38)){if(void 0x0===JSON[_0x3772eb(0x23f)](_0x529c38)[_0x3772eb(0x3d4)]){if(0x0!==JSON[_0x3772eb(0x23f)](_0x529c38)[_0x3772eb(0x2b8)]){(0x0,_0x14359a['hh'])(_0x3772eb(0x3ef))[_0x3772eb(0x41f)]='';let _0x22f962=0x1,_0x332d35=(0x0,_0x14359a['az'])([{'table':{'class':_0x3772eb(0x4bc)}}]),_0x46f622=(0x0,_0x14359a['az'])([{'tbody':{}}]);_0x332d35[_0x3772eb(0x28b)](_0x46f622),JSON[_0x3772eb(0x23f)](_0x529c38)['forEach'](function(_0x30a220){const _0x1123b8=_0x3772eb;let _0xb6c522=_0x22f962++,_0x36fb8b=(0x0,_0x14359a['az'])([{'tr':{'data-server':_0x30a220[_0x1123b8(0x313)],'data-db':_0x30a220['db'],'data-user':_0x30a220['user'],'data-password':_0x30a220[_0x1123b8(0x4e3)]}}]);_0x46f622[_0x1123b8(0x28b)](_0x36fb8b);let _0x2991d1=(0x0,_0x14359a['az'])([{'td':{}}]);_0x2991d1[_0x1123b8(0x41f)]=_0xb6c522,_0x36fb8b[_0x1123b8(0x28b)](_0x2991d1);let _0x1d25bd=(0x0,_0x14359a['az'])([{'td':{}}]);_0x1d25bd[_0x1123b8(0x41f)]=_0x30a220[_0x1123b8(0x313)],_0x36fb8b[_0x1123b8(0x28b)](_0x1d25bd);let _0x415fa2=(0x0,_0x14359a['az'])([{'td':{}}]);_0x415fa2[_0x1123b8(0x41f)]=_0x30a220[_0x1123b8(0x2ca)],_0x36fb8b[_0x1123b8(0x28b)](_0x415fa2);let _0x387d9b=(0x0,_0x14359a['az'])([{'td':{}}]);_0x387d9b[_0x1123b8(0x41f)]=_0x30a220['db'],_0x36fb8b[_0x1123b8(0x28b)](_0x387d9b);let _0x5e4871=(0x0,_0x14359a['az'])([{'td':{}}]);_0x5e4871['textContent']=_0x30a220[_0x1123b8(0x4e3)],_0x36fb8b['appendChild'](_0x5e4871);let _0x2593f2=(0x0,_0x14359a['az'])([{'td':{}}]);_0x36fb8b['appendChild'](_0x2593f2);let _0xef532c=(0x0,_0x14359a['az'])([{'a':{'href':_0x1123b8(0x1b4),'class':_0x1123b8(0x252)}}]);_0xef532c['addEventListener'](_0x1123b8(0x346),function(){const _0x24a3e6=_0x1123b8;(0x0,_0x14359a['hh'])(_0x24a3e6(0x4c2))['style'][_0x24a3e6(0x3a7)]='block',(0x0,_0x1cb41c['w'])({'method':_0x24a3e6(0x392),'url':_0x50d720['M']+_0x24a3e6(0x486),'async':!0x0,'header':[{'name':_0x24a3e6(0x1f1),'value':'application/json;charset=UTF-8'}],'data':{'security_code':0x1,'server':_0x30a220[_0x24a3e6(0x313)],'user':_0x30a220[_0x24a3e6(0x2ca)],'password':_0x30a220[_0x24a3e6(0x4e3)],'db':_0x30a220['db']}},function(_0x1673fe){const _0x2f244f=_0x24a3e6;0x0!==_0x1673fe[_0x2f244f(0x2b8)]&&(0x0,_0x2359f8['cU'])(_0x1673fe)&&0x0!==JSON['parse'](_0x1673fe)[_0x2f244f(0x2b8)]&&_0x2f244f(0x2c2)===JSON['parse'](_0x1673fe)[_0x2f244f(0x3d4)]&&window[_0x2f244f(0x45d)](_0x50d720['M']+_0x2f244f(0x4c0)+_0x30a220['db'],_0x2f244f(0x4e8)),(0x0,_0x14359a['hh'])(_0x2f244f(0x4c2))[_0x2f244f(0x338)][_0x2f244f(0x3a7)]='none',(0x0,_0x54ee15['PV'])(_0x1673fe,(0x0,_0x14359a['hh'])(_0x2f244f(0x2e0)));});}),_0x2593f2[_0x1123b8(0x28b)](_0xef532c);let _0x229b64=(0x0,_0x14359a['az'])([{'i':{'class':'fa\x20fa-eye'}}]);_0xef532c[_0x1123b8(0x28b)](_0x229b64);let _0x1c1b59=(0x0,_0x14359a['az'])([{'a':{'href':_0x1123b8(0x1b4),'class':'button\x20button-xs\x20button-success'}}]);_0x1c1b59['addEventListener'](_0x1123b8(0x346),function(){const _0x595939=_0x1123b8;(0x0,_0x14359a['hh'])(_0x595939(0x4f2))['innerHTML']='',(0x0,_0x14359a['hh'])(_0x595939(0x4b2))[_0x595939(0x338)][_0x595939(0x3a7)]='block',(0x0,_0x14359a['hh'])(_0x595939(0x23b))[_0x595939(0x41f)]=_0x595939(0x19d),(0x0,_0x14359a['hh'])('#database-data-btn')[_0x595939(0x3bf)]='Update',(0x0,_0x14359a['hh'])(_0x595939(0x41a))[_0x595939(0x389)]=_0x30a220['id'],(0x0,_0x14359a['hh'])(_0x595939(0x408))[_0x595939(0x389)]=_0x30a220['name'],(0x0,_0x14359a['hh'])(_0x595939(0x277))[_0x595939(0x389)]=_0x30a220['user'],(0x0,_0x14359a['hh'])(_0x595939(0x473))['value']=_0x30a220['db'],(0x0,_0x14359a['hh'])(_0x595939(0x406))[_0x595939(0x389)]=_0x30a220['password'];}),_0x2593f2[_0x1123b8(0x28b)](_0x1c1b59);let _0x45ace1=(0x0,_0x14359a['az'])([{'i':{'class':_0x1123b8(0x220)}}]);_0x1c1b59[_0x1123b8(0x28b)](_0x45ace1);let _0x2cfc26=(0x0,_0x14359a['az'])([{'a':{'href':_0x1123b8(0x1b4),'class':_0x1123b8(0x483)}}]);_0x2cfc26[_0x1123b8(0x4c9)](_0x1123b8(0x346),function(){const _0x210665=_0x1123b8;(0x0,_0x14359a['hh'])(_0x210665(0x4c2))['style']['display']=_0x210665(0x35d),(0x0,_0x1cb41c['w'])({'method':_0x210665(0x392),'url':_0x50d720['M']+'system/tracking/deleteServerDatabase','async':!0x0,'header':[{'name':_0x210665(0x1f1),'value':_0x210665(0x262)}],'data':{'security_code':0x1,'id':_0x30a220['id']}},function(_0x393645){const _0x21062c=_0x210665;(0x0,_0x14359a['hh'])(_0x21062c(0x4c2))[_0x21062c(0x338)][_0x21062c(0x3a7)]=_0x21062c(0x510),(0x0,_0x54ee15['PV'])(_0x393645,(0x0,_0x14359a['hh'])(_0x21062c(0x2e0)));});}),_0x2593f2[_0x1123b8(0x28b)](_0x2cfc26);let _0x2f79d2=(0x0,_0x14359a['az'])([{'i':{'class':_0x1123b8(0x26a)}}]);_0x2cfc26[_0x1123b8(0x28b)](_0x2f79d2);}),(0x0,_0x14359a['hh'])(_0x3772eb(0x3ef))[_0x3772eb(0x28b)](_0x332d35),(0x0,_0x14359a['hh'])(_0x3772eb(0x3ef))[_0x3772eb(0x338)]=_0x3772eb(0x4dc);}else(0x0,_0x14359a['hh'])('#table-view-data-body')[_0x3772eb(0x41f)]=_0x3772eb(0x44c);}else(0x0,_0x54ee15['PV'])(_0x529c38,(0x0,_0x14359a['hh'])(_0x3772eb(0x2e0)));}})),-0x1!==_0x3539f5[_0x13fbf8(0x53e)]('tracking/view')&&(void 0x0!==(0x0,_0x14359a['hh'])(_0x13fbf8(0x340))&&(setInterval(function(){},0x3e8),(0x0,_0x1cb41c['w'])({'method':_0x13fbf8(0x23a),'url':_0x50d720['M']+'system/tracking/getTables/'+(0x0,_0x14359a['hh'])(_0x13fbf8(0x557))[_0x13fbf8(0x389)],'async':!0x0,'header':[{'name':_0x13fbf8(0x1f1),'value':'application/json;charset=UTF-8'}]},function(_0x54dc8a){const _0x1337f9=_0x13fbf8;if(0x0!==_0x54dc8a['length']&&(0x0,_0x2359f8['cU'])(_0x54dc8a)){if(void 0x0===JSON[_0x1337f9(0x23f)](_0x54dc8a)[_0x1337f9(0x3d4)]){if(0x0!==JSON['parse'](_0x54dc8a)[_0x1337f9(0x2b8)]){(0x0,_0x14359a['hh'])(_0x1337f9(0x2ef))[_0x1337f9(0x41f)]='';let _0x565fce=0x1,_0x54f832=(0x0,_0x14359a['az'])([{'table':{'class':'table\x20table-bottom-border-only\x20table-condensed\x20table-striped'}}]),_0x314f78=(0x0,_0x14359a['az'])([{'tbody':{}}]);_0x54f832[_0x1337f9(0x28b)](_0x314f78),JSON[_0x1337f9(0x23f)](_0x54dc8a)[_0x1337f9(0x45c)](function(_0x30fbcb){const _0x31d349=_0x1337f9;let _0x3bf460=_0x565fce++,_0x54856b=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x314f78[_0x31d349(0x28b)](_0x54856b);let _0x33c001=(0x0,_0x14359a['az'])([{'td':{}}]);_0x33c001['textContent']=_0x3bf460,_0x54856b[_0x31d349(0x28b)](_0x33c001);let _0x241ecd,_0x4213d6=(0x0,_0x14359a['az'])([{'td':{}}]);_0x4213d6[_0x31d349(0x41f)]=(_0x241ecd=_0x30fbcb[_0x31d349(0x4f6)][_0x31d349(0x426)]('msu_','')[_0x31d349(0x2f2)](0x0,0x14),_0x241ecd[_0x31d349(0x2b8)]>0x13?_0x241ecd+'...':_0x241ecd),_0x54856b[_0x31d349(0x28b)](_0x4213d6);let _0x3dcf3f=(0x0,_0x14359a['az'])([{'td':{}}]);_0x3dcf3f[_0x31d349(0x41f)]=_0x30fbcb[_0x31d349(0x415)],_0x54856b[_0x31d349(0x28b)](_0x3dcf3f);let _0x103ba0,_0x3c4c2a=(0x0,_0x14359a['az'])([{'td':{}}]);_0x3c4c2a[_0x31d349(0x41f)]=_0x30fbcb[_0x31d349(0x24c)]>0x400?(_0x103ba0=_0x30fbcb[_0x31d349(0x24c)]/0x400,_0x103ba0>0x400?(_0x103ba0/0x400)[_0x31d349(0x28f)](0x2)+_0x31d349(0x367):_0x103ba0[_0x31d349(0x28f)](0x2)+_0x31d349(0x231)):_0x30fbcb[_0x31d349(0x24c)]['toFixed'](0x2)+'\x20B',_0x54856b[_0x31d349(0x28b)](_0x3c4c2a);let _0x1526e5=(0x0,_0x14359a['az'])([{'td':{}}]);_0x1526e5[_0x31d349(0x41f)]=_0x30fbcb['Create_time'][_0x31d349(0x2f2)](0x0,0xb),_0x54856b[_0x31d349(0x28b)](_0x1526e5);let _0x374fb=(0x0,_0x14359a['az'])([{'td':{}}]);_0x374fb[_0x31d349(0x41f)]=null!==_0x30fbcb['Update_time']?_0x30fbcb['Update_time'][_0x31d349(0x2f2)](0x0,0xb):'Not\x20Updated',_0x54856b['appendChild'](_0x374fb);let _0x3c9755=(0x0,_0x14359a['az'])([{'td':{}}]);_0x3c9755['textContent']=_0x30fbcb[_0x31d349(0x454)][_0x31d349(0x2f2)](0x0,0x7),_0x54856b[_0x31d349(0x28b)](_0x3c9755);let _0x3cafce=(0x0,_0x14359a['az'])([{'td':{}}]);_0x3cafce['textContent']=_0x30fbcb[_0x31d349(0x536)],_0x54856b[_0x31d349(0x28b)](_0x3cafce);let _0x33ebf4=(0x0,_0x14359a['az'])([{'td':{}}]);_0x54856b[_0x31d349(0x28b)](_0x33ebf4);let _0x191efd=(0x0,_0x14359a['az'])([{'a':{'href':_0x31d349(0x1b4),'class':_0x31d349(0x252)}}]);_0x191efd[_0x31d349(0x4c9)]('click',function(){const _0x18a293=_0x31d349;(0x0,_0x14359a['hh'])(_0x18a293(0x4c2))[_0x18a293(0x338)][_0x18a293(0x3a7)]=_0x18a293(0x35d),(0x0,_0x1cb41c['w'])({'method':_0x18a293(0x392),'url':_0x50d720['M']+_0x18a293(0x486),'async':!0x0,'header':[{'name':'Content-type','value':_0x18a293(0x262)}],'data':{'security_code':0x1,'server':(0x0,_0x14359a['hh'])(_0x18a293(0x2ec))[_0x18a293(0x389)],'user':(0x0,_0x14359a['hh'])(_0x18a293(0x2ee))[_0x18a293(0x389)],'password':(0x0,_0x14359a['hh'])(_0x18a293(0x4c4))[_0x18a293(0x389)],'db':(0x0,_0x14359a['hh'])(_0x18a293(0x557))[_0x18a293(0x389)]}},function(_0x4b60d4){const _0x574291=_0x18a293;0x0!==_0x4b60d4[_0x574291(0x2b8)]&&(0x0,_0x2359f8['cU'])(_0x4b60d4)&&0x0!==JSON[_0x574291(0x23f)](_0x4b60d4)[_0x574291(0x2b8)]&&_0x574291(0x2c2)===JSON['parse'](_0x4b60d4)['message']&&window[_0x574291(0x45d)](_0x50d720['M']+'system/tracking/viewDbTable/'+(0x0,_0x14359a['hh'])(_0x574291(0x557))[_0x574291(0x389)]+'/'+_0x30fbcb[_0x574291(0x4f6)][_0x574291(0x426)]('msu_',''),_0x574291(0x17b)),(0x0,_0x14359a['hh'])(_0x574291(0x4c2))['style'][_0x574291(0x3a7)]=_0x574291(0x510),(0x0,_0x54ee15['PV'])(_0x4b60d4,(0x0,_0x14359a['hh'])(_0x574291(0x2e0)));});}),_0x33ebf4['appendChild'](_0x191efd);let _0x2ed318=(0x0,_0x14359a['az'])([{'i':{'class':_0x31d349(0x1ae)}}]);_0x191efd['appendChild'](_0x2ed318);let _0x34b14d=(0x0,_0x14359a['az'])([{'a':{'href':'javascript:void(0);','class':_0x31d349(0x480)}}]);_0x33ebf4[_0x31d349(0x28b)](_0x34b14d);let _0xdec666=(0x0,_0x14359a['az'])([{'i':{'class':_0x31d349(0x220)}}]);_0x34b14d[_0x31d349(0x28b)](_0xdec666);let _0xde3422=(0x0,_0x14359a['az'])([{'a':{'href':_0x31d349(0x1b4),'class':_0x31d349(0x483)}}]);_0xde3422[_0x31d349(0x4c9)](_0x31d349(0x346),function(){const _0x2702d1=_0x31d349;(0x0,_0x14359a['hh'])('#app-loader')[_0x2702d1(0x338)][_0x2702d1(0x3a7)]=_0x2702d1(0x35d),(0x0,_0x1cb41c['w'])({'method':_0x2702d1(0x392),'url':_0x50d720['M']+'system/tracking/deleteTable','async':!0x0,'header':[{'name':_0x2702d1(0x1f1),'value':_0x2702d1(0x262)}],'data':{'security_code':0x1,'server':(0x0,_0x14359a['hh'])(_0x2702d1(0x2ec))[_0x2702d1(0x389)],'db':(0x0,_0x14359a['hh'])('#dbInfoDb')[_0x2702d1(0x389)],'user':(0x0,_0x14359a['hh'])(_0x2702d1(0x2ee))[_0x2702d1(0x389)],'password':(0x0,_0x14359a['hh'])('#dbInfoPassword')[_0x2702d1(0x389)],'table':_0x30fbcb[_0x2702d1(0x317)][_0x2702d1(0x426)]('msu_','')}},function(_0x57ad63){const _0x9b4d60=_0x2702d1;(0x0,_0x14359a['hh'])(_0x9b4d60(0x4c2))[_0x9b4d60(0x338)][_0x9b4d60(0x3a7)]=_0x9b4d60(0x510),(0x0,_0x54ee15['PV'])(_0x57ad63,(0x0,_0x14359a['hh'])(_0x9b4d60(0x2e0)));});}),_0x33ebf4[_0x31d349(0x28b)](_0xde3422);let _0xc4c1d9=(0x0,_0x14359a['az'])([{'i':{'class':_0x31d349(0x26a)}}]);_0xde3422['appendChild'](_0xc4c1d9);}),(0x0,_0x14359a['hh'])('#table-view-datatable-body')[_0x1337f9(0x28b)](_0x54f832),(0x0,_0x14359a['hh'])(_0x1337f9(0x2ef))['style']=_0x1337f9(0x218);}else(0x0,_0x14359a['hh'])(_0x1337f9(0x2ef))[_0x1337f9(0x41f)]=_0x1337f9(0x2b6);}else(0x0,_0x54ee15['PV'])(_0x54dc8a,(0x0,_0x14359a['hh'])(_0x1337f9(0x2e0)));}})),void 0x0!==(0x0,_0x14359a['hh'])(_0x13fbf8(0x4fc))&&void 0x0!==(0x0,_0x14359a['hh'])(_0x13fbf8(0x2ef))&&((0x0,_0x14359a['hh'])(_0x13fbf8(0x238))[_0x13fbf8(0x4c9)](_0x13fbf8(0x346),function(){const _0x18e578=_0x13fbf8;(0x0,_0x14359a['hh'])(_0x18e578(0x4c2))[_0x18e578(0x338)][_0x18e578(0x3a7)]='block',(0x0,_0x1cb41c['w'])({'method':_0x18e578(0x392),'url':_0x50d720['M']+_0x18e578(0x18e),'async':!0x0,'header':[{'name':_0x18e578(0x1f1),'value':_0x18e578(0x262)}],'data':{'security_code':0x1,'server':(0x0,_0x14359a['hh'])('#dbInfoServer')[_0x18e578(0x389)],'db':(0x0,_0x14359a['hh'])(_0x18e578(0x557))[_0x18e578(0x389)],'user':(0x0,_0x14359a['hh'])(_0x18e578(0x2ee))[_0x18e578(0x389)],'password':(0x0,_0x14359a['hh'])('#dbInfoPassword')[_0x18e578(0x389)],'table':(0x0,_0x14359a['hh'])('#runtimeTableName')[_0x18e578(0x389)]}},function(_0x2883bd){const _0x287524=_0x18e578;(0x0,_0x14359a['hh'])(_0x287524(0x4c2))[_0x287524(0x338)][_0x287524(0x3a7)]=_0x287524(0x510),(0x0,_0x54ee15['PV'])(_0x2883bd[_0x287524(0x426)](/\\n/g,''),(0x0,_0x14359a['hh'])(_0x287524(0x2e0)));});}),(0x0,_0x14359a['hh'])(_0x13fbf8(0x387))[_0x13fbf8(0x4c9)]('click',function(){const _0x3a7cff=_0x13fbf8;(0x0,_0x14359a['hh'])('#app-loader')[_0x3a7cff(0x338)][_0x3a7cff(0x3a7)]=_0x3a7cff(0x35d),(0x0,_0x1cb41c['w'])({'method':'POST','url':_0x50d720['M']+_0x3a7cff(0x20d),'async':!0x0,'header':[{'name':_0x3a7cff(0x1f1),'value':_0x3a7cff(0x262)}],'data':{'security_code':0x1,'server':(0x0,_0x14359a['hh'])('#dbInfoServer')[_0x3a7cff(0x389)],'db':(0x0,_0x14359a['hh'])(_0x3a7cff(0x557))['value'],'user':(0x0,_0x14359a['hh'])('#dbInfoUser')[_0x3a7cff(0x389)],'password':(0x0,_0x14359a['hh'])(_0x3a7cff(0x4c4))[_0x3a7cff(0x389)],'fromTable':(0x0,_0x14359a['hh'])(_0x3a7cff(0x49c))[_0x3a7cff(0x389)],'toTable':(0x0,_0x14359a['hh'])(_0x3a7cff(0x1e4))[_0x3a7cff(0x389)]}},function(_0x312990){const _0x3e5dc7=_0x3a7cff;(0x0,_0x14359a['hh'])('#app-loader')[_0x3e5dc7(0x338)]['display']=_0x3e5dc7(0x510),(0x0,_0x54ee15['PV'])(_0x312990,(0x0,_0x14359a['hh'])(_0x3e5dc7(0x2e0)));});}),setInterval(function(){},0x3e8),(0x0,_0x1cb41c['w'])({'method':_0x13fbf8(0x23a),'url':_0x50d720['M']+_0x13fbf8(0x1ba)+(0x0,_0x14359a['hh'])(_0x13fbf8(0x557))[_0x13fbf8(0x389)]+'/'+(0x0,_0x14359a['hh'])(_0x13fbf8(0x3da))[_0x13fbf8(0x389)],'async':!0x0,'header':[{'name':_0x13fbf8(0x1f1),'value':_0x13fbf8(0x262)}]},function(_0x5b986e){const _0x2e4f60=_0x13fbf8;if(0x0!==_0x5b986e['length']&&(0x0,_0x2359f8['cU'])(_0x5b986e)){if(void 0x0===JSON[_0x2e4f60(0x23f)](_0x5b986e)[_0x2e4f60(0x3d4)]){if(0x0!==JSON[_0x2e4f60(0x23f)](_0x5b986e)[_0x2e4f60(0x2b8)]){(0x0,_0x14359a['hh'])(_0x2e4f60(0x2ef))[_0x2e4f60(0x41f)]='';let _0x28d1c1=0x1,_0xe170f8=(0x0,_0x14359a['az'])([{'table':{'class':'table\x20table-bottom-border-only\x20table-condensed\x20table-striped'}}]),_0x5d400e=(0x0,_0x14359a['az'])([{'tbody':{}}]);_0xe170f8[_0x2e4f60(0x28b)](_0x5d400e),void 0x0!==(0x0,_0x14359a['hh'])('#table-view-app-databases')&&JSON[_0x2e4f60(0x23f)](_0x5b986e)[_0x2e4f60(0x45c)](function(_0x40c581){const _0x42ccef=_0x2e4f60;let _0xf5f5f0=_0x28d1c1++,_0x1ec219=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x5d400e[_0x42ccef(0x28b)](_0x1ec219);let _0x55b578=(0x0,_0x14359a['az'])([{'td':{}}]);_0x55b578[_0x42ccef(0x41f)]=_0xf5f5f0,_0x1ec219[_0x42ccef(0x28b)](_0x55b578);let _0x4dadd1=(0x0,_0x14359a['az'])([{'td':{}}]);_0x4dadd1[_0x42ccef(0x41f)]=_0x40c581['name'],_0x1ec219[_0x42ccef(0x28b)](_0x4dadd1);let _0x4fbce9=(0x0,_0x14359a['az'])([{'td':{}}]);_0x4fbce9[_0x42ccef(0x41f)]=_0x40c581['db'],_0x1ec219[_0x42ccef(0x28b)](_0x4fbce9);let _0x1cb713=(0x0,_0x14359a['az'])([{'td':{}}]);_0x1cb713[_0x42ccef(0x41f)]=_0x40c581[_0x42ccef(0x2ca)],_0x1ec219[_0x42ccef(0x28b)](_0x1cb713);let _0x2024da=(0x0,_0x14359a['az'])([{'td':{}}]);_0x2024da[_0x42ccef(0x41f)]=_0x40c581[_0x42ccef(0x4e3)],_0x1ec219['appendChild'](_0x2024da);let _0x6f3bc6=(0x0,_0x14359a['az'])([{'td':{}}]);_0x6f3bc6['textContent']=_0x40c581[_0x42ccef(0x3b4)],_0x1ec219[_0x42ccef(0x28b)](_0x6f3bc6);let _0x5f99a5=(0x0,_0x14359a['az'])([{'td':{}}]);_0x1ec219[_0x42ccef(0x28b)](_0x5f99a5);let _0x3e2eb2=(0x0,_0x14359a['az'])([{'a':{'href':_0x42ccef(0x1b4),'class':_0x42ccef(0x252)}}]);_0x3e2eb2['addEventListener'](_0x42ccef(0x346),function(){const _0x174bdc=_0x42ccef;(0x0,_0x54ee15['PV'])(JSON[_0x174bdc(0x4de)](_0x40c581),(0x0,_0x14359a['hh'])(_0x174bdc(0x2e0)));}),_0x5f99a5[_0x42ccef(0x28b)](_0x3e2eb2);let _0x68d526=(0x0,_0x14359a['az'])([{'i':{'class':_0x42ccef(0x1ae)}}]);_0x3e2eb2[_0x42ccef(0x28b)](_0x68d526);let _0x537c80=(0x0,_0x14359a['az'])([{'a':{'href':_0x42ccef(0x1b4),'class':_0x42ccef(0x480)}}]);_0x5f99a5[_0x42ccef(0x28b)](_0x537c80);let _0x38d2e0=(0x0,_0x14359a['az'])([{'i':{'class':_0x42ccef(0x220)}}]);_0x537c80[_0x42ccef(0x28b)](_0x38d2e0);let _0x373810=(0x0,_0x14359a['az'])([{'a':{'href':_0x42ccef(0x1b4),'class':_0x42ccef(0x483)}}]);_0x373810[_0x42ccef(0x4c9)]('click',function(){const _0x3a1f5b=_0x42ccef;(0x0,_0x14359a['hh'])(_0x3a1f5b(0x4c2))[_0x3a1f5b(0x338)][_0x3a1f5b(0x3a7)]=_0x3a1f5b(0x35d),(0x0,_0x1cb41c['w'])({'method':_0x3a1f5b(0x392),'url':_0x50d720['M']+_0x3a1f5b(0x4ff),'async':!0x0,'header':[{'name':_0x3a1f5b(0x1f1),'value':_0x3a1f5b(0x262)}],'data':{'security_code':0x1,'id':_0x40c581['id'],'server':(0x0,_0x14359a['hh'])(_0x3a1f5b(0x2ec))[_0x3a1f5b(0x389)],'db':(0x0,_0x14359a['hh'])(_0x3a1f5b(0x557))['value'],'user':(0x0,_0x14359a['hh'])(_0x3a1f5b(0x2ee))[_0x3a1f5b(0x389)],'password':(0x0,_0x14359a['hh'])(_0x3a1f5b(0x4c4))[_0x3a1f5b(0x389)],'table':(0x0,_0x14359a['hh'])('#runtimeTableName')[_0x3a1f5b(0x389)],'rowId':_0x40c581['id']}},function(_0x3eacd5){const _0x15976c=_0x3a1f5b;(0x0,_0x14359a['hh'])(_0x15976c(0x4c2))['style'][_0x15976c(0x3a7)]=_0x15976c(0x510),(0x0,_0x54ee15['PV'])(_0x3eacd5,(0x0,_0x14359a['hh'])(_0x15976c(0x2e0)));});}),_0x5f99a5['appendChild'](_0x373810);let _0x56ee25=(0x0,_0x14359a['az'])([{'i':{'class':_0x42ccef(0x26a)}}]);_0x373810[_0x42ccef(0x28b)](_0x56ee25);}),void 0x0!==(0x0,_0x14359a['hh'])(_0x2e4f60(0x1f3))&&JSON['parse'](_0x5b986e)['forEach'](function(_0x1c1579){const _0x4158f9=_0x2e4f60;let _0x139be5=_0x28d1c1++,_0x57c5c6=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x5d400e[_0x4158f9(0x28b)](_0x57c5c6);let _0x1682ac=(0x0,_0x14359a['az'])([{'td':{}}]);_0x1682ac[_0x4158f9(0x41f)]=_0x139be5,_0x57c5c6[_0x4158f9(0x28b)](_0x1682ac);let _0x564660=(0x0,_0x14359a['az'])([{'td':{}}]);_0x564660['textContent']=_0x1c1579[_0x4158f9(0x311)],_0x57c5c6[_0x4158f9(0x28b)](_0x564660);let _0x429dd2=(0x0,_0x14359a['az'])([{'td':{}}]);_0x429dd2['textContent']=_0x1c1579[_0x4158f9(0x1b5)],_0x57c5c6[_0x4158f9(0x28b)](_0x429dd2);let _0xa03187=(0x0,_0x14359a['az'])([{'td':{}}]);_0xa03187[_0x4158f9(0x41f)]=_0x1c1579['ip_address'],_0x57c5c6[_0x4158f9(0x28b)](_0xa03187);let _0x2ebb34=(0x0,_0x14359a['az'])([{'td':{}}]);_0x2ebb34[_0x4158f9(0x41f)]=_0x1c1579['payment_method_id'][_0x4158f9(0x2f2)](0x0,0xa)+'...',_0x57c5c6[_0x4158f9(0x28b)](_0x2ebb34);let _0x25e036=(0x0,_0x14359a['az'])([{'td':{}}]);_0x25e036[_0x4158f9(0x41f)]=_0x1c1579[_0x4158f9(0x37b)]['substr'](0x0,0xa)+_0x4158f9(0x2a4),_0x57c5c6[_0x4158f9(0x28b)](_0x25e036);let _0x2687a4=(0x0,_0x14359a['az'])([{'td':{}}]);_0x2687a4[_0x4158f9(0x41f)]=_0x1c1579[_0x4158f9(0x31f)],_0x57c5c6['appendChild'](_0x2687a4);let _0x34acec=(0x0,_0x14359a['az'])([{'td':{}}]);_0x34acec[_0x4158f9(0x41f)]=_0x1c1579[_0x4158f9(0x391)],_0x57c5c6[_0x4158f9(0x28b)](_0x34acec);let _0x405d6a=(0x0,_0x14359a['az'])([{'td':{}}]);_0x405d6a[_0x4158f9(0x41f)]=_0x1c1579[_0x4158f9(0x1c1)],_0x57c5c6[_0x4158f9(0x28b)](_0x405d6a);let _0x128d6b=(0x0,_0x14359a['az'])([{'td':{}}]);_0x128d6b[_0x4158f9(0x41f)]=_0x1c1579['payment_method'][_0x4158f9(0x2f2)](0x0,0xa)+'...',_0x57c5c6[_0x4158f9(0x28b)](_0x128d6b);let _0xbd83b3=(0x0,_0x14359a['az'])([{'td':{}}]);_0xbd83b3[_0x4158f9(0x41f)]=_0x1c1579['payment_date_time'],_0x57c5c6[_0x4158f9(0x28b)](_0xbd83b3);let _0xccbeec=(0x0,_0x14359a['az'])([{'td':{}}]);_0x57c5c6[_0x4158f9(0x28b)](_0xccbeec);let _0x11fc33=(0x0,_0x14359a['az'])([{'a':{'href':_0x4158f9(0x1b4),'class':_0x4158f9(0x252)}}]);_0x11fc33[_0x4158f9(0x4c9)](_0x4158f9(0x346),function(){const _0x58b205=_0x4158f9;(0x0,_0x54ee15['PV'])(JSON['stringify'](_0x1c1579),(0x0,_0x14359a['hh'])(_0x58b205(0x2e0)));}),_0xccbeec[_0x4158f9(0x28b)](_0x11fc33);let _0xda73c=(0x0,_0x14359a['az'])([{'i':{'class':_0x4158f9(0x1ae)}}]);_0x11fc33[_0x4158f9(0x28b)](_0xda73c);let _0x4cca6b=(0x0,_0x14359a['az'])([{'a':{'href':_0x4158f9(0x1b4),'class':_0x4158f9(0x480)}}]);_0xccbeec['appendChild'](_0x4cca6b);let _0x40dcd4=(0x0,_0x14359a['az'])([{'i':{'class':_0x4158f9(0x220)}}]);_0x4cca6b[_0x4158f9(0x28b)](_0x40dcd4);let _0x33a4fc=(0x0,_0x14359a['az'])([{'a':{'href':_0x4158f9(0x1b4),'class':_0x4158f9(0x483)}}]);_0x33a4fc[_0x4158f9(0x4c9)](_0x4158f9(0x346),function(){const _0x3b92a9=_0x4158f9;(0x0,_0x14359a['hh'])(_0x3b92a9(0x4c2))[_0x3b92a9(0x338)][_0x3b92a9(0x3a7)]='block',(0x0,_0x1cb41c['w'])({'method':_0x3b92a9(0x392),'url':_0x50d720['M']+'system/tracking/deleteTableRow','async':!0x0,'header':[{'name':_0x3b92a9(0x1f1),'value':_0x3b92a9(0x262)}],'data':{'security_code':0x1,'id':_0x1c1579['id'],'server':(0x0,_0x14359a['hh'])(_0x3b92a9(0x2ec))['value'],'db':(0x0,_0x14359a['hh'])(_0x3b92a9(0x557))['value'],'user':(0x0,_0x14359a['hh'])(_0x3b92a9(0x2ee))[_0x3b92a9(0x389)],'password':(0x0,_0x14359a['hh'])(_0x3b92a9(0x4c4))['value'],'table':(0x0,_0x14359a['hh'])('#runtimeTableName')['value'],'rowId':_0x1c1579['id']}},function(_0x25ba24){const _0x53dbbf=_0x3b92a9;(0x0,_0x14359a['hh'])(_0x53dbbf(0x4c2))[_0x53dbbf(0x338)][_0x53dbbf(0x3a7)]=_0x53dbbf(0x510),(0x0,_0x54ee15['PV'])(_0x25ba24,(0x0,_0x14359a['hh'])(_0x53dbbf(0x2e0)));});}),_0xccbeec[_0x4158f9(0x28b)](_0x33a4fc);let _0x3ab23d=(0x0,_0x14359a['az'])([{'i':{'class':_0x4158f9(0x26a)}}]);_0x33a4fc['appendChild'](_0x3ab23d);}),void 0x0!==(0x0,_0x14359a['hh'])(_0x2e4f60(0x52e))&&JSON[_0x2e4f60(0x23f)](_0x5b986e)['forEach'](function(_0x2ca56e){const _0x58cc37=_0x2e4f60;let _0xfc2ac6=_0x28d1c1++,_0x276d72=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x5d400e[_0x58cc37(0x28b)](_0x276d72);let _0x14e6b5=(0x0,_0x14359a['az'])([{'td':{}}]);_0x14e6b5[_0x58cc37(0x41f)]=_0xfc2ac6,_0x276d72[_0x58cc37(0x28b)](_0x14e6b5);let _0x18d570=(0x0,_0x14359a['az'])([{'td':{}}]);_0x18d570[_0x58cc37(0x41f)]=_0x2ca56e[_0x58cc37(0x313)],_0x276d72[_0x58cc37(0x28b)](_0x18d570);let _0x28048e=(0x0,_0x14359a['az'])([{'td':{}}]);_0x28048e[_0x58cc37(0x41f)]=_0x2ca56e[_0x58cc37(0x24e)],_0x276d72[_0x58cc37(0x28b)](_0x28048e);let _0x367054=(0x0,_0x14359a['az'])([{'td':{}}]);_0x276d72['appendChild'](_0x367054);let _0x2a9898=(0x0,_0x14359a['az'])([{'a':{'href':'javascript:void(0);','class':_0x58cc37(0x252)}}]);_0x2a9898[_0x58cc37(0x4c9)](_0x58cc37(0x346),function(){const _0x206803=_0x58cc37;(0x0,_0x54ee15['PV'])(JSON['stringify'](_0x2ca56e),(0x0,_0x14359a['hh'])(_0x206803(0x2e0)));}),_0x367054[_0x58cc37(0x28b)](_0x2a9898);let _0x326560=(0x0,_0x14359a['az'])([{'i':{'class':_0x58cc37(0x1ae)}}]);_0x2a9898['appendChild'](_0x326560);let _0x3ccd50=(0x0,_0x14359a['az'])([{'a':{'href':_0x58cc37(0x1b4),'class':_0x58cc37(0x480)}}]);_0x367054[_0x58cc37(0x28b)](_0x3ccd50);let _0x312d58=(0x0,_0x14359a['az'])([{'i':{'class':_0x58cc37(0x220)}}]);_0x3ccd50['appendChild'](_0x312d58);let _0x5da982=(0x0,_0x14359a['az'])([{'a':{'href':_0x58cc37(0x1b4),'class':_0x58cc37(0x483)}}]);_0x5da982[_0x58cc37(0x4c9)]('click',function(){const _0x3f22cf=_0x58cc37;(0x0,_0x14359a['hh'])(_0x3f22cf(0x4c2))['style'][_0x3f22cf(0x3a7)]=_0x3f22cf(0x35d),(0x0,_0x1cb41c['w'])({'method':_0x3f22cf(0x392),'url':_0x50d720['M']+_0x3f22cf(0x4ff),'async':!0x0,'header':[{'name':'Content-type','value':_0x3f22cf(0x262)}],'data':{'security_code':0x1,'id':_0x2ca56e['id'],'server':(0x0,_0x14359a['hh'])(_0x3f22cf(0x2ec))['value'],'db':(0x0,_0x14359a['hh'])(_0x3f22cf(0x557))[_0x3f22cf(0x389)],'user':(0x0,_0x14359a['hh'])('#dbInfoUser')[_0x3f22cf(0x389)],'password':(0x0,_0x14359a['hh'])(_0x3f22cf(0x4c4))[_0x3f22cf(0x389)],'table':(0x0,_0x14359a['hh'])('#runtimeTableName')[_0x3f22cf(0x389)],'rowId':_0x2ca56e['id']}},function(_0x556d32){const _0x53666c=_0x3f22cf;(0x0,_0x14359a['hh'])(_0x53666c(0x4c2))['style'][_0x53666c(0x3a7)]=_0x53666c(0x510),(0x0,_0x54ee15['PV'])(_0x556d32,(0x0,_0x14359a['hh'])('#message'));});}),_0x367054[_0x58cc37(0x28b)](_0x5da982);let _0x2789ad=(0x0,_0x14359a['az'])([{'i':{'class':_0x58cc37(0x26a)}}]);_0x5da982[_0x58cc37(0x28b)](_0x2789ad);}),void 0x0!==(0x0,_0x14359a['hh'])(_0x2e4f60(0x211))&&JSON['parse'](_0x5b986e)[_0x2e4f60(0x45c)](function(_0x43f07a){const _0x272632=_0x2e4f60;let _0x39803b=_0x28d1c1++,_0x53346d=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x5d400e[_0x272632(0x28b)](_0x53346d);let _0x428e49=(0x0,_0x14359a['az'])([{'td':{}}]);_0x428e49[_0x272632(0x41f)]=_0x39803b,_0x53346d[_0x272632(0x28b)](_0x428e49);let _0x5d26fd=(0x0,_0x14359a['az'])([{'td':{}}]);_0x5d26fd[_0x272632(0x41f)]=_0x43f07a[_0x272632(0x4c6)],_0x53346d[_0x272632(0x28b)](_0x5d26fd);let _0x51fce7=(0x0,_0x14359a['az'])([{'td':{}}]);_0x51fce7[_0x272632(0x41f)]=_0x43f07a['app_category'],_0x53346d[_0x272632(0x28b)](_0x51fce7);let _0x3ff24f=(0x0,_0x14359a['az'])([{'td':{}}]);_0x3ff24f[_0x272632(0x41f)]=_0x43f07a[_0x272632(0x430)],_0x53346d['appendChild'](_0x3ff24f);let _0x16d8a2=(0x0,_0x14359a['az'])([{'td':{}}]);_0x16d8a2[_0x272632(0x41f)]=_0x43f07a['app_icon'],_0x53346d[_0x272632(0x28b)](_0x16d8a2);let _0x44123c=(0x0,_0x14359a['az'])([{'td':{}}]);_0x44123c['textContent']=_0x43f07a[_0x272632(0x458)],_0x53346d['appendChild'](_0x44123c);let _0xb6eb24=(0x0,_0x14359a['az'])([{'td':{}}]);_0xb6eb24[_0x272632(0x41f)]=_0x43f07a[_0x272632(0x1ac)],_0x53346d[_0x272632(0x28b)](_0xb6eb24);let _0x3d37bc=(0x0,_0x14359a['az'])([{'td':{}}]);_0x3d37bc[_0x272632(0x41f)]=_0x43f07a[_0x272632(0x4c3)],_0x53346d[_0x272632(0x28b)](_0x3d37bc);let _0x3976aa=(0x0,_0x14359a['az'])([{'td':{}}]);_0x53346d[_0x272632(0x28b)](_0x3976aa);let _0x1cb3a0=(0x0,_0x14359a['az'])([{'a':{'href':'javascript:void(0);','class':_0x272632(0x252)}}]);_0x1cb3a0[_0x272632(0x4c9)](_0x272632(0x346),function(){const _0x29c2b9=_0x272632;(0x0,_0x54ee15['PV'])(JSON[_0x29c2b9(0x4de)](_0x43f07a),(0x0,_0x14359a['hh'])(_0x29c2b9(0x2e0)));}),_0x3976aa[_0x272632(0x28b)](_0x1cb3a0);let _0x20136b=(0x0,_0x14359a['az'])([{'i':{'class':'fa\x20fa-eye'}}]);_0x1cb3a0[_0x272632(0x28b)](_0x20136b);let _0x4e6189=(0x0,_0x14359a['az'])([{'a':{'href':'javascript:void(0);','class':_0x272632(0x480)}}]);_0x3976aa[_0x272632(0x28b)](_0x4e6189);let _0x4f217b=(0x0,_0x14359a['az'])([{'i':{'class':_0x272632(0x220)}}]);_0x4e6189['appendChild'](_0x4f217b);let _0x3935f3=(0x0,_0x14359a['az'])([{'a':{'href':'javascript:void(0);','class':_0x272632(0x483)}}]);_0x3935f3[_0x272632(0x4c9)](_0x272632(0x346),function(){const _0x3024c8=_0x272632;(0x0,_0x14359a['hh'])(_0x3024c8(0x4c2))['style']['display']=_0x3024c8(0x35d),(0x0,_0x1cb41c['w'])({'method':_0x3024c8(0x392),'url':_0x50d720['M']+_0x3024c8(0x4ff),'async':!0x0,'header':[{'name':_0x3024c8(0x1f1),'value':_0x3024c8(0x262)}],'data':{'security_code':0x1,'id':_0x43f07a['id'],'server':(0x0,_0x14359a['hh'])('#dbInfoServer')[_0x3024c8(0x389)],'db':(0x0,_0x14359a['hh'])(_0x3024c8(0x557))[_0x3024c8(0x389)],'user':(0x0,_0x14359a['hh'])('#dbInfoUser')['value'],'password':(0x0,_0x14359a['hh'])('#dbInfoPassword')[_0x3024c8(0x389)],'table':(0x0,_0x14359a['hh'])('#runtimeTableName')[_0x3024c8(0x389)],'rowId':_0x43f07a['id']}},function(_0x1f8aba){const _0xad4a95=_0x3024c8;(0x0,_0x14359a['hh'])(_0xad4a95(0x4c2))[_0xad4a95(0x338)][_0xad4a95(0x3a7)]='none',(0x0,_0x54ee15['PV'])(_0x1f8aba,(0x0,_0x14359a['hh'])(_0xad4a95(0x2e0)));});}),_0x3976aa[_0x272632(0x28b)](_0x3935f3);let _0x4bf013=(0x0,_0x14359a['az'])([{'i':{'class':'fa\x20fa-trash'}}]);_0x3935f3['appendChild'](_0x4bf013);}),void 0x0!==(0x0,_0x14359a['hh'])(_0x2e4f60(0x206))&&JSON['parse'](_0x5b986e)['forEach'](function(_0x4c978b){const _0x4282c0=_0x2e4f60;let _0x3f530b=_0x28d1c1++,_0x1e81de=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x5d400e[_0x4282c0(0x28b)](_0x1e81de);let _0x17ac45=(0x0,_0x14359a['az'])([{'td':{}}]);_0x17ac45[_0x4282c0(0x41f)]=_0x3f530b,_0x1e81de['appendChild'](_0x17ac45);let _0x363bf2=(0x0,_0x14359a['az'])([{'td':{}}]);_0x363bf2['textContent']=_0x4c978b[_0x4282c0(0x313)],_0x1e81de['appendChild'](_0x363bf2);let _0x20ee59=(0x0,_0x14359a['az'])([{'td':{}}]);_0x20ee59[_0x4282c0(0x41f)]=_0x4c978b[_0x4282c0(0x36f)],_0x1e81de[_0x4282c0(0x28b)](_0x20ee59);let _0x168b7c=(0x0,_0x14359a['az'])([{'td':{}}]);_0x168b7c[_0x4282c0(0x41f)]=_0x4c978b[_0x4282c0(0x376)],_0x1e81de[_0x4282c0(0x28b)](_0x168b7c);let _0x3c1dc7=(0x0,_0x14359a['az'])([{'td':{}}]);_0x3c1dc7[_0x4282c0(0x41f)]=_0x4c978b[_0x4282c0(0x401)][_0x4282c0(0x2f2)](0x0,0x13),_0x1e81de[_0x4282c0(0x28b)](_0x3c1dc7);let _0x4aa5d5=(0x0,_0x14359a['az'])([{'td':{}}]);_0x4aa5d5[_0x4282c0(0x41f)]=_0x4c978b[_0x4282c0(0x398)],_0x1e81de['appendChild'](_0x4aa5d5);let _0x3a3334=(0x0,_0x14359a['az'])([{'td':{}}]);_0x3a3334['textContent']=_0x4c978b[_0x4282c0(0x4cd)],_0x1e81de[_0x4282c0(0x28b)](_0x3a3334);let _0x23e959=(0x0,_0x14359a['az'])([{'td':{}}]);_0x23e959[_0x4282c0(0x41f)]=_0x4c978b[_0x4282c0(0x39b)],_0x1e81de['appendChild'](_0x23e959);let _0x107a07=(0x0,_0x14359a['az'])([{'td':{}}]);_0x1e81de['appendChild'](_0x107a07);let _0x4c096a=(0x0,_0x14359a['az'])([{'a':{'href':_0x4282c0(0x1b4),'class':_0x4282c0(0x252)}}]);_0x4c096a['addEventListener'](_0x4282c0(0x346),function(){const _0x59d6ea=_0x4282c0;(0x0,_0x54ee15['PV'])(JSON[_0x59d6ea(0x4de)](_0x4c978b),(0x0,_0x14359a['hh'])(_0x59d6ea(0x2e0)));}),_0x107a07[_0x4282c0(0x28b)](_0x4c096a);let _0x53d286=(0x0,_0x14359a['az'])([{'i':{'class':_0x4282c0(0x1ae)}}]);_0x4c096a[_0x4282c0(0x28b)](_0x53d286);let _0x223f31=(0x0,_0x14359a['az'])([{'a':{'href':'javascript:void(0);','class':_0x4282c0(0x480)}}]);_0x107a07['appendChild'](_0x223f31);let _0x266e61=(0x0,_0x14359a['az'])([{'i':{'class':_0x4282c0(0x220)}}]);_0x223f31[_0x4282c0(0x28b)](_0x266e61);let _0xcd2b27=(0x0,_0x14359a['az'])([{'a':{'href':_0x4282c0(0x1b4),'class':'button\x20button-xs\x20button-danger'}}]);_0xcd2b27[_0x4282c0(0x4c9)](_0x4282c0(0x346),function(){const _0x50b2ad=_0x4282c0;(0x0,_0x14359a['hh'])(_0x50b2ad(0x4c2))[_0x50b2ad(0x338)][_0x50b2ad(0x3a7)]='block',(0x0,_0x1cb41c['w'])({'method':_0x50b2ad(0x392),'url':_0x50d720['M']+_0x50b2ad(0x4ff),'async':!0x0,'header':[{'name':'Content-type','value':_0x50b2ad(0x262)}],'data':{'security_code':0x1,'id':_0x4c978b['id'],'server':(0x0,_0x14359a['hh'])(_0x50b2ad(0x2ec))['value'],'db':(0x0,_0x14359a['hh'])(_0x50b2ad(0x557))[_0x50b2ad(0x389)],'user':(0x0,_0x14359a['hh'])(_0x50b2ad(0x2ee))[_0x50b2ad(0x389)],'password':(0x0,_0x14359a['hh'])(_0x50b2ad(0x4c4))['value'],'table':(0x0,_0x14359a['hh'])(_0x50b2ad(0x3da))[_0x50b2ad(0x389)],'rowId':_0x4c978b['id']}},function(_0xdcd8ea){const _0x28f333=_0x50b2ad;(0x0,_0x14359a['hh'])(_0x28f333(0x4c2))['style'][_0x28f333(0x3a7)]='none',(0x0,_0x54ee15['PV'])(_0xdcd8ea,(0x0,_0x14359a['hh'])(_0x28f333(0x2e0)));});}),_0x107a07[_0x4282c0(0x28b)](_0xcd2b27);let _0x538c6e=(0x0,_0x14359a['az'])([{'i':{'class':_0x4282c0(0x26a)}}]);_0xcd2b27[_0x4282c0(0x28b)](_0x538c6e);}),void 0x0!==(0x0,_0x14359a['hh'])(_0x2e4f60(0x511))&&JSON['parse'](_0x5b986e)[_0x2e4f60(0x45c)](function(_0x53b416){const _0x558f71=_0x2e4f60;let _0x425556=_0x28d1c1++,_0x45c5d7=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x5d400e[_0x558f71(0x28b)](_0x45c5d7);let _0xe2ab13=(0x0,_0x14359a['az'])([{'td':{}}]);_0xe2ab13[_0x558f71(0x41f)]=_0x425556,_0x45c5d7['appendChild'](_0xe2ab13);let _0x24bac1=(0x0,_0x14359a['az'])([{'td':{}}]);_0x24bac1['textContent']=_0x53b416[_0x558f71(0x2a7)],_0x45c5d7['appendChild'](_0x24bac1);let _0x5b2306=(0x0,_0x14359a['az'])([{'td':{}}]);_0x5b2306['textContent']=_0x53b416[_0x558f71(0x1b5)],_0x45c5d7[_0x558f71(0x28b)](_0x5b2306);let _0xf8c7d4=(0x0,_0x14359a['az'])([{'td':{}}]);_0xf8c7d4[_0x558f71(0x41f)]=_0x53b416[_0x558f71(0x376)],_0x45c5d7[_0x558f71(0x28b)](_0xf8c7d4);let _0xaf4128=(0x0,_0x14359a['az'])([{'td':{}}]);_0xaf4128['textContent']=_0x53b416[_0x558f71(0x398)],_0x45c5d7[_0x558f71(0x28b)](_0xaf4128);let _0x38f5a7=(0x0,_0x14359a['az'])([{'td':{}}]);_0x38f5a7[_0x558f71(0x41f)]=_0x53b416[_0x558f71(0x205)],_0x45c5d7[_0x558f71(0x28b)](_0x38f5a7);let _0xf34e0b=(0x0,_0x14359a['az'])([{'td':{}}]);_0xf34e0b[_0x558f71(0x41f)]=_0x53b416[_0x558f71(0x3c2)],_0x45c5d7[_0x558f71(0x28b)](_0xf34e0b);let _0x496eaa=(0x0,_0x14359a['az'])([{'td':{}}]);_0x496eaa['textContent']=_0x53b416[_0x558f71(0x2ae)],_0x45c5d7['appendChild'](_0x496eaa);let _0x2b0218=(0x0,_0x14359a['az'])([{'td':{}}]);_0x2b0218[_0x558f71(0x41f)]=_0x53b416[_0x558f71(0x196)]['substr'](0x0,0xa),_0x45c5d7['appendChild'](_0x2b0218);let _0x3a37e8=(0x0,_0x14359a['az'])([{'td':{}}]);_0x3a37e8[_0x558f71(0x41f)]=_0x53b416[_0x558f71(0x216)][_0x558f71(0x2f2)](0x0,0xa),_0x45c5d7[_0x558f71(0x28b)](_0x3a37e8);let _0xe91864=(0x0,_0x14359a['az'])([{'td':{}}]);_0xe91864['textContent']=_0x53b416[_0x558f71(0x2aa)][_0x558f71(0x2f2)](0x0,0xa),_0x45c5d7[_0x558f71(0x28b)](_0xe91864);let _0x5c5577=(0x0,_0x14359a['az'])([{'td':{}}]);_0x5c5577[_0x558f71(0x41f)]=_0x53b416[_0x558f71(0x1bb)][_0x558f71(0x2f2)](0x0,0xa),_0x45c5d7[_0x558f71(0x28b)](_0x5c5577);let _0x4510ab=(0x0,_0x14359a['az'])([{'td':{}}]);_0x4510ab[_0x558f71(0x41f)]=_0x53b416[_0x558f71(0x15e)][_0x558f71(0x2f2)](0x0,0xa),_0x45c5d7['appendChild'](_0x4510ab);let _0x242576=(0x0,_0x14359a['az'])([{'td':{}}]);_0x45c5d7['appendChild'](_0x242576);let _0x140c9f=(0x0,_0x14359a['az'])([{'a':{'href':_0x558f71(0x1b4),'class':_0x558f71(0x252)}}]);_0x140c9f['addEventListener'](_0x558f71(0x346),function(){const _0x1eb78e=_0x558f71;(0x0,_0x54ee15['PV'])(JSON[_0x1eb78e(0x4de)](_0x53b416),(0x0,_0x14359a['hh'])(_0x1eb78e(0x2e0)));}),_0x242576['appendChild'](_0x140c9f);let _0x51ae7a=(0x0,_0x14359a['az'])([{'i':{'class':_0x558f71(0x1ae)}}]);_0x140c9f[_0x558f71(0x28b)](_0x51ae7a);let _0x5b83e2=(0x0,_0x14359a['az'])([{'a':{'href':_0x558f71(0x1b4),'class':_0x558f71(0x480)}}]);_0x242576[_0x558f71(0x28b)](_0x5b83e2);let _0x522107=(0x0,_0x14359a['az'])([{'i':{'class':_0x558f71(0x220)}}]);_0x5b83e2['appendChild'](_0x522107);let _0x42c771=(0x0,_0x14359a['az'])([{'a':{'href':_0x558f71(0x1b4),'class':_0x558f71(0x483)}}]);_0x42c771['addEventListener'](_0x558f71(0x346),function(){const _0x40f67b=_0x558f71;(0x0,_0x14359a['hh'])(_0x40f67b(0x4c2))[_0x40f67b(0x338)]['display']=_0x40f67b(0x35d),(0x0,_0x1cb41c['w'])({'method':_0x40f67b(0x392),'url':_0x50d720['M']+_0x40f67b(0x4ff),'async':!0x0,'header':[{'name':_0x40f67b(0x1f1),'value':_0x40f67b(0x262)}],'data':{'security_code':0x1,'id':_0x53b416['id'],'server':(0x0,_0x14359a['hh'])(_0x40f67b(0x2ec))['value'],'db':(0x0,_0x14359a['hh'])(_0x40f67b(0x557))['value'],'user':(0x0,_0x14359a['hh'])(_0x40f67b(0x2ee))[_0x40f67b(0x389)],'password':(0x0,_0x14359a['hh'])('#dbInfoPassword')['value'],'table':(0x0,_0x14359a['hh'])(_0x40f67b(0x3da))[_0x40f67b(0x389)],'rowId':_0x53b416['id']}},function(_0x4290b9){const _0x303b1b=_0x40f67b;(0x0,_0x14359a['hh'])(_0x303b1b(0x4c2))[_0x303b1b(0x338)][_0x303b1b(0x3a7)]=_0x303b1b(0x510),(0x0,_0x54ee15['PV'])(_0x4290b9,(0x0,_0x14359a['hh'])(_0x303b1b(0x2e0)));});}),_0x242576['appendChild'](_0x42c771);let _0xf7ecd0=(0x0,_0x14359a['az'])([{'i':{'class':_0x558f71(0x26a)}}]);_0x42c771[_0x558f71(0x28b)](_0xf7ecd0);}),void 0x0!==(0x0,_0x14359a['hh'])(_0x2e4f60(0x208))&&JSON[_0x2e4f60(0x23f)](_0x5b986e)['forEach'](function(_0x579d2f){const _0x4a941e=_0x2e4f60;let _0xdcd7ae=_0x28d1c1++,_0x35b12e=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x5d400e['appendChild'](_0x35b12e);let _0x4f5809=(0x0,_0x14359a['az'])([{'td':{}}]);_0x4f5809[_0x4a941e(0x41f)]=_0xdcd7ae,_0x35b12e['appendChild'](_0x4f5809);let _0x2cb756=(0x0,_0x14359a['az'])([{'td':{}}]);_0x2cb756[_0x4a941e(0x41f)]=_0x579d2f[_0x4a941e(0x313)],_0x35b12e[_0x4a941e(0x28b)](_0x2cb756);let _0x4ace5e=(0x0,_0x14359a['az'])([{'td':{}}]);_0x4ace5e['textContent']=_0x579d2f['version'],_0x35b12e[_0x4a941e(0x28b)](_0x4ace5e);let _0x28a35d=(0x0,_0x14359a['az'])([{'td':{}}]);_0x28a35d[_0x4a941e(0x41f)]=_0x579d2f[_0x4a941e(0x376)],_0x35b12e['appendChild'](_0x28a35d);let _0x359278=(0x0,_0x14359a['az'])([{'td':{}}]);_0x359278['textContent']=_0x579d2f[_0x4a941e(0x398)],_0x35b12e[_0x4a941e(0x28b)](_0x359278);let _0x2c175e=(0x0,_0x14359a['az'])([{'td':{}}]);_0x2c175e['textContent']=null!==_0x579d2f[_0x4a941e(0x1f4)]?_0x4a941e(0x26c):_0x4a941e(0x32c),_0x35b12e['appendChild'](_0x2c175e);let _0x29ea2e=(0x0,_0x14359a['az'])([{'td':{}}]);_0x29ea2e['textContent']=null!==_0x579d2f[_0x4a941e(0x196)]?_0x579d2f['issue']['substr'](0x0,0xa):'NOT\x20ISSUED',_0x35b12e[_0x4a941e(0x28b)](_0x29ea2e);let _0x16c02e=(0x0,_0x14359a['az'])([{'td':{}}]);_0x16c02e[_0x4a941e(0x41f)]=null!==_0x579d2f[_0x4a941e(0x1bb)]?_0x579d2f[_0x4a941e(0x1bb)][_0x4a941e(0x2f2)](0x0,0xa):_0x4a941e(0x32c),_0x35b12e[_0x4a941e(0x28b)](_0x16c02e);let _0x9ba409=(0x0,_0x14359a['az'])([{'td':{}}]);_0x9ba409[_0x4a941e(0x41f)]=_0x579d2f[_0x4a941e(0x15e)][_0x4a941e(0x2f2)](0x0,0xa),_0x35b12e[_0x4a941e(0x28b)](_0x9ba409);let _0x1616b7=(0x0,_0x14359a['az'])([{'td':{}}]);_0x35b12e[_0x4a941e(0x28b)](_0x1616b7);let _0x1a293c=(0x0,_0x14359a['az'])([{'a':{'href':'javascript:void(0);','class':_0x4a941e(0x252)}}]);_0x1a293c[_0x4a941e(0x4c9)](_0x4a941e(0x346),function(){(0x0,_0x54ee15['PV'])(JSON['stringify'](_0x579d2f),(0x0,_0x14359a['hh'])('#message'));}),_0x1616b7['appendChild'](_0x1a293c);let _0x207d21=(0x0,_0x14359a['az'])([{'i':{'class':_0x4a941e(0x1ae)}}]);_0x1a293c[_0x4a941e(0x28b)](_0x207d21);let _0x2ee5f2=(0x0,_0x14359a['az'])([{'a':{'href':_0x4a941e(0x1b4),'class':_0x4a941e(0x480)}}]);_0x1616b7['appendChild'](_0x2ee5f2);let _0x56b996=(0x0,_0x14359a['az'])([{'i':{'class':_0x4a941e(0x220)}}]);_0x2ee5f2[_0x4a941e(0x28b)](_0x56b996);let _0x5532f7=(0x0,_0x14359a['az'])([{'a':{'href':_0x4a941e(0x1b4),'class':_0x4a941e(0x483)}}]);_0x5532f7['addEventListener'](_0x4a941e(0x346),function(){const _0x566f86=_0x4a941e;(0x0,_0x14359a['hh'])(_0x566f86(0x4c2))[_0x566f86(0x338)][_0x566f86(0x3a7)]='block',(0x0,_0x1cb41c['w'])({'method':_0x566f86(0x392),'url':_0x50d720['M']+_0x566f86(0x4ff),'async':!0x0,'header':[{'name':_0x566f86(0x1f1),'value':_0x566f86(0x262)}],'data':{'security_code':0x1,'id':_0x579d2f['id'],'server':(0x0,_0x14359a['hh'])(_0x566f86(0x2ec))[_0x566f86(0x389)],'db':(0x0,_0x14359a['hh'])(_0x566f86(0x557))[_0x566f86(0x389)],'user':(0x0,_0x14359a['hh'])(_0x566f86(0x2ee))[_0x566f86(0x389)],'password':(0x0,_0x14359a['hh'])(_0x566f86(0x4c4))[_0x566f86(0x389)],'table':(0x0,_0x14359a['hh'])(_0x566f86(0x3da))[_0x566f86(0x389)],'rowId':_0x579d2f['id']}},function(_0x1c9059){const _0x4ee76d=_0x566f86;(0x0,_0x14359a['hh'])('#app-loader')[_0x4ee76d(0x338)][_0x4ee76d(0x3a7)]=_0x4ee76d(0x510),(0x0,_0x54ee15['PV'])(_0x1c9059,(0x0,_0x14359a['hh'])(_0x4ee76d(0x2e0)));});}),_0x1616b7['appendChild'](_0x5532f7);let _0x56929e=(0x0,_0x14359a['az'])([{'i':{'class':_0x4a941e(0x26a)}}]);_0x5532f7['appendChild'](_0x56929e);}),void 0x0!==(0x0,_0x14359a['hh'])(_0x2e4f60(0x1d1))&&JSON[_0x2e4f60(0x23f)](_0x5b986e)[_0x2e4f60(0x45c)](function(_0x4aab1d){const _0x7b8651=_0x2e4f60;let _0x3ffa2b=_0x28d1c1++,_0x49b241=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x5d400e[_0x7b8651(0x28b)](_0x49b241);let _0x30907c=(0x0,_0x14359a['az'])([{'td':{}}]);_0x30907c['textContent']=_0x3ffa2b,_0x49b241[_0x7b8651(0x28b)](_0x30907c);let _0xe38f5=(0x0,_0x14359a['az'])([{'td':{}}]);_0xe38f5['textContent']=_0x4aab1d['ip'],_0x49b241['appendChild'](_0xe38f5);let _0x346869=(0x0,_0x14359a['az'])([{'td':{}}]);_0x49b241[_0x7b8651(0x28b)](_0x346869);let _0x45d2a6=(0x0,_0x14359a['az'])([{'a':{'href':_0x7b8651(0x1b4),'class':_0x7b8651(0x252)}}]);_0x45d2a6[_0x7b8651(0x4c9)](_0x7b8651(0x346),function(){const _0x5d1143=_0x7b8651;(0x0,_0x54ee15['PV'])(JSON[_0x5d1143(0x4de)](_0x4aab1d),(0x0,_0x14359a['hh'])(_0x5d1143(0x2e0)));}),_0x346869[_0x7b8651(0x28b)](_0x45d2a6);let _0x37dcdb=(0x0,_0x14359a['az'])([{'i':{'class':_0x7b8651(0x1ae)}}]);_0x45d2a6[_0x7b8651(0x28b)](_0x37dcdb);let _0x2ab9db=(0x0,_0x14359a['az'])([{'a':{'href':_0x7b8651(0x1b4),'class':_0x7b8651(0x480)}}]);_0x346869[_0x7b8651(0x28b)](_0x2ab9db);let _0x3c1b98=(0x0,_0x14359a['az'])([{'i':{'class':'fa\x20fa-edit'}}]);_0x2ab9db[_0x7b8651(0x28b)](_0x3c1b98);let _0x1c8198=(0x0,_0x14359a['az'])([{'a':{'href':_0x7b8651(0x1b4),'class':_0x7b8651(0x483)}}]);_0x1c8198['addEventListener']('click',function(){const _0x1d5c8d=_0x7b8651;(0x0,_0x14359a['hh'])('#app-loader')[_0x1d5c8d(0x338)][_0x1d5c8d(0x3a7)]='block',(0x0,_0x1cb41c['w'])({'method':_0x1d5c8d(0x392),'url':_0x50d720['M']+'system/tracking/deleteTableRow','async':!0x0,'header':[{'name':'Content-type','value':_0x1d5c8d(0x262)}],'data':{'security_code':0x1,'id':_0x4aab1d['id'],'server':(0x0,_0x14359a['hh'])('#dbInfoServer')[_0x1d5c8d(0x389)],'db':(0x0,_0x14359a['hh'])(_0x1d5c8d(0x557))[_0x1d5c8d(0x389)],'user':(0x0,_0x14359a['hh'])('#dbInfoUser')[_0x1d5c8d(0x389)],'password':(0x0,_0x14359a['hh'])(_0x1d5c8d(0x4c4))['value'],'table':(0x0,_0x14359a['hh'])(_0x1d5c8d(0x3da))[_0x1d5c8d(0x389)],'rowId':_0x4aab1d['id']}},function(_0x232294){const _0x57116e=_0x1d5c8d;(0x0,_0x14359a['hh'])('#app-loader')['style'][_0x57116e(0x3a7)]=_0x57116e(0x510),(0x0,_0x54ee15['PV'])(_0x232294,(0x0,_0x14359a['hh'])(_0x57116e(0x2e0)));});}),_0x346869[_0x7b8651(0x28b)](_0x1c8198);let _0xe79247=(0x0,_0x14359a['az'])([{'i':{'class':_0x7b8651(0x26a)}}]);_0x1c8198['appendChild'](_0xe79247);}),void 0x0!==(0x0,_0x14359a['hh'])('#table-view-branches')&&JSON[_0x2e4f60(0x23f)](_0x5b986e)['forEach'](function(_0x457d0f){const _0x54855=_0x2e4f60;let _0x4006b3=_0x28d1c1++,_0x49e6d1=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x5d400e['appendChild'](_0x49e6d1);let _0x5b5e90=(0x0,_0x14359a['az'])([{'td':{}}]);_0x5b5e90[_0x54855(0x41f)]=_0x4006b3,_0x49e6d1['appendChild'](_0x5b5e90);let _0x155e28=(0x0,_0x14359a['az'])([{'td':{}}]);_0x155e28['textContent']=_0x457d0f[_0x54855(0x313)],_0x49e6d1[_0x54855(0x28b)](_0x155e28);let _0x460dfd=(0x0,_0x14359a['az'])([{'td':{}}]);_0x460dfd['textContent']=_0x457d0f[_0x54855(0x4cd)],_0x49e6d1['appendChild'](_0x460dfd);let _0x3d1930=(0x0,_0x14359a['az'])([{'td':{}}]);_0x3d1930['textContent']=_0x457d0f[_0x54855(0x44a)],_0x49e6d1[_0x54855(0x28b)](_0x3d1930);let _0x209d7e=(0x0,_0x14359a['az'])([{'td':{}}]);_0x49e6d1[_0x54855(0x28b)](_0x209d7e);let _0x41f4f1=(0x0,_0x14359a['az'])([{'a':{'href':_0x54855(0x1b4),'class':_0x54855(0x252)}}]);_0x41f4f1[_0x54855(0x4c9)]('click',function(){const _0x295030=_0x54855;(0x0,_0x54ee15['PV'])(JSON[_0x295030(0x4de)](_0x457d0f),(0x0,_0x14359a['hh'])(_0x295030(0x2e0)));}),_0x209d7e[_0x54855(0x28b)](_0x41f4f1);let _0x4be967=(0x0,_0x14359a['az'])([{'i':{'class':_0x54855(0x1ae)}}]);_0x41f4f1[_0x54855(0x28b)](_0x4be967);let _0x44f88e=(0x0,_0x14359a['az'])([{'a':{'href':_0x54855(0x1b4),'class':'button\x20button-xs\x20button-success'}}]);_0x209d7e[_0x54855(0x28b)](_0x44f88e);let _0x3f9fc6=(0x0,_0x14359a['az'])([{'i':{'class':_0x54855(0x220)}}]);_0x44f88e[_0x54855(0x28b)](_0x3f9fc6);let _0x194a48=(0x0,_0x14359a['az'])([{'a':{'href':_0x54855(0x1b4),'class':_0x54855(0x483)}}]);_0x194a48[_0x54855(0x4c9)](_0x54855(0x346),function(){const _0x2ed1e5=_0x54855;(0x0,_0x14359a['hh'])(_0x2ed1e5(0x4c2))[_0x2ed1e5(0x338)][_0x2ed1e5(0x3a7)]=_0x2ed1e5(0x35d),(0x0,_0x1cb41c['w'])({'method':_0x2ed1e5(0x392),'url':_0x50d720['M']+_0x2ed1e5(0x4ff),'async':!0x0,'header':[{'name':_0x2ed1e5(0x1f1),'value':_0x2ed1e5(0x262)}],'data':{'security_code':0x1,'id':_0x457d0f['id'],'server':(0x0,_0x14359a['hh'])('#dbInfoServer')[_0x2ed1e5(0x389)],'db':(0x0,_0x14359a['hh'])('#dbInfoDb')[_0x2ed1e5(0x389)],'user':(0x0,_0x14359a['hh'])(_0x2ed1e5(0x2ee))[_0x2ed1e5(0x389)],'password':(0x0,_0x14359a['hh'])(_0x2ed1e5(0x4c4))[_0x2ed1e5(0x389)],'table':(0x0,_0x14359a['hh'])(_0x2ed1e5(0x3da))[_0x2ed1e5(0x389)],'rowId':_0x457d0f['id']}},function(_0x167ad8){const _0x486861=_0x2ed1e5;(0x0,_0x14359a['hh'])(_0x486861(0x4c2))['style'][_0x486861(0x3a7)]=_0x486861(0x510),(0x0,_0x54ee15['PV'])(_0x167ad8,(0x0,_0x14359a['hh'])(_0x486861(0x2e0)));});}),_0x209d7e['appendChild'](_0x194a48);let _0x46e452=(0x0,_0x14359a['az'])([{'i':{'class':_0x54855(0x26a)}}]);_0x194a48[_0x54855(0x28b)](_0x46e452);}),void 0x0!==(0x0,_0x14359a['hh'])('#table-view-branches-user')&&JSON[_0x2e4f60(0x23f)](_0x5b986e)[_0x2e4f60(0x45c)](function(_0x3a93f1){const _0x84acc2=_0x2e4f60;let _0x3036be=_0x28d1c1++,_0x175c77=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x5d400e['appendChild'](_0x175c77);let _0x5cb465=(0x0,_0x14359a['az'])([{'td':{}}]);_0x5cb465['textContent']=_0x3036be,_0x175c77['appendChild'](_0x5cb465);let _0x341905=(0x0,_0x14359a['az'])([{'td':{}}]);_0x341905[_0x84acc2(0x41f)]=_0x3a93f1[_0x84acc2(0x16f)],_0x175c77[_0x84acc2(0x28b)](_0x341905);let _0x5de6d0=(0x0,_0x14359a['az'])([{'td':{}}]);_0x5de6d0['textContent']=_0x3a93f1[_0x84acc2(0x2ca)],_0x175c77[_0x84acc2(0x28b)](_0x5de6d0);let _0x43762c=(0x0,_0x14359a['az'])([{'td':{}}]);_0x175c77[_0x84acc2(0x28b)](_0x43762c);let _0x15b053=(0x0,_0x14359a['az'])([{'a':{'href':_0x84acc2(0x1b4),'class':_0x84acc2(0x252)}}]);_0x15b053[_0x84acc2(0x4c9)](_0x84acc2(0x346),function(){const _0xb1108a=_0x84acc2;(0x0,_0x54ee15['PV'])(JSON[_0xb1108a(0x4de)](_0x3a93f1),(0x0,_0x14359a['hh'])(_0xb1108a(0x2e0)));}),_0x43762c['appendChild'](_0x15b053);let _0x135d59=(0x0,_0x14359a['az'])([{'i':{'class':'fa\x20fa-eye'}}]);_0x15b053[_0x84acc2(0x28b)](_0x135d59);let _0x2e446e=(0x0,_0x14359a['az'])([{'a':{'href':_0x84acc2(0x1b4),'class':_0x84acc2(0x480)}}]);_0x43762c[_0x84acc2(0x28b)](_0x2e446e);let _0xfc95f7=(0x0,_0x14359a['az'])([{'i':{'class':_0x84acc2(0x220)}}]);_0x2e446e['appendChild'](_0xfc95f7);let _0x31234f=(0x0,_0x14359a['az'])([{'a':{'href':'javascript:void(0);','class':'button\x20button-xs\x20button-danger'}}]);_0x31234f[_0x84acc2(0x4c9)](_0x84acc2(0x346),function(){const _0x5b0e6f=_0x84acc2;(0x0,_0x14359a['hh'])('#app-loader')[_0x5b0e6f(0x338)][_0x5b0e6f(0x3a7)]=_0x5b0e6f(0x35d),(0x0,_0x1cb41c['w'])({'method':'POST','url':_0x50d720['M']+'system/tracking/deleteTableRow','async':!0x0,'header':[{'name':_0x5b0e6f(0x1f1),'value':_0x5b0e6f(0x262)}],'data':{'security_code':0x1,'id':_0x3a93f1['id'],'server':(0x0,_0x14359a['hh'])(_0x5b0e6f(0x2ec))[_0x5b0e6f(0x389)],'db':(0x0,_0x14359a['hh'])(_0x5b0e6f(0x557))['value'],'user':(0x0,_0x14359a['hh'])(_0x5b0e6f(0x2ee))[_0x5b0e6f(0x389)],'password':(0x0,_0x14359a['hh'])(_0x5b0e6f(0x4c4))[_0x5b0e6f(0x389)],'table':(0x0,_0x14359a['hh'])(_0x5b0e6f(0x3da))[_0x5b0e6f(0x389)],'rowId':_0x3a93f1['id']}},function(_0x4a6125){const _0x299e08=_0x5b0e6f;(0x0,_0x14359a['hh'])('#app-loader')['style'][_0x299e08(0x3a7)]=_0x299e08(0x510),(0x0,_0x54ee15['PV'])(_0x4a6125,(0x0,_0x14359a['hh'])(_0x299e08(0x2e0)));});}),_0x43762c['appendChild'](_0x31234f);let _0x367184=(0x0,_0x14359a['az'])([{'i':{'class':_0x84acc2(0x26a)}}]);_0x31234f[_0x84acc2(0x28b)](_0x367184);}),void 0x0!==(0x0,_0x14359a['hh'])('#table-view-chat-messages')&&JSON[_0x2e4f60(0x23f)](_0x5b986e)['forEach'](function(_0x10c187){const _0x4fa258=_0x2e4f60;let _0x22f199=_0x28d1c1++,_0x728a4c=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x5d400e[_0x4fa258(0x28b)](_0x728a4c);let _0x11b032=(0x0,_0x14359a['az'])([{'td':{}}]);_0x11b032[_0x4fa258(0x41f)]=_0x22f199,_0x728a4c[_0x4fa258(0x28b)](_0x11b032);let _0x22a3c5=(0x0,_0x14359a['az'])([{'td':{}}]);_0x22a3c5[_0x4fa258(0x41f)]=_0x10c187[_0x4fa258(0x4df)],_0x728a4c[_0x4fa258(0x28b)](_0x22a3c5);let _0x240903=(0x0,_0x14359a['az'])([{'td':{}}]);_0x240903[_0x4fa258(0x41f)]=_0x10c187[_0x4fa258(0x247)],_0x728a4c[_0x4fa258(0x28b)](_0x240903);let _0x3faae1=(0x0,_0x14359a['az'])([{'td':{}}]);_0x3faae1[_0x4fa258(0x41f)]=_0x10c187[_0x4fa258(0x3d4)],_0x728a4c['appendChild'](_0x3faae1);let _0x1699b2=(0x0,_0x14359a['az'])([{'td':{}}]);_0x1699b2[_0x4fa258(0x41f)]=_0x10c187['time'],_0x728a4c['appendChild'](_0x1699b2);let _0xb26fa8=(0x0,_0x14359a['az'])([{'td':{}}]);_0x728a4c['appendChild'](_0xb26fa8);let _0x19980b=(0x0,_0x14359a['az'])([{'a':{'href':_0x4fa258(0x1b4),'class':_0x4fa258(0x252)}}]);_0x19980b[_0x4fa258(0x4c9)](_0x4fa258(0x346),function(){const _0x5ad6ef=_0x4fa258;(0x0,_0x54ee15['PV'])(JSON[_0x5ad6ef(0x4de)](_0x10c187),(0x0,_0x14359a['hh'])('#message'));}),_0xb26fa8[_0x4fa258(0x28b)](_0x19980b);let _0x22f229=(0x0,_0x14359a['az'])([{'i':{'class':_0x4fa258(0x1ae)}}]);_0x19980b['appendChild'](_0x22f229);let _0x3a2bdb=(0x0,_0x14359a['az'])([{'a':{'href':_0x4fa258(0x1b4),'class':_0x4fa258(0x480)}}]);_0xb26fa8[_0x4fa258(0x28b)](_0x3a2bdb);let _0x5cc52a=(0x0,_0x14359a['az'])([{'i':{'class':'fa\x20fa-edit'}}]);_0x3a2bdb[_0x4fa258(0x28b)](_0x5cc52a);let _0x439d9e=(0x0,_0x14359a['az'])([{'a':{'href':_0x4fa258(0x1b4),'class':_0x4fa258(0x483)}}]);_0x439d9e['addEventListener'](_0x4fa258(0x346),function(){const _0x5f12a2=_0x4fa258;(0x0,_0x14359a['hh'])('#app-loader')['style'][_0x5f12a2(0x3a7)]=_0x5f12a2(0x35d),(0x0,_0x1cb41c['w'])({'method':_0x5f12a2(0x392),'url':_0x50d720['M']+_0x5f12a2(0x4ff),'async':!0x0,'header':[{'name':_0x5f12a2(0x1f1),'value':_0x5f12a2(0x262)}],'data':{'security_code':0x1,'id':_0x10c187['id'],'server':(0x0,_0x14359a['hh'])(_0x5f12a2(0x2ec))['value'],'db':(0x0,_0x14359a['hh'])(_0x5f12a2(0x557))['value'],'user':(0x0,_0x14359a['hh'])(_0x5f12a2(0x2ee))[_0x5f12a2(0x389)],'password':(0x0,_0x14359a['hh'])(_0x5f12a2(0x4c4))[_0x5f12a2(0x389)],'table':(0x0,_0x14359a['hh'])('#runtimeTableName')[_0x5f12a2(0x389)],'rowId':_0x10c187['id']}},function(_0x4d064c){const _0x1d126a=_0x5f12a2;(0x0,_0x14359a['hh'])(_0x1d126a(0x4c2))[_0x1d126a(0x338)][_0x1d126a(0x3a7)]=_0x1d126a(0x510),(0x0,_0x54ee15['PV'])(_0x4d064c,(0x0,_0x14359a['hh'])('#message'));});}),_0xb26fa8[_0x4fa258(0x28b)](_0x439d9e);let _0x326d82=(0x0,_0x14359a['az'])([{'i':{'class':_0x4fa258(0x26a)}}]);_0x439d9e[_0x4fa258(0x28b)](_0x326d82);}),void 0x0!==(0x0,_0x14359a['hh'])(_0x2e4f60(0x38b))&&JSON[_0x2e4f60(0x23f)](_0x5b986e)['forEach'](function(_0x138a77){const _0x1dc887=_0x2e4f60;let _0x22e44a=_0x28d1c1++,_0x52ab2a=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x5d400e[_0x1dc887(0x28b)](_0x52ab2a);let _0x3be113=(0x0,_0x14359a['az'])([{'td':{}}]);_0x3be113[_0x1dc887(0x41f)]=_0x22e44a,_0x52ab2a['appendChild'](_0x3be113);let _0x568963=(0x0,_0x14359a['az'])([{'td':{}}]);_0x568963[_0x1dc887(0x41f)]=_0x138a77[_0x1dc887(0x376)],_0x52ab2a['appendChild'](_0x568963);let _0x3d4d69=(0x0,_0x14359a['az'])([{'td':{}}]);_0x3d4d69[_0x1dc887(0x41f)]=_0x138a77[_0x1dc887(0x398)],_0x52ab2a['appendChild'](_0x3d4d69);let _0x5e80a0=(0x0,_0x14359a['az'])([{'td':{}}]);_0x5e80a0[_0x1dc887(0x41f)]=_0x138a77['deviceHardwareConcurrency'],_0x52ab2a[_0x1dc887(0x28b)](_0x5e80a0);let _0x1dcddf=(0x0,_0x14359a['az'])([{'td':{}}]);_0x1dcddf[_0x1dc887(0x41f)]=_0x138a77[_0x1dc887(0x3c9)],_0x52ab2a[_0x1dc887(0x28b)](_0x1dcddf);let _0x5a5fc0=(0x0,_0x14359a['az'])([{'td':{}}]);_0x5a5fc0[_0x1dc887(0x41f)]=_0x138a77[_0x1dc887(0x17a)],_0x52ab2a[_0x1dc887(0x28b)](_0x5a5fc0);let _0x149424=(0x0,_0x14359a['az'])([{'td':{}}]);_0x149424[_0x1dc887(0x41f)]=_0x138a77[_0x1dc887(0x1e2)],_0x52ab2a[_0x1dc887(0x28b)](_0x149424);let _0x336a29=(0x0,_0x14359a['az'])([{'td':{'style':'cursor:pointer'}}]);_0x336a29[_0x1dc887(0x41f)]=_0x1dc887(0x375),_0x336a29[_0x1dc887(0x4c9)]('click',function(){const _0x39a26d=_0x1dc887;(0x0,_0x54ee15['PV'])(JSON[_0x39a26d(0x4de)](_0x138a77[_0x39a26d(0x29c)]),(0x0,_0x14359a['hh'])(_0x39a26d(0x2e0)));}),_0x52ab2a['appendChild'](_0x336a29);let _0x4f4c69=(0x0,_0x14359a['az'])([{'td':{}}]);_0x4f4c69[_0x1dc887(0x41f)]=_0x138a77[_0x1dc887(0x39b)],_0x52ab2a[_0x1dc887(0x28b)](_0x4f4c69);let _0x18e6fe=(0x0,_0x14359a['az'])([{'td':{}}]);_0x52ab2a['appendChild'](_0x18e6fe);let _0x7b5f90=(0x0,_0x14359a['az'])([{'a':{'href':'javascript:void(0);','class':_0x1dc887(0x252)}}]);_0x7b5f90[_0x1dc887(0x4c9)](_0x1dc887(0x346),function(){const _0x54cf3e=_0x1dc887;(0x0,_0x54ee15['PV'])(JSON[_0x54cf3e(0x4de)](_0x138a77),(0x0,_0x14359a['hh'])(_0x54cf3e(0x2e0)));}),_0x18e6fe['appendChild'](_0x7b5f90);let _0x44f837=(0x0,_0x14359a['az'])([{'i':{'class':'fa\x20fa-eye'}}]);_0x7b5f90[_0x1dc887(0x28b)](_0x44f837);let _0x3d6bd9=(0x0,_0x14359a['az'])([{'a':{'href':_0x1dc887(0x1b4),'class':'button\x20button-xs\x20button-success'}}]);_0x18e6fe[_0x1dc887(0x28b)](_0x3d6bd9);let _0x3a39c4=(0x0,_0x14359a['az'])([{'i':{'class':_0x1dc887(0x220)}}]);_0x3d6bd9['appendChild'](_0x3a39c4);let _0x355948=(0x0,_0x14359a['az'])([{'a':{'href':'javascript:void(0);','class':_0x1dc887(0x483)}}]);_0x355948['addEventListener'](_0x1dc887(0x346),function(){const _0x215d8f=_0x1dc887;(0x0,_0x14359a['hh'])('#app-loader')[_0x215d8f(0x338)]['display']=_0x215d8f(0x35d),(0x0,_0x1cb41c['w'])({'method':_0x215d8f(0x392),'url':_0x50d720['M']+_0x215d8f(0x4ff),'async':!0x0,'header':[{'name':_0x215d8f(0x1f1),'value':_0x215d8f(0x262)}],'data':{'security_code':0x1,'id':_0x138a77['id'],'server':(0x0,_0x14359a['hh'])(_0x215d8f(0x2ec))[_0x215d8f(0x389)],'db':(0x0,_0x14359a['hh'])(_0x215d8f(0x557))[_0x215d8f(0x389)],'user':(0x0,_0x14359a['hh'])(_0x215d8f(0x2ee))['value'],'password':(0x0,_0x14359a['hh'])(_0x215d8f(0x4c4))[_0x215d8f(0x389)],'table':(0x0,_0x14359a['hh'])('#runtimeTableName')['value'],'rowId':_0x138a77['id']}},function(_0x49b5e1){const _0x257126=_0x215d8f;(0x0,_0x14359a['hh'])(_0x257126(0x4c2))[_0x257126(0x338)]['display']='none',(0x0,_0x54ee15['PV'])(_0x49b5e1,(0x0,_0x14359a['hh'])(_0x257126(0x2e0)));});}),_0x18e6fe[_0x1dc887(0x28b)](_0x355948);let _0x1c5077=(0x0,_0x14359a['az'])([{'i':{'class':_0x1dc887(0x26a)}}]);_0x355948[_0x1dc887(0x28b)](_0x1c5077);}),void 0x0!==(0x0,_0x14359a['hh'])('#table-view-client-ip-info')&&JSON[_0x2e4f60(0x23f)](_0x5b986e)[_0x2e4f60(0x45c)](function(_0x172752){const _0x47289d=_0x2e4f60;let _0x48bdc4=_0x28d1c1++,_0x5542f2=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x5d400e['appendChild'](_0x5542f2);let _0x16c06b=(0x0,_0x14359a['az'])([{'td':{}}]);_0x16c06b[_0x47289d(0x41f)]=_0x48bdc4,_0x5542f2[_0x47289d(0x28b)](_0x16c06b);let _0x1c88b8=(0x0,_0x14359a['az'])([{'td':{}}]);_0x1c88b8[_0x47289d(0x41f)]=_0x172752[_0x47289d(0x376)],_0x5542f2[_0x47289d(0x28b)](_0x1c88b8);let _0x54f18e=(0x0,_0x14359a['az'])([{'td':{}}]);_0x54f18e[_0x47289d(0x41f)]=_0x172752[_0x47289d(0x464)],_0x5542f2[_0x47289d(0x28b)](_0x54f18e);let _0x221e04=(0x0,_0x14359a['az'])([{'td':{}}]);_0x221e04['textContent']=_0x172752[_0x47289d(0x490)],_0x5542f2['appendChild'](_0x221e04);let _0x3b8d81=(0x0,_0x14359a['az'])([{'td':{}}]);_0x3b8d81[_0x47289d(0x41f)]=_0x172752['continent_name'],_0x5542f2['appendChild'](_0x3b8d81);let _0x1e30c5=(0x0,_0x14359a['az'])([{'td':{}}]);_0x5542f2[_0x47289d(0x28b)](_0x1e30c5);let _0x157f8=(0x0,_0x14359a['az'])([{'a':{'href':_0x47289d(0x1ab)+_0x172752[_0x47289d(0x3cb)]+','+_0x172752['longitude']+_0x47289d(0x34a),'class':_0x47289d(0x24e)}}]);_0x1e30c5[_0x47289d(0x28b)](_0x157f8);let _0x144696=(0x0,_0x14359a['az'])([{'img':{'src':_0x50d720['l'][_0x47289d(0x3cc)][_0x47289d(0x54a)][_0x47289d(0x366)]+'map-pin-marker-circle.svg','style':_0x47289d(0x234)}}]);_0x157f8[_0x47289d(0x28b)](_0x144696);let _0x5874f9=(0x0,_0x14359a['az'])([{'td':{}}]);_0x5874f9[_0x47289d(0x41f)]=_0x172752[_0x47289d(0x203)],_0x5542f2[_0x47289d(0x28b)](_0x5874f9);let _0x5709c2=(0x0,_0x14359a['az'])([{'td':{}}]);_0x5709c2['textContent']=_0x172752['calling_code'],_0x5542f2[_0x47289d(0x28b)](_0x5709c2);let _0x25be0f=(0x0,_0x14359a['az'])([{'td':{}}]);_0x25be0f[_0x47289d(0x41f)]=_0x172752['emoji_flag'],_0x5542f2['appendChild'](_0x25be0f);let _0x507ff1=(0x0,_0x14359a['az'])([{'td':{}}]);_0x507ff1['textContent']=_0x172752['asn_asn'],_0x5542f2[_0x47289d(0x28b)](_0x507ff1);let _0x2db897=(0x0,_0x14359a['az'])([{'td':{}}]);_0x5542f2[_0x47289d(0x28b)](_0x2db897);let _0xee24a3=(0x0,_0x14359a['az'])([{'a':{'href':_0x47289d(0x3dd)+_0x172752[_0x47289d(0x55f)],'class':'link'}}]);_0x2db897[_0x47289d(0x28b)](_0xee24a3);let _0x6db2b6=(0x0,_0x14359a['az'])([{'img':{'src':_0x50d720['l'][_0x47289d(0x3cc)][_0x47289d(0x54a)][_0x47289d(0x366)]+'navigation.svg','style':'width:20px;height:20px;'}}]);_0xee24a3['appendChild'](_0x6db2b6);let _0x36bd61=(0x0,_0x14359a['az'])([{'td':{}}]);_0x36bd61[_0x47289d(0x41f)]=_0x172752[_0x47289d(0x2a0)],_0x5542f2[_0x47289d(0x28b)](_0x36bd61);let _0xeddcf9=(0x0,_0x14359a['az'])([{'td':{}}]);_0xeddcf9[_0x47289d(0x41f)]=_0x172752[_0x47289d(0x3b6)],_0x5542f2[_0x47289d(0x28b)](_0xeddcf9);let _0x345828=(0x0,_0x14359a['az'])([{'td':{}}]);_0x345828[_0x47289d(0x41f)]=_0x172752['created_date_time']['substr'](0x2,0x8),_0x5542f2['appendChild'](_0x345828);let _0x192af2=(0x0,_0x14359a['az'])([{'td':{}}]);_0x5542f2[_0x47289d(0x28b)](_0x192af2);let _0x38706f=(0x0,_0x14359a['az'])([{'a':{'href':_0x47289d(0x1b4),'class':_0x47289d(0x252)}}]);_0x38706f[_0x47289d(0x4c9)]('click',function(){const _0x4573c6=_0x47289d;(0x0,_0x54ee15['PV'])(JSON['stringify'](_0x172752),(0x0,_0x14359a['hh'])(_0x4573c6(0x2e0)));}),_0x192af2[_0x47289d(0x28b)](_0x38706f);let _0x515923=(0x0,_0x14359a['az'])([{'i':{'class':_0x47289d(0x1ae)}}]);_0x38706f[_0x47289d(0x28b)](_0x515923);let _0x24ff7d=(0x0,_0x14359a['az'])([{'a':{'href':_0x47289d(0x1b4),'class':_0x47289d(0x480)}}]);_0x192af2[_0x47289d(0x28b)](_0x24ff7d);let _0x465826=(0x0,_0x14359a['az'])([{'i':{'class':'fa\x20fa-edit'}}]);_0x24ff7d[_0x47289d(0x28b)](_0x465826);let _0x3e4491=(0x0,_0x14359a['az'])([{'a':{'href':'javascript:void(0);','class':_0x47289d(0x483)}}]);_0x3e4491[_0x47289d(0x4c9)](_0x47289d(0x346),function(){const _0x209c35=_0x47289d;(0x0,_0x14359a['hh'])(_0x209c35(0x4c2))[_0x209c35(0x338)][_0x209c35(0x3a7)]=_0x209c35(0x35d),(0x0,_0x1cb41c['w'])({'method':_0x209c35(0x392),'url':_0x50d720['M']+_0x209c35(0x4ff),'async':!0x0,'header':[{'name':_0x209c35(0x1f1),'value':'application/json;charset=UTF-8'}],'data':{'security_code':0x1,'id':_0x172752['id'],'server':(0x0,_0x14359a['hh'])(_0x209c35(0x2ec))[_0x209c35(0x389)],'db':(0x0,_0x14359a['hh'])(_0x209c35(0x557))[_0x209c35(0x389)],'user':(0x0,_0x14359a['hh'])(_0x209c35(0x2ee))[_0x209c35(0x389)],'password':(0x0,_0x14359a['hh'])(_0x209c35(0x4c4))[_0x209c35(0x389)],'table':(0x0,_0x14359a['hh'])(_0x209c35(0x3da))[_0x209c35(0x389)],'rowId':_0x172752['id']}},function(_0x3804c6){const _0x25d24b=_0x209c35;(0x0,_0x14359a['hh'])(_0x25d24b(0x4c2))[_0x25d24b(0x338)][_0x25d24b(0x3a7)]=_0x25d24b(0x510),(0x0,_0x54ee15['PV'])(_0x3804c6,(0x0,_0x14359a['hh'])('#message'));});}),_0x192af2[_0x47289d(0x28b)](_0x3e4491);let _0x1a0be9=(0x0,_0x14359a['az'])([{'i':{'class':_0x47289d(0x26a)}}]);_0x3e4491['appendChild'](_0x1a0be9);}),void 0x0!==(0x0,_0x14359a['hh'])(_0x2e4f60(0x2cb))&&JSON[_0x2e4f60(0x23f)](_0x5b986e)['forEach'](function(_0x1f2a0d){const _0x5387c4=_0x2e4f60;let _0x136fda=_0x28d1c1++,_0x70736d=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x5d400e[_0x5387c4(0x28b)](_0x70736d);let _0x3804a1=(0x0,_0x14359a['az'])([{'td':{}}]);_0x3804a1[_0x5387c4(0x41f)]=_0x136fda,_0x70736d[_0x5387c4(0x28b)](_0x3804a1);let _0x285539=(0x0,_0x14359a['az'])([{'td':{}}]);_0x285539[_0x5387c4(0x41f)]=_0x1f2a0d['name'],_0x70736d[_0x5387c4(0x28b)](_0x285539);let _0x19ff04=(0x0,_0x14359a['az'])([{'td':{}}]);_0x19ff04['textContent']=_0x1f2a0d[_0x5387c4(0x36f)],_0x70736d[_0x5387c4(0x28b)](_0x19ff04);let _0x94ab85=(0x0,_0x14359a['az'])([{'td':{}}]);_0x94ab85[_0x5387c4(0x41f)]=_0x1f2a0d[_0x5387c4(0x376)],_0x70736d[_0x5387c4(0x28b)](_0x94ab85);let _0x59c12c=(0x0,_0x14359a['az'])([{'td':{}}]);_0x59c12c['textContent']=_0x1f2a0d['browserNameFull'],_0x70736d[_0x5387c4(0x28b)](_0x59c12c);let _0x5f2f7a=(0x0,_0x14359a['az'])([{'td':{}}]);_0x5f2f7a[_0x5387c4(0x41f)]=_0x1f2a0d[_0x5387c4(0x3d4)],_0x70736d[_0x5387c4(0x28b)](_0x5f2f7a);let _0x58cbb7=(0x0,_0x14359a['az'])([{'td':{}}]);_0x58cbb7[_0x5387c4(0x41f)]=_0x1f2a0d['created_date_time'],_0x70736d['appendChild'](_0x58cbb7);let _0x448558=(0x0,_0x14359a['az'])([{'td':{}}]);_0x70736d[_0x5387c4(0x28b)](_0x448558);let _0x4808f8=(0x0,_0x14359a['az'])([{'a':{'href':_0x5387c4(0x1b4),'class':_0x5387c4(0x252)}}]);_0x4808f8[_0x5387c4(0x4c9)](_0x5387c4(0x346),function(){const _0x415675=_0x5387c4;(0x0,_0x54ee15['PV'])(JSON[_0x415675(0x4de)](_0x1f2a0d),(0x0,_0x14359a['hh'])(_0x415675(0x2e0)));}),_0x448558[_0x5387c4(0x28b)](_0x4808f8);let _0x58b7aa=(0x0,_0x14359a['az'])([{'i':{'class':_0x5387c4(0x1ae)}}]);_0x4808f8[_0x5387c4(0x28b)](_0x58b7aa);let _0x1f632b=(0x0,_0x14359a['az'])([{'a':{'href':_0x5387c4(0x1b4),'class':_0x5387c4(0x480)}}]);_0x448558['appendChild'](_0x1f632b);let _0x7f4f0=(0x0,_0x14359a['az'])([{'i':{'class':_0x5387c4(0x220)}}]);_0x1f632b['appendChild'](_0x7f4f0);let _0xd2760=(0x0,_0x14359a['az'])([{'a':{'href':'javascript:void(0);','class':'button\x20button-xs\x20button-danger'}}]);_0xd2760['addEventListener'](_0x5387c4(0x346),function(){const _0x4098a5=_0x5387c4;(0x0,_0x14359a['hh'])(_0x4098a5(0x4c2))['style']['display']=_0x4098a5(0x35d),(0x0,_0x1cb41c['w'])({'method':'POST','url':_0x50d720['M']+_0x4098a5(0x4ff),'async':!0x0,'header':[{'name':'Content-type','value':'application/json;charset=UTF-8'}],'data':{'security_code':0x1,'id':_0x1f2a0d['id'],'server':(0x0,_0x14359a['hh'])(_0x4098a5(0x2ec))[_0x4098a5(0x389)],'db':(0x0,_0x14359a['hh'])('#dbInfoDb')[_0x4098a5(0x389)],'user':(0x0,_0x14359a['hh'])(_0x4098a5(0x2ee))[_0x4098a5(0x389)],'password':(0x0,_0x14359a['hh'])(_0x4098a5(0x4c4))['value'],'table':(0x0,_0x14359a['hh'])(_0x4098a5(0x3da))[_0x4098a5(0x389)],'rowId':_0x1f2a0d['id']}},function(_0x2acf21){const _0x399615=_0x4098a5;(0x0,_0x14359a['hh'])(_0x399615(0x4c2))[_0x399615(0x338)][_0x399615(0x3a7)]=_0x399615(0x510),(0x0,_0x54ee15['PV'])(_0x2acf21,(0x0,_0x14359a['hh'])('#message'));});}),_0x448558[_0x5387c4(0x28b)](_0xd2760);let _0x3cfa47=(0x0,_0x14359a['az'])([{'i':{'class':_0x5387c4(0x26a)}}]);_0xd2760[_0x5387c4(0x28b)](_0x3cfa47);}),(0x0,_0x14359a['hh'])('#table-view-datatable-body')['appendChild'](_0xe170f8),(0x0,_0x14359a['hh'])(_0x2e4f60(0x2ef))['style']=JSON[_0x2e4f60(0x23f)](_0x5b986e)[_0x2e4f60(0x2b8)]>0xa?_0x2e4f60(0x218):_0x2e4f60(0x4dc);}else(0x0,_0x14359a['hh'])(_0x2e4f60(0x2ef))[_0x2e4f60(0x41f)]=_0x2e4f60(0x522);}else(0x0,_0x54ee15['PV'])(_0x5b986e,(0x0,_0x14359a['hh'])(_0x2e4f60(0x2e0)));}})))),-0x1!==_0x3539f5[_0x13fbf8(0x53e)](_0x13fbf8(0x16d))&&(void 0x0!==(0x0,_0x14359a['hh'])(_0x13fbf8(0x268))&&(0x0,_0x1cb41c['w'])({'method':_0x13fbf8(0x392),'url':_0x50d720['M']+_0x13fbf8(0x43f),'async':!0x0,'header':[{'name':_0x13fbf8(0x1f1),'value':_0x13fbf8(0x262)}]},function(_0x3fae20){const _0x1c424d=_0x13fbf8;if(0x0!==_0x3fae20[_0x1c424d(0x2b8)]&&(0x0,_0x2359f8['cU'])(_0x3fae20)){if(0x0!==JSON[_0x1c424d(0x23f)](_0x3fae20)[_0x1c424d(0x2b8)])(0x0,_0x14359a['hh'])(_0x1c424d(0x268))[_0x1c424d(0x41f)]='',JSON[_0x1c424d(0x23f)](_0x3fae20)['forEach'](function(_0x16ef5c){const _0x4122b0=_0x1c424d;let _0x1c1fa5=(0x0,_0x14359a['hh'])('#webapp-edit-btn');_0x1c1fa5[_0x4122b0(0x422)]('data-id',_0x16ef5c['id']),_0x1c1fa5[_0x4122b0(0x422)](_0x4122b0(0x2b9),_0x16ef5c[_0x4122b0(0x313)]),_0x1c1fa5[_0x4122b0(0x422)](_0x4122b0(0x35a),_0x16ef5c[_0x4122b0(0x2c1)]),_0x1c1fa5[_0x4122b0(0x422)](_0x4122b0(0x3af),_0x16ef5c[_0x4122b0(0x29b)]),_0x1c1fa5['setAttribute']('data-filesLocate',_0x16ef5c[_0x4122b0(0x43e)]),_0x1c1fa5[_0x4122b0(0x422)]('data-domainLocate',_0x16ef5c['http_host_add']),_0x1c1fa5[_0x4122b0(0x422)](_0x4122b0(0x2d5),_0x16ef5c[_0x4122b0(0x54b)]);let _0x3da233=(0x0,_0x14359a['az'])([{'div':{'class':_0x4122b0(0x2ab)}}]),_0x4e51be=(0x0,_0x14359a['az'])([{'div':{'class':_0x4122b0(0x2d9)}}]);_0x3da233['appendChild'](_0x4e51be);let _0x4f3724=(0x0,_0x14359a['az'])([{'ul':{}}]);_0x4e51be['appendChild'](_0x4f3724);let _0x18c8cb=(0x0,_0x14359a['az'])([{'li':{'id':_0x4122b0(0x4bb),'style':_0x4122b0(0x2e3)}}]);_0x18c8cb[_0x4122b0(0x3bf)]=_0x4122b0(0x353),_0x4f3724[_0x4122b0(0x28b)](_0x18c8cb);let _0x407007=(0x0,_0x14359a['az'])([{'li':{'id':_0x4122b0(0x2db)}}]);_0x407007['innerHTML']='<i\x20class=\x22fab\x20fa-app-store-ios\x22></i><span>Basic\x20Info</span>',_0x4f3724['appendChild'](_0x407007);let _0x577d58=(0x0,_0x14359a['az'])([{'li':{'id':_0x4122b0(0x3ed)}}]);_0x577d58[_0x4122b0(0x3bf)]=_0x4122b0(0x2c6),_0x4f3724['appendChild'](_0x577d58);let _0x100209=(0x0,_0x14359a['az'])([{'li':{'id':'filesInfo'}}]);_0x100209[_0x4122b0(0x3bf)]=_0x4122b0(0x3c1),_0x4f3724[_0x4122b0(0x28b)](_0x100209);let _0x1aac18=(0x0,_0x14359a['az'])([{'li':{'id':'mediaInfo'}}]);_0x1aac18[_0x4122b0(0x3bf)]=_0x4122b0(0x302),_0x4f3724['appendChild'](_0x1aac18);let _0x5258fd=(0x0,_0x14359a['az'])([{'li':{'id':_0x4122b0(0x35b)}}]);_0x5258fd['innerHTML']=_0x4122b0(0x320),_0x4f3724[_0x4122b0(0x28b)](_0x5258fd);let _0x1f6b4d=(0x0,_0x14359a['az'])([{'div':{'class':'web-app-info-box-content'}}]);_0x3da233[_0x4122b0(0x28b)](_0x1f6b4d);let _0x1c7c03=(0x0,_0x14359a['az'])([{'div':{'class':_0x4122b0(0x2d1),'id':_0x4122b0(0x2d1)}}]);_0x1f6b4d[_0x4122b0(0x28b)](_0x1c7c03);let _0x3f8c68=(0x0,_0x14359a['az'])([{'table':{'class':_0x4122b0(0x417),'style':_0x4122b0(0x55b)}}]);_0x1c7c03[_0x4122b0(0x28b)](_0x3f8c68);let _0x522bb6=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x3f8c68[_0x4122b0(0x28b)](_0x522bb6);let _0x928002=(0x0,_0x14359a['az'])([{'td':{}}]);_0x522bb6['appendChild'](_0x928002);let _0x5bdc72=(0x0,_0x14359a['az'])([{'img':{'alt':_0x4122b0(0x170),'src':_0x16ef5c['icon_remote_dir']+_0x16ef5c[_0x4122b0(0x163)],'style':'width:\x20100px;height:\x20100px;'}}]);_0x928002[_0x4122b0(0x28b)](_0x5bdc72);let _0x73eba1=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x3f8c68['appendChild'](_0x73eba1);let _0x502f77=(0x0,_0x14359a['az'])([{'td':{}}]);_0x73eba1[_0x4122b0(0x28b)](_0x502f77);let _0x208275=(0x0,_0x14359a['az'])([{'a':{'href':_0x16ef5c[_0x4122b0(0x36d)],'target':_0x4122b0(0x4e8)}}]);_0x208275['textContent']=_0x16ef5c[_0x4122b0(0x313)],_0x502f77[_0x4122b0(0x28b)](_0x208275);let _0x249b6b=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x3f8c68[_0x4122b0(0x28b)](_0x249b6b);let _0xfb6725=(0x0,_0x14359a['az'])([{'td':{}}]);_0x249b6b[_0x4122b0(0x28b)](_0xfb6725);let _0x58b475=(0x0,_0x14359a['az'])([{'a':{'href':_0x50d720['M'],'target':'_blank'}}]);_0x58b475[_0x4122b0(0x41f)]=_0x16ef5c[_0x4122b0(0x29b)],_0xfb6725[_0x4122b0(0x28b)](_0x58b475);let _0x170ed1=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x3f8c68[_0x4122b0(0x28b)](_0x170ed1);let _0x4951c4=(0x0,_0x14359a['az'])([{'td':{}}]);_0x170ed1[_0x4122b0(0x28b)](_0x4951c4);let _0x10454b=(0x0,_0x14359a['az'])([{'div':{'class':_0x4122b0(0x22b),'style':'margin-top:\x202px;width:100%'}}]);_0x4951c4[_0x4122b0(0x28b)](_0x10454b);let _0x2f26dc=(0x0,_0x14359a['az'])([{'ul':{'id':_0x4122b0(0x457)}}]);_0x10454b[_0x4122b0(0x28b)](_0x2f26dc);let _0x3b8488=(0x0,_0x14359a['az'])([{'div':{'class':'web-app-info-content-basic','id':_0x4122b0(0x323)}}]);_0x3b8488[_0x4122b0(0x3bf)]='Basic\x20Information&ensp;::',_0x1f6b4d[_0x4122b0(0x28b)](_0x3b8488);let _0x327c2e=(0x0,_0x14359a['az'])([{'table':{'class':_0x4122b0(0x2f5)}}]);_0x3b8488[_0x4122b0(0x28b)](_0x327c2e);let _0x5c0eb1=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x327c2e[_0x4122b0(0x28b)](_0x5c0eb1);let _0x6b237c=(0x0,_0x14359a['az'])([{'td':{}}]);_0x6b237c[_0x4122b0(0x41f)]=_0x4122b0(0x4f6),_0x5c0eb1['appendChild'](_0x6b237c);let _0x45da07=(0x0,_0x14359a['az'])([{'td':{}}]);_0x45da07[_0x4122b0(0x41f)]=':',_0x5c0eb1[_0x4122b0(0x28b)](_0x45da07);let _0x985f79=(0x0,_0x14359a['az'])([{'td':{}}]);_0x985f79[_0x4122b0(0x41f)]=_0x16ef5c[_0x4122b0(0x313)],_0x5c0eb1[_0x4122b0(0x28b)](_0x985f79);let _0x17d4b9=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x327c2e[_0x4122b0(0x28b)](_0x17d4b9);let _0x2b32ca=(0x0,_0x14359a['az'])([{'td':{}}]);_0x2b32ca['textContent']=_0x4122b0(0x459),_0x17d4b9[_0x4122b0(0x28b)](_0x2b32ca);let _0x3382d0=(0x0,_0x14359a['az'])([{'td':{}}]);_0x3382d0[_0x4122b0(0x41f)]=':',_0x17d4b9['appendChild'](_0x3382d0);let _0x1542c9=(0x0,_0x14359a['az'])([{'td':{}}]);_0x1542c9[_0x4122b0(0x41f)]=_0x16ef5c['company'],_0x17d4b9[_0x4122b0(0x28b)](_0x1542c9);let _0x5abce3=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x327c2e['appendChild'](_0x5abce3);let _0x218959=(0x0,_0x14359a['az'])([{'td':{}}]);_0x218959['textContent']=_0x4122b0(0x4a3),_0x5abce3[_0x4122b0(0x28b)](_0x218959);let _0x1c1a9d=(0x0,_0x14359a['az'])([{'td':{}}]);_0x1c1a9d['textContent']=':',_0x5abce3[_0x4122b0(0x28b)](_0x1c1a9d);let _0x57affe=(0x0,_0x14359a['az'])([{'td':{}}]);_0x57affe[_0x4122b0(0x41f)]=_0x16ef5c[_0x4122b0(0x2c1)],_0x5abce3['appendChild'](_0x57affe);let _0x5f1754=(0x0,_0x14359a['az'])([{'div':{'class':_0x4122b0(0x225),'id':_0x4122b0(0x225),'style':_0x4122b0(0x423)}}]);_0x5f1754[_0x4122b0(0x3bf)]=_0x4122b0(0x428),_0x1f6b4d['appendChild'](_0x5f1754);let _0x19c726=(0x0,_0x14359a['az'])([{'table':{'class':_0x4122b0(0x2f5)}}]);_0x5f1754[_0x4122b0(0x28b)](_0x19c726);let _0x45ef8e=(0x0,_0x14359a['az'])([{'thead':{}}]),_0x4f5e71=(0x0,_0x14359a['az'])([{'tfoot':{}}]);_0x19c726[_0x4122b0(0x28b)](_0x45ef8e),_0x19c726[_0x4122b0(0x28b)](_0x4f5e71);let _0x1e4688=(0x0,_0x14359a['az'])([{'tr':{}}]),_0x97e25=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x45ef8e[_0x4122b0(0x28b)](_0x1e4688),_0x4f5e71['appendChild'](_0x97e25);let _0x58576e=(0x0,_0x14359a['az'])([{'td':{}}]);_0x58576e[_0x4122b0(0x41f)]='SL',_0x1e4688[_0x4122b0(0x28b)](_0x58576e),_0x97e25['appendChild'](_0x58576e[_0x4122b0(0x1ee)](!0x0));let _0x535141=(0x0,_0x14359a['az'])([{'td':{}}]);_0x535141[_0x4122b0(0x41f)]=_0x4122b0(0x54e),_0x1e4688[_0x4122b0(0x28b)](_0x535141[_0x4122b0(0x1ee)](!0x0)),_0x97e25['appendChild'](_0x535141);let _0x59dd95=(0x0,_0x14359a['az'])([{'td':{}}]);_0x59dd95[_0x4122b0(0x41f)]=_0x4122b0(0x526),_0x1e4688[_0x4122b0(0x28b)](_0x59dd95),_0x97e25[_0x4122b0(0x28b)](_0x59dd95[_0x4122b0(0x1ee)](!0x0));let _0x194a36=(0x0,_0x14359a['az'])([{'td':{}}]);_0x194a36[_0x4122b0(0x41f)]=_0x4122b0(0x39c),_0x1e4688['appendChild'](_0x194a36),_0x97e25[_0x4122b0(0x28b)](_0x194a36[_0x4122b0(0x1ee)](!0x0));let _0x32d8d6=(0x0,_0x14359a['az'])([{'td':{}}]);_0x32d8d6[_0x4122b0(0x41f)]=_0x4122b0(0x3a1),_0x1e4688[_0x4122b0(0x28b)](_0x32d8d6),_0x97e25[_0x4122b0(0x28b)](_0x32d8d6[_0x4122b0(0x1ee)](!0x0));let _0x1b6f7a=(0x0,_0x14359a['az'])([{'td':{}}]);_0x1b6f7a[_0x4122b0(0x41f)]='ENGINE',_0x1e4688[_0x4122b0(0x28b)](_0x1b6f7a),_0x97e25[_0x4122b0(0x28b)](_0x1b6f7a[_0x4122b0(0x1ee)](!0x0));let _0x4635ca=(0x0,_0x14359a['az'])([{'tbody':{'id':_0x4122b0(0x36b)}}]);_0x19c726[_0x4122b0(0x28b)](_0x4635ca);let _0x538822=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x4635ca[_0x4122b0(0x28b)](_0x538822);let _0x59fcea=(0x0,_0x14359a['az'])([{'td':{'colspan':'7','style':_0x4122b0(0x55c)}}]);_0x59fcea['textContent']='Data\x20loading...',_0x538822[_0x4122b0(0x28b)](_0x59fcea),_0x19c726[_0x4122b0(0x28b)](_0x4f5e71);let _0x28456f=(0x0,_0x14359a['az'])([{'div':{'class':_0x4122b0(0x4d5),'id':_0x4122b0(0x4d5)}}]);_0x28456f['innerHTML']=_0x4122b0(0x43c),_0x1f6b4d[_0x4122b0(0x28b)](_0x28456f);let _0x16f0d7=(0x0,_0x14359a['az'])([{'table':{'class':_0x4122b0(0x2f5)}}]);_0x28456f[_0x4122b0(0x28b)](_0x16f0d7);let _0x1d0620=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x16f0d7[_0x4122b0(0x28b)](_0x1d0620);let _0x46d994=(0x0,_0x14359a['az'])([{'td':{}}]);_0x46d994[_0x4122b0(0x41f)]=_0x4122b0(0x38f),_0x1d0620[_0x4122b0(0x28b)](_0x46d994);let _0x459008=(0x0,_0x14359a['az'])([{'td':{}}]);_0x459008[_0x4122b0(0x41f)]=':',_0x1d0620[_0x4122b0(0x28b)](_0x459008);let _0x1a456a=(0x0,_0x14359a['az'])([{'td':{}}]);_0x1a456a[_0x4122b0(0x41f)]=_0x16ef5c['doc_root'],_0x1d0620[_0x4122b0(0x28b)](_0x1a456a);let _0x186d4b=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x16f0d7['appendChild'](_0x186d4b);let _0x2d6947=(0x0,_0x14359a['az'])([{'td':{}}]);_0x2d6947[_0x4122b0(0x41f)]=_0x4122b0(0x308),_0x186d4b['appendChild'](_0x2d6947);let _0x3cf76f=(0x0,_0x14359a['az'])([{'td':{}}]);_0x3cf76f['textContent']=':',_0x186d4b['appendChild'](_0x3cf76f);let _0x4d0820=(0x0,_0x14359a['az'])([{'td':{}}]);_0x4d0820[_0x4122b0(0x41f)]=_0x16ef5c['http_host_add'],_0x186d4b['appendChild'](_0x4d0820);let _0x3c2402=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x16f0d7[_0x4122b0(0x28b)](_0x3c2402);let _0x4c2b3f=(0x0,_0x14359a['az'])([{'td':{}}]);_0x4c2b3f[_0x4122b0(0x41f)]='IP',_0x3c2402[_0x4122b0(0x28b)](_0x4c2b3f);let _0x44fe75=(0x0,_0x14359a['az'])([{'td':{}}]);_0x44fe75[_0x4122b0(0x41f)]=':',_0x3c2402[_0x4122b0(0x28b)](_0x44fe75);let _0x1f2d3b=(0x0,_0x14359a['az'])([{'td':{}}]);_0x1f2d3b['textContent']=_0x16ef5c[_0x4122b0(0x54b)],_0x3c2402[_0x4122b0(0x28b)](_0x1f2d3b);let _0x8efa60=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x16f0d7['appendChild'](_0x8efa60);let _0x38388b=(0x0,_0x14359a['az'])([{'td':{}}]);_0x38388b['textContent']=_0x4122b0(0x170),_0x8efa60[_0x4122b0(0x28b)](_0x38388b);let _0x68f7ad=(0x0,_0x14359a['az'])([{'td':{}}]);_0x68f7ad[_0x4122b0(0x41f)]=':',_0x8efa60[_0x4122b0(0x28b)](_0x68f7ad);let _0x4718e3=(0x0,_0x14359a['az'])([{'td':{}}]);_0x4718e3['textContent']=_0x16ef5c['icon_remote_dir'],_0x8efa60['appendChild'](_0x4718e3);let _0x1a1faa=(0x0,_0x14359a['az'])([{'div':{'class':_0x4122b0(0x53d),'id':'web-app-info-content-media'}}]);_0x1a1faa[_0x4122b0(0x3bf)]=_0x4122b0(0x558),_0x1f6b4d[_0x4122b0(0x28b)](_0x1a1faa);let _0x1eec47=(0x0,_0x14359a['az'])([{'table':{'class':'table\x20table-bottom-border-only\x20table-condensed'}}]);_0x1a1faa[_0x4122b0(0x28b)](_0x1eec47);let _0x5582d6=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x1eec47[_0x4122b0(0x28b)](_0x5582d6);let _0x4ce95f=(0x0,_0x14359a['az'])([{'td':{}}]);_0x4ce95f['textContent']=_0x4122b0(0x2c7),_0x5582d6[_0x4122b0(0x28b)](_0x4ce95f);let _0x5067a8=(0x0,_0x14359a['az'])([{'td':{}}]);_0x5067a8[_0x4122b0(0x41f)]=':',_0x5582d6[_0x4122b0(0x28b)](_0x5067a8);let _0x4bac39=(0x0,_0x14359a['az'])([{'td':{}}]);_0x4bac39[_0x4122b0(0x41f)]=_0x16ef5c[_0x4122b0(0x224)],_0x5582d6[_0x4122b0(0x28b)](_0x4bac39);let _0x129a3d=(0x0,_0x14359a['az'])([{'td':{'rowspan':'3'}}]);_0x5582d6['appendChild'](_0x129a3d);let _0x5a7da5=(0x0,_0x14359a['az'])([{'img':{'alt':_0x4122b0(0x170),'src':_0x16ef5c[_0x4122b0(0x1cb)]+_0x16ef5c[_0x4122b0(0x163)],'style':'width:\x20100px;height:\x20100px;'}}]);_0x129a3d[_0x4122b0(0x28b)](_0x5a7da5);let _0x4b4eec=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x1eec47[_0x4122b0(0x28b)](_0x4b4eec);let _0x57e6fd=(0x0,_0x14359a['az'])([{'td':{}}]);_0x57e6fd[_0x4122b0(0x41f)]='Favicon',_0x4b4eec[_0x4122b0(0x28b)](_0x57e6fd);let _0x2eb8fa=(0x0,_0x14359a['az'])([{'td':{}}]);_0x2eb8fa['textContent']=':',_0x4b4eec[_0x4122b0(0x28b)](_0x2eb8fa);let _0x431dec=(0x0,_0x14359a['az'])([{'td':{}}]);_0x431dec[_0x4122b0(0x41f)]=_0x16ef5c[_0x4122b0(0x163)],_0x4b4eec[_0x4122b0(0x28b)](_0x431dec);let _0x4510ba=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x1eec47[_0x4122b0(0x28b)](_0x4510ba);let _0xfaecd5=(0x0,_0x14359a['az'])([{'td':{}}]);_0x4510ba[_0x4122b0(0x28b)](_0xfaecd5);let _0x292e1d=(0x0,_0x14359a['az'])([{'td':{}}]);_0x4510ba[_0x4122b0(0x28b)](_0x292e1d);let _0x4a4f10=(0x0,_0x14359a['az'])([{'td':{}}]);_0x4510ba[_0x4122b0(0x28b)](_0x4a4f10);let _0x1d3795=(0x0,_0x14359a['az'])([{'div':{'class':_0x4122b0(0x352),'id':_0x4122b0(0x352)}}]);_0x1d3795[_0x4122b0(0x3bf)]=_0x4122b0(0x3fc),_0x1f6b4d[_0x4122b0(0x28b)](_0x1d3795);let _0x59af35=(0x0,_0x14359a['az'])([{'table':{'id':_0x4122b0(0x43b),'class':_0x4122b0(0x2f5)}}]);_0x1d3795[_0x4122b0(0x28b)](_0x59af35);let _0x2dba64=(0x0,_0x14359a['az'])([{'tbody':{'id':_0x4122b0(0x53f)}}]);_0x59af35[_0x4122b0(0x28b)](_0x2dba64);let _0x62285=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x2dba64[_0x4122b0(0x28b)](_0x62285);let _0x46e2d3=(0x0,_0x14359a['az'])([{'td':{'colspan':'3','style':'text-align:\x20center\x20!important;text-transform:\x20none;'}}]);_0x46e2d3[_0x4122b0(0x41f)]=_0x4122b0(0x45f),_0x62285[_0x4122b0(0x28b)](_0x46e2d3),(0x0,_0x14359a['hh'])('#webapp-data-table')[_0x4122b0(0x28b)](_0x3da233);}),(0x0,_0x14359a['hh'])('#overview')['addEventListener'](_0x1c424d(0x346),function(){const _0x22025f=_0x1c424d;this[_0x22025f(0x422)]('style',_0x456394),_0x3d6472([{'id':_0x22025f(0x2db),'attribute':_0x22025f(0x338)},{'id':'databaseInfo','attribute':_0x22025f(0x338)},{'id':_0x22025f(0x2e4),'attribute':_0x22025f(0x338)},{'id':_0x22025f(0x162),'attribute':_0x22025f(0x338)},{'id':_0x22025f(0x35b),'attribute':_0x22025f(0x338)}]),_0x43d39a([{'id':_0x22025f(0x2d1),'display':_0x22025f(0x35d)},{'id':_0x22025f(0x323),'display':'none'},{'id':_0x22025f(0x225),'display':'none'},{'id':_0x22025f(0x4d5),'display':_0x22025f(0x510)},{'id':_0x22025f(0x53d),'display':'none'},{'id':_0x22025f(0x352),'display':_0x22025f(0x510)}]);}),(0x0,_0x14359a['hh'])(_0x1c424d(0x3cf))[_0x1c424d(0x4c9)](_0x1c424d(0x346),function(){const _0x52f269=_0x1c424d;this[_0x52f269(0x422)](_0x52f269(0x338),_0x456394),_0x3d6472([{'id':_0x52f269(0x4bb),'attribute':_0x52f269(0x338)},{'id':_0x52f269(0x3ed),'attribute':'style'},{'id':'filesInfo','attribute':_0x52f269(0x338)},{'id':_0x52f269(0x162),'attribute':_0x52f269(0x338)},{'id':_0x52f269(0x35b),'attribute':_0x52f269(0x338)}]),_0x43d39a([{'id':_0x52f269(0x2d1),'display':'none'},{'id':_0x52f269(0x323),'display':_0x52f269(0x35d)},{'id':_0x52f269(0x225),'display':'none'},{'id':_0x52f269(0x4d5),'display':'none'},{'id':_0x52f269(0x53d),'display':_0x52f269(0x510)},{'id':_0x52f269(0x352),'display':'none'}]);}),(0x0,_0x14359a['hh'])('#databaseInfo')[_0x1c424d(0x4c9)](_0x1c424d(0x346),function(){const _0x206488=_0x1c424d;this[_0x206488(0x422)](_0x206488(0x338),_0x456394),_0x3d6472([{'id':'overview','attribute':_0x206488(0x338)},{'id':'basicInfo','attribute':_0x206488(0x338)},{'id':_0x206488(0x2e4),'attribute':_0x206488(0x338)},{'id':'mediaInfo','attribute':_0x206488(0x338)},{'id':_0x206488(0x35b),'attribute':_0x206488(0x338)}]),_0x43d39a([{'id':_0x206488(0x2d1),'display':'none'},{'id':_0x206488(0x323),'display':_0x206488(0x510)},{'id':_0x206488(0x225),'display':_0x206488(0x35d)},{'id':_0x206488(0x4d5),'display':_0x206488(0x510)},{'id':_0x206488(0x53d),'display':_0x206488(0x510)},{'id':_0x206488(0x352),'display':_0x206488(0x510)}]);}),(0x0,_0x14359a['hh'])(_0x1c424d(0x3b2))[_0x1c424d(0x4c9)]('click',function(){const _0x5ca04f=_0x1c424d;this[_0x5ca04f(0x422)](_0x5ca04f(0x338),_0x456394),_0x3d6472([{'id':'overview','attribute':_0x5ca04f(0x338)},{'id':_0x5ca04f(0x2db),'attribute':_0x5ca04f(0x338)},{'id':_0x5ca04f(0x3ed),'attribute':_0x5ca04f(0x338)},{'id':_0x5ca04f(0x162),'attribute':_0x5ca04f(0x338)},{'id':_0x5ca04f(0x35b),'attribute':_0x5ca04f(0x338)}]),_0x43d39a([{'id':_0x5ca04f(0x2d1),'display':_0x5ca04f(0x510)},{'id':_0x5ca04f(0x323),'display':_0x5ca04f(0x510)},{'id':_0x5ca04f(0x225),'display':_0x5ca04f(0x510)},{'id':'web-app-info-content-files','display':_0x5ca04f(0x35d)},{'id':_0x5ca04f(0x53d),'display':_0x5ca04f(0x510)},{'id':'web-app-info-content-social','display':_0x5ca04f(0x510)}]);}),(0x0,_0x14359a['hh'])(_0x1c424d(0x456))[_0x1c424d(0x4c9)](_0x1c424d(0x346),function(){const _0x2a5f73=_0x1c424d;this[_0x2a5f73(0x422)](_0x2a5f73(0x338),_0x456394),_0x3d6472([{'id':_0x2a5f73(0x4bb),'attribute':'style'},{'id':_0x2a5f73(0x2db),'attribute':_0x2a5f73(0x338)},{'id':_0x2a5f73(0x3ed),'attribute':'style'},{'id':_0x2a5f73(0x2e4),'attribute':_0x2a5f73(0x338)},{'id':_0x2a5f73(0x35b),'attribute':'style'}]),_0x43d39a([{'id':_0x2a5f73(0x2d1),'display':_0x2a5f73(0x510)},{'id':_0x2a5f73(0x323),'display':_0x2a5f73(0x510)},{'id':_0x2a5f73(0x225),'display':'none'},{'id':'web-app-info-content-files','display':'none'},{'id':'web-app-info-content-media','display':_0x2a5f73(0x35d)},{'id':'web-app-info-content-social','display':_0x2a5f73(0x510)}]);}),(0x0,_0x14359a['hh'])('#socialInfo')['addEventListener']('click',function(){const _0x12b018=_0x1c424d;this[_0x12b018(0x422)]('style',_0x456394),_0x3d6472([{'id':'overview','attribute':_0x12b018(0x338)},{'id':'basicInfo','attribute':_0x12b018(0x338)},{'id':_0x12b018(0x3ed),'attribute':'style'},{'id':'filesInfo','attribute':'style'},{'id':_0x12b018(0x162),'attribute':_0x12b018(0x338)}]),_0x43d39a([{'id':_0x12b018(0x2d1),'display':_0x12b018(0x510)},{'id':_0x12b018(0x323),'display':_0x12b018(0x510)},{'id':_0x12b018(0x225),'display':_0x12b018(0x510)},{'id':_0x12b018(0x4d5),'display':_0x12b018(0x510)},{'id':'web-app-info-content-media','display':_0x12b018(0x510)},{'id':_0x12b018(0x352),'display':_0x12b018(0x35d)}]);}),void 0x0!==(0x0,_0x14359a['hh'])(_0x1c424d(0x45a))&&(setInterval(function(){},0x3e8),(0x0,_0x1cb41c['w'])({'method':_0x1c424d(0x392),'url':_0x50d720['M']+'system/webapp/getWebAppTables','async':!0x0,'header':[{'name':_0x1c424d(0x1f1),'value':_0x1c424d(0x262)}]},function(_0x33c261){const _0x26da93=_0x1c424d;if(0x0!==_0x33c261[_0x26da93(0x2b8)]&&(0x0,_0x2359f8['cU'])(_0x33c261)){if(0x0!==JSON['parse'](_0x33c261)[_0x26da93(0x2b8)]){(0x0,_0x14359a['hh'])(_0x26da93(0x45a))[_0x26da93(0x41f)]='';let _0x35f462=0x1;JSON[_0x26da93(0x23f)](_0x33c261)[_0x26da93(0x45c)](function(_0x473410){const _0x13c0af=_0x26da93;let _0x1dee0f=_0x35f462++;const _0x104dbb=(0x0,_0x14359a['az'])([{'tr':{}}]),_0x24a6ed=(0x0,_0x14359a['az'])([{'td':{}}]);_0x24a6ed[_0x13c0af(0x41f)]=_0x1dee0f,_0x104dbb[_0x13c0af(0x28b)](_0x24a6ed);const _0x276e03=(0x0,_0x14359a['az'])([{'td':{}}]);_0x276e03['textContent']=_0x473410['TABLE_NAME']['replace'](_0x13c0af(0x51f),''),_0x104dbb[_0x13c0af(0x28b)](_0x276e03);const _0x5a6f9c=(0x0,_0x14359a['az'])([{'td':{}}]);_0x5a6f9c['textContent']=_0x473410[_0x13c0af(0x32a)][_0x13c0af(0x2f2)](0x0,0xa),_0x104dbb['appendChild'](_0x5a6f9c);const _0x36447a=(0x0,_0x14359a['az'])([{'td':{}}]);_0x36447a[_0x13c0af(0x41f)]=null!==_0x473410[_0x13c0af(0x3cd)]?_0x473410['UPDATE_TIME'][_0x13c0af(0x2f2)](0x0,0xb):_0x13c0af(0x4b9),_0x104dbb[_0x13c0af(0x28b)](_0x36447a);const _0x506594=(0x0,_0x14359a['az'])([{'td':{}}]);_0x506594['textContent']=_0x473410['TABLE_COLLATION'][_0x13c0af(0x2f2)](0x0,0x7),_0x104dbb[_0x13c0af(0x28b)](_0x506594);const _0x303459=(0x0,_0x14359a['az'])([{'td':{}}]);_0x303459['textContent']=_0x473410[_0x13c0af(0x339)],_0x104dbb['appendChild'](_0x303459),(0x0,_0x14359a['hh'])(_0x13c0af(0x45a))[_0x13c0af(0x28b)](_0x104dbb);});}else{(0x0,_0x14359a['hh'])(_0x26da93(0x45a))['textContent']='';const _0x560dfb=(0x0,_0x14359a['az'])([{'tr':{}}]),_0x467c1c=(0x0,_0x14359a['az'])([{'td':{'class':_0x26da93(0x1c3)}}]);_0x467c1c[_0x26da93(0x41f)]=_0x26da93(0x52f),_0x560dfb['appendChild'](_0x467c1c),(0x0,_0x14359a['hh'])(_0x26da93(0x45a))[_0x26da93(0x28b)](_0x560dfb);}}})),void 0x0!==(0x0,_0x14359a['hh'])('#web-app-social-links-view-data')&&(setInterval(function(){},0x3e8),(0x0,_0x1cb41c['w'])({'method':_0x1c424d(0x392),'url':_0x50d720['M']+_0x1c424d(0x3ba),'async':!0x0,'header':[{'name':_0x1c424d(0x1f1),'value':_0x1c424d(0x262)}]},function(_0xccff91){const _0x57d365=_0x1c424d;if(0x0!==_0xccff91[_0x57d365(0x2b8)]&&(0x0,_0x2359f8['cU'])(_0xccff91)){if(0x0!==JSON[_0x57d365(0x23f)](_0xccff91)['length']){(0x0,_0x14359a['hh'])(_0x57d365(0x504))[_0x57d365(0x41f)]='',(0x0,_0x14359a['hh'])(_0x57d365(0x45b))[_0x57d365(0x41f)]='',(0x0,_0x14359a['hh'])(_0x57d365(0x261))[_0x57d365(0x41f)]='';let _0x9fa3f7=0x1;JSON[_0x57d365(0x23f)](_0xccff91)['forEach'](function(_0x5bef3d){const _0x2f7160=_0x57d365;let _0x500a9a=_0x9fa3f7++;const _0x39059c=(0x0,_0x14359a['az'])([{'tr':{}}]),_0x177581=(0x0,_0x14359a['az'])([{'td':{}}]);_0x177581['textContent']=_0x5bef3d['name'][0x0][_0x2f7160(0x1d7)]()+_0x5bef3d[_0x2f7160(0x313)][_0x2f7160(0x36e)](0x1),_0x39059c['appendChild'](_0x177581);const _0x444892=(0x0,_0x14359a['az'])([{'td':{}}]);_0x444892['textContent']=':',_0x39059c['appendChild'](_0x444892);const _0x2ba720=(0x0,_0x14359a['az'])([{'td':{}}]);_0x2ba720[_0x2f7160(0x41f)]=_0x5bef3d[_0x2f7160(0x24e)],_0x39059c[_0x2f7160(0x28b)](_0x2ba720),(0x0,_0x14359a['hh'])(_0x2f7160(0x504))[_0x2f7160(0x28b)](_0x39059c);const _0x4c22e7=(0x0,_0x14359a['az'])([{'tr':{}}]),_0x7cca65=(0x0,_0x14359a['az'])([{'td':{}}]);_0x7cca65['textContent']=_0x500a9a,_0x4c22e7[_0x2f7160(0x28b)](_0x7cca65);const _0x4ed2b9=(0x0,_0x14359a['az'])([{'td':{}}]);_0x4ed2b9[_0x2f7160(0x41f)]=_0x5bef3d[_0x2f7160(0x313)][0x0][_0x2f7160(0x1d7)]()+_0x5bef3d[_0x2f7160(0x313)][_0x2f7160(0x36e)](0x1),_0x4c22e7[_0x2f7160(0x28b)](_0x4ed2b9);const _0x27280d=(0x0,_0x14359a['az'])([{'td':{}}]);_0x27280d[_0x2f7160(0x41f)]=_0x5bef3d[_0x2f7160(0x24e)],_0x4c22e7[_0x2f7160(0x28b)](_0x27280d);const _0x1f5065=(0x0,_0x14359a['az'])([{'td':{}}]);_0x4c22e7['appendChild'](_0x1f5065);let _0xd13b6c=(0x0,_0x14359a['az'])([{'a':{'href':'javascript:void(0);','class':'button\x20button-xs\x20button-success'}}]);_0xd13b6c[_0x2f7160(0x4c9)](_0x2f7160(0x346),function(){const _0x2f9dd1=_0x2f7160;(0x0,_0x14359a['hh'])('#webappSocialLinksEditMode')['textContent']=_0x2f9dd1(0x19d),(0x0,_0x14359a['hh'])(_0x2f9dd1(0x25c))[_0x2f9dd1(0x41f)]=_0x2f9dd1(0x229),(0x0,_0x14359a['hh'])(_0x2f9dd1(0x194))['value']=_0x5bef3d['id'],(0x0,_0x14359a['hh'])(_0x2f9dd1(0x215))[_0x2f9dd1(0x389)]=_0x5bef3d['name'],(0x0,_0x14359a['hh'])(_0x2f9dd1(0x563))[_0x2f9dd1(0x389)]=_0x5bef3d[_0x2f9dd1(0x24e)];}),_0x1f5065['appendChild'](_0xd13b6c);let _0x4113aa=(0x0,_0x14359a['az'])([{'i':{'class':_0x2f7160(0x220)}}]);_0xd13b6c[_0x2f7160(0x28b)](_0x4113aa);let _0x148f5f=(0x0,_0x14359a['az'])([{'a':{'href':_0x2f7160(0x1b4),'class':'button\x20button-xs\x20button-danger'}}]);_0x148f5f[_0x2f7160(0x4c9)](_0x2f7160(0x346),function(){const _0x209d67=_0x2f7160;(0x0,_0x1cb41c['w'])({'method':_0x209d67(0x392),'url':_0x50d720['M']+_0x209d67(0x21d),'async':!0x0,'header':[{'name':_0x209d67(0x1f1),'value':'application/json;charset=UTF-8'}],'data':{'security_code':0x1,'id':_0x5bef3d['id']}},function(_0x520f3b){const _0x2ec861=_0x209d67;(0x0,_0x54ee15['PV'])(_0x520f3b,(0x0,_0x14359a['hh'])(_0x2ec861(0x41e)));});}),_0x1f5065[_0x2f7160(0x28b)](_0x148f5f);let _0x1135ff=(0x0,_0x14359a['az'])([{'i':{'class':_0x2f7160(0x26a)}}]);_0x148f5f[_0x2f7160(0x28b)](_0x1135ff),(0x0,_0x14359a['hh'])(_0x2f7160(0x45b))[_0x2f7160(0x28b)](_0x4c22e7);let _0x3995e5=(0x0,_0x14359a['az'])([{'i':{'class':_0x2f7160(0x514)+_0x5bef3d[_0x2f7160(0x313)][_0x2f7160(0x559)]()+'-social'}}]),_0x46f825=(0x0,_0x14359a['az'])([{'a':{'href':_0x5bef3d[_0x2f7160(0x24e)],'target':_0x2f7160(0x4e8),'title':_0x5bef3d[_0x2f7160(0x313)][0x0][_0x2f7160(0x1d7)]()+_0x5bef3d['name'][_0x2f7160(0x36e)](0x1)}}]);_0x3995e5[_0x2f7160(0x28b)](_0x46f825);let _0x3eefc6=(0x0,_0x14359a['az'])([{'span':{'class':'fab\x20fa-'+_0x5bef3d['name'][_0x2f7160(0x559)]()+_0x2f7160(0x329)}}]);_0x46f825['appendChild'](_0x3eefc6);let _0xc55b54=(0x0,_0x14359a['az'])([{'span':{'class':_0x2f7160(0x172)}}]);_0xc55b54[_0x2f7160(0x41f)]=_0x5bef3d[_0x2f7160(0x313)][0x0][_0x2f7160(0x1d7)]()+_0x5bef3d[_0x2f7160(0x313)][_0x2f7160(0x36e)](0x1),_0x46f825[_0x2f7160(0x28b)](_0xc55b54),(0x0,_0x14359a['hh'])(_0x2f7160(0x261))[_0x2f7160(0x28b)](_0x3995e5);});}else{(0x0,_0x14359a['hh'])('#web-app-social-links-view-data')['textContent']='',(0x0,_0x14359a['hh'])(_0x57d365(0x45b))[_0x57d365(0x41f)]='',(0x0,_0x14359a['hh'])(_0x57d365(0x261))['textContent']='';const _0x38fbcb=(0x0,_0x14359a['az'])([{'tr':{}}]),_0x511417=(0x0,_0x14359a['az'])([{'td':{'class':'text-align-center','colspan':'3'}}]);_0x511417[_0x57d365(0x41f)]=_0x57d365(0x26f),_0x38fbcb[_0x57d365(0x28b)](_0x511417),(0x0,_0x14359a['hh'])(_0x57d365(0x504))[_0x57d365(0x28b)](_0x38fbcb);const _0x21b819=(0x0,_0x14359a['az'])([{'tr':{}}]),_0x271254=(0x0,_0x14359a['az'])([{'td':{'class':_0x57d365(0x1c3),'colspan':'4'}}]);_0x271254['textContent']=_0x57d365(0x26f),_0x21b819[_0x57d365(0x28b)](_0x271254),(0x0,_0x14359a['hh'])(_0x57d365(0x45b))['appendChild'](_0x21b819);}}}));else{(0x0,_0x14359a['hh'])(_0x1c424d(0x268))[_0x1c424d(0x41f)]='';const _0x31fc34=(0x0,_0x14359a['az'])([{'table':{'style':_0x1c424d(0x267)}}]),_0xb674d4=(0x0,_0x14359a['az'])([{'tr':{}}]);_0x31fc34[_0x1c424d(0x28b)](_0xb674d4);const _0x5d9082=(0x0,_0x14359a['az'])([{'td':{'class':_0x1c424d(0x1c3)}}]);_0x5d9082[_0x1c424d(0x41f)]=_0x1c424d(0x2a6),_0xb674d4[_0x1c424d(0x28b)](_0x5d9082),(0x0,_0x14359a['hh'])(_0x1c424d(0x268))['appendChild'](_0x31fc34);}}}),(0x0,_0x14359a['hh'])(_0x13fbf8(0x364))&&((0x0,_0x14359a['hh'])(_0x13fbf8(0x20f))[_0x13fbf8(0x3bf)]=_0x13fbf8(0x2ce),(0x0,_0x14359a['hh'])(_0x13fbf8(0x22f))[_0x13fbf8(0x3bf)]=_0x13fbf8(0x4b7)),(0x0,_0x14359a['hh'])(_0x13fbf8(0x20f))['addEventListener']('click',function(){const _0x33a0f0=_0x13fbf8;(0x0,_0x14359a['hh'])(_0x33a0f0(0x20f))[_0x33a0f0(0x41f)]=_0x33a0f0(0x470),(0x0,_0x1cb41c['w'])({'method':_0x33a0f0(0x392),'url':_0x50d720['M']+_0x33a0f0(0x368),'async':!0x0,'header':[{'name':_0x33a0f0(0x1f1),'value':_0x33a0f0(0x262)}],'data':{'security_code':0x1,'id':(0x0,_0x14359a['hh'])('#webappID')[_0x33a0f0(0x389)],'name':(0x0,_0x14359a['hh'])(_0x33a0f0(0x4b1))[_0x33a0f0(0x389)],'description':(0x0,_0x14359a['hh'])(_0x33a0f0(0x445))[_0x33a0f0(0x389)],'company':(0x0,_0x14359a['hh'])(_0x33a0f0(0x3a0))[_0x33a0f0(0x389)],'btnName':_0x33a0f0(0x229)}},function(_0x200918){const _0x423aa1=_0x33a0f0;(0x0,_0x14359a['hh'])(_0x423aa1(0x20f))[_0x423aa1(0x41f)]=_0x423aa1(0x249),(0x0,_0x54ee15['PV'])(_0x200918,(0x0,_0x14359a['hh'])('#message2'));});}),(0x0,_0x14359a['hh'])('#webapp-reset-btn')[_0x13fbf8(0x4c9)]('click',function(){const _0x1e1d6a=_0x13fbf8;_0x3ea9e6([{'id':'webappID','value':''},{'id':'webappName','value':''},{'id':_0x1e1d6a(0x4c8),'value':''},{'id':_0x1e1d6a(0x214),'value':''}]);}),(0x0,_0x14359a['hh'])('#webapp-edit-btn')[_0x13fbf8(0x4c9)](_0x13fbf8(0x346),function(){const _0x5103be=_0x13fbf8;(0x0,_0x14359a['hh'])(_0x5103be(0x4f2))[_0x5103be(0x3bf)]='',(0x0,_0x14359a['hh'])(_0x5103be(0x4b2))[_0x5103be(0x338)][_0x5103be(0x3a7)]='block',(0x0,_0x14359a['hh'])(_0x5103be(0x364))[_0x5103be(0x3bf)]=_0x5103be(0x19d),(0x0,_0x14359a['hh'])('#webapp-data-btn')[_0x5103be(0x3bf)]=_0x5103be(0x229),(0x0,_0x14359a['hh'])(_0x5103be(0x2b2))['value']=this[_0x5103be(0x369)](_0x5103be(0x1cc)),(0x0,_0x14359a['hh'])(_0x5103be(0x4b1))[_0x5103be(0x389)]=this[_0x5103be(0x369)](_0x5103be(0x2b9)),(0x0,_0x14359a['hh'])('#webappDescription')[_0x5103be(0x389)]=this[_0x5103be(0x369)]('data-description'),(0x0,_0x14359a['hh'])(_0x5103be(0x3a0))[_0x5103be(0x389)]=this[_0x5103be(0x369)](_0x5103be(0x3af)),(0x0,_0x14359a['hh'])(_0x5103be(0x362))[_0x5103be(0x389)]=this['getAttribute'](_0x5103be(0x4d4)),(0x0,_0x14359a['hh'])(_0x5103be(0x1a8))['value']=this['getAttribute']('data-domainLocate'),(0x0,_0x14359a['hh'])(_0x5103be(0x3c5))['value']=this[_0x5103be(0x369)](_0x5103be(0x2d5));}),(0x0,_0x14359a['hh'])(_0x13fbf8(0x3ae))[_0x13fbf8(0x4c9)](_0x13fbf8(0x346),function(){const _0x41b9b0=_0x13fbf8;(0x0,_0x14359a['hh'])(_0x41b9b0(0x1ff))['style']['display']=_0x41b9b0(0x35d),(0x0,_0x14359a['hh'])(_0x41b9b0(0x492))['innerHTML']=_0x41b9b0(0x439);}),(0x0,_0x14359a['hh'])('#webapp-logo-btn')['addEventListener']('click',function(){const _0x1276a8=_0x13fbf8;(0x0,_0x14359a['hh'])('#modal03')['style'][_0x1276a8(0x3a7)]=_0x1276a8(0x35d),(0x0,_0x14359a['hh'])(_0x1276a8(0x1df))[_0x1276a8(0x3bf)]='Change';}),(0x0,_0x14359a['hh'])(_0x13fbf8(0x471))[_0x13fbf8(0x4c9)](_0x13fbf8(0x1b3),function(){const _0xe53ec4=_0x13fbf8;(0x0,_0x33ddd5['vx'])(_0xe53ec4(0x280)),(0x0,_0x14359a['hh'])(_0xe53ec4(0x48d))[_0xe53ec4(0x1f2)](_0xe53ec4(0x338)),(0x0,_0x14359a['hh'])(_0xe53ec4(0x3ea))[_0xe53ec4(0x338)][_0xe53ec4(0x3a7)]='block',(0x0,_0x14359a['hh'])('#upload_status')[_0xe53ec4(0x3bf)]=(0x0,_0x14359a['hh'])(_0xe53ec4(0x471))[_0xe53ec4(0x298)][0x0]['name']+_0xe53ec4(0x31d),(0x0,_0x33ddd5['cT'])('databaseFile',_0xe53ec4(0x46c),_0x50d720['M']+_0xe53ec4(0x195));}),(0x0,_0x14359a['hh'])(_0x13fbf8(0x446))[_0x13fbf8(0x4c9)]('click',function(){const _0x37606e=_0x13fbf8;null===(0x0,_0x14359a['hh'])(_0x37606e(0x48d))&&(0x0,_0x33ddd5['vx'])(_0x37606e(0x280)),(0x0,_0x14359a['hh'])(_0x37606e(0x48d))['removeAttribute'](_0x37606e(0x338)),(0x0,_0x14359a['hh'])(_0x37606e(0x3ea))[_0x37606e(0x338)][_0x37606e(0x3a7)]='none',(0x0,_0x14359a['hh'])(_0x37606e(0x50b))[_0x37606e(0x338)][_0x37606e(0x3a7)]='none',(0x0,_0x14359a['hh'])(_0x37606e(0x1ca))['innerHTML']='Framework\x20database\x20restoring..',(0x0,_0x1cb41c['w'])({'method':'POST','url':_0x50d720['M']+_0x37606e(0x3ee),'async':!0x0,'header':[{'name':_0x37606e(0x1f1),'value':'application/json;charset=UTF-8'}],'data':{'security_code':0x1,'id':(0x0,_0x14359a['hh'])(_0x37606e(0x3e7))[_0x37606e(0x369)](_0x37606e(0x1cc)),'name':(0x0,_0x14359a['hh'])(_0x37606e(0x3e7))[_0x37606e(0x369)]('data-name'),'host':window['location'][_0x37606e(0x3bb)],'btnName':(0x0,_0x14359a['hh'])(_0x37606e(0x446))[_0x37606e(0x41f)]}},function(_0x36ba21){const _0x2dbc42=_0x37606e;(0x0,_0x14359a['hh'])(_0x2dbc42(0x1ca))['innerHTML']=_0x36ba21;});}),(0x0,_0x14359a['hh'])(_0x13fbf8(0x39f))['addEventListener'](_0x13fbf8(0x1b3),function(){const _0x4be86a=_0x13fbf8;void 0x0===(0x0,_0x14359a['hh'])(_0x4be86a(0x48d))&&(0x0,_0x33ddd5['vx'])(_0x4be86a(0x263));let _0x5b9b53=(0x0,_0x14359a['hh'])(_0x4be86a(0x343))[_0x4be86a(0x298)][0x0],_0x882aee=_0x5b9b53[_0x4be86a(0x333)]/0x400/0x400;(0x0,_0x14359a['hh'])(_0x4be86a(0x22e))[_0x4be86a(0x41f)]=_0x4be86a(0x359)+_0x5b9b53[_0x4be86a(0x313)]+'\x20('+_0x882aee[_0x4be86a(0x28f)](0x2)+'\x20Mb)',(0x0,_0x14359a['hh'])('#UploadStatusBoard')[_0x4be86a(0x1f2)](_0x4be86a(0x338)),(0x0,_0x14359a['hh'])('#upload_status')[_0x4be86a(0x3bf)]=_0x5b9b53['name']+'\x20uploading...',(0x0,_0x2c0dbc['EO'])(_0x4be86a(0x223),_0x4be86a(0x1e0)),(0x0,_0x33ddd5['cT'])('logoImage',_0x4be86a(0x223),_0x50d720['M']+_0x4be86a(0x285));}),(0x0,_0x14359a['hh'])('#webappSocialLinksEditPAD')&&((0x0,_0x14359a['hh'])('#webappSocialLinksEditMode')[_0x13fbf8(0x3bf)]='New',(0x0,_0x14359a['hh'])(_0x13fbf8(0x25c))[_0x13fbf8(0x3bf)]='Save',(0x0,_0x14359a['hh'])(_0x13fbf8(0x310))[_0x13fbf8(0x3bf)]='Reset'),(0x0,_0x14359a['hh'])('#webapp-socialLinks-btn')[_0x13fbf8(0x4c9)](_0x13fbf8(0x346),function(){const _0x2749eb=_0x13fbf8;(0x0,_0x14359a['hh'])(_0x2749eb(0x41e))[_0x2749eb(0x3bf)]='',(0x0,_0x14359a['hh'])(_0x2749eb(0x2d6))[_0x2749eb(0x338)][_0x2749eb(0x3a7)]='block',(0x0,_0x14359a['hh'])('#webappSocialLinksEditMode')[_0x2749eb(0x3bf)]='Add/Edit';}),(0x0,_0x14359a['hh'])(_0x13fbf8(0x310))[_0x13fbf8(0x4c9)](_0x13fbf8(0x346),function(){const _0x1cfebf=_0x13fbf8;(0x0,_0x14359a['hh'])(_0x1cfebf(0x194))['value']='',(0x0,_0x14359a['hh'])(_0x1cfebf(0x215))[_0x1cfebf(0x389)]='',(0x0,_0x14359a['hh'])(_0x1cfebf(0x563))[_0x1cfebf(0x389)]='';}),(0x0,_0x14359a['hh'])(_0x13fbf8(0x25c))[_0x13fbf8(0x4c9)](_0x13fbf8(0x346),function(){const _0x582d6e=_0x13fbf8;(0x0,_0x1cb41c['w'])({'method':_0x582d6e(0x392),'url':_0x50d720['M']+_0x582d6e(0x201),'async':!0x0,'header':[{'name':_0x582d6e(0x1f1),'value':_0x582d6e(0x262)}],'data':{'security_code':0x1,'id':(0x0,_0x14359a['hh'])(_0x582d6e(0x194))['value'],'name':(0x0,_0x14359a['hh'])('#social-website-name')[_0x582d6e(0x389)],'link':(0x0,_0x14359a['hh'])(_0x582d6e(0x563))[_0x582d6e(0x389)],'company':(0x0,_0x14359a['hh'])(_0x582d6e(0x3a0))[_0x582d6e(0x389)],'btnName':(0x0,_0x14359a['hh'])('#web-app-social-links-data-btn')[_0x582d6e(0x41f)]}},function(_0x50b756){const _0xa6962=_0x582d6e;(0x0,_0x14359a['hh'])('#web-app-social-links-data-btn')[_0xa6962(0x41f)]=(0x0,_0x14359a['hh'])(_0xa6962(0x25c))['textContent']+'d',setTimeout(function(){const _0x513511=_0xa6962;(0x0,_0x14359a['hh'])(_0x513511(0x25c))[_0x513511(0x41f)]=(0x0,_0x14359a['hh'])(_0x513511(0x25c))[_0x513511(0x41f)][_0x513511(0x36e)](0x0,-0x1);},0x7d0),(0x0,_0x54ee15['PV'])(_0x50b756,(0x0,_0x14359a['hh'])('#message3'));});})));}},_0x39a788=>{var _0xb601ff;_0xb601ff=0x236,_0x39a788(_0x39a788['s']=_0xb601ff);}]));function a5_0x2ead(){const _0x4dbf2e=['nextTick','os_version','data-status','remove','#page-edit-btn','removeAllListeners','#databasePassword','libraries/logos/favicon.ico','#databaseServer','libraries/logos/apple-icon-144x144.png','sweetAlert','singleton','box-notify','#page-parent-id','load','service\x20worker\x20not\x20registered','test','port2','unenroll','#messageZone','#code-send-button','Rows','longitude','table','#signup-button','#databaseBackupEditMode','#databaseID','Redirecting...','system/branches/manageBranch','No\x20menu\x20exists.','#message3','textContent','/docs/#closeonesc','/*#\x20sourceMappingURL=data:application/json;charset=utf-8;base64,','setAttribute','overflow:\x20scroll;height:\x20600px;','data','progress','replace','Tab','Databases\x20Information&ensp;::','assign','CONFIRM_KEY','The\x20style-loader\x20cannot\x20be\x20used\x20in\x20a\x20non-browser\x20environment','keys','undefined','ServiceWorker\x20[','_immediateFn','app_url','time','isArray','Couldn\x27t\x20find\x20a\x20style\x20target.\x20This\x20probably\x20means\x20that\x20the\x20value\x20for\x20the\x20\x27insertInto\x27\x20parameter\x20is\x20invalid.','msapplication-TileImage','messageZone','page-status','#client-post','#transferBranchStuff','Change','\x22\x20instead.','web-app-social-links','Files\x20Information&ensp;::','region','doc_root','system/webapp/getWebAppInfo','thumbnail-text','libraries/logos/apple-icon-57x57.png','#app-id','New','#branchID','#webappDescription','#webapp-database-restore','box-message\x20box-danger\x20box-shadow-light','children','focus','location',').\x0a\x20\x20\x20\x20\x20\x20If\x20you\x20want\x20more\x20than\x202\x20buttons,\x20you\x20need\x20to\x20use\x20an\x20object!','No\x20database\x20found','#page-url','createElement','busers-data-table','57x57','width:\x2010px;height:\x208px;','flag','#first-name','Collation','_state','#mediaInfo','web-app-social-links-icon','app_status','Company','#web-app-tables','#web-app-social-links-edit-data','forEach','open','Please\x20wait......','Data\x20loading...','text/css','isOpen','noreferrer',']\x20[','city','247930beGDQJ','icon','renamed','#client-currency-code','error','libraries/logos/apple-icon-114x114.png','getOwnPropertyDescriptor','databaseFile','-app-content','#moduleLocation','locals','Updating..','#databaseFile','polyfill','#databaseName','BUTTON_LOADING','swal-text','#branchStatus','#user-select-done','discover.png','title','warning','--right\x22></span>\x0a\x20\x20\x20\x20</div>\x0a\x20\x20','preventDefault','\x20*/','maestro','sourceRoot','button\x20button-xs\x20button-success','\x20argument\x20(\x27','#pgHeaderMainInfoItemsDetails','button\x20button-xs\x20button-danger','modules-data-table','data-icon','system/tracking/dbConnectionTest','#payment-appid-email','system/index/getMainItemTabs','send','ajax','jsonData','Accept','#UploadStatusBoard','Mishusoft\x20Platform\x20is\x20a\x20robust\x20multi-web\x20platform\x20developed\x20by\x20Mishusoft\x20Systems\x20Inc.\x20This\x20platform\x20is\x20capable\x20of\x20getting\x20your\x20work\x20done\x20quickly\x20and\x20accurately.','toString','country_name','__esModule','#webappDatabaseEditMode','setTimeout\x20has\x20not\x20been\x20defined','responseText','#database-reset-btn','keydown','f_name','BUTTON','display:none;','listeners','data-','#fromTable','mastercard','#agree','fun','ICON','Error\x20:\x20Enter\x20your\x20last\x20name\x20more\x20than\x204\x20letter.<br/>','_idleTimeoutId','Description','10SzCcdo','setImmediate$','#registrationForm','push','#client-plan-type','DANGER_BUTTON','url','sofort','https://api.ipdata.co/','\x20box-shadow-light','getNode','payment','#ip-info-plus-app-bottom','#webappName','#modal01','Add\x20new','96x96','#client-country','button','Reset','api/getContactMessagesLimited','Not\x20Updated','addListener','overview','table\x20table-bottom-border-only\x20table-condensed\x20table-striped','ICON_CUSTOM','data-title','page-icon','system/tracking/view/','official','#app-loader','quickAccess','#dbInfoPassword','#page-title','app_name','#cl_mbl_nmbr','webappDescription','addEventListener','emailEncrypt','data-location','--error','status','https://www.mishusoft.com/','upload_status','upload','databaseName','#dateOfBirth','.page','data-filesLocate','web-app-info-content-files','map','Error\x20:\x20Enter\x20your\x20first\x20name\x20(more\x20than\x204\x20characters).<br/>','#databaseBackup-data-btn','closeModal','method','#module-data-btn','padding:0;','bind','stringify','senderID','Cannot\x20convert\x20first\x20argument\x20to\x20object','page-parent-id','\x22this\x22\x20is\x20null\x20or\x20not\x20defined','password','swal-overlay','#password','swal-button','72x72','_blank','#ForgetPasswordForm','#client-ip','databaseStorage','#page-content','return\x20this','paymentPlanTypeEncrypt','webpackChunk','charAt','#server-db-backup-btn','#message2','#databaseBackup','box-message\x20box-success\x20box-shadow-light','#moduleID','Name','enroll','\x20MB\x20of\x20','paste','then','setRequestHeader','#table-view-datatable','fixUrls\x20requires\x20window.location','<span\x20class=\x22box-','system/tracking/deleteTableRow','@media\x20','swal-title','branchStatus','firstChild','#web-app-social-links-view-data','#databaseStorage','FLAG','body','createObjectURL','16x16','Error\x20:\x20Enter\x20password\x20more\x20than\x206\x20character.<br/>','#loaded_n_total','256jWqMPv','#page-add-btn','stylesheet','Error\x20:\x20A\x20character\x20has\x20been\x20used\x20more\x20than\x20twice\x20in\x20your\x20first\x20name.<br/>','none','#table-view-apps-licences','http://localhost/','nextSibling','li-social\x20','#page-data-btn','http://localhost/monitor/browser/','emit','sourceMap','code','sw.js','exports','system/modules/updateModule','/docs/#content','assets/css/','msu_','libraries/logos/apple-icon-76x76.png','system/tracking/manageServerDatabase','No\x20data\x20found','source','__dot\x22></span>\x0a\x20\x20\x20\x20</span>\x0a\x20\x20','cancel','CREATE\x20TIME','#gender','#modules-data-table','success','#public-social-links','Error\x20:\x20A\x20character\x20has\x20been\x20used\x20more\x20than\x20twice\x20in\x20your\x20password.<br/>','disabled',']\x20is\x20','#table-view-app-social-links','No\x20table\x20exists.','#LogInForm','notify','#client-visual-location','offsetHeight','branch-data-table','init','Engine','#regs','Oops!\x20We\x20can\x27t\x20send\x20request!','view-source:','\x20this?','checked','user/passwordRecoveryValidation','web-app-info-content-media','indexOf','web-app-social-links-view-data','total','#app-setup-box','#notify','errorIconMarkup','dblclick','#PopUpDialogBox','split','parentNode','submit','querySelector','folder','http_host_ip','#busers-data-table','#page-type','NAME','<div\x20class=\x22logInBox','_unrefActive','__line--long\x22></span>\x0a\x20\x20\x20\x20<span\x20class=\x22','--danger','attrs','libraries/logos/ms-icon-144x144.png','--confirm','system/modules/indexPaginationAJAX','#dbInfoDb','Media\x20Information&ensp;::','toLowerCase','system/tracking/getServerDatabases','text-align:\x20center;','text-align:\x20center\x20!important;text-transform:\x20none;','13338558rHFopZ','sofort.png','asn_domain','default','\x22></div>','144x144','#social-website-profile-link','join','created-date-time','/docs/#classname','prototype','#last-name','mediaInfo','favicon','CONTENT','\x22>\x0a\x0a\x20\x20\x20\x20<button\x0a\x20\x20\x20\x20\x20\x20class=\x22','#cl_email','#moduleStatus','user/registrationValidation','120x120','atob','isPlainObject','data-position','webapp','Error\x20:\x20Enter\x20username\x20at\x20least\x208\x20character.<br/>','branch','Favicon','system/pages/managePages','name-social','abbr','onAction','Invalid\x20value\x20for\x20parameter\x20\x27insertAt\x27.\x20Must\x20be\x20\x27top\x27\x20or\x20\x27bottom\x27.','height:700px','#branch-reset-btn','getState','Backup','deviceScreenWidth','_self','16398hAZDEm','browser','#system-default-menus','data-height','system/tracking/backupData/','apple-touch-icon','-social','#module-delete-btn','parentElement','_setImmediateFn','throwErr','shiftKey','#ip-info-plus-app-data-table','#page-seo','Cannot\x20set\x20both\x20\x27button\x27\x20and\x20\x27buttons\x27\x20options!','data-type','%\x20uploaded..','#username','system/tracking/showCreateTable','#pageEditMode','__line\x20','appIdEncrypt','Error\x20:\x20Enter\x20password\x20with\x20(_)\x20character.<br/>','#module-select','#web-app-social-links-id','system/webapp/databaseUpgrade','issue','api/getVisitorsAccessLogsLimited','#client-time-zone-current-time','https://www.mishusoft.com/payment/donate','notify-md-content','script','libraries/logos/manifest.json','Edit','Error\x20:\x20Please\x20enter\x20your\x20app\x20id\x20to\x20continue.<br/>','Error\x20:\x20Enter\x20your\x20last\x20name\x20(more\x20than\x204\x20characters).<br/>','buttonMarkup','box-danger','system/branches/usersPaginationAJAX','pathname','branchName','box-success','MODAL_TEXT','innerHeight','#webappDomainLocate','/*#\x20sourceURL=','branches','https://www.google.com/maps/@','c_status','command','fa\x20fa-eye','page-seo','Your\x20data!','clientHeight','promise','change','javascript:void(0);','app_id','#user-select-back','deprecated','system/branches/transferBranchStuff','page-type','system/tracking/getTableData/','expire','#databaseBackup-reset-btn','#page-position-id','{$layoutParams.root}','textMarkup','this','payment_type','forms','text-align-center','box-danger-symbol','createTextNode','Error\x20:\x20Enter\x20your\x20email\x20address\x20(valid\x20for\x20more\x20than\x2014\x20characters).<br/>','#branch-data-btn','src','libraries/logos/android-icon-192x192.png','#upload_status','icon_remote_dir','data-id','formData','setActionOptionsFor','random','concat','#table-view-block-list','flex-center','initTitle','iconMarkup','__loader','clearTimeout','toUpperCase','querySelectorAll','logDeprecation','bottom','modal-body','popup-login','\x20send\x20a\x20','moduleFile','#webappLogoEditMode','web-app-logo-preview-image','Invalid\x20number\x20of\x20\x27buttons\x27\x20in\x20array\x20(','deviceScreenHeight','number','#toTable','removeListener','race','function','Error\x20:\x20Your\x20password\x20matched.<br/>','Upload\x20aborted','#c_password','call','#cl_msg_snd_btn','interactive','cloneNode','/docs/#buttons','page-position-id','Content-type','removeAttribute','#table-view-app-licence-payment','licence_key','Error\x20:\x20Enter\x20your\x20password\x20(with\x20@_\x20character\x20and\x20more\x20than\x206\x20character).<br/>','swal-icon--custom','#mishusoft-app-content','databaseBackup','swal-content','touchstart','SweetAlert\x20warning:\x20\x22','image/png','preconnect','initText','#modal02','#client-time-zone-name','system/webapp/manageSocialLinks','\x20Please\x20use','postal','setTimeout','licence_type','#table-view-apps-status','resolve','#table-view-apps-list-installed','user/verifyUserAuth','</div>','getOpts','Possible\x20Unhandled\x20Promise\x20Rejection:','system/tracking/renameTable','#client-time-zone-is-dist','#webapp-data-btn','#moduleEditPAD','#table-view-apps','_value','#moduleEditMode','webappCompany','#social-website-name','lupdate','No\x20message\x20found.','padding:0;height:\x20420px;','\x0a\x20\x20<div\x20class=\x22','application/javascript','#popup-login','OVERLAY','system/webapp/deleteSocialLink','\x22\x20in\x20','#pageSEOEditMode','fa\x20fa-edit','https://www.mishusoft.com/monitor/browser/','injectElIntoModal','web-app-selected-logo','default_layout','web-app-info-content-database','--loading','--success','databaseID','Update','#pageID','socials-wrap','libraries/logos/favicon-16x16.png','LOGGED_IN','#web-app-logo-upload-text','#webapp-reset-btn','setImmediate','\x20KB','transform','Error\x20:\x20Enter\x20your\x20date\x20of\x20birth.<br/>','width:20px;height:20px;','#redirect','onmessage','cssText','#show-create-table','nodeName','GET','#databaseEditMode','removeChild','keyup','fa\x20fa-info','parse','No\x20notification\x20found.','#footer','data-url','Error\x20:\x20Please\x20enter\x20username\x20or\x20email\x20address\x20to\x20continue.<br/>','theme-color','text','defaultButtonList','receiverID','swal-footer','Updated','#flex-center','Error\x20:\x20Enter\x20your\x20username\x20(valid\x20for\x20at\x20least\x208\x20characters).<br/>','Data_length','http://localhost/payment/','link','result','#module-reset-btn','#page-icon','button\x20button-xs\x20button-primary','#ipd-address','off','We\x20don\x27t\x20support\x20this\x20protocol!!','#time','Promise','env','--cancel','nextElementSibling','branchLocation','#web-app-social-links-data-btn','klarna.png','\x20More\x20details:\x20','setDefaults','_onTimeout','#web-app-social-links-icon','application/json;charset=UTF-8','upload-info','onlyRename','<i\x20class=\x22fa\x20fa-times\x22></i>','css','width:100%;','#webapp-data-table','insertInto','fa\x20fa-trash','host','***************','#cl_msg_sbj','data-page','No\x20link\x20exists.',')\x20and\x20(','_idleTimeout','sources','#user-id','defineProperty','__ring\x22></div>\x0a\x20\x20\x20\x20<div\x20class=\x22','240016jvfsEe','#databaseUser','umask','CANCEL_KEY','callback','152x152','not\x20a\x20function','close','setActionValue','string','web-app-database-output','onFulfilled','country_code','<div\x20class=\x22float-right\x20text-right\x22\x20style=\x22margin-right:\x205px;\x22><input\x20type=\x22submit\x22','branchID','system/webapp/uploadLogoImage','_clearFn','/docs/#icon','system/contactmessage/view/','/docs/#closeonclickoutside','#set-new-password-button','appendChild','FOOTER','#client-time-zone-abbr','\x22\x0a\x20\x20\x20\x20tabIndex=\x22-1\x22>\x0a\x20\x20</div>','toFixed','ipinfo','https://api.ipdata.co/?api-key=2f9dde381f67efed325acfb1011a988036b28fc6cc02f07668ef7180','pages-data-table','#moduleUploadPad','add','modalMarkup','#start-pay','system/pages/deletePage','files','Enter','l_name','company','userAgent','#payment-welcome','log','postMessage','languages_name','getContentOpts','#database-data-btn','https://kit.fontawesome.com/b4c8f8449f.js','...','page-url','No\x20data\x20exists.','client_id','refs','system','lnextupdate','web-app-info-box','#page-select','<i\x20class=\x22fa\x20fa-check\x22></i>','lLimitBase','?api-key=test','\x20with\x20','object','#webappID','hasOwnProperty','databaseUser','page/','No\x20table\x20found','#branch-add-btn','length','data-name','60x60','Fetching\x20error.','firstElementChild','insertAfter','active','https://www.mishusoft.com/payment/','Message','description','connected','#email','getPrototypeOf','fa\x20fa-check','<i\x20class=\x22fas\x20fa-database\x22></i><span>Databases\x20Info</span>','Theme','#client-continent-name','#module-edit-btn','user','#table-view-client-update-info','languages','19410mswHCa','Save','insertBefore','modules','web-app-info-content-overview','clearInterval','run','data-seo','data-IPLocate','#modal04','subject','type','web-app-info-box-nav','actions','basicInfo','84PcVRaY','#branch-edit-btn','_deferreds','system/branches/deleteBranch','#message','dangerMode','#page-seo-data-btn','background:\x20#93c','filesInfo','visible','stopLoading','</p>','contact/receiveMessage','actual-url','1092EnhxFW','libraries/logos/apple-icon-152x152.png','#dbInfoServer','rel','#dbInfoUser','#table-view-datatable-body','constructor','#recovery','substr','<p\x20\x20class=\x22notify-md-content\x22\x20style=\x22text-align:\x20justify;\x22>','round','table\x20table-bottom-border-only\x20table-condensed','process.chdir\x20is\x20not\x20supported','The\x20application\x20is\x20ready\x20to\x20be\x20installed\x20on\x20your\x20device\x20at\x20this\x20time.','warn','append','box-runtime','\x22\x0a\x20\x20\x20\x20></button>\x0a\x0a\x20\x20\x20\x20<div\x20class=\x22','-symbol\x22>','continent_name','#page-produce-link','successIconMarkup','ref','Loading...','<i\x20class=\x22fas\x20fa-file-image\x22></i><span>Media\x20Info</span>','position:\x20fixed;bottom:\x200;width:\x20inherit;','swal-overlay--show-modal','#client-time-zone-offset','thumbnail-image','libraries/logos/apple-icon-120x120.png','Domain','system/pages/checkPageTitleURLInputAbility','width:34.5%;','loaded_n_total','removeEventListener','fontawesome\x20kit\x20load\x20failed.\x20','data-parent-id','prependOnceListener','#web-app-social-links-reset-btn','user_id','#client-currency-name','name','\x20successfully.','Cancel','#ffffff','TABLE_NAME','#moduleFile','classList','32x32','async','anonymous','\x20selected','\x20UTC)','payment_amount','<i\x20class=\x22fas\x20fa-user-friends\x22></i><span>Social\x20Info</span>','closeOnEsc','state','web-app-info-content-basic','process.binding\x20is\x20not\x20supported','Welcome\x20to\x20Mishusoft\x20Platform','page-title','URL\x20:\x20','#document-last-modified','\x20icon-social','CREATE_TIME','target','NOT\x20ISSUED','chdir','overlayMarkup','attributes','url(','#email-address','timer','size','native','MODAL','-app-css-file','#branch-select','style','ENGINE','swal-icon','\x20box-shadow-light\x22>','swal','titleMarkup','system/modules/uploadTARGZ','Mishusoft\x20Systems\x20Incorporate.','#table-view-tables','179839hfkacb','\x27)\x20is\x20invalid','#web-app-selected-logo','\x22></div>\x0a','styleSheet','click','header','box-success-symbol','Uploaded\x20',',19z','libraries/logos/apple-icon-72x72.png','current_time','warningIconMarkup','base','serviceWorker','all','--warning','web-app-info-content-social','<i\x20class=\x22fas\x20fa-eye\x22></i><span>Overview</span>','offset','modal','#branch-delete-btn','databaseServer','Expected\x20','File:\x20','data-description','socialInfo','Oop!\x20Something\x20went\x20wrong!','block','#branchName','convertToAbsoluteUrls','reject','revokeObjectURL','#webappFilesLocate','trim','#webappEditMode','media','images','\x20MB','system/webapp/manageSite','getAttribute','__line--tip\x22></span>\x0a\x0a\x20\x20\x20\x20<div\x20class=\x22','web-app-tables','box-notify-symbol','http_host_add','slice','version','top','thumbnail-md\x20box-shadow-light','\x22>\x0a\x0a\x20\x20</div>\x0a','includes','className','*****','ip_address','\x0a\x20\x20\x20\x20<span\x20class=\x22','__line','initModalContent','giropay.png','token','6buzDfQ','stringToNode','#login-button','system/pages/indexPaginationAJAX','loaded','mastercard.png','system/','display:block;','Error\x20:\x20A\x20character\x20has\x20been\x20used\x20more\x20than\x20twice\x20in\x20your\x20last\x20name.<br/>','row\x20modal-content\x20animate','buttons','#rename-table','\x20argument\x20(','value','info','#table-view-client-browser-info','insertAt','BUTTON_CONTAINER','\x22>\x0a\x20\x20\x20\x20\x20\x20<div></div>\x0a\x20\x20\x20\x20\x20\x20<div></div>\x0a\x20\x20\x20\x20\x20\x20<div></div>\x0a\x20\x20\x20\x20</div>\x0a\x0a\x20\x20</div>\x0a','Root\x20Directory','You\x20can\x20only\x20use\x20SweetAlert\x20AFTER\x20the\x20DOM\x20has\x20loaded!','currency','POST','#system-extra-menus','#page-status','symbol','navigator','2f9dde381f67efed325acfb1011a988036b28fc6cc02f07668ef7180','browserNameFull','.collapse','/guides/#upgrading-from-1x','created_date_time','UPDATE\x20TIME','apply','padding:\x2045px\x2025px;','#upload-logo-zone','#webappCompany','COLLATION','__body\x22>\x0a\x20\x20\x20\x20\x20\x20<span\x20class=\x22','Error\x20:\x20Enter\x20password\x20with\x20(@)\x20character.<br/>','v3.css','\x22\x20role=\x22dialog\x22\x20aria-modal=\x22true\x22></div>','__hide-corners\x22></div>\x0a\x20\x20','display','_id','#branch-data-table','CLASS_NAMES','progressbar','/docs/#button','<div\x20class=\x22box-message\x20box-','#webapp-database-btn','data-company','#messagePanel','fa\x20fa-times','#filesInfo','amex.png','last_updated_date_time','footerMarkup','time_zone_abbr','#system-contact-message-viewer','#branchLocation','head','system/webapp/getWebAppSocialLinks','hostname','#cl_fst_nm','system/log/view/','onreadystatechange','innerHTML','SHOW_MODAL','<i\x20class=\x22fas\x20fa-file-alt\x22></i><span>Files\x20Info</span>','lLimit','msapplication-TileColor','danger','#webappIPLocate','#client-currency-symbol','href','#page-reset-btn','deviceName','Promises\x20must\x20be\x20constructed\x20via\x20new','latitude','content','UPDATE_TIME','div','#basicInfo','clearImmediate','system/branches/indexPaginationAJAX','Error\x20:\x20Enter\x20valid\x20email\x20address.<br/>','height:','message','input','Error:\x20METHOD\x20and\x20URL\x20empty.','createDocumentFragment','_handled','AppleWebKit','#runtimeTableName','key','Error\x20:\x20Please\x20select\x20your\x20plan\x20type\x20to\x20continue.<br/>','https://','enumerable','Are\x20you\x20want\x20to\x20','time_zone','_unhandledRejectionFn','tracking','catch','getButtonListOpts','#message-done-btn','message_type','#webapp-edit-btn','#payment-categories','attribute','#progressbar','openModal','system/modules/deleteModule','databaseInfo','system/webapp/databaseRestore','#table-view-data-body','height:500px','array','7VLnDYi','#system-notification-viewer','readyState','192x192','#module-add-btn','#moduleName','3992404UFzUFp','ordinalSuffixOf','#client-plan','parts','Social\x20Information&ensp;::','#services-payment','#branchEditMode','swal-modal'];a5_0x2ead=function(){return _0x4dbf2e;};return a5_0x2ead();}
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "../node_modules/sweetalert/dist/sweetalert.min.js":
+/*!*********************************************************!*\
+  !*** ../node_modules/sweetalert/dist/sweetalert.min.js ***!
+  \*********************************************************/
+/***/ (function(module) {
+
+!function(t,e){ true?module.exports=e():0}(this,function(){return function(t){function e(o){if(n[o])return n[o].exports;var r=n[o]={i:o,l:!1,exports:{}};return t[o].call(r.exports,r,r.exports,e),r.l=!0,r.exports}var n={};return e.m=t,e.c=n,e.d=function(t,n,o){e.o(t,n)||Object.defineProperty(t,n,{configurable:!1,enumerable:!0,get:o})},e.n=function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(n,"a",n),n},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="",e(e.s=8)}([function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o="swal-button";e.CLASS_NAMES={MODAL:"swal-modal",OVERLAY:"swal-overlay",SHOW_MODAL:"swal-overlay--show-modal",MODAL_TITLE:"swal-title",MODAL_TEXT:"swal-text",ICON:"swal-icon",ICON_CUSTOM:"swal-icon--custom",CONTENT:"swal-content",FOOTER:"swal-footer",BUTTON_CONTAINER:"swal-button-container",BUTTON:o,CONFIRM_BUTTON:o+"--confirm",CANCEL_BUTTON:o+"--cancel",DANGER_BUTTON:o+"--danger",BUTTON_LOADING:o+"--loading",BUTTON_LOADER:o+"__loader"},e.default=e.CLASS_NAMES},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.getNode=function(t){var e="."+t;return document.querySelector(e)},e.stringToNode=function(t){var e=document.createElement("div");return e.innerHTML=t.trim(),e.firstChild},e.insertAfter=function(t,e){var n=e.nextSibling;e.parentNode.insertBefore(t,n)},e.removeNode=function(t){t.parentElement.removeChild(t)},e.throwErr=function(t){throw t=t.replace(/ +(?= )/g,""),"SweetAlert: "+(t=t.trim())},e.isPlainObject=function(t){if("[object Object]"!==Object.prototype.toString.call(t))return!1;var e=Object.getPrototypeOf(t);return null===e||e===Object.prototype},e.ordinalSuffixOf=function(t){var e=t%10,n=t%100;return 1===e&&11!==n?t+"st":2===e&&12!==n?t+"nd":3===e&&13!==n?t+"rd":t+"th"}},function(t,e,n){"use strict";function o(t){for(var n in t)e.hasOwnProperty(n)||(e[n]=t[n])}Object.defineProperty(e,"__esModule",{value:!0}),o(n(25));var r=n(26);e.overlayMarkup=r.default,o(n(27)),o(n(28)),o(n(29));var i=n(0),a=i.default.MODAL_TITLE,s=i.default.MODAL_TEXT,c=i.default.ICON,l=i.default.FOOTER;e.iconMarkup='\n  <div class="'+c+'"></div>',e.titleMarkup='\n  <div class="'+a+'"></div>\n',e.textMarkup='\n  <div class="'+s+'"></div>',e.footerMarkup='\n  <div class="'+l+'"></div>\n'},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=n(1);e.CONFIRM_KEY="confirm",e.CANCEL_KEY="cancel";var r={visible:!0,text:null,value:null,className:"",closeModal:!0},i=Object.assign({},r,{visible:!1,text:"Cancel",value:null}),a=Object.assign({},r,{text:"OK",value:!0});e.defaultButtonList={cancel:i,confirm:a};var s=function(t){switch(t){case e.CONFIRM_KEY:return a;case e.CANCEL_KEY:return i;default:var n=t.charAt(0).toUpperCase()+t.slice(1);return Object.assign({},r,{text:n,value:t})}},c=function(t,e){var n=s(t);return!0===e?Object.assign({},n,{visible:!0}):"string"==typeof e?Object.assign({},n,{visible:!0,text:e}):o.isPlainObject(e)?Object.assign({visible:!0},n,e):Object.assign({},n,{visible:!1})},l=function(t){for(var e={},n=0,o=Object.keys(t);n<o.length;n++){var r=o[n],a=t[r],s=c(r,a);e[r]=s}return e.cancel||(e.cancel=i),e},u=function(t){var n={};switch(t.length){case 1:n[e.CANCEL_KEY]=Object.assign({},i,{visible:!1});break;case 2:n[e.CANCEL_KEY]=c(e.CANCEL_KEY,t[0]),n[e.CONFIRM_KEY]=c(e.CONFIRM_KEY,t[1]);break;default:o.throwErr("Invalid number of 'buttons' in array ("+t.length+").\n      If you want more than 2 buttons, you need to use an object!")}return n};e.getButtonListOpts=function(t){var n=e.defaultButtonList;return"string"==typeof t?n[e.CONFIRM_KEY]=c(e.CONFIRM_KEY,t):Array.isArray(t)?n=u(t):o.isPlainObject(t)?n=l(t):!0===t?n=u([!0,!0]):!1===t?n=u([!1,!1]):void 0===t&&(n=e.defaultButtonList),n}},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),r=n(2),i=n(0),a=i.default.MODAL,s=i.default.OVERLAY,c=n(30),l=n(31),u=n(32),f=n(33);e.injectElIntoModal=function(t){var e=o.getNode(a),n=o.stringToNode(t);return e.appendChild(n),n};var d=function(t){t.className=a,t.textContent=""},p=function(t,e){d(t);var n=e.className;n&&t.classList.add(n)};e.initModalContent=function(t){var e=o.getNode(a);p(e,t),c.default(t.icon),l.initTitle(t.title),l.initText(t.text),f.default(t.content),u.default(t.buttons,t.dangerMode)};var m=function(){var t=o.getNode(s),e=o.stringToNode(r.modalMarkup);t.appendChild(e)};e.default=m},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=n(3),r={isOpen:!1,promise:null,actions:{},timer:null},i=Object.assign({},r);e.resetState=function(){i=Object.assign({},r)},e.setActionValue=function(t){if("string"==typeof t)return a(o.CONFIRM_KEY,t);for(var e in t)a(e,t[e])};var a=function(t,e){i.actions[t]||(i.actions[t]={}),Object.assign(i.actions[t],{value:e})};e.setActionOptionsFor=function(t,e){var n=(void 0===e?{}:e).closeModal,o=void 0===n||n;Object.assign(i.actions[t],{closeModal:o})},e.default=i},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),r=n(3),i=n(0),a=i.default.OVERLAY,s=i.default.SHOW_MODAL,c=i.default.BUTTON,l=i.default.BUTTON_LOADING,u=n(5);e.openModal=function(){o.getNode(a).classList.add(s),u.default.isOpen=!0};var f=function(){o.getNode(a).classList.remove(s),u.default.isOpen=!1};e.onAction=function(t){void 0===t&&(t=r.CANCEL_KEY);var e=u.default.actions[t],n=e.value;if(!1===e.closeModal){var i=c+"--"+t;o.getNode(i).classList.add(l)}else f();u.default.promise.resolve(n)},e.getState=function(){var t=Object.assign({},u.default);return delete t.promise,delete t.timer,t},e.stopLoading=function(){for(var t=document.querySelectorAll("."+c),e=0;e<t.length;e++){t[e].classList.remove(l)}}},function(t,e){var n;n=function(){return this}();try{n=n||Function("return this")()||(0,eval)("this")}catch(t){"object"==typeof window&&(n=window)}t.exports=n},function(t,e,n){(function(e){t.exports=e.sweetAlert=n(9)}).call(e,n(7))},function(t,e,n){(function(e){t.exports=e.swal=n(10)}).call(e,n(7))},function(t,e,n){"undefined"!=typeof window&&n(11),n(16);var o=n(23).default;t.exports=o},function(t,e,n){var o=n(12);"string"==typeof o&&(o=[[t.i,o,""]]);var r={insertAt:"top"};r.transform=void 0;n(14)(o,r);o.locals&&(t.exports=o.locals)},function(t,e,n){e=t.exports=n(13)(void 0),e.push([t.i,'.swal-icon--error{border-color:#f27474;-webkit-animation:animateErrorIcon .5s;animation:animateErrorIcon .5s}.swal-icon--error__x-mark{position:relative;display:block;-webkit-animation:animateXMark .5s;animation:animateXMark .5s}.swal-icon--error__line{position:absolute;height:5px;width:47px;background-color:#f27474;display:block;top:37px;border-radius:2px}.swal-icon--error__line--left{-webkit-transform:rotate(45deg);transform:rotate(45deg);left:17px}.swal-icon--error__line--right{-webkit-transform:rotate(-45deg);transform:rotate(-45deg);right:16px}@-webkit-keyframes animateErrorIcon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}to{-webkit-transform:rotateX(0deg);transform:rotateX(0deg);opacity:1}}@keyframes animateErrorIcon{0%{-webkit-transform:rotateX(100deg);transform:rotateX(100deg);opacity:0}to{-webkit-transform:rotateX(0deg);transform:rotateX(0deg);opacity:1}}@-webkit-keyframes animateXMark{0%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}50%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}80%{-webkit-transform:scale(1.15);transform:scale(1.15);margin-top:-6px}to{-webkit-transform:scale(1);transform:scale(1);margin-top:0;opacity:1}}@keyframes animateXMark{0%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}50%{-webkit-transform:scale(.4);transform:scale(.4);margin-top:26px;opacity:0}80%{-webkit-transform:scale(1.15);transform:scale(1.15);margin-top:-6px}to{-webkit-transform:scale(1);transform:scale(1);margin-top:0;opacity:1}}.swal-icon--warning{border-color:#f8bb86;-webkit-animation:pulseWarning .75s infinite alternate;animation:pulseWarning .75s infinite alternate}.swal-icon--warning__body{width:5px;height:47px;top:10px;border-radius:2px;margin-left:-2px}.swal-icon--warning__body,.swal-icon--warning__dot{position:absolute;left:50%;background-color:#f8bb86}.swal-icon--warning__dot{width:7px;height:7px;border-radius:50%;margin-left:-4px;bottom:-11px}@-webkit-keyframes pulseWarning{0%{border-color:#f8d486}to{border-color:#f8bb86}}@keyframes pulseWarning{0%{border-color:#f8d486}to{border-color:#f8bb86}}.swal-icon--success{border-color:#a5dc86}.swal-icon--success:after,.swal-icon--success:before{content:"";border-radius:50%;position:absolute;width:60px;height:120px;background:#fff;-webkit-transform:rotate(45deg);transform:rotate(45deg)}.swal-icon--success:before{border-radius:120px 0 0 120px;top:-7px;left:-33px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:60px 60px;transform-origin:60px 60px}.swal-icon--success:after{border-radius:0 120px 120px 0;top:-11px;left:30px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-transform-origin:0 60px;transform-origin:0 60px;-webkit-animation:rotatePlaceholder 4.25s ease-in;animation:rotatePlaceholder 4.25s ease-in}.swal-icon--success__ring{width:80px;height:80px;border:4px solid hsla(98,55%,69%,.2);border-radius:50%;box-sizing:content-box;position:absolute;left:-4px;top:-4px;z-index:2}.swal-icon--success__hide-corners{width:5px;height:90px;background-color:#fff;padding:1px;position:absolute;left:28px;top:8px;z-index:1;-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}.swal-icon--success__line{height:5px;background-color:#a5dc86;display:block;border-radius:2px;position:absolute;z-index:2}.swal-icon--success__line--tip{width:25px;left:14px;top:46px;-webkit-transform:rotate(45deg);transform:rotate(45deg);-webkit-animation:animateSuccessTip .75s;animation:animateSuccessTip .75s}.swal-icon--success__line--long{width:47px;right:8px;top:38px;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);-webkit-animation:animateSuccessLong .75s;animation:animateSuccessLong .75s}@-webkit-keyframes rotatePlaceholder{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}to{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@keyframes rotatePlaceholder{0%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}5%{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}12%{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}to{-webkit-transform:rotate(-405deg);transform:rotate(-405deg)}}@-webkit-keyframes animateSuccessTip{0%{width:0;left:1px;top:19px}54%{width:0;left:1px;top:19px}70%{width:50px;left:-8px;top:37px}84%{width:17px;left:21px;top:48px}to{width:25px;left:14px;top:45px}}@keyframes animateSuccessTip{0%{width:0;left:1px;top:19px}54%{width:0;left:1px;top:19px}70%{width:50px;left:-8px;top:37px}84%{width:17px;left:21px;top:48px}to{width:25px;left:14px;top:45px}}@-webkit-keyframes animateSuccessLong{0%{width:0;right:46px;top:54px}65%{width:0;right:46px;top:54px}84%{width:55px;right:0;top:35px}to{width:47px;right:8px;top:38px}}@keyframes animateSuccessLong{0%{width:0;right:46px;top:54px}65%{width:0;right:46px;top:54px}84%{width:55px;right:0;top:35px}to{width:47px;right:8px;top:38px}}.swal-icon--info{border-color:#c9dae1}.swal-icon--info:before{width:5px;height:29px;bottom:17px;border-radius:2px;margin-left:-2px}.swal-icon--info:after,.swal-icon--info:before{content:"";position:absolute;left:50%;background-color:#c9dae1}.swal-icon--info:after{width:7px;height:7px;border-radius:50%;margin-left:-3px;top:19px}.swal-icon{width:80px;height:80px;border-width:4px;border-style:solid;border-radius:50%;padding:0;position:relative;box-sizing:content-box;margin:20px auto}.swal-icon:first-child{margin-top:32px}.swal-icon--custom{width:auto;height:auto;max-width:100%;border:none;border-radius:0}.swal-icon img{max-width:100%;max-height:100%}.swal-title{color:rgba(0,0,0,.65);font-weight:600;text-transform:none;position:relative;display:block;padding:13px 16px;font-size:27px;line-height:normal;text-align:center;margin-bottom:0}.swal-title:first-child{margin-top:26px}.swal-title:not(:first-child){padding-bottom:0}.swal-title:not(:last-child){margin-bottom:13px}.swal-text{font-size:16px;position:relative;float:none;line-height:normal;vertical-align:top;text-align:left;display:inline-block;margin:0;padding:0 10px;font-weight:400;color:rgba(0,0,0,.64);max-width:calc(100% - 20px);overflow-wrap:break-word;box-sizing:border-box}.swal-text:first-child{margin-top:45px}.swal-text:last-child{margin-bottom:45px}.swal-footer{text-align:right;padding-top:13px;margin-top:13px;padding:13px 16px;border-radius:inherit;border-top-left-radius:0;border-top-right-radius:0}.swal-button-container{margin:5px;display:inline-block;position:relative}.swal-button{background-color:#7cd1f9;color:#fff;border:none;box-shadow:none;border-radius:5px;font-weight:600;font-size:14px;padding:10px 24px;margin:0;cursor:pointer}.swal-button:not([disabled]):hover{background-color:#78cbf2}.swal-button:active{background-color:#70bce0}.swal-button:focus{outline:none;box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(43,114,165,.29)}.swal-button[disabled]{opacity:.5;cursor:default}.swal-button::-moz-focus-inner{border:0}.swal-button--cancel{color:#555;background-color:#efefef}.swal-button--cancel:not([disabled]):hover{background-color:#e8e8e8}.swal-button--cancel:active{background-color:#d7d7d7}.swal-button--cancel:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(116,136,150,.29)}.swal-button--danger{background-color:#e64942}.swal-button--danger:not([disabled]):hover{background-color:#df4740}.swal-button--danger:active{background-color:#cf423b}.swal-button--danger:focus{box-shadow:0 0 0 1px #fff,0 0 0 3px rgba(165,43,43,.29)}.swal-content{padding:0 20px;margin-top:20px;font-size:medium}.swal-content:last-child{margin-bottom:20px}.swal-content__input,.swal-content__textarea{-webkit-appearance:none;background-color:#fff;border:none;font-size:14px;display:block;box-sizing:border-box;width:100%;border:1px solid rgba(0,0,0,.14);padding:10px 13px;border-radius:2px;transition:border-color .2s}.swal-content__input:focus,.swal-content__textarea:focus{outline:none;border-color:#6db8ff}.swal-content__textarea{resize:vertical}.swal-button--loading{color:transparent}.swal-button--loading~.swal-button__loader{opacity:1}.swal-button__loader{position:absolute;height:auto;width:43px;z-index:2;left:50%;top:50%;-webkit-transform:translateX(-50%) translateY(-50%);transform:translateX(-50%) translateY(-50%);text-align:center;pointer-events:none;opacity:0}.swal-button__loader div{display:inline-block;float:none;vertical-align:baseline;width:9px;height:9px;padding:0;border:none;margin:2px;opacity:.4;border-radius:7px;background-color:hsla(0,0%,100%,.9);transition:background .2s;-webkit-animation:swal-loading-anim 1s infinite;animation:swal-loading-anim 1s infinite}.swal-button__loader div:nth-child(3n+2){-webkit-animation-delay:.15s;animation-delay:.15s}.swal-button__loader div:nth-child(3n+3){-webkit-animation-delay:.3s;animation-delay:.3s}@-webkit-keyframes swal-loading-anim{0%{opacity:.4}20%{opacity:.4}50%{opacity:1}to{opacity:.4}}@keyframes swal-loading-anim{0%{opacity:.4}20%{opacity:.4}50%{opacity:1}to{opacity:.4}}.swal-overlay{position:fixed;top:0;bottom:0;left:0;right:0;text-align:center;font-size:0;overflow-y:auto;background-color:rgba(0,0,0,.4);z-index:10000;pointer-events:none;opacity:0;transition:opacity .3s}.swal-overlay:before{content:" ";display:inline-block;vertical-align:middle;height:100%}.swal-overlay--show-modal{opacity:1;pointer-events:auto}.swal-overlay--show-modal .swal-modal{opacity:1;pointer-events:auto;box-sizing:border-box;-webkit-animation:showSweetAlert .3s;animation:showSweetAlert .3s;will-change:transform}.swal-modal{width:478px;opacity:0;pointer-events:none;background-color:#fff;text-align:center;border-radius:5px;position:static;margin:20px auto;display:inline-block;vertical-align:middle;-webkit-transform:scale(1);transform:scale(1);-webkit-transform-origin:50% 50%;transform-origin:50% 50%;z-index:10001;transition:opacity .2s,-webkit-transform .3s;transition:transform .3s,opacity .2s;transition:transform .3s,opacity .2s,-webkit-transform .3s}@media (max-width:500px){.swal-modal{width:calc(100% - 20px)}}@-webkit-keyframes showSweetAlert{0%{-webkit-transform:scale(1);transform:scale(1)}1%{-webkit-transform:scale(.5);transform:scale(.5)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}to{-webkit-transform:scale(1);transform:scale(1)}}@keyframes showSweetAlert{0%{-webkit-transform:scale(1);transform:scale(1)}1%{-webkit-transform:scale(.5);transform:scale(.5)}45%{-webkit-transform:scale(1.05);transform:scale(1.05)}80%{-webkit-transform:scale(.95);transform:scale(.95)}to{-webkit-transform:scale(1);transform:scale(1)}}',""])},function(t,e){function n(t,e){var n=t[1]||"",r=t[3];if(!r)return n;if(e&&"function"==typeof btoa){var i=o(r);return[n].concat(r.sources.map(function(t){return"/*# sourceURL="+r.sourceRoot+t+" */"})).concat([i]).join("\n")}return[n].join("\n")}function o(t){return"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(t))))+" */"}t.exports=function(t){var e=[];return e.toString=function(){return this.map(function(e){var o=n(e,t);return e[2]?"@media "+e[2]+"{"+o+"}":o}).join("")},e.i=function(t,n){"string"==typeof t&&(t=[[null,t,""]]);for(var o={},r=0;r<this.length;r++){var i=this[r][0];"number"==typeof i&&(o[i]=!0)}for(r=0;r<t.length;r++){var a=t[r];"number"==typeof a[0]&&o[a[0]]||(n&&!a[2]?a[2]=n:n&&(a[2]="("+a[2]+") and ("+n+")"),e.push(a))}},e}},function(t,e,n){function o(t,e){for(var n=0;n<t.length;n++){var o=t[n],r=m[o.id];if(r){r.refs++;for(var i=0;i<r.parts.length;i++)r.parts[i](o.parts[i]);for(;i<o.parts.length;i++)r.parts.push(u(o.parts[i],e))}else{for(var a=[],i=0;i<o.parts.length;i++)a.push(u(o.parts[i],e));m[o.id]={id:o.id,refs:1,parts:a}}}}function r(t,e){for(var n=[],o={},r=0;r<t.length;r++){var i=t[r],a=e.base?i[0]+e.base:i[0],s=i[1],c=i[2],l=i[3],u={css:s,media:c,sourceMap:l};o[a]?o[a].parts.push(u):n.push(o[a]={id:a,parts:[u]})}return n}function i(t,e){var n=v(t.insertInto);if(!n)throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");var o=w[w.length-1];if("top"===t.insertAt)o?o.nextSibling?n.insertBefore(e,o.nextSibling):n.appendChild(e):n.insertBefore(e,n.firstChild),w.push(e);else{if("bottom"!==t.insertAt)throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");n.appendChild(e)}}function a(t){if(null===t.parentNode)return!1;t.parentNode.removeChild(t);var e=w.indexOf(t);e>=0&&w.splice(e,1)}function s(t){var e=document.createElement("style");return t.attrs.type="text/css",l(e,t.attrs),i(t,e),e}function c(t){var e=document.createElement("link");return t.attrs.type="text/css",t.attrs.rel="stylesheet",l(e,t.attrs),i(t,e),e}function l(t,e){Object.keys(e).forEach(function(n){t.setAttribute(n,e[n])})}function u(t,e){var n,o,r,i;if(e.transform&&t.css){if(!(i=e.transform(t.css)))return function(){};t.css=i}if(e.singleton){var l=h++;n=g||(g=s(e)),o=f.bind(null,n,l,!1),r=f.bind(null,n,l,!0)}else t.sourceMap&&"function"==typeof URL&&"function"==typeof URL.createObjectURL&&"function"==typeof URL.revokeObjectURL&&"function"==typeof Blob&&"function"==typeof btoa?(n=c(e),o=p.bind(null,n,e),r=function(){a(n),n.href&&URL.revokeObjectURL(n.href)}):(n=s(e),o=d.bind(null,n),r=function(){a(n)});return o(t),function(e){if(e){if(e.css===t.css&&e.media===t.media&&e.sourceMap===t.sourceMap)return;o(t=e)}else r()}}function f(t,e,n,o){var r=n?"":o.css;if(t.styleSheet)t.styleSheet.cssText=x(e,r);else{var i=document.createTextNode(r),a=t.childNodes;a[e]&&t.removeChild(a[e]),a.length?t.insertBefore(i,a[e]):t.appendChild(i)}}function d(t,e){var n=e.css,o=e.media;if(o&&t.setAttribute("media",o),t.styleSheet)t.styleSheet.cssText=n;else{for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(n))}}function p(t,e,n){var o=n.css,r=n.sourceMap,i=void 0===e.convertToAbsoluteUrls&&r;(e.convertToAbsoluteUrls||i)&&(o=y(o)),r&&(o+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(r))))+" */");var a=new Blob([o],{type:"text/css"}),s=t.href;t.href=URL.createObjectURL(a),s&&URL.revokeObjectURL(s)}var m={},b=function(t){var e;return function(){return void 0===e&&(e=t.apply(this,arguments)),e}}(function(){return window&&document&&document.all&&!window.atob}),v=function(t){var e={};return function(n){return void 0===e[n]&&(e[n]=t.call(this,n)),e[n]}}(function(t){return document.querySelector(t)}),g=null,h=0,w=[],y=n(15);t.exports=function(t,e){if("undefined"!=typeof DEBUG&&DEBUG&&"object"!=typeof document)throw new Error("The style-loader cannot be used in a non-browser environment");e=e||{},e.attrs="object"==typeof e.attrs?e.attrs:{},e.singleton||(e.singleton=b()),e.insertInto||(e.insertInto="head"),e.insertAt||(e.insertAt="bottom");var n=r(t,e);return o(n,e),function(t){for(var i=[],a=0;a<n.length;a++){var s=n[a],c=m[s.id];c.refs--,i.push(c)}if(t){o(r(t,e),e)}for(var a=0;a<i.length;a++){var c=i[a];if(0===c.refs){for(var l=0;l<c.parts.length;l++)c.parts[l]();delete m[c.id]}}}};var x=function(){var t=[];return function(e,n){return t[e]=n,t.filter(Boolean).join("\n")}}()},function(t,e){t.exports=function(t){var e="undefined"!=typeof window&&window.location;if(!e)throw new Error("fixUrls requires window.location");if(!t||"string"!=typeof t)return t;var n=e.protocol+"//"+e.host,o=n+e.pathname.replace(/\/[^\/]*$/,"/");return t.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi,function(t,e){var r=e.trim().replace(/^"(.*)"$/,function(t,e){return e}).replace(/^'(.*)'$/,function(t,e){return e});if(/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/)/i.test(r))return t;var i;return i=0===r.indexOf("//")?r:0===r.indexOf("/")?n+r:o+r.replace(/^\.\//,""),"url("+JSON.stringify(i)+")"})}},function(t,e,n){var o=n(17);"undefined"==typeof window||window.Promise||(window.Promise=o),n(21),String.prototype.includes||(String.prototype.includes=function(t,e){"use strict";return"number"!=typeof e&&(e=0),!(e+t.length>this.length)&&-1!==this.indexOf(t,e)}),Array.prototype.includes||Object.defineProperty(Array.prototype,"includes",{value:function(t,e){if(null==this)throw new TypeError('"this" is null or not defined');var n=Object(this),o=n.length>>>0;if(0===o)return!1;for(var r=0|e,i=Math.max(r>=0?r:o-Math.abs(r),0);i<o;){if(function(t,e){return t===e||"number"==typeof t&&"number"==typeof e&&isNaN(t)&&isNaN(e)}(n[i],t))return!0;i++}return!1}}),"undefined"!=typeof window&&function(t){t.forEach(function(t){t.hasOwnProperty("remove")||Object.defineProperty(t,"remove",{configurable:!0,enumerable:!0,writable:!0,value:function(){this.parentNode.removeChild(this)}})})}([Element.prototype,CharacterData.prototype,DocumentType.prototype])},function(t,e,n){(function(e){!function(n){function o(){}function r(t,e){return function(){t.apply(e,arguments)}}function i(t){if("object"!=typeof this)throw new TypeError("Promises must be constructed via new");if("function"!=typeof t)throw new TypeError("not a function");this._state=0,this._handled=!1,this._value=void 0,this._deferreds=[],f(t,this)}function a(t,e){for(;3===t._state;)t=t._value;if(0===t._state)return void t._deferreds.push(e);t._handled=!0,i._immediateFn(function(){var n=1===t._state?e.onFulfilled:e.onRejected;if(null===n)return void(1===t._state?s:c)(e.promise,t._value);var o;try{o=n(t._value)}catch(t){return void c(e.promise,t)}s(e.promise,o)})}function s(t,e){try{if(e===t)throw new TypeError("A promise cannot be resolved with itself.");if(e&&("object"==typeof e||"function"==typeof e)){var n=e.then;if(e instanceof i)return t._state=3,t._value=e,void l(t);if("function"==typeof n)return void f(r(n,e),t)}t._state=1,t._value=e,l(t)}catch(e){c(t,e)}}function c(t,e){t._state=2,t._value=e,l(t)}function l(t){2===t._state&&0===t._deferreds.length&&i._immediateFn(function(){t._handled||i._unhandledRejectionFn(t._value)});for(var e=0,n=t._deferreds.length;e<n;e++)a(t,t._deferreds[e]);t._deferreds=null}function u(t,e,n){this.onFulfilled="function"==typeof t?t:null,this.onRejected="function"==typeof e?e:null,this.promise=n}function f(t,e){var n=!1;try{t(function(t){n||(n=!0,s(e,t))},function(t){n||(n=!0,c(e,t))})}catch(t){if(n)return;n=!0,c(e,t)}}var d=setTimeout;i.prototype.catch=function(t){return this.then(null,t)},i.prototype.then=function(t,e){var n=new this.constructor(o);return a(this,new u(t,e,n)),n},i.all=function(t){var e=Array.prototype.slice.call(t);return new i(function(t,n){function o(i,a){try{if(a&&("object"==typeof a||"function"==typeof a)){var s=a.then;if("function"==typeof s)return void s.call(a,function(t){o(i,t)},n)}e[i]=a,0==--r&&t(e)}catch(t){n(t)}}if(0===e.length)return t([]);for(var r=e.length,i=0;i<e.length;i++)o(i,e[i])})},i.resolve=function(t){return t&&"object"==typeof t&&t.constructor===i?t:new i(function(e){e(t)})},i.reject=function(t){return new i(function(e,n){n(t)})},i.race=function(t){return new i(function(e,n){for(var o=0,r=t.length;o<r;o++)t[o].then(e,n)})},i._immediateFn="function"==typeof e&&function(t){e(t)}||function(t){d(t,0)},i._unhandledRejectionFn=function(t){"undefined"!=typeof console&&console&&console.warn("Possible Unhandled Promise Rejection:",t)},i._setImmediateFn=function(t){i._immediateFn=t},i._setUnhandledRejectionFn=function(t){i._unhandledRejectionFn=t},void 0!==t&&t.exports?t.exports=i:n.Promise||(n.Promise=i)}(this)}).call(e,n(18).setImmediate)},function(t,e,n){function o(t,e){this._id=t,this._clearFn=e}var r=Function.prototype.apply;e.setTimeout=function(){return new o(r.call(setTimeout,window,arguments),clearTimeout)},e.setInterval=function(){return new o(r.call(setInterval,window,arguments),clearInterval)},e.clearTimeout=e.clearInterval=function(t){t&&t.close()},o.prototype.unref=o.prototype.ref=function(){},o.prototype.close=function(){this._clearFn.call(window,this._id)},e.enroll=function(t,e){clearTimeout(t._idleTimeoutId),t._idleTimeout=e},e.unenroll=function(t){clearTimeout(t._idleTimeoutId),t._idleTimeout=-1},e._unrefActive=e.active=function(t){clearTimeout(t._idleTimeoutId);var e=t._idleTimeout;e>=0&&(t._idleTimeoutId=setTimeout(function(){t._onTimeout&&t._onTimeout()},e))},n(19),e.setImmediate=setImmediate,e.clearImmediate=clearImmediate},function(t,e,n){(function(t,e){!function(t,n){"use strict";function o(t){"function"!=typeof t&&(t=new Function(""+t));for(var e=new Array(arguments.length-1),n=0;n<e.length;n++)e[n]=arguments[n+1];var o={callback:t,args:e};return l[c]=o,s(c),c++}function r(t){delete l[t]}function i(t){var e=t.callback,o=t.args;switch(o.length){case 0:e();break;case 1:e(o[0]);break;case 2:e(o[0],o[1]);break;case 3:e(o[0],o[1],o[2]);break;default:e.apply(n,o)}}function a(t){if(u)setTimeout(a,0,t);else{var e=l[t];if(e){u=!0;try{i(e)}finally{r(t),u=!1}}}}if(!t.setImmediate){var s,c=1,l={},u=!1,f=t.document,d=Object.getPrototypeOf&&Object.getPrototypeOf(t);d=d&&d.setTimeout?d:t,"[object process]"==={}.toString.call(t.process)?function(){s=function(t){e.nextTick(function(){a(t)})}}():function(){if(t.postMessage&&!t.importScripts){var e=!0,n=t.onmessage;return t.onmessage=function(){e=!1},t.postMessage("","*"),t.onmessage=n,e}}()?function(){var e="setImmediate$"+Math.random()+"$",n=function(n){n.source===t&&"string"==typeof n.data&&0===n.data.indexOf(e)&&a(+n.data.slice(e.length))};t.addEventListener?t.addEventListener("message",n,!1):t.attachEvent("onmessage",n),s=function(n){t.postMessage(e+n,"*")}}():t.MessageChannel?function(){var t=new MessageChannel;t.port1.onmessage=function(t){a(t.data)},s=function(e){t.port2.postMessage(e)}}():f&&"onreadystatechange"in f.createElement("script")?function(){var t=f.documentElement;s=function(e){var n=f.createElement("script");n.onreadystatechange=function(){a(e),n.onreadystatechange=null,t.removeChild(n),n=null},t.appendChild(n)}}():function(){s=function(t){setTimeout(a,0,t)}}(),d.setImmediate=o,d.clearImmediate=r}}("undefined"==typeof self?void 0===t?this:t:self)}).call(e,n(7),n(20))},function(t,e){function n(){throw new Error("setTimeout has not been defined")}function o(){throw new Error("clearTimeout has not been defined")}function r(t){if(u===setTimeout)return setTimeout(t,0);if((u===n||!u)&&setTimeout)return u=setTimeout,setTimeout(t,0);try{return u(t,0)}catch(e){try{return u.call(null,t,0)}catch(e){return u.call(this,t,0)}}}function i(t){if(f===clearTimeout)return clearTimeout(t);if((f===o||!f)&&clearTimeout)return f=clearTimeout,clearTimeout(t);try{return f(t)}catch(e){try{return f.call(null,t)}catch(e){return f.call(this,t)}}}function a(){b&&p&&(b=!1,p.length?m=p.concat(m):v=-1,m.length&&s())}function s(){if(!b){var t=r(a);b=!0;for(var e=m.length;e;){for(p=m,m=[];++v<e;)p&&p[v].run();v=-1,e=m.length}p=null,b=!1,i(t)}}function c(t,e){this.fun=t,this.array=e}function l(){}var u,f,d=t.exports={};!function(){try{u="function"==typeof setTimeout?setTimeout:n}catch(t){u=n}try{f="function"==typeof clearTimeout?clearTimeout:o}catch(t){f=o}}();var p,m=[],b=!1,v=-1;d.nextTick=function(t){var e=new Array(arguments.length-1);if(arguments.length>1)for(var n=1;n<arguments.length;n++)e[n-1]=arguments[n];m.push(new c(t,e)),1!==m.length||b||r(s)},c.prototype.run=function(){this.fun.apply(null,this.array)},d.title="browser",d.browser=!0,d.env={},d.argv=[],d.version="",d.versions={},d.on=l,d.addListener=l,d.once=l,d.off=l,d.removeListener=l,d.removeAllListeners=l,d.emit=l,d.prependListener=l,d.prependOnceListener=l,d.listeners=function(t){return[]},d.binding=function(t){throw new Error("process.binding is not supported")},d.cwd=function(){return"/"},d.chdir=function(t){throw new Error("process.chdir is not supported")},d.umask=function(){return 0}},function(t,e,n){"use strict";n(22).polyfill()},function(t,e,n){"use strict";function o(t,e){if(void 0===t||null===t)throw new TypeError("Cannot convert first argument to object");for(var n=Object(t),o=1;o<arguments.length;o++){var r=arguments[o];if(void 0!==r&&null!==r)for(var i=Object.keys(Object(r)),a=0,s=i.length;a<s;a++){var c=i[a],l=Object.getOwnPropertyDescriptor(r,c);void 0!==l&&l.enumerable&&(n[c]=r[c])}}return n}function r(){Object.assign||Object.defineProperty(Object,"assign",{enumerable:!1,configurable:!0,writable:!0,value:o})}t.exports={assign:o,polyfill:r}},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=n(24),r=n(6),i=n(5),a=n(36),s=function(){for(var t=[],e=0;e<arguments.length;e++)t[e]=arguments[e];if("undefined"!=typeof window){var n=a.getOpts.apply(void 0,t);return new Promise(function(t,e){i.default.promise={resolve:t,reject:e},o.default(n),setTimeout(function(){r.openModal()})})}};s.close=r.onAction,s.getState=r.getState,s.setActionValue=i.setActionValue,s.stopLoading=r.stopLoading,s.setDefaults=a.setDefaults,e.default=s},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),r=n(0),i=r.default.MODAL,a=n(4),s=n(34),c=n(35),l=n(1);e.init=function(t){o.getNode(i)||(document.body||l.throwErr("You can only use SweetAlert AFTER the DOM has loaded!"),s.default(),a.default()),a.initModalContent(t),c.default(t)},e.default=e.init},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=n(0),r=o.default.MODAL;e.modalMarkup='\n  <div class="'+r+'" role="dialog" aria-modal="true"></div>',e.default=e.modalMarkup},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=n(0),r=o.default.OVERLAY,i='<div \n    class="'+r+'"\n    tabIndex="-1">\n  </div>';e.default=i},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=n(0),r=o.default.ICON;e.errorIconMarkup=function(){var t=r+"--error",e=t+"__line";return'\n    <div class="'+t+'__x-mark">\n      <span class="'+e+" "+e+'--left"></span>\n      <span class="'+e+" "+e+'--right"></span>\n    </div>\n  '},e.warningIconMarkup=function(){var t=r+"--warning";return'\n    <span class="'+t+'__body">\n      <span class="'+t+'__dot"></span>\n    </span>\n  '},e.successIconMarkup=function(){var t=r+"--success";return'\n    <span class="'+t+"__line "+t+'__line--long"></span>\n    <span class="'+t+"__line "+t+'__line--tip"></span>\n\n    <div class="'+t+'__ring"></div>\n    <div class="'+t+'__hide-corners"></div>\n  '}},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=n(0),r=o.default.CONTENT;e.contentMarkup='\n  <div class="'+r+'">\n\n  </div>\n'},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=n(0),r=o.default.BUTTON_CONTAINER,i=o.default.BUTTON,a=o.default.BUTTON_LOADER;e.buttonMarkup='\n  <div class="'+r+'">\n\n    <button\n      class="'+i+'"\n    ></button>\n\n    <div class="'+a+'">\n      <div></div>\n      <div></div>\n      <div></div>\n    </div>\n\n  </div>\n'},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=n(4),r=n(2),i=n(0),a=i.default.ICON,s=i.default.ICON_CUSTOM,c=["error","warning","success","info"],l={error:r.errorIconMarkup(),warning:r.warningIconMarkup(),success:r.successIconMarkup()},u=function(t,e){var n=a+"--"+t;e.classList.add(n);var o=l[t];o&&(e.innerHTML=o)},f=function(t,e){e.classList.add(s);var n=document.createElement("img");n.src=t,e.appendChild(n)},d=function(t){if(t){var e=o.injectElIntoModal(r.iconMarkup);c.includes(t)?u(t,e):f(t,e)}};e.default=d},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=n(2),r=n(4),i=function(t){navigator.userAgent.includes("AppleWebKit")&&(t.style.display="none",t.offsetHeight,t.style.display="")};e.initTitle=function(t){if(t){var e=r.injectElIntoModal(o.titleMarkup);e.textContent=t,i(e)}},e.initText=function(t){if(t){var e=document.createDocumentFragment();t.split("\n").forEach(function(t,n,o){e.appendChild(document.createTextNode(t)),n<o.length-1&&e.appendChild(document.createElement("br"))});var n=r.injectElIntoModal(o.textMarkup);n.appendChild(e),i(n)}}},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),r=n(4),i=n(0),a=i.default.BUTTON,s=i.default.DANGER_BUTTON,c=n(3),l=n(2),u=n(6),f=n(5),d=function(t,e,n){var r=e.text,i=e.value,d=e.className,p=e.closeModal,m=o.stringToNode(l.buttonMarkup),b=m.querySelector("."+a),v=a+"--"+t;if(b.classList.add(v),d){(Array.isArray(d)?d:d.split(" ")).filter(function(t){return t.length>0}).forEach(function(t){b.classList.add(t)})}n&&t===c.CONFIRM_KEY&&b.classList.add(s),b.textContent=r;var g={};return g[t]=i,f.setActionValue(g),f.setActionOptionsFor(t,{closeModal:p}),b.addEventListener("click",function(){return u.onAction(t)}),m},p=function(t,e){var n=r.injectElIntoModal(l.footerMarkup);for(var o in t){var i=t[o],a=d(o,i,e);i.visible&&n.appendChild(a)}0===n.children.length&&n.remove()};e.default=p},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=n(3),r=n(4),i=n(2),a=n(5),s=n(6),c=n(0),l=c.default.CONTENT,u=function(t){t.addEventListener("input",function(t){var e=t.target,n=e.value;a.setActionValue(n)}),t.addEventListener("keyup",function(t){if("Enter"===t.key)return s.onAction(o.CONFIRM_KEY)}),setTimeout(function(){t.focus(),a.setActionValue("")},0)},f=function(t,e,n){var o=document.createElement(e),r=l+"__"+e;o.classList.add(r);for(var i in n){var a=n[i];o[i]=a}"input"===e&&u(o),t.appendChild(o)},d=function(t){if(t){var e=r.injectElIntoModal(i.contentMarkup),n=t.element,o=t.attributes;"string"==typeof n?f(e,n,o):e.appendChild(n)}};e.default=d},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),r=n(2),i=function(){var t=o.stringToNode(r.overlayMarkup);document.body.appendChild(t)};e.default=i},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=n(5),r=n(6),i=n(1),a=n(3),s=n(0),c=s.default.MODAL,l=s.default.BUTTON,u=s.default.OVERLAY,f=function(t){t.preventDefault(),v()},d=function(t){t.preventDefault(),g()},p=function(t){if(o.default.isOpen)switch(t.key){case"Escape":return r.onAction(a.CANCEL_KEY)}},m=function(t){if(o.default.isOpen)switch(t.key){case"Tab":return f(t)}},b=function(t){if(o.default.isOpen)return"Tab"===t.key&&t.shiftKey?d(t):void 0},v=function(){var t=i.getNode(l);t&&(t.tabIndex=0,t.focus())},g=function(){var t=i.getNode(c),e=t.querySelectorAll("."+l),n=e.length-1,o=e[n];o&&o.focus()},h=function(t){t[t.length-1].addEventListener("keydown",m)},w=function(t){t[0].addEventListener("keydown",b)},y=function(){var t=i.getNode(c),e=t.querySelectorAll("."+l);e.length&&(h(e),w(e))},x=function(t){if(i.getNode(u)===t.target)return r.onAction(a.CANCEL_KEY)},_=function(t){var e=i.getNode(u);e.removeEventListener("click",x),t&&e.addEventListener("click",x)},k=function(t){o.default.timer&&clearTimeout(o.default.timer),t&&(o.default.timer=window.setTimeout(function(){return r.onAction(a.CANCEL_KEY)},t))},O=function(t){t.closeOnEsc?document.addEventListener("keyup",p):document.removeEventListener("keyup",p),t.dangerMode?v():g(),y(),_(t.closeOnClickOutside),k(t.timer)};e.default=O},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),r=n(3),i=n(37),a=n(38),s={title:null,text:null,icon:null,buttons:r.defaultButtonList,content:null,className:null,closeOnClickOutside:!0,closeOnEsc:!0,dangerMode:!1,timer:null},c=Object.assign({},s);e.setDefaults=function(t){c=Object.assign({},s,t)};var l=function(t){var e=t&&t.button,n=t&&t.buttons;return void 0!==e&&void 0!==n&&o.throwErr("Cannot set both 'button' and 'buttons' options!"),void 0!==e?{confirm:e}:n},u=function(t){return o.ordinalSuffixOf(t+1)},f=function(t,e){o.throwErr(u(e)+" argument ('"+t+"') is invalid")},d=function(t,e){var n=t+1,r=e[n];o.isPlainObject(r)||void 0===r||o.throwErr("Expected "+u(n)+" argument ('"+r+"') to be a plain object")},p=function(t,e){var n=t+1,r=e[n];void 0!==r&&o.throwErr("Unexpected "+u(n)+" argument ("+r+")")},m=function(t,e,n,r){var i=typeof e,a="string"===i,s=e instanceof Element;if(a){if(0===n)return{text:e};if(1===n)return{text:e,title:r[0]};if(2===n)return d(n,r),{icon:e};f(e,n)}else{if(s&&0===n)return d(n,r),{content:e};if(o.isPlainObject(e))return p(n,r),e;f(e,n)}};e.getOpts=function(){for(var t=[],e=0;e<arguments.length;e++)t[e]=arguments[e];var n={};t.forEach(function(e,o){var r=m(0,e,o,t);Object.assign(n,r)});var o=l(n);n.buttons=r.getButtonListOpts(o),delete n.button,n.content=i.getContentOpts(n.content);var u=Object.assign({},s,c,n);return Object.keys(u).forEach(function(t){a.DEPRECATED_OPTS[t]&&a.logDeprecation(t)}),u}},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var o=n(1),r={element:"input",attributes:{placeholder:""}};e.getContentOpts=function(t){var e={};return o.isPlainObject(t)?Object.assign(e,t):t instanceof Element?{element:t}:"input"===t?r:null}},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.logDeprecation=function(t){var n=e.DEPRECATED_OPTS[t],o=n.onlyRename,r=n.replacement,i=n.subOption,a=n.link,s=o?"renamed":"deprecated",c='SweetAlert warning: "'+t+'" option has been '+s+".";if(r){c+=" Please use"+(i?' "'+i+'" in ':" ")+'"'+r+'" instead.'}var l="https://sweetalert.js.org";c+=a?" More details: "+l+a:" More details: "+l+"/guides/#upgrading-from-1x",console.warn(c)},e.DEPRECATED_OPTS={type:{replacement:"icon",link:"/docs/#icon"},imageUrl:{replacement:"icon",link:"/docs/#icon"},customClass:{replacement:"className",onlyRename:!0,link:"/docs/#classname"},imageSize:{},showCancelButton:{replacement:"buttons",link:"/docs/#buttons"},showConfirmButton:{replacement:"button",link:"/docs/#button"},confirmButtonText:{replacement:"button",link:"/docs/#button"},confirmButtonColor:{},cancelButtonText:{replacement:"buttons",link:"/docs/#buttons"},closeOnConfirm:{replacement:"button",subOption:"closeModal",link:"/docs/#button"},closeOnCancel:{replacement:"buttons",subOption:"closeModal",link:"/docs/#buttons"},showLoaderOnConfirm:{replacement:"buttons"},animation:{},inputType:{replacement:"content",link:"/docs/#content"},inputValue:{replacement:"content",link:"/docs/#content"},inputPlaceholder:{replacement:"content",link:"/docs/#content"},html:{replacement:"content",link:"/docs/#content"},allowEscapeKey:{replacement:"closeOnEsc",onlyRename:!0,link:"/docs/#closeonesc"},allowClickOutside:{replacement:"closeOnClickOutside",onlyRename:!0,link:"/docs/#closeonclickoutside"}}}])});
+
+/***/ }),
+
+/***/ "./Assets/typescripts/common/common.ts":
+/*!*********************************************!*\
+  !*** ./Assets/typescripts/common/common.ts ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "protectNumberOnlyTextBox": () => (/* binding */ protectNumberOnlyTextBox),
+/* harmony export */   "previewImage": () => (/* binding */ previewImage),
+/* harmony export */   "checkInputDataAbility": () => (/* binding */ checkInputDataAbility)
+/* harmony export */ });
+/* harmony import */ var _dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dom */ "./Assets/typescripts/common/dom.ts");
+/* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./request */ "./Assets/typescripts/common/request.ts");
+
+
+function protectNumberOnlyTextBox() {
+    ['keyup', 'paste'].forEach(function (event) {
+        document.querySelectorAll('.number-only')[0].addEventListener(event, function (e) {
+            if (event === 'keyup') {
+                if (isNaN(Number(this.value + ""))) {
+                    return false;
+                }
+            }
+            else {
+                e.preventDefault();
+            }
+        });
+    });
+}
+/**
+ * @param fileId string
+ * @param previewerId string
+ * */
+function previewImage(fileId, previewerId) {
+    let image = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#' + fileId);
+    if (image.files && image.files[0]) {
+        let reader = new FileReader();
+        reader.onload = function (e) {
+            (0,_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#' + previewerId).setAttribute('src', e?.target?.result);
+        };
+        reader.readAsDataURL(image.files[0]);
+    }
+}
+/**
+ * @param url string
+ * @param dataObject object
+ * @param callback any
+ * */
+function checkInputDataAbility(url, dataObject, callback) {
+    return (0,_request__WEBPACK_IMPORTED_MODULE_1__.sendRequest)({
+        method: "POST", url: url, async: true,
+        header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+        data: dataObject,
+    }, function (response) {
+        callback(response);
+    });
+}
+
+
+/***/ }),
+
+/***/ "./Assets/typescripts/common/dom.ts":
+/*!******************************************!*\
+  !*** ./Assets/typescripts/common/dom.ts ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createElement": () => (/* binding */ createElement),
+/* harmony export */   "captureElement": () => (/* binding */ captureElement),
+/* harmony export */   "captureElements": () => (/* binding */ captureElements)
+/* harmony export */ });
+/**
+ * @param details
+ * */
+function createElement(details) {
+    let element, i, j, k;
+    for (i in details) {
+        let data = details[i];
+        for (j in data) {
+            let elementName = j;
+            let elementData = data[j];
+            element = document.createElement(elementName);
+            for (k in elementData) {
+                let element_attribute = k;
+                let element_attribute_value = elementData[k];
+                element.setAttribute(element_attribute, element_attribute_value);
+            }
+        }
+    }
+    return element;
+}
+/**
+ * @param selectors HTML valid element selector
+ * */
+function captureElement(selectors) {
+    if (document.querySelector(selectors) !== null) {
+        return document.querySelector(selectors);
+    }
+}
+/**
+ * @param selectors
+ * */
+function captureElements(selectors) {
+    if (document.querySelectorAll(selectors) !== null) {
+        return document.querySelectorAll(selectors);
+    }
+}
+
+
+/***/ }),
+
+/***/ "./Assets/typescripts/common/message.ts":
+/*!**********************************************!*\
+  !*** ./Assets/typescripts/common/message.ts ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "showMessage": () => (/* binding */ showMessage),
+/* harmony export */   "sendMessage": () => (/* binding */ sendMessage),
+/* harmony export */   "viewMessage": () => (/* binding */ viewMessage)
+/* harmony export */ });
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert */ "../node_modules/sweetalert/dist/sweetalert.min.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dom */ "./Assets/typescripts/common/dom.ts");
+/* harmony import */ var _validation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./validation */ "./Assets/typescripts/common/validation.ts");
+/* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./request */ "./Assets/typescripts/common/request.ts");
+
+
+
+
+/**
+ * @param response any
+ * @param element HTML element
+ * @param callback any
+ **/
+function showMessage(response, element, callback) {
+    if ((0,_validation__WEBPACK_IMPORTED_MODULE_2__.IsJsonString)(response)) {
+        let data = JSON.parse(response), html = "", errClass = '', symbol = '';
+        if (data.type !== undefined) {
+            if (data.type === "error") {
+                errClass += 'danger';
+                symbol += "<i class=\"fa fa-times\"></i>";
+            }
+            if (data.type === "success") {
+                errClass += 'success';
+                symbol += "<i class=\"fa fa-check\"></i>";
+            }
+            html += '<div class="box-message box-' + errClass + ' box-shadow-light">';
+            html += '<span class="box-' + errClass + '-symbol">' + symbol + '</span>';
+            html += '<p  class="notify-md-content" style="text-align: justify;">' + data.message + '</p>';
+            html += '</div>';
+            if (element) {
+                element.innerHTML = html;
+            }
+            if (callback) {
+                return callback(data);
+            }
+        }
+        else {
+            return sweetalert__WEBPACK_IMPORTED_MODULE_0___default()('Your data!', response, 'success');
+        }
+    }
+    else {
+        if (response.indexOf('<!doctype html>') !== -1 && response.indexOf('flex-center') !== -1) {
+            /*console.log(response)
+            console.log(response.length)
+            console.log(response.indexOf('<div class="logInBox'))
+            console.log(response.indexOf('</div> </section>'))
+            console.log(response.length - response.indexOf('</div> </section>'))
+            console.log(response.length - (response.length - response.indexOf('</div> </section>')))
+            console.log(response.substr(response.indexOf('<div class="logInBox'), (response.indexOf('</div> </section>') - response.indexOf('<div class="logInBox'))));
+            console.log(response.substr(response.indexOf('<div class="logInBox'), (response.indexOf('</div> </section>') - response.indexOf('<div class="logInBox'))).replace('logInBox box-shadow box-shadow-light','logInBox').replace('<div class="float-right text-right"><input type="submit"','<div class="float-right text-right" style="margin-right: 5px;"><input type="submit"'))*/
+            if (document.querySelector('#popup-login') === null) {
+                const popup = (0,_dom__WEBPACK_IMPORTED_MODULE_1__.createElement)([{
+                        'div': { 'id': 'popup-login', 'class': 'modal', 'style': 'display:block;' }
+                    }]);
+                const popupDocument = (0,_dom__WEBPACK_IMPORTED_MODULE_1__.createElement)([{
+                        'div': { 'class': 'row modal-content animate', 'style': 'width:34.5%;' }
+                    }]);
+                popup.appendChild(popupDocument);
+                const popupDocumentBody = (0,_dom__WEBPACK_IMPORTED_MODULE_1__.createElement)([{
+                        'div': { 'class': 'modal-body' }
+                    }]);
+                popupDocumentBody.innerHTML = response.substr(response.indexOf('<div class="logInBox'), (response.indexOf('</div> </section>') - response.indexOf('<div class="logInBox'))).replace('logInBox box-shadow box-shadow-light', 'logInBox').replace('<div class="float-right text-right"><input type="submit"', '<div class="float-right text-right" style="margin-right: 5px;"><input type="submit"');
+                popupDocument.appendChild(popupDocumentBody);
+                document.body.appendChild(popup);
+            }
+        }
+        else {
+            return sweetalert__WEBPACK_IMPORTED_MODULE_0___default()('Oop! Something went wrong!', response, 'error');
+        }
+        //console.log(data);
+    }
+}
+/**
+ * @param self
+ * @param data JSON Object
+ * @param __appHostUrl Valid url
+ **/
+function sendMessage(self, data, __appHostUrl) {
+    if (data !== undefined && data !== null && data.constructor === Object && __appHostUrl !== null) {
+        return (0,_request__WEBPACK_IMPORTED_MODULE_3__.sendRequest)({
+            method: "POST",
+            url: __appHostUrl,
+            async: true,
+            header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+            data: data
+        }, function (response) {
+            if ((0,_validation__WEBPACK_IMPORTED_MODULE_2__.IsJsonString)(response)) {
+                document.querySelector('#app-loader')?.setAttribute('style', 'display:none;');
+                return self.appRuntimeEventManager(JSON.parse(response));
+            }
+            else {
+                return sweetalert__WEBPACK_IMPORTED_MODULE_0___default()("Oops! Something went wrong!", response, "error");
+            }
+        });
+    }
+    else {
+        return sweetalert__WEBPACK_IMPORTED_MODULE_0___default()("Oops! We can't send request!", "error");
+    }
+}
+function viewMessage(title, data, icon) {
+    return sweetalert__WEBPACK_IMPORTED_MODULE_0___default()(title, data, icon);
+}
+
+
+/***/ }),
+
+/***/ "./Assets/typescripts/common/pagination.ts":
+/*!*************************************************!*\
+  !*** ./Assets/typescripts/common/pagination.ts ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "popUpDialogBoxDriver": () => (/* binding */ popUpDialogBoxDriver),
+/* harmony export */   "PopUpDialogBox": () => (/* binding */ PopUpDialogBox),
+/* harmony export */   "paginationDriver": () => (/* binding */ paginationDriver)
+/* harmony export */ });
+/* harmony import */ var _dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dom */ "./Assets/typescripts/common/dom.ts");
+/* harmony import */ var _request__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./request */ "./Assets/typescripts/common/request.ts");
+/* harmony import */ var _validation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./validation */ "./Assets/typescripts/common/validation.ts");
+
+
+
+/**
+ * @param selector string
+ * @param titleText string
+ * @param processURL string
+ * @param messageView string
+ * @param callback any
+ * */
+function popUpDialogBoxDriver(selector, titleText, processURL, messageView, callback) {
+    if (document.querySelectorAll(selector).length !== 0) {
+        document.querySelectorAll(selector).forEach(function (__deleteButton) {
+            __deleteButton.addEventListener('click', function () {
+                PopUpDialogBox(titleText, 'Are you want to ' + this.getAttribute('command')?.toLowerCase() + ' this?', this, this.getAttribute('command'), processURL, messageView, function () {
+                    popUpDialogBoxDriver(selector, titleText, processURL, messageView, callback);
+                }, function (response) {
+                    callback(response);
+                });
+            });
+        });
+    }
+}
+/**
+ * @param titleText string
+ * @param messageText string
+ * @param actionBtn HTMLElementObject
+ * @param command string
+ * @param processURL string
+ * @param messageView string
+ * @param callback any
+ * @param sendResponse any
+ * */
+function PopUpDialogBox(titleText, messageText, actionBtn, command, processURL, messageView, callback, sendResponse) {
+    (0,_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#PopUpDialogBox').style.display = 'block';
+    (0,_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#PopUpDialogBoxTitle').innerHTML = titleText;
+    (0,_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)(messageView).innerHTML = '<div style="font-size:15px;">' + messageText + '</div>';
+    (0,_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#message-done-btn').innerHTML = command;
+    let dataObject = { security_code: 1 };
+    [...actionBtn.attributes].forEach(function (__attribute) {
+        if (__attribute.name.toLowerCase().indexOf('data') !== -1) {
+            dataObject[__attribute.name.replace('data-', '')] = __attribute.value;
+        }
+    });
+    (0,_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#message-done-btn').addEventListener('click', function () {
+        (0,_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#app-loader').style.display = 'block';
+        if (this.textContent === command) {
+            return (0,_request__WEBPACK_IMPORTED_MODULE_1__.sendRequest)({
+                method: "POST",
+                url: processURL,
+                async: true,
+                header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                data: dataObject,
+            }, (response) => {
+                (0,_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#PopUpDialogBox').style.display = 'none';
+                (0,_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#app-loader').style.display = 'none';
+                callback();
+                sendResponse(response);
+            });
+        }
+    });
+}
+/**
+ * @param viewMode string
+ * @param url string
+ * @param extractTo string
+ * @param callback any
+ * @param fallback any
+ * */
+function paginationDriver(viewMode, url, extractTo, fallback, callback) {
+    if (document.querySelectorAll('.page').length !== 0) {
+        document.querySelectorAll('.page').forEach(function (__pager) {
+            ['click', 'dblclick', 'touchstart'].forEach(function (event) {
+                __pager.addEventListener(event, function () {
+                    return pagination(viewMode, this.getAttribute('data-page'), url, extractTo, () => {
+                        paginationDriver(viewMode, url, extractTo, fallback, callback);
+                        callback();
+                    }, fallback);
+                });
+            });
+        });
+    }
+}
+/**
+ * @param viewMode string
+ * @param page string
+ * @param url string
+ * @param extractTo string
+ * @param callback any
+ * @param fallback any
+ * */
+function pagination(viewMode, page, url, extractTo, callback, fallback) {
+    return (0,_request__WEBPACK_IMPORTED_MODULE_1__.sendRequest)({
+        method: "POST", url: url, async: true,
+        header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+        data: { security_code: 1, pageNumber: page, viewMode: viewMode },
+    }, function (response) {
+        if ((0,_validation__WEBPACK_IMPORTED_MODULE_2__.IsJsonString)(response) && JSON.parse(response).type) {
+            fallback(response);
+        }
+        else {
+            (0,_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#' + extractTo).innerHTML = response;
+            callback();
+        }
+    });
+}
+
+
+/***/ }),
+
+/***/ "./Assets/typescripts/common/request.ts":
+/*!**********************************************!*\
+  !*** ./Assets/typescripts/common/request.ts ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "sendRequest": () => (/* binding */ sendRequest)
+/* harmony export */ });
+function sendRequest(options, callback) {
+    /*worker.postMessage({
+        "command": "sendRequest",
+        "options": options,
+        "receiver": __appHostedServerRoot
+    });
+
+    */
+    if (options.method !== null && options.url !== null) {
+        /*
+        * if (app.runtime.request !== 'pending') {}
+        * else { viewMessage('Another request is pending.', 'Your previous request is pending. Please wait until succeeded.', 'error')}
+        * */
+        try {
+            let dataType;
+            let request = new XMLHttpRequest();
+            request.open(options.method, options.url, options.async);
+            if (options.header !== null && typeof options.header == "object") {
+                for (let i = 0; i < options.header.length; i++) {
+                    request.setRequestHeader(options.header[i].name, options.header[i].value);
+                    if (options.header[i].value.indexOf('form') !== -1) {
+                        dataType = 'formData';
+                    }
+                    if (options.header[i].value.indexOf('json') !== -1) {
+                        dataType = 'jsonData';
+                    }
+                }
+            }
+            if (options.data !== null && typeof options.data == "object") {
+                if (dataType === 'jsonData') {
+                    request.send(JSON.stringify(options.data));
+                }
+                if (dataType === 'formData') {
+                    let formData = new FormData();
+                    Object.keys(options.data).forEach(function (key) {
+                        formData.append(key, options.data[key]);
+                    });
+                    request.send(formData);
+                }
+            }
+            else {
+                request.send();
+            }
+            request.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    if (callback) {
+                        callback(this.responseText);
+                    }
+                    //console.log(this.responseText)
+                }
+            };
+        }
+        catch (e) {
+            console.error("Fetching error." + e);
+        }
+    }
+    else {
+        console.error("Error: METHOD and URL empty.");
+    }
+    /*window.addEventListener('message',function (event) {
+        console.log(event)
+    })*/
+}
+
+
+/***/ }),
+
+/***/ "./Assets/typescripts/common/upload.ts":
+/*!*********************************************!*\
+  !*** ./Assets/typescripts/common/upload.ts ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "setUploadProgressSystem": () => (/* binding */ setUploadProgressSystem),
+/* harmony export */   "uploadFile": () => (/* binding */ uploadFile),
+/* harmony export */   "progressHandler": () => (/* binding */ progressHandler),
+/* harmony export */   "completeHandler": () => (/* binding */ completeHandler),
+/* harmony export */   "errorHandler": () => (/* binding */ errorHandler),
+/* harmony export */   "abortHandler": () => (/* binding */ abortHandler)
+/* harmony export */ });
+/* harmony import */ var _dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dom */ "./Assets/typescripts/common/dom.ts");
+
+/**
+ * @param appenderId string
+ * */
+function setUploadProgressSystem(appenderId) {
+    let appender = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#' + appenderId);
+    let uploadBoard = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.createElement)([{ 'div': { 'id': 'UploadStatusBoard', 'style': 'display:none;' } }]);
+    uploadBoard.appendChild((0,_dom__WEBPACK_IMPORTED_MODULE_0__.createElement)([{ 'progress': { 'id': 'progressbar', 'max': '100', 'value': '0' } }]));
+    uploadBoard.appendChild((0,_dom__WEBPACK_IMPORTED_MODULE_0__.createElement)([{ 'h3': { 'id': 'upload_status' } }]));
+    uploadBoard.appendChild((0,_dom__WEBPACK_IMPORTED_MODULE_0__.createElement)([{ 'p': { 'id': 'loaded_n_total' } }]));
+    return appender.appendChild(uploadBoard);
+}
+/**
+ * @param ElementName string
+ * @param ElementID string
+ * @param URL string*/
+function uploadFile(ElementName, ElementID, URL) {
+    (0,_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#UploadStatusBoard').style.display = 'block';
+    (0,_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#progressbar').style.display = 'block';
+    let file = (0,_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#' + ElementID).files[0];
+    let data = new FormData();
+    data.append(ElementName, file);
+    let ajax = new XMLHttpRequest();
+    ajax.upload.addEventListener('progress', progressHandler, false);
+    ajax.addEventListener('load', completeHandler, false);
+    ajax.addEventListener('error', errorHandler, false);
+    ajax.addEventListener('abort', abortHandler, false);
+    ajax.open('POST', URL, true);
+    ajax.send(data);
+}
+/**
+ * @param event any
+ * */
+function progressHandler(event) {
+    let loadedSize = (event.loaded / 1024) / 1024;
+    let totalSize = (event.total / 1024) / 1024;
+    (0,_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#loaded_n_total').innerHTML = 'Uploaded ' + loadedSize.toFixed(2) + ' MB of ' + totalSize.toFixed(2) + ' MB';
+    let percent = (event.loaded / event.total) * 100;
+    (0,_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#progressbar').value = Math.round(percent);
+    (0,_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#upload_status').innerHTML = Math.round(percent) + '% uploaded..';
+}
+/**
+ * @param event any
+ * */
+function completeHandler(event) {
+    (0,_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#upload_status').innerHTML = event.target.responseText;
+    (0,_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#progressbar').value = 0;
+    (0,_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#progressbar').style.display = 'none';
+}
+function errorHandler() {
+    (0,_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#upload_status').innerHTML = 'Upload failed';
+}
+function abortHandler() {
+    (0,_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#upload_status').innerHTML = 'Upload aborted';
+}
+
+
+/***/ }),
+
+/***/ "./Assets/typescripts/common/validation.ts":
+/*!*************************************************!*\
+  !*** ./Assets/typescripts/common/validation.ts ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "checkDuplicate": () => (/* binding */ checkDuplicate),
+/* harmony export */   "isNumber": () => (/* binding */ isNumber),
+/* harmony export */   "IsJsonString": () => (/* binding */ IsJsonString)
+/* harmony export */ });
+/**
+ * @param str valid string
+ * */
+function checkDuplicate(str) {
+    for (let i = 0; i < str.length; i++) {
+        let re = new RegExp("[^" + str[i] + "]", "g");
+        if (str.replace(re, "").length >= 2) {
+            return true;
+        }
+    }
+    return false;
+}
+/**
+ * @param n any
+ * */
+function isNumber(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
+/**
+ * @param string string
+ * */
+function IsJsonString(string) {
+    try {
+        JSON.parse(string);
+    }
+    catch (e) {
+        return false;
+    }
+    return true;
+}
+
+
+/***/ }),
+
+/***/ "./Assets/typescripts/db/app.ts":
+/*!**************************************!*\
+  !*** ./Assets/typescripts/db/app.ts ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "appHost": () => (/* binding */ appHost),
+/* harmony export */   "app": () => (/* binding */ app)
+/* harmony export */ });
+/* harmony import */ var _common_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../common/dom */ "./Assets/typescripts/common/dom.ts");
+/* global _root_ */
+/*initialize on extension installed*/
+
+let __appHostedServerRoot = (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#mishusoft-web-root').content;
+/*backup plan*/
+if (__appHostedServerRoot === undefined) {
+    //__appHostedServerRoot = 'http://localhost/';
+    __appHostedServerRoot = 'http://localhost/';
+    /*required variables*/
+}
+if (__appHostedServerRoot.substr(-1) !== '/') {
+    __appHostedServerRoot += '/';
+}
+const appHost = __appHostedServerRoot;
+const app = {
+    "default": {
+        "name": 'mishusoft',
+        "version": 'official',
+        "author": 'Mr. Al Amin Ahamed Abir',
+        "charset": 'utf8mb4',
+        "prefix": 'msu',
+        "companyName": 'Mishusoft Systems Incorporate.',
+        "text": {
+            "welcome": "Welcome to Mishusoft Platform",
+            "description": "Mishusoft Platform is a robust multi-web platform developed by Mishusoft Systems Inc. This platform is capable of getting your work done quickly and accurately.",
+            "install_state": "The application is ready to be installed on your device at this time.",
+        }
+    },
+    "content": {
+        "folder": {
+            "logos": __appHostedServerRoot + 'media/logos/',
+            "css": __appHostedServerRoot + 'assets/css/',
+            "js": __appHostedServerRoot + 'assets/js/',
+            "images": __appHostedServerRoot + 'assets/images/',
+        },
+        "file": {
+            "default": {
+                "link": [
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-57x57.png",
+                        "rel": "apple-touch-icon",
+                        "size": "57x57"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-60x60.png",
+                        "rel": "apple-touch-icon",
+                        "size": "60x60"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-72x72.png",
+                        "rel": "apple-touch-icon",
+                        "size": "72x72"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-76x76.png",
+                        "rel": "apple-touch-icon",
+                        "size": "76x76"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-114x114.png",
+                        "rel": "apple-touch-icon",
+                        "size": "114x114"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-120x120.png",
+                        "rel": "apple-touch-icon",
+                        "size": "120x120"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-144x144.png",
+                        "rel": "apple-touch-icon",
+                        "size": "144x144"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-152x152.png",
+                        "rel": "apple-touch-icon",
+                        "size": "152x152"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-180x180.png",
+                        "rel": "apple-touch-icon",
+                        "size": "180x180"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/android-icon-192x192.png",
+                        "rel": "icon",
+                        "size": "192x192",
+                        "type": "image/png"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/favicon-16x16.png",
+                        "rel": "icon",
+                        "size": "16x16",
+                        "type": "image/png"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/favicon-32x32.png",
+                        "rel": "icon",
+                        "size": "32x32",
+                        "type": "image/png"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/favicon-96x96.png",
+                        "rel": "icon",
+                        "size": "96x96",
+                        "type": "image/png"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/favicon.ico",
+                        "rel": "icon",
+                        "size": "16x16",
+                        "type": "image/vnd.microsoft.icon"
+                    },
+                    {
+                        "href": __appHostedServerRoot + "libraries/logos/manifest.json",
+                        "rel": "manifest",
+                    },
+                    {
+                        "name": "msapplication-TileColor",
+                        "content": "#ffffff",
+                    },
+                    {
+                        "name": "msapplication-TileImage",
+                        "content": __appHostedServerRoot + "libraries/logos/ms-icon-144x144.png"
+                    },
+                    {
+                        "name": "theme-color",
+                        "content": "#ffffff",
+                    },
+                ],
+            },
+        },
+    },
+    "website": {
+        "home": "https://www.mishusoft.com/",
+        "support": "support@mishusoft.com",
+        "donate": "https://www.mishusoft.com/payment/donate",
+        "IpInfo": "https://api.ipdata.co/?api-key=2f9dde381f67efed325acfb1011a988036b28fc6cc02f07668ef7180",
+        "IpInfoKey": "2f9dde381f67efed325acfb1011a988036b28fc6cc02f07668ef7180",
+        "fontAwesome": "https://kit.fontawesome.com/b4c8f8449f.js",
+        "fontAwesomeKey": "b4c8f8449f",
+        "temporary": {
+            "home": "http://localhost/",
+            "monitorURL": "http://localhost/monitor/browser/",
+            "paymentURL": "http://localhost/payment/"
+        },
+        "publish": {
+            "home": "https://www.mishusoft.com/",
+            "monitorURL": "https://www.mishusoft.com/monitor/browser/",
+            "paymentURL": "https://www.mishusoft.com/payment/"
+        }
+    },
+    "runtime": {
+        "request": ""
+    }
+};
+
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
+/*!******************************************!*\
+  !*** ./Assets/typescripts/runtime-v3.ts ***!
+  \******************************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _common_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common/common */ "./Assets/typescripts/common/common.ts");
+/* harmony import */ var _db_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./db/app */ "./Assets/typescripts/db/app.ts");
+/* harmony import */ var _common_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./common/dom */ "./Assets/typescripts/common/dom.ts");
+/* harmony import */ var _common_message__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./common/message */ "./Assets/typescripts/common/message.ts");
+/* harmony import */ var _common_request__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./common/request */ "./Assets/typescripts/common/request.ts");
+/* harmony import */ var _common_validation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./common/validation */ "./Assets/typescripts/common/validation.ts");
+/* harmony import */ var _common_pagination__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./common/pagination */ "./Assets/typescripts/common/pagination.ts");
+/* harmony import */ var _common_upload__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./common/upload */ "./Assets/typescripts/common/upload.ts");
+
+
+
+
+
+
+
+
+/*runtime included bundle*/
+//import {Google_oauth} from "./runtime-include/core/user/google_oauth"
+//Google_oauth.init();
+let publicSocialLinksInterval, visitorsAccessLogsInterval, contactMessageInterval, serverDatabaseInterval;
+const background93c = "background: #93c";
+// set service worker
+if ('serviceWorker' in navigator) {
+    // Use the window load event to keep the page load performant
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register(_db_app__WEBPACK_IMPORTED_MODULE_1__.app.content.folder.js + 'sw.js')
+            .then((swr) => {
+            console.info("ServiceWorker [" + swr?.active?.scriptURL + "] is " + swr?.active?.state + " successfully." /* It's now */ /* + swr?.active?.state*/);
+        })
+            .catch((err) => console.error("service worker not registered", err));
+    });
+}
+//const worker = new Worker(app.content.folder.js + 'sw.js');
+/*if (typeof worker =='undefined'){
+    // set service worker
+    if ('serviceWorker' in navigator) {
+        // Use the window load event to keep the page load performant
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register(app.content.folder.js + 'sw.js')
+                .then((swr) => {
+                    console.log("service worker registered");
+                    console.log(swr);
+                })
+                .catch((err) => console.log("service worker not registered", err))
+        });
+    }
+}*/
+(function () {
+    if (document.readyState === 'interactive') {
+        /*sendRequest({
+            method: "POST",
+            url: appHost + 'api/index',
+            async: true,
+            header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
+            data: {
+                security_code: 101,
+                javascriptEnabled: true
+            }
+        });*/
+        /*add required script tag to head*/
+        if (window.navigator) {
+            /*font-fontawesome private cdn*/
+            fetch('https://kit.fontawesome.com/b4c8f8449f.js')
+                .then(() => {
+                document.head.appendChild((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                        'script': {
+                            'rel': 'preconnect',
+                            'type': 'application/javascript',
+                            'src': 'https://kit.fontawesome.com/b4c8f8449f.js',
+                            'crossorigin': 'anonymous',
+                            'async': 'async',
+                        }
+                    }]));
+            })
+                .catch((err) => {
+                console.info('fontawesome kit load failed. ' + err);
+            });
+        }
+        /*ending to declare required script tag to head*/
+        /*fire public profile links request!!*/
+        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#public-social-links") !== undefined) {
+            publicSocialLinksInterval = setInterval(function () {
+            }, 1000);
+            (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                method: "GET",
+                url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'api/geSocialLinks',
+                async: true,
+                header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+            }, function (response) {
+                if (response.length !== 0 && (0,_common_validation__WEBPACK_IMPORTED_MODULE_5__.IsJsonString)(response)) {
+                    if (JSON.parse(response).length !== 0) {
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#public-social-links").textContent = '';
+                        JSON.parse(response).forEach(function (socialLink) {
+                            let i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                    'li': {
+                                        'class': 'li-social ' + socialLink.name.toLowerCase() + '-social',
+                                    }
+                                }]);
+                            let i1a1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                    'a': {
+                                        'rel': 'noreferrer',
+                                        'href': socialLink.link,
+                                        'target': '_blank',
+                                        'title': socialLink.name[0].toUpperCase() + socialLink.name.slice(1)
+                                    }
+                                }]);
+                            i1.appendChild(i1a1);
+                            i1a1.appendChild((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                    'span': {
+                                        'class': 'fab fa-' + socialLink.name.toLowerCase() + ' icon-social',
+                                    }
+                                }]));
+                            let i1a1s2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                    'span': {
+                                        'class': 'name-social',
+                                    }
+                                }]);
+                            i1a1s2.textContent = socialLink.name[0].toUpperCase() + socialLink.name.slice(1);
+                            i1a1.appendChild(i1a1s2);
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#public-social-links").appendChild(i1);
+                        });
+                    }
+                }
+            });
+        }
+        /*ending to fire public profile links request*/
+        /*fire public payment icons request!!*/
+        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#pgHeaderMainInfoItemsDetails") !== undefined) {
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#pgHeaderMainInfoItemsDetails").textContent = '';
+            /*captureElement("#pgHeaderMainInfoItemsDetails").appendChild(createElement([{
+                'img': {
+                    'alt': 'visa',
+                    'src': app.content.folder.images + 'visa.png',
+                    'width': '20',
+                    'height': '18',
+                }
+            }]));*/
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#pgHeaderMainInfoItemsDetails").appendChild((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                    'img': {
+                        'alt': 'mastercard',
+                        'src': _db_app__WEBPACK_IMPORTED_MODULE_1__.app.content.folder.images + 'mastercard.png',
+                        'width': '20',
+                        'height': '18',
+                    }
+                }]));
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#pgHeaderMainInfoItemsDetails").appendChild((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                    'img': {
+                        'alt': 'maestro',
+                        'src': _db_app__WEBPACK_IMPORTED_MODULE_1__.app.content.folder.images + 'maestro.png',
+                        'width': '20',
+                        'height': '18',
+                    }
+                }]));
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#pgHeaderMainInfoItemsDetails").appendChild((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                    'img': {
+                        'alt': 'amex',
+                        'src': _db_app__WEBPACK_IMPORTED_MODULE_1__.app.content.folder.images + 'amex.png',
+                        'width': '20',
+                        'height': '18',
+                    }
+                }]));
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#pgHeaderMainInfoItemsDetails").appendChild((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                    'img': {
+                        'alt': 'discover',
+                        'src': _db_app__WEBPACK_IMPORTED_MODULE_1__.app.content.folder.images + 'discover.png',
+                        'width': '20',
+                        'height': '18',
+                    }
+                }]));
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#pgHeaderMainInfoItemsDetails").appendChild((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                    'img': {
+                        'alt': 'giropay',
+                        'src': _db_app__WEBPACK_IMPORTED_MODULE_1__.app.content.folder.images + 'giropay.png',
+                        'width': '20',
+                        'height': '18',
+                    }
+                }]));
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#pgHeaderMainInfoItemsDetails").appendChild((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                    'img': {
+                        'alt': 'klarna',
+                        'src': _db_app__WEBPACK_IMPORTED_MODULE_1__.app.content.folder.images + 'klarna.png',
+                        'width': '20',
+                        'height': '18',
+                    }
+                }]));
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#pgHeaderMainInfoItemsDetails").appendChild((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                    'img': {
+                        'alt': 'sofort',
+                        'src': _db_app__WEBPACK_IMPORTED_MODULE_1__.app.content.folder.images + 'sofort.png',
+                        'width': '20',
+                        'height': '18',
+                    }
+                }]));
+        }
+        /*ending to fire public payment icons request*/
+        /*fire public payment icons request!!*/
+        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#document-last-modified") !== undefined) {
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#document-last-modified").textContent = 'Last updated: (' + document.lastModified + ' UTC)';
+        }
+        /*ending to fire public payment icons request*/
+    }
+}());
+(function () {
+    /*mishusoft-app-css-file*/
+    const UIDb = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+            'link': {
+                'rel': 'stylesheet',
+                'type': 'text/css',
+                'id': _db_app__WEBPACK_IMPORTED_MODULE_1__.app.default.name + '-app-css-file',
+                'href': _db_app__WEBPACK_IMPORTED_MODULE_1__.app.content.folder.css + "v3.css",
+            }
+        }]);
+    UIDb.addEventListener('load', function () {
+        //initialize app loader image & application
+        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader')) {
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').setAttribute('style', 'display:none;');
+        }
+        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-setup-box')) {
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-setup-box').removeAttribute('style');
+        }
+        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#' + _db_app__WEBPACK_IMPORTED_MODULE_1__.app.default.name + '-app-content')) {
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#' + _db_app__WEBPACK_IMPORTED_MODULE_1__.app.default.name + '-app-content').removeAttribute('style');
+            //document.title = captureElement('#meta-title').content + ' || ' + captureElement('#meta-app-name').content;
+        }
+        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#mishusoft-app-content') !== undefined) {
+            //console.log(window.innerHeight);
+            /*console.log('Window Inner Height : ' + window.innerHeight);
+            console.log('App Inner Height : ' + captureElement('#mishusoft-app-content').clientHeight);
+            console.log('Footer Inner Height : ' + captureElement('#footer').clientHeight);*/
+            if (window.innerHeight <= (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#mishusoft-app-content').clientHeight) {
+                /*console.log('-------------------------------');
+                console.log('we reached target!!')
+                console.log('Window Inner Height : ' + window.innerHeight);
+                console.log('App Inner Height : ' + captureElement('#mishusoft-app-content').clientHeight);
+                console.log('-------------------------------');*/
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#footer')?.removeAttribute('style');
+            }
+            else {
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#footer')?.setAttribute('style', 'position: fixed;bottom: 0;width: inherit;');
+            }
+        }
+    });
+    document.head.appendChild(UIDb);
+}());
+/*(function (__location) {
+    if (__location === window.location) {
+        if (__location.origin.indexOf(app.default.name) !== -1) {
+            window.onload = function () {
+                document.addEventListener("select", function (e) {
+                    e.preventDefault();
+                }, false);
+                document.addEventListener("contextmenu", function (e) {
+                    e.preventDefault();
+                }, false);
+                document.addEventListener("keydown", function (e) {
+                    if (e.ctrlKey && e.shiftKey) {
+                        disabledEvent(e);
+                    }
+                    if (e.ctrlKey && e.shiftKey) {
+                        disabledEvent(e);
+                    }
+                    if (e.keyCode === 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+                        disabledEvent(e);
+                    }
+                    if (e.ctrlKey) {
+                        disabledEvent(e);
+                    }
+                }, false);
+
+                function disabledEvent(e: KeyboardEvent) {
+                    if (e.stopPropagation) {
+                        e.stopPropagation();
+                    } else if (event) {
+                        event.cancelBubble = true;
+
+                    }
+                    e.preventDefault();
+                    return false;
+                }
+            };
+            /!**!/
+        }
+    }
+}(window.location));*/
+(function (__collapseArray) {
+    let i;
+    for (i = 0; i < __collapseArray.length; i++) {
+        __collapseArray[i].addEventListener("click", function () {
+            let content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                this.innerHTML = "+";
+                content.style.display = "none";
+            }
+            else {
+                this.innerHTML = "-";
+                content.style.display = "block";
+            }
+        });
+    }
+}(document.querySelectorAll(".collapse")));
+(function (__locationbarURI) {
+    if (__locationbarURI.indexOf('view-source:') !== -1) {
+        document.textContent = 'We don\'t support this protocol!!';
+    }
+}(window.location.href));
+/*(function (_searchElement) {
+    if (_searchElement !== null){
+        ['keyup','paste'].forEach(function (event) {
+            _searchElement?.addEventListener(event,function () {
+                console.log(this.value);
+            });
+        });
+    }
+}(captureElement('#ms-qck-src')));
+//ms-qck-src-do
+*/
+/*adjust footer actual height*/
+//captureElement('.app-container')?.setAttribute('style','width:' + window.innerWidth + 'px;');
+if (document.querySelectorAll('#flex-center').length !== 0) {
+    document.querySelectorAll('#flex-center').forEach(function (__flexBoxCenter) {
+        //__flexBoxCenter.setAttribute('style','height:' + window.innerHeight + 'px;width:' + window.innerWidth + 'px;');
+        __flexBoxCenter.setAttribute('style', 'height:' + window.innerHeight + 'px;');
+    });
+}
+/*window.addEventListener('resize', function () {
+    //console.log(window.innerHeight);
+    /!*console.log('Window Inner Height : ' + window.innerHeight);
+    console.log('App Inner Height : ' + captureElement('#mishusoft-app-content').clientHeight);
+    console.log('Footer Inner Height : ' + captureElement('#footer').clientHeight);*!/
+    if (window.innerHeight <= (+captureElement('#mishusoft-app-content').clientHeight + +captureElement('#footer')?.clientHeight)) {
+        /!*console.log('-------------------------------');
+        console.log('we reached target!!')
+        console.log('Window Inner Height : ' + window.innerHeight);
+        console.log('App Inner Height : ' + (+captureElement('#mishusoft-app-content').clientHeight + +captureElement('#footer').clientHeight) );
+        console.log('-------------------------------');*!/
+        captureElement('#footer')?.removeAttribute('style');
+    } else {
+        captureElement('#footer').setAttribute('style', 'position: fixed;bottom: 0;width: inherit;');
+    }
+    //document.querySelector('.app-container')?.setAttribute('style','width:' + window.innerWidth + 'px;');
+    if (document.querySelectorAll('#flex-center').length !== 0) {
+        document.querySelectorAll('#flex-center').forEach(function (__flexBoxCenter: HTMLElement) {
+            //__flexBoxCenter.setAttribute('style','height:' + window.innerHeight + 'px;width:' + window.innerWidth + 'px;');
+            __flexBoxCenter.setAttribute('style', 'height:' + window.innerHeight + 'px;');
+        });
+    }
+});*/
+(function (__authLoginForm) {
+    let interval = setInterval(function () {
+        if (__authLoginForm !== null || true) {
+            clearInterval(interval);
+            __authLoginForm?.addEventListener('submit', function (event) {
+                event.preventDefault();
+                let messagebar = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#messageZone');
+                if (messagebar.firstElementChild === null) {
+                    let tmp = document.createElement('div');
+                    messagebar.appendChild(tmp);
+                }
+                messagebar.firstElementChild.classList.add('box-runtime');
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#login-button').setAttribute('disabled', 'disabled');
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#username').setAttribute('disabled', 'disabled');
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').setAttribute('disabled', 'disabled');
+                messagebar.style = 'display:block;';
+                messagebar.firstElementChild.textContent = 'Please wait......';
+                if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#flex-center') !== undefined) {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#flex-center').firstElementChild.style = 'height:' + (+(0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#messageZone').clientHeight + +(0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#flex-center').firstElementChild.getAttribute('data-height')) + 'px';
+                    if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#messageZone').nextElementSibling.nodeName.toLowerCase() === 'br') {
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#messageZone').nextElementSibling.remove();
+                    }
+                }
+                return (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                    method: "POST",
+                    url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'user/verifyUserAuth',
+                    async: true,
+                    header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                    data: {
+                        security_code: 1,
+                        username: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#username').value,
+                        password: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').value,
+                        redirectURL: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#redirect').value,
+                        RememberMe: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#RememberMe').value,
+                        btnName: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#login-button').value
+                    }
+                }, function (response) {
+                    if ((0,_common_validation__WEBPACK_IMPORTED_MODULE_5__.IsJsonString)(response)) {
+                        let data = JSON.parse(response);
+                        if (data.type === 'success' && data.message === 'LOGGED_IN') {
+                            if (data.url !== '/') {
+                                window.location.replace(_db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + data.url);
+                            }
+                            else {
+                                window.location.replace(_db_app__WEBPACK_IMPORTED_MODULE_1__.appHost);
+                            }
+                        }
+                        else {
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#login-button').removeAttribute('disabled');
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#username').removeAttribute('disabled');
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').removeAttribute('disabled');
+                            (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#messageZone"));
+                            if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#flex-center') !== undefined) {
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#flex-center').firstElementChild.style = 'height:' + (+(0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#messageZone').clientHeight + +(0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#flex-center').firstElementChild.getAttribute('data-height')) + 'px';
+                            }
+                        }
+                    }
+                });
+            });
+        }
+    }, 100);
+}((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#LogInForm')));
+(function (__authRegistrationForm) {
+    let interval = setInterval(function () {
+        if (__authRegistrationForm !== null || true) {
+            clearInterval(interval);
+            __authRegistrationForm?.addEventListener('submit', function (event) {
+                event.preventDefault();
+            });
+            if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#signup-button') !== undefined) {
+                ['click', 'dblclick', 'touchstart'].forEach(function (event) {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#signup-button').addEventListener(event, function () {
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#flex-center').firstElementChild.removeAttribute('style');
+                        let messagebar = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#messageZone');
+                        if (messagebar.firstElementChild === null) {
+                            let tmp = document.createElement('div');
+                            messagebar.appendChild(tmp);
+                        }
+                        messagebar.firstElementChild.textContent = '';
+                        messagebar.style = 'display:none;';
+                        let firstNameCheck, lastNameCheck, emailAddressCheck, usernameCheck, passwordCheck, dateOfBirthCheck;
+                        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#first-name').value === '') {
+                            messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                            messagebar.style.display = 'block';
+                            messagebar.firstElementChild.innerHTML += 'Error : Enter your first name (more than 4 characters).<br/>';
+                            addSpace();
+                        }
+                        else if ((0,_common_validation__WEBPACK_IMPORTED_MODULE_5__.checkDuplicate)((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#first-name').value)) {
+                            messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                            messagebar.style.display = 'block';
+                            messagebar.firstElementChild.innerHTML += 'Error : A character has been used more than twice in your first name.<br/>';
+                            addSpace();
+                        }
+                        else if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#first-name').value.length <= 3) {
+                            messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                            messagebar.style.display = 'block';
+                            messagebar.firstElementChild.innerHTML += 'Error : Enter your first name more than 4 characters.<br/>';
+                            addSpace();
+                        }
+                        else {
+                            firstNameCheck = 'OK';
+                        }
+                        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#last-name').value === '') {
+                            messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                            messagebar.style.display = 'block';
+                            messagebar.firstElementChild.innerHTML += 'Error : Enter your last name (more than 4 characters).<br/>';
+                            addSpace();
+                        }
+                        else if ((0,_common_validation__WEBPACK_IMPORTED_MODULE_5__.checkDuplicate)((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#last-name').value)) {
+                            messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                            messagebar.style.display = 'block';
+                            messagebar.firstElementChild.innerHTML += 'Error : A character has been used more than twice in your last name.<br/>';
+                            addSpace();
+                        }
+                        else if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#last-name').value.length <= 3) {
+                            messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                            messagebar.style.display = 'block';
+                            messagebar.firstElementChild.innerHTML += 'Error : Enter your last name more than 4 letter.<br/>';
+                            addSpace();
+                        }
+                        else {
+                            lastNameCheck = 'OK';
+                        }
+                        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#email').value === '') {
+                            messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                            messagebar.style.display = 'block';
+                            messagebar.firstElementChild.innerHTML += 'Error : Enter your email address (valid for more than 14 characters).<br/>';
+                            addSpace();
+                        }
+                        else if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#email').value.indexOf('@') === -1 || (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#email').value.indexOf('.') === -1 || (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#email').value.length <= 14) {
+                            messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                            messagebar.style.display = 'block';
+                            messagebar.firstElementChild.innerHTML += 'Error : Enter valid email address.<br/>';
+                            addSpace();
+                        }
+                        else {
+                            emailAddressCheck = 'OK';
+                        }
+                        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#username').value === '') {
+                            messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                            messagebar.style.display = 'block';
+                            messagebar.firstElementChild.innerHTML += 'Error : Enter your username (valid for at least 8 characters).<br/>';
+                            addSpace();
+                        }
+                        else if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#username').value.length < 8) {
+                            messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                            messagebar.style.display = 'block';
+                            messagebar.firstElementChild.innerHTML += 'Error : Enter username at least 8 character.<br/>';
+                            addSpace();
+                        }
+                        else {
+                            usernameCheck = 'OK';
+                        }
+                        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dateOfBirth').value === '') {
+                            messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                            messagebar.style.display = 'block';
+                            messagebar.firstElementChild.innerHTML += 'Error : Enter your date of birth.<br/>';
+                            addSpace();
+                        }
+                        else {
+                            dateOfBirthCheck = 'OK';
+                        }
+                        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').value === '') {
+                            messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                            messagebar.style.display = 'block';
+                            messagebar.firstElementChild.innerHTML += 'Error : Enter your password (with @_ character and more than 6 character).<br/>';
+                            addSpace();
+                        }
+                        else if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').value !== '' && (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').value.indexOf('@') === -1) {
+                            messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                            messagebar.style.display = 'block';
+                            messagebar.firstElementChild.innerHTML += 'Error : Enter password with (@) character.<br/>';
+                            addSpace();
+                        }
+                        else if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').value !== '' && (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').value.indexOf('_') === -1) {
+                            messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                            messagebar.style.display = 'block';
+                            messagebar.firstElementChild.innerHTML += 'Error : Enter password with (_) character.<br/>';
+                            addSpace();
+                        }
+                        else if ((0,_common_validation__WEBPACK_IMPORTED_MODULE_5__.checkDuplicate)((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').value)) {
+                            messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                            messagebar.style.display = 'block';
+                            messagebar.firstElementChild.innerHTML += 'Error : A character has been used more than twice in your password.<br/>';
+                            addSpace();
+                        }
+                        else if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').value !== '' && (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').value.length <= 6) {
+                            messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                            messagebar.style.display = 'block';
+                            messagebar.firstElementChild.innerHTML += 'Error : Enter password more than 6 character.<br/>';
+                            addSpace();
+                        }
+                        else {
+                            passwordCheck = 'OK';
+                        }
+                        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').value !== (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#c_password').value) {
+                            messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                            messagebar.style.display = 'block';
+                            messagebar.firstElementChild.innerHTML += 'Error : Your password matched.<br/>';
+                        }
+                        if (!(0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#agree').checked) {
+                            messagebar.style = 'display:block;';
+                            messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                            messagebar.firstElementChild.innerHTML += 'Error : Please check i agree button to continue.<br/>';
+                            addSpace();
+                        }
+                        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#agree').checked && firstNameCheck === 'OK' && lastNameCheck === 'OK' &&
+                            emailAddressCheck === 'OK' && usernameCheck === 'OK' && passwordCheck === 'OK' && dateOfBirthCheck === 'OK') {
+                            messagebar.firstElementChild.classList.add('box-runtime');
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#signup-button').setAttribute('disabled', 'disabled');
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#first-name').setAttribute('disabled', 'disabled');
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#last-name').setAttribute('disabled', 'disabled');
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#email').setAttribute('disabled', 'disabled');
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#username').setAttribute('disabled', 'disabled');
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dateOfBirth').setAttribute('disabled', 'disabled');
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#gender').setAttribute('disabled', 'disabled');
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').setAttribute('disabled', 'disabled');
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#c_password').setAttribute('disabled', 'disabled');
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#agree').setAttribute('disabled', 'disabled');
+                            messagebar.style = 'display:block;';
+                            messagebar.firstElementChild.textContent = 'Please wait......';
+                            if (messagebar.style.display === 'block') {
+                                if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#flex-center') !== undefined) {
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#flex-center').firstElementChild.style = 'height:' + (+(0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#messageZone').clientHeight + +(0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#flex-center').firstElementChild.getAttribute('data-height')) + 'px';
+                                    if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#messageZone').nextElementSibling.nodeName.toLowerCase() === 'br') {
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#messageZone').nextElementSibling.remove();
+                                    }
+                                }
+                            }
+                            return (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                                method: "POST",
+                                url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'user/registrationValidation',
+                                async: true,
+                                header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                                data: {
+                                    security_code: 1,
+                                    patch: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#regs').value,
+                                    time: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#time').value,
+                                    firstName: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#first-name').value,
+                                    lastName: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#last-name').value,
+                                    email: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#email').value,
+                                    username: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#username').value,
+                                    password: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').value,
+                                    confirmPassword: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#c_password').value,
+                                    dateOfBirth: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dateOfBirth').value,
+                                    gender: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#gender').value,
+                                    agree: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#agree').value,
+                                    btnName: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#signup-button').value
+                                }
+                            }, function (response) {
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#signup-button').removeAttribute('disabled');
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#first-name').removeAttribute('disabled');
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#last-name').removeAttribute('disabled');
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#email').removeAttribute('disabled');
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#username').removeAttribute('disabled');
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dateOfBirth').removeAttribute('disabled');
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#gender').removeAttribute('disabled');
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').removeAttribute('disabled');
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#c_password').removeAttribute('disabled');
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#agree').removeAttribute('disabled');
+                                (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#messageZone"));
+                                if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#flex-center') !== undefined) {
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#flex-center').firstElementChild.style = 'height:' + (+(0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#messageZone').clientHeight + +(0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#flex-center').firstElementChild.getAttribute('data-height')) + 'px';
+                                }
+                            });
+                        }
+                    }, { passive: true });
+                });
+            }
+        }
+    }, 100);
+}((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#registrationForm')));
+(function (__authPasswordRecoveryForm) {
+    let interval = setInterval(function () {
+        if (__authPasswordRecoveryForm !== null || true) {
+            clearInterval(interval);
+            __authPasswordRecoveryForm?.addEventListener('submit', function (event) {
+                event.preventDefault();
+                let message = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#messageZone');
+                if (message.firstElementChild === null) {
+                    let tmp = document.createElement('div');
+                    message.appendChild(tmp);
+                }
+                message.firstElementChild.textContent = '';
+                if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#username').value.length === 0 && (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#email').value.length === 0) {
+                    message.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                    message.style.display = 'block';
+                    message.firstElementChild.innerHTML += 'Error : Please enter username or email address to continue.<br/>';
+                }
+                message.style = 'display:block;';
+                message.firstElementChild.textContent = 'Please wait......';
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#flex-center').firstElementChild.style = 'height:500px';
+                return (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                    method: "POST",
+                    url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'user/passwordRecoveryValidation',
+                    async: true,
+                    header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                    data: {
+                        security_code: 1,
+                        patch: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#recovery').value,
+                        time: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#time').value,
+                        email: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#email').value,
+                        username: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#username').value,
+                        btnName: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#code-send-button').value
+                    }
+                }, function (response) {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#email').removeAttribute('disabled');
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#username').removeAttribute('disabled');
+                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#messageZone"));
+                    if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#flex-center') !== undefined) {
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#flex-center').firstElementChild.style = 'height:' + (+(0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#messageZone').clientHeight + +(0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#flex-center').firstElementChild.getAttribute('data-height')) + 'px';
+                        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#messageZone').nextElementSibling.nodeName.toLowerCase() === 'br') {
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#messageZone').nextElementSibling.remove();
+                        }
+                    }
+                });
+            });
+        }
+    }, 100);
+}((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#ForgetPasswordForm')));
+(function (__authSetPasswordForm) {
+    let interval = setInterval(function () {
+        if (__authSetPasswordForm !== null || true) {
+            clearInterval(interval);
+            __authSetPasswordForm?.addEventListener('submit', function (event) {
+                event.preventDefault();
+                let passwordCheck, messagebar = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#messageZone');
+                if (messagebar.firstElementChild === null) {
+                    let tmp = document.createElement('div');
+                    messagebar.appendChild(tmp);
+                }
+                messagebar.firstElementChild.textContent = '';
+                if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').value === '') {
+                    messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                    messagebar.style.display = 'block';
+                    messagebar.firstElementChild.innerHTML += 'Error : Enter your password (with @_ character and more than 6 character).<br/>';
+                    addSpace();
+                }
+                else if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').value !== '' && (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').value.indexOf('@') === -1) {
+                    messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                    messagebar.style.display = 'block';
+                    messagebar.firstElementChild.innerHTML += 'Error : Enter password with (@) character.<br/>';
+                    addSpace();
+                }
+                else if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').value !== '' && (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').value.indexOf('_') === -1) {
+                    messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                    messagebar.style.display = 'block';
+                    messagebar.firstElementChild.innerHTML += 'Error : Enter password with (_) character.<br/>';
+                    addSpace();
+                }
+                else if ((0,_common_validation__WEBPACK_IMPORTED_MODULE_5__.checkDuplicate)((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').value)) {
+                    messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                    messagebar.style.display = 'block';
+                    messagebar.firstElementChild.innerHTML += 'Error : A character has been used more than twice in your password.<br/>';
+                    addSpace();
+                }
+                else if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').value !== '' && (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').value.length <= 6) {
+                    messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                    messagebar.style.display = 'block';
+                    messagebar.firstElementChild.innerHTML += 'Error : Enter password more than 6 character.<br/>';
+                    addSpace();
+                }
+                else {
+                    passwordCheck = 'OK';
+                }
+                if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').value !== (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#c_password').value) {
+                    messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                    messagebar.style.display = 'block';
+                    messagebar.firstElementChild.innerHTML += 'Error : Your password matched.<br/>';
+                }
+                messagebar.style = 'display:block;';
+                messagebar.firstElementChild.textContent = 'Please wait......';
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#flex-center').firstElementChild.style = 'height:500px';
+                if (passwordCheck === 'OK') {
+                    messagebar.firstElementChild.classList.add('box-runtime');
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#set-new-password-button').setAttribute('disabled', 'disabled');
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').setAttribute('disabled', 'disabled');
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#c_password').setAttribute('disabled', 'disabled');
+                    messagebar.style = 'display:block;';
+                    messagebar.firstElementChild.textContent = 'Please wait......';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#flex-center').firstElementChild.style = 'height:700px';
+                    return (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                        method: "POST",
+                        url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'user/newPasswordValidation',
+                        async: true,
+                        header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                        data: {
+                            security_code: 1,
+                            patch: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#set-password').value,
+                            time: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#time').value,
+                            userId: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#user-id').value,
+                            password: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').value,
+                            confirmPassword: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#c_password').value,
+                            btnName: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#set-new-password-button').value
+                        }
+                    }, function (response) {
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#set-new-password-button').removeAttribute('disabled');
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#password').removeAttribute('disabled');
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#c_password').removeAttribute('disabled');
+                        (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#messageZone"));
+                        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#flex-center') !== undefined) {
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#flex-center').firstElementChild.style = 'height:' + (+(0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#messageZone').clientHeight + +(0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#flex-center').firstElementChild.getAttribute('data-height')) + 'px';
+                            if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#messageZone').nextElementSibling.nodeName.toLowerCase() === 'br') {
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#messageZone').nextElementSibling.remove();
+                            }
+                        }
+                    });
+                }
+            });
+        }
+    }, 100);
+}((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#SetPasswordForm')));
+(function (__contactMessageSender) {
+    let interval = setInterval(function () {
+        if (__contactMessageSender !== null || true) {
+            clearInterval(interval);
+            __contactMessageSender?.addEventListener('click', function () {
+                let messagebar = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#messageZone');
+                if (messagebar.firstElementChild === null) {
+                    let tmp = document.createElement('div');
+                    messagebar.appendChild(tmp);
+                }
+                messagebar.firstElementChild.classList.add('box-runtime');
+                messagebar.firstElementChild.textContent = 'Please wait......';
+                messagebar.style.display = 'block';
+                return (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                    method: "POST",
+                    url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'contact/receiveMessage',
+                    async: true,
+                    header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                    data: {
+                        security_code: 1,
+                        firstName: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#cl_fst_nm').value,
+                        lastName: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#cl_lst_nm').value,
+                        email: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#cl_email').value,
+                        mobileNumber: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#cl_mbl_nmbr').value,
+                        messageSubject: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#cl_msg_sbj').value,
+                        messageContent: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#cl_msg').value,
+                        btnName: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#cl_msg_snd_btn').textContent
+                    }
+                }, function (response) {
+                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#messageZone"));
+                });
+            });
+        }
+    }, 100);
+}((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#cl_msg_snd_btn')));
+(function (__url) {
+    if (__url.indexOf('payment') !== -1) {
+        /*stripe payment merchant cdn
+        fetch('https://js.stripe.com/v3')
+            .then(() => {
+                document.head.appendChild(createElement([{
+                    'script': {
+                        'type': 'application/javascript',
+                        'src': 'https://js.stripe.com/v3/',
+                        'async': 'async',
+                    }
+                }]));
+            })
+            .catch((err) => {
+                console.info('Stripe SDK load failed. ' + err)
+            })*/
+        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#payment-welcome') !== undefined) {
+            ['click', 'dblclick', 'touchstart'].forEach(function (__event) {
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#start-pay')?.addEventListener(__event, function () {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#payment-welcome').style.display = 'none';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#payment-categories').removeAttribute('style');
+                }, { passive: true });
+            });
+        }
+        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#payment-categories') !== undefined) {
+            ['click', 'dblclick', 'touchstart'].forEach(function (__event) {
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#services-payment')?.addEventListener(__event, function () {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#payment-categories').style.display = 'none';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#payment-appid-email').style.display = 'block';
+                }, { passive: true });
+            });
+        }
+        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#payment-appid-email') !== undefined) {
+            ['click', 'dblclick', 'touchstart'].forEach(function (__event) {
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#user-select-back')?.addEventListener(__event, function () {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#payment-appid-email').style.display = 'none';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#payment-categories').removeAttribute('style');
+                }, { passive: true });
+            });
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#payment-appid-email')?.addEventListener('submit', function (event) {
+                event.preventDefault();
+                let emailAddressCheck, messagebar = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#messagePanel');
+                messagebar.className = 'messageZone';
+                if (messagebar.firstElementChild === null) {
+                    let tmp = document.createElement('div');
+                    messagebar.appendChild(tmp);
+                }
+                messagebar.firstElementChild.textContent = '';
+                if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-id').value.length === 0) {
+                    messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                    messagebar.style.display = 'block';
+                    messagebar.firstElementChild.innerHTML += 'Error : Please enter your app id to continue.<br/>';
+                }
+                if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#email-address').value === '') {
+                    messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                    messagebar.style.display = 'block';
+                    messagebar.firstElementChild.innerHTML += 'Error : Enter your email address (valid for more than 14 characters).<br/>';
+                    addSpace();
+                }
+                else if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#email-address').value.indexOf('@') === -1 || (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#email-address').value.indexOf('.') === -1 || (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#email-address').value.length <= 14) {
+                    messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                    messagebar.style.display = 'block';
+                    messagebar.firstElementChild.innerHTML += 'Error : Enter valid email address.<br/>';
+                    addSpace();
+                }
+                else {
+                    emailAddressCheck = 'OK';
+                }
+                if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#client-plan-type').value.length === 0) {
+                    messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                    messagebar.style.display = 'block';
+                    messagebar.firstElementChild.innerHTML += 'Error : Please select your plan type to continue.<br/>';
+                }
+                if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#client-plan').value.length === 0) {
+                    messagebar.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                    messagebar.style.display = 'block';
+                    messagebar.firstElementChild.innerHTML += 'Error : Please select your plan to continue.<br/>';
+                }
+                messagebar.firstElementChild.classList.add('box-runtime');
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#user-select-done').setAttribute('disabled', 'disabled');
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#email-address').setAttribute('disabled', 'disabled');
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-id').setAttribute('disabled', 'disabled');
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#client-plan').setAttribute('disabled', 'disabled');
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#client-plan-type').setAttribute('disabled', 'disabled');
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#user-select-back').setAttribute('disabled', 'disabled');
+                messagebar.style = 'display:block;';
+                messagebar.firstElementChild.textContent = 'Please wait......';
+                if (emailAddressCheck === 'OK') {
+                    return (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                        method: "POST",
+                        url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'payment/verifyClient',
+                        async: true,
+                        header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                        data: {
+                            security_code: 1,
+                            userEmail: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#email-address').value,
+                            appId: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-id').value,
+                            plan: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#client-plan').value,
+                            planType: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#client-plan-type').value,
+                            btnName: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#user-select-done').textContent
+                        }
+                    }, function (response) {
+                        if ((0,_common_validation__WEBPACK_IMPORTED_MODULE_5__.IsJsonString)(response) && JSON.parse(response).type === 'success') {
+                            //https://host/payment/payNow/appid/email/plantype/plan/amount
+                            /**
+                             * http://localhost/payment/payNow/
+                             * Zjh6bEdTVTV0RU1NNTlTREpFODhXdz09/
+                             * VUZBY3E2dzg1S2QyYk1HVHlsRm8ybi82YWNqc0Z1YXJmc082bXFMeWVDMD0=/
+                             * YmZIcmg5QnZFSEw4U2RxY3kxSlZDZz09/
+                             * YXNxZTdVVXBKbzNxbTcvQ052NEZUQT09/
+                             * */
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#user-select-done').textContent = 'Redirecting...';
+                            setTimeout(function () {
+                                window.location.replace(_db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'payment/paynow/' + JSON.parse(response).appIdEncrypt + '/' +
+                                    JSON.parse(response).emailEncrypt + '/' + JSON.parse(response).paymentPlanTypeEncrypt + '/' +
+                                    JSON.parse(response).paymentPlanEncrypt + '/');
+                            }, 2000);
+                        }
+                        else {
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#email-address').removeAttribute('disabled');
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-id').removeAttribute('disabled');
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#client-plan').removeAttribute('disabled');
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#client-plan-type').removeAttribute('disabled');
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#user-select-done').removeAttribute('disabled');
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#user-select-back').removeAttribute('disabled');
+                        }
+                        (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#messagePanel"));
+                    });
+                }
+            });
+        }
+    }
+}(window.location.href));
+/*add-ons zone*/
+(function (__url) {
+    if (__url.indexOf('ipinfo') !== -1) {
+        let interval = setInterval(function () {
+            if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#ipd-address') !== null || true) {
+                clearInterval(interval);
+                ['keyup', 'change', 'paste'].forEach(function (__inputEvent) {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#ipd-address')?.addEventListener(__inputEvent, function () {
+                        return retrieveIpInfoPlus();
+                    });
+                });
+                retrieveIpInfoPlus();
+            }
+        }, 100);
+    }
+}(window.location.href));
+/*system zone*/
+(function (__url) {
+    if (__url.indexOf('system') !== -1) {
+        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#system-notification-viewer") !== undefined) {
+            visitorsAccessLogsInterval = setInterval(function () {
+            }, 1000);
+            (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                method: "GET",
+                url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'api/getVisitorsAccessLogsLimited',
+                async: true,
+                header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+            }, function (response) {
+                if (response.length !== 0 && (0,_common_validation__WEBPACK_IMPORTED_MODULE_5__.IsJsonString)(response)) {
+                    if (JSON.parse(response).length !== 0) {
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#system-notification-viewer").textContent = '';
+                        JSON.parse(response).forEach(function (log) {
+                            const messageBody = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                    'a': {
+                                        'class': 'box-message ' + ((log.message_type.toLowerCase() === 'error') ? 'box-danger' : ((log.message_type.toLowerCase() === 'success') ? 'box-success' : ((log.message_type.toLowerCase() === 'notify') ? 'box-notify' : ' '))) + ' box-shadow-light',
+                                        /*'style': 'padding: 0 0 0 4px;',*/
+                                        'href': _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/log/view/' + log.id,
+                                        'title': '[' + log.ip + '] [' + log.browser + '] [' + log.time + ']',
+                                    }
+                                }]);
+                            const messageIcon = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                    'span': {
+                                        'class': ((log.message_type.toLowerCase() === 'error') ? 'box-danger-symbol' : ((log.message_type.toLowerCase() === 'success') ? 'box-success-symbol' : ((log.message_type.toLowerCase() === 'notify') ? 'box-notify-symbol' : ' '))),
+                                    }
+                                }]);
+                            messageBody.appendChild(messageIcon);
+                            const messageIconFile = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                    'i': {
+                                        'class': ((log.message_type.toLowerCase() === 'error') ? 'fa fa-times' : ((log.message_type.toLowerCase() === 'success') ? 'fa fa-check' : ((log.message_type.toLowerCase() === 'notify') ? 'fa fa-info' : ''))),
+                                    }
+                                }]);
+                            messageIcon.appendChild(messageIconFile);
+                            const messageBodyContent = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'div': { 'class': ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#notify') !== undefined) ? (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#notify').value : 'notify-md-content', } }]);
+                            messageBody.appendChild(messageBodyContent);
+                            const ipLink = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                    'a': {
+                                        'class': 'link',
+                                        'href': _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'addons/ipinfo/' + log.ip,
+                                    }
+                                }]);
+                            ipLink.textContent = log.author + ' with ' + log.browser /*+  ' from ' + log.country*/;
+                            messageBodyContent.appendChild(ipLink);
+                            const contentLink = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'span': { 'class': 'link', } }]);
+                            messageBodyContent.appendChild(contentLink);
+                            const content = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'p': { 'class': 'link', } }]);
+                            content.textContent = log.message.replace(/\s*\<.*?\>\s*/g, ' ').substr(0, 35) + '...';
+                            messageBodyContent.appendChild(content);
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#system-notification-viewer").appendChild(messageBody);
+                        });
+                    }
+                    else {
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#system-notification-viewer").textContent = '';
+                        const messageBody = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                'div': {
+                                    'class': 'box-message box-danger box-shadow-light',
+                                    /*'style': 'padding: 0 0 0 4px;',*/
+                                }
+                            }]);
+                        const messageIcon = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                'span': {
+                                    'class': 'box-danger-symbol',
+                                }
+                            }]);
+                        messageBody.appendChild(messageIcon);
+                        const messageIconFile = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                'i': {
+                                    'class': 'fa fa-times',
+                                }
+                            }]);
+                        messageIcon.appendChild(messageIconFile);
+                        const messageBodyContent = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'div': { 'class': 'notify-md-content', } }]);
+                        messageBodyContent.textContent = 'No notification found.';
+                        messageBody.appendChild(messageBodyContent);
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#system-notification-viewer").appendChild(messageBody);
+                    }
+                }
+            });
+        }
+        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#system-contact-message-viewer") !== undefined) {
+            contactMessageInterval = setInterval(function () {
+            }, 1000);
+            (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                method: "GET",
+                url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'api/getContactMessagesLimited',
+                async: true,
+                header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+            }, function (response) {
+                if (response.length !== 0 && (0,_common_validation__WEBPACK_IMPORTED_MODULE_5__.IsJsonString)(response)) {
+                    if (JSON.parse(response).length !== 0) {
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#system-contact-message-viewer").textContent = '';
+                        JSON.parse(response).forEach(function (message) {
+                            const messageBody = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                    'a': {
+                                        'class': 'box-message box-success box-shadow-light',
+                                        'href': _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/contactmessage/view/' + message.id,
+                                    }
+                                }]);
+                            const messageIcon = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                    'span': {
+                                        'class': 'box-success-symbol',
+                                    }
+                                }]);
+                            messageBody.appendChild(messageIcon);
+                            const messageIconFile = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                    'i': {
+                                        'class': 'fa fa-check',
+                                    }
+                                }]);
+                            messageIcon.appendChild(messageIconFile);
+                            const messageBodyContent = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'div': { 'class': ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#notify') !== undefined) ? (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#notify').value : 'notify-md-content', } }]);
+                            messageBody.appendChild(messageBodyContent);
+                            const sender = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                    'a': {
+                                        'class': 'link',
+                                        /*'href': appHost + 'addons/ipinfo/' + message.ip,*/
+                                    }
+                                }]);
+                            sender.textContent = message.f_name + ' ' + message.l_name + ' send a ' + message.subject;
+                            messageBodyContent.appendChild(sender);
+                            const content = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'p': {} }]);
+                            content.textContent = message.message;
+                            messageBodyContent.appendChild(content);
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#system-contact-message-viewer").appendChild(messageBody);
+                        });
+                    }
+                    else {
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#system-contact-message-viewer").textContent = '';
+                        const messageBody = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                'div': {
+                                    'class': 'box-message box-danger box-shadow-light',
+                                    /*'style': 'padding: 0 0 0 4px;',*/
+                                }
+                            }]);
+                        const messageIcon = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                'span': {
+                                    'class': 'box-danger-symbol',
+                                }
+                            }]);
+                        messageBody.appendChild(messageIcon);
+                        const messageIconFile = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                'i': {
+                                    'class': 'fa fa-times',
+                                }
+                            }]);
+                        messageIcon.appendChild(messageIconFile);
+                        const messageBodyContent = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'div': { 'class': 'notify-md-content', } }]);
+                        messageBodyContent.textContent = 'No message found.';
+                        messageBody.appendChild(messageBodyContent);
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#system-contact-message-viewer").appendChild(messageBody);
+                    }
+                }
+            });
+        }
+        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#system-default-menus') !== undefined) {
+            setInterval(function () {
+            }, 1000);
+            (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                method: "GET",
+                url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/index/getMainItemTabs',
+                async: true,
+                header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+            }, function (response) {
+                if (response.length !== 0 && (0,_common_validation__WEBPACK_IMPORTED_MODULE_5__.IsJsonString)(response)) {
+                    if (JSON.parse(response).length !== 0) {
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#system-default-menus").textContent = '';
+                        JSON.parse(response).forEach(function (menu) {
+                            const systemMenu = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                    'a': {
+                                        'class': 'thumbnail-md box-shadow-light',
+                                        'href': _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/' + menu.url,
+                                        'title': menu.title,
+                                    }
+                                }]);
+                            const systemMenuIcon = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'span': { 'class': 'thumbnail-image', } }]);
+                            systemMenu.appendChild(systemMenuIcon);
+                            const systemMenuIconFile = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'i': { 'class': menu.icon, } }]);
+                            systemMenuIcon.appendChild(systemMenuIconFile);
+                            const systemMenuName = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'div': { 'class': 'thumbnail-text', } }]);
+                            systemMenuName.textContent = menu.name;
+                            systemMenu.appendChild(systemMenuName);
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#system-default-menus").appendChild(systemMenu);
+                        });
+                    }
+                    else {
+                        const systemMenu = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                'div': {
+                                    'class': 'thumbnail-md box-shadow-light',
+                                    'style': 'padding: 45px 25px;',
+                                }
+                            }]);
+                        systemMenu.textContent = 'No menu exists.';
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#system-default-menus").appendChild(systemMenu);
+                    }
+                }
+            });
+        }
+        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#system-extra-menus') !== undefined) {
+            setInterval(function () {
+            }, 1000);
+            (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                method: "GET",
+                url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/index/getExtraItemTabs',
+                async: true,
+                header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+            }, function (response) {
+                if (response.length !== 0 && (0,_common_validation__WEBPACK_IMPORTED_MODULE_5__.IsJsonString)(response)) {
+                    if (JSON.parse(response).length !== 0) {
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#system-extra-menus').textContent = '';
+                        JSON.parse(response).forEach(function (menu) {
+                            const extraMenu = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                    'a': {
+                                        'class': 'thumbnail-md box-shadow-light',
+                                        'href': _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/' + menu.url,
+                                        'title': menu.title,
+                                    }
+                                }]);
+                            const extraMenuIcon = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'span': { 'class': 'thumbnail-image', } }]);
+                            extraMenu.appendChild(extraMenuIcon);
+                            const extraMenuIconFile = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'i': { 'class': menu.icon, } }]);
+                            extraMenuIcon.appendChild(extraMenuIconFile);
+                            const extraMenuName = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'div': { 'class': 'thumbnail-text', } }]);
+                            extraMenuName.textContent = menu.name;
+                            extraMenu.appendChild(extraMenuName);
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#system-extra-menus").appendChild(extraMenu);
+                        });
+                    }
+                    else {
+                        const extraMenu = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                'div': {
+                                    'class': 'thumbnail-md box-shadow-light',
+                                    'style': 'padding: 45px 25px;',
+                                }
+                            }]);
+                        extraMenu.textContent = 'No menu exists.';
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#system-extra-menus").appendChild(extraMenu);
+                    }
+                }
+            });
+        }
+        if (__url.indexOf('branches') !== -1) {
+            if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branch-data-table') !== undefined) {
+                //init edit pad by default
+                if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchEditMode')) {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchEditMode').innerHTML = 'New';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branch-data-btn').innerHTML = 'Save';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branch-reset-btn').innerHTML = 'Reset';
+                }
+                //set text box value change dynamic after dropbox had changed.
+                ['keyup', 'change', 'paste'].forEach(function (__event) {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchName').addEventListener(__event, function () {
+                        return (0,_common_common__WEBPACK_IMPORTED_MODULE_0__.checkInputDataAbility)(_db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + "system/branches/checkBranchNameInputAbility", {
+                            security_code: 1,
+                            name: "name",
+                            value: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#branchName").value
+                        }, function (response) {
+                            (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message2"));
+                        });
+                    });
+                });
+                //save data by clicking data button
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branch-data-btn').addEventListener('click', function () {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'block';
+                    return (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                        method: "POST",
+                        url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/branches/manageBranch',
+                        async: true,
+                        header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                        data: {
+                            security_code: 1,
+                            id: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchID').value,
+                            name: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchName').value,
+                            status: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchStatus').value,
+                            location: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchLocation').value,
+                            btnName: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branch-data-btn').textContent
+                        },
+                    }, (response) => {
+                        (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message2"));
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'none';
+                    });
+                });
+                //reset inputbox by clicking reset button
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branch-reset-btn').addEventListener('click', function () {
+                    changeElementValueById([
+                        { 'id': 'branchID', 'value': '' },
+                        { 'id': 'branchName', 'value': '' },
+                        { 'id': 'branchStatus', 'value': '' },
+                        { 'id': 'branchLocation', 'value': '' },
+                    ]);
+                });
+                //add data form by clicking add button
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branch-add-btn').addEventListener('click', function () {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message2').innerHTML = '';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#modal01').style.display = 'block';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchEditMode').innerHTML = 'New';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branch-data-btn').innerHTML = 'Save';
+                    changeElementValueById([
+                        { 'id': 'branchID', 'value': '' },
+                        { 'id': 'branchName', 'value': '' },
+                        { 'id': 'branchStatus', 'value': '' },
+                        { 'id': 'branchLocation', 'value': '' },
+                    ]);
+                });
+                //select data by clicking select button
+                if (document.querySelectorAll('#branch-select').length !== 0) {
+                    document.querySelectorAll('#branch-select').forEach(function (__selector) {
+                        ['click', 'dblclick', 'touchstart'].forEach(function (event) {
+                            __selector.addEventListener(event, function () {
+                                if (this.checked) {
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message2').innerHTML = '';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#modal01').style.display = 'block';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchEditMode').innerHTML = 'Edit';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branch-data-btn').innerHTML = 'Update';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchID').value = this.getAttribute('data-id');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchName').value = this.getAttribute('data-name');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchStatus').value = this.getAttribute('data-status');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchLocation').value = this.getAttribute('data-location');
+                                }
+                            }, { passive: true });
+                        });
+                    });
+                }
+                /*add edit event*/
+                if (document.querySelectorAll('#branch-edit-btn').length !== 0) {
+                    document.querySelectorAll('#branch-edit-btn').forEach(function (_button) {
+                        ['click', 'dblclick', 'touchstart'].forEach(function (event) {
+                            _button.addEventListener(event, function () {
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message2').innerHTML = '';
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#modal01').style.display = 'block';
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchEditMode').innerHTML = 'Edit';
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branch-data-btn').innerHTML = 'Update';
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchID').value = this.getAttribute('data-id');
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchName').value = this.getAttribute('data-name');
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchStatus').value = this.getAttribute('data-status');
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchLocation').value = this.getAttribute('data-location');
+                            }, { passive: true });
+                        });
+                    });
+                }
+                (0,_common_pagination__WEBPACK_IMPORTED_MODULE_6__.popUpDialogBoxDriver)('#branch-delete-btn', 'Message', _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/branches/deleteBranch', '#message3', function (response) {
+                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                });
+                (0,_common_pagination__WEBPACK_IMPORTED_MODULE_6__.paginationDriver)('ajax', _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/branches/indexPaginationAJAX', 'branch-data-table', function (response) {
+                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                }, function () {
+                    (0,_common_pagination__WEBPACK_IMPORTED_MODULE_6__.popUpDialogBoxDriver)('#branch-delete-btn', 'Message', _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/branches/deleteBranch', '#message3', function (response) {
+                        (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                    });
+                    /*it will be fire on pagination*/
+                    //select data by clicking select button
+                    if (document.querySelectorAll('#branch-select').length !== 0) {
+                        document.querySelectorAll('#branch-select').forEach(function (__selector) {
+                            ['click', 'dblclick', 'touchstart'].forEach(function (event) {
+                                __selector.addEventListener(event, function () {
+                                    if (this.checked) {
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message2').innerHTML = '';
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#modal01').style.display = 'block';
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchEditMode').innerHTML = 'Edit';
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branch-data-btn').innerHTML = 'Update';
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchID').value = this.getAttribute('data-id');
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchName').value = this.getAttribute('data-name');
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchStatus').value = this.getAttribute('data-status');
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchLocation').value = this.getAttribute('data-location');
+                                    }
+                                }, { passive: true });
+                            });
+                        });
+                    }
+                    /*add edit event*/
+                    if (document.querySelectorAll('#branch-edit-btn').length !== 0) {
+                        document.querySelectorAll('#branch-edit-btn').forEach(function (_button) {
+                            ['click', 'dblclick', 'touchstart'].forEach(function (event) {
+                                _button.addEventListener(event, function () {
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message2').innerHTML = '';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#modal01').style.display = 'block';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchEditMode').innerHTML = 'Edit';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branch-data-btn').innerHTML = 'Update';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchID').value = this.getAttribute('data-id');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchName').value = this.getAttribute('data-name');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchStatus').value = this.getAttribute('data-status');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#branchLocation').value = this.getAttribute('data-location');
+                                }, { passive: true });
+                            });
+                        });
+                    }
+                });
+            }
+            if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#busers-data-table') !== undefined) {
+                (0,_common_pagination__WEBPACK_IMPORTED_MODULE_6__.popUpDialogBoxDriver)('#transferBranchStuff', 'Message', _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/branches/transferBranchStuff', '#message3', function (response) {
+                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                });
+                (0,_common_pagination__WEBPACK_IMPORTED_MODULE_6__.paginationDriver)('ajax', _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/branches/usersPaginationAJAX', 'busers-data-table', function (response) {
+                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                }, function () {
+                    (0,_common_pagination__WEBPACK_IMPORTED_MODULE_6__.popUpDialogBoxDriver)('#transferBranchStuff', 'Message', _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/branches/transferBranchStuff', '#message3', function (response) {
+                        (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                    });
+                });
+            }
+        }
+        if (__url.indexOf('modules') !== -1) {
+            if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#modules-data-table') !== undefined) {
+                //init edit pad by default
+                if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleEditMode')) {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleEditMode').innerHTML = 'New';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#module-data-btn').innerHTML = 'Save';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#module-reset-btn').innerHTML = 'Reset';
+                }
+                //save data by clicking data button
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#module-data-btn').addEventListener('click', function () {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'block';
+                    return (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                        method: "POST",
+                        url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/modules/updateModule',
+                        async: true,
+                        header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                        data: {
+                            security_code: 1,
+                            id: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleID').value,
+                            status: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleStatus').value,
+                            btnName: 'Update'
+                        },
+                    }, (response) => {
+                        (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message2"));
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'none';
+                    });
+                });
+                //reset inputbox by clicking reset button
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#module-reset-btn').addEventListener('click', function () {
+                    changeElementValueById([
+                        { 'id': 'moduleStatus', 'value': '' },
+                    ]);
+                });
+                //add data form by clicking add button
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#module-add-btn').addEventListener('click', function () {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message2').innerHTML = '';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#modal01').style.display = 'block';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleUploadPad').style.display = 'block';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#UploadStatusBoard').style.display = 'none';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleEditPAD').style.display = 'none';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#module-data-btn').style.display = 'none';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#module-reset-btn').style.display = 'none';
+                });
+                //show select file name on status bar
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleFile').addEventListener('change', function () {
+                    let file = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleFile').files[0];
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#UploadStatusBoard').style.display = 'block';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#progressbar').style.display = 'none';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#upload_status').innerHTML = file.name + ' selected';
+                });
+                //upload file by clicking button
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#uploadModuleFile').addEventListener('click', function () {
+                    (0,_common_upload__WEBPACK_IMPORTED_MODULE_7__.uploadFile)('moduleFile', 'moduleFile', _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/modules/uploadTARGZ');
+                });
+                //select data by clicking select button
+                if (document.querySelectorAll('#module-select').length !== 0) {
+                    document.querySelectorAll('#module-select').forEach(function (__selector) {
+                        ['click', 'dblclick', 'touchstart'].forEach(function (event) {
+                            __selector.addEventListener(event, function () {
+                                if (this.checked) {
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message2').innerHTML = '';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#modal01').style.display = 'block';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleUploadPad').style.display = 'none';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleEditPAD').style.display = 'block';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleEditMode').innerHTML = 'Edit';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#module-data-btn').innerHTML = 'Update';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#module-data-btn').style.display = 'block';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#module-reset-btn').style.display = 'block';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleID').value = this.getAttribute('data-id');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleName').value = this.getAttribute('data-name');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleName').setAttribute('disabled', 'disabled');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleLocation').value = this.getAttribute('data-location');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleLocation').setAttribute('disabled', 'disabled');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleStatus').value = this.getAttribute('data-status');
+                                }
+                            }, { passive: true });
+                        });
+                    });
+                }
+                /*add edit event*/
+                if (document.querySelectorAll('#module-edit-btn').length !== 0) {
+                    document.querySelectorAll('#module-edit-btn').forEach(function (_button) {
+                        ['click', 'dblclick', 'touchstart'].forEach(function (event) {
+                            _button.addEventListener(event, function () {
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message2').innerHTML = '';
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#modal01').style.display = 'block';
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleUploadPad').style.display = 'none';
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleEditPAD').style.display = 'block';
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleEditMode').innerHTML = 'Edit';
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#module-data-btn').innerHTML = 'Update';
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#module-data-btn').style.display = 'block';
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#module-reset-btn').style.display = 'block';
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleID').value = this.getAttribute('data-id');
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleName').value = this.getAttribute('data-name');
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleName').setAttribute('disabled', 'disabled');
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleLocation').value = this.getAttribute('data-location');
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleLocation').setAttribute('disabled', 'disabled');
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleStatus').value = this.getAttribute('data-status');
+                            }, { passive: true });
+                        });
+                    });
+                }
+                (0,_common_pagination__WEBPACK_IMPORTED_MODULE_6__.popUpDialogBoxDriver)('#module-delete-btn', 'Message', _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/modules/deleteModule', '#message3', function (response) {
+                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                });
+                (0,_common_pagination__WEBPACK_IMPORTED_MODULE_6__.paginationDriver)('ajax', _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/modules/indexPaginationAJAX', 'modules-data-table', function (response) {
+                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                }, function () {
+                    (0,_common_pagination__WEBPACK_IMPORTED_MODULE_6__.popUpDialogBoxDriver)('#module-delete-btn', 'Message', _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/modules/deleteModule', '#message3', function (response) {
+                        (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                    });
+                    /*it will be fire on pagination*/
+                    //select data by clicking select button
+                    if (document.querySelectorAll('#module-select').length !== 0) {
+                        document.querySelectorAll('#module-select').forEach(function (__selector) {
+                            ['click', 'dblclick', 'touchstart'].forEach(function (event) {
+                                __selector.addEventListener(event, function () {
+                                    if (this.checked) {
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message2').innerHTML = '';
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#modal01').style.display = 'block';
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleUploadPad').style.display = 'none';
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleEditPAD').style.display = 'block';
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleEditMode').innerHTML = 'Edit';
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#module-data-btn').innerHTML = 'Update';
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#module-data-btn').style.display = 'block';
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#module-reset-btn').style.display = 'block';
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleID').value = this.getAttribute('data-id');
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleName').value = this.getAttribute('data-name');
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleName').setAttribute('disabled', 'disabled');
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleLocation').value = this.getAttribute('data-location');
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleLocation').setAttribute('disabled', 'disabled');
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleStatus').value = this.getAttribute('data-status');
+                                    }
+                                }, { passive: true });
+                            });
+                        });
+                    }
+                    /*add edit event*/
+                    if (document.querySelectorAll('#module-edit-btn').length !== 0) {
+                        document.querySelectorAll('#module-edit-btn').forEach(function (_button) {
+                            ['click', 'dblclick', 'touchstart'].forEach(function (event) {
+                                _button.addEventListener(event, function () {
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message2').innerHTML = '';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#modal01').style.display = 'block';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleUploadPad').style.display = 'none';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleEditPAD').style.display = 'block';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleEditMode').innerHTML = 'Edit';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#module-data-btn').innerHTML = 'Update';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#module-data-btn').style.display = 'block';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#module-reset-btn').style.display = 'block';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleID').value = this.getAttribute('data-id');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleName').value = this.getAttribute('data-name');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleName').setAttribute('disabled', 'disabled');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleLocation').value = this.getAttribute('data-location');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleLocation').setAttribute('disabled', 'disabled');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#moduleStatus').value = this.getAttribute('data-status');
+                                }, { passive: true });
+                            });
+                        });
+                    }
+                });
+            }
+        }
+        if (__url.indexOf('pages') !== -1) {
+            if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#pages-data-table') !== undefined) {
+                //init edit pad by default
+                if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#pageEditMode')) {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#pageEditMode').innerHTML = 'New';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-data-btn').innerHTML = 'Save';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-reset-btn').innerHTML = 'Reset';
+                }
+                //init edit pad by default
+                if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#pageSEOEditMode')) {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#pageSEOEditMode').innerHTML = 'New';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-seo-data-btn').innerHTML = 'Save';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-seo-reset-btn').innerHTML = 'Reset';
+                }
+                //add data form by clicking add button
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-add-btn').addEventListener('click', function () {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message2').innerHTML = '';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#modal01').style.display = 'block';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#pageEditMode').innerHTML = 'New';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-data-btn').innerHTML = 'Save';
+                    changeElementValueById([
+                        { 'id': 'page-parent-id', 'value': '' },
+                        { 'id': 'page-position-id', 'value': '' },
+                        { 'id': 'page-status', 'value': '' },
+                        { 'id': 'page-seo', 'value': '' },
+                        { 'id': 'page-title', 'value': '' },
+                        { 'id': 'page-url', 'value': '' },
+                        { 'id': 'page-icon', 'value': '' },
+                        { 'id': 'page-type', 'value': '' },
+                    ]);
+                });
+                /*page parent change event*/
+                ['change'].forEach(function (__event) {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-parent-id').addEventListener(__event, function () {
+                        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-url').value.length !== 0) {
+                            if (this.value.length !== 0 && this.value !== '0') {
+                                return (0,_common_common__WEBPACK_IMPORTED_MODULE_0__.checkInputDataAbility)(_db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + "system/pages/getPageNameById", {
+                                    security_code: 1,
+                                    page: this.value
+                                }, function (response) {
+                                    if (JSON.parse(response).type === 'success') {
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-produce-link').setAttribute('actual-url', 'page/' + JSON.parse(response).name.replace(' ', '-').toLowerCase() + '/' + (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-url').value.toLowerCase());
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-produce-link').href = _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'page/' + JSON.parse(response).name.replace(' ', '-').toLowerCase() + '/' + (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-url').value.toLowerCase();
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-produce-link').textContent = 'URL : ' + _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'page/' + JSON.parse(response).name.replace(' ', '-').toLowerCase() + '/' + (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-url').value.toLowerCase();
+                                    }
+                                    else {
+                                        (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message2"));
+                                    }
+                                });
+                            }
+                        }
+                    });
+                });
+                //set text box value change dynamic after dropbox had changed.
+                ['keyup', 'change', 'paste', 'focus'].forEach(function (__event) {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-title').addEventListener(__event, function () {
+                        if (this.value.length !== 0) {
+                            this.value = this.value[0].toUpperCase() + this.value.slice(1);
+                            return (0,_common_common__WEBPACK_IMPORTED_MODULE_0__.checkInputDataAbility)(_db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + "system/pages/checkPageTitleURLInputAbility", {
+                                security_code: 1,
+                                name: "title",
+                                value: this.value[0].toUpperCase() + this.value.slice(1)
+                            }, function (response) {
+                                (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message2"));
+                            });
+                        }
+                    });
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-url').addEventListener(__event, function () {
+                        if (this.value.length === 0) {
+                            this.value = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-title').value.replace(' ', '-').toLowerCase();
+                        }
+                        else {
+                            this.value = this.value.replace(' ', '-').toLowerCase();
+                        }
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-produce-link').setAttribute('style', 'display:block;');
+                        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-parent-id').value.length !== 0 && (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-parent-id').value !== '0') {
+                            (0,_common_common__WEBPACK_IMPORTED_MODULE_0__.checkInputDataAbility)(_db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + "system/pages/getPageNameById", {
+                                security_code: 1,
+                                page: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-parent-id').value
+                            }, function (response) {
+                                if (JSON.parse(response).type === 'success') {
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-produce-link').setAttribute('actual-url', 'page/' + JSON.parse(response).name.replace(' ', '-').toLowerCase() + '/' + (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-url').value.toLowerCase());
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-produce-link').href = _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'page/' + JSON.parse(response).name.replace(' ', '-').toLowerCase() + '/' + (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-url').value.toLowerCase();
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-produce-link').textContent = 'URL : ' + _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'page/' + JSON.parse(response).name.replace(' ', '-').toLowerCase() + '/' + (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-url').value.toLowerCase();
+                                }
+                                else {
+                                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message2"));
+                                }
+                            });
+                        }
+                        else {
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-produce-link').setAttribute('actual-url', 'page/' + this.value.replace(' ', '-').toLowerCase());
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-produce-link').href = _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'page/' + this.value.replace(' ', '-').toLowerCase();
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-produce-link').textContent = 'URL : ' + _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'page/' + this.value.replace(' ', '-').toLowerCase();
+                        }
+                        return (0,_common_common__WEBPACK_IMPORTED_MODULE_0__.checkInputDataAbility)(_db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + "system/pages/checkPageTitleURLInputAbility", {
+                            security_code: 1,
+                            name: "url",
+                            value: this.value.toLowerCase()
+                        }, function (response) {
+                            (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message2"));
+                        });
+                    });
+                });
+                //save data by clicking data button
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-data-btn').addEventListener('click', function () {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'block';
+                    return (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                        method: "POST",
+                        url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/pages/managePages',
+                        async: true,
+                        header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                        data: {
+                            security_code: 1,
+                            id: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#pageID').value,
+                            parent: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-parent-id').value,
+                            position: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-position-id').value,
+                            status: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-status').value,
+                            seo: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-seo').value,
+                            title: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-title').value,
+                            icon: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-icon').value,
+                            url: ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-produce-link').getAttribute('actual-url') !== null) ? (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-produce-link').getAttribute('actual-url').toLowerCase() : '',
+                            type: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-type').value,
+                            btnName: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-data-btn').textContent
+                        },
+                    }, (response) => {
+                        (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message2"));
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'none';
+                        /*-------------------------*/
+                        console.log(document.forms);
+                        /*-------------------------*/
+                    });
+                });
+                //reset inputbox by clicking reset button
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-reset-btn').addEventListener('click', function () {
+                    changeElementValueById([
+                        { 'id': 'page-parent-id', 'value': '' },
+                        { 'id': 'page-position-id', 'value': '' },
+                        { 'id': 'page-status', 'value': '' },
+                        { 'id': 'page-seo', 'value': '' },
+                        { 'id': 'page-title', 'value': '' },
+                        { 'id': 'page-url', 'value': '' },
+                        { 'id': 'page-icon', 'value': '' },
+                        { 'id': 'page-type', 'value': '' },
+                    ]);
+                });
+                //select data by clicking select button
+                if (document.querySelectorAll('#page-select').length !== 0) {
+                    document.querySelectorAll('#page-select').forEach(function (__selector) {
+                        ['click', 'dblclick', 'touchstart'].forEach(function (event) {
+                            __selector.addEventListener(event, function () {
+                                if (this.checked) {
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message2').innerHTML = '';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#modal01').style.display = 'block';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#pageEditMode').innerHTML = 'Edit';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-data-btn').innerHTML = 'Update';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#pageID').value = this.getAttribute('data-id');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-parent-id').value = this.getAttribute('data-parent-id');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-position-id').value = this.getAttribute('data-position');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-status').value = this.getAttribute('data-status');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-seo').value = this.getAttribute('data-seo');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-title').value = this.getAttribute('data-title');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-url').value = this.getAttribute('data-url');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-type').value = this.getAttribute('data-type');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-icon').value = this.getAttribute('data-icon');
+                                }
+                            }, { passive: true });
+                        });
+                    });
+                }
+                /*add edit event*/
+                if (document.querySelectorAll('#page-edit-btn').length !== 0) {
+                    document.querySelectorAll('#page-edit-btn').forEach(function (_button) {
+                        ['click', 'dblclick', 'touchstart'].forEach(function (event) {
+                            _button.addEventListener(event, function () {
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message2').innerHTML = '';
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#modal01').style.display = 'block';
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#pageEditMode').innerHTML = 'Edit';
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-data-btn').innerHTML = 'Update';
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#pageID').value = this.getAttribute('data-id');
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-parent-id').value = this.getAttribute('data-parent-id');
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-position-id').value = this.getAttribute('data-position');
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-status').value = this.getAttribute('data-status');
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-seo').value = this.getAttribute('data-seo');
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-title').value = this.getAttribute('data-title');
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-url').value = this.getAttribute('data-url');
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-type').value = this.getAttribute('data-type');
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-icon').value = this.getAttribute('data-icon');
+                            }, { passive: true });
+                        });
+                    });
+                }
+                (0,_common_pagination__WEBPACK_IMPORTED_MODULE_6__.popUpDialogBoxDriver)('#page-delete-btn', 'Message', _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/pages/deletePage', '#message3', function (response) {
+                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                });
+                (0,_common_pagination__WEBPACK_IMPORTED_MODULE_6__.paginationDriver)('ajax', _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/pages/indexPaginationAJAX', 'pages-data-table', function (response) {
+                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                }, function () {
+                    (0,_common_pagination__WEBPACK_IMPORTED_MODULE_6__.popUpDialogBoxDriver)('#page-delete-btn', 'Message', _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/pages/deletePage', '#message3', function (response) {
+                        (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                    });
+                    /*it will be fire on pagination*/
+                    //select data by clicking select button
+                    if (document.querySelectorAll('#page-select').length !== 0) {
+                        document.querySelectorAll('#page-select').forEach(function (__selector) {
+                            ['click', 'dblclick', 'touchstart'].forEach(function (event) {
+                                __selector.addEventListener(event, function () {
+                                    if (this.checked) {
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message2').innerHTML = '';
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#modal01').style.display = 'block';
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#pageEditMode').innerHTML = 'Edit';
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-data-btn').innerHTML = 'Update';
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#pageID').value = this.getAttribute('data-id');
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-parent-id').value = this.getAttribute('data-parent-id');
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-position-id').value = this.getAttribute('data-position');
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-status').value = this.getAttribute('data-status');
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-seo').value = this.getAttribute('data-seo');
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-title').value = this.getAttribute('data-title');
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-url').value = this.getAttribute('data-url');
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-type').value = this.getAttribute('data-type');
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-icon').value = this.getAttribute('data-icon');
+                                    }
+                                }, { passive: true });
+                            });
+                        });
+                    }
+                    /*add edit event*/
+                    if (document.querySelectorAll('#page-edit-btn').length !== 0) {
+                        document.querySelectorAll('#page-edit-btn').forEach(function (_button) {
+                            ['click', 'dblclick', 'touchstart'].forEach(function (event) {
+                                _button.addEventListener(event, function () {
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message2').innerHTML = '';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#modal01').style.display = 'block';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#pageEditMode').innerHTML = 'Edit';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-data-btn').innerHTML = 'Update';
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#pageID').value = this.getAttribute('data-id');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-parent-id').value = this.getAttribute('data-parent-id');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-position-id').value = this.getAttribute('data-position');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-status').value = this.getAttribute('data-status');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-seo').value = this.getAttribute('data-seo');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-title').value = this.getAttribute('data-title');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-url').value = this.getAttribute('data-url');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-type').value = this.getAttribute('data-type');
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-icon').value = this.getAttribute('data-icon');
+                                }, { passive: true });
+                            });
+                        });
+                    }
+                });
+            }
+            if (__url.indexOf('sources') !== -1) {
+                [/*'focus', 'click','keyup',*/ 'paste', 'change'].forEach(function (__event) {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#page-content')?.addEventListener(__event, function () {
+                        return this.textContent = this.textContent.replace('{$layoutParams.root}', _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost);
+                    });
+                });
+            }
+        }
+        /*----------------*/
+        /*----------------*/
+        if (__url.indexOf('tracking') !== -1) {
+            if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#table-view-databases') !== undefined) {
+                if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#databaseEditMode')) {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#database-data-btn').innerHTML = 'Save';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#database-reset-btn').innerHTML = 'Reset';
+                }
+                if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#databaseBackupEditMode')) {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#databaseBackup-data-btn').innerHTML = 'Backup';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#databaseBackup-reset-btn').innerHTML = 'Reset';
+                }
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#server-db-add-btn').addEventListener('click', function () {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message2').innerHTML = '';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#modal01').style.display = 'block';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#databaseEditMode').innerHTML = 'Add new';
+                    changeElementValueById([
+                        { 'id': 'databaseID', 'value': '' },
+                        { 'id': 'databaseServer', 'value': '' },
+                        { 'id': 'databaseUser', 'value': '' },
+                        { 'id': 'databaseName', 'value': '' },
+                        { 'id': 'databasePassword', 'value': '' },
+                    ]);
+                });
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#server-db-backup-btn').addEventListener('click', function () {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message3').innerHTML = '';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#modal02').style.display = 'block';
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#databaseBackupEditMode').innerHTML = 'Backup';
+                    changeElementValueById([
+                        { 'id': 'databaseStorage', 'value': '' },
+                        { 'id': 'databaseBackup', 'value': '' },
+                    ]);
+                });
+                //save data by clicking data button
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#database-data-btn').addEventListener('click', function () {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'block';
+                    (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                        method: "POST",
+                        url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/manageServerDatabase',
+                        async: true,
+                        header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                        data: {
+                            security_code: 1,
+                            id: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#databaseID').value,
+                            name: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#databaseServer').value,
+                            user: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#databaseUser').value,
+                            db: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#databaseName').value,
+                            password: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#databasePassword').value,
+                            btnName: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#database-data-btn').textContent
+                        },
+                    }, function (response) {
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#database-data-btn').textContent = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#database-data-btn').textContent + 'd';
+                        setTimeout(function () {
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#database-data-btn').textContent = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#database-data-btn').textContent.slice(0, -1);
+                        }, 2000);
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'none';
+                        (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message2"));
+                    });
+                });
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#databaseBackup-data-btn').addEventListener('click', function () {
+                    /*stop running xhr hit to get better server performance*/
+                    clearInterval(publicSocialLinksInterval);
+                    publicSocialLinksInterval = 0;
+                    clearInterval(visitorsAccessLogsInterval);
+                    visitorsAccessLogsInterval = 0;
+                    clearInterval(contactMessageInterval);
+                    contactMessageInterval = 0;
+                    clearInterval(serverDatabaseInterval);
+                    serverDatabaseInterval = 0;
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'block';
+                    (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                        method: "GET",
+                        url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/backupData/' + (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#databaseStorage').value + '/' + (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#databaseBackup').value,
+                        async: true,
+                        header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                    }, function (response) {
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#database-data-btn').textContent = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#database-data-btn').textContent + 'd';
+                        setTimeout(function () {
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#database-data-btn').textContent = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#database-data-btn').textContent.slice(0, -1);
+                        }, 2000);
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'none';
+                        (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message3"));
+                    });
+                });
+                serverDatabaseInterval = setInterval(function () {
+                }, 1000);
+                (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                    method: "GET",
+                    url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/getServerDatabases',
+                    async: true,
+                    header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                }, function (response) {
+                    if (response.length !== 0 && (0,_common_validation__WEBPACK_IMPORTED_MODULE_5__.IsJsonString)(response)) {
+                        if (JSON.parse(response).message === undefined) {
+                            if (JSON.parse(response).length !== 0) {
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#table-view-data-body").textContent = '';
+                                let slNum = 1;
+                                let view = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'table': { 'class': 'table table-bottom-border-only table-condensed table-striped' } }]);
+                                let viewBody = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tbody': {} }]);
+                                view.appendChild(viewBody);
+                                JSON.parse(response).forEach(function (server) {
+                                    let currentSLNum = slNum++;
+                                    let viewBodyRow = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                            'tr': {
+                                                'data-server': server.name,
+                                                'data-db': server.db,
+                                                'data-user': server.user,
+                                                'data-password': server.password,
+                                            }
+                                        }]);
+                                    /*viewBodyRow.addEventListener('click', function () {
+                                        captureElement('#app-loader').style.display = 'block';
+                                        sendRequest({
+                                            method: "POST",
+                                            url: appHost + 'system/tracking/dbServerStatus',
+                                            async: true,
+                                            header: [{
+                                                name: "Content-type",
+                                                value: "application/json;charset=UTF-8"
+                                            }],
+                                            data: {
+                                                security_code: 1,
+                                                server: server.name,
+                                                db: server.db,
+                                                user: server.user,
+                                                password: server.password,
+                                            },
+                                        }, function (response: any) {
+                                            captureElement('#app-loader').style.display = 'none';
+                                            showMessage(response, captureElement("#message"));
+                                            console.log(response);
+                                        });
+                                    });*/
+                                    viewBody.appendChild(viewBodyRow);
+                                    let viewBodyRowTd1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                    viewBodyRowTd1.textContent = currentSLNum;
+                                    viewBodyRow.appendChild(viewBodyRowTd1);
+                                    let viewBodyRowTd2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                    viewBodyRowTd2.textContent = server.name;
+                                    viewBodyRow.appendChild(viewBodyRowTd2);
+                                    let viewBodyRowTd3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                    viewBodyRowTd3.textContent = server.user;
+                                    viewBodyRow.appendChild(viewBodyRowTd3);
+                                    let viewBodyRowTd4 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                    viewBodyRowTd4.textContent = server.db;
+                                    viewBodyRow.appendChild(viewBodyRowTd4);
+                                    let viewBodyRowTd5 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                    viewBodyRowTd5.textContent = server.password;
+                                    viewBodyRow.appendChild(viewBodyRowTd5);
+                                    let viewBodyRowTd6 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                    viewBodyRow.appendChild(viewBodyRowTd6);
+                                    let viewBodyRowTd6a0 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                            'a': {
+                                                'href': 'javascript:void(0);',
+                                                'class': 'button button-xs button-primary',
+                                            }
+                                        }]);
+                                    viewBodyRowTd6a0.addEventListener('click', function () {
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'block';
+                                        (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                                            method: "POST",
+                                            url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/dbConnectionTest',
+                                            async: true,
+                                            header: [{
+                                                    name: "Content-type",
+                                                    value: "application/json;charset=UTF-8"
+                                                }],
+                                            data: {
+                                                security_code: 1,
+                                                server: server.name,
+                                                user: server.user,
+                                                password: server.password,
+                                                db: server.db,
+                                            },
+                                        }, function (response) {
+                                            if (response.length !== 0 && (0,_common_validation__WEBPACK_IMPORTED_MODULE_5__.IsJsonString)(response)) {
+                                                if (JSON.parse(response).length !== 0) {
+                                                    if (JSON.parse(response).message === 'connected') {
+                                                        window.open(_db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/view/' + server.db, '_blank');
+                                                    }
+                                                }
+                                            }
+                                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'none';
+                                            (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                                        });
+                                    });
+                                    viewBodyRowTd6.appendChild(viewBodyRowTd6a0);
+                                    let viewBodyRowTd6a0i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                            'i': {
+                                                'class': 'fa fa-eye',
+                                            }
+                                        }]);
+                                    viewBodyRowTd6a0.appendChild(viewBodyRowTd6a0i1);
+                                    let viewBodyRowTd6a1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                            'a': {
+                                                'href': 'javascript:void(0);',
+                                                'class': 'button button-xs button-success',
+                                            }
+                                        }]);
+                                    viewBodyRowTd6a1.addEventListener('click', function () {
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message2').innerHTML = '';
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#modal01').style.display = 'block';
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#databaseEditMode').textContent = 'Edit';
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#database-data-btn').innerHTML = 'Update';
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#databaseID').value = server.id;
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#databaseServer').value = server.name;
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#databaseUser').value = server.user;
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#databaseName').value = server.db;
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#databasePassword').value = server.password;
+                                    });
+                                    viewBodyRowTd6.appendChild(viewBodyRowTd6a1);
+                                    let viewBodyRowTd6a1i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                            'i': {
+                                                'class': 'fa fa-edit',
+                                            }
+                                        }]);
+                                    viewBodyRowTd6a1.appendChild(viewBodyRowTd6a1i1);
+                                    let viewBodyRowTd6a2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                            'a': {
+                                                'href': 'javascript:void(0);',
+                                                'class': 'button button-xs button-danger',
+                                            }
+                                        }]);
+                                    viewBodyRowTd6a2.addEventListener('click', function () {
+                                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'block';
+                                        (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                                            method: "POST",
+                                            url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/deleteServerDatabase',
+                                            async: true,
+                                            header: [{
+                                                    name: "Content-type",
+                                                    value: "application/json;charset=UTF-8"
+                                                }],
+                                            data: {
+                                                security_code: 1, id: server.id,
+                                            },
+                                        }, function (response) {
+                                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'none';
+                                            (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                                        });
+                                    });
+                                    viewBodyRowTd6.appendChild(viewBodyRowTd6a2);
+                                    let viewBodyRowTd6a2i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                            'i': {
+                                                'class': 'fa fa-trash',
+                                            }
+                                        }]);
+                                    viewBodyRowTd6a2.appendChild(viewBodyRowTd6a2i1);
+                                });
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#table-view-data-body").appendChild(view);
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#table-view-data-body").style = 'padding:0;';
+                            }
+                            else {
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#table-view-data-body").textContent = 'No database found';
+                            }
+                        }
+                        else {
+                            (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                        }
+                    }
+                });
+            }
+            if (__url.indexOf('tracking/view') !== -1) {
+                if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#table-view-tables') !== undefined) {
+                    setInterval(function () {
+                    }, 1000);
+                    (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                        method: "GET",
+                        url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/getTables/' + (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#dbInfoDb").value,
+                        async: true,
+                        header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                    }, function (response) {
+                        if (response.length !== 0 && (0,_common_validation__WEBPACK_IMPORTED_MODULE_5__.IsJsonString)(response)) {
+                            if (JSON.parse(response).message === undefined) {
+                                if (JSON.parse(response).length !== 0) {
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#table-view-datatable-body").textContent = '';
+                                    let slNum = 1;
+                                    let view = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'table': { 'class': 'table table-bottom-border-only table-condensed table-striped' } }]);
+                                    let viewBody = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tbody': {} }]);
+                                    view.appendChild(viewBody);
+                                    /*old version*/
+                                    /*JSON.parse(response).forEach(function (table: any) {
+                                        let currentSLNum: any = slNum++;
+                                        let viewBodyRow = createElement([{'tr': {}}]);
+                                        viewBody.appendChild(viewBodyRow);
+
+                                        let viewBodyRowTd1 = createElement([{'td': {}}]);
+                                        viewBodyRowTd1.textContent = currentSLNum;
+                                        viewBodyRow.appendChild(viewBodyRowTd1);
+
+                                        let viewBodyRowTd2 = createElement([{'td': {}}]);
+                                        let nname;
+                                        viewBodyRowTd2.textContent = (nname = table.TABLE_NAME.replace('msu_', '').substr(0, 20), (nname.length > 19) ? nname + '...' : nname);
+                                        viewBodyRow.appendChild(viewBodyRowTd2);
+
+                                        let viewBodyRowTd3 = createElement([{'td': {}}]);
+                                        viewBodyRowTd3.textContent = table.TABLE_ROWS;
+                                        viewBodyRow.appendChild(viewBodyRowTd3);
+
+                                        let viewBodyRowTd4 = createElement([{'td': {}}]);
+                                        let nsize;
+                                        viewBodyRowTd4.textContent = (table.Size > 1024) ? (nsize = (table.Size / 1024), (nsize > 1024) ? (nsize / 1024).toFixed(2) + ' MB' : nsize.toFixed(2) + ' KB') : table.Size.toFixed(2) + ' B';
+                                        viewBodyRow.appendChild(viewBodyRowTd4);
+
+                                        let viewBodyRowTd5 = createElement([{'td': {}}]);
+                                        viewBodyRowTd5.textContent = table.CREATE_TIME.substr(0, 11);
+                                        viewBodyRow.appendChild(viewBodyRowTd5);
+
+                                        let viewBodyRowTd6 = createElement([{'td': {}}]);
+                                        viewBodyRowTd6.textContent = (table.UPDATE_TIME !== null) ? table.UPDATE_TIME.substr(0, 11) : 'Not Updated';
+                                        viewBodyRow.appendChild(viewBodyRowTd6);
+
+                                        let viewBodyRowTd7 = createElement([{'td': {}}]);
+                                        viewBodyRowTd7.textContent = table.TABLE_COLLATION.substr(0, 7);
+                                        viewBodyRow.appendChild(viewBodyRowTd7);
+
+                                        let viewBodyRowTd8 = createElement([{'td': {}}]);
+                                        viewBodyRowTd8.textContent = table.ENGINE;
+                                        viewBodyRow.appendChild(viewBodyRowTd8);
+
+                                        let viewBodyRowTdn = createElement([{'td': {}}]);
+                                        viewBodyRow.appendChild(viewBodyRowTdn);
+                                        let viewBodyRowTdna0 = createElement([{
+                                            'a': {
+                                                'href': 'javascript:void(0);',
+                                                'class': 'button button-xs button-primary',
+                                            }
+                                        }]);
+                                        viewBodyRowTdna0.addEventListener('click', function () {
+                                            captureElement('#app-loader').style.display = 'block';
+                                            sendRequest({
+                                                method: "POST",
+                                                url: appHost + 'system/tracking/dbConnectionTest',
+                                                async: true,
+                                                header: [{
+                                                    name: "Content-type",
+                                                    value: "application/json;charset=UTF-8"
+                                                }],
+                                                data: {
+                                                    security_code: 1,
+                                                    server: captureElement('#dbInfoServer').value,
+                                                    user: captureElement('#dbInfoUser').value,
+                                                    password: captureElement('#dbInfoPassword').value,
+                                                    db: captureElement('#dbInfoDb').value,
+                                                },
+                                            }, function (response: any) {
+                                                if (response.length !== 0 && IsJsonString(response)) {
+                                                    if (JSON.parse(response).length !== 0) {
+                                                        if (JSON.parse(response).message === 'connected') {
+                                                            window.open(appHost + 'system/tracking/viewDbTable/' + captureElement('#dbInfoDb').value + '/' + table.TABLE_NAME.replace('msu_', ''), '_self');
+                                                        }
+                                                    }
+                                                }
+                                                captureElement('#app-loader').style.display = 'none';
+                                                showMessage(response, captureElement("#message"));
+                                            });
+                                        });
+                                        viewBodyRowTdn.appendChild(viewBodyRowTdna0);
+                                        let viewBodyRowTdna0i1 = createElement([{
+                                            'i': {
+                                                'class': 'fa fa-eye',
+                                            }
+                                        }]);
+                                        viewBodyRowTdna0.appendChild(viewBodyRowTdna0i1);
+                                        let viewBodyRowTdna1 = createElement([{
+                                            'a': {
+                                                'href': 'javascript:void(0);',
+                                                'class': 'button button-xs button-success',
+                                            }
+                                        }]);
+                                        /!*viewBodyRowTdna1.addEventListener('click', function () {
+                                            captureElement('#message2').innerHTML = '';
+                                            captureElement('#modal01').style.display = 'block';
+                                            captureElement('#databaseEditMode').textContent = 'Edit';
+                                            captureElement('#database-data-btn').innerHTML = 'Update';
+                                            captureElement('#databaseID').value = datatable.id;
+                                            captureElement('#databaseServer').value = datatable.name;
+                                            captureElement('#databaseUser').value = datatable.user;
+                                            captureElement('#databaseName').value = datatable.db;
+                                            captureElement('#databasePassword').value = datatable.password;
+                                        });*!/
+                                        viewBodyRowTdn.appendChild(viewBodyRowTdna1);
+                                        let viewBodyRowTdna1i1 = createElement([{
+                                            'i': {
+                                                'class': 'fa fa-edit',
+                                            }
+                                        }]);
+                                        viewBodyRowTdna1.appendChild(viewBodyRowTdna1i1);
+                                        let viewBodyRowTdna2 = createElement([{
+                                            'a': {
+                                                'href': 'javascript:void(0);',
+                                                'class': 'button button-xs button-danger',
+                                            }
+                                        }]);
+                                        viewBodyRowTdna2.addEventListener('click', function () {
+                                            captureElement('#app-loader').style.display = 'block';
+                                            sendRequest({
+                                                method: "POST",
+                                                url: appHost + 'system/tracking/deleteTable',
+                                                async: true,
+                                                header: [{
+                                                    name: "Content-type",
+                                                    value: "application/json;charset=UTF-8"
+                                                }],
+                                                data: {
+                                                    security_code: 1,
+                                                    server: captureElement('#dbInfoServer').value,
+                                                    db: captureElement('#dbInfoDb').value,
+                                                    user: captureElement('#dbInfoUser').value,
+                                                    password: captureElement('#dbInfoPassword').value,
+                                                    table: table.TABLE_NAME.replace('msu_', ''),
+                                                },
+                                            }, function (response: any) {
+                                                captureElement('#app-loader').style.display = 'none';
+                                                showMessage(response, captureElement("#message"));
+                                            });
+                                        });
+                                        viewBodyRowTdn.appendChild(viewBodyRowTdna2);
+                                        let viewBodyRowTdna2i1 = createElement([{
+                                            'i': {
+                                                'class': 'fa fa-trash',
+                                            }
+                                        }]);
+                                        viewBodyRowTdna2.appendChild(viewBodyRowTdna2i1);
+
+                                    });*/
+                                    /*new version*/
+                                    JSON.parse(response).forEach(function (table) {
+                                        let currentSLNum = slNum++;
+                                        let viewBodyRow = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                        viewBody.appendChild(viewBodyRow);
+                                        let viewBodyRowTd1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                        viewBodyRowTd1.textContent = currentSLNum;
+                                        viewBodyRow.appendChild(viewBodyRowTd1);
+                                        let viewBodyRowTd2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                        let nname;
+                                        viewBodyRowTd2.textContent = (nname = table.Name.replace('msu_', '').substr(0, 20), (nname.length > 19) ? nname + '...' : nname);
+                                        viewBodyRow.appendChild(viewBodyRowTd2);
+                                        let viewBodyRowTd3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                        viewBodyRowTd3.textContent = table.Rows;
+                                        viewBodyRow.appendChild(viewBodyRowTd3);
+                                        let viewBodyRowTd4 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                        let nsize;
+                                        viewBodyRowTd4.textContent = (table.Data_length > 1024) ? (nsize = (table.Data_length / 1024), (nsize > 1024) ? (nsize / 1024).toFixed(2) + ' MB' : nsize.toFixed(2) + ' KB') : table.Data_length.toFixed(2) + ' B';
+                                        viewBodyRow.appendChild(viewBodyRowTd4);
+                                        let viewBodyRowTd5 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                        viewBodyRowTd5.textContent = table.Create_time.substr(0, 11);
+                                        viewBodyRow.appendChild(viewBodyRowTd5);
+                                        let viewBodyRowTd6 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                        viewBodyRowTd6.textContent = (table.Update_time !== null) ? table.Update_time.substr(0, 11) : 'Not Updated';
+                                        viewBodyRow.appendChild(viewBodyRowTd6);
+                                        let viewBodyRowTd7 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                        viewBodyRowTd7.textContent = table.Collation.substr(0, 7);
+                                        viewBodyRow.appendChild(viewBodyRowTd7);
+                                        let viewBodyRowTd8 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                        viewBodyRowTd8.textContent = table.Engine;
+                                        viewBodyRow.appendChild(viewBodyRowTd8);
+                                        let viewBodyRowTdn = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                        viewBodyRow.appendChild(viewBodyRowTdn);
+                                        let viewBodyRowTdna0 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                'a': {
+                                                    'href': 'javascript:void(0);',
+                                                    'class': 'button button-xs button-primary',
+                                                }
+                                            }]);
+                                        viewBodyRowTdna0.addEventListener('click', function () {
+                                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'block';
+                                            (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                                                method: "POST",
+                                                url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/dbConnectionTest',
+                                                async: true,
+                                                header: [{
+                                                        name: "Content-type",
+                                                        value: "application/json;charset=UTF-8"
+                                                    }],
+                                                data: {
+                                                    security_code: 1,
+                                                    server: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoServer').value,
+                                                    user: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoUser').value,
+                                                    password: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoPassword').value,
+                                                    db: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoDb').value,
+                                                },
+                                            }, function (response) {
+                                                if (response.length !== 0 && (0,_common_validation__WEBPACK_IMPORTED_MODULE_5__.IsJsonString)(response)) {
+                                                    if (JSON.parse(response).length !== 0) {
+                                                        if (JSON.parse(response).message === 'connected') {
+                                                            window.open(_db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/viewDbTable/' + (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoDb').value + '/' + table.Name.replace('msu_', ''), '_self');
+                                                        }
+                                                    }
+                                                }
+                                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'none';
+                                                (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                                            });
+                                        });
+                                        viewBodyRowTdn.appendChild(viewBodyRowTdna0);
+                                        let viewBodyRowTdna0i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                'i': {
+                                                    'class': 'fa fa-eye',
+                                                }
+                                            }]);
+                                        viewBodyRowTdna0.appendChild(viewBodyRowTdna0i1);
+                                        let viewBodyRowTdna1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                'a': {
+                                                    'href': 'javascript:void(0);',
+                                                    'class': 'button button-xs button-success',
+                                                }
+                                            }]);
+                                        /*viewBodyRowTdna1.addEventListener('click', function () {
+                                            captureElement('#message2').innerHTML = '';
+                                            captureElement('#modal01').style.display = 'block';
+                                            captureElement('#databaseEditMode').textContent = 'Edit';
+                                            captureElement('#database-data-btn').innerHTML = 'Update';
+                                            captureElement('#databaseID').value = datatable.id;
+                                            captureElement('#databaseServer').value = datatable.name;
+                                            captureElement('#databaseUser').value = datatable.user;
+                                            captureElement('#databaseName').value = datatable.db;
+                                            captureElement('#databasePassword').value = datatable.password;
+                                        });*/
+                                        viewBodyRowTdn.appendChild(viewBodyRowTdna1);
+                                        let viewBodyRowTdna1i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                'i': {
+                                                    'class': 'fa fa-edit',
+                                                }
+                                            }]);
+                                        viewBodyRowTdna1.appendChild(viewBodyRowTdna1i1);
+                                        let viewBodyRowTdna2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                'a': {
+                                                    'href': 'javascript:void(0);',
+                                                    'class': 'button button-xs button-danger',
+                                                }
+                                            }]);
+                                        viewBodyRowTdna2.addEventListener('click', function () {
+                                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'block';
+                                            (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                                                method: "POST",
+                                                url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/deleteTable',
+                                                async: true,
+                                                header: [{
+                                                        name: "Content-type",
+                                                        value: "application/json;charset=UTF-8"
+                                                    }],
+                                                data: {
+                                                    security_code: 1,
+                                                    server: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoServer').value,
+                                                    db: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoDb').value,
+                                                    user: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoUser').value,
+                                                    password: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoPassword').value,
+                                                    table: table.TABLE_NAME.replace('msu_', ''),
+                                                },
+                                            }, function (response) {
+                                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'none';
+                                                (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                                            });
+                                        });
+                                        viewBodyRowTdn.appendChild(viewBodyRowTdna2);
+                                        let viewBodyRowTdna2i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                'i': {
+                                                    'class': 'fa fa-trash',
+                                                }
+                                            }]);
+                                        viewBodyRowTdna2.appendChild(viewBodyRowTdna2i1);
+                                    });
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#table-view-datatable-body").appendChild(view);
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#table-view-datatable-body").style = 'padding:0;height: 420px;';
+                                }
+                                else {
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#table-view-datatable-body").textContent = 'No table found';
+                                }
+                            }
+                            else {
+                                (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                            }
+                        }
+                    });
+                }
+                if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#table-view-datatable") !== undefined && (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#table-view-datatable-body") !== undefined) {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#show-create-table').addEventListener('click', function () {
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'block';
+                        (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                            method: "POST",
+                            url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/showCreateTable',
+                            async: true,
+                            header: [{
+                                    name: "Content-type",
+                                    value: "application/json;charset=UTF-8"
+                                }],
+                            data: {
+                                security_code: 1,
+                                server: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoServer').value,
+                                db: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoDb').value,
+                                user: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoUser').value,
+                                password: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoPassword').value,
+                                table: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#runtimeTableName').value,
+                            },
+                        }, function (response) {
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'none';
+                            (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response.replace(/\\n/g, ''), (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                        });
+                    });
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#rename-table').addEventListener('click', function () {
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'block';
+                        (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                            method: "POST",
+                            url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/renameTable',
+                            async: true,
+                            header: [{
+                                    name: "Content-type",
+                                    value: "application/json;charset=UTF-8"
+                                }],
+                            data: {
+                                security_code: 1,
+                                server: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoServer').value,
+                                db: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoDb').value,
+                                user: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoUser').value,
+                                password: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoPassword').value,
+                                fromTable: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#fromTable').value,
+                                toTable: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#toTable').value,
+                            },
+                        }, function (response) {
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'none';
+                            (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                        });
+                    });
+                    setInterval(function () {
+                    }, 1000);
+                    (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                        method: "GET",
+                        url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/getTableData/' + (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#dbInfoDb").value + '/' + (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#runtimeTableName").value,
+                        async: true,
+                        header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                    }, function (response) {
+                        if (response.length !== 0 && (0,_common_validation__WEBPACK_IMPORTED_MODULE_5__.IsJsonString)(response)) {
+                            if (JSON.parse(response).message === undefined) {
+                                if (JSON.parse(response).length !== 0) {
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#table-view-datatable-body").textContent = '';
+                                    let slNum = 1;
+                                    let view = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'table': { 'class': 'table table-bottom-border-only table-condensed table-striped' } }]);
+                                    let viewBody = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tbody': {} }]);
+                                    view.appendChild(viewBody);
+                                    if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#table-view-app-databases') !== undefined) {
+                                        JSON.parse(response).forEach(function (datatable) {
+                                            let currentSLNum = slNum++;
+                                            let viewBodyRow = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                            viewBody.appendChild(viewBodyRow);
+                                            let viewBodyRowTd1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd1.textContent = currentSLNum;
+                                            viewBodyRow.appendChild(viewBodyRowTd1);
+                                            let viewBodyRowTd2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd2.textContent = datatable.name;
+                                            viewBodyRow.appendChild(viewBodyRowTd2);
+                                            let viewBodyRowTd3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd3.textContent = datatable.db;
+                                            viewBodyRow.appendChild(viewBodyRowTd3);
+                                            let viewBodyRowTd4 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd4.textContent = datatable.user;
+                                            viewBodyRow.appendChild(viewBodyRowTd4);
+                                            let viewBodyRowTd5 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd5.textContent = datatable.password;
+                                            viewBodyRow.appendChild(viewBodyRowTd5);
+                                            let viewBodyRowTd6 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd6.textContent = datatable.last_updated_date_time;
+                                            viewBodyRow.appendChild(viewBodyRowTd6);
+                                            let viewBodyRowTd8 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRow.appendChild(viewBodyRowTd8);
+                                            let viewBodyRowTd8a0 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-primary',
+                                                    }
+                                                }]);
+                                            viewBodyRowTd8a0.addEventListener('click', function () {
+                                                (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(JSON.stringify(datatable), (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message'));
+                                            });
+                                            viewBodyRowTd8.appendChild(viewBodyRowTd8a0);
+                                            let viewBodyRowTd8a0i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-eye',
+                                                    }
+                                                }]);
+                                            viewBodyRowTd8a0.appendChild(viewBodyRowTd8a0i1);
+                                            let viewBodyRowTd8a1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-success',
+                                                    }
+                                                }]);
+                                            /*viewBodyRowTd8a1.addEventListener('click', function () {
+                                                captureElement('#message2').innerHTML = '';
+                                                captureElement('#modal01').style.display = 'block';
+                                                captureElement('#databaseEditMode').textContent = 'Edit';
+                                                captureElement('#database-data-btn').innerHTML = 'Update';
+                                                captureElement('#databaseID').value = datatable.id;
+                                                captureElement('#databaseServer').value = datatable.name;
+                                                captureElement('#databaseUser').value = datatable.user;
+                                                captureElement('#databaseName').value = datatable.db;
+                                                captureElement('#databasePassword').value = datatable.password;
+                                            });*/
+                                            viewBodyRowTd8.appendChild(viewBodyRowTd8a1);
+                                            let viewBodyRowTd8a1i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-edit',
+                                                    }
+                                                }]);
+                                            viewBodyRowTd8a1.appendChild(viewBodyRowTd8a1i1);
+                                            let viewBodyRowTd8a2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-danger',
+                                                    }
+                                                }]);
+                                            viewBodyRowTd8a2.addEventListener('click', function () {
+                                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'block';
+                                                (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                                                    method: "POST",
+                                                    url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/deleteTableRow',
+                                                    async: true,
+                                                    header: [{
+                                                            name: "Content-type",
+                                                            value: "application/json;charset=UTF-8"
+                                                        }],
+                                                    data: {
+                                                        security_code: 1,
+                                                        id: datatable.id,
+                                                        server: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoServer').value,
+                                                        db: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoDb').value,
+                                                        user: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoUser').value,
+                                                        password: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoPassword').value,
+                                                        table: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#runtimeTableName').value,
+                                                        rowId: datatable.id,
+                                                    },
+                                                }, function (response) {
+                                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'none';
+                                                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                                                });
+                                            });
+                                            viewBodyRowTd8.appendChild(viewBodyRowTd8a2);
+                                            let viewBodyRowTd8a2i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-trash',
+                                                    }
+                                                }]);
+                                            viewBodyRowTd8a2.appendChild(viewBodyRowTd8a2i1);
+                                        });
+                                    }
+                                    if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#table-view-app-licence-payment') !== undefined) {
+                                        JSON.parse(response).forEach(function (datatable) {
+                                            let currentSLNum = slNum++;
+                                            let viewBodyRow = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                            viewBody.appendChild(viewBodyRow);
+                                            let viewBodyRowTd1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd1.textContent = currentSLNum;
+                                            viewBodyRow.appendChild(viewBodyRowTd1);
+                                            let viewBodyRowTd2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd2.textContent = datatable.user_id;
+                                            viewBodyRow.appendChild(viewBodyRowTd2);
+                                            let viewBodyRowTd3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd3.textContent = datatable.app_id;
+                                            viewBodyRow.appendChild(viewBodyRowTd3);
+                                            let viewBodyRowTd4 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd4.textContent = datatable.ip_address;
+                                            viewBodyRow.appendChild(viewBodyRowTd4);
+                                            let viewBodyRowTd5 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd5.textContent = datatable.payment_method_id.substr(0, 10) + '...';
+                                            viewBodyRow.appendChild(viewBodyRowTd5);
+                                            let viewBodyRowTd6 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd6.textContent = datatable.token.substr(0, 10) + '...';
+                                            viewBodyRow.appendChild(viewBodyRowTd6);
+                                            let viewBodyRowTd7 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd7.textContent = datatable.payment_amount;
+                                            viewBodyRow.appendChild(viewBodyRowTd7);
+                                            let viewBodyRowTd8 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd8.textContent = datatable.currency;
+                                            viewBodyRow.appendChild(viewBodyRowTd8);
+                                            let viewBodyRowTd9 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd9.textContent = datatable.payment_type;
+                                            viewBodyRow.appendChild(viewBodyRowTd9);
+                                            let viewBodyRowTd10 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd10.textContent = datatable.payment_method.substr(0, 10) + '...';
+                                            viewBodyRow.appendChild(viewBodyRowTd10);
+                                            let viewBodyRowTd11 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd11.textContent = datatable.payment_date_time;
+                                            viewBodyRow.appendChild(viewBodyRowTd11);
+                                            let viewBodyRowTdn = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRow.appendChild(viewBodyRowTdn);
+                                            let viewBodyRowTdna0 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-primary',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna0.addEventListener('click', function () {
+                                                (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(JSON.stringify(datatable), (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message'));
+                                            });
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna0);
+                                            let viewBodyRowTdna0i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-eye',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna0.appendChild(viewBodyRowTdna0i1);
+                                            let viewBodyRowTdna1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-success',
+                                                    }
+                                                }]);
+                                            /*viewBodyRowTdna1.addEventListener('click', function () {
+                                                captureElement('#message2').innerHTML = '';
+                                                captureElement('#modal01').style.display = 'block';
+                                                captureElement('#databaseEditMode').textContent = 'Edit';
+                                                captureElement('#database-data-btn').innerHTML = 'Update';
+                                                captureElement('#databaseID').value = datatable.id;
+                                                captureElement('#databaseServer').value = datatable.name;
+                                                captureElement('#databaseUser').value = datatable.user;
+                                                captureElement('#databaseName').value = datatable.db;
+                                                captureElement('#databasePassword').value = datatable.password;
+                                            });*/
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna1);
+                                            let viewBodyRowTdna1i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-edit',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna1.appendChild(viewBodyRowTdna1i1);
+                                            let viewBodyRowTdna2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-danger',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna2.addEventListener('click', function () {
+                                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'block';
+                                                (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                                                    method: "POST",
+                                                    url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/deleteTableRow',
+                                                    async: true,
+                                                    header: [{
+                                                            name: "Content-type",
+                                                            value: "application/json;charset=UTF-8"
+                                                        }],
+                                                    data: {
+                                                        security_code: 1,
+                                                        id: datatable.id,
+                                                        server: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoServer').value,
+                                                        db: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoDb').value,
+                                                        user: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoUser').value,
+                                                        password: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoPassword').value,
+                                                        table: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#runtimeTableName').value,
+                                                        rowId: datatable.id,
+                                                    },
+                                                }, function (response) {
+                                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'none';
+                                                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                                                });
+                                            });
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna2);
+                                            let viewBodyRowTd8a2i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-trash',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna2.appendChild(viewBodyRowTd8a2i1);
+                                        });
+                                    }
+                                    if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#table-view-app-social-links') !== undefined) {
+                                        JSON.parse(response).forEach(function (datatable) {
+                                            let currentSLNum = slNum++;
+                                            let viewBodyRow = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                            viewBody.appendChild(viewBodyRow);
+                                            let viewBodyRowTd1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd1.textContent = currentSLNum;
+                                            viewBodyRow.appendChild(viewBodyRowTd1);
+                                            let viewBodyRowTd2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd2.textContent = datatable.name;
+                                            viewBodyRow.appendChild(viewBodyRowTd2);
+                                            let viewBodyRowTd3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd3.textContent = datatable.link;
+                                            viewBodyRow.appendChild(viewBodyRowTd3);
+                                            let viewBodyRowTdn = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRow.appendChild(viewBodyRowTdn);
+                                            let viewBodyRowTdna0 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-primary',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna0.addEventListener('click', function () {
+                                                (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(JSON.stringify(datatable), (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message'));
+                                            });
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna0);
+                                            let viewBodyRowTdna0i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-eye',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna0.appendChild(viewBodyRowTdna0i1);
+                                            let viewBodyRowTdna1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-success',
+                                                    }
+                                                }]);
+                                            /*viewBodyRowTdna1.addEventListener('click', function () {
+                                                captureElement('#message2').innerHTML = '';
+                                                captureElement('#modal01').style.display = 'block';
+                                                captureElement('#databaseEditMode').textContent = 'Edit';
+                                                captureElement('#database-data-btn').innerHTML = 'Update';
+                                                captureElement('#databaseID').value = datatable.id;
+                                                captureElement('#databaseServer').value = datatable.name;
+                                                captureElement('#databaseUser').value = datatable.user;
+                                                captureElement('#databaseName').value = datatable.db;
+                                                captureElement('#databasePassword').value = datatable.password;
+                                            });*/
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna1);
+                                            let viewBodyRowTdna1i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-edit',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna1.appendChild(viewBodyRowTdna1i1);
+                                            let viewBodyRowTdna2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-danger',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna2.addEventListener('click', function () {
+                                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'block';
+                                                (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                                                    method: "POST",
+                                                    url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/deleteTableRow',
+                                                    async: true,
+                                                    header: [{
+                                                            name: "Content-type",
+                                                            value: "application/json;charset=UTF-8"
+                                                        }],
+                                                    data: {
+                                                        security_code: 1,
+                                                        id: datatable.id,
+                                                        server: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoServer').value,
+                                                        db: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoDb').value,
+                                                        user: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoUser').value,
+                                                        password: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoPassword').value,
+                                                        table: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#runtimeTableName').value,
+                                                        rowId: datatable.id,
+                                                    },
+                                                }, function (response) {
+                                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'none';
+                                                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                                                });
+                                            });
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna2);
+                                            let viewBodyRowTd8a2i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-trash',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna2.appendChild(viewBodyRowTd8a2i1);
+                                        });
+                                    }
+                                    if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#table-view-apps') !== undefined) {
+                                        JSON.parse(response).forEach(function (datatable) {
+                                            let currentSLNum = slNum++;
+                                            let viewBodyRow = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                            viewBody.appendChild(viewBodyRow);
+                                            let viewBodyRowTd1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd1.textContent = currentSLNum;
+                                            viewBodyRow.appendChild(viewBodyRowTd1);
+                                            let viewBodyRowTd2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd2.textContent = datatable.app_name;
+                                            viewBodyRow.appendChild(viewBodyRowTd2);
+                                            let viewBodyRowTd3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd3.textContent = datatable.app_category;
+                                            viewBodyRow.appendChild(viewBodyRowTd3);
+                                            let viewBodyRowTd4 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd4.textContent = datatable.app_url;
+                                            viewBodyRow.appendChild(viewBodyRowTd4);
+                                            let viewBodyRowTd5 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd5.textContent = datatable.app_icon;
+                                            viewBodyRow.appendChild(viewBodyRowTd5);
+                                            let viewBodyRowTd6 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd6.textContent = datatable.app_status;
+                                            viewBodyRow.appendChild(viewBodyRowTd6);
+                                            let viewBodyRowTd7 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd7.textContent = datatable.c_status;
+                                            viewBodyRow.appendChild(viewBodyRowTd7);
+                                            let viewBodyRowTd7n = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd7n.textContent = datatable.quickAccess;
+                                            viewBodyRow.appendChild(viewBodyRowTd7n);
+                                            let viewBodyRowTd8 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRow.appendChild(viewBodyRowTd8);
+                                            let viewBodyRowTd8a0 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-primary',
+                                                    }
+                                                }]);
+                                            viewBodyRowTd8a0.addEventListener('click', function () {
+                                                (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(JSON.stringify(datatable), (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message'));
+                                            });
+                                            viewBodyRowTd8.appendChild(viewBodyRowTd8a0);
+                                            let viewBodyRowTd8a0i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-eye',
+                                                    }
+                                                }]);
+                                            viewBodyRowTd8a0.appendChild(viewBodyRowTd8a0i1);
+                                            let viewBodyRowTd8a1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-success',
+                                                    }
+                                                }]);
+                                            /*viewBodyRowTd8a1.addEventListener('click', function () {
+                                                captureElement('#message2').innerHTML = '';
+                                                captureElement('#modal01').style.display = 'block';
+                                                captureElement('#databaseEditMode').textContent = 'Edit';
+                                                captureElement('#database-data-btn').innerHTML = 'Update';
+                                                captureElement('#databaseID').value = datatable.id;
+                                                captureElement('#databaseServer').value = datatable.name;
+                                                captureElement('#databaseUser').value = datatable.user;
+                                                captureElement('#databaseName').value = datatable.db;
+                                                captureElement('#databasePassword').value = datatable.password;
+                                            });*/
+                                            viewBodyRowTd8.appendChild(viewBodyRowTd8a1);
+                                            let viewBodyRowTd8a1i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-edit',
+                                                    }
+                                                }]);
+                                            viewBodyRowTd8a1.appendChild(viewBodyRowTd8a1i1);
+                                            let viewBodyRowTd8a2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-danger',
+                                                    }
+                                                }]);
+                                            viewBodyRowTd8a2.addEventListener('click', function () {
+                                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'block';
+                                                (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                                                    method: "POST",
+                                                    url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/deleteTableRow',
+                                                    async: true,
+                                                    header: [{
+                                                            name: "Content-type",
+                                                            value: "application/json;charset=UTF-8"
+                                                        }],
+                                                    data: {
+                                                        security_code: 1,
+                                                        id: datatable.id,
+                                                        server: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoServer').value,
+                                                        db: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoDb').value,
+                                                        user: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoUser').value,
+                                                        password: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoPassword').value,
+                                                        table: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#runtimeTableName').value,
+                                                        rowId: datatable.id,
+                                                    },
+                                                }, function (response) {
+                                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'none';
+                                                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                                                });
+                                            });
+                                            viewBodyRowTd8.appendChild(viewBodyRowTd8a2);
+                                            let viewBodyRowTd8a2i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-trash',
+                                                    }
+                                                }]);
+                                            viewBodyRowTd8a2.appendChild(viewBodyRowTd8a2i1);
+                                        });
+                                    }
+                                    if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#table-view-apps-status') !== undefined) {
+                                        JSON.parse(response).forEach(function (datatable) {
+                                            let currentSLNum = slNum++;
+                                            let viewBodyRow = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                            viewBody.appendChild(viewBodyRow);
+                                            let viewBodyRowTd1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd1.textContent = currentSLNum;
+                                            viewBodyRow.appendChild(viewBodyRowTd1);
+                                            let viewBodyRowTd2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd2.textContent = datatable.name;
+                                            viewBodyRow.appendChild(viewBodyRowTd2);
+                                            let viewBodyRowTd3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd3.textContent = datatable.version;
+                                            viewBodyRow.appendChild(viewBodyRowTd3);
+                                            let viewBodyRowTd4 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd4.textContent = datatable.ip_address;
+                                            viewBodyRow.appendChild(viewBodyRowTd4);
+                                            let viewBodyRowTd5 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd5.textContent = datatable.os_version.substr(0, 19);
+                                            viewBodyRow.appendChild(viewBodyRowTd5);
+                                            let viewBodyRowTd6 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd6.textContent = datatable.browserNameFull;
+                                            viewBodyRow.appendChild(viewBodyRowTd6);
+                                            let viewBodyRowTd7 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd7.textContent = datatable.status;
+                                            viewBodyRow.appendChild(viewBodyRowTd7);
+                                            let viewBodyRowTd7n = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd7n.textContent = datatable.created_date_time /*.substr(0, 10)*/;
+                                            viewBodyRow.appendChild(viewBodyRowTd7n);
+                                            let viewBodyRowTd8 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRow.appendChild(viewBodyRowTd8);
+                                            let viewBodyRowTd8a0 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-primary',
+                                                    }
+                                                }]);
+                                            viewBodyRowTd8a0.addEventListener('click', function () {
+                                                (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(JSON.stringify(datatable), (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message'));
+                                            });
+                                            viewBodyRowTd8.appendChild(viewBodyRowTd8a0);
+                                            let viewBodyRowTd8a0i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-eye',
+                                                    }
+                                                }]);
+                                            viewBodyRowTd8a0.appendChild(viewBodyRowTd8a0i1);
+                                            let viewBodyRowTd8a1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-success',
+                                                    }
+                                                }]);
+                                            /*viewBodyRowTd8a1.addEventListener('click', function () {
+                                                captureElement('#message2').innerHTML = '';
+                                                captureElement('#modal01').style.display = 'block';
+                                                captureElement('#databaseEditMode').textContent = 'Edit';
+                                                captureElement('#database-data-btn').innerHTML = 'Update';
+                                                captureElement('#databaseID').value = datatable.id;
+                                                captureElement('#databaseServer').value = datatable.name;
+                                                captureElement('#databaseUser').value = datatable.user;
+                                                captureElement('#databaseName').value = datatable.db;
+                                                captureElement('#databasePassword').value = datatable.password;
+                                            });*/
+                                            viewBodyRowTd8.appendChild(viewBodyRowTd8a1);
+                                            let viewBodyRowTd8a1i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-edit',
+                                                    }
+                                                }]);
+                                            viewBodyRowTd8a1.appendChild(viewBodyRowTd8a1i1);
+                                            let viewBodyRowTd8a2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-danger',
+                                                    }
+                                                }]);
+                                            viewBodyRowTd8a2.addEventListener('click', function () {
+                                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'block';
+                                                (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                                                    method: "POST",
+                                                    url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/deleteTableRow',
+                                                    async: true,
+                                                    header: [{
+                                                            name: "Content-type",
+                                                            value: "application/json;charset=UTF-8"
+                                                        }],
+                                                    data: {
+                                                        security_code: 1,
+                                                        id: datatable.id,
+                                                        server: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoServer').value,
+                                                        db: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoDb').value,
+                                                        user: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoUser').value,
+                                                        password: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoPassword').value,
+                                                        table: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#runtimeTableName').value,
+                                                        rowId: datatable.id,
+                                                    },
+                                                }, function (response) {
+                                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'none';
+                                                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                                                });
+                                            });
+                                            viewBodyRowTd8.appendChild(viewBodyRowTd8a2);
+                                            let viewBodyRowTd8a2i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-trash',
+                                                    }
+                                                }]);
+                                            viewBodyRowTd8a2.appendChild(viewBodyRowTd8a2i1);
+                                        });
+                                    }
+                                    if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#table-view-apps-licences') !== undefined) {
+                                        JSON.parse(response).forEach(function (datatable) {
+                                            let currentSLNum = slNum++;
+                                            let viewBodyRow = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                            viewBody.appendChild(viewBodyRow);
+                                            let viewBodyRowTd1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd1.textContent = currentSLNum;
+                                            viewBodyRow.appendChild(viewBodyRowTd1);
+                                            let viewBodyRowTd2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd2.textContent = datatable.client_id;
+                                            viewBodyRow.appendChild(viewBodyRowTd2);
+                                            let viewBodyRowTd3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd3.textContent = datatable.app_id;
+                                            viewBodyRow.appendChild(viewBodyRowTd3);
+                                            let viewBodyRowTd4 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd4.textContent = datatable.ip_address;
+                                            viewBodyRow.appendChild(viewBodyRowTd4);
+                                            let viewBodyRowTd5 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd5.textContent = datatable.browserNameFull;
+                                            viewBodyRow.appendChild(viewBodyRowTd5);
+                                            let viewBodyRowTd6 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd6.textContent = datatable.licence_type;
+                                            viewBodyRow.appendChild(viewBodyRowTd6);
+                                            let viewBodyRowTd7 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd7.textContent = datatable.lLimit;
+                                            viewBodyRow.appendChild(viewBodyRowTd7);
+                                            let viewBodyRowTd8 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd8.textContent = datatable.lLimitBase;
+                                            viewBodyRow.appendChild(viewBodyRowTd8);
+                                            let viewBodyRowTd9 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd9.textContent = datatable.issue.substr(0, 10);
+                                            viewBodyRow.appendChild(viewBodyRowTd9);
+                                            let viewBodyRowTd10 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd10.textContent = datatable.lupdate.substr(0, 10);
+                                            viewBodyRow.appendChild(viewBodyRowTd10);
+                                            let viewBodyRowTd11 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd11.textContent = datatable.lnextupdate.substr(0, 10);
+                                            viewBodyRow.appendChild(viewBodyRowTd11);
+                                            let viewBodyRowTd12 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd12.textContent = datatable.expire.substr(0, 10);
+                                            viewBodyRow.appendChild(viewBodyRowTd12);
+                                            let viewBodyRowTd13 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd13.textContent = datatable['created-date-time'].substr(0, 10);
+                                            viewBodyRow.appendChild(viewBodyRowTd13);
+                                            let viewBodyRowTdn = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRow.appendChild(viewBodyRowTdn);
+                                            let viewBodyRowTdna0 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-primary',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna0.addEventListener('click', function () {
+                                                (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(JSON.stringify(datatable), (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message'));
+                                            });
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna0);
+                                            let viewBodyRowTdna0i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-eye',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna0.appendChild(viewBodyRowTdna0i1);
+                                            let viewBodyRowTdna1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-success',
+                                                    }
+                                                }]);
+                                            /*viewBodyRowTdna1.addEventListener('click', function () {
+                                                captureElement('#message2').innerHTML = '';
+                                                captureElement('#modal01').style.display = 'block';
+                                                captureElement('#databaseEditMode').textContent = 'Edit';
+                                                captureElement('#database-data-btn').innerHTML = 'Update';
+                                                captureElement('#databaseID').value = datatable.id;
+                                                captureElement('#databaseServer').value = datatable.name;
+                                                captureElement('#databaseUser').value = datatable.user;
+                                                captureElement('#databaseName').value = datatable.db;
+                                                captureElement('#databasePassword').value = datatable.password;
+                                            });*/
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna1);
+                                            let viewBodyRowTdna1i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-edit',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna1.appendChild(viewBodyRowTdna1i1);
+                                            let viewBodyRowTdna2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-danger',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna2.addEventListener('click', function () {
+                                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'block';
+                                                (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                                                    method: "POST",
+                                                    url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/deleteTableRow',
+                                                    async: true,
+                                                    header: [{
+                                                            name: "Content-type",
+                                                            value: "application/json;charset=UTF-8"
+                                                        }],
+                                                    data: {
+                                                        security_code: 1,
+                                                        id: datatable.id,
+                                                        server: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoServer').value,
+                                                        db: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoDb').value,
+                                                        user: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoUser').value,
+                                                        password: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoPassword').value,
+                                                        table: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#runtimeTableName').value,
+                                                        rowId: datatable.id,
+                                                    },
+                                                }, function (response) {
+                                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'none';
+                                                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                                                });
+                                            });
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna2);
+                                            let viewBodyRowTd8a2i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-trash',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna2.appendChild(viewBodyRowTd8a2i1);
+                                        });
+                                    }
+                                    if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#table-view-apps-list-installed') !== undefined) {
+                                        JSON.parse(response).forEach(function (datatable) {
+                                            let currentSLNum = slNum++;
+                                            let viewBodyRow = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                            viewBody.appendChild(viewBodyRow);
+                                            let viewBodyRowTd1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd1.textContent = currentSLNum;
+                                            viewBodyRow.appendChild(viewBodyRowTd1);
+                                            let viewBodyRowTd2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd2.textContent = datatable.name;
+                                            viewBodyRow.appendChild(viewBodyRowTd2);
+                                            let viewBodyRowTd3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd3.textContent = datatable.version;
+                                            viewBodyRow.appendChild(viewBodyRowTd3);
+                                            let viewBodyRowTd4 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd4.textContent = datatable.ip_address;
+                                            viewBodyRow.appendChild(viewBodyRowTd4);
+                                            let viewBodyRowTd5 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd5.textContent = datatable.browserNameFull;
+                                            viewBodyRow.appendChild(viewBodyRowTd5);
+                                            let viewBodyRowTd6 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd6.textContent = (datatable.licence_key !== null) ? '***************' : 'NOT ISSUED';
+                                            viewBodyRow.appendChild(viewBodyRowTd6);
+                                            let viewBodyRowTd7 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd7.textContent = (datatable.issue !== null) ? datatable.issue.substr(0, 10) : 'NOT ISSUED';
+                                            viewBodyRow.appendChild(viewBodyRowTd7);
+                                            let viewBodyRowTd8 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd8.textContent = (datatable.expire !== null) ? datatable.expire.substr(0, 10) : 'NOT ISSUED';
+                                            viewBodyRow.appendChild(viewBodyRowTd8);
+                                            let viewBodyRowTd9 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd9.textContent = datatable['created-date-time'].substr(0, 10);
+                                            viewBodyRow.appendChild(viewBodyRowTd9);
+                                            let viewBodyRowTdn = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRow.appendChild(viewBodyRowTdn);
+                                            let viewBodyRowTdna0 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-primary',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna0.addEventListener('click', function () {
+                                                (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(JSON.stringify(datatable), (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message'));
+                                            });
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna0);
+                                            let viewBodyRowTdna0i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-eye',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna0.appendChild(viewBodyRowTdna0i1);
+                                            let viewBodyRowTdna1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-success',
+                                                    }
+                                                }]);
+                                            /*viewBodyRowTdna1.addEventListener('click', function () {
+                                                captureElement('#message2').innerHTML = '';
+                                                captureElement('#modal01').style.display = 'block';
+                                                captureElement('#databaseEditMode').textContent = 'Edit';
+                                                captureElement('#database-data-btn').innerHTML = 'Update';
+                                                captureElement('#databaseID').value = datatable.id;
+                                                captureElement('#databaseServer').value = datatable.name;
+                                                captureElement('#databaseUser').value = datatable.user;
+                                                captureElement('#databaseName').value = datatable.db;
+                                                captureElement('#databasePassword').value = datatable.password;
+                                            });*/
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna1);
+                                            let viewBodyRowTdna1i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-edit',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna1.appendChild(viewBodyRowTdna1i1);
+                                            let viewBodyRowTdna2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-danger',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna2.addEventListener('click', function () {
+                                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'block';
+                                                (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                                                    method: "POST",
+                                                    url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/deleteTableRow',
+                                                    async: true,
+                                                    header: [{
+                                                            name: "Content-type",
+                                                            value: "application/json;charset=UTF-8"
+                                                        }],
+                                                    data: {
+                                                        security_code: 1,
+                                                        id: datatable.id,
+                                                        server: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoServer').value,
+                                                        db: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoDb').value,
+                                                        user: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoUser').value,
+                                                        password: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoPassword').value,
+                                                        table: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#runtimeTableName').value,
+                                                        rowId: datatable.id,
+                                                    },
+                                                }, function (response) {
+                                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'none';
+                                                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                                                });
+                                            });
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna2);
+                                            let viewBodyRowTd8a2i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-trash',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna2.appendChild(viewBodyRowTd8a2i1);
+                                        });
+                                    }
+                                    if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#table-view-block-list') !== undefined) {
+                                        JSON.parse(response).forEach(function (datatable) {
+                                            let currentSLNum = slNum++;
+                                            let viewBodyRow = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                            viewBody.appendChild(viewBodyRow);
+                                            let viewBodyRowTd1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd1.textContent = currentSLNum;
+                                            viewBodyRow.appendChild(viewBodyRowTd1);
+                                            let viewBodyRowTd2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd2.textContent = datatable.ip;
+                                            viewBodyRow.appendChild(viewBodyRowTd2);
+                                            let viewBodyRowTdn = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRow.appendChild(viewBodyRowTdn);
+                                            let viewBodyRowTdna0 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-primary',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna0.addEventListener('click', function () {
+                                                (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(JSON.stringify(datatable), (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message'));
+                                            });
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna0);
+                                            let viewBodyRowTdna0i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-eye',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna0.appendChild(viewBodyRowTdna0i1);
+                                            let viewBodyRowTdna1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-success',
+                                                    }
+                                                }]);
+                                            /*viewBodyRowTdna1.addEventListener('click', function () {
+                                                captureElement('#message2').innerHTML = '';
+                                                captureElement('#modal01').style.display = 'block';
+                                                captureElement('#databaseEditMode').textContent = 'Edit';
+                                                captureElement('#database-data-btn').innerHTML = 'Update';
+                                                captureElement('#databaseID').value = datatable.id;
+                                                captureElement('#databaseServer').value = datatable.name;
+                                                captureElement('#databaseUser').value = datatable.user;
+                                                captureElement('#databaseName').value = datatable.db;
+                                                captureElement('#databasePassword').value = datatable.password;
+                                            });*/
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna1);
+                                            let viewBodyRowTdna1i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-edit',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna1.appendChild(viewBodyRowTdna1i1);
+                                            let viewBodyRowTdna2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-danger',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna2.addEventListener('click', function () {
+                                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'block';
+                                                (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                                                    method: "POST",
+                                                    url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/deleteTableRow',
+                                                    async: true,
+                                                    header: [{
+                                                            name: "Content-type",
+                                                            value: "application/json;charset=UTF-8"
+                                                        }],
+                                                    data: {
+                                                        security_code: 1,
+                                                        id: datatable.id,
+                                                        server: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoServer').value,
+                                                        db: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoDb').value,
+                                                        user: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoUser').value,
+                                                        password: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoPassword').value,
+                                                        table: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#runtimeTableName').value,
+                                                        rowId: datatable.id,
+                                                    },
+                                                }, function (response) {
+                                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'none';
+                                                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                                                });
+                                            });
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna2);
+                                            let viewBodyRowTd8a2i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-trash',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna2.appendChild(viewBodyRowTd8a2i1);
+                                        });
+                                    }
+                                    if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#table-view-branches') !== undefined) {
+                                        JSON.parse(response).forEach(function (datatable) {
+                                            let currentSLNum = slNum++;
+                                            let viewBodyRow = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                            viewBody.appendChild(viewBodyRow);
+                                            let viewBodyRowTd1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd1.textContent = currentSLNum;
+                                            viewBodyRow.appendChild(viewBodyRowTd1);
+                                            let viewBodyRowTd2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd2.textContent = datatable.name;
+                                            viewBodyRow.appendChild(viewBodyRowTd2);
+                                            let viewBodyRowTd3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd3.textContent = datatable.status;
+                                            viewBodyRow.appendChild(viewBodyRowTd3);
+                                            let viewBodyRowTd4 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd4.textContent = datatable.location;
+                                            viewBodyRow.appendChild(viewBodyRowTd4);
+                                            let viewBodyRowTdn = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRow.appendChild(viewBodyRowTdn);
+                                            let viewBodyRowTdna0 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-primary',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna0.addEventListener('click', function () {
+                                                (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(JSON.stringify(datatable), (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message'));
+                                            });
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna0);
+                                            let viewBodyRowTdna0i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-eye',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna0.appendChild(viewBodyRowTdna0i1);
+                                            let viewBodyRowTdna1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-success',
+                                                    }
+                                                }]);
+                                            /*viewBodyRowTdna1.addEventListener('click', function () {
+                                                captureElement('#message2').innerHTML = '';
+                                                captureElement('#modal01').style.display = 'block';
+                                                captureElement('#databaseEditMode').textContent = 'Edit';
+                                                captureElement('#database-data-btn').innerHTML = 'Update';
+                                                captureElement('#databaseID').value = datatable.id;
+                                                captureElement('#databaseServer').value = datatable.name;
+                                                captureElement('#databaseUser').value = datatable.user;
+                                                captureElement('#databaseName').value = datatable.db;
+                                                captureElement('#databasePassword').value = datatable.password;
+                                            });*/
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna1);
+                                            let viewBodyRowTdna1i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-edit',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna1.appendChild(viewBodyRowTdna1i1);
+                                            let viewBodyRowTdna2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-danger',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna2.addEventListener('click', function () {
+                                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'block';
+                                                (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                                                    method: "POST",
+                                                    url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/deleteTableRow',
+                                                    async: true,
+                                                    header: [{
+                                                            name: "Content-type",
+                                                            value: "application/json;charset=UTF-8"
+                                                        }],
+                                                    data: {
+                                                        security_code: 1,
+                                                        id: datatable.id,
+                                                        server: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoServer').value,
+                                                        db: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoDb').value,
+                                                        user: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoUser').value,
+                                                        password: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoPassword').value,
+                                                        table: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#runtimeTableName').value,
+                                                        rowId: datatable.id,
+                                                    },
+                                                }, function (response) {
+                                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'none';
+                                                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                                                });
+                                            });
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna2);
+                                            let viewBodyRowTd8a2i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-trash',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna2.appendChild(viewBodyRowTd8a2i1);
+                                        });
+                                    }
+                                    if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#table-view-branches-user') !== undefined) {
+                                        JSON.parse(response).forEach(function (datatable) {
+                                            let currentSLNum = slNum++;
+                                            let viewBodyRow = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                            viewBody.appendChild(viewBodyRow);
+                                            let viewBodyRowTd1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd1.textContent = currentSLNum;
+                                            viewBodyRow.appendChild(viewBodyRowTd1);
+                                            let viewBodyRowTd2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd2.textContent = datatable.branch;
+                                            viewBodyRow.appendChild(viewBodyRowTd2);
+                                            let viewBodyRowTd3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd3.textContent = datatable.user;
+                                            viewBodyRow.appendChild(viewBodyRowTd3);
+                                            let viewBodyRowTdn = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRow.appendChild(viewBodyRowTdn);
+                                            let viewBodyRowTdna0 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-primary',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna0.addEventListener('click', function () {
+                                                (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(JSON.stringify(datatable), (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message'));
+                                            });
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna0);
+                                            let viewBodyRowTdna0i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-eye',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna0.appendChild(viewBodyRowTdna0i1);
+                                            let viewBodyRowTdna1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-success',
+                                                    }
+                                                }]);
+                                            /*viewBodyRowTdna1.addEventListener('click', function () {
+                                                captureElement('#message2').innerHTML = '';
+                                                captureElement('#modal01').style.display = 'block';
+                                                captureElement('#databaseEditMode').textContent = 'Edit';
+                                                captureElement('#database-data-btn').innerHTML = 'Update';
+                                                captureElement('#databaseID').value = datatable.id;
+                                                captureElement('#databaseServer').value = datatable.name;
+                                                captureElement('#databaseUser').value = datatable.user;
+                                                captureElement('#databaseName').value = datatable.db;
+                                                captureElement('#databasePassword').value = datatable.password;
+                                            });*/
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna1);
+                                            let viewBodyRowTdna1i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-edit',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna1.appendChild(viewBodyRowTdna1i1);
+                                            let viewBodyRowTdna2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-danger',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna2.addEventListener('click', function () {
+                                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'block';
+                                                (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                                                    method: "POST",
+                                                    url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/deleteTableRow',
+                                                    async: true,
+                                                    header: [{
+                                                            name: "Content-type",
+                                                            value: "application/json;charset=UTF-8"
+                                                        }],
+                                                    data: {
+                                                        security_code: 1,
+                                                        id: datatable.id,
+                                                        server: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoServer').value,
+                                                        db: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoDb').value,
+                                                        user: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoUser').value,
+                                                        password: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoPassword').value,
+                                                        table: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#runtimeTableName').value,
+                                                        rowId: datatable.id,
+                                                    },
+                                                }, function (response) {
+                                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'none';
+                                                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                                                });
+                                            });
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna2);
+                                            let viewBodyRowTd8a2i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-trash',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna2.appendChild(viewBodyRowTd8a2i1);
+                                        });
+                                    }
+                                    if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#table-view-chat-messages') !== undefined) {
+                                        JSON.parse(response).forEach(function (datatable) {
+                                            let currentSLNum = slNum++;
+                                            let viewBodyRow = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                            viewBody.appendChild(viewBodyRow);
+                                            let viewBodyRowTd1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd1.textContent = currentSLNum;
+                                            viewBodyRow.appendChild(viewBodyRowTd1);
+                                            let viewBodyRowTd2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd2.textContent = datatable.senderID;
+                                            viewBodyRow.appendChild(viewBodyRowTd2);
+                                            let viewBodyRowTd3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd3.textContent = datatable.receiverID;
+                                            viewBodyRow.appendChild(viewBodyRowTd3);
+                                            let viewBodyRowTd4 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd4.textContent = datatable.message;
+                                            viewBodyRow.appendChild(viewBodyRowTd4);
+                                            let viewBodyRowTd5 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd5.textContent = datatable.time;
+                                            viewBodyRow.appendChild(viewBodyRowTd5);
+                                            let viewBodyRowTdn = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRow.appendChild(viewBodyRowTdn);
+                                            let viewBodyRowTdna0 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-primary',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna0.addEventListener('click', function () {
+                                                (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(JSON.stringify(datatable), (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message'));
+                                            });
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna0);
+                                            let viewBodyRowTdna0i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-eye',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna0.appendChild(viewBodyRowTdna0i1);
+                                            let viewBodyRowTdna1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-success',
+                                                    }
+                                                }]);
+                                            /*viewBodyRowTdna1.addEventListener('click', function () {
+                                                captureElement('#message2').innerHTML = '';
+                                                captureElement('#modal01').style.display = 'block';
+                                                captureElement('#databaseEditMode').textContent = 'Edit';
+                                                captureElement('#database-data-btn').innerHTML = 'Update';
+                                                captureElement('#databaseID').value = datatable.id;
+                                                captureElement('#databaseServer').value = datatable.name;
+                                                captureElement('#databaseUser').value = datatable.user;
+                                                captureElement('#databaseName').value = datatable.db;
+                                                captureElement('#databasePassword').value = datatable.password;
+                                            });*/
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna1);
+                                            let viewBodyRowTdna1i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-edit',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna1.appendChild(viewBodyRowTdna1i1);
+                                            let viewBodyRowTdna2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-danger',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna2.addEventListener('click', function () {
+                                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'block';
+                                                (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                                                    method: "POST",
+                                                    url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/deleteTableRow',
+                                                    async: true,
+                                                    header: [{
+                                                            name: "Content-type",
+                                                            value: "application/json;charset=UTF-8"
+                                                        }],
+                                                    data: {
+                                                        security_code: 1,
+                                                        id: datatable.id,
+                                                        server: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoServer').value,
+                                                        db: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoDb').value,
+                                                        user: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoUser').value,
+                                                        password: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoPassword').value,
+                                                        table: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#runtimeTableName').value,
+                                                        rowId: datatable.id,
+                                                    },
+                                                }, function (response) {
+                                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'none';
+                                                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                                                });
+                                            });
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna2);
+                                            let viewBodyRowTd8a2i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-trash',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna2.appendChild(viewBodyRowTd8a2i1);
+                                        });
+                                    }
+                                    if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#table-view-client-browser-info') !== undefined) {
+                                        JSON.parse(response).forEach(function (datatable) {
+                                            let currentSLNum = slNum++;
+                                            let viewBodyRow = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                            viewBody.appendChild(viewBodyRow);
+                                            let viewBodyRowTd1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd1.textContent = currentSLNum;
+                                            viewBodyRow.appendChild(viewBodyRowTd1);
+                                            let ip_address = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            ip_address.textContent = datatable.ip_address;
+                                            viewBodyRow.appendChild(ip_address);
+                                            let browserNameFull = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            browserNameFull.textContent = datatable.browserNameFull;
+                                            viewBodyRow.appendChild(browserNameFull);
+                                            /*let browserStatus = createElement([{'td': {}}]);
+                                            browserStatus.textContent = datatable.browserStatus;
+                                            viewBodyRow.appendChild(browserStatus);*/
+                                            /*let browserArchitecture = createElement([{'td': {}}]);
+                                            browserArchitecture.textContent = datatable.browserArchitecture;
+                                            viewBodyRow.appendChild(browserArchitecture);*/
+                                            /*let browserAppVersion = createElement([{'td': {}}]);
+                                            browserAppVersion.textContent = datatable.browserAppVersion;
+                                            viewBodyRow.appendChild(browserAppVersion);*/
+                                            let deviceHardwareConcurrency = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            deviceHardwareConcurrency.textContent = datatable.deviceHardwareConcurrency;
+                                            viewBodyRow.appendChild(deviceHardwareConcurrency);
+                                            /*
+                                                                                        let deviceMemory = createElement([{'td': {}}]);
+                                                                                        deviceMemory.textContent = datatable.deviceMemory;
+                                                                                        viewBodyRow.appendChild(deviceMemory);*/
+                                            let deviceName = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            deviceName.textContent = datatable.deviceName;
+                                            viewBodyRow.appendChild(deviceName);
+                                            let deviceScreenWidth = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            deviceScreenWidth.textContent = datatable.deviceScreenWidth;
+                                            viewBodyRow.appendChild(deviceScreenWidth);
+                                            let deviceScreenHeight = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            deviceScreenHeight.textContent = datatable.deviceScreenHeight;
+                                            viewBodyRow.appendChild(deviceScreenHeight);
+                                            let userAgent = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': { 'style': 'cursor:pointer' } }]);
+                                            userAgent.textContent = '*****';
+                                            userAgent.addEventListener('click', function () {
+                                                (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(JSON.stringify(datatable.userAgent), (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message'));
+                                            });
+                                            viewBodyRow.appendChild(userAgent);
+                                            let created_date_time = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            created_date_time.textContent = datatable.created_date_time;
+                                            viewBodyRow.appendChild(created_date_time);
+                                            let viewBodyRowTdn = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRow.appendChild(viewBodyRowTdn);
+                                            let viewBodyRowTdna0 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-primary',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna0.addEventListener('click', function () {
+                                                (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(JSON.stringify(datatable), (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message'));
+                                            });
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna0);
+                                            let viewBodyRowTdna0i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-eye',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna0.appendChild(viewBodyRowTdna0i1);
+                                            let viewBodyRowTdna1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-success',
+                                                    }
+                                                }]);
+                                            /*viewBodyRowTdna1.addEventListener('click', function () {
+                                                captureElement('#message2').innerHTML = '';
+                                                captureElement('#modal01').style.display = 'block';
+                                                captureElement('#databaseEditMode').textContent = 'Edit';
+                                                captureElement('#database-data-btn').innerHTML = 'Update';
+                                                captureElement('#databaseID').value = datatable.id;
+                                                captureElement('#databaseServer').value = datatable.name;
+                                                captureElement('#databaseUser').value = datatable.user;
+                                                captureElement('#databaseName').value = datatable.db;
+                                                captureElement('#databasePassword').value = datatable.password;
+                                            });*/
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna1);
+                                            let viewBodyRowTdna1i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-edit',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna1.appendChild(viewBodyRowTdna1i1);
+                                            let viewBodyRowTdna2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-danger',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna2.addEventListener('click', function () {
+                                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'block';
+                                                (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                                                    method: "POST",
+                                                    url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/deleteTableRow',
+                                                    async: true,
+                                                    header: [{
+                                                            name: "Content-type",
+                                                            value: "application/json;charset=UTF-8"
+                                                        }],
+                                                    data: {
+                                                        security_code: 1,
+                                                        id: datatable.id,
+                                                        server: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoServer').value,
+                                                        db: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoDb').value,
+                                                        user: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoUser').value,
+                                                        password: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoPassword').value,
+                                                        table: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#runtimeTableName').value,
+                                                        rowId: datatable.id,
+                                                    },
+                                                }, function (response) {
+                                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'none';
+                                                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                                                });
+                                            });
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna2);
+                                            let viewBodyRowTd8a2i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-trash',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna2.appendChild(viewBodyRowTd8a2i1);
+                                        });
+                                    }
+                                    if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#table-view-client-ip-info') !== undefined) {
+                                        JSON.parse(response).forEach(function (datatable) {
+                                            let currentSLNum = slNum++;
+                                            let viewBodyRow = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                            viewBody.appendChild(viewBodyRow);
+                                            let viewBodyRowTd1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd1.textContent = currentSLNum;
+                                            viewBodyRow.appendChild(viewBodyRowTd1);
+                                            /*
+
+                                                {"id":769,"ip_address":"103.230.105.19","is_eu":"","city":"Dhaka","region":"Dhaka Division","region_code":"C","country_name":"Bangladesh",
+                                                    "country_code":"BD","continent_name":"Asia","continent_code":"AS","latitude":"23.8175","longitude":"90.4096","postal":"1206",
+                                                    "calling_code":"880","flag":"https://ipdata.co/flags/bd.png","emoji_flag":"🇧🇩","emoji_unicode":"U+1F1E7 U+1F1E9","asn_asn":"AS45925",
+                                                    "asn_name":"ASN For Teletalk Bangladesh Ltd.","asn_domain":"teletalk.com.bd","asn_route":"103.230.105.0/24","asn_type":"isp",
+                                                    "languages_name":"Bengali,","languages_native":"বাংলা,","currency_name":"Bangladeshi Taka","currency_code":"BDT","currency_symbol":"Tk",
+                                                    "currency_native":"৳","currency_plural":"Bangladeshi takas","time_zone_name":"Asia/Dhaka","time_zone_abbr":"+06","time_zone_offset":"+0600",
+                                                    "time_zone_is_dst":"","time_zone_current_time":"2020-07-07T13:13:24.904182+06:00","created_date_time":"2020-07-07 13:13:25"}
+
+                                            */
+                                            let ip_address = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            ip_address.textContent = datatable.ip_address;
+                                            viewBodyRow.appendChild(ip_address);
+                                            let city = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            city.textContent = datatable.city;
+                                            viewBodyRow.appendChild(city);
+                                            let country_name = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            country_name.textContent = datatable.country_name;
+                                            viewBodyRow.appendChild(country_name);
+                                            let continent_name = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            continent_name.textContent = datatable.continent_name;
+                                            viewBodyRow.appendChild(continent_name);
+                                            let location = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRow.appendChild(location);
+                                            let maplink = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'https://www.google.com/maps/@' + datatable.latitude + ',' + datatable.longitude + ',19z',
+                                                        'class': 'link',
+                                                    }
+                                                }]);
+                                            location.appendChild(maplink);
+                                            let maplinkIcon = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'img': {
+                                                        'src': _db_app__WEBPACK_IMPORTED_MODULE_1__.app.content.folder.images + 'map-pin-marker-circle.svg',
+                                                        'style': 'width:20px;height:20px;'
+                                                    }
+                                                }]);
+                                            maplink.appendChild(maplinkIcon);
+                                            let postal = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            postal.textContent = datatable.postal;
+                                            viewBodyRow.appendChild(postal);
+                                            let calling_code = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            calling_code.textContent = datatable.calling_code;
+                                            viewBodyRow.appendChild(calling_code);
+                                            let emoji_flag = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            emoji_flag.textContent = datatable.emoji_flag;
+                                            viewBodyRow.appendChild(emoji_flag);
+                                            let asn_asn = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            asn_asn.textContent = datatable.asn_asn;
+                                            viewBodyRow.appendChild(asn_asn);
+                                            let asn_domain = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRow.appendChild(asn_domain);
+                                            let asnDomainLink = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'https://' + datatable.asn_domain,
+                                                        'class': 'link',
+                                                    }
+                                                }]);
+                                            asn_domain.appendChild(asnDomainLink);
+                                            let asnDomainLinkIcon = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'img': {
+                                                        'src': _db_app__WEBPACK_IMPORTED_MODULE_1__.app.content.folder.images + 'navigation.svg',
+                                                        'style': 'width:20px;height:20px;'
+                                                    }
+                                                }]);
+                                            asnDomainLink.appendChild(asnDomainLinkIcon);
+                                            let languages_name = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            languages_name.textContent = datatable.languages_name;
+                                            viewBodyRow.appendChild(languages_name);
+                                            let time_zone_abbr = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            time_zone_abbr.textContent = datatable.time_zone_abbr;
+                                            viewBodyRow.appendChild(time_zone_abbr);
+                                            let created_date_time = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            created_date_time.textContent = datatable.created_date_time.substr(2, 8);
+                                            viewBodyRow.appendChild(created_date_time);
+                                            let viewBodyRowTdn = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRow.appendChild(viewBodyRowTdn);
+                                            let viewBodyRowTdna0 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-primary',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna0.addEventListener('click', function () {
+                                                (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(JSON.stringify(datatable), (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message'));
+                                            });
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna0);
+                                            let viewBodyRowTdna0i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-eye',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna0.appendChild(viewBodyRowTdna0i1);
+                                            let viewBodyRowTdna1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-success',
+                                                    }
+                                                }]);
+                                            /*viewBodyRowTdna1.addEventListener('click', function () {
+                                                captureElement('#message2').innerHTML = '';
+                                                captureElement('#modal01').style.display = 'block';
+                                                captureElement('#databaseEditMode').textContent = 'Edit';
+                                                captureElement('#database-data-btn').innerHTML = 'Update';
+                                                captureElement('#databaseID').value = datatable.id;
+                                                captureElement('#databaseServer').value = datatable.name;
+                                                captureElement('#databaseUser').value = datatable.user;
+                                                captureElement('#databaseName').value = datatable.db;
+                                                captureElement('#databasePassword').value = datatable.password;
+                                            });*/
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna1);
+                                            let viewBodyRowTdna1i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-edit',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna1.appendChild(viewBodyRowTdna1i1);
+                                            let viewBodyRowTdna2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-danger',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna2.addEventListener('click', function () {
+                                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'block';
+                                                (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                                                    method: "POST",
+                                                    url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/deleteTableRow',
+                                                    async: true,
+                                                    header: [{
+                                                            name: "Content-type",
+                                                            value: "application/json;charset=UTF-8"
+                                                        }],
+                                                    data: {
+                                                        security_code: 1,
+                                                        id: datatable.id,
+                                                        server: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoServer').value,
+                                                        db: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoDb').value,
+                                                        user: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoUser').value,
+                                                        password: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoPassword').value,
+                                                        table: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#runtimeTableName').value,
+                                                        rowId: datatable.id,
+                                                    },
+                                                }, function (response) {
+                                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'none';
+                                                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                                                });
+                                            });
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna2);
+                                            let viewBodyRowTd8a2i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-trash',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna2.appendChild(viewBodyRowTd8a2i1);
+                                        });
+                                    }
+                                    if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#table-view-client-update-info') !== undefined) {
+                                        JSON.parse(response).forEach(function (datatable) {
+                                            let currentSLNum = slNum++;
+                                            let viewBodyRow = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                            viewBody.appendChild(viewBodyRow);
+                                            let viewBodyRowTd1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRowTd1.textContent = currentSLNum;
+                                            viewBodyRow.appendChild(viewBodyRowTd1);
+                                            let name = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            name.textContent = datatable.name;
+                                            viewBodyRow.appendChild(name);
+                                            let version = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            version.textContent = datatable.version;
+                                            viewBodyRow.appendChild(version);
+                                            let ip_address = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            ip_address.textContent = datatable.ip_address;
+                                            viewBodyRow.appendChild(ip_address);
+                                            let browserNameFull = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            browserNameFull.textContent = datatable.browserNameFull;
+                                            viewBodyRow.appendChild(browserNameFull);
+                                            let message = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            message.textContent = datatable.message;
+                                            viewBodyRow.appendChild(message);
+                                            let created_date_time = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            created_date_time.textContent = datatable.created_date_time;
+                                            viewBodyRow.appendChild(created_date_time);
+                                            let viewBodyRowTdn = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                            viewBodyRow.appendChild(viewBodyRowTdn);
+                                            let viewBodyRowTdna0 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-primary',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna0.addEventListener('click', function () {
+                                                (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(JSON.stringify(datatable), (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message'));
+                                            });
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna0);
+                                            let viewBodyRowTdna0i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-eye',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna0.appendChild(viewBodyRowTdna0i1);
+                                            let viewBodyRowTdna1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-success',
+                                                    }
+                                                }]);
+                                            /*viewBodyRowTdna1.addEventListener('click', function () {
+                                                captureElement('#message2').innerHTML = '';
+                                                captureElement('#modal01').style.display = 'block';
+                                                captureElement('#databaseEditMode').textContent = 'Edit';
+                                                captureElement('#database-data-btn').innerHTML = 'Update';
+                                                captureElement('#databaseID').value = datatable.id;
+                                                captureElement('#databaseServer').value = datatable.name;
+                                                captureElement('#databaseUser').value = datatable.user;
+                                                captureElement('#databaseName').value = datatable.db;
+                                                captureElement('#databasePassword').value = datatable.password;
+                                            });*/
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna1);
+                                            let viewBodyRowTdna1i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-edit',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna1.appendChild(viewBodyRowTdna1i1);
+                                            let viewBodyRowTdna2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'a': {
+                                                        'href': 'javascript:void(0);',
+                                                        'class': 'button button-xs button-danger',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna2.addEventListener('click', function () {
+                                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'block';
+                                                (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                                                    method: "POST",
+                                                    url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/tracking/deleteTableRow',
+                                                    async: true,
+                                                    header: [{
+                                                            name: "Content-type",
+                                                            value: "application/json;charset=UTF-8"
+                                                        }],
+                                                    data: {
+                                                        security_code: 1,
+                                                        id: datatable.id,
+                                                        server: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoServer').value,
+                                                        db: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoDb').value,
+                                                        user: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoUser').value,
+                                                        password: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#dbInfoPassword').value,
+                                                        table: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#runtimeTableName').value,
+                                                        rowId: datatable.id,
+                                                    },
+                                                }, function (response) {
+                                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#app-loader').style.display = 'none';
+                                                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                                                });
+                                            });
+                                            viewBodyRowTdn.appendChild(viewBodyRowTdna2);
+                                            let viewBodyRowTd8a2i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'i': {
+                                                        'class': 'fa fa-trash',
+                                                    }
+                                                }]);
+                                            viewBodyRowTdna2.appendChild(viewBodyRowTd8a2i1);
+                                        });
+                                    }
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#table-view-datatable-body").appendChild(view);
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#table-view-datatable-body").style = (JSON.parse(response).length > 10) ? 'padding:0;height: 420px;' : 'padding:0;';
+                                }
+                                else {
+                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#table-view-datatable-body").textContent = 'No data found';
+                                }
+                            }
+                            else {
+                                (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message"));
+                            }
+                        }
+                    });
+                    /*
+                                        if (captureElement('#databaseEditMode')) {
+                                            captureElement('#database-data-btn').innerHTML = 'Save';
+                                            captureElement('#database-reset-btn').innerHTML = 'Reset';
+                                        }
+                                        captureElement('#server-db-add-btn').addEventListener('click', function () {
+                                            captureElement('#message2').innerHTML = '';
+                                            captureElement('#modal01').style.display = 'block';
+                                            captureElement('#databaseEditMode').innerHTML = 'Add new';
+                                            captureElement('#databaseID').value = '';
+                                            captureElement('#databaseServer').value = '';
+                                            captureElement('#databaseUser').value = '';
+                                            captureElement('#databaseName').value = '';
+                                            captureElement('#databasePassword').value = '';
+                                        });
+
+                                        //save data by clicking data button
+                                        captureElement('#database-data-btn').addEventListener('click', function () {
+                                            sendRequest({
+                                                method: "POST",
+                                                url: appHost + 'system/tracking/manageServerDatabase',
+                                                async: true,
+                                                header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
+                                                data: {
+                                                    security_code: 1,
+                                                    id: captureElement('#databaseID').value,
+                                                    name: captureElement('#databaseServer').value,
+                                                    user: captureElement('#databaseUser').value,
+                                                    db: captureElement('#databaseName').value,
+                                                    password: captureElement('#databasePassword').value,
+                                                    btnName: captureElement('#database-data-btn').textContent
+                                                },
+                                            }, function (response: any) {
+                                                captureElement('#database-data-btn').textContent = captureElement('#database-data-btn').textContent + 'd';
+                                                setTimeout(function () {
+                                                    captureElement('#database-data-btn').textContent = captureElement('#database-data-btn').textContent.slice(0, -1);
+                                                }, 2000);
+                                                showMessage(response, captureElement("#message2"));
+                                            });
+                                        });*/
+                }
+            }
+        }
+        if (__url.indexOf('webapp') !== -1) {
+            if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#webapp-data-table") !== undefined) {
+                (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                    method: "POST",
+                    url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/webapp/getWebAppInfo',
+                    async: true,
+                    header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                }, function (response) {
+                    if (response.length !== 0 && (0,_common_validation__WEBPACK_IMPORTED_MODULE_5__.IsJsonString)(response)) {
+                        if (JSON.parse(response).length !== 0) {
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#webapp-data-table").textContent = '';
+                            JSON.parse(response).forEach(function (webapp) {
+                                /*let favLocalLocate = webapp.icon_local_dir;*/
+                                let editor = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webapp-edit-btn');
+                                editor.setAttribute('data-id', webapp.id);
+                                editor.setAttribute('data-name', webapp.name);
+                                editor.setAttribute('data-description', webapp.description);
+                                editor.setAttribute('data-company', webapp.company);
+                                editor.setAttribute('data-filesLocate', webapp.doc_root);
+                                editor.setAttribute('data-domainLocate', webapp.http_host_add);
+                                editor.setAttribute('data-IPLocate', webapp.http_host_ip);
+                                let web_app_info_box = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'div': { 'class': 'web-app-info-box' } }]);
+                                let web_app_info_box_nav = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'div': { 'class': 'web-app-info-box-nav' } }]);
+                                web_app_info_box.appendChild(web_app_info_box_nav);
+                                let ul = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'ul': {} }]);
+                                web_app_info_box_nav.appendChild(ul);
+                                let li_overview = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                        'li': {
+                                            'id': 'overview',
+                                            'style': 'background: #93c'
+                                        }
+                                    }]);
+                                li_overview.innerHTML = '<i class="fas fa-eye"></i><span>Overview</span>';
+                                ul.appendChild(li_overview);
+                                let li_basicInfo = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'li': { 'id': 'basicInfo' } }]);
+                                li_basicInfo.innerHTML = '<i class="fab fa-app-store-ios"></i><span>Basic Info</span>';
+                                ul.appendChild(li_basicInfo);
+                                let li_databaseInfo = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'li': { 'id': 'databaseInfo' } }]);
+                                li_databaseInfo.innerHTML = '<i class="fas fa-database"></i><span>Databases Info</span>';
+                                ul.appendChild(li_databaseInfo);
+                                let li_filesInfo = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'li': { 'id': 'filesInfo' } }]);
+                                li_filesInfo.innerHTML = '<i class="fas fa-file-alt"></i><span>Files Info</span>';
+                                ul.appendChild(li_filesInfo);
+                                let li_mediaInfo = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'li': { 'id': 'mediaInfo' } }]);
+                                li_mediaInfo.innerHTML = '<i class="fas fa-file-image"></i><span>Media Info</span>';
+                                ul.appendChild(li_mediaInfo);
+                                let li_socialInfo = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'li': { 'id': 'socialInfo' } }]);
+                                li_socialInfo.innerHTML = '<i class="fas fa-user-friends"></i><span>Social Info</span>';
+                                ul.appendChild(li_socialInfo);
+                                let web_app_info_box_content = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'div': { 'class': 'web-app-info-box-content' } }]);
+                                web_app_info_box.appendChild(web_app_info_box_content);
+                                let web_app_info_box_content_overview = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                        'div': {
+                                            'class': 'web-app-info-content-overview',
+                                            'id': 'web-app-info-content-overview'
+                                        }
+                                    }]);
+                                web_app_info_box_content.appendChild(web_app_info_box_content_overview);
+                                let content_overview_table = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                        'table': {
+                                            'class': 'table',
+                                            'style': 'text-align: center;'
+                                        }
+                                    }]);
+                                web_app_info_box_content_overview.appendChild(content_overview_table);
+                                let content_overview_table_tr1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                content_overview_table.appendChild(content_overview_table_tr1);
+                                let content_overview_table_tr1_td = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_overview_table_tr1.appendChild(content_overview_table_tr1_td);
+                                let content_overview_table_tr1_favicon = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                        'img': {
+                                            'alt': 'Favicon',
+                                            'src': webapp.icon_remote_dir + webapp.favicon,
+                                            'style': 'width: 100px;height: 100px;'
+                                        }
+                                    }]);
+                                content_overview_table_tr1_td.appendChild(content_overview_table_tr1_favicon);
+                                let content_overview_table_tr2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                content_overview_table.appendChild(content_overview_table_tr2);
+                                let content_overview_table_tr2_td = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_overview_table_tr2.appendChild(content_overview_table_tr2_td);
+                                let content_overview_table_tr2_webapp_name = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                        'a': {
+                                            'href': webapp.http_host_add,
+                                            'target': '_blank'
+                                        }
+                                    }]);
+                                content_overview_table_tr2_webapp_name.textContent = webapp.name;
+                                content_overview_table_tr2_td.appendChild(content_overview_table_tr2_webapp_name);
+                                let content_overview_table_tr21 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                content_overview_table.appendChild(content_overview_table_tr21);
+                                let content_overview_table_tr21_td = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_overview_table_tr21.appendChild(content_overview_table_tr21_td);
+                                let content_overview_table_tr21_webapp_company = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                        'a': {
+                                            'href': _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost,
+                                            'target': '_blank'
+                                        }
+                                    }]);
+                                content_overview_table_tr21_webapp_company.textContent = webapp.company;
+                                content_overview_table_tr21_td.appendChild(content_overview_table_tr21_webapp_company);
+                                let content_overview_table_tr3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                content_overview_table.appendChild(content_overview_table_tr3);
+                                let content_overview_table_tr3_td = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_overview_table_tr3.appendChild(content_overview_table_tr3_td);
+                                let content_overview_table_tr3_social_icons = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                        'div': {
+                                            'class': 'socials-wrap',
+                                            'style': 'margin-top: 2px;width:100%'
+                                        }
+                                    }]);
+                                content_overview_table_tr3_td.appendChild(content_overview_table_tr3_social_icons);
+                                let content_overview_table_tr3_social_icons_ul = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'ul': { 'id': 'web-app-social-links-icon' } }]);
+                                content_overview_table_tr3_social_icons.appendChild(content_overview_table_tr3_social_icons_ul);
+                                let web_app_info_box_content_basic = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                        'div': {
+                                            'class': 'web-app-info-content-basic',
+                                            'id': 'web-app-info-content-basic'
+                                        }
+                                    }]);
+                                web_app_info_box_content_basic.innerHTML = 'Basic Information&ensp;::';
+                                web_app_info_box_content.appendChild(web_app_info_box_content_basic);
+                                let content_basic_table = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'table': { 'class': 'table table-bottom-border-only table-condensed' } }]);
+                                web_app_info_box_content_basic.appendChild(content_basic_table);
+                                let content_basic_table_tr1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                content_basic_table.appendChild(content_basic_table_tr1);
+                                let content_basic_table_tr1_td1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_basic_table_tr1_td1.textContent = 'Name';
+                                content_basic_table_tr1.appendChild(content_basic_table_tr1_td1);
+                                let content_basic_table_tr1_td2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_basic_table_tr1_td2.textContent = ':';
+                                content_basic_table_tr1.appendChild(content_basic_table_tr1_td2);
+                                let content_basic_table_tr1_td3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_basic_table_tr1_td3.textContent = webapp.name;
+                                content_basic_table_tr1.appendChild(content_basic_table_tr1_td3);
+                                let content_basic_table_tr2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                content_basic_table.appendChild(content_basic_table_tr2);
+                                let content_basic_table_tr2_td1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_basic_table_tr2_td1.textContent = 'Company';
+                                content_basic_table_tr2.appendChild(content_basic_table_tr2_td1);
+                                let content_basic_table_tr2_td2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_basic_table_tr2_td2.textContent = ':';
+                                content_basic_table_tr2.appendChild(content_basic_table_tr2_td2);
+                                let content_basic_table_tr2_td3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_basic_table_tr2_td3.textContent = webapp.company;
+                                content_basic_table_tr2.appendChild(content_basic_table_tr2_td3);
+                                let content_basic_table_tr3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                content_basic_table.appendChild(content_basic_table_tr3);
+                                let content_basic_table_tr3_td1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_basic_table_tr3_td1.textContent = 'Description';
+                                content_basic_table_tr3.appendChild(content_basic_table_tr3_td1);
+                                let content_basic_table_tr3_td2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_basic_table_tr3_td2.textContent = ':';
+                                content_basic_table_tr3.appendChild(content_basic_table_tr3_td2);
+                                let content_basic_table_tr3_td3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_basic_table_tr3_td3.textContent = webapp.description;
+                                content_basic_table_tr3.appendChild(content_basic_table_tr3_td3);
+                                let web_app_info_box_content_database = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                        'div': {
+                                            'class': 'web-app-info-content-database',
+                                            'id': 'web-app-info-content-database',
+                                            'style': 'overflow: scroll;height: 600px;',
+                                        }
+                                    }]);
+                                web_app_info_box_content_database.innerHTML = 'Databases Information&ensp;::';
+                                web_app_info_box_content.appendChild(web_app_info_box_content_database);
+                                let content_database_table = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'table': { 'class': 'table table-bottom-border-only table-condensed' } }]);
+                                web_app_info_box_content_database.appendChild(content_database_table);
+                                let content_database_table_thead = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'thead': {} }]);
+                                let content_database_table_tfoot = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tfoot': {} }]);
+                                content_database_table.appendChild(content_database_table_thead);
+                                content_database_table.appendChild(content_database_table_tfoot);
+                                let content_database_table_tr1_head = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                let content_database_table_tr2_foot = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                content_database_table_thead.appendChild(content_database_table_tr1_head);
+                                content_database_table_tfoot.appendChild(content_database_table_tr2_foot);
+                                let content_database_table_tr1_td1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_database_table_tr1_td1.textContent = 'SL';
+                                content_database_table_tr1_head.appendChild(content_database_table_tr1_td1);
+                                content_database_table_tr2_foot.appendChild(content_database_table_tr1_td1.cloneNode(true));
+                                let content_database_table_tr1_td2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_database_table_tr1_td2.textContent = 'NAME';
+                                content_database_table_tr1_head.appendChild(content_database_table_tr1_td2.cloneNode(true));
+                                content_database_table_tr2_foot.appendChild(content_database_table_tr1_td2);
+                                let content_database_table_tr1_td3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_database_table_tr1_td3.textContent = 'CREATE TIME';
+                                content_database_table_tr1_head.appendChild(content_database_table_tr1_td3);
+                                content_database_table_tr2_foot.appendChild(content_database_table_tr1_td3.cloneNode(true));
+                                let content_database_table_tr1_td4 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_database_table_tr1_td4.textContent = 'UPDATE TIME';
+                                content_database_table_tr1_head.appendChild(content_database_table_tr1_td4);
+                                content_database_table_tr2_foot.appendChild(content_database_table_tr1_td4.cloneNode(true));
+                                let content_database_table_tr1_td5 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_database_table_tr1_td5.textContent = 'COLLATION';
+                                content_database_table_tr1_head.appendChild(content_database_table_tr1_td5);
+                                content_database_table_tr2_foot.appendChild(content_database_table_tr1_td5.cloneNode(true));
+                                let content_database_table_tr1_td6 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_database_table_tr1_td6.textContent = 'ENGINE';
+                                content_database_table_tr1_head.appendChild(content_database_table_tr1_td6);
+                                content_database_table_tr2_foot.appendChild(content_database_table_tr1_td6.cloneNode(true));
+                                let content_database_table_tbody = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tbody': { 'id': 'web-app-tables' } }]);
+                                content_database_table.appendChild(content_database_table_tbody);
+                                let content_database_table_tr2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                content_database_table_tbody.appendChild(content_database_table_tr2);
+                                let content_database_table_tr2_td1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                        'td': {
+                                            'colspan': '7',
+                                            'style': 'text-align: center !important;text-transform: none;'
+                                        }
+                                    }]);
+                                content_database_table_tr2_td1.textContent = 'Data loading...';
+                                content_database_table_tr2.appendChild(content_database_table_tr2_td1);
+                                content_database_table.appendChild(content_database_table_tfoot);
+                                let web_app_info_box_content_files = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                        'div': {
+                                            'class': 'web-app-info-content-files',
+                                            'id': 'web-app-info-content-files'
+                                        }
+                                    }]);
+                                web_app_info_box_content_files.innerHTML = 'Files Information&ensp;::';
+                                web_app_info_box_content.appendChild(web_app_info_box_content_files);
+                                let content_files_table = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'table': { 'class': 'table table-bottom-border-only table-condensed' } }]);
+                                web_app_info_box_content_files.appendChild(content_files_table);
+                                let content_files_table_tr1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                content_files_table.appendChild(content_files_table_tr1);
+                                let content_files_table_tr1_td1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_files_table_tr1_td1.textContent = 'Root Directory';
+                                content_files_table_tr1.appendChild(content_files_table_tr1_td1);
+                                let content_files_table_tr1_td2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_files_table_tr1_td2.textContent = ':';
+                                content_files_table_tr1.appendChild(content_files_table_tr1_td2);
+                                let content_files_table_tr1_td3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_files_table_tr1_td3.textContent = webapp.doc_root;
+                                content_files_table_tr1.appendChild(content_files_table_tr1_td3);
+                                let content_files_table_tr2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                content_files_table.appendChild(content_files_table_tr2);
+                                let content_files_table_tr2_td1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_files_table_tr2_td1.textContent = 'Domain';
+                                content_files_table_tr2.appendChild(content_files_table_tr2_td1);
+                                let content_files_table_tr2_td2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_files_table_tr2_td2.textContent = ':';
+                                content_files_table_tr2.appendChild(content_files_table_tr2_td2);
+                                let content_files_table_tr2_td3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_files_table_tr2_td3.textContent = webapp.http_host_add;
+                                content_files_table_tr2.appendChild(content_files_table_tr2_td3);
+                                let content_files_table_tr3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                content_files_table.appendChild(content_files_table_tr3);
+                                let content_files_table_tr3_td1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_files_table_tr3_td1.textContent = 'IP';
+                                content_files_table_tr3.appendChild(content_files_table_tr3_td1);
+                                let content_files_table_tr3_td2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_files_table_tr3_td2.textContent = ':';
+                                content_files_table_tr3.appendChild(content_files_table_tr3_td2);
+                                let content_files_table_tr3_td3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_files_table_tr3_td3.textContent = webapp.http_host_ip;
+                                content_files_table_tr3.appendChild(content_files_table_tr3_td3);
+                                let content_files_table_tr4 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                content_files_table.appendChild(content_files_table_tr4);
+                                let content_files_table_tr4_td1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_files_table_tr4_td1.textContent = 'Favicon';
+                                content_files_table_tr4.appendChild(content_files_table_tr4_td1);
+                                let content_files_table_tr4_td2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_files_table_tr4_td2.textContent = ':';
+                                content_files_table_tr4.appendChild(content_files_table_tr4_td2);
+                                let content_files_table_tr4_td3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_files_table_tr4_td3.textContent = webapp.icon_remote_dir;
+                                content_files_table_tr4.appendChild(content_files_table_tr4_td3);
+                                let web_app_info_box_content_media = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                        'div': {
+                                            'class': 'web-app-info-content-media',
+                                            'id': 'web-app-info-content-media'
+                                        }
+                                    }]);
+                                web_app_info_box_content_media.innerHTML = 'Media Information&ensp;::';
+                                web_app_info_box_content.appendChild(web_app_info_box_content_media);
+                                let content_media_table = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'table': { 'class': 'table table-bottom-border-only table-condensed' } }]);
+                                web_app_info_box_content_media.appendChild(content_media_table);
+                                let content_media_table_tr1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                content_media_table.appendChild(content_media_table_tr1);
+                                let content_media_table_tr1_td1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_media_table_tr1_td1.textContent = 'Theme';
+                                content_media_table_tr1.appendChild(content_media_table_tr1_td1);
+                                let content_media_table_tr1_td2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_media_table_tr1_td2.textContent = ':';
+                                content_media_table_tr1.appendChild(content_media_table_tr1_td2);
+                                let content_media_table_tr1_td3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_media_table_tr1_td3.textContent = webapp.default_layout;
+                                content_media_table_tr1.appendChild(content_media_table_tr1_td3);
+                                let content_media_table_tr1_td4 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': { 'rowspan': '3' } }]);
+                                content_media_table_tr1.appendChild(content_media_table_tr1_td4);
+                                let content_media_table_tr1_td4_favicon = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                        'img': {
+                                            'alt': 'Favicon',
+                                            'src': webapp.icon_remote_dir + webapp.favicon,
+                                            'style': 'width: 100px;height: 100px;'
+                                        }
+                                    }]);
+                                content_media_table_tr1_td4.appendChild(content_media_table_tr1_td4_favicon);
+                                let content_media_table_tr2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                content_media_table.appendChild(content_media_table_tr2);
+                                let content_media_table_tr2_td1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_media_table_tr2_td1.textContent = 'Favicon';
+                                content_media_table_tr2.appendChild(content_media_table_tr2_td1);
+                                let content_media_table_tr2_td2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_media_table_tr2_td2.textContent = ':';
+                                content_media_table_tr2.appendChild(content_media_table_tr2_td2);
+                                let content_media_table_tr2_td3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_media_table_tr2_td3.textContent = webapp.favicon;
+                                content_media_table_tr2.appendChild(content_media_table_tr2_td3);
+                                let content_media_table_tr3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                content_media_table.appendChild(content_media_table_tr3);
+                                let content_media_table_tr3_td1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_media_table_tr3.appendChild(content_media_table_tr3_td1);
+                                let content_media_table_tr3_td2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_media_table_tr3.appendChild(content_media_table_tr3_td2);
+                                let content_media_table_tr3_td3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                content_media_table_tr3.appendChild(content_media_table_tr3_td3);
+                                let web_app_info_box_content_social = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                        'div': {
+                                            'class': 'web-app-info-content-social',
+                                            'id': 'web-app-info-content-social'
+                                        }
+                                    }]);
+                                web_app_info_box_content_social.innerHTML = 'Social Information&ensp;::';
+                                web_app_info_box_content.appendChild(web_app_info_box_content_social);
+                                let content_social_table = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                        'table': {
+                                            'id': 'web-app-social-links',
+                                            'class': 'table table-bottom-border-only table-condensed'
+                                        }
+                                    }]);
+                                web_app_info_box_content_social.appendChild(content_social_table);
+                                let content_social_table_tbody = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tbody': { 'id': 'web-app-social-links-view-data' } }]);
+                                content_social_table.appendChild(content_social_table_tbody);
+                                let content_social_table_tr1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                content_social_table_tbody.appendChild(content_social_table_tr1);
+                                let content_social_table_tr1_td1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                        'td': {
+                                            'colspan': '3',
+                                            'style': 'text-align: center !important;text-transform: none;'
+                                        }
+                                    }]);
+                                content_social_table_tr1_td1.textContent = 'Data loading...';
+                                content_social_table_tr1.appendChild(content_social_table_tr1_td1);
+                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#webapp-data-table").appendChild(web_app_info_box);
+                            });
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#overview').addEventListener('click', function () {
+                                this.setAttribute('style', background93c);
+                                removeAttributeById([
+                                    { 'id': 'basicInfo', 'attribute': 'style' },
+                                    { 'id': 'databaseInfo', 'attribute': 'style' },
+                                    { 'id': 'filesInfo', 'attribute': 'style' },
+                                    { 'id': 'mediaInfo', 'attribute': 'style' },
+                                    { 'id': 'socialInfo', 'attribute': 'style' },
+                                ]);
+                                changeElementDisplayById([
+                                    { 'id': 'web-app-info-content-overview', 'display': 'block' },
+                                    { 'id': 'web-app-info-content-basic', 'display': 'none' },
+                                    { 'id': 'web-app-info-content-database', 'display': 'none' },
+                                    { 'id': 'web-app-info-content-files', 'display': 'none' },
+                                    { 'id': 'web-app-info-content-media', 'display': 'none' },
+                                    { 'id': 'web-app-info-content-social', 'display': 'none' },
+                                ]);
+                            });
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#basicInfo').addEventListener('click', function () {
+                                this.setAttribute('style', background93c);
+                                removeAttributeById([
+                                    { 'id': 'overview', 'attribute': 'style' },
+                                    { 'id': 'databaseInfo', 'attribute': 'style' },
+                                    { 'id': 'filesInfo', 'attribute': 'style' },
+                                    { 'id': 'mediaInfo', 'attribute': 'style' },
+                                    { 'id': 'socialInfo', 'attribute': 'style' },
+                                ]);
+                                changeElementDisplayById([
+                                    { 'id': 'web-app-info-content-overview', 'display': 'none' },
+                                    { 'id': 'web-app-info-content-basic', 'display': 'block' },
+                                    { 'id': 'web-app-info-content-database', 'display': 'none' },
+                                    { 'id': 'web-app-info-content-files', 'display': 'none' },
+                                    { 'id': 'web-app-info-content-media', 'display': 'none' },
+                                    { 'id': 'web-app-info-content-social', 'display': 'none' },
+                                ]);
+                            });
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#databaseInfo').addEventListener('click', function () {
+                                this.setAttribute('style', background93c);
+                                removeAttributeById([
+                                    { 'id': 'overview', 'attribute': 'style' },
+                                    { 'id': 'basicInfo', 'attribute': 'style' },
+                                    { 'id': 'filesInfo', 'attribute': 'style' },
+                                    { 'id': 'mediaInfo', 'attribute': 'style' },
+                                    { 'id': 'socialInfo', 'attribute': 'style' },
+                                ]);
+                                changeElementDisplayById([
+                                    { 'id': 'web-app-info-content-overview', 'display': 'none' },
+                                    { 'id': 'web-app-info-content-basic', 'display': 'none' },
+                                    { 'id': 'web-app-info-content-database', 'display': 'block' },
+                                    { 'id': 'web-app-info-content-files', 'display': 'none' },
+                                    { 'id': 'web-app-info-content-media', 'display': 'none' },
+                                    { 'id': 'web-app-info-content-social', 'display': 'none' },
+                                ]);
+                            });
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#filesInfo').addEventListener('click', function () {
+                                this.setAttribute('style', background93c);
+                                removeAttributeById([
+                                    { 'id': 'overview', 'attribute': 'style' },
+                                    { 'id': 'basicInfo', 'attribute': 'style' },
+                                    { 'id': 'databaseInfo', 'attribute': 'style' },
+                                    { 'id': 'mediaInfo', 'attribute': 'style' },
+                                    { 'id': 'socialInfo', 'attribute': 'style' },
+                                ]);
+                                changeElementDisplayById([
+                                    { 'id': 'web-app-info-content-overview', 'display': 'none' },
+                                    { 'id': 'web-app-info-content-basic', 'display': 'none' },
+                                    { 'id': 'web-app-info-content-database', 'display': 'none' },
+                                    { 'id': 'web-app-info-content-files', 'display': 'block' },
+                                    { 'id': 'web-app-info-content-media', 'display': 'none' },
+                                    { 'id': 'web-app-info-content-social', 'display': 'none' },
+                                ]);
+                            });
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#mediaInfo').addEventListener('click', function () {
+                                this.setAttribute('style', background93c);
+                                removeAttributeById([
+                                    { 'id': 'overview', 'attribute': 'style' },
+                                    { 'id': 'basicInfo', 'attribute': 'style' },
+                                    { 'id': 'databaseInfo', 'attribute': 'style' },
+                                    { 'id': 'filesInfo', 'attribute': 'style' },
+                                    { 'id': 'socialInfo', 'attribute': 'style' },
+                                ]);
+                                changeElementDisplayById([
+                                    { 'id': 'web-app-info-content-overview', 'display': 'none' },
+                                    { 'id': 'web-app-info-content-basic', 'display': 'none' },
+                                    { 'id': 'web-app-info-content-database', 'display': 'none' },
+                                    { 'id': 'web-app-info-content-files', 'display': 'none' },
+                                    { 'id': 'web-app-info-content-media', 'display': 'block' },
+                                    { 'id': 'web-app-info-content-social', 'display': 'none' },
+                                ]);
+                            });
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#socialInfo').addEventListener('click', function () {
+                                this.setAttribute('style', background93c);
+                                removeAttributeById([
+                                    { 'id': 'overview', 'attribute': 'style' },
+                                    { 'id': 'basicInfo', 'attribute': 'style' },
+                                    { 'id': 'databaseInfo', 'attribute': 'style' },
+                                    { 'id': 'filesInfo', 'attribute': 'style' },
+                                    { 'id': 'mediaInfo', 'attribute': 'style' },
+                                ]);
+                                changeElementDisplayById([
+                                    { 'id': 'web-app-info-content-overview', 'display': 'none' },
+                                    { 'id': 'web-app-info-content-basic', 'display': 'none' },
+                                    { 'id': 'web-app-info-content-database', 'display': 'none' },
+                                    { 'id': 'web-app-info-content-files', 'display': 'none' },
+                                    { 'id': 'web-app-info-content-media', 'display': 'none' },
+                                    { 'id': 'web-app-info-content-social', 'display': 'block' },
+                                ]);
+                            });
+                            if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#web-app-tables") !== undefined) {
+                                setInterval(function () {
+                                }, 1000);
+                                (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                                    method: "POST",
+                                    url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/webapp/getWebAppTables',
+                                    async: true,
+                                    header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                                }, function (response) {
+                                    if (response.length !== 0 && (0,_common_validation__WEBPACK_IMPORTED_MODULE_5__.IsJsonString)(response)) {
+                                        if (JSON.parse(response).length !== 0) {
+                                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#web-app-tables").textContent = '';
+                                            let sl = 1;
+                                            JSON.parse(response).forEach(function (webapptable) {
+                                                let currentSl = sl++;
+                                                const tr = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                                const td1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                                td1.textContent = currentSl;
+                                                tr.appendChild(td1);
+                                                const td2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                                td2.textContent = webapptable.TABLE_NAME.replace('msu_', '');
+                                                tr.appendChild(td2);
+                                                const td3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                                td3.textContent = webapptable.CREATE_TIME.substr(0, 10);
+                                                tr.appendChild(td3);
+                                                const td4 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                                td4.textContent = (webapptable.UPDATE_TIME !== null) ? webapptable.UPDATE_TIME.substr(0, 11) : 'Not Updated';
+                                                tr.appendChild(td4);
+                                                const td5 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                                td5.textContent = webapptable.TABLE_COLLATION.substr(0, 7);
+                                                tr.appendChild(td5);
+                                                const td6 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                                td6.textContent = webapptable.ENGINE;
+                                                tr.appendChild(td6);
+                                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#web-app-tables").appendChild(tr);
+                                            });
+                                        }
+                                        else {
+                                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#web-app-tables").textContent = '';
+                                            const tr = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                            const td = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'td': {
+                                                        'class': 'text-align-center',
+                                                    }
+                                                }]);
+                                            td.textContent = 'No table exists.';
+                                            tr.appendChild(td);
+                                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#web-app-tables").appendChild(tr);
+                                        }
+                                    }
+                                });
+                            }
+                            if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#web-app-social-links-view-data") !== undefined) {
+                                setInterval(function () {
+                                }, 1000);
+                                (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                                    method: "POST",
+                                    url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/webapp/getWebAppSocialLinks',
+                                    async: true,
+                                    header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                                }, function (response) {
+                                    if (response.length !== 0 && (0,_common_validation__WEBPACK_IMPORTED_MODULE_5__.IsJsonString)(response)) {
+                                        if (JSON.parse(response).length !== 0) {
+                                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#web-app-social-links-view-data").textContent = '';
+                                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#web-app-social-links-edit-data").textContent = '';
+                                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#web-app-social-links-icon").textContent = '';
+                                            let slNum = 1;
+                                            JSON.parse(response).forEach(function (socialLink) {
+                                                let currentSlNum = slNum++;
+                                                const t1tr1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                                const t1td1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                                t1td1.textContent = socialLink.name[0].toUpperCase() + socialLink.name.slice(1);
+                                                t1tr1.appendChild(t1td1);
+                                                const t1td2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                                t1td2.textContent = ':';
+                                                t1tr1.appendChild(t1td2);
+                                                const t1td3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                                t1td3.textContent = socialLink.link;
+                                                t1tr1.appendChild(t1td3);
+                                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#web-app-social-links-view-data").appendChild(t1tr1);
+                                                const t2tr2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                                const t2td1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                                t2td1.textContent = currentSlNum;
+                                                t2tr2.appendChild(t2td1);
+                                                const t2td2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                                t2td2.textContent = socialLink.name[0].toUpperCase() + socialLink.name.slice(1);
+                                                t2tr2.appendChild(t2td2);
+                                                const t2td3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                                t2td3.textContent = socialLink.link;
+                                                t2tr2.appendChild(t2td3);
+                                                const t2td4 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'td': {} }]);
+                                                t2tr2.appendChild(t2td4);
+                                                let t2td4a1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                        'a': {
+                                                            'href': 'javascript:void(0);',
+                                                            'class': 'button button-xs button-success',
+                                                        }
+                                                    }]);
+                                                t2td4a1.addEventListener('click', function () {
+                                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webappSocialLinksEditMode').textContent = 'Edit';
+                                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#web-app-social-links-data-btn').textContent = 'Update';
+                                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#web-app-social-links-id').value = socialLink.id;
+                                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#social-website-name').value = socialLink.name;
+                                                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#social-website-profile-link').value = socialLink.link;
+                                                });
+                                                t2td4.appendChild(t2td4a1);
+                                                let t2td4a1i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                        'i': {
+                                                            'class': 'fa fa-edit',
+                                                        }
+                                                    }]);
+                                                t2td4a1.appendChild(t2td4a1i1);
+                                                let t2td4a2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                        'a': {
+                                                            'href': 'javascript:void(0);',
+                                                            'class': 'button button-xs button-danger',
+                                                        }
+                                                    }]);
+                                                t2td4a2.addEventListener('click', function () {
+                                                    (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                                                        method: "POST",
+                                                        url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/webapp/deleteSocialLink',
+                                                        async: true,
+                                                        header: [{
+                                                                name: "Content-type",
+                                                                value: "application/json;charset=UTF-8"
+                                                            }],
+                                                        data: {
+                                                            security_code: 1, id: socialLink.id,
+                                                        },
+                                                    }, function (response) {
+                                                        (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message3"));
+                                                    });
+                                                });
+                                                t2td4.appendChild(t2td4a2);
+                                                let t2td4a2i1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                        'i': {
+                                                            'class': 'fa fa-trash',
+                                                        }
+                                                    }]);
+                                                t2td4a2.appendChild(t2td4a2i1);
+                                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#web-app-social-links-edit-data").appendChild(t2tr2);
+                                                let t2tr3 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                        'i': {
+                                                            'class': 'li-social ' + socialLink.name.toLowerCase() + '-social',
+                                                        }
+                                                    }]);
+                                                let t2tr3a1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                        'a': {
+                                                            'href': socialLink.link,
+                                                            'target': '_blank',
+                                                            'title': socialLink.name[0].toUpperCase() + socialLink.name.slice(1)
+                                                        }
+                                                    }]);
+                                                t2tr3.appendChild(t2tr3a1);
+                                                let t2tr3a1s1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                        'span': {
+                                                            'class': 'fab fa-' + socialLink.name.toLowerCase() + ' icon-social',
+                                                        }
+                                                    }]);
+                                                t2tr3a1.appendChild(t2tr3a1s1);
+                                                let t2tr3a1s2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                        'span': {
+                                                            'class': 'name-social',
+                                                        }
+                                                    }]);
+                                                t2tr3a1s2.textContent = socialLink.name[0].toUpperCase() + socialLink.name.slice(1);
+                                                t2tr3a1.appendChild(t2tr3a1s2);
+                                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#web-app-social-links-icon").appendChild(t2tr3);
+                                            });
+                                        }
+                                        else {
+                                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#web-app-social-links-view-data").textContent = '';
+                                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#web-app-social-links-edit-data").textContent = '';
+                                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#web-app-social-links-icon").textContent = '';
+                                            const tr1 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                            const tr1td = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'td': {
+                                                        'class': 'text-align-center',
+                                                        'colspan': '3',
+                                                    }
+                                                }]);
+                                            tr1td.textContent = 'No link exists.';
+                                            tr1.appendChild(tr1td);
+                                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#web-app-social-links-view-data").appendChild(tr1);
+                                            const tr2 = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                                            const tr2td = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                                    'td': {
+                                                        'class': 'text-align-center',
+                                                        'colspan': '4',
+                                                    }
+                                                }]);
+                                            tr2td.textContent = 'No link exists.';
+                                            tr2.appendChild(tr2td);
+                                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#web-app-social-links-edit-data").appendChild(tr2);
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                        else {
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#webapp-data-table").textContent = '';
+                            const table = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                    'table': {
+                                        'style': 'width:100%;',
+                                    }
+                                }]);
+                            const tr = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{ 'tr': {} }]);
+                            table.appendChild(tr);
+                            const td = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                                    'td': {
+                                        'class': 'text-align-center',
+                                    }
+                                }]);
+                            td.textContent = 'No data exists.';
+                            tr.appendChild(td);
+                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#webapp-data-table").appendChild(table);
+                        }
+                    }
+                });
+            }
+            if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webappEditMode')) {
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webapp-data-btn').innerHTML = 'Save';
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webapp-reset-btn').innerHTML = 'Reset';
+            }
+            //save data by clicking data button
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webapp-data-btn').addEventListener('click', function () {
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webapp-data-btn').textContent = 'Updating..';
+                (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                    method: "POST",
+                    url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/webapp/manageSite',
+                    async: true,
+                    header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                    data: {
+                        security_code: 1,
+                        id: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webappID').value,
+                        name: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webappName').value,
+                        description: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webappDescription').value,
+                        company: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webappCompany').value,
+                        btnName: 'Update'
+                    },
+                }, function (response) {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webapp-data-btn').textContent = 'Updated';
+                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message2"));
+                });
+            });
+            //reset inputbox by clicking reset button
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webapp-reset-btn').addEventListener('click', function () {
+                changeElementValueById([
+                    { 'id': 'webappID', 'value': '' },
+                    { 'id': 'webappName', 'value': '' },
+                    { 'id': 'webappDescription', 'value': '' },
+                    { 'id': 'webappCompany', 'value': '' },
+                ]);
+            });
+            //edit data by clicking edit button
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webapp-edit-btn').addEventListener('click', function () {
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message2').innerHTML = '';
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#modal01').style.display = 'block';
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webappEditMode').innerHTML = 'Edit';
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webapp-data-btn').innerHTML = 'Update';
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webappID').value = this.getAttribute('data-id');
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webappName').value = this.getAttribute('data-name');
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webappDescription').value = this.getAttribute('data-description');
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webappCompany').value = this.getAttribute('data-company');
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webappFilesLocate').value = this.getAttribute('data-filesLocate');
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webappDomainLocate').value = this.getAttribute('data-domainLocate');
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webappIPLocate').value = this.getAttribute('data-IPLocate');
+            });
+            //view modal by clicking button
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webapp-database-btn').addEventListener('click', function () {
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#modal02').style.display = 'block';
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webappDatabaseEditMode').innerHTML = 'Change';
+            });
+            //view modal by clicking button
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webapp-logo-btn').addEventListener('click', function () {
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#modal03').style.display = 'block';
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webappLogoEditMode').innerHTML = 'Change';
+            });
+            //upload database by click
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#databaseFile').addEventListener('change', function () {
+                (0,_common_upload__WEBPACK_IMPORTED_MODULE_7__.setUploadProgressSystem)('web-app-database-output');
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#UploadStatusBoard').removeAttribute('style');
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#progressbar').style.display = 'block';
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#upload_status').innerHTML = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#databaseFile').files[0].name + ' selected';
+                (0,_common_upload__WEBPACK_IMPORTED_MODULE_7__.uploadFile)('databaseFile', 'databaseFile', _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/webapp/databaseUpgrade');
+            });
+            //restore system database by click
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webapp-database-restore').addEventListener('click', function () {
+                let progressBoard = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#UploadStatusBoard');
+                if (progressBoard === null) {
+                    (0,_common_upload__WEBPACK_IMPORTED_MODULE_7__.setUploadProgressSystem)('web-app-database-output');
+                }
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#UploadStatusBoard').removeAttribute('style');
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#progressbar').style.display = 'none';
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#loaded_n_total').style.display = 'none';
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#upload_status').innerHTML = 'Framework database restoring..';
+                (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                    method: "POST",
+                    url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/webapp/databaseRestore',
+                    async: true,
+                    header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                    data: {
+                        security_code: 1,
+                        id: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webapp-edit-btn').getAttribute('data-id'),
+                        name: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webapp-edit-btn').getAttribute('data-name'),
+                        host: window.location.hostname,
+                        btnName: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webapp-database-restore').textContent
+                    },
+                }, function (response) {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#upload_status').innerHTML = response;
+                });
+            });
+            //preview and upload image by change image selection
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#upload-logo-zone').addEventListener('change', function () {
+                if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#UploadStatusBoard') === undefined) {
+                    (0,_common_upload__WEBPACK_IMPORTED_MODULE_7__.setUploadProgressSystem)('upload-info');
+                }
+                let file = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#web-app-selected-logo').files[0];
+                let totalSize = (file.size / 1024) / 1024;
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#web-app-logo-upload-text').textContent = 'File: ' + file.name + ' (' + totalSize.toFixed(2) + ' Mb)';
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#UploadStatusBoard').removeAttribute('style');
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#upload_status').innerHTML = file.name + ' uploading...';
+                (0,_common_common__WEBPACK_IMPORTED_MODULE_0__.previewImage)('web-app-selected-logo', 'web-app-logo-preview-image');
+                (0,_common_upload__WEBPACK_IMPORTED_MODULE_7__.uploadFile)('logoImage', 'web-app-selected-logo', _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/webapp/uploadLogoImage');
+            });
+            if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webappSocialLinksEditPAD')) {
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webappSocialLinksEditMode').innerHTML = 'New';
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#web-app-social-links-data-btn').innerHTML = 'Save';
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#web-app-social-links-reset-btn').innerHTML = 'Reset';
+            }
+            //view modal by clicking button
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webapp-socialLinks-btn').addEventListener('click', function () {
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#message3').innerHTML = '';
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#modal04').style.display = 'block';
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webappSocialLinksEditMode').innerHTML = 'Add/Edit';
+            });
+            //reset inputbox by clicking reset button
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#web-app-social-links-reset-btn').addEventListener('click', function () {
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#web-app-social-links-id').value = '';
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#social-website-name').value = '';
+                (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#social-website-profile-link').value = '';
+            });
+            //save data by clicking data button
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#web-app-social-links-data-btn').addEventListener('click', function () {
+                (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+                    method: "POST",
+                    url: _db_app__WEBPACK_IMPORTED_MODULE_1__.appHost + 'system/webapp/manageSocialLinks',
+                    async: true,
+                    header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                    data: {
+                        security_code: 1,
+                        id: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#web-app-social-links-id').value,
+                        name: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#social-website-name').value,
+                        link: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#social-website-profile-link').value,
+                        company: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#webappCompany').value,
+                        btnName: (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#web-app-social-links-data-btn').textContent
+                    },
+                }, function (response) {
+                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#web-app-social-links-data-btn').textContent = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#web-app-social-links-data-btn').textContent + 'd';
+                    setTimeout(function () {
+                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#web-app-social-links-data-btn').textContent = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#web-app-social-links-data-btn').textContent.slice(0, -1);
+                    }, 2000);
+                    (0,_common_message__WEBPACK_IMPORTED_MODULE_3__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)("#message3"));
+                });
+            });
+        }
+    }
+}(window.location.href));
+/*all functions declare here*/
+function retrieveIpInfoPlus() {
+    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#ip-info-plus-app-bottom').textContent = 'Loading...';
+    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#ip-info-plus-app-data-table')?.setAttribute('style', 'display:none;');
+    let ip = ((0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#ipd-address').value !== null || true) ? (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#ipd-address').value : '';
+    (0,_common_request__WEBPACK_IMPORTED_MODULE_4__.sendRequest)({
+        method: "GET",
+        url: 'https://api.ipdata.co/' + ip + '?api-key=test',
+        async: true,
+        header: [{ name: "Accept", value: "application/json" }]
+    }, function (reply) {
+        console.log(reply);
+        const IpDataReply = JSON.parse(reply);
+        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#ip-info-plus-app-data-table').removeAttribute('style');
+        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#ip-info-plus-app-bottom').textContent = 'IP INFORMATION:';
+        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#ipd-address').value = IpDataReply.ip;
+        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#client-ip').textContent = IpDataReply.ip;
+        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#client-visual-location').href = 'https://www.google.com/maps/@' + IpDataReply.latitude + ',' + IpDataReply.longitude + ',19z';
+        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#client-city').textContent = IpDataReply.city;
+        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#client-region').textContent = IpDataReply.region;
+        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#client-country').textContent = IpDataReply.country_name + ' (' + IpDataReply.country_code + ') ';
+        let country_flag = (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.createElement)([{
+                'img': {
+                    'style': 'width: 10px;height: 8px;',
+                    'src': IpDataReply.flag,
+                    'alt': 'FLAG'
+                }
+            }]);
+        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#client-country').appendChild(country_flag);
+        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#client-continent-name').textContent = IpDataReply.continent_name + ' (' + IpDataReply.continent_code + ')';
+        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#client-post').textContent = IpDataReply.postal;
+        //captureElement('#client-asn-name').href = 'https://' + IpDataReply.asn !== undefined ? IpDataReply.asn.domain : 'NOT FOUND';
+        //captureElement('#client-asn-name').textContent = IpDataReply.asn !== undefined ? IpDataReply.asn.name : 'NOT FOUND' + ' [' + IpDataReply.asn !== undefined ? IpDataReply.asn.type : 'NOT FOUND' + ']';
+        let language = '';
+        for (let n in IpDataReply.languages) {
+            language += IpDataReply.languages[n].name + '[' + IpDataReply.languages[n].native + ']; ';
+        }
+        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#client-language').textContent = language;
+        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#client-currency-name').textContent = IpDataReply.currency.name;
+        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#client-currency-code').textContent = IpDataReply.currency.code;
+        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#client-currency-symbol').textContent = IpDataReply.currency.symbol;
+        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#client-time-zone-name').textContent = IpDataReply.time_zone.name;
+        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#client-time-zone-abbr').textContent = IpDataReply.time_zone.abbr;
+        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#client-time-zone-offset').textContent = IpDataReply.time_zone.offset;
+        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#client-time-zone-is-dist').textContent = IpDataReply.time_zone.is_dst;
+        (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#client-time-zone-current-time').textContent = IpDataReply.time_zone.current_time;
+    });
+}
+function removeAttributeById(elements) {
+    if (elements.length !== 0) {
+        elements.forEach(function (element) {
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#' + element.id).removeAttribute(element.attribute);
+        });
+    }
+}
+function changeElementDisplayById(elements) {
+    if (elements.length !== 0) {
+        elements.forEach(function (element) {
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#' + element.id).style.display = element.display;
+        });
+    }
+}
+function changeElementValueById(elements) {
+    if (elements.length !== 0) {
+        elements.forEach(function (element) {
+            (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#' + element.id).value = element.value;
+        });
+    }
+}
+function addSpace() {
+    (0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#flex-center').firstElementChild.style = 'height:' + (+(0,_common_dom__WEBPACK_IMPORTED_MODULE_2__.captureElement)('#flex-center').firstElementChild.clientHeight + 25) + 'px';
+}
+
+})();
+
+/******/ })()
+;
+//# sourceMappingURL=app-js-v3.js.map

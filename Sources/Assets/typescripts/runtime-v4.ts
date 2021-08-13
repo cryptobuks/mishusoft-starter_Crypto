@@ -11,9 +11,6 @@ let publicSocialLinksInterval: any, visitorsAccessLogsInterval: any, contactMess
     serverDatabaseInterval: any;
 const background93c = "background: #93c";
 
-
-
-
 (function () {
     let interval = setInterval(function () {
         if(document.readyState=== 'complete'){

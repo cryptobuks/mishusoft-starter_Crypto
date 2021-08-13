@@ -296,4 +296,10 @@ class Inflect
     {
         return strpos($haystack, $needle);
     }
+
+    public static function replace(string $haystack, string $search, string $replace = ''):string
+    {
+        return str_replace($search, $replace, $haystack);
+    }
+
 }

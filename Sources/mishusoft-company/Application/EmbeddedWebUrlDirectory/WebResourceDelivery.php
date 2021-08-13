@@ -397,6 +397,10 @@ class WebResourceDelivery
                 'style' => [
                     [
                         'rel' => 'stylesheet', 'type' => 'text/css',
+                        'text' => file_get_contents(Storage::assetsFullPath('css/loader.css')),
+                    ],
+                    [
+                        'rel' => 'stylesheet', 'type' => 'text/css',
                         'text' => file_get_contents(Storage::assetsFullPath('css/app-ui-v4.css')),
                     ],
                     [
@@ -413,20 +417,7 @@ class WebResourceDelivery
         Ui::setTemplateBody(Ui::element(Ui::getDocumentRoot(), 'body', ['id' => 'library']));
 
         // Add app loader.
-        Ui::element(
-            Ui::getTemplateBody(),
-            'div',
-            [
-                'id' => 'app-loader',
-                'class' => 'app-loader',
-                'child' => [
-                    'img' => [
-                        'alt' => 'Loading...',
-                        'src' => Storage::toDataUri('media', 'images/loaders/app-loader.gif'),
-                    ],
-                ],
-            ]
-        );
+        Ui::setDocumentLoader(Ui::getTemplateBody(), 'images/loaders/app-loader.gif');
 
         // add noscript to ui
         Ui::setNoScriptText(Ui::getTemplateBody());

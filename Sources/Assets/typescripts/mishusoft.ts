@@ -1,5 +1,3 @@
-
-// set service worker
 import {app, appHost} from "./db/app";
 import {captureElement, createElement} from "./common/dom";
 import {sendRequest} from "./common/request";
@@ -13,6 +11,9 @@ import {setUploadProgressSystem, uploadFile} from "./common/upload";
 let publicSocialLinksInterval: any, contactMessageInterval: any,
     serverDatabaseInterval: any;
 const background93c = "background: #93c";
+
+console.log('tt');
+
 
 
 (function (__collapseArray) {

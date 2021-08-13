@@ -62,7 +62,6 @@ class Framework extends Base
 
         self::install();
 
-        self::backupFilesCheck();
         self::extensionRequiredCheck();
         self::thirdPartyRequiredCheck();
         self::opcacheStatusCheck();
@@ -113,16 +112,6 @@ class Framework extends Base
     public static function listerFile():string
     {
         return self::dFile(self::dataFile('Framework', 'files/'.APPLICATION_SERVER_NAME), 'ext4');
-    }
-
-
-    /**
-     * @param string $filename
-     * @return string
-     */
-    private static function originalFile(string $filename):string
-    {
-        return sprintf('%s%s', RUNTIME_ROOT_PATH /*. 'public_html'*/, $filename);
     }
 
 
@@ -390,119 +379,6 @@ class Framework extends Base
         }//end if
     }//end install()
 
-
-    /**
-     *
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\RuntimeException
-     */
-    private static function backupFilesCheck(): void
-    {
-        self::fileHandler(
-            [
-            /*
-             * Check required original files
-             * */
-            // Check htaccess file.
-                [
-                    'check' => self::originalFile('.htaccess'),
-                    'from'  => self::cacheFile('app.htaccess'),
-                    'to'    => self::originalFile('.htaccess'),
-                ],
-                // Check index html file.
-                [
-                    'check' => self::originalFile('index.html'),
-                    'from'  => self::cacheFile('index.html'),
-                    'to'    => self::originalFile('index.html'),
-                ],
-                // Check favicon file.
-                [
-                    'check' => self::originalFile('favicon.ico'),
-                    'from'  => self::cacheFile('favicon.ico'),
-                    'to'    => self::originalFile('favicon.ico'),
-                ],
-                // Check robots file.
-                [
-                    'check' => self::originalFile('robots.txt'),
-                    'from'  => self::cacheFile('robots.txt'),
-                    'to'    => self::originalFile('robots.txt'),
-                ],
-                /*
-                 * Check required backup files
-                 * */
-                // Check htaccess file.
-                [
-                    'check' => self::cacheFile('app.htaccess'),
-                    'from'  => self::originalFile('.htaccess'),
-                    'to'    => self::cacheFile('app.htaccess'),
-                ],
-                // Check index html file.
-                [
-                    'check' => self::cacheFile('index.html'),
-                    'from'  => self::originalFile('index.html'),
-                    'to'    => self::cacheFile('index.html'),
-                ],
-                // Check index php file.
-                [
-                    'check' => self::cacheFile('index.php'),
-                    'from'  => self::originalFile('index.php'),
-                    'to'    => self::cacheFile('index.php'),
-                ],
-                // Check robots file.
-                [
-                    'check' => self::cacheFile('robots.txt'),
-                    'from'  => self::originalFile('robots.txt'),
-                    'to'    => self::cacheFile('robots.txt'),
-                ],
-                // Check Application Security Backup file.
-            //                [
-            //                    'check' => self::cacheFile(self::NAME.'ApplicationSecurity.lock'),
-            //                    'from'  => System::getRequiresFile('SECURITY_FILE_PATH'),
-            //                    'to'    => self::cacheFile(self::NAME.'ApplicationSecurity.lock'),
-            //                ],
-            ]
-        );
-    }//end backupFilesCheck()
-
-
-    /**
-     * Check required file and copy it
-     *
-     * @param array $requiredFiles
-     * @throws Exceptions\RuntimeException
-     * @throws Exceptions\ErrorException
-     */
-    private static function fileHandler(array $requiredFiles): void
-    {
-        foreach ($requiredFiles as $requiredFile) {
-            // Check new file url.
-            if (array_key_exists('check', $requiredFile) === true) {
-                if (file_exists($requiredFile['check']) === false) {
-                    // Check backup file url.
-                    if (array_key_exists('from', $requiredFile) === true) {
-                        if (file_exists($requiredFile['from']) === true) {
-                            // Check backup file url.
-                            if (array_key_exists('to', $requiredFile) === true) {
-                                if (file_exists(dirname($requiredFile['to'])) === false) {
-                                    FileSystem::makeDirectory(dirname($requiredFile['to']));
-                                }
-
-                                // Copy and change permission.
-                                FileSystem::copy($requiredFile['from'], $requiredFile['to']);
-                                FileSystem::exec($requiredFile['to']);
-                            } else {
-                                throw new Exceptions\ErrorException('$to not found in $required argument');
-                            }
-                        }
-                    } else {
-                        throw new Exceptions\ErrorException('$from not found in $required argument');
-                    }//end if
-                }//end if
-            } else {
-                throw new Exceptions\ErrorException('$check not found in $required argument');
-            }//end if
-        }//end foreach
-    }//end fileHandler()
 
 
     /**

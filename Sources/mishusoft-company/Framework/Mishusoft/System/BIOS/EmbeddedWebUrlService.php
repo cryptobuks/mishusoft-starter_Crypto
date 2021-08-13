@@ -7,7 +7,7 @@ use Mishusoft\MPM;
 use Mishusoft\Preloader;
 use Mishusoft\Storage;
 use Mishusoft\System\Firewall;
-use Mishusoft\System\Logger;
+use Mishusoft\System\Log;
 use Mishusoft\Utility\ArrayCollection;
 use Mishusoft\Utility\Inflect;
 
@@ -27,7 +27,7 @@ class EmbeddedWebUrlService
      */
     public static function run():void
     {
-        Logger::write('Request store in $redirection variable');
+        Log::info('Request store in $redirection variable');
         $request = new Http\Request();
         $rootDirectory = Storage::embeddedWebUrlDirectory();
 
@@ -38,9 +38,9 @@ class EmbeddedWebUrlService
          *
          * */
 
-        Logger::write(sprintf('Check %s directory existent.', $rootDirectory));
+        Log::info(sprintf('Check %s directory existent.', $rootDirectory));
         if (file_exists($rootDirectory) === true) {
-            Logger::write(sprintf('Found %s directory existent.', $rootDirectory));
+            Log::info(sprintf('Found %s directory existent.', $rootDirectory));
             /*
              * We need to check Embedded Web Url (Built-In web interface) root path,
              * if exists this path,
@@ -54,7 +54,7 @@ class EmbeddedWebUrlService
             /*
              * Load UrlSplitters.
              * */
-            Logger::write(sprintf('Check splitters config file in %s directory.', Storage::dataDriveStoragesPath()));
+            Log::info(sprintf('Check splitters config file in %s directory.', Storage::dataDriveStoragesPath()));
             if (count(Storage\FileSystem\Yaml::parseFile(MPM::embeddedWebUrlListFile())) > 0) {
                 foreach (Storage\FileSystem\Yaml::parseFile(MPM::embeddedWebUrlListFile()) as $splitter) {
                     $requestedRoute = ArrayCollection::value($splitter, 'route');
@@ -66,14 +66,14 @@ class EmbeddedWebUrlService
                             $requestedClassName
                         );
                         if (is_readable($currentRequestedFile) === true) {
-                            Logger::write(
+                            Log::info(
                                 sprintf('Load %s from %s.', $currentRequestedFile, $rootDirectory)
                             );
                             include_once $currentRequestedFile;
-                            Logger::write(sprintf('Extract %s from %s.', $requestedClassName, $currentRequestedFile));
-                            $urlSplitter = Preloader::getClassNamespaceFromPath($currentRequestedFile);
+                            Log::info(sprintf('Extract %s from %s.', $requestedClassName, $currentRequestedFile));
+                            $urlSplitter = Preloader::getClassNamespace($currentRequestedFile);
                             if (method_exists(new $urlSplitter(), Inflect::lower($request->getController())) === true) {
-                                Logger::write(
+                                Log::info(
                                     sprintf('Execute %s from %s.', $requestedClassName, $currentRequestedFile)
                                 );
                                 call_user_func(
@@ -88,7 +88,7 @@ class EmbeddedWebUrlService
                                     ]
                                 );
                             } else {
-                                Logger::write(
+                                Log::info(
                                     sprintf(
                                         'Not found %s form %s.',
                                         $urlSplitter . '::' . Inflect::lower($request->getController()),
@@ -108,7 +108,7 @@ class EmbeddedWebUrlService
                                 );
                             }//end if
                         } else {
-                            Logger::write(
+                            Log::info(
                                 sprintf(
                                     'Not found %s.php from %s.',
                                     $requestedClassName,

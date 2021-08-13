@@ -1,1 +1,109 @@
-function a1_0x44ab(_0x211cf3,_0x48a4ae){const _0x123f4d=a1_0x123f();return a1_0x44ab=function(_0x44ab32,_0x1e2792){_0x44ab32=_0x44ab32-0xbc;let _0x570fcd=_0x123f4d[_0x44ab32];return _0x570fcd;},a1_0x44ab(_0x211cf3,_0x48a4ae);}function a1_0x123f(){const _0x476e2b=['4925788crpATu','mode','2062995tdUpNi','enable','navigate','request','claim','skipWaiting','1336395WIJGDe','open','Fetch\x20failed;\x20returning\x20offline\x20page\x20instead.','tag','focus','5fNAuRS','registration','4527532kaSHrU','match','3475710MaslSl','then','waitUntil','data','../../../offline.html','granted','log','7496PrLVkz','permission','openWindow','reload','On\x20notification\x20click:\x20','notification','respondWith','activate','10162626VQWKUO','342iRcDhG','preloadResponse','fetch','install','window','navigationPreload','url','add'];a1_0x123f=function(){return _0x476e2b;};return a1_0x123f();}(function(_0x51f988,_0x489e17){const _0x3f2d48=a1_0x44ab,_0x2eae3f=_0x51f988();while(!![]){try{const _0x30ae2e=-parseInt(_0x3f2d48(0xbf))/0x1+parseInt(_0x3f2d48(0xc8))/0x2+parseInt(_0x3f2d48(0xe2))/0x3+-parseInt(_0x3f2d48(0xc6))/0x4+-parseInt(_0x3f2d48(0xc4))/0x5*(-parseInt(_0x3f2d48(0xd7))/0x6)+-parseInt(_0x3f2d48(0xe0))/0x7+-parseInt(_0x3f2d48(0xcf))/0x8*(parseInt(_0x3f2d48(0xd8))/0x9);if(_0x30ae2e===_0x489e17)break;else _0x2eae3f['push'](_0x2eae3f['shift']());}catch(_0x5302eb){_0x2eae3f['push'](_0x2eae3f['shift']());}}}(a1_0x123f,0xde96b),(()=>{const _0x49b8ef=a1_0x44ab,_0x59676e='offline',_0x295f2a=_0x49b8ef(0xcc);self['addEventListener'](_0x49b8ef(0xdb),_0x383ddf=>{const _0xb8e93e=_0x49b8ef;_0x383ddf[_0xb8e93e(0xca)]((async()=>{const _0x2c09e6=_0xb8e93e,_0x1be424=await caches[_0x2c09e6(0xc0)](_0x59676e);await _0x1be424[_0x2c09e6(0xdf)](new Request(_0x295f2a,{'cache':_0x2c09e6(0xd2)}));})()),self[_0xb8e93e(0xbe)]();}),self['addEventListener'](_0x49b8ef(0xd6),_0x56d58b=>{const _0x3160d5=_0x49b8ef;_0x56d58b[_0x3160d5(0xca)]((async()=>{const _0x36b483=_0x3160d5;_0x36b483(0xdd)in self['registration']&&await self[_0x36b483(0xc5)][_0x36b483(0xdd)][_0x36b483(0xe3)]();})()),self['clients'][_0x3160d5(0xbd)]();}),self['addEventListener'](_0x49b8ef(0xda),_0x8a63b8=>{const _0x3cb691=_0x49b8ef;_0x3cb691(0xe4)===_0x8a63b8[_0x3cb691(0xbc)][_0x3cb691(0xe1)]&&_0x8a63b8[_0x3cb691(0xd5)]((async()=>{const _0x10497e=_0x3cb691;try{const _0x4763ee=await _0x8a63b8[_0x10497e(0xd9)];return _0x4763ee||await fetch(_0x8a63b8[_0x10497e(0xbc)]);}catch(_0x212557){console[_0x10497e(0xce)](_0x10497e(0xc1),_0x212557);const _0x503368=await caches[_0x10497e(0xc0)](_0x59676e);return await _0x503368[_0x10497e(0xc7)](_0x295f2a);}})());}),self['addEventListener']('push',function(_0x5124b9){const _0x54b6b5=_0x49b8ef;if(_0x54b6b5(0xcd)===Notification[_0x54b6b5(0xd0)]){const _0x2339db=_0x5124b9[_0x54b6b5(0xcb)]['text'](),_0x49c216=self[_0x54b6b5(0xc5)]['showNotification']('Sample\x20PWA',{'body':_0x2339db,'icon':'/libraries/images/info.png'});_0x5124b9[_0x54b6b5(0xca)](_0x49c216);}}),self['addEventListener']('notificationclick',function(_0x21f356){const _0x11af22=_0x49b8ef;console[_0x11af22(0xce)](_0x11af22(0xd3),_0x21f356[_0x11af22(0xd4)][_0x11af22(0xc2)]),_0x21f356['notification']['close'](),_0x21f356[_0x11af22(0xca)](clients['matchAll']({'type':_0x11af22(0xdc)})[_0x11af22(0xc9)](function(_0xd18ccb){const _0x18dd93=_0x11af22;for(var _0xe68841=0x0;_0xe68841<_0xd18ccb['length'];_0xe68841++){var _0x38d0df=_0xd18ccb[_0xe68841];if('http://localhost/'==_0x38d0df[_0x18dd93(0xde)]&&_0x18dd93(0xc3)in _0x38d0df)return _0x38d0df['focus']();}if(clients[_0x18dd93(0xd1)])return clients[_0x18dd93(0xd1)]('/');}));});})());
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!****************************************************!*\
+  !*** ./Assets/typescripts/trash/service-worker.ts ***!
+  \****************************************************/
+// @typescripts-ignore
+const OFFLINE_VERSION = 1;
+const CACHE_NAME = "offline";
+// Customize this with a different URL if needed.
+const OFFLINE_URL = "../../../offline.html";
+self.addEventListener("install", (event) => {
+    event.waitUntil((async () => {
+        const cache = await caches.open(CACHE_NAME);
+        // Setting {cache: 'reload'} in the new request will ensure that the
+        // response isn't fulfilled from the HTTP cache; i.e., it will be from
+        // the network.
+        await cache.add(new Request(OFFLINE_URL, { cache: "reload" }));
+    })());
+    // Force the waiting service worker to become the active service worker.
+    // @ts-ignore
+    self.skipWaiting();
+});
+self.addEventListener("activate", (event) => {
+    event.waitUntil((async () => {
+        // Enable navigation preload if it's supported.
+        // See https://developers.google.com/web/updates/2017/02/navigation-preload
+        // @ts-ignore
+        if ("navigationPreload" in self.registration) {
+            // @ts-ignore
+            await self.registration.navigationPreload.enable();
+        }
+    })());
+    // Tell the active service worker to take control of the page immediately.
+    // @ts-ignore
+    self.clients.claim();
+});
+self.addEventListener("fetch", (event) => {
+    // We only want to call event.respondWith() if this is a navigation request
+    // for an HTML page.
+    if (event.request.mode === "navigate") {
+        event.respondWith((async () => {
+            try {
+                // First, try to use the navigation preload response if it's supported.
+                const preloadResponse = await event.preloadResponse;
+                if (preloadResponse) {
+                    return preloadResponse;
+                }
+                // Always try the network first.
+                return await fetch(event.request);
+            }
+            catch (error) {
+                // catch is only triggered if an exception is thrown, which is likely
+                // due to a network error.
+                // If fetch() returns a valid HTTP response with a response code in
+                // the 4xx or 5xx range, the catch() will NOT be called.
+                console.log("Fetch failed; returning offline page instead.", error);
+                const cache = await caches.open(CACHE_NAME);
+                return await cache.match(OFFLINE_URL);
+            }
+        })());
+    }
+    // If our if() condition is false, then this fetch handler won't intercept the
+    // request. If there are any other fetch handlers registered, they will get a
+    // chance to call event.respondWith(). If no fetch handlers call
+    // event.respondWith(), the request will be handled by the browser as if there
+    // were no service worker involvement.
+});
+// Respond to a server push with a user notification.
+self.addEventListener('push', function (event) {
+    if (Notification.permission === "granted") {
+        const notificationText = event.data.text();
+        // @ts-ignore
+        const showNotification = self.registration.showNotification('Sample PWA', {
+            body: notificationText,
+            icon: '/libraries/images/info.png'
+        });
+        // Ensure the toast notification is displayed before exiting the function.
+        event.waitUntil(showNotification);
+    }
+});
+// Respond to the user selecting the toast notification.
+self.addEventListener('notificationclick', function (event) {
+    console.log('On notification click: ', event.notification.tag);
+    event.notification.close();
+    // This attempts to display the current notification if it is already open and then focuses on it.
+    // @ts-ignore
+    event.waitUntil(clients.matchAll({
+        type: 'window'
+    }).then(function (clientList) {
+        for (var i = 0; i < clientList.length; i++) {
+            var client = clientList[i];
+            if (client.url == 'http://localhost/' && 'focus' in client)
+                return client.focus();
+        }
+        // @ts-ignore
+        if (clients.openWindow) { // @ts-ignore
+            return clients.openWindow('/');
+        }
+    }));
+});
+self.onmessage = ({ data: { question: any } }) => {
+    self.postMessage({
+        answer: 42,
+    });
+};
+
+/******/ })()
+;
+//# sourceMappingURL=sw.js.map

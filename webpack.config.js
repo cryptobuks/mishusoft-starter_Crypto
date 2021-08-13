@@ -1,23 +1,29 @@
- /**
-     * Call node path module.
-     *
-     * @package    MishusoftDevelopment
-     * @subpackage webpack
-     * @author     Mishusoft System Inc <products@mishusoft.com>
-     * @copyright  2021 Mishusoft System Inc (ABN 77 084 670 600)
-     **/
+/**
+ * Call node path module.
+ *
+ * @package    MishusoftDevelopment
+ * @subpackage webpack
+ * @author     Mishusoft System Inc <products@mishusoft.com>
+ * @copyright  2021 Mishusoft System Inc (ABN 77 084 670 600)
+ **/``
 
 const path = require('path')
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const JavaScriptObfuscator = require('webpack-obfuscator')
 
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts')
 //const HtmlWebpackPlugin = require('html-webpack-plugin') /* webpack 5 */
+
+//make web manifest file
+const {WebpackManifestPlugin} = require('webpack-manifest-plugin');
+const FontPreloadPlugin = require("webpack-font-preload-plugin");
+
+
 
 /* required path declare */
 const DOCUMENT_ROOT = path.resolve(__dirname)
@@ -31,6 +37,7 @@ const commonConfig = {
     context: WEBPACK_SRC_ROOT,
     module: {
         rules: [
+            // compile sass, scss file
             {
                 test: /\.(sa|sc|c)ss$/i,
                 exclude: /node_modules/,
@@ -45,27 +52,21 @@ const commonConfig = {
                     'sass-loader'
                 ]
         },
+            //compile images
             {
                 test: /\.(png|jpg|gif)$/, /* test: /\.(svg|png|jpg|gif)$/, */
-                use: {
-                    loader: 'file-loader',
-                    options: {
-                        // Set output file name.
-                        name: '[name].[ext]',
-                        // Set output directory.
-                        outputPath: 'images/'
-                    }
-                }
+                type: 'asset/resource',
+                generator: {
+                    filename: 'images/[name][ext][query]'
+                },
         },
+            //compile webfonts
             {
                 test: /\.(ttf|otf|eot|svg|woff|woff2)$/,
-                use: {
-                    loader: 'file-loader',
-                    options: {
-                        name: '[name].[ext]',
-                        outputPath: '../webfonts/'
-                    }
-                }
+                type: 'asset/resource',
+                generator: {
+                    filename: '../webfonts/[name].[hash][ext][query]'
+                },
         }]
     },
     resolve: {
@@ -75,41 +76,24 @@ const commonConfig = {
     //externals: 'lodash',
     plugins: [
         new CleanWebpackPlugin(),
+        new RemoveEmptyScriptsPlugin(),
+        new MiniCssExtractPlugin({
+            filename: 'css/[name].css',
+            chunkFilename: 'css/[id].css'
+        }),
+        new FontPreloadPlugin(),
+        // new WebpackManifestPlugin({
+        //     'basePath': 'assets/',
+        //     'publicPath': 'assets/'
+        // }),
         /*copy webfonts file from sources directory*/
         new CopyWebpackPlugin({
             patterns: [{
                 from: path.join(DOCUMENT_ROOT, './storages/app/webfonts/'),
                 to: path.join(DOCUMENT_ROOT, './storages/app/assets/webfonts/')
             },]
-            }),
-        new RemoveEmptyScriptsPlugin(),
-        new MiniCssExtractPlugin(
-            {
-                filename: 'css/[name].css',
-                chunkFilename: 'css/[id].css'
-            }
-        )
-
-        // new HtmlWebpackPlugin({
-        //     title: 'Development',
-        // }),
+        }),
     ],
-
-    // Enable debug mode
-stats: {
-    preset: 'normal',
-    errorDetails: true,
-    colors: true
-    },
-    devServer: {
-        contentBase: [
-            path.join(DOCUMENT_ROOT, 'public_html_themes'),
-            path.join(DOCUMENT_ROOT, 'assets')
-        ],
-        compress: true,
-        port: 9000,
-        stats: 'errors-only'
-    }
 }
 
 const commonFileConfig = {
@@ -130,54 +114,38 @@ const commonFileConfig = {
          *     <li>platform</li>
          * </ul>
          */
-        browser: {
-            import: './Assets/typescripts/classes/browser.ts',
-            dependOn: 'shared',
-
-        },
+        browser: './Assets/typescripts/classes/browser.ts',
 
         /**
          * Javascript serviceworker framework
          */
         // 'pwa': ['./Assets/typescripts/pwa.ts'], /*build serviceworker module for background mode support*/
-        'sw': ['./Assets/typescripts/trash/service-worker.ts'], /*build serviceworker module for background mode support*/
+        'sw': './Assets/typescripts/trash/service-worker.ts', /*build serviceworker module for background mode support*/
 
         /**
          * Javascript framework for application
          */
 
         /* Build mishusoft installer module for installation mode support */
-        installer: {
-            import: './Assets/typescripts/installer.ts',
-            dependOn: 'shared',
-        },
+        'installer': './Assets/typescripts/installer.ts',
 
         /* Build module for runtime support */
-        'readystate': {
-            import: './Assets/typescripts/readystate.ts',
-            dependOn: 'shared',
-        },
-        'app-js': {
-            import: './Assets/typescripts/mishusoft.ts',
-            dependOn: 'shared',
-        },
-        'app-js-v3': {
-            import: './Assets/typescripts/runtime-v3.ts',
-            dependOn: 'shared',
-        },
-        'app-js-v4': {
-            import: './Assets/typescripts/runtime-v4.ts',
-            dependOn: 'shared',
-        },
+        'readystate': './Assets/typescripts/readystate.ts',
+
+        // 'readystate': {
+        //     import: './Assets/typescripts/readystate.ts',
+        //     dependOn: 'shared',
+        // },
+
+        'app-js':'./Assets/typescripts/mishusoft.ts',
+        'app-js-v3': './Assets/typescripts/runtime-v3.ts',
+        'app-js-v4': './Assets/typescripts/runtime-v4.ts',
 
         /**
          * Special javascript framework for application
          */
         /* build monitor module for monitor visitor's activities */
-        monitor: {
-            import: './Assets/typescripts/tracker.ts',
-            dependOn: 'shared',
-        },
+        monitor: './Assets/typescripts/tracker.ts',
         /* build emergency module for emergency mode support */
         // 'emergency': ['./Assets/typescripts/runtime/v3/emergency.ts'],
 
@@ -190,66 +158,36 @@ const commonFileConfig = {
         /**
          * Build font face css framework supporter module for ui support
          */
-        'font-face': {
-            import: './Assets/sass/font-face.scss',
-            dependOn: 'shared',
-        },
+        'font-face': './Assets/sass/font-face.scss',
         /**
          * Build font face css framework supporter module for ui support
          */
-        'colors': {
-            import: './Assets/sass/includes/common/colors.scss',
-            dependOn: 'shared',
-        },
+        'colors': './Assets/sass/includes/common/colors.scss',
 
 
         /**
          * Build stylesheet for application loader
          */
-        loader: {
-            import: './Assets/sass/loader.scss',
-            dependOn: 'shared',
-        },
+        loader: './Assets/sass/loader.scss',
 
 
         /**
          * Build stylesheet for embedded application support
          */
-        embedded: {
-            import: './Assets/sass/embedded.scss',
-            dependOn: 'shared',
-        },
-        resources: {
-            import: './Assets/sass/resources.scss',
-            dependOn: 'shared',
-        },
-
-
+        embedded: './Assets/sass/embedded.scss',
+        resources: './Assets/sass/resources.scss',
 
         /**
          * Build stylesheet for application support
          */
-        'app-ui-v3': {
-            import: './Assets/sass/app-v3.scss',
-            dependOn: 'shared',
-        },
-        'app-ui-v4': {
-            import: './Assets/sass/app-v4.scss',
-            dependOn: 'shared',
-        },
+        'app-ui-v3': './Assets/sass/app-v3.scss',
+        'app-ui-v4': './Assets/sass/app-v4.scss',
 
 
         /**
          * Build stylesheet for themes
          */
-        'mishusoft-theme': {
-            import: './Assets/sass/theme-mishusoft.scss',
-            dependOn: 'shared',
-        },
-
-
-
-        shared: 'lodash',
+        'mishusoft-theme': './Assets/sass/theme-mishusoft.scss',
     },
     output: {
         path: ASSETS_PATH,
@@ -285,7 +223,7 @@ const prodConfig = {
             new TerserJSPlugin({}),
             // new OptimizeCSSAssetsPlugin({}), /*webpack 4*/
             new CssMinimizerPlugin() /* webpack 5 */
-        ]
+        ],
     },
     plugins: [
         ...commonFileConfig.plugins,
@@ -326,9 +264,9 @@ const testConfig = {
 module.exports = (env) => {
     const configs = []
     if (env && env.target === 'production') {
-        configs.push({ ...prodConfig, name: 'production' })
+        configs.push({...prodConfig, name: 'production'})
     } else {
-        configs.push({ ...testConfig, name: 'development' })
+        configs.push({...testConfig, name: 'development'})
     }
 
     return configs

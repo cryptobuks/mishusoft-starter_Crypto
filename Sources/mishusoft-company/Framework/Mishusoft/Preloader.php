@@ -12,7 +12,7 @@ class Preloader
      * @param string $filename
      * @return string
      */
-    public static function getClassNamespaceFromPath(string $filename): string
+    public static function getClassNamespace(string $filename): string
     {
         $namespace = str_replace(['//', '/'], ['/', '\\'], substr(
             $filename,
@@ -32,7 +32,7 @@ class Preloader
      * @param string $extension
      * @return string
      */
-    public static function getPathFromClassNamespace(string $name_space, string $extension = '.php'): string
+    public static function getPath(string $name_space, string $extension = '.php'): string
     {
         $file = str_replace('\\', DS, $name_space).$extension;
         return RUNTIME_ROOT_PATH.$file;

@@ -39,7 +39,7 @@ abstract class Widget implements WidgetInterface
         $widgetModelFile = Storage::applicationWidgetsPath().'Models'.DS.$modelClass.'.php';
         if (is_readable($widgetModelFile) === true) {
             include_once $widgetModelFile;
-            $modelClass = Preloader::getClassNamespaceFromPath($widgetModelFile);
+            $modelClass = Preloader::getClassNamespace($widgetModelFile);
             if (in_array($widgetModelFile, get_included_files()) === true) {
                 if (class_exists($modelClass, false) === true) {
                     return new $modelClass;

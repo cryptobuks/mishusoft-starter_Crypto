@@ -349,7 +349,7 @@ class SmartyView extends SmartyBC
         $widgetClass = $widget.'Widget';
         if (is_readable(MS_WIDGETS_PATH."$widgetClass.php") === true) {
             include_once MS_WIDGETS_PATH."$widgetClass.php";
-            $widgetClass = Preloader::getClassNamespaceFromPath(MS_WIDGETS_PATH."$widgetClass.php");
+            $widgetClass = Preloader::getClassNamespace(MS_WIDGETS_PATH."$widgetClass.php");
             if (class_exists($widgetClass, false) === false) {
                 Firewall::runtimeFailure(
                     'Not Found',

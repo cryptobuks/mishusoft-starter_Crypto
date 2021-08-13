@@ -1,10 +1,18 @@
 import {captureElement} from "./common/dom";
 import {app} from './db/app';
 
-//Variable, Constants declaration
-const webServiceWorker = new Worker(app.content.folder.js + 'sw.js');
+//console.log('ready state is running............')
+//console.log('preparing is running............')
 
-console.log('ready state is runing............')
+
+
+document.querySelector('#theme.css')?.addEventListener('load',function (event){
+    console.log(event)
+})
+document.querySelector('#framework.css')?.addEventListener('load',function (event){
+    console.log(event)
+})
+
 
 document.addEventListener('readystatechange', () => {
     //console.log(`readystate: ${document.readyState}\n`)
@@ -30,16 +38,27 @@ document.addEventListener('readystatechange', () => {
         //     })
     //}
 
+    if (document.readyState=== 'interactive'){
+        console.info(document.body.getAttribute('theme'));
+        console.log('Preparing css load...')
+
+    }
+
 
     //hide app loader on document completed
-    while (document.readyState === 'complete') {
+    if (document.readyState=== 'complete'){
         //initialize app loader image & application
         if (captureElement('#app-loader')) {
             captureElement('#app-loader').setAttribute('style', 'display:none;');
-            break;
         }
     }
 });
+
+
+
+
+//Variable, Constants declaration
+const webServiceWorker = new Worker(new URL(app.content.folder.js + 'sw.js', import.meta.url));
 
 if (typeof webServiceWorker =='undefined') {
     if ('serviceWorker' in navigator) {
@@ -55,3 +74,12 @@ if (typeof webServiceWorker =='undefined') {
         });
     }
 }
+
+webServiceWorker.postMessage({
+    question:
+        'The Answer to the Ultimate Question of Life, The Universe, and Everything.',
+});
+webServiceWorker.onmessage = ({ data: { answer } }) => {
+    console.log(answer);
+};
+

@@ -9,7 +9,7 @@ Autoload::loadFile(
         // implode(DIRECTORY_SEPARATOR, [RUNTIME_ROOT_PATH.'vendor', 'autoload.php']),
         Storage::frameworkPath().'Autoload.php',
         Storage::frameworkPath().'Preloader.php',
-        Storage::frameworkPath().'System/Logger.php',
+        Storage::frameworkPath().'System/log.php',
     ]
 );
 

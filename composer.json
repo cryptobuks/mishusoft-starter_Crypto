@@ -46,6 +46,7 @@
     "update:framework": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Framework -d ./Framework",
     "update:ewUrl": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Application/EmbeddedWebUrlDirectory -d ./app/EmbeddedWebUrlDirectory",
     "update:ema": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Application/Packages/Ema -d ./app/Packages/Ema",
+    "update:ema.loader": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Application/Packages/Ema.loader.php -d ./app/Packages/Ema.loader.php",
     "update:packages": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Application/Packages -d ./app/Packages",
     "update:themes": "php ./Sources/mishusoft-company/Release.php -compile-themes -s ./Sources/mishusoft-company/Application/Views/Themes -d ./app/Themes",
     "update:widgets": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Application/Widgets -d ./app/Widgets",

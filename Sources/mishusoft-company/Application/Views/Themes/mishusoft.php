@@ -3,27 +3,27 @@
 
 use Mishusoft\Storage;
 use Mishusoft\Services\SEOToolKitService;
-use Mishusoft\System\Logger;
+use Mishusoft\System\Log;
 use Mishusoft\System\Memory;
 use Mishusoft\Ui;
 use Mishusoft\Drivers\Session;
 use Mishusoft\Utility\Inflect;
 
-Logger::write('mishusoft.php template is running..');
-Logger::write('UI started');
+Log::info('mishusoft.php template is running..');
+Log::info('UI started');
 // We need to generate template engine.
 Ui::start();
-Logger::write('UI set document title');
+Log::info('UI set document title');
 Ui::setDocumentTitle($this->titleOfCurrentWebPage);
 
 
-Logger::write('UI checking template use or not');
+Log::info('UI checking template use or not');
 if ($this->templateUse === 'no') {
-    Logger::write('UI build document for themselves');
+    Log::info('UI build document for themselves');
     Ui::setDocumentContentBody(Ui::element(Ui::getDocumentRoot(), 'body'));
     Ui::element(Ui::getDocumentContentBody(), 'script', ['id' => 'content-loader', 'text' => 0]);
 
-    Logger::write('UI load current page.');
+    Log::info('UI load current page.');
     // Runtime file for compile.
     include_once $this->loadTemplateFile();
 } else {
@@ -105,55 +105,21 @@ if ($this->templateUse === 'no') {
     );
 
     // add css file in head
+
+    //Ui::elementList(Ui::getDocumentHeadElement(), ['link'=>Storage::assignableWebFonts()]);
     Ui::elementList(
         Ui::getDocumentHeadElement(),
         [
             'link' => [
                 [
-                    'rel' => 'preload', 'as' => 'font', 'type' => 'font/woff', 'crossorigin' => '',
-                    'href' => Storage::assetsFullPath('webfonts/SairaStencilOne-Regular.woff', 'remote'),
-                ],
-                [
-                    'rel' => 'preload', 'as' => 'font', 'type' => 'font/woff2', 'crossorigin' => '',
-                    'href' => Storage::assetsFullPath('webfonts/SairaStencilOne-Regular.woff2', 'remote'),
-                ],
-                [
-                    'rel' => 'preload', 'as' => 'font', 'type' => 'font/woff', 'crossorigin' => '',
-                    'href' => Storage::assetsFullPath('webfonts/SolaimanLipi.woff', 'remote'),
-                ],
-                [
-                    'rel' => 'preload', 'as' => 'font', 'type' => 'font/woff', 'crossorigin' => '',
-                    'href' => Storage::assetsFullPath('webfonts/SourceSansPro.woff', 'remote'),
-                ],
-                [
-                    'rel' => 'preload', 'as' => 'font', 'type' => 'font/woff2', 'crossorigin' => '',
-                    'href' => Storage::assetsFullPath('webfonts/SourceSansPro.woff2', 'remote'),
-                ],
-//                [
-//                    'rel' => 'stylesheet', 'type' => 'text/css',
-//                    'href' => Storage::assetsFullPath('css/font-face.css', 'remote'),
-//                ],
-                [
-                    'rel' => 'stylesheet', 'type' => 'text/css',
+                    'rel' => 'stylesheet', 'type' => 'text/css', 'id' => 'theme.css',
                     'href' => Storage::assetsFullPath('css/mishusoft-theme.css', 'remote'),
                 ],
                 [
-                    'rel' => 'stylesheet', 'type' => 'text/css',
+                    'rel' => 'stylesheet', 'type' => 'text/css', 'id' => 'framework.css',
                     'href' => Storage::assetsFullPath('css/app-ui-v4.css', 'remote'),
                 ],
             ],
-        //        <link rel="preload" href="/css/opensans-light-webfont.woff2" as="font" type="font/woff2" crossorigin="">
-            //        <link rel="preload" href="/css/opensans-semibold-webfont.woff2" as="font" type="font/woff2" crossorigin="">
-        //            'style' => [
-        //                [
-        //                    'rel' => 'stylesheet', 'type' => 'text/css',
-        //                    'text' => file_get_contents(Storage::assetsFullPath('css/app-ui-v4.css')),
-        //                ],
-        //                [
-        //                    'rel' => 'stylesheet', 'type' => 'text/css',
-        //                    'text' => file_get_contents(Storage::assetsFullPath('css/mishusoft-theme.css')),
-        //                ],
-        //            ],
         ]
     );
 
@@ -175,25 +141,15 @@ if ($this->templateUse === 'no') {
     /*
      * add template body set id attribute for body
      */
-    $templateBodyElement = Ui::element(Ui::getDocumentRoot(), 'body', [
-        'id' => Inflect::lower($this->request['controller']), 'class' => 'ms-app background-image',
-    ]);
-
-    Ui::setTemplateBody($templateBodyElement);
+    Ui::setTemplateBody(
+        Ui::element(Ui::getDocumentRoot(), 'body', [
+            'id' => Inflect::lower($this->request['controller']),
+            'class' => 'ms-app background-image', 'theme' => 'mishusoft',
+        ])
+    );
 
     // add app loader
-    Ui::element(
-        Ui::element(Ui::getTemplateBody(), 'div', [
-            'id' => 'app-loader',
-            'class' => 'app-loader',
-        ]),
-        'img',
-        [
-            'alt' => 'Loading...',
-            'class' => 'app-loader-image',
-            'src' => Storage::toDataUri('media', 'images/loaders/app-loader.gif'),
-        ]
-    );
+    Ui::setDocumentLoader(Ui::getTemplateBody(), 'images/loaders/app-loader.gif');
 
 
     // add noscript to ui
@@ -203,7 +159,7 @@ if ($this->templateUse === 'no') {
 
     //set part of template
     Ui::setDocumentContentHeader(Ui::element(Ui::getTemplateBody(), 'header'));
-    Ui::setDocumentContentBody(Ui::element(Ui::getTemplateBody(), 'article'));
+    Ui::setDocumentContentBody(Ui::element(Ui::getTemplateBody(), 'main'));
     Ui::setDocumentContentFooter(Ui::element(Ui::getTemplateBody(), 'footer'));
 
 
@@ -238,6 +194,7 @@ if ($this->templateUse === 'no') {
             'script' => [
                 [
                     'type' => 'application/javascript',
+                    //'text' => 'console.log("Page loading..... from internal...")',
                     'text' => 0,
                 ],
                 [
@@ -246,7 +203,7 @@ if ($this->templateUse === 'no') {
                     'src' => Storage::assetsFullPath('js/readystate.js', 'remote'),
                 ],
                 [
-                    'type' => 'application/javascript', 'rel' => 'prefetch',
+                    'type' => 'application/javascript', 'rel' => 'prefetch', 'id' => 'framework.js',
                     //'text' => file_get_contents(Storage::assetsFullPath('js/app-js.js')),
                     'src' => Storage::assetsFullPath('js/app-js.js', 'remote'),
                 ],

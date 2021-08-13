@@ -555,6 +555,38 @@ class Ui
         // end of adding noscript
     }//end setNoScriptText()
 
+    /**
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws Exceptions\RuntimeException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \JsonException
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\HttpException\HttpResponseException
+     * @throws Exceptions\RuntimeException\NotFoundException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\JsonException
+     */
+    public static function setDocumentLoader(DOMNode|DOMElement $parentElementChild, string $src): void
+    {
+        // Add app loader.
+        self::element(
+            $parentElementChild,
+            'div',
+            [
+                'id' => 'app-loader',
+                'class' => 'app-loader',
+                'child' => [
+                    'img' => [
+                        'alt' => 'Loading...',
+                        'class'=>'app-loader-image',
+                        'src' => Storage::toDataUri('media', $src),
+                    ],
+                ],
+            ]
+        );
+    }
+
 
     /**
      * @param DOMElement $templateBody

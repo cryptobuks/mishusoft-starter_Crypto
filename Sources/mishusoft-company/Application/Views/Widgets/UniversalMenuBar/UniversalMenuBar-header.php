@@ -24,7 +24,7 @@ $authenticate = [
 
 $template_header = Ui::element(
     Ui::getDocumentContentHeader(),
-    'article',
+    'nav',
     ['class' => 'header header-navigation-bar box-shadow box-shadow-inset']
 );
 // add logo, menu section in navigation bar in header area

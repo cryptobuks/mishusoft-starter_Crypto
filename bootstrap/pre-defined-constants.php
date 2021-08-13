@@ -2,34 +2,39 @@
 
 
 // Start of core constants declarations.
-define('DS', DIRECTORY_SEPARATOR);
-define('PHP_CODE_SYNTAX', 'PHP_8.*');
-define('WHO_AM_I', 'Mishusoft');
+const DS = DIRECTORY_SEPARATOR;
+const PHP_CODE_SYNTAX = 'PHP_8.*';
+const WHO_AM_I = 'Mishusoft';
+const ROOT_IDENTITY = 'app://';
+const PUBLIC_ROOT_PATH = 'public_html' . DS;
 define('RUNTIME_ROOT_PATH', realpath(dirname(__DIR__)) . DS);
 
 
-define('APPLICATION_SYSTEM_TEMP_PATH', RUNTIME_ROOT_PATH . 'tmp' . DS);
+const APPLICATION_SYSTEM_TEMP_PATH = RUNTIME_ROOT_PATH . 'tmp' . DS;
 // Main constants define end.
-define('PHP_LANG_VERSION', PHP_VERSION);
-define('HASH_KEY', '57c1d48ba721a');
-define('HASH_KEY_OPENSSL', 'bRuD5WYw5wd0rdHR9yLlM6wt2vteuiniQBqE70nAuhU');
+const PHP_LANG_VERSION = PHP_VERSION;
+const HASH_KEY = '57c1d48ba721a';
+const HASH_KEY_OPENSSL = 'bRuD5WYw5wd0rdHR9yLlM6wt2vteuiniQBqE70nAuhU';
 
 // Database info.
-define('APPLICATION_SYSTEM_USER_NAME', 'superuser');
-define('APPLICATION_SYSTEM_USER_PASSWORD', 'superuser');
+const APPLICATION_SYSTEM_USER_NAME = 'superuser';
+const APPLICATION_SYSTEM_USER_PASSWORD = 'superuser';
 
-define('PREG_QUOTE_DEFAULT_SEPARATOR', '/@#~');
+const PREG_QUOTE_DEFAULT_SEPARATOR = '/@#~';
 
+
+// enable or disable logging.
+const LOGGING_ON_OPERATION = false;
 
 // Logger style for log writing.
-define('LOG_STYLE_SMART', 'smart');
-define('LOG_STYLE_SHORTCUT', 'shortcut');
-define('LOG_STYLE_FULL', 'full');
+const LOG_STYLE_SMART = 'smart';
+const LOG_STYLE_SHORTCUT = 'shortcut';
+const LOG_STYLE_FULL = 'full';
 
 // Log flag.
-define('LOG_TYPE_COMPILE', 'compile');
-define('LOG_TYPE_ACCESS', 'access');
-define('LOG_TYPE_RUNTIME', 'runtime');
+const LOG_TYPE_COMPILE = 'compile';
+const LOG_TYPE_ACCESS = 'access';
+const LOG_TYPE_RUNTIME = 'runtime';
 
 
 

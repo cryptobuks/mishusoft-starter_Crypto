@@ -6,7 +6,7 @@ use JsonException;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Storage\FileSystem;
-use Mishusoft\System\Logger;
+use Mishusoft\System\Log;
 use Mishusoft\System\Memory;
 use Mishusoft\Utility\JSON;
 
@@ -941,7 +941,7 @@ class MPM extends Base
          */
         if (!file_exists(self::embeddedWebUrlListFile())) {
             $configs = [];
-            Logger::write(sprintf('Count all exists files from %s directory.', Storage::embeddedWebUrlDirectory()));
+            Log::info(sprintf('Count all exists files from %s directory.', Storage::embeddedWebUrlDirectory()));
             if (count(FileSystem::list(Storage::embeddedWebUrlDirectory(), 'file')) > 0) {
                 foreach (FileSystem::list(Storage::embeddedWebUrlDirectory(), 'file') as $filename) {
                     if (pathinfo($filename, PATHINFO_EXTENSION) === 'json') {
@@ -955,14 +955,14 @@ class MPM extends Base
                 ksort($configs, SORT_ASC);
 
 
-                Logger::write(
+                Log::info(
                     sprintf(
                         'Remove old embedded web url config file from %s directory.',
                         Storage::dataDriveStoragesPath()
                     )
                 );
                 FileSystem::remove(self::embeddedWebUrlListFile());
-                Logger::write(
+                Log::info(
                     sprintf('Write new embedded web url config file in %s directory.', Storage::dataDriveStoragesPath())
                 );
                 FileSystem\Yaml::emitFile(self::embeddedWebUrlListFile(), $configs);

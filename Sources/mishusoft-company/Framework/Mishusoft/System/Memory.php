@@ -15,7 +15,6 @@ use Mishusoft\Storage\FileSystem;
 use Mishusoft\Framework;
 use Mishusoft\MPM;
 use Mishusoft\System;
-use Mishusoft\Ui;
 use Mishusoft\Utility\JSON;
 use stdClass;
 
@@ -38,11 +37,11 @@ class Memory
      */
     public static function enable(): void
     {
-        Logger::write('Start data collecting and load to memory');
+        Log::info('Start data collecting and load to memory');
         self::validation();
         self::loadFrameworkMemory();
         self::baseUrlSet();
-        Logger::write('End data collecting and load to memory');
+        Log::info('End data collecting and load to memory');
     }//end enable()
 
 
@@ -100,32 +99,32 @@ class Memory
 
         FileSystem::makeDirectory(dirname(Framework::configFile()));
 
-        Logger::write(sprintf('Check %s file existent.', $configFile));
+        Log::info(sprintf('Check %s file existent.', $configFile));
         if (file_exists($configFile) === false) {
-            Logger::write(sprintf('Check failed. %s file not exists.', $configFile));
-            Logger::write(sprintf('Creating new %s file with default config.', $configFile));
+            Log::info(sprintf('Check failed. %s file not exists.', $configFile));
+            Log::info(sprintf('Creating new %s file with default config.', $configFile));
             FileSystem\Yaml::emitFile($configFile, $configs);
         } else {
             $content = FileSystem\Yaml::parseFile($configFile);
-            Logger::write(sprintf('Check %s file\'s content length.', $configFile));
+            Log::info(sprintf('Check %s file\'s content length.', $configFile));
             if (count($content) === 0) {
-                Logger::write(sprintf('The content of %s file is empty.', $configFile));
-                Logger::write(sprintf('Creating new %s file with default config.', $configFile));
+                Log::info(sprintf('The content of %s file is empty.', $configFile));
+                Log::info(sprintf('Creating new %s file with default config.', $configFile));
                 FileSystem\Yaml::emitFile($configFile, $configs);
             }
         }
 
-        Logger::write(sprintf('Check %s file existent.', $installFile));
+        Log::info(sprintf('Check %s file existent.', $installFile));
         if (file_exists($installFile) === false) {
-            Logger::write(sprintf('Check failed. %s file not exists', $installFile));
-            Logger::write(sprintf('Creating new %s file', $installFile));
+            Log::info(sprintf('Check failed. %s file not exists', $installFile));
+            Log::info(sprintf('Creating new %s file', $installFile));
             Framework::install();
         } else {
             $installContent = FileSystem\Yaml::parseFile($installFile);
-            Logger::write(sprintf('Check %s file\'s content length', $installFile));
+            Log::info(sprintf('Check %s file\'s content length', $installFile));
             if (count($installContent) === 0) {
-                Logger::write(sprintf('The content of %s file is empty', $installFile));
-                Logger::write(sprintf('Creating new %s file', $installFile));
+                Log::info(sprintf('The content of %s file is empty', $installFile));
+                Log::info(sprintf('Creating new %s file', $installFile));
                 Framework::install();
             }
         }
@@ -265,27 +264,27 @@ class Memory
         if (self::isValid($carrier, $format, $filename)) {
             $result = self::$data[$carrier][$format];
         } else {
-            Logger::write(sprintf('Check read permission of %s file.', $filename));
+            Log::info(sprintf('Check read permission of %s file.', $filename));
             if (is_readable($filename) === true) {
-                Logger::write(
+                Log::info(
                     sprintf(
                         'Get permission %s from %s file.',
                         substr(sprintf('%o', fileperms($filename)), -4),
                         $filename
                     )
                 );
-                Logger::write(sprintf('Collect content from %s file.', $filename));
+                Log::info(sprintf('Collect content from %s file.', $filename));
                 $contents = FileSystem::read($filename);
                 $contentsArray = FileSystem\Yaml::parseFile($filename);
 
-                Logger::write(sprintf('Check content length of %s file.', $filename));
+                Log::info(sprintf('Check content length of %s file.', $filename));
                 if ($contents !== '') {
                     if (strtolower($format) === 'object') {
                         if (is_string($contents) === true) {
-                            Logger::write(sprintf('Create a data object from %s file\'s content.', $filename));
+                            Log::info(sprintf('Create a data object from %s file\'s content.', $filename));
                             $result = JSON::encodeToObject($contentsArray);
                         } else {
-                            Logger::write('Create a data object from default content.');
+                            Log::info('Create a data object from default content.');
                             $result = JSON::encodeToObject($default);
                         }
 
@@ -296,10 +295,10 @@ class Memory
 
                     if (strtolower($format) === 'array') {
                         if (is_string($contents) === true) {
-                            Logger::write(sprintf('Create a data array from %s file\'s content.', $filename));
+                            Log::info(sprintf('Create a data array from %s file\'s content.', $filename));
                             $result = $contentsArray;
                         } else {
-                            Logger::write('Create a data object from default content.');
+                            Log::info('Create a data object from default content.');
                             $result = $default;
                         }
 
@@ -318,7 +317,7 @@ class Memory
                 throw new ErrorException($filename . ' not readable.');
             }//end if
 
-            Logger::write('End the process of data grabber from' . $filename);
+            Log::info('End the process of data grabber from' . $filename);
         }
 
         return $result;
@@ -348,13 +347,13 @@ class Memory
      */
     private static function loadFrameworkMemory(): void
     {
-        Logger::write(sprintf('Check read permission of %s file.', Framework::configFile()));
+        Log::info(sprintf('Check read permission of %s file.', Framework::configFile()));
         if (is_readable(Framework::configFile()) === true) {
-            Logger::write(sprintf('Load data from %s file.', Framework::configFile()));
+            Log::info(sprintf('Load data from %s file.', Framework::configFile()));
             self::read(JSON::encodeToObject(FileSystem\Yaml::parseFile(Framework::configFile())));
         } else {
-            Logger::write(sprintf('Not found system data file %s.', Framework::configFile()));
-            Logger::write('Load default data from system.');
+            Log::info(sprintf('Not found system data file %s.', Framework::configFile()));
+            Log::info('Load default data from system.');
             self::read(JSON::encodeToObject(FRAMEWORK::defaultConfig()));
         }//end if
     }//end loadMemory()

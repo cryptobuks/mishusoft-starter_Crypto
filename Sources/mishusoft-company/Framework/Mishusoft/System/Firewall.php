@@ -158,7 +158,7 @@ class Firewall extends Base
     public function __construct()
     {
         parent::__construct();
-        Logger::write(sprintf('Load Firewall configuration from %s.json.', self::configFile()));
+        Log::info(sprintf('Load Firewall configuration from %s.json.', self::configFile()));
         $this->loadConfig();
     }//end __construct()
 
@@ -220,52 +220,52 @@ class Firewall extends Base
          * Check firewall configuration file existent.
          */
 
-        Logger::write(sprintf('Start checking if %s file exists.', self::configFile()));
+        Log::info(sprintf('Start checking if %s file exists.', self::configFile()));
         if (file_exists(self::configFile()) === false) {
-            Logger::write(sprintf('The file %s is not exists.', self::configFile()));
-            Logger::write(sprintf('Write new file %s.', self::configFile()));
+            Log::error(sprintf('The file %s is not exists.', self::configFile()));
+            Log::notice(sprintf('Write new file %s.', self::configFile()));
             FileSystem\Yaml::emitFile(self::configFile(), []);
         }
 
-        Logger::write(sprintf('End checking if %s file exists.', self::configFile()));
+        Log::info(sprintf('End checking if %s file exists.', self::configFile()));
 
         /*
          * Check firewall logs file existent.
          */
 
-        Logger::write(sprintf('Start checking if %s directory exists.', self::logDirectory()));
+        Log::info(sprintf('Start checking if %s directory exists.', self::logDirectory()));
         if (file_exists(self::logDirectory()) === false) {
-            Logger::write(sprintf('The directory %s is not exists.', self::logDirectory()));
-            Logger::write(sprintf('Make new directory %s', self::logDirectory()));
+            Log::error(sprintf('The directory %s is not exists.', self::logDirectory()));
+            Log::notice(sprintf('Make new directory %s', self::logDirectory()));
             FileSystem::makeDirectory(self::logDirectory());
         }
 
-        Logger::write(sprintf('End checking if %s directory exists.', self::logDirectory()));
+        Log::info(sprintf('End checking if %s directory exists.', self::logDirectory()));
 
         /*
          * Check read permission of configuration file.
          */
 
-        Logger::write(sprintf('Start checking read permission of %s.', self::configFile()));
+        Log::info(sprintf('Start checking read permission of %s.', self::configFile()));
         if (is_readable(self::configFile()) === true) {
             /*
              * check configuration file's content are valid array
              */
 
             $oldConfiguration = FileSystem\Yaml::parseFile(self::configFile());
-            Logger::write(
+            Log::info(
                 sprintf(
                     'Start of test whether the content of %s file can be converted to array format.',
                     self::configFile()
                 )
             );
             if (is_array($oldConfiguration) === true) {
-                Logger::write(sprintf('Converted %s for content into array format.', self::configFile()));
-                Logger::write(sprintf('Load array format content into runtime from %s.', self::configFile()));
+                Log::info(sprintf('Converted %s for content into array format.', self::configFile()));
+                Log::info(sprintf('Load array format content into runtime from %s.', self::configFile()));
                 $this->config = $oldConfiguration;
             }
 
-            Logger::write(
+            Log::info(
                 sprintf(
                     'End of test whether the content of %s file can be converted to array format.',
                     self::configFile()
@@ -276,19 +276,19 @@ class Firewall extends Base
              * if it empties, then configuration reset with default
              */
 
-            Logger::write(sprintf('Start checking whether the %s file is empty.', self::configFile()));
+            Log::info(sprintf('Start checking whether the %s file is empty.', self::configFile()));
             if (count($this->config) > 0) {
                 /*
                  * we need to array match
                  * if return false, then we need to replace and continue
                  */
 
-                Logger::write('Check different of runtime configuration and required keys.');
+                Log::info('Check different of runtime configuration and required keys.');
                 if (count(array_diff_assoc(self::REQUIRED_KEYS, $this->config)) > 0) {
-                    Logger::write('Different found from runtime configuration and required keys.');
+                    Log::info('Different found from runtime configuration and required keys.');
                     $replaced = array_replace_recursive($this->config, self::REQUIRED_KEYS);
                     if ($replaced !== null) {
-                        Logger::write('Load changed configuration into runtime configuration.');
+                        Log::notice('Load changed configuration into runtime configuration.');
                         $this->config = $replaced;
                     }
                 }
@@ -297,23 +297,23 @@ class Firewall extends Base
                  * merge to default configuration
                  */
 
-                Logger::write(sprintf('The content of %s is not empty.', self::configFile()));
-                Logger::write('Merging default configuration into runtime configuration.');
+                Log::alert(sprintf('The content of %s is not empty.', self::configFile()));
+                Log::notice('Merging default configuration into runtime configuration.');
                 $this->config = array_merge_recursive(self::REQUIRED_KEYS, self::BUILT_IN_CONFIG);
             }//end if
 
-            Logger::write(sprintf('End checking whether the %s file is empty.', self::configFile()));
+            Log::info(sprintf('End checking whether the %s file is empty.', self::configFile()));
             /*
              * if loaded firewall configuration is not valid array,
              * then delete configuration file and write new default data
              */
 
-            Logger::write('Check required attribute of runtime configuration.');
+            Log::info('Check required attribute of runtime configuration.');
             if (count($this->config) === 10) {
-                Logger::write('Attribute missing found from runtime configuration.');
+                Log::notice('Attribute missing found from runtime configuration.');
                 $config = array_replace_recursive($this->config, self::BUILT_IN_CONFIG);
                 if ($config !== null) {
-                    Logger::write('Load changed configuration into runtime configuration.');
+                    Log::notice('Load changed configuration into runtime configuration.');
                     $this->config = $config;
                 }
             }
@@ -322,26 +322,26 @@ class Firewall extends Base
              * then create configuration file and write new default data
              */
 
-            Logger::write(sprintf('Check content array conversation of %s.', self::configFile()));
+            Log::info(sprintf('Check content array conversation of %s.', self::configFile()));
             if (is_array(FileSystem\Yaml::parseFile(self::configFile())) === true) {
                 $firewallArrayKeys = array_keys($this->config);
                 $firewallFileArrayKeys = array_keys(FileSystem\Yaml::parseFile(self::configFile()));
 
-                Logger::write('Check different of runtime configuration and stored configuration.');
+                Log::notice('Check different of runtime configuration and stored configuration.');
                 if (count(array_diff_assoc($firewallArrayKeys, $firewallFileArrayKeys)) > 0) {
-                    Logger::write('Write the difference of runtime configuration and stored configuration.');
+                    Log::notice('Write the difference of runtime configuration and stored configuration.');
                     $this->createConfiguration($this->config);
                 }
             } else {
-                Logger::write('Write current runtime configuration.');
+                Log::alert('Write current runtime configuration.');
                 $this->createConfiguration($this->config);
             }
         } else {
-            Logger::write(sprintf('Read permission required. Unable to read %s.', self::configFile()));
+            Log::error(sprintf('Read permission required. Unable to read %s.', self::configFile()));
             throw new PermissionRequiredException('Read permission required. Unable to read root' . self::configFile());
         }//end if
 
-        Logger::write(sprintf('End checking read permission of %s.', self::configFile()));
+        Log::info(sprintf('End checking read permission of %s.', self::configFile()));
     }//end loadConfig()
 
 
@@ -360,14 +360,14 @@ class Firewall extends Base
      */
     public function isRequestAccepted(): bool
     {
-        Logger::write('Check domain installation file of framework.');
+        Log::info('Check domain installation file of framework.');
         if (file_exists(self::siteFile()) === true) {
             $installedHost = FileSystem\Yaml::parseFile(self::siteFile());
             if (in_array(INSTALLED_HOST_NAME, $installedHost, true) === true) {
                 //start new world-class test
                 //print_r($installedHost, false);
 
-                Logger::write('Filter request of client.');
+                Log::info('Filter request of client.');
                 $this->filterHttpRequest();
 
                 return $this->makeAction();
@@ -377,7 +377,7 @@ class Firewall extends Base
                 return $this->makeAction();
             }
         } else {
-            Logger::write('Adding new domain to install framework.');
+            Log::alert('Adding new domain to install framework.');
             FileSystem\Yaml::emitFile(self::siteFile(), [
                 INSTALLED_HOST_NAME,
             ]);
@@ -385,10 +385,10 @@ class Firewall extends Base
         }
 
 
-        Logger::write('Start create http request to system for the client');
+        Log::notice('Start create http request to system for the client');
 
         // Start test website's host name
-        Logger::write(
+        Log::notice(
             sprintf(
                 'Start testing requested hostname [%s] with firewall configuration.',
                 Http::browser()->getURLHostname()
@@ -396,7 +396,7 @@ class Firewall extends Base
         );
 
         if ($this->config['hostname'] !== Http::browser()->getURLHostname()) {
-            Logger::write(
+            Log::error(
                 sprintf(
                     'Requested hostname [%s] does not matched with firewall configuration.',
                     Http::browser()->getURLHostname()
@@ -408,7 +408,7 @@ class Firewall extends Base
             return $this->makeAction();
 
 //            if ($this->isListed(IP::get()) === false) {
-//                Logger::write(
+//                Log::info(
 //                    sprintf(
 //                        'Firewall block the browser %s of client.',
 //                        Http::browser()->getBrowserNameFull()
@@ -419,7 +419,7 @@ class Firewall extends Base
 //            }
         }
 
-        Logger::write(
+        Log::info(
             sprintf(
                 'End testing requested hostname [%s] with firewall configuration.',
                 Http::browser()->getURLHostname()
@@ -428,7 +428,7 @@ class Firewall extends Base
 
         // End test website's host name
         // Start test the ip address of client.
-        Logger::write(
+        Log::info(
             sprintf(
                 'Start searching client ip [%s] in banned list.',
                 IP::get()
@@ -436,19 +436,19 @@ class Firewall extends Base
         );
 
         if (in_array(IP::get(), $this->config['ip']['banned'], true) === true) {
-            Logger::write(
+            Log::notice(
                 sprintf(
                     'The client ip address [%s] found in banned list.',
                     IP::get()
                 )
             );
 
-            Logger::write('Firewall banned the ip address.');
+            Log::notice('Firewall banned the ip address.');
             $this->actionStatus = 'banned';
             $this->actionComponent = 'IP';
         }
 
-        Logger::write(
+        Log::info(
             sprintf(
                 'End searching client ip [%s] in banned list.',
                 IP::get()
@@ -456,7 +456,7 @@ class Firewall extends Base
         );
         // End test the ip address of client.
         // Start test the web browser of client.
-        Logger::write(
+        Log::info(
             sprintf(
                 'Start searching client browser [%s] in banned list.',
                 Http::browser()->getBrowserNameFull()
@@ -464,18 +464,18 @@ class Firewall extends Base
         );
 
         if (in_array(strtolower(Http::browser()->getBrowserName()), $this->config['browser']['banned'], true) === true) {
-            Logger::write(
+            Log::notice(
                 sprintf(
                     'The client browser [%s] found in banned list.',
                     Http::browser()->getBrowserNameFull()
                 )
             );
-            Logger::write('Firewall banned the browser.');
+            Log::notice('Firewall banned the browser.');
             $this->actionStatus = 'banned';
             $this->actionComponent = 'browser';
         }
 
-        Logger::write(
+        Log::info(
             sprintf(
                 'End searching client browser [%s] in banned list.',
                 Http::browser()->getBrowserNameFull()
@@ -484,25 +484,25 @@ class Firewall extends Base
 
         // End test the web browser of client.
         // Start test the device name of client.
-        Logger::write(
+        Log::info(
             sprintf(
                 'Start searching client device [%s] in banned list.',
                 Http::browser()->getDeviceNameFull()
             )
         );
         if (in_array(Character::lower(Http::browser()->getDeviceName()), $this->config['device']['banned'], true) === true) {
-            Logger::write(
+            Log::notice(
                 sprintf(
                     'The client device [%s] found in banned list.',
                     Http::browser()->getDeviceNameFull()
                 )
             );
-            Logger::write('Firewall banned the device.');
+            Log::notice('Firewall banned the device.');
             $this->actionStatus = 'banned';
             $this->actionComponent = 'device';
         }
 
-        Logger::write(
+        Log::info(
             sprintf(
                 'End searching client device [%s] in banned list.',
                 Http::browser()->getDeviceNameFull()
@@ -511,25 +511,25 @@ class Firewall extends Base
 
         // End test the device name of client.
         // Start test the continent name of client.
-        Logger::write(
+        Log::info(
             sprintf(
                 'Start searching client continent [%s] in banned list.',
                 IP::getInfo('continent')
             )
         );
         if (in_array(Character::lower(IP::getInfo('continent')), $this->config['continent']['banned'], true)) {
-            Logger::write(
+            Log::notice(
                 sprintf(
                     'The client continent [%s] found in banned list.',
                     IP::getInfo('continent')
                 )
             );
-            Logger::write('Firewall banned the continent.');
+            Log::notice('Firewall banned the continent.');
             $this->actionStatus = 'banned';
             $this->actionComponent = 'continent';
         }
 
-        Logger::write(
+        Log::info(
             sprintf(
                 'End searching client continent [%s] in banned list.',
                 IP::getInfo('continent')
@@ -538,43 +538,43 @@ class Firewall extends Base
 
         // End test the continent name of client.
         // Start test the country name of client.
-        Logger::write('Start searching client country in banned list.');
+        Log::info('Start searching client country in banned list.');
         if (in_array(Character::lower(IP::getInfo('country')), $this->config['country']['banned'], true) === true) {
-            Logger::write('The client continent found in banned list.');
-            Logger::write('Firewall banned the country.');
+            Log::notice('The client continent found in banned list.');
+            Log::notice('Firewall banned the country.');
             $this->actionStatus = 'banned';
             $this->actionComponent = 'country';
         }
 
-        Logger::write('End searching client country in banned list.');
+        Log::info('End searching client country in banned list.');
 
         // End test the country name of client.
         // Start test the country name of client.
-        Logger::write('Start searching client city in banned list.');
+        Log::info('Start searching client city in banned list.');
         if (in_array(Character::lower(IP::getInfo('city')), $this->config['city']['banned'], true)) {
-            Logger::write('The client city found in banned list.');
-            Logger::write('Firewall banned the city.');
+            Log::notice('The client city found in banned list.');
+            Log::notice('Firewall banned the city.');
             $this->actionStatus = 'banned';
             $this->actionComponent = 'city';
         }
 
-        Logger::write('End searching client city in banned list.');
+        Log::info('End searching client city in banned list.');
 
         // End test the city name of client.
         // Start test the country name of client.
-        Logger::write('Start searching client browser in black list.');
+        Log::info('Start searching client browser in black list.');
         if ($this->config['browser']['order'] === 'blacklist') {
             // we need to check block time of browser,
             // if the time has been expired, then unblock th browser
             // or show protection message
             if (in_array(Character::lower(Http::browser()->getBrowserName()), $this->config['browser']['blacklist'], true) === true) {
-                Logger::write('The client browser found in black list.');
-                Logger::write('Firewall banned the browser.');
+                Log::notice('The client browser found in black list.');
+                Log::notice('Firewall banned the browser.');
                 $this->actionStatus = 'blocked';
                 $this->actionComponent = 'browser';
             }
         }
-        Logger::write('End searching client browser in banned list.');
+        Log::info('End searching client browser in banned list.');
 
         // End test the city name of client.
 
@@ -670,7 +670,7 @@ class Firewall extends Base
             }
         }
 
-        Logger::write('End create http request to system for the client');
+        Log::info('End create http request to system for the client');
     }//end makeAccessRequest()
 
     /**
@@ -716,30 +716,30 @@ class Firewall extends Base
          * if not exists, then reset configuration.
          */
 
-        Logger::write('Start checking whether the accept keyword is in the $this->config variable.');
+        Log::info('Start checking whether the accept keyword is in the $this->config variable.');
         if (array_key_exists('accept', $this->config) === false) {
-            Logger::write('Check failed. Accept keyword not found in $this->config variable.');
-            Logger::write('Creating new config with built in config.');
+            Log::error('Check failed. Accept keyword not found in $this->config variable.');
+            Log::alert('Creating new config with built in config.');
             $this->createConfiguration(array_merge_recursive(self::REQUIRED_KEYS, self::BUILT_IN_CONFIG));
         }
 
-        Logger::write('End checking whether the accept keyword is in the $this->config variable.');
+        Log::info('End checking whether the accept keyword is in the $this->config variable.');
 
-        Logger::write('Start checking whether REQUEST_METHOD keyword in $_SERVER variable.');
-        Logger::write('Search accept keyword in allowed request method variable.');
+        Log::info('Start checking whether REQUEST_METHOD keyword in $_SERVER variable.');
+        Log::info('Search accept keyword in allowed request method variable.');
         $requestMethodAll = $this->config['accept']['request-method'];
         if (in_array(Character::lower($_SERVER['REQUEST_METHOD']), $requestMethodAll, true) === false) {
-            Logger::write('Browser Request Method was not found in the authorized method.');
-            Logger::write('Check whether the client\'s IP is blocked');
+            Log::error('Browser Request Method was not found in the authorized method.');
+            Log::notice('Check whether the client\'s IP is blocked');
             if ($this->isListed(IP::get()) === false) {
-                Logger::write('The client\'s IP is not blocked. Then it will be blocked.');
+                Log::notice('The client\'s IP is not blocked. Then it will be blocked.');
                 $this->actionStatus = 'blocked';
                 $this->actionComponent = 'IP';
                 $this->addIP(IP::get(), 'blocked');
             }
         }
 
-        Logger::write('End checking whether REQUEST_METHOD keyword in $_SERVER variable.');
+        Log::info('End checking whether REQUEST_METHOD keyword in $_SERVER variable.');
     }//end filterHttpRequest()
 
 
@@ -755,13 +755,13 @@ class Firewall extends Base
      */
     private function createConfiguration(array $config): void
     {
-        Logger::write('Check runtime configuration file existent.');
+        Log::info('Check runtime configuration file existent.');
         if (file_exists(self::configFile()) === true) {
-            Logger::write('Remove exists runtime configuration file.');
+            Log::alert('Remove exists runtime configuration file.');
             FileSystem::remove(self::configFile());
         }
 
-        Logger::write(sprintf('Write firewall configuration into %s.', self::configFile()));
+        Log::notice(sprintf('Write firewall configuration into %s.', self::configFile()));
         FileSystem\Yaml::emitFile(self::configFile(), $config);
     }//end createConfiguration()
 

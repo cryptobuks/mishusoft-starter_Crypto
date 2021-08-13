@@ -8,7 +8,7 @@ use Mishusoft\Ui;
  * root element of quick bar
  * */
 
-$root = Ui::element(Ui::getDocumentContentHeader(), 'article', ['class' => 'header header-quick-tool-bar']);
+$root = Ui::element(Ui::getDocumentContentHeader(), 'nav', ['class' => 'header header-quick-tool-bar']);
 $left = Ui::element($root, 'left');
 
 /*email address*/
