@@ -17,4 +17,3 @@ import('./common/dom').then(function (dom) {
 }).catch(function (err) {
     console.log(err)
 });
-
