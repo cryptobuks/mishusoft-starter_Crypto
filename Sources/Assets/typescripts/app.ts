@@ -1,7 +1,7 @@
 import {app, appHost} from "./db/app";
 import {captureElement, createElement} from "./common/dom";
 import {sendRequest} from "./common/request";
-import {checkDuplicate, IsJsonString} from "./common/validation";
+import {IsJsonString} from "./common/validation";
 import {showMessage} from "./common/message";
 import {checkInputDataAbility, previewImage} from "./common/common";
 import {paginationDriver, popUpDialogBoxDriver} from "./common/pagination";
@@ -50,239 +50,102 @@ import('./db/runtime').then(function (runtime) {
     //let parsed : any = JSON.parse(runtime.default);
     //console.log(parsed);
     console.log(runtime.list);
+}).catch(function (err) {
+    alert(err);
 });
 
 
-(function (__authLoginForm) {
-    let interval = setInterval(function () {
-        if (__authLoginForm !== null || true) {
-            clearInterval(interval);
-            __authLoginForm?.addEventListener('submit', function (event: Event) {
-                event.preventDefault();
-                import('./mishusoft/UserAuth').then(function (handle) {
-                    let handleUserAuth = new handle.UserAuth();
-                    handleUserAuth.handleLoginForm();
-                });
-            });
-        }
-    }, 100);
-}(captureElement('#LogInForm')));
-
-(function (__authRegistrationForm) {
-    let interval = setInterval(function () {
-        if (__authRegistrationForm !== null || true) {
-            clearInterval(interval);
-            __authRegistrationForm?.addEventListener('submit', function (event: Event) {
-                event.preventDefault();
-            });
-            import('./mishusoft/UserAuth').then(function (handle) {
-                let handleUserAuth = new handle.UserAuth();
-                handleUserAuth.handleRegistrationForm();
-            });
-        }
-    }, 100);
-}(captureElement('#registrationForm')));
-
-(function (__authPasswordRecoveryForm) {
-    let interval = setInterval(function () {
-        if (__authPasswordRecoveryForm !== null || true) {
-            clearInterval(interval);
-            __authPasswordRecoveryForm?.addEventListener('submit', function (event: Event) {
-                event.preventDefault();
-                let messages = captureElement('#messageZone');
-                if (messages.firstElementChild === null) {
-                    let tmp = document.createElement('div');
-                    messages.appendChild(tmp);
-                }
-                messages.firstElementChild.textContent = '';
-
-
-                if (captureElement('#username').value.length === 0 && captureElement('#email').value.length === 0) {
-                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                    messages.style.display = 'block';
-                    messages.firstElementChild.innerHTML += 'Error : Please enter username or email address to continue.<br/>';
-                }
-
-                messages.style = 'display:block;';
-                messages.firstElementChild.textContent = 'Please wait......';
-                captureElement('#flex-center').firstElementChild.style = 'height:500px';
-                /*#!if ENV ==='production'*/
-                setTimeout(function () {
-                    captureElement('#messageZone').textContent = '';
-                }, 3000);
-                /*#!endif*/
-                return sendRequest({
-                    method: "POST",
-                    url: appHost + 'user/passwordRecoveryValidation',
-                    async: true,
-                    header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
-                    data: {
-                        security_code: 1,
-                        patch: captureElement('#recovery').value,
-                        time: captureElement('#time').value,
-                        email: captureElement('#email').value,
-                        username: captureElement('#username').value,
-                        btnName: captureElement('#code-send-button').value
-                    }
-                }, function (response: any) {
-                    captureElement('#email').removeAttribute('disabled');
-                    captureElement('#username').removeAttribute('disabled');
-                    showMessage(response, captureElement("#messageZone"));
-                    if (captureElement('#flex-center') !== undefined) {
-                        captureElement('#flex-center').firstElementChild.style = 'height:' + (+(captureElement('#messageZone') as HTMLDivElement).clientHeight + +captureElement('#flex-center').firstElementChild.getAttribute('data-height')) + 'px';
-                        if (captureElement('#messageZone').nextElementSibling.nodeName.toLowerCase() === 'br') {
-                            captureElement('#messageZone').nextElementSibling.remove();
-                        }
-                    }
-                });
-            });
-        }
-    }, 100);
-}(captureElement('#ForgetPasswordForm')));
-
-(function (__authSetPasswordForm) {
-    let interval = setInterval(function () {
-        if (__authSetPasswordForm !== null || true) {
-            clearInterval(interval);
-            __authSetPasswordForm?.addEventListener('submit', function (event: Event) {
-                event.preventDefault();
-                let passwordCheck, messages = captureElement('#messageZone');
-                if (messages.firstElementChild === null) {
-                    let tmp = document.createElement('div');
-                    messages.appendChild(tmp);
-                }
-                messages.firstElementChild.textContent = '';
-
-                if (captureElement('#password').value === '') {
-                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                    messages.style.display = 'block';
-                    messages.firstElementChild.innerHTML += 'Error : Enter your password (with @_ character and more than 6 character).<br/>';
-                    addSpace();
-                } else if (captureElement('#password').value !== '' && captureElement('#password').value.indexOf('@') === -1) {
-                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                    messages.style.display = 'block';
-                    messages.firstElementChild.innerHTML += 'Error : Enter password with (@) character.<br/>';
-                    addSpace();
-                } else if (captureElement('#password').value !== '' && captureElement('#password').value.indexOf('_') === -1) {
-                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                    messages.style.display = 'block';
-                    messages.firstElementChild.innerHTML += 'Error : Enter password with (_) character.<br/>';
-                    addSpace();
-                } else if (checkDuplicate(captureElement('#password').value)) {
-                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                    messages.style.display = 'block';
-                    messages.firstElementChild.innerHTML += 'Error : A character has been used more than twice in your password.<br/>';
-                    addSpace();
-                } else if (captureElement('#password').value !== '' && captureElement('#password').value.length <= 6) {
-                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                    messages.style.display = 'block';
-                    messages.firstElementChild.innerHTML += 'Error : Enter password more than 6 character.<br/>';
-                    addSpace();
-                } else {
-                    passwordCheck = 'OK';
-                }
-
-                if (captureElement('#password').value !== captureElement('#c_password').value) {
-                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                    messages.style.display = 'block';
-                    messages.firstElementChild.innerHTML += 'Error : Your password matched.<br/>';
-                }
-
-                messages.style = 'display:block;';
-                messages.firstElementChild.textContent = 'Please wait......';
-                captureElement('#flex-center').firstElementChild.style = 'height:500px';
-                /*#!if ENV ==='production'*/
-                setTimeout(function () {
-                    captureElement('#messageZone').textContent = '';
-                }, 3000);
-                /*#!endif*/
-
-                if (passwordCheck === 'OK') {
-                    messages.firstElementChild.classList.add('box-runtime');
-                    captureElement('#set-new-password-button').setAttribute('disabled', 'disabled');
-                    captureElement('#password').setAttribute('disabled', 'disabled');
-                    captureElement('#c_password').setAttribute('disabled', 'disabled');
-                    messages.style = 'display:block;';
-                    messages.firstElementChild.textContent = 'Please wait......';
-                    captureElement('#flex-center').firstElementChild.style = 'height:700px';
-                    /*#!if ENV ==='production'*/
-                    setTimeout(function () {
-                        captureElement('#messageZone').textContent = '';
-                    }, 3000);
-                    /*#!endif*/
-
-                    return sendRequest({
-                        method: "POST",
-                        url: appHost + 'user/newPasswordValidation',
-                        async: true,
-                        header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
-                        data: {
-                            security_code: 1,
-                            patch: captureElement('#set-password').value,
-                            time: captureElement('#time').value,
-                            userId: captureElement('#user-id').value,
-                            password: captureElement('#password').value,
-                            confirmPassword: captureElement('#c_password').value,
-                            btnName: captureElement('#set-new-password-button').value
-                        }
-                    }, function (response: any) {
-                        captureElement('#set-new-password-button').removeAttribute('disabled');
-                        captureElement('#password').removeAttribute('disabled');
-                        captureElement('#c_password').removeAttribute('disabled');
-                        showMessage(response, captureElement("#messageZone"));
-                        if (captureElement('#flex-center') !== undefined) {
-                            captureElement('#flex-center').firstElementChild.style = 'height:' + (+(captureElement('#messageZone') as HTMLDivElement).clientHeight + +captureElement('#flex-center').firstElementChild.getAttribute('data-height')) + 'px';
-                            if (captureElement('#messageZone').nextElementSibling.nodeName.toLowerCase() === 'br') {
-                                captureElement('#messageZone').nextElementSibling.remove();
-                            }
-                        }
+import('./db/app').then(function (db) {
+//user auth control
+    (function (__authLoginForm) {
+        let interval = setInterval(function () {
+            if (__authLoginForm !== null || true) {
+                clearInterval(interval);
+                __authLoginForm?.addEventListener('submit', function (event: Event) {
+                    event.preventDefault();
+                    import('./mishusoft/UserAuth').then(function (handle) {
+                        let handleUserAuth = new handle.UserAuth(db.appHost);
+                        handleUserAuth.handleLoginForm();
+                    }).catch(function (err) {
+                        alert(err);
                     });
-                }
-            });
-        }
-    }, 100);
-}(captureElement('#SetPasswordForm')));
-
-(function (__contactMessageSender) {
-    let interval = setInterval(function () {
-        if (__contactMessageSender !== null || true) {
-            clearInterval(interval);
-            __contactMessageSender?.addEventListener('click', function () {
-                let messages = captureElement('#messageZone');
-                if (messages.firstElementChild === null) {
-                    let tmp = document.createElement('div');
-                    messages.appendChild(tmp);
-                }
-                messages.firstElementChild.classList.add('box-runtime');
-                messages.firstElementChild.textContent = 'Please wait......';
-                messages.style.display = 'block';
-                /*#!if ENV ==='production'*/
-                setTimeout(function () {
-                    captureElement('#messageZone').textContent = '';
-                }, 3000);
-                /*#!endif*/
-                return sendRequest({
-                    method: "POST",
-                    url: appHost + 'contact/receiveMessage',
-                    async: true,
-                    header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
-                    data: {
-                        security_code: 1,
-                        firstName: captureElement('#cl_fst_nm').value,
-                        lastName: captureElement('#cl_lst_nm').value,
-                        email: captureElement('#cl_email').value,
-                        mobileNumber: captureElement('#cl_mbl_nmbr').value,
-                        messageSubject: captureElement('#cl_msg_sbj').value,
-                        messageContent: captureElement('#cl_msg').value,
-                        btnName: captureElement('#cl_msg_snd_btn').textContent
-                    }
-                }, function (response: any) {
-                    showMessage(response, captureElement("#messageZone"));
                 });
-            });
-        }
-    }, 100);
-}(captureElement('#cl_msg_snd_btn')));
+            }
+        }, 100);
+    }(captureElement('#LogInForm')));
+
+    (function (__authRegistrationForm) {
+        let interval = setInterval(function () {
+            if (__authRegistrationForm !== null || true) {
+                clearInterval(interval);
+                __authRegistrationForm?.addEventListener('submit', function (event: Event) {
+                    event.preventDefault();
+                });
+                import('./mishusoft/UserAuth').then(function (handle) {
+                    let handleUserAuth = new handle.UserAuth(db.appHost);
+                    handleUserAuth.handleRegistrationForm();
+                }).catch(function (err) {
+                    alert(err);
+                });
+            }
+        }, 100);
+    }(captureElement('#registrationForm')));
+
+    (function (__authPasswordRecoveryForm) {
+        let interval = setInterval(function () {
+            if (__authPasswordRecoveryForm !== null || true) {
+                clearInterval(interval);
+                __authPasswordRecoveryForm?.addEventListener('submit', function (event: Event) {
+                    event.preventDefault();
+                    import('./mishusoft/UserAuth').then(function (handle) {
+                        let handleUserAuth = new handle.UserAuth(db.appHost);
+                        handleUserAuth.handlePasswordRecoveryForm();
+                    }).catch(function (err) {
+                        alert(err);
+                    });
+                });
+            }
+        }, 100);
+    }(captureElement('#ForgetPasswordForm')));
+
+    (function (__authSetPasswordForm) {
+        let interval = setInterval(function () {
+            if (__authSetPasswordForm !== null || true) {
+                clearInterval(interval);
+                __authSetPasswordForm?.addEventListener('submit', function (event: Event) {
+                    event.preventDefault();
+                    import('./mishusoft/UserAuth').then(function (handle) {
+                        let handleUserAuth = new handle.UserAuth(db.appHost);
+                        handleUserAuth.handleSetPasswordForm();
+                    }).catch(function (err) {
+                        alert(err);
+                    });
+                });
+            }
+        }, 100);
+    }(captureElement('#SetPasswordForm')));
+
+    //contract message sender
+
+    (function (__contactMessageSender) {
+        let interval = setInterval(function () {
+            if (__contactMessageSender !== null || true) {
+                clearInterval(interval);
+                __contactMessageSender?.addEventListener('click', function () {
+
+                    import('./mishusoft/Contact').then(function (contact) {
+                        let handleContact = new contact.Contact(db.appHost);
+                        handleContact.messageSender();
+                    }).catch(function (err) {
+                        alert(err);
+                    });
+
+                });
+            }
+        }, 100);
+    }(captureElement('#cl_msg_snd_btn')));
+});
+
 
 (function (__url) {
     if (__url.indexOf('payment') !== -1) {
@@ -449,7 +312,7 @@ import('./db/runtime').then(function (runtime) {
 
 /*system zone*/
 (function (__url) {
-    let visitorsAccessLogsInterval:any;
+    let visitorsAccessLogsInterval: any;
     if (__url.indexOf('system') !== -1) {
         if (captureElement("#system-notification-viewer") !== undefined) {
             visitorsAccessLogsInterval = setInterval(function () {

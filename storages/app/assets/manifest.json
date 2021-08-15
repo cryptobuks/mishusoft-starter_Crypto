@@ -25,6 +25,7 @@
   "js/Assets_typescripts_worker-response_ts.runtime.bundle.js": "assets/js/Assets_typescripts_worker-response_ts.runtime.bundle.js",
   "js/Assets_typescripts_db_runtime_ts.runtime.bundle.js": "assets/js/Assets_typescripts_db_runtime_ts.runtime.bundle.js",
   "js/Assets_typescripts_mishusoft_UserAuth_ts.runtime.bundle.js": "assets/js/Assets_typescripts_mishusoft_UserAuth_ts.runtime.bundle.js",
+  "js/Assets_typescripts_mishusoft_Contact_ts.runtime.bundle.js": "assets/js/Assets_typescripts_mishusoft_Contact_ts.runtime.bundle.js",
   "js/vendors-node_modules_sweetalert_dist_sweetalert_min_js.runtime.bundle.js": "assets/js/vendors-node_modules_sweetalert_dist_sweetalert_min_js.runtime.bundle.js",
   "js/Assets_typescripts_common_validation_ts.runtime.bundle.js": "assets/js/Assets_typescripts_common_validation_ts.runtime.bundle.js",
   "../webfonts/SourceSansPro.svg": "assets/../webfonts/SourceSansPro.d013339e8d9c10f45959.svg",
@@ -191,6 +192,7 @@
   "Assets_typescripts_worker-response_ts.runtime.bundle.js.map": "assets/js/Assets_typescripts_worker-response_ts.runtime.bundle.js.map",
   "Assets_typescripts_db_runtime_ts.runtime.bundle.js.map": "assets/js/Assets_typescripts_db_runtime_ts.runtime.bundle.js.map",
   "Assets_typescripts_mishusoft_UserAuth_ts.runtime.bundle.js.map": "assets/js/Assets_typescripts_mishusoft_UserAuth_ts.runtime.bundle.js.map",
+  "Assets_typescripts_mishusoft_Contact_ts.runtime.bundle.js.map": "assets/js/Assets_typescripts_mishusoft_Contact_ts.runtime.bundle.js.map",
   "vendors-node_modules_sweetalert_dist_sweetalert_min_js.runtime.bundle.js.map": "assets/js/vendors-node_modules_sweetalert_dist_sweetalert_min_js.runtime.bundle.js.map",
   "Assets_typescripts_common_validation_ts.runtime.bundle.js.map": "assets/js/Assets_typescripts_common_validation_ts.runtime.bundle.js.map"
 }

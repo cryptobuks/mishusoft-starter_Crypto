@@ -55,10 +55,11 @@ export function paginationDriver(viewMode: string, url: string, extractTo: strin
 export function PopUpDialogBox(titleText: any, messageText: any, actionBtn: any, command: any, processURL: any, messageView: string, callback: any, sendResponse: any) {
 
     import('./dom').then(function (dom) {
-        dom.captureElement('#PopUpDialogBox').style.display = 'block';
-        dom.captureElement('#PopUpDialogBoxTitle').innerHTML = titleText;
-        dom.captureElement(messageView).innerHTML = '<div style="font-size:15px;">' + messageText + '</div>';
-        dom.captureElement('#message-done-btn').innerHTML = command;
+        let captureElement = dom.captureElement;
+        captureElement('#PopUpDialogBox').style.display = 'block';
+        captureElement('#PopUpDialogBoxTitle').innerHTML = titleText;
+        captureElement(messageView).innerHTML = '<div style="font-size:15px;">' + messageText + '</div>';
+        captureElement('#message-done-btn').innerHTML = command;
 
         let dataObject :any = {security_code : 1};
         [...actionBtn.attributes].forEach(function (__attribute) {
@@ -67,8 +68,8 @@ export function PopUpDialogBox(titleText: any, messageText: any, actionBtn: any,
             }
         });
 
-        dom.captureElement('#message-done-btn').addEventListener('click', function () {
-            dom.captureElement('#app-loader').style.display = 'block';
+        captureElement('#message-done-btn').addEventListener('click', function () {
+            captureElement('#app-loader').style.display = 'block';
             if (this.textContent === command) {
                 import('./request').then(function (request) {
                     return request.sendRequest({
@@ -78,8 +79,8 @@ export function PopUpDialogBox(titleText: any, messageText: any, actionBtn: any,
                         header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
                         data: dataObject,
                     }, (response: any) => {
-                        dom.captureElement('#PopUpDialogBox').style.display = 'none';
-                        dom.captureElement('#app-loader').style.display = 'none';
+                        captureElement('#PopUpDialogBox').style.display = 'none';
+                        captureElement('#app-loader').style.display = 'none';
                         callback();
                         sendResponse(response);
                     });

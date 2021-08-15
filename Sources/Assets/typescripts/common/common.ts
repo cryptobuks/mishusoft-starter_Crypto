@@ -37,11 +37,12 @@ export function checkInputDataAbility(url: string, dataObject: object, callback:
  * */
 export function previewImage(fileId: string, previewerId: string) {
     import('./dom').then(function (dom){
-        let image = dom.captureElement('#' + fileId);
+        let captureElement = dom.captureElement;
+        let image = captureElement('#' + fileId);
         if (image.files && image.files[0]) {
             let reader = new FileReader();
             reader.onload = function (e) {
-                dom.captureElement('#' + previewerId).setAttribute('src', <string>e?.target?.result);
+                captureElement('#' + previewerId).setAttribute('src', <string>e?.target?.result);
             };
             reader.readAsDataURL(image.files[0]);
         }

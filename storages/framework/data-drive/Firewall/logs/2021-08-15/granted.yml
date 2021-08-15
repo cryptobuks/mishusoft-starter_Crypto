@@ -3319,4 +3319,125 @@
       status: granted
       component: browser
       visit-time: "2021-08-15 08:20:26"
+    "2021-08-15 09:28:31":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-15 09:28:31"
+    "2021-08-15 09:28:32":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/assets/css/framework.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-15 09:28:32"
+    "2021-08-15 09:28:33":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/media/logos/default/android-icon-192x192.png
+      status: granted
+      component: browser
+      visit-time: "2021-08-15 09:28:33"
+    "2021-08-15 09:48:49":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/assets/
+      status: granted
+      component: browser
+      visit-time: "2021-08-15 09:48:49"
+    "2021-08-15 09:48:50":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/assets/js/Assets_typescripts_db_app_ts.runtime.bundle.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-15 09:48:50"
+    "2021-08-15 09:48:51":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/assets/js/sw.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-15 09:48:51"
+    "2021-08-15 09:48:54":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/assets/css/mishusoft-theme.css.map
+      status: granted
+      component: browser
+      visit-time: "2021-08-15 09:48:54"
+    "2021-08-15 09:48:55":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/assets/
+      status: granted
+      component: browser
+      visit-time: "2021-08-15 09:48:55"
+    "2021-08-15 09:48:56":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/assets/css/resources.css
+      status: granted
+      component: browser
+      visit-time: "2021-08-15 09:48:56"
+    "2021-08-15 09:48:57":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/assets/webfonts/SairaStencilOne-Regular.57631bc3592bb016bab9.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-15 09:48:57"
+    "2021-08-15 09:48:58":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown (Unknown)
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/assets/js/Assets_typescripts_common_dom_ts.runtime.bundle.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-15 09:48:58"
 ...

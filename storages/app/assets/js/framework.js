@@ -51,11 +51,12 @@ function checkInputDataAbility(url, dataObject, callback) {
  * */
 function previewImage(fileId, previewerId) {
     Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
-        let image = dom.captureElement('#' + fileId);
+        let captureElement = dom.captureElement;
+        let image = captureElement('#' + fileId);
         if (image.files && image.files[0]) {
             let reader = new FileReader();
             reader.onload = function (e) {
-                dom.captureElement('#' + previewerId).setAttribute('src', e?.target?.result);
+                captureElement('#' + previewerId).setAttribute('src', e?.target?.result);
             };
             reader.readAsDataURL(image.files[0]);
         }
@@ -157,15 +158,17 @@ function showMessage(response, element, callback) {
             else {
                 if (response.indexOf('<!doctype html>') !== -1 && response.indexOf('flex-center') !== -1) {
                     Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
-                        if (document.querySelector('#popup-login') === null) {
-                            const popup = dom.createElement([{
+                        let captureElement = dom.captureElement;
+                        let createElement = dom.createElement;
+                        if (captureElement('#popup-login') === null) {
+                            const popup = createElement([{
                                     'div': { 'id': 'popup-login', 'class': 'modal', 'style': 'display:block;' }
                                 }]);
-                            const popupDocument = dom.createElement([{
+                            const popupDocument = createElement([{
                                     'div': { 'class': 'row modal-content animate', 'style': 'width:34.5%;' }
                                 }]);
                             popup.appendChild(popupDocument);
-                            const popupDocumentBody = dom.createElement([{
+                            const popupDocumentBody = createElement([{
                                     'div': { 'class': 'modal-body' }
                                 }]);
                             popupDocumentBody.innerHTML = response.substr(response.indexOf('<div class="logInBox'), (response.indexOf('</div> </section>') - response.indexOf('<div class="logInBox')))
@@ -289,18 +292,19 @@ function paginationDriver(viewMode, url, extractTo, fallback, callback) {
  * */
 function PopUpDialogBox(titleText, messageText, actionBtn, command, processURL, messageView, callback, sendResponse) {
     Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
-        dom.captureElement('#PopUpDialogBox').style.display = 'block';
-        dom.captureElement('#PopUpDialogBoxTitle').innerHTML = titleText;
-        dom.captureElement(messageView).innerHTML = '<div style="font-size:15px;">' + messageText + '</div>';
-        dom.captureElement('#message-done-btn').innerHTML = command;
+        let captureElement = dom.captureElement;
+        captureElement('#PopUpDialogBox').style.display = 'block';
+        captureElement('#PopUpDialogBoxTitle').innerHTML = titleText;
+        captureElement(messageView).innerHTML = '<div style="font-size:15px;">' + messageText + '</div>';
+        captureElement('#message-done-btn').innerHTML = command;
         let dataObject = { security_code: 1 };
         [...actionBtn.attributes].forEach(function (__attribute) {
             if (__attribute.name.toLowerCase().indexOf('data') !== -1) {
                 dataObject[__attribute.name.replace('data-', '')] = __attribute.value;
             }
         });
-        dom.captureElement('#message-done-btn').addEventListener('click', function () {
-            dom.captureElement('#app-loader').style.display = 'block';
+        captureElement('#message-done-btn').addEventListener('click', function () {
+            captureElement('#app-loader').style.display = 'block';
             if (this.textContent === command) {
                 Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./request */ "./Assets/typescripts/common/request.ts")).then(function (request) {
                     return request.sendRequest({
@@ -310,8 +314,8 @@ function PopUpDialogBox(titleText, messageText, actionBtn, command, processURL, 
                         header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
                         data: dataObject,
                     }, (response) => {
-                        dom.captureElement('#PopUpDialogBox').style.display = 'none';
-                        dom.captureElement('#app-loader').style.display = 'none';
+                        captureElement('#PopUpDialogBox').style.display = 'none';
+                        captureElement('#app-loader').style.display = 'none';
                         callback();
                         sendResponse(response);
                     });
@@ -450,11 +454,13 @@ __webpack_require__.r(__webpack_exports__);
  * */
 function setUploadProgressSystem(appenderId) {
     Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
-        let appender = dom.captureElement('#' + appenderId);
-        let uploadBoard = dom.createElement([{ 'div': { 'id': 'UploadStatusBoard', 'style': 'display:none;' } }]);
-        uploadBoard.appendChild(dom.createElement([{ 'progress': { 'id': 'progressbar', 'max': '100', 'value': '0' } }]));
-        uploadBoard.appendChild(dom.createElement([{ 'h3': { 'id': 'upload_status' } }]));
-        uploadBoard.appendChild(dom.createElement([{ 'p': { 'id': 'loaded_n_total' } }]));
+        let createElement = dom.createElement;
+        let captureElement = dom.captureElement;
+        let appender = captureElement('#' + appenderId);
+        let uploadBoard = createElement([{ 'div': { 'id': 'UploadStatusBoard', 'style': 'display:none;' } }]);
+        uploadBoard.appendChild(createElement([{ 'progress': { 'id': 'progressbar', 'max': '100', 'value': '0' } }]));
+        uploadBoard.appendChild(createElement([{ 'h3': { 'id': 'upload_status' } }]));
+        uploadBoard.appendChild(createElement([{ 'p': { 'id': 'loaded_n_total' } }]));
         return appender.appendChild(uploadBoard);
     });
 }
@@ -464,9 +470,10 @@ function setUploadProgressSystem(appenderId) {
  * @param URL string*/
 function uploadFile(ElementName, ElementID, URL) {
     Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
-        dom.captureElement('#UploadStatusBoard').style.display = 'block';
-        dom.captureElement('#progressbar').style.display = 'block';
-        let file = dom.captureElement('#' + ElementID).files[0];
+        let captureElement = dom.captureElement;
+        captureElement('#UploadStatusBoard').style.display = 'block';
+        captureElement('#progressbar').style.display = 'block';
+        let file = captureElement('#' + ElementID).files[0];
         let data = new FormData();
         data.append(ElementName, file);
         let ajax = new XMLHttpRequest();
@@ -483,12 +490,13 @@ function uploadFile(ElementName, ElementID, URL) {
  * */
 function progressHandler(event) {
     Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
+        let captureElement = dom.captureElement;
         let loadedSize = (event.loaded / 1024) / 1024;
         let totalSize = (event.total / 1024) / 1024;
-        dom.captureElement('#loaded_n_total').innerHTML = 'Uploaded ' + loadedSize.toFixed(2) + ' MB of ' + totalSize.toFixed(2) + ' MB';
+        captureElement('#loaded_n_total').innerHTML = 'Uploaded ' + loadedSize.toFixed(2) + ' MB of ' + totalSize.toFixed(2) + ' MB';
         let percent = (event.loaded / event.total) * 100;
-        dom.captureElement('#progressbar').value = Math.round(percent);
-        dom.captureElement('#upload_status').innerHTML = Math.round(percent) + '% uploaded..';
+        captureElement('#progressbar').value = Math.round(percent);
+        captureElement('#upload_status').innerHTML = Math.round(percent) + '% uploaded..';
     });
 }
 /**
@@ -496,9 +504,10 @@ function progressHandler(event) {
  * */
 function completeHandler(event) {
     Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
-        dom.captureElement('#upload_status').innerHTML = event.target.responseText;
-        dom.captureElement('#progressbar').value = 0;
-        dom.captureElement('#progressbar').style.display = 'none';
+        let captureElement = dom.captureElement;
+        captureElement('#upload_status').innerHTML = event.target.responseText;
+        captureElement('#progressbar').value = 0;
+        captureElement('#progressbar').style.display = 'none';
     });
 }
 function errorHandler() {
@@ -1060,210 +1069,92 @@ __webpack_require__.e(/*! import() */ "Assets_typescripts_db_runtime_ts").then(_
     //let parsed : any = JSON.parse(runtime.default);
     //console.log(parsed);
     console.log(runtime.list);
+}).catch(function (err) {
+    alert(err);
 });
-(function (__authLoginForm) {
-    let interval = setInterval(function () {
-        if (__authLoginForm !== null || true) {
-            clearInterval(interval);
-            __authLoginForm?.addEventListener('submit', function (event) {
-                event.preventDefault();
-                __webpack_require__.e(/*! import() */ "Assets_typescripts_mishusoft_UserAuth_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./mishusoft/UserAuth */ "./Assets/typescripts/mishusoft/UserAuth.ts")).then(function (handle) {
-                    let handleUserAuth = new handle.UserAuth();
-                    handleUserAuth.handleLoginForm();
-                });
-            });
-        }
-    }, 100);
-}((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#LogInForm')));
-(function (__authRegistrationForm) {
-    let interval = setInterval(function () {
-        if (__authRegistrationForm !== null || true) {
-            clearInterval(interval);
-            __authRegistrationForm?.addEventListener('submit', function (event) {
-                event.preventDefault();
-            });
-            __webpack_require__.e(/*! import() */ "Assets_typescripts_mishusoft_UserAuth_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./mishusoft/UserAuth */ "./Assets/typescripts/mishusoft/UserAuth.ts")).then(function (handle) {
-                let handleUserAuth = new handle.UserAuth();
-                handleUserAuth.handleRegistrationForm();
-            });
-        }
-    }, 100);
-}((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#registrationForm')));
-(function (__authPasswordRecoveryForm) {
-    let interval = setInterval(function () {
-        if (__authPasswordRecoveryForm !== null || true) {
-            clearInterval(interval);
-            __authPasswordRecoveryForm?.addEventListener('submit', function (event) {
-                event.preventDefault();
-                let messages = (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#messageZone');
-                if (messages.firstElementChild === null) {
-                    let tmp = document.createElement('div');
-                    messages.appendChild(tmp);
-                }
-                messages.firstElementChild.textContent = '';
-                if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#username').value.length === 0 && (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#email').value.length === 0) {
-                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                    messages.style.display = 'block';
-                    messages.firstElementChild.innerHTML += 'Error : Please enter username or email address to continue.<br/>';
-                }
-                messages.style = 'display:block;';
-                messages.firstElementChild.textContent = 'Please wait......';
-                (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#flex-center').firstElementChild.style = 'height:500px';
-                return (0,_common_request__WEBPACK_IMPORTED_MODULE_2__.sendRequest)({
-                    method: "POST",
-                    url: _db_app__WEBPACK_IMPORTED_MODULE_0__.appHost + 'user/passwordRecoveryValidation',
-                    async: true,
-                    header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
-                    data: {
-                        security_code: 1,
-                        patch: (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#recovery').value,
-                        time: (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#time').value,
-                        email: (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#email').value,
-                        username: (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#username').value,
-                        btnName: (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#code-send-button').value
-                    }
-                }, function (response) {
-                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#email').removeAttribute('disabled');
-                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#username').removeAttribute('disabled');
-                    (0,_common_message__WEBPACK_IMPORTED_MODULE_4__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)("#messageZone"));
-                    if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#flex-center') !== undefined) {
-                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#flex-center').firstElementChild.style = 'height:' + (+(0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#messageZone').clientHeight + +(0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#flex-center').firstElementChild.getAttribute('data-height')) + 'px';
-                        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#messageZone').nextElementSibling.nodeName.toLowerCase() === 'br') {
-                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#messageZone').nextElementSibling.remove();
-                        }
-                    }
-                });
-            });
-        }
-    }, 100);
-}((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#ForgetPasswordForm')));
-(function (__authSetPasswordForm) {
-    let interval = setInterval(function () {
-        if (__authSetPasswordForm !== null || true) {
-            clearInterval(interval);
-            __authSetPasswordForm?.addEventListener('submit', function (event) {
-                event.preventDefault();
-                let passwordCheck, messages = (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#messageZone');
-                if (messages.firstElementChild === null) {
-                    let tmp = document.createElement('div');
-                    messages.appendChild(tmp);
-                }
-                messages.firstElementChild.textContent = '';
-                if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#password').value === '') {
-                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                    messages.style.display = 'block';
-                    messages.firstElementChild.innerHTML += 'Error : Enter your password (with @_ character and more than 6 character).<br/>';
-                    addSpace();
-                }
-                else if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#password').value !== '' && (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#password').value.indexOf('@') === -1) {
-                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                    messages.style.display = 'block';
-                    messages.firstElementChild.innerHTML += 'Error : Enter password with (@) character.<br/>';
-                    addSpace();
-                }
-                else if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#password').value !== '' && (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#password').value.indexOf('_') === -1) {
-                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                    messages.style.display = 'block';
-                    messages.firstElementChild.innerHTML += 'Error : Enter password with (_) character.<br/>';
-                    addSpace();
-                }
-                else if ((0,_common_validation__WEBPACK_IMPORTED_MODULE_3__.checkDuplicate)((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#password').value)) {
-                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                    messages.style.display = 'block';
-                    messages.firstElementChild.innerHTML += 'Error : A character has been used more than twice in your password.<br/>';
-                    addSpace();
-                }
-                else if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#password').value !== '' && (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#password').value.length <= 6) {
-                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                    messages.style.display = 'block';
-                    messages.firstElementChild.innerHTML += 'Error : Enter password more than 6 character.<br/>';
-                    addSpace();
-                }
-                else {
-                    passwordCheck = 'OK';
-                }
-                if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#password').value !== (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#c_password').value) {
-                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                    messages.style.display = 'block';
-                    messages.firstElementChild.innerHTML += 'Error : Your password matched.<br/>';
-                }
-                messages.style = 'display:block;';
-                messages.firstElementChild.textContent = 'Please wait......';
-                (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#flex-center').firstElementChild.style = 'height:500px';
-                if (passwordCheck === 'OK') {
-                    messages.firstElementChild.classList.add('box-runtime');
-                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#set-new-password-button').setAttribute('disabled', 'disabled');
-                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#password').setAttribute('disabled', 'disabled');
-                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#c_password').setAttribute('disabled', 'disabled');
-                    messages.style = 'display:block;';
-                    messages.firstElementChild.textContent = 'Please wait......';
-                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#flex-center').firstElementChild.style = 'height:700px';
-                    return (0,_common_request__WEBPACK_IMPORTED_MODULE_2__.sendRequest)({
-                        method: "POST",
-                        url: _db_app__WEBPACK_IMPORTED_MODULE_0__.appHost + 'user/newPasswordValidation',
-                        async: true,
-                        header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
-                        data: {
-                            security_code: 1,
-                            patch: (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#set-password').value,
-                            time: (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#time').value,
-                            userId: (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#user-id').value,
-                            password: (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#password').value,
-                            confirmPassword: (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#c_password').value,
-                            btnName: (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#set-new-password-button').value
-                        }
-                    }, function (response) {
-                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#set-new-password-button').removeAttribute('disabled');
-                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#password').removeAttribute('disabled');
-                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#c_password').removeAttribute('disabled');
-                        (0,_common_message__WEBPACK_IMPORTED_MODULE_4__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)("#messageZone"));
-                        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#flex-center') !== undefined) {
-                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#flex-center').firstElementChild.style = 'height:' + (+(0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#messageZone').clientHeight + +(0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#flex-center').firstElementChild.getAttribute('data-height')) + 'px';
-                            if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#messageZone').nextElementSibling.nodeName.toLowerCase() === 'br') {
-                                (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#messageZone').nextElementSibling.remove();
-                            }
-                        }
+Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./db/app */ "./Assets/typescripts/db/app.ts")).then(function (db) {
+    //user auth control
+    (function (__authLoginForm) {
+        let interval = setInterval(function () {
+            if (__authLoginForm !== null || true) {
+                clearInterval(interval);
+                __authLoginForm?.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    __webpack_require__.e(/*! import() */ "Assets_typescripts_mishusoft_UserAuth_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./mishusoft/UserAuth */ "./Assets/typescripts/mishusoft/UserAuth.ts")).then(function (handle) {
+                        let handleUserAuth = new handle.UserAuth(db.appHost);
+                        handleUserAuth.handleLoginForm();
+                    }).catch(function (err) {
+                        alert(err);
                     });
-                }
-            });
-        }
-    }, 100);
-}((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#SetPasswordForm')));
-(function (__contactMessageSender) {
-    let interval = setInterval(function () {
-        if (__contactMessageSender !== null || true) {
-            clearInterval(interval);
-            __contactMessageSender?.addEventListener('click', function () {
-                let messages = (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#messageZone');
-                if (messages.firstElementChild === null) {
-                    let tmp = document.createElement('div');
-                    messages.appendChild(tmp);
-                }
-                messages.firstElementChild.classList.add('box-runtime');
-                messages.firstElementChild.textContent = 'Please wait......';
-                messages.style.display = 'block';
-                return (0,_common_request__WEBPACK_IMPORTED_MODULE_2__.sendRequest)({
-                    method: "POST",
-                    url: _db_app__WEBPACK_IMPORTED_MODULE_0__.appHost + 'contact/receiveMessage',
-                    async: true,
-                    header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
-                    data: {
-                        security_code: 1,
-                        firstName: (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#cl_fst_nm').value,
-                        lastName: (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#cl_lst_nm').value,
-                        email: (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#cl_email').value,
-                        mobileNumber: (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#cl_mbl_nmbr').value,
-                        messageSubject: (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#cl_msg_sbj').value,
-                        messageContent: (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#cl_msg').value,
-                        btnName: (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#cl_msg_snd_btn').textContent
-                    }
-                }, function (response) {
-                    (0,_common_message__WEBPACK_IMPORTED_MODULE_4__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)("#messageZone"));
                 });
-            });
-        }
-    }, 100);
-}((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#cl_msg_snd_btn')));
+            }
+        }, 100);
+    }((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#LogInForm')));
+    (function (__authRegistrationForm) {
+        let interval = setInterval(function () {
+            if (__authRegistrationForm !== null || true) {
+                clearInterval(interval);
+                __authRegistrationForm?.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                });
+                __webpack_require__.e(/*! import() */ "Assets_typescripts_mishusoft_UserAuth_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./mishusoft/UserAuth */ "./Assets/typescripts/mishusoft/UserAuth.ts")).then(function (handle) {
+                    let handleUserAuth = new handle.UserAuth(db.appHost);
+                    handleUserAuth.handleRegistrationForm();
+                }).catch(function (err) {
+                    alert(err);
+                });
+            }
+        }, 100);
+    }((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#registrationForm')));
+    (function (__authPasswordRecoveryForm) {
+        let interval = setInterval(function () {
+            if (__authPasswordRecoveryForm !== null || true) {
+                clearInterval(interval);
+                __authPasswordRecoveryForm?.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    __webpack_require__.e(/*! import() */ "Assets_typescripts_mishusoft_UserAuth_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./mishusoft/UserAuth */ "./Assets/typescripts/mishusoft/UserAuth.ts")).then(function (handle) {
+                        let handleUserAuth = new handle.UserAuth(db.appHost);
+                        handleUserAuth.handlePasswordRecoveryForm();
+                    }).catch(function (err) {
+                        alert(err);
+                    });
+                });
+            }
+        }, 100);
+    }((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#ForgetPasswordForm')));
+    (function (__authSetPasswordForm) {
+        let interval = setInterval(function () {
+            if (__authSetPasswordForm !== null || true) {
+                clearInterval(interval);
+                __authSetPasswordForm?.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    __webpack_require__.e(/*! import() */ "Assets_typescripts_mishusoft_UserAuth_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./mishusoft/UserAuth */ "./Assets/typescripts/mishusoft/UserAuth.ts")).then(function (handle) {
+                        let handleUserAuth = new handle.UserAuth(db.appHost);
+                        handleUserAuth.handleSetPasswordForm();
+                    }).catch(function (err) {
+                        alert(err);
+                    });
+                });
+            }
+        }, 100);
+    }((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#SetPasswordForm')));
+    //contract message sender
+    (function (__contactMessageSender) {
+        let interval = setInterval(function () {
+            if (__contactMessageSender !== null || true) {
+                clearInterval(interval);
+                __contactMessageSender?.addEventListener('click', function () {
+                    __webpack_require__.e(/*! import() */ "Assets_typescripts_mishusoft_Contact_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./mishusoft/Contact */ "./Assets/typescripts/mishusoft/Contact.ts")).then(function (contact) {
+                        let handleContact = new contact.Contact(db.appHost);
+                        handleContact.messageSender();
+                    }).catch(function (err) {
+                        alert(err);
+                    });
+                });
+            }
+        }, 100);
+    }((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#cl_msg_snd_btn')));
+});
 (function (__url) {
     if (__url.indexOf('payment') !== -1) {
         /*stripe payment merchant cdn

@@ -51,11 +51,12 @@ function checkInputDataAbility(url, dataObject, callback) {
  * */
 function previewImage(fileId, previewerId) {
     Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
-        let image = dom.captureElement('#' + fileId);
+        let captureElement = dom.captureElement;
+        let image = captureElement('#' + fileId);
         if (image.files && image.files[0]) {
             let reader = new FileReader();
             reader.onload = function (e) {
-                dom.captureElement('#' + previewerId).setAttribute('src', e?.target?.result);
+                captureElement('#' + previewerId).setAttribute('src', e?.target?.result);
             };
             reader.readAsDataURL(image.files[0]);
         }
@@ -157,15 +158,17 @@ function showMessage(response, element, callback) {
             else {
                 if (response.indexOf('<!doctype html>') !== -1 && response.indexOf('flex-center') !== -1) {
                     Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
-                        if (document.querySelector('#popup-login') === null) {
-                            const popup = dom.createElement([{
+                        let captureElement = dom.captureElement;
+                        let createElement = dom.createElement;
+                        if (captureElement('#popup-login') === null) {
+                            const popup = createElement([{
                                     'div': { 'id': 'popup-login', 'class': 'modal', 'style': 'display:block;' }
                                 }]);
-                            const popupDocument = dom.createElement([{
+                            const popupDocument = createElement([{
                                     'div': { 'class': 'row modal-content animate', 'style': 'width:34.5%;' }
                                 }]);
                             popup.appendChild(popupDocument);
-                            const popupDocumentBody = dom.createElement([{
+                            const popupDocumentBody = createElement([{
                                     'div': { 'class': 'modal-body' }
                                 }]);
                             popupDocumentBody.innerHTML = response.substr(response.indexOf('<div class="logInBox'), (response.indexOf('</div> </section>') - response.indexOf('<div class="logInBox')))
@@ -289,18 +292,19 @@ function paginationDriver(viewMode, url, extractTo, fallback, callback) {
  * */
 function PopUpDialogBox(titleText, messageText, actionBtn, command, processURL, messageView, callback, sendResponse) {
     Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
-        dom.captureElement('#PopUpDialogBox').style.display = 'block';
-        dom.captureElement('#PopUpDialogBoxTitle').innerHTML = titleText;
-        dom.captureElement(messageView).innerHTML = '<div style="font-size:15px;">' + messageText + '</div>';
-        dom.captureElement('#message-done-btn').innerHTML = command;
+        let captureElement = dom.captureElement;
+        captureElement('#PopUpDialogBox').style.display = 'block';
+        captureElement('#PopUpDialogBoxTitle').innerHTML = titleText;
+        captureElement(messageView).innerHTML = '<div style="font-size:15px;">' + messageText + '</div>';
+        captureElement('#message-done-btn').innerHTML = command;
         let dataObject = { security_code: 1 };
         [...actionBtn.attributes].forEach(function (__attribute) {
             if (__attribute.name.toLowerCase().indexOf('data') !== -1) {
                 dataObject[__attribute.name.replace('data-', '')] = __attribute.value;
             }
         });
-        dom.captureElement('#message-done-btn').addEventListener('click', function () {
-            dom.captureElement('#app-loader').style.display = 'block';
+        captureElement('#message-done-btn').addEventListener('click', function () {
+            captureElement('#app-loader').style.display = 'block';
             if (this.textContent === command) {
                 Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./request */ "./Assets/typescripts/common/request.ts")).then(function (request) {
                     return request.sendRequest({
@@ -310,8 +314,8 @@ function PopUpDialogBox(titleText, messageText, actionBtn, command, processURL, 
                         header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
                         data: dataObject,
                     }, (response) => {
-                        dom.captureElement('#PopUpDialogBox').style.display = 'none';
-                        dom.captureElement('#app-loader').style.display = 'none';
+                        captureElement('#PopUpDialogBox').style.display = 'none';
+                        captureElement('#app-loader').style.display = 'none';
                         callback();
                         sendResponse(response);
                     });
@@ -450,11 +454,13 @@ __webpack_require__.r(__webpack_exports__);
  * */
 function setUploadProgressSystem(appenderId) {
     Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
-        let appender = dom.captureElement('#' + appenderId);
-        let uploadBoard = dom.createElement([{ 'div': { 'id': 'UploadStatusBoard', 'style': 'display:none;' } }]);
-        uploadBoard.appendChild(dom.createElement([{ 'progress': { 'id': 'progressbar', 'max': '100', 'value': '0' } }]));
-        uploadBoard.appendChild(dom.createElement([{ 'h3': { 'id': 'upload_status' } }]));
-        uploadBoard.appendChild(dom.createElement([{ 'p': { 'id': 'loaded_n_total' } }]));
+        let createElement = dom.createElement;
+        let captureElement = dom.captureElement;
+        let appender = captureElement('#' + appenderId);
+        let uploadBoard = createElement([{ 'div': { 'id': 'UploadStatusBoard', 'style': 'display:none;' } }]);
+        uploadBoard.appendChild(createElement([{ 'progress': { 'id': 'progressbar', 'max': '100', 'value': '0' } }]));
+        uploadBoard.appendChild(createElement([{ 'h3': { 'id': 'upload_status' } }]));
+        uploadBoard.appendChild(createElement([{ 'p': { 'id': 'loaded_n_total' } }]));
         return appender.appendChild(uploadBoard);
     });
 }
@@ -464,9 +470,10 @@ function setUploadProgressSystem(appenderId) {
  * @param URL string*/
 function uploadFile(ElementName, ElementID, URL) {
     Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
-        dom.captureElement('#UploadStatusBoard').style.display = 'block';
-        dom.captureElement('#progressbar').style.display = 'block';
-        let file = dom.captureElement('#' + ElementID).files[0];
+        let captureElement = dom.captureElement;
+        captureElement('#UploadStatusBoard').style.display = 'block';
+        captureElement('#progressbar').style.display = 'block';
+        let file = captureElement('#' + ElementID).files[0];
         let data = new FormData();
         data.append(ElementName, file);
         let ajax = new XMLHttpRequest();
@@ -483,12 +490,13 @@ function uploadFile(ElementName, ElementID, URL) {
  * */
 function progressHandler(event) {
     Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
+        let captureElement = dom.captureElement;
         let loadedSize = (event.loaded / 1024) / 1024;
         let totalSize = (event.total / 1024) / 1024;
-        dom.captureElement('#loaded_n_total').innerHTML = 'Uploaded ' + loadedSize.toFixed(2) + ' MB of ' + totalSize.toFixed(2) + ' MB';
+        captureElement('#loaded_n_total').innerHTML = 'Uploaded ' + loadedSize.toFixed(2) + ' MB of ' + totalSize.toFixed(2) + ' MB';
         let percent = (event.loaded / event.total) * 100;
-        dom.captureElement('#progressbar').value = Math.round(percent);
-        dom.captureElement('#upload_status').innerHTML = Math.round(percent) + '% uploaded..';
+        captureElement('#progressbar').value = Math.round(percent);
+        captureElement('#upload_status').innerHTML = Math.round(percent) + '% uploaded..';
     });
 }
 /**
@@ -496,9 +504,10 @@ function progressHandler(event) {
  * */
 function completeHandler(event) {
     Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
-        dom.captureElement('#upload_status').innerHTML = event.target.responseText;
-        dom.captureElement('#progressbar').value = 0;
-        dom.captureElement('#progressbar').style.display = 'none';
+        let captureElement = dom.captureElement;
+        captureElement('#upload_status').innerHTML = event.target.responseText;
+        captureElement('#progressbar').value = 0;
+        captureElement('#progressbar').style.display = 'none';
     });
 }
 function errorHandler() {

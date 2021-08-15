@@ -35,15 +35,17 @@ export function showMessage(response: any, element: { innerHTML: string; }, call
             } else {
                 if (response.indexOf('<!doctype html>') !== -1 && response.indexOf('flex-center') !== -1) {
                     import('./dom').then(function (dom){
-                        if (document.querySelector('#popup-login') === null) {
-                            const popup = dom.createElement([{
+                        let captureElement = dom.captureElement;
+                        let createElement = dom.createElement;
+                        if (captureElement('#popup-login') === null) {
+                            const popup = createElement([{
                                 'div': {'id': 'popup-login', 'class': 'modal', 'style': 'display:block;'}
                             }]);
-                            const popupDocument = dom.createElement([{
+                            const popupDocument = createElement([{
                                 'div': {'class': 'row modal-content animate', 'style': 'width:34.5%;'}
                             }]);
                             popup.appendChild(popupDocument);
-                            const popupDocumentBody = dom.createElement([{
+                            const popupDocumentBody = createElement([{
                                 'div': {'class': 'modal-body'}
                             }]);
                             popupDocumentBody.innerHTML = response.substr(response.indexOf('<div class="logInBox'),

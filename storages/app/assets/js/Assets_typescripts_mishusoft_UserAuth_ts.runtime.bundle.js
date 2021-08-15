@@ -11,277 +11,446 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "UserAuth": () => (/* binding */ UserAuth)
 /* harmony export */ });
-/* harmony import */ var _common_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../common/dom */ "./Assets/typescripts/common/dom.ts");
-/* harmony import */ var _common_validation__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/validation */ "./Assets/typescripts/common/validation.ts");
-/* harmony import */ var _common_request__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common/request */ "./Assets/typescripts/common/request.ts");
-/* harmony import */ var _db_app__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../db/app */ "./Assets/typescripts/db/app.ts");
-/* harmony import */ var _common_message__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../common/message */ "./Assets/typescripts/common/message.ts");
-
-
-
-
-
 class UserAuth {
-    constructor() {
+    appHost;
+    constructor(appHost) {
+        this.appHost = appHost;
     }
     handleRegistrationForm() {
         let self = this;
-        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#signup-button') !== undefined) {
-            ['click', 'dblclick', 'touchstart'].forEach(function (event) {
-                (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#signup-button').addEventListener(event, function () {
-                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#flex-center').firstElementChild.removeAttribute('style');
-                    let massager = (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#messageZone');
-                    if (massager.firstElementChild === null) {
-                        let tmp = document.createElement('div');
-                        massager.appendChild(tmp);
-                    }
-                    massager.firstElementChild.textContent = '';
-                    massager.style = 'display:none;';
-                    let firstNameCheck, lastNameCheck, emailAddressCheck, usernameCheck, passwordCheck, dateOfBirthCheck;
-                    if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#first-name').value === '') {
-                        massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                        massager.style.display = 'block';
-                        massager.firstElementChild.innerHTML += 'Error : Enter your first name (more than 4 characters).<br/>';
-                        self.addSpace();
-                    }
-                    else if ((0,_common_validation__WEBPACK_IMPORTED_MODULE_1__.checkDuplicate)((0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#first-name').value)) {
-                        massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                        massager.style.display = 'block';
-                        massager.firstElementChild.innerHTML += 'Error : A character has been used more than twice in your first name.<br/>';
-                        self.addSpace();
-                    }
-                    else if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#first-name').value.length <= 3) {
-                        massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                        massager.style.display = 'block';
-                        massager.firstElementChild.innerHTML += 'Error : Enter your first name more than 4 characters.<br/>';
-                        self.addSpace();
-                    }
-                    else {
-                        firstNameCheck = 'OK';
-                    }
-                    if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#last-name').value === '') {
-                        massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                        massager.style.display = 'block';
-                        massager.firstElementChild.innerHTML += 'Error : Enter your last name (more than 4 characters).<br/>';
-                        self.addSpace();
-                    }
-                    else if ((0,_common_validation__WEBPACK_IMPORTED_MODULE_1__.checkDuplicate)((0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#last-name').value)) {
-                        massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                        massager.style.display = 'block';
-                        massager.firstElementChild.innerHTML += 'Error : A character has been used more than twice in your last name.<br/>';
-                        self.addSpace();
-                    }
-                    else if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#last-name').value.length <= 3) {
-                        massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                        massager.style.display = 'block';
-                        massager.firstElementChild.innerHTML += 'Error : Enter your last name more than 4 letter.<br/>';
-                        self.addSpace();
-                    }
-                    else {
-                        lastNameCheck = 'OK';
-                    }
-                    if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#email').value === '') {
-                        massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                        massager.style.display = 'block';
-                        massager.firstElementChild.innerHTML += 'Error : Enter your email address (valid for more than 14 characters).<br/>';
-                        self.addSpace();
-                    }
-                    else if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#email').value.indexOf('@') === -1 || (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#email').value.indexOf('.') === -1 || (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#email').value.length <= 14) {
-                        massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                        massager.style.display = 'block';
-                        massager.firstElementChild.innerHTML += 'Error : Enter valid email address.<br/>';
-                        self.addSpace();
-                    }
-                    else {
-                        emailAddressCheck = 'OK';
-                    }
-                    if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#username').value === '') {
-                        massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                        massager.style.display = 'block';
-                        massager.firstElementChild.innerHTML += 'Error : Enter your username (valid for at least 8 characters).<br/>';
-                        self.addSpace();
-                    }
-                    else if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#username').value.length < 8) {
-                        massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                        massager.style.display = 'block';
-                        massager.firstElementChild.innerHTML += 'Error : Enter username at least 8 character.<br/>';
-                        self.addSpace();
-                    }
-                    else {
-                        usernameCheck = 'OK';
-                    }
-                    if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#dateOfBirth').value === '') {
-                        massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                        massager.style.display = 'block';
-                        massager.firstElementChild.innerHTML += 'Error : Enter your date of birth.<br/>';
-                        self.addSpace();
-                    }
-                    else {
-                        dateOfBirthCheck = 'OK';
-                    }
-                    if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#password').value === '') {
-                        massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                        massager.style.display = 'block';
-                        massager.firstElementChild.innerHTML += 'Error : Enter your password (with @_ character and more than 6 character).<br/>';
-                        self.addSpace();
-                    }
-                    else if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#password').value !== '' && (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#password').value.indexOf('@') === -1) {
-                        massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                        massager.style.display = 'block';
-                        massager.firstElementChild.innerHTML += 'Error : Enter password with (@) character.<br/>';
-                        self.addSpace();
-                    }
-                    else if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#password').value !== '' && (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#password').value.indexOf('_') === -1) {
-                        massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                        massager.style.display = 'block';
-                        massager.firstElementChild.innerHTML += 'Error : Enter password with (_) character.<br/>';
-                        self.addSpace();
-                    }
-                    else if ((0,_common_validation__WEBPACK_IMPORTED_MODULE_1__.checkDuplicate)((0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#password').value)) {
-                        massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                        massager.style.display = 'block';
-                        massager.firstElementChild.innerHTML += 'Error : A character has been used more than twice in your password.<br/>';
-                        self.addSpace();
-                    }
-                    else if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#password').value !== '' && (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#password').value.length <= 6) {
-                        massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                        massager.style.display = 'block';
-                        massager.firstElementChild.innerHTML += 'Error : Enter password more than 6 character.<br/>';
-                        self.addSpace();
-                    }
-                    else {
-                        passwordCheck = 'OK';
-                    }
-                    if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#password').value !== (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#c_password').value) {
-                        massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                        massager.style.display = 'block';
-                        massager.firstElementChild.innerHTML += 'Error : Your password matched.<br/>';
-                    }
-                    if (!(0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#agree').checked) {
-                        massager.style = 'display:block;';
-                        massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                        massager.firstElementChild.innerHTML += 'Error : Please check i agree button to continue.<br/>';
-                        self.addSpace();
-                    }
-                    if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#agree').checked && firstNameCheck === 'OK' && lastNameCheck === 'OK' &&
-                        emailAddressCheck === 'OK' && usernameCheck === 'OK' && passwordCheck === 'OK' && dateOfBirthCheck === 'OK') {
-                        massager.firstElementChild.classList.add('box-runtime');
-                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#signup-button').setAttribute('disabled', 'disabled');
-                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#first-name').setAttribute('disabled', 'disabled');
-                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#last-name').setAttribute('disabled', 'disabled');
-                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#email').setAttribute('disabled', 'disabled');
-                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#username').setAttribute('disabled', 'disabled');
-                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#dateOfBirth').setAttribute('disabled', 'disabled');
-                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#gender').setAttribute('disabled', 'disabled');
-                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#password').setAttribute('disabled', 'disabled');
-                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#c_password').setAttribute('disabled', 'disabled');
-                        (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#agree').setAttribute('disabled', 'disabled');
-                        massager.style = 'display:block;';
-                        massager.firstElementChild.textContent = 'Please wait......';
-                        if (massager.style.display === 'block') {
-                            self.resizeMessageBoard();
-                            self.removeMessageBoardNextSibling();
+        Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
+            let captureElement = dom.captureElement;
+            if (captureElement('#signup-button') !== undefined) {
+                ['click', 'dblclick', 'touchstart'].forEach(function (event) {
+                    captureElement('#signup-button').addEventListener(event, function () {
+                        captureElement('#flex-center').firstElementChild.removeAttribute('style');
+                        let massager = captureElement('#messageZone');
+                        if (massager.firstElementChild === null) {
+                            let tmp = document.createElement('div');
+                            massager.appendChild(tmp);
                         }
-                        return (0,_common_request__WEBPACK_IMPORTED_MODULE_2__.sendRequest)({
-                            method: "POST",
-                            url: _db_app__WEBPACK_IMPORTED_MODULE_3__.appHost + 'user/registrationValidation',
-                            async: true,
-                            header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
-                            data: {
-                                security_code: 1,
-                                patch: (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#regs').value,
-                                time: (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#time').value,
-                                firstName: (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#first-name').value,
-                                lastName: (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#last-name').value,
-                                email: (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#email').value,
-                                username: (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#username').value,
-                                password: (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#password').value,
-                                confirmPassword: (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#c_password').value,
-                                dateOfBirth: (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#dateOfBirth').value,
-                                gender: (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#gender').value,
-                                agree: (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#agree').value,
-                                btnName: (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#signup-button').value
+                        massager.firstElementChild.textContent = '';
+                        massager.style = 'display:none;';
+                        let firstNameCheck, lastNameCheck, emailAddressCheck, usernameCheck, passwordCheck, dateOfBirthCheck;
+                        Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/validation */ "./Assets/typescripts/common/validation.ts")).then(function (validation) {
+                            if (captureElement('#first-name').value === '') {
+                                massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                                massager.style.display = 'block';
+                                massager.firstElementChild.innerHTML += 'Error : Enter your first name (more than 4 characters).<br/>';
+                                self.addSpace();
                             }
-                        }, function (response) {
-                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#signup-button').removeAttribute('disabled');
-                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#first-name').removeAttribute('disabled');
-                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#last-name').removeAttribute('disabled');
-                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#email').removeAttribute('disabled');
-                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#username').removeAttribute('disabled');
-                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#dateOfBirth').removeAttribute('disabled');
-                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#gender').removeAttribute('disabled');
-                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#password').removeAttribute('disabled');
-                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#c_password').removeAttribute('disabled');
-                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#agree').removeAttribute('disabled');
-                            (0,_common_message__WEBPACK_IMPORTED_MODULE_4__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)("#messageZone"));
-                            self.resizeMessageBoard();
+                            else if (validation.checkDuplicate(captureElement('#first-name').value)) {
+                                massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                                massager.style.display = 'block';
+                                massager.firstElementChild.innerHTML += 'Error : A character has been used more than twice in your first name.<br/>';
+                                self.addSpace();
+                            }
+                            else if (captureElement('#first-name').value.length <= 3) {
+                                massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                                massager.style.display = 'block';
+                                massager.firstElementChild.innerHTML += 'Error : Enter your first name more than 4 characters.<br/>';
+                                self.addSpace();
+                            }
+                            else {
+                                firstNameCheck = 'OK';
+                            }
+                            if (captureElement('#last-name').value === '') {
+                                massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                                massager.style.display = 'block';
+                                massager.firstElementChild.innerHTML += 'Error : Enter your last name (more than 4 characters).<br/>';
+                                self.addSpace();
+                            }
+                            else if (validation.checkDuplicate(captureElement('#last-name').value)) {
+                                massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                                massager.style.display = 'block';
+                                massager.firstElementChild.innerHTML += 'Error : A character has been used more than twice in your last name.<br/>';
+                                self.addSpace();
+                            }
+                            else if (captureElement('#last-name').value.length <= 3) {
+                                massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                                massager.style.display = 'block';
+                                massager.firstElementChild.innerHTML += 'Error : Enter your last name more than 4 letter.<br/>';
+                                self.addSpace();
+                            }
+                            else {
+                                lastNameCheck = 'OK';
+                            }
+                        }).catch(function (err) {
+                            console.log(err);
                         });
-                    }
-                }, { passive: true });
-            });
-        }
+                        if (captureElement('#email').value === '') {
+                            massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                            massager.style.display = 'block';
+                            massager.firstElementChild.innerHTML += 'Error : Enter your email address (valid for more than 14 characters).<br/>';
+                            self.addSpace();
+                        }
+                        else if (captureElement('#email').value.indexOf('@') === -1 || captureElement('#email').value.indexOf('.') === -1 || captureElement('#email').value.length <= 14) {
+                            massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                            massager.style.display = 'block';
+                            massager.firstElementChild.innerHTML += 'Error : Enter valid email address.<br/>';
+                            self.addSpace();
+                        }
+                        else {
+                            emailAddressCheck = 'OK';
+                        }
+                        if (captureElement('#username').value === '') {
+                            massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                            massager.style.display = 'block';
+                            massager.firstElementChild.innerHTML += 'Error : Enter your username (valid for at least 8 characters).<br/>';
+                            self.addSpace();
+                        }
+                        else if (captureElement('#username').value.length < 8) {
+                            massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                            massager.style.display = 'block';
+                            massager.firstElementChild.innerHTML += 'Error : Enter username at least 8 character.<br/>';
+                            self.addSpace();
+                        }
+                        else {
+                            usernameCheck = 'OK';
+                        }
+                        if (captureElement('#dateOfBirth').value === '') {
+                            massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                            massager.style.display = 'block';
+                            massager.firstElementChild.innerHTML += 'Error : Enter your date of birth.<br/>';
+                            self.addSpace();
+                        }
+                        else {
+                            dateOfBirthCheck = 'OK';
+                        }
+                        passwordCheck = self.passwordVerify(massager);
+                        if (captureElement('#password').value !== captureElement('#c_password').value) {
+                            massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                            massager.style.display = 'block';
+                            massager.firstElementChild.innerHTML += 'Error : Your password matched.<br/>';
+                        }
+                        if (!captureElement('#agree').checked) {
+                            massager.style = 'display:block;';
+                            massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                            massager.firstElementChild.innerHTML += 'Error : Please check i agree button to continue.<br/>';
+                            self.addSpace();
+                        }
+                        if (captureElement('#agree').checked && firstNameCheck === 'OK' && lastNameCheck === 'OK' &&
+                            emailAddressCheck === 'OK' && usernameCheck === 'OK' && passwordCheck === 'OK' && dateOfBirthCheck === 'OK') {
+                            massager.firstElementChild.classList.add('box-runtime');
+                            captureElement('#signup-button').setAttribute('disabled', 'disabled');
+                            captureElement('#first-name').setAttribute('disabled', 'disabled');
+                            captureElement('#last-name').setAttribute('disabled', 'disabled');
+                            captureElement('#email').setAttribute('disabled', 'disabled');
+                            captureElement('#username').setAttribute('disabled', 'disabled');
+                            captureElement('#dateOfBirth').setAttribute('disabled', 'disabled');
+                            captureElement('#gender').setAttribute('disabled', 'disabled');
+                            captureElement('#password').setAttribute('disabled', 'disabled');
+                            captureElement('#c_password').setAttribute('disabled', 'disabled');
+                            captureElement('#agree').setAttribute('disabled', 'disabled');
+                            massager.style = 'display:block;';
+                            massager.firstElementChild.textContent = 'Please wait......';
+                            if (massager.style.display === 'block') {
+                                self.resizeMessageBoard();
+                                self.removeMessageBoardNextSibling();
+                            }
+                            Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/request */ "./Assets/typescripts/common/request.ts")).then(function (request) {
+                                return request.sendRequest({
+                                    method: "POST",
+                                    url: self.appHost + 'user/registrationValidation',
+                                    async: true,
+                                    header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                                    data: {
+                                        security_code: 1,
+                                        patch: captureElement('#regs').value,
+                                        time: captureElement('#time').value,
+                                        firstName: captureElement('#first-name').value,
+                                        lastName: captureElement('#last-name').value,
+                                        email: captureElement('#email').value,
+                                        username: captureElement('#username').value,
+                                        password: captureElement('#password').value,
+                                        confirmPassword: captureElement('#c_password').value,
+                                        dateOfBirth: captureElement('#dateOfBirth').value,
+                                        gender: captureElement('#gender').value,
+                                        agree: captureElement('#agree').value,
+                                        btnName: captureElement('#signup-button').value
+                                    }
+                                }, function (response) {
+                                    captureElement('#signup-button').removeAttribute('disabled');
+                                    captureElement('#first-name').removeAttribute('disabled');
+                                    captureElement('#last-name').removeAttribute('disabled');
+                                    captureElement('#email').removeAttribute('disabled');
+                                    captureElement('#username').removeAttribute('disabled');
+                                    captureElement('#dateOfBirth').removeAttribute('disabled');
+                                    captureElement('#gender').removeAttribute('disabled');
+                                    captureElement('#password').removeAttribute('disabled');
+                                    captureElement('#c_password').removeAttribute('disabled');
+                                    captureElement('#agree').removeAttribute('disabled');
+                                    Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/message */ "./Assets/typescripts/common/message.ts")).then(function (message) {
+                                        message.showMessage(response, captureElement("#messageZone"));
+                                    }).catch(function (err) {
+                                        alert(err);
+                                    });
+                                    self.resizeMessageBoard();
+                                });
+                            }).catch(function (err) {
+                                console.log(err);
+                            });
+                        }
+                    }, { passive: true });
+                });
+            }
+        }).catch(function (err) {
+            console.log(err);
+        });
     }
     handleLoginForm() {
         let self = this;
-        let massager = (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#messageZone');
-        if (massager.firstElementChild === null) {
-            let tmp = document.createElement('div');
-            massager.appendChild(tmp);
-        }
-        massager.firstElementChild.classList.add('box-runtime');
-        (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#login-button').setAttribute('disabled', 'disabled');
-        (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#username').setAttribute('disabled', 'disabled');
-        (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#password').setAttribute('disabled', 'disabled');
-        massager.style = 'display:block;';
-        massager.firstElementChild.textContent = 'Please wait......';
-        self.resizeMessageBoard();
-        self.removeMessageBoardNextSibling();
-        return (0,_common_request__WEBPACK_IMPORTED_MODULE_2__.sendRequest)({
-            method: "POST",
-            url: _db_app__WEBPACK_IMPORTED_MODULE_3__.appHost + 'user/verifyUserAuth',
-            async: true,
-            header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
-            data: {
-                security_code: 1,
-                username: (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#username').value,
-                password: (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#password').value,
-                redirectURL: (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#redirect').value,
-                RememberMe: (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#RememberMe').value,
-                btnName: (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#login-button').value
+        Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
+            let captureElement = dom.captureElement;
+            let massager = captureElement('#messageZone');
+            if (massager.firstElementChild === null) {
+                let tmp = document.createElement('div');
+                massager.appendChild(tmp);
             }
-        }, function (response) {
-            if ((0,_common_validation__WEBPACK_IMPORTED_MODULE_1__.IsJsonString)(response)) {
-                let data = JSON.parse(response);
-                if (data.type === 'success' && data.message === 'LOGGED_IN') {
-                    if (data.url !== '/') {
-                        window.location.replace(_db_app__WEBPACK_IMPORTED_MODULE_3__.appHost + data.url);
+            massager.firstElementChild.classList.add('box-runtime');
+            captureElement('#login-button').setAttribute('disabled', 'disabled');
+            captureElement('#username').setAttribute('disabled', 'disabled');
+            captureElement('#password').setAttribute('disabled', 'disabled');
+            massager.style = 'display:block;';
+            massager.firstElementChild.textContent = 'Please wait......';
+            self.resizeMessageBoard();
+            self.removeMessageBoardNextSibling();
+            Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/request */ "./Assets/typescripts/common/request.ts")).then(function (request) {
+                return request.sendRequest({
+                    method: "POST",
+                    url: self.appHost + 'user/verifyUserAuth',
+                    async: true,
+                    header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                    data: {
+                        security_code: 1,
+                        username: captureElement('#username').value,
+                        password: captureElement('#password').value,
+                        redirectURL: captureElement('#redirect').value,
+                        RememberMe: captureElement('#RememberMe').value,
+                        btnName: captureElement('#login-button').value
                     }
-                    else {
-                        window.location.replace(_db_app__WEBPACK_IMPORTED_MODULE_3__.appHost);
-                    }
-                }
-                else {
-                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#login-button').removeAttribute('disabled');
-                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#username').removeAttribute('disabled');
-                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#password').removeAttribute('disabled');
-                    (0,_common_message__WEBPACK_IMPORTED_MODULE_4__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)("#messageZone"));
-                    self.resizeMessageBoard();
-                }
-            }
+                }, function (response) {
+                    Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/validation */ "./Assets/typescripts/common/validation.ts")).then(function (validation) {
+                        if (validation.IsJsonString(response)) {
+                            let data = JSON.parse(response);
+                            if (data.type === 'success' && data.message === 'LOGGED_IN') {
+                                if (data.url !== '/') {
+                                    window.location.replace(self.appHost + data.url);
+                                }
+                                else {
+                                    window.location.replace(self.appHost);
+                                }
+                            }
+                            else {
+                                captureElement('#login-button').removeAttribute('disabled');
+                                captureElement('#username').removeAttribute('disabled');
+                                captureElement('#password').removeAttribute('disabled');
+                                Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/message */ "./Assets/typescripts/common/message.ts")).then(function (message) {
+                                    message.showMessage(response, captureElement("#messageZone"));
+                                }).catch(function (err) {
+                                    alert(err);
+                                });
+                                self.resizeMessageBoard();
+                            }
+                        }
+                    }).catch(function (err) {
+                        console.log(err);
+                    });
+                });
+            }).catch(function (err) {
+                console.log(err);
+            });
+        }).catch(function (err) {
+            console.log(err);
         });
     }
+    handlePasswordRecoveryForm() {
+        let self = this;
+        Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
+            let captureElement = dom.captureElement;
+            let messages = captureElement('#messageZone');
+            if (messages.firstElementChild === null) {
+                let tmp = document.createElement('div');
+                messages.appendChild(tmp);
+            }
+            messages.firstElementChild.textContent = '';
+            if (captureElement('#username').value.length === 0 && captureElement('#email').value.length === 0) {
+                messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                messages.style.display = 'block';
+                messages.firstElementChild.innerHTML += 'Error : Please enter username or email address to continue.<br/>';
+            }
+            messages.style = 'display:block;';
+            messages.firstElementChild.textContent = 'Please wait......';
+            captureElement('#flex-center').firstElementChild.style = 'height:500px';
+            Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/request */ "./Assets/typescripts/common/request.ts")).then(function (request) {
+                return request.sendRequest({
+                    method: "POST",
+                    url: self.appHost + 'user/passwordRecoveryValidation',
+                    async: true,
+                    header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                    data: {
+                        security_code: 1,
+                        patch: captureElement('#recovery').value,
+                        time: captureElement('#time').value,
+                        email: captureElement('#email').value,
+                        username: captureElement('#username').value,
+                        btnName: captureElement('#code-send-button').value
+                    }
+                }, function (response) {
+                    captureElement('#email').removeAttribute('disabled');
+                    captureElement('#username').removeAttribute('disabled');
+                    Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/message */ "./Assets/typescripts/common/message.ts")).then(function (message) {
+                        message.showMessage(response, captureElement("#messageZone"));
+                    }).catch(function (err) {
+                        alert(err);
+                    });
+                    self.resizeMessageBoard();
+                    self.removeMessageBoardNextSibling();
+                });
+            }).catch(function (err) {
+                console.log(err);
+            });
+        }).catch(function (err) {
+            console.log(err);
+        });
+    }
+    handleSetPasswordForm() {
+        let self = this;
+        Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
+            let captureElement = dom.captureElement;
+            let passwordCheck, messages = captureElement('#messageZone');
+            if (messages.firstElementChild === null) {
+                let tmp = document.createElement('div');
+                messages.appendChild(tmp);
+            }
+            messages.firstElementChild.textContent = '';
+            passwordCheck = self.passwordVerify(messages);
+            if (captureElement('#password').value !== captureElement('#c_password').value) {
+                messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                messages.style.display = 'block';
+                messages.firstElementChild.innerHTML += 'Error : Your password matched.<br/>';
+            }
+            messages.style = 'display:block;';
+            messages.firstElementChild.textContent = 'Please wait......';
+            captureElement('#flex-center').firstElementChild.style = 'height:500px';
+            if (passwordCheck === 'OK') {
+                messages.firstElementChild.classList.add('box-runtime');
+                captureElement('#set-new-password-button').setAttribute('disabled', 'disabled');
+                captureElement('#password').setAttribute('disabled', 'disabled');
+                captureElement('#c_password').setAttribute('disabled', 'disabled');
+                messages.style = 'display:block;';
+                messages.firstElementChild.textContent = 'Please wait......';
+                captureElement('#flex-center').firstElementChild.style = 'height:700px';
+                Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/request */ "./Assets/typescripts/common/request.ts")).then(function (request) {
+                    return request.sendRequest({
+                        method: "POST",
+                        url: self.appHost + 'user/newPasswordValidation',
+                        async: true,
+                        header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
+                        data: {
+                            security_code: 1,
+                            patch: captureElement('#set-password').value,
+                            time: captureElement('#time').value,
+                            userId: captureElement('#user-id').value,
+                            password: captureElement('#password').value,
+                            confirmPassword: captureElement('#c_password').value,
+                            btnName: captureElement('#set-new-password-button').value
+                        }
+                    }, function (response) {
+                        captureElement('#set-new-password-button').removeAttribute('disabled');
+                        captureElement('#password').removeAttribute('disabled');
+                        captureElement('#c_password').removeAttribute('disabled');
+                        Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/message */ "./Assets/typescripts/common/message.ts")).then(function (message) {
+                            message.showMessage(response, captureElement("#messageZone"));
+                        }).catch(function (err) {
+                            alert(err);
+                        });
+                        self.resizeMessageBoard();
+                        self.removeMessageBoardNextSibling();
+                    });
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            }
+        }).catch(function (err) {
+            console.log(err);
+        });
+    }
+    passwordVerify(messages) {
+        let self = this;
+        let passwordCheck = '';
+        Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
+            let captureElement = dom.captureElement;
+            Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/validation */ "./Assets/typescripts/common/validation.ts")).then(function (validation) {
+                if (captureElement('#password').value === '') {
+                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                    messages.style.display = 'block';
+                    messages.firstElementChild.innerHTML += 'Error : Enter your password (with @_ character and more than 6 character).<br/>';
+                    self.addSpace();
+                }
+                else if (captureElement('#password').value !== '' && captureElement('#password').value.indexOf('@') === -1) {
+                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                    messages.style.display = 'block';
+                    messages.firstElementChild.innerHTML += 'Error : Enter password with (@) character.<br/>';
+                    self.addSpace();
+                }
+                else if (captureElement('#password').value !== '' && captureElement('#password').value.indexOf('_') === -1) {
+                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                    messages.style.display = 'block';
+                    messages.firstElementChild.innerHTML += 'Error : Enter password with (_) character.<br/>';
+                    self.addSpace();
+                }
+                else if (validation.checkDuplicate(captureElement('#password').value)) {
+                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                    messages.style.display = 'block';
+                    messages.firstElementChild.innerHTML += 'Error : A character has been used more than twice in your password.<br/>';
+                    self.addSpace();
+                }
+                else if (captureElement('#password').value !== '' && captureElement('#password').value.length <= 6) {
+                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                    messages.style.display = 'block';
+                    messages.firstElementChild.innerHTML += 'Error : Enter password more than 6 character.<br/>';
+                    self.addSpace();
+                }
+                else {
+                    passwordCheck = 'OK';
+                }
+            }).catch(function (err) {
+                console.log(err);
+            });
+        }).catch(function (err) {
+            console.log(err);
+        });
+        return passwordCheck;
+    }
     resizeMessageBoard() {
-        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#flex-center') !== undefined) {
-            (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#flex-center').firstElementChild.style = 'height:' + (+(0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#messageZone').clientHeight + +(0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#flex-center').firstElementChild.getAttribute('data-height')) + 'px';
-        }
+        Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
+            let captureElement = dom.captureElement;
+            if (captureElement('#flex-center') !== undefined) {
+                captureElement('#flex-center').firstElementChild.style = 'height:' + (+captureElement('#messageZone').clientHeight + +captureElement('#flex-center').firstElementChild.getAttribute('data-height')) + 'px';
+            }
+        }).catch(function (err) {
+            console.log(err);
+        });
     }
     removeMessageBoardNextSibling() {
-        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#messageZone').nextElementSibling.nodeName.toLowerCase() === 'br') {
-            (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#messageZone').nextElementSibling.remove();
-        }
+        Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
+            let captureElement = dom.captureElement;
+            if (captureElement('#messageZone').nextElementSibling.nodeName.toLowerCase() === 'br') {
+                captureElement('#messageZone').nextElementSibling.remove();
+            }
+        }).catch(function (err) {
+            console.log(err);
+        });
     }
     addSpace() {
-        (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#flex-center').firstElementChild.style = 'height:' + (+(0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#flex-center').firstElementChild.clientHeight + 25) + 'px';
+        Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
+            let captureElement = dom.captureElement;
+            let clientHeight = captureElement('#flex-center').firstElementChild.clientHeight;
+            captureElement('#flex-center').firstElementChild.style = 'height:' + (+clientHeight + 25) + 'px';
+        }).catch(function (err) {
+            console.log(err);
+        });
     }
 }
 

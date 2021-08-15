@@ -93,15 +93,17 @@ function showMessage(response, element, callback) {
             else {
                 if (response.indexOf('<!doctype html>') !== -1 && response.indexOf('flex-center') !== -1) {
                     Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
-                        if (document.querySelector('#popup-login') === null) {
-                            const popup = dom.createElement([{
+                        let captureElement = dom.captureElement;
+                        let createElement = dom.createElement;
+                        if (captureElement('#popup-login') === null) {
+                            const popup = createElement([{
                                     'div': { 'id': 'popup-login', 'class': 'modal', 'style': 'display:block;' }
                                 }]);
-                            const popupDocument = dom.createElement([{
+                            const popupDocument = createElement([{
                                     'div': { 'class': 'row modal-content animate', 'style': 'width:34.5%;' }
                                 }]);
                             popup.appendChild(popupDocument);
-                            const popupDocumentBody = dom.createElement([{
+                            const popupDocumentBody = createElement([{
                                     'div': { 'class': 'modal-body' }
                                 }]);
                             popupDocumentBody.innerHTML = response.substr(response.indexOf('<div class="logInBox'), (response.indexOf('</div> </section>') - response.indexOf('<div class="logInBox')))
