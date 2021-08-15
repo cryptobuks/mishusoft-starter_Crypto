@@ -56,6 +56,11 @@ import('./db/runtime').then(function (runtime) {
 
 
 import('./db/app').then(function (db) {
+import('./common/dom').then(function (d) {
+
+}).catch(function (err) {
+    console.log(err)
+});
 //user auth control
     (function (__authLoginForm) {
         let interval = setInterval(function () {
@@ -143,16 +148,23 @@ import('./db/app').then(function (db) {
             }
         }, 100);
     }(captureElement('#cl_msg_snd_btn')));
+
+
+    (function (__url) {
+        if (__url.indexOf('payment') !== -1) {
+            import('./mishusoft/Payment').then(function (paymentModule) {
+                let handlePayment = new paymentModule.Payment(db.appHost);
+                handlePayment.handlePaymentSystem();
+            }).catch(function (err) {
+                console.log(err);
+            });
+        }
+    }(window.location.href));
+
 }).catch(function (err) {
     console.log(err)
 });
 
-
-(function (__url) {
-    if (__url.indexOf('payment') !== -1) {
-    }
-
-}(window.location.href));
 
 /*add-ons zone*/
 (function (__url) {
@@ -4525,8 +4537,4 @@ function changeElementValueById(elements: any []) {
             captureElement('#' + element.id).value = element.value;
         });
     }
-}
-
-function addSpace() {
-    captureElement('#flex-center').firstElementChild.style = 'height:' + (+captureElement('#flex-center').firstElementChild.clientHeight + 25) + 'px';
 }

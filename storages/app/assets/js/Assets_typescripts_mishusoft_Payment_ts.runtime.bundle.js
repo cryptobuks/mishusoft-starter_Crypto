@@ -1,14 +1,23 @@
-export class Payment {
+"use strict";
+(self["webpackChunkMishusoftRuntime"] = self["webpackChunkMishusoftRuntime"] || []).push([["Assets_typescripts_mishusoft_Payment_ts"],{
 
-    constructor(
-        private appHost : string
-    ) {
+/***/ "./Assets/typescripts/mishusoft/Payment.ts":
+/*!*************************************************!*\
+  !*** ./Assets/typescripts/mishusoft/Payment.ts ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Payment": () => (/* binding */ Payment)
+/* harmony export */ });
+class Payment {
+    appHost;
+    constructor(appHost) {
+        this.appHost = appHost;
     }
-
-    handlePaymentSystem(){
-
+    handlePaymentSystem() {
         let self = this;
-
         /*stripe payment merchant cdn
         fetch('https://js.stripe.com/v3')
             .then(() => {
@@ -23,15 +32,14 @@ export class Payment {
             .catch((err) => {
                 console.info('Stripe SDK load failed. ' + err)
             })*/
-
-        import('../common/dom').then(function (dom) {
+        Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
             let captureElement = dom.captureElement;
             if (captureElement('#payment-welcome') !== undefined) {
                 ['click', 'dblclick', 'touchstart'].forEach(function (__event) {
                     captureElement('#start-pay')?.addEventListener(__event, function () {
                         captureElement('#payment-welcome').style.display = 'none';
                         captureElement('#payment-categories').removeAttribute('style');
-                    }, {passive: true});
+                    }, { passive: true });
                 });
             }
             if (captureElement('#payment-categories') !== undefined) {
@@ -39,7 +47,7 @@ export class Payment {
                     captureElement('#services-payment')?.addEventListener(__event, function () {
                         captureElement('#payment-categories').style.display = 'none';
                         captureElement('#payment-appid-email').style.display = 'block';
-                    }, {passive: true})
+                    }, { passive: true });
                 });
             }
             if (captureElement('#payment-appid-email') !== undefined) {
@@ -47,10 +55,9 @@ export class Payment {
                     captureElement('#user-select-back')?.addEventListener(__event, function () {
                         captureElement('#payment-appid-email').style.display = 'none';
                         captureElement('#payment-categories').removeAttribute('style');
-                    }, {passive: true});
+                    }, { passive: true });
                 });
-
-                captureElement('#payment-appid-email')?.addEventListener('submit', function (event: Event) {
+                captureElement('#payment-appid-email')?.addEventListener('submit', function (event) {
                     event.preventDefault();
                     let emailAddressCheck, messages = captureElement('#messagePanel');
                     messages.className = 'messageZone';
@@ -64,37 +71,35 @@ export class Payment {
                         messages.style.display = 'block';
                         messages.firstElementChild.innerHTML += 'Error : Please enter your app id to continue.<br/>';
                     }
-
-                    import('../mishusoft/addSpace').then(function (module) {
+                    __webpack_require__.e(/*! import() */ "Assets_typescripts_mishusoft_addSpace_ts").then(__webpack_require__.bind(__webpack_require__, /*! ../mishusoft/addSpace */ "./Assets/typescripts/mishusoft/addSpace.ts")).then(function (module) {
                         if (captureElement('#email-address').value === '') {
                             messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
                             messages.style.display = 'block';
                             messages.firstElementChild.innerHTML += 'Error : Enter your email address (valid for more than 14 characters).<br/>';
                             module.increaseHeight();
-                        } else if (captureElement('#email-address').value.indexOf('@') === -1 || captureElement('#email-address').value.indexOf('.') === -1 || captureElement('#email-address').value.length <= 14) {
+                        }
+                        else if (captureElement('#email-address').value.indexOf('@') === -1 || captureElement('#email-address').value.indexOf('.') === -1 || captureElement('#email-address').value.length <= 14) {
                             messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
                             messages.style.display = 'block';
                             messages.firstElementChild.innerHTML += 'Error : Enter valid email address.<br/>';
                             module.increaseHeight();
-                        } else {
+                        }
+                        else {
                             emailAddressCheck = 'OK';
                         }
                     }).catch(function (err) {
-                        console.log(err)
+                        console.log(err);
                     });
-
                     if (captureElement('#client-plan-type').value.length === 0) {
                         messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
                         messages.style.display = 'block';
                         messages.firstElementChild.innerHTML += 'Error : Please select your plan type to continue.<br/>';
                     }
-
                     if (captureElement('#client-plan').value.length === 0) {
                         messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
                         messages.style.display = 'block';
                         messages.firstElementChild.innerHTML += 'Error : Please select your plan to continue.<br/>';
                     }
-
                     messages.firstElementChild.classList.add('box-runtime');
                     captureElement('#user-select-done').setAttribute('disabled', 'disabled');
                     captureElement('#email-address').setAttribute('disabled', 'disabled');
@@ -104,18 +109,13 @@ export class Payment {
                     captureElement('#user-select-back').setAttribute('disabled', 'disabled');
                     messages.style = 'display:block;';
                     messages.firstElementChild.textContent = 'Please wait......';
-                    /*#!if ENV ==='production'*/
-                    setTimeout(function () {
-                        captureElement('#messagePanel').textContent = '';
-                    }, 3000);
-                    /*#!endif*/
                     if (emailAddressCheck === 'OK') {
-                        import('../common/request').then(function (request) {
+                        Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/request */ "./Assets/typescripts/common/request.ts")).then(function (request) {
                             return request.sendRequest({
                                 method: "POST",
                                 url: self.appHost + 'payment/verifyClient',
                                 async: true,
-                                header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
+                                header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
                                 data: {
                                     security_code: 1,
                                     userEmail: captureElement('#email-address').value,
@@ -124,8 +124,8 @@ export class Payment {
                                     planType: captureElement('#client-plan-type').value,
                                     btnName: captureElement('#user-select-done').textContent
                                 }
-                            }, function (response: any) {
-                                import('../common/validation').then(function (validation) {
+                            }, function (response) {
+                                Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/validation */ "./Assets/typescripts/common/validation.ts")).then(function (validation) {
                                     if (validation.IsJsonString(response) && JSON.parse(response).type === 'success') {
                                         //https://host/payment/payNow/appid/email/plantype/plan/amount
                                         /**
@@ -137,13 +137,12 @@ export class Payment {
                                          * */
                                         captureElement('#user-select-done').textContent = 'Redirecting...';
                                         setTimeout(function () {
-                                            window.location.replace(
-                                                self.appHost + 'payment/paynow/' + JSON.parse(response).appIdEncrypt + '/' +
+                                            window.location.replace(self.appHost + 'payment/paynow/' + JSON.parse(response).appIdEncrypt + '/' +
                                                 JSON.parse(response).emailEncrypt + '/' + JSON.parse(response).paymentPlanTypeEncrypt + '/' +
-                                                JSON.parse(response).paymentPlanEncrypt + '/'
-                                            );
-                                        }, 2000)
-                                    } else {
+                                                JSON.parse(response).paymentPlanEncrypt + '/');
+                                        }, 2000);
+                                    }
+                                    else {
                                         captureElement('#email-address').removeAttribute('disabled');
                                         captureElement('#app-id').removeAttribute('disabled');
                                         captureElement('#client-plan').removeAttribute('disabled');
@@ -152,22 +151,28 @@ export class Payment {
                                         captureElement('#user-select-back').removeAttribute('disabled');
                                     }
                                 }).catch(function (err) {
-                                    console.log(err)
+                                    console.log(err);
                                 });
-                                import('../common/message').then(function (message) {
+                                Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/message */ "./Assets/typescripts/common/message.ts")).then(function (message) {
                                     message.showMessage(response, captureElement("#messagePanel"));
                                 }).catch(function (err) {
-                                    console.log(err)
+                                    console.log(err);
                                 });
                             });
-                        }).catch(function (err){
+                        }).catch(function (err) {
                             console.log(err);
                         });
                     }
                 });
             }
         }).catch(function (err) {
-            console.log(err)
+            console.log(err);
         });
     }
 }
+
+
+/***/ })
+
+}]);
+//# sourceMappingURL=Assets_typescripts_mishusoft_Payment_ts.runtime.bundle.js.map

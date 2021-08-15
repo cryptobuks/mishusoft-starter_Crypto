@@ -1073,6 +1073,10 @@ __webpack_require__.e(/*! import() */ "Assets_typescripts_db_runtime_ts").then(_
     console.log(err);
 });
 Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./db/app */ "./Assets/typescripts/db/app.ts")).then(function (db) {
+    Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./common/dom */ "./Assets/typescripts/common/dom.ts")).then(function (d) {
+    }).catch(function (err) {
+        console.log(err);
+    });
     //user auth control
     (function (__authLoginForm) {
         let interval = setInterval(function () {
@@ -1154,13 +1158,19 @@ Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require
             }
         }, 100);
     }((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#cl_msg_snd_btn')));
+    (function (__url) {
+        if (__url.indexOf('payment') !== -1) {
+            __webpack_require__.e(/*! import() */ "Assets_typescripts_mishusoft_Payment_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./mishusoft/Payment */ "./Assets/typescripts/mishusoft/Payment.ts")).then(function (paymentModule) {
+                let handlePayment = new paymentModule.Payment(db.appHost);
+                handlePayment.handlePaymentSystem();
+            }).catch(function (err) {
+                console.log(err);
+            });
+        }
+    }(window.location.href));
 }).catch(function (err) {
     console.log(err);
 });
-(function (__url) {
-    if (__url.indexOf('payment') !== -1) {
-    }
-}(window.location.href));
 /*add-ons zone*/
 (function (__url) {
     if (__url.indexOf('ipinfo') !== -1) {
@@ -5164,9 +5174,6 @@ function changeElementValueById(elements) {
             (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#' + element.id).value = element.value;
         });
     }
-}
-function addSpace() {
-    (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#flex-center').firstElementChild.style = 'height:' + (+(0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#flex-center').firstElementChild.clientHeight + 25) + 'px';
 }
 
 })();
