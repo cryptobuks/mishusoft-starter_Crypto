@@ -12,8 +12,8 @@
 /vendor/
 
 # Runtime cache (with lock) files
-*.lock
-*-lock.json
+#*.lock
+#*-lock.json
 *.webmanifest
 *.cache
 
