@@ -12,79 +12,77 @@ use Mishusoft\Utility\Character;
 $translation = new Localization(ArrayCollection::value($this->request, "locale"));
 
 $footer = Ui::element(Ui::getDocumentContentFooter(), 'article', [
-    "class"=>"footer background-image",
+    "class" => "footer background-image",
 ]);
 
-$authenticate = ["account","user", "developer", "consumer", "staff"];
+$authenticate = ["account", "user", "developer", "consumer", "staff"];
 
 if (!in_array(Character::lower($this->request["controller"]), $authenticate)) {
     $footer0 = Ui::element($footer, 'div', [
-        'class'=>'company-banner',
+        'class' => 'company-banner',
     ]);
 
     $left = Ui::element($footer0, 'div', [
-        'class'=>'mishusoft-company-brief',
+        'class' => 'mishusoft-company-brief',
     ]);
 
     Ui::element($left, 'a', [
-        'class'=>'protect mishusoft-root-link mishusoft-root-link-secondary',
-        'href' => Runtime::link("default_home"),'text' => $translation->translate(Memory::Data()->company->name), ]);
+        'class' => 'protect mishusoft-root-link mishusoft-root-link-secondary',
+        'href' => Runtime::link("default_home"), 'text' => $translation->translate(Memory::Data()->company->name),]);
     Ui::element($left, 'div', [
-        'class'=>'mishusoft-company-brief-message',
-        'text' => $translation->translate(Memory::Data()->company->detailsDescription), ]);
+        'class' => 'mishusoft-company-brief-message',
+        'text' => $translation->translate(Memory::Data()->company->detailsDescription),]);
 
     Ui::element($footer0, 'div', [
-        'class'=>'blank-space',
+        'class' => 'blank-space',
     ]);
-
-
 
 
     /*contact panel*/
     $right = Ui::element($footer0, 'div', [
-        'class'=>'protect get-in-touch',
+        'class' => 'protect get-in-touch',
     ]);
 
     Ui::element($right, 'a', [
-        'class'=>'protect',
-        'href' => Runtime::link("company/contact-us"),'text' => $translation->translate("Get in touch"), ]);
+        'class' => 'protect',
+        'href' => Runtime::link("company/contact-us"), 'text' => $translation->translate("Get in touch"),]);
 
-    $parent = Ui::element($right, 'div', ['class'=>'quick-link-area',]);
+    $parent = Ui::element($right, 'div', ['class' => 'quick-link-area',]);
     /*map marker*/
     Ui::elementList(Ui::element($parent, 'div', [
-        'class'=>'quick-link',]), ["img" => [
+        'class' => 'quick-link',]), ["img" => [
         ["src" => Storage::toDataUri('media', "images/icons/companies/map-marker.png"),
-            "height"=>"15px","width"=>"15px", "alt" => Memory::Data()->company->address, ],
-        ], "a" => [
-        ['class'=>'protect', "href" => Memory::Data()->company->map, "target" => "_blank", "rel" => "noreferrer",
+            "height" => "15px", "width" => "15px", "alt" => Memory::Data()->company->address,],
+    ], "a" => [
+        ['class' => 'protect', "href" => Memory::Data()->company->map, "target" => "_blank", "rel" => "noreferrer",
             "text" => Memory::Data()->company->address,
-            ],
-        ]]);
+        ],
+    ]]);
 
     /*cell phone*/
     Ui::elementList(Ui::element($parent, 'div', [
-        'class'=>'quick-link',]), ["img" => [
+        'class' => 'quick-link',]), ["img" => [
         ["style" => "height: 15px;width: 15px;margin-left:10px;margin-right:10px;margin-top: 4px;",
             "src" => Storage::toDataUri('media', "images/icons/companies/ringing-phone.png"),
-            "height"=>"15px","width"=>"15px", "alt" => Memory::Data()->company->care, ],
-        ], "a" => [
+            "height" => "15px", "width" => "15px", "alt" => Memory::Data()->company->care,],
+    ], "a" => [
         [
             "style" => Ui::HTML_HREF_STYLE . "color:" . Ui::COLOR["white"],
             "href" => "tel:" . Memory::Data()->company->care,
             "target" => "_blank", "text" => Memory::Data()->company->care,
         ],
-        ]]);
+    ]]);
 
     /*email address*/
     Ui::elementList(Ui::element($parent, 'div', [
-        'class'=>'quick-link', ]), ["img" => [
+        'class' => 'quick-link',]), ["img" => [
         ["style" => "height: 15px;width: 15px;margin-left:10px;margin-right:10px;margin-top: 4px;",
             "src" => Storage::toDataUri('media', "images/icons/companies/mail-contact.png"),
-            "height"=>"15px","width"=>"15px", "alt" => Memory::Data()->company->mail, ],
-        ], "a" => [
+            "height" => "15px", "width" => "15px", "alt" => Memory::Data()->company->mail,],
+    ], "a" => [
         ["style" => Ui::HTML_HREF_STYLE . "color:" . Ui::COLOR["white"], "href" => "mailto:" . Memory::Data()->company->mail,
-            "target" => "_blank", "text" => Memory::Data()->company->mail, ],
-        ]]);
+            "target" => "_blank", "text" => Memory::Data()->company->mail,],
+    ]]);
 
     /*support address*/
 //    Ui::elementList(Ui::element($parent, 'div', ['class'=>'quick-link'/*,'style' => 'height: 20px;background:inherit;color: inherit;display: flex;flex-direction:row;'*/]), ["img" => [
@@ -92,7 +90,6 @@ if (!in_array(Character::lower($this->request["controller"]), $authenticate)) {
 //    ], "a" => [
 //        ["style" => Ui::htmlHrefStyle . "color:" . Ui::color["white"], "href" => Memory::Data()->company->support, "target" => "_blank", "text" => Memory::Data()->company->support, "rel" => "noreferrer"],
 //    ]]);
-
 
 
     Ui::element($right, 'span', [
@@ -104,7 +101,7 @@ if (!in_array(Character::lower($this->request["controller"]), $authenticate)) {
         'style' => 'height: 20px;background:inherit;color: inherit;display: flex;flex-direction:row;',
     ]);
 
-    $StyleForSocialMediaLink = Ui::HTML_HREF_STYLE . "color:" . Ui::COLOR["white"].";margin-left:5px;margin-right:5px;border-radius: 50%;";
+    $StyleForSocialMediaLink = Ui::HTML_HREF_STYLE . "color:" . Ui::COLOR["white"] . ";margin-left:5px;margin-right:5px;border-radius: 50%;";
     $StyleForSocialMediaIcon = "height: 20px;width:20px;";
 
 
@@ -116,8 +113,11 @@ if (!in_array(Character::lower($this->request["controller"]), $authenticate)) {
         ]),
         "img",
         [
-            "style" => $StyleForSocialMediaIcon,"height"=>"20px","width"=>"20px",
-            "src" => Storage::toDataUri('media', "images/icons/social-media/facebook-new.png"), "alt" => "facebook",
+            "style" => $StyleForSocialMediaIcon, "height" => "20px", "width" => "20px",
+            "src" => Storage::toDataUri(
+                'media',
+                "images/icons/social-media/facebook-new.png"
+            ), "alt" => "facebook",
         ]
     );
     /*github*/
@@ -128,7 +128,7 @@ if (!in_array(Character::lower($this->request["controller"]), $authenticate)) {
         ]),
         "img",
         [
-            "style" => $StyleForSocialMediaIcon,"height"=>"20px","width"=>"20px",
+            "style" => $StyleForSocialMediaIcon, "height" => "20px", "width" => "20px",
             "src" => Storage::toDataUri('media', "images/icons/social-media/github.png"), "alt" => "github",
         ]
     );
@@ -141,7 +141,7 @@ if (!in_array(Character::lower($this->request["controller"]), $authenticate)) {
         ]),
         "img",
         [
-            "style" => $StyleForSocialMediaIcon,"height"=>"20px","width"=>"20px",
+            "style" => $StyleForSocialMediaIcon, "height" => "20px", "width" => "20px",
             "src" => Storage::toDataUri('media', "images/icons/social-media/instagram-new.png"), "alt" => "instagram",
         ]
     );
@@ -153,7 +153,7 @@ if (!in_array(Character::lower($this->request["controller"]), $authenticate)) {
         ]),
         "img",
         [
-            "style" => $StyleForSocialMediaIcon,"height"=>"20px","width"=>"20px",
+            "style" => $StyleForSocialMediaIcon, "height" => "20px", "width" => "20px",
             "src" => Storage::toDataUri('media', "images/icons/social-media/linkedin.png"), "alt" => "linkedin",
         ]
     );
@@ -165,7 +165,7 @@ if (!in_array(Character::lower($this->request["controller"]), $authenticate)) {
         ]),
         "img",
         [
-            "style" => $StyleForSocialMediaIcon,"height"=>"20px","width"=>"20px",
+            "style" => $StyleForSocialMediaIcon, "height" => "20px", "width" => "20px",
             "src" => Storage::toDataUri('media', "images/icons/social-media/pinterest.png"), "alt" => "pinterest",
         ]
     );
@@ -177,7 +177,7 @@ if (!in_array(Character::lower($this->request["controller"]), $authenticate)) {
         ]),
         "img",
         [
-            "style" => $StyleForSocialMediaIcon,"height"=>"20px","width"=>"20px",
+            "style" => $StyleForSocialMediaIcon, "height" => "20px", "width" => "20px",
             "src" => Storage::toDataUri('media', "images/icons/social-media/reddit.png"), "alt" => "reddit",
         ]
     );
@@ -189,7 +189,7 @@ if (!in_array(Character::lower($this->request["controller"]), $authenticate)) {
         ]),
         "img",
         [
-            "style" => $StyleForSocialMediaIcon,"height"=>"20px","width"=>"20px",
+            "style" => $StyleForSocialMediaIcon, "height" => "20px", "width" => "20px",
             "src" => Storage::toDataUri('media', "images/icons/social-media/tiktok.png"), "alt" => "tiktok",
         ]
     );
@@ -201,49 +201,47 @@ if (!in_array(Character::lower($this->request["controller"]), $authenticate)) {
         ]),
         "img",
         [
-            "style" => $StyleForSocialMediaIcon,"height"=>"20px","width"=>"20px",
+            "style" => $StyleForSocialMediaIcon, "height" => "20px", "width" => "20px",
             "src" => Storage::toDataUri('media', "images/icons/social-media/twitter.png"), "alt" => "twitter",
         ]
     );
 }
 
 
-
 $footer1 = Ui::element($footer, 'div', [
-    'class'=>'copy-right',
+    'class' => 'copy-right',
 ]);
 
 Ui::elementList(Ui::element($footer1, "div", [
     "class" => "col-lg-plus-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xs-plus-12",
 ]), [
-        /*"Copyright © " . Time::getCurrentYearNumber().Framework::COMPANY_NAME.". All Right Reserved."*/
-        "copyright" => [
-            ['text' => "Copyright © " . /*Memory::Data()->company->est . " - ".*/  Time::currentYearNumber()],
-        ],"a" => [
-            [
-                "href" => Runtime::link("default_home"), "target" => "_blank",
-                "class" => "link text-safe", "style" => "padding:0;color: white;",
-                "text" =>  " " .$translation->translate(Memory::Data()->company->name),
-            ],
-        ],"span" => [
-            ['text' => ". ".$translation->translate("All Right Reserved.") /* text for system default signature*/],
+    /*"Copyright © " . Time::getCurrentYearNumber().Framework::COMPANY_NAME.". All Right Reserved."*/
+    "copyright" => [
+        ['text' => "Copyright © " . /*Memory::Data()->company->est . " - ".*/ Time::currentYearNumber()],
+    ], "a" => [
+        [
+            "href" => Runtime::link("default_home"), "target" => "_blank",
+            "class" => "link text-safe", "style" => "padding:0;color: white;",
+            "text" => " " . $translation->translate(Memory::Data()->company->name),
         ],
-    ]);
-
+    ], "span" => [
+        ['text' => ". " . $translation->translate("All Right Reserved.") /* text for system default signature*/],
+    ],
+]);
 
 
 Ui::elementList(Ui::element($footer1, "div", [
     "style" => "display: flex;align-items: center;justify-content: center;margin-top: 0px;",
-    "class" => "col-lg-plus-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xs-plus-12", ]), [
-        "a" => [
-            [
-                "href" => Runtime::link("company/terms-and-conditions"), "target" => "_blank",
-                "class" => "link text-safe", "style" => "color: white;",
-                'text' => $translation->translate("Terms & Condition"),
-            ],
-            [
-                "href" => Runtime::link("company/privacy-policy"), "target" => "_blank",
-                "class" => "link text-safe", "style" => "color: white;",
-                'text' => $translation->translate("Privacy Policy"),
-            ],],
-    ]);
+    "class" => "col-lg-plus-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xs-plus-12",]), [
+    "a" => [
+        [
+            "href" => Runtime::link("company/terms-and-conditions"), "target" => "_blank",
+            "class" => "link text-safe", "style" => "color: white;",
+            'text' => $translation->translate("Terms & Condition"),
+        ],
+        [
+            "href" => Runtime::link("company/privacy-policy"), "target" => "_blank",
+            "class" => "link text-safe", "style" => "color: white;",
+            'text' => $translation->translate("Privacy Policy"),
+        ],],
+]);

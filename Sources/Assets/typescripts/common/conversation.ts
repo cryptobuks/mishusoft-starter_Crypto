@@ -1,4 +1,3 @@
-
 export function NumberToText(value: any) {
     let fraction = Math.round(frac(value) * 100);
     let f_text = "";

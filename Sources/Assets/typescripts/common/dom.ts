@@ -1,8 +1,3 @@
-
-/**
- * @param details
- * */
-
 export function createElement(details: any[]) {
     let element, i, j, k;
     for (i in details) {
@@ -21,20 +16,11 @@ export function createElement(details: any[]) {
     return (element as HTMLElement);
 }
 
-
-/**
- * @param selectors HTML valid element selector
- * */
 export function captureElement<E extends Element = Element>(selectors: string): any {
     if (document.querySelector(selectors) !== null) {
         return document.querySelector(selectors) as HTMLElement;
     }
 }
-
-
-/**
- * @param selectors
- * */
 
 export function captureElements<E extends Element = Element>(selectors: string): any {
     if (document.querySelectorAll(selectors) !== null) {

@@ -1,3 +1,4 @@
+var MishusoftRuntime;
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	// The require scope
@@ -34,9 +35,9 @@
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-/*!***********************************************!*\
-  !*** ./Assets/typescripts/classes/browser.ts ***!
-  \***********************************************/
+/*!*************************************************!*\
+  !*** ./Assets/typescripts/mishusoft/browser.ts ***!
+  \*************************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Browser": () => (/* binding */ Browser)
@@ -2728,10 +2729,6 @@ class Browser {
     getBrowserName() {
         return (this.browserName).trim();
     }
-    /**
-     * @public
-     * @return string
-     */
     getBrowserNameFull() {
         return (this.browserNameFull).trim();
     }
@@ -2829,6 +2826,7 @@ class Browser {
     }
 }
 
+MishusoftRuntime = __webpack_exports__;
 /******/ })()
 ;
 //# sourceMappingURL=browser.js.map

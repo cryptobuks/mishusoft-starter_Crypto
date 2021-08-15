@@ -1,232 +1,7 @@
+var MishusoftRuntime;
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
-/******/ 	var __webpack_modules__ = ({
-
-/***/ "./Assets/typescripts/common/dom.ts":
-/*!******************************************!*\
-  !*** ./Assets/typescripts/common/dom.ts ***!
-  \******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "createElement": () => (/* binding */ createElement),
-/* harmony export */   "captureElement": () => (/* binding */ captureElement),
-/* harmony export */   "captureElements": () => (/* binding */ captureElements)
-/* harmony export */ });
-/**
- * @param details
- * */
-function createElement(details) {
-    let element, i, j, k;
-    for (i in details) {
-        let data = details[i];
-        for (j in data) {
-            let elementName = j;
-            let elementData = data[j];
-            element = document.createElement(elementName);
-            for (k in elementData) {
-                let element_attribute = k;
-                let element_attribute_value = elementData[k];
-                element.setAttribute(element_attribute, element_attribute_value);
-            }
-        }
-    }
-    return element;
-}
-/**
- * @param selectors HTML valid element selector
- * */
-function captureElement(selectors) {
-    if (document.querySelector(selectors) !== null) {
-        return document.querySelector(selectors);
-    }
-}
-/**
- * @param selectors
- * */
-function captureElements(selectors) {
-    if (document.querySelectorAll(selectors) !== null) {
-        return document.querySelectorAll(selectors);
-    }
-}
-
-
-/***/ }),
-
-/***/ "./Assets/typescripts/db/app.ts":
-/*!**************************************!*\
-  !*** ./Assets/typescripts/db/app.ts ***!
-  \**************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "appHost": () => (/* binding */ appHost),
-/* harmony export */   "app": () => (/* binding */ app)
-/* harmony export */ });
-/* harmony import */ var _common_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../common/dom */ "./Assets/typescripts/common/dom.ts");
-/* global _root_ */
-/*initialize on extension installed*/
-
-let __appHostedServerRoot = (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#mishusoft-web-root').content;
-/*backup plan*/
-if (__appHostedServerRoot === undefined) {
-    //__appHostedServerRoot = 'http://localhost/';
-    __appHostedServerRoot = 'http://localhost/';
-    /*required variables*/
-}
-if (__appHostedServerRoot.substr(-1) !== '/') {
-    __appHostedServerRoot += '/';
-}
-const appHost = __appHostedServerRoot;
-const app = {
-    "default": {
-        "name": 'mishusoft',
-        "version": 'official',
-        "author": 'Mr. Al Amin Ahamed Abir',
-        "charset": 'utf8mb4',
-        "prefix": 'msu',
-        "companyName": 'Mishusoft Systems Incorporate.',
-        "text": {
-            "welcome": "Welcome to Mishusoft Platform",
-            "description": "Mishusoft Platform is a robust multi-web platform developed by Mishusoft Systems Inc. This platform is capable of getting your work done quickly and accurately.",
-            "install_state": "The application is ready to be installed on your device at this time.",
-        }
-    },
-    "content": {
-        "folder": {
-            "logos": __appHostedServerRoot + 'media/logos/',
-            "css": __appHostedServerRoot + 'assets/css/',
-            "js": __appHostedServerRoot + 'assets/js/',
-            "images": __appHostedServerRoot + 'assets/images/',
-        },
-        "file": {
-            "default": {
-                "link": [
-                    {
-                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-57x57.png",
-                        "rel": "apple-touch-icon",
-                        "size": "57x57"
-                    },
-                    {
-                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-60x60.png",
-                        "rel": "apple-touch-icon",
-                        "size": "60x60"
-                    },
-                    {
-                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-72x72.png",
-                        "rel": "apple-touch-icon",
-                        "size": "72x72"
-                    },
-                    {
-                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-76x76.png",
-                        "rel": "apple-touch-icon",
-                        "size": "76x76"
-                    },
-                    {
-                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-114x114.png",
-                        "rel": "apple-touch-icon",
-                        "size": "114x114"
-                    },
-                    {
-                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-120x120.png",
-                        "rel": "apple-touch-icon",
-                        "size": "120x120"
-                    },
-                    {
-                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-144x144.png",
-                        "rel": "apple-touch-icon",
-                        "size": "144x144"
-                    },
-                    {
-                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-152x152.png",
-                        "rel": "apple-touch-icon",
-                        "size": "152x152"
-                    },
-                    {
-                        "href": __appHostedServerRoot + "libraries/logos/apple-icon-180x180.png",
-                        "rel": "apple-touch-icon",
-                        "size": "180x180"
-                    },
-                    {
-                        "href": __appHostedServerRoot + "libraries/logos/android-icon-192x192.png",
-                        "rel": "icon",
-                        "size": "192x192",
-                        "type": "image/png"
-                    },
-                    {
-                        "href": __appHostedServerRoot + "libraries/logos/favicon-16x16.png",
-                        "rel": "icon",
-                        "size": "16x16",
-                        "type": "image/png"
-                    },
-                    {
-                        "href": __appHostedServerRoot + "libraries/logos/favicon-32x32.png",
-                        "rel": "icon",
-                        "size": "32x32",
-                        "type": "image/png"
-                    },
-                    {
-                        "href": __appHostedServerRoot + "libraries/logos/favicon-96x96.png",
-                        "rel": "icon",
-                        "size": "96x96",
-                        "type": "image/png"
-                    },
-                    {
-                        "href": __appHostedServerRoot + "libraries/logos/favicon.ico",
-                        "rel": "icon",
-                        "size": "16x16",
-                        "type": "image/vnd.microsoft.icon"
-                    },
-                    {
-                        "href": __appHostedServerRoot + "libraries/logos/manifest.json",
-                        "rel": "manifest",
-                    },
-                    {
-                        "name": "msapplication-TileColor",
-                        "content": "#ffffff",
-                    },
-                    {
-                        "name": "msapplication-TileImage",
-                        "content": __appHostedServerRoot + "libraries/logos/ms-icon-144x144.png"
-                    },
-                    {
-                        "name": "theme-color",
-                        "content": "#ffffff",
-                    },
-                ],
-            },
-        },
-    },
-    "website": {
-        "home": "https://www.mishusoft.com/",
-        "support": "support@mishusoft.com",
-        "donate": "https://www.mishusoft.com/payment/donate",
-        "IpInfo": "https://api.ipdata.co/?api-key=2f9dde381f67efed325acfb1011a988036b28fc6cc02f07668ef7180",
-        "IpInfoKey": "2f9dde381f67efed325acfb1011a988036b28fc6cc02f07668ef7180",
-        "fontAwesome": "https://kit.fontawesome.com/b4c8f8449f.js",
-        "fontAwesomeKey": "b4c8f8449f",
-        "temporary": {
-            "home": "http://localhost/",
-            "monitorURL": "http://localhost/monitor/browser/",
-            "paymentURL": "http://localhost/payment/"
-        },
-        "publish": {
-            "home": "https://www.mishusoft.com/",
-            "monitorURL": "https://www.mishusoft.com/monitor/browser/",
-            "paymentURL": "https://www.mishusoft.com/payment/"
-        }
-    },
-    "runtime": {
-        "request": ""
-    }
-};
-
-
-/***/ })
-
-/******/ 	});
+/******/ 	var __webpack_modules__ = ({});
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
@@ -252,6 +27,9 @@ const app = {
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
@@ -265,9 +43,86 @@ const app = {
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/ensure chunk */
+/******/ 	(() => {
+/******/ 		__webpack_require__.f = {};
+/******/ 		// This file contains only the entry chunk.
+/******/ 		// The chunk loading function for additional chunks
+/******/ 		__webpack_require__.e = (chunkId) => {
+/******/ 			return Promise.all(Object.keys(__webpack_require__.f).reduce((promises, key) => {
+/******/ 				__webpack_require__.f[key](chunkId, promises);
+/******/ 				return promises;
+/******/ 			}, []));
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/get javascript chunk filename */
+/******/ 	(() => {
+/******/ 		// This function allow to reference async chunks
+/******/ 		__webpack_require__.u = (chunkId) => {
+/******/ 			// return url for filenames based on template
+/******/ 			return "js/" + chunkId + ".runtime.bundle.js";
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/get mini-css chunk filename */
+/******/ 	(() => {
+/******/ 		// This function allow to reference all chunks
+/******/ 		__webpack_require__.miniCssF = (chunkId) => {
+/******/ 			// return url for filenames based on template
+/******/ 			return undefined;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/load script */
+/******/ 	(() => {
+/******/ 		var inProgress = {};
+/******/ 		var dataWebpackPrefix = "MishusoftRuntime:";
+/******/ 		// loadScript function to load a script via script tag
+/******/ 		__webpack_require__.l = (url, done, key, chunkId) => {
+/******/ 			if(inProgress[url]) { inProgress[url].push(done); return; }
+/******/ 			var script, needAttach;
+/******/ 			if(key !== undefined) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				for(var i = 0; i < scripts.length; i++) {
+/******/ 					var s = scripts[i];
+/******/ 					if(s.getAttribute("src") == url || s.getAttribute("data-webpack") == dataWebpackPrefix + key) { script = s; break; }
+/******/ 				}
+/******/ 			}
+/******/ 			if(!script) {
+/******/ 				needAttach = true;
+/******/ 				script = document.createElement('script');
+/******/ 				script.type = "module";
+/******/ 				script.charset = 'utf-8';
+/******/ 				script.timeout = 120;
+/******/ 				if (__webpack_require__.nc) {
+/******/ 					script.setAttribute("nonce", __webpack_require__.nc);
+/******/ 				}
+/******/ 				script.setAttribute("data-webpack", dataWebpackPrefix + key);
+/******/ 				script.src = url;
+/******/ 			}
+/******/ 			inProgress[url] = [done];
+/******/ 			var onScriptComplete = (prev, event) => {
+/******/ 				// avoid mem leaks in IE.
+/******/ 				script.onerror = script.onload = null;
+/******/ 				clearTimeout(timeout);
+/******/ 				var doneFns = inProgress[url];
+/******/ 				delete inProgress[url];
+/******/ 				script.parentNode && script.parentNode.removeChild(script);
+/******/ 				doneFns && doneFns.forEach((fn) => (fn(event)));
+/******/ 				if(prev) return prev(event);
+/******/ 			}
+/******/ 			;
+/******/ 			var timeout = setTimeout(onScriptComplete.bind(null, undefined, { type: 'timeout', target: script }), 120000);
+/******/ 			script.onerror = onScriptComplete.bind(null, script.onerror);
+/******/ 			script.onload = onScriptComplete.bind(null, script.onload);
+/******/ 			needAttach && document.head.appendChild(script);
+/******/ 		};
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
@@ -281,26 +136,111 @@ const app = {
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (typeof import.meta.url === "string") scriptUrl = import.meta.url
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl + "../";
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"readystate": 0
+/******/ 		};
+/******/ 		
+/******/ 		__webpack_require__.f.j = (chunkId, promises) => {
+/******/ 				// JSONP chunk loading for javascript
+/******/ 				var installedChunkData = __webpack_require__.o(installedChunks, chunkId) ? installedChunks[chunkId] : undefined;
+/******/ 				if(installedChunkData !== 0) { // 0 means "already installed".
+/******/ 		
+/******/ 					// a Promise means "currently loading".
+/******/ 					if(installedChunkData) {
+/******/ 						promises.push(installedChunkData[2]);
+/******/ 					} else {
+/******/ 						if(true) { // all chunks have JS
+/******/ 							// setup Promise in chunk cache
+/******/ 							var promise = new Promise((resolve, reject) => (installedChunkData = installedChunks[chunkId] = [resolve, reject]));
+/******/ 							promises.push(installedChunkData[2] = promise);
+/******/ 		
+/******/ 							// start chunk loading
+/******/ 							var url = __webpack_require__.p + __webpack_require__.u(chunkId);
+/******/ 							// create error before stack unwound to get useful stacktrace later
+/******/ 							var error = new Error();
+/******/ 							var loadingEnded = (event) => {
+/******/ 								if(__webpack_require__.o(installedChunks, chunkId)) {
+/******/ 									installedChunkData = installedChunks[chunkId];
+/******/ 									if(installedChunkData !== 0) installedChunks[chunkId] = undefined;
+/******/ 									if(installedChunkData) {
+/******/ 										var errorType = event && (event.type === 'load' ? 'missing' : event.type);
+/******/ 										var realSrc = event && event.target && event.target.src;
+/******/ 										error.message = 'Loading chunk ' + chunkId + ' failed.\n(' + errorType + ': ' + realSrc + ')';
+/******/ 										error.name = 'ChunkLoadError';
+/******/ 										error.type = errorType;
+/******/ 										error.request = realSrc;
+/******/ 										installedChunkData[1](error);
+/******/ 									}
+/******/ 								}
+/******/ 							};
+/******/ 							__webpack_require__.l(url, loadingEnded, "chunk-" + chunkId, chunkId);
+/******/ 						} else installedChunks[chunkId] = 0;
+/******/ 					}
+/******/ 				}
+/******/ 		};
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		// no on chunks loaded
+/******/ 		
+/******/ 		// install a JSONP callback for chunk loading
+/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
+/******/ 			var [chunkIds, moreModules, runtime] = data;
+/******/ 			// add "moreModules" to the modules object,
+/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			var moduleId, chunkId, i = 0;
+/******/ 			for(moduleId in moreModules) {
+/******/ 				if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 					__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 				}
+/******/ 			}
+/******/ 			if(runtime) var result = runtime(__webpack_require__);
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+/******/ 			for(;i < chunkIds.length; i++) {
+/******/ 				chunkId = chunkIds[i];
+/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 					installedChunks[chunkId][0]();
+/******/ 				}
+/******/ 				installedChunks[chunkIds[i]] = 0;
+/******/ 			}
+/******/ 		
+/******/ 		}
+/******/ 		
+/******/ 		var chunkLoadingGlobal = self["webpackChunkMishusoftRuntime"] = self["webpackChunkMishusoftRuntime"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 	})();
+/******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-(() => {
 /*!******************************************!*\
   !*** ./Assets/typescripts/readystate.ts ***!
   \******************************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _common_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common/dom */ "./Assets/typescripts/common/dom.ts");
-/* harmony import */ var _db_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./db/app */ "./Assets/typescripts/db/app.ts");
-
-
-//console.log('ready state is running............')
-//console.log('preparing is running............')
-document.querySelector('#theme.css')?.addEventListener('load', function (event) {
-    console.log(event);
-});
-document.querySelector('#framework.css')?.addEventListener('load', function (event) {
-    console.log(event);
-});
 document.addEventListener('readystatechange', () => {
     //console.log(`readystate: ${document.readyState}\n`)
     //hide app loader on document completed
@@ -324,40 +264,41 @@ document.addEventListener('readystatechange', () => {
     //     })
     //}
     if (document.readyState === 'interactive') {
-        console.info(document.body.getAttribute('theme'));
-        console.log('Preparing css load...');
+        //console.info(document.body.getAttribute('theme'));
+        //console.log('Preparing css load...')
     }
     //hide app loader on document completed
     if (document.readyState === 'complete') {
         //initialize app loader image & application
-        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#app-loader')) {
-            (0,_common_dom__WEBPACK_IMPORTED_MODULE_0__.captureElement)('#app-loader').setAttribute('style', 'display:none;');
-        }
-    }
-});
-//Variable, Constants declaration
-const webServiceWorker = new Worker(new URL(_db_app__WEBPACK_IMPORTED_MODULE_1__.app.content.folder.js + 'sw.js', "file:///home/abir/Development/web-development/lastest.mishusoft.com/Sources/Assets/typescripts/readystate.ts"));
-if (typeof webServiceWorker == 'undefined') {
-    if ('serviceWorker' in navigator) {
-        // Use the window load event to keep the page load performant
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register(_db_app__WEBPACK_IMPORTED_MODULE_1__.app.content.folder.js + 'sw.js')
-                .then((swr) => {
-                console.info("ServiceWorker [" + swr?.active?.scriptURL + "] is " + swr?.active?.state + " successfully.");
-            })
-                .catch((err) => console.error("service worker not registered", err));
+        __webpack_require__.e(/*! import() */ "Assets_typescripts_common_dom_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./common/dom */ "./Assets/typescripts/common/dom.ts")).then(function (t) {
+            let captureElement = t.captureElement;
+            if (captureElement('#app-loader')) {
+                captureElement('#app-loader').setAttribute('style', 'display:none;');
+            }
         });
     }
-}
-webServiceWorker.postMessage({
-    question: 'The Answer to the Ultimate Question of Life, The Universe, and Everything.',
 });
-webServiceWorker.onmessage = ({ data: { answer } }) => {
-    console.log(answer);
-};
+//service worker manager
+__webpack_require__.e(/*! import() */ "Assets_typescripts_db_app_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./db/app */ "./Assets/typescripts/db/app.ts")).then(function (db) {
+    let publicJsUrl = db.app.content.folder.js;
+    if (window.Worker) {
+        __webpack_require__.e(/*! import() */ "Assets_typescripts_worker-response_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./worker-response */ "./Assets/typescripts/worker-response.ts")).then(function (t) {
+            let webWorker = new t.WorkerResponse(publicJsUrl);
+            webWorker.registerMe();
+            //Variable, Constants declaration
+            const webServiceWorker = new Worker(new URL(publicJsUrl + './sw.js', "file:///home/abir/Development/web-development/lastest.mishusoft.com/Sources/Assets/typescripts/readystate.ts"));
+            webServiceWorker.postMessage({
+                question: 'The Answer to the Ultimate Question of Life, The Universe, and Everything.',
+            });
+            webServiceWorker.onmessage = ({ data: { answer } }) => {
+                console.log(answer);
+            };
+        });
+    }
+});
 
-})();
 
+MishusoftRuntime = __webpack_exports__;
 /******/ })()
 ;
 //# sourceMappingURL=readystate.js.map

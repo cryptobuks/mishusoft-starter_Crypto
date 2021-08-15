@@ -1,6 +1,3 @@
-import {captureElement} from "./dom";
-
-
 export function refreshDigitalClock() {
     let refresh = 1000; // Refresh rate in milli seconds
     setTimeout('DigitalClock()', refresh)
@@ -45,7 +42,7 @@ export function DigitalClock() {
     second = (second < 10) ? "0" + second : second;
     text += toDayName + ',&nbsp;' + toDayNumber + '&nbsp;' + thisMonth + '&nbsp;' + thisYear + '&nbsp;&nbsp;';
     text += hour + '&nbsp;:&nbsp;' + minute + '&nbsp;:&nbsp;' + second + '&nbsp;' + session;
-    let tag = captureElement('#ct');
+    let tag = document.querySelector('#ct');
     if (tag) {
         tag.innerHTML = text;
         refreshDigitalClock();

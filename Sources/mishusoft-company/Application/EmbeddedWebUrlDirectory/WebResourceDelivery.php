@@ -48,7 +48,8 @@ class WebResourceDelivery
      */
     public function __construct(
         private string $defaultDirectoryIndex = DEFAULT_CONTROLLER
-    ) {
+    )
+    {
         $this->defaultApplicationIcon = Memory::data()->preset->logo;
     }//end __construct()
 
@@ -384,37 +385,32 @@ class WebResourceDelivery
             [
                 'link' => [
                     [
-                        'rel' => 'stylesheet', 'type' => 'text/css',
-                        //'text' => file_get_contents(Storage::assetsFullPath('css/app-ui-v4.css')),
-                        'href' => Storage::assetsFullPath('css/font-face.css', 'remote'),
+                        'id' => 'mishusoft-web-root',
+                        'name' => 'mishusoft-web-root',
+                        'content' => Memory::Data('framework')->host->url,
                     ],
-            //                    [
-            //                        'rel' => 'stylesheet', 'type' => 'text/css',
-            //                        //'text' => file_get_contents(Storage::assetsFullPath('css/app-ui-v4.css')),
-            //                        'href' => Storage::assetsFullPath('css/app-ui-v4.css', 'remote'),
-            //                    ],
+                    [
+                        'rel' => 'stylesheet', 'type' => 'text/css',
+                        'href' => Storage::assetsFullPath('css/resources.css', 'remote'),
+                    ],
+                    [
+                        'rel' => 'stylesheet', 'type' => 'text/css',
+                        'href' => Storage::assetsFullPath('css/mishusoft-theme.css', 'remote'),
+                    ],
+                    [
+                        'rel' => 'stylesheet', 'type' => 'text/css',
+                        'href' => Storage::assetsFullPath('css/framework.css', 'remote'),
+                    ],
                 ],
                 'style' => [
                     [
                         'rel' => 'stylesheet', 'type' => 'text/css',
                         'text' => file_get_contents(Storage::assetsFullPath('css/loader.css')),
                     ],
-                    [
-                        'rel' => 'stylesheet', 'type' => 'text/css',
-                        'text' => file_get_contents(Storage::assetsFullPath('css/app-ui-v4.css')),
-                    ],
-                    [
-                    'rel' => 'stylesheet', 'type' => 'text/css',
-                    'text' => file_get_contents(Storage::assetsFullPath('css/mishusoft-theme.css')),
-                    ],
-                    [
-                    'rel' => 'stylesheet', 'type' => 'text/css',
-                    'text' => file_get_contents(Storage::assetsFullPath('css/resources.css')),
-                    ],
                 ],]
         );
 
-        Ui::setTemplateBody(Ui::element(Ui::getDocumentRoot(), 'body', ['id' => 'library']));
+        Ui::setTemplateBody(Ui::element(Ui::getDocumentRoot(), 'body', ['id' => Ui::makeBodyId($request)]));
 
         // Add app loader.
         Ui::setDocumentLoader(Ui::getTemplateBody(), 'images/loaders/app-loader.gif');
@@ -438,7 +434,7 @@ class WebResourceDelivery
             Ui::getDocumentContentHeader(),
             'a',
             [
-                'style' => 'color: ' . Ui::COLOR['default'] . ';',
+                'style' => 'color: #0777cc;',
                 'class' => 'protect mishusoft-logo mishusoft-root-link mishusoft-root-link-primary animate',
                 'href' => Runtime::link('default_home'),
             ]
@@ -447,7 +443,7 @@ class WebResourceDelivery
             $header_logo_zone,
             'img',
             [
-                'src' => FRAMEWORK_FAVICON_FILE,
+                'src' => Storage::mediaFullPath('logos/mishusoft-logo-lite.webp', 'remote'),
                 'class' => ' box-shadow1',
                 'height' => '50px',
                 'width' => '50px',
@@ -481,7 +477,7 @@ class WebResourceDelivery
         Ui::setDocumentContentBody(
             Ui::element(
                 Ui::getTemplateBody(),
-                'app',
+                'main',
                 [
                     'class' => 'flex-column flex-center-all',
                 ]
@@ -601,8 +597,8 @@ class WebResourceDelivery
                         'text' => 0,
                     ],
                     [
-                        'type' => 'application/javascript',
-                        'text' => "'use strict';let countdown = setInterval(function () {if (document.readyState === 'complete') {clearInterval(countdown);if (document.querySelector('#app-loader')) {document.querySelector('#app-loader').setAttribute('style', 'display:none;');}}}, 1000);",
+                        'type' => 'module',
+                        'src' => Storage::assetsFullPath('js/readystate.js', 'remote'),
                     ],
                 ],
             ]

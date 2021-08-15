@@ -364,7 +364,11 @@ class Ui
                 foreach ($attributes as $oldValue => $newValue) {
                     self::assignAttributes(
                         $htmlElement,
-                        [$qualifiedName => str_replace($oldValue, $newValue, self::getAttribute($htmlElement, $qualifiedName))]
+                        [$qualifiedName => str_replace(
+                            $oldValue,
+                            $newValue,
+                            self::getAttribute($htmlElement, $qualifiedName)
+                        )]
                     );
                 }
             }
@@ -612,6 +616,14 @@ class Ui
         );
     }//end addDefaultSignature()
 
+    public static function makeBodyId(array $request):string
+    {
+        if (count($request) >0) {
+            unset($request['locale'], $request['arguments']);
+        }
+
+        return implode('.', $request);
+    }
     /**
      * @return string
      * @throws Exceptions\ErrorException

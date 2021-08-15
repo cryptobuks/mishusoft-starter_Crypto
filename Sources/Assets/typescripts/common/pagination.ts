@@ -1,8 +1,3 @@
-import {captureElement} from "./dom";
-import {sendRequest} from "./request";
-import {IsJsonString} from "./validation";
-
-
 /**
  * @param selector string
  * @param titleText string
@@ -24,49 +19,6 @@ export function popUpDialogBoxDriver(selector: string, titleText: string, proces
         });
     }
 }
-
-/**
- * @param titleText string
- * @param messageText string
- * @param actionBtn HTMLElementObject
- * @param command string
- * @param processURL string
- * @param messageView string
- * @param callback any
- * @param sendResponse any
- * */
-export function PopUpDialogBox(titleText: any, messageText: any, actionBtn: any, command: any, processURL: any, messageView: string, callback: any, sendResponse: any) {
-    captureElement('#PopUpDialogBox').style.display = 'block';
-    captureElement('#PopUpDialogBoxTitle').innerHTML = titleText;
-    captureElement(messageView).innerHTML = '<div style="font-size:15px;">' + messageText + '</div>';
-    captureElement('#message-done-btn').innerHTML = command;
-
-    let dataObject :any = {security_code : 1};
-    [...actionBtn.attributes].forEach(function (__attribute) {
-        if (__attribute.name.toLowerCase().indexOf('data') !==-1){
-            dataObject[__attribute.name.replace('data-','')]=__attribute.value;
-        }
-    });
-
-    captureElement('#message-done-btn').addEventListener('click', function () {
-        captureElement('#app-loader').style.display = 'block';
-        if (this.textContent === command) {
-            return sendRequest({
-                method: "POST",
-                url: processURL,
-                async: true,
-                header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
-                data: dataObject,
-            }, (response: any) => {
-                captureElement('#PopUpDialogBox').style.display = 'none';
-                captureElement('#app-loader').style.display = 'none';
-                callback();
-                sendResponse(response);
-            });
-        }
-    });
-}
-
 
 /**
  * @param viewMode string
@@ -91,6 +43,54 @@ export function paginationDriver(viewMode: string, url: string, extractTo: strin
 }
 
 /**
+ * @param titleText string
+ * @param messageText string
+ * @param actionBtn HTMLElementObject
+ * @param command string
+ * @param processURL string
+ * @param messageView string
+ * @param callback any
+ * @param sendResponse any
+ * */
+export function PopUpDialogBox(titleText: any, messageText: any, actionBtn: any, command: any, processURL: any, messageView: string, callback: any, sendResponse: any) {
+
+    import('./dom').then(function (dom) {
+        dom.captureElement('#PopUpDialogBox').style.display = 'block';
+        dom.captureElement('#PopUpDialogBoxTitle').innerHTML = titleText;
+        dom.captureElement(messageView).innerHTML = '<div style="font-size:15px;">' + messageText + '</div>';
+        dom.captureElement('#message-done-btn').innerHTML = command;
+
+        let dataObject :any = {security_code : 1};
+        [...actionBtn.attributes].forEach(function (__attribute) {
+            if (__attribute.name.toLowerCase().indexOf('data') !==-1){
+                dataObject[__attribute.name.replace('data-','')]=__attribute.value;
+            }
+        });
+
+        dom.captureElement('#message-done-btn').addEventListener('click', function () {
+            dom.captureElement('#app-loader').style.display = 'block';
+            if (this.textContent === command) {
+                import('./request').then(function (request) {
+                    return request.sendRequest({
+                        method: "POST",
+                        url: processURL,
+                        async: true,
+                        header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
+                        data: dataObject,
+                    }, (response: any) => {
+                        dom.captureElement('#PopUpDialogBox').style.display = 'none';
+                        dom.captureElement('#app-loader').style.display = 'none';
+                        callback();
+                        sendResponse(response);
+                    });
+                });
+            }
+        });
+        
+    });
+}
+
+/**
  * @param viewMode string
  * @param page string
  * @param url string
@@ -99,16 +99,23 @@ export function paginationDriver(viewMode: string, url: string, extractTo: strin
  * @param fallback any
  * */
 function pagination(viewMode: string, page: string, url: string, extractTo: string, callback: any, fallback: any) {
-    return sendRequest({
-        method: "POST", url: url, async: true,
-        header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
-        data: {security_code: 1, pageNumber: page, viewMode: viewMode},
-    }, function (response: any) {
-        if (IsJsonString(response) && JSON.parse(response).type) {
-            fallback(response);
-        } else {
-            captureElement('#' + extractTo).innerHTML = response;
-            callback();
-        }
+    import('./request').then(function (request) {
+        return request.sendRequest({
+            method: "POST", url: url, async: true,
+            header: [{name: "Content-type", value: "application/json;charset=UTF-8"}],
+            data: {security_code: 1, pageNumber: page, viewMode: viewMode},
+        }, function (response: any) {
+            import('./validation').then(function (validation) {
+                if (validation.IsJsonString(response) && JSON.parse(response).type) {
+                    fallback(response);
+                } else {
+                    import('./dom').then(function (dom) {
+                        dom.captureElement('#' + extractTo).innerHTML = response;
+                        callback();
+                    });
+
+                }
+            });
+        });
     });
 }

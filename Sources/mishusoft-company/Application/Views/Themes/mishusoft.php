@@ -112,12 +112,14 @@ if ($this->templateUse === 'no') {
         [
             'link' => [
                 [
-                    'rel' => 'stylesheet', 'type' => 'text/css', 'id' => 'theme.css',
-                    'href' => Storage::assetsFullPath('css/mishusoft-theme.css', 'remote'),
-                ],
-                [
                     'rel' => 'stylesheet', 'type' => 'text/css', 'id' => 'framework.css',
-                    'href' => Storage::assetsFullPath('css/app-ui-v4.css', 'remote'),
+                    'href' => Storage::assetsFullPath('css/framework.css', 'remote'),
+                ],
+            ],
+            'style' => [
+                [
+                    'type' => 'text/css', 'id' => 'theme.css',
+                    'text' => file_get_contents(Storage::assetsFullPath('css/mishusoft-theme.css')),
                 ],
             ],
         ]
@@ -138,12 +140,14 @@ if ($this->templateUse === 'no') {
 //    ]);
 
 
+
+
     /*
      * add template body set id attribute for body
      */
     Ui::setTemplateBody(
         Ui::element(Ui::getDocumentRoot(), 'body', [
-            'id' => Inflect::lower($this->request['controller']),
+            'id' => Inflect::lower(Ui::makeBodyId($this->request)),
             'class' => 'ms-app background-image', 'theme' => 'mishusoft',
         ])
     );
@@ -198,14 +202,15 @@ if ($this->templateUse === 'no') {
                     'text' => 0,
                 ],
                 [
-                    'type' => 'application/javascript', 'rel' => 'prefetch',
+                    'type' => 'module', 'rel' => 'prefetch', 'id' => 'readystate.js',
                     //'text' => file_get_contents(Storage::assetsFullPath('js/readystate.js')),
+                    //type="module"
                     'src' => Storage::assetsFullPath('js/readystate.js', 'remote'),
                 ],
                 [
-                    'type' => 'application/javascript', 'rel' => 'prefetch', 'id' => 'framework.js',
-                    //'text' => file_get_contents(Storage::assetsFullPath('js/app-js.js')),
-                    'src' => Storage::assetsFullPath('js/app-js.js', 'remote'),
+                    'type' => 'module', 'rel' => 'prefetch', 'id' => 'framework.js',
+                    //'text' => file_get_contents(Storage::assetsFullPath('js/framework.js')),
+                    'src' => Storage::assetsFullPath('js/framework.js', 'remote'),
                 ],
             ],
         ]

@@ -5,7 +5,8 @@
  * @subpackage webpack
  * @author     Mishusoft System Inc <products@mishusoft.com>
  * @copyright  2021 Mishusoft System Inc (ABN 77 084 670 600)
- **/``
+ **/
+``
 
 const path = require('path')
 
@@ -24,17 +25,9 @@ const {WebpackManifestPlugin} = require('webpack-manifest-plugin');
 const FontPreloadPlugin = require("webpack-font-preload-plugin");
 
 
-
-/* required path declare */
-const DOCUMENT_ROOT = path.resolve(__dirname)
-const WEBPACK_SRC_ROOT = path.join(DOCUMENT_ROOT, './Sources')
-
-/* export direct to production */
-const ASSETS_PATH = path.join(DOCUMENT_ROOT, './storages/app/assets')
-
 const commonConfig = {
     mode: 'production',
-    context: WEBPACK_SRC_ROOT,
+    context: path.join(__dirname, './Sources'),
     module: {
         rules: [
             // compile sass, scss file
@@ -67,7 +60,8 @@ const commonConfig = {
                 generator: {
                     filename: '../webfonts/[name].[hash][ext][query]'
                 },
-        }]
+        },
+        ]
     },
     resolve: {
         // Add `.ts` and `.tsx` as a resolvable extension.
@@ -82,15 +76,15 @@ const commonConfig = {
             chunkFilename: 'css/[id].css'
         }),
         new FontPreloadPlugin(),
-        // new WebpackManifestPlugin({
-        //     'basePath': 'assets/',
-        //     'publicPath': 'assets/'
-        // }),
+        new WebpackManifestPlugin({
+            //'basePath': 'assets/',
+            'publicPath': 'assets/'
+        }),
         /*copy webfonts file from sources directory*/
         new CopyWebpackPlugin({
             patterns: [{
-                from: path.join(DOCUMENT_ROOT, './storages/app/webfonts/'),
-                to: path.join(DOCUMENT_ROOT, './storages/app/assets/webfonts/')
+                from: path.join(__dirname, './storages/app/webfonts/'),
+                to: path.join(__dirname, './storages/app/assets/webfonts/')
             },]
         }),
     ],
@@ -99,99 +93,59 @@ const commonConfig = {
 const commonFileConfig = {
     ...commonConfig,
     entry: {
+        // CSS bundlers
 
-        // Themes developments
-        // index: './Assets/themes/index.js',
-
-        // Typescripts developments
-        /**
-         * Browser identifier javascript framework
-         * Collect information of visitor's
-         * <ul>
-         *     <li>ip</li>
-         *     <li>browser</li>
-         *     <li>device</li>
-         *     <li>platform</li>
-         * </ul>
-         */
-        browser: './Assets/typescripts/classes/browser.ts',
-
-        /**
-         * Javascript serviceworker framework
-         */
-        // 'pwa': ['./Assets/typescripts/pwa.ts'], /*build serviceworker module for background mode support*/
-        'sw': './Assets/typescripts/trash/service-worker.ts', /*build serviceworker module for background mode support*/
-
-        /**
-         * Javascript framework for application
-         */
-
-        /* Build mishusoft installer module for installation mode support */
-        'installer': './Assets/typescripts/installer.ts',
-
-        /* Build module for runtime support */
-        'readystate': './Assets/typescripts/readystate.ts',
-
-        // 'readystate': {
-        //     import: './Assets/typescripts/readystate.ts',
-        //     dependOn: 'shared',
-        // },
-
-        'app-js':'./Assets/typescripts/mishusoft.ts',
-        'app-js-v3': './Assets/typescripts/runtime-v3.ts',
-        'app-js-v4': './Assets/typescripts/runtime-v4.ts',
-
-        /**
-         * Special javascript framework for application
-         */
-        /* build monitor module for monitor visitor's activities */
-        monitor: './Assets/typescripts/tracker.ts',
-        /* build emergency module for emergency mode support */
-        // 'emergency': ['./Assets/typescripts/runtime/v3/emergency.ts'],
-
-        // CSS developments
-        /**
-         * CSS framework for application
-         */
+        // Runtime libraries
+        webfonts: './Assets/sass/webfonts.scss',
+        colors: './Assets/sass/includes/common/colors.scss',
 
 
-        /**
-         * Build font face css framework supporter module for ui support
-         */
-        'font-face': './Assets/sass/font-face.scss',
-        /**
-         * Build font face css framework supporter module for ui support
-         */
-        'colors': './Assets/sass/includes/common/colors.scss',
-
-
-        /**
-         * Build stylesheet for application loader
-         */
+        //Stylesheet for application loader
         loader: './Assets/sass/loader.scss',
 
 
-        /**
-         * Build stylesheet for embedded application support
-         */
+        // Stylesheet for embedded application support
         embedded: './Assets/sass/embedded.scss',
         resources: './Assets/sass/resources.scss',
 
         /**
-         * Build stylesheet for application support
-         */
-        'app-ui-v3': './Assets/sass/app-v3.scss',
-        'app-ui-v4': './Assets/sass/app-v4.scss',
-
-
-        /**
-         * Build stylesheet for themes
+         * Stylesheet for themes
          */
         'mishusoft-theme': './Assets/sass/theme-mishusoft.scss',
+
+
+
+        // Typescripts bundlers
+
+        // Analyzers (browser and activity) framework
+        browser: './Assets/typescripts/mishusoft/browser.ts',
+        monitor: './Assets/typescripts/tracker.ts',
+
+        // Worker (Web Application and Service) framework
+        // 'pwa': ['./Assets/typescripts/pwa.ts'], /*build serviceworker module for background mode support*/
+        sw: './Assets/typescripts/service-worker.ts', /*build serviceworker module for background mode support*/
+
+
+
+        // Ui builders framework
+        installer: './Assets/typescripts/installer.ts',
+
+
+        // Preloader manager framework
+        readystate: './Assets/typescripts/readystate.ts',
+
+
+        // Core framework (Javascript and Stylesheet)
+        framework: ['./Assets/typescripts/app.ts', './Assets/sass/app.scss',],
+        framework_v3: ['./Assets/typescripts/app-v3.ts', './Assets/sass/app-v3.scss'],
+        framework_v4: ['./Assets/typescripts/app-v4.ts', './Assets/sass/app-v4.scss'],
     },
     output: {
-        path: ASSETS_PATH,
+        path: path.join(__dirname, './storages/app/assets'),
         filename: 'js/[name].js',
+        chunkFilename: 'js/[id].runtime.bundle.js',
+        library: 'MishusoftRuntime',
+        scriptType: 'module',
         clean: true
     }
 }

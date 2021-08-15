@@ -1,4 +1,3 @@
-
 export function PopUpWindowCenterPosition(url: string | undefined, title: string | undefined, w: number, h: number) {
     // Fixes dual-screen position                         Most browsers      Firefox
     let dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : screenLeft;
