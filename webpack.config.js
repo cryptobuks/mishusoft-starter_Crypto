@@ -175,7 +175,6 @@ const prodConfig = {
     optimization: {
         minimizer: [
             new TerserJSPlugin({}),
-            // new OptimizeCSSAssetsPlugin({}), /*webpack 4*/
             new CssMinimizerPlugin() /* webpack 5 */
         ],
     },
