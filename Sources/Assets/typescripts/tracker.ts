@@ -11,6 +11,8 @@ import('./db/app').then(function (db) {
                     }, function (IpDataReply: any) {
                         window.sessionStorage.setItem('ip',JSON.parse(IpDataReply).ip);
                     });
+                }).catch(function (err) {
+                    console.log(err)
                 });
             }
         } else {
@@ -28,7 +30,7 @@ import('./db/app').then(function (db) {
         const osNameArch = browser.getPlatformName() + ' ' + browser.getPlatformArchitecture();
         const browserFullName = browser.getBrowserNameFull();
 
-        import('./mishusoft/tracker').then(function (t) {
+        import('./mishusoft/Tracker').then(function (t) {
             (new t.Tracker(window.location.href, appTracker, appVersion, osNameArch, browserFullName)).init(function () {
                 t.Tracker.send({
                     command: 'saveNavigateData',
@@ -38,7 +40,13 @@ import('./db/app').then(function (db) {
                     }
                 });
             });
+        }).catch(function (err) {
+            console.log(err)
         });
+    }).catch(function (err) {
+        console.log(err)
     });
     /*new tracker added*/
+}).catch(function (err) {
+    console.log(err)
 });

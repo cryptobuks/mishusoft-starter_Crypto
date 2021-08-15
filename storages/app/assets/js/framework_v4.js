@@ -157,7 +157,7 @@ function showMessage(response, element, callback) {
             }
             else {
                 if (response.indexOf('<!doctype html>') !== -1 && response.indexOf('flex-center') !== -1) {
-                    Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
+                    __webpack_require__.e(/*! import() */ "Assets_typescripts_common_dom_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
                         let captureElement = dom.captureElement;
                         let createElement = dom.createElement;
                         if (captureElement('#popup-login') === null) {

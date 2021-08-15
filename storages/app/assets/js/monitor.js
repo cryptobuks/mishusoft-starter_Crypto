@@ -252,6 +252,8 @@ __webpack_require__.e(/*! import() */ "Assets_typescripts_db_app_ts").then(__web
                     }, function (IpDataReply) {
                         window.sessionStorage.setItem('ip', JSON.parse(IpDataReply).ip);
                     });
+                }).catch(function (err) {
+                    console.log(err);
                 });
             }
         }
@@ -267,7 +269,7 @@ __webpack_require__.e(/*! import() */ "Assets_typescripts_db_app_ts").then(__web
         const browser = new module.Browser();
         const osNameArch = browser.getPlatformName() + ' ' + browser.getPlatformArchitecture();
         const browserFullName = browser.getBrowserNameFull();
-        __webpack_require__.e(/*! import() */ "Assets_typescripts_mishusoft_tracker_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./mishusoft/tracker */ "./Assets/typescripts/mishusoft/tracker.ts")).then(function (t) {
+        __webpack_require__.e(/*! import() */ "Assets_typescripts_mishusoft_Tracker_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./mishusoft/Tracker */ "./Assets/typescripts/mishusoft/Tracker.ts")).then(function (t) {
             (new t.Tracker(window.location.href, appTracker, appVersion, osNameArch, browserFullName)).init(function () {
                 t.Tracker.send({
                     command: 'saveNavigateData',
@@ -277,9 +279,15 @@ __webpack_require__.e(/*! import() */ "Assets_typescripts_db_app_ts").then(__web
                     }
                 });
             });
+        }).catch(function (err) {
+            console.log(err);
         });
+    }).catch(function (err) {
+        console.log(err);
     });
     /*new tracker added*/
+}).catch(function (err) {
+    console.log(err);
 });
 
 MishusoftRuntime = __webpack_exports__;

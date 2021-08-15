@@ -38,6 +38,8 @@ document.addEventListener('readystatechange', () => {
                 captureElement('#app-loader').setAttribute('style', 'display:none;');
             }
 
+        }).catch(function (err) {
+            console.log(err)
         })
     }
 });
@@ -59,6 +61,10 @@ import('./db/app').then(function (db) {
                 console.log(answer);
             };
 
+        }).catch(function (err) {
+            console.log(err)
         })
     }
+}).catch(function (err) {
+    console.log(err)
 });

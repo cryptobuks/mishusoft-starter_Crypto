@@ -157,7 +157,7 @@ function showMessage(response, element, callback) {
             }
             else {
                 if (response.indexOf('<!doctype html>') !== -1 && response.indexOf('flex-center') !== -1) {
-                    Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
+                    __webpack_require__.e(/*! import() */ "Assets_typescripts_common_dom_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
                         let captureElement = dom.captureElement;
                         let createElement = dom.createElement;
                         if (captureElement('#popup-login') === null) {
@@ -1070,7 +1070,7 @@ __webpack_require__.e(/*! import() */ "Assets_typescripts_db_runtime_ts").then(_
     //console.log(parsed);
     console.log(runtime.list);
 }).catch(function (err) {
-    alert(err);
+    console.log(err);
 });
 Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ./db/app */ "./Assets/typescripts/db/app.ts")).then(function (db) {
     //user auth control
@@ -1084,7 +1084,7 @@ Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require
                         let handleUserAuth = new handle.UserAuth(db.appHost);
                         handleUserAuth.handleLoginForm();
                     }).catch(function (err) {
-                        alert(err);
+                        console.log(err);
                     });
                 });
             }
@@ -1101,7 +1101,7 @@ Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require
                     let handleUserAuth = new handle.UserAuth(db.appHost);
                     handleUserAuth.handleRegistrationForm();
                 }).catch(function (err) {
-                    alert(err);
+                    console.log(err);
                 });
             }
         }, 100);
@@ -1116,7 +1116,7 @@ Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require
                         let handleUserAuth = new handle.UserAuth(db.appHost);
                         handleUserAuth.handlePasswordRecoveryForm();
                     }).catch(function (err) {
-                        alert(err);
+                        console.log(err);
                     });
                 });
             }
@@ -1132,7 +1132,7 @@ Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require
                         let handleUserAuth = new handle.UserAuth(db.appHost);
                         handleUserAuth.handleSetPasswordForm();
                     }).catch(function (err) {
-                        alert(err);
+                        console.log(err);
                     });
                 });
             }
@@ -1148,144 +1148,17 @@ Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require
                         let handleContact = new contact.Contact(db.appHost);
                         handleContact.messageSender();
                     }).catch(function (err) {
-                        alert(err);
+                        console.log(err);
                     });
                 });
             }
         }, 100);
     }((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#cl_msg_snd_btn')));
+}).catch(function (err) {
+    console.log(err);
 });
 (function (__url) {
     if (__url.indexOf('payment') !== -1) {
-        /*stripe payment merchant cdn
-        fetch('https://js.stripe.com/v3')
-            .then(() => {
-                document.head.appendChild(createElement([{
-                    'script': {
-                        'type': 'application/javascript',
-                        'src': 'https://js.stripe.com/v3/',
-                        'async': 'async',
-                    }
-                }]));
-            })
-            .catch((err) => {
-                console.info('Stripe SDK load failed. ' + err)
-            })*/
-        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#payment-welcome') !== undefined) {
-            ['click', 'dblclick', 'touchstart'].forEach(function (__event) {
-                (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#start-pay')?.addEventListener(__event, function () {
-                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#payment-welcome').style.display = 'none';
-                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#payment-categories').removeAttribute('style');
-                }, { passive: true });
-            });
-        }
-        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#payment-categories') !== undefined) {
-            ['click', 'dblclick', 'touchstart'].forEach(function (__event) {
-                (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#services-payment')?.addEventListener(__event, function () {
-                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#payment-categories').style.display = 'none';
-                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#payment-appid-email').style.display = 'block';
-                }, { passive: true });
-            });
-        }
-        if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#payment-appid-email') !== undefined) {
-            ['click', 'dblclick', 'touchstart'].forEach(function (__event) {
-                (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#user-select-back')?.addEventListener(__event, function () {
-                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#payment-appid-email').style.display = 'none';
-                    (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#payment-categories').removeAttribute('style');
-                }, { passive: true });
-            });
-            (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#payment-appid-email')?.addEventListener('submit', function (event) {
-                event.preventDefault();
-                let emailAddressCheck, messages = (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#messagePanel');
-                messages.className = 'messageZone';
-                if (messages.firstElementChild === null) {
-                    let tmp = document.createElement('div');
-                    messages.appendChild(tmp);
-                }
-                messages.firstElementChild.textContent = '';
-                if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#app-id').value.length === 0) {
-                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                    messages.style.display = 'block';
-                    messages.firstElementChild.innerHTML += 'Error : Please enter your app id to continue.<br/>';
-                }
-                if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#email-address').value === '') {
-                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                    messages.style.display = 'block';
-                    messages.firstElementChild.innerHTML += 'Error : Enter your email address (valid for more than 14 characters).<br/>';
-                    addSpace();
-                }
-                else if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#email-address').value.indexOf('@') === -1 || (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#email-address').value.indexOf('.') === -1 || (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#email-address').value.length <= 14) {
-                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                    messages.style.display = 'block';
-                    messages.firstElementChild.innerHTML += 'Error : Enter valid email address.<br/>';
-                    addSpace();
-                }
-                else {
-                    emailAddressCheck = 'OK';
-                }
-                if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#client-plan-type').value.length === 0) {
-                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                    messages.style.display = 'block';
-                    messages.firstElementChild.innerHTML += 'Error : Please select your plan type to continue.<br/>';
-                }
-                if ((0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#client-plan').value.length === 0) {
-                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                    messages.style.display = 'block';
-                    messages.firstElementChild.innerHTML += 'Error : Please select your plan to continue.<br/>';
-                }
-                messages.firstElementChild.classList.add('box-runtime');
-                (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#user-select-done').setAttribute('disabled', 'disabled');
-                (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#email-address').setAttribute('disabled', 'disabled');
-                (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#app-id').setAttribute('disabled', 'disabled');
-                (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#client-plan').setAttribute('disabled', 'disabled');
-                (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#client-plan-type').setAttribute('disabled', 'disabled');
-                (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#user-select-back').setAttribute('disabled', 'disabled');
-                messages.style = 'display:block;';
-                messages.firstElementChild.textContent = 'Please wait......';
-                if (emailAddressCheck === 'OK') {
-                    return (0,_common_request__WEBPACK_IMPORTED_MODULE_2__.sendRequest)({
-                        method: "POST",
-                        url: _db_app__WEBPACK_IMPORTED_MODULE_0__.appHost + 'payment/verifyClient',
-                        async: true,
-                        header: [{ name: "Content-type", value: "application/json;charset=UTF-8" }],
-                        data: {
-                            security_code: 1,
-                            userEmail: (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#email-address').value,
-                            appId: (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#app-id').value,
-                            plan: (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#client-plan').value,
-                            planType: (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#client-plan-type').value,
-                            btnName: (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#user-select-done').textContent
-                        }
-                    }, function (response) {
-                        if ((0,_common_validation__WEBPACK_IMPORTED_MODULE_3__.IsJsonString)(response) && JSON.parse(response).type === 'success') {
-                            //https://host/payment/payNow/appid/email/plantype/plan/amount
-                            /**
-                             * http://localhost/payment/payNow/
-                             * Zjh6bEdTVTV0RU1NNTlTREpFODhXdz09/
-                             * VUZBY3E2dzg1S2QyYk1HVHlsRm8ybi82YWNqc0Z1YXJmc082bXFMeWVDMD0=/
-                             * YmZIcmg5QnZFSEw4U2RxY3kxSlZDZz09/
-                             * YXNxZTdVVXBKbzNxbTcvQ052NEZUQT09/
-                             * */
-                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#user-select-done').textContent = 'Redirecting...';
-                            setTimeout(function () {
-                                window.location.replace(_db_app__WEBPACK_IMPORTED_MODULE_0__.appHost + 'payment/paynow/' + JSON.parse(response).appIdEncrypt + '/' +
-                                    JSON.parse(response).emailEncrypt + '/' + JSON.parse(response).paymentPlanTypeEncrypt + '/' +
-                                    JSON.parse(response).paymentPlanEncrypt + '/');
-                            }, 2000);
-                        }
-                        else {
-                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#email-address').removeAttribute('disabled');
-                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#app-id').removeAttribute('disabled');
-                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#client-plan').removeAttribute('disabled');
-                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#client-plan-type').removeAttribute('disabled');
-                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#user-select-done').removeAttribute('disabled');
-                            (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)('#user-select-back').removeAttribute('disabled');
-                        }
-                        (0,_common_message__WEBPACK_IMPORTED_MODULE_4__.showMessage)(response, (0,_common_dom__WEBPACK_IMPORTED_MODULE_1__.captureElement)("#messagePanel"));
-                    });
-                }
-            });
-        }
     }
 }(window.location.href));
 /*add-ons zone*/

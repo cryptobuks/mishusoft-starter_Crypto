@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkMishusoftRuntime"] = self["webpackChunkMishusoftRuntime"] || []).push([["Assets_typescripts_mishusoft_tracker_ts"],{
+(self["webpackChunkMishusoftRuntime"] = self["webpackChunkMishusoftRuntime"] || []).push([["Assets_typescripts_mishusoft_Tracker_ts"],{
 
 /***/ "./Assets/typescripts/db/tracker.ts":
 /*!******************************************!*\
@@ -50,9 +50,9 @@ const paymentElementsAttribute = [
 
 /***/ }),
 
-/***/ "./Assets/typescripts/mishusoft/tracker.ts":
+/***/ "./Assets/typescripts/mishusoft/Tracker.ts":
 /*!*************************************************!*\
-  !*** ./Assets/typescripts/mishusoft/tracker.ts ***!
+  !*** ./Assets/typescripts/mishusoft/Tracker.ts ***!
   \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2377,4 +2377,4 @@ class Tracker {
 /***/ })
 
 }]);
-//# sourceMappingURL=Assets_typescripts_mishusoft_tracker_ts.runtime.bundle.js.map
+//# sourceMappingURL=Assets_typescripts_mishusoft_Tracker_ts.runtime.bundle.js.map

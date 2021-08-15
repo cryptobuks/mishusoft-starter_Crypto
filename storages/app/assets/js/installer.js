@@ -274,12 +274,18 @@ __webpack_require__.e(/*! import() */ "Assets_typescripts_common_dom_ts").then(_
     ((command) => {
         if (command === 'install') {
             __webpack_require__.e(/*! import() */ "Assets_typescripts_db_app_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./db/app */ "./Assets/typescripts/db/app.ts")).then(function (db) {
-                __webpack_require__.e(/*! import() */ "Assets_typescripts_mishusoft_installer_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./mishusoft/installer */ "./Assets/typescripts/mishusoft/installer.ts")).then(function (t) {
+                __webpack_require__.e(/*! import() */ "Assets_typescripts_mishusoft_Installer_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./mishusoft/Installer */ "./Assets/typescripts/mishusoft/Installer.ts")).then(function (t) {
                     new t.MishusoftInstaller(db.appHost, db.app).play();
+                }).catch(function (err) {
+                    console.log(err);
                 });
+            }).catch(function (err) {
+                console.log(err);
             });
         }
     })(captureElement('body').id);
+}).catch(function (err) {
+    console.log(err);
 });
 
 MishusoftRuntime = __webpack_exports__;

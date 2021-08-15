@@ -275,6 +275,8 @@ document.addEventListener('readystatechange', () => {
             if (captureElement('#app-loader')) {
                 captureElement('#app-loader').setAttribute('style', 'display:none;');
             }
+        }).catch(function (err) {
+            console.log(err);
         });
     }
 });
@@ -293,8 +295,12 @@ __webpack_require__.e(/*! import() */ "Assets_typescripts_db_app_ts").then(__web
             webServiceWorker.onmessage = ({ data: { answer } }) => {
                 console.log(answer);
             };
+        }).catch(function (err) {
+            console.log(err);
         });
     }
+}).catch(function (err) {
+    console.log(err);
 });
 
 

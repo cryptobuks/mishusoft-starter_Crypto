@@ -32,103 +32,107 @@ class UserAuth {
                         massager.firstElementChild.textContent = '';
                         massager.style = 'display:none;';
                         let firstNameCheck, lastNameCheck, emailAddressCheck, usernameCheck, passwordCheck, dateOfBirthCheck;
-                        Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/validation */ "./Assets/typescripts/common/validation.ts")).then(function (validation) {
-                            if (captureElement('#first-name').value === '') {
+                        __webpack_require__.e(/*! import() */ "Assets_typescripts_mishusoft_addSpace_ts").then(__webpack_require__.bind(__webpack_require__, /*! ../mishusoft/addSpace */ "./Assets/typescripts/mishusoft/addSpace.ts")).then(function (module) {
+                            Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/validation */ "./Assets/typescripts/common/validation.ts")).then(function (validation) {
+                                if (captureElement('#first-name').value === '') {
+                                    massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                                    massager.style.display = 'block';
+                                    massager.firstElementChild.innerHTML += 'Error : Enter your first name (more than 4 characters).<br/>';
+                                    module.increaseHeight();
+                                }
+                                else if (validation.checkDuplicate(captureElement('#first-name').value)) {
+                                    massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                                    massager.style.display = 'block';
+                                    massager.firstElementChild.innerHTML += 'Error : A character has been used more than twice in your first name.<br/>';
+                                    module.increaseHeight();
+                                }
+                                else if (captureElement('#first-name').value.length <= 3) {
+                                    massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                                    massager.style.display = 'block';
+                                    massager.firstElementChild.innerHTML += 'Error : Enter your first name more than 4 characters.<br/>';
+                                    module.increaseHeight();
+                                }
+                                else {
+                                    firstNameCheck = 'OK';
+                                }
+                                if (captureElement('#last-name').value === '') {
+                                    massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                                    massager.style.display = 'block';
+                                    massager.firstElementChild.innerHTML += 'Error : Enter your last name (more than 4 characters).<br/>';
+                                    module.increaseHeight();
+                                }
+                                else if (validation.checkDuplicate(captureElement('#last-name').value)) {
+                                    massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                                    massager.style.display = 'block';
+                                    massager.firstElementChild.innerHTML += 'Error : A character has been used more than twice in your last name.<br/>';
+                                    module.increaseHeight();
+                                }
+                                else if (captureElement('#last-name').value.length <= 3) {
+                                    massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                                    massager.style.display = 'block';
+                                    massager.firstElementChild.innerHTML += 'Error : Enter your last name more than 4 letter.<br/>';
+                                    module.increaseHeight();
+                                }
+                                else {
+                                    lastNameCheck = 'OK';
+                                }
+                            }).catch(function (err) {
+                                console.log(err);
+                            });
+                            if (captureElement('#email').value === '') {
                                 massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
                                 massager.style.display = 'block';
-                                massager.firstElementChild.innerHTML += 'Error : Enter your first name (more than 4 characters).<br/>';
-                                self.addSpace();
+                                massager.firstElementChild.innerHTML += 'Error : Enter your email address (valid for more than 14 characters).<br/>';
+                                module.increaseHeight();
                             }
-                            else if (validation.checkDuplicate(captureElement('#first-name').value)) {
+                            else if (captureElement('#email').value.indexOf('@') === -1 || captureElement('#email').value.indexOf('.') === -1 || captureElement('#email').value.length <= 14) {
                                 massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
                                 massager.style.display = 'block';
-                                massager.firstElementChild.innerHTML += 'Error : A character has been used more than twice in your first name.<br/>';
-                                self.addSpace();
-                            }
-                            else if (captureElement('#first-name').value.length <= 3) {
-                                massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                                massager.style.display = 'block';
-                                massager.firstElementChild.innerHTML += 'Error : Enter your first name more than 4 characters.<br/>';
-                                self.addSpace();
+                                massager.firstElementChild.innerHTML += 'Error : Enter valid email address.<br/>';
+                                module.increaseHeight();
                             }
                             else {
-                                firstNameCheck = 'OK';
+                                emailAddressCheck = 'OK';
                             }
-                            if (captureElement('#last-name').value === '') {
+                            if (captureElement('#username').value === '') {
                                 massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
                                 massager.style.display = 'block';
-                                massager.firstElementChild.innerHTML += 'Error : Enter your last name (more than 4 characters).<br/>';
-                                self.addSpace();
+                                massager.firstElementChild.innerHTML += 'Error : Enter your username (valid for at least 8 characters).<br/>';
+                                module.increaseHeight();
                             }
-                            else if (validation.checkDuplicate(captureElement('#last-name').value)) {
+                            else if (captureElement('#username').value.length < 8) {
                                 massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
                                 massager.style.display = 'block';
-                                massager.firstElementChild.innerHTML += 'Error : A character has been used more than twice in your last name.<br/>';
-                                self.addSpace();
-                            }
-                            else if (captureElement('#last-name').value.length <= 3) {
-                                massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                                massager.style.display = 'block';
-                                massager.firstElementChild.innerHTML += 'Error : Enter your last name more than 4 letter.<br/>';
-                                self.addSpace();
+                                massager.firstElementChild.innerHTML += 'Error : Enter username at least 8 character.<br/>';
+                                module.increaseHeight();
                             }
                             else {
-                                lastNameCheck = 'OK';
+                                usernameCheck = 'OK';
+                            }
+                            if (captureElement('#dateOfBirth').value === '') {
+                                massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                                massager.style.display = 'block';
+                                massager.firstElementChild.innerHTML += 'Error : Enter your date of birth.<br/>';
+                                module.increaseHeight();
+                            }
+                            else {
+                                dateOfBirthCheck = 'OK';
+                            }
+                            passwordCheck = self.passwordVerify(massager);
+                            if (captureElement('#password').value !== captureElement('#c_password').value) {
+                                massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                                massager.style.display = 'block';
+                                massager.firstElementChild.innerHTML += 'Error : Your password matched.<br/>';
+                            }
+                            if (!captureElement('#agree').checked) {
+                                massager.style = 'display:block;';
+                                massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                                massager.firstElementChild.innerHTML += 'Error : Please check i agree button to continue.<br/>';
+                                module.increaseHeight();
                             }
                         }).catch(function (err) {
                             console.log(err);
                         });
-                        if (captureElement('#email').value === '') {
-                            massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                            massager.style.display = 'block';
-                            massager.firstElementChild.innerHTML += 'Error : Enter your email address (valid for more than 14 characters).<br/>';
-                            self.addSpace();
-                        }
-                        else if (captureElement('#email').value.indexOf('@') === -1 || captureElement('#email').value.indexOf('.') === -1 || captureElement('#email').value.length <= 14) {
-                            massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                            massager.style.display = 'block';
-                            massager.firstElementChild.innerHTML += 'Error : Enter valid email address.<br/>';
-                            self.addSpace();
-                        }
-                        else {
-                            emailAddressCheck = 'OK';
-                        }
-                        if (captureElement('#username').value === '') {
-                            massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                            massager.style.display = 'block';
-                            massager.firstElementChild.innerHTML += 'Error : Enter your username (valid for at least 8 characters).<br/>';
-                            self.addSpace();
-                        }
-                        else if (captureElement('#username').value.length < 8) {
-                            massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                            massager.style.display = 'block';
-                            massager.firstElementChild.innerHTML += 'Error : Enter username at least 8 character.<br/>';
-                            self.addSpace();
-                        }
-                        else {
-                            usernameCheck = 'OK';
-                        }
-                        if (captureElement('#dateOfBirth').value === '') {
-                            massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                            massager.style.display = 'block';
-                            massager.firstElementChild.innerHTML += 'Error : Enter your date of birth.<br/>';
-                            self.addSpace();
-                        }
-                        else {
-                            dateOfBirthCheck = 'OK';
-                        }
-                        passwordCheck = self.passwordVerify(massager);
-                        if (captureElement('#password').value !== captureElement('#c_password').value) {
-                            massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                            massager.style.display = 'block';
-                            massager.firstElementChild.innerHTML += 'Error : Your password matched.<br/>';
-                        }
-                        if (!captureElement('#agree').checked) {
-                            massager.style = 'display:block;';
-                            massager.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                            massager.firstElementChild.innerHTML += 'Error : Please check i agree button to continue.<br/>';
-                            self.addSpace();
-                        }
                         if (captureElement('#agree').checked && firstNameCheck === 'OK' && lastNameCheck === 'OK' &&
                             emailAddressCheck === 'OK' && usernameCheck === 'OK' && passwordCheck === 'OK' && dateOfBirthCheck === 'OK') {
                             massager.firstElementChild.classList.add('box-runtime');
@@ -377,44 +381,47 @@ class UserAuth {
         });
     }
     passwordVerify(messages) {
-        let self = this;
         let passwordCheck = '';
         Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
             let captureElement = dom.captureElement;
             Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/validation */ "./Assets/typescripts/common/validation.ts")).then(function (validation) {
-                if (captureElement('#password').value === '') {
-                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                    messages.style.display = 'block';
-                    messages.firstElementChild.innerHTML += 'Error : Enter your password (with @_ character and more than 6 character).<br/>';
-                    self.addSpace();
-                }
-                else if (captureElement('#password').value !== '' && captureElement('#password').value.indexOf('@') === -1) {
-                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                    messages.style.display = 'block';
-                    messages.firstElementChild.innerHTML += 'Error : Enter password with (@) character.<br/>';
-                    self.addSpace();
-                }
-                else if (captureElement('#password').value !== '' && captureElement('#password').value.indexOf('_') === -1) {
-                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                    messages.style.display = 'block';
-                    messages.firstElementChild.innerHTML += 'Error : Enter password with (_) character.<br/>';
-                    self.addSpace();
-                }
-                else if (validation.checkDuplicate(captureElement('#password').value)) {
-                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                    messages.style.display = 'block';
-                    messages.firstElementChild.innerHTML += 'Error : A character has been used more than twice in your password.<br/>';
-                    self.addSpace();
-                }
-                else if (captureElement('#password').value !== '' && captureElement('#password').value.length <= 6) {
-                    messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
-                    messages.style.display = 'block';
-                    messages.firstElementChild.innerHTML += 'Error : Enter password more than 6 character.<br/>';
-                    self.addSpace();
-                }
-                else {
-                    passwordCheck = 'OK';
-                }
+                __webpack_require__.e(/*! import() */ "Assets_typescripts_mishusoft_addSpace_ts").then(__webpack_require__.bind(__webpack_require__, /*! ../mishusoft/addSpace */ "./Assets/typescripts/mishusoft/addSpace.ts")).then(function (module) {
+                    if (captureElement('#password').value === '') {
+                        messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                        messages.style.display = 'block';
+                        messages.firstElementChild.innerHTML += 'Error : Enter your password (with @_ character and more than 6 character).<br/>';
+                        module.increaseHeight();
+                    }
+                    else if (captureElement('#password').value !== '' && captureElement('#password').value.indexOf('@') === -1) {
+                        messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                        messages.style.display = 'block';
+                        messages.firstElementChild.innerHTML += 'Error : Enter password with (@) character.<br/>';
+                        module.increaseHeight();
+                    }
+                    else if (captureElement('#password').value !== '' && captureElement('#password').value.indexOf('_') === -1) {
+                        messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                        messages.style.display = 'block';
+                        messages.firstElementChild.innerHTML += 'Error : Enter password with (_) character.<br/>';
+                        module.increaseHeight();
+                    }
+                    else if (validation.checkDuplicate(captureElement('#password').value)) {
+                        messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                        messages.style.display = 'block';
+                        messages.firstElementChild.innerHTML += 'Error : A character has been used more than twice in your password.<br/>';
+                        module.increaseHeight();
+                    }
+                    else if (captureElement('#password').value !== '' && captureElement('#password').value.length <= 6) {
+                        messages.firstElementChild.className = 'box-message box-danger box-shadow-light';
+                        messages.style.display = 'block';
+                        messages.firstElementChild.innerHTML += 'Error : Enter password more than 6 character.<br/>';
+                        module.increaseHeight();
+                    }
+                    else {
+                        passwordCheck = 'OK';
+                    }
+                }).catch(function (err) {
+                    console.log(err);
+                });
             }).catch(function (err) {
                 console.log(err);
             });
@@ -439,15 +446,6 @@ class UserAuth {
             if (captureElement('#messageZone').nextElementSibling.nodeName.toLowerCase() === 'br') {
                 captureElement('#messageZone').nextElementSibling.remove();
             }
-        }).catch(function (err) {
-            console.log(err);
-        });
-    }
-    addSpace() {
-        Promise.resolve(/*! import() */).then(__webpack_require__.bind(__webpack_require__, /*! ../common/dom */ "./Assets/typescripts/common/dom.ts")).then(function (dom) {
-            let captureElement = dom.captureElement;
-            let clientHeight = captureElement('#flex-center').firstElementChild.clientHeight;
-            captureElement('#flex-center').firstElementChild.style = 'height:' + (+clientHeight + 25) + 'px';
         }).catch(function (err) {
             console.log(err);
         });
