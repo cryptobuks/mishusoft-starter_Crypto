@@ -48,8 +48,7 @@ class WebResourceDelivery
      */
     public function __construct(
         private string $defaultDirectoryIndex = DEFAULT_CONTROLLER
-    )
-    {
+    ) {
         $this->defaultApplicationIcon = Memory::data()->preset->logo;
     }//end __construct()
 

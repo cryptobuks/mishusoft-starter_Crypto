@@ -35,7 +35,7 @@ class BIOS
     {
         try {
             //Runtime cache system is on
-            //Http::makeCacheBrowser();
+            Http::makeCacheBrowser();
             // Instance system memory.
             Log::info('Start system memory.');
             Memory::enable();

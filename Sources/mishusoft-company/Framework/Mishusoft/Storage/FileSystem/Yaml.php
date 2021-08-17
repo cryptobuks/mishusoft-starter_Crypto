@@ -44,7 +44,7 @@ class Yaml
      * @return string Returns a YAML encoded string on success.
      * @throws RuntimeException
      */
-    public static function emitExt(
+    public static function emit(
         mixed $data,
         int   $encoding = YAML_ANY_ENCODING,
         int   $linebreak = YAML_ANY_BREAK,
@@ -68,7 +68,7 @@ class Yaml
      *
      * @return string A YAML string representing the original PHP value
      */
-    public static function emit(mixed $input, int $inline = 2, int $indent = 4, int $flags = 0): string
+    public static function emitD(mixed $input, int $inline = 2, int $indent = 4, int $flags = 0): string
     {
         $yaml = new Yaml\Dumper($indent);
         return $yaml->dump($input, $inline, 0, $flags);
@@ -86,7 +86,7 @@ class Yaml
      * @return bool Returns TRUE on success.
      * @throws RuntimeException
      */
-    public static function emitFileExt(
+    public static function emitFile(
         string $filename,
         mixed  $data,
         int    $encoding = YAML_ANY_ENCODING,
@@ -101,7 +101,7 @@ class Yaml
      * @throws RuntimeException
      * @throws PermissionRequiredException
      */
-    public static function emitFile(string $filename, mixed  $data): bool
+    public static function emitFileD(string $filename, mixed  $data): bool
     {
         if (!file_exists(dirname($filename))) {
             FileSystem::makeDirectory(dirname($filename));
@@ -128,7 +128,7 @@ class Yaml
      * @return mixed|false Returns the value encoded in input in appropriate PHP type or FALSE on failure. If pos is -1 an array will be returned with one entry for each document found in the stream.
      * @throws RuntimeException
      */
-    public static function parseExt(string $input, int $pos = 0, int &$ndocs = null, array $callbacks = []): mixed
+    public static function parse(string $input, int $pos = 0, int &$ndocs = null, array $callbacks = []): mixed
     {
         self::validation();
         return yaml_parse($input, $pos, $ndocs, $callbacks);
@@ -151,7 +151,7 @@ class Yaml
      *
      * @throws Yaml\Exception\ParseException If the YAML is not valid
      */
-    public static function parse(string $input, int $flags = 0): mixed
+    public static function parseD(string $input, int $flags = 0): mixed
     {
         $yaml = new Yaml\Parser();
         return $yaml->parse($input, $flags);
@@ -168,7 +168,7 @@ class Yaml
      * @return mixed|false Returns the value encoded in input in appropriate PHP type or FALSE on failure. If pos is -1 an array will be returned with one entry for each document found in the stream.
      * @throws RuntimeException
      */
-    public static function parseFileExt(string $filename, int $pos = 0, int &$ndocs = null, array $callbacks = []): mixed
+    public static function parseFile(string $filename, int $pos = 0, int &$ndocs = null, array $callbacks = []): mixed
     {
         self::validation();
         return yaml_parse_file($filename, $pos, $ndocs, $callbacks);
@@ -190,7 +190,7 @@ class Yaml
      *
      * @throws Yaml\Exception\ParseException If the file could not be read or the YAML is not valid
      */
-    public static function parseFile(string $filename, int $flags = 0): mixed
+    public static function parseFileD(string $filename, int $flags = 0): mixed
     {
         $yaml = new Yaml\Parser();
         return $yaml->parseFile($filename, $flags);
