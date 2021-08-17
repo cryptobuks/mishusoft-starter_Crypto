@@ -117,7 +117,8 @@
     "ext-mysqli": "*",
     "ext-intl": "*",
     "ext-gd": "*",
-    "ext-fileinfo": "*"
+    "ext-fileinfo": "*",
+    "symfony/yaml": "^5.3"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",

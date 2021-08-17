@@ -5,9 +5,8 @@ namespace Mishusoft\Exceptions;
 
 use ErrorException;
 use Mishusoft\System\Firewall;
-use Mishusoft\System\Logger;
 
-class Handler extends ErrorException
+class Handler extends ErrorException implements ExceptionInterface
 {
     private string $objectName;
     private string|array $anotherTrace;
@@ -83,7 +82,7 @@ class Handler extends ErrorException
 
         $message = ['debug'=> ['caption'=> $titleOfErrorMessage, 'description'=> $description, 'stack'=> $stack],];
 
-        //Logger::write($description, LOG_STYLE_SMART, LOG_TYPE_RUNTIME);
+        //Log::debug($description, LOG_STYLE_SMART, LOG_TYPE_RUNTIME);
         Firewall::runtimeFailure('Service Unavailable', $message);
 
         exit(0);
@@ -220,8 +219,10 @@ class Handler extends ErrorException
     {
         /*
          * Error Levels in PHP
-         * Usually, whenever the PHP engine encounters a problem that prevents a script from running properly it generate an error message.
-         *  There are sixteen different error levels and each level is represented by an integer value and an associated constant.
+         * Usually, whenever the PHP engine encounters a problem that
+         * prevents a script from running properly it generates an error message.
+         * There are sixteen different error levels and each level is represented
+         * by an integer value and an associated constant.
          */
 
         // Define an assoc array of error string in reality the only entries we should

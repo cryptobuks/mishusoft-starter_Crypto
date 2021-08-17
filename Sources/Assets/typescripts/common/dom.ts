@@ -27,3 +27,40 @@ export function captureElements<E extends Element = Element>(selectors: string):
         return document.querySelectorAll(selectors) as NodeList;
     }
 }
+
+export function removeAttributeById(elements: any []) {
+    if (elements.length !== 0) {
+        elements.forEach(function (element) {
+            captureElement('#' + element.id).removeAttribute(element.attribute);
+        })
+    }
+}
+
+export function changeElementDisplayById(elements: any []) {
+    if (elements.length !== 0) {
+        elements.forEach(function (element) {
+            captureElement('#' + element.id).style.display = element.display;
+        });
+    }
+}
+
+export function changeElementValueById(elements: any []) {
+    if (elements.length !== 0) {
+        elements.forEach(function (element) {
+            captureElement('#' + element.id).value = element.value;
+        });
+    }
+}
+
+export function changeElementAttributeValue(selector: any, keyAttrAndValue: any[]) {
+    //init edit pad by default
+    if (captureElement(selector)) {
+        let data = keyAttrAndValue;
+        if (data.length > 0){
+            for (let i = 0; i < data.length; i++) {
+                captureElement(data[i].key)[data[i].attribute] = data[i].attribute;
+            }
+        }
+    }
+}
+

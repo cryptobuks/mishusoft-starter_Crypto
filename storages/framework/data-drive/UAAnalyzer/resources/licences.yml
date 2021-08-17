@@ -18,14 +18,14 @@
   category: Permissive license
   url: https://www.mozilla.org/en-US/MPL/
   published: January 3, 2012
-  latestVersion: 2.0
+  latestVersion: '2.0'
   debian-FSG-compatible: Yes
   approved:
     FSF: Yes
     OSI: Yes
   GPL-compatible:
-    2.0: Yes
-    1.1: No
+    '2.0': Yes
+    '1.1': No
   copyleft: Yes (file-level)
   Publisher:
     name: Mozilla Foundation
@@ -51,8 +51,8 @@
     FSF: Yes
     OSI: Yes
   GPL-compatible:
-    2.0: Yes
-    1.1: No
+    '2.0': Yes
+    '1.1': No
   copyleft: Yes (file-level)
   Publisher:
     name: Massachusetts Institute of Technology
@@ -60,7 +60,6 @@
 
 # Apache License
 # url: https://en.wikipedia.org/wiki/Apache_License
--
 - regex: apache
   name: Apache License
   category: Permissive license
@@ -72,7 +71,7 @@
     FSF: Yes
     OSI: Yes
   GPL-compatible:
-    2.0: Yes
+    '2.0': Yes
   copyleft: no
   Publisher:
     name: The Apache Software Foundation
@@ -95,7 +94,7 @@
   approved:
     OSI: no
   GPL-compatible:
-    2.0: no
+    '2.0': no
   copyleft: no
   Publisher:
     name: Regents of the University of California

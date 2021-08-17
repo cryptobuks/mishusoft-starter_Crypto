@@ -2,9 +2,6 @@
 
 namespace Mishusoft\System;
 
-use DOMDocument;
-use DOMElement;
-use DOMNode;
 use JsonException;
 use Mishusoft\Base;
 use Mishusoft\Exceptions\HttpException\HttpResponseException;
@@ -12,12 +9,12 @@ use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Framework;
 use Mishusoft\Http;
-use Mishusoft\Http\Browser;
 use Mishusoft\Http\IP;
 use Mishusoft\Storage;
 use Mishusoft\Storage\FileSystem;
 use Mishusoft\Ui;
 use Mishusoft\Utility\Character;
+use Mishusoft\Utility\Inflect;
 use RuntimeException;
 
 class Firewall extends Base
@@ -728,7 +725,7 @@ class Firewall extends Base
         Log::info('Start checking whether REQUEST_METHOD keyword in $_SERVER variable.');
         Log::info('Search accept keyword in allowed request method variable.');
         $requestMethodAll = $this->config['accept']['request-method'];
-        if (in_array(Character::lower($_SERVER['REQUEST_METHOD']), $requestMethodAll, true) === false) {
+        if (in_array(Inflect::lower($_SERVER['REQUEST_METHOD']), $requestMethodAll, true) === false) {
             Log::error('Browser Request Method was not found in the authorized method.');
             Log::notice('Check whether the client\'s IP is blocked');
             if ($this->isListed(IP::get()) === false) {
@@ -797,38 +794,13 @@ class Firewall extends Base
                         if (array_key_exists($browserNameFull, $logs[IP::get()]) === true) {
                             if (array_key_exists(Time::today(), $logs[IP::get()][$browserNameFull]) === false) {
                                 // Append current(new) access data of current client to logs file.
-                                FileSystem\Yaml::emitFile(
-                                    $logDataFile,
-                                    array_merge(
-                                        $logs,
-                                        [
-                                            IP::get() => array_merge(
-                                                $logs[IP::get()],
-                                                [
-                                                    $browserNameFull => array_merge(
-                                                        $logs[IP::get()][$browserNameFull],
-                                                        $this->getNewVisitorTimeBased()
-                                                    ),
-                                                ]
-                                            ),
-                                        ]
-                                    )
-                                );
+                                $logs[IP::get()][$browserNameFull][Time::today()] = $this->getNewVisitor();
+                                FileSystem\Yaml::emitFile($logDataFile, $logs);
                             }//end if
                         } else {
                             // Append current(new) browser's data of current client to logs file.
-                            FileSystem\Yaml::emitFile(
-                                $logDataFile,
-                                array_merge(
-                                    $logs,
-                                    [
-                                        IP::get() => array_merge(
-                                            $logs[IP::get()],
-                                            $this->getNewVisitorBrowserBased()
-                                        ),
-                                    ]
-                                )
-                            );
+                            $logs[IP::get()][$browserNameFull][Time::today()] = $this->getNewVisitor();
+                            FileSystem\Yaml::emitFile($logDataFile, $logs);
                         }//end if
                     } else {
                         // Append new data about current client to logs file.
@@ -1019,8 +991,7 @@ class Firewall extends Base
                 //Ui\EmbeddedView::runtimeFail($title, $message, Http::errorCode($title));
             }//end if
         } else {
-            Storage\Stream::json(
-                [
+            Storage\Stream::json([
                     'message' => [
                         'type' => 'error',
                         'details' => $message['debug']['description'],
@@ -1035,8 +1006,7 @@ class Firewall extends Base
                         'year' => Time::currentYearNumber(),
                         'owner' => Framework::COMPANY_NAME,
                     ],
-                ]
-            );
+            ]);
         }//end if
     }//end runtimeFailureUi()
 
@@ -1049,22 +1019,34 @@ class Firewall extends Base
      * @throws \MaxMind\Db\Reader\InvalidDatabaseException
      * @throws \Mishusoft\Exceptions\JsonException
      */
+    private function getNewVisitor(): array
+    {
+        return  [
+            'ip' => IP::get(),
+            'country' => IP::getCountry(),
+            'location' => IP::getInfo(),
+            'device' => Http::browser()->getDeviceNameWithArch(),
+            'browser' => Http::browser()->getBrowserNameFull(),
+            'UUAS' => Http::browser()->getUserAgent(),
+            'url' => Http::browser()::VisitedPageURL($_SERVER),
+            'status' => $this->actionStatus,
+            'component' => $this->actionComponent,
+            'visit-time' => Time::today(),
+        ];
+    }//end getNewVisitorTimeBased()
+
+
+    /**
+     * @return array[]
+     * @throws HttpResponseException
+     * @throws JsonException
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\JsonException
+     */
     private function getNewVisitorTimeBased(): array
     {
-        return [
-            Time::today() => [
-                'ip' => IP::get(),
-                'country' => IP::getCountry(),
-                'location' => IP::getInfo(),
-                'device' => Http::browser()->getDeviceName() . ' (' . Http::browser()->getBrowserArchitecture() . ')',
-                'browser' => Http::browser()->getBrowserNameFull(),
-                'UUAS' => Http::browser()->getUserAgent(),
-                'url' => Http::browser()::VisitedPageURL($_SERVER),
-                'status' => $this->actionStatus,
-                'component' => $this->actionComponent,
-                'visit-time' => Time::today(),
-            ],
-        ];
+        return [Time::today() => $this->getNewVisitor(),];
     }//end getNewVisitorTimeBased()
 
 
@@ -1098,7 +1080,6 @@ class Firewall extends Base
 
     /**
      * @param string $status
-     * @throws JsonException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function accessDefence(string $status): void

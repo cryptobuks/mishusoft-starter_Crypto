@@ -175,16 +175,14 @@ const prodConfig = {
     optimization: {
         minimizer: [
             new TerserJSPlugin({}),
-            new CssMinimizerPlugin() /* webpack 5 */
+            new CssMinimizerPlugin()
         ],
     },
     plugins: [
         ...commonFileConfig.plugins,
-        new JavaScriptObfuscator(
-            {
-                rotateStringArray: true
-            }
-        )
+        new JavaScriptObfuscator({
+            rotateStringArray: true
+        })
     ]
 }
 
@@ -192,7 +190,7 @@ const testConfig = {
     ...commonFileConfig,
     name: 'tests',
     mode: 'development',
-    devtool: 'source-map',
+    devtool: 'inline-source-map',
     module: {
         rules: [
             ...commonFileConfig.module.rules,

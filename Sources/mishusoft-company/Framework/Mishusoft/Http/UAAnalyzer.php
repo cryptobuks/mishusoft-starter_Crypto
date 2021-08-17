@@ -418,6 +418,11 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
         return $this->deviceName;
     }
 
+    public function getDeviceNameWithArch():string
+    {
+        return $this->deviceName . ' ' . $this->platformArchitecture;
+    }
+
     /**
      * @return string
      */
