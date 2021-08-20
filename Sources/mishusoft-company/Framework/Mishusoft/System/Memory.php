@@ -95,35 +95,35 @@ class Memory
           * If the configuration file is corrupted, then rewrite this file.
           */
 
-        FileSystem::makeDirectory(dirname(self::$framework->configFile()));
+        FileSystem::makeDirectory(dirname(self::$framework::configFile()));
 
-        Log::info(sprintf('Check %s file existent.', self::$framework->configFile()));
-        if (file_exists(self::$framework->configFile()) === false) {
-            Log::info(sprintf('Check failed. %s file not exists.', self::$framework->configFile()));
-            Log::info(sprintf('Creating new %s file with default config.', self::$framework->configFile()));
-            FileSystem\Yaml::emitFile(self::$framework->configFile(), self::$framework->defaultConfiguration());
+        Log::info(sprintf('Check %s file existent.', self::$framework::configFile()));
+        if (file_exists(self::$framework::configFile()) === false) {
+            Log::info(sprintf('Check failed. %s file not exists.', self::$framework::configFile()));
+            Log::info(sprintf('Creating new %s file with default config.', self::$framework::configFile()));
+            FileSystem\Yaml::emitFile(self::$framework::configFile(), self::$framework::defaultConfiguration());
         } else {
-            $content = FileSystem\Yaml::parseFile(self::$framework->configFile());
-            Log::info(sprintf('Check %s file\'s content length.', self::$framework->configFile()));
+            $content = FileSystem\Yaml::parseFile(self::$framework::configFile());
+            Log::info(sprintf('Check %s file\'s content length.', self::$framework::configFile()));
             if (count($content) === 0) {
-                Log::info(sprintf('The content of %s file is empty.', self::$framework->configFile()));
-                Log::info(sprintf('Creating new %s file with default config.', self::$framework->configFile()));
-                FileSystem\Yaml::emitFile(self::$framework->configFile(), self::$framework->defaultConfiguration());
+                Log::info(sprintf('The content of %s file is empty.', self::$framework::configFile()));
+                Log::info(sprintf('Creating new %s file with default config.', self::$framework::configFile()));
+                FileSystem\Yaml::emitFile(self::$framework::configFile(), self::$framework::defaultConfiguration());
             }
         }
 
-        Log::info(sprintf('Check %s file existent.', self::$framework->installFile()));
-        if (file_exists(self::$framework->installFile()) === false) {
-            Log::info(sprintf('Check failed. %s file not exists', self::$framework->installFile()));
-            Log::info(sprintf('Creating new %s file', self::$framework->installFile()));
-            self::$framework->install();
+        Log::info(sprintf('Check %s file existent.', self::$framework::installFile()));
+        if (file_exists(self::$framework::installFile()) === false) {
+            Log::info(sprintf('Check failed. %s file not exists', self::$framework::installFile()));
+            Log::info(sprintf('Creating new %s file', self::$framework::installFile()));
+            self::$framework::install();
         } else {
-            $installContent = FileSystem\Yaml::parseFile(self::$framework->installFile());
-            Log::info(sprintf('Check %s file\'s content length', self::$framework->installFile()));
+            $installContent = FileSystem\Yaml::parseFile(self::$framework::installFile());
+            Log::info(sprintf('Check %s file\'s content length', self::$framework::installFile()));
             if (count($installContent) === 0) {
-                Log::info(sprintf('The content of %s file is empty', self::$framework->installFile()));
-                Log::info(sprintf('Creating new %s file', self::$framework->installFile()));
-                self::$framework->install();
+                Log::info(sprintf('The content of %s file is empty', self::$framework::installFile()));
+                Log::info(sprintf('Creating new %s file', self::$framework::installFile()));
+                self::$framework::install();
             }
         }
 
@@ -206,11 +206,11 @@ class Memory
             if (array_key_exists('file', $options) === true) {
                 $filename = $options['file'];
             } else {
-                $filename = self::$framework->installFile();
+                $filename = Framework::installFile();
             }
 
             if (file_exists($filename) === false) {
-                self::$framework->install();
+                self::$framework::install();
             }
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
@@ -224,13 +224,13 @@ class Memory
             if (array_key_exists('default', $options) === true) {
                 $default = $options['default'];
             } else {
-                $default = self::$framework->defaultConfiguration();
+                $default = Framework::defaultConfiguration();
             }
 
             if (array_key_exists('file', $options) === true) {
                 $filename = $options['file'];
             } else {
-                $filename = self::$framework->configFile();
+                $filename = Framework::configFile();
             }
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
@@ -345,14 +345,14 @@ class Memory
      */
     private static function loadFrameworkMemory(): void
     {
-        Log::info(sprintf('Check read permission of %s file.', self::$framework->configFile()));
-        if (is_readable(self::$framework->configFile()) === true) {
-            Log::info(sprintf('Load data from %s file.', self::$framework->configFile()));
-            self::read(JSON::encodeToObject(FileSystem\Yaml::parseFile(self::$framework->configFile())));
+        Log::info(sprintf('Check read permission of %s file.', self::$framework::configFile()));
+        if (is_readable(self::$framework::configFile()) === true) {
+            Log::info(sprintf('Load data from %s file.', self::$framework::configFile()));
+            self::read(JSON::encodeToObject(FileSystem\Yaml::parseFile(self::$framework::configFile())));
         } else {
-            Log::info(sprintf('Not found system data file %s.', self::$framework->configFile()));
+            Log::info(sprintf('Not found system data file %s.', self::$framework::configFile()));
             Log::info('Load default data from system.');
-            self::read(JSON::encodeToObject(self::$framework->defaultConfiguration()));
+            self::read(JSON::encodeToObject(self::$framework::defaultConfiguration()));
         }//end if
     }//end loadMemory()
 
@@ -362,8 +362,8 @@ class Memory
      */
     private static function baseUrlSet(): void
     {
-        if (file_exists(self::$framework->installFile())) {
-            $data = FileSystem\Yaml::parseFile(self::$framework->installFile());
+        if (file_exists(self::$framework::installFile())) {
+            $data = FileSystem\Yaml::parseFile(self::$framework::installFile());
             define('BASE_URL', JSON::encodeToObject($data)->host->url);
         } else {
             define('BASE_URL', Http::browser()->getURLHostname());

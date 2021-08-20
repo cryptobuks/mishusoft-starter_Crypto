@@ -77,7 +77,7 @@ class Framework extends Base
     /**
      * @return string
      */
-    public function description():string
+    public static function description():string
     {
         $details  = self::FULL_NAME.' is a robust multi-web platform developed by '.self::COMPANY_NAME.'.';
         $details .= ' This platform is capable of getting start with all categories website quickly and accurately.';
@@ -87,7 +87,7 @@ class Framework extends Base
     /**
      * @return string
      */
-    public function companyDescriptionDetails():string
+    public static function companyDescriptionDetails():string
     {
         $details  = self::COMPANY_NAME.' is a software development company that is going to be established with a view to offering high quality IT solutions at home and abroad.';
         $details .= ' The company is keen to take the advantage of fast growing global software and data processing industry by offering professional service and price for support and benefit of the valued customers.';
@@ -97,7 +97,7 @@ class Framework extends Base
     /**
      * @return string
      */
-    public function configFile():string
+    public static function configFile():string
     {
         return self::dFile(self::dataFile('Framework', 'config'));
     }
@@ -105,7 +105,7 @@ class Framework extends Base
     /**
      * @return string
      */
-    public function installFile():string
+    public static function installFile():string
     {
         return self::dFile(self::dataFile('Framework', 'install'));
     }
@@ -122,12 +122,12 @@ class Framework extends Base
     /**
      * @return array
      */
-    public function defaultConfiguration():array
+    public static function defaultConfiguration():array
     {
         return [
             'name'         => self::NAME,
             'fullName'     => self::FULL_NAME,
-            'descriptions' => $this->description(),
+            'descriptions' => self::description(),
             'version'      => self::VERSION,
             'charset'      => 'utf8mb4',
             'prefix'       => [
@@ -145,7 +145,7 @@ class Framework extends Base
                 'map'                => self::COMPANY_ADDRESS_MAP,
                 'care'               => self::COMPANY_CONSUMER_CARE,
                 'shortDescription'   => self::COMPANY_DESCRIPTION_SHORT,
-                'detailsDescription' => $this->companyDescriptionDetails(),
+                'detailsDescription' => self::companyDescriptionDetails(),
                 'website'            => self::COMPANY_WEBSITE_LINK,
                 'support'            => self::COMPANY_SUPPORT_LINK,
                 'mail'               => self::COMPANY_MAIL_LINK,
@@ -348,18 +348,18 @@ class Framework extends Base
      * @throws Exceptions\RuntimeException
      * @throws JsonException
      */
-    public function install(): void
+    public static function install(): void
     {
         // Preparing to check framework install file.
-        if (is_readable($this->installFile()) === true) {
+        if (is_readable(self::installFile()) === true) {
             // Framework install file found and start reading.
             if (defined('INSTALLED_HOST_NAME') === false) {
                 define('INSTALLED_HOST_NAME', Memory::data('framework')->host->name);
             }
         } else {
-            FileSystem::makeDirectory(dirname($this->installFile()));
+            FileSystem::makeDirectory(dirname(self::installFile()));
             // Preparing to create framework install file.
-            FileSystem\Yaml::emitFile($this->installFile(), [
+            FileSystem\Yaml::emitFile(self::installFile(), [
                 'name'        => 'Framework Installer',
                 'version'     => self::VERSION,
                 'debug'       => !(MPM::getProperty('release') === 'stable'),

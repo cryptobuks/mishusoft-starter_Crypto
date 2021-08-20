@@ -24,7 +24,7 @@ const PREG_QUOTE_DEFAULT_SEPARATOR = '/@#~';
 
 
 // enable or disable logging.
-const LOGGING_ON_OPERATION = false;
+const LOGGING_ON_OPERATION = true;
 
 // Logger style for log writing.
 const LOG_STYLE_SMART = 'smart';

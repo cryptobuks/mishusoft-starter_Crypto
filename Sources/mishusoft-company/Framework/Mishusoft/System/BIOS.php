@@ -4,7 +4,16 @@ namespace Mishusoft\System;
 
 use Error;
 use Exception;
+use GeoIp2\Exception\AddressNotFoundException;
+use MaxMind\Db\Reader\InvalidDatabaseException;
 use Mishusoft\CacheManager;
+use Mishusoft\Exceptions\ErrorException;
+use Mishusoft\Exceptions\Handler;
+use Mishusoft\Exceptions\HttpException\HttpResponseException;
+use Mishusoft\Exceptions\JsonException;
+use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
+use Mishusoft\Exceptions\PermissionRequiredException;
+use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Framework;
 use Mishusoft\Drivers\Session;
 use Mishusoft\Http;
@@ -21,15 +30,15 @@ class BIOS
      * BIOS initialise function.
      *
      * @return BIOS
-     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws AddressNotFoundException
      * @throws \JsonException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
-     * @throws \Mishusoft\Exceptions\ErrorException
-     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
-     * @throws \Mishusoft\Exceptions\JsonException
-     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
-     * @throws \Mishusoft\Exceptions\PermissionRequiredException
-     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws InvalidDatabaseException
+     * @throws ErrorException
+     * @throws HttpResponseException
+     * @throws JsonException
+     * @throws InvalidArgumentException
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
      */
     public static function initialise(): BIOS
     {
@@ -50,7 +59,7 @@ class BIOS
                 //CacheManager::start();
 
                 Log::info('Start system firewall.');
-                $firewall = new Firewall();
+                $firewall = new Firewall($framework);
 
                 Log::info('Firewall check access validity of client.');
                 if ($firewall->isRequestAccepted() === true) {
@@ -100,7 +109,7 @@ class BIOS
                 }//end if
             });
         } catch (Error | Exception $e) {
-            \Mishusoft\Exceptions\Handler::fetch($e);
+            Handler::fetch($e);
         }
 
         return new self();

@@ -12,7 +12,6 @@ use Mishusoft\Http;
 use Mishusoft\Http\IP;
 use Mishusoft\Storage;
 use Mishusoft\Storage\FileSystem;
-use Mishusoft\Ui;
 use Mishusoft\Utility\Character;
 use Mishusoft\Utility\Inflect;
 use RuntimeException;
@@ -152,9 +151,11 @@ class Firewall extends Base
      * @throws PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    public function __construct()
-    {
+    public function __construct(
+        private Framework $framework
+    ) {
         parent::__construct();
+
         Log::info(sprintf('Load Firewall configuration from %s.json.', self::configFile()));
         $this->loadConfig();
     }//end __construct()
@@ -1389,7 +1390,8 @@ class Firewall extends Base
                 //echo 'Copyright © '.Time::getCurrentYearNumber().' '.Framework::COMPANY_NAME.'. All Right Reserved.'.PHP_EOL;
                 echo '© ' . Time::currentYearNumber() . ' ' . Framework::COMPANY_NAME . '.' . PHP_EOL;
             } else {
-                Ui\EmbeddedView::protection(
+               // Ui\EmbeddedView::protection(
+                FirewallView::protection(
                     "$title denied",
                     [
                         'caption'=>"$component has been $status",
