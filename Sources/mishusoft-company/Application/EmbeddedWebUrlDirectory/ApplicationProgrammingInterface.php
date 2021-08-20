@@ -6,8 +6,6 @@ use Mishusoft\Services\SecureDataTransferService;
 
 class ApplicationProgrammingInterface extends SecureDataTransferService
 {
-
-
     /**
      * @param array $request
      */

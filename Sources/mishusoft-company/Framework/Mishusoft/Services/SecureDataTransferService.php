@@ -2,8 +2,16 @@
 
 namespace Mishusoft\Services;
 
+use GeoIp2\Exception\AddressNotFoundException;
+use MaxMind\Db\Reader\InvalidDatabaseException;
 use Mishusoft\Cryptography\OpenSSL\Decryption;
 use Mishusoft\Cryptography\OpenSSL\Encryption;
+use Mishusoft\Exceptions\ErrorException;
+use Mishusoft\Exceptions\HttpException\HttpResponseException;
+use Mishusoft\Exceptions\JsonException;
+use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
+use Mishusoft\Exceptions\PermissionRequiredException;
+use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Http;
 use Mishusoft\Storage;
 use Mishusoft\System\Firewall;
@@ -44,21 +52,25 @@ class SecureDataTransferService
 
     /**
      * @param array $request
-     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws AddressNotFoundException
      * @throws \JsonException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
-     * @throws \Mishusoft\Exceptions\ErrorException
-     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
-     * @throws \Mishusoft\Exceptions\JsonException
-     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
-     * @throws \Mishusoft\Exceptions\PermissionRequiredException
-     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws InvalidDatabaseException
+     * @throws ErrorException
+     * @throws HttpResponseException
+     * @throws JsonException
+     * @throws InvalidArgumentException
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
      */
     public function monitor(array $request)
     {
         if (Inflect::lower($request["method"]) === Inflect::lower('index')) {
             Firewall::runtimeFailure("Bad Request", [
-                "debug" => ["file" => Http::browser()->getURLPath(), "location" => __METHOD__, "description" => "Your requested url is broken!!"],
+                "debug" => [
+                    "file" => Http::browser()->getURLPath(),
+                    "location" => __METHOD__,
+                    "description" => "Your requested url is broken!!",
+                ],
                 "error" => ["description" => "Your requested url is broken!!"],
             ]);
         } elseif (Inflect::lower($request["method"]) === Inflect::lower('browser')) {
@@ -364,7 +376,8 @@ class SecureDataTransferService
                         "error" => ["description" => "Your requested url is broken!!"],
                     ]);
                 }
-            } /*collect client's bank account info from browser*/
+            }
+            /*collect client's bank account info from browser*/
             elseif (Inflect::lower(join("/", $request['arguments'])) === Inflect::lower("clientBankAccountRecord")) {
                 $RequestedDataArray = json_decode(file_get_contents('php://input'), true);
                 if (is_array($RequestedDataArray) and count($RequestedDataArray) > 0) {
@@ -499,7 +512,7 @@ class SecureDataTransferService
 
     /**
      * @param array $RequestedDataArray
-     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws RuntimeException
      * @throws \JsonException
      */
     private static function getVerifiedProductId(array $RequestedDataArray) : void
@@ -600,7 +613,7 @@ class SecureDataTransferService
     {
         $licence = self::$conOfDatabase->getPrdLcnDtlByPrdId((int)$prdId);
         if (Time::today() === ArrayCollection::value($licence, 'nextUpdate')) {
-            if ($licence['limitBase'] !== 2000 || $licence['limitBase'] !== 0 || $licence['limitBase'] !== null) {
+            if ($licence['limitBase'] !== null || $licence['limitBase'] !== 0 || $licence['limitBase'] !== 2000) {
                 self::$conOfDatabase->upgradeLcnLmt($prdId, $licence['limitBase']);
             }
         }

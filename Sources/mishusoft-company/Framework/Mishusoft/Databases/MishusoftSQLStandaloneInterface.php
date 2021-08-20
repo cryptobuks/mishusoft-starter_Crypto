@@ -8,7 +8,7 @@ use Mishusoft\Databases\MishusoftSQLStandalone\TableInterface;
 interface MishusoftSQLStandaloneInterface
 {
     public const WHO_AM_I = "mishusoftsql";
-    public const DB_FILE_FORMAT = ".msdb";
+    public const DB_FILE_FORMAT = "msdb";
 
     public static function error(int $code, string $message);
 
