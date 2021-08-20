@@ -94,8 +94,6 @@ class Request
                 $this->locale = Inflect::lower(Locale::getDefault());
             }
 
-
-
             /*
              * enabled modules of the application
              */
@@ -105,8 +103,8 @@ class Request
              */
             if (!empty($this->module) && count($this->modules) > 0) {
                 /*
-                 * if module exists but it is not exists in installed enable modules,
-                 * then module set to controller and it make empty
+                 * if module exists, but it is not exists in installed enable modules,
+                 * then module set to controller, and it makes empty
                  */
                 if (!in_array($this->module, $this->modules, true)) {
                     $this->controller = $this->module;
@@ -122,8 +120,8 @@ class Request
                 }
             } else {
                 /*
-                 * if module exists but it is not exists in installed enable modules,
-                 * then module set to controller and it make empty
+                 * if module exists, but it is not exists in installed enable modules,
+                 * then module set to controller, and it makes empty
                  */
                 $this->controller = $this->module;
                 $this->module = "";

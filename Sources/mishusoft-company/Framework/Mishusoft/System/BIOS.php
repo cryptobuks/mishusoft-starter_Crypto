@@ -19,6 +19,7 @@ use Mishusoft\Drivers\Session;
 use Mishusoft\Http;
 use Mishusoft\Storage;
 use Mishusoft\System\BIOS\EmbeddedWebUrlService;
+use Mishusoft\Utility\Debug;
 
 class BIOS
 {
@@ -46,7 +47,6 @@ class BIOS
             // Communicate with framework.
             Log::info('Start framework application.');
             Framework::init(function ($framework) {
-
                 //Runtime cache system is on
                 Http::makeCacheBrowser();
 

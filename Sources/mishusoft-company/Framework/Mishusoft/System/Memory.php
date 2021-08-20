@@ -210,7 +210,7 @@ class Memory
             }
 
             if (file_exists($filename) === false) {
-                self::$framework::install();
+                Framework::install();
             }
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
@@ -382,7 +382,7 @@ class Memory
     private static function read(object $configuration): void
     {
         // Required constant variables declared here.
-        if (is_object($configuration) === false) {
+        if (empty($configuration) === false) {
             define('DEFAULT_APP_NAME', $configuration->name);
             define('FRAMEWORK_NAME', $configuration->fullName);
             define('FRAMEWORK_DESCRIPTION', $configuration->descriptions);

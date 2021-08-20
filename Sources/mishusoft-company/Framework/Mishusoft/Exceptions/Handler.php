@@ -4,6 +4,8 @@
 namespace Mishusoft\Exceptions;
 
 use ErrorException;
+use GeoIp2\Exception\AddressNotFoundException;
+use MaxMind\Db\Reader\InvalidDatabaseException;
 use Mishusoft\System\Firewall;
 
 class Handler extends ErrorException implements ExceptionInterface
@@ -20,9 +22,9 @@ class Handler extends ErrorException implements ExceptionInterface
      * @throws LogicException\InvalidArgumentException
      * @throws PermissionRequiredException
      * @throws RuntimeException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws AddressNotFoundException
      * @throws \JsonException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws InvalidDatabaseException
      * @throws \Mishusoft\Exceptions\ErrorException
      */
     public static function fetch(object $exception): void
@@ -55,9 +57,9 @@ class Handler extends ErrorException implements ExceptionInterface
      * @throws LogicException\InvalidArgumentException
      * @throws PermissionRequiredException
      * @throws RuntimeException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws AddressNotFoundException
      * @throws \JsonException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws InvalidDatabaseException
      * @throws \Mishusoft\Exceptions\ErrorException
      */
     public function display(): void

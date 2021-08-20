@@ -258,11 +258,11 @@ class Log
                 $protocol = 'http';
             }
 
-            // @codingStandardsIgnoreStart
+            //skip qualification for error ignoring.
             //$ip         = IP::get();
             $ip         = '::1';
-            // @codingStandardsIgnoreEnd
-            $useragent  = Http::browser()->getUserAgent();
+            //$useragent  = Http::browser()->getUserAgent();
+            $useragent  = $_SERVER['HTTP_USER_AGENT'];
             $httpStatus = http_response_code();
             $time       = date('Y-m-d h:i A');
 
