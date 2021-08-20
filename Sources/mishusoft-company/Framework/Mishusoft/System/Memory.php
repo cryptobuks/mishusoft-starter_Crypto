@@ -22,11 +22,14 @@ class Memory
 {
 
     private static array $data = [];
+    private static Framework $framework;
+    private static string $dataDrive;
 
 
     /**
      * Enable system memory.
      *
+     * @param Framework $framework
      * @return void
      * @throws ErrorException
      * @throws InvalidArgumentException
@@ -35,13 +38,14 @@ class Memory
      * @throws RuntimeException
      * @throws \Mishusoft\Exceptions\JsonException
      */
-    public static function enable(): void
+    public static function enable(Framework $framework): void
     {
-        Log::info('Start data collecting and load to memory');
+        self::$framework = $framework;
+        self::$dataDrive = Storage::dataDriveStoragesPath();
+
         self::validation();
         self::loadFrameworkMemory();
         self::baseUrlSet();
-        Log::info('End data collecting and load to memory');
     }//end enable()
 
 
@@ -49,6 +53,7 @@ class Memory
      * Check memory directory, create directory when not found.
      * Check config file, create and store default data when not found.
      * Check validation of stored data, restore to default data when configuration data corrupted
+     *
      * @throws ErrorException
      * @throws InvalidArgumentException
      * @throws JsonException
@@ -66,16 +71,9 @@ class Memory
          * throw read error message when not permitted;
          */
 
-        // Reduce time and space
-        $defaultMemoryDirectory = Storage::dataDriveStoragesPath();
-        $rootMemoryDirectory = dirname($defaultMemoryDirectory);
-        $configFile = Framework::configFile();
-        $installFile = Framework::configFile();
-        $configs = FRAMEWORK::defaultConfig();
-
-        if (is_writable($defaultMemoryDirectory) === false) {
+        if (is_writable(self::$dataDrive) === false) {
             throw new PermissionRequiredException(
-                sprintf('Unable to write %s', $defaultMemoryDirectory)
+                sprintf('Unable to write %s', self::$dataDrive)
             );
         }
 
@@ -84,9 +82,9 @@ class Memory
          * throw read error message when not permitted
          */
 
-        if (is_readable($rootMemoryDirectory) === false) {
+        if (is_readable(dirname(self::$dataDrive)) === false) {
             throw new PermissionRequiredException(
-                sprintf('Unable to read %s', $rootMemoryDirectory)
+                sprintf('Unable to read %s', dirname(self::$dataDrive))
             );
         }
 
@@ -97,35 +95,35 @@ class Memory
           * If the configuration file is corrupted, then rewrite this file.
           */
 
-        FileSystem::makeDirectory(dirname(Framework::configFile()));
+        FileSystem::makeDirectory(dirname(self::$framework->configFile()));
 
-        Log::info(sprintf('Check %s file existent.', $configFile));
-        if (file_exists($configFile) === false) {
-            Log::info(sprintf('Check failed. %s file not exists.', $configFile));
-            Log::info(sprintf('Creating new %s file with default config.', $configFile));
-            FileSystem\Yaml::emitFile($configFile, $configs);
+        Log::info(sprintf('Check %s file existent.', self::$framework->configFile()));
+        if (file_exists(self::$framework->configFile()) === false) {
+            Log::info(sprintf('Check failed. %s file not exists.', self::$framework->configFile()));
+            Log::info(sprintf('Creating new %s file with default config.', self::$framework->configFile()));
+            FileSystem\Yaml::emitFile(self::$framework->configFile(), self::$framework->defaultConfiguration());
         } else {
-            $content = FileSystem\Yaml::parseFile($configFile);
-            Log::info(sprintf('Check %s file\'s content length.', $configFile));
+            $content = FileSystem\Yaml::parseFile(self::$framework->configFile());
+            Log::info(sprintf('Check %s file\'s content length.', self::$framework->configFile()));
             if (count($content) === 0) {
-                Log::info(sprintf('The content of %s file is empty.', $configFile));
-                Log::info(sprintf('Creating new %s file with default config.', $configFile));
-                FileSystem\Yaml::emitFile($configFile, $configs);
+                Log::info(sprintf('The content of %s file is empty.', self::$framework->configFile()));
+                Log::info(sprintf('Creating new %s file with default config.', self::$framework->configFile()));
+                FileSystem\Yaml::emitFile(self::$framework->configFile(), self::$framework->defaultConfiguration());
             }
         }
 
-        Log::info(sprintf('Check %s file existent.', $installFile));
-        if (file_exists($installFile) === false) {
-            Log::info(sprintf('Check failed. %s file not exists', $installFile));
-            Log::info(sprintf('Creating new %s file', $installFile));
-            Framework::install();
+        Log::info(sprintf('Check %s file existent.', self::$framework->installFile()));
+        if (file_exists(self::$framework->installFile()) === false) {
+            Log::info(sprintf('Check failed. %s file not exists', self::$framework->installFile()));
+            Log::info(sprintf('Creating new %s file', self::$framework->installFile()));
+            self::$framework->install();
         } else {
-            $installContent = FileSystem\Yaml::parseFile($installFile);
-            Log::info(sprintf('Check %s file\'s content length', $installFile));
+            $installContent = FileSystem\Yaml::parseFile(self::$framework->installFile());
+            Log::info(sprintf('Check %s file\'s content length', self::$framework->installFile()));
             if (count($installContent) === 0) {
-                Log::info(sprintf('The content of %s file is empty', $installFile));
-                Log::info(sprintf('Creating new %s file', $installFile));
-                Framework::install();
+                Log::info(sprintf('The content of %s file is empty', self::$framework->installFile()));
+                Log::info(sprintf('Creating new %s file', self::$framework->installFile()));
+                self::$framework->install();
             }
         }
 
@@ -208,11 +206,11 @@ class Memory
             if (array_key_exists('file', $options) === true) {
                 $filename = $options['file'];
             } else {
-                $filename = Framework::installFile();
+                $filename = self::$framework->installFile();
             }
 
             if (file_exists($filename) === false) {
-                Framework::install();
+                self::$framework->install();
             }
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
@@ -226,13 +224,13 @@ class Memory
             if (array_key_exists('default', $options) === true) {
                 $default = $options['default'];
             } else {
-                $default = FRAMEWORK::defaultConfig();
+                $default = self::$framework->defaultConfiguration();
             }
 
             if (array_key_exists('file', $options) === true) {
                 $filename = $options['file'];
             } else {
-                $filename = Framework::configFile();
+                $filename = self::$framework->configFile();
             }
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
@@ -261,7 +259,7 @@ class Memory
     private static function dataLoader(string $carrier, string $format, array $default, string $filename): object|array
     {
         $result = [];
-        if (self::isValid($carrier, $format, $filename)) {
+        if (self::isValid($carrier, $format)) {
             $result = self::$data[$carrier][$format];
         } else {
             Log::info(sprintf('Check read permission of %s file.', $filename));
@@ -347,14 +345,14 @@ class Memory
      */
     private static function loadFrameworkMemory(): void
     {
-        Log::info(sprintf('Check read permission of %s file.', Framework::configFile()));
-        if (is_readable(Framework::configFile()) === true) {
-            Log::info(sprintf('Load data from %s file.', Framework::configFile()));
-            self::read(JSON::encodeToObject(FileSystem\Yaml::parseFile(Framework::configFile())));
+        Log::info(sprintf('Check read permission of %s file.', self::$framework->configFile()));
+        if (is_readable(self::$framework->configFile()) === true) {
+            Log::info(sprintf('Load data from %s file.', self::$framework->configFile()));
+            self::read(JSON::encodeToObject(FileSystem\Yaml::parseFile(self::$framework->configFile())));
         } else {
-            Log::info(sprintf('Not found system data file %s.', Framework::configFile()));
+            Log::info(sprintf('Not found system data file %s.', self::$framework->configFile()));
             Log::info('Load default data from system.');
-            self::read(JSON::encodeToObject(FRAMEWORK::defaultConfig()));
+            self::read(JSON::encodeToObject(self::$framework->defaultConfiguration()));
         }//end if
     }//end loadMemory()
 
@@ -364,8 +362,9 @@ class Memory
      */
     private static function baseUrlSet(): void
     {
-        if (file_exists(Framework::installFile())) {
-            define('BASE_URL', JSON::encodeToObject(FileSystem\Yaml::parseFile(Framework::installFile()))->host->url);
+        if (file_exists(self::$framework->installFile())) {
+            $data = FileSystem\Yaml::parseFile(self::$framework->installFile());
+            define('BASE_URL', JSON::encodeToObject($data)->host->url);
         } else {
             define('BASE_URL', Http::browser()->getURLHostname());
         }
@@ -375,42 +374,42 @@ class Memory
     /**
      * Read object of framework
      *
-     * @param object $framework Framework data object.
+     * @param object $configuration Framework configuration object.
      *
      * @return void Return nothing.
      * @throws RuntimeException Throw exception when runtime error occurred.
      */
-    private static function read(object $framework): void
+    private static function read(object $configuration): void
     {
-        if (empty($framework) === false) {
-            // Required constant variables declared here.
-            define('DEFAULT_APP_NAME', $framework->name);
-            define('FRAMEWORK_NAME', $framework->fullName);
-            define('FRAMEWORK_DESCRIPTION', $framework->descriptions);
-            define('DEFAULT_APP_AUTHOR', $framework->author->name);
-            define('DEFAULT_APP_COMPANY_NAME', $framework->company->name);
-            define('DEFAULT_APP_DESCRIPTIONS', $framework->company->shortDescription);
-            define('DEFAULT_APP_DESCRIPTIONS_FULL', $framework->company->detailsDescription);
-            define('DEFAULT_APP_COMPANY_WEB_ADDRESS', $framework->company->website);
-            define('DEFAULT_DATE_OF_BIRTH', $framework->author->dateOfBirth);
-            define('DEFAULT_DATA_CHAR_SET', $framework->charset);
-            define('DEFAULT_DATA_TABLE_PREFIX', $framework->prefix->char);
-            define('DEFAULT_SYSTEM_LAYOUT', $framework->preset->theme);
-            define('DEFAULT_SYSTEM_THEME', $framework->preset->theme);
+        // Required constant variables declared here.
+        if (is_object($configuration) === false) {
+            define('DEFAULT_APP_NAME', $configuration->name);
+            define('FRAMEWORK_NAME', $configuration->fullName);
+            define('FRAMEWORK_DESCRIPTION', $configuration->descriptions);
+            define('DEFAULT_APP_AUTHOR', $configuration->author->name);
+            define('DEFAULT_APP_COMPANY_NAME', $configuration->company->name);
+            define('DEFAULT_APP_DESCRIPTIONS', $configuration->company->shortDescription);
+            define('DEFAULT_APP_DESCRIPTIONS_FULL', $configuration->company->detailsDescription);
+            define('DEFAULT_APP_COMPANY_WEB_ADDRESS', $configuration->company->website);
+            define('DEFAULT_DATE_OF_BIRTH', $configuration->author->dateOfBirth);
+            define('DEFAULT_DATA_CHAR_SET', $configuration->charset);
+            define('DEFAULT_DATA_TABLE_PREFIX', $configuration->prefix->char);
+            define('DEFAULT_SYSTEM_LAYOUT', $configuration->preset->theme);
+            define('DEFAULT_SYSTEM_THEME', $configuration->preset->theme);
 
             // Alias of default system layout.
-            define('APP_USERNAME_PREFIX', $framework->prefix->char . $framework->prefix->separator);
-            define('DEFAULT_OPERATING_SYSTEM_USER', APP_USERNAME_PREFIX . $framework->preset->user);
-            define('DEFAULT_OPERATING_SYSTEM_PASSWORD', $framework->preset->user);
-            define('DEFAULT_CONTROLLER', $framework->preset->directoryIndex);
-            define('DEFAULT_DIRECTORY_INDEX', $framework->preset->directoryIndex);
-            define('SESSION_TIME', $framework->preset->sessionDuration);
-            define('WEB_CONFIG_TABLE', $framework->preset->config);
+            define('APP_USERNAME_PREFIX', $configuration->prefix->char . $configuration->prefix->separator);
+            define('DEFAULT_OPERATING_SYSTEM_USER', APP_USERNAME_PREFIX . $configuration->preset->user);
+            define('DEFAULT_OPERATING_SYSTEM_PASSWORD', $configuration->preset->user);
+            define('DEFAULT_CONTROLLER', $configuration->preset->directoryIndex);
+            define('DEFAULT_DIRECTORY_INDEX', $configuration->preset->directoryIndex);
+            define('SESSION_TIME', $configuration->preset->sessionDuration);
+            define('WEB_CONFIG_TABLE', $configuration->preset->config);
 
             define('DB_DEFAULT_NAME', 'system');
             define('DB_USER_NAME', DEFAULT_OPERATING_SYSTEM_USER);
             define('DB_USER_PASSWORD', DEFAULT_OPERATING_SYSTEM_PASSWORD);
-            define('DB_WEB_CONFIG_TABLE', $framework->preset->config);
+            define('DB_WEB_CONFIG_TABLE', $configuration->preset->config);
 
             // Mishusoft associates files format.
             define('MISHUSOFT_DATABASE_FILE_FORMAT', '.msdb');
@@ -420,12 +419,12 @@ class Memory
             define('USER_PASSWORD_LENGTH_LIMIT', 8);
 
             // Support address.
-            define('SUPPORT_EMAIL_ADDRESS', $framework->company->mail);
-            define('SUPPORT_WEBSITE', $framework->company->support);
+            define('SUPPORT_EMAIL_ADDRESS', $configuration->company->mail);
+            define('SUPPORT_WEBSITE', $configuration->company->support);
             define('SUPPORT_CONTACT_TITLE', 'Feedback');
 
             // System exclude dir.
-            define('SYSTEM_EXCLUDE_DIRS', $framework->exclude->dir);
+            define('SYSTEM_EXCLUDE_DIRS', $configuration->exclude->dir);
         } else {
             throw new RuntimeException('Memory is corrupted.');
         }//end if

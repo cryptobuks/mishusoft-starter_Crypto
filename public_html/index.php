@@ -25,10 +25,11 @@ declare(strict_types=1);
 |
 */
 
-if (!extension_loaded('yaml')
-    && file_exists(dirname(__DIR__) . '/requirements/yaml.so')) {
-    dl(dirname(__DIR__).'/requirements/yaml.so');
-}
+//run failed
+//if (!extension_loaded('yaml')
+//    && file_exists(dirname(__DIR__) . '/requirements/yaml.so')) {
+//    dl(dirname(__DIR__).'/requirements/yaml.so');
+//}
 
 
 /*

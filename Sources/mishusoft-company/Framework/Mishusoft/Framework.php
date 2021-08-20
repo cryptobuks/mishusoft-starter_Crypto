@@ -42,38 +42,42 @@ class Framework extends Base
     /**
      * Init function for Framework
      *
+     * @param \Closure $closure
      * @return Framework
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\HttpException\HttpResponseException
      * @throws Exceptions\JsonException
      * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
      * @throws Exceptions\RuntimeException\NotFoundException
      * @throws JsonException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
      */
-    public static function init(): static
+    public static function init(\Closure $closure): static
     {
-        if (file_exists(self::listerFile()) === false || file_get_contents(self::listerFile()) === '') {
-            self::checkFileSystem();
+        $instance = new self();
+
+        //Check framework file system
+        if (file_exists($instance->listerFile()) === false || file_get_contents($instance->listerFile()) === '') {
+            $instance->checkFileSystem();
         }
 
-        self::install();
+        //install framework
+        $instance->install();
 
+        //Check framework requirements
         self::extensionRequiredCheck();
         self::thirdPartyRequiredCheck();
         self::opcacheStatusCheck();
-        self::execute();
 
-        return new self();
+        $closure($instance);
+        //self::execute();
+        return $instance;
     }//end init()
 
     /**
      * @return string
      */
-    public static function description():string
+    public function description():string
     {
         $details  = self::FULL_NAME.' is a robust multi-web platform developed by '.self::COMPANY_NAME.'.';
         $details .= ' This platform is capable of getting start with all categories website quickly and accurately.';
@@ -83,7 +87,7 @@ class Framework extends Base
     /**
      * @return string
      */
-    public static function companyDescriptionDetails():string
+    public function companyDescriptionDetails():string
     {
         $details  = self::COMPANY_NAME.' is a software development company that is going to be established with a view to offering high quality IT solutions at home and abroad.';
         $details .= ' The company is keen to take the advantage of fast growing global software and data processing industry by offering professional service and price for support and benefit of the valued customers.';
@@ -93,7 +97,7 @@ class Framework extends Base
     /**
      * @return string
      */
-    public static function configFile():string
+    public function configFile():string
     {
         return self::dFile(self::dataFile('Framework', 'config'));
     }
@@ -101,7 +105,7 @@ class Framework extends Base
     /**
      * @return string
      */
-    public static function installFile():string
+    public function installFile():string
     {
         return self::dFile(self::dataFile('Framework', 'install'));
     }
@@ -109,7 +113,7 @@ class Framework extends Base
     /**
      * @return string
      */
-    public static function listerFile():string
+    public function listerFile():string
     {
         return self::dFile(self::dataFile('Framework', 'files/'.APPLICATION_SERVER_NAME), 'ext4');
     }
@@ -118,12 +122,12 @@ class Framework extends Base
     /**
      * @return array
      */
-    public static function defaultConfig():array
+    public function defaultConfiguration():array
     {
         return [
             'name'         => self::NAME,
             'fullName'     => self::FULL_NAME,
-            'descriptions' => self::description(),
+            'descriptions' => $this->description(),
             'version'      => self::VERSION,
             'charset'      => 'utf8mb4',
             'prefix'       => [
@@ -141,7 +145,7 @@ class Framework extends Base
                 'map'                => self::COMPANY_ADDRESS_MAP,
                 'care'               => self::COMPANY_CONSUMER_CARE,
                 'shortDescription'   => self::COMPANY_DESCRIPTION_SHORT,
-                'detailsDescription' => self::companyDescriptionDetails(),
+                'detailsDescription' => $this->companyDescriptionDetails(),
                 'website'            => self::COMPANY_WEBSITE_LINK,
                 'support'            => self::COMPANY_SUPPORT_LINK,
                 'mail'               => self::COMPANY_MAIL_LINK,
@@ -163,7 +167,6 @@ class Framework extends Base
             ],
             'required'     => [
                 'extensions' => [
-                    'Core',
                     'date',
                     'openssl',
                     'dom',
@@ -173,11 +176,9 @@ class Framework extends Base
                     'mysqlnd',
                     'Phar',
                     'curl',
-                    'gettext',
                     'pdo_mysql',
                     'bz2',
                     'zip',
-                    'session',
                     'yaml',
                     'Zend OPcache',
                 ],
@@ -238,7 +239,7 @@ class Framework extends Base
      * @throws Exceptions\ErrorException
      * @throws Exceptions\PermissionRequiredException
      */
-    private static function checkFileSystem(string $rootPath = RUNTIME_ROOT_PATH): void
+    private function checkFileSystem(string $rootPath = RUNTIME_ROOT_PATH): void
     {
         /*
          * Check root directory is directory or not.
@@ -278,9 +279,9 @@ class Framework extends Base
         $files = glob($rootPath.'*', GLOB_MARK);
         foreach ($files as $file) {
             if (is_dir($file) === true) {
-                self::checkFileSystem($file);
+                $this->checkFileSystem($file);
             } else {
-                self::updateFileSystemDisk($file);
+                $this->updateFileSystemDisk($file);
             }
         }
     }//end checkFileSystem()
@@ -291,30 +292,30 @@ class Framework extends Base
      * @throws Exceptions\RuntimeException
      * @throws Exceptions\PermissionRequiredException
      */
-    private static function updateFileSystemDisk(string $file): void
+    private function updateFileSystemDisk(string $file): void
     {
-        if (file_exists(self::listerFile()) === true) {
-            if (is_readable(self::listerFile()) === true) {
-                self::updateDirectoryIndex($file);
+        if (file_exists($this->listerFile()) === true) {
+            if (is_readable($this->listerFile()) === true) {
+                $this->updateDirectoryIndex($file);
             } else {
-                throw new Exceptions\PermissionRequiredException(sprintf('Unable to read %s', self::listerFile()));
+                throw new Exceptions\PermissionRequiredException(sprintf('Unable to read %s', $this->listerFile()));
             }
-        } elseif (is_writable(dirname(self::listerFile(), 2)) === true) {
-            if (is_dir(dirname(self::listerFile())) === false) {
-                FileSystem::makeDirectory(dirname(self::listerFile()));
+        } elseif (is_writable(dirname($this->listerFile(), 2)) === true) {
+            if (is_dir(dirname($this->listerFile())) === false) {
+                FileSystem::makeDirectory(dirname($this->listerFile()));
             }
 
-            if (is_writable(dirname(self::listerFile())) === true) {
-                if (file_exists(self::listerFile()) === false) {
-                    fclose(fopen(self::listerFile(), 'wb+'));
-                    FileSystem::exec(self::listerFile());
+            if (is_writable(dirname($this->listerFile())) === true) {
+                if (file_exists($this->listerFile()) === false) {
+                    fclose(fopen($this->listerFile(), 'wb+'));
+                    FileSystem::exec($this->listerFile());
                 }
 
-                self::updateDirectoryIndex($file);
+                $this->updateDirectoryIndex($file);
             }//end if
         } else {
             throw new Exceptions\PermissionRequiredException(
-                sprintf('Unable to write %s', dirname(self::listerFile(), 2))
+                sprintf('Unable to write %s', dirname($this->listerFile(), 2))
             );
         }//end if
     }//end updateFileSystemDisk()
@@ -324,17 +325,17 @@ class Framework extends Base
      * @param string $file
      * @throws Exceptions\PermissionRequiredException
      */
-    private static function updateDirectoryIndex(string $file): void
+    private function updateDirectoryIndex(string $file): void
     {
-        if (is_writable(self::listerFile()) === true) {
+        if (is_writable($this->listerFile()) === true) {
             if (is_file($file) === true && file_exists($file) === true) {
-                $data  = file_get_contents(self::listerFile());
-                $data .= substr(sprintf('%o', fileperms(self::listerFile())), -4)."\t";
-                $data .= filetype(realpath(self::listerFile()))."\t$file\n";
-                FileSystem::saveToFile(self::listerFile(), $data);
+                $data  = file_get_contents($this->listerFile());
+                $data .= substr(sprintf('%o', fileperms($this->listerFile())), -4)."\t";
+                $data .= filetype(realpath($this->listerFile()))."\t$file\n";
+                FileSystem::saveToFile($this->listerFile(), $data);
             }
         } else {
-            throw new Exceptions\PermissionRequiredException(sprintf('Unable to write %s', self::listerFile()));
+            throw new Exceptions\PermissionRequiredException(sprintf('Unable to write %s', $this->listerFile()));
         }//end if
     }//end updateDirectoryIndex()
 
@@ -347,18 +348,18 @@ class Framework extends Base
      * @throws Exceptions\RuntimeException
      * @throws JsonException
      */
-    public static function install(): void
+    public function install(): void
     {
         // Preparing to check framework install file.
-        if (is_readable(self::installFile()) === true) {
+        if (is_readable($this->installFile()) === true) {
             // Framework install file found and start reading.
             if (defined('INSTALLED_HOST_NAME') === false) {
                 define('INSTALLED_HOST_NAME', Memory::data('framework')->host->name);
             }
         } else {
-            FileSystem::makeDirectory(dirname(self::installFile()));
+            FileSystem::makeDirectory(dirname($this->installFile()));
             // Preparing to create framework install file.
-            FileSystem\Yaml::emitFile(self::installFile(), [
+            FileSystem\Yaml::emitFile($this->installFile(), [
                 'name'        => 'Framework Installer',
                 'version'     => self::VERSION,
                 'debug'       => !(MPM::getProperty('release') === 'stable'),
@@ -486,13 +487,13 @@ class Framework extends Base
      * @throws \GeoIp2\Exception\AddressNotFoundException
      * @throws \MaxMind\Db\Reader\InvalidDatabaseException
      */
-    private static function execute(): void
+    public function execute(): void
     {
         if (file_exists(MPM::configFile()) === false) {
             EmbeddedView::welcomeToFramework(self::FULL_NAME, [
                 'caption' => self::FULL_NAME,
-                'description' => self::description(),
-                'warning' =>self::installWaring(),
+                'description' => $this->description(),
+                'warning' =>$this->installWarning(),
                 'copyright' => Ui::copyRightText(),
             ]);
             exit(0);
@@ -501,7 +502,7 @@ class Framework extends Base
         MPM::load();
     }//end execute()
 
-    private static function installWaring():string
+    private function installWarning():string
     {
         $message = 'Notice: This welcome interface has been shown after successful installation of this framework. ';
         $message .= 'Now you need to install our package(s) to getting start. ';
