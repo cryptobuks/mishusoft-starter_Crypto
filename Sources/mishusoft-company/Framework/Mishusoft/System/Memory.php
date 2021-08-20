@@ -407,7 +407,10 @@ class Memory
             define('SESSION_TIME', $framework->preset->sessionDuration);
             define('WEB_CONFIG_TABLE', $framework->preset->config);
 
-            define('DEFAULT_DATABASE', 'system');
+            define('DB_DEFAULT_NAME', 'system');
+            define('DB_USER_NAME', DEFAULT_OPERATING_SYSTEM_USER);
+            define('DB_USER_PASSWORD', DEFAULT_OPERATING_SYSTEM_PASSWORD);
+            define('DB_WEB_CONFIG_TABLE', $framework->preset->config);
 
             // Mishusoft associates files format.
             define('MISHUSOFT_DATABASE_FILE_FORMAT', '.msdb');

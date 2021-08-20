@@ -80,7 +80,7 @@ $rootCssDirectory = sprintf(
     <link rel="apple-touch-icon" type="image/png" sizes="192x192"
           href="<?php echo make($imageMimeType, $rootMediaDirectory . 'apple-icon.png'); ?>"
     />
-    <link rel="icon" type="image/vnd.microsoft.iconpng" sizes="16x16"
+    <link rel="icon" type="image/vnd.microsoft.icon" sizes="16x16"
           href="<?php echo make($imageMimeType, $rootMediaDirectory . 'favicon.ico'); ?>"
     />
     <link rel="icon" type="image/png" sizes="16x16"
@@ -100,7 +100,7 @@ $rootCssDirectory = sprintf(
     <meta name="description" content="Access denied - Mishusoft Firewall">
 
     <style>
-        <?php echo fileContent($rootCssDirectory . 'app.css'); ?>
+        <?php echo fileContent($rootCssDirectory . 'embedded.css'); ?>
     </style>
     <style>
         .maintenance-content {
@@ -153,7 +153,7 @@ $rootCssDirectory = sprintf(
                 <div>We'll be back in a few hours. Thank you for your patience.</div>
             </div>
             <div class="message-lite">
-                <div>Contact us in case of any need: <a href="mailto:support@mishusoft.com">Support center</a> </div>
+                <div>Contact us in case of any need: <a href="mailto:mrabir.ahamed@gmail.com">Support center</a> </div>
             </div>
         </div>
     </article>

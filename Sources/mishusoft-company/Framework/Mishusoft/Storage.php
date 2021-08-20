@@ -488,7 +488,7 @@ class Storage extends Base
                     'href' => self::toDataUri(
                         'media',
                         'logos'. DS.'default'. DS.FileSystem::fileBase($imageFile),
-                        'remote'
+                        //'remote'
                     ),
                 ];
             }
@@ -502,7 +502,7 @@ class Storage extends Base
                     'href' => self::toDataUri(
                         'media',
                         'logos'. DS.'default'. DS.FileSystem::fileBase($imageFile),
-                        'remote'
+                        //'remote'
                     ),
                 ];
             }
@@ -519,7 +519,7 @@ class Storage extends Base
                     'href' => self::toDataUri(
                         'media',
                         'logos'. DS.'default'. DS.FileSystem::fileBase($imageFile),
-                        'remote'
+                        //'remote'
                     ),
                 ];
             }
@@ -533,7 +533,7 @@ class Storage extends Base
                     'href' => self::toDataUri(
                         'media',
                         'logos'. DS.'default'. DS.FileSystem::fileBase($imageFile),
-                        'remote'
+                        //'remote'
                     ),
                 ];
             }
@@ -569,7 +569,7 @@ class Storage extends Base
         }
 
         foreach ($fileList as $file => $fileDetails) {
-            //                [
+//                [
 //                    'rel' => 'preload', 'as' => 'font', 'type' => 'font/woff2', 'crossorigin' => '',
 //                    'href' => Storage::assetsFullPath('webfonts/SourceSansPro.woff2', 'remote'),
 //                ],
@@ -579,7 +579,7 @@ class Storage extends Base
                 'href' => self::toDataUri(
                     'assets',
                     'webfonts'. DS.FileSystem::fileBase($file),
-                    'remote'
+                    //'remote'
                 ),
             ];
         }
@@ -662,7 +662,7 @@ class Storage extends Base
     public static function additionalJSResourceFullPath(string $filename, string $feature = 'local'): string
     {
         return self::fullPathBuilder(
-            MPM::TemplatesJavascriptResourcesRootLocal(),
+            MPM::TemplatesJsResourcesRootLocal(),
             false,
             $filename,
             $feature,

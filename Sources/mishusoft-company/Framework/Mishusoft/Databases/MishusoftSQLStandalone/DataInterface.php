@@ -4,7 +4,7 @@ namespace Mishusoft\Databases\MishusoftSQLStandalone;
 
 interface DataInterface
 {
-    const DB_TABLE_FILE_FORMAT = ".mstbl";
+    public const DB_TABLE_FILE_FORMAT = ".mstbl";
 
     /**
      * @param array $options

@@ -227,8 +227,9 @@ class FileSystem
 
     /**
      * @param array|string $filename
+     * @return bool
      */
-    public static function remove(array|string $filename): void
+    public static function remove(array|string $filename): bool
     {
         if (is_array($filename) === true) {
             foreach ($filename as $file) {
@@ -236,11 +237,16 @@ class FileSystem
                     self::delete($file);
                 }
             }
+
+            return true;
         }
 
         if ((is_string($filename) === true) && is_writable($filename) === true) {
             self::delete($filename);
+            return true;
         }
+
+        return false;
     }//end remove()
 
 

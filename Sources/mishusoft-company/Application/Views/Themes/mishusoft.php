@@ -110,16 +110,20 @@ if ($this->templateUse === 'no') {
     Ui::elementList(
         Ui::getDocumentHeadElement(),
         [
-            'link' => [
-                [
-                    'rel' => 'stylesheet', 'type' => 'text/css', 'id' => 'framework.css',
-                    'href' => Storage::assetsFullPath('css/framework.css', 'remote'),
-                ],
-            ],
+//            'link' => [
+//                [
+//                    'rel' => 'stylesheet', 'type' => 'text/css', 'id' => 'framework.css',
+//                    'href' => Storage::assetsFullPath('css/framework.css', 'remote'),
+//                ],
+//            ],
             'style' => [
                 [
                     'type' => 'text/css', 'id' => 'theme.css',
                     'text' => file_get_contents(Storage::assetsFullPath('css/mishusoft-theme.css')),
+                ],
+                [
+                    'type' => 'text/css', 'id' => 'theme.css',
+                    'text' => file_get_contents(Storage::assetsFullPath('css/framework.css')),
                 ],
             ],
         ]
@@ -205,12 +209,14 @@ if ($this->templateUse === 'no') {
                     'type' => 'module', 'rel' => 'prefetch', 'id' => 'readystate.js',
                     //'text' => file_get_contents(Storage::assetsFullPath('js/readystate.js')),
                     //type="module"
-                    'src' => Storage::assetsFullPath('js/readystate.js', 'remote'),
+                   // 'src' => Storage::assetsFullPath('js/readystate.js', /*'remote'*/),
+                    'src' => Storage::toDataUri('assets', 'js/readystate.js', 'remote'),
                 ],
                 [
                     'type' => 'module', 'rel' => 'prefetch', 'id' => 'framework.js',
                     //'text' => file_get_contents(Storage::assetsFullPath('js/framework.js')),
-                    'src' => Storage::assetsFullPath('js/framework.js', 'remote'),
+                    'src' => Storage::toDataUri('assets', 'js/framework.js', 'remote'),
+                    //'src' => Storage::toDataUri('assets', 'js/framework.js', /*'remote'*/),
                 ],
             ],
         ]

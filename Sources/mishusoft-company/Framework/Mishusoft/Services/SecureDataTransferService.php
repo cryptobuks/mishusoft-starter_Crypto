@@ -504,7 +504,7 @@ class SecureDataTransferService
      */
     private static function getVerifiedProductId(array $RequestedDataArray) : void
     {
-        $idNbOfProduct = self::$conOfDatabase->getIdNbOfVerifiedProduct(Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "IdRequest"), "name")), Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "IdRequest"), "version")), Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "IdRequest"), "ip")), Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "IdRequest"), "browser")));
+        $idNbOfProduct = self::$conOfDatabase->verifiedProductId(Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "IdRequest"), "name")), Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "IdRequest"), "version")), Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "IdRequest"), "ip")), Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "IdRequest"), "browser")));
         if (!is_numeric($idNbOfProduct)) {
             Storage\Stream::json(['app_pub_id' => Encryption::static((string)$idNbOfProduct)]);
         } else {
@@ -549,7 +549,7 @@ class SecureDataTransferService
     private static function processUserAuthentication($detailsArray, $IdNbOfUsr, $userDetails): void
     {
         /*$data->userdata->_default_->app_id*/
-        $app = self::$conOfDatabase->getInstPrdInfById((int)Decryption::static(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($detailsArray, "userdata"), "_default_"), "app_id")));
+        $app = self::$conOfDatabase->installedProductDetailsById((int)Decryption::static(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($detailsArray, "userdata"), "_default_"), "app_id")));
         if (is_array($app) and count($app) > 0) {
             $app = self::$conOfDatabase->getPrdLcnDtlByPrdId((int)Decryption::static(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($detailsArray, "userdata"), "_default_"), "app_id")));
             if (ArrayCollection::value($app, "ipAddress") && ArrayCollection::value($app, "ipAddress") !== Inflect::removeTags(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($detailsArray, "userdata"), "_default_"), "ip"))) {

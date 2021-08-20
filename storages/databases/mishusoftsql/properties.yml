@@ -1,0 +1,7 @@
+---
+databases: []
+users:
+- username: msu_superuser
+  password: superuser
+  permission: all
+...

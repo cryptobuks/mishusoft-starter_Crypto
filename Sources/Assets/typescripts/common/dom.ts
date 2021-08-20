@@ -64,3 +64,8 @@ export function changeElementAttributeValue(selector: any, keyAttrAndValue: any[
     }
 }
 
+// function typedArrayToURL(typedArray, mimeType) {
+//     return URL.createObjectURL(new Blob([typedArray.buffer], {type: mimeType}))
+// }
+// const url = typedArrayToURL(bytes, 'text/plain');
+

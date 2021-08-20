@@ -39,7 +39,7 @@ class Yaml
      * @param mixed $data The data being encoded. Can be any type except a resource.
      * @param int $encoding [optional] Output character encoding chosen from YAML_ANY_ENCODING, YAML_UTF8_ENCODING, YAML_UTF16LE_ENCODING, YAML_UTF16BE_ENCODING.
      * @param int $linebreak [optional] Output linebreak style chosen from YAML_ANY_BREAK, YAML_CR_BREAK, YAML_LN_BREAK, YAML_CRLN_BREAK.
-     * @param array $callbacks [optional] Content handlers for YAML nodes. Associative array of YAML tag => callable mappings. See parse callbacks for more details.
+     * @param array $callbacks [optional] Content handlers for YAML nodes. Associative array of YAML tag => callable mappings.
      *
      * @return string Returns a YAML encoded string on success.
      * @throws RuntimeException
@@ -68,7 +68,7 @@ class Yaml
      *
      * @return string A YAML string representing the original PHP value
      */
-    public static function emitD(mixed $input, int $inline = 2, int $indent = 4, int $flags = 0): string
+    public static function emitSelf(mixed $input, int $inline = 2, int $indent = 4, int $flags = 0): string
     {
         $yaml = new Yaml\Dumper($indent);
         return $yaml->dump($input, $inline, 0, $flags);
@@ -81,7 +81,7 @@ class Yaml
      * @param mixed $data The data being encoded. Can be any type except a resource.
      * @param int $encoding Output character encoding chosen from YAML_ANY_ENCODING, YAML_UTF8_ENCODING, YAML_UTF16LE_ENCODING, YAML_UTF16BE_ENCODING.
      * @param int $linebreak Output linebreak style chosen from YAML_ANY_BREAK, YAML_CR_BREAK, YAML_LN_BREAK, YAML_CRLN_BREAK.
-     * @param array $callbacks [optional] Content handlers for YAML nodes. Associative array of YAML tag => callable mappings. See parse callbacks for more details.
+     * @param array $callbacks Content handlers for YAML nodes. Associative array of YAML tag => callable mappings.
      *
      * @return bool Returns TRUE on success.
      * @throws RuntimeException
@@ -101,7 +101,7 @@ class Yaml
      * @throws RuntimeException
      * @throws PermissionRequiredException
      */
-    public static function emitFileD(string $filename, mixed  $data): bool
+    public static function emitFileSelf(string $filename, mixed  $data): bool
     {
         if (!file_exists(dirname($filename))) {
             FileSystem::makeDirectory(dirname($filename));
@@ -122,10 +122,10 @@ class Yaml
      * Parse a YAML stream
      * @link https://php.net/manual/en/function.yaml-parse.php
      * @param string $input The string to parse as a YAML document stream.
-     * @param int $pos [optional] Document to extract from stream (-1 for all documents, 0 for first document, ...).
-     * @param int &$ndocs [optional] If ndocs is provided, then it is filled with the number of documents found in stream.
-     * @param array $callbacks [optional] Content handlers for YAML nodes. Associative array of YAML tag => callable mappings. See parse callbacks for more details.
-     * @return mixed|false Returns the value encoded in input in appropriate PHP type or FALSE on failure. If pos is -1 an array will be returned with one entry for each document found in the stream.
+     * @param int $pos Document to extract from stream (-1 for all documents, 0 for first document, ...).
+     * @param int|null $ndocs If ndocs is provided, then it is filled with the number of documents found in stream.
+     * @param array $callbacks Content handlers for YAML nodes. Associative array of YAML tag => callable mappings.
+     * @return mixed Returns the value encoded in input in appropriate PHP type or FALSE on failure.
      * @throws RuntimeException
      */
     public static function parse(string $input, int $pos = 0, int &$ndocs = null, array $callbacks = []): mixed
@@ -151,7 +151,7 @@ class Yaml
      *
      * @throws Yaml\Exception\ParseException If the YAML is not valid
      */
-    public static function parseD(string $input, int $flags = 0): mixed
+    public static function parseSelf(string $input, int $flags = 0): mixed
     {
         $yaml = new Yaml\Parser();
         return $yaml->parse($input, $flags);
@@ -162,10 +162,10 @@ class Yaml
      * Parse a YAML stream from a file
      * @link https://php.net/manual/en/function.yaml-parse-file.php
      * @param string $filename Path to the file.
-     * @param int $pos [optional] Document to extract from stream (-1 for all documents, 0 for first document, ...).
-     * @param int &$ndocs [optional] If ndocs is provided, then it is filled with the number of documents found in stream.
-     * @param array $callbacks [optional] Content handlers for YAML nodes. Associative array of YAML tag => callable mappings. See parse callbacks for more details.
-     * @return mixed|false Returns the value encoded in input in appropriate PHP type or FALSE on failure. If pos is -1 an array will be returned with one entry for each document found in the stream.
+     * @param int $pos Document to extract from stream (-1 for all documents, 0 for first document, ...).
+     * @param int|null $ndocs If ndocs is provided, then it is filled with the number of documents found in stream.
+     * @param array $callbacks Content handlers for YAML nodes.
+     * @return mixed Returns the value encoded in input in appropriate PHP type or FALSE on failure.
      * @throws RuntimeException
      */
     public static function parseFile(string $filename, int $pos = 0, int &$ndocs = null, array $callbacks = []): mixed
@@ -190,7 +190,7 @@ class Yaml
      *
      * @throws Yaml\Exception\ParseException If the file could not be read or the YAML is not valid
      */
-    public static function parseFileD(string $filename, int $flags = 0): mixed
+    public static function parseFileSelf(string $filename, int $flags = 0): mixed
     {
         $yaml = new Yaml\Parser();
         return $yaml->parseFile($filename, $flags);
@@ -200,11 +200,11 @@ class Yaml
     /**
      * Parse a Yaml stream from a URL
      * @link https://php.net/manual/en/function.yaml-parse-url.php
-     * @param string $url url should be of the form "scheme://...". PHP will search for a protocol handler (also known as a wrapper) for that scheme. If no wrappers for that protocol are registered, PHP will emit a notice to help you track potential problems in your script and then continue as though filename specifies a regular file.
-     * @param int $pos [optional] Document to extract from stream (-1 for all documents, 0 for first document, ...).
-     * @param int &$ndocs [optional] If ndocs is provided, then it is filled with the number of documents found in stream.
-     * @param array $callbacks [optional] Content handlers for YAML nodes. Associative array of YAML tag => callable mappings. See parse callbacks for more details.
-     * @return mixed|false Returns the value encoded in input in appropriate PHP type or FALSE on failure. If pos is -1 an array will be returned with one entry for each document found in the stream.
+     * @param string $url url should be of the form "scheme://...".
+     * @param int $pos Document to extract from stream (-1 for all documents, 0 for first document, ...).
+     * @param int|null $ndocs If ndocs is provided, then it is filled with the number of documents found in stream.
+     * @param array $callbacks Content handlers for YAML nodes.
+     * @return mixed Returns the value encoded in input in appropriate PHP type or FALSE on failure.
      * @throws RuntimeException
      */
     public static function parseUrl(string $url, int $pos = 0, int &$ndocs = null, array $callbacks = []): mixed

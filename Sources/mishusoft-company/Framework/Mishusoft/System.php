@@ -420,7 +420,7 @@ class System extends Base
                                             case 'mishusoftsql':
                                                 $configure  = Memory::Data('config', ['file' => self::getRequiresFile('SETUP_FILE_PATH', _Array::value($properties, 'default'))]);
                                                 $connection = (new MishusoftSQLStandalone($configure->db->user, $configure->db->password));
-                                                if (in_array($configure->db->name, $connection->getDatabaseAll())) {
+                                                if (in_array($configure->db->name, $connection->getDatabasesAll())) {
                                                     if (in_array('users', $connection->select($configure->db->name)->getTableAll())) {
                                                         if (in_array(WEB_CONFIG_TABLE, $connection->select($configure->db->name)->getTableAll())) {
                                                             self::updateSecurity('Installed');

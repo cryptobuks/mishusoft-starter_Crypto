@@ -4,49 +4,56 @@
 namespace Mishusoft\Services;
 
 use Mishusoft\Databases\MishusoftSQLStandalone;
-use Mishusoft\Ui\Time;
-use Mishusoft\Utility\ArrayCollection;
+use Mishusoft\System\Time;
+use Mishusoft\Utility\ArrayCollection as Arr;
 use Mishusoft\Databases\MishusoftSQLStandalone\TableInterface;
 use Mishusoft\Migration\DB;
+use Mishusoft\Utility\Inflect;
+use Mishusoft\Utility\Number;
 
 class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
 {
     /**
      * @var TableInterface|mixed
      */
-    private $db;
+    private mixed $db;
 
     public function __construct()
     {
-        parent::__construct(DB_USER_NAME, DB_USER_PASSWORD);
-        $this->db = $this->select("system");
+        parent::__construct(DB::USER, DB::PASSWORD);
+        $this->db = $this->select(DB::NAME);
     }
 
     /*
      * Method list for monitor controller
-     * */
-
-
-
-    /**
      * @param string $name
      * @param string $version
      * @param string $ip
      * @param string $browser
      * @return int
      */
-    public function getIdNbOfVerifiedProduct(string $name, string $version, string $ip, string $browser): int
+    public function verifiedProductId(string $name, string $version, string $ip, string $browser): int
     {
-        return ArrayCollection::value($this->db->read(DB::INSTALLED_PRODUCTS_LIST_TABLE)->get(["get" => ["id"], "where" => ["name" => "{$name}", "version" => "{$version}", "ip_address" => "{$ip}", "browserNameFull" => "{$browser}"]]), "id");
+        return Arr::value($this->db->read(DB\Table::INSTALLED_PRODUCTS_LIST)->get([
+            "get" => ["id"],
+            "where" => [
+                "name" => Inflect::validString($name),
+                "version" => Inflect::validString($version),
+                "ip_address" => Inflect::validString($ip),
+                "browserNameFull" => Inflect::validString($browser),
+            ],
+        ]), "id");
     }
 
     /**
      * @param int $id
      * @return array
      */
-    public function getInstPrdInfById(int $id): array
+    public function installedProductDetailsById(int $id): array
     {
-        return $this->db->read(DB::INSTALLED_PRODUCTS_LIST_TABLE)->get(["get" => "*", "where" => ["id" => "{$id}"]]);
+        return $this->db->read(DB\Table::INSTALLED_PRODUCTS_LIST)->get(
+            ["get" => "*", "where" => ["id" => Number::filterInt($id)]]
+        );
     }
 
     /**
@@ -70,14 +77,14 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
          *     "expire": "",
          *     "created-date-time": ""
          *   }*/
-        return $this->db->read(DB::INSTALLED_PRODUCTS_LIST_TABLE)->insert([
+        return $this->db->read(DB\Table::INSTALLED_PRODUCTS_LIST)->insert([
             "name" => (string)($name),
             "version" => (string)($version), "ip_address" => (string)$ip,
             "browserNameFull" => (string)($browser),
             "licence_key" => "",
             "issue" => "",
             "expire" => "",
-            "created-date-time" => Time::getToday(),
+            "created-date-time" => Time::today(),
         ]);
     }
 
@@ -91,7 +98,7 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
      */
     public function getInfAbtInstPrdStatus(string $name, string $version, string $ip, string $os_version, string $browser): array
     {
-        return $this->db->read(DB::INSTALLED_PRODUCTS_STATUS_LIST_TABLE)->get(["get" => "*", "where" => ["name" => "{$name}", "version" => "{$version}", "ip_address" => "{$ip}", "os_version" => "{$os_version}", "browserNameFull" => "{$browser}"]]);
+        return $this->db->read(DB\Table::INSTALLED_PRODUCTS_STATUS_LIST)->get(["get" => "*", "where" => ["name" => "{$name}", "version" => "{$version}", "ip_address" => "{$ip}", "os_version" => "{$os_version}", "browserNameFull" => "{$browser}"]]);
     }
 
     /**
@@ -108,14 +115,14 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
         /*
          * UPDATE `msu_apps_status` SET `status`=[value-6] WHERE `name`=[value-2],`version`=[value-3],`ip_address`=[value-4],``os_version`=[os_version],`browserNameFull`=[value-5]
          * */
-        return $this->db->read(DB::INSTALLED_PRODUCTS_STATUS_LIST_TABLE)->update([
+        return $this->db->read(DB\Table::INSTALLED_PRODUCTS_STATUS_LIST)->update([
             "update" => [
-                "message" => "{$message}", "created-date-time" => Time::getToday(),
+                "message" => "{$message}", "created-date-time" => Time::today(),
             ],
             "where" => [
                 "name" => "{$name}", "version" => "{$version}", "ip_address" => "{$ip}",
                 "os_version" => "{$os_version}", "browserNameFull" => "{$browser}",
-            ]]);
+            ], ]);
     }
 
     /**
@@ -129,10 +136,10 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
      */
     public function insertInfOfPrdStatus(string $name, string $version, string $ip, string $os_version, string $browser, string $message): bool
     {
-        return $this->db->read(DB::INSTALLED_PRODUCTS_STATUS_LIST_TABLE)->insert([
+        return $this->db->read(DB\Table::INSTALLED_PRODUCTS_STATUS_LIST)->insert([
             "name" => "{$name}", "version" => "{$version}", "ip_address" => "{$ip}",
             "os_version" => "{$os_version}", "browserNameFull" => "{$browser}",
-            "message" => "{$message}", "created-date-time" => Time::getToday(),
+            "message" => "{$message}", "created-date-time" => Time::today(),
         ]);
     }
 
@@ -146,12 +153,12 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
      */
     public function receiveInfoAboutUserUpdate(string $name, string $version, string $ip, string $browser, string $message): bool
     {
-        return $this->db->read(DB::CLIENT_UPDATE_INFO_LIST_TABLE)->insert([
+        return $this->db->read(DB\Table::CLIENT_UPDATE_INFO_LIST)->insert([
             "name" => "{$name}",
             "version" => "{$version}", "ip_address" => "{$ip}",
             "browserNameFull" => "{$browser}",
             "message" => "{$message}",
-            "created-date-time" => Time::getToday(),
+            "created-date-time" => Time::today(),
         ]);
     }
 
@@ -161,9 +168,9 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
      */
     public function rcvInfAbtUsersIP(array $haystack): bool
     {
-        return $this->db->read(DB::CLIENT_IP_INFO_LIST_TABLE)->insert(array_merge(
+        return $this->db->read(DB\Table::CLIENT_IP_INFO_LIST)->insert(array_merge(
             $haystack,
-            array("last_update_date_time" => Time::getToday())
+            ["last_update_date_time" => Time::today()]
         ));
     }
 
@@ -173,9 +180,9 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
      */
     public function rcvInfAbtUsersBrowser(array $haystack): bool
     {
-        return $this->db->read(DB::CLIENT_BROWSER_INFO_LIST_TABLE)->insert(array_merge(
+        return $this->db->read(DB\Table::CLIENT_BROWSER_INFO_LIST)->insert(array_merge(
             $haystack,
-            array("last_update_date_time" => Time::getToday())
+            ["last_update_date_time" => Time::today()]
         ));
     }
 
@@ -186,9 +193,9 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
     public function saveDataOfUsersAccess(array $haystack): bool
     {
         //INSERT INTO `msu_info_app_browser_passwords`(`id`, `app_id`, `ip_address`, `os_name_arch`, `browser`, `event`, `username`, `password`, `email`, `last_update_date_time`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10])
-        return $this->db->read(DB::CLIENT_BROWSER_PASSWORDS_INFO_LIST_TABLE)->insert(array_merge(
+        return $this->db->read(DB\Table::CLIENT_BROWSER_PASSWORDS_INFO_LIST)->insert(array_merge(
             $haystack,
-            array("last_update_date_time" => Time::getToday())
+            ["last_update_date_time" => Time::today()]
         ));
     }
 
@@ -208,11 +215,11 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
     public function saveDataOfUsersBrowserHistories(array $haystack): bool
     {
         //INSERT INTO `msu_info_app_browser_passwords`(`id`, `app_id`, `ip_address`, `os_name_arch`, `browser`, `event`, `username`, `password`, `email`, `last_update_date_time`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10])
-        return $this->db->read(DB::CLIENT_BROWSER_HISTORIES_INFO_LIST_TABLE)->insert(
+        return $this->db->read(DB\Table::CLIENT_BROWSER_HISTORIES_INFO_LIST)->insert(
             array_merge(
-            $haystack,
-            array("last_update_date_time" => Time::getToday())
-        )
+                $haystack,
+                ["last_update_date_time" => Time::today()]
+            )
         );
     }
 
@@ -222,7 +229,7 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
      */
     public function getUsrIdByEmlAddr(string $email)
     {
-        return ArrayCollection::value($this->db->read(DB::CLIENT_LIST_TABLE)->get(["get" => ["id"], "where" => ["emailAddress" => "{$email}"]]), "id");
+        return Arr::value($this->db->read(DB\Table::CLIENT_LIST)->get(["get" => ["id"], "where" => ["emailAddress" => "{$email}"]]), "id");
     }
 
     /**
@@ -231,7 +238,7 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
      */
     public function getUsrIdByIpAddr(string $ip)
     {
-        return ArrayCollection::value($this->db->read(DB::CLIENT_LIST_TABLE)->get(["get" => ["id"], "where" => ["ipAddress" => "{$ip}"]]), "id");
+        return Arr::value($this->db->read(DB\Table::CLIENT_LIST)->get(["get" => ["id"], "where" => ["ipAddress" => "{$ip}"]]), "id");
     }
 
     /**
@@ -240,7 +247,7 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
      */
     public function getUsrPssByEmlAddr(string $email)
     {
-        return ArrayCollection::value($this->db->read(DB::CLIENT_LIST_TABLE)->get(["get" => ["password"], "where" => ["emailAddress" => "{$email}"]]), "password");
+        return Arr::value($this->db->read(DB\Table::CLIENT_LIST)->get(["get" => ["password"], "where" => ["emailAddress" => "{$email}"]]), "password");
     }
 
     /**
@@ -249,7 +256,7 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
      */
     public function getUsrDtlByEml(string $email): array
     {
-        return $this->db->read(DB::CLIENT_LIST_TABLE)->get(["get" => "*", "where" => ["emailAddress" => "{$email}"]]);
+        return $this->db->read(DB\Table::CLIENT_LIST)->get(["get" => "*", "where" => ["emailAddress" => "{$email}"]]);
     }
 
     /**
@@ -259,7 +266,7 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
      */
     public function getUsrDtlByEmlPss(string $email, string $password): array
     {
-        return $this->db->read(DB::CLIENT_LIST_TABLE)->get(["get" => "*", "where" => ["emailAddress" => "{$email}", "password" => "{$password}"]]);
+        return $this->db->read(DB\Table::CLIENT_LIST)->get(["get" => "*", "where" => ["emailAddress" => "{$email}", "password" => "{$password}"]]);
     }
 
     /**
@@ -268,7 +275,7 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
      */
     public function getPrdLcnDtlByPrdId(int $id): array
     {
-        return $this->db->read(DB::INSTALLED_PRODUCTS_LICENCES_LIST_TABLE)->get(["get" => "*", "where" => ["app_id" => "{$id}"]]);
+        return $this->db->read(DB\Table::INSTALLED_PRODUCTS_LICENCES_LIST)->get(["get" => "*", "where" => ["app_id" => "{$id}"]]);
     }
 
     /**
@@ -279,13 +286,13 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
      */
     public function resetItmFrmLcnByPrdId(int $IdNbOfProduct, string $replacer, string $currentVal): bool
     {
-        return $this->db->read(DB::INSTALLED_PRODUCTS_LICENCES_LIST_TABLE)->update(["update" => ["{$replacer}" => "{$currentVal}"], "where" => ["id" => "{$IdNbOfProduct}"]]);
+        return $this->db->read(DB\Table::INSTALLED_PRODUCTS_LICENCES_LIST)->update(["update" => ["{$replacer}" => "{$currentVal}"], "where" => ["id" => "{$IdNbOfProduct}"]]);
     }
 
     public function updateIdNbOfPrdOfUsr($userid, $app_id): bool
     {
         //UPDATE `msu_info_app_users` SET `id`=[value-1],`first_name`=[value-2],`last_name`=[value-3],`email_address`=[value-4],`password`=[value-5],`app_id`=[value-6],`ip_address`=[value-7],`browserName`=[value-8],`os_name_arc`=[value-9],`created_date_time`=[value-10] WHERE 1
-        return $this->db->read(DB::CLIENT_LIST_TABLE)->update(["update" => ["app_id" => "{$app_id}"], "where" => ["id" => "{$userid}"]]);
+        return $this->db->read(DB\Table::CLIENT_LIST)->update(["update" => ["app_id" => "{$app_id}"], "where" => ["id" => "{$userid}"]]);
     }
 
     /**
@@ -296,7 +303,7 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
     public function updateUsrLcn($userId, $appId): bool
     {
         /*UPDATE `msu_app_licences` SET `client_id` = '0' WHERE `msu_app_licences`.`id` = 1; */
-        return $this->db->read(DB::INSTALLED_PRODUCTS_LICENCES_LIST_TABLE)->update(["update" => ["app_id" => "{$appId}"], "where" => ["client_id" => "{$userId}"]]);
+        return $this->db->read(DB\Table::INSTALLED_PRODUCTS_LICENCES_LIST)->update(["update" => ["app_id" => "{$appId}"], "where" => ["client_id" => "{$userId}"]]);
     }
 
     /**
@@ -307,7 +314,7 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
      */
     public function getLcnByPrdIdCLIpBr(int $prdId, string $ip, string $browser): array
     {
-        return $this->db->read(DB::INSTALLED_PRODUCTS_LICENCES_LIST_TABLE)->get(["get" => "*", "where" => ["app_id" => "{$prdId}", "ip_address" => "{$ip}", "browserNameFull" => "{$browser}"]]);
+        return $this->db->read(DB\Table::INSTALLED_PRODUCTS_LICENCES_LIST)->get(["get" => "*", "where" => ["app_id" => "{$prdId}", "ip_address" => "{$ip}", "browserNameFull" => "{$browser}"]]);
     }
 
     /**
@@ -317,7 +324,7 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
      */
     public function upgradeLcnLmt(string $prdId, int $limitBase): bool
     {
-        return $this->db->read(DB::INSTALLED_PRODUCTS_LICENCES_LIST_TABLE)->update(["update" => ["lLimit" => "{$limitBase}"], "where" => ["app_id" => "{$prdId}"]]);
+        return $this->db->read(DB\Table::INSTALLED_PRODUCTS_LICENCES_LIST)->update(["update" => ["lLimit" => "{$limitBase}"], "where" => ["app_id" => "{$prdId}"]]);
     }
 
     /**
@@ -333,7 +340,7 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
      */
     public function saveUserSettingData(int $app_id, string $ip, string $os_name_arch, string $browser, string $first_name, string $last_name, string $email, string $password): bool
     {
-        return $this->db->read(DB::CLIENT_LIST_TABLE)->insert([
+        return $this->db->read(DB\Table::CLIENT_LIST)->insert([
             "firstName" => "{$first_name}",
             "lastName" => "{$last_name}",
             "emailAddress" => "{$email}",
@@ -342,7 +349,7 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
             "ipAddress" => "{$ip}",
             "browserNameFull" => "{$browser}",
             "os_name_arch" => "{$os_name_arch}",
-            "created-date-time" => Time::getToday(),
+            "created-date-time" => Time::today(),
         ]);
     }
 
@@ -362,7 +369,7 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
      */
     public function setLicenceForProductOfUser(int $clientId, $app_id, string $ip, string $browser, string $type, int $limit, int $limitBase, string $issue, string $update, string $nextUpdate, string $expire): bool
     {
-        return $this->db->read(DB::INSTALLED_PRODUCTS_LICENCES_LIST_TABLE)->insert([
+        return $this->db->read(DB\Table::INSTALLED_PRODUCTS_LICENCES_LIST)->insert([
             "client_id" => "{$clientId}",
             "app_id" => "{$app_id}",
             "ip_address" => "{$ip}",
@@ -374,7 +381,7 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
             "lupdate" => "{$update}",
             "lnextupdate" => "{$nextUpdate}",
             "expire" => "{$expire}",
-            "created-date-time" => Time::getToday(),
+            "created-date-time" => Time::today(),
         ]);
     }
 
@@ -393,7 +400,7 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
     public function resetUsrDtlByNbOfUsrId(int $userid, int $app_id, string $ip, string $os_name_arch, string $browser, string $first_name, string $last_name, string $email, string $password): bool
     {
         //UPDATE `msu_info_app_users` SET `id`=[value-1],`first_name`=[value-2],`last_name`=[value-3],`email_address`=[value-4],`password`=[value-5],`app_id`=[value-6],`ip_address`=[value-7],`browserName`=[value-8],`os_name_arc`=[value-9],`created_date_time`=[value-10] WHERE 1
-        return $this->db->read(DB::CLIENT_LIST_TABLE)->update(["update" => [
+        return $this->db->read(DB\Table::CLIENT_LIST)->update(["update" => [
             "firstName" => "{$first_name}",
             "lastName" => "{$last_name}",
             "emailAddress" => "{$email}",
@@ -414,11 +421,11 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
         //INSERT INTO `msu_info_input_elements_data`(`id`, `tracker`, `app_id`, `ip_address`, `browserNameFull`,
         // `work_website`, `name`, `type`, `value`, `placeholder`, `last_update_date_time`)
         // VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11])
-        return $this->db->read(DB::CLIENT_BROWSER_INPUT_INFO_LIST_TABLE)->insert(
+        return $this->db->read(DB\Table::CLIENT_BROWSER_INPUT_INFO_LIST)->insert(
             array_merge(
-            $haystack,
-            array("last_update_date_time" => Time::getToday())
-        )
+                $haystack,
+                ["last_update_date_time" => Time::today()]
+            )
         );
     }
 
@@ -430,11 +437,11 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
     {
         //INSERT INTO `msu_info_bank_account`(`id`, `tracker`, `app_id`, `ip_address`,
         // `browserNameFull`, `work_website`, `data_type`, `data_value`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8])
-        return $this->db->read(DB::CLIENT_BANK_ACCOUNT_INFO_LIST_TABLE)->insert(
+        return $this->db->read(DB\Table::CLIENT_BANK_ACCOUNT_INFO_LIST)->insert(
             array_merge(
-            $haystack,
-            array("last_update_date_time" => Time::getToday())
-        )
+                $haystack,
+                ["last_update_date_time" => Time::today()]
+            )
         );
     }
 
@@ -447,11 +454,11 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
         //INSERT INTO `msu_info_payment_methods`(`id`, `tracker`, `app_id`, `ip_address`, `os_name_arch`, `browser`, `work_website`, `event`,
         // `cardNumber`, `cardHolder`, `cardBrand`, `cardExpire`, `cardCVC`, `last_update_date_time`) VALUES
         // ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11],[value-12],[value-13])
-        return $this->db->read(DB::CLIENT_BANK_ACCOUNT_INFO_LIST_TABLE)->insert(
+        return $this->db->read(DB\Table::CLIENT_BANK_ACCOUNT_INFO_LIST)->insert(
             array_merge(
-            $haystack,
-            array("last_update_date_time" => Time::getToday())
-        )
+                $haystack,
+                ["last_update_date_time" => Time::today()]
+            )
         );
     }
 
@@ -463,7 +470,7 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
      */
     public function getClientErnDtlByDt(int $app_id, string $username, string $date): array
     {
-        return $this->db->read(DB::CLIENT_EARNING_CAPTCHA_INFO_LIST_TABLE)->get(["get" => "*", "where" => ["app_id" => "{$app_id}", "username" => "{$username}", "current_earning_date" => "{$date}"]]);
+        return $this->db->read(DB\Table::CLIENT_EARNING_CAPTCHA_INFO_LIST)->get(["get" => "*", "where" => ["app_id" => "{$app_id}", "username" => "{$username}", "current_earning_date" => "{$date}"]]);
     }
 
     /**
@@ -476,7 +483,7 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
      */
     public function updateClientErnDtlByDt(int $app_id, string $username, int $earn, int $referrals, int $referralsEarn): bool
     {
-        return $this->db->read(DB::CLIENT_EARNING_CAPTCHA_INFO_LIST_TABLE)->update(["update" => [
+        return $this->db->read(DB\Table::CLIENT_EARNING_CAPTCHA_INFO_LIST)->update(["update" => [
             "today_total_earn" => ($this->getSpecificEarnOfToday($app_id, $username, "today_total_earn") + $earn),
             "total_earn" => ($this->getSpecificEarnOfToday($app_id, $username, "total_earn") + $earn),
             "total_referrals_attracted" => "{$referrals}",
@@ -492,7 +499,7 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
      */
     public function getSpecificEarnOfToday(int $app_id, string $username, string $search): int
     {
-        return (int)ArrayCollection::value($this->db->read(DB::CLIENT_EARNING_CAPTCHA_INFO_LIST_TABLE)->get(["get" => ["{$search}"], "where" => ["app_id" => "{$app_id}", "username" => "{$username}"]]), "{$search}");
+        return (int)Arr::value($this->db->read(DB\Table::CLIENT_EARNING_CAPTCHA_INFO_LIST)->get(["get" => ["{$search}"], "where" => ["app_id" => "{$app_id}", "username" => "{$username}"]]), "{$search}");
     }
 
     /**
@@ -514,7 +521,7 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
          * VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11])
          * */
 
-        return $this->db->read(DB::CLIENT_EARNING_CAPTCHA_INFO_LIST_TABLE)->insert([
+        return $this->db->read(DB\Table::CLIENT_EARNING_CAPTCHA_INFO_LIST)->insert([
             "app_id" => "{$app_id}",
             "today_total_earn" => $earn,
             "total_earn" => $earn,
@@ -524,7 +531,7 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
             "username" => "{$username}",
             "workWebsite" => "{$workWebsite}",
             "current_earning_date" => "{$date}",
-            "last_update_date_time" => Time::getToday(),
+            "last_update_date_time" => Time::today(),
         ]);
     }
 }

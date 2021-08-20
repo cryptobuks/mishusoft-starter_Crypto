@@ -5,6 +5,7 @@ namespace Mishusoft\Databases\MishusoftSQLStandalone;
 
 use JsonException;
 use Mishusoft\Databases\MishusoftSQLStandalone;
+use Mishusoft\Exceptions\DbException;
 use Mishusoft\Http;
 use Mishusoft\Utility\ArrayCollection;
 use Mishusoft\Utility\Number;
@@ -19,19 +20,21 @@ class Data implements DataInterface
      * Data constructor.
      * @param string $data_dir
      * @param string $table
+     * @throws DbException
      */
     public function __construct(string $data_dir, string $table)
     {
         $this->tableName = $table;
         $this->tableFile = $data_dir . "/" . $table . self::DB_TABLE_FILE_FORMAT;
         if (!file_exists($this->tableFile)) {
-            MishusoftSQLStandalone::error(Http::NOT_FOUND, "Base table $table not exists.");
+            throw new DbException("Base table $table not exists.");
         }
     }
 
     /**
      * @param array $options
      * @return array
+     * @throws DbException
      */
     public function get(array $options): array
     {
@@ -291,5 +294,13 @@ class Data implements DataInterface
 
     public function __destruct()
     {
+    }
+
+    /**
+     * @return string
+     */
+    public function getTableName(): string
+    {
+        return $this->tableName;
     }
 }

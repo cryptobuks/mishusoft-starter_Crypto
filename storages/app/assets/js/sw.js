@@ -1,16 +1,1 @@
-var MishusoftRuntime;
-/******/ (() => { // webpackBootstrap
-var __webpack_exports__ = {};
-/*!**********************************************!*\
-  !*** ./Assets/typescripts/service-worker.ts ***!
-  \**********************************************/
-self.onmessage = ({ data: { question: any } }) => {
-    self.postMessage({
-        answer: 42,
-    });
-};
-
-MishusoftRuntime = __webpack_exports__;
-/******/ })()
-;
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoianMvc3cuanMiLCJtYXBwaW5ncyI6Ijs7Ozs7O0FBQUEsSUFBSSxDQUFDLFNBQVMsR0FBRyxDQUFDLEVBQUUsSUFBSSxFQUFFLEVBQUUsUUFBUSxFQUFDLEdBQUcsRUFBRSxFQUFFLEVBQUUsRUFBRTtJQUM1QyxJQUFJLENBQUMsV0FBVyxDQUFDO1FBQ2IsTUFBTSxFQUFFLEVBQUU7S0FDYixDQUFDLENBQUM7QUFDUCxDQUFDLENBQUMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9NaXNodXNvZnRSdW50aW1lLy4vQXNzZXRzL3R5cGVzY3JpcHRzL3NlcnZpY2Utd29ya2VyLnRzIl0sInNvdXJjZXNDb250ZW50IjpbInNlbGYub25tZXNzYWdlID0gKHsgZGF0YTogeyBxdWVzdGlvbjphbnkgfSB9KSA9PiB7XG4gICAgc2VsZi5wb3N0TWVzc2FnZSh7XG4gICAgICAgIGFuc3dlcjogNDIsXG4gICAgfSk7XG59OyJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==
+var a2_0xee099f=a2_0x5c2a;(function(_0x141bec,_0x3cbfb7){var _0x410efc=a2_0x5c2a,_0x57e30e=_0x141bec();while(!![]){try{var _0x524300=parseInt(_0x410efc(0x188))/0x1*(parseInt(_0x410efc(0x189))/0x2)+parseInt(_0x410efc(0x180))/0x3+-parseInt(_0x410efc(0x183))/0x4+parseInt(_0x410efc(0x187))/0x5*(parseInt(_0x410efc(0x185))/0x6)+parseInt(_0x410efc(0x186))/0x7+parseInt(_0x410efc(0x182))/0x8*(-parseInt(_0x410efc(0x181))/0x9)+parseInt(_0x410efc(0x17e))/0xa*(-parseInt(_0x410efc(0x17f))/0xb);if(_0x524300===_0x3cbfb7)break;else _0x57e30e['push'](_0x57e30e['shift']());}catch(_0x5099b8){_0x57e30e['push'](_0x57e30e['shift']());}}}(a2_0x5729,0xd1112));function a2_0x5c2a(_0x34b884,_0x1f5a0a){var _0x5729db=a2_0x5729();return a2_0x5c2a=function(_0x5c2a63,_0x3422a2){_0x5c2a63=_0x5c2a63-0x17e;var _0x539ed7=_0x5729db[_0x5c2a63];return _0x539ed7;},a2_0x5c2a(_0x34b884,_0x1f5a0a);}function a2_0x5729(){var _0x357cb0=['69590wTZZKK','4796AOQhwx','3498333sTVReU','171dTADEm','4904ZWeyQa','3549392ekQAIE','onmessage','4083792vwioPa','10513531JAtdsL','5VlnXyv','41ROqfkn','70282osruaW'];a2_0x5729=function(){return _0x357cb0;};return a2_0x5729();}var MishusoftRuntime;self[a2_0xee099f(0x184)]=({data:{question:_0xdbc2e5}})=>{self['postMessage']({'answer':0x2a});},MishusoftRuntime={};

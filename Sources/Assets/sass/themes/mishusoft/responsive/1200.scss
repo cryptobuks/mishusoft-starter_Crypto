@@ -1,17 +1,3 @@
-@media screen and (min-width: 1200px) {
-  /* start of 992px desktop screen */
-  .header-quick-tool-bar {
-    & left {
-      & div {
-        & a {
-          display: block;
-        }
-
-      }
-    }
-  }
-  /*ms-app-body {
-    height: 820px !important;
-  }*/
-
+@media only screen and (min-width: 1200px) {
+  // স্ক্রিন সাইজ সর্বনিম্ন 1200px হবে। তার মানে 1200px এর উপরের বড় ল্যাপটপ স্ক্রিন এবং বড় ডেক্সটপ স্ক্রিন এবং তার থেকেও উপরের ডিভাইস গুলাকে টার্গেট করে।
 }

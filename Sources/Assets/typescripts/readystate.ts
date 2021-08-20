@@ -1,4 +1,7 @@
 document.addEventListener('readystatechange', () => {
+    // ready state = 'loading'
+    // ready state = 'interactive'
+    // ready state = 'complete'
     //console.log(`readystate: ${document.readyState}\n`)
 
     //hide app loader on document completed

@@ -302,4 +302,10 @@ class Inflect
         return str_replace($search, $replace, $haystack);
     }
 
+    public static function validString(string $content):string
+    {
+        //preg_replace('~^"?(.*?)"?$~', '$1', $string); // double quotes
+        // either ' or " whichever is found
+        return preg_replace('~^[\'"]?(.*?)[\'"]?$~', '$1', self::removeTags($content));
+    }
 }
