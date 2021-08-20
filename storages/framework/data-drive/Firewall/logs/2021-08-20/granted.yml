@@ -463,4 +463,70 @@
       status: granted
       component: browser
       visit-time: "2021-08-20 03:57:58"
+    "2021-08-20 04:52:49":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/monitor
+      status: granted
+      component: browser
+      visit-time: "2021-08-20 04:52:49"
+    "2021-08-20 04:52:51":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/monitor
+      status: granted
+      component: browser
+      visit-time: "2021-08-20 04:52:51"
+    "2021-08-20 05:41:34":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-20 05:41:34"
+    "2021-08-20 05:41:51":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-20 05:41:51"
+    "2021-08-20 05:41:52":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/assets/js/358.runtime.bundle.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-20 05:41:52"
+    "2021-08-20 05:41:53":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/assets/js/sw.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-20 05:41:53"
 ...

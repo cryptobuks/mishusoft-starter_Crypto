@@ -2,16 +2,3 @@ User-Agent: *
 Allow: /libraries/
 Allow: /sitemap
 Sitemap: https://www.mishusoft.com/company/sitemap
-
-User-Agent: *
-User-agent: Googlebot
-User-agent: Mediapartners-Google
-User-agent: AdsBot-Google-Mobile
-User-agent: AdsBot-Google
-User-agent: Bingbot
-Disallow: /Composer
-Disallow: /Ema
-Disallow: /Framework
-Disallow: /Packages
-Disallow: /Storages
-Disallow: /tmp/

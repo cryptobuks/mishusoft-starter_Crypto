@@ -17,6 +17,22 @@ declare(strict_types=1);
 
 /*
 |--------------------------------------------------------------------------
+| Check if the requirement php extension satisfied
+|--------------------------------------------------------------------------
+|
+| If the requirement php extension yaml is not found
+| then we load it from our file system.
+|
+*/
+
+if (!extension_loaded('yaml')
+    && file_exists(dirname(__DIR__) . '/requirements/yaml.so')) {
+    dl(dirname(__DIR__).'/requirements/yaml.so');
+}
+
+
+/*
+|--------------------------------------------------------------------------
 | Check If The Application Is Under Maintenance
 |--------------------------------------------------------------------------
 |
