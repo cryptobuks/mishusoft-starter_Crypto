@@ -133,6 +133,8 @@ if ($this->templateUse === 'no') {
         'text' => file_get_contents(Storage::assetsFullPath('css/loader.css')),
     ]);
 
+    //web.dev/installable-manifest/
+
 
     /*
      * adsence link

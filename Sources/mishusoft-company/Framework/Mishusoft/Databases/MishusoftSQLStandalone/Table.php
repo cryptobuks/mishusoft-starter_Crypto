@@ -6,7 +6,6 @@ use Mishusoft\Databases\MishusoftSQLStandalone as MishusoftQL;
 use Mishusoft\Exceptions\DbException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Http;
-use Mishusoft\Utility\ArrayCollection as Arr;
 
 class Table extends CommonDependency implements TableInterface
 {
@@ -19,14 +18,13 @@ class Table extends CommonDependency implements TableInterface
      */
     public function __construct(
         private string $database
-    )
-    {
+    ) {
         parent::__construct(MishusoftQL::WHO_AM_I, MishusoftQL::DB_FILE_FORMAT);
         $this->setCurrentDatabase($this->database);
         $this->dataDirectory = $this->directory($this->database);
 
         if (!file_exists($this->databaseFile($this->database))) {
-            throw new DbException(sprintf("Databases %s not exists.", $this->databaseFile($this->database));
+            throw new DbException(sprintf("Databases %s not exists.", $this->databaseFile($this->database)));
         }
 
         $databaseProperties = $this->databaseProperties($this->database);
@@ -51,7 +49,6 @@ class Table extends CommonDependency implements TableInterface
      */
     public function create(array|string $table_name): void
     {
-        // TODO: Implement create() method.
         if (is_array($table_name)) {
             foreach ($table_name as $tbl) {
                 $this->createTable($tbl);
@@ -75,12 +72,11 @@ class Table extends CommonDependency implements TableInterface
                 $contents["tables"][] = $table_name;
             }
             //sort tables
-            $contents["tables"] = $this->sort($properties["tables"]);
             array_multisort($contents["tables"], SORT_ASC);
             ksort($contents["tables"], SORT_ASC);
 
             $this->writeFile($this->databaseFile($this->database), $contents);
-            $this->writeFile($this->tableFile($table_name), array());
+            $this->writeFile($this->tableFile($table_name), []);
         } else {
             throw new DbException("Table ($table_name) is already exists.");
         }
@@ -108,8 +104,17 @@ class Table extends CommonDependency implements TableInterface
      */
     public function rename(string $old_name, string $new_name): bool
     {
-        if (in_array($old_name, $this->table_all)) {
-            if (file_exists(join(DIRECTORY_SEPARATOR, [$this->dataDirectory, $old_name . self::dbTableFileFormat]))) {
+        if (in_array($old_name, $this->tablesAll, true)) {
+            if (file_exists($this->tableFile($old_name))) {
+                $contents = $this->databaseProperties;
+                if (array_key_exists("tables", $contents)) {
+                    if (!in_array($new_name, $contents["tables"], true)) {
+                        unset($contents["tables"][array_search($old_name, $contents["tables"], true)]);
+                        array_push($contents["tables"], $new_name);
+                    }
+                }
+                //sort tables
+                $contents["tables"] = $this->sort($properties["tables"]);
                 \Mishusoft\Storage\FileSystem::readFile($this->databaseFile($this->database), function ($contents) use ($new_name, $old_name) {
                     $contents = json_decode($contents, true);
                     if (_Array::value($contents, "tables")) {

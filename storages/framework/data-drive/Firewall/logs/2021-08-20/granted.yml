@@ -337,4 +337,37 @@
       status: granted
       component: browser
       visit-time: "2021-08-20 00:10:35"
+    "2021-08-20 02:29:00":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/monitor
+      status: granted
+      component: browser
+      visit-time: "2021-08-20 02:29:00"
+    "2021-08-20 02:30:27":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/monitor
+      status: granted
+      component: browser
+      visit-time: "2021-08-20 02:30:27"
+    "2021-08-20 02:50:01":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/monitor
+      status: granted
+      component: browser
+      visit-time: "2021-08-20 02:50:01"
 ...

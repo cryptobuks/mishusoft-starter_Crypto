@@ -220,12 +220,13 @@ class MishusoftSQLStandalone extends MishusoftSQLStandalone\CommonDependency imp
     private function deleteDatabase(string $database_name): void
     {
         if (in_array($database_name, $this->databasesAll, true)) {
-            $contents = $this->schemaProperties();
-            if (array_key_exists("databases", $contents)) {
-                unset($contents["databases"][array_search($database_name, $contents["databases"], true)]);
+            $properties = $this->schemaProperties();
+            if (array_key_exists("databases", $properties)) {
+                $databaseIndex = array_search($database_name, $properties["databases"], true);
+                unset($properties["databases"][$databaseIndex]);
             }
-            $contents["databases"] = $this->sort($properties["databases"]);
-            $this->writeFile($this->schemaPropertiesFile(), $contents);
+            $properties["databases"] = $this->sort($properties["databases"]);
+            $this->writeFile($this->schemaPropertiesFile(), $properties);
             $this->quickRemove($database_name, 'both');
         } else {
             throw new DbException("Databases ($database_name) is not exists.");
@@ -240,7 +241,7 @@ class MishusoftSQLStandalone extends MishusoftSQLStandalone\CommonDependency imp
     public function empty(array|string $database_name):void
     {
         if (in_array($database_name, $this->databasesAll, true)) {
-            $this->quickRemove($database_name, 'dir');
+            $this->quickEmpty($database_name, 'dir');
         } else {
             throw new DbException("Databases ($database_name) is not exists.");
         }
