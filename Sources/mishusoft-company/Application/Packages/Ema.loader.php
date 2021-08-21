@@ -61,6 +61,7 @@ if (file_exists(Storage::emaPath()) === true) {
                                 'arguments'  => $request->getArguments(),
                             ]
                         );
+                        Log::terminate();
                         exit();
                     }
                 }//end if

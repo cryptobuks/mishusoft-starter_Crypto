@@ -7,6 +7,7 @@ use ErrorException;
 use GeoIp2\Exception\AddressNotFoundException;
 use MaxMind\Db\Reader\InvalidDatabaseException;
 use Mishusoft\System\Firewall;
+use Mishusoft\System\Log;
 
 class Handler extends ErrorException implements ExceptionInterface
 {
@@ -84,9 +85,10 @@ class Handler extends ErrorException implements ExceptionInterface
 
         $message = ['debug'=> ['caption'=> $titleOfErrorMessage, 'description'=> $description, 'stack'=> $stack],];
 
-        //Log::debug($description, LOG_STYLE_SMART, LOG_TYPE_RUNTIME);
+        Log::debug($description, LOG_STYLE_SMART, LOG_TYPE_RUNTIME);
         Firewall::runtimeFailure('Service Unavailable', $message);
 
+        Log::terminate();
         exit(0);
     }
 

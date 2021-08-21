@@ -4,6 +4,7 @@ namespace Mishusoft;
 
 use JsonException;
 use Mishusoft\Storage\FileSystem;
+use Mishusoft\System\Log;
 use Mishusoft\System\Memory;
 use Mishusoft\System\Network;
 use Mishusoft\System\Time;
@@ -62,12 +63,12 @@ class Framework extends Base
         }
 
         //install framework
-        $instance->install();
+        static::install();
 
         //Check framework requirements
-        self::extensionRequiredCheck();
-        self::thirdPartyRequiredCheck();
-        self::opcacheStatusCheck();
+        static::extensionRequiredCheck();
+        static::thirdPartyRequiredCheck();
+        static::opcacheStatusCheck();
 
         $closure($instance);
         //self::execute();
@@ -492,17 +493,18 @@ class Framework extends Base
         if (file_exists(MPM::configFile()) === false) {
             EmbeddedView::welcomeToFramework(self::FULL_NAME, [
                 'caption' => self::FULL_NAME,
-                'description' => $this->description(),
-                'warning' =>$this->installWarning(),
+                'description' => self::description(),
+                'warning' => self::installWarning(),
                 'copyright' => Ui::copyRightText(),
             ]);
+            Log::terminate();
             exit(0);
         }//end if
 
         MPM::load();
     }//end execute()
 
-    private function installWarning():string
+    private static function installWarning():string
     {
         $message = 'Notice: This welcome interface has been shown after successful installation of this framework. ';
         $message .= 'Now you need to install our package(s) to getting start. ';

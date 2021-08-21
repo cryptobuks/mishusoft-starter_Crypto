@@ -97,6 +97,8 @@ class BIOS
                             Log::info(sprintf('Found %s in system.', self::emaLoaderFile()));
                             Log::info(sprintf('Load %s from system.', self::emaLoaderFile()));
                             include_once self::emaLoaderFile();
+
+                            Log::terminate();
                             exit();
                         }
 

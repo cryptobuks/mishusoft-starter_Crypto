@@ -9,6 +9,7 @@ use Mishusoft\Preloader;
 use Mishusoft\Storage;
 use Mishusoft\System\Firewall;
 use Mishusoft\Libraries\Runtime;
+use Mishusoft\System\Log;
 
 abstract class Controller implements ControllerInterface
 {
@@ -53,15 +54,18 @@ abstract class Controller implements ControllerInterface
     {
         if (empty($data->security_code) || $data->security_code !== 1) {
             Storage\Stream::json(['type' => 'error', 'message' => 'Pagination\'s security code not found.']);
-            exit;
+            Log::terminate();
+            exit(0);
         }
         if (empty($data->pageNumber) && $this->filterInt($data->pageNumber) !==0) {
             Storage\Stream::json(['type' => 'error', 'message' => 'Page number not found.']);
-            exit;
+            Log::terminate();
+            exit(0);
         }
         if (empty($data->viewMode)) {
             Storage\Stream::json(['type' => 'error', 'message' => 'Page view mode direction not found.']);
-            exit;
+            Log::terminate();
+            exit(0);
         }
     }
 

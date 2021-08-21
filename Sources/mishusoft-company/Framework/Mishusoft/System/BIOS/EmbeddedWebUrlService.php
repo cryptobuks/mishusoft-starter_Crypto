@@ -128,7 +128,10 @@ class EmbeddedWebUrlService
                             );
                         }//end if
 
-                        exit();
+
+                        //embedded url execute and terminate application
+                        Log::terminate();
+                        exit(0);
                     }//end if
                 }//end foreach
             }//end if
