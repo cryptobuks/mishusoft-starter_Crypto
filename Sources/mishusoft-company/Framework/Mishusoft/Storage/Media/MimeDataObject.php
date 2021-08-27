@@ -9465,6 +9465,11 @@ class MimeDataObject
             "type" => "audio/aac"
         ],
         [
+            "extension" => "webmanifest",
+            "document" => "Web manifest file",
+            "type" => "application/manifest+json"
+        ],
+        [
             "extension" => "abw",
             "document" => "AbiWord document",
             "type" => "application/x-abiword"

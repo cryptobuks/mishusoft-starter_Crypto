@@ -16,7 +16,7 @@ namespace Mishusoft\Storage\Media;
 
 class MimeStreamWrapper
 {
-    const WRAPPER_NAME = 'mime';
+    public const WRAPPER_NAME = 'mime';
     public $context;
     private static bool $isRegistered = false;
     private $callBackFunction;
@@ -36,7 +36,7 @@ class MimeStreamWrapper
             $size = (int)$head['content-length'];
         }
         $blocks = ceil($size / 512);
-        return array(
+        return [
             'dev' => 16777220,
             'ino' => 15764,
             'mode' => 33188,
@@ -50,20 +50,21 @@ class MimeStreamWrapper
             'ctime' => 0,
             'blksize' => 4096,
             'blocks' => $blocks,
-        );
+        ];
     }
-    public function setPath(string $path)
+    public function setPath(string $path): void
     {
         $this->path = $path;
         $this->fp = fopen($this->path, 'rb') or die('Cannot open file:  ' . $this->path);
         $this->fileStat = $this->getStat();
     }
-    public function read($count) {
+    public function read($count): bool|string
+    {
         return fread($this->fp, $count);
     }
-    public function getStreamPath()
+    public function getStreamPath(): array|string
     {
-        return str_replace(array('ftp://', 'http://', 'https://'), self::WRAPPER_NAME . '://', $this->path);
+        return str_replace(['ftp://', 'http://', 'https://'], self::WRAPPER_NAME . '://', $this->path);
     }
     public function getContext()
     {
@@ -72,15 +73,15 @@ class MimeStreamWrapper
             self::$isRegistered = true;
         }
         return stream_context_create(
-            array(
-                self::WRAPPER_NAME => array(
-                    'cb' => array($this, 'read'),
+            [
+                self::WRAPPER_NAME => [
+                    'cb' => [$this, 'read'],
                     'fileStat' => $this->fileStat,
-                )
-            )
+                ],
+            ]
         );
     }
-    public function stream_open($path, $mode, $options, &$opened_path): bool
+    public function streamOpen($path, $mode, $options, &$opened_path): bool
     {
         if (!preg_match('/^r[bt]?$/', $mode) || !$this->context) {
             return false;
@@ -97,7 +98,7 @@ class MimeStreamWrapper
 
         return true;
     }
-    public function stream_read($count)
+    public function streamRead($count)
     {
         if ($this->eof || !$count) {
             return '';
@@ -107,15 +108,15 @@ class MimeStreamWrapper
         }
         return $s;
     }
-    public function stream_eof()
+    public function streamEof(): bool
     {
         return $this->eof;
     }
-    public function stream_stat()
+    public function streamStat()
     {
         return $this->fileStat;
     }
-    public function stream_cast($castAs)
+    public function streamCast($castAs): bool|int
     {
         $read = null;
         $write  = null;
@@ -123,8 +124,7 @@ class MimeStreamWrapper
         return @stream_select($read, $write, $except, $castAs);
     }
 
-    function __destruct()
+    public function __destruct()
     {
-
     }
 }

@@ -2,7 +2,9 @@
 
 namespace Mishusoft;
 
+use GeoIp2\Exception\AddressNotFoundException;
 use JsonException;
+use MaxMind\Db\Reader\InvalidDatabaseException;
 use Mishusoft\Storage\FileSystem;
 use Mishusoft\System\Log;
 use Mishusoft\System\Memory;
@@ -55,7 +57,7 @@ class Framework extends Base
      */
     public static function init(\Closure $closure): static
     {
-        $instance = new self();
+        $instance = new static();
 
         //Check framework file system
         if (file_exists($instance->listerFile()) === false || file_get_contents($instance->listerFile()) === '') {
@@ -71,7 +73,7 @@ class Framework extends Base
         static::opcacheStatusCheck();
 
         $closure($instance);
-        //self::execute();
+        //static::execute();
         return $instance;
     }//end init()
 
@@ -80,7 +82,7 @@ class Framework extends Base
      */
     public static function description():string
     {
-        $details  = self::FULL_NAME.' is a robust multi-web platform developed by '.self::COMPANY_NAME.'.';
+        $details  = static::FULL_NAME.' is a robust multi-web platform developed by '.static::COMPANY_NAME.'.';
         $details .= ' This platform is capable of getting start with all categories website quickly and accurately.';
         return $details;
     }
@@ -90,8 +92,10 @@ class Framework extends Base
      */
     public static function companyDescriptionDetails():string
     {
-        $details  = self::COMPANY_NAME.' is a software development company that is going to be established with a view to offering high quality IT solutions at home and abroad.';
-        $details .= ' The company is keen to take the advantage of fast growing global software and data processing industry by offering professional service and price for support and benefit of the valued customers.';
+        $details  = static::COMPANY_NAME.' is a software development company that is going to be established with ';
+        $details  .= 'a view to offering high quality IT solutions at home and abroad. ';
+        $details .= 'The company is keen to take the advantage of fast growing global software and data processing ';
+        $details .= 'industry by offering professional service and price for support and benefit of the valued customers.';
         return $details;
     }
 
@@ -100,7 +104,7 @@ class Framework extends Base
      */
     public static function configFile():string
     {
-        return self::dFile(self::dataFile('Framework', 'config'));
+        return parent::dFile(parent::dataFile('Framework', 'config'));
     }
 
     /**
@@ -108,7 +112,7 @@ class Framework extends Base
      */
     public static function installFile():string
     {
-        return self::dFile(self::dataFile('Framework', 'install'));
+        return parent::dFile(parent::dataFile('Framework', 'install'));
     }
 
     /**
@@ -116,7 +120,7 @@ class Framework extends Base
      */
     public function listerFile():string
     {
-        return self::dFile(self::dataFile('Framework', 'files/'.APPLICATION_SERVER_NAME), 'ext4');
+        return parent::dFile(parent::dataFile('Framework', 'files/'.APPLICATION_SERVER_NAME), 'ext4');
     }
 
 
@@ -126,31 +130,31 @@ class Framework extends Base
     public static function defaultConfiguration():array
     {
         return [
-            'name'         => self::NAME,
-            'fullName'     => self::FULL_NAME,
-            'descriptions' => self::description(),
-            'version'      => self::VERSION,
+            'name'         => static::NAME,
+            'fullName'     => static::FULL_NAME,
+            'descriptions' => static::description(),
+            'version'      => static::VERSION,
             'charset'      => 'utf8mb4',
             'prefix'       => [
                 'char'      => 'msu',
                 'separator' => '_',
             ],
             'author'       => [
-                'name'        => self::AUTHOR_NAME,
-                'profile'     => self::AUTHOR_PROFILE_LINK,
-                'dateOfBirth' => self::AUTHOR_DATE_OF_BIRTH,
+                'name'        => static::AUTHOR_NAME,
+                'profile'     => static::AUTHOR_PROFILE_LINK,
+                'dateOfBirth' => static::AUTHOR_DATE_OF_BIRTH,
             ],
             'company'      => [
-                'name'               => self::COMPANY_NAME,
-                'address'            => self::COMPANY_ADDRESS,
-                'map'                => self::COMPANY_ADDRESS_MAP,
-                'care'               => self::COMPANY_CONSUMER_CARE,
-                'shortDescription'   => self::COMPANY_DESCRIPTION_SHORT,
-                'detailsDescription' => self::companyDescriptionDetails(),
-                'website'            => self::COMPANY_WEBSITE_LINK,
-                'support'            => self::COMPANY_SUPPORT_LINK,
-                'mail'               => self::COMPANY_MAIL_LINK,
-                'est'                => self::COMPANY_EST_YEAR,
+                'name'               => static::COMPANY_NAME,
+                'address'            => static::COMPANY_ADDRESS,
+                'map'                => static::COMPANY_ADDRESS_MAP,
+                'care'               => static::COMPANY_CONSUMER_CARE,
+                'shortDescription'   => static::COMPANY_DESCRIPTION_SHORT,
+                'detailsDescription' => static::companyDescriptionDetails(),
+                'website'            => static::COMPANY_WEBSITE_LINK,
+                'support'            => static::COMPANY_SUPPORT_LINK,
+                'mail'               => static::COMPANY_MAIL_LINK,
+                'est'                => static::COMPANY_EST_YEAR,
             ],
             'preset'       => [
                 'user'            => 'superuser',
@@ -352,17 +356,17 @@ class Framework extends Base
     public static function install(): void
     {
         // Preparing to check framework install file.
-        if (is_readable(self::installFile()) === true) {
+        if (is_readable(static::installFile()) === true) {
             // Framework install file found and start reading.
             if (defined('INSTALLED_HOST_NAME') === false) {
                 define('INSTALLED_HOST_NAME', Memory::data('framework')->host->name);
             }
         } else {
-            FileSystem::makeDirectory(dirname(self::installFile()));
+            FileSystem::makeDirectory(dirname(static::installFile()));
             // Preparing to create framework install file.
-            FileSystem\Yaml::emitFile(self::installFile(), [
+            FileSystem\Yaml::emitFile(static::installFile(), [
                 'name'        => 'Framework Installer',
-                'version'     => self::VERSION,
+                'version'     => static::VERSION,
                 'debug'       => !(MPM::getProperty('release') === 'stable'),
                 'date'        => Time::todayDateOnly(),
                 'host'        => [
@@ -485,20 +489,19 @@ class Framework extends Base
      * @throws Exceptions\RuntimeException
      * @throws Exceptions\RuntimeException\NotFoundException
      * @throws JsonException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws AddressNotFoundException
+     * @throws InvalidDatabaseException
      */
     public function execute(): void
     {
         if (file_exists(MPM::configFile()) === false) {
-            EmbeddedView::welcomeToFramework(self::FULL_NAME, [
-                'caption' => self::FULL_NAME,
-                'description' => self::description(),
-                'warning' => self::installWarning(),
+            EmbeddedView::welcomeToFramework(static::FULL_NAME, [
+                'caption' => static::FULL_NAME,
+                'description' => static::description(),
+                'warning' => static::installWarning(),
                 'copyright' => Ui::copyRightText(),
             ]);
-            Log::terminate();
-            exit(0);
+            static::terminate();
         }//end if
 
         MPM::load();
@@ -512,6 +515,17 @@ class Framework extends Base
         $message .= 'you should to follow our getting start guideline.';
 
         return $message;
+    }
+
+    /**
+     * @throws Exceptions\RuntimeException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws JsonException
+     */
+    public static function terminate(): void
+    {
+        Log::terminate();
     }
 
 

@@ -3,12 +3,12 @@
 
 namespace Mishusoft\System;
 
+use JsonException;
 use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
-use Mishusoft\Http;
-use Mishusoft\Http\IP;
 use Mishusoft\Storage;
+use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\Inflect;
 
 class Log
@@ -25,17 +25,6 @@ class Log
     ];
 
     /**
-     * List of allowed log style.
-     *
-     * @var array|string[]
-     */
-    private static array $allowedStyle = [
-        LOG_STYLE_SMART,
-        LOG_STYLE_SHORTCUT,
-        LOG_STYLE_FULL,
-    ];
-
-    /**
      * List of allowed log flag.
      *
      * @var array
@@ -46,131 +35,141 @@ class Log
         LOG_TYPE_RUNTIME,
     ];
 
-    protected static string $logStyle = '';
-    protected static string $logFlag = '';
-    protected static string $message = '';
     protected static array $messages = [];
-    protected static string $logType = '';
     protected static string $logDriver = 'daily';
 
     /**
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
-     * @throws InvalidArgumentException
+     * @param string $message
+     * @param string $style
+     * @param string $flag
      */
     public static function emergency(
         string $message,
         string $style = LOG_STYLE_SMART,
         string $flag = LOG_TYPE_COMPILE
     ): void {
-        static::make($message, static::makeLogType(__METHOD__), $style, $flag);
+        static::addMessage($message, 'emergency', $style, $flag);
     }
 
     /**
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
-     * @throws InvalidArgumentException
+     * @param string $message
+     * @param string $style
+     * @param string $flag
      */
     public static function alert(
         string $message,
         string $style = LOG_STYLE_SMART,
         string $flag = LOG_TYPE_COMPILE
     ): void {
-        static::make($message, static::makeLogType(__METHOD__), $style, $flag);
+        static::addMessage($message, 'alert', $style, $flag);
     }
 
     /**
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
-     * @throws InvalidArgumentException
+     * @param string $message
+     * @param string $style
+     * @param string $flag
      */
     public static function critical(
         string $message,
         string $style = LOG_STYLE_SMART,
         string $flag = LOG_TYPE_COMPILE
     ): void {
-        static::make($message, static::makeLogType(__METHOD__), $style, $flag);
+        static::addMessage($message, 'critical', $style, $flag);
     }
 
 
     /**
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
-     * @throws InvalidArgumentException
+     * @param string $message
+     * @param string $style
+     * @param string $flag
      */
     public static function error(
         string $message,
         string $style = LOG_STYLE_SMART,
         string $flag = LOG_TYPE_COMPILE
     ): void {
-        static::make($message, static::makeLogType(__METHOD__), $style, $flag);
+        static::addMessage($message, 'error', $style, $flag);
     }
 
     /**
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
-     * @throws InvalidArgumentException
+     * @param string $message
+     * @param string $style
+     * @param string $flag
      */
     public static function warning(
         string $message,
         string $style = LOG_STYLE_SMART,
         string $flag = LOG_TYPE_COMPILE
     ): void {
-        static::make($message, static::makeLogType(__METHOD__), $style, $flag);
+        static::addMessage($message, 'warning', $style, $flag);
     }
 
     /**
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
-     * @throws InvalidArgumentException
+     * @param string $message
+     * @param string $style
+     * @param string $flag
      */
     public static function notice(
         string $message,
         string $style = LOG_STYLE_SMART,
         string $flag = LOG_TYPE_COMPILE
     ): void {
-        static::make($message, static::makeLogType(__METHOD__), $style, $flag);
+        static::addMessage($message, 'notice', $style, $flag);
     }
 
     /**
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
-     * @throws InvalidArgumentException
+     * @param string $message
+     * @param string $style
+     * @param string $flag
      */
     public static function info(
         string $message,
         string $style = LOG_STYLE_SMART,
         string $flag = LOG_TYPE_COMPILE
     ): void {
-        static::make($message, static::makeLogType(__METHOD__), $style, $flag);
+        static::addMessage($message, 'info', $style, $flag);
     }
 
     /**
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
-     * @throws InvalidArgumentException
+     * @param string $message
+     * @param string $style
+     * @param string $flag
      */
     public static function debug(
         string $message,
         string $style = LOG_STYLE_SMART,
         string $flag = LOG_TYPE_COMPILE
     ): void {
-        static::make($message, static::makeLogType(__METHOD__), $style, $flag);
+        static::addMessage($message, 'debug', $style, $flag);
     }
 
-    private function setStyle(string $name = LOG_STYLE_SMART): static
+    /**
+     * @param string $message
+     * @param string $type
+     * @param string $style
+     * @param string $flag
+     */
+    private static function addMessage(string $message, string $type, string $style, string $flag): void
     {
-        static::$logStyle  = $name;
-        return $this;
+        //Debug::preOutput(func_get_args());;
+        static::$messages[] = [
+            'message'   => $message,
+            'time'      => date('Y-m-d h:i:s A'),
+            'response'  => http_response_code(),
+            'type'      => static::makeType($type),
+            'flag'      => $flag,
+            'style'      => $style,
+        ];
+
+
+        //Debug::preOutput(static::$messages);;
     }
 
-    private function setFlag(string $flag = LOG_TYPE_COMPILE): static
-    {
-        static::$logFlag  = $flag;
-        return $this;
-    }
-
-    private static function makeLogType(string $methodName):string
+    /**
+     * @param string $methodName
+     * @return string
+     */
+    private static function makeType(string $methodName): string
     {
         return basename(
             Inflect::lower(
@@ -180,23 +179,19 @@ class Log
     }
 
     /**
+     * @throws InvalidArgumentException
+     * @throws JsonException
      * @throws PermissionRequiredException
      * @throws RuntimeException
-     * @throws InvalidArgumentException
      */
-    private static function make(string $message, string $logType, string $style, string $flag):void
+    public static function terminate(): void
     {
         if (LOGGING_ON_OPERATION) {
-            (new static($message, $logType))->setStyle($style)->setFlag($flag)->writer();
+            //Debug::preOutput(static::$messages);
+            //we found all message but not written
+            static::writer();
         }
-    }
-
-    private static function collectAllMessages():void
-    {
-        static::$messages[]['message'] = self::$message;
-        static::$messages[]['type'] = self::$logType;
-        static::$messages[]['style'] = self::$logStyle;
-        static::$messages[]['flag'] = self::$logFlag;
+        exit();
     }
 
 
@@ -206,119 +201,125 @@ class Log
      * @return void                     Return void on action.
      * @throws InvalidArgumentException
      * @throws PermissionRequiredException
-     * @throws RuntimeException
+     * @throws RuntimeException|JsonException
      */
     private static function writer(): void
     {
-        date_default_timezone_set('Asia/Dhaka');
+        if (count(self::$messages) > 0) {
+            date_default_timezone_set('Asia/Dhaka');
 
-        if (in_array(static::$logFlag, static::$allowedFlags, true) === true) {
-            $logFile = static::logFilePath();
-        } else {
-            throw new RuntimeException('Unexpected flag value.');
-        }
+            foreach (self::$messages as $log) {
+                if (in_array($log['flag'], static::$allowedFlags, true) === true) {
+                    $logFile = static::logFilePath($log['type'], $log['flag']);
+                } else {
+                    throw new RuntimeException(
+                        'Unexpected flag value (\'' . $log['flag'] . '\') on '
+                        . json_encode($log, JSON_THROW_ON_ERROR)
+                    );
+                }
 
-        $requestedLogDirectory = dirname($logFile);
+                $requestedLogDirectory = dirname($logFile);
 
-        Storage\FileSystem::makeDirectory($requestedLogDirectory);
+                Storage\FileSystem::makeDirectory($requestedLogDirectory);
 
-        if (is_writable($requestedLogDirectory) === true) {
-            if (file_exists($logFile) === true) {
-                $resource = fopen($logFile, 'rb+');
-            } else {
-                $resource = fopen($logFile, 'wb+');
-            }
+                if (is_writable($requestedLogDirectory) === true) {
+                    if (file_exists($logFile) === true) {
+                        $resource = fopen($logFile, 'rb+');
+                    } else {
+                        $resource = fopen($logFile, 'wb+');
+                    }
 
-            if (array_key_exists('REQUEST_METHOD', $_SERVER) === true) {
-                $mode = $_SERVER['REQUEST_METHOD'];
-            } else {
-                $mode = 'GET';
-            }
+                    if (array_key_exists('REQUEST_METHOD', $_SERVER) === true) {
+                        $mode = $_SERVER['REQUEST_METHOD'];
+                    } else {
+                        $mode = 'GET';
+                    }
 
-            if (array_key_exists('SERVER_NAME', $_SERVER) === true) {
-                $server = $_SERVER['SERVER_NAME'];
-            } else {
-                $server = 'localhost';
-            }
+                    if (array_key_exists('SERVER_NAME', $_SERVER) === true) {
+                        $server = $_SERVER['SERVER_NAME'];
+                    } else {
+                        $server = 'localhost';
+                    }
 
-            if (array_key_exists('REQUEST_URI', $_SERVER) === true) {
-                $url = $_SERVER['REQUEST_URI'];
-            } else {
-                $url = '/test';
-            }
+                    if (array_key_exists('REQUEST_URI', $_SERVER) === true) {
+                        $url = $_SERVER['REQUEST_URI'];
+                    } else {
+                        $url = '/test';
+                    }
 
-            if (array_key_exists('REQUEST_SCHEME', $_SERVER) === true) {
-                $protocol = $_SERVER['REQUEST_SCHEME'];
-            } else {
-                $protocol = 'http';
-            }
+                    if (array_key_exists('REQUEST_SCHEME', $_SERVER) === true) {
+                        $protocol = $_SERVER['REQUEST_SCHEME'];
+                    } else {
+                        $protocol = 'http';
+                    }
 
-            //skip qualification for error ignoring.
-            //$ip         = IP::get();
-            $ip         = '::1';
-            //$useragent  = Http::browser()->getUserAgent();
-            $useragent  = $_SERVER['HTTP_USER_AGENT'];
-            $httpStatus = http_response_code();
-            $time       = date('Y-m-d h:i A');
+                    //skip qualification for error ignoring.
+                    //$ip         = IP::get();
+                    $ip = '::1';
+                    //$useragent  = Http::browser()->getUserAgent();
+                    $useragent = $_SERVER['HTTP_USER_AGENT'];
+                    $contents = file_get_contents($logFile);
 
-            $contents = file_get_contents($logFile);
+                    if (strtolower($log['style']) === LOG_STYLE_SMART) {
+                        // [2021-05-29 04:34 PM]    192.168.0.1 "localhost  GET /"  Filter request of client.
+                        $contents .= sprintf(
+                            "[%s]\t%s\t%s\t\"%s\t%s\t%s\"\t%s\r",
+                            $log['time'],
+                            $ip,
+                            $log['type'],
+                            $server,
+                            $mode,
+                            $url,
+                            $log['message']
+                        );
+                    } elseif (strtolower($log['style']) === LOG_STYLE_SHORTCUT) {
+                        // [2021-05-29 04:34 PM]    "localhost GET /"   Filter request of client.
+                        $contents .= sprintf(
+                            "[%s]\t%s\t\"%s\t%s\t%s\"\t%s\r",
+                            $log['time'],
+                            $log['type'],
+                            $server,
+                            $mode,
+                            $url,
+                            $log['message']
+                        );
+                    } elseif (strtolower($log['style']) === LOG_STYLE_FULL) {
+                        // [2021-05-29 05:44AM] 127.0.0.1 Mozilla/5.0 (X11; Linux x86_64; rv:88.0) Gecko/20100101
+                        // Firefox/88.0<tab>http 200<tab>"localhost<tab>GET<tab>/"
+                        // <tab>Description: Widget's content not readable or found.
+                        $contents .= sprintf(
+                            "[%s]\t%s\t%s\t%s\t%s %s\t\"%s\t%s\t%s\"\t%s\r",
+                            $log['time'],
+                            $log['type'],
+                            $ip,
+                            $useragent,
+                            $protocol,
+                            $log['response'],
+                            $server,
+                            $mode,
+                            $url,
+                            $log['message']
+                        );
+                    } else {
+                        throw new InvalidArgumentException('Invalid log style provided.');
+                    }//end if
 
-            if (strtolower(static::$logStyle) === LOG_STYLE_SMART) {
-                // [2021-05-29 04:34 PM]    192.168.0.1 "localhost  GET /"  Filter request of client.
-                $contents .= sprintf(
-                    "[%s]\t%s\t%s\t\"%s\t%s\t%s\"\t%s\r",
-                    $time,
-                    $ip,
-                    static::$logType,
-                    $server,
-                    $mode,
-                    $url,
-                    static::$message
-                );
-            } elseif (strtolower(static::$logStyle) === LOG_STYLE_SHORTCUT) {
-                // [2021-05-29 04:34 PM]    "localhost GET /"   Filter request of client.
-                $contents .= sprintf(
-                    "[%s]\t%s\t\"%s\t%s\t%s\"\t%s\r",
-                    $time,
-                    static::$logType,
-                    $server,
-                    $mode,
-                    $url,
-                    static::$message
-                );
-            } elseif (strtolower(static::$logStyle) === LOG_STYLE_FULL) {
-                // [2021-05-29 05:44AM]<tab>127.0.0.1<tab>Mozilla/5.0 (X11; Linux x86_64; rv:88.0) Gecko/20100101
-                // Firefox/88.0<tab>http 200<tab>"localhost<tab>GET<tab>/"
-                // <tab>Description: Widget's content not readable or found.
-                $contents .= sprintf(
-                    "[%s]\t%s\t%s\t%s\t%s %s\t\"%s\t%s\t%s\"\t%s\r",
-                    $time,
-                    static::$logType,
-                    $ip,
-                    $useragent,
-                    $protocol,
-                    $httpStatus,
-                    $server,
-                    $mode,
-                    $url,
-                    static::$message
-                );
-            } else {
-                throw new InvalidArgumentException('Invalid log style provided.');
-            }//end if
+                    if (is_writable($logFile) === true) {
+                        fwrite($resource, $contents);
+                        fclose($resource);
 
-            if (is_writable($logFile) === true) {
-                fwrite($resource, $contents);
-                fclose($resource);
-
-                //exec('chmod -R 777 '.$logFile);
-            } else {
-                throw new PermissionRequiredException('Permission denied. Unable to write or read '.$logFile);
-            }
-        } else {
-            throw new PermissionRequiredException(
-                'Permission denied. Unable to write or read '.realpath(dirname($logFile))
-            );
+                        //exec('chmod -R 777 '.$logFile);
+                    } else {
+                        throw new PermissionRequiredException(
+                            'Permission denied. Unable to write or read ' . $logFile
+                        );
+                    }
+                } else {
+                    throw new PermissionRequiredException(
+                        'Permission denied. Unable to write or read ' . realpath(dirname($logFile))
+                    );
+                }//end if
+            }//end foreach
         }//end if
     }//end write()
 
@@ -328,23 +329,13 @@ class Log
      *
      * @return string Absolute path of log file.
      */
-    private static function logFilePath():string
+    private static function logFilePath(string $type, string $flag): string
     {
         //filename
         // [root/] date > type > flag > host.ext
-
         return sprintf(
             '%1$s%2$s%6$s%3$s%6$s%4$s%6$s%5$s.log',
-            Storage::logsPath(),
-            date('Ymd'),
-            static::$logType,
-            static::$logFlag,
-            APPLICATION_SERVER_NAME,
-            DS
+            Storage::logsPath(), date('Ymd'), $type, $flag, APPLICATION_SERVER_NAME, DS
         );
     }//end getLogFilePath()
-
-    public static function terminate(): void
-    {
-    }
 }

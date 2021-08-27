@@ -2,67 +2,75 @@
 
 namespace Mishusoft\Drivers;
 
-use Exception;
+use GeoIp2\Exception\AddressNotFoundException;
+use MaxMind\Db\Reader\InvalidDatabaseException;
 use Mishusoft\Exceptions\ErrorException;
+use Mishusoft\Exceptions\HttpException\HttpResponseException;
 use Mishusoft\Exceptions\JsonException;
+use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
+use Mishusoft\Exceptions\PermissionRequiredException;
+use Mishusoft\Exceptions\RuntimeException;
+use Mishusoft\Framework;
 use Mishusoft\Storage;
 use Mishusoft\Storage\FileSystem;
-use Mishusoft\Ui\Firewall;
-use Mishusoft\Libraries\Runtime;
+use Mishusoft\System\Firewall;
+use Mishusoft\Http\Runtime;
 use Mishusoft\Utility\ArrayCollection;
 
 class Session
 {
     /**
+     * @throws AddressNotFoundException
      * @throws ErrorException
+     * @throws HttpResponseException
+     * @throws InvalidArgumentException
+     * @throws InvalidDatabaseException
      * @throws JsonException
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
      * @throws \JsonException
-     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
-     * @throws \Mishusoft\Exceptions\PermissionRequiredException
-     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public static function init(): void
     {
-        try {
-            //required ini configuration
-            session_name(DEFAULT_APP_NAME);
-            if (!file_exists(Storage::frameworkSessionsPath())) {
-                FileSystem::makeDirectory(Storage::frameworkSessionsPath());
-            }
-            session_save_path(Storage::frameworkSessionsPath());
-            /*chmod(TempFolder .'sessions',0777);*/
-            session_cache_expire(600);
-            /*ensure permission for current session file*/
-            /*if (!file_exists(TempFolder .'sessions' . DS . session_name())){
-                fopen(TempFolder .'sessions' . DS . session_name(), 0777);
-            }
-            if (!is_readable(TempFolder .'sessions' . DS . session_name())){
-                chmod(TempFolder .'sessions' . DS . session_name(), 0777);
-            }*/
-            session_start();
-            //session_id(uniqid());
-            if (self::get('auth') === true) {
-                if (self::get('RememberMe') === false) {
-                    self::sessionTime();
-                }
-            }
-        } catch (Exception $e) {
-            Firewall::runtimeFailure(
-                "Forbidden",
-                [
-                    "debug" => ["file" => "NO-FILE-INTERNAL-MATTER", "location" => 'Action file', "description" => "Session could not start!!"],
-                    "error" => ["description" => "You have no permission to access the requested url!!"],
-                ]
-            );
-            exit();
+        //required ini configuration
+        session_name(DEFAULT_APP_NAME);
+        if (!file_exists(Storage::frameworkSessionsPath())) {
+            FileSystem::makeDirectory(Storage::frameworkSessionsPath());
+        }
+        session_save_path(Storage::frameworkSessionsPath());
+        /*chmod(TempFolder .'sessions',0777);*/
+        session_cache_expire(600);
+        /*ensure permission for current session file*/
+        /*if (!file_exists(TempFolder .'sessions' . DS . session_name())){
+            fopen(TempFolder .'sessions' . DS . session_name(), 0777);
+        }
+        if (!is_readable(TempFolder .'sessions' . DS . session_name())){
+            chmod(TempFolder .'sessions' . DS . session_name(), 0777);
+        }*/
+        session_start();
+        //session_id(uniqid());
+        if ((self::get('auth') === true)
+            && self::get('RememberMe') === false) {
+            self::sessionTime();
         }
     }
 
+    /**
+     * @throws ErrorException
+     * @throws JsonException
+     * @throws \JsonException
+     * @throws InvalidArgumentException
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
+     */
     public static function validity(): void
     {
         if (self::get('auth') === false) {
             if (count(ArrayCollection::cleanArray($_GET, ["url"])) > 0) {
-                Runtime::redirect('account/login?' . Runtime::actualUrl("Your session time out. Please log in to continue."));
+                Runtime::redirect(
+                    'account/login?'
+                    . Runtime::actualUrl("Your session time out. Please log in to continue.")
+                );
             } else {
                 Runtime::redirect('account/login?' . Runtime::actualUrl());
             }
@@ -81,7 +89,13 @@ class Session
     /**
      * @throws ErrorException
      * @throws JsonException
+     * @throws AddressNotFoundException
      * @throws \JsonException
+     * @throws InvalidDatabaseException
+     * @throws HttpResponseException
+     * @throws InvalidArgumentException
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
      */
     public static function sessionTime(): void
     {
@@ -89,11 +103,15 @@ class Session
             Firewall::runtimeFailure(
                 "Forbidden",
                 [
-                    "debug" => ["file" => "NO-FILE-INTERNAL-MATTER", "location" => 'Action file', "description" => "Session Time is not set!!"],
+                    "debug" => [
+                        "file" => "NO-FILE-INTERNAL-MATTER",
+                        "location" => 'Action file',
+                        "description" => "Session Time is not set!!",
+                    ],
                     "error" => ["description" => "You have no permission to access the requested url!!"],
                 ]
             );
-            exit();
+            Framework::terminate();
         }
 
         if (SESSION_TIME === 0) {
@@ -108,19 +126,17 @@ class Session
         }
     }
 
-    public static function destroy($value = false)
+    public static function destroy(array|string $value = [])
     {
         if ($value) {
-            if (is_array($value)) {
-                for ($i = 0; $i < count($value); $i++) {
-                    if (isset($_SESSION[$value[$i]])) {
-                        unset($_SESSION[$value[$i]]);
+            if (is_array($value) && count($value)>0) {
+                foreach ($value as $iValue) {
+                    if (isset($_SESSION[$iValue])) {
+                        unset($_SESSION[$iValue]);
                     }
                 }
-            } else {
-                if (isset($_SESSION[$value])) {
-                    unset($_SESSION[$value]);
-                }
+            } elseif (isset($_SESSION[$value])) {
+                unset($_SESSION[$value]);
             }
         } else {
             session_destroy();
@@ -131,7 +147,7 @@ class Session
      * @param string $value
      * @param $source
      */
-    public static function set(string $value, $source)
+    public static function set(string $value, $source): void
     {
         if (!empty($value)) {
             $_SESSION[$value] = $source;
@@ -139,9 +155,16 @@ class Session
     }
 
     /**
+     * @param string $level
      * @throws ErrorException
      * @throws JsonException
+     * @throws AddressNotFoundException
      * @throws \JsonException
+     * @throws InvalidDatabaseException
+     * @throws HttpResponseException
+     * @throws InvalidArgumentException
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
      */
     public static function access(string $level)
     {
@@ -149,7 +172,11 @@ class Session
             Firewall::runtimeFailure(
                 "Forbidden",
                 [
-                    "debug" => ["file" => "NO-FILE-INTERNAL-MATTER", "location" => 'Action file', "description" => "You have no permission to access the requested url!!"],
+                    "debug" => [
+                        "file" => "NO-FILE-INTERNAL-MATTER",
+                        "location" => 'Action file',
+                        "description" => "You have no permission to access the requested url!!",
+                    ],
                     "error" => ["description" => "You have no permission to access the requested url!!"],
                 ]
             );
@@ -160,7 +187,11 @@ class Session
             Firewall::runtimeFailure(
                 "Forbidden",
                 [
-                    "debug" => ["file" => "NO-FILE-INTERNAL-MATTER", "location" => 'Action file', "description" => "You have no permission to access the requested url!!"],
+                    "debug" => [
+                        "file" => "NO-FILE-INTERNAL-MATTER",
+                        "location" => 'Action file',
+                        "description" => "You have no permission to access the requested url!!",
+                    ],
                     "error" => ["description" => "You have no permission to access the requested url!!"],
                 ]
             );
@@ -169,9 +200,17 @@ class Session
     }
 
     /**
+     * @param string $level
+     * @return int
      * @throws ErrorException
-     * @throws \JsonException
      * @throws JsonException
+     * @throws AddressNotFoundException
+     * @throws \JsonException
+     * @throws InvalidDatabaseException
+     * @throws HttpResponseException
+     * @throws InvalidArgumentException
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
      */
     public static function getLevel(string $level): int
     {
@@ -188,20 +227,32 @@ class Session
             Firewall::runtimeFailure(
                 "Forbidden",
                 [
-                    "debug" => ["file" => "NO-FILE-INTERNAL-MATTER", "location" => 'Action file', "description" => "You have no permission to access the requested url!!"],
+                    "debug" => [
+                        "file" => "NO-FILE-INTERNAL-MATTER",
+                        "location" => 'Action file',
+                        "description" => "You have no permission to access the requested url!!",
+                        ],
                     "error" => ["description" => "You have no permission to access the requested url!!"],
                 ]
             );
             exit;
-        } else {
-            return $role[$level];
         }
+
+        return $role[$level];
     }
 
     /**
-     * @throws \JsonException
+     * @param string $level
+     * @return bool
      * @throws ErrorException
      * @throws JsonException
+     * @throws AddressNotFoundException
+     * @throws \JsonException
+     * @throws InvalidDatabaseException
+     * @throws HttpResponseException
+     * @throws InvalidArgumentException
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
      */
     public static function accessView(string $level): bool
     {
@@ -211,25 +262,33 @@ class Session
 
         self::sessionTime();
 
-        if (self::getLevel($level) > self::getLevel(self::get('level'))) {
-            return false;
-        }
-
-        return true;
+        return !(self::getLevel($level) > self::getLevel(self::get('level')));
     }
 
     /**
-     * @throws \JsonException
+     * @param array $level
+     * @param bool $noAdmin
      * @throws ErrorException
      * @throws JsonException
+     * @throws AddressNotFoundException
+     * @throws \JsonException
+     * @throws InvalidDatabaseException
+     * @throws HttpResponseException
+     * @throws InvalidArgumentException
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
      */
-    public static function accessRestrict(array $level, $noAdmin = false)
+    public static function accessRestrict(array $level, bool $noAdmin = false): void
     {
         if (!self::get('auth')) {
             Firewall::runtimeFailure(
                 "Forbidden",
                 [
-                    "debug" => ["file" => "NO-FILE-INTERNAL-MATTER", "location" => 'Action file', "description" => "You have no permission to access the requested url!!"],
+                    "debug" => [
+                        "file" => "NO-FILE-INTERNAL-MATTER",
+                        "location" => 'Action file',
+                        "description" => "You have no permission to access the requested url!!",
+                        ],
                     "error" => ["description" => "You have no permission to access the requested url!!"],
                 ]
             );
@@ -238,33 +297,44 @@ class Session
 
         self::sessionTime();
 
-        if ($noAdmin === false) {
-            if (self::get('level') === 'admin') {
-                return;
-            }
+        if (($noAdmin === false)
+            && self::get('level') === 'admin') {
+            return;
         }
 
-        if (count($level)) {
-            if (in_array(self::get('level'), $level, true)) {
-                return;
-            }
+        if (count($level)
+            && in_array(self::get('level'), $level, true)) {
+            return;
         }
 
         Firewall::runtimeFailure(
             "Forbidden",
             [
-                "debug" => ["file" => "NO-FILE-INTERNAL-MATTER", "location" => 'Action file', "description" => "You have no permission to access the requested url!!"],
+                "debug" => [
+                    "file" => "NO-FILE-INTERNAL-MATTER",
+                    "location" => 'Action file',
+                    "description" => "You have no permission to access the requested url!!",
+                    ],
                 "error" => ["description" => "You have no permission to access the requested url!!"],
             ]
         );
     }
 
     /**
+     * @param array $level
+     * @param bool $noAdmin
+     * @return bool
      * @throws ErrorException
      * @throws JsonException
+     * @throws AddressNotFoundException
      * @throws \JsonException
+     * @throws InvalidDatabaseException
+     * @throws HttpResponseException
+     * @throws InvalidArgumentException
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
      */
-    public static function accessViewRestrict(array $level, $noAdmin = false): bool
+    public static function accessViewRestrict(array $level, bool $noAdmin = false): bool
     {
         if (!self::get('auth')) {
             return false;
@@ -272,16 +342,14 @@ class Session
 
         self::sessionTime();
 
-        if ($noAdmin === false) {
-            if (self::get('level') === 'admin') {
-                return true;
-            }
+        if (($noAdmin === false)
+            && self::get('level') === 'admin') {
+            return true;
         }
 
-        if (count($level)) {
-            if (in_array(self::get('level'), $level, true)) {
-                return true;
-            }
+        if (count($level)
+            && in_array(self::get('level'), $level, true)) {
+            return true;
         }
 
         return false;

@@ -67,12 +67,13 @@ class Request
             /*
              * verify extracted locale language from url
              * url like [protocol://hostname/]
-             * verified extracted locale language check from count supported locale language of system, verify if it more than 0
+             * verified extracted locale language check
+             * from count supported locale language of system, verify if it is more than 0
              */
             if (count(array_change_key_case(Localization::SUPPORT)) > 0) {
                 /*
                  * if supported locale languages list is not set or locale not in these,
-                 * then locale set to module and it make default
+                 * then locale set to module, and it makes default
                  */
                 if (!in_array($this->locale, array_change_key_case(Localization::SUPPORT), true)) {
                     $this->module = $this->locale;
@@ -87,8 +88,8 @@ class Request
                 }
             } else {
                 /*
-                 * if locale language exists but it is not exists in supported locale languages,
-                 * then locale set to module and it make default
+                 * if locale language exists, but it is not exists in supported locale languages,
+                 * then locale set to module, and it makes default
                  */
                 $this->module = $this->locale;
                 $this->locale = Inflect::lower(Locale::getDefault());

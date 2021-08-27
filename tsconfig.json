@@ -7,7 +7,7 @@
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
-    "outDir": "dist/typescripts",
+    "outDir": "storages/app/assets/js",
     "pretty": true,
     "sourceMap": true,
     "strictNullChecks": true,

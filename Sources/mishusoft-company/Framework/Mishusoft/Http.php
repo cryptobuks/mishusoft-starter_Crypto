@@ -12,7 +12,7 @@ class Http extends ErrorsData
 
     private static Browser $browser;
 
-    public static function makeCacheBrowser(): void
+    public static function makeBrowserCache(): void
     {
         self::$browser = new Browser();
     }
@@ -65,6 +65,24 @@ class Http extends ErrorsData
         }
 
         return self::NOT_FOUND;
+    }//end getErrorCode()
+
+
+    /**
+     * Get error code by description.
+     *
+     * @param int $code Error code.
+     *
+     * @return string
+     * @throws Exceptions\JsonException
+     */
+    public static function errorDescription(int $code): string
+    {
+        if (array_key_exists($code, self::errorsRecords()) === true) {
+            return self::errorsRecords()[$code]['Description'];
+        }
+
+        return 'NOT_FOUND';
     }//end getErrorCode()
 
 

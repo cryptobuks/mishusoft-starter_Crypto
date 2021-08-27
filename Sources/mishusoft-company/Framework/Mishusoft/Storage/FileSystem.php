@@ -2,6 +2,7 @@
 
 namespace Mishusoft\Storage;
 
+use Closure;
 use JsonException;
 use Mishusoft\Exceptions\ErrorException;
 use Mishusoft\Exceptions\RuntimeException;
@@ -70,31 +71,27 @@ class FileSystem
     /**
      * @param string $file
      * @param string $delimiter
-     * @return false|string
-     * @throws JsonException
-     * @throws RuntimeException
-     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
-     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @return array
      */
-    public static function csvtojson(string $file, string $delimiter): bool|string
+    public static function readCsvFile(string $file, string $delimiter): array
     {
+        $data = [];
         if (self::isExists($file) === true) {
             if (($handle = fopen($file, 'rb')) === false) {
-                Log::info('Can"t open the file.', LOG_STYLE_SMART, LOG_TYPE_COMPILE);
+                Log::info('Can"t open the file.');
             }
 
             $csv_headers = fgetcsv($handle, 4000, $delimiter);
-            $csv_json = [];
 
             while ($row = fgetcsv($handle, 4000, $delimiter)) {
-                $csv_json[] = array_combine($csv_headers, $row);
+                $data[] = array_combine($csv_headers, $row);
             }
 
             fclose($handle);
-            return json_encode($csv_json, JSON_THROW_ON_ERROR);
+            return $data;
         }
 
-        return false;
+        return $data;
     }//end csvtojson()
 
 
@@ -111,11 +108,11 @@ class FileSystem
 
     /**
      * @param string $filename
-     * @param \Closure $callback
+     * @param Closure $callback
      * @return bool|null
      * @throws ErrorException
      */
-    public static function readFromFile(string $filename, \Closure $callback): ?bool
+    public static function readFromFile(string $filename, Closure $callback): ?bool
     {
         if (self::isReadable($filename) === true) {
             return $callback(file_get_contents($filename));
@@ -191,7 +188,6 @@ class FileSystem
             if (chmod($path, $fileMode) === false) {
                 $file_mode = decoct($fileMode);
                 print "Failed applying file mode '$file_mode' on file '$path'\n";
-                return;
             }
         }//end if
     }//end chmodR()

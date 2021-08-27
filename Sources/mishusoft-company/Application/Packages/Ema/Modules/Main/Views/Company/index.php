@@ -1,9 +1,9 @@
 <?php
 
 use Mishusoft\Storage;
-use Mishusoft\Ui\Localization;
+use Mishusoft\System\Localization;
 use Mishusoft\Ui;
-use Mishusoft\Libraries\Runtime;
+use Mishusoft\Http\Runtime;
 use Mishusoft\Utility\ArrayCollection;
 
 $translation = new Localization(ArrayCollection::value($this->request, "locale"));

@@ -3,12 +3,13 @@
 namespace Mishusoft\Drivers;
 
 use InvalidArgumentException;
+use Mishusoft\Framework;
 use Mishusoft\Framework\Drivers\View;
 use Mishusoft\MPM;
 use Mishusoft\Preloader;
 use Mishusoft\Storage;
 use Mishusoft\System\Firewall;
-use Mishusoft\Libraries\Runtime;
+use Mishusoft\Http\Runtime;
 use Mishusoft\System\Log;
 
 abstract class Controller implements ControllerInterface
@@ -48,23 +49,27 @@ abstract class Controller implements ControllerInterface
     }
 
     /**
+     * @param $data
      * @throws \JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public function paginationValidity($data): void
     {
         if (empty($data->security_code) || $data->security_code !== 1) {
             Storage\Stream::json(['type' => 'error', 'message' => 'Pagination\'s security code not found.']);
-            Log::terminate();
+            Framework::terminate();
             exit(0);
         }
         if (empty($data->pageNumber) && $this->filterInt($data->pageNumber) !==0) {
             Storage\Stream::json(['type' => 'error', 'message' => 'Page number not found.']);
-            Log::terminate();
+            Framework::terminate();
             exit(0);
         }
         if (empty($data->viewMode)) {
             Storage\Stream::json(['type' => 'error', 'message' => 'Page view mode direction not found.']);
-            Log::terminate();
+            Framework::terminate();
             exit(0);
         }
     }

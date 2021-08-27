@@ -2,9 +2,6 @@
 
 declare(strict_types=1);
 
-use Rector\CodeQuality\Rector\Assign\CombinedAssignRector;
-use Rector\CodeQuality\Rector\LogicalAnd\AndAssignsToSeparateLinesRector;
-use Rector\CodeQuality\Rector\Ternary\ArrayKeyExistsTernaryThenValueToCoalescingRector;
 use Rector\Core\Configuration\Option;
 use Rector\Core\ValueObject\PhpVersion;
 use Rector\Php74\Rector\Property\TypedPropertyRector;

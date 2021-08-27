@@ -7,11 +7,9 @@ const PHP_CODE_SYNTAX = 'PHP_8.*';
 const WHO_AM_I = 'Mishusoft';
 const ROOT_IDENTITY = 'app://';
 const PUBLIC_ROOT_PATH = 'public_html' . DS;
-define('RUNTIME_ROOT_PATH', realpath(dirname(__DIR__)) . DS);
-
-
-const APPLICATION_SYSTEM_TEMP_PATH = RUNTIME_ROOT_PATH . 'tmp' . DS;
+const IS_CLI = (PHP_SAPI === 'cli');
 // Main constants define end.
+
 const PHP_LANG_VERSION = PHP_VERSION;
 const HASH_KEY = '57c1d48ba721a';
 const HASH_KEY_OPENSSL = 'bRuD5WYw5wd0rdHR9yLlM6wt2vteuiniQBqE70nAuhU';
@@ -24,7 +22,7 @@ const PREG_QUOTE_DEFAULT_SEPARATOR = '/@#~';
 
 
 // enable or disable logging.
-const LOGGING_ON_OPERATION = true;
+const LOGGING_ON_OPERATION = false;
 
 // Logger style for log writing.
 const LOG_STYLE_SMART = 'smart';
@@ -37,10 +35,22 @@ const LOG_TYPE_ACCESS = 'access';
 const LOG_TYPE_RUNTIME = 'runtime';
 
 
+define('CURRENT_YEAR', date('Y'));
+define('RUNTIME_ROOT_PATH', realpath(dirname(__DIR__)) . DS);
 
+const APPLICATION_SYSTEM_TEMP_PATH = RUNTIME_ROOT_PATH . 'tmp' . DS;
 
 
 // Constants for Mishusoft associates.
+
+if (array_key_exists('USER', $_SERVER) === true) {
+    define('CURRENT_SYS_USER', $_SERVER['USER']);
+} else {
+    define('CURRENT_SYS_USER', get_current_user());
+}
+
+
+
 //
 //define('RUNTIME_SYSTEM_TEMP_PATH', RUNTIME_ROOT_PATH . 'tmp' . DS);
 //
@@ -57,6 +67,7 @@ if (array_key_exists('SERVER_NAME', $_SERVER) === true) {
 } else {
     define('APPLICATION_SERVER_NAME', 'localhost');
 }
+
 //
 //// Create root directory for current server.
 //if ((file_exists(RUNTIME_CACHE_ROOT_PATH) === false)
@@ -91,4 +102,3 @@ if (array_key_exists('SERVER_NAME', $_SERVER) === true) {
 //define('APPLICATION_UPLOADS_MEDIA_PATH', APPLICATION_STORAGE_PATH . '0/media/uploads' . DS);
 //
 //define('APPLICATION_PACKAGES_PATH', RUNTIME_ROOT_PATH . 'app' . DS);
-

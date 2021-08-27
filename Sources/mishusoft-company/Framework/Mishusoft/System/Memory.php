@@ -1,5 +1,4 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 
 namespace Mishusoft\System;
@@ -245,16 +244,15 @@ class Memory
     /**
      * Data loader of system memory.
      *
+     * @param string $carrier
      * @param string $format Format for data load.
      * @param array $default Default array data for fallback.
      * @param string $filename Absolute data file path.
      *
      * @return object|array Return data on demand.
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
      * @throws ErrorException
-     * @throws \Mishusoft\Exceptions\JsonException
      * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     private static function dataLoader(string $carrier, string $format, array $default, string $filename): object|array
     {
@@ -338,8 +336,6 @@ class Memory
      * Load framework memory data.
      *
      * @return void
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
      * @throws RuntimeException
      * @throws \Mishusoft\Exceptions\JsonException Throw json exception when json error occurred.
      */

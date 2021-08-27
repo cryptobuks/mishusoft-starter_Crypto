@@ -3,11 +3,16 @@
 namespace Mishusoft\Storage;
 
 use JsonException;
+use Mishusoft\Framework;
 
 class Stream
 {
     /**
      * @param string $filename
+     * @throws JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public static function originalFile(string $filename): void
     {
@@ -40,6 +45,7 @@ class Stream
                 readfile($filename);
                 ob_end_flush();
             }
+            Framework::terminate();
         }//end if
     }//end StreamOriginalFile()
 

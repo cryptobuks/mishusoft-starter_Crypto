@@ -2,6 +2,7 @@
 
 namespace Mishusoft\System\BIOS;
 
+use Mishusoft\Framework;
 use Mishusoft\Http;
 use Mishusoft\MPM;
 use Mishusoft\Preloader;
@@ -130,8 +131,7 @@ class EmbeddedWebUrlService
 
 
                         //embedded url execute and terminate application
-                        Log::terminate();
-                        exit(0);
+                        Framework::terminate();
                     }//end if
                 }//end foreach
             }//end if

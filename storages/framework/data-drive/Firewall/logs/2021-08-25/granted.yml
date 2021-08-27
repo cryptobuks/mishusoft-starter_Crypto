@@ -1,0 +1,760 @@
+---
+::1:
+  Unknown:
+    "2021-08-25 02:26:54":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:26:54"
+    "2021-08-25 02:30:13":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:30:13"
+    "2021-08-25 02:30:14":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/webfonts/SairaStencilOne-Regular.57631bc3592bb016bab9.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:30:14"
+    "2021-08-25 02:30:15":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/assets/js/Assets_typescripts_common_dom_ts.runtime.bundle.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:30:15"
+    "2021-08-25 02:31:27":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:31:27"
+    "2021-08-25 02:31:28":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/webfonts/SairaStencilOne-Regular.57631bc3592bb016bab9.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:31:28"
+    "2021-08-25 02:31:29":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/assets/js/Assets_typescripts_common_dom_ts.runtime.bundle.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:31:29"
+    "2021-08-25 02:31:56":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:31:56"
+    "2021-08-25 02:31:57":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/assets/js/readystate.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:31:57"
+    "2021-08-25 02:31:58":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/assets/js/Assets_typescripts_mishusoft_UserAuth_ts.runtime.bundle.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:31:58"
+    "2021-08-25 02:32:06":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:32:06"
+    "2021-08-25 02:32:07":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/assets/js/readystate.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:32:07"
+    "2021-08-25 02:32:08":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/assets/js/Assets_typescripts_mishusoft_UserAuth_ts.runtime.bundle.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:32:08"
+    "2021-08-25 02:32:33":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:32:33"
+    "2021-08-25 02:32:34":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/assets/js/framework.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:32:34"
+    "2021-08-25 02:32:35":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/assets/js/Assets_typescripts_mishusoft_UserAuth_ts.runtime.bundle.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:32:35"
+    "2021-08-25 02:32:42":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:32:42"
+    "2021-08-25 02:32:43":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/webfonts/SairaStencilOne-Regular.57631bc3592bb016bab9.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:32:43"
+    "2021-08-25 02:32:44":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/assets/js/Assets_typescripts_common_dom_ts.runtime.bundle.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:32:44"
+    "2021-08-25 02:33:50":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:33:50"
+    "2021-08-25 02:33:51":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/webfonts/SairaStencilOne-Regular.57631bc3592bb016bab9.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:33:51"
+    "2021-08-25 02:34:08":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:34:08"
+    "2021-08-25 02:34:09":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/assets/js/Assets_typescripts_db_runtime_ts.runtime.bundle.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:34:09"
+    "2021-08-25 02:34:21":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/90.0.4420.0 Safari/537.36 Chrome-Lighthouse
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:34:21"
+    "2021-08-25 02:34:22":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/90.0.4420.0 Safari/537.36 Chrome-Lighthouse
+      url: http://localhost:8080/assets/js/Assets_typescripts_worker-response_ts.runtime.bundle.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:34:22"
+    "2021-08-25 02:37:13":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:37:13"
+    "2021-08-25 02:37:14":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/assets/js/Assets_typescripts_worker-response_ts.runtime.bundle.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:37:14"
+    "2021-08-25 02:37:15":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:37:15"
+    "2021-08-25 02:37:16":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/webfonts/SairaStencilOne-Regular.57631bc3592bb016bab9.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:37:16"
+    "2021-08-25 02:37:17":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/assets/js/sw.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:37:17"
+    "2021-08-25 02:38:55":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:38:55"
+    "2021-08-25 02:38:56":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/assets/js/Assets_typescripts_db_app_ts.runtime.bundle.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:38:56"
+    "2021-08-25 02:40:16":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:40:16"
+    "2021-08-25 02:40:17":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/assets/js/Assets_typescripts_db_app_ts.runtime.bundle.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:40:17"
+    "2021-08-25 02:41:56":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:41:56"
+    "2021-08-25 02:41:57":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/assets/js/Assets_typescripts_db_runtime_ts.runtime.bundle.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:41:57"
+    "2021-08-25 02:42:03":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:42:03"
+    "2021-08-25 02:42:04":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/assets/js/readystate.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 02:42:04"
+    "2021-08-25 14:34:55":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 14:34:55"
+    "2021-08-25 14:34:56":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/webfonts/SairaStencilOne-Regular.57631bc3592bb016bab9.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 14:34:56"
+    "2021-08-25 14:34:57":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/assets/js/readystate.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 14:34:57"
+    "2021-08-25 14:39:43":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 14:39:43"
+    "2021-08-25 14:39:44":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/assets/js/Assets_typescripts_db_app_ts.runtime.bundle.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 14:39:44"
+    "2021-08-25 14:40:14":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 14:40:14"
+    "2021-08-25 14:40:15":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/assets/js/readystate.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 14:40:15"
+    "2021-08-25 14:40:16":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/assets/js/Assets_typescripts_mishusoft_UserAuth_ts.runtime.bundle.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 14:40:16"
+    "2021-08-25 14:40:46":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 14:40:46"
+    "2021-08-25 14:40:47":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/assets/js/Assets_typescripts_db_app_ts.runtime.bundle.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 14:40:47"
+    "2021-08-25 14:44:26":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/90.0.4420.0 Safari/537.36 Chrome-Lighthouse
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 14:44:26"
+    "2021-08-25 14:44:27":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/90.0.4420.0 Safari/537.36 Chrome-Lighthouse
+      url: http://localhost:8080/assets/js/readystate.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 14:44:27"
+    "2021-08-25 14:44:28":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/90.0.4420.0 Safari/537.36 Chrome-Lighthouse
+      url: http://localhost:8080/assets/js/Assets_typescripts_mishusoft_UserAuth_ts.runtime.bundle.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 14:44:28"
+    "2021-08-25 15:26:46":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 15:26:46"
+    "2021-08-25 15:26:47":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/webfonts/SairaStencilOne-Regular.57631bc3592bb016bab9.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 15:26:47"
+    "2021-08-25 15:26:48":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/assets/js/sw.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 15:26:48"
+    "2021-08-25 15:26:52":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 15:26:52"
+    "2021-08-25 15:26:53":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/webfonts/SairaStencilOne-Regular.57631bc3592bb016bab9.woff2
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 15:26:53"
+    "2021-08-25 15:26:54":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/assets/js/Assets_typescripts_mishusoft_UserAuth_ts.runtime.bundle.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 15:26:54"
+    "2021-08-25 15:27:15":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 15:27:15"
+    "2021-08-25 15:27:16":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/assets/js/framework.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 15:27:16"
+    "2021-08-25 15:27:17":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/assets/js/Assets_typescripts_mishusoft_UserAuth_ts.runtime.bundle.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 15:27:17"
+    "2021-08-25 15:27:23":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/90.0.4420.0 Safari/537.36 Chrome-Lighthouse
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 15:27:23"
+    "2021-08-25 15:27:24":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/90.0.4420.0 Safari/537.36 Chrome-Lighthouse
+      url: http://localhost:8080/assets/js/readystate.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 15:27:24"
+    "2021-08-25 15:27:25":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/90.0.4420.0 Safari/537.36 Chrome-Lighthouse
+      url: http://localhost:8080/assets/js/sw.js
+      status: granted
+      component: browser
+      visit-time: "2021-08-25 15:27:25"
+...

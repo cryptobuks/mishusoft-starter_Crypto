@@ -1,1 +1,0 @@
-<?php  declare(strict_types=1);namespace App\EmbeddedWebUrlDirectory;use Mishusoft\Services\SecureDataTransferService;class ApplicationProgrammingInterface extends SecureDataTransferService{public function api(array $request){parent::api($request);}public function monitor(array $request){parent::monitor($request);}}

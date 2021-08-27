@@ -20,8 +20,6 @@ const JavaScriptObfuscator = require('webpack-obfuscator')
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts')
 //const HtmlWebpackPlugin = require('html-webpack-plugin') /* webpack 5 */
 
-//make web manifest file
-const {WebpackManifestPlugin} = require('webpack-manifest-plugin');
 const FontPreloadPlugin = require("webpack-font-preload-plugin");
 
 
@@ -76,10 +74,6 @@ const commonConfig = {
             chunkFilename: 'css/[id].css'
         }),
         new FontPreloadPlugin(),
-        new WebpackManifestPlugin({
-            //'basePath': 'assets/',
-            'publicPath': 'assets/'
-        }),
         /*copy webfonts file from sources directory*/
         new CopyWebpackPlugin({
             patterns: [{
@@ -178,12 +172,12 @@ const prodConfig = {
             new CssMinimizerPlugin()
         ],
     },
-    plugins: [
-        ...commonFileConfig.plugins,
-        new JavaScriptObfuscator({
-            rotateStringArray: true
-        })
-    ]
+    // plugins: [
+    //     ...commonFileConfig.plugins,
+    //     new JavaScriptObfuscator({
+    //         rotateStringArray: true
+    //     })
+    // ]
 }
 
 const testConfig = {

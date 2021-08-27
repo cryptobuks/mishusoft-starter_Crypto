@@ -38,8 +38,17 @@ if ($this->templateUse === 'no') {
 
     Ui::elementList(Ui::getDocumentHeadElement(), ['link' => Storage::assignableWebFavicons()]);
 
+
+    //<link rel="manifest" href="manifest.json" />
+    //<meta name="mobile-web-app-capable" content="yes" />
+    //<meta name="apple-mobile-web-app-capable" content="yes" />
+    //<meta name="application-name" content="PWA Workshop" />
+    //<meta name="apple-mobile-web-app-title" content="PWA Workshop" />
+    //<meta name="msapplication-starturl" content="/index.html" />
+
+
     /*
-     * this step we declare meta tags for robots
+     * this step we declare meta and link tags for progressive web application
      */
 
     Ui::elementList(
@@ -47,16 +56,30 @@ if ($this->templateUse === 'no') {
         [
             'meta' => [
                 [
-                    'name' => 'robots',
-                    'content' => 'index, follow',
+                    'name' => 'mobile-web-app-capable',
+                    'content' => 'yes',
                 ],
                 [
-                    'name' => 'robots',
-                    'content' => 'max-image-preview:standard',
+                    'name' => 'apple-mobile-web-app-capable',
+                    'content' => 'yes',
                 ],
                 [
-                    'name' => 'robots',
-                    'content' => 'max-video-preview:-1',
+                    'name' => 'application-name',
+                    'content' => DEFAULT_APP_NAME,
+                ],
+                [
+                    'name' => 'apple-mobile-web-app-title',
+                    'content' => DEFAULT_APP_NAME,
+                ],
+                [
+                    'name' => 'msapplication-starturl',
+                    'content' => Ui\ProgressiveWebApplication::startUrl(),
+                ],
+            ],
+            'link' => [
+                [
+                    'rel' => 'manifest',
+                    'href' => Ui\ProgressiveWebApplication::loadManifestFile(),
                 ],
             ],
         ]
@@ -110,12 +133,12 @@ if ($this->templateUse === 'no') {
     Ui::elementList(
         Ui::getDocumentHeadElement(),
         [
-//            'link' => [
-//                [
-//                    'rel' => 'stylesheet', 'type' => 'text/css', 'id' => 'framework.css',
-//                    'href' => Storage::assetsFullPath('css/framework.css', 'remote'),
-//                ],
-//            ],
+        //            'link' => [
+        //                [
+        //                    'rel' => 'stylesheet', 'type' => 'text/css', 'id' => 'framework.css',
+        //                    'href' => Storage::assetsFullPath('css/framework.css', 'remote'),
+        //                ],
+        //            ],
             'style' => [
                 [
                     'type' => 'text/css', 'id' => 'theme.css',

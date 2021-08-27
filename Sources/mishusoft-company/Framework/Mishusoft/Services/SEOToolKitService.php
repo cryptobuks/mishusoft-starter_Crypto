@@ -226,7 +226,7 @@ class SEOToolKitService extends Base
                     // /*<meta name=viewport content="width=device-width, initial-scale=1">*/
                     [
                         'name' => 'viewport',
-                        'content' => 'width=device-width, initial-scale=1.0',
+                        'content' => 'width=device-width, initial-scale=1.0, shrink-to-fit=no',
                     ],
                     [
                         'http-equiv' => 'X-UA-Compatible',
@@ -285,6 +285,42 @@ class SEOToolKitService extends Base
                     [
                         'name' => 'description',
                         'content' => $this->loadDescription(),
+                    ],
+                ],
+            ]
+        );
+    }//end default()
+
+    /**
+     *
+     * @throws JsonException
+     * @throws ErrorException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws InvalidArgumentException
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
+     */
+    private function robots(): void
+    {
+        /*
+         * we declare robots meta tags for robots
+         * */
+
+        Ui::elementList(
+            Ui::getDocumentHeadElement(),
+            [
+                'meta' => [
+                    [
+                        'name' => 'robots',
+                        'content' => 'index, follow',
+                    ],
+                    [
+                        'name' => 'robots',
+                        'content' => 'max-image-preview:standard',
+                    ],
+                    [
+                        'name' => 'robots',
+                        'content' => 'max-video-preview:-1',
                     ],
                 ],
             ]

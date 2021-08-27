@@ -8,7 +8,7 @@ use DOMNode;
 use Mishusoft\Http;
 use Mishusoft\Storage;
 use Mishusoft\Ui;
-use Mishusoft\Libraries\Runtime;
+use Mishusoft\Http\Runtime;
 use Mishusoft\Utility\ArrayCollection;
 
 class UniversalWidget

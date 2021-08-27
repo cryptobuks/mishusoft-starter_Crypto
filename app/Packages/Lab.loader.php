@@ -21,16 +21,16 @@ use Mishusoft\Utility\Inflect;
         // check activation database
         if (Memory::Data('mpm')->config->database->activation) {
             // declare database info as constants
-            define('DbHOST', Memory::Data('config')->db->host);
-            define('DbPORT', Memory::Data('config')->db->port);
-            define('DbUSER', Memory::Data('config')->db->user);
-            define('DbPASS', Memory::Data('config')->db->password);
-            define('DbNAME', Memory::Data('config')->db->name);
-            define('DbCHAR', Memory::Data('config')->db->char);
-            define('DbPREFIX', Memory::Data('config')->db->prefix);
+            define('DB_HOST', Memory::Data('config')->db->host);
+            define('DB_PORT', Memory::Data('config')->db->port);
+            define('DB_USER', Memory::Data('config')->db->user);
+            define('DB_PASS', Memory::Data('config')->db->password);
+            define('DB_NAME', Memory::Data('config')->db->name);
+            define('DB_CHAR', Memory::Data('config')->db->char);
+            define('DB_PREFIX', Memory::Data('config')->db->prefix);
 
             // instance Databases connection
-            $registry->db = new Mishusoft\Drivers\Database(DbHOST, DbNAME, DbUSER, DbPASS, DbCHAR);
+            $registry->db = new Mishusoft\Drivers\Database(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_CHAR);
         } else {
             // instance Databases connection
             $registry->db = new Mishusoft\Drivers\Database(
@@ -43,7 +43,7 @@ use Mishusoft\Utility\Inflect;
         }//end if
 
         // init application
-        Mishusoft\Framework\Drivers\Bootstrap\MVC_Classic::run($registry->request);
+        Mishusoft\Drivers\Bootstrap\Classic::run($registry->request);
     } else {
         System::setProgressStep();
         if (!in_array(ArrayCollection::value(System::$event, 'message'), System::getExcludeErrors(), true)) {

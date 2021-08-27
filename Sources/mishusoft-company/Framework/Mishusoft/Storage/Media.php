@@ -58,7 +58,7 @@ class Media
 
     public static function in(array $mimeList, string $mime): bool
     {
-        if (is_array($mimeList) && count($mimeList) > 0) {
+        if (count($mimeList) > 0) {
             foreach ($mimeList as $mimeItem) {
                 if ($mimeItem['type'] === $mime) {
                     return true;
@@ -125,5 +125,4 @@ class Media
     public function __destruct()
     {
     }//end __destruct()
-
 }//end class

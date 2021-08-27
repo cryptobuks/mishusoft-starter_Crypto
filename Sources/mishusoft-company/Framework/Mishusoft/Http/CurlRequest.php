@@ -6,6 +6,8 @@ namespace Mishusoft\Http;
 use CurlHandle;
 use Mishusoft\Exceptions\HttpException\HttpResponseException;
 use Mishusoft\Exceptions\JsonException;
+use Mishusoft\Framework;
+use Mishusoft\System\Log;
 
 /*
  * Example of use it
@@ -27,12 +29,12 @@ class CurlRequest
     /**
      * @var array|string[]
      */
-    private array $headers = array(
+    private array $headers = [
         "Accept" => "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5",
         "Accept-Language" => "ru-ru,ru;q=0.7,en-us;q=0.5,en;q=0.3",
         "Accept-Charset" => "windows-1251,utf-8;q=0.7,*;q=0.7",
-        "Keep-Alive" => "300"
-    );
+        "Keep-Alive" => "300",
+    ];
 
     private int $timeOut = 200;
     private array $errors = [];
@@ -84,7 +86,7 @@ class CurlRequest
      */
     public function setHeaders(array $headers): static
     {
-        $finalHeaders = array();
+        $finalHeaders = [];
 
         if (count($headers) > 0) {
             $this->headers = array_merge_recursive($this->headers, $headers);
@@ -256,19 +258,30 @@ class CurlRequest
 
         $request = new self($hostUrl);
         $request->makeRequest(['timeout' => 20])->with('method', [
-            'method' => 'post', 'post_fields' => $files
+            'method' => 'post', 'post_fields' => $files,
         ]);
         $request->sendRequest();
 
         $request->responseErrorCheckOut();
 
-        return ['header' =>$request->getResponseHeadArray(),'response' =>$request->getResponseBody(),'errors' =>$request->getErrors()];
+        return [
+            'header' =>$request->getResponseHeadArray(),
+            'response' =>$request->getResponseBody(),
+            'errors' =>$request->getErrors(),
+        ];
     }
 
     public static function massDownload(array $dataList, string $keyword, array $formats, string $directory, string $filter, string $filenamePrefix): void
     {
         foreach ($dataList as $serial => $item) {
-            echo sprintf("Query :: %d/%d\nItem :: %s (%s)\nDestination :: %s", ++$serial, count($dataList), $item, $keyword, $directory) . PHP_EOL;
+            echo sprintf(
+                "Query :: %d/%d\nItem :: %s (%s)\nDestination :: %s",
+                ++$serial,
+                count($dataList),
+                $item,
+                $keyword,
+                $directory
+            ) . PHP_EOL;
             foreach ($formats as $format) {
                 if ((file_exists($directory) === false) && !mkdir($directory, 077, true) && !is_dir($directory)) {
                     throw new \RuntimeException(sprintf('Directory "%s" was not created', $directory));
@@ -313,7 +326,7 @@ class CurlRequest
             //echo 'Unable to write ' . $filename . PHP_EOL;
             echo sprintf('Unable to write %s%s%s.%s', $directory, $filenamePrefix, $item, $format) . PHP_EOL;
             echo $exception->getMessage() . PHP_EOL;
-            exit();
+            Framework::terminate();
         }
     }
 
@@ -338,7 +351,7 @@ class CurlRequest
         $request = new self('https://user-agents.net/download');
         //http_build_query($parameters['post_fields'])
         $request->makeRequest(['timeout' => 20])->with('method', [
-            'method' => 'post', 'post_fields' => http_build_query([$keyword => $item, 'download' => $format])
+            'method' => 'post', 'post_fields' => http_build_query([$keyword => $item, 'download' => $format]),
         ])->sendRequest();
 
         $request->responseErrorCheckOut();
@@ -382,7 +395,7 @@ class CurlRequest
     {
         if ($this->getResponseCode() !== 200) {
             if (is_array($this->getErrors())) {
-                print_r($this->getErrors());
+                //print_r($this->getErrors());
                 [$errCode, $errMessage] = $this->getErrors();
             } else {
                 $errCode = $this->getResponseCode();

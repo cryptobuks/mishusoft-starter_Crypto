@@ -2,7 +2,9 @@
 
 namespace Mishusoft\System;
 
+use GeoIp2\Exception\AddressNotFoundException;
 use JsonException;
+use MaxMind\Db\Reader\InvalidDatabaseException;
 use Mishusoft\Base;
 use Mishusoft\Exceptions\HttpException\HttpResponseException;
 use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
@@ -351,8 +353,8 @@ class Firewall extends Base
      * @throws InvalidArgumentException
      * @throws JsonException Throw exception when json error occurred.
      * @throws PermissionRequiredException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws AddressNotFoundException
+     * @throws InvalidDatabaseException
      * @throws \Mishusoft\Exceptions\JsonException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
@@ -676,8 +678,8 @@ class Firewall extends Base
      * @throws HttpResponseException
      * @throws JsonException
      * @throws PermissionRequiredException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws AddressNotFoundException
+     * @throws InvalidDatabaseException
      * @throws \Mishusoft\Exceptions\JsonException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
@@ -768,8 +770,8 @@ class Firewall extends Base
      * @throws HttpResponseException
      * @throws JsonException
      * @throws PermissionRequiredException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws AddressNotFoundException
+     * @throws InvalidDatabaseException
      * @throws \Mishusoft\Exceptions\JsonException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
@@ -934,20 +936,18 @@ class Firewall extends Base
      * @throws InvalidArgumentException
      * @throws JsonException
      * @throws PermissionRequiredException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws AddressNotFoundException
+     * @throws InvalidDatabaseException
      * @throws \Mishusoft\Exceptions\ErrorException
      * @throws \Mishusoft\Exceptions\JsonException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    public static function runtimeFailure(string $status, array $message): void
+    public static function runtimeFailure(int $status, array $message): void
     {
-        foreach (Http::errorsRecords() as $details) {
-            if (Character::lower($details['Description']) === Character::lower($status)) {
-                self::runtimeFailureUi($status, $message);
-                break;
-            }//end if
-        }//end foreach
+        if (array_key_exists($status, Http::errorsRecords())) {
+            self::runtimeFailureUi(Http::errorDescription($status), $message);
+        }//end if
+        Framework::terminate();
     }//end runtimeFailure()
 
 
@@ -962,8 +962,8 @@ class Firewall extends Base
      * @throws InvalidArgumentException
      * @throws JsonException Throw exception when json error occurred.
      * @throws PermissionRequiredException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws AddressNotFoundException
+     * @throws InvalidDatabaseException
      * @throws \Mishusoft\Exceptions\ErrorException
      * @throws \Mishusoft\Exceptions\JsonException
      * @throws \Mishusoft\Exceptions\RuntimeException
@@ -1016,8 +1016,8 @@ class Firewall extends Base
      * @return array[]
      * @throws HttpResponseException
      * @throws JsonException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws AddressNotFoundException
+     * @throws InvalidDatabaseException
      * @throws \Mishusoft\Exceptions\JsonException
      */
     private function getNewVisitor(): array
@@ -1041,8 +1041,8 @@ class Firewall extends Base
      * @return array[]
      * @throws HttpResponseException
      * @throws JsonException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws AddressNotFoundException
+     * @throws InvalidDatabaseException
      * @throws \Mishusoft\Exceptions\JsonException
      */
     private function getNewVisitorTimeBased(): array
@@ -1055,8 +1055,8 @@ class Firewall extends Base
      * @return \array[][]
      * @throws HttpResponseException
      * @throws JsonException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws AddressNotFoundException
+     * @throws InvalidDatabaseException
      * @throws \Mishusoft\Exceptions\JsonException
      */
     private function getNewVisitorBrowserBased(): array
@@ -1069,8 +1069,8 @@ class Firewall extends Base
      * @return \array[][][]
      * @throws HttpResponseException
      * @throws JsonException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws AddressNotFoundException
+     * @throws InvalidDatabaseException
      * @throws \Mishusoft\Exceptions\JsonException
      */
     private function getNewVisitorIPBased(): array
@@ -1263,8 +1263,8 @@ class Firewall extends Base
      * @throws InvalidArgumentException
      * @throws JsonException
      * @throws PermissionRequiredException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws AddressNotFoundException
+     * @throws InvalidDatabaseException
      * @throws \Mishusoft\Exceptions\ErrorException
      * @throws \Mishusoft\Exceptions\JsonException
      * @throws \Mishusoft\Exceptions\RuntimeException
@@ -1311,8 +1311,8 @@ class Firewall extends Base
      * @throws InvalidArgumentException
      * @throws JsonException
      * @throws PermissionRequiredException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws AddressNotFoundException
+     * @throws InvalidDatabaseException
      * @throws \Mishusoft\Exceptions\ErrorException
      * @throws \Mishusoft\Exceptions\JsonException
      * @throws \Mishusoft\Exceptions\RuntimeException
@@ -1331,9 +1331,12 @@ class Firewall extends Base
         if (!empty($viewMode)) {
             if (Http::browser()->getRequestMethod() === 'OPTIONS') {
                 // add welcome not for http options method
-                Storage\Stream::json(['message' => [
-                    'type' => 'error', 'contents' => "The HTTP OPTIONS method requests not permitted to communicate for $requestAddress.",
-                ]]);
+                Storage\Stream::json([
+                    'message' => [
+                    'type' => 'error',
+                    'contents' => "The HTTP OPTIONS method requests not permitted to communicate for $requestAddress.",
+                    ],
+                ]);
             } elseif (Network::requestHeader('HTTP_SEC_FETCH_MODE') === 'cors') {
                 Storage\Stream::json(
                     [
@@ -1379,7 +1382,10 @@ class Firewall extends Base
 
                 // avoid error device capturing
                 if (Character::lower(Http::browser()->getDeviceName()) !== 'unknown') {
-                    echo " Device : $this->msgTab" . Http::browser()->getDeviceName() . ' (' . Character::lower(Http::browser()->getPlatformArchitecture()) . ').' . PHP_EOL;
+                    echo " Device : $this->msgTab"
+                        . Http::browser()->getDeviceName() . ' ('
+                        . Character::lower(Http::browser()->getPlatformArchitecture())
+                        . ').' . PHP_EOL;
                 }
 
                 for ($i = 0; $i <= 65; $i++) {
@@ -1387,7 +1393,8 @@ class Firewall extends Base
                 }
 
                 echo PHP_EOL;
-                //echo 'Copyright © '.Time::getCurrentYearNumber().' '.Framework::COMPANY_NAME.'. All Right Reserved.'.PHP_EOL;
+                //echo 'Copyright © '.Time::getCurrentYearNumber().' '
+                //.Framework::COMPANY_NAME.'. All Right Reserved.'.PHP_EOL;
                 echo '© ' . Time::currentYearNumber() . ' ' . Framework::COMPANY_NAME . '.' . PHP_EOL;
             } else {
                // Ui\EmbeddedView::protection(
@@ -1397,10 +1404,10 @@ class Firewall extends Base
                         'caption'=>"$component has been $status",
                         'message'=> "This is internal error occurred. if you are developer or owner of this website, please fix this problem.",
                     ],
-                    Http::NOT_ACCEPTABLE
+                    Http\ErrorsData::NOT_ACCEPTABLE
                 );
-                exit();
-            }//end if
+            }
+            Framework::terminate();//end if
         }//end if
     }//end defenseMessageShow()
 

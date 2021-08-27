@@ -3,12 +3,14 @@
 namespace Mishusoft\Framework\Drivers;
 
 use Exception;
-use Mishusoft\Framework\Chipsets\Http\ClientRequest;
-use Mishusoft\Framework\Chipsets\Storage;
-use Mishusoft\Framework\Chipsets\MPM;
-use Mishusoft\Framework\Chipsets\Preloader;
-use Mishusoft\Framework\Chipsets\System\Firewall;
-use Mishusoft\Framework\Chipsets\System\Network;
+use Mishusoft\Framework;
+use Mishusoft\Http\ClientRequest;
+use Mishusoft\Storage;
+use Mishusoft\MPM;
+use Mishusoft\Preloader;
+use Mishusoft\System\Firewall;
+use Mishusoft\System\Network;
+use Mishusoft\System\Log;
 use SmartyBC;
 use SmartyException;
 
@@ -165,7 +167,7 @@ class View extends SmartyBC
                 ],
                 "error" => ["description" => "Your requested url is broken!!"]
             ]);
-            exit();
+            Framework::terminate();
         }
 
 
@@ -184,7 +186,7 @@ class View extends SmartyBC
                 ],
                 "error" => ["description" => "Your requested url is broken!!"]
             ]);
-            exit();
+            Framework::terminate();
         }
     }
 

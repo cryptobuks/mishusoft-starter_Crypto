@@ -2,11 +2,12 @@
 
 namespace Mishusoft;
 
+use GeoIp2\Exception\AddressNotFoundException;
 use JsonException;
+use MaxMind\Db\Reader\InvalidDatabaseException;
 use Mishusoft\Exceptions\RuntimeException\NotFoundException;
-use Mishusoft\Storage\FileSystem;
 use Mishusoft\System\Firewall;
-use Mishusoft\Utility\ArrayCollection;
+use Mishusoft\Utility\ArrayCollection as Arr;
 use Mishusoft\Utility\Inflect;
 
 class Storage extends Base
@@ -16,11 +17,17 @@ class Storage extends Base
 
     // make static call for directories path
 
+    /**
+     * @return string
+     */
     public static function rootPath():string
     {
         return parent::rootPath();
     }
 
+    /**
+     * @return string
+     */
     public static function frameworkPath():string
     {
         return sprintf(
@@ -34,6 +41,9 @@ class Storage extends Base
         );
     }
 
+    /**
+     * @return string
+     */
     public static function applicationDirectivePath():string
     {
         return sprintf(
@@ -44,12 +54,18 @@ class Storage extends Base
         );
     }
 
-    public static function embeddedWebUrlDirectory():string
+    /**
+     * @return string
+     */
+    public static function qualifiedAPIRoutesDirectory():string
     {
-        return self::applicationDirectivePath().'EmbeddedWebUrlDirectory'.DS;
+        return self::applicationDirectivePath().'QualifiedAPIRoutes'.DS;
     }
 
 
+    /**
+     * @return string
+     */
     public static function emaPath():string
     {
         return sprintf(
@@ -60,6 +76,9 @@ class Storage extends Base
         );
     }
 
+    /**
+     * @return string
+     */
     public static function applicationPackagesPath():string
     {
         return sprintf(
@@ -70,6 +89,9 @@ class Storage extends Base
         );
     }
 
+    /**
+     * @return string
+     */
     public static function applicationViewsPath():string
     {
         return sprintf(
@@ -80,6 +102,9 @@ class Storage extends Base
         );
     }
 
+    /**
+     * @return string
+     */
     public static function applicationThemesPath():string
     {
         return sprintf(
@@ -90,6 +115,9 @@ class Storage extends Base
         );
     }
 
+    /**
+     * @return string
+     */
     public static function applicationWidgetsPath():string
     {
         return sprintf(
@@ -100,6 +128,9 @@ class Storage extends Base
         );
     }
 
+    /**
+     * @return string
+     */
     public static function applicationWebDirectivePath():string
     {
         $rootFile = $_SERVER['PHP_SELF'];
@@ -112,6 +143,9 @@ class Storage extends Base
         return $rootUri;
     }
 
+    /**
+     * @return string
+     */
     public static function storagesPath():string
     {
         return sprintf(
@@ -122,6 +156,9 @@ class Storage extends Base
         );
     }
 
+    /**
+     * @return string
+     */
     public static function appStoragesPath():string
     {
         return sprintf(
@@ -132,6 +169,9 @@ class Storage extends Base
         );
     }
 
+    /**
+     * @return string
+     */
     public static function assetsPath():string
     {
         return sprintf(
@@ -142,6 +182,9 @@ class Storage extends Base
         );
     }
 
+    /**
+     * @return string
+     */
     public static function cssAssetsPath():string
     {
         return sprintf(
@@ -152,6 +195,9 @@ class Storage extends Base
         );
     }
 
+    /**
+     * @return string
+     */
     public static function jsAssetsPath():string
     {
         return sprintf(
@@ -162,6 +208,9 @@ class Storage extends Base
         );
     }
 
+    /**
+     * @return string
+     */
     public static function webfontsAssetsPath():string
     {
         return sprintf(
@@ -172,6 +221,9 @@ class Storage extends Base
         );
     }
 
+    /**
+     * @return string
+     */
     public static function localizationPath():string
     {
         return sprintf(
@@ -182,6 +234,9 @@ class Storage extends Base
         );
     }
 
+    /**
+     * @return string
+     */
     public static function mediaPath():string
     {
         return sprintf(
@@ -192,6 +247,9 @@ class Storage extends Base
         );
     }
 
+    /**
+     * @return string
+     */
     public static function imagesPath():string
     {
         return sprintf(
@@ -202,6 +260,10 @@ class Storage extends Base
         );
     }
 
+    /**
+     * @param bool $isRemote
+     * @return string
+     */
     public static function logosPath(bool $isRemote = false):string
     {
         if ($isRemote) {
@@ -219,6 +281,10 @@ class Storage extends Base
         );
     }
 
+    /**
+     * @param bool $isRemote
+     * @return string
+     */
     public static function logosDefaultPath(bool $isRemote = false):string
     {
         return sprintf(
@@ -228,6 +294,9 @@ class Storage extends Base
         );
     }
 
+    /**
+     * @return string
+     */
     public static function uploadsPath():string
     {
         return sprintf(
@@ -238,6 +307,9 @@ class Storage extends Base
         );
     }
 
+    /**
+     * @return string
+     */
     public static function usersPicturesPath():string
     {
         return sprintf(
@@ -248,6 +320,9 @@ class Storage extends Base
         );
     }
 
+    /**
+     * @return string
+     */
     public static function usersProfilePicturesPath():string
     {
         return sprintf(
@@ -258,6 +333,9 @@ class Storage extends Base
         );
     }
 
+    /**
+     * @return string
+     */
     public static function usersCoverPicturesPath():string
     {
         return sprintf(
@@ -268,6 +346,9 @@ class Storage extends Base
         );
     }
 
+    /**
+     * @return string
+     */
     public static function usersBackgroundPicturesPath():string
     {
         return sprintf(
@@ -278,6 +359,9 @@ class Storage extends Base
         );
     }
 
+    /**
+     * @return string
+     */
     public static function databasesPath():string
     {
         return sprintf(
@@ -289,6 +373,9 @@ class Storage extends Base
     }
 
 
+    /**
+     * @return string
+     */
     public static function frameworkStoragesPath():string
     {
         return sprintf(
@@ -299,6 +386,9 @@ class Storage extends Base
         );
     }
 
+    /**
+     * @return string
+     */
     public static function cachesStoragesPath():string
     {
         return sprintf(
@@ -309,6 +399,9 @@ class Storage extends Base
         );
     }
 
+    /**
+     * @return string
+     */
     public static function dataDriveStoragesPath():string
     {
         return sprintf(
@@ -319,6 +412,9 @@ class Storage extends Base
         );
     }
 
+    /**
+     * @return string
+     */
     public static function frameworkSessionsPath():string
     {
         return sprintf(
@@ -329,6 +425,9 @@ class Storage extends Base
         );
     }
 
+    /**
+     * @return string
+     */
     public static function logsPath():string
     {
         return sprintf(
@@ -460,10 +559,10 @@ class Storage extends Base
      * @throws Exceptions\RuntimeException
      * @throws JsonException
      * @throws NotFoundException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws AddressNotFoundException
+     * @throws InvalidDatabaseException
      */
-    public static function assignableWebFavicons():array
+    public static function assignableWebFavicons(bool $pwa = false):array
     {
         $faviconsList = [];
         $fileList = [];
@@ -478,64 +577,92 @@ class Storage extends Base
 
 
         foreach ($fileList as $imageFile => $fileDetails) {
-            if (str_starts_with(pathinfo($imageFile, PATHINFO_FILENAME), 'apple-icon') === true) {
-                //<link rel="apple-touch-icon" sizes="57x57" href="{logoFolder}apple-icon-57x57.png">
-                ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/apple-icon-152x152.png
-                $faviconsList[] = [
-                    'rel'  => 'apple-touch-icon',
-                    'type'  => ArrayCollection::value($fileDetails, 'mime'),
-                    'sizes'  => self::imageSizeBuilder($fileDetails),
-                    'href' => self::toDataUri(
-                        'media',
-                        'logos'. DS.'default'. DS.FileSystem::fileBase($imageFile),
-                        //'remote'
-                    ),
-                ];
-            }
-            if (str_starts_with(FileSystem::fileName($imageFile), 'android-icon') === true) {
-                //<link rel="icon" type="image/png" sizes="192x192" href="{logoFolder}android-icon-192x192.png">
-                ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/android-icon-192x192.png
-                $faviconsList[] = [
-                    'rel'  => 'icon',
-                    'type'  => ArrayCollection::value($fileDetails, 'mime'),
-                    'sizes'  => self::imageSizeBuilder($fileDetails),
-                    'href' => self::toDataUri(
-                        'media',
-                        'logos'. DS.'default'. DS.FileSystem::fileBase($imageFile),
-                        //'remote'
-                    ),
-                ];
-            }
-            if (str_starts_with(FileSystem::fileName($imageFile), 'favicon') === true) {
-                //<link rel="icon" type="image/png" sizes="16x16" href="{logoFolder}favicon-16x16.png">
-                ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/favicon-16x16.png
+            if ($pwa === true) {
+                if (preg_match('/\d+x\d+/i', Storage\FileSystem::fileBase($imageFile)) === 1) {
+                    $faviconsList[] = [
+                        'type'  => Arr::value($fileDetails, 'mime'),
+                        'sizes'  => self::imageSizeBuilder($fileDetails),
+                        'src' => self::toDataUri(
+                            'media',
+                            'logos'. DS.'default'. DS.Storage\FileSystem::fileBase($imageFile),
+                            //'remote'
+                        ),
+                    ];
+                }
+            } else {
+                if (str_starts_with(Storage\FileSystem::fileBase($imageFile), 'apple-icon') === true) {
+                    //<link rel="apple-touch-icon" sizes="57x57" href="{logoFolder}apple-icon-57x57.png">
+                    ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/apple-icon-152x152.png
+                    $faviconsList[] = [
+                        'rel'  => 'apple-touch-icon',
+                        'type'  => Arr::value($fileDetails, 'mime'),
+                        'sizes'  => self::imageSizeBuilder($fileDetails),
+                        'href' => self::toDataUri(
+                            'media',
+                            'logos'. DS.'default'. DS.Storage\FileSystem::fileBase($imageFile),
+                            //'remote'
+                        ),
+                    ];
+                }
+                if (str_starts_with(Storage\FileSystem::fileName($imageFile), 'android-icon') === true) {
+                    //<link rel="icon" type="image/png" sizes="192x192" href="{logoFolder}android-icon-192x192.png">
+                    ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/android-icon-192x192.png
+                    $faviconsList[] = [
+                        'rel'  => 'icon',
+                        'type'  => Arr::value($fileDetails, 'mime'),
+                        'sizes'  => self::imageSizeBuilder($fileDetails),
+                        'href' => self::toDataUri(
+                            'media',
+                            'logos'. DS.'default'. DS.Storage\FileSystem::fileBase($imageFile),
+                            //'remote'
+                        ),
+                    ];
 
-                //<link rel="icon" type="image/vnd.microsoft.icon" sizes="16x16" href="{logoFolder}favicon.ico">
-                ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/favicon.ico
-                $faviconsList[] = [
-                    'rel'  => 'icon',
-                    'type'  => ArrayCollection::value($fileDetails, 'mime'),
-                    'sizes'  => self::imageSizeBuilder($fileDetails),
-                    'href' => self::toDataUri(
-                        'media',
-                        'logos'. DS.'default'. DS.FileSystem::fileBase($imageFile),
-                        //'remote'
-                    ),
-                ];
-            }
-            if (str_starts_with(FileSystem::fileName($imageFile), 'mishusoft-logo-lite') === true) {
-                //<link rel="icon" type="image/webp" sizes="16x16" href="{logoFolder}mishusoft-logo-lite.webp">
-                ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/mishusoft-logo-lite.webp
-                $faviconsList[] = [
-                    'rel'  => 'icon',
-                    'type'  => ArrayCollection::value($fileDetails, 'mime'),
-                    'sizes'  => self::imageSizeBuilder($fileDetails),
-                    'href' => self::toDataUri(
-                        'media',
-                        'logos'. DS.'default'. DS.FileSystem::fileBase($imageFile),
-                        //'remote'
-                    ),
-                ];
+
+                    if (Storage\FileSystem::fileName($imageFile) === 'android-icon-48x48.png') {
+                        //<link rel="shortcut icon" sizes="48x48" href="{logoFolder}android-icon-48x48.png">
+                        ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/default/android-icon-48x48.png.png
+                        $faviconsList[] = [
+                            'rel'  => 'shortcut icon',
+                            'sizes'  => self::imageSizeBuilder($fileDetails),
+                            'href' => self::toDataUri(
+                                'media',
+                                'logos'. DS.'default'. DS.Storage\FileSystem::fileBase($imageFile)
+                            ),
+                        ];
+                    }
+                }
+                if (str_starts_with(Storage\FileSystem::fileName($imageFile), 'favicon') === true) {
+                    //<link rel="icon" type="image/png" sizes="16x16" href="{logoFolder}favicon-16x16.png">
+                    ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/favicon-16x16.png
+
+                    //<link rel="icon" type="image/vnd.microsoft.icon" sizes="16x16" href="{logoFolder}favicon.ico">
+                    ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/favicon.ico
+                    $faviconsList[] = [
+                        'rel'  => 'icon',
+                        'type'  => Arr::value($fileDetails, 'mime'),
+                        'sizes'  => self::imageSizeBuilder($fileDetails),
+                        'href' => self::toDataUri(
+                            'media',
+                            'logos'. DS.'default'. DS.Storage\FileSystem::fileBase($imageFile),
+                            //'remote'
+                        ),
+                    ];
+                }
+                if (str_starts_with(Storage\FileSystem::fileName($imageFile), 'mishusoft-logo-lite') === true) {
+                    //<link rel="icon" type="image/webp" sizes="16x16" href="{logoFolder}mishusoft-logo-lite.webp">
+                    ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/mishusoft-logo-lite.webp
+                    $faviconsList[] = [
+                        'rel'  => 'icon',
+                        'type'  => Arr::value($fileDetails, 'mime'),
+                        'sizes'  => self::imageSizeBuilder($fileDetails),
+                        'href' => self::toDataUri(
+                            'media',
+                            'logos'. DS.'default'. DS.Storage\FileSystem::fileBase($imageFile),
+                            //'remote'
+                        ),
+                    ];
+                }
             }
         }
 
@@ -551,8 +678,8 @@ class Storage extends Base
      * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws NotFoundException
      * @throws Exceptions\RuntimeException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws AddressNotFoundException
+     * @throws InvalidDatabaseException
      * @throws Exceptions\HttpException\HttpResponseException
      */
     public static function assignableWebFonts():array
@@ -575,10 +702,10 @@ class Storage extends Base
 //                ],
             $webfonts[] = [
                 'rel'  => 'preload', 'as'  => 'font', 'crossorigin' => '',
-                'type'  => ArrayCollection::value($fileDetails, 'mime'),
+                'type'  => Arr::value($fileDetails, 'mime'),
                 'href' => self::toDataUri(
                     'assets',
-                    'webfonts'. DS.FileSystem::fileBase($file),
+                    'webfonts'. DS.Storage\FileSystem::fileBase($file),
                     //'remote'
                 ),
             ];
@@ -593,7 +720,7 @@ class Storage extends Base
      */
     private static function imageSizeBuilder(array $fileDetails):string
     {
-        return implode('x', [ArrayCollection::value($fileDetails, 0),ArrayCollection::value($fileDetails, 1)]);
+        return implode('x', [Arr::value($fileDetails, 0),Arr::value($fileDetails, 1)]);
     }
 
 
@@ -609,8 +736,8 @@ class Storage extends Base
      * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
      * @throws JsonException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws AddressNotFoundException
+     * @throws InvalidDatabaseException
      */
     public static function logoFullPath(
         string $filename,
@@ -632,8 +759,8 @@ class Storage extends Base
      * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
      * @throws JsonException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws AddressNotFoundException
+     * @throws InvalidDatabaseException
      */
     public static function userPhotoFullPath(
         string $filename,
@@ -656,8 +783,8 @@ class Storage extends Base
      * @throws Exceptions\RuntimeException
      * @throws JsonException
      * @throws NotFoundException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws AddressNotFoundException
+     * @throws InvalidDatabaseException
      */
     public static function additionalJSResourceFullPath(string $filename, string $feature = 'local'): string
     {
@@ -683,8 +810,8 @@ class Storage extends Base
      * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
      * @throws JsonException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws AddressNotFoundException
+     * @throws InvalidDatabaseException
      */
     public static function uploadFullPath(
         string $filename,
@@ -707,8 +834,8 @@ class Storage extends Base
      * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
      * @throws JsonException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws AddressNotFoundException
+     * @throws InvalidDatabaseException
      */
     public static function sharedFullPath(
         string $filename,
@@ -732,8 +859,8 @@ class Storage extends Base
      * @throws Exceptions\RuntimeException
      * @throws JsonException
      * @throws NotFoundException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws AddressNotFoundException
+     * @throws InvalidDatabaseException
      */
     public static function toDataUri(string $directive, string $filename, string $feature = 'local'): string
     {
@@ -762,7 +889,7 @@ class Storage extends Base
      * @param string $path
      * @return string
      */
-    private static function makeDataUri(string $path):string
+    public static function makeDataUri(string $path):string
     {
         return 'data:'.Storage\Media::mimeContent($path).';base64,'.base64_encode(file_get_contents($path));
     }
@@ -780,8 +907,8 @@ class Storage extends Base
      * @throws Exceptions\RuntimeException
      * @throws JsonException
      * @throws NotFoundException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws AddressNotFoundException
+     * @throws InvalidDatabaseException
      */
     public static function assetsFullPath(string $filename, string $feature = 'local'): string
     {
@@ -801,8 +928,8 @@ class Storage extends Base
      * @throws Exceptions\RuntimeException
      * @throws JsonException
      * @throws NotFoundException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws AddressNotFoundException
+     * @throws InvalidDatabaseException
      */
     public static function mediaFullPath(string $filename, string $feature = 'local'): string
     {
@@ -821,8 +948,8 @@ class Storage extends Base
      * @throws Exceptions\RuntimeException
      * @throws JsonException
      * @throws NotFoundException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws AddressNotFoundException
+     * @throws InvalidDatabaseException
      */
     public static function storageFullPath(string $filename, string $feature = 'local'): string
     {
@@ -848,9 +975,9 @@ class Storage extends Base
     }
 
     /**
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws InvalidDatabaseException
      * @throws Exceptions\RuntimeException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws AddressNotFoundException
      * @throws JsonException
      * @throws Exceptions\ErrorException
      * @throws Exceptions\LogicException\InvalidArgumentException

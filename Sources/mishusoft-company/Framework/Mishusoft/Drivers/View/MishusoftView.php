@@ -76,9 +76,6 @@ class MishusoftView extends Base implements MishusoftViewInterface
      * @param string $rootTitle
      * @param array $widgetConfig
      * @param array $request
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
      */
     public function __construct(string $hostUrl, string $rootTitle, array $widgetConfig, array $request)
     {
@@ -260,8 +257,6 @@ class MishusoftView extends Base implements MishusoftViewInterface
 
 
     /**
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
      * @throws RuntimeException
      * @throws \Mishusoft\Exceptions\JsonException
      */
@@ -746,9 +741,6 @@ class MishusoftView extends Base implements MishusoftViewInterface
     /**
      * @inheritDoc
      * @param array $config
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
      */
     public function setWidgetConfig(array $config): void
     {
@@ -760,9 +752,6 @@ class MishusoftView extends Base implements MishusoftViewInterface
     /**
      * @inheritDoc
      * @param string $documentTitle
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
      */
     public function setDocumentTitle(string $documentTitle): void
     {
@@ -774,9 +763,6 @@ class MishusoftView extends Base implements MishusoftViewInterface
     /**
      * @inheritDoc
      * @param string $urlOfHostedWebsite
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
      */
     public function setUrlOfHostedWebsite(string $urlOfHostedWebsite): void
     {
@@ -880,9 +866,6 @@ class MishusoftView extends Base implements MishusoftViewInterface
 
     /**
      * @return string
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
      */
     public function loadTemplateFile(): string
     {

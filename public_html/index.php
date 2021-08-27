@@ -75,4 +75,4 @@ include_once dirname(__DIR__) . '/vendor/autoload.php';
 include_once dirname(__DIR__) . '/bootstrap/app.php';
 
 // BIOS initialisation.
-Mishusoft\System\BIOS::initialise();
+Mishusoft\System\BIOS\Http::initialise();

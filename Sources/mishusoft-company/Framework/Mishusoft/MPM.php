@@ -8,6 +8,7 @@ use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Storage\FileSystem;
 use Mishusoft\System\Log;
 use Mishusoft\System\Memory;
+use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\JSON;
 
 class MPM extends Base
@@ -51,9 +52,9 @@ class MPM extends Base
     /**
      * @return string
      */
-    public static function embeddedWebUrlListFile(): string
+    public static function qualifiedAPIRoutesFile(): string
     {
-        return self::dFile(self::dataFile('MPM', 'embeddedWebUrls'));
+        return self::dFile(self::dataFile('MPM', 'QualifiedAPIRoutes'));
     }
 
 
@@ -929,24 +930,22 @@ class MPM extends Base
 
 
     /**
-     * @throws RuntimeException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws PermissionRequiredException
      * @throws Exceptions\JsonException
+     * @throws RuntimeException
      */
-    public static function autoUpdateEmbeddedWebUrl(): void
+    public static function autoUpdateQualifiedAPIRoutes(): void
     {
         /*
          * Auto update splitters configurations
          */
-        if (!file_exists(self::embeddedWebUrlListFile())) {
+        if (!file_exists(self::qualifiedAPIRoutesFile())) {
             $configs = [];
-            Log::info(sprintf('Count all exists files from %s directory.', Storage::embeddedWebUrlDirectory()));
-            if (count(FileSystem::list(Storage::embeddedWebUrlDirectory(), 'file')) > 0) {
-                foreach (FileSystem::list(Storage::embeddedWebUrlDirectory(), 'file') as $filename) {
+            Log::info(sprintf('Count all exists files from %s directory.', Storage::qualifiedAPIRoutesDirectory()));
+            if (count(FileSystem::list(Storage::qualifiedAPIRoutesDirectory(), 'file')) > 0) {
+                foreach (FileSystem::list(Storage::qualifiedAPIRoutesDirectory(), 'file') as $filename) {
                     if (pathinfo($filename, PATHINFO_EXTENSION) === 'json') {
                         $configs[] = JSON::decodeToArray(
-                            FileSystem::read(Storage::embeddedWebUrlDirectory().$filename)
+                            FileSystem::read(Storage::qualifiedAPIRoutesDirectory().$filename)
                         );
                     }
                 }
@@ -957,15 +956,15 @@ class MPM extends Base
 
                 Log::info(
                     sprintf(
-                        'Remove old embedded web url config file from %s directory.',
+                        'Remove old qualified api routes file from %s directory.',
                         Storage::dataDriveStoragesPath()
                     )
                 );
-                FileSystem::remove(self::embeddedWebUrlListFile());
+                FileSystem::remove(self::qualifiedAPIRoutesFile());
                 Log::info(
-                    sprintf('Write new embedded web url config file in %s directory.', Storage::dataDriveStoragesPath())
+                    sprintf('Write new qualified api routes file in %s directory.', Storage::dataDriveStoragesPath())
                 );
-                FileSystem\Yaml::emitFile(self::embeddedWebUrlListFile(), $configs);
+                FileSystem\Yaml::emitFile(self::qualifiedAPIRoutesFile(), $configs);
             }
         }
     }

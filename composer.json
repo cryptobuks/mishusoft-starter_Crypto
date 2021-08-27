@@ -44,7 +44,7 @@
     "update:index.php": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/public/app.php -d ./public_html/index.php",
     "update:index.html": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/public/app.html -d ./public_html/index.html",
     "update:framework": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Framework -d ./Framework",
-    "update:ewUrl": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Application/EmbeddedWebUrlDirectory -d ./app/EmbeddedWebUrlDirectory",
+    "update:api": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Application/QualifiedAPIRoutes -d ./app/QualifiedAPIRoutes",
     "update:ema": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Application/Packages/Ema -d ./app/Packages/Ema",
     "update:ema.loader": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Application/Packages/Ema.loader.php -d ./app/Packages/Ema.loader.php",
     "update:packages": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Application/Packages -d ./app/Packages",
@@ -57,13 +57,18 @@
     "update:test:index.php": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/app.php -d ./public_html/index.php",
     "update:test:index-html": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/app.html -d ./public_html/index.html",
     "update:test:framework": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/mishusoft-company/Framework -d ./Framework",
-    "update:test:ewUrl": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/Mishusoft/Application/EmbeddedWebUrlDirectory -d ./app/EmbeddedWebUrlDirectory",
+    "update:test:ewUrl": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/Mishusoft/Application/EmbeddedWebUrlDirectory -d ./app/QualifiedAPIRoutes",
     "update:test:ema": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/Mishusoft/Application/Packages/Ema -d ./app/Packages/Ema",
     "update:test:packages": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/Mishusoft/Application/Packages -d ./app/Packages",
     "update:test:themes": "php ./Sources/mishusoft-company/Release.php -test-themes -s ./Sources/mishusoft-company/Application/Views/Themes -d ./app/Themes",
     "update:test:widgets": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/Mishusoft/Widgets -d ./public_html/app/Widgets",
     "update:test:widgets.components": "php ./Sources/mishusoft-company/Release.php -test-widgets -s ./Sources/mishusoft-company/Application/Views/Widgets -d ./app/Widgets/Views",
     "update:test:packages.components": "php ./Sources/mishusoft-company/Release.php -static -s ./Sources/mishusoft-company/Application/Views/Templates/Packages -d ./app/Packages",
+
+
+    "upgrade:db:geoip": "geoipupdate && cp -r /var/lib/GeoIP ./storages/framework/data-drive",
+    "upgrade:db:ua": "php ./Sources/mishusoft-company/Release.php -upgrade -s ./Sources/mishusoft-company/Application/Views/Templates/Packages -d ./app/Packages",
+    "upgrade:media:mime": "php ./Sources/mishusoft-company/Release.php -upgrade -s ./Sources/mishusoft-company/Application/Views/Templates/Packages -d ./app/Packages",
 
     "test:user.agent": [
       "Composer\\Config::disableProcessTimeout",
@@ -89,7 +94,6 @@
     "copy:assests": "php ./Sources/mishusoft-company/Release.php -copy -s ./Sources/Assets -d ./storages/app/assets",
     "copy:media": "php ./Sources/mishusoft-company/Release.php -copy -s ./Sources/Assets/media -d ./storages/app/media",
     "copy:errors.page": "php ./Sources/mishusoft-company/Release.php -copy -s ./Sources/Mishusoft/Views/Errors/SHtml -d ./app/views/errors",
-    "copy:geoip-db": "sudo -S geoipupdate && sudo cp -r /var/lib/GeoIP ./Storages/0/GeoIP",
 
     "start:server.dev": [
       "Composer\\Config::disableProcessTimeout",
@@ -100,7 +104,7 @@
     "phpcbf": "phpcbf"
   },
   "require": {
-    "php": "8.*",
+    "php": ">=7.4",
     "verot/class.upload.php": "^2.1",
     "stripe/stripe-php": "^7.77",
     "phpmailer/phpmailer": "^6.4",

@@ -10,6 +10,7 @@ use Mishusoft\Databases\PdoMySQL;
 use Mishusoft\Http\IP;
 use Mishusoft\Storage\FileSystem;
 use Mishusoft\Storage\Stream;
+use Mishusoft\System\Log;
 use Mishusoft\System\Network;
 use Mishusoft\System\Memory;
 use Mishusoft\System\Time;
@@ -1929,7 +1930,7 @@ class System extends Base
                                 ],
                             ]
                         );
-                        exit();
+                        Framework::terminate();
                     }
 
                     self::configureUpdate(
@@ -2061,6 +2062,11 @@ class System extends Base
 
     /**
      * @param array $arrayData
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\JsonException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
      * @throws JsonException
      */
     private static function configureUpdate(array $arrayData): void
@@ -2085,7 +2091,7 @@ class System extends Base
                     ],
                 ]
             );
-            exit();
+            Framework::terminate();
         }
     }//end configureUpdate()
 
