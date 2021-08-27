@@ -1,11 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace App\EmbeddedWebUrlDirectory;
+namespace App\QualifiedAPIRoutes;
 
-use Mishusoft\Http;
+use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
+use Mishusoft\Exceptions\RuntimeException\NotFoundException;
+use Mishusoft\Storage;
 use Mishusoft\Storage\Uploader;
 use Mishusoft\System;
-use Mishusoft\System\Firewall;
 use ZipArchive;
 
 class SystemConfiguration
@@ -22,47 +23,24 @@ class SystemConfiguration
 
     /**
      * @param array $request
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \JsonException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
-     * @throws \Mishusoft\Exceptions\ErrorException
-     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
-     * @throws \Mishusoft\Exceptions\JsonException
-     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
-     * @throws \Mishusoft\Exceptions\PermissionRequiredException
-     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws InvalidArgumentException
      */
     public function install(array $request): void
     {
         if (file_get_contents('php://input') !== '') {
             System::checkSystemRequirements();
             System::communicate();
-            exit();
+        } else {
+            throw new InvalidArgumentException('Empty Data send');
         }
-
-        Firewall::runtimeFailure(
-            'Not Found',
-            [
-                'debug' => [
-                    'file'        => ucfirst($request['controller']),
-                    'location'    => Http::browser()::getVisitedPage(),
-                    'description' => 'Your requested url not found!!',
-                ],
-                'error' => ['description' => 'Your requested url not found!!'],
-            ]
-        );
     }//end install()
 
 
     /**
      * @param array $request
-     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws InvalidArgumentException
+     * @throws NotFoundException
      * @throws \JsonException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
-     * @throws \Mishusoft\Exceptions\ErrorException
-     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
-     * @throws \Mishusoft\Exceptions\JsonException
-     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
      * @throws \Mishusoft\Exceptions\PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
@@ -73,23 +51,19 @@ class SystemConfiguration
         if (array_key_exists('update', $_FILES) === true) {
             $uploader = new Uploader($_FILES['update']);
             if (!$uploader->file_temp_name) {
-                echo 'Please browse for a file before clicking upload button.';
-                exit();
+                Storage\Stream::text('Please browse for a file before clicking upload button.');
             }
 
             if ($uploader->err_message === 1) {
-                echo "Fetching error to upload $uploader->file_name.";
-                exit();
+                Storage\Stream::text("Fetching error to upload $uploader->file_name.");
             }
 
             if ($uploader->file_type !== 'application/zip') {
-                echo 'Please select a zip (.zip) file before clicking upload button.';
-                exit();
+                Storage\Stream::text("Please select a zip (.zip) file before clicking upload button.");
             }
 
             if (file_exists(APPLICATION_SYSTEM_TEMP_PATH.$uploader->file_name)) {
-                echo "$uploader->file_name already exists.";
-                exit();
+                Storage\Stream::text("$uploader->file_name already exists.");
             }
 
             if (move_uploaded_file($uploader->file_temp_name, APPLICATION_SYSTEM_TEMP_PATH.$uploader->file_name)) {
@@ -99,27 +73,15 @@ class SystemConfiguration
                     $zip->extractTo(RUNTIME_ROOT_PATH);
                     $zip->close();
                     unlink(APPLICATION_SYSTEM_TEMP_PATH.$uploader->file_name);
-                    echo "$filename successfully installed on ".System::getAbsoluteInstalledURL();
+                    Storage\Stream::text("$filename successfully installed on ".System::getAbsoluteInstalledURL());
                 } else {
-                    echo "$filename installation failed on ".System::getAbsoluteInstalledURL();
+                    Storage\Stream::text("$filename installation failed on ".System::getAbsoluteInstalledURL());
                 }
             } else {
-                echo pathinfo($uploader->file_name, PATHINFO_BASENAME).' upload failed.';
+                Storage\Stream::text(pathinfo($uploader->file_name, PATHINFO_BASENAME).' upload failed.');
             }
-
-            exit();
+        } else {
+            throw new NotFoundException('Your requested url not found');
         }
-
-        Firewall::runtimeFailure(
-            'Not Found',
-            [
-                'debug' => [
-                    'file'        => ucfirst($request['controller']),
-                    'location'    => Http::browser()::getVisitedPage(),
-                    'description' => 'Your requested url not found!!',
-                ],
-                'error' => ['description' => 'Your requested url not found!!'],
-            ]
-        );//end if
     }//end update()
 }//end class

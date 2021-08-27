@@ -3,18 +3,12 @@
 
 namespace Mishusoft\Drivers\View;
 
-use GeoIp2\Exception\AddressNotFoundException;
-use JsonException;
-use MaxMind\Db\Reader\InvalidDatabaseException;
 use Mishusoft\Base;
-use Mishusoft\Exceptions\ErrorException;
-use Mishusoft\Exceptions\HttpException\HttpResponseException;
 use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Preloader;
 use Mishusoft\Storage;
-use Mishusoft\System\Firewall;
 use Mishusoft\System\Log;
 use Mishusoft\Utility\ArrayCollection;
 use Mishusoft\Utility\Inflect;
@@ -125,8 +119,6 @@ class MishusoftView extends Base implements MishusoftViewInterface
 
     /**
      * @return array
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
      * @throws RuntimeException
      */
     public function installedWidgetsAll():array
@@ -137,8 +129,6 @@ class MishusoftView extends Base implements MishusoftViewInterface
 
     /**
      * @return array
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
      * @throws RuntimeException
      */
     public function widgetsConfigsAll():array
@@ -150,8 +140,6 @@ class MishusoftView extends Base implements MishusoftViewInterface
 
     /**
      * @return string
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
      * @throws RuntimeException
      * @throws \Mishusoft\Exceptions\JsonException
      */
@@ -307,12 +295,9 @@ class MishusoftView extends Base implements MishusoftViewInterface
     }//end installFreshWidgets()
 
 
-
     /**
      * @param string $widget
      * @param array $config
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
      * @throws RuntimeException
      */
     private function installFreshWidgetsConfig(string $widget, array $config): void
@@ -326,8 +311,6 @@ class MishusoftView extends Base implements MishusoftViewInterface
      * @param string $widget
      * @param array $config
      * @return void
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
      * @throws RuntimeException
      */
     private function updateWidgetsConfig(string $widget, array $config): void
@@ -348,8 +331,6 @@ class MishusoftView extends Base implements MishusoftViewInterface
      * @param string $widget
      * @param array $config
      * @return array
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
      * @throws RuntimeException
      */
     private function collectAllData(string $widget, array $config): array
@@ -387,8 +368,6 @@ class MishusoftView extends Base implements MishusoftViewInterface
     /**
      * @param string $child
      * @return string
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
      * @throws RuntimeException
      */
     private function getWidgetsParent(string $child): string
@@ -413,8 +392,6 @@ class MishusoftView extends Base implements MishusoftViewInterface
 
     /**
      * @return array
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
      * @throws RuntimeException
      */
     private function getWidgetsParentAll(): array
@@ -443,9 +420,8 @@ class MishusoftView extends Base implements MishusoftViewInterface
     /**
      * @param string $parent
      * @return array
-     * @throws RuntimeException
      * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
+     * @throws RuntimeException
      */
     private function getAllDataOfWidgetsParent(string $parent): array
     {
@@ -491,15 +467,7 @@ class MishusoftView extends Base implements MishusoftViewInterface
     /**
      * @param string $template
      * @return array
-     * @throws JsonException
-     * @throws AddressNotFoundException
-     * @throws InvalidDatabaseException
-     * @throws ErrorException
-     * @throws HttpResponseException
-     * @throws \Mishusoft\Exceptions\JsonException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
+     * @throws RuntimeException\NotFoundException
      */
     public function getAvailableWidgetsPositions(string $template = DEFAULT_SYSTEM_THEME): array
     {
@@ -519,19 +487,9 @@ class MishusoftView extends Base implements MishusoftViewInterface
         }
 
         Log::info(Storage::applicationThemesPath() . $template . DS . 'configs.php is not readable.');
-        Firewall::runtimeFailure(
-            'Not Found',
-            [
-                'debug' => [
-                    'file' => "Theme's Configs.php",
-                    'location' => Storage::applicationThemesPath() . $template . DS . 'configs.php',
-                    'description' => "Theme's configuration file not found.",
-                ],
-                'error' => ['description' => 'Your requested url is broken!!'],
-            ]
+        throw new RuntimeException\NotFoundException(
+            Storage::applicationThemesPath() . $template . DS . 'configs.php not found'
         );
-
-        return [];
     }//end getAvailableWidgetsPositions()
 
 
@@ -540,15 +498,7 @@ class MishusoftView extends Base implements MishusoftViewInterface
      * @param string $method
      * @param array $options
      * @return mixed|void
-     * @throws JsonException
-     * @throws AddressNotFoundException
-     * @throws InvalidDatabaseException
-     * @throws ErrorException
-     * @throws HttpResponseException
-     * @throws \Mishusoft\Exceptions\JsonException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
+     * @throws RuntimeException\NotFoundException
      */
     public function widget(string $widget, string $method, array $options = [])
     {
@@ -568,16 +518,8 @@ class MishusoftView extends Base implements MishusoftViewInterface
             $widgetClass = Preloader::getClassNamespace(Storage::applicationWidgetsPath() . $widgetClass . '.php');
             Log::info('Extract class name from' . Storage::applicationWidgetsPath() . $widgetClass . '.php');
             if (class_exists($widgetClass) === false) {
-                Firewall::runtimeFailure(
-                    'Not Found',
-                    [
-                        'debug' => [
-                            'file' => $widgetClass,
-                            'location' => Storage::applicationWidgetsPath() . $widgetClass . '.php',
-                            'description' => 'Widget class not found or Widget class call error',
-                        ],
-                        'error' => ['description' => 'Your requested url is broken!!'],
-                    ]
+                throw new RuntimeException\NotFoundException(
+                    $widgetClass. ' not found with '.Storage::applicationWidgetsPath() . $widgetClass . '.php'
                 );
             }
 
@@ -591,16 +533,8 @@ class MishusoftView extends Base implements MishusoftViewInterface
             }
         } else {
             Log::info(Storage::applicationWidgetsPath() . $widgetClass . '.php is not readable.');
-            Firewall::runtimeFailure(
-                'Not Found',
-                [
-                    'debug' => [
-                        'file' => $widgetClass . '.php',
-                        'location' => Storage::applicationWidgetsPath() . $widgetClass . '.php',
-                        'description' => "Widget's content not readable or found.",
-                    ],
-                    'error' => ['description' => 'Your requested url is broken!!'],
-                ]
+            throw new RuntimeException\NotFoundException(
+                Storage::applicationWidgetsPath() . $widgetClass . '.php is not readable'
             );
         }//end if
     }//end widget()
@@ -608,15 +542,9 @@ class MishusoftView extends Base implements MishusoftViewInterface
 
     /**
      * @return array
-     * @throws JsonException
-     * @throws AddressNotFoundException
-     * @throws InvalidDatabaseException
-     * @throws ErrorException
-     * @throws HttpResponseException
-     * @throws \Mishusoft\Exceptions\JsonException
      * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
      * @throws RuntimeException
+     * @throws RuntimeException\NotFoundException
      */
     public function getWidgets(): array
     {
@@ -702,32 +630,14 @@ class MishusoftView extends Base implements MishusoftViewInterface
     /**
      * @param array $content
      * @return mixed|void
-     * @throws JsonException
-     * @throws AddressNotFoundException
-     * @throws InvalidDatabaseException
-     * @throws ErrorException
-     * @throws HttpResponseException
-     * @throws \Mishusoft\Exceptions\JsonException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
+     * @throws RuntimeException\NotFoundException
      */
     public function getWidgetContent(array $content)
     {
         // _Debug::preOutput(func_get_args());
         Log::info('Extract contents from all widgets.');
         if (array_key_exists(0, $content) === false || array_key_exists(1, $content) === false) {
-            Firewall::runtimeFailure(
-                'Not Found',
-                [
-                    'debug' => [
-                        'file' => 'Widget',
-                        'location' => 'Required file',
-                        'description' => "Widget's content not found.",
-                    ],
-                    'error' => ['description' => 'Your requested url is broken!!'],
-                ]
-            );
+            throw new RuntimeException\NotFoundException("Widget's content not found.");
         }
 
         if (array_key_exists(2, $content) === false) {
@@ -773,15 +683,11 @@ class MishusoftView extends Base implements MishusoftViewInterface
 
     /**
      * @param array $options
-     * @throws JsonException
-     * @throws AddressNotFoundException
-     * @throws InvalidDatabaseException
-     * @throws ErrorException
-     * @throws HttpResponseException
-     * @throws \Mishusoft\Exceptions\JsonException
      * @throws InvalidArgumentException
      * @throws PermissionRequiredException
      * @throws RuntimeException
+     * @throws RuntimeException\NotFoundException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function display(array $options = []): void
     {
@@ -800,16 +706,8 @@ class MishusoftView extends Base implements MishusoftViewInterface
                     $this->templateRenderDirectory = (string)ArrayCollection::value($options, 'templateDirectory');
                 } else {
                     Log::info('Custom templateDirectory is not found.');
-                    Firewall::runtimeFailure(
-                        'Not Found',
-                        [
-                            'debug' => [
-                                'file' => __FILE__,
-                                'location' => __METHOD__,
-                                'description' => 'Invalid $options parsed. template directory location not provided.',
-                            ],
-                            'error' => ['description' => 'Your requested file not found or deleted!!'],
-                        ]
+                    throw new InvalidArgumentException(
+                        'Invalid $options parsed. template directory location not provided'
                     );
                 }
 
@@ -819,23 +717,16 @@ class MishusoftView extends Base implements MishusoftViewInterface
                     $this->templateExt = (string)ArrayCollection::value($options, 'templateExt');
                 } else {
                     Log::info('Custom template extension is not found.');
-                    Firewall::runtimeFailure(
-                        'Not Found',
-                        [
-                            'debug' => [
-                                'file' => __FILE__,
-                                'location' => __METHOD__,
-                                'description' => 'Invalid $options parsed. template extension not provided.',
-                            ],
-                            'error' => ['description' => 'Your requested file not found or deleted!!'],
-                        ]
+                    throw new InvalidArgumentException(
+                        'Invalid $options parsed. template extension not provided'
                     );
                 }
             }//end if
 
             Log::info('Checking custom template filtering is set or not ?');
             // Identify use theme or not the current file.
-            if (array_key_exists('useTheme', $options) === true && ArrayCollection::value($options, 'useTheme') === 'no') {
+            if (array_key_exists('useTheme', $options) === true
+                && ArrayCollection::value($options, 'useTheme') === 'no') {
                 Log::info('Set custom template filtering is no.');
                 $this->templateUse = 'no';
             }
@@ -848,18 +739,8 @@ class MishusoftView extends Base implements MishusoftViewInterface
             $this->readWidgetsConfigFile();
             $this->compile();
         } else {
-            Log::info('Current page file (' . $this->loadTemplateFile() . ') is not exists or not readable.');
-            Firewall::runtimeFailure(
-                'Not Found',
-                [
-                    'debug' => [
-                        'file' => $this->loadTemplateFile(),
-                        'location' => $this->templateRenderDirectory,
-                        'description' => $this->loadTemplateFile() . ' not found.',
-                    ],
-                    'error' => ['description' => 'Your requested file not found or deleted!!'],
-                ]
-            );
+            Log::info('Current page file (' . $this->loadTemplateFile() . ') is not exists.');
+            throw new RuntimeException\NotFoundException($this->loadTemplateFile() . ' not found.');
         }
     }//end display()
 
@@ -876,52 +757,38 @@ class MishusoftView extends Base implements MishusoftViewInterface
 
 
     /**
-     * @throws JsonException
-     * @throws AddressNotFoundException
-     * @throws InvalidDatabaseException
-     * @throws ErrorException
-     * @throws HttpResponseException
-     * @throws \Mishusoft\Exceptions\JsonException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
+     * @throws RuntimeException\NotFoundException
      */
     private function compile(): void
     {
         Log::info('Checking' . $this->templateDirectory . ' is exists and working directory?');
         if (is_dir($this->templateDirectory) === true) {
             // _Debug::preOutput($this->templateDirectory);
-            Log::info('Checking theme template' . $this->templateDirectory . $this->templateName . '/template.php is exists?');
+            Log::info(
+                'Checking theme template'
+                . $this->templateDirectory
+                . $this->templateName
+                . '/template.php is exists?'
+            );
             if (file_exists($this->templateDirectory . $this->templateName . '/template.php') === true) {
                 // _Debug::preOutput($this->templateDirectory.$this->templateName.'/template.php');
                 Log::info('Load theme template' . $this->templateDirectory . $this->templateName . '/template.php.');
                 include_once $this->templateDirectory . $this->templateName . '/template.php';
             } else {
-                Log::info('Checking theme template' . $this->templateDirectory . $this->templateName . '/template.php is not exists.');
-                Firewall::runtimeFailure(
-                    'Not Found',
-                    [
-                        'debug' => [
-                            'file' => 'template.php',
-                            'location' => $this->templateDirectory . $this->templateName . '/template.php',
-                            'description' => 'Template file not found',
-                        ],
-                        'error' => ['description' => 'Your requested url is broken!!'],
-                    ]
+                Log::info(
+                    'Checking theme template'
+                    . $this->templateDirectory
+                    . $this->templateName
+                    . '/template.php is not exists.'
+                );
+                throw new RuntimeException\NotFoundException(
+                    $this->templateDirectory . $this->templateName . '/template.php not found'
                 );
             }
         } else {
             Log::info('Checking' . $this->templateDirectory . ' is not exists and not a working directory.');
-            Firewall::runtimeFailure(
-                'Not Found',
-                [
-                    'debug' => [
-                        'file' => 'template directory',
-                        'location' => $this->templateDirectory,
-                        'description' => 'template directory not found',
-                    ],
-                    'error' => ['description' => 'Your requested url is broken!!'],
-                ]
+            throw new RuntimeException\NotFoundException(
+                $this->templateDirectory . ' not found'
             );
         }//end if
     }//end compile()

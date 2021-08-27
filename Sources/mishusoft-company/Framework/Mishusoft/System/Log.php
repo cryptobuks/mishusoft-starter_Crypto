@@ -335,7 +335,12 @@ class Log
         // [root/] date > type > flag > host.ext
         return sprintf(
             '%1$s%2$s%6$s%3$s%6$s%4$s%6$s%5$s.log',
-            Storage::logsPath(), date('Ymd'), $type, $flag, APPLICATION_SERVER_NAME, DS
+            Storage::logsPath(),
+            date('Ymd'),
+            $type,
+            $flag,
+            APPLICATION_SERVER_NAME,
+            DS
         );
     }//end getLogFilePath()
 }

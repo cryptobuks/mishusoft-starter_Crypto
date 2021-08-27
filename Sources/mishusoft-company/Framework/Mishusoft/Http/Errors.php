@@ -3,7 +3,7 @@
 
 namespace Mishusoft\Http;
 
-class ErrorsData
+class Errors
 {
 
     // declare version

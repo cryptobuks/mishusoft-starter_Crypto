@@ -14,7 +14,7 @@ class Stream
      * @throws \Mishusoft\Exceptions\PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    public static function originalFile(string $filename): void
+    public static function file(string $filename): void
     {
         if (is_readable($filename) === true) {
             // Getting headers sent by the client.
@@ -51,10 +51,13 @@ class Stream
 
 
     /**
-     * @param $data
+     * @param array $data
      * @throws JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    public static function json($data): void
+    public static function json(array $data): void
     {
         header('Content-type:application/json;charset=UTF-8');
         if (empty($data) === false) {
@@ -66,6 +69,27 @@ class Stream
                 JSON_THROW_ON_ERROR
             );
         }
+        Framework::terminate();
+    }//end StreamAsJson()
+
+
+    /**
+     * @param string $data
+     * @throws JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     */
+    public static function text(string $data): void
+    {
+        header('Content-type:text/plain;charset=UTF-8');
+        if (empty($data) === false) {
+            echo $data;
+        } else {
+            http_response_code(400);
+            echo 'TextOutput::ERROR: Input message error';
+        }
+        Framework::terminate();
     }//end StreamAsJson()
 
 

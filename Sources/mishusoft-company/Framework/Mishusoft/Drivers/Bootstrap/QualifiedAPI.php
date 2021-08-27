@@ -83,7 +83,7 @@ class QualifiedAPI
                             } else {
                                 Log::info(sprintf('Not found %s form %s.', $methodNameFull, $requestedFile));
                                 Http\Runtime::abort(
-                                    Http\ErrorsData::NOT_FOUND,
+                                    Http\Errors::NOT_FOUND,
                                     'debug=file='.$methodNameFull,
                                     'debug=location='.Http::browser()::getVisitedPage()
                                 );
@@ -97,7 +97,7 @@ class QualifiedAPI
                                 )
                             );
                             Http\Runtime::abort(
-                                Http\ErrorsData::NOT_FOUND,
+                                Http\Errors::NOT_FOUND,
                                 'debug=file='.$requestedFile,
                                 'debug=location='.$rootDirectory,
                                 'debug=description=Required file is not readable!!'

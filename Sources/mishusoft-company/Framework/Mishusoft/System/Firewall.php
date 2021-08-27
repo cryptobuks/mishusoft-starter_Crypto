@@ -928,16 +928,16 @@ class Firewall extends Base
     /**
      * Prepare runtime failure ui for html display.
      *
-     * @param string $status Name of action.
+     * @param int $status Name of action.
      * @param array $message Error message.
      *
      * @return void
+     * @throws AddressNotFoundException
      * @throws HttpResponseException
      * @throws InvalidArgumentException
+     * @throws InvalidDatabaseException
      * @throws JsonException
      * @throws PermissionRequiredException
-     * @throws AddressNotFoundException
-     * @throws InvalidDatabaseException
      * @throws \Mishusoft\Exceptions\ErrorException
      * @throws \Mishusoft\Exceptions\JsonException
      * @throws \Mishusoft\Exceptions\RuntimeException
@@ -1238,7 +1238,9 @@ class Firewall extends Base
                                                     $this->addIP(IP::get(), 'banned');
                                                 }
 
-                                                if ((!$this->isListed(IP::get()) && !$this->isListed(IP::get(), 'blocked')) && $status === 'granted') {
+                                                if ((!$this->isListed(IP::get())
+                                                        && !$this->isListed(IP::get(), 'blocked'))
+                                                    && $status === 'granted') {
                                                     $this->addIP(IP::get(), 'blocked');
                                                 }
                                             }
@@ -1249,7 +1251,9 @@ class Firewall extends Base
                         }//end if
                     }//end if
                 } else {
-                    throw new RuntimeException('Unable to continue. ' . self::logFile($this->actionStatus) . ' is empty');
+                    throw new RuntimeException(
+                        'Unable to continue. ' . self::logFile($this->actionStatus) . ' is empty'
+                    );
                 }//end if
             } else {
                 throw new RuntimeException('Permission denied. Unable to read ' . self::logFile($this->actionStatus));
@@ -1404,7 +1408,7 @@ class Firewall extends Base
                         'caption'=>"$component has been $status",
                         'message'=> "This is internal error occurred. if you are developer or owner of this website, please fix this problem.",
                     ],
-                    Http\ErrorsData::NOT_ACCEPTABLE
+                    Http\Errors::NOT_ACCEPTABLE
                 );
             }
             Framework::terminate();//end if

@@ -2,31 +2,31 @@
 
 namespace Mishusoft\Drivers\Bootstrap;
 
+use GeoIp2\Exception\AddressNotFoundException;
+use MaxMind\Db\Reader\InvalidDatabaseException;
+use Mishusoft\Exceptions;
 use Mishusoft\Http;
-use Mishusoft\Http\Browser;
-use Mishusoft\Http\Request;
 use Mishusoft\MPM;
 use Mishusoft\Preloader;
 use Mishusoft\System\Log;
 use Mishusoft\System\Memory;
-use Mishusoft\System\Firewall;
 
 class Classic
 {
 
     /**
-     * @param Request $prediction
-     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @param Http\Request $prediction
+     * @throws AddressNotFoundException
      * @throws \JsonException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
-     * @throws \Mishusoft\Exceptions\ErrorException
-     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
-     * @throws \Mishusoft\Exceptions\JsonException
-     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
-     * @throws \Mishusoft\Exceptions\PermissionRequiredException
-     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws InvalidDatabaseException
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\HttpException\HttpResponseException
+     * @throws Exceptions\JsonException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
      */
-    public static function run(Request $prediction): void
+    public static function run(Http\Request $prediction): void
     {
         $module         = $prediction->getModule();
         $controller     = $prediction->getController();
@@ -40,16 +40,8 @@ class Classic
                 include_once $rootModule;
                 $rootController = MPM::runtimeRootController($controller, $module);
             } else {
-                Firewall::runtimeFailure(
-                    'Not Found',
-                    [
-                        'debug' => [
-                            'file'        => $module,
-                            'location'    => dirname($rootModule),
-                            'description' => 'The controller of your request url is not found!!',
-                        ],
-                        'error' => ['description' => 'Your requested url is broken!!'],
-                    ]
+                throw new Exceptions\RuntimeException\NotFoundException(
+                    "The controller ($module) of your request url is not found"
                 );
             }
         } else {
@@ -71,28 +63,23 @@ class Classic
                 Log::info(implode([
                     "We execute $method(", implode(',', $args), ') from',
                     Preloader::getClassNamespace($rootController),
-                    ' by fetching url: ', (new Browser())->getURLPath(),
+                    ' by fetching url: ', Http::browser()->getURLPath(),
                 ]));
                 call_user_func_array([$controller, $method], $args);
             } else {
                 Log::info(implode([
                     "We execute $method from",
                     Preloader::getClassNamespace($rootController),
-                    ' by fetching url: ', (new Browser())->getURLPath(),
+                    ' by fetching url: ', Http::browser()->getURLPath(),
                 ]));
+                //$controller->$method();
                 call_user_func([$controller, $method]);
             }
         } else {
-            Firewall::runtimeFailure(
-                'Not Found',
-                [
-                    'debug' => [
-                        'file'        => Http::browser()->getURLPath(),
-                        'location'    => Http::browser()::getVisitedPage(),
-                        'description' => 'Your requested url not found!!',
-                    ],
-                    'error' => ['description' => 'Your requested url not found!!'],
-                ]
+            Http\Runtime::abort(
+                Http\Errors::NOT_FOUND,
+                'debug=file='.Http::browser()->getURLPath(),
+                'debug=location='.Http::browser()::getVisitedPage(),
             );
         }//end if
     }//end run()

@@ -16,19 +16,21 @@ use Mishusoft\Storage;
 use Mishusoft\System\Firewall;
 use Mishusoft\System\Localization;
 use Mishusoft\System\Memory;
-use Mishusoft\Utility\ArrayCollection;
-use Mishusoft\Utility\Debug;
+use Mishusoft\Utility\ArrayCollection as Arr;
 
 class Runtime
 {
 
+    /**
+     * @return string
+     */
     private static function getLocaleOnly(): string
     {
 
         /*
          * catch requested url from browser
          */
-        if (array_key_exists("url", $_GET) and !empty($_GET['url'])) {
+        if (array_key_exists("url", $_GET) && !empty($_GET['url'])) {
             /*
              * filter requested url
              */
@@ -159,13 +161,10 @@ class Runtime
      */
     public static function update(array $array, string $message): array
     {
-        return array_merge(
-            ArrayCollection::cleanArray($array, ["error", "success", "notify"]),
-            [
-                "next" => ArrayCollection::value($array, "url"),
-                "notify" => Encryption::dynamic($message),
-            ]
-        );
+        return array_merge(Arr::cleanArray($array, ["error", "success", "notify"]), [
+            "next" => Arr::value($array, "url"),
+            "notify" => Encryption::dynamic($message),
+        ]);
     }
 
     /**
@@ -194,9 +193,9 @@ class Runtime
     public static function actualUrl(string $message = "You need must log in to continue."): string
     {
         $url = "";
-        if (count(ArrayCollection::cleanArray(self::update($_GET, $message), ["url"])) > 0) {
-            foreach (ArrayCollection::cleanArray(self::update($_GET, $message), ["url"]) as $key => $value) {
-                if (array_key_last(ArrayCollection::cleanArray(self::update($_GET, $message), ["url"])) === $key) {
+        if (count(Arr::cleanArray(self::update($_GET, $message), ["url"])) > 0) {
+            foreach (Arr::cleanArray(self::update($_GET, $message), ["url"]) as $key => $value) {
+                if (array_key_last(Arr::cleanArray(self::update($_GET, $message), ["url"])) === $key) {
                     $url .= sprintf("%s=%s", $key, $value);
                 } else {
                     $url .= sprintf("%s=%s&", $key, $value);
@@ -221,7 +220,7 @@ class Runtime
     {
         $message = [];
         //string $file, string $location, string $description
-        if (count($details)>0) {
+        if (count($details) > 0) {
             if (count($details) > !4) {
                 foreach ($details as $detail) {
                     $dArray = explode('=', $detail);
@@ -238,23 +237,21 @@ class Runtime
 
         $messageDetails = [];
         if (array_key_exists('caption', $message['debug'])) {
-            $messageDetails['debug']['caption'] = $message['debug']['caption'];
-            $messageDetails['debug']['description'] = $message['debug']['description'];
-            $messageDetails['debug']['stack'] = $message['debug']['stack'];
+            $messageDetails = $message;
+            //$messageDetails['debug']['caption'] = $message['debug']['caption'];
+            //$messageDetails['debug']['description'] = $message['debug']['description'];
+            //$messageDetails['debug']['stack'] = $message['debug']['stack'];
         } else {
             $messageDetails = [
-            'debug' => [
-                'file' => $message['debug']['file'] ?: 'Unknown file',
-                'location' => $message['debug']['location'] ?: 'Unknown location',
-                'description' => $message['debug']['description'] ?: 'Your requested url not found',
-            ],
+                'debug' => [
+                    'file' => $message['debug']['file'] ?: 'Unknown file',
+                    'location' => $message['debug']['location'] ?: 'Unknown location',
+                    'description' => $message['debug']['description'] ?: 'Your requested url not found',
+                ],
                 'error' => ['description' => $message['error']['description'] ?: 'Your requested url not found!!'],
             ];
         }
 
-        Firewall::runtimeFailure(
-            $status,
-            $messageDetails
-        );
+        Firewall::runtimeFailure($status, $messageDetails);
     }
 }

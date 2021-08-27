@@ -14,10 +14,9 @@ use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Http;
 use Mishusoft\Storage;
-use Mishusoft\System\Firewall;
 use Mishusoft\System\Network;
 use Mishusoft\System\Time;
-use Mishusoft\Utility\ArrayCollection;
+use Mishusoft\Utility\ArrayCollection as Arr;
 use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\Inflect;
 use Mishusoft\Utility\Number;
@@ -65,180 +64,191 @@ class SecureDataTransferService
     public function monitor(array $request)
     {
         if (Inflect::lower($request["method"]) === Inflect::lower('index')) {
-            Firewall::runtimeFailure("Bad Request", [
-                "debug" => [
-                    "file" => Http::browser()->getURLPath(),
-                    "location" => __METHOD__,
-                    "description" => "Your requested url is broken!!",
-                ],
-                "error" => ["description" => "Your requested url is broken!!"],
-            ]);
+            Http\Runtime::abort(
+                Http\Errors::BAD_REQUEST,
+                'debug=file='.Http::browser()->getURLPath(),
+                'debug=location='.__METHOD__,
+            );
         } elseif (Inflect::lower($request["method"]) === Inflect::lower('browser')) {
-            if (Inflect::lower(implode("/", $request['arguments'])) === Inflect::lower('receiveFeedback')) {
+            $implodeArguments = implode("/", $request['arguments']);
+
+            if (Inflect::lower($implodeArguments) === Inflect::lower('receiveFeedback')) {
                 $RequestedDataArray = json_decode(file_get_contents('php://input'), true, 512, JSON_THROW_ON_ERROR);
                 if (is_array($RequestedDataArray) && count($RequestedDataArray) > 0) {
-                    if (array_key_exists("update", $RequestedDataArray) && is_array($RequestedDataArray["update"]) and count($RequestedDataArray["update"]) > 0) {
+                    if (array_key_exists("update", $RequestedDataArray)
+                        && is_array($RequestedDataArray["update"])
+                        && count($RequestedDataArray["update"]) > 0) {
                         self::$conOfDatabase->receiveInfoAboutUserUpdate(
-                            Inflect::removeTags(ArrayCollection::value($RequestedDataArray["update"], "name")),
-                            Inflect::removeTags(ArrayCollection::value($RequestedDataArray["update"], "version")),
-                            Inflect::removeTags(ArrayCollection::value($RequestedDataArray["update"], "ip")),
-                            Inflect::removeTags(ArrayCollection::value($RequestedDataArray["update"], "browser")),
-                            Inflect::removeTags(ArrayCollection::value($RequestedDataArray["update"], "message"))
+                            Inflect::removeTags(Arr::value($RequestedDataArray["update"], "name")),
+                            Inflect::removeTags(Arr::value($RequestedDataArray["update"], "version")),
+                            Inflect::removeTags(Arr::value($RequestedDataArray["update"], "ip")),
+                            Inflect::removeTags(Arr::value($RequestedDataArray["update"], "browser")),
+                            Inflect::removeTags(Arr::value($RequestedDataArray["update"], "message"))
                         );
 
-                        header(Network::getValOfSrv('SERVER_PROTOCOL') . Http::NO_CONTENT . ' No response');
+                        header(Network::getValOfSrv('SERVER_PROTOCOL') . Http\Errors::NO_CONTENT . ' No response');
                     }
 
-                    if (array_key_exists("status", $RequestedDataArray) and is_array($RequestedDataArray["status"]) and count($RequestedDataArray["status"]) > 0) {
+                    if (array_key_exists("status", $RequestedDataArray)
+                        && is_array($RequestedDataArray["status"])
+                        && count($RequestedDataArray["status"]) > 0) {
                         $status = self::$conOfDatabase->getInfAbtInstPrdStatus(
-                            Inflect::removeTags(ArrayCollection::value($RequestedDataArray["status"], "name")),
-                            Inflect::removeTags(ArrayCollection::value($RequestedDataArray["status"], "version")),
-                            Inflect::removeTags(ArrayCollection::value($RequestedDataArray["status"], "ip")),
-                            Inflect::removeTags(ArrayCollection::value($RequestedDataArray["status"], "os_version")),
-                            Inflect::removeTags(ArrayCollection::value($RequestedDataArray["status"], "browser"))
+                            Inflect::removeTags(Arr::value($RequestedDataArray["status"], "name")),
+                            Inflect::removeTags(Arr::value($RequestedDataArray["status"], "version")),
+                            Inflect::removeTags(Arr::value($RequestedDataArray["status"], "ip")),
+                            Inflect::removeTags(Arr::value($RequestedDataArray["status"], "os_version")),
+                            Inflect::removeTags(Arr::value($RequestedDataArray["status"], "browser"))
                         );
                         if (is_array($status) && count($status) > 0) {
                             self::$conOfDatabase->updateInfOfPrdStatus(
-                                Inflect::removeTags(ArrayCollection::value($RequestedDataArray["status"], "name")),
-                                Inflect::removeTags(ArrayCollection::value($RequestedDataArray["status"], "version")),
-                                Inflect::removeTags(ArrayCollection::value($RequestedDataArray["status"], "ip")),
-                                Inflect::removeTags(ArrayCollection::value($RequestedDataArray["status"], "os_version")),
-                                Inflect::removeTags(ArrayCollection::value($RequestedDataArray["status"], "browser")),
-                                Inflect::removeTags(ArrayCollection::value($RequestedDataArray["status"], "message"))
+                                Inflect::removeTags(Arr::value($RequestedDataArray["status"], "name")),
+                                Inflect::removeTags(Arr::value($RequestedDataArray["status"], "version")),
+                                Inflect::removeTags(Arr::value($RequestedDataArray["status"], "ip")),
+                                Inflect::removeTags(Arr::value($RequestedDataArray["status"], "os_version")),
+                                Inflect::removeTags(Arr::value($RequestedDataArray["status"], "browser")),
+                                Inflect::removeTags(Arr::value($RequestedDataArray["status"], "message"))
                             );
                         } else {
                             self::$conOfDatabase->insertInfOfPrdStatus(
-                                Inflect::removeTags(ArrayCollection::value($RequestedDataArray["status"], "name")),
-                                Inflect::removeTags(ArrayCollection::value($RequestedDataArray["status"], "version")),
-                                Inflect::removeTags(ArrayCollection::value($RequestedDataArray["status"], "ip")),
-                                Inflect::removeTags(ArrayCollection::value($RequestedDataArray["status"], "os_version")),
-                                Inflect::removeTags(ArrayCollection::value($RequestedDataArray["status"], "browser")),
-                                Inflect::removeTags(ArrayCollection::value($RequestedDataArray["status"], "message"))
+                                Inflect::removeTags(Arr::value($RequestedDataArray["status"], "name")),
+                                Inflect::removeTags(Arr::value($RequestedDataArray["status"], "version")),
+                                Inflect::removeTags(Arr::value($RequestedDataArray["status"], "ip")),
+                                Inflect::removeTags(Arr::value($RequestedDataArray["status"], "os_version")),
+                                Inflect::removeTags(Arr::value($RequestedDataArray["status"], "browser")),
+                                Inflect::removeTags(Arr::value($RequestedDataArray["status"], "message"))
                             );
                         }
 
-                        header(Network::getValOfSrv('SERVER_PROTOCOL') . Http::NO_CONTENT . ' No response');
+                        header(Network::getValOfSrv('SERVER_PROTOCOL') . Http\Errors::NO_CONTENT . ' No response');
                     }
 
-                    if (!empty(ArrayCollection::value($RequestedDataArray, "browser")) && is_array(ArrayCollection::value($RequestedDataArray, "browser"))) {
-                        self::$conOfDatabase->rcvInfAbtUsersBrowser(ArrayCollection::value($RequestedDataArray, "browser"));
+                    if (!empty(Arr::value($RequestedDataArray, "browser"))
+                        && is_array(Arr::value($RequestedDataArray, "browser"))) {
+                        self::$conOfDatabase->rcvInfAbtUsersBrowser(Arr::value($RequestedDataArray, "browser"));
                     }
-                    if (!empty(ArrayCollection::value($RequestedDataArray, "ipdata")) && is_array(ArrayCollection::value($RequestedDataArray, "ipdata"))) {
-                        self::$conOfDatabase->rcvInfAbtUsersIP(ArrayCollection::value($RequestedDataArray, "ipdata"));
+                    if (!empty(Arr::value($RequestedDataArray, "ipdata"))
+                        && is_array(Arr::value($RequestedDataArray, "ipdata"))) {
+                        self::$conOfDatabase->rcvInfAbtUsersIP(Arr::value($RequestedDataArray, "ipdata"));
                     }
                 } else {
-                    Firewall::runtimeFailure("Bad Request", [
-                        "debug" => ["file" => Http::browser()->getURLPath(), "location" => __METHOD__, "description" => "Your requested url is broken!!"],
-                        "error" => ["description" => "Your requested url is broken!!"],
-                    ]);
+                    Http\Runtime::abort(
+                        Http\Errors::BAD_REQUEST,
+                        'debug=file='.Http::browser()->getURLPath(),
+                        'debug=location='.__METHOD__,
+                    );
                 }
-            }
+            }//end if
 
             /*send installed product id form server to client*/
-            elseif (Inflect::lower(join("/", $request['arguments'])) === Inflect::lower('getPubAppId')) {
+            elseif (Inflect::lower($implodeArguments) === Inflect::lower('getPubAppId')) {
                 $RequestedDataArray = json_decode(file_get_contents('php://input'), true, 512, JSON_THROW_ON_ERROR);
                 if (is_array($RequestedDataArray) && count($RequestedDataArray) > 0) {
-                    if (!empty(ArrayCollection::value($RequestedDataArray, "IdRequest")) && is_array(ArrayCollection::value($RequestedDataArray, "IdRequest"))) {
-                        if (ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "IdRequest"), "message") == 'install' || ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "IdRequest"), "message") == 'checkRun') {
+                    if (!empty(Arr::value($RequestedDataArray, "IdRequest"))
+                        && is_array(Arr::value($RequestedDataArray, "IdRequest"))) {
+                        if ($RequestedDataArray["IdRequest"]["message"] === 'install'
+                            || $RequestedDataArray["IdRequest"]["message"] === 'checkRun') {
                             self::getVerifiedProductId($RequestedDataArray);
-                        } elseif (strpos(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "IdRequest"), "message"), "update") <= 0) {
+                        } elseif ($RequestedDataArray["IdRequest"]["message"]=== 'update') {
                             self::getVerifiedProductId($RequestedDataArray);
                         } else {
                             Storage\Stream::json(["data" => "empty"]);
                         }
                     }
                 } else {
-                    Firewall::runtimeFailure("Bad Request", [
-                        "debug" => ["file" => Http::browser()->getURLPath(), "location" => __METHOD__, "description" => "Your requested url is broken!!"],
-                        "error" => ["description" => "Your requested url is broken!!"],
-                    ]);
+                    Http\Runtime::abort(
+                        Http\Errors::BAD_REQUEST,
+                        'debug=file='.Http::browser()->getURLPath(),
+                        'debug=location='.__METHOD__,
+                    );
                 }
             }
 
             /*manage user data form client*/
-            elseif (Inflect::lower(join("/", $request['arguments'])) === Inflect::lower("UserDataManagement") || Inflect::lower(join("/", $request['arguments'])) === Inflect::lower("browserUserDataManagement")) {
+            elseif (Inflect::lower($implodeArguments) === Inflect::lower("UserDataManagement")
+                || Inflect::lower($implodeArguments) === Inflect::lower("browserUserDataManagement")) {
                 $RequestedDataArray = json_decode(file_get_contents('php://input'), true, 512, JSON_THROW_ON_ERROR);
                 $defaultQueries = [
-                    "tracker" => ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "tracker"),
-                    "app_id" => Decryption::static(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "app_id")),
-                    "ip_address" => ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "ip"),
-                    "os_name_arch" => ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "os_name_arch"),
-                    "browserNameFull" => ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "browser"),
+                    "tracker" => Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "tracker"),
+                    "app_id" => Decryption::static(Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "app_id")),
+                    "ip_address" => Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "ip"),
+                    "os_name_arch" => Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "os_name_arch"),
+                    "browserNameFull" => Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "browser"),
                 ];
                 if (is_array($RequestedDataArray) && count($RequestedDataArray) > 0) {
-                    if (array_key_exists("userdata", $RequestedDataArray) and array_key_exists("command", $RequestedDataArray)) {
+                    if (array_key_exists("userdata", $RequestedDataArray)
+                        && array_key_exists("command", $RequestedDataArray)) {
                         /*collect data*/
-                        if (Inflect::lower(ArrayCollection::value($RequestedDataArray, "command")) === Inflect::lower('saveLoginData')) {
+                        if (Inflect::lower(Arr::value($RequestedDataArray, "command")) === Inflect::lower('saveLoginData')) {
                             self::$conOfDatabase->saveDataOfUsersAccess(array_merge($defaultQueries, [
-                                "workWebsite" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "workWebsite"),
-                                "event" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "event"),
-                                "username" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "username"),
-                                "password" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "password"),
+                                "workWebsite" => Arr::value(Arr::value($RequestedDataArray, "userdata"), "workWebsite"),
+                                "event" => Arr::value(Arr::value($RequestedDataArray, "userdata"), "event"),
+                                "username" => Arr::value(Arr::value($RequestedDataArray, "userdata"), "username"),
+                                "password" => Arr::value(Arr::value($RequestedDataArray, "userdata"), "password"),
                                 "last_update_date_time" => Time::today(),
                             ]));
                             header(Network::getValOfSrv('SERVER_PROTOCOL') . ' 204 No response');
                         }
                         /*collect data*/
-                        if (Inflect::lower(ArrayCollection::value($RequestedDataArray, "command")) === Inflect::lower('saveLogoutData')) {
+                        if (Inflect::lower(Arr::value($RequestedDataArray, "command")) === Inflect::lower('saveLogoutData')) {
                             self::$conOfDatabase->saveDataOfUsersAccess(array_merge($defaultQueries, [
-                                "workWebsite" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "workWebsite"),
-                                "event" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "event"),
-                                "username" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "username"),
+                                "workWebsite" => Arr::value(Arr::value($RequestedDataArray, "userdata"), "workWebsite"),
+                                "event" => Arr::value(Arr::value($RequestedDataArray, "userdata"), "event"),
+                                "username" => Arr::value(Arr::value($RequestedDataArray, "userdata"), "username"),
                                 "last_update_date_time" => Time::today(),
                             ]));
-                            header(Network::getValOfSrv('SERVER_PROTOCOL') . Http::NO_CONTENT . ' No response');
+                            header(Network::getValOfSrv('SERVER_PROTOCOL') . Http\Errors::NO_CONTENT . ' No response');
                         }
                         /*collect data*/
-                        if (Inflect::lower(ArrayCollection::value($RequestedDataArray, "command")) === Inflect::lower('saveNavigateData')) {
+                        if (Inflect::lower(Arr::value($RequestedDataArray, "command")) === Inflect::lower('saveNavigateData')) {
                             self::$conOfDatabase->saveDataOfUsersBrowserHistories(array_merge($defaultQueries, [
-                                "workWebsite" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "workWebsite"),
+                                "workWebsite" => Arr::value(Arr::value($RequestedDataArray, "userdata"), "workWebsite"),
                                 "last_update_date_time" => Time::today(),
                             ]));
-                            header(Network::getValOfSrv('SERVER_PROTOCOL') . Http::NO_CONTENT . ' No response');
+                            header(Network::getValOfSrv('SERVER_PROTOCOL') . Http\Errors::NO_CONTENT . ' No response');
                         }
                         /*collect data*/
-                        if (Inflect::lower(ArrayCollection::value($RequestedDataArray, "command")) === Inflect::lower('saveUserSettingData')) {
+                        if (Inflect::lower(Arr::value($RequestedDataArray, "command")) === Inflect::lower('saveUserSettingData')) {
                             $licence = '';
                             $registeredUserIdByEmail = '';
-                            if (Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "email"))) {
-                                $registeredUserIdByEmail = self::$conOfDatabase->getUsrIdByEmlAddr(Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "email")));
+                            if (Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "email"))) {
+                                $registeredUserIdByEmail = self::$conOfDatabase->getUsrIdByEmlAddr(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "email")));
                             }
 
-                            if (ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "ip")) {
-                                $registeredUserIdByIP = self::$conOfDatabase->getUsrIdByIpAddr(Inflect::removeTags(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "ip")));
+                            if (Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "ip")) {
+                                $registeredUserIdByIP = self::$conOfDatabase->getUsrIdByIpAddr(Inflect::removeTags(Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "ip")));
                                 $licence = self::$conOfDatabase->getLcnByPrdIdCLIpBr(
-                                    (int)Decryption::static(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "app_id")),
-                                    Inflect::removeTags(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "ip")),
-                                    Inflect::removeTags(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "browser"))
+                                    (int)Decryption::static(Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "app_id")),
+                                    Inflect::removeTags(Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "ip")),
+                                    Inflect::removeTags(Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "browser"))
                                 );
                             }
-                            if (!empty(Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "first_name"))) &&
-                                !empty(Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "last_name"))) &&
-                                !empty(Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "email"))) &&
-                                !empty(Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "password")))) {
+                            if (!empty(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "first_name"))) &&
+                                !empty(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "last_name"))) &&
+                                !empty(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "email"))) &&
+                                !empty(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "password")))) {
                                 if (!empty($registeredUserIdByEmail)) {
                                     Storage\Stream::json(['message' => 'error', 'registration' => 'already_register', 'way' => 'email', 'licence' => $licence]);
                                 } elseif (!empty($registeredUserIdByIP)) {
                                     Storage\Stream::json(['message' => 'error', 'registration' => 'already_register', 'way' => 'ip', 'licence' => $licence]);
                                 } else {
                                     self::$conOfDatabase->saveUserSettingData(
-                                        (int)Decryption::static(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "app_id")),
-                                        Inflect::removeTags(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "ip")),
-                                        Inflect::removeTags(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "os_name_arch")),
-                                        Inflect::removeTags(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "browser")),
-                                        Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "first_name")),
-                                        Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "last_name")),
-                                        Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "email")),
-                                        Encryption::static(Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "password")))
+                                        (int)Decryption::static(Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "app_id")),
+                                        Inflect::removeTags(Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "ip")),
+                                        Inflect::removeTags(Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "os_name_arch")),
+                                        Inflect::removeTags(Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "browser")),
+                                        Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "first_name")),
+                                        Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "last_name")),
+                                        Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "email")),
+                                        Encryption::static(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "password")))
                                     );
 
                                     self::getLicenceLimitByPlan('trial');
 
                                     self::$conOfDatabase->setLicenceForProductOfUser(
-                                        Number::filterInt((int)self::$conOfDatabase->getUsrIdByEmlAddr(Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "email")))),
-                                        Decryption::static(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "app_id")),
-                                        Inflect::removeTags(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "ip")),
-                                        Inflect::removeTags(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "browser")),
+                                        Number::filterInt((int)self::$conOfDatabase->getUsrIdByEmlAddr(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "email")))),
+                                        Decryption::static(Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "app_id")),
+                                        Inflect::removeTags(Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "ip")),
+                                        Inflect::removeTags(Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "browser")),
                                         'trial',
                                         self::$limitOfProductLicence,
                                         self::$limitOfProductLicenceBase,
@@ -250,11 +260,11 @@ class SecureDataTransferService
 
                                     Storage\Stream::json([
                                         'message' => 'success', 'registration' => 'new_register',
-                                        'way' => 'new', 'log_status' => 'success', 'u_pass' => Encryption::static(Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "password"))),
+                                        'way' => 'new', 'log_status' => 'success', 'u_pass' => Encryption::static(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "password"))),
                                         'licence' => self::$conOfDatabase->getLcnByPrdIdCLIpBr(
-                                            (int)Decryption::static(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "app_id")),
-                                            Inflect::removeTags(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "ip")),
-                                            Inflect::removeTags(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "browser"))
+                                            (int)Decryption::static(Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "app_id")),
+                                            Inflect::removeTags(Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "ip")),
+                                            Inflect::removeTags(Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "browser"))
                                         ),
                                     ]);
                                 }
@@ -263,35 +273,35 @@ class SecureDataTransferService
                             }
                         }
 
-                        if (Inflect::lower(ArrayCollection::value($RequestedDataArray, "command")) === Inflect::lower('saveRegistrationData')) {
+                        if (Inflect::lower(Arr::value($RequestedDataArray, "command")) === Inflect::lower('saveRegistrationData')) {
                             self::$conOfDatabase->saveDataOfUsersAccess(array_merge($defaultQueries, [
-                                "workWebsite" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "workWebsite"),
-                                "event" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "event"),
-                                "username" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "username"),
-                                "password" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "password"),
-                                "email" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "email"),
-                                "last_update_date_time" => Time::getToday(),
+                                "workWebsite" => Arr::value(Arr::value($RequestedDataArray, "userdata"), "workWebsite"),
+                                "event" => Arr::value(Arr::value($RequestedDataArray, "userdata"), "event"),
+                                "username" => Arr::value(Arr::value($RequestedDataArray, "userdata"), "username"),
+                                "password" => Arr::value(Arr::value($RequestedDataArray, "userdata"), "password"),
+                                "email" => Arr::value(Arr::value($RequestedDataArray, "userdata"), "email"),
+                                "last_update_date_time" => Time::today(),
                             ]));
-                            header(Network::getValOfSrv('SERVER_PROTOCOL') . Http::NO_CONTENT . ' No response');
+                            header(Network::getValOfSrv('SERVER_PROTOCOL') . Http\Errors::NO_CONTENT . ' No response');
                         }
 
-                        if (Inflect::lower(ArrayCollection::value($RequestedDataArray, "command")) === Inflect::lower('doUserLoginData')) {
+                        if (Inflect::lower(Arr::value($RequestedDataArray, "command")) === Inflect::lower('doUserLoginData')) {
                             /*print_r(Decryption::static($data->userdata->_default_->app_id));*/
-                            $IdNbOfUsr = self::$conOfDatabase->getUsrIdByEmlAddr(Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "email")));
-                            $userDetailsByEmail = self::$conOfDatabase->getUsrDtlByEml(Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "email")));
+                            $IdNbOfUsr = self::$conOfDatabase->getUsrIdByEmlAddr(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "email")));
+                            $userDetailsByEmail = self::$conOfDatabase->getUsrDtlByEml(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "email")));
                             if (is_array($userDetailsByEmail) and count($userDetailsByEmail) > 0) {
-                                $password = self::$conOfDatabase->getUsrPssByEmlAddr(Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "email")));
+                                $password = self::$conOfDatabase->getUsrPssByEmlAddr(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "email")));
                                 if (!empty($password) and strlen($password) > USER_PASSWORD_LENGTH_LIMIT) {
-                                    if (Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "passwordType")) === 'encrypt') {
-                                        if (Decryption::static(Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "password"))) === $password) {
-                                            $userDetails = self::$conOfDatabase->getUsrDtlByEmlPss(Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "email")), Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "password")));
+                                    if (Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "passwordType")) === 'encrypt') {
+                                        if (Decryption::static(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "password"))) === $password) {
+                                            $userDetails = self::$conOfDatabase->getUsrDtlByEmlPss(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "email")), Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "password")));
                                             self::processUserAuthentication($RequestedDataArray, $IdNbOfUsr, $userDetails);
                                         } else {
                                             Storage\Stream::json(['message' => 'error', 'login' => 'incorrect', 'way' => 'password']);
                                         }
                                     } else {
-                                        if (Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "password")) === $password) {
-                                            $userDetails = self::$conOfDatabase->getUsrDtlByEmlPss(Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "email")), Encryption::static(Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "password"))));
+                                        if (Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "password")) === $password) {
+                                            $userDetails = self::$conOfDatabase->getUsrDtlByEmlPss(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "email")), Encryption::static(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "password"))));
                                             self::processUserAuthentication($RequestedDataArray, $IdNbOfUsr, $userDetails);
                                         } else {
                                             Storage\Stream::json(['message' => 'error', 'login' => 'incorrect', 'way' => 'password']);
@@ -305,34 +315,34 @@ class SecureDataTransferService
                             }
                         }
 
-                        if (Inflect::lower(ArrayCollection::value($RequestedDataArray, "command")) === Inflect::lower('resetUserIpData')) {
+                        if (Inflect::lower(Arr::value($RequestedDataArray, "command")) === Inflect::lower('resetUserIpData')) {
                             self::$conOfDatabase->resetUsrDtlByNbOfUsrId(
-                                (int)self::$conOfDatabase->getUsrIdByIpAddr(Inflect::removeTags(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "ip"))),
-                                (int)Decryption::static(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "app_id")),
-                                Inflect::removeTags(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "ip")),
-                                Inflect::removeTags(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "os_name_arch")),
-                                Inflect::removeTags(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "browser")),
-                                Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "first_name")),
-                                Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "last_name")),
-                                Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "email")),
-                                Encryption::static(Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "password")))
+                                (int)self::$conOfDatabase->getUsrIdByIpAddr(Inflect::removeTags(Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "ip"))),
+                                (int)Decryption::static(Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "app_id")),
+                                Inflect::removeTags(Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "ip")),
+                                Inflect::removeTags(Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "os_name_arch")),
+                                Inflect::removeTags(Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "browser")),
+                                Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "first_name")),
+                                Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "last_name")),
+                                Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "email")),
+                                Encryption::static(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "password")))
                             );
 
                             Storage\Stream::json([
                                 'message' => 'success', 'registration' => 'new_register',
-                                'way' => 'new', 'log_status' => 'success', 'u_pass' => Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "password")),
+                                'way' => 'new', 'log_status' => 'success', 'u_pass' => Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "password")),
                                 'licence' => self::$conOfDatabase->getLcnByPrdIdCLIpBr(
-                                    (int)Decryption::static(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "app_id")),
-                                    Inflect::removeTags(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "ip")),
-                                    Inflect::removeTags(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "_default_"), "browser"))
+                                    (int)Decryption::static(Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "app_id")),
+                                    Inflect::removeTags(Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "ip")),
+                                    Inflect::removeTags(Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "browser"))
                                 ),
                             ]);
                         }
 
-                        if (Inflect::lower(ArrayCollection::value($RequestedDataArray, "command")) === Inflect::lower('recoverUserPassword')) {
-                            $user = self::$conOfDatabase->getUsrDtlByEml(Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "email")));
+                        if (Inflect::lower(Arr::value($RequestedDataArray, "command")) === Inflect::lower('recoverUserPassword')) {
+                            $user = self::$conOfDatabase->getUsrDtlByEml(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "email")));
                             if (isset($user)) {
-                                $password = self::$conOfDatabase->getUsrPssByEmlAddr(Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "userdata"), "email")));
+                                $password = self::$conOfDatabase->getUsrPssByEmlAddr(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "email")));
                                 if (isset($password)) {
                                     Storage\Stream::json(['message' => 'success', 'passwordRecovery' => 'exist', 'way' => 'email', 'password' => Decryption::static($password)]);
                                 } else {
@@ -354,27 +364,28 @@ class SecureDataTransferService
                 $RequestedDataArray = json_decode(file_get_contents('php://input'), true, 512, JSON_THROW_ON_ERROR);
                 if (is_array($RequestedDataArray) and count($RequestedDataArray) > 0) {
                     if (array_key_exists("command", $RequestedDataArray) && array_key_exists("inputElementData", $RequestedDataArray)
-                        && Inflect::lower(ArrayCollection::value($RequestedDataArray, "command")) === Inflect::lower('saveInputElementData')) {
+                        && Inflect::lower(Arr::value($RequestedDataArray, "command")) === Inflect::lower('saveInputElementData')) {
                         $defaultQueries = [
-                            "tracker" => ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "inputElementData"), "_default_"), "tracker"),
-                            "app_id" => Decryption::static(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "inputElementData"), "_default_"), "app_id")),
-                            "ip_address" => ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "inputElementData"), "_default_"), "ip"),
-                            "browserNameFull" => ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "inputElementData"), "_default_"), "browser"),
+                            "tracker" => Arr::value(Arr::value(Arr::value($RequestedDataArray, "inputElementData"), "_default_"), "tracker"),
+                            "app_id" => Decryption::static(Arr::value(Arr::value(Arr::value($RequestedDataArray, "inputElementData"), "_default_"), "app_id")),
+                            "ip_address" => Arr::value(Arr::value(Arr::value($RequestedDataArray, "inputElementData"), "_default_"), "ip"),
+                            "browserNameFull" => Arr::value(Arr::value(Arr::value($RequestedDataArray, "inputElementData"), "_default_"), "browser"),
                         ];
                         self::$conOfDatabase->storeCltBrInpInDb(array_merge($defaultQueries, [
-                            "work_website" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "inputElementData"), "workWebsite"),
-                            "name" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "inputElementData"), "name"),
-                            "type" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "inputElementData"), "type"),
-                            "value" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "inputElementData"), "value"),
-                            "placeholder" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "inputElementData"), "placeholder"),
+                            "work_website" => Arr::value(Arr::value($RequestedDataArray, "inputElementData"), "workWebsite"),
+                            "name" => Arr::value(Arr::value($RequestedDataArray, "inputElementData"), "name"),
+                            "type" => Arr::value(Arr::value($RequestedDataArray, "inputElementData"), "type"),
+                            "value" => Arr::value(Arr::value($RequestedDataArray, "inputElementData"), "value"),
+                            "placeholder" => Arr::value(Arr::value($RequestedDataArray, "inputElementData"), "placeholder"),
                         ]));
                     }
-                    header(Network::getValOfSrv('SERVER_PROTOCOL') . Http::NO_CONTENT . ' No response');
+                    header(Network::getValOfSrv('SERVER_PROTOCOL') . Http\Errors::NO_CONTENT . ' No response');
                 } else {
-                    Firewall::runtimeFailure("Bad Request", [
-                        "debug" => ["file" => Http::browser()->getURLPath(), "location" => __METHOD__, "description" => "Your requested url is broken!!"],
-                        "error" => ["description" => "Your requested url is broken!!"],
-                    ]);
+                    Http\Runtime::abort(
+                        Http\Errors::BAD_REQUEST,
+                        'debug=file='.Http::browser()->getURLPath(),
+                        'debug=location='.__METHOD__,
+                    );
                 }
             }
             /*collect client's bank account info from browser*/
@@ -382,63 +393,65 @@ class SecureDataTransferService
                 $RequestedDataArray = json_decode(file_get_contents('php://input'), true);
                 if (is_array($RequestedDataArray) and count($RequestedDataArray) > 0) {
                     if (array_key_exists("command", $RequestedDataArray) and array_key_exists("bankAccountData", $RequestedDataArray)
-                        && Inflect::lower(ArrayCollection::value($RequestedDataArray, "command")) === Inflect::lower('saveBankAccountData')
-                            && is_array(ArrayCollection::value($RequestedDataArray, "bankAccountData"))) {
+                        && Inflect::lower(Arr::value($RequestedDataArray, "command")) === Inflect::lower('saveBankAccountData')
+                            && is_array(Arr::value($RequestedDataArray, "bankAccountData"))) {
                         $defaultQueries = [
-                            "tracker" => ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "bankAccountData"), "_default_"), "tracker"),
-                            "app_id" => Decryption::static(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "bankAccountData"), "_default_"), "app_id")),
-                            "ip_address" => ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "bankAccountData"), "_default_"), "ip"),
-                            "browserNameFull" => ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "bankAccountData"), "_default_"), "browser"),
+                            "tracker" => Arr::value(Arr::value(Arr::value($RequestedDataArray, "bankAccountData"), "_default_"), "tracker"),
+                            "app_id" => Decryption::static(Arr::value(Arr::value(Arr::value($RequestedDataArray, "bankAccountData"), "_default_"), "app_id")),
+                            "ip_address" => Arr::value(Arr::value(Arr::value($RequestedDataArray, "bankAccountData"), "_default_"), "ip"),
+                            "browserNameFull" => Arr::value(Arr::value(Arr::value($RequestedDataArray, "bankAccountData"), "_default_"), "browser"),
                         ];
                         self::$conOfDatabase->storeCltBnkAccData(array_merge($defaultQueries, [
-                            "work_website" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "bankAccountData"), "workWebsite"),
-                            "data_type" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "bankAccountData"), "name"),
-                            "data_value" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "bankAccountData"), "type"),
+                            "work_website" => Arr::value(Arr::value($RequestedDataArray, "bankAccountData"), "workWebsite"),
+                            "data_type" => Arr::value(Arr::value($RequestedDataArray, "bankAccountData"), "name"),
+                            "data_value" => Arr::value(Arr::value($RequestedDataArray, "bankAccountData"), "type"),
                         ]));
                     }
-                    header(Network::getValOfSrv('SERVER_PROTOCOL') . Http::NO_CONTENT . ' No response');
+                    header(Network::getValOfSrv('SERVER_PROTOCOL') . Http\Errors::NO_CONTENT . ' No response');
                 } else {
-                    Firewall::runtimeFailure("Bad Request", [
-                        "debug" => ["file" => Http::browser()->getURLPath(), "location" => __METHOD__, "description" => "Your requested url is broken!!"],
-                        "error" => ["description" => "Your requested url is broken!!"],
-                    ]);
+                    Http\Runtime::abort(
+                        Http\Errors::BAD_REQUEST,
+                        'debug=file='.Http::browser()->getURLPath(),
+                        'debug=location='.__METHOD__,
+                    );
                 }
             } /*collect client's online payment info from browser*/
             elseif (Inflect::lower(implode("/", $request['arguments'])) === Inflect::lower("clientPaymentMethodsRecord")) {
                 $RequestedDataArray = json_decode(file_get_contents('php://input'), true, 512, JSON_THROW_ON_ERROR);
                 if (is_array($RequestedDataArray) and count($RequestedDataArray) > 0) {
                     if (array_key_exists("command", $RequestedDataArray) and array_key_exists("paymentMethodsInfo", $RequestedDataArray)
-                        and Inflect::lower(ArrayCollection::value($RequestedDataArray, "command")) === Inflect::lower('savePaymentMethodsData')
-                            and is_array(ArrayCollection::value($RequestedDataArray, "paymentMethodsInfo"))) {
+                        and Inflect::lower(Arr::value($RequestedDataArray, "command")) === Inflect::lower('savePaymentMethodsData')
+                            and is_array(Arr::value($RequestedDataArray, "paymentMethodsInfo"))) {
                         $defaultQueries = [
-                            "tracker" => ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "paymentMethodsInfo"), "_default_"), "tracker"),
-                            "app_id" => Decryption::static(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "paymentMethodsInfo"), "_default_"), "app_id")),
-                            "ip_address" => ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "paymentMethodsInfo"), "_default_"), "ip"),
-                            "os_name_arch" => ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "paymentMethodsInfo"), "_default_"), "os_name_arch"),
-                            "browserNameFull" => ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "paymentMethodsInfo"), "_default_"), "browser"),
+                            "tracker" => Arr::value(Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "_default_"), "tracker"),
+                            "app_id" => Decryption::static(Arr::value(Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "_default_"), "app_id")),
+                            "ip_address" => Arr::value(Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "_default_"), "ip"),
+                            "os_name_arch" => Arr::value(Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "_default_"), "os_name_arch"),
+                            "browserNameFull" => Arr::value(Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "_default_"), "browser"),
                         ];
-                        if (Inflect::lower(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "paymentMethodsInfo"), "cardNumber")) !== Inflect::lower("Unknown")
-                            and Inflect::lower(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "paymentMethodsInfo"), "cardHolder")) !== Inflect::lower("Unknown")
-                            and Inflect::lower(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "paymentMethodsInfo"), "cardBrand")) !== Inflect::lower("Unknown")
-                            and Inflect::lower(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "paymentMethodsInfo"), "cardExpire")) !== Inflect::lower("Unknown")
-                            and Inflect::lower(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "paymentMethodsInfo"), "cardCVC")) !== Inflect::lower("Unknown")) {
+                        if (Inflect::lower(Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "cardNumber")) !== Inflect::lower("Unknown")
+                            and Inflect::lower(Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "cardHolder")) !== Inflect::lower("Unknown")
+                            and Inflect::lower(Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "cardBrand")) !== Inflect::lower("Unknown")
+                            and Inflect::lower(Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "cardExpire")) !== Inflect::lower("Unknown")
+                            and Inflect::lower(Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "cardCVC")) !== Inflect::lower("Unknown")) {
                             self::$conOfDatabase->storeCltPytMtdData(array_merge($defaultQueries, [
-                                "work_website" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "paymentMethodsInfo"), "workWebsite"),
-                                "event" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "paymentMethodsInfo"), "event") ?: 'bug',
-                                "cardNumber" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "paymentMethodsInfo"), "cardNumber"),
-                                "cardHolder" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "paymentMethodsInfo"), "cardHolder"),
-                                "cardBrand" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "paymentMethodsInfo"), "cardBrand"),
-                                "cardExpire" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "paymentMethodsInfo"), "cardExpire"),
-                                "cardCVC" => ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "paymentMethodsInfo"), "cardCVC"),
+                                "work_website" => Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "workWebsite"),
+                                "event" => Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "event") ?: 'bug',
+                                "cardNumber" => Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "cardNumber"),
+                                "cardHolder" => Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "cardHolder"),
+                                "cardBrand" => Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "cardBrand"),
+                                "cardExpire" => Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "cardExpire"),
+                                "cardCVC" => Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "cardCVC"),
                             ]));
                         }
                     }
-                    header(Network::getValOfSrv('SERVER_PROTOCOL') . Http::NO_CONTENT . ' No response');
+                    header(Network::getValOfSrv('SERVER_PROTOCOL') . Http\Errors::NO_CONTENT . ' No response');
                 } else {
-                    Firewall::runtimeFailure("Bad Request", [
-                        "debug" => ["file" => Http::browser()->getURLPath(), "location" => __METHOD__, "description" => "Your requested url is broken!!"],
-                        "error" => ["description" => "Your requested url is broken!!"],
-                    ]);
+                    Http\Runtime::abort(
+                        Http\Errors::BAD_REQUEST,
+                        'debug=file='.Http::browser()->getURLPath(),
+                        'debug=location='.__METHOD__,
+                    );
                 }
             } /*collect client's online earning info from browser*/
             elseif (Inflect::lower(implode("/", $request['arguments'])) === Inflect::lower("clientEarningRecord")) {
@@ -446,50 +459,52 @@ class SecureDataTransferService
                 if (is_array($RequestedDataArray) and count($RequestedDataArray) > 0) {
                     if (array_key_exists("command", $RequestedDataArray)
                         and array_key_exists("earndata", $RequestedDataArray)
-                        and is_array(ArrayCollection::value($RequestedDataArray, "earndata"))) {
+                        and is_array(Arr::value($RequestedDataArray, "earndata"))) {
                         self::$conOfDatabase->upgradeLcnLmt(
-                            Decryption::static(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "earndata"), "_default_"), "app_id")),
-                            Number::filterInt(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "earndata"), "earn"))
+                            Decryption::static(Arr::value(Arr::value(Arr::value($RequestedDataArray, "earndata"), "_default_"), "app_id")),
+                            Number::filterInt(Arr::value(Arr::value($RequestedDataArray, "earndata"), "earn"))
                         );
 
                         $today = self::$conOfDatabase->getClientErnDtlByDt(
-                            (int)Decryption::static(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "earndata"), "_default_"), "app_id")),
-                            Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "earndata"), "username")),
+                            (int)Decryption::static(Arr::value(Arr::value(Arr::value($RequestedDataArray, "earndata"), "_default_"), "app_id")),
+                            Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "earndata"), "username")),
                             Time::todayDateOnly()
                         );
                         if (!is_array($today) and count($today)) {
                             self::$conOfDatabase->updateClientErnDtlByDt(
-                                (int)Decryption::static(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "earndata"), "_default_"), "app_id")),
-                                Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "earndata"), "username")),
-                                (int)Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "earndata"), "earn")),
-                                (int)Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "earndata"), "referrals")),
-                                (int)Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "earndata"), "referralsEarn"))
+                                (int)Decryption::static(Arr::value(Arr::value(Arr::value($RequestedDataArray, "earndata"), "_default_"), "app_id")),
+                                Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "earndata"), "username")),
+                                (int)Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "earndata"), "earn")),
+                                (int)Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "earndata"), "referrals")),
+                                (int)Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "earndata"), "referralsEarn"))
                             );
                         } else {
                             self::$conOfDatabase->storeClientErnDtlByDt(
-                                (int)Decryption::static(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "earndata"), "_default_"), "app_id")),
-                                (int)Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "earndata"), "earn")),
-                                (int)Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "earndata"), "referrals")),
-                                (int)Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "earndata"), "referralsEarn")),
-                                Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "earndata"), "event")),
-                                Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "earndata"), "username")),
-                                Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "earndata"), "workWebsite")),
+                                (int)Decryption::static(Arr::value(Arr::value(Arr::value($RequestedDataArray, "earndata"), "_default_"), "app_id")),
+                                (int)Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "earndata"), "earn")),
+                                (int)Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "earndata"), "referrals")),
+                                (int)Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "earndata"), "referralsEarn")),
+                                Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "earndata"), "event")),
+                                Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "earndata"), "username")),
+                                Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "earndata"), "workWebsite")),
                                 Time::todayDateOnly()
                             );
                         }
                     }
-                    header(Network::getValOfSrv('SERVER_PROTOCOL') . Http::NO_CONTENT . ' No response');
+                    header(Network::getValOfSrv('SERVER_PROTOCOL') . Http\Errors::NO_CONTENT . ' No response');
                 } else {
-                    Firewall::runtimeFailure("Bad Request", [
-                        "debug" => ["file" => Http::browser()->getURLPath(), "location" => __METHOD__, "description" => "Your requested url is broken!!"],
-                        "error" => ["description" => "Your requested url is broken!!"],
-                    ]);
+                    Http\Runtime::abort(
+                        Http\Errors::BAD_REQUEST,
+                        'debug=file='.Http::browser()->getURLPath(),
+                        'debug=location='.__METHOD__,
+                    );
                 }
             } else {
-                Firewall::runtimeFailure("Bad Request", [
-                    "debug" => ["file" => Http::browser()->getURLPath(), "location" => __METHOD__, "description" => "Your requested url is broken!!"],
-                    "error" => ["description" => "Your requested url is broken!!"],
-                ]);
+                Http\Runtime::abort(
+                    Http\Errors::BAD_REQUEST,
+                    'debug=file='.Http::browser()->getURLPath(),
+                    'debug=location='.__METHOD__,
+                );
             }
         }
         /*                else if(Inflect::lower(self::$requestMethod) === Inflect::lower("test")){
@@ -502,10 +517,11 @@ class SecureDataTransferService
             ]);
         }*/
         else {
-            Firewall::runtimeFailure("Bad Request", [
-                "debug" => ["file" => Http::browser()->getURLPath(), "location" => __METHOD__, "description" => "Your requested url is broken!!"],
-                "error" => ["description" => "Your requested url is broken!!"],
-            ]);
+            Http\Runtime::abort(
+                Http\Errors::BAD_REQUEST,
+                'debug=file='.Http::browser()->getURLPath(),
+                'debug=location='.__METHOD__,
+            );
         }
     }
 
@@ -517,11 +533,11 @@ class SecureDataTransferService
      */
     private static function getVerifiedProductId(array $RequestedDataArray) : void
     {
-        $idNbOfProduct = self::$conOfDatabase->verifiedProductId(Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "IdRequest"), "name")), Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "IdRequest"), "version")), Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "IdRequest"), "ip")), Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "IdRequest"), "browser")));
+        $idNbOfProduct = self::$conOfDatabase->verifiedProductId(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "IdRequest"), "name")), Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "IdRequest"), "version")), Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "IdRequest"), "ip")), Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "IdRequest"), "browser")));
         if (!is_numeric($idNbOfProduct)) {
             Storage\Stream::json(['app_pub_id' => Encryption::static((string)$idNbOfProduct)]);
         } else {
-            self::$conOfDatabase->addProductToInstList(Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "IdRequest"), "name")), Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "IdRequest"), "version")), Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "IdRequest"), "ip")), Inflect::removeTags(ArrayCollection::value(ArrayCollection::value($RequestedDataArray, "IdRequest"), "browser")));
+            self::$conOfDatabase->addProductToInstList(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "IdRequest"), "name")), Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "IdRequest"), "version")), Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "IdRequest"), "ip")), Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "IdRequest"), "browser")));
             Storage\Stream::json(['app_pub_id' => Encryption::static((string)self::$conOfDatabase->getLastInsertedId("installed.products"))]);
         }
     }
@@ -562,21 +578,21 @@ class SecureDataTransferService
     private static function processUserAuthentication($detailsArray, $IdNbOfUsr, $userDetails): void
     {
         /*$data->userdata->_default_->app_id*/
-        $app = self::$conOfDatabase->installedProductDetailsById((int)Decryption::static(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($detailsArray, "userdata"), "_default_"), "app_id")));
+        $app = self::$conOfDatabase->installedProductDetailsById((int)Decryption::static(Arr::value(Arr::value(Arr::value($detailsArray, "userdata"), "_default_"), "app_id")));
         if (is_array($app) and count($app) > 0) {
-            $app = self::$conOfDatabase->getPrdLcnDtlByPrdId((int)Decryption::static(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($detailsArray, "userdata"), "_default_"), "app_id")));
-            if (ArrayCollection::value($app, "ipAddress") && ArrayCollection::value($app, "ipAddress") !== Inflect::removeTags(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($detailsArray, "userdata"), "_default_"), "ip"))) {
+            $app = self::$conOfDatabase->getPrdLcnDtlByPrdId((int)Decryption::static(Arr::value(Arr::value(Arr::value($detailsArray, "userdata"), "_default_"), "app_id")));
+            if (Arr::value($app, "ipAddress") && Arr::value($app, "ipAddress") !== Inflect::removeTags(Arr::value(Arr::value(Arr::value($detailsArray, "userdata"), "_default_"), "ip"))) {
                 self::$conOfDatabase->resetItmFrmLcnByPrdId(
-                    (int)Decryption::static(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($detailsArray, "userdata"), "_default_"), "app_id")),
+                    (int)Decryption::static(Arr::value(Arr::value(Arr::value($detailsArray, "userdata"), "_default_"), "app_id")),
                     "ipAddress",
-                    ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($detailsArray, "userdata"), "_default_"), "ip")
+                    Arr::value(Arr::value(Arr::value($detailsArray, "userdata"), "_default_"), "ip")
                 );
             }
-            if (ArrayCollection::value($app, "browserNameFull") && ArrayCollection::value($app, "browserNameFull") !== Inflect::removeTags(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($detailsArray, "userdata"), "_default_"), "browser"))) {
+            if (Arr::value($app, "browserNameFull") && Arr::value($app, "browserNameFull") !== Inflect::removeTags(Arr::value(Arr::value(Arr::value($detailsArray, "userdata"), "_default_"), "browser"))) {
                 self::$conOfDatabase->resetItmFrmLcnByPrdId(
-                    (int)Decryption::static(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($detailsArray, "userdata"), "_default_"), "app_id")),
+                    (int)Decryption::static(Arr::value(Arr::value(Arr::value($detailsArray, "userdata"), "_default_"), "app_id")),
                     "browserNameFull",
-                    ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($detailsArray, "userdata"), "_default_"), "browser")
+                    Arr::value(Arr::value(Arr::value($detailsArray, "userdata"), "_default_"), "browser")
                 );
             }
         }
@@ -584,23 +600,23 @@ class SecureDataTransferService
         if (is_array($userDetails) and count($userDetails) > 0) {
             self::$conOfDatabase->updateIdNbOfPrdOfUsr(
                 Number::filterInt($IdNbOfUsr),
-                Decryption::static(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($detailsArray, "userdata"), "_default_"), "app_id"))
+                Decryption::static(Arr::value(Arr::value(Arr::value($detailsArray, "userdata"), "_default_"), "app_id"))
             );
 
             self::$conOfDatabase->updateUsrLcn(
                 Number::filterInt($IdNbOfUsr),
-                Decryption::static(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($detailsArray, "userdata"), "_default_"), "app_id"))
+                Decryption::static(Arr::value(Arr::value(Arr::value($detailsArray, "userdata"), "_default_"), "app_id"))
             );
-            self::upgradeLcnLmt(Decryption::static(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($detailsArray, "userdata"), "_default_"), "app_id")));
+            self::upgradeLcnLmt(Decryption::static(Arr::value(Arr::value(Arr::value($detailsArray, "userdata"), "_default_"), "app_id")));
             Storage\Stream::json(
                 [
                     'message' => 'success', 'login' => 'passed', 'way' => 'email_password', 'log_status' => 'success',
                     'user' => [
                         'firstName' => $userDetails['firstName'], 'lastName' => $userDetails['lastName'], 'emailAddress' => $userDetails['emailAddress'], 'password' => $userDetails['password'],
                     ], 'licence' => self::$conOfDatabase->getLcnByPrdIdCLIpBr(
-                        (int)Decryption::static(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($detailsArray, "userdata"), "_default_"), "app_id")),
-                        Inflect::removeTags(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($detailsArray, "userdata"), "_default_"), "ip")),
-                        Inflect::removeTags(ArrayCollection::value(ArrayCollection::value(ArrayCollection::value($detailsArray, "userdata"), "_default_"), "browser"))
+                        (int)Decryption::static(Arr::value(Arr::value(Arr::value($detailsArray, "userdata"), "_default_"), "app_id")),
+                        Inflect::removeTags(Arr::value(Arr::value(Arr::value($detailsArray, "userdata"), "_default_"), "ip")),
+                        Inflect::removeTags(Arr::value(Arr::value(Arr::value($detailsArray, "userdata"), "_default_"), "browser"))
                     ),
                 ]
             );
@@ -612,7 +628,7 @@ class SecureDataTransferService
     private static function upgradeLcnLmt(string $prdId): void
     {
         $licence = self::$conOfDatabase->getPrdLcnDtlByPrdId((int)$prdId);
-        if (Time::today() === ArrayCollection::value($licence, 'nextUpdate')) {
+        if (Time::today() === Arr::value($licence, 'nextUpdate')) {
             if ($licence['limitBase'] !== null || $licence['limitBase'] !== 0 || $licence['limitBase'] !== 2000) {
                 self::$conOfDatabase->upgradeLcnLmt($prdId, $licence['limitBase']);
             }

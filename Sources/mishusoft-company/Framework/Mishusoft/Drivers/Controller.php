@@ -3,20 +3,20 @@
 namespace Mishusoft\Drivers;
 
 use InvalidArgumentException;
-use Mishusoft\Framework;
-use Mishusoft\Framework\Drivers\View;
+use Mishusoft\Exceptions\RuntimeException\NotFoundException;
+use Mishusoft\Exceptions;
+use Mishusoft\Drivers\View;
+use Mishusoft\Http\Request;
 use Mishusoft\MPM;
 use Mishusoft\Preloader;
 use Mishusoft\Storage;
-use Mishusoft\System\Firewall;
 use Mishusoft\Http\Runtime;
-use Mishusoft\System\Log;
 
 abstract class Controller implements ControllerInterface
 {
-    protected View $view;
-    protected $acl;
-    protected $request;
+    protected View\SmartyView $view;
+    protected Acl $acl;
+    protected Request $request;
     protected bool $javascriptEnabled;
     private Registry $registry;
 
@@ -25,7 +25,7 @@ abstract class Controller implements ControllerInterface
         $this->registry = Registry::getInstance();
         $this->acl = $this->registry->acl;
         $this->request = $this->registry->request;
-        $this->view = new View($this->request, $this->acl);
+        $this->view = new View\SmartyView($this->request, $this->acl);
         $this->javascriptEnabled = true;
     }
 
@@ -51,26 +51,20 @@ abstract class Controller implements ControllerInterface
     /**
      * @param $data
      * @throws \JsonException
-     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
-     * @throws \Mishusoft\Exceptions\PermissionRequiredException
-     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
      */
     public function paginationValidity($data): void
     {
         if (empty($data->security_code) || $data->security_code !== 1) {
             Storage\Stream::json(['type' => 'error', 'message' => 'Pagination\'s security code not found.']);
-            Framework::terminate();
-            exit(0);
         }
         if (empty($data->pageNumber) && $this->filterInt($data->pageNumber) !==0) {
             Storage\Stream::json(['type' => 'error', 'message' => 'Page number not found.']);
-            Framework::terminate();
-            exit(0);
         }
         if (empty($data->viewMode)) {
             Storage\Stream::json(['type' => 'error', 'message' => 'Page view mode direction not found.']);
-            Framework::terminate();
-            exit(0);
         }
     }
 
@@ -198,7 +192,7 @@ abstract class Controller implements ControllerInterface
 
     /**
      * @param $value
-     * @return false|mixed
+     * @return bool
      */
     protected function catchRedirectURL($value): bool
     {
@@ -210,7 +204,7 @@ abstract class Controller implements ControllerInterface
 
     /**
      * @param $value
-     * @return false|mixed
+     * @return bool
      */
     protected function getTextOnURL($value): bool
     {
@@ -222,28 +216,27 @@ abstract class Controller implements ControllerInterface
 
     /**
      * @param string $model
-     * @param false $module
+     * @param string $module
+     *
      * @return mixed
-     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws NotFoundException
      * @throws \JsonException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
      * @throws \Mishusoft\Exceptions\ErrorException
-     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
      * @throws \Mishusoft\Exceptions\JsonException
      * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
      * @throws \Mishusoft\Exceptions\PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    protected function loadModel(string $model, $module = false): mixed
+    protected function loadModel(string $model, string $module = ''): mixed
     {
         $model = implode([$model, 'Model']);
         $rootModel = implode(DS, [MPM::modulesPath(), MPM::defaultModule(), 'Models', $model . ".php"]);
 
-        if ($module === false) {
+        if (empty($module) === false) {
             $module = $this->request->getModule();
         }
 
-        if ($module && $module !== MPM::defaultModule()) {
+        if ($module !== MPM::defaultModule()) {
             $rootModel = MPM::modulesPath() . $module . DS . 'Models' . DS . $model . '.php';
         }
         if (is_readable($rootModel)) {
@@ -251,15 +244,7 @@ abstract class Controller implements ControllerInterface
             $model = Preloader::getClassNamespace($rootModel);
             return new $model;
         }
-
-        Firewall::runtimeFailure("Not Found", [
-            "debug" => [
-                "file" => $model,
-                "location" => $rootModel,
-                "description" => "Required Model not found or could not load!!", ],
-            "error" => ["description" => "Your requested url is broken!!"],
-        ]);
-        exit();
+        throw new NotFoundException($rootModel. ' not found');
     }
 
     /**

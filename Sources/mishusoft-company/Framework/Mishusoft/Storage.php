@@ -2,11 +2,8 @@
 
 namespace Mishusoft;
 
-use GeoIp2\Exception\AddressNotFoundException;
 use JsonException;
-use MaxMind\Db\Reader\InvalidDatabaseException;
 use Mishusoft\Exceptions\RuntimeException\NotFoundException;
-use Mishusoft\System\Firewall;
 use Mishusoft\Utility\ArrayCollection as Arr;
 use Mishusoft\Utility\Inflect;
 
@@ -550,17 +547,9 @@ class Storage extends Base
 
 
     /**
+     * @param bool $pwa
      * @return array
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\HttpException\HttpResponseException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
-     * @throws JsonException
      * @throws NotFoundException
-     * @throws AddressNotFoundException
-     * @throws InvalidDatabaseException
      */
     public static function assignableWebFavicons(bool $pwa = false):array
     {
@@ -671,16 +660,8 @@ class Storage extends Base
     }
 
     /**
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\JsonException
-     * @throws JsonException
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @return array
      * @throws NotFoundException
-     * @throws Exceptions\RuntimeException
-     * @throws AddressNotFoundException
-     * @throws InvalidDatabaseException
-     * @throws Exceptions\HttpException\HttpResponseException
      */
     public static function assignableWebFonts():array
     {
@@ -729,15 +710,7 @@ class Storage extends Base
      * @param string $feature
      * @param string $indicator
      * @return string
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\HttpException\HttpResponseException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
-     * @throws JsonException
-     * @throws AddressNotFoundException
-     * @throws InvalidDatabaseException
+     * @throws NotFoundException
      */
     public static function logoFullPath(
         string $filename,
@@ -752,15 +725,7 @@ class Storage extends Base
      * @param string $feature
      * @param string $indicator
      * @return string
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\HttpException\HttpResponseException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
-     * @throws JsonException
-     * @throws AddressNotFoundException
-     * @throws InvalidDatabaseException
+     * @throws NotFoundException
      */
     public static function userPhotoFullPath(
         string $filename,
@@ -776,15 +741,12 @@ class Storage extends Base
      * @param string $feature
      * @return string
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\HttpException\HttpResponseException
      * @throws Exceptions\JsonException
      * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
      * @throws JsonException
      * @throws NotFoundException
-     * @throws AddressNotFoundException
-     * @throws InvalidDatabaseException
      */
     public static function additionalJSResourceFullPath(string $filename, string $feature = 'local'): string
     {
@@ -803,15 +765,7 @@ class Storage extends Base
      * @param string $feature
      * @param string $indicator
      * @return string
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\HttpException\HttpResponseException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
-     * @throws JsonException
-     * @throws AddressNotFoundException
-     * @throws InvalidDatabaseException
+     * @throws NotFoundException
      */
     public static function uploadFullPath(
         string $filename,
@@ -827,15 +781,7 @@ class Storage extends Base
      * @param string $feature
      * @param string $indicator
      * @return string
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\HttpException\HttpResponseException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
-     * @throws JsonException
-     * @throws AddressNotFoundException
-     * @throws InvalidDatabaseException
+     * @throws NotFoundException
      */
     public static function sharedFullPath(
         string $filename,
@@ -851,16 +797,7 @@ class Storage extends Base
      * @param string $filename
      * @param string $feature
      * @return string
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\HttpException\HttpResponseException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
-     * @throws JsonException
      * @throws NotFoundException
-     * @throws AddressNotFoundException
-     * @throws InvalidDatabaseException
      */
     public static function toDataUri(string $directive, string $filename, string $feature = 'local'): string
     {
@@ -899,16 +836,7 @@ class Storage extends Base
      * @param string $filename
      * @param string $feature
      * @return string
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\HttpException\HttpResponseException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
-     * @throws JsonException
      * @throws NotFoundException
-     * @throws AddressNotFoundException
-     * @throws InvalidDatabaseException
      */
     public static function assetsFullPath(string $filename, string $feature = 'local'): string
     {
@@ -920,16 +848,7 @@ class Storage extends Base
      * @param string $filename
      * @param string $feature
      * @return string
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\HttpException\HttpResponseException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
-     * @throws JsonException
      * @throws NotFoundException
-     * @throws AddressNotFoundException
-     * @throws InvalidDatabaseException
      */
     public static function mediaFullPath(string $filename, string $feature = 'local'): string
     {
@@ -940,16 +859,7 @@ class Storage extends Base
      * @param string $filename
      * @param string $feature
      * @return string
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\HttpException\HttpResponseException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
-     * @throws JsonException
      * @throws NotFoundException
-     * @throws AddressNotFoundException
-     * @throws InvalidDatabaseException
      */
     public static function storageFullPath(string $filename, string $feature = 'local'): string
     {
@@ -975,16 +885,13 @@ class Storage extends Base
     }
 
     /**
-     * @throws InvalidDatabaseException
-     * @throws Exceptions\RuntimeException
-     * @throws AddressNotFoundException
-     * @throws JsonException
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\HttpException\HttpResponseException
+     * @param string $localDrive
+     * @param string|bool $remoteDrive
+     * @param string $filename
+     * @param string $feature
+     * @param string|bool $pathIndicator
+     * @return string
      * @throws NotFoundException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\JsonException
      */
     private static function fullPathBuilder(
         string $localDrive,
@@ -1028,23 +935,7 @@ class Storage extends Base
                 return $remoteDrive.$pathIndicator.$filename;
             }
         } else {
-            $message = 'Your requested file not found or deleted!!';
-
-            if (Inflect::lower($feature) === 'remote') {
-                Firewall::runtimeFailure(
-                    'Not Found',
-                    [
-                    'debug' => [
-                        'file'        => Http::browser()->getURLPath(),
-                        'location'    => self::localize($fileLocale),
-                        'description' => $message,
-                    ],
-                    'error' => ['description' => $message],
-                    ]
-                );
-            } else {
-                throw new NotFoundException(sprintf('%s is not exists', self::localize($fileLocale)));
-            }
+            throw new NotFoundException(sprintf('%s is not exists', self::localize($fileLocale)));
         }//end if
 
         return '';

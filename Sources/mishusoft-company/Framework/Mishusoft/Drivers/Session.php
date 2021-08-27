@@ -10,21 +10,17 @@ use Mishusoft\Exceptions\JsonException;
 use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
-use Mishusoft\Framework;
 use Mishusoft\Storage;
 use Mishusoft\Storage\FileSystem;
-use Mishusoft\System\Firewall;
 use Mishusoft\Http\Runtime;
 use Mishusoft\Utility\ArrayCollection;
 
 class Session
 {
     /**
-     * @throws AddressNotFoundException
      * @throws ErrorException
      * @throws HttpResponseException
      * @throws InvalidArgumentException
-     * @throws InvalidDatabaseException
      * @throws JsonException
      * @throws PermissionRequiredException
      * @throws RuntimeException
@@ -89,9 +85,7 @@ class Session
     /**
      * @throws ErrorException
      * @throws JsonException
-     * @throws AddressNotFoundException
      * @throws \JsonException
-     * @throws InvalidDatabaseException
      * @throws HttpResponseException
      * @throws InvalidArgumentException
      * @throws PermissionRequiredException
@@ -99,19 +93,8 @@ class Session
      */
     public static function sessionTime(): void
     {
-        if (!self::get('time') || !defined('SESSION_TIME')) {
-            Firewall::runtimeFailure(
-                "Forbidden",
-                [
-                    "debug" => [
-                        "file" => "NO-FILE-INTERNAL-MATTER",
-                        "location" => 'Action file',
-                        "description" => "Session Time is not set!!",
-                    ],
-                    "error" => ["description" => "You have no permission to access the requested url!!"],
-                ]
-            );
-            Framework::terminate();
+        if (!defined('SESSION_TIME')||!self::get('time')) {
+            throw new HttpResponseException('Session Time is not set!!');
         }
 
         if (SESSION_TIME === 0) {
@@ -126,7 +109,7 @@ class Session
         }
     }
 
-    public static function destroy(array|string $value = [])
+    public static function destroy(array|string $value = []): void
     {
         if ($value) {
             if (is_array($value) && count($value)>0) {
@@ -156,61 +139,23 @@ class Session
 
     /**
      * @param string $level
-     * @throws ErrorException
-     * @throws JsonException
-     * @throws AddressNotFoundException
-     * @throws \JsonException
-     * @throws InvalidDatabaseException
-     * @throws HttpResponseException
-     * @throws InvalidArgumentException
      * @throws PermissionRequiredException
-     * @throws RuntimeException
      */
     public static function access(string $level)
     {
         if (!self::get('auth')) {
-            Firewall::runtimeFailure(
-                "Forbidden",
-                [
-                    "debug" => [
-                        "file" => "NO-FILE-INTERNAL-MATTER",
-                        "location" => 'Action file',
-                        "description" => "You have no permission to access the requested url!!",
-                    ],
-                    "error" => ["description" => "You have no permission to access the requested url!!"],
-                ]
-            );
-            exit;
+            throw new PermissionRequiredException('You have no permission to access the requested url!!');
         }
 
         if (self::getLevel($level) > self::getLevel(self::get('level'))) {
-            Firewall::runtimeFailure(
-                "Forbidden",
-                [
-                    "debug" => [
-                        "file" => "NO-FILE-INTERNAL-MATTER",
-                        "location" => 'Action file',
-                        "description" => "You have no permission to access the requested url!!",
-                    ],
-                    "error" => ["description" => "You have no permission to access the requested url!!"],
-                ]
-            );
-            exit;
+            throw new PermissionRequiredException('You have no permission to access the requested url!!');
         }
     }
 
     /**
      * @param string $level
      * @return int
-     * @throws ErrorException
-     * @throws JsonException
-     * @throws AddressNotFoundException
-     * @throws \JsonException
-     * @throws InvalidDatabaseException
-     * @throws HttpResponseException
-     * @throws InvalidArgumentException
      * @throws PermissionRequiredException
-     * @throws RuntimeException
      */
     public static function getLevel(string $level): int
     {
@@ -224,18 +169,7 @@ class Session
         $role['client'] = 4;
 
         if (!array_key_exists($level, $role)) {
-            Firewall::runtimeFailure(
-                "Forbidden",
-                [
-                    "debug" => [
-                        "file" => "NO-FILE-INTERNAL-MATTER",
-                        "location" => 'Action file',
-                        "description" => "You have no permission to access the requested url!!",
-                        ],
-                    "error" => ["description" => "You have no permission to access the requested url!!"],
-                ]
-            );
-            exit;
+            throw new PermissionRequiredException('You have no permission to access the requested url!!');
         }
 
         return $role[$level];
@@ -270,9 +204,7 @@ class Session
      * @param bool $noAdmin
      * @throws ErrorException
      * @throws JsonException
-     * @throws AddressNotFoundException
      * @throws \JsonException
-     * @throws InvalidDatabaseException
      * @throws HttpResponseException
      * @throws InvalidArgumentException
      * @throws PermissionRequiredException
@@ -281,18 +213,7 @@ class Session
     public static function accessRestrict(array $level, bool $noAdmin = false): void
     {
         if (!self::get('auth')) {
-            Firewall::runtimeFailure(
-                "Forbidden",
-                [
-                    "debug" => [
-                        "file" => "NO-FILE-INTERNAL-MATTER",
-                        "location" => 'Action file',
-                        "description" => "You have no permission to access the requested url!!",
-                        ],
-                    "error" => ["description" => "You have no permission to access the requested url!!"],
-                ]
-            );
-            exit;
+            throw new PermissionRequiredException('You have no permission to access the requested url!!');
         }
 
         self::sessionTime();
@@ -307,17 +228,7 @@ class Session
             return;
         }
 
-        Firewall::runtimeFailure(
-            "Forbidden",
-            [
-                "debug" => [
-                    "file" => "NO-FILE-INTERNAL-MATTER",
-                    "location" => 'Action file',
-                    "description" => "You have no permission to access the requested url!!",
-                    ],
-                "error" => ["description" => "You have no permission to access the requested url!!"],
-            ]
-        );
+        throw new PermissionRequiredException('You have no permission to access the requested url!!');
     }
 
     /**
@@ -326,9 +237,7 @@ class Session
      * @return bool
      * @throws ErrorException
      * @throws JsonException
-     * @throws AddressNotFoundException
      * @throws \JsonException
-     * @throws InvalidDatabaseException
      * @throws HttpResponseException
      * @throws InvalidArgumentException
      * @throws PermissionRequiredException

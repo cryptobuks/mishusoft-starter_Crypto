@@ -4,10 +4,9 @@
 namespace Mishusoft;
 
 use Mishusoft\Http\Browser;
-use Mishusoft\Http\ErrorsData;
 use Mishusoft\Utility\JSON;
 
-class Http extends ErrorsData
+class Http extends Http\Errors
 {
 
     private static Browser $browser;
@@ -82,7 +81,7 @@ class Http extends ErrorsData
             return self::errorsRecords()[$code]['Description'];
         }
 
-        return 'NOT_FOUND';
+        return 'Not Found';
     }//end getErrorCode()
 
 

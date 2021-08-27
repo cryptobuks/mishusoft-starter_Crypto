@@ -7,8 +7,8 @@ use ErrorException;
 use GeoIp2\Exception\AddressNotFoundException;
 use MaxMind\Db\Reader\InvalidDatabaseException;
 use Mishusoft\Http;
-use Mishusoft\System\Firewall;
 use Mishusoft\System\Log;
+use Mishusoft\Utility\Number;
 
 class Handler extends ErrorException implements ExceptionInterface
 {
@@ -84,15 +84,26 @@ class Handler extends ErrorException implements ExceptionInterface
             $stack =  ['No trace of this error could be detected.'];
         }
 
-        $message = ['debug'=> ['caption'=> $titleOfErrorMessage, 'description'=> $description, 'stack'=> $stack],];
-
         Log::debug($description, LOG_STYLE_SMART, LOG_TYPE_RUNTIME);
-        Http\Runtime::abort(
-            Http\ErrorsData::SERVICE_UNAVAILABLE,
-            'debug=caption='.$titleOfErrorMessage,
-            'debug=stack='.$stack,
-            'debug=description=Required file is not readable!!'
-        );
+        if (IS_CLI) {
+            $this->makePrintable($titleOfErrorMessage, $description, $stack);
+        } else {
+            Http\Runtime::abort(
+                Http\Errors::SERVICE_UNAVAILABLE,
+                'debug=caption='.$titleOfErrorMessage,
+                'debug=stack='.$stack,
+                'debug=description='.$description
+            );
+        }
+    }
+
+    private function makePrintable(string $errorType, string $message, array $stack):void
+    {
+        echo sprintf('%s::%s ', $errorType, $message).PHP_EOL;
+        echo 'Trace::'.PHP_EOL;
+        foreach ($stack as $serial => $details) {
+            echo sprintf('%s::%s ', Number::next($serial), $details).PHP_EOL;
+        }
     }
 
 
