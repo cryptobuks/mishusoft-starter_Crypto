@@ -17,8 +17,6 @@ class Request
     public function __construct()
     {
         $arguments = self::cliArguments();
-        $controller = '';
-        $method = 'run';
 
         $this->controller = array_shift($arguments);
 
@@ -45,6 +43,9 @@ class Request
         if (array_key_exists('0', $argv)) {
             if ($argv[0] ==='cli') {
                 unset($argv[0]);
+            } else {
+                echo 'Error: Environment is not cli. This section for cli only'.PHP_EOL;
+                exit();
             }
         }
         return $argv;

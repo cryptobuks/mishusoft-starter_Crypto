@@ -2,50 +2,46 @@
 
 namespace Mishusoft\Drivers\Bootstrap;
 
-use GeoIp2\Exception\AddressNotFoundException;
-use MaxMind\Db\Reader\InvalidDatabaseException;
 use Mishusoft\Exceptions;
 use Mishusoft\Http;
 use Mishusoft\MPM;
 use Mishusoft\Preloader;
-use Mishusoft\System\Log;
+use Mishusoft\Registry;
 use Mishusoft\System\Memory;
 
 class Classic
 {
 
     /**
-     * @param Http\Request $prediction
-     * @throws AddressNotFoundException
-     * @throws \JsonException
-     * @throws InvalidDatabaseException
+     * @param Http\Request\Classic $request
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\HttpException\HttpResponseException
      * @throws Exceptions\JsonException
      * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
+     * @throws Exceptions\RuntimeException\NotFoundException
+     * @throws \JsonException
      */
-    public static function run(Http\Request $prediction): void
+    public static function run(Http\Request\Classic $request): void
     {
-        $module         = $prediction->getModule();
-        $controller     = $prediction->getController();
-        $method         = $prediction->getMethod();
-        $args           = $prediction->getArguments();
+        $module         = $request->getModule();
+        $controller     = $request->getController();
+        $method         = $request->getMethod();
+        $args           = $request->getArguments();
         $rootController = '';
 
         if (!empty($module)) {
-            $rootModule = MPM::moduleRootController($module);
+            $rootModule = MPM\Classic::moduleRootController($module);
             if (file_exists($rootModule) && is_readable($rootModule)) {
                 include_once $rootModule;
-                $rootController = MPM::runtimeRootController($controller, $module);
+                $rootController = MPM\Classic::runtimeRootController($controller, $module);
             } else {
                 throw new Exceptions\RuntimeException\NotFoundException(
                     "The controller ($module) of your request url is not found"
                 );
             }
         } else {
-            $rootController = MPM::runtimeRootController($controller);
+            $rootController = MPM\Classic::runtimeRootController($controller);
         }//end if
 
         if (file_exists($rootController) && is_readable($rootController)) {
@@ -54,32 +50,20 @@ class Classic
             $controller = new $controller;
 
             if (is_callable([$controller, $method])) {
-                $method = $prediction->getMethod();
+                $method = $request->getMethod();
             } else {
                 $method = Memory::Data()->preset->directoryIndex;
             }
 
             if (isset($args)) {
-                Log::info(implode([
-                    "We execute $method(", implode(',', $args), ') from',
-                    Preloader::getClassNamespace($rootController),
-                    ' by fetching url: ', Http::browser()->getURLPath(),
-                ]));
                 call_user_func_array([$controller, $method], $args);
             } else {
-                Log::info(implode([
-                    "We execute $method from",
-                    Preloader::getClassNamespace($rootController),
-                    ' by fetching url: ', Http::browser()->getURLPath(),
-                ]));
                 //$controller->$method();
                 call_user_func([$controller, $method]);
             }
         } else {
-            Http\Runtime::abort(
-                Http\Errors::NOT_FOUND,
-                'debug=file='.Http::browser()->getURLPath(),
-                'debug=location='.Http::browser()::getVisitedPage(),
+            throw new Exceptions\RuntimeException\NotFoundException(
+                Registry::Browser()->getURLPath(). " not found"
             );
         }//end if
     }//end run()

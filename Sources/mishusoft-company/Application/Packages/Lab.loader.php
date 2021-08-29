@@ -1,38 +1,38 @@
 <?php
 
-use Mishusoft\Framework\Chipsets\Storage;
-use Mishusoft\Framework\Chipsets\System;
-use Mishusoft\Framework\Chipsets\System\Memory;
-use Mishusoft\Framework\Chipsets\System\Device;
-use Mishusoft\Framework\Chipsets\System\Network;
-use Mishusoft\Framework\Chipsets\Ui;
-use Mishusoft\Framework\Chipsets\Utility\_Array;
-use Mishusoft\Framework\Chipsets\Utility\_String;
+use Mishusoft\Storage;
+use Mishusoft\System;
+use Mishusoft\System\Memory;
+use Mishusoft\System\Device;
+use Mishusoft\System\Network;
+use Mishusoft\Ui;
+use Mishusoft\Utility\ArrayCollection as Arr;
+use Mishusoft\Utility\Inflect;
 
 (static function () {
     System::activate();
 
-    if (_Array::value(System::$event, 'type') === 'success' && _Array::value(System::$event, 'message') === 'ok') {
-        $registry          = Mishusoft\Framework\Drivers\Registry::getInstance();
-        $registry->request = new Mishusoft\Framework\Chipsets\Http\ClientRequest();
-        $registry->acl     = new Mishusoft\Framework\Drivers\Acl();
+    if (Arr::value(System::$event, 'type') === 'success' && Arr::value(System::$event, 'message') === 'ok') {
+        $registry          = Mishusoft\Registry::getInstance();
+        $registry->request = new Mishusoft\Http\Request\Classic();
+        $registry->acl     = new Mishusoft\Drivers\Acl();
 
         // check activation database
         if (Memory::Data('mpm')->config->database->activation) {
             // declare database info as constants
-            define('DbHOST', Memory::Data('config')->db->host);
-            define('DbPORT', Memory::Data('config')->db->port);
-            define('DbUSER', Memory::Data('config')->db->user);
-            define('DbPASS', Memory::Data('config')->db->password);
-            define('DbNAME', Memory::Data('config')->db->name);
-            define('DbCHAR', Memory::Data('config')->db->char);
-            define('DbPREFIX', Memory::Data('config')->db->prefix);
+            define('DB_HOST', Memory::Data('config')->db->host);
+            define('DB_PORT', Memory::Data('config')->db->port);
+            define('DB_USER', Memory::Data('config')->db->user);
+            define('DB_PASS', Memory::Data('config')->db->password);
+            define('DB_NAME', Memory::Data('config')->db->name);
+            define('DB_CHAR', Memory::Data('config')->db->char);
+            define('DB_PREFIX', Memory::Data('config')->db->prefix);
 
             // instance Databases connection
-            $registry->db = new Mishusoft\Framework\Drivers\Database(DbHOST, DbNAME, DbUSER, DbPASS, DbCHAR);
+            $registry->db = new Mishusoft\Drivers\Database(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_CHAR);
         } else {
             // instance Databases connection
-            $registry->db = new Mishusoft\Framework\Drivers\Database(
+            $registry->db = new Mishusoft\Drivers\Database(
                 Memory::Data('config')->db->host,
                 Memory::Data('config')->db->name,
                 Memory::Data('config')->db->user,
@@ -42,12 +42,12 @@ use Mishusoft\Framework\Chipsets\Utility\_String;
         }//end if
 
         // init application
-        Mishusoft\Framework\Drivers\Bootstrap\MVC_Classic::run($registry->request);
+        Mishusoft\Drivers\Bootstrap\Classic::run($registry->request);
     } else {
         System::setProgressStep();
-        if (!in_array(_Array::value(System::$event, 'message'), System::getExcludeErrors())) {
+        if (!in_array(Arr::value(System::$event, 'message'), System::getExcludeErrors())) {
             Ui::HtmlInterface(
-                ucfirst(_Array::value(System::$event, 'type')),
+                ucfirst(Arr::value(System::$event, 'type')),
                 function ($html, $head) {
                     // add meta tags
                     Ui::element($head, 'meta', ['id' => 'mishusoft-web-root', 'name' => 'root', 'content' => Memory::Data('framework')->host->url]);
@@ -130,7 +130,7 @@ use Mishusoft\Framework\Chipsets\Utility\_String;
                     );
 
                     // set id attribute for title
-                    Ui::_setAttributes($title, ['id' => 'app-title']);
+                    Ui::setAttributes($title, ['id' => 'app-title']);
 
                     // add embedded css file in head area
                     Ui::text(Ui::element($head, 'style', ['type' => 'text/css']), 'body{height: 700px;width: 100%;display: flex;justify-content: center;align-items: center;}.app-loader{cursor: progress;width: 125px;height: 125px;-webkit-border-radius: 30px;border-radius: 30px;} .app-initial-setup-box {position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);box-sizing: border-box;border-radius: 5px;-webkit-border-radius: 5px;-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);}.app-description-text{font-size: 15px;line-height: 1.5;margin-bottom: 10px;}');

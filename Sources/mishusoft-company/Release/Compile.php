@@ -74,7 +74,7 @@ class Compile extends FileSystem
     public const PACKAGE_NAME_FULL = 'Mishusoft Release Manager';
     public const PACKAGE_VERSION   = '0.2';
     public const CURRENT_YEAR      = CURRENT_YEAR;
-    public const FILE_BASE_NAME    = FILE_BASE_NAME;
+    public const FILE_BASE_NAME    = 'cli';
     public const PACKAGE_COMPANY   = 'Mishusoft Systems Incorporated';
 
 
@@ -92,14 +92,14 @@ class Compile extends FileSystem
     {
         echo self::PACKAGE_NAME.' version '.self::PACKAGE_VERSION.' (PHP '.PHP_VERSION.')'.PHP_EOL;
         echo 'Copyright '.self::CURRENT_YEAR.' (c) '.self::PACKAGE_COMPANY.''.PHP_EOL.PHP_EOL;
-        echo 'Usage:\t php '.self::FILE_BASE_NAME.' [options] [-s] <location> [-d] <location>'.PHP_EOL;
-        echo '\t php '.self::FILE_BASE_NAME.' [-c] [-s] <location> [-d] <location>'.PHP_EOL;
-        echo '\t php '.self::FILE_BASE_NAME.' [-t] [-s] <location> [-d] <location>'.PHP_EOL;
-        echo '\t php '.self::FILE_BASE_NAME.' [-tc] [-s] <location> [-d] <location>'.PHP_EOL;
-        echo '\t php '.self::FILE_BASE_NAME.' [-sp] [-s] <location> [-d] <location>'.PHP_EOL;
-        echo '\t php '.self::FILE_BASE_NAME.' [-spc] [-s] <location> [-d] <location>'.PHP_EOL;
-        echo '\t php '.self::FILE_BASE_NAME.' [-u] '.PHP_EOL;
-        echo '\t php '.self::FILE_BASE_NAME.' [-h] '.PHP_EOL.PHP_EOL;
+        echo 'Usage:\t php cli [options] [-s] <location> [-d] <location>'.PHP_EOL;
+        echo '\t php cli [-c] [-s] <location> [-d] <location>'.PHP_EOL;
+        echo '\t php cli [-t] [-s] <location> [-d] <location>'.PHP_EOL;
+        echo '\t php cli [-tc] [-s] <location> [-d] <location>'.PHP_EOL;
+        echo '\t php cli [-sp] [-s] <location> [-d] <location>'.PHP_EOL;
+        echo '\t php cli [-spc] [-s] <location> [-d] <location>'.PHP_EOL;
+        echo '\t php cli [-u] '.PHP_EOL;
+        echo '\t php cli [-h] '.PHP_EOL.PHP_EOL;
         // End of uses.
         // This function has been built.
         echo 'Information about options'.PHP_EOL;
@@ -566,15 +566,6 @@ class Compile extends FileSystem
     }//end writeFile()
 
 
-    /**
-     * @param string $source
-     * @param string $lebel
-     * @param string $version
-     */
-    private function convert(string $source, string $lebel = 'latest', string $version = '8'): void
-    {
-    }//end convert()
-
 
     /**
      * With this function You can compress Your PHP source code.
@@ -929,7 +920,7 @@ class Compile extends FileSystem
                                         [
                                             'update' => new \CURLFile(
                                                 $filename,
-                                                Storage\Media::getMimeContent($filename),
+                                                Storage\Media::mimeContent($filename),
                                                 pathinfo($filename, PATHINFO_BASENAME)
                                             ),
                                         ]

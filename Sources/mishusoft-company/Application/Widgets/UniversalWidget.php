@@ -5,7 +5,7 @@ namespace App\Widgets;
 
 use DOMElement;
 use DOMNode;
-use Mishusoft\Http;
+use Mishusoft\Registry;
 use Mishusoft\Storage;
 use Mishusoft\Ui;
 use Mishusoft\Http\Runtime;
@@ -57,7 +57,7 @@ class UniversalWidget
         );
 
         // Collect navigation url list.
-        $urlPath = Http::browser()->getURLPath();
+        $urlPath = Registry::Browser()->getURLPath();
         $webRoot = Storage::applicationWebDirectivePath();
         if (str_starts_with($urlPath, $webRoot)) {
             $urlPath = substr($urlPath, strlen($webRoot));

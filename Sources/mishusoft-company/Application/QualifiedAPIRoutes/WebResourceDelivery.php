@@ -13,7 +13,7 @@ use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Exceptions\RuntimeException\NotFoundException;
-use Mishusoft\Http;
+use Mishusoft\Registry;
 use Mishusoft\Storage;
 use Mishusoft\MPM;
 use Mishusoft\System\Memory;
@@ -440,14 +440,14 @@ class WebResourceDelivery
         (new UniversalWidget($templateBody))->breadcrumb();
 
         // optimize web link
-        $visitedUrl = Inflect::lower(Http::browser()::getVisitedPage());
+        $visitedUrl = Inflect::lower(Registry::Browser()::getVisitedPage());
         if ($visitedUrl[(strlen($visitedUrl) - 1)] !== '/') {
-            $parentURL = Inflect::lower(Http::browser()::getVisitedPage()) . '/';
+            $parentURL = Inflect::lower(Registry::Browser()::getVisitedPage()) . '/';
         } else {
-            $parentURL = Inflect::lower(Http::browser()::getVisitedPage());
+            $parentURL = Inflect::lower(Registry::Browser()::getVisitedPage());
         }
 
-        // add media Http::browser()
+        // add media Registry::Browser()
         $table = Ui::element(
             $templateBody,
             'table',

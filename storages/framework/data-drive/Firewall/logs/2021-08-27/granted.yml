@@ -1165,4 +1165,52 @@
       status: granted
       component: browser
       visit-time: "2021-08-27 06:40:55"
+    "2021-08-27 13:52:57":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-27 13:52:57"
+    "2021-08-27 13:54:28":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-27 13:54:28"
+    "2021-08-27 13:56:24":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-27 13:56:24"
+    "2021-08-27 13:56:43":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+        Chrome/92.0.4515.131 Safari/537.36 OPR/78.0.4093.147
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-08-27 13:56:43"
 ...
