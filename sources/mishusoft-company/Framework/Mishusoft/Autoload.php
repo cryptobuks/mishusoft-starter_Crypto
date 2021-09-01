@@ -23,9 +23,6 @@ class Autoload
      * Automatically load all required classes.
      *
      * @return void
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
      */
     public static function register(): void
     {
