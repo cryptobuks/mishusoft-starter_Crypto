@@ -115,8 +115,7 @@ const commonFileConfig = {
         browser: './Assets/typescripts/mishusoft/browser.ts',
         monitor: './Assets/typescripts/tracker.ts',
 
-        // Worker (Web Application and Service) framework
-        // 'pwa': ['./Assets/typescripts/pwa.ts'], /*build serviceworker module for background mode support*/
+        // Worker (Web Service) framework
         sw: './Assets/typescripts/service-worker.ts', /*build serviceworker module for background mode support*/
 
 
@@ -172,12 +171,11 @@ const prodConfig = {
             new CssMinimizerPlugin()
         ],
     },
-    // plugins: [
-    //     ...commonFileConfig.plugins,
-    //     new JavaScriptObfuscator({
-    //         rotateStringArray: true
-    //     })
-    // ]
+    plugins: [
+        new JavaScriptObfuscator({
+            rotateStringArray: true
+        })
+    ]
 }
 
 const testConfig = {
