@@ -1,6 +1,6 @@
 <?php
 
-namespace Mishusoft\Drivers\Bootstrap;
+namespace Mishusoft\Authentication\Bootstrap;
 
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Http\Request;

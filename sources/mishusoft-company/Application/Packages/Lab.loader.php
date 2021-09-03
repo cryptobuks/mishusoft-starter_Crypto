@@ -14,8 +14,7 @@ use Mishusoft\Utility\Inflect;
 
     if (Arr::value(System::$event, 'type') === 'success' && Arr::value(System::$event, 'message') === 'ok') {
         $registry          = Mishusoft\Registry::getInstance();
-        $registry->request = new Mishusoft\Http\Request\Classic();
-        $registry->acl     = new Mishusoft\Drivers\Acl();
+        $registry->acl     = new Mishusoft\Authentication\Acl();
 
         // check activation database
         if (Memory::Data('mpm')->config->database->activation) {
@@ -29,10 +28,10 @@ use Mishusoft\Utility\Inflect;
             define('DB_PREFIX', Memory::Data('config')->db->prefix);
 
             // instance Databases connection
-            $registry->db = new Mishusoft\Drivers\Database(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_CHAR);
+            $registry->db = new Mishusoft\Authentication\Database(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_CHAR);
         } else {
             // instance Databases connection
-            $registry->db = new Mishusoft\Drivers\Database(
+            $registry->db = new Mishusoft\Authentication\Database(
                 Memory::Data('config')->db->host,
                 Memory::Data('config')->db->name,
                 Memory::Data('config')->db->user,
@@ -42,7 +41,7 @@ use Mishusoft\Utility\Inflect;
         }//end if
 
         // init application
-        Mishusoft\Drivers\Bootstrap\Classic::run($registry->request);
+        Mishusoft\Authentication\Bootstrap\Classic::run($registry->requestClassic);
     } else {
         System::setProgressStep();
         if (!in_array(Arr::value(System::$event, 'message'), System::getExcludeErrors())) {

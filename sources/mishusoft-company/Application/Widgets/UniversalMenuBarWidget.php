@@ -3,7 +3,7 @@
 
 namespace App\Widgets;
 
-use Mishusoft\Drivers\Widget;
+use Mishusoft\Authentication\Widget;
 
 class UniversalMenuBarWidget extends Widget
 {

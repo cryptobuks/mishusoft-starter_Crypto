@@ -2,6 +2,7 @@
 
 namespace Mishusoft\Drivers;
 
+use Mishusoft\Authentication\Acl;
 use Mishusoft\Exceptions;
 use Mishusoft\Preloader;
 use Mishusoft\Registry;
@@ -24,8 +25,9 @@ abstract class Widget implements WidgetInterface
      */
     public function __construct()
     {
-        $this->registry = Registry::getInstance();
-        $this->acl      = $this->registry->acl;
+        $this->registry         = Registry::getInstance();
+        $this->registry->acl    =  new Acl();
+        $this->acl              =  $this->registry->acl;
     }//end __construct()
 
 

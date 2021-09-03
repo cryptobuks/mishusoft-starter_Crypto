@@ -6,7 +6,7 @@ use Mishusoft\Services\SEOToolKitService;
 use Mishusoft\System\Log;
 use Mishusoft\System\Memory;
 use Mishusoft\Ui;
-use Mishusoft\Drivers\Session;
+use Mishusoft\Authentication\Session;
 use Mishusoft\Utility\Inflect;
 
 Log::info('mishusoft.php template is running..');

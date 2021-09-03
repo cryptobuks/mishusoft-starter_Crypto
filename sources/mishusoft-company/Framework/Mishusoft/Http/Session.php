@@ -1,9 +1,7 @@
 <?php
 
-namespace Mishusoft\Drivers;
+namespace Mishusoft\Http;
 
-use GeoIp2\Exception\AddressNotFoundException;
-use MaxMind\Db\Reader\InvalidDatabaseException;
 use Mishusoft\Exceptions\ErrorException;
 use Mishusoft\Exceptions\HttpException\HttpResponseException;
 use Mishusoft\Exceptions\JsonException;
@@ -12,7 +10,6 @@ use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Storage;
 use Mishusoft\Storage\FileSystem;
-use Mishusoft\Http\Runtime;
 use Mishusoft\Utility\ArrayCollection;
 
 class Session
@@ -34,17 +31,8 @@ class Session
             FileSystem::makeDirectory(Storage::frameworkSessionsPath());
         }
         session_save_path(Storage::frameworkSessionsPath());
-        /*chmod(TempFolder .'sessions',0777);*/
         session_cache_expire(600);
-        /*ensure permission for current session file*/
-        /*if (!file_exists(TempFolder .'sessions' . DS . session_name())){
-            fopen(TempFolder .'sessions' . DS . session_name(), 0777);
-        }
-        if (!is_readable(TempFolder .'sessions' . DS . session_name())){
-            chmod(TempFolder .'sessions' . DS . session_name(), 0777);
-        }*/
         session_start();
-        //session_id(uniqid());
         if ((self::get('auth') === true)
             && self::get('RememberMe') === false) {
             self::sessionTime();
@@ -109,6 +97,9 @@ class Session
         }
     }
 
+    /**
+     * @param array|string $value
+     */
     public static function destroy(array|string $value = []): void
     {
         if ($value) {
@@ -141,7 +132,7 @@ class Session
      * @param string $level
      * @throws PermissionRequiredException
      */
-    public static function access(string $level)
+    public static function access(string $level): void
     {
         if (!self::get('auth')) {
             throw new PermissionRequiredException('You have no permission to access the requested url!!');
@@ -180,9 +171,7 @@ class Session
      * @return bool
      * @throws ErrorException
      * @throws JsonException
-     * @throws AddressNotFoundException
      * @throws \JsonException
-     * @throws InvalidDatabaseException
      * @throws HttpResponseException
      * @throws InvalidArgumentException
      * @throws PermissionRequiredException

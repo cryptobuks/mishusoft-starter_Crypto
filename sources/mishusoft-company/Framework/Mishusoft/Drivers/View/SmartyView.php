@@ -3,42 +3,26 @@
 namespace Mishusoft\Drivers\View;
 
 use Exception;
-use Mishusoft\FileSystem;
-use Mishusoft\Http\ClientRequest;
+use Mishusoft\Storage\FileSystem;
+use Mishusoft\Http\Request\Classic as Request;
+use Mishusoft\Http\Session;
 use Mishusoft\Storage;
 use Mishusoft\MPM;
 use Mishusoft\Preloader;
-use Mishusoft\Ui\Firewall;
-use Mishusoft\Ui\Network;
-use Mishusoft\Drivers\Acl;
-use Mishusoft\Drivers\Session;
+use Mishusoft\System\Firewall;
+use Mishusoft\System\Network;
+use Mishusoft\Authentication\Acl;
 use SmartyBC;
 use SmartyException;
-
-if (file_exists(RUNTIME_ROOT_PATH.'vendor/smarty/smarty/libs/SmartyBC.class.php') === true) {
-    include_once RUNTIME_ROOT_PATH.'vendor/smarty/smarty/libs/SmartyBC.class.php';
-} else {
-    Firewall::runtimeFailure(
-        'Not Found',
-        [
-            'debug' => [
-                'file'        => 'vendor/smarty/smarty/libs/SmartyBC.class.php',
-                'location'    => RUNTIME_ROOT_PATH.'vendor/smarty/smarty/libs/SmartyBC.class.php',
-                'description' => 'Required Smarty Template Engine Library not found.',
-            ],
-            'error' => ['description' => 'Your requested url is broken!!'],
-        ]
-    );
-}
 
 class SmartyView extends SmartyBC
 {
 
     private static string $item = '';
 
-    private ClientRequest $request;
+    private Request $request;
 
-    private array $_js = [];
+    //private array $_js = [];
 
     private Acl $acl;
 
@@ -54,10 +38,10 @@ class SmartyView extends SmartyBC
     /**
      * View constructor.
      *
-     * @param ClientRequest $prediction
+     * @param Request $prediction
      * @param Acl           $acl
      */
-    public function __construct(ClientRequest $prediction, Acl $acl)
+    public function __construct(Request $prediction, Acl $acl)
     {
         parent::__construct();
         $this->request = $prediction;

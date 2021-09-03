@@ -11,7 +11,7 @@ class CLI extends BIOS
     {
         self::singleton(function ($registry) {
             $registry->requestCli = new Request();
-            \Mishusoft\Drivers\Bootstrap\Cli::run(new $registry->requestCli);
+            \Mishusoft\Authentication\Bootstrap\Cli::run(new $registry->requestCli);
         });
     }
 }

@@ -4,7 +4,7 @@ namespace App\Widgets\Models;
 
 use Mishusoft\Databases\PdoMySQL;
 use Mishusoft\System;
-use Mishusoft\Drivers\Model;
+use Mishusoft\Authentication\Model;
 
 class menuModelWidget extends Model
 {

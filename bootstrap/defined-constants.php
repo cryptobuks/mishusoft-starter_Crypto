@@ -15,8 +15,10 @@ const HASH_KEY = '57c1d48ba721a';
 const HASH_KEY_OPENSSL = 'bRuD5WYw5wd0rdHR9yLlM6wt2vteuiniQBqE70nAuhU';
 
 // Database info.
-const APPLICATION_SYSTEM_USER_NAME = 'superuser';
+const APPLICATION_SYSTEM_USER_NAME = 'msu_superuser';
 const APPLICATION_SYSTEM_USER_PASSWORD = 'superuser';
+const MS_DB_USER_NAME = APPLICATION_SYSTEM_USER_NAME;
+const MS_DB_USER_PASSWORD = APPLICATION_SYSTEM_USER_PASSWORD;
 
 const PREG_QUOTE_DEFAULT_SEPARATOR = '/@#~';
 
@@ -38,7 +40,8 @@ const LOG_TYPE_RUNTIME = 'runtime';
 define('CURRENT_YEAR', date('Y'));
 define('RUNTIME_ROOT_PATH', realpath(dirname(__DIR__)) . DS);
 
-const FRAMEWORK_PATH = RUNTIME_ROOT_PATH . 'framework' . DS;
+const FRAMEWORK_PATH = RUNTIME_ROOT_PATH . 'sources' . DS. 'mishusoft-company' . DS. 'Framework' . DS;
+//const FRAMEWORK_PATH = RUNTIME_ROOT_PATH . 'framework' . DS;
 const APPLICATION_SYSTEM_TEMP_PATH = RUNTIME_ROOT_PATH . 'tmp' . DS;
 
 

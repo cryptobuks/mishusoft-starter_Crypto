@@ -5,7 +5,7 @@
 use Mishusoft\Exceptions\Handler;
 
 set_error_handler(
-    static function ($number, $message, $file, $line, $errcontext = false) {
+    static function ($number, $message, $file, $line) {
         include_once FRAMEWORK_PATH . 'Mishusoft' . DS. 'Utility' . DS . 'Number.php';
         include_once FRAMEWORK_PATH . 'Mishusoft' . DS. 'Exceptions' . DS . 'Handler.php';
         echo sprintf("%s:: %s in file %s on line %d\n", Handler::codeToName($number), $message, $file, $line);

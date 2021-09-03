@@ -9,12 +9,10 @@ use Mishusoft\Storage;
 abstract class CliSurfaceController
 {
     protected Cli\Request $request;
-    private Registry $registry;
 
     public function __construct()
     {
-        $this->registry = Registry::getInstance();
-        $this->request = $this->registry->requestCli;
+        $this->request = Registry::requestCli();
     }
 
     abstract protected function run():void;

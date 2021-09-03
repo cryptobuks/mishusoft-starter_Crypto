@@ -1,2 +1,2 @@
 <?php
- namespace App\Widgets;use Mishusoft\Drivers\Widget;class SocialNetworkShareWidget extends Widget{public function getSocialNetworkShare(string $name,string $view,string $format='phtml',$inverse=null,$siteInfo=null):bool|string{$data['name']=$name;return $this->render($name,$view,$data,$format);}}
+ namespace App\Widgets;use Mishusoft\Authentication\Widget;class SocialNetworkShareWidget extends Widget{public function getSocialNetworkShare(string $name, string $view, string $format='phtml', $inverse=null, $siteInfo=null):bool|string{$data['name']=$name;return $this->render($name,$view,$data,$format);}}

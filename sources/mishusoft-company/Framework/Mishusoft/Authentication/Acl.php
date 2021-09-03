@@ -1,9 +1,10 @@
 <?php
 
-namespace Mishusoft\Drivers;
+namespace Mishusoft\Authentication;
 
 use Mishusoft\Databases\MishusoftSQLStandalone;
-use Mishusoft\Ui\Firewall;
+use Mishusoft\Http\Session;
+use Mishusoft\Exceptions\HttpException\HttpRequestException;
 use Mishusoft\Utility\ArrayCollection;
 use Mishusoft\Databases\MishusoftSQLStandalone\TableInterface;
 use Mishusoft\Migration\DB;
@@ -13,21 +14,23 @@ class Acl
     /**
      * @var TableInterface|mixed
      */
-    private static $conOfDatabase;
+    private static mixed $conOfDatabase;
     private int $id;
     private ?int $role;
     private array $permissions;
 
+    /**
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws \Mishusoft\Exceptions\DbException
+     */
     public function __construct($id = false)
     {
         if ($id) {
             $this->id = (int)$id;
+        } elseif (Session::get('userId')) {
+            $this->id = Session::get('userId');
         } else {
-            if (Session::get('userId')) {
-                $this->id = Session::get('userId');
-            } else {
-                $this->id = 0;
-            }
+            $this->id = 0;
         }
 
         self::$conOfDatabase = (new MishusoftSQLStandalone(MS_DB_USER_NAME, MS_DB_USER_PASSWORD))->select('system');
@@ -41,21 +44,21 @@ class Acl
     public function getPermissionsRole(): array
     {
         $permissions = $this->getPermissionsOfRole((int)$this->role);
-        $data = array();
+        $data = [];
 
-        for ($i = 0; $i < count($permissions); $i++) {
-            $key = $this->getKeyOfPermission((int)$permissions[$i]['permission']);
+        foreach ($permissions as $iValue) {
+            $key = $this->getKeyOfPermission((int)$iValue['permission']);
             if ($key === '') {
                 continue;
             }
 
-            $data[$key] = array(
+            $data[$key] = [
                 'key' => $key,
-                'permission' => $this->getNameOfPermission((int)$permissions[$i]['permission']),
-                'value' => $this->checkPermissionValue($permissions[$i]['value']),
+                'permission' => $this->getNameOfPermission((int)$iValue['permission']),
+                'value' => $this->checkPermissionValue($iValue['value']),
                 'inherit' => true,
-                'id' => $permissions[$i]['permission']
-            );
+                'id' => $iValue['permission'],
+            ];
         }
 
         return $data;
@@ -64,14 +67,10 @@ class Acl
 
     public function checkPermissionValue($value): bool
     {
-        if ($value === (int)'1') {
-            return true;
-        } else {
-            return false;
-        }
+        return $value === (int)'1';
     }
 
-    public function compilerAcl()
+    public function compilerAcl(): void
     {
         $this->permissions = array_merge(
             $this->permissions,
@@ -82,30 +81,30 @@ class Acl
     public function getPermissionsUser(): array
     {
         $ids = $this->getIdFromPermissionsRole();
-        $permissions = array();
+        $permissions = [];
 
         if (count($ids) > 0) {
             foreach ($ids as $id) {
                 if (count($this->getAllPermissionsOfUser((int)$this->id, (int)$id)) > 0) {
-                    $permissions = array_merge($permissions, $this->getAllPermissionsOfUser((int)$this->id, (int)$id));
+                    $permissions[] = $this->getAllPermissionsOfUser((int)$this->id, (int)$id);
                 }
             }
         }
 
-        $data = array();
-        for ($i = 0; $i < count($permissions); $i++) {
-            $key = $this->getKeyOfPermission((int)$permissions[$i]['permission']);
-            if ($key == '') {
+        $data = [];
+        foreach ($permissions as $iValue) {
+            $key = $this->getKeyOfPermission((int)$iValue['permission']);
+            if ($key === '') {
                 continue;
             }
 
-            $data[$key] = array(
+            $data[$key] = [
                 'key' => $key,
-                'permission' => $this->getNameOfPermission((int)$permissions[$i]['permission']),
-                'value' => $this->checkPermissionValue($permissions[$i]['value']),
+                'permission' => $this->getNameOfPermission((int)$iValue['permission']),
+                'value' => $this->checkPermissionValue($iValue['value']),
                 'inherit' => false,
-                'id' => $permissions[$i]['permission']
-            );
+                'id' => $iValue['permission'],
+            ];
         }
 
         return $data;
@@ -114,25 +113,29 @@ class Acl
     public function getIdFromPermissionsRole(): array
     {
         $ids = $this->getPermissionFromPermissionsOfRole((int)$this->role);
-        $id = array();
-        for ($i = 0; $i < count($ids); $i++) {
-            $id[] = $ids[$i]['permission'];
+        $id = [];
+        foreach ($ids as $iValue) {
+            $id[] = $iValue['permission'];
         }
         return $id;
     }
 
-    public function access($key)
+    /**
+     * @throws HttpRequestException
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws \JsonException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\JsonException
+     */
+    public function access($key): void
     {
         if ($this->permission($key)) {
             Session::sessionTime();
         } else {
-            Firewall::runtimeFailure(
-                "Forbidden",
-                [
-                    "debug" => ["file" => "NO-FILE-INTERNAL-MATTER", "location" => 'Action file', "description" => "You have no permission to access the requested url!!"],
-                    "error" => ["description" => "You have no permission to access the requested url!!"]
-                ]
-            );
+            throw new HttpRequestException('You have no permission to access the requested url!!');
         }
     }
 
@@ -158,7 +161,9 @@ class Acl
      */
     private function getRole(int $idNumber): ?string
     {
-        return (int) _Array::value(self::$conOfDatabase->read(DB::USERS_LIST_TABLE)->get(["data" => ["get" => ["role"], "where" => ["id" => "{$idNumber}"]]]), "role");
+        return (int)ArrayCollection::value(self::$conOfDatabase->read(DB\Table::USERS_LIST)->get(
+            ["data" => ["get" => ["role"], "where" => ["id" => "{$idNumber}"]]]
+        ), "role");
     }
 
     /**
@@ -167,7 +172,9 @@ class Acl
      */
     private function getPermissionsOfRole(int $roleNumber): array
     {
-        return self::$conOfDatabase->read(DB::PERMISSIONS_OF_ROLES_LIST_TABLE)->get(["data" => ["get" => "*", "where" => ["role" => "{$roleNumber}"]]]);
+        return self::$conOfDatabase->read(DB\Table::PERMISSIONS_OF_ROLES_LIST)->get(
+            ["data" => ["get" => "*", "where" => ["role" => "{$roleNumber}"]]]
+        );
     }
 
     /**
@@ -176,7 +183,9 @@ class Acl
      */
     private function getPermissionFromPermissionsOfRole(int $roleNumber): array
     {
-        return self::$conOfDatabase->read(DB::PERMISSIONS_OF_ROLES_LIST_TABLE)->get(["data" => ["get" => ["permission"], "where" => ["role" => "{$roleNumber}"]]]);
+        return self::$conOfDatabase->read(DB\Table::PERMISSIONS_OF_ROLES_LIST)->get(
+            ["data" => ["get" => ["permission"], "where" => ["role" => "{$roleNumber}"]]]
+        );
     }
 
     /**
@@ -186,7 +195,9 @@ class Acl
      */
     private function getAllPermissionsOfUser(int $roleNumber, int $permissionId): array
     {
-        return self::$conOfDatabase->read(DB::PERMISSIONS_OF_ROLES_LIST_TABLE)->get(["data" => ["get" => "*", "where" => ["role" => "{$roleNumber}","permission" => "{$permissionId}"]]]);
+        return self::$conOfDatabase->read(DB\Table::PERMISSIONS_OF_ROLES_LIST)->get(
+            ["data" => ["get" => "*", "where" => ["role" => "{$roleNumber}", "permission" => "{$permissionId}"]]]
+        );
     }
 
     /**
@@ -195,7 +206,9 @@ class Acl
      */
     private function getKeyOfPermission(int $idNumberOfPermission): ?string
     {
-        return _Array::value(self::$conOfDatabase->read(DB::PERMISSIONS_LIST_TABLE)->get(["data" => ["get" => ["key"], "where" => ["id" => "{$idNumberOfPermission}"]]]), "key");
+        return ArrayCollection::value(self::$conOfDatabase->read(DB\Table::PERMISSIONS_LIST)->get(
+            ["data" => ["get" => ["key"], "where" => ["id" => "{$idNumberOfPermission}"]]]
+        ), "key");
     }
 
     /**
@@ -204,7 +217,9 @@ class Acl
      */
     private function getNameOfPermission(int $idNumberOfPermission): ?string
     {
-        return _Array::value(self::$conOfDatabase->read(DB::PERMISSIONS_LIST_TABLE)->get(["data" => ["get" => ["permission"], "where" => ["id" => "{$idNumberOfPermission}"]]]), "key");
+        return ArrayCollection::value(self::$conOfDatabase->read(DB\Table::PERMISSIONS_LIST)->get(
+            ["data" => ["get" => ["permission"], "where" => ["id" => "{$idNumberOfPermission}"]]]
+        ), "key");
     }
 
 

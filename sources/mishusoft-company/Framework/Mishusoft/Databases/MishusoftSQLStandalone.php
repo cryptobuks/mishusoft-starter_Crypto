@@ -82,7 +82,7 @@ class MishusoftSQLStandalone extends MishusoftSQLStandalone\CommonDependency imp
                 }
             }
             if (!$inRecord) {
-                throw new DbException("$this->username is not registered user.");
+                throw new DbException("$this->username is not registered user");
             }
             if (!$passwordMatched) {
                 throw new DbException("$this->password is not matched for $this->username.");
@@ -156,7 +156,7 @@ class MishusoftSQLStandalone extends MishusoftSQLStandalone\CommonDependency imp
             );
             Storage\FileSystem::makeDirectory($this->directory($database_name));
         } else {
-            throw new DbException("Databases ($database_name) is already exists.");
+            throw new DbException("Databases ($database_name) is already exists");
         }
     }
 
@@ -187,49 +187,55 @@ class MishusoftSQLStandalone extends MishusoftSQLStandalone\CommonDependency imp
                 return $this->quickRename($old_database_name, $new_database_name, 'both');
             }
 
-            throw new DbException("Databases ($old_database_name)'s data file is not exists.");
+            throw new DbException("Databases ($old_database_name)'s data file is not exists");
         }
 
-        throw new DbException("Databases ($old_database_name) is not exists.");
+        throw new DbException("Databases ($old_database_name) is not exists");
     }
 
     /**
-     * @param array|string $database_name
+     * @param array|string $name
+     * @return bool
      * @throws DbException
      * @throws InvalidArgumentException
      * @throws RuntimeException
      */
-    public function delete(array|string $database_name) : void
+    public function delete(array|string $name) : bool
     {
-        if (is_array($database_name)) {
-            foreach ($database_name as $db) {
+        $isRemoved = false;
+        if (is_array($name)) {
+            foreach ($name as $db) {
                 $this->deleteDatabase($db);
+                $isRemoved = true;
             }
         } else {
-            $this->deleteDatabase($database_name);
+            $this->deleteDatabase($name);
+            $isRemoved = true;
         }
+
+        return $isRemoved;
     }
 
 
     /**
-     * @param string $database_name
+     * @param string $name
      * @throws DbException
-     * @throws RuntimeException
      * @throws InvalidArgumentException
+     * @throws RuntimeException
      */
-    private function deleteDatabase(string $database_name): void
+    private function deleteDatabase(string $name): void
     {
-        if (in_array($database_name, $this->databasesAll, true)) {
+        if (in_array($name, $this->databasesAll, true)) {
             $properties = $this->schemaProperties();
             if (array_key_exists("databases", $properties)) {
-                $databaseIndex = array_search($database_name, $properties["databases"], true);
+                $databaseIndex = array_search($name, $properties["databases"], true);
                 unset($properties["databases"][$databaseIndex]);
             }
             $properties["databases"] = $this->sort($properties["databases"]);
             $this->writeFile($this->schemaPropertiesFile(), $properties);
-            $this->quickRemove($database_name, 'both');
+            $this->quickRemove($name, 'both');
         } else {
-            throw new DbException("Databases ($database_name) is not exists.");
+            throw new DbException("Databases ($name) is not exists");
         }
     }
 

@@ -2,7 +2,7 @@
 
 namespace App\Widgets;
 
-use Mishusoft\Drivers\Widget;
+use Mishusoft\Authentication\Widget;
 use App\Widgets\Models\menuModelWidget;
 
 class MenuWidget extends Widget

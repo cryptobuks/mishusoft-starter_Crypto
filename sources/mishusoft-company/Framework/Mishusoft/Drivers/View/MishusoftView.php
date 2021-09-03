@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 
-namespace Mishusoft\Drivers\View;
+namespace Mishusoft\Authentication\View;
 
 use Mishusoft\Base;
 use Mishusoft\Exceptions\LogicException\InvalidArgumentException;

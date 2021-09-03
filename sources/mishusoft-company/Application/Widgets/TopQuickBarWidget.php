@@ -9,15 +9,13 @@ class TopQuickBarWidget extends Widget
 {
 
     /**
-     * @throws \Mishusoft\Exceptions\RuntimeException
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \JsonException
-     * @throws \Mishusoft\Exceptions\ErrorException
-     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
-     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
-     * @throws \Mishusoft\Exceptions\PermissionRequiredException
-     * @throws \Mishusoft\Exceptions\JsonException
+     * @param string $name
+     * @param string $view
+     * @param string $format
+     * @param null $inverse
+     * @param null $siteInfo
+     * @return bool|string
+     * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
      */
     public function getTopQuickBar(string $name, string $view, string $format = 'phtml', $inverse = null, $siteInfo = null): bool|string
     {

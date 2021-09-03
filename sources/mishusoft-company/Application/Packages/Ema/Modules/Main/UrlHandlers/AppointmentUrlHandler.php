@@ -5,7 +5,7 @@ namespace App\Ema\Mishusoft\Main\UrlHandlers;
 
 use Mishusoft\Ui\Localization;
 use Mishusoft\Utility\ArrayCollection;
-use Mishusoft\Drivers\UrlHandler;
+use Mishusoft\Authentication\UrlHandler;
 
 class AppointmentUrlHandler extends UrlHandler
 {

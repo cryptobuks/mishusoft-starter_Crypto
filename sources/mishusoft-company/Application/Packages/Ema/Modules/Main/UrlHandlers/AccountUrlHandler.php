@@ -4,7 +4,7 @@
 namespace App\Ema\Mishusoft\Main\UrlHandlers;
 
 use Mishusoft\Ui\Localization;
-use Mishusoft\Drivers\UrlHandler;
+use Mishusoft\Authentication\UrlHandler;
 use Mishusoft\Utility\ArrayCollection;
 
 class AccountUrlHandler extends UrlHandler

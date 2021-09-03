@@ -45,6 +45,8 @@
     "update:index.html": "php cli update:indexHTML ./sources/mishusoft-company/public/app.html ./public_html/index.html",
     "update:framework": "php cli update:framework ./sources/mishusoft-company/Framework ./framework",
 
+    "update:cli": "php cli update:cli ./sources/mishusoft-company/Application/CliSurface ./app/CliSurface",
+
     "update:api": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Application/QualifiedAPIRoutes -d ./app/QualifiedAPIRoutes",
     "update:ema": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Application/Packages/Ema -d ./app/Packages/Ema",
     "update:ema.loader": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Application/Packages/Ema.loader.php -d ./app/Packages/Ema.loader.php",

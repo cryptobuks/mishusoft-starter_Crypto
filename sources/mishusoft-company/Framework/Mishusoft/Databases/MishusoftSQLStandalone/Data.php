@@ -8,6 +8,7 @@ use Mishusoft\Databases\MishusoftSQLStandalone;
 use Mishusoft\Exceptions\DbException;
 use Mishusoft\Http;
 use Mishusoft\Utility\ArrayCollection;
+use Mishusoft\Utility\JSON;
 use Mishusoft\Utility\Number;
 
 class Data implements DataInterface
@@ -35,13 +36,14 @@ class Data implements DataInterface
      * @param array $options
      * @return array
      * @throws DbException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function get(array $options): array
     {
         // TODO: Implement get() method.
         if (count($options) > 0) {
             if (is_readable($this->tableFile)) {
-                $contents = json_decode(file_get_contents($this->tableFile), true);
+                $contents = JSON::decodeToArray(file_get_contents($this->tableFile), true);
                 if (array_key_exists("data", $options)) {
                     if (ArrayCollection::value($options, "data") === "*") {
                         $this->output = $contents;
@@ -51,7 +53,8 @@ class Data implements DataInterface
                     if (!array_key_exists("get", $options) || !array_key_exists("where", $options)) {
                         MishusoftSQLStandalone::error(Http::NOT_FOUND, "Required parameter not found.");
                     }
-                    if (empty(ArrayCollection::value($options, "get")) || empty(ArrayCollection::value($options, "where"))) {
+                    if (empty(ArrayCollection::value($options, "get"))
+                        || empty(ArrayCollection::value($options, "where"))) {
                         MishusoftSQLStandalone::error(Http::NOT_FOUND, "Invalid parameter parsed.");
                     }
                     if (count($contents) > 0) {

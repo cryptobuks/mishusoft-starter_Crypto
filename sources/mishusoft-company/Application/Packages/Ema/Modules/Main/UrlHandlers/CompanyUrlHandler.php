@@ -5,7 +5,7 @@ namespace App\Ema\Mishusoft\Main\UrlHandlers;
 
 use Mishusoft\Storage;
 use Mishusoft\Ui\Localization;
-use Mishusoft\Drivers\UrlHandler;
+use Mishusoft\Authentication\UrlHandler;
 use Mishusoft\Utility\ArrayCollection;
 use Mishusoft\Utility\Inflect;
 

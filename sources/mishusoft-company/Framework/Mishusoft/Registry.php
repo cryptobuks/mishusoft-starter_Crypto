@@ -78,7 +78,7 @@ class Registry extends Singleton
         //print_r($trace, false);
         trigger_error(
             'Undefined property via __get(): ' . $name . '() in '
-            . $trace[0]['file'] . ' on line ' . $trace[0]['line'] . ' trace : ' . json_encode($trace),
+            . $trace[0]['file'] . ' on line ' . $trace[0]['line'],
             E_USER_NOTICE
         );
         return null;

@@ -3,7 +3,7 @@
 
 namespace Mishusoft\Drivers;
 
-use Mishusoft\Drivers\View\MishusoftViewInterface;
+use Mishusoft\Authentication\View\MishusoftViewInterface;
 use Mishusoft\System\Memory;
 
 abstract class UrlHandler implements UrlHandlerInterface

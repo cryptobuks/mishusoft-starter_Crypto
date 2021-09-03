@@ -5,10 +5,13 @@ namespace Mishusoft\Drivers;
 use InvalidArgumentException;
 use Mishusoft\Exceptions\RuntimeException\NotFoundException;
 use Mishusoft\Exceptions;
+use Mishusoft\Authentication\Acl;
 use Mishusoft\Drivers\View;
 use Mishusoft\Http\Request;
+use Mishusoft\Http\Session;
 use Mishusoft\MPM;
 use Mishusoft\Preloader;
+use Mishusoft\Registry;
 use Mishusoft\Storage;
 use Mishusoft\Http\Runtime;
 
@@ -24,7 +27,7 @@ abstract class Controller implements ControllerInterface
     {
         $this->registry = Registry::getInstance();
         $this->acl = $this->registry->acl;
-        $this->request = $this->registry->request;
+        $this->request = $this->registry->requestClassic;
         $this->view = new View\SmartyView($this->request, $this->acl);
         $this->javascriptEnabled = true;
     }
@@ -152,25 +155,19 @@ abstract class Controller implements ControllerInterface
     {
     }
 
+    /**
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\RuntimeException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\JsonException
+     * @throws \JsonException
+     */
     protected function accessInit(): void
     {
         if (!Session::get('auth')) {
-            $this->redirect('user/login?redirect=' . Runtime::getNextURL($_SERVER['REQUEST_URI']));
+            Runtime::redirect('user/login?redirect=' . Runtime::getNextURL($_SERVER['REQUEST_URI']));
         }
-    }
-
-    /**
-     * @param false $url
-     */
-    protected function redirect($url = false): void
-    {
-        if (!empty(trim($url))) {
-            header('location:' . BASE_URL . $url);
-            exit;
-        }
-
-        header('location:' . BASE_URL);
-        exit;
     }
 
     /**
