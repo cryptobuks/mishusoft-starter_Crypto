@@ -260,7 +260,9 @@ class FileSystem
                 self::delete($file);
             }
 
-            rmdir($target);
+            if (file_exists($target)) {
+                rmdir($target);
+            }
         }
 
         if (is_file($target) === true) {

@@ -38,6 +38,7 @@ const LOG_TYPE_RUNTIME = 'runtime';
 define('CURRENT_YEAR', date('Y'));
 define('RUNTIME_ROOT_PATH', realpath(dirname(__DIR__)) . DS);
 
+const FRAMEWORK_PATH = RUNTIME_ROOT_PATH . 'framework' . DS;
 const APPLICATION_SYSTEM_TEMP_PATH = RUNTIME_ROOT_PATH . 'tmp' . DS;
 
 

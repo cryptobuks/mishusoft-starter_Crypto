@@ -77,11 +77,11 @@ class Handler extends ErrorException implements ExceptionInterface
         }
 
         if ($this->anotherTrace !== '') {
-            $stack = $this->makeBeautifulStackTrace($this->anotherTrace);
+            $stack = self::makeBeautifulStackTrace($this->anotherTrace);
         } elseif (is_array($this->getTrace()) === true && count($this->getTrace()) > 0) {
-            $stack = $this->makeBeautifulStackTrace($this->getTrace());
+            $stack = self::makeBeautifulStackTrace($this->getTrace());
         } elseif ($this->getTraceAsString() !== '') {
-            $stack = $this->makeBeautifulStackTrace($this->getTraceAsString());
+            $stack = self::makeBeautifulStackTrace($this->getTraceAsString());
         } else {
             $stack =  ['No trace of this error could be detected.'];
         }
@@ -115,7 +115,7 @@ class Handler extends ErrorException implements ExceptionInterface
      * @param array|string $trace Error call stack.
      *
      */
-    private function makeBeautifulStackTrace(array|string $trace): array
+    public static function makeBeautifulStackTrace(array|string $trace): array
     {
         $traceArray = [];
         //when trace is array

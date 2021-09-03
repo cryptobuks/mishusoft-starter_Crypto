@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 include_once dirname(__DIR__).'/bootstrap/app.php';
 
-Mishusoft\System\Logger::write(sprintf('%s application started', __NAMESPACE__));
+\Mishusoft\System\Log::info(sprintf('%s application started', __NAMESPACE__));
 
 // BIOS initialisation.
-Mishusoft\System\BIOS::initialise();
+Mishusoft\System\BIOS\App::initialise();

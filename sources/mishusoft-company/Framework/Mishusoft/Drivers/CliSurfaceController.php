@@ -22,7 +22,7 @@ abstract class CliSurfaceController
     protected function update(string $source, string $destination):void
     {
         $this->log('Updating ' . Storage\FileSystem::realpath($source));
-        $this->copy(Storage\FileSystem::realpath($source), Storage\FileSystem::realpath($destination));
+        $this->copy(Storage\FileSystem::realpath($source), lcfirst(Storage\FileSystem::realpath($destination)));
         $this->log('Update completed..', 'completed');
     }
 
@@ -31,11 +31,6 @@ abstract class CliSurfaceController
         $this->log(sprintf('Checking source %s existence', $source), 'checking');
         if (file_exists($source)) {
             $this->log(sprintf('Checking destination %s existence', $destination), 'checking');
-            if (file_exists($destination)) {
-                $this->log(sprintf('Removing exists destination %s', $destination), 'removing');
-                Storage\FileSystem::remove($destination);
-            }
-
             $this->log(sprintf('Coping %s to %s', $source, $destination), 'coping');
             if (is_file($source)) {
                 Storage\FileSystem::copy($source, $destination);
@@ -57,7 +52,10 @@ abstract class CliSurfaceController
                 if (is_file($file) === true) {
                     $copyFile = str_replace($source, $destination, $file);
                     if (!file_exists(dirname($copyFile))) {
-                        Storage\FileSystem::makeDirectory($copyFile);
+                        Storage\FileSystem::makeDirectory(dirname($copyFile));
+                    }
+                    if (file_exists($copyFile)) {
+                        Storage\FileSystem::remove($copyFile);
                     }
                     if (copy($file, $copyFile) === true) {
                         $this->log($file.' copied!!', 'success');

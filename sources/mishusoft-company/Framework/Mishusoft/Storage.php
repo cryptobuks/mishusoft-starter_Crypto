@@ -17,7 +17,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function rootPath():string
+    public static function rootPath(): string
     {
         return parent::rootPath();
     }
@@ -25,8 +25,12 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function frameworkPath():string
+    public static function frameworkPath(): string
     {
+        if (defined('FRAMEWORK_PATH')) {
+            return FRAMEWORK_PATH;
+        }
+
         return sprintf(
             '%1$s%2$s%6$s%3$s%6$s%4$s%6$s%5$s%6$s',
             self::rootPath(),
@@ -41,7 +45,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function applicationDirectivePath():string
+    public static function applicationDirectivePath(): string
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -54,16 +58,16 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function qualifiedAPIRoutesDirectory():string
+    public static function qualifiedAPIRoutesDirectory(): string
     {
-        return self::applicationDirectivePath().'QualifiedAPIRoutes'.DS;
+        return self::applicationDirectivePath() . 'QualifiedAPIRoutes' . DS;
     }
 
 
     /**
      * @return string
      */
-    public static function emaPath():string
+    public static function emaPath(): string
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -76,7 +80,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function applicationPackagesPath():string
+    public static function applicationPackagesPath(): string
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -89,7 +93,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function applicationViewsPath():string
+    public static function applicationViewsPath(): string
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -102,7 +106,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function applicationThemesPath():string
+    public static function applicationThemesPath(): string
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -115,7 +119,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function applicationWidgetsPath():string
+    public static function applicationWidgetsPath(): string
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -128,7 +132,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function applicationWebDirectivePath():string
+    public static function applicationWebDirectivePath(): string
     {
         $rootFile = $_SERVER['PHP_SELF'];
         if (Storage\Media::getExtension($rootFile) === 'php') {
@@ -143,7 +147,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function storagesPath():string
+    public static function storagesPath(): string
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -156,7 +160,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function appStoragesPath():string
+    public static function appStoragesPath(): string
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -169,7 +173,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function assetsPath():string
+    public static function assetsPath(): string
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -182,7 +186,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function cssAssetsPath():string
+    public static function cssAssetsPath(): string
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -195,7 +199,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function jsAssetsPath():string
+    public static function jsAssetsPath(): string
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -208,7 +212,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function webfontsAssetsPath():string
+    public static function webfontsAssetsPath(): string
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -221,7 +225,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function localizationPath():string
+    public static function localizationPath(): string
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -234,7 +238,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function mediaPath():string
+    public static function mediaPath(): string
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -247,7 +251,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function imagesPath():string
+    public static function imagesPath(): string
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -261,7 +265,7 @@ class Storage extends Base
      * @param bool $isRemote
      * @return string
      */
-    public static function logosPath(bool $isRemote = false):string
+    public static function logosPath(bool $isRemote = false): string
     {
         if ($isRemote) {
             return sprintf(
@@ -282,7 +286,7 @@ class Storage extends Base
      * @param bool $isRemote
      * @return string
      */
-    public static function logosDefaultPath(bool $isRemote = false):string
+    public static function logosDefaultPath(bool $isRemote = false): string
     {
         return sprintf(
             '%1$s%2$s',
@@ -294,7 +298,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function uploadsPath():string
+    public static function uploadsPath(): string
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -307,7 +311,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function usersPicturesPath():string
+    public static function usersPicturesPath(): string
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -320,7 +324,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function usersProfilePicturesPath():string
+    public static function usersProfilePicturesPath(): string
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -333,7 +337,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function usersCoverPicturesPath():string
+    public static function usersCoverPicturesPath(): string
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -346,7 +350,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function usersBackgroundPicturesPath():string
+    public static function usersBackgroundPicturesPath(): string
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -359,7 +363,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function databasesPath():string
+    public static function databasesPath(): string
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -373,7 +377,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function frameworkStoragesPath():string
+    public static function frameworkStoragesPath(): string
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -386,7 +390,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function cachesStoragesPath():string
+    public static function cachesStoragesPath(): string
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -399,7 +403,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function dataDriveStoragesPath():string
+    public static function dataDriveStoragesPath(): string
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -412,7 +416,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function frameworkSessionsPath():string
+    public static function frameworkSessionsPath(): string
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -425,7 +429,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function logsPath():string
+    public static function logsPath(): string
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -455,7 +459,7 @@ class Storage extends Base
             $directory .= '/';
         }
 
-        return glob($directory.'*', $flags);
+        return glob($directory . '*', $flags);
     }//end explore()
 
     /**
@@ -534,19 +538,19 @@ class Storage extends Base
         return array_unique(array_values($result), SORT_ASC);
     }//end globRecursive()
 
-    public static function files(string $path):array
+    public static function files(string $path): array
     {
         return self::glob($path, GLOB_MARK);
     }
 
-    public static function allFiles(string $path):array
+    public static function allFiles(string $path): array
     {
         return self::globRecursive($path, GLOB_MARK);
     }
 
 
     /**
-     * @param  string $filename
+     * @param string $filename
      * @return string
      */
     public static function extension(string $filename): string
@@ -560,7 +564,7 @@ class Storage extends Base
      * @return array
      * @throws NotFoundException
      */
-    public static function assignableWebFavicons(bool $pwa = false):array
+    public static function assignableWebFavicons(bool $pwa = false): array
     {
         $faviconsList = [];
         $fileList = [];
@@ -578,12 +582,12 @@ class Storage extends Base
             if ($pwa === true) {
                 if (preg_match('/\d+x\d+/i', Storage\FileSystem::fileBase($imageFile)) === 1) {
                     $faviconsList[] = [
-                        'type'  => Arr::value($fileDetails, 'mime'),
-                        'sizes'  => self::imageSizeBuilder($fileDetails),
+                        'type' => Arr::value($fileDetails, 'mime'),
+                        'sizes' => self::imageSizeBuilder($fileDetails),
                         'src' => self::toDataUri(
                             'media',
-                            'logos'. DS.'default'. DS.Storage\FileSystem::fileBase($imageFile),
-                            //'remote'
+                            'logos' . DS . 'default' . DS . Storage\FileSystem::fileBase($imageFile),
+                        //'remote'
                         ),
                     ];
                 }
@@ -592,13 +596,13 @@ class Storage extends Base
                     //<link rel="apple-touch-icon" sizes="57x57" href="{logoFolder}apple-icon-57x57.png">
                     ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/apple-icon-152x152.png
                     $faviconsList[] = [
-                        'rel'  => 'apple-touch-icon',
-                        'type'  => Arr::value($fileDetails, 'mime'),
-                        'sizes'  => self::imageSizeBuilder($fileDetails),
+                        'rel' => 'apple-touch-icon',
+                        'type' => Arr::value($fileDetails, 'mime'),
+                        'sizes' => self::imageSizeBuilder($fileDetails),
                         'href' => self::toDataUri(
                             'media',
-                            'logos'. DS.'default'. DS.Storage\FileSystem::fileBase($imageFile),
-                            //'remote'
+                            'logos' . DS . 'default' . DS . Storage\FileSystem::fileBase($imageFile),
+                        //'remote'
                         ),
                     ];
                 }
@@ -606,13 +610,13 @@ class Storage extends Base
                     //<link rel="icon" type="image/png" sizes="192x192" href="{logoFolder}android-icon-192x192.png">
                     ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/android-icon-192x192.png
                     $faviconsList[] = [
-                        'rel'  => 'icon',
-                        'type'  => Arr::value($fileDetails, 'mime'),
-                        'sizes'  => self::imageSizeBuilder($fileDetails),
+                        'rel' => 'icon',
+                        'type' => Arr::value($fileDetails, 'mime'),
+                        'sizes' => self::imageSizeBuilder($fileDetails),
                         'href' => self::toDataUri(
                             'media',
-                            'logos'. DS.'default'. DS.Storage\FileSystem::fileBase($imageFile),
-                            //'remote'
+                            'logos' . DS . 'default' . DS . Storage\FileSystem::fileBase($imageFile),
+                        //'remote'
                         ),
                     ];
 
@@ -621,11 +625,11 @@ class Storage extends Base
                         //<link rel="shortcut icon" sizes="48x48" href="{logoFolder}android-icon-48x48.png">
                         ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/default/android-icon-48x48.png.png
                         $faviconsList[] = [
-                            'rel'  => 'shortcut icon',
-                            'sizes'  => self::imageSizeBuilder($fileDetails),
+                            'rel' => 'shortcut icon',
+                            'sizes' => self::imageSizeBuilder($fileDetails),
                             'href' => self::toDataUri(
                                 'media',
-                                'logos'. DS.'default'. DS.Storage\FileSystem::fileBase($imageFile)
+                                'logos' . DS . 'default' . DS . Storage\FileSystem::fileBase($imageFile)
                             ),
                         ];
                     }
@@ -637,13 +641,13 @@ class Storage extends Base
                     //<link rel="icon" type="image/vnd.microsoft.icon" sizes="16x16" href="{logoFolder}favicon.ico">
                     ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/favicon.ico
                     $faviconsList[] = [
-                        'rel'  => 'icon',
-                        'type'  => Arr::value($fileDetails, 'mime'),
-                        'sizes'  => self::imageSizeBuilder($fileDetails),
+                        'rel' => 'icon',
+                        'type' => Arr::value($fileDetails, 'mime'),
+                        'sizes' => self::imageSizeBuilder($fileDetails),
                         'href' => self::toDataUri(
                             'media',
-                            'logos'. DS.'default'. DS.Storage\FileSystem::fileBase($imageFile),
-                            //'remote'
+                            'logos' . DS . 'default' . DS . Storage\FileSystem::fileBase($imageFile),
+                        //'remote'
                         ),
                     ];
                 }
@@ -651,13 +655,13 @@ class Storage extends Base
                     //<link rel="icon" type="image/webp" sizes="16x16" href="{logoFolder}mishusoft-logo-lite.webp">
                     ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/mishusoft-logo-lite.webp
                     $faviconsList[] = [
-                        'rel'  => 'icon',
-                        'type'  => Arr::value($fileDetails, 'mime'),
-                        'sizes'  => self::imageSizeBuilder($fileDetails),
+                        'rel' => 'icon',
+                        'type' => Arr::value($fileDetails, 'mime'),
+                        'sizes' => self::imageSizeBuilder($fileDetails),
                         'href' => self::toDataUri(
                             'media',
-                            'logos'. DS.'default'. DS.Storage\FileSystem::fileBase($imageFile),
-                            //'remote'
+                            'logos' . DS . 'default' . DS . Storage\FileSystem::fileBase($imageFile),
+                        //'remote'
                         ),
                     ];
                 }
@@ -672,7 +676,7 @@ class Storage extends Base
      * @return array
      * @throws NotFoundException
      */
-    public static function assignableWebFonts():array
+    public static function assignableWebFonts(): array
     {
         $webfonts = [];
         $fileList = [];
@@ -680,7 +684,7 @@ class Storage extends Base
         $list = self::files(self::webfontsAssetsPath());
 
         foreach ($list as $item) {
-            if (in_array(self::extension($item), ['woff','woff2'])) {
+            if (in_array(self::extension($item), ['woff', 'woff2'])) {
                 $fileList[$item] = Storage\Media::imageFileInformation($item);
             }
         }
@@ -691,12 +695,12 @@ class Storage extends Base
 //                    'href' => Storage::assetsFullPath('webfonts/SourceSansPro.woff2', 'remote'),
 //                ],
             $webfonts[] = [
-                'rel'  => 'preload', 'as'  => 'font', 'crossorigin' => '',
-                'type'  => Arr::value($fileDetails, 'mime'),
+                'rel' => 'preload', 'as' => 'font', 'crossorigin' => '',
+                'type' => Arr::value($fileDetails, 'mime'),
                 'href' => self::toDataUri(
                     'assets',
-                    'webfonts'. DS.Storage\FileSystem::fileBase($file),
-                    //'remote'
+                    'webfonts' . DS . Storage\FileSystem::fileBase($file),
+                //'remote'
                 ),
             ];
         }
@@ -708,9 +712,9 @@ class Storage extends Base
      * @param array $fileDetails
      * @return string
      */
-    private static function imageSizeBuilder(array $fileDetails):string
+    private static function imageSizeBuilder(array $fileDetails): string
     {
-        return implode('x', [Arr::value($fileDetails, 0),Arr::value($fileDetails, 1)]);
+        return implode('x', [Arr::value($fileDetails, 0), Arr::value($fileDetails, 1)]);
     }
 
 
@@ -725,7 +729,8 @@ class Storage extends Base
         string $filename,
         string $feature = 'local',
         string $indicator = 'media/logos/default'
-    ): string {
+    ): string
+    {
         return self::fullPathBuilder(self::logosDefaultPath(), false, $filename, $feature, $indicator);
     }//end getLogosMediaPath()
 
@@ -740,7 +745,8 @@ class Storage extends Base
         string $filename,
         string $feature = 'local',
         string $indicator = 'media/users/'
-    ): string {
+    ): string
+    {
         return self::fullPathBuilder(self::usersPicturesPath(), false, $filename, $feature, $indicator);
     }//end getMediaPathOfUsersPhotos()
 
@@ -780,7 +786,8 @@ class Storage extends Base
         string $filename,
         string $feature = 'local',
         string $indicator = 'media/uploads/'
-    ): string {
+    ): string
+    {
         return self::fullPathBuilder(self::uploadsPath(), false, $filename, $feature, $indicator);
     }//end getMediaPathOfUploads()
 
@@ -796,7 +803,8 @@ class Storage extends Base
         string $filename,
         string $feature = 'local',
         string $indicator = 'shared/json/'
-    ): string {
+    ): string
+    {
         return self::fullPathBuilder(self::dataDriveStoragesPath(), false, $filename, $feature, $indicator);
     }//end getMediaPathOfUploads()
 
@@ -835,9 +843,9 @@ class Storage extends Base
      * @param string $path
      * @return string
      */
-    public static function makeDataUri(string $path):string
+    public static function makeDataUri(string $path): string
     {
-        return 'data:'.Storage\Media::mimeContent($path).';base64,'.base64_encode(file_get_contents($path));
+        return 'data:' . Storage\Media::mimeContent($path) . ';base64,' . base64_encode(file_get_contents($path));
     }
 
 
@@ -884,11 +892,11 @@ class Storage extends Base
         if (str_ends_with(BASE_URL, '/')) {
             return BASE_URL . $pathname;
         }
-        return BASE_URL. DS . $pathname;
+        return BASE_URL . DS . $pathname;
     }//end getWebResourcesPath()
 
 
-    private static function localize(string $filename):string
+    private static function localize(string $filename): string
     {
         return str_replace('/', DS, $filename);
     }
@@ -903,12 +911,13 @@ class Storage extends Base
      * @throws NotFoundException
      */
     private static function fullPathBuilder(
-        string $localDrive,
+        string      $localDrive,
         string|bool $remoteDrive,
-        string $filename,
-        string $feature,
+        string      $filename,
+        string      $feature,
         string|bool $pathIndicator
-    ):string {
+    ): string
+    {
 
         if (str_ends_with($localDrive, DS) === false) {
             $localDrive .= DS;
@@ -928,12 +937,12 @@ class Storage extends Base
 
         // /filename.ext
         // \filename.ext
-        if (str_starts_with($filename, '/') === true||str_starts_with($filename, '\\') === true) {
+        if (str_starts_with($filename, '/') === true || str_starts_with($filename, '\\') === true) {
             $filename = ltrim($filename, $filename[0]);
         }
 
 
-        $fileLocale = $localDrive.$filename;
+        $fileLocale = $localDrive . $filename;
 
         if (file_exists($fileLocale) === true) {
             if (Inflect::lower($feature) === 'local') {
@@ -941,7 +950,7 @@ class Storage extends Base
             }
 
             if (Inflect::lower($feature) === 'remote') {
-                return $remoteDrive.$pathIndicator.$filename;
+                return $remoteDrive . $pathIndicator . $filename;
             }
         } else {
             throw new NotFoundException(sprintf('%s is not exists', self::localize($fileLocale)));

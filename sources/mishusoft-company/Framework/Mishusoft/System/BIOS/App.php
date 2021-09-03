@@ -2,12 +2,9 @@
 
 namespace Mishusoft\System\BIOS;
 
-use GeoIp2\Exception\AddressNotFoundException;
-use MaxMind\Db\Reader\InvalidDatabaseException;
 use Mishusoft\Drivers\Bootstrap\Ema;
 use Mishusoft\Drivers\Bootstrap\QualifiedAPI;
 use Mishusoft\Drivers\Session;
-use Mishusoft\Exceptions;
 use Mishusoft\Framework;
 use Mishusoft\Http;
 use Mishusoft\Registry;
@@ -23,22 +20,10 @@ class App extends BIOS
     /**
      * BIOS initialise function.
      *
-     * @throws AddressNotFoundException
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\HttpException\HttpResponseException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws InvalidDatabaseException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
-     * @throws Exceptions\RuntimeException\NotFoundException
-     * @throws \JsonException
      */
     public static function initialise():void
     {
-        try {
-            //Bind class into Registry
-            $registry                       = Registry::getInstance();
+        self::singleton(function ($registry) {
             $registry->browser              = new Http\Browser();
             $registry->requestClassic       = new Http\Request\Classic();
             $registry->requestQualifiedAPI   = new Http\Request\QualifiedAPI();
@@ -46,7 +31,7 @@ class App extends BIOS
 
             // Communicate with framework.
             Log::info('Start framework application.');
-            Framework::init(function ($framework) {
+            Framework::init(function ($framework) use ($registry) {
                 // Instance system memory.
                 Log::info('Start system memory.');
                 Memory::enable($framework);
@@ -68,12 +53,12 @@ class App extends BIOS
                                 'contents' => sprintf(
                                     "%s for %s.",
                                     $note,
-                                    Registry::Browser()::getVisitedPage()
+                                    $registry::Browser()::getVisitedPage()
                                 ),
                             ],
                         ]);
                         Log::info(
-                            sprintf("%s for %s.", $note, Registry::Browser()::getVisitedPage()),
+                            sprintf("%s for %s.", $note, $registry::Browser()::getVisitedPage()),
                             LOG_STYLE_FULL,
                             LOG_TYPE_ACCESS
                         );
@@ -85,12 +70,12 @@ class App extends BIOS
                         /*
                          * Start special url handler [Api Url Service].
                          */
-                        QualifiedAPI::run(Registry::RequestQualifiedAPI());
+                        QualifiedAPI::run($registry::RequestQualifiedAPI());
 
                         /*
                          * Start special url handler [Embed Mishusoft Application].
                          */
-                        Ema::run(Registry::RequestQualifiedAPI());
+                        Ema::run($registry::RequestQualifiedAPI());
 
                         //execute framework core
                         $framework->execute();
@@ -101,8 +86,6 @@ class App extends BIOS
                     $firewall->defenceActivate();
                 }//end if
             });
-        } catch (\Error | \Exception $e) {
-            Exceptions\Handler::fetch($e);
-        }
+        });
     }//end initialise()
 }

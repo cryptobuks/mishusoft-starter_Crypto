@@ -7,7 +7,7 @@ namespace Mishusoft;
  * @method static Ip()
  * @method static RequestQualifiedAPI()
  */
-class Registry
+class Registry extends Singleton
 {
 
     /**
@@ -19,24 +19,6 @@ class Registry
      * @var array
      */
     private array $data;
-
-    private function __construct()
-    {
-    }//end __construct()
-
-
-    /**
-     * @return self
-     */
-    public static function getInstance(): self
-    {
-        if ((self::$instance instanceof self) === false) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
-    }//end getInstance()
-
 
     public function __get(string $name)
     {
@@ -93,9 +75,10 @@ class Registry
         }
 
         $trace = debug_backtrace();
+        //print_r($trace, false);
         trigger_error(
             'Undefined property via __get(): ' . $name . '() in '
-            . $trace[0]['file'] . ' on line ' . $trace[0]['line'],
+            . $trace[0]['file'] . ' on line ' . $trace[0]['line'] . ' trace : ' . json_encode($trace),
             E_USER_NOTICE
         );
         return null;
