@@ -1,6 +1,6 @@
 <?php
 
-namespace Mishusoft\Authentication\Bootstrap;
+namespace Mishusoft\Drivers\Bootstrap;
 
 use Mishusoft\Cli\Request;
 use Mishusoft\Exceptions;

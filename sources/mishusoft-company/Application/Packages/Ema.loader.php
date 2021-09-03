@@ -1,6 +1,6 @@
 <?php
 
-use Mishusoft\Authentication\Bootstrap\Ema;
+use Mishusoft\Drivers\Bootstrap\Ema;
 use Mishusoft\Framework;
 use Mishusoft\Http\Request;
 use Mishusoft\System\Log;

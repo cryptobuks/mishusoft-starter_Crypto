@@ -3,9 +3,7 @@
 
 namespace App\Ema\Mishusoft\Main\UrlHandlers;
 
-use Mishusoft\Ui\Localization;
-use Mishusoft\Authentication\UrlHandler;
-use Mishusoft\Utility\ArrayCollection;
+use Mishusoft\Drivers\UrlHandler;
 
 class EmergencyUrlHandler extends UrlHandler
 {
@@ -20,9 +18,7 @@ class EmergencyUrlHandler extends UrlHandler
      */
     public function response(array $prediction):void
     {
-        // _Debug::preOutput(func_get_args());
-        $translation = new Localization(ArrayCollection::value($prediction, 'locale'));
-        $view        = $this->render($translation->translate('Emergency'), $prediction);
+        $view        = $this->render('Emergency', $prediction);
         $view->display();
     }
 }

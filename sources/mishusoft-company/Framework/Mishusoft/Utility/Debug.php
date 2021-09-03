@@ -15,7 +15,7 @@ class Debug
     public static function preVarDump($argument)
     {
         echo '<pre>';
-        var_dump($argument);
+        var_dump($argument, []);
         echo '</pre>';
     }
 

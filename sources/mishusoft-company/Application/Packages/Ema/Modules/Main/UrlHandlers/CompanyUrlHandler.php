@@ -3,14 +3,16 @@
 
 namespace App\Ema\Mishusoft\Main\UrlHandlers;
 
+use Mishusoft\Databases\MishusoftSQLStandalone;
 use Mishusoft\Storage;
-use Mishusoft\Ui\Localization;
-use Mishusoft\Authentication\UrlHandler;
+use Mishusoft\System\Localization;
+use Mishusoft\Drivers\UrlHandler;
 use Mishusoft\Utility\ArrayCollection;
 use Mishusoft\Utility\Inflect;
 
 class CompanyUrlHandler extends UrlHandler
 {
+
     /**
      * @param array $prediction
      * @throws \JsonException
@@ -23,8 +25,7 @@ class CompanyUrlHandler extends UrlHandler
     public function response(array $prediction):void
     {
         // TODO: Implement Response() method.
-        $translation = new Localization(ArrayCollection::value($prediction, "locale"));
-        $view = $this->render($translation->translate("Mishusoft"), $prediction);
+        $view = $this->render("Mishusoft", $prediction);
         //$this->LinkList($prediction);
         if (Inflect::lower($prediction["method"]) === Inflect::lower("sitemap")) {
             $this->generateSitemap();
@@ -46,13 +47,18 @@ class CompanyUrlHandler extends UrlHandler
         return Storage\FileSystem::list($path, "file");
     }
 
+    /**
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws \Mishusoft\Exceptions\DbException
+     */
     private function generateSitemap(): void
     {
         header('Content-Type: text/xml; charset=utf-8', true);
         echo '<?xml version="1.0" encoding="UTF-8"?>';
         echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.sitemaps.org/schemas/sitemap/0.9 https://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">';
 
-        $pages = $this->db->getWebAppPages();
+        $db = $this->mishusoftDB->select('system');
+        $pages = $db->getWebAppPages();
         foreach ($pages as $page) {
             echo '<url>';
             echo '<loc>' . BASE_URL . strtolower($page['url']) . '</loc>';
@@ -70,7 +76,9 @@ class CompanyUrlHandler extends UrlHandler
         echo '<rss version="2.0">';
         echo '<channel title="Welcome to Mishusoft Platform" link="' . BASE_URL . '">';
 
-        $pages = $this->db->getWebAppPages();
+        $db = $this->mishusoftDB->select('system');
+        $pages = $db->getWebAppPages();
+
         foreach ($pages as $page) {
             echo '<item>';
             echo '<guid>' . BASE_URL . strtolower($page['url']) . '</guid>';

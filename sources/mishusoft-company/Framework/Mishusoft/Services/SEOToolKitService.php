@@ -5,7 +5,7 @@ namespace Mishusoft\Services;
 
 use JsonException;
 use Mishusoft\Base;
-use Mishusoft\Authentication\View\MishusoftView;
+use Mishusoft\Drivers\View\MishusoftView;
 use Mishusoft\Exceptions\ErrorException;
 use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Exceptions\PermissionRequiredException;

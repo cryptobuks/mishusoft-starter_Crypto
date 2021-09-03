@@ -3,18 +3,24 @@
 
 namespace Mishusoft\Drivers;
 
-use Mishusoft\Authentication\View\MishusoftViewInterface;
+use Mishusoft\Databases\MishusoftSQLStandalone;
+use Mishusoft\System\Localization;
 use Mishusoft\System\Memory;
+use Mishusoft\Utility\ArrayCollection;
 
 abstract class UrlHandler implements UrlHandlerInterface
 {
 
+    protected Localization $localization;
+    protected MishusoftSQLStandalone $mishusoftDB;
 
     /**
      * UrlHandler constructor.
      */
     public function __construct()
     {
+        $this->localization = new Localization();
+        $this->mishusoftDB = new MishusoftSQLStandalone(MS_DB_USER_NAME, MS_DB_USER_PASSWORD);
     }//end __construct()
 
 
@@ -43,7 +49,7 @@ abstract class UrlHandler implements UrlHandlerInterface
      * @param string $rootTitle
      * @param array $request
      * @param array $noMenuList
-     * @return MishusoftViewInterface
+     * @return View\MishusoftView
      * @throws \JsonException
      * @throws \Mishusoft\Exceptions\ErrorException
      * @throws \Mishusoft\Exceptions\JsonException
@@ -51,8 +57,14 @@ abstract class UrlHandler implements UrlHandlerInterface
      * @throws \Mishusoft\Exceptions\PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    protected function render(string $rootTitle, array $request, array $noMenuList = []): MishusoftViewInterface
+    protected function render(string $rootTitle, array $request, array $noMenuList = []): View\MishusoftView
     {
-        return new View\MishusoftView(Memory::Data('framework')->host->url, $rootTitle, $noMenuList, $request);
+        $this->localization->setCurrentLocale(ArrayCollection::value($request, 'locale'));
+        return new View\MishusoftView(
+            Memory::Data('framework')->host->url,
+            $this->localization->translate($rootTitle),
+            $noMenuList,
+            $request
+        );
     }//end render()
 }//end class

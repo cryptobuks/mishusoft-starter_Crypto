@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Mishusoft\Authentication\View;
+namespace Mishusoft\Drivers\View;
 
 interface MishusoftViewInterface
 {

@@ -2,10 +2,9 @@
 
 namespace Mishusoft\System\BIOS;
 
-use Mishusoft\Authentication\Acl;
-use Mishusoft\Authentication\Bootstrap\Ema;
-use Mishusoft\Authentication\Bootstrap\QualifiedAPI;
-use Mishusoft\Authentication\Session;
+use Mishusoft\Drivers\Bootstrap\Ema;
+use Mishusoft\Drivers\Bootstrap\QualifiedAPI;
+use Mishusoft\Http\Session;
 use Mishusoft\Framework;
 use Mishusoft\Http;
 use Mishusoft\Registry;
@@ -14,6 +13,7 @@ use Mishusoft\System\BIOS;
 use Mishusoft\System\Firewall;
 use Mishusoft\System\Log;
 use Mishusoft\System\Memory;
+use Mishusoft\Utility\Debug;
 
 class App extends BIOS
 {
@@ -76,6 +76,7 @@ class App extends BIOS
                         /*
                          * Start special url handler [Embed Mishusoft Application].
                          */
+                        //Debug::preOutput($registry::RequestQualifiedAPI());
                         Ema::run($registry::RequestQualifiedAPI());
 
                         //execute framework core

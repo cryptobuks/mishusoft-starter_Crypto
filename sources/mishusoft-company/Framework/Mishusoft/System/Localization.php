@@ -7,17 +7,17 @@ use Mishusoft\Base;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Storage;
-use Mishusoft\Utility\ArrayCollection;
+use Mishusoft\Utility\ArrayCollection as Arr;
 
 class Localization extends Base
 {
-    public const DEFAULT = "en";
+    public const DEFAULT = "en_us";
     public const SUPPORT = [
-        "en", "bn",
+        "en_us", "bn",
     ];
 
-    public const ALL = ["en", "bn", "ar"];
-    private string $default_locale;
+    public const ALL = ["en_us", "bn", "ar"];
+    private string $currentLocale;
     private string $filename = "all";
 
     /**
@@ -29,7 +29,7 @@ class Localization extends Base
     public function __construct(string $locale = self::DEFAULT)
     {
         parent::__construct();
-        $this->default_locale = $locale;
+        $this->currentLocale = $locale;
         if (!is_readable(Storage::appStoragesPath())) {
             throw new PermissionRequiredException("Data directory is not readable.");
         } elseif (!is_writable(Storage::appStoragesPath())) {
@@ -62,14 +62,16 @@ class Localization extends Base
      */
     private function load(string $filename): array
     {
-        if (!file_exists(self::dFile(Storage::localizationPath() . "$this->default_locale/$filename"))) {
-            throw new RuntimeException\NotFoundException("Default localization is not found");
+        if (!file_exists(self::dFile(Storage::localizationPath() . "$this->currentLocale/$filename"))) {
+            throw new RuntimeException\NotFoundException(
+                "Default ($this->currentLocale/$filename) localization is not found"
+            );
         }
-        if (count($this->dataLoader(sprintf("%s/%s", $this->default_locale, $filename))) === 0) {
+        if (count($this->dataLoader(sprintf("%s/%s", $this->currentLocale, $filename))) === 0) {
             throw new RuntimeException("Default localization is empty");
         }
 
-        return $this->dataLoader(sprintf("%s/%s", $this->default_locale, $filename));
+        return $this->dataLoader(sprintf("%s/%s", $this->currentLocale, $filename));
     }
 
     /**
@@ -84,7 +86,7 @@ class Localization extends Base
         if (count($this->load($filename)) > 0) {
             foreach ($this->load($filename) as $item) {
                 if ((is_array($item) && array_key_exists("keyword", $item))
-                    && ArrayCollection::value($item, "keyword") === $keyword) {
+                    && Arr::value($item, "keyword") === $keyword) {
                     $result = $item;
                 }
             }
@@ -108,6 +110,22 @@ class Localization extends Base
     }
 
     /**
+     * @param string $currentLocale
+     */
+    public function setCurrentLocale(string $currentLocale): void
+    {
+        $this->currentLocale = $currentLocale;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getCurrentLocale(): string
+    {
+        return $this->currentLocale;
+    }
+    /**
      * @param $keyword
      * @param string $filename
      * @return string
@@ -119,13 +137,13 @@ class Localization extends Base
             if (!empty($this->filename)) {
                 if (is_array($keyword)) {
                     if ((count($this->search($this->filename, array_key_first($keyword))) > 0)) {
-                        return ArrayCollection::value($this->search($this->filename, array_key_first($keyword)), "content");
+                        return Arr::value($this->search($this->filename, array_key_first($keyword)), "content");
                     }
 
-                    return ArrayCollection::value($keyword, array_key_first($keyword));
+                    return Arr::value($keyword, array_key_first($keyword));
                 }
 
-                return ArrayCollection::value($this->search($this->filename, $keyword), "content");
+                return Arr::value($this->search($this->filename, $keyword), "content");
             }
 
             if (is_array($keyword)) {
@@ -137,12 +155,12 @@ class Localization extends Base
 
         if (is_array($keyword)) {
             if ((count($this->search($filename, array_key_first($keyword))) > 0)) {
-                return ArrayCollection::value($this->search($filename, array_key_first($keyword)), "content");
+                return Arr::value($this->search($filename, array_key_first($keyword)), "content");
             }
 
-            return ArrayCollection::value($keyword, array_key_first($keyword));
+            return Arr::value($keyword, array_key_first($keyword));
         }
 
-        return ArrayCollection::value($this->search($filename, $keyword), "content");
+        return Arr::value($this->search($filename, $keyword), "content");
     }
 }

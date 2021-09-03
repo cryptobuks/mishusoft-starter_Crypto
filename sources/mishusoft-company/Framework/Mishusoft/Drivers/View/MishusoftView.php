@@ -1,7 +1,7 @@
 <?php declare(strict_types=1);
 
 
-namespace Mishusoft\Authentication\View;
+namespace Mishusoft\Drivers\View;
 
 use Mishusoft\Base;
 use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
@@ -684,7 +684,6 @@ class MishusoftView extends Base implements MishusoftViewInterface
     /**
      * @param array $options
      * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
      * @throws RuntimeException
      * @throws RuntimeException\NotFoundException
      * @throws \Mishusoft\Exceptions\JsonException

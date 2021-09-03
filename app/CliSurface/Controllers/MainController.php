@@ -2,7 +2,7 @@
 
 namespace App\CliSurface\Controllers;
 
-use Mishusoft\Authentication\CliSurfaceController;
+use Mishusoft\Drivers\CliSurfaceController;
 
 class MainController extends CliSurfaceController
 {

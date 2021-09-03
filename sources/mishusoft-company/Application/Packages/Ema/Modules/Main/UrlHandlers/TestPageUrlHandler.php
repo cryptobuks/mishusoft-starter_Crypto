@@ -5,7 +5,7 @@ namespace App\Ema\Mishusoft\Main\UrlHandlers;
 
 use Mishusoft\Storage;
 use Mishusoft\Utility\Debug;
-use Mishusoft\Authentication\UrlHandler;
+use Mishusoft\Drivers\UrlHandler;
 
 class TestPageUrlHandler extends UrlHandler
 {

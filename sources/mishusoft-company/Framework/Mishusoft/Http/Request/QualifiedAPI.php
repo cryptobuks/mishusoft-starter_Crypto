@@ -128,7 +128,7 @@ class QualifiedAPI extends Request
 
     public function getLocale(): string
     {
-        return str_replace('en_us', 'en', $this->locale);
+        return $this->locale;
     }
 
     public function getModules():array
