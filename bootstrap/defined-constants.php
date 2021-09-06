@@ -8,6 +8,7 @@ const WHO_AM_I = 'Mishusoft';
 const ROOT_IDENTITY = 'app://';
 const PUBLIC_ROOT_PATH = 'public_html' . DS;
 const IS_CLI = (PHP_SAPI === 'cli');
+const LINE_BREAK = IS_CLI ? PHP_EOL : '<br/>';
 // Main constants define end.
 
 const PHP_LANG_VERSION = PHP_VERSION;
