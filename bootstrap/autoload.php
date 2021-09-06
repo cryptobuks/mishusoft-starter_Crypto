@@ -8,10 +8,10 @@ set_error_handler(
     static function ($number, $message, $file, $line) {
         include_once FRAMEWORK_PATH . 'Mishusoft' . DS. 'Utility' . DS . 'Number.php';
         include_once FRAMEWORK_PATH . 'Mishusoft' . DS. 'Exceptions' . DS . 'Handler.php';
-        echo sprintf("%s:: %s in file %s on line %d\n", Handler::codeToName($number), $message, $file, $line);
-        echo 'Stack trace:'.PHP_EOL;
+        echo sprintf("%s:: %s in file %s on line %d".LINE_BREAK, Handler::codeToName($number), $message, $file, $line);
+        echo 'Stack trace:'.LINE_BREAK;
         foreach (Handler::makeBeautifulStackTrace(debug_backtrace()) as $serial => $details) {
-            echo sprintf('%d) %s ', Mishusoft\Utility\Number::next($serial), $details).PHP_EOL;
+            echo sprintf('%d) %s ', Mishusoft\Utility\Number::next($serial), $details).LINE_BREAK;
         }
         exit();
     },
