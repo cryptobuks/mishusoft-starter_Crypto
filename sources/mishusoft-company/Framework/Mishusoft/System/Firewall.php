@@ -194,7 +194,7 @@ class Firewall extends Base
      */
     public static function configFile(): string
     {
-        return self::dFile(self::dataFile('Firewall', 'config'));
+        return self::dFile(self::configDataFile('Firewall', 'config'));
     }
 
 
@@ -203,7 +203,7 @@ class Firewall extends Base
      */
     private static function siteFile(): string
     {
-        return self::dFile(self::dataFile('Firewall', 'sites'));
+        return self::dFile(self::configDataFile('Firewall', 'sites'));
     }
 
 

@@ -104,7 +104,7 @@ class Framework extends Base
      */
     public static function configFile():string
     {
-        return parent::dFile(parent::dataFile('Framework', 'config'));
+        return self::dFile(self::configDataFile('Framework', 'config'));
     }
 
     /**
@@ -112,7 +112,7 @@ class Framework extends Base
      */
     public static function installFile():string
     {
-        return parent::dFile(parent::dataFile('Framework', 'install'));
+        return self::dFile(self::configDataFile('Framework', 'install'));
     }
 
     /**
@@ -120,7 +120,7 @@ class Framework extends Base
      */
     public function listerFile():string
     {
-        return self::dFile(self::dataFile('Framework', 'files/' . APPLICATION_SERVER_NAME), 'ext4');
+        return self::dFile(self::configDataFile('Framework', 'files/' . APPLICATION_SERVER_NAME), 'ext4');
     }
 
 
@@ -527,12 +527,4 @@ class Framework extends Base
     {
         Log::terminate();
     }
-
-
-    /**
-     *
-     */
-    public function __destruct()
-    {
-    }//end __destruct()
 }//end class

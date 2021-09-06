@@ -69,7 +69,7 @@ class SEOToolKitService extends Base
      */
     private function seoConfigFile(): string
     {
-        return self::dFile(self::dataFile('SEOToolKitService', 'seo'));
+        return self::dFile(self::configDataFile('SEOToolKitService', 'seo'));
     }
 
     /**
@@ -77,7 +77,7 @@ class SEOToolKitService extends Base
      */
     private function adSenseConfigFile(): string
     {
-        return self::dFile(self::dataFile('SEOToolKitService', 'ad-sense'));
+        return self::dFile(self::configDataFile('SEOToolKitService', 'ad-sense'));
     }
 
     /**
@@ -85,7 +85,7 @@ class SEOToolKitService extends Base
      */
     private function searchEngineListFile(): string
     {
-        return self::dFile(self::dataFile('SEOToolKitService', 'se-list'));
+        return self::dFile(self::configDataFile('SEOToolKitService', 'se-list'));
     }
 
 

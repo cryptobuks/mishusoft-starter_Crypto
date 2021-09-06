@@ -17,11 +17,12 @@ namespace Mishusoft\Http;
 use GeoIp2\Database\Reader;
 use GeoIp2\Exception\AddressNotFoundException;
 use MaxMind\Db\Reader\InvalidDatabaseException;
+use Mishusoft\Base;
 use Mishusoft\Exceptions\HttpException\HttpResponseException;
 use Mishusoft\Exceptions\JsonException;
 use Mishusoft\Storage;
 
-class IP
+class IP extends Base
 {
     // Declare version.
     public const VERSION = '1.0.2';
@@ -33,20 +34,12 @@ class IP
      */
     private static string $apiKey = '2f9dde381f67efed325acfb1011a988036b28fc6cc02f07668ef7180';
 
-
-    /**
-     * IP constructor.
-     */
-    public function __construct()
-    {
-    }//end __construct()
-
     /**
      * Absolute path of geo lite city db file.
      */
     public static function cityDbFile():string
     {
-        return Storage::dataDriveStoragesPath().'GeoIP/GeoLite2-City.mmdb';
+        return self::dFile(self::dataFile('GeoIP', 'GeoLite2-City'), 'mmdb');
     }
 
 
@@ -55,7 +48,7 @@ class IP
      */
     public static function countryDbFile():string
     {
-        return Storage::dataDriveStoragesPath().'GeoIP/GeoLite2-Country.mmdb';
+        return self::dFile(self::dataFile('GeoIP', 'GeoLite2-Country'), 'mmdb');
     }
 
 
@@ -65,7 +58,8 @@ class IP
      * @return string
      * @throws \JsonException
      * @throws HttpResponseException
-     * @throws JsonException|InvalidDatabaseException
+     * @throws JsonException
+     * @throws InvalidDatabaseException
      */
     public static function getCountry(): string
     {

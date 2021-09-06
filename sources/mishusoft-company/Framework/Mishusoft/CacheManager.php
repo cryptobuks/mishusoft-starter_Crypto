@@ -90,7 +90,7 @@ class CacheManager extends Base
      */
     private static function propertyFile():string
     {
-        return self::dFile(self::dataFile('Cache', 'properties'));
+        return self::dFile(self::configDataFile('Cache', 'properties'));
     }
 
     /**

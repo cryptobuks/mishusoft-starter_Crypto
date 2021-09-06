@@ -106,7 +106,7 @@ class MishusoftView extends Base implements MishusoftViewInterface
      */
     public function widgetsFile(): string
     {
-        return self::dFile(self::dataFile('Widgets', 'installed'));
+        return self::dFile(self::configDataFile('Widgets', 'installed'));
     }
 
     /**
@@ -114,7 +114,7 @@ class MishusoftView extends Base implements MishusoftViewInterface
      */
     public function widgetsConfigFile(): string
     {
-        return self::dFile(self::dataFile('Widgets', 'config'));
+        return self::dFile(self::configDataFile('Widgets', 'config'));
     }
 
     /**

@@ -44,7 +44,7 @@ class Classic extends MPM
      */
     public static function configFile(): string
     {
-        return self::dFile(self::dataFile('MPM', 'config.classic'));
+        return self::dFile(self::configDataFile('MPM', 'config.classic'));
     }
 
 

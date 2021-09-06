@@ -48,6 +48,25 @@ abstract class Base
      * @param string $filename
      * @return string
      */
+    protected static function configDataFile(string $directive, string $filename):string
+    {
+        return sprintf(
+            '%1$s%2$s%7$s%3$s%7$s%4$s%7$s%5$s%7$s%6$s',
+            RUNTIME_ROOT_PATH,
+            'storages',
+            'framework',
+            'config',
+            $directive,
+            $filename,
+            DS
+        );
+    }
+
+    /**
+     * @param string $directive
+     * @param string $filename
+     * @return string
+     */
     protected static function dataFile(string $directive, string $filename):string
     {
         return sprintf(
@@ -55,7 +74,7 @@ abstract class Base
             RUNTIME_ROOT_PATH,
             'storages',
             'framework',
-            'data-drive',
+            'data',
             $directive,
             $filename,
             DS
@@ -81,4 +100,10 @@ abstract class Base
         );
     }
 
+    /**
+     *
+     */
+    public function __destruct()
+    {
+    }//end __destruct()
 }

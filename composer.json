@@ -41,7 +41,7 @@
     "copy:assests": "php ./Sources/mishusoft-company/Release.php -copy -s ./Sources/Assets -d ./storages/app/assets",
     "copy:media": "php ./Sources/mishusoft-company/Release.php -copy -s ./Sources/Assets/media -d ./storages/app/media",
     "copy:errors.page": "php ./Sources/mishusoft-company/Release.php -copy -s ./Sources/Mishusoft/Views/Errors/SHtml -d ./app/views/errors",
-    
+
     "update:composer": "composer self-update",
     "update:composer.pacakges": "composer update",
     "update:composer.packages.global": "composer /home/abir/.config/composer update",

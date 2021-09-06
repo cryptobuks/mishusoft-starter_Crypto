@@ -16,7 +16,7 @@ class Common extends MPM
      */
     public static function qualifiedAPIRoutesFile(): string
     {
-        return self::dFile(self::dataFile('MPM', 'QualifiedAPIRoutes'));
+        return self::dFile(self::configDataFile('MPM', 'QualifiedAPIRoutes'));
     }
 
 

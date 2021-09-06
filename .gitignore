@@ -12,6 +12,13 @@
 /vendor/
 /framework/
 /app/
+/storages/databases
+/storages/framework/cache/
+/storages/framework/cofig/
+/storages/framework/sessions/
+/storages/framework/*.php
+/storages/logs/
+/storages/user/
 
 
 # Runtime cache (with lock) files

@@ -13,7 +13,7 @@ class Cli extends MPM
      */
     public static function configFile(): string
     {
-        return self::dFile(self::dataFile('MPM', 'config.cli'));
+        return self::dFile(self::configDataFile('MPM', 'config.cli'));
     }
 
     /**

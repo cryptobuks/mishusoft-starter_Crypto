@@ -588,26 +588,6 @@ abstract class Collection extends UAAnalyzerBase
         // i case insensitive m make dot match newlines x ignore whitespace in regex
         // o perform #{...} substitutions only once
 
-        //$default = '/(?<name>(mozilla))(?<separator>(\s*|\/|\-|\:))(?<version>(\d+[.]\d+))/i';
-        //$defaultSeparatorPattern = '(\s*|\/|\_|\-|\:)';
-
-        // Android 6.0.1
-        // Baiduspider/2.0
-        // Chrome/91.0.4472.77
-        // PTST/210609.200427
-        // Apache-HttpClient/4.5.5
-        // ActiveBookmark 1.x
-        // Muncher YB/3.5.1
-        // Ad Muncher YB/3.5.1
-        // Ad Muncher v4.94.34121/7137 (Free)
-        // Windows NT 10.0
-        // 1337Browser_V3.1
-        // 2345chrome v3.0.0.9739 ok
-        //Silk/1.0.13.81_10003810
-        //CPU OS 11_2_2
-        //$defaultVersionPattern = '(v|y|yb\/|nt)?\s*';
-        //$defaultVersionPattern .= '(\d+[.-]\d+[.-]\d+[.-]\d+)|(\d+[.-]\d+[.-]\d+)|(\d+[.-]\d+)|(\d+)|(\w+)';
-        //$defaultVersionPattern = 'v?(\d+[.-]\d+[.-]\d+[.-]\d+)|(\d+[.-]\d+[.-]\d+)|(\d+[.-]\d+)|(\d+)|(\w+)';
         if ($name !== '') {
             $namePattern = sprintf('(?<name>%s)', $name);
         } else {
