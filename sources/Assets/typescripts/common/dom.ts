@@ -1,3 +1,20 @@
+
+// export function createElement(name : string, attributes: any) {
+//     let element = document.createElement(name);
+//     return assignAttributes(element, attributes);
+// }
+//
+// export function assignAttributes(element : HTMLElement, attributes: any) {
+//     if (attributes.length !== 0){
+//         for (let attr in attributes) {
+//             element.setAttribute(attr, attributes[attr]);
+//         }
+//     }
+//
+//     return element;
+// }
+
+
 export function createElement(details: any[]) {
     let element, i, j, k;
     for (i in details) {

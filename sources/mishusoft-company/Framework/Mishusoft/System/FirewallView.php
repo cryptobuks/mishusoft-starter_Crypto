@@ -13,7 +13,6 @@ use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Exceptions\RuntimeException\NotFoundException;
 use Mishusoft\Framework;
-use Mishusoft\Http;
 use Mishusoft\Http\IP;
 use Mishusoft\Registry;
 use Mishusoft\Storage;
