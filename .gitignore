@@ -10,6 +10,9 @@
 /tests/
 /tmp/
 /vendor/
+/framework/
+/app/
+
 
 # Runtime cache (with lock) files
 #*.lock
@@ -24,4 +27,3 @@
 
 # Linker output
 *.map
-/framework/
