@@ -14,7 +14,7 @@
 /app/
 /storages/databases
 /storages/framework/cache/
-/storages/framework/cofig/
+/storages/framework/config/
 /storages/framework/sessions/
 /storages/framework/*.php
 /storages/logs/
