@@ -1,0 +1,125 @@
+---
+::1:
+  Unknown:
+    "2021-09-06 17:32:44":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-09-06 17:32:44"
+    "2021-09-06 17:34:44":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-09-06 17:34:44"
+    "2021-09-06 17:39:49":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-09-06 17:39:49"
+    "2021-09-06 17:40:16":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-09-06 17:40:16"
+    "2021-09-06 17:47:39":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-09-06 17:47:39"
+    "2021-09-06 17:47:56":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-09-06 17:47:56"
+    "2021-09-06 17:48:39":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-09-06 17:48:39"
+    "2021-09-06 17:53:03":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-09-06 17:53:03"
+    "2021-09-06 17:53:07":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-09-06 17:53:07"
+    "2021-09-06 17:54:35":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-09-06 17:54:35"
+    "2021-09-06 17:58:58":
+      ip: ::1
+      country: Private IP
+      location: Private IP
+      device: Unknown Unknown
+      browser: Unknown
+      UUAS: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0
+      url: http://localhost:8080/
+      status: granted
+      component: browser
+      visit-time: "2021-09-06 17:58:58"
+...
