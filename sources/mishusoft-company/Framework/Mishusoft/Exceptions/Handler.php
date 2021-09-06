@@ -9,6 +9,7 @@ use MaxMind\Db\Reader\InvalidDatabaseException;
 use Mishusoft\Http;
 use Mishusoft\Storage;
 use Mishusoft\System\Log;
+use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\JSON;
 use Mishusoft\Utility\Number;
 
@@ -117,6 +118,7 @@ class Handler extends ErrorException implements ExceptionInterface
      */
     public static function makeBeautifulStackTrace(array|string $trace): array
     {
+        //Debug::preOutput($trace);
         $traceArray = [];
         //when trace is array
         if (is_array($trace) === true && count($trace) > 0) {
@@ -146,7 +148,24 @@ class Handler extends ErrorException implements ExceptionInterface
                 if (array_key_exists('function', $value) === true) {
                     if (array_key_exists('args', $value) === true) {
                         $line .= $value['function'];
-                        $line .= '(' . implode(',', $value['args']) . ')';
+                        $argImplode = '';
+                        foreach ($value['args'] as $arg) {
+                            if (is_array($arg)) {
+                                $argImplode .= '[';
+                                foreach ($arg as $k => $v) {
+                                    $argImplode .="$k=>$v";
+                                }
+                                $argImplode .= ']';
+                            } else {
+                                if (!is_object($arg)) {
+                                    $argImplode .= $arg . ', ';
+                                }
+                            }
+                        }
+                        if (str_ends_with($argImplode, ', ')) {
+                            $argImplode = substr($argImplode, 0, -2);
+                        }
+                        $line .= '(' . $argImplode . ')';
                     } else {
                         $line .= $value['function'] . '()';
                     }
