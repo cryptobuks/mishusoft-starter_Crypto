@@ -18,7 +18,8 @@ class FileSystem
      */
     public static function exec(string $filename): void
     {
-        if (exec(sprintf('chmod -R 777 %s', $filename)) === false) {
+        //if (exec(sprintf('chmod -R 777 %s', $filename)) === false) {
+        if (chmod($filename, 0777) === false) {
             throw new RuntimeException(sprintf('Unable to change permission of "%s"', $filename));
         }
     }//end exec()

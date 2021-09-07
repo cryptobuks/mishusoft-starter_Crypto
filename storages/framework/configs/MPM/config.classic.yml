@@ -1,0 +1,12 @@
+---
+name: Mishusoft Packages Manager
+version: 1.0.0
+packages:
+  default: ""
+  all: []
+loader: []
+modules: []
+config:
+  database:
+    activation: true
+...
