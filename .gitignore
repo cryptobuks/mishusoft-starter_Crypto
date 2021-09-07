@@ -27,8 +27,10 @@
 *.webmanifest
 *.cache
 
+# System required files
 .packages
 .env
+.env.example
 .user.ini
 
 
