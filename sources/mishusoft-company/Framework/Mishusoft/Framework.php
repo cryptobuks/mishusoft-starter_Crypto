@@ -64,7 +64,8 @@ class Framework extends Base
             $instance->checkFileSystem();
         }
 
-        //install framework
+        //configure and install framework
+        static::makeConfigure();
         static::install();
 
         //Check framework requirements
@@ -263,18 +264,14 @@ class Framework extends Base
         /*
          * Check provided root directory in app installed path.
          * */
-        if (in_array(
-            strtolower(
-                substr(
-                    $rootPath,
-                    strlen(RUNTIME_ROOT_PATH),
-                    ((strlen($rootPath) - strlen(RUNTIME_ROOT_PATH)) - 1)
-                )
-            ),
-            SYSTEM_EXCLUDE_DIRS,
-            true
-        ) === true
-        ) {
+        $currentDirectory = strtolower(
+            substr(
+                $rootPath,
+                strlen(RUNTIME_ROOT_PATH),
+                ((strlen($rootPath) - strlen(RUNTIME_ROOT_PATH)) - 1)
+            )
+        );
+        if (in_array($currentDirectory, SYSTEM_EXCLUDE_DIRS, true) === true) {
             return;
         }
 
@@ -384,6 +381,18 @@ class Framework extends Base
             ]);
         }//end if
     }//end install()
+
+    /**
+     * @throws Exceptions\RuntimeException
+     */
+    public static function makeConfigure()
+    {
+        // Preparing to create framework config file.
+        if (!is_readable(static::configFile()) === true) {
+            FileSystem::makeDirectory(dirname(static::configFile()));
+            FileSystem\Yaml::emitFile(static::configFile(), self::defaultConfiguration());
+        }
+    }
 
 
 

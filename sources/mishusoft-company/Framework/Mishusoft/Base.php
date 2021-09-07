@@ -55,7 +55,7 @@ abstract class Base
             RUNTIME_ROOT_PATH,
             'storages',
             'framework',
-            'config',
+            'configs',
             $directive,
             $filename,
             DS

@@ -921,7 +921,7 @@ class Firewall extends Base
     {
         if (in_array($ip, $this->config['ip'][$list], true) === false) {
             $this->config['ip'][$list][] = $ip;
-            FileSystem\Yaml::emitFile(Framework::configFile(), $this->config);
+            FileSystem\Yaml::emitFile(self::configFile(), $this->config);
         }
     }//end updateList()
 
@@ -1026,14 +1026,14 @@ class Firewall extends Base
     private function getNewVisitor(): array
     {
         return  [
-            'ip' => IP::get(),
-            'country' => IP::getCountry(),
-            'location' => IP::getInfo(),
-            'device' => Registry::Browser()->getDeviceNameWithArch(),
-            'browser' => Registry::Browser()->getBrowserNameFull(),
-            'UUAS' => Registry::Browser()->getUserAgent(),
-            'url' => Registry::Browser()::VisitedPageURL($_SERVER),
-            'status' => $this->actionStatus,
+            'ip'        => IP::get(),
+            'country'   => IP::getCountry(),
+            'location'  => IP::getInfo(),
+            'device'    => Registry::Browser()->getDeviceNameWithArch(),
+            'browser'   => Registry::Browser()->getBrowserNameFull(),
+            'UUAS'      => Registry::Browser()->getUserAgent(),
+            'url'       => Registry::Browser()::VisitedPageURL($_SERVER),
+            'status'    => $this->actionStatus,
             'component' => $this->actionComponent,
             'visit-time' => Time::today(),
         ];
@@ -1137,7 +1137,7 @@ class Firewall extends Base
                                             $this->lastVisitDuration = (int)((strtotime($now['visit-time']) - strtotime($this->config["$status-device-count-down-time"][IP::get()])) / 60);
                                             if ($this->lastVisitDuration >= $this->config["$status-device-time-limit"]) {
                                                 $this->config["$status-device-count-down-time"][IP::get()] = $now['visit-time'];
-                                                FileSystem\Yaml::emitFile(Framework::configFile(), $this->config);
+                                                FileSystem\Yaml::emitFile(self::configFile(), $this->config);
                                             }//end if
 
                                             else {
@@ -1146,7 +1146,7 @@ class Firewall extends Base
                                                 if ($this->lastVisitDuration > 10) {
                                                     // preOutput("Setting previous time!!");
                                                     $this->config["$status-device-count-down-time"][IP::get()] = $previous['visit-time'];
-                                                    FileSystem\Yaml::emitFile(Framework::configFile(), $this->config);
+                                                    FileSystem\Yaml::emitFile(self::configFile(), $this->config);
                                                     // preOutput($this->config);
                                                 }
                                             }
@@ -1162,15 +1162,15 @@ class Firewall extends Base
                                                 $this->config["$status-device-count-down-time"][IP::get()] = $previous['visit-time'];
                                             }
 
-                                            FileSystem\Yaml::emitFile(Framework::configFile(), $this->config);
+                                            FileSystem\Yaml::emitFile(self::configFile(), $this->config);
                                             // preOutput($this->config["$status-device-count-down-time"]);
                                         }
                                     } //end if
 
                                     else {
                                         // Autoload::log("Preparing to create firewall configuration file.");
-                                        if (FileSystem::IsWriteable(Framework::configFile())) {
-                                            FileSystem\Yaml::emitFile(Framework::configFile(), self::BUILT_IN_CONFIG);
+                                        if (FileSystem::IsWriteable(Firewall::configFile())) {
+                                            FileSystem\Yaml::emitFile(Firewall::configFile(), self::BUILT_IN_CONFIG);
                                         }
 
                                         // load firewall configuration in runtime
@@ -1201,8 +1201,8 @@ class Firewall extends Base
 
                                     else {
                                         // Autoload::log("Preparing to create firewall configuration file.");
-                                        if (FileSystem::IsWriteable(Framework::configFile())) {
-                                            FileSystem\Yaml::emitFile(Framework::configFile(), self::BUILT_IN_CONFIG);
+                                        if (FileSystem::IsWriteable(Firewall::configFile())) {
+                                            FileSystem\Yaml::emitFile(Firewall::configFile(), self::BUILT_IN_CONFIG);
                                         }
 
                                         // load firewall configuration in runtime

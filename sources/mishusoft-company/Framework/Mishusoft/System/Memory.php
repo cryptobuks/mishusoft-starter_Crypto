@@ -285,7 +285,7 @@ class Memory
                             $result = JSON::encodeToObject($default);
                         }
 
-                        if (is_object($result) === false) {
+                        if (is_object($result)) {
                             $result = new stdClass();
                         }
                     }
