@@ -4,6 +4,9 @@
 # PHPStorm's cache folder
 /.idea/
 
+# SASS's cache folder
+*.sass-cache/
+
 # Mishusoft Framework associates
 /dist-src/
 /node_modules/
