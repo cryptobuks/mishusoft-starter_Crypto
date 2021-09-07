@@ -12,6 +12,9 @@
 /vendor/
 /framework/
 /app/
+/storages/app/assets
+/storages/app/media
+/storages/app/webfonts
 /storages/databases
 /storages/framework/cache/
 /storages/framework/config/
