@@ -2,10 +2,10 @@
 
 namespace Mishusoft\Drivers\Bootstrap;
 
+use Mishusoft\Base;
 use Mishusoft\Cli\Request;
 use Mishusoft\Exceptions;
 use Mishusoft\MPM;
-use Mishusoft\Preloader;
 
 class Cli
 {
@@ -26,7 +26,7 @@ class Cli
 
             if (file_exists($rootController) && is_readable($rootController)) {
                 include_once $rootController;
-                $controller = Preloader::getClassNamespace($rootController);
+                $controller = Base::getClassNamespace($rootController);
                 $controller = new $controller;
 
                 if (is_callable([$controller, $method])) {

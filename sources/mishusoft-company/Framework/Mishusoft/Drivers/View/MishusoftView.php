@@ -5,9 +5,7 @@ namespace Mishusoft\Drivers\View;
 
 use Mishusoft\Base;
 use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
-use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
-use Mishusoft\Preloader;
 use Mishusoft\Storage;
 use Mishusoft\System\Log;
 use Mishusoft\Utility\ArrayCollection;
@@ -444,10 +442,8 @@ class MishusoftView extends Base implements MishusoftViewInterface
     /**
      * @param string $widget
      * @return array
-     * @throws \Mishusoft\Exceptions\JsonException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
      * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     private function getConfig(string $widget): array
     {
@@ -515,7 +511,7 @@ class MishusoftView extends Base implements MishusoftViewInterface
         if (is_readable(Storage::applicationWidgetsPath() . $widgetClass . '.php') === true) {
             Log::info(Storage::applicationWidgetsPath() . $widgetClass . '.php is readable and load it.');
             include_once Storage::applicationWidgetsPath() . $widgetClass . '.php';
-            $widgetClass = Preloader::getClassNamespace(Storage::applicationWidgetsPath() . $widgetClass . '.php');
+            $widgetClass = Base::getClassNamespace(Storage::applicationWidgetsPath() . $widgetClass . '.php');
             Log::info('Extract class name from' . Storage::applicationWidgetsPath() . $widgetClass . '.php');
             if (class_exists($widgetClass) === false) {
                 throw new RuntimeException\NotFoundException(

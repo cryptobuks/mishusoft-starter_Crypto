@@ -2,14 +2,14 @@
 
 namespace Mishusoft\Drivers\View;
 
-use Exception;
+use Mishusoft\Base;
+use Mishusoft\Exceptions\RuntimeException\NotFoundException;
 use Mishusoft\Storage\FileSystem;
 use Mishusoft\Http\Request\Classic as Request;
 use Mishusoft\Http\Session;
 use Mishusoft\Storage;
 use Mishusoft\MPM;
 use Mishusoft\Preloader;
-use Mishusoft\System\Firewall;
 use Mishusoft\System\Network;
 use Mishusoft\Authentication\Acl;
 use SmartyBC;
@@ -33,13 +33,20 @@ class SmartyView extends SmartyBC
     private $template = DEFAULT_SYSTEM_LAYOUT;
 
     private array $widget;
+    private array $_js;
 
 
     /**
      * View constructor.
      *
      * @param Request $prediction
-     * @param Acl           $acl
+     * @param Acl $acl
+     * @throws \JsonException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public function __construct(Request $prediction, Acl $acl)
     {
@@ -51,13 +58,12 @@ class SmartyView extends SmartyBC
         $controller = $this->request->getController();
 
         if (!empty($module)) {
-            $this->roots['view'] = MPM::TemplatesHtmlResourcesRoot($module, $controller);
-            $this->roots['js']   = MPM::TemplatesJavascriptResourcesRoot($module, $controller);
+            $this->roots['view'] = MPM\Classic::TemplatesHtmlResourcesRoot($module, $controller);
+            $this->roots['js']   = MPM\Classic::TemplatesJSResourcesRoot($module, $controller);
         } else {
-            $this->roots['view'] = MPM::TemplatesHtmlResourcesRoot(MPM::defaultModule(), $controller);
-            $this->roots['js']   = MPM::TemplatesJavascriptResourcesRoot(MPM::defaultModule(), $controller);
+            $this->roots['view'] = MPM\Classic::TemplatesHtmlResourcesRoot(MPM\Classic::defaultModule(), $controller);
+            $this->roots['js']   = MPM\Classic::TemplatesJSResourcesRoot(MPM\Classic::defaultModule(), $controller);
         }
-
     }//end __construct()
 
 
@@ -67,39 +73,41 @@ class SmartyView extends SmartyBC
     public static function getViewId(): string
     {
         return self::$item;
-
     }//end getViewId()
 
 
     /**
-     * @param $view
+     * @param string $view
      * @param string $item
-     * @param false  $noLayout
+     * @param false $noLayout
+     * @throws NotFoundException
+     * @throws SmartyException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    public function render($view, $item='', $noLayout=false)
+    public function render(string $view, string $item = '', bool $noLayout = false): void
     {
         if ($item) {
             self::$item = $item;
         }
 
         // Ensure required directory.
-        if (is_dir(APPLICATION_THEMES_PATH.$this->template.DS.'configs'.DS) === false) {
-            FileSystem::createDirectory(APPLICATION_THEMES_PATH.$this->template.DS.'configs'.DS);
+        if (is_dir(Storage::applicationThemesPath().$this->template.DS.'configs'.DS) === false) {
+            FileSystem::makeDirectory(Storage::applicationThemesPath().$this->template.DS.'configs'.DS);
         }
 
-        if (is_dir(RUNTIME_CACHE_TEMP_PATH) === false) {
-            FileSystem::createDirectory(RUNTIME_CACHE_TEMP_PATH);
+        if (is_dir(RUNTIME_CACHE_ROOT_PATH) === false) {
+            FileSystem::makeDirectory(RUNTIME_CACHE_ROOT_PATH);
         }
 
-        if (is_dir(RUNTIME_CACHE_TEMPLATES_PATH) === false) {
-            FileSystem::createDirectory(RUNTIME_CACHE_TEMPLATES_PATH);
+        if (is_dir(RUNTIME_CACHE_ROOT_PATH.'templates'.DS) === false) {
+            FileSystem::makeDirectory(RUNTIME_CACHE_ROOT_PATH.'templates'.DS);
         }
 
         // Set required directory to template engine.
-        $this->template_dir = APPLICATION_THEMES_PATH.$this->template.DS;
-        $this->config_dir   = APPLICATION_THEMES_PATH.$this->template.DS.'configs'.DS;
-        $this->cache_dir    = APPLICATION_DOCUMENT_ROOT.'tmp'.DS.'caches'.DS;
-        $this->compile_dir  = APPLICATION_DOCUMENT_ROOT.'tmp'.DS.'templates'.DS;
+        $this->template_dir = Storage::applicationThemesPath().$this->template.DS;
+        $this->config_dir   = Storage::applicationThemesPath().$this->template.DS.'configs'.DS;
+        $this->cache_dir    = RUNTIME_CACHE_ROOT_PATH.'caches'.DS;
+        $this->compile_dir  = RUNTIME_CACHE_ROOT_PATH.'templates'.DS;
 
         // $favicon = join([MS_MEDIA_PATH,"favicons/"]) . $this->favicon();
         $js = [];
@@ -109,21 +117,22 @@ class SmartyView extends SmartyBC
         }
 
         $layoutParams = [
-            'publicCSS'                  => BASEURL.'assets'.DS.'css'.DS,
+            'publicCSS'                  => BASE_URL.'assets'.DS.'css'.DS,
             /*
-                'publicBootstrapCSS' => BaseURL . 'libraries' . DS . 'css' . DS . 'bootstrap' . DS,
-                'publicFontAwesomeCSS' => BaseURL . 'libraries' . DS . 'css' . DS . 'font-awesome' . DS,
-            'publicJqueryUICSS' => BaseURL . 'libraries' . DS . 'css' . DS . 'jquery-ui' . DS,*/
-            'publicFonts'                => BASEURL.'assets'.DS.'webfonts'.DS,
-            'publicIMG'                  => BASEURL.'media'.DS.'images'.DS,
-            'publicJS'                   => BASEURL.'assets'.DS.'js'.DS,
+                'publicBootstrapCSS' => BASE_URL . 'libraries' . DS . 'css' . DS . 'bootstrap' . DS,
+                'publicFontAwesomeCSS' => BASE_URL . 'libraries' . DS . 'css' . DS . 'font-awesome' . DS,
+            'publicJqueryUICSS' => BASE_URL . 'libraries' . DS . 'css' . DS . 'jquery-ui' . DS,*/
+            'publicFonts'                => BASE_URL.'assets'.DS.'webfonts'.DS,
+            'publicIMG'                  => BASE_URL.'media'.DS.'images'.DS,
+            'publicJS'                   => BASE_URL.'assets'.DS.'js'.DS,
             /*
-                'publicAngularJS' => BaseURL . 'libraries' . DS . 'js' . DS . 'angular' . DS,
-                'publicBootstrapJS' => BaseURL . 'libraries' . DS . 'js' . DS . 'bootstrap' . DS,
-                'publicJqueryJS' => BaseURL . 'libraries' . DS . 'js' . DS . 'jquery' . DS,
-            'publicJqueryUIJS' => BaseURL . 'libraries' . DS . 'js' . DS . 'jquery-ui' . DS,*/
-            // 'libraries' . ucfirst(DefaultAppName) . 'JS' => BaseURL . 'libraries' . DS . 'js' . DS . strtolower(DefaultAppName) . DS,
-            'publicJSPlugin'             => BASEURL.'assets'.DS.'js'.DS.'plugin'.DS,
+                'publicAngularJS' => BASE_URL . 'libraries' . DS . 'js' . DS . 'angular' . DS,
+                'publicBootstrapJS' => BASE_URL . 'libraries' . DS . 'js' . DS . 'bootstrap' . DS,
+                'publicJqueryJS' => BASE_URL . 'libraries' . DS . 'js' . DS . 'jquery' . DS,
+            'publicJqueryUIJS' => BASE_URL . 'libraries' . DS . 'js' . DS . 'jquery-ui' . DS,*/
+            // 'libraries' . ucfirst(DefaultAppName) . 'JS' =>
+            // BaseURL . 'libraries' . DS . 'js' . DS . strtolower(DefaultAppName) . DS,
+            'publicJSPlugin'             => BASE_URL.'assets'.DS.'js'.DS.'plugin'.DS,
             /*
                 'rootCSS' => BaseURL . AppSET . DS . 'themes' . DS . $this->template . DS . 'css' . DS,
                 'rootIMG' => BaseURL . AppSET . DS . 'themes' . DS . $this->template . DS . 'images' . DS,
@@ -131,11 +140,11 @@ class SmartyView extends SmartyBC
             'js'                         => $js,
             'jsPlugin'                   => $this->jsPlugin,
             // 'mediaImage' => WebPublicImagesFolder,
-            'logoFolder'                 => Storage::getLogosMediaPath('', 'remote'),
+            'logoFolder'                 => Storage::logosPath(true),
             // 'favicon' => $favicon,
-            'profilePhotosFolder'        => Storage::getMediaPathOfUsersPhotos('profiles', 'remote'),
-            'uploads'                    => Storage::getMediaPathOfUploads('', 'remote'),
-            'root'                       => BASEURL,
+            'profilePhotosFolder'        => Storage::usersProfilePicturesPath(),
+            'uploads'                    => Storage::mediaPath(),
+            'root'                       => BASE_URL,
             'mishusoft_session_validity' => Session::get('auth'),
             'current_host_name'          => Network::getValOfSrv('SERVER_NAME'),
             'configs'                    => [
@@ -148,76 +157,39 @@ class SmartyView extends SmartyBC
 
         if (is_readable($this->roots['view'].$view.'.tpl') === true) {
             if ($noLayout === true) {
-                try {
-                    $this->template_dir = $this->roots['view'];
-                    $this->display($this->roots['view'].$view.'.tpl');
-                    exit;
-                } catch (SmartyException | Exception $e) {
-                    Firewall::runtimeFailure(
-                        'Not Found',
-                        [
-                            'debug' => [
-                                'file'        => $this->roots['view'],
-                                'location'    => $this->roots['view'].$view.'.tpl',
-                                'description' => $e->getMessage(),
-                            ],
-                            'error' => ['description' => 'Your requested url is broken!!'],
-                        ]
-                    );
-                    exit();
-                }
+                $this->template_dir = $this->roots['view'];
+                $this->display($this->roots['view'].$view.'.tpl');
+                exit;
             }
 
             $this->assign('content', $this->roots['view'].$view.'.tpl');
         } else {
-            Firewall::runtimeFailure(
-                'Not Found',
-                [
-                    'debug' => [
-                        'file'        => $this->roots['view'],
-                        'location'    => $this->roots['view'].$view.'.tpl',
-                        'description' => 'Page or content not found or page location is wrong.',
-                    ],
-                    'error' => ['description' => 'Your requested url is broken!!'],
-                ]
-            );
-            exit();
+            throw new NotFoundException($this->roots['view'].$view.'.tpl not found');
         }//end if
 
-        try {
-            $this->assign('widgets', $this->getWidgets());
-            $this->assign('acl', $this->acl);
-            $this->assign('layoutParams', $layoutParams);
-            $this->display('template.tpl');
-            exit;
-        } catch (SmartyException | Exception $e) {
-            Firewall::runtimeFailure(
-                'Not Found',
-                [
-                    'debug' => [
-                        'file'        => 'template.tpl',
-                        'location'    => $this->template_dir = MS_THEMES_PATH.$this->template.DS.'template.tpl',
-                        'description' => $e->getMessage(),
-                    ],
-                    'error' => ['description' => 'Your requested url is broken!!'],
-                ]
-            );
-            exit();
-        }
-
+        $this->assign('widgets', $this->getWidgets());
+        $this->assign('acl', $this->acl);
+        $this->assign('layoutParams', $layoutParams);
+        $this->display('template.tpl');
+        exit();
     }//end render()
 
 
+    /**
+     * @throws NotFoundException
+     */
     public function getWidgets(): array
     {
         // Widgets list
         /*
             $widgetsList = array(
             "widget-name-like-filename" => array (
-                "configuration"=> $this->widget('widget-class-name', 'widget-method-name', array('widget-filename')), //config collector function
+                "configuration"=> $this->widget('widget-class-name', 'widget-method-name', array('widget-filename')),
+         //config collector function
                 "configuration"=> $this->getConfig('topQuickBar'), //config collector function
                 "configuration"=> $config, //config collector array,
-                'content' => array('widget-class-name', 'widget-method-name', array('widget-name', 'widget-filename')) //data collector function
+                'content' => array('widget-class-name', 'widget-method-name', array('widget-name', 'widget-filename'))
+        //data collector function
             )
             );
             $widgetsA = array(
@@ -299,9 +271,11 @@ class SmartyView extends SmartyBC
             // Verification of widgets position visibility.
             if (isset($positions[$widgets[$k]['config']['position']])) {
                 // Verification it's view disability
-                if (!isset($widgets[$k]['config']['hide']) || !in_array(self::$item, $widgets[$k]['config']['hide'])) {
+                if (!isset($widgets[$k]['config']['hide'])
+                    || !in_array(self::$item, $widgets[$k]['config']['hide'], true)) {
                     // Verification it's view visibility
-                    if ($widgets[$k]['config']['show'] === 'all' || in_array(self::$item, $widgets[$k]['config']['show'])) {
+                    if ($widgets[$k]['config']['show'] === 'all'
+                        || in_array(self::$item, $widgets[$k]['config']['show'], true)) {
                         if (isset($this->widget[$k])) {
                             $widgets[$k]['content'][2] = $this->widget[$k];
                         }
@@ -314,115 +288,75 @@ class SmartyView extends SmartyBC
         }//end foreach
 
         return $positions;
-
     }//end getWidgets()
 
 
     /**
      * @param  $widget
      * @param  $method
-     * @param  array  $options
+     * @param array $options
      * @return mixed|void
+     * @throws NotFoundException
      */
-    public function widget($widget, $method, $options=[])
+    public function widget($widget, $method, array $options = [])
     {
         if (!is_array($options)) {
             $options = [$options];
         }
 
         $widgetClass = $widget.'Widget';
-        if (is_readable(MS_WIDGETS_PATH."$widgetClass.php") === true) {
-            include_once MS_WIDGETS_PATH."$widgetClass.php";
-            $widgetClass = Preloader::getClassNamespace(MS_WIDGETS_PATH."$widgetClass.php");
+        if (is_readable(Storage::applicationWidgetsPath()."$widgetClass.php") === true) {
+            include_once Storage::applicationWidgetsPath()."$widgetClass.php";
+            $widgetClass = Base::getClassNamespace(Storage::applicationWidgetsPath()."$widgetClass.php");
             if (class_exists($widgetClass, false) === false) {
-                Firewall::runtimeFailure(
-                    'Not Found',
-                    [
-                        'debug' => [
-                            'file'        => "$widgetClass.php",
-                            'location'    => MS_WIDGETS_PATH."$widgetClass.php",
-                            'description' => 'Widget class not found or Widget class call error',
-                        ],
-                        'error' => ['description' => 'Your requested url is broken!!'],
-                    ]
-                );
+                throw new NotFoundException(Storage::applicationWidgetsPath()."$widgetClass.php not found");
             }
 
             if (is_callable($widgetClass, $method)) {
                 if (count($options)) {
                     return call_user_func_array([new $widgetClass, $method], $options);
-                } else {
-                    return call_user_func([new $widgetClass, $method]);
                 }
+
+                return call_user_func([new $widgetClass, $method]);
             }
         } else {
-            Firewall::runtimeFailure(
-                'Not Found',
-                [
-                    'debug' => [
-                        'file'        => 'Widget',
-                        'location'    => 'Required file',
-                        'description' => "Widget's content not found.",
-                    ],
-                    'error' => ['description' => 'Your requested url is broken!!'],
-                ]
-            );
+            throw new NotFoundException('Widget\'s content not found');
         }//end if
-
     }//end widget()
 
 
     /**
-     * @return array|array[]
+     * @return array
+     * @throws NotFoundException
      */
     public function getLayoutPositions(): array
     {
         $template = DEFAULT_SYSTEM_LAYOUT;
 
-        if ($this->template == !false) {
+        if ($this->template === true) {
             $template = $this->template;
         }
 
-        if (is_readable(join(DIRECTORY_SEPARATOR, [MS_THEMES_PATH.$template, 'configs', 'configs.php']))) {
-            include_once join(DIRECTORY_SEPARATOR, [MS_THEMES_PATH.$template, 'configs', 'configs.php']);
+        if (is_readable(implode(DS, [Storage::applicationThemesPath().$template, 'configs', 'configs.php']))) {
+            include_once implode(DS, [Storage::applicationThemesPath().$template, 'configs', 'configs.php']);
             return get_available_widgets_positions();
-        } else {
-            Firewall::runtimeFailure(
-                'Not Found',
-                [
-                    'debug' => [
-                        'file'        => 'Configs.php',
-                        'location'    => join(DIRECTORY_SEPARATOR, [MS_THEMES_PATH.$template, 'configs', 'configs.php']),
-                        'description' => 'Layout configuration file not found.',
-                    ],
-                    'error' => ['description' => 'Your requested url is broken!!'],
-                ]
-            );
-
-            return [];
         }
 
+        throw new NotFoundException(
+            Storage::applicationThemesPath().$template . DS. 'configs'. DS. 'configs.php not found'
+        );
     }//end getLayoutPositions()
 
 
     /**
-     * @param  array $content
+     * @param array $content
      * @return mixed|void
+     * @throws NotFoundException
      */
     public function getWidgetContent(array $content)
     {
-        if (!isset($content[0]) || !isset($content[1])) {
-            Firewall::runtimeFailure(
-                'Not Found',
-                [
-                    'debug' => [
-                        'file'        => 'Widget',
-                        'location'    => 'Required file',
-                        'description' => "Widget's content not found.",
-                    ],
-                    'error' => ['description' => 'Your requested url is broken!!'],
-                ]
-            );
+        if (!isset($content[0], $content[1])) {
+            throw new NotFoundException('Widget\'s content not found');
         }
 
         if (!isset($content[2])) {
@@ -430,59 +364,40 @@ class SmartyView extends SmartyBC
         }
 
         return $this->widget($content[0], $content[1], $content[2]);
-
     }//end getWidgetContent()
 
 
     /**
      * @param array $js
+     * @throws NotFoundException
      */
     public function setJs(array $js)
     {
-        if (is_array($js) && count($js)) {
-            for ($i = 0; $i < count($js); $i++) {
-                $this->_js[] = $this->roots['js'].$js[$i].'.js';
+        if (count($js)) {
+            foreach ($js as $iValue) {
+                $this->_js[] = $this->roots['js']. $iValue .'.js';
             }
         } else {
-            Firewall::runtimeFailure(
-                'Not Found',
-                [
-                    'debug' => [
-                        'file'        => 'Javascript file',
-                        'location'    => join(',', $this->_js),
-                        'description' => 'JavaScript file not found or error while loading JavaScript files.',
-                    ],
-                    'error' => ['description' => 'Your requested url is broken!!'],
-                ]
-            );
+            throw new NotFoundException('JavaScript Plugin file not found or error while loading JavaScript files '
+            .implode(',', $this->_js));
         }
-
     }//end setJs()
 
 
     /**
      * @param array $js
+     * @throws NotFoundException
      */
     public function setJsPlugin(array $js)
     {
-        if (is_array($js) && count($js)) {
-            for ($i = 0; $i < count($js); $i++) {
-                $this->jsPlugin[] = BaseURL.'libraries'.DS.'js'.DS.'plugin'.DS.$js[$i].'.js';
+        if (count($js)) {
+            foreach ($js as $iValue) {
+                $this->jsPlugin[] = BASE_URL.'libraries'.DS.'js'.DS.'plugin'.DS. $iValue .'.js';
             }
         } else {
-            Firewall::runtimeFailure(
-                'Not Found',
-                [
-                    'debug' => [
-                        'file'        => 'JavaScript Plugin file',
-                        'location'    => join(',', $this->jsPlugin),
-                        'description' => 'JavaScript Plugin file not found or error while loading JavaScript files.',
-                    ],
-                    'error' => ['description' => 'Your requested url is broken!!'],
-                ]
-            );
+            throw new NotFoundException('JavaScript Plugin file not found or error while loading JavaScript files '
+                    .implode(',', $this->jsPlugin));
         }
-
     }//end setJsPlugin()
 
 
@@ -493,7 +408,6 @@ class SmartyView extends SmartyBC
     public function setModuleTemplate(string $template): string
     {
         return $this->template = $template;
-
     }//end setModuleTemplate()
 
 
@@ -501,17 +415,13 @@ class SmartyView extends SmartyBC
      * @param $key
      * @param $options
      */
-    public function setWidgetOptions($key, $options)
+    public function setWidgetOptions($key, $options): void
     {
         $this->widget[$key] = $options;
-
     }//end setWidgetOptions()
 
 
-    function __destruct()
+    public function __destruct()
     {
-
     }//end __destruct()
-
-
 }//end class

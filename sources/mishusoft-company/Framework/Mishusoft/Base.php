@@ -100,6 +100,39 @@ abstract class Base
         );
     }
 
+
+    /**
+     * @param string $filename
+     * @return string
+     */
+    public static function getClassNamespace(string $filename): string
+    {
+        $namespace = str_replace(['//', '/'], ['/', '\\'], substr(
+            $filename,
+            0,
+            (strlen($filename) - (strlen($filename) - strpos($filename, '.php')))
+        ));
+        return substr(
+            $namespace,
+            (strpos($namespace, rtrim(RUNTIME_ROOT_PATH, DS)) + strlen(rtrim(RUNTIME_ROOT_PATH, DS))),
+            strlen($namespace)
+        );
+    }//end getClassNamespaceFromPath()
+
+
+    /**
+     * @param string $name_space
+     * @param string $extension
+     * @return string
+     */
+    public static function getPath(string $name_space, string $extension = '.php'): string
+    {
+        $file = str_replace('\\', DS, $name_space).$extension;
+        return RUNTIME_ROOT_PATH.$file;
+    }//end getPathFromClassNamespace()
+
+
+
     /**
      *
      */

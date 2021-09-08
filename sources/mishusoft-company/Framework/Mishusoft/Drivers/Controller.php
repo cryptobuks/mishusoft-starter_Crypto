@@ -3,14 +3,14 @@
 namespace Mishusoft\Drivers;
 
 use InvalidArgumentException;
+use Mishusoft\Base;
 use Mishusoft\Exceptions\RuntimeException\NotFoundException;
 use Mishusoft\Exceptions;
 use Mishusoft\Authentication\Acl;
 use Mishusoft\Drivers\View;
-use Mishusoft\Http\Request;
+use Mishusoft\Http\Request\Classic as Request;
 use Mishusoft\Http\Session;
 use Mishusoft\MPM;
-use Mishusoft\Preloader;
 use Mishusoft\Registry;
 use Mishusoft\Storage;
 use Mishusoft\Http\Runtime;
@@ -227,18 +227,18 @@ abstract class Controller implements ControllerInterface
     protected function loadModel(string $model, string $module = ''): mixed
     {
         $model = implode([$model, 'Model']);
-        $rootModel = implode(DS, [MPM::modulesPath(), MPM::defaultModule(), 'Models', $model . ".php"]);
+        $rootModel = implode(DS, [MPM\Classic::modulesPath(), MPM\Classic::defaultModule(), 'Models', $model . ".php"]);
 
         if (empty($module) === false) {
             $module = $this->request->getModule();
         }
 
-        if ($module !== MPM::defaultModule()) {
-            $rootModel = MPM::modulesPath() . $module . DS . 'Models' . DS . $model . '.php';
+        if ($module !== MPM\Classic::defaultModule()) {
+            $rootModel = MPM\Classic::modulesPath() . $module . DS . 'Models' . DS . $model . '.php';
         }
         if (is_readable($rootModel)) {
             require_once $rootModel;
-            $model = Preloader::getClassNamespace($rootModel);
+            $model = Base::getClassNamespace($rootModel);
             return new $model;
         }
         throw new NotFoundException($rootModel. ' not found');

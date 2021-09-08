@@ -2,10 +2,10 @@
 
 namespace Mishusoft\Drivers\Bootstrap;
 
+use Mishusoft\Base;
 use Mishusoft\Exceptions;
 use Mishusoft\Http;
 use Mishusoft\MPM;
-use Mishusoft\Preloader;
 use Mishusoft\Storage;
 use Mishusoft\System\Log;
 use Mishusoft\Utility\ArrayCollection as Arr;
@@ -60,7 +60,7 @@ class QualifiedAPI
                             include_once self::currentFile($requestedClassName);
 
                             Log::info(sprintf('Extract %s from %s.', $requestedClassName, $requestedFile));
-                            $urlSplitter = Preloader::getClassNamespace($requestedFile);
+                            $urlSplitter = Base::getClassNamespace($requestedFile);
                             $methodName = Inflect::lower($request->getController());
                             $methodNameFull = $urlSplitter . '::' . Inflect::lower($request->getController());
                             $arguments = [

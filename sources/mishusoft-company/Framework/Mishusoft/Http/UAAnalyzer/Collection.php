@@ -121,6 +121,7 @@ abstract class Collection extends UAAnalyzerBase
                 }
             }
             if (BROWSERS_DATA_UPDATE) {
+                Storage\FileSystem::makeDirectory(dirname($cacheFile));
                 Storage\FileSystem::write($cacheFile, $this->dictionaries);
             }
         } else {

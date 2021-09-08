@@ -3,6 +3,7 @@
 namespace Mishusoft\Drivers;
 
 use Mishusoft\Authentication\Acl;
+use Mishusoft\Base;
 use Mishusoft\Exceptions;
 use Mishusoft\Preloader;
 use Mishusoft\Registry;
@@ -42,7 +43,7 @@ abstract class Widget implements WidgetInterface
         $widgetModelFile = Storage::applicationWidgetsPath().'Models'.DS.$modelClass.'.php';
         if (is_readable($widgetModelFile) === true) {
             include_once $widgetModelFile;
-            $modelClass = Preloader::getClassNamespace($widgetModelFile);
+            $modelClass = Base::getClassNamespace($widgetModelFile);
             if (in_array($widgetModelFile, get_included_files()) === true) {
                 if (class_exists($modelClass, false) === true) {
                     return new $modelClass;

@@ -2,9 +2,9 @@
 
 namespace Mishusoft\Drivers\Bootstrap;
 
+use Mishusoft\Base;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Http\Request;
-use Mishusoft\Preloader;
 use Mishusoft\Storage;
 use Mishusoft\Storage\FileSystem;
 use Mishusoft\System\Log;
@@ -47,7 +47,7 @@ class Ema
                                 );
                                 include_once $handlerFile;
                                 Log::info(sprintf('Extract class from %s.', $handlerFile));
-                                $urlHandler = Preloader::getClassNamespace($handlerFile);
+                                $urlHandler = Base::getClassNamespace($handlerFile);
                                 $arguments = [
                                     'locale'     => $request->getLocale(),
                                     'controller' => $request->getController(),
