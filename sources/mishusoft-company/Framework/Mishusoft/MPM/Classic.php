@@ -9,7 +9,6 @@ use Mishusoft\Storage;
 use Mishusoft\Storage\FileSystem;
 use Mishusoft\Storage\FileSystem\Yaml\Exception\RuntimeException;
 use Mishusoft\System\Memory;
-use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\JSON;
 
 class Classic extends MPM
@@ -62,6 +61,21 @@ class Classic extends MPM
         return Memory::data('mpm')->packages->default;
     }//end defaultPackage()
 
+
+    /**
+     * @return string
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\JsonException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
+     * @throws \JsonException
+     */
+    public static function validDefaultPackage(string $package): string
+    {
+        return empty($package) ? self::defaultPackage() : $package;
+    }//end defaultPackage()
+
     /**
      * @return string
      * @throws Exceptions\ErrorException
@@ -89,27 +103,30 @@ class Classic extends MPM
      */
     public static function propertiesFile(string $package = ''): string
     {
-        $package = empty($package) ? self::defaultPackage() : $package;
         //return app databases path [root://app/Packages/databases/]
-        return sprintf('%1$s%2$s.json', Storage::applicationPackagesPath(), $package);
+        return sprintf('%1$s%2$s.json', Storage::applicationPackagesPath(), self::validDefaultPackage($package));
     }//end propertiesFile()
 
 
     /**
-     * @param string $packageName
+     * @param string $package
      * @return string
      * @throws Exceptions\ErrorException
      * @throws Exceptions\JsonException
      * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
+     * @throws PermissionRequiredException
      * @throws \JsonException
      */
-    public static function modulesPath(string $packageName = ''): string
+    public static function modulesPath(string $package = ''): string
     {
-        $packageName = empty($packageName) ? self::defaultPackage() : $packageName;
         // return app modules path [root://app/Packages/PackageName/Modules/]
-        return sprintf('%1$s%2$sModules%3$s', Storage::applicationPackagesPath(), $packageName, DS);
+        return sprintf(
+            '%1$s%2$sModules%3$s',
+            Storage::applicationPackagesPath(),
+            self::validDefaultPackage($package),
+            DS
+        );
     }//end modulesPath()
 
 
@@ -123,11 +140,15 @@ class Classic extends MPM
      * @throws Exceptions\RuntimeException
      * @throws \JsonException
      */
-    public static function databasesPath(string $packageName = ''): string
+    public static function databasesPath(string $package = ''): string
     {
-        $packageName = empty($packageName) ? self::defaultPackage() : $packageName;
         //return app databases path [root://app/Packages/PackageName/databases/]
-        return sprintf('%1$s%2$s%3$sDatabases%3$s', Storage::applicationPackagesPath(), $packageName, DS);
+        return sprintf(
+            '%1$s%2$s%3$sDatabases%3$s',
+            Storage::applicationPackagesPath(),
+            self::validDefaultPackage($package),
+            DS
+        );
     }//end databasesPath()
 
     /**
@@ -140,11 +161,15 @@ class Classic extends MPM
      * @throws Exceptions\RuntimeException
      * @throws \JsonException
      */
-    public static function resourcesPath(string $packageName = ''): string
+    public static function resourcesPath(string $package = ''): string
     {
-        $packageName = empty($packageName) ? self::defaultPackage() : $packageName;
         // return app resources path [root://app/Packages/PackageName/Modules/]
-        return sprintf('%1$s%2$sResources%3$s', Storage::applicationPackagesPath(), $packageName, DS);
+        return sprintf(
+            '%1$s%2$sResources%3$s',
+            Storage::applicationPackagesPath(),
+            self::validDefaultPackage($package),
+            DS
+        );
     }//end resourcesPath()
 
 
