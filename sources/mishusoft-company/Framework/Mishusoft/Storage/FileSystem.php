@@ -398,11 +398,15 @@ class FileSystem
      */
     public static function write(string $filename, array $contents, int|null $length = null): bool|int
     {
-        return fwrite(
-            fopen($filename, 'wb+'),
+        $createdFile = fopen($filename, 'wb+');
+        $isWritten = fwrite(
+            $createdFile,
             json_encode($contents, JSON_THROW_ON_ERROR),
             $length
         );
+        fclose($createdFile);
+
+        return $isWritten;
     }//end write()
 
 
