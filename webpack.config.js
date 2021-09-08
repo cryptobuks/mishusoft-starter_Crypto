@@ -25,7 +25,7 @@ const FontPreloadPlugin = require("webpack-font-preload-plugin");
 
 const commonConfig = {
     mode: 'production',
-    context: path.join(__dirname, './Sources'),
+    context: path.join(__dirname, './sources'),
     module: {
         rules: [
             // compile sass, scss file
