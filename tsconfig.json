@@ -21,6 +21,6 @@
     ]
   },
   "include": [
-    "./Sources/Assets/typescripts"
+    "./sources/Assets/typescripts"
   ]
 }
