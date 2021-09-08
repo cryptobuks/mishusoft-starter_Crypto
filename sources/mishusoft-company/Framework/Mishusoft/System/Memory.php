@@ -157,7 +157,11 @@ class Memory
                 $filename = MPM\Classic::configFile();
             }//end if
 
+            Debug::preOutput($filename);
+            Debug::preOutput("Checking $filename");
+            Debug::preOutput(file_exists($filename));
             if (file_exists($filename) === false) {
+                Debug::preOutput('creating new file');
                 MPM\Classic::install();
             }//end if
 
@@ -195,6 +199,8 @@ class Memory
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
         }//end if
+
+
         if (!in_array(getType($result), ['object','array'], true)) {
             Debug::preOutput($carrier);
             Debug::preOutput($format);
