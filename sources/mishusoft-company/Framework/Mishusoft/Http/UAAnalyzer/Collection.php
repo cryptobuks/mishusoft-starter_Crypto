@@ -100,10 +100,15 @@ abstract class Collection extends UAAnalyzerBase
 
     /**
      * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws JsonException
      */
     private function loadDictionaries(): void
     {
-        if (count($this->directoriesWithFiles) > 0) {
+        $cacheFile = self::dFile(self::configDataFile('UAAnalyzer', 'dictionaries'), 'json');
+        if (file_exists($cacheFile)) {
+            $this->dictionaries = JSON::decodeToArray(Storage\FileSystem::read($cacheFile));
+        } elseif (count($this->directoriesWithFiles) > 0) {
             foreach ($this->directoriesWithFiles as $directory => $files) {
                 if (is_array($files) === true) {
                     foreach ($files as $file) {
@@ -115,8 +120,11 @@ abstract class Collection extends UAAnalyzerBase
                     throw new RuntimeException('UA Analyzer\'s directory list has been corrupted');
                 }
             }
+            if (BROWSERS_DATA_UPDATE) {
+                Storage\FileSystem::write($cacheFile, $this->dictionaries);
+            }
         } else {
-            throw new RuntimeException('UA Analyzer\'s directory list not found');
+            throw new RuntimeException('The dictionaries of UA Analyzer could not loaded');
         }
     }
 
