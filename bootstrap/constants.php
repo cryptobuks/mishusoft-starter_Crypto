@@ -43,6 +43,7 @@ const LOG_TYPE_RUNTIME = 'runtime';
 
 define('CURRENT_YEAR', date('Y'));
 define('RUNTIME_ROOT_PATH', realpath(dirname(__DIR__)) . DS);
+define('RUNTIME_CACHE_ROOT_PATH', RUNTIME_ROOT_PATH . 'tmp' . DS . md5($_SERVER['PHP_SELF']) . DS);
 
 const FRAMEWORK_PATH = RUNTIME_ROOT_PATH . 'sources' . DS. 'mishusoft-company' . DS. 'Framework' . DS;
 //const FRAMEWORK_PATH = RUNTIME_ROOT_PATH . 'framework' . DS;
