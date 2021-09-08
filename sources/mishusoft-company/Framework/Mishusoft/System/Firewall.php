@@ -168,7 +168,7 @@ class Firewall extends Base
         //data-drive/Firewall/logs/
         return sprintf(
             '%1$s%2$s%5$s%3$s%5$s%4$s%5$s',
-            Storage::dataDriveStoragesPath(),
+            Storage::configDataDriveStoragesPath(),
             'Firewall',
             'logs',
             Time::todayDateOnly(),

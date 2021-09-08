@@ -9,6 +9,7 @@ use Mishusoft\Storage;
 use Mishusoft\Storage\FileSystem;
 use Mishusoft\Storage\FileSystem\Yaml\Exception\RuntimeException;
 use Mishusoft\System\Memory;
+use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\JSON;
 
 class Classic extends MPM
@@ -58,17 +59,19 @@ class Classic extends MPM
      */
     public static function defaultPackage(): string
     {
+        Debug::preOutput(Memory::data('npm'));
         return Memory::data('mpm')->packages->default;
     }//end defaultPackage()
 
 
     /**
+     * @param string $package
      * @return string
      * @throws Exceptions\ErrorException
      * @throws Exceptions\JsonException
      * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
+     * @throws PermissionRequiredException
      * @throws \JsonException
      */
     public static function validDefaultPackage(string $package): string
@@ -131,13 +134,13 @@ class Classic extends MPM
 
 
     /**
-     * @param string $packageName
+     * @param string $package
      * @return string
      * @throws Exceptions\ErrorException
      * @throws Exceptions\JsonException
      * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
+     * @throws PermissionRequiredException
      * @throws \JsonException
      */
     public static function databasesPath(string $package = ''): string
@@ -152,13 +155,13 @@ class Classic extends MPM
     }//end databasesPath()
 
     /**
-     * @param string $packageName
+     * @param string $package
      * @return string
      * @throws Exceptions\ErrorException
      * @throws Exceptions\JsonException
      * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
+     * @throws PermissionRequiredException
      * @throws \JsonException
      */
     public static function resourcesPath(string $package = ''): string
@@ -475,7 +478,7 @@ class Classic extends MPM
                                 $moduleDefault = self::$content['modules'][$packageName]['default'];
                                 if ($value === 'enable') {
                                     foreach ($modulesAll as $module => $moduleDetails) {
-                                        if (($modulesAll[$module]['status'] === 'enable')
+                                        if (($moduleDetails['status'] === 'enable')
                                             && ($moduleDefault === $module) === false) {
                                             $array[] = $module;
                                         }
@@ -484,7 +487,7 @@ class Classic extends MPM
 
                                 if ($value === 'disabled') {
                                     foreach ($modulesAll as $module => $moduleDetails) {
-                                        if ($modulesAll[$module]['status'] === 'disabled') {
+                                        if ($moduleDetails['status'] === 'disabled') {
                                             $array[] = $module;
                                         }
                                     }
@@ -579,6 +582,7 @@ class Classic extends MPM
      */
     public static function install(string $newPackage = '', bool $setDefault = false): void
     {
+        Debug::preOutput(debug_backtrace());
         // Preparing to check configure file.
         if (file_exists(self::configFile()) === true) {
             if (self::readConfigure() === true) {

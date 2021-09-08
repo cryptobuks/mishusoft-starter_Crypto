@@ -416,6 +416,19 @@ class Storage extends Base
     /**
      * @return string
      */
+    public static function configDataDriveStoragesPath(): string
+    {
+        return sprintf(
+            '%1$s%2$s%3$s',
+            self::frameworkStoragesPath(),
+            'configs',
+            DS
+        );
+    }
+
+    /**
+     * @return string
+     */
     public static function frameworkSessionsPath(): string
     {
         return sprintf(

@@ -15,6 +15,7 @@ use Mishusoft\Storage\FileSystem;
 use Mishusoft\Framework;
 use Mishusoft\MPM;
 use Mishusoft\System;
+use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\JSON;
 use stdClass;
 
@@ -97,37 +98,13 @@ class Memory
 
         FileSystem::makeDirectory(dirname(self::$framework::configFile()));
 
-        Log::info(sprintf('Check %s file existent.', self::$framework::configFile()));
-        if (file_exists(self::$framework::configFile()) === false) {
-            Log::info(sprintf('Check failed. %s file not exists.', self::$framework::configFile()));
-            Log::info(sprintf('Creating new %s file with default config.', self::$framework::configFile()));
-            FileSystem\Yaml::emitFile(self::$framework::configFile(), self::$framework::defaultConfiguration());
-        } else {
-            $content = FileSystem\Yaml::parseFile(self::$framework::configFile());
-            Log::info(sprintf('Check %s file\'s content length.', self::$framework::configFile()));
-            if (count($content) === 0) {
-                Log::info(sprintf('The content of %s file is empty.', self::$framework::configFile()));
-                Log::info(sprintf('Creating new %s file with default config.', self::$framework::configFile()));
-                FileSystem\Yaml::emitFile(self::$framework::configFile(), self::$framework::defaultConfiguration());
-            }
-        }
+        FileSystem::check(self::$framework::configFile(), function ($filename) {
+            FileSystem\Yaml::emitFile($filename, self::$framework::defaultConfiguration());
+        });
 
-        Log::info(sprintf('Check %s file existent.', self::$framework::installFile()));
-        if (file_exists(self::$framework::installFile()) === false) {
-            Log::info(sprintf('Check failed. %s file not exists', self::$framework::installFile()));
-            Log::info(sprintf('Creating new %s file', self::$framework::installFile()));
+        FileSystem::check(self::$framework::installFile(), function () {
             self::$framework::install();
-        } else {
-            $installContent = FileSystem\Yaml::parseFile(self::$framework::installFile());
-            Log::info(sprintf('Check %s file\'s content length', self::$framework::installFile()));
-            if (count($installContent) === 0) {
-                Log::info(sprintf('The content of %s file is empty', self::$framework::installFile()));
-                Log::info(sprintf('Creating new %s file', self::$framework::installFile()));
-                self::$framework::install();
-            }
-        }
-
-        //FileSystem::chmod(dirname($installFile, 2), 0777);
+        });
     }
 
     /**
@@ -138,7 +115,7 @@ class Memory
      *
      * @return array|object
      * @throws InvalidArgumentException
-     * @throws JsonException Throw exception on json error.
+     * @throws JsonException
      * @throws PermissionRequiredException
      * @throws ErrorException
      * @throws \Mishusoft\Exceptions\JsonException
@@ -146,19 +123,22 @@ class Memory
      */
     public static function data(string $carrier = 'memory', array $options = []): array|object
     {
+        if (array_key_exists('format', $options) === true) {
+            $format = $options['format'];
+        } else {
+            $format = 'object';
+        }
+
+        if (array_key_exists('default', $options) === true) {
+            $default = $options['default'];
+        } else {
+            $default = ['container' => 'empty'];
+        }
+
+        Debug::preOutput(func_get_args());
+        Debug::preOutput($carrier);
+
         if ($carrier === 'config') {
-            if (array_key_exists('format', $options) === true) {
-                $format = $options['format'];
-            } else {
-                $format = 'object';
-            }
-
-            if (array_key_exists('default', $options) === true) {
-                $default = $options['default'];
-            } else {
-                $default = ['container' => 'empty'];
-            }
-
             if (array_key_exists('file', $options) === true) {
                 $filename = $options['file'];
             } else {
@@ -167,18 +147,6 @@ class Memory
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
         } elseif ($carrier === 'mpm') {
-            if (array_key_exists('format', $options) === true) {
-                $format = $options['format'];
-            } else {
-                $format = 'object';
-            }
-
-            if (array_key_exists('default', $options) === true) {
-                $default = $options['default'];
-            } else {
-                $default = ['container' => 'empty'];
-            }
-
             if (array_key_exists('file', $options) === true) {
                 $filename = $options['file'];
             } else {
@@ -188,21 +156,10 @@ class Memory
             if (file_exists($filename) === false) {
                 MPM\Classic::install();
             }
+            Debug::preOutput('loading mpm data');
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
         } elseif ($carrier === 'framework') {
-            if (array_key_exists('format', $options) === true) {
-                $format = $options['format'];
-            } else {
-                $format = 'object';
-            }
-
-            if (array_key_exists('default', $options) === true) {
-                $default = $options['default'];
-            } else {
-                $default = ['container' => 'empty'];
-            }
-
             if (array_key_exists('file', $options) === true) {
                 $filename = $options['file'];
             } else {
@@ -215,12 +172,6 @@ class Memory
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
         } elseif ($carrier === 'memory') {
-            if (array_key_exists('format', $options) === true) {
-                $format = $options['format'];
-            } else {
-                $format = 'object';
-            }
-
             if (array_key_exists('default', $options) === true) {
                 $default = $options['default'];
             } else {
@@ -235,7 +186,7 @@ class Memory
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
         } else {
-            $result = self::dataLoader($carrier, $options['format'], $options['default'], $options['file']);
+            $result = self::dataLoader($carrier, $format, $default, $options['file']);
         }//end if
 
         return $result;

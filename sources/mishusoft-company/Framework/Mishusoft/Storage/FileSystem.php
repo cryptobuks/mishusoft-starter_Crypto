@@ -315,6 +315,30 @@ class FileSystem
         }
     }//end createDirectory()
 
+
+
+
+    /**
+     * @throws RuntimeException
+     */
+    public static function check(string $file, \Closure $closure): void
+    {
+        Log::info(sprintf('Check %s file existent.', $file));
+        if (file_exists($file) === false) {
+            Log::info(sprintf('Check failed. %s file not exists', $file));
+            Log::info(sprintf('Creating new %s file', $file));
+            $closure($file);
+        } else {
+            $installContent = FileSystem\Yaml::parseFile($file);
+            Log::info(sprintf('Check %s file\'s content length', $file));
+            if (count($installContent) === 0) {
+                Log::info(sprintf('The content of %s file is empty', $file));
+                Log::info(sprintf('Creating new %s file', $file));
+                $closure($file);
+            }
+        }
+    }
+
     public static function permission(string $pathname): bool|int
     {
         return fileperms($pathname);
