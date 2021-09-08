@@ -10,7 +10,9 @@ set_error_handler(
         include_once FRAMEWORK_PATH . 'Mishusoft' . DS. 'Exceptions' . DS . 'Handler.php';
         echo sprintf("%s:: %s in file %s on line %d".LINE_BREAK, Handler::codeToName($number), $message, $file, $line);
         echo 'Stack trace:'.LINE_BREAK;
-        foreach (Handler::makeBeautifulStackTrace(debug_backtrace()) as $serial => $details) {
+        $trace = debug_backtrace();
+        array_shift($trace);
+        foreach (Handler::makeBeautifulStackTrace($trace) as $serial => $details) {
             echo sprintf('%d) %s ', Mishusoft\Utility\Number::next($serial), $details).LINE_BREAK;
         }
         exit();
