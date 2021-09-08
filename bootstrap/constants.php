@@ -24,6 +24,9 @@ const MS_DB_USER_PASSWORD = APPLICATION_SYSTEM_USER_PASSWORD;
 const PREG_QUOTE_DEFAULT_SEPARATOR = '/@#~';
 
 
+// enable or disable browser data update.
+const BROWSERS_DATA_UPDATE = false;
+
 // enable or disable logging.
 const LOGGING_ON_OPERATION = false;
 
