@@ -123,17 +123,19 @@ class Memory
      */
     public static function data(string $carrier = 'memory', array $options = []): array|object
     {
+        $result = '';
+
         if (array_key_exists('format', $options) === true) {
             $format = $options['format'];
         } else {
             $format = 'object';
-        }
+        }//end if
 
         if (array_key_exists('default', $options) === true) {
             $default = $options['default'];
         } else {
             $default = ['container' => 'empty'];
-        }
+        }//end if
 
         Debug::preOutput(func_get_args());
         Debug::preOutput($carrier);
@@ -143,50 +145,66 @@ class Memory
                 $filename = $options['file'];
             } else {
                 $filename = System::getRequiresFile('SETUP_FILE_PATH', System::getDefaultDb());
-            }
+            }//end if
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
-        } elseif ($carrier === 'mpm') {
+        }//end if
+
+        if ($carrier === 'mpm') {
             if (array_key_exists('file', $options) === true) {
                 $filename = $options['file'];
             } else {
                 $filename = MPM\Classic::configFile();
-            }
+            }//end if
 
             if (file_exists($filename) === false) {
                 MPM\Classic::install();
-            }
+            }//end if
+
             Debug::preOutput('loading mpm data');
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
-        } elseif ($carrier === 'framework') {
+        }//end if
+
+        if ($carrier === 'framework') {
             if (array_key_exists('file', $options) === true) {
                 $filename = $options['file'];
             } else {
                 $filename = Framework::installFile();
-            }
+            }//end if
 
             if (file_exists($filename) === false) {
                 Framework::install();
-            }
+            }//end if
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
-        } elseif ($carrier === 'memory') {
+        }//end if
+
+        if ($carrier === 'memory') {
             if (array_key_exists('default', $options) === true) {
                 $default = $options['default'];
             } else {
                 $default = Framework::defaultConfiguration();
-            }
+            }//end if
 
             if (array_key_exists('file', $options) === true) {
                 $filename = $options['file'];
             } else {
                 $filename = Framework::configFile();
-            }
+            }//end if
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
-        } else {
-            $result = self::dataLoader($carrier, $format, $default, $options['file']);
+        }//end if
+        if (!in_array(getType($result), ['object','array'], true)) {
+            Debug::preOutput($carrier);
+            Debug::preOutput($format);
+            Debug::preOutput($default);
+            Debug::preOutput($options);
+            if (count($options) > 0) {
+                $result = self::dataLoader($carrier, $format, $default, $options['file']);
+            } else {
+                throw new RuntimeException\NotFoundException('Data file name can not be empty');
+            }
         }//end if
 
         return $result;
