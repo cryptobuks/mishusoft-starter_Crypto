@@ -25,7 +25,7 @@ const PREG_QUOTE_DEFAULT_SEPARATOR = '/@#~';
 
 
 // enable or disable browser data update.
-const BROWSERS_DATA_UPDATE = false;
+const BROWSERS_DATA_UPDATE = true;
 
 // enable or disable logging.
 const LOGGING_ON_OPERATION = false;
