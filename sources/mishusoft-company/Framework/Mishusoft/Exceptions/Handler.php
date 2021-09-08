@@ -9,7 +9,6 @@ use MaxMind\Db\Reader\InvalidDatabaseException;
 use Mishusoft\Http;
 use Mishusoft\Storage;
 use Mishusoft\System\Log;
-use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\JSON;
 use Mishusoft\Utility\Number;
 
@@ -151,15 +150,23 @@ class Handler extends ErrorException implements ExceptionInterface
                         $argImplode = '';
                         foreach ($value['args'] as $arg) {
                             if (is_array($arg)) {
+                              //  Debug::preOutput($arg);
                                 $argImplode .= '[';
                                 foreach ($arg as $k => $v) {
-                                    $argImplode .="$k=>$v";
+                                    if (is_array($v)) {
+                                        $argImplode .=sprintf('%1$s=>%2$s, ', $k, '[...]');
+                                    } else {
+                                        $argImplode .=sprintf('%1$s=>%2$s', $k, $v);
+                                    }
+                                }
+                                if (str_ends_with($argImplode, ', ')) {
+                                    $argImplode = substr($argImplode, 0, -2);
                                 }
                                 $argImplode .= ']';
+                            } elseif (is_object($arg)) {
+                                $argImplode .= get_class($arg) . ', ';
                             } else {
-                                if (!is_object($arg)) {
-                                    $argImplode .= $arg . ', ';
-                                }
+                                $argImplode .= $arg . ', ';
                             }
                         }
                         if (str_ends_with($argImplode, ', ')) {
