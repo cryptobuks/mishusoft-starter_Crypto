@@ -20,8 +20,9 @@
 /storages/app/webfonts
 /storages/databases
 /storages/framework/cache/
-/storages/framework/config/
+/storages/framework/configs/
 /storages/framework/sessions/
+/storages/framework/views/
 /storages/framework/*.php
 /storages/logs/
 /storages/user/
