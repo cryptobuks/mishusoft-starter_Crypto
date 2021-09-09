@@ -48,6 +48,19 @@ class JSON
 
 
     /**
+     * Encode array to json object.
+     *
+     * @param object $object
+     * @return array   Decoded json object.
+     * @throws \Mishusoft\Exceptions\JsonException Throw exception on json process error.
+     */
+    public static function encodeToArray(object $object): array
+    {
+        return self::decodeToArray(self::encodeToString($object));
+    }//end encodeToObject()
+
+
+    /**
      * Json string to object converting
      * <code>
      * return json_decode($string, false, 512, JSON_THROW_ON_ERROR);
