@@ -4,11 +4,11 @@
 namespace Mishusoft\System;
 
 use JsonException;
+use Mishusoft\Base;
 use Mishusoft\Exceptions\ErrorException;
 use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
-use Mishusoft\Http;
 use Mishusoft\Registry;
 use Mishusoft\Storage;
 use Mishusoft\Storage\FileSystem;
@@ -19,10 +19,11 @@ use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\JSON;
 use stdClass;
 
-class Memory
+class Memory extends Base
 {
 
     private static array $data = [];
+    private static string $cacheFile = '';
     private static Framework $framework;
     private static string $dataDrive;
 
@@ -43,6 +44,7 @@ class Memory
     {
         self::$framework = $framework;
         self::$dataDrive = Storage::dataDriveStoragesPath();
+        self::$cacheFile = self::dFile(self::configDataFile('Memory', 'data'));
 
         self::validation();
         self::loadFrameworkMemory();
@@ -137,9 +139,6 @@ class Memory
             $default = ['container' => 'empty'];
         }//end if
 
-        Debug::preOutput(func_get_args());
-        Debug::preOutput($carrier);
-
         if ($carrier === 'config') {
             if (array_key_exists('file', $options) === true) {
                 $filename = $options['file'];
@@ -157,15 +156,9 @@ class Memory
                 $filename = MPM\Classic::configFile();
             }//end if
 
-            Debug::preOutput($filename);
-            Debug::preOutput("Checking $filename");
-            Debug::preOutput(file_exists($filename));
             if (file_exists($filename) === false) {
-                Debug::preOutput('creating new file');
                 MPM\Classic::install();
             }//end if
-
-            Debug::preOutput('loading mpm data');
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
         }//end if
@@ -202,10 +195,6 @@ class Memory
 
 
         if (!in_array(getType($result), ['object','array'], true)) {
-            Debug::preOutput($carrier);
-            Debug::preOutput($format);
-            Debug::preOutput($default);
-            Debug::preOutput($options);
             if (count($options) > 0) {
                 $result = self::dataLoader($carrier, $format, $default, $options['file']);
             } else {
@@ -232,6 +221,7 @@ class Memory
      */
     private static function dataLoader(string $carrier, string $format, array $default, string $filename): object|array
     {
+        Debug::preOutput(func_get_args());
         $result = [];
         if (self::isValid($carrier, $format)) {
             $result = self::$data[$carrier][$format];
@@ -282,6 +272,9 @@ class Memory
                     self::$data[$carrier]['default'] = $default;
                     self::$data[$carrier]['filename'] = $filename;
                     self::$data[$carrier][$format] = $result;
+
+                    //make a cache file for memory
+                    FileSystem\Yaml::emitFile(self::$cacheFile, self::$data);
                 } else {
                     throw new ErrorException($filename . ' not empty.');
                 }//end if
@@ -299,9 +292,13 @@ class Memory
      * @param string $carrier
      * @param string $format
      * @return bool
+     * @throws RuntimeException
      */
     private static function isValid(string $carrier, string $format): bool
     {
+        if (file_exists(self::$cacheFile)) {
+            self::$data = FileSystem\Yaml::parseFile(self::$cacheFile);
+        }
         //self::$data[$carrier][$format][$default][$filename]
         return array_key_exists($carrier, self::$data) && array_key_exists($format, self::$data[$carrier])
             && array_key_exists('default', self::$data[$carrier])
