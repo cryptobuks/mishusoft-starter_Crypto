@@ -105,9 +105,9 @@ abstract class Collection extends UAAnalyzerBase
      */
     private function loadDictionaries(): void
     {
-        $cacheFile = self::dFile(self::configDataFile('UAAnalyzer', 'dictionaries'), 'json');
+        $cacheFile = self::dFile(self::configDataFile('UAAnalyzer', 'dictionaries'));
         if (file_exists($cacheFile)) {
-            $this->dictionaries = JSON::decodeToArray(Storage\FileSystem::read($cacheFile));
+            $this->dictionaries = Storage\FileSystem\Yaml::parseFile($cacheFile);
         } elseif (count($this->directoriesWithFiles) > 0) {
             foreach ($this->directoriesWithFiles as $directory => $files) {
                 if (is_array($files) === true) {
@@ -122,7 +122,7 @@ abstract class Collection extends UAAnalyzerBase
             }
             if (BROWSERS_DATA_UPDATE) {
                 Storage\FileSystem::makeDirectory(dirname($cacheFile));
-                Storage\FileSystem::write($cacheFile, $this->dictionaries);
+                Storage\FileSystem\Yaml::emitFile($cacheFile, $this->dictionaries);
             }
         } else {
             throw new RuntimeException('The dictionaries of UA Analyzer could not loaded');
