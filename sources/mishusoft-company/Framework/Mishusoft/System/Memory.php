@@ -44,7 +44,6 @@ class Memory extends Base
     {
         self::$framework = $framework;
         self::$dataDrive = Storage::dataDriveStoragesPath();
-        self::$cacheFile = self::dFile(self::configDataFile('Memory', 'data'));
 
         self::validation();
         self::loadFrameworkMemory();
@@ -125,6 +124,7 @@ class Memory extends Base
      */
     public static function data(string $carrier = 'memory', array $options = []): array|object
     {
+        self::$cacheFile = self::dFile(self::configDataFile('Memory', 'data'));
         $result = '';
 
         if (array_key_exists('format', $options) === true) {
@@ -274,6 +274,7 @@ class Memory extends Base
                     self::$data[$carrier][$format] = $result;
 
                     //make a cache file for memory
+                    FileSystem::makeDirectory(dirname(self::$cacheFile));
                     FileSystem\Yaml::emitFile(self::$cacheFile, self::$data);
                 } else {
                     throw new ErrorException($filename . ' not empty.');
