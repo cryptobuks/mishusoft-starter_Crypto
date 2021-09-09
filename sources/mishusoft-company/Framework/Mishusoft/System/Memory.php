@@ -286,6 +286,8 @@ class Memory extends Base
             Log::info('End the process of data grabber from' . $filename);
         }
 
+        Debug::preOutput($result);
+
         return $result;
     }//end dataLoader()
 
