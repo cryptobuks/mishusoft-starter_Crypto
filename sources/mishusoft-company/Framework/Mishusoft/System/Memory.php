@@ -201,7 +201,6 @@ class Memory extends Base
                 throw new RuntimeException\NotFoundException('Data file name can not be empty');
             }
         }//end if
-
         return $result;
     }//end data()
 
@@ -221,7 +220,6 @@ class Memory extends Base
      */
     private static function dataLoader(string $carrier, string $format, array $default, string $filename): object|array
     {
-        Debug::preOutput(func_get_args());
         $result = [];
         if (self::isValid($carrier, $format)) {
             $result = self::$data[$carrier][$format];
@@ -250,7 +248,7 @@ class Memory extends Base
                             $result = JSON::encodeToObject($default);
                         }
 
-                        if (is_object($result)) {
+                        if (is_object($result) === false) {
                             $result = new stdClass();
                         }
                     }
@@ -269,13 +267,19 @@ class Memory extends Base
                         }
                     }
 
-                    self::$data[$carrier]['default'] = $default;
-                    self::$data[$carrier]['filename'] = $filename;
-                    self::$data[$carrier][$format] = $result;
+                    $reserved = $format === 'object' ? JSON::encodeToArray($result) : $result;
 
-                    //make a cache file for memory
-                    FileSystem::makeDirectory(dirname(self::$cacheFile));
-                    FileSystem\Yaml::emitFile(self::$cacheFile, self::$data);
+                    Debug::preOutput($result);
+
+                    if (!empty($reserved)) {
+                        self::$data[$carrier]['default'] = $default;
+                        self::$data[$carrier]['filename'] = $filename;
+                        self::$data[$carrier][$format] = $reserved;
+
+                        //make a cache file for memory
+                        FileSystem::makeDirectory(dirname(self::$cacheFile));
+                        FileSystem\Yaml::emitFile(self::$cacheFile, self::$data);
+                    }
                 } else {
                     throw new ErrorException($filename . ' not empty.');
                 }//end if
@@ -288,6 +292,7 @@ class Memory extends Base
 
         Debug::preOutput($result);
 
+
         return $result;
     }//end dataLoader()
 
@@ -296,11 +301,18 @@ class Memory extends Base
      * @param string $format
      * @return bool
      * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     private static function isValid(string $carrier, string $format): bool
     {
         if (file_exists(self::$cacheFile)) {
             self::$data = FileSystem\Yaml::parseFile(self::$cacheFile);
+
+            //Debug::preOutput();
+
+            if ($format === 'object') {
+                self::$data[$carrier][$format] = JSON::encodeToObject(self::$data[$carrier][$format]);
+            }
         }
         //self::$data[$carrier][$format][$default][$filename]
         return array_key_exists($carrier, self::$data) && array_key_exists($format, self::$data[$carrier])
