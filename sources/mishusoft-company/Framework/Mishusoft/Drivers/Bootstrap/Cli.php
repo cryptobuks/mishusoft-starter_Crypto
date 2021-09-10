@@ -38,8 +38,8 @@ class Cli
                 if (isset($args)) {
                     call_user_func_array([$controller, $method], $args);
                 } else {
-                    //$controller->$method();
-                    call_user_func([$controller, $method]);
+                    $controller->$method();
+                    //call_user_func([$controller, $method]);
                 }
             } else {
                 throw new Exceptions\RuntimeException\NotFoundException($rootController.' not found');

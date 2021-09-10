@@ -30,7 +30,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "App\\": "sources/mishusoft-company/Application",
+      "App\\": "sources/mishusoft-company/App",
       "Mishusoft\\": "sources/mishusoft-company/Framework/Mishusoft"
     }
   },
@@ -51,16 +51,16 @@
     "update:index.html": "php cli update:indexHTML ./sources/mishusoft-company/public/app.html ./public_html/index.html",
     "update:framework": "php cli update:framework ./sources/mishusoft-company/Framework ./framework",
 
-    "update:cli": "php cli update:cli ./sources/mishusoft-company/Application/CliSurface ./app/CliSurface",
+    "update:cli": "php cli update:cli ./sources/mishusoft-company/App/CliSurface ./app/CliSurface",
 
-    "update:api": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Application/QualifiedAPIRoutes -d ./app/QualifiedAPIRoutes",
-    "update:ema": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Application/Packages/Ema -d ./app/Packages/Ema",
-    "update:ema.loader": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Application/Packages/Ema.loader.php -d ./app/Packages/Ema.loader.php",
-    "update:packages": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Application/Packages -d ./app/Packages",
-    "update:themes": "php ./Sources/mishusoft-company/Release.php -compile-themes -s ./Sources/mishusoft-company/Application/Views/Themes -d ./app/Themes",
-    "update:widgets": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/Application/Widgets -d ./app/Widgets",
-    "update:widgets.components": "php ./Sources/mishusoft-company/Release.php -compile-widgets -s ./Sources/mishusoft-company/Application/Views/Widgets -d ./app/Widgets/Views",
-    "update:packages.components": "php ./Sources/mishusoft-company/Release.php -static -s ./Sources/mishusoft-company/Application/Views/Templates/Packages -d ./app/Packages && @update:packages",
+    "update:api": "php cli update:api ./sources/mishusoft-company/App/QualifiedAPIRoutes ./app/QualifiedAPIRoutes",
+    "update:ema": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/App/Packages/Ema -d ./app/Packages/Ema",
+    "update:ema.loader": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/App/Packages/Ema.loader.php -d ./app/Packages/Ema.loader.php",
+    "update:packages": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/App/Packages -d ./app/Packages",
+    "update:themes": "php ./Sources/mishusoft-company/Release.php -compile-themes -s ./Sources/mishusoft-company/App/Views/Themes -d ./app/Themes",
+    "update:widgets": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/App/Widgets -d ./app/Widgets",
+    "update:widgets.components": "php ./Sources/mishusoft-company/Release.php -compile-widgets -s ./Sources/mishusoft-company/App/Views/Widgets -d ./app/Widgets/Views",
+    "update:packages.components": "php ./Sources/mishusoft-company/Release.php -static -s ./Sources/mishusoft-company/App/Views/Templates/Packages -d ./app/Packages && @update:packages",
 
 
     "update:test:index.php": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/app.php -d ./public_html/index.php",

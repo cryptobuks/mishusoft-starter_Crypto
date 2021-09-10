@@ -24,6 +24,9 @@ abstract class CliSurfaceController
         $this->log('Update completed..', 'completed');
     }
 
+    /**
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     */
     protected function copy(string $source, string $destination):void
     {
         $this->log(sprintf('Checking source %s existence', $source), 'checking');

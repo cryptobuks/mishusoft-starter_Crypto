@@ -32,9 +32,19 @@ class Cli extends MPM
     private static function controllerPath(string $controller): string
     {
         //return path [like root://app/CliSurface/Controllers/NameController.php]
+        //return path [like root://sources/mishusoft-company/Application/CliSurface/Controllers/NameController.php]
+        if (file_exists(Storage::applicationDirectivePath())) {
+            return sprintf(
+                '%1$sCliSurface%3$sControllers%3$s%2$sController.php',
+                Storage::applicationDirectivePath(),
+                ucfirst($controller),
+                DS
+            );
+        }
+
         return sprintf(
-            '%1$sCliSurface%3$sControllers%3$s%2$sController.php',
-            Storage::applicationDirectivePath(),
+            '%1$ssources%3$smishusoft-company%3$sApp%3$sCliSurface%3$sControllers%3$s%2$sController.php',
+            RUNTIME_ROOT_PATH,
             ucfirst($controller),
             DS
         );

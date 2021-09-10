@@ -43,4 +43,10 @@ class UpdateController extends CliSurfaceController
         $this->log('Cli updating started ');
         $this->update($source, $destination);
     }
+
+    public function api(string $source, string $destination): void
+    {
+        $this->log('Api updating started ');
+        $this->update($source, $destination);
+    }
 }

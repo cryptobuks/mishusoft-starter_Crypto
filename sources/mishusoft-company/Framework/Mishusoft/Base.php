@@ -100,17 +100,28 @@ abstract class Base extends Singleton
      */
     public static function getClassNamespace(string $filename): string
     {
-        $namespace = str_replace(['//', '/'], ['/', '\\'], substr(
-            $filename,
+        if (str_starts_with($filename, RUNTIME_SOURCES_PATH)) {
+            $filename = substr($filename, self::currentPosition($filename, RUNTIME_SOURCES_PATH), strlen($filename));
+            return self::getNamespace($filename);
+        }
+
+        $namespace = self::getNamespace($filename);
+        return substr($namespace, self::currentPosition($namespace, RUNTIME_ROOT_PATH), strlen($namespace));
+    }//end getClassNamespace()
+
+    private static function currentPosition(string $resources, string $path):string
+    {
+        return (strpos($resources, rtrim($path, DS)) + strlen(rtrim($path, DS)));
+    }
+
+    private static function getNamespace(string $path):string
+    {
+        return str_replace(['//', '/'], ['/', '\\'], substr(
+            $path,
             0,
-            (strlen($filename) - (strlen($filename) - strpos($filename, '.php')))
+            (strlen($path) - (strlen($path) - strpos($path, '.php')))
         ));
-        return substr(
-            $namespace,
-            (strpos($namespace, rtrim(RUNTIME_ROOT_PATH, DS)) + strlen(rtrim(RUNTIME_ROOT_PATH, DS))),
-            strlen($namespace)
-        );
-    }//end getClassNamespaceFromPath()
+    }
 
 
     /**
