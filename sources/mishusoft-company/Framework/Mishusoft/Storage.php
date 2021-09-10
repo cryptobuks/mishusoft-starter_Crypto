@@ -186,6 +186,19 @@ class Storage extends Base
     /**
      * @return string
      */
+    public static function fViewsPath(): string
+    {
+        return sprintf(
+            '%1$s%2$s%3$s',
+            self::frameworkStoragesPath(),
+            'views',
+            DS
+        );
+    }
+
+    /**
+     * @return string
+     */
     public static function cssAssetsPath(): string
     {
         return sprintf(
@@ -395,7 +408,7 @@ class Storage extends Base
         return sprintf(
             '%1$s%2$s%3$s',
             self::frameworkStoragesPath(),
-            'cache',
+            'caches',
             DS
         );
     }
@@ -849,6 +862,9 @@ class Storage extends Base
             }
             return self::makeDataUri(self::mediaFullPath($filename));
         }
+        if ($directive === 'framework') {
+            return self::makeDataUri(self::fViewsFullPath($filename));
+        }
         return '';
     }//end toDataUri()
 
@@ -896,6 +912,18 @@ class Storage extends Base
         return self::fullPathBuilder(self::appStoragesPath(), self::webResourcesPath(), $filename, $feature, false);
     }//end getStoragePath()
 
+
+    /**
+     * @param string $filename
+     * @param string $feature
+     * @return string
+     * @throws NotFoundException
+     */
+    public static function fViewsFullPath(string $filename, string $feature = 'local'): string
+    {
+        return self::fullPathBuilder(self::fViewsPath(), false, $filename, $feature, false);
+    }//end getAssetsPath()
+
     /**
      * @return string
      */
@@ -929,9 +957,7 @@ class Storage extends Base
         string      $filename,
         string      $feature,
         string|bool $pathIndicator
-    ): string
-    {
-
+    ): string {
         if (str_ends_with($localDrive, DS) === false) {
             $localDrive .= DS;
         }
@@ -971,8 +997,4 @@ class Storage extends Base
 
         return '';
     }
-
-    public function __destruct()
-    {
-    }//end __destruct()
 }//end class

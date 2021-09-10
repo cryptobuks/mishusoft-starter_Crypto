@@ -15,7 +15,6 @@ use Mishusoft\Storage\FileSystem;
 use Mishusoft\Framework;
 use Mishusoft\MPM;
 use Mishusoft\System;
-use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\JSON;
 use stdClass;
 
@@ -98,7 +97,6 @@ class Memory extends Base
           */
 
         FileSystem::makeDirectory(dirname(self::$framework::configFile()));
-
         FileSystem::check(self::$framework::configFile(), function ($filename) {
             FileSystem\Yaml::emitFile($filename, self::$framework::defaultConfiguration());
         });
@@ -124,7 +122,7 @@ class Memory extends Base
      */
     public static function data(string $carrier = 'memory', array $options = []): array|object
     {
-        self::$cacheFile = self::dFile(self::configDataFile('Memory', 'data'));
+        self::$cacheFile = self::dFile(self::cacheDataFile('Memory', 'data'));
         $result = '';
 
         if (array_key_exists('format', $options) === true) {
@@ -160,6 +158,7 @@ class Memory extends Base
                 MPM\Classic::install();
             }//end if
 
+            //$filename = 'test';
             $result = self::dataLoader($carrier, $format, $default, $filename);
         }//end if
 
@@ -188,6 +187,10 @@ class Memory extends Base
                 $filename = $options['file'];
             } else {
                 $filename = Framework::configFile();
+            }//end if
+
+            if (file_exists($filename) === false) {
+                Framework::makeConfigure();
             }//end if
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
@@ -267,31 +270,28 @@ class Memory extends Base
                         }
                     }
 
-                    $reserved = $format === 'object' ? JSON::encodeToArray($result) : $result;
+                    if (MEMORY_CACHE_DATA_UPDATE) {
+                        $reserved = $format === 'object' ? JSON::encodeToArray($result) : $result;
 
-                    Debug::preOutput($result);
+                        if (!empty($reserved)) {
+                            self::$data[$carrier]['default'] = $default;
+                            self::$data[$carrier]['filename'] = $filename;
+                            self::$data[$carrier][$format] = $reserved;
 
-                    if (!empty($reserved)) {
-                        self::$data[$carrier]['default'] = $default;
-                        self::$data[$carrier]['filename'] = $filename;
-                        self::$data[$carrier][$format] = $reserved;
-
-                        //make a cache file for memory
-                        FileSystem::makeDirectory(dirname(self::$cacheFile));
-                        FileSystem\Yaml::emitFile(self::$cacheFile, self::$data);
+                            //make a cache file for memory
+                            FileSystem::makeDirectory(dirname(self::$cacheFile));
+                            FileSystem\Yaml::emitFile(self::$cacheFile, self::$data);
+                        }
                     }
                 } else {
-                    throw new ErrorException($filename . ' not empty.');
+                    throw new ErrorException($filename . ' not empty');
                 }//end if
             } else {
-                throw new ErrorException($filename . ' not readable.');
+                throw new ErrorException($filename . ' not readable');
             }//end if
 
             Log::info('End the process of data grabber from' . $filename);
         }
-
-        Debug::preOutput($result);
-
 
         return $result;
     }//end dataLoader()
@@ -305,15 +305,16 @@ class Memory extends Base
      */
     private static function isValid(string $carrier, string $format): bool
     {
-        if (file_exists(self::$cacheFile)) {
+        if (MEMORY_CACHE_DATA_UPDATE
+            && file_exists(self::$cacheFile)) {
             self::$data = FileSystem\Yaml::parseFile(self::$cacheFile);
 
-            //Debug::preOutput();
-
-            if ($format === 'object') {
+            if (($format === 'object')
+                && isset(self::$data[$carrier][$format])) {
                 self::$data[$carrier][$format] = JSON::encodeToObject(self::$data[$carrier][$format]);
             }
         }
+
         //self::$data[$carrier][$format][$default][$filename]
         return array_key_exists($carrier, self::$data) && array_key_exists($format, self::$data[$carrier])
             && array_key_exists('default', self::$data[$carrier])
@@ -413,12 +414,4 @@ class Memory extends Base
             throw new RuntimeException('Memory is corrupted.');
         }//end if
     }//end read()
-
-
-    /**
-     * Destruct Memory class
-     */
-    public function __destruct()
-    {
-    }//end __destruct()
 }//end class

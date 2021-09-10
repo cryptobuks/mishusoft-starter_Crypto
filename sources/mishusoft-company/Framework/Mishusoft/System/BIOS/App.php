@@ -19,16 +19,26 @@ class App extends BIOS
 {
 
     /**
-     * BIOS initialise function.
+     * BIOS initialise function
      *
+     * @throws \GeoIp2\Exception\AddressNotFoundException
+     * @throws \JsonException
+     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
+     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
      */
     public static function initialise():void
     {
         self::singleton(function ($registry) {
             $registry->browser              = new Http\Browser();
-            $registry->requestClassic       = new Http\Request\Classic();
-            $registry->requestQualifiedAPI   = new Http\Request\QualifiedAPI();
-            $registry->ip   = new Http\IP();
+            $registry->requestClassic       = Http\Request\Classic::getInstance();
+            $registry->requestQualifiedAPI  = Http\Request\QualifiedAPI::getInstance();
+            $registry->ip                   = new Http\IP();
 
             // Communicate with framework.
             Log::info('Start framework application.');

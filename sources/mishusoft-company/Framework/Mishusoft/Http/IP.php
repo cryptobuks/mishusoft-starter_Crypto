@@ -20,7 +20,6 @@ use MaxMind\Db\Reader\InvalidDatabaseException;
 use Mishusoft\Base;
 use Mishusoft\Exceptions\HttpException\HttpResponseException;
 use Mishusoft\Exceptions\JsonException;
-use Mishusoft\Storage;
 
 class IP extends Base
 {
@@ -335,9 +334,4 @@ class IP extends Base
             (FILTER_FLAG_IPV6 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)
         ) === $ip;
     }//end isPublicIpv6()
-
-
-    public function __destruct()
-    {
-    }//end __destruct()
 }//end class

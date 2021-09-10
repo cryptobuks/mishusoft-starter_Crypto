@@ -225,6 +225,7 @@ class Firewall extends Base
         if (file_exists(self::configFile()) === false) {
             Log::error(sprintf('The file %s is not exists.', self::configFile()));
             Log::notice(sprintf('Write new file %s.', self::configFile()));
+            FileSystem::makeDirectory(dirname(self::configFile()));
             FileSystem\Yaml::emitFile(self::configFile(), []);
         }
 
@@ -948,7 +949,6 @@ class Firewall extends Base
         if (array_key_exists($status, Http::errorsRecords())) {
             self::runtimeFailureUi(Http::errorDescription($status), $message);
         }//end if
-        Framework::terminate();
     }//end runtimeFailure()
 
 

@@ -217,15 +217,15 @@ class Runtime
      * @throws PermissionRequiredException
      * @throws JsonException
      */
-    public static function abort(int $status, string ...$details): void
+    public static function abort(int $status, string|array ...$details): void
     {
         $message = [];
         $messageDetails = [];
         //string $file, string $location, string $description
         if (count($details) > 0) {
-            if (count($details) > !4) {
+            if (count($details) >! 4) {
                 foreach ($details as $detail) {
-                    $dArray = explode('=', $detail);
+                    $dArray = explode('@', $detail);
                     if (count($dArray) > 2) {
                         $message[$dArray[0]][$dArray[1]] = $dArray[2];
                     } else {
@@ -237,11 +237,15 @@ class Runtime
             }
         }
 
+        //Debug::preOutput($message['debug']['stack']);
+
         if (array_key_exists('caption', $message['debug'])) {
-            //$messageDetails = $message;
             $messageDetails['debug']['caption'] = $message['debug']['caption'];
             $messageDetails['debug']['description'] = $message['debug']['description'];
-            $messageDetails['debug']['stack'] = JSON::decodeToArray($message['debug']['stack']);
+            if (!is_array($message['debug']['stack'])) {
+                //Debug::preOutput($message['debug']['stack']);
+                $messageDetails['debug']['stack'] = JSON::decodeToArray($message['debug']['stack']);
+            }
         } else {
             $messageDetails = [
                 'debug' => [

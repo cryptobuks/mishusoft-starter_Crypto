@@ -68,8 +68,8 @@ class SecureDataTransferService
         if (Inflect::lower($request["method"]) === Inflect::lower('index')) {
             Http\Runtime::abort(
                 Http\Errors::BAD_REQUEST,
-                'debug=file='.Registry::Browser()->getURLPath(),
-                'debug=location='.__METHOD__,
+                'debug@file@'.Registry::Browser()->getURLPath(),
+                'debug@location@'.__METHOD__,
             );
         } elseif (Inflect::lower($request["method"]) === Inflect::lower('browser')) {
             $implodeArguments = implode("/", $request['arguments']);
@@ -135,8 +135,8 @@ class SecureDataTransferService
                 } else {
                     Http\Runtime::abort(
                         Http\Errors::BAD_REQUEST,
-                        'debug=file='.Registry::Browser()->getURLPath(),
-                        'debug=location='.__METHOD__,
+                        'debug@file@'.Registry::Browser()->getURLPath(),
+                        'debug@location@'.__METHOD__,
                     );
                 }
             }//end if
@@ -159,8 +159,8 @@ class SecureDataTransferService
                 } else {
                     Http\Runtime::abort(
                         Http\Errors::BAD_REQUEST,
-                        'debug=file='.Registry::Browser()->getURLPath(),
-                        'debug=location='.__METHOD__,
+                        'debug@file@'.Registry::Browser()->getURLPath(),
+                        'debug@location@'.__METHOD__,
                     );
                 }
             }
@@ -383,8 +383,8 @@ class SecureDataTransferService
                 } else {
                     Http\Runtime::abort(
                         Http\Errors::BAD_REQUEST,
-                        'debug=file='.Registry::Browser()->getURLPath(),
-                        'debug=location='.__METHOD__,
+                        'debug@file@'.Registry::Browser()->getURLPath(),
+                        'debug@location@'.__METHOD__,
                     );
                 }
             }
@@ -411,8 +411,8 @@ class SecureDataTransferService
                 } else {
                     Http\Runtime::abort(
                         Http\Errors::BAD_REQUEST,
-                        'debug=file='.Registry::Browser()->getURLPath(),
-                        'debug=location='.__METHOD__,
+                        'debug@file@'.Registry::Browser()->getURLPath(),
+                        'debug@location@'.__METHOD__,
                     );
                 }
             } /*collect client's online payment info from browser*/
@@ -450,8 +450,8 @@ class SecureDataTransferService
                 } else {
                     Http\Runtime::abort(
                         Http\Errors::BAD_REQUEST,
-                        'debug=file='.Registry::Browser()->getURLPath(),
-                        'debug=location='.__METHOD__,
+                        'debug@file@'.Registry::Browser()->getURLPath(),
+                        'debug@location@'.__METHOD__,
                     );
                 }
             } /*collect client's online earning info from browser*/
@@ -496,15 +496,15 @@ class SecureDataTransferService
                 } else {
                     Http\Runtime::abort(
                         Http\Errors::BAD_REQUEST,
-                        'debug=file='.Registry::Browser()->getURLPath(),
-                        'debug=location='.__METHOD__,
+                        'debug@file@'.Registry::Browser()->getURLPath(),
+                        'debug@location@'.__METHOD__,
                     );
                 }
             } else {
                 Http\Runtime::abort(
                     Http\Errors::BAD_REQUEST,
-                    'debug=file='.Registry::Browser()->getURLPath(),
-                    'debug=location='.__METHOD__,
+                    'debug@file@'.Registry::Browser()->getURLPath(),
+                    'debug@location@'.__METHOD__,
                 );
             }
         }
@@ -520,8 +520,8 @@ class SecureDataTransferService
         else {
             Http\Runtime::abort(
                 Http\Errors::BAD_REQUEST,
-                'debug=file='.Registry::Browser()->getURLPath(),
-                'debug=location='.__METHOD__,
+                'debug@file@'.Registry::Browser()->getURLPath(),
+                'debug@location@'.__METHOD__,
             );
         }
     }

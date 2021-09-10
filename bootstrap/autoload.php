@@ -6,18 +6,17 @@ use Mishusoft\Exceptions\Handler;
 
 set_error_handler(
     static function ($number, $message, $file, $line) {
-        include_once FRAMEWORK_PATH . 'Mishusoft' . DS. 'Utility' . DS . 'Number.php';
-        include_once FRAMEWORK_PATH . 'Mishusoft' . DS. 'Exceptions' . DS . 'Handler.php';
-        echo sprintf("%s:: %s in file %s on line %d".LINE_BREAK, Handler::codeToName($number), $message, $file, $line);
-        echo 'Stack trace:'.LINE_BREAK;
-        $trace = debug_backtrace();
-        array_shift($trace);
-        foreach (Handler::makeBeautifulStackTrace($trace) as $serial => $details) {
-            echo sprintf('%d) %s ', Mishusoft\Utility\Number::next($serial), $details).LINE_BREAK;
-        }
-        exit();
+        //print_r(debug_backtrace(), false);
+        Handler::fetchError($number, $message, $file, $line, array_slice(debug_backtrace(), 1));
     },
     E_ALL
+);
+
+//set exception handler
+set_exception_handler(
+    static function ($e) {
+        Handler::fetchException($e);
+    }
 );
 
 /**

@@ -2,6 +2,7 @@
 
 namespace Mishusoft;
 
+use Closure;
 use GeoIp2\Exception\AddressNotFoundException;
 use JsonException;
 use MaxMind\Db\Reader\InvalidDatabaseException;
@@ -11,6 +12,7 @@ use Mishusoft\System\Memory;
 use Mishusoft\System\Network;
 use Mishusoft\System\Time;
 use Mishusoft\Ui\EmbeddedView;
+use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\JSON;
 
 class Framework extends Base
@@ -45,7 +47,7 @@ class Framework extends Base
     /**
      * Init function for Framework
      *
-     * @param \Closure $closure
+     * @param Closure $closure
      * @return Framework
      * @throws Exceptions\ErrorException
      * @throws Exceptions\JsonException
@@ -55,14 +57,9 @@ class Framework extends Base
      * @throws Exceptions\RuntimeException\NotFoundException
      * @throws JsonException
      */
-    public static function init(\Closure $closure): static
+    public static function init(Closure $closure): static
     {
         $instance = new static();
-
-        //Check framework file system
-        if (file_exists($instance->listerFile()) === false || file_get_contents($instance->listerFile()) === '') {
-            $instance->checkFileSystem();
-        }
 
         //configure and install framework
         static::makeConfigure();
@@ -74,6 +71,13 @@ class Framework extends Base
         static::opcacheStatusCheck();
 
         $closure($instance);
+
+        //Check framework file system
+        if (file_exists($instance->listerFile()) === false
+            || file_get_contents($instance->listerFile()) === '') {
+            $instance->checkFileSystem();
+        }
+
         //static::execute();
         return $instance;
     }//end init()
@@ -94,7 +98,7 @@ class Framework extends Base
     public static function companyDescriptionDetails():string
     {
         $details  = static::COMPANY_NAME.' is a software development company that is going to be established with ';
-        $details  .= 'a view to offering high quality IT solutions at home and abroad. ';
+        $details .= 'a view to offering high quality IT solutions at home and abroad. ';
         $details .= 'The company is keen to take the advantage of fast growing global software and data processing ';
         $details .= 'industry by offering professional service and price for support and benefit of the valued customers.';
         return $details;
@@ -385,10 +389,10 @@ class Framework extends Base
     /**
      * @throws Exceptions\RuntimeException
      */
-    public static function makeConfigure()
+    public static function makeConfigure(): void
     {
         // Preparing to create framework config file.
-        if (!is_readable(static::configFile()) === true) {
+        if (!is_readable(static::configFile())) {
             FileSystem::makeDirectory(dirname(static::configFile()));
             FileSystem\Yaml::emitFile(static::configFile(), self::defaultConfiguration());
         }

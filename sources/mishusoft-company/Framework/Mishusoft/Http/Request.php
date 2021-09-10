@@ -2,9 +2,13 @@
 
 namespace Mishusoft\Http;
 
+use Locale;
+use Mishusoft\Singleton;
 use Mishusoft\Storage;
+use Mishusoft\System\Memory;
+use Mishusoft\Utility\Inflect;
 
-class Request
+class Request extends Singleton
 {
     /*declare version*/
     public const VERSION = "2.0.0";
@@ -21,6 +25,7 @@ class Request
 
     public function __construct()
     {
+        parent::__construct();
         //\Mishusoft\Framework\Chipsets\Preloader::compatibility();
         /*
          * test urls
@@ -31,6 +36,37 @@ class Request
         $this->uri = urldecode(
             parse_url($this->uriOrigin(), PHP_URL_PATH)
         );
+    }
+
+    /**
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws \JsonException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\JsonException
+     */
+    protected function setFallback():void
+    {
+        /*
+         * if [url] is not set, then set locale,
+         * controller and method, arguments
+         * */
+        if (empty($this->locale)) {
+            $this->locale = Inflect::lower(Locale::getDefault());
+        }
+
+        if (empty($this->controller)) {
+            $this->controller = Memory::Data()->preset->directoryIndex;
+        }
+
+        if (empty($this->method)) {
+            $this->method = Memory::Data()->preset->directoryIndex;
+        }
+
+        if (empty($this->arguments)) {
+            $this->arguments = [];
+        }
     }
 
     private function uriOrigin():string
@@ -46,7 +82,28 @@ class Request
         return str_replace('en_us', 'en', $this->locale);
     }
 
-    public function __destruct()
+    public function getModules():array
     {
+        return $this->modules;
+    }
+
+    public function getModule(): string
+    {
+        return $this->module;
+    }
+
+    public function getController(): string
+    {
+        return $this->controller;
+    }
+
+    public function getMethod(): string
+    {
+        return $this->method;
+    }
+
+    public function getArguments(): array
+    {
+        return $this->arguments;
     }
 }

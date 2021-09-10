@@ -59,7 +59,7 @@ class Classic extends MPM
      */
     public static function defaultPackage(): string
     {
-        Debug::preOutput(Memory::data('mpm'));
+        //Debug::preOutput(Memory::data('mpm'));
         return Memory::data('mpm')->packages->default;
     }//end defaultPackage()
 
@@ -550,6 +550,10 @@ class Classic extends MPM
 
                                 $result = $dirs;
                             } else {
+                                /*error(
+                                    sprintf('%s not found', Storage::applicationPackagesPath()),
+                                    E_USER_WARNING
+                                );*/
                                 throw new Exceptions\RuntimeException\NotFoundException(
                                     sprintf('%s not found', Storage::applicationPackagesPath())
                                 );
@@ -582,7 +586,7 @@ class Classic extends MPM
      */
     public static function install(string $newPackage = '', bool $setDefault = false): void
     {
-        Debug::preOutput(debug_backtrace());
+        //Debug::preOutput(debug_backtrace());
         // Preparing to check configure file.
         if (file_exists(self::configFile()) === true) {
             if (self::readConfigure() === true) {

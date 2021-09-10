@@ -3,19 +3,12 @@
 
 namespace Mishusoft;
 
-abstract class Base
+abstract class Base extends Singleton
 {
 
     public const SYSTEM_APP_FILE= 'php';
     public const SYSTEM_DATA_FILE= 'yml';
     public const PUBLIC_DATA_FILE= 'json';
-
-    /**
-     * Base constructor.
-     */
-    public function __construct()
-    {
-    }
 
     /**
      * @return string
@@ -74,7 +67,7 @@ abstract class Base
             RUNTIME_ROOT_PATH,
             'storages',
             'framework',
-            'data',
+            'data-drive',
             $directive,
             $filename,
             DS
@@ -93,7 +86,7 @@ abstract class Base
             RUNTIME_ROOT_PATH,
             'storages',
             'framework',
-            'cache',
+            'caches',
             $directive,
             $filename,
             DS
@@ -130,13 +123,4 @@ abstract class Base
         $file = str_replace('\\', DS, $name_space).$extension;
         return RUNTIME_ROOT_PATH.$file;
     }//end getPathFromClassNamespace()
-
-
-
-    /**
-     *
-     */
-    public function __destruct()
-    {
-    }//end __destruct()
 }

@@ -9,12 +9,6 @@ namespace Mishusoft;
  */
 class Registry extends Singleton
 {
-
-    /**
-     * @var Registry
-     */
-    private static $instance;
-
     /**
      * @var array
      */
@@ -75,7 +69,6 @@ class Registry extends Singleton
         }
 
         $trace = debug_backtrace();
-        //print_r($trace, false);
         trigger_error(
             'Undefined property via __get(): ' . $name . '() in '
             . $trace[0]['file'] . ' on line ' . $trace[0]['line'],

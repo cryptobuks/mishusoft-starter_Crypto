@@ -29,16 +29,12 @@ class FirewallView extends Firewall
     /**
      * @param array|string $message
      * @param int $http_response_code
-     * @throws HttpResponseException
      * @throws AddressNotFoundException
-     * @throws \JsonException
+     * @throws HttpResponseException
      * @throws InvalidDatabaseException
-     * @throws ErrorException
      * @throws JsonException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
      * @throws NotFoundException
+     * @throws \JsonException
      */
     public static function maintenance(array|string $message, int $http_response_code): void
     {
@@ -51,16 +47,12 @@ class FirewallView extends Firewall
      * @param string $title
      * @param array|string $message
      * @param int $http_response_code
-     * @throws HttpResponseException
      * @throws AddressNotFoundException
-     * @throws \JsonException
+     * @throws HttpResponseException
      * @throws InvalidDatabaseException
-     * @throws ErrorException
      * @throws JsonException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
      * @throws NotFoundException
+     * @throws \JsonException
      */
     public static function debug(string $title, array|string $message, int $http_response_code = 503): void
     {
@@ -74,16 +66,12 @@ class FirewallView extends Firewall
      * @param string $title
      * @param array|string $message
      * @param int $http_response_code
-     * @throws HttpResponseException
      * @throws AddressNotFoundException
-     * @throws \JsonException
+     * @throws HttpResponseException
      * @throws InvalidDatabaseException
-     * @throws ErrorException
      * @throws JsonException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
      * @throws NotFoundException
+     * @throws \JsonException
      */
     public static function runtimeFail(string $title, array|string $message, int $http_response_code = 503): void
     {
@@ -97,16 +85,12 @@ class FirewallView extends Firewall
      * @param string $title
      * @param array|string $message
      * @param int $http_response_code
-     * @throws HttpResponseException
      * @throws AddressNotFoundException
-     * @throws \JsonException
+     * @throws HttpResponseException
      * @throws InvalidDatabaseException
-     * @throws ErrorException
      * @throws JsonException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
      * @throws NotFoundException
+     * @throws \JsonException
      */
     public static function protection(string $title, array|string $message, int $http_response_code): void
     {
@@ -119,16 +103,12 @@ class FirewallView extends Firewall
     /**
      * @param array|string $message
      * @param int $http_response_code
-     * @throws HttpResponseException
      * @throws AddressNotFoundException
-     * @throws \JsonException
+     * @throws HttpResponseException
      * @throws InvalidDatabaseException
-     * @throws ErrorException
      * @throws JsonException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
      * @throws NotFoundException
+     * @throws \JsonException
      */
     private static function template(array|string $message, int $http_response_code): void
     {
@@ -157,7 +137,7 @@ class FirewallView extends Firewall
                     ['name' => 'description', 'content' => self::$documentTitle,],
                 ],
                 'style' => [
-                    ['text' => Storage\FileSystem::read(Storage::assetsFullPath('css/embedded.css')),],
+                    ['text' => Storage\FileSystem::read(Storage::fViewsFullPath('css/embedded.css')),],
                 ],
                 //'style' => array(array('text'=>$cssContent))
             ]
@@ -172,16 +152,12 @@ class FirewallView extends Firewall
 
     /**
      * @return array
-     * @throws HttpResponseException
      * @throws AddressNotFoundException
-     * @throws \JsonException
+     * @throws HttpResponseException
      * @throws InvalidDatabaseException
-     * @throws ErrorException
      * @throws JsonException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
      * @throws NotFoundException
+     * @throws \JsonException
      */
     private static function childElement(): array
     {
@@ -202,16 +178,12 @@ class FirewallView extends Firewall
 
     /**
      * @return array
-     * @throws HttpResponseException
      * @throws AddressNotFoundException
-     * @throws \JsonException
+     * @throws HttpResponseException
      * @throws InvalidDatabaseException
-     * @throws ErrorException
      * @throws JsonException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
      * @throws NotFoundException
+     * @throws \JsonException
      */
     private static function viewContentBuilder(): array
     {
@@ -222,7 +194,7 @@ class FirewallView extends Firewall
                         'img' => [
                             'class' => 'application-content-title-icon',
                             'alt' => 'access denied',
-                            'src' => Storage::toDataUri('media', 'images/icons/restriction-shield.png'),
+                            'src' => Storage::toDataUri('framework', 'images/icons/restriction-shield.png'),
                         ],],
                     ],
                     ['child' => self::assignableProtectionContentBuilder()],
@@ -241,7 +213,7 @@ class FirewallView extends Firewall
                             [
                                 'class' => 'application-content-title-icon',
                                 'alt' => 'Unavailable',
-                                'src' => Storage::toDataUri('media', 'images/icons/unavailable.png'),
+                                'src' => Storage::toDataUri('framework', 'images/icons/unavailable.png'),
                             ],
                         ],
                     ];
@@ -252,7 +224,7 @@ class FirewallView extends Firewall
                                 'class' => 'application-content-title-icon',
                                 'alt' => self::$documentTitle,
                                 'src' => Storage::toDataUri(
-                                    'media',
+                                    'framework',
                                     'images/icons/' . self::lowerDocumentTitle() . '.png'
                                 ),
                             ],
@@ -278,7 +250,7 @@ class FirewallView extends Firewall
                             [
                                 'class' => 'application-content-title-icon',
                                 'alt' => 'information',
-                                'src' => Storage::toDataUri('media', 'images/icons/nothing-found.png'),
+                                'src' => Storage::toDataUri('framework', 'images/icons/nothing-found.png'),
                             ],
                         ],
                     ],],
@@ -307,7 +279,7 @@ class FirewallView extends Firewall
                                                     [
                                                         'class' => 'application-content-title-icon application-content-title-icon-concat',
                                                         'alt' => 'bug',
-                                                        'src' => Storage::toDataUri('media', 'images/icons/bug.png'),
+                                                        'src' => Storage::toDataUri('framework', 'images/icons/bug.png'),
                                                     ],
                                                 ],
                                             ]],

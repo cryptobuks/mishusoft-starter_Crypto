@@ -5,9 +5,7 @@ namespace Mishusoft\Http\Request;
 use Locale;
 use Mishusoft\Http\Request;
 use Mishusoft\MPM;
-use Mishusoft\Storage;
 use Mishusoft\System\Localization;
-use Mishusoft\System\Memory;
 use Mishusoft\Utility\Inflect;
 
 class Classic extends Request
@@ -155,73 +153,7 @@ class Classic extends Request
             $this->arguments = $url;
         }
 
-
-
-        /*
-         * if [url] is not set, then set locale,
-         * controller and method, arguments
-         * */
-        if (empty($this->locale)) {
-            $this->locale = Inflect::lower(Locale::getDefault());
-        }
-
-        if (empty($this->controller)) {
-            $this->controller = Memory::Data()->preset->directoryIndex;
-        }
-
-        if (empty($this->method)) {
-            $this->method = Memory::Data()->preset->directoryIndex;
-        }
-
-        if (empty($this->arguments)) {
-            $this->arguments = [];
-        }
-
+        $this->setFallback();
         $this->module = "";
-
-
-        //_Debug::preOutput($this);
-    }
-
-    private function uriOrigin():string
-    {
-        if (Storage::applicationWebDirectivePath() !== '/') {
-            return str_replace(Storage::applicationWebDirectivePath(), '', $_SERVER['REQUEST_URI']);
-        }
-        return $_SERVER['REQUEST_URI'];
-    }
-
-    public function getLocale(): string
-    {
-        return str_replace('en_us', 'en', $this->locale);
-    }
-
-    public function getModules():array
-    {
-        return $this->modules;
-    }
-
-    public function getModule(): string
-    {
-        return $this->module;
-    }
-
-    public function getController(): string
-    {
-        return $this->controller;
-    }
-
-    public function getMethod(): string
-    {
-        return $this->method;
-    }
-
-    public function getArguments(): array
-    {
-        return $this->arguments;
-    }
-
-    public function __destruct()
-    {
     }
 }

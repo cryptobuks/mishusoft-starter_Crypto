@@ -18,7 +18,7 @@ class Handler extends ErrorException implements ExceptionInterface
     private string|array $anotherTrace;
 
     /**
-     * Fetch error on runtime catch area.
+     * Fetch exception on runtime catch area.
      *
      * @param object $exception Object of exception error.
      * @throws HttpException\HttpResponseException
@@ -31,7 +31,7 @@ class Handler extends ErrorException implements ExceptionInterface
      * @throws InvalidDatabaseException
      * @throws \Mishusoft\Exceptions\ErrorException
      */
-    public static function fetch(object $exception): void
+    public static function fetchException(object $exception): void
     {
         (new self(
             $exception->getMessage(),
@@ -43,6 +43,31 @@ class Handler extends ErrorException implements ExceptionInterface
         )
         )
             ->addExtra($exception->getTrace(), (new \ReflectionClass($exception))->getShortName())
+            ->display();
+    }//end fetch()
+
+    /**
+     * Fetch error on runtime catch area.
+     *
+     * @param int $number
+     * @param string $message
+     * @param string $file
+     * @param int $line
+     * @param array $trace
+     * @throws AddressNotFoundException
+     * @throws HttpException\HttpResponseException
+     * @throws InvalidDatabaseException
+     * @throws JsonException
+     * @throws LogicException\InvalidArgumentException
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
+     * @throws \JsonException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     */
+    public static function fetchError(int $number, string $message, string $file, int $line, array $trace): void
+    {
+        (new self($message, $number, $number, $file, $line))
+            ->addExtra($trace)
             ->display();
     }//end fetch()
 
@@ -92,9 +117,9 @@ class Handler extends ErrorException implements ExceptionInterface
         } else {
             Http\Runtime::abort(
                 Http\Errors::SERVICE_UNAVAILABLE,
-                'debug=caption='.$titleOfErrorMessage,
-                'debug=stack='.JSON::encodeToString($stack),
-                'debug=description='.$description
+                'debug@caption@'.$titleOfErrorMessage,
+                'debug@stack@'.JSON::encodeToString($stack),
+                'debug@description@'.$description
             );
         }
     }
@@ -164,7 +189,7 @@ class Handler extends ErrorException implements ExceptionInterface
                                 }
                                 $argImplode .= ']';
                             } elseif (is_object($arg)) {
-                                $argImplode .= get_class($arg) . ', ';
+                                $argImplode .= print_r($arg, true) . ' , ';
                             } else {
                                 $argImplode .= $arg . ', ';
                             }
@@ -192,15 +217,6 @@ class Handler extends ErrorException implements ExceptionInterface
 
         return $traceArray;
     }//end makeBeautifulStackTrace()
-
-    /**
-     * @param string $string
-     * @return string
-     */
-    private function hidePath(string $string): string
-    {
-        return str_replace(RUNTIME_ROOT_PATH, ROOT_IDENTITY, $string);
-    }
 
     /**
      * Make writeable string

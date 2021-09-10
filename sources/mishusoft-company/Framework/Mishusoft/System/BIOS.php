@@ -16,6 +16,7 @@ use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Registry;
 use Mishusoft\Singleton;
+use Mishusoft\Utility\Debug;
 
 class BIOS extends Singleton
 {
@@ -23,26 +24,12 @@ class BIOS extends Singleton
     public const VERSION = '2.0.0';
 
     /**
-     * @throws InvalidDatabaseException
-     * @throws RuntimeException
-     * @throws AddressNotFoundException
-     * @throws \JsonException
-     * @throws ErrorException
-     * @throws InvalidArgumentException
-     * @throws HttpResponseException
-     * @throws PermissionRequiredException
-     * @throws JsonException
+     * @param Closure $closure
+     * @return BIOS
      */
     protected static function singleton(Closure $closure): self
     {
         $closure(Registry::getInstance());
-
-        try {
-            $closure(Registry::getInstance());
-        } catch (Error | Exception $e) {
-            Handler::fetch($e);
-        }
-
         return self::getInstance();
     }
 }//end class

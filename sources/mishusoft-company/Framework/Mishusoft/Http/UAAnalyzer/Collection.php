@@ -120,7 +120,7 @@ abstract class Collection extends UAAnalyzerBase
                     throw new RuntimeException('UA Analyzer\'s directory list has been corrupted');
                 }
             }
-            if (BROWSERS_DATA_UPDATE) {
+            if (BROWSERS_CACHE_DATA_UPDATE) {
                 Storage\FileSystem::makeDirectory(dirname($cacheFile));
                 Storage\FileSystem\Yaml::emitFile($cacheFile, $this->dictionaries);
             }

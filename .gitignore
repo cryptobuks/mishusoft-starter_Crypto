@@ -19,10 +19,10 @@
 /storages/app/media
 /storages/app/webfonts
 /storages/databases
-/storages/framework/cache/
+/storages/framework/caches/
 /storages/framework/configs/
 /storages/framework/sessions/
-/storages/framework/views/
+#/storages/framework/views/
 /storages/framework/*.php
 /storages/logs/
 /storages/user/
@@ -39,9 +39,6 @@
 .env
 .env.example
 .user.ini
-
-# Styesheets files
-*.css
 
 # Linker output
 *.map

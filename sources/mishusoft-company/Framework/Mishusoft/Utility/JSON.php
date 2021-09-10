@@ -102,7 +102,7 @@ class JSON
     public static function decodeToArray(string $string):array
     {
         try {
-            return json_decode($string, true, 512, JSON_THROW_ON_ERROR);
+            return json_decode($string, true, 1024, JSON_THROW_ON_ERROR);
         } catch (JsonException $jsonException) {
             throw new \Mishusoft\Exceptions\JsonException(
                 $jsonException->getMessage(),
