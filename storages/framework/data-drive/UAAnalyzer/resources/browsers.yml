@@ -287,7 +287,6 @@ epiphany-browser:
   licence: 	GPL
   engines: [  'WebKit' ]
 
-
 links-browser:
   name: 'Links'
   url: 'https://en.wikipedia.org/wiki/Links_(web_browser)'
@@ -299,10 +298,19 @@ links-browser:
   licence: 	GPL
   engines: [  'custom' ]
 
-
-# Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/602.1 (KHTML, like Gecko) browser.py Version/10.0 Safari/602.1
 wcg-browser:
   name: 'WCGBrowser'
+  url: 'https://github.com/alandmoore/wcgbrowser'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: ' Alan D Moore '
+  cost: Free
+  status: Active
+  licence: 	GPL
+  engines: [  'WebKit','Blink' ]
+
+otter-browser:
+  name: 'Otter Browser'
   url: 'https://github.com/alandmoore/wcgbrowser'
   type: 'Web Browser'
   ui: GraphicalMode
