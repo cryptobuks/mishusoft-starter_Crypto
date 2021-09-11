@@ -49,4 +49,10 @@ class UpdateController extends CliSurfaceController
         $this->log('Api updating started ');
         $this->update($source, $destination);
     }
+
+    public function ema(string $source, string $destination): void
+    {
+        $this->log('Ema updating started ');
+        $this->update($source, $destination);
+    }
 }
