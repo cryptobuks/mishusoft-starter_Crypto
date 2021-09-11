@@ -17,7 +17,6 @@ class BrowsersInformationCollection extends Collection
     /**
      * @return array
      * @throws RuntimeException
-     * @throws \JsonException
      * @throws \Mishusoft\Exceptions\JsonException
      */
     public function all():array
@@ -509,80 +508,6 @@ class BrowsersInformationCollection extends Collection
             //https://useragents.io/
 
 
-            //Mozilla/5.0 (compatible; Konqueror/4.4; Linux) KHTML/4.4.5 (like Gecko) Kubuntu
-            //Mozilla/5.0 (compatible; Konqueror/3.2; Linux) (KHTML, like Gecko)
-            //Mozilla/5.0 (compatible; Konqueror/3.1; Linux)
-            //Mozilla/5.0 (compatible; Konqueror/4.3; Linux) KHTML/4.3.2 (like Gecko)
-            //Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.21 (KHTML, like Gecko) konqueror/4.14.2 Safari/537.21
-            'Konqueror' => [
-                'name' => 'Konqueror Browser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'KDE',
-                        'link' => 'https://en.wikipedia.org/wiki/KDE',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'GPL',
-                        'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
-                    ],
-                ],
-                'layout' => [
-                    [
-                        'name' => 'KHTML',
-                        'link' => 'https://en.wikipedia.org/wiki/KHTML',
-                    ],
-                    [
-                        'name' => 'WebKit',
-                        'link' => 'https://en.wikipedia.org/wiki/WebKit',
-                    ],
-                ],
-                'latest-release' => [
-                    'Stable release' => [
-                        'version' => '20.08.2',
-                        'date' => '7 June 2018',
-                    ],
-                    'Preview release' => [],
-                ],
-            ],
-
-            //Dillo/3.0.5 (X11; Linux x64)
-            //Dillo/0.7.3
-            //Dillo/2.0 Lightning/5.4
-            //Mozilla/4.0 (compatible; Dillo 3.0)
-            'Dillo' => [
-                'name' => 'Dillo',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'The Dillo team',
-                        'link' => 'https://www.dillo.org/',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'discontinued',
-                'licence' => [
-                    [
-                        'name' => 'GPL',
-                        'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
-                    ],
-                ],
-                'layout' => [
-                    ['name' => 'custom'],
-                ],
-                'latest-release' => [
-                    [
-                        'version' => '3.0.5',
-                        'date' => '30 June 2015',
-                    ],
-                ],
-            ],
 
             //Dooble/0.07 (de_CH) WebKit
             //Mozilla/5.0 (Windows NT 5.1) AppleWebKit/534.34 (KHTML, like Gecko) Dooble/1.40 Safari/534.34 1.40

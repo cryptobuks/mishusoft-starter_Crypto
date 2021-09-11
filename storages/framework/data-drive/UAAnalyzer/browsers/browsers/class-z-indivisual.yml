@@ -25,3 +25,24 @@
 
   # Information maker method use it
   info: browser ad-muncher
+
+
+
+# Dillo Browser
+# Dillo Browser is a web browser developed by Jorge Arellano Cid. This browser renders web pages using the custom engine.
+
+# ref:https://developers.whatismybrowser.com/useragents/explore/software_name/dillo/
+
+# Latest user agent list
+# Mozilla/5.0 (X11; Linux; rv:2.0.1) Gecko/20100101 Firefox/4.0.1 Dillo/4.8
+
+- identifiers:
+    # Pattern maker method use it
+    browser-dillo-custom:
+      pattern:
+        name: (dillo)
+        separator: true
+        version: true
+      functional: true
+  # Information maker method use it
+  info: browser dillo-browser

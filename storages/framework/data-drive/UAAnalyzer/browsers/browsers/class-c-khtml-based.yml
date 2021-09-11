@@ -1,0 +1,17 @@
+# Konqueror
+# Konqueror is a web browser developed by volunteers. This browser renders web pages using the AppleWebKit, KHtml and QtWebEngine.
+# url:https://developers.whatismybrowser.com/useragents/explore/software_name/konqueror/
+
+# Latest user agents:
+# Mozilla/5.0 (compatible; Konqueror/4.4; Linux) KHTML/4.4.5 (like Gecko) Kubuntu
+- identifiers:
+    # Pattern maker method use it
+    browser-konqueror-khtml:
+      pattern:
+        name: (konqueror)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser konqueror
