@@ -54,13 +54,13 @@
     "update:cli": "php cli update:cli ./sources/mishusoft-company/App/CliSurface ./app/CliSurface",
 
     "update:api": "php cli update:api ./sources/mishusoft-company/App/QualifiedAPIRoutes ./app/QualifiedAPIRoutes",
-    "update:ema": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/App/Packages/Ema -d ./app/Packages/Ema",
-    "update:ema.loader": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/App/Packages/Ema.loader.php -d ./app/Packages/Ema.loader.php",
-    "update:packages": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/App/Packages -d ./app/Packages",
-    "update:themes": "php ./Sources/mishusoft-company/Release.php -compile-themes -s ./Sources/mishusoft-company/App/Views/Themes -d ./app/Themes",
-    "update:widgets": "php ./Sources/mishusoft-company/Release.php -compile -s ./Sources/mishusoft-company/App/Widgets -d ./app/Widgets",
-    "update:widgets.components": "php ./Sources/mishusoft-company/Release.php -compile-widgets -s ./Sources/mishusoft-company/App/Views/Widgets -d ./app/Widgets/Views",
-    "update:packages.components": "php ./Sources/mishusoft-company/Release.php -static -s ./Sources/mishusoft-company/App/Views/Templates/Packages -d ./app/Packages && @update:packages",
+    "update:ema": "php cli update:ema ./sources/mishusoft-company/App/Packages/Ema ./app/Packages/Ema",
+    "update:ema.loader": "php cli update:ema.loader ./sources/mishusoft-company/App/Packages/Ema.loader.php ./app/Packages/Ema.loader.php",
+    "update:packages": "php cli update:packages ./sources/mishusoft-company/App/Packages ./app/Packages",
+    "update:themes": "php cli update:themes ./Sources/mishusoft-company/App/Views/Themes ./app/Themes",
+    "update:widgets": "php cli update:widgets -s ./Sources/mishusoft-company/App/Widgets ./app/Widgets",
+    "update:widgets.components": "php cli update:widgets.components ./Sources/mishusoft-company/App/Views/Widgets ./app/Widgets/Views",
+    "update:packages.components": "php cli update:packages.components ./Sources/mishusoft-company/App/Views/Templates/Packages ./app/Packages && @update:packages",
 
 
     "update:test:index.php": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/app.php -d ./public_html/index.php",
