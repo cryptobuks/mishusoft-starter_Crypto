@@ -319,6 +319,19 @@ links-browser:
   licence: 	GPL
   engines: [  'custom' ]
 
+
+
+wcg-browser:
+  name: 'WCGBrowser'
+  url: 'https://github.com/alandmoore/wcgbrowser'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: ' Alan D Moore '
+  cost: Free
+  status: Active
+  licence: 	GPL
+  engines: [  'WebKit','Blink' ]
+
 #
 #    //Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/602.1 (KHTML, like Gecko) browser.py Version/10.0 Safari/602.1
 #    'WCGBrowser' => [

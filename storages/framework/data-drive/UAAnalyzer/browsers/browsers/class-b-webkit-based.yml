@@ -101,3 +101,25 @@
   info: browser epiphany-browser
 
 
+
+# WCGBrowser
+# This a web browser developed by  Alan D Moore. This browser renders web pages using the webkit and blink engine.
+
+# ref:https://github.com/alandmoore/wcgbrowser
+
+# Latest user agent list
+# Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/602.1 (KHTML, like Gecko) browser.py Version/10.0 Safari/602.1
+
+- identifiers:
+    # Pattern maker method use it
+    browser-wcgbrowser-webkit:
+      pattern:
+        name: (browser.py)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser wcgbrowser-browser
+
+

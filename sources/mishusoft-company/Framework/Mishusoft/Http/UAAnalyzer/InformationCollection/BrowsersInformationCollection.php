@@ -21,7 +21,6 @@ class BrowsersInformationCollection extends Collection
      */
     public function all():array
     {
-
         return $this->extractAttributeRecursive(
             'browsers',
             [
@@ -39,7 +38,6 @@ class BrowsersInformationCollection extends Collection
      * @return array
      * @throws InvalidArgumentException
      * @throws RuntimeException
-     * @throws \JsonException
      * @throws \Mishusoft\Exceptions\JsonException
      */
     public function makeDetails(string $identifier): array
