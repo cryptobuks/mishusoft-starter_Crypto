@@ -79,7 +79,8 @@ class Request extends Singleton
 
     public function getLocale(): string
     {
-        return str_replace('en_us', 'en', $this->locale);
+        //return str_replace('en_us', 'en', $this->locale);
+        return $this->locale;
     }
 
     public function getModules():array
