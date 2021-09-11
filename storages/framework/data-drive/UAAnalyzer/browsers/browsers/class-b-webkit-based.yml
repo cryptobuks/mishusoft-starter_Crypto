@@ -58,3 +58,46 @@
   # Information maker method use it
   info: browser konqueror
 
+
+# Dooble Browser
+# This a web browser developed by Dooble Project Team. This browser renders web pages using the webkit engine.
+
+# ref:https://developers.whatismybrowser.com/useragents/explore/software_name/dillo/
+
+# Latest user agent list
+# Mozilla/5.0 (X11; Linux; rv:2.0.1) Gecko/20100101 Firefox/4.0.1 Dillo/4.8
+
+- identifiers:
+    # Pattern maker method use it
+    browser-dooble-webkit:
+      pattern:
+        name: (dooble)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser dooble-browser
+
+
+# Epiphany Browser
+# This a web browser developed by Marco Pesenti Gritti. This browser renders web pages using the webkit engine.
+
+# ref:https://developers.whatismybrowser.com/useragents/explore/software_name/epiphany/
+
+# Latest user agent list
+# Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Safari/605.1.15 Epiphany/605.1.15
+
+- identifiers:
+    # Pattern maker method use it
+    browser-epiphany-webkit:
+      pattern:
+        name: (epiphany)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser epiphany-browser
+
+

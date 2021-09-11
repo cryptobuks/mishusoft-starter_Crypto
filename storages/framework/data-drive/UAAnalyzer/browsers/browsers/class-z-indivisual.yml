@@ -46,3 +46,26 @@
       functional: true
   # Information maker method use it
   info: browser dillo-browser
+
+
+
+# ELinks Browser
+# This is a web browser developed by Baudis, Fonseca, et al. This browser renders web pages using the custom engine.
+
+# ref:https://developers.whatismybrowser.com/useragents/explore/software_name/elinks/
+# ref:https://en.wikipedia.org/wiki/ELinks
+# ref:http://www.kompx.com/en/elinks.htm
+
+# Latest user agent list
+# ELinks/0.11.1-1.2etch1-debian (textmode; Linux 2.6.24.2-grsec i686; 80x24-2)
+
+- identifiers:
+    # Pattern maker method use it
+    browser-elinks-textmode:
+      pattern:
+        name: (elinks)
+        separator: true
+        version: true
+      functional: true
+  # Information maker method use it
+  info: browser elinks-browser
