@@ -307,40 +307,18 @@ epiphany-browser:
   licence: 	GPL
   engines: [  'WebKit' ]
 
-#
-#    //Links (2.23; Linux 5.12.6-gnu-1 x86_64; GNU C 11.1; text)
-#      //Links (2.12; Linux 4.4.217 x86_64; GNU C 5.3; text)
-#      //Links (2.22; Linux 4.4.177-19844912 aarch64; LLVM/Clang 9.0.8; text)
-#      //Links (2.22; Linux 5.10.0-6-amd64 x86_64; GNU C 10.2; text)
-#      //Links (2.8; Linux 3.13.0-170-generic i686; GNU C 4.8.2; x)
-#    'Links' => [
-#    'name' => 'Links',
-#    'type' => 'Web Browser',
-#    'ui' => 'GraphicalMode',
-#    'creator' => [
-#    [
-#        'name' => 'Patocka, et al',
-#        'link' => 'https://en.wikipedia.org/wiki/Links_(web_browser)',
-#    ],
-#  ],
-#    'cost' => 'Free',
-#    'status' => 'Active',
-#    'licence' => [
-#    [
-#        'name' => 'GPL',
-#        'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
-#    ],
-#  ],
-#    'layout' => [
-#    [ 'name' => 'custom' ],
-#  ],
-#    'latest-release' => [
-#    [
-#        'version' => '2.21',
-#        'date' => '2 August 2020',
-#    ],
-#  ],
-#],
+
+links-browser:
+  name: 'Links'
+  url: 'https://en.wikipedia.org/wiki/Links_(web_browser)'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 'Patocka, et al'
+  cost: Free
+  status: Active
+  licence: 	GPL
+  engines: [  'custom' ]
+
 #
 #    //Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/602.1 (KHTML, like Gecko) browser.py Version/10.0 Safari/602.1
 #    'WCGBrowser' => [

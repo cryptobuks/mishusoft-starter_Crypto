@@ -69,3 +69,27 @@
       functional: true
   # Information maker method use it
   info: browser elinks-browser
+
+
+
+# Links Browser
+# This is a web browser developed by Patocka, et al. This browser renders web pages using the custom engine.
+
+# ref:https://developers.whatismybrowser.com/useragents/explore/software_name/links/
+# ref:https://en.wikipedia.org/wiki/Links_(web_browser)
+
+# Latest user agent list
+# Links (2.23; Linux 5.12.6-gnu-1 x86_64; GNU C 11.1; text)
+# Links (2.22; Linux 4.4.177-19844912 aarch64; LLVM/Clang 9.0.8; text)
+# Links (2.12; Linux 4.4.217 x86_64; GNU C 5.3; text)
+
+- identifiers:
+    # Pattern maker method use it
+    browser-links-textmode:
+      pattern:
+        name: (links)
+        separator: true
+        version: true
+      functional: true
+  # Information maker method use it
+  info: browser links-browser
