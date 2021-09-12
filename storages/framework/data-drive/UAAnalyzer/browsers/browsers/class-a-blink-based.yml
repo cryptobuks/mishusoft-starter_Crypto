@@ -184,3 +184,21 @@
 
   # Information maker method use it
   info: browser 2345-explorer
+
+
+# iCab
+# This is a web browser developed by Alexander Clauss. This browser renders web pages using the Blink, WebKit and custom engine.
+
+# Latest user agents:
+# Mozilla/5.0 (Linux; Android 10; AKA-L29 Build/HONORAKA-L29; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/78.0.3904.108 Mobile Safari/537.36 OkKey/CBAFJIICABABABABA OKAndroid/21.5.19 b21051900 OkApp
+- identifiers:
+    # Pattern maker method use it
+    browser-iCab-blink:
+      pattern:
+        name: (okandroid)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser icab-browser
