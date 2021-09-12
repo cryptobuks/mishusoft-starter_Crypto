@@ -19,3 +19,25 @@
 
   # Information maker method use it
   info: browser amaya
+
+
+# Lynx
+# This is a web browser developed by Thomas Dickey and renders web pages using the libwww engine.
+
+# Latest user agents:
+#Lynx/2.8.9rel.1 libwww-FM/2.14 SSL-MM/1.4.1 GNUTLS/3.6.7
+#Lynx/2.8.9rel.1 libwww-FM/2.14 SSL-MM/1.4.1 OpenSSL/1.0.2u
+#Lynx/2.8.6rel.5 libwww-FM/2.14 SSL-MM/1.4.1 OpenSSL/0.9.8g
+#Lynx/2.8.3dev.6 libwww-FM/2.14
+#Lynx/2.8.3dev.8 libwww-FM/2.14FM
+- identifiers:
+    # Pattern maker method use it
+    browser-lynx-libwww:
+      pattern:
+        name: (lynx)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser lynx-browser
