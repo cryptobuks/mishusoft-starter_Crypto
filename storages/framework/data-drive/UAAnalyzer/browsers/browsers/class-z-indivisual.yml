@@ -93,3 +93,29 @@
       functional: true
   # Information maker method use it
   info: browser links-browser
+
+
+# iCab
+# This is a web browser developed by Alexander Clauss. This browser renders web pages using the Blink, WebKit and custom engine.
+
+# ref:https://user-agents.net/browsers/otter
+# ref:https://github.com/OtterBrowser/otter-browser
+# ref:https://en.wikipedia.org/wiki/Otter_Browser
+
+# Latest user agent list
+#iCab 4.0
+#iCab/4.7 (Macintosh; U; PPC Mac OS X)
+#Mozilla/5.0 (compatible; iCab 3.0.2; Macintosh; U; PPC Mac OS X)
+#iCab/2.9.1 (Macintosh; U; PPC)
+
+- identifiers:
+    # Pattern maker method use it
+    browser-icab-indivisual:
+      pattern:
+        name: (icab)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser icab-browser
