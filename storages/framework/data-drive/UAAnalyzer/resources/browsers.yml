@@ -318,154 +318,31 @@ otter-browser:
   cost: Free
   status: Active
   licence: 	GPL
-  engines: [  'WebKit','Blink' ]
+  engines: [  'WebKit' ]
 
-#    //Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/602.1 (KHTML, like Gecko) Otter/0.9.99
-#    'Otter' => [
-#    'name' => 'Otter Browser',
-#    'type' => 'Web Browser',
-#    'ui' => 'GraphicalMode',
-#    'creator' => [
-#    [
-#        'name' => 'Michał Dutkiewicz',
-#        'link' => 'https://otter-browser.org/',
-#    ],
-#  ],
-#    'cost' => 'Free',
-#    'status' => 'Active',
-#    'licence' => [
-#    [
-#        'name' => 'GPLv3',
-#        'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
-#    ],
-#  ],
-#    'layout' => [
-#    [
-#        'name' => 'Qt WebEngine',
-#        'link' => 'https://en.wikipedia.org/wiki/Qt_WebEngine',
-#    ],
-#    [
-#        'name' => 'QtWebKit',
-#        'link' => 'https://en.wikipedia.org/wiki/QtWebKit',
-#    ],
-#  ],
-#    'latest-release' => [
-#      'Stable release' => [
-#        'version' => '1.0.01',
-#        'date' => '1 January 2019',
-#    ],
-#      'Preview release' => [
-#        'version' => 'weekly333',
-#        'date' => 'May 18, 2020',
-#    ],
-#  ],
-#],
-#
-#    //Mozilla/5.0 (X11; U; Linux i686 (x86_64); en-US; rv:1.7.12) Gecko/20051007 Galeon/1.3.21 (Debian package 1.3.21-8)
-#      //Mozilla/5.0 Galeon/1.2.6 (X11; Linux i686; U;) Gecko/20020830
-#      //Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.0.1) Gecko/20060027 (Debian-1.8.0.1-11) Galeon/2.0.1 (Debian package 2.0.1-3)
-#    'Galeon' => [
-#    'name' => 'Galeon Browser',
-#    'type' => 'Web Browser',
-#    'ui' => 'GraphicalMode',
-#    'creator' => [
-#    [
-#        'name' => 'Marco Pesenti Gritti',
-#        'link' => 'https://www.gnome.org/news/2015/05/goodbye-marco/',
-#    ],
-#  ],
-#    'cost' => 'Free',
-#    'status' => 'discontinued',
-#    'licence' => [
-#    [
-#        'name' => 'GPL',
-#        'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
-#    ],
-#  ],
-#    'layout' => [
-#    [
-#        'name' => 'Gecko',
-#        'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
-#    ],
-#  ],
-#    'latest-release' => [
-#    [
-#        'version' => '2.0.7',
-#        'date' => '27 September 2008',
-#    ],
-#  ],
-#],
-#
-#    //PycURL/7.43.0.2 libcurl/7.47.0 OpenSSL/1.0.2g zlib/1.2.8 libidn/1.32 librtmp/2.3
-#      //curl/7.64.1
-#      //curl/7.20.0 (x86_64-redhat-linux-gnu) libcurl/7.20.0 OpenSSL/0.9.8b zlib/1.2.3 libidn/0.6.5
-#      //curl/7.16.4 (x86_64-pc-linux-gnu) libcurl/7.16.4 OpenSSL/0.9.8o zlib/1.2.3
-#      //curl/7.47.0
-#      //            'curl' => [
-#    //                'name' => 'Client URL',
-#    //                'type' => 'Web Browser',
-#    //                'ui' => 'FullTextMode',
-#    //                'creator' => [
-#      //                    [
-#        //                        'name' => 'Daniel Stenberg',
-#        //                        'link' => 'https://en.wikipedia.org/wiki/Daniel_Stenberg',
-#        // ],
-#      // ],
-#    //                'cost' => 'Free',
-#    //                'status' => 'Active',
-#    //                'licence' => [
-#      //                    [
-#        //                        'name' => 'Free Software: MIT/X derivate license',
-#        //                        'link' => 'https://curl.haxx.se/docs/copyright.html',
-#        // ],
-#      // ],
-#    //                'latest-release' => [
-#      //                    'Stable release' => [
-#        //                        'version' => '7.73.0',
-#        //                        'date' => '14 October 2020',
-#        // ],
-#      // ],
-#    // ],
-#
-#
-#    //Mozilla/4.5 (compatible; iCab 2.9.5; Macintosh; U; PPC; Mac OS X)
-#      //iCab/2.9.5 (Macintosh; U; PPC; Mac OS X)
-#      //Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8) AppleWebKit/536.15 (KHTML, like Gecko) iCab/5.0 Safari/533.16
-#    'iCab' => [
-#    'name' => 'iCab Browser',
-#    'type' => 'Web Browser',
-#    'ui' => 'GraphicalMode',
-#    'creator' => [
-#    [
-#        'name' => 'Alexander Clauss',
-#        'link' => 'https://www.clauss-net.de/',
-#    ],
-#  ],
-#    'cost' => 'Free, $20 (Pro)',
-#    'status' => 'Active',
-#    'licence' => [
-#    [
-#        'name' => 'Proprietary (browser)',
-#        'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
-#    ],
-#    [
-#        'name' => 'LGPL (WebKit)',
-#        'link' => 'https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License',
-#    ],
-#  ],
-#    'layout' => [
-#    [
-#        'name' => 'WebKit',
-#        'link' => 'https://en.wikipedia.org/wiki/WebKit',
-#    ],
-#  ],
-#    'latest-release' => [
-#    [
-#        'version' => '5.9.2',
-#        'date' => 'March 4, 2020',
-#    ],
-#  ],
-#],
+galeon-browser:
+  name: 'Galeon'
+  url: 'https://en.wikipedia.org/wiki/Galeon'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 'Marco Pesenti Gritti'
+  cost: Free
+  status: discontinued
+  licence: 	GPL
+  engines: [  'Gecko' ]
+
+icab-browser:
+  name: 'iCab'
+  url: 'https://en.wikipedia.org/wiki/ICab'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 'Alexander Clauss'
+  cost: Free
+  status: discontinued
+  licence: 	GPL
+  #Blink for mobile, Webkit for linux and custom for mac os
+  engines: [  'Blink',  'WebKit',  'custom' ]
+
 #
 #    //Lynx/2.8.5rel.1 libwww-FM/2.15FC SSL-MM/1.4.1c OpenSSL/0.9.7e-dev
 #      //Lynx/2.8.9rel.1 libwww-FM/2.14 SSL-MM/1.4.1 GNUTLS/3.6.5
