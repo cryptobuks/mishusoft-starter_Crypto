@@ -129,3 +129,27 @@
       functional: true
   # Information maker method use it
   info: browser eolie-browser
+
+
+# Galeon Browser
+# This is a web browser developed by Marco Pesenti Gritti. This browser renders web pages using the Gecko engine.
+
+# ref:https://user-agents.net/browsers/galeon
+# ref:https://developers.whatismybrowser.com/useragents/explore/software_name/galeon/
+# ref:https://en.wikipedia.org/wiki/Galeon
+
+# Latest user agent list
+#Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.14) Gecko/20080404 (Debian-1.8.1.14-3) Galeon/2.0.4 (Debian 2.0.4-1)
+#Mozilla/5.0 (X11; U; Linux; i686; en-US; rv:1.6) Gecko Galeon/1.3.14
+#Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.1.3) Gecko/20090914 Galeon/2.0.7 (2010.0)
+
+- identifiers:
+    # Pattern maker method use it
+    browser-galeon-gecko:
+      pattern:
+        name: (galeon)
+        separator: true
+        version: true
+      functional: true
+  # Information maker method use it
+  info: browser galeon-browser
