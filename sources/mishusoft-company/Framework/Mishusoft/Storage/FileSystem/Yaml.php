@@ -3,6 +3,7 @@
 
 namespace Mishusoft\Storage\FileSystem;
 
+use Exception;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Storage\FileSystem;
@@ -74,6 +75,23 @@ class Yaml
         return $yaml->dump($input, $inline, 0, $flags);
     }
 
+
+    /**
+     * Dumps a PHP value to a YAML string.
+     *
+     * The dump method, when supplied with an array, will do its best
+     * to convert the array into friendly YAML.
+     *
+     * @param mixed $input The PHP value
+     * @param array|null $options
+     * @return string A YAML string representing the original PHP value
+     * @throws Exception
+     */
+    public static function emitDallGoot(mixed $input, array $options = null): string
+    {
+        return \Dallgoot\Yaml::dump($input, $options);
+    }
+
     /**
      * Send the YAML representation of a value to a file
      * @link https://php.net/manual/en/function.yaml-emit-file.php
@@ -97,6 +115,8 @@ class Yaml
         return yaml_emit_file($filename, $data, $encoding, $linebreak, $callbacks);
     }
 
+
+
     /**
      * @throws RuntimeException
      * @throws PermissionRequiredException
@@ -109,6 +129,27 @@ class Yaml
         if (!file_exists($filename)) {
             $stream = fopen($filename, 'wb+');
             fwrite($stream, self::emit($data));
+            fclose($stream);
+        }
+        if (!is_writable($filename)) {
+            throw new PermissionRequiredException('Unable to write '. $filename);
+        }
+        return file_put_contents($filename, self::emit($data));
+    }
+
+    /**
+     * @throws RuntimeException
+     * @throws PermissionRequiredException
+     * @throws Exception
+     */
+    public static function emitFileDallGoot(string $filename, mixed  $data): bool
+    {
+        if (!file_exists(dirname($filename))) {
+            FileSystem::makeDirectory(dirname($filename));
+        }
+        if (!file_exists($filename)) {
+            $stream = fopen($filename, 'wb+');
+            fwrite($stream, self::emitSelf($data));
             fclose($stream);
         }
         if (!is_writable($filename)) {
@@ -159,6 +200,25 @@ class Yaml
 
 
     /**
+     * Parses YAML into a PHP value.
+     *
+     *  Usage:
+     *  <code>
+     *   $array = Yaml::parse(file_get_contents('config.yml'));
+     *   print_r($array);
+     *  </code>
+     *
+     * @param string $input A string containing YAML
+     *
+     * @throws Exception If the YAML is not valid
+     */
+    public static function parseDallGoot(string $input): \Dallgoot\Yaml\YamlObject|array|null
+    {
+        return \Dallgoot\Yaml::parse($input);
+    }
+
+
+    /**
      * Parse a YAML stream from a file
      * @link https://php.net/manual/en/function.yaml-parse-file.php
      * @param string $filename Path to the file.
@@ -194,6 +254,25 @@ class Yaml
     {
         $yaml = new Yaml\Parser();
         return $yaml->parseFile($filename, $flags);
+    }
+
+
+    /**
+     * Parses a YAML file into a PHP value.
+     *
+     * Usage:
+     *
+     *     $array = Yaml::parseFile('config.yml');
+     *     print_r($array);
+     *
+     * @param string $filename The path to the YAML file to be parsed
+     *
+     * @throws Yaml\Exception\ParseException If the file could not be read or the YAML is not valid
+     * @throws Exception
+     */
+    public static function parseFileDallGoot(string $filename): \Dallgoot\Yaml\YamlObject|array|null
+    {
+        return \Dallgoot\Yaml::parseFile($filename);
     }
 
 
