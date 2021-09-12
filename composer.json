@@ -57,10 +57,10 @@
     "update:ema": "php cli update:ema ./sources/mishusoft-company/App/Packages/Ema ./app/Packages/Ema",
     "update:ema.loader": "php cli update:ema.loader ./sources/mishusoft-company/App/Packages/Ema.loader.php ./app/Packages/Ema.loader.php",
     "update:packages": "php cli update:packages ./sources/mishusoft-company/App/Packages ./app/Packages",
-    "update:themes": "php cli update:themes ./Sources/mishusoft-company/App/Views/Themes ./app/Themes",
-    "update:widgets": "php cli update:widgets -s ./Sources/mishusoft-company/App/Widgets ./app/Widgets",
-    "update:widgets.components": "php cli update:widgets.components ./Sources/mishusoft-company/App/Views/Widgets ./app/Widgets/Views",
-    "update:packages.components": "php cli update:packages.components ./Sources/mishusoft-company/App/Views/Templates/Packages ./app/Packages && @update:packages",
+    "update:themes": "php cli update:themes ./sources/mishusoft-company/App/Views/Themes ./app/Themes",
+    "update:widgets": "php cli update:widgets ./sources/mishusoft-company/App/Widgets ./app/Widgets",
+    "update:widgets.components": "php cli update:widgets.components ./sources/mishusoft-company/App/Views/Widgets ./app/Widgets/Views",
+    "update:packages.components": "php cli update:packages.components ./sources/mishusoft-company/App/Views/Templates/Packages ./app/Packages && @update:packages",
 
 
     "update:test:index.php": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/app.php -d ./public_html/index.php",

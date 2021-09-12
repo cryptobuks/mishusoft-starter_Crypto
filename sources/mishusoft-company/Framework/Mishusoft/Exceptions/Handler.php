@@ -6,9 +6,11 @@ namespace Mishusoft\Exceptions;
 use ErrorException;
 use GeoIp2\Exception\AddressNotFoundException;
 use MaxMind\Db\Reader\InvalidDatabaseException;
+use Mishusoft\Framework;
 use Mishusoft\Http;
 use Mishusoft\Storage;
 use Mishusoft\System\Log;
+use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\JSON;
 use Mishusoft\Utility\Number;
 
@@ -122,6 +124,7 @@ class Handler extends ErrorException implements ExceptionInterface
                 'debug@description@'.$description
             );
         }
+        Framework::terminate();
     }
 
     private function makePrintable(string $errorType, string $message, array $stack):void
@@ -149,55 +152,85 @@ class Handler extends ErrorException implements ExceptionInterface
             $traceArray = self::cleanTraceArray($trace);
             foreach ($traceArray as $key => $value) {
                 $line = '';
+                //add file name
                 if (array_key_exists('file', $value) === true) {
                     $line .= $value['file'];
                 } else {
                     $line .= '[internal function]';
                 }
 
+                //add line number
                 if (array_key_exists('line', $value) === true) {
-                    $line .= '(' . $value['line'] . ')';
+                    $line .= sprintf('(%1$s)', $value['line']);
                 }
 
                 $line .= ': ';
 
+                //add class name
                 if (array_key_exists('class', $value) === true) {
                     $line .= $value['class'];
                 }
 
+                //add separator
                 if (array_key_exists('type', $value) === true) {
                     $line .= $value['type'];
                 }
 
+                //add function name
                 if (array_key_exists('function', $value) === true) {
                     if (array_key_exists('args', $value) === true) {
                         $line .= $value['function'];
-                        $argImplode = '';
-                        foreach ($value['args'] as $arg) {
-                            if (is_array($arg)) {
-                              //  Debug::preOutput($arg);
-                                $argImplode .= '[';
-                                foreach ($arg as $k => $v) {
-                                    if (is_array($v)) {
-                                        $argImplode .=sprintf('%1$s=>%2$s, ', $k, '[...]');
-                                    } else {
-                                        $argImplode .=sprintf('%1$s=>%2$s', $k, $v);
+                        if (count($value['args']) > 0) {
+                            $implodeArgument = '';
+                           // Debug::preOutput($value['args']);exit();
+
+                            foreach ($value['args'] as $arg) {
+                                //Debug::preOutput($arg);exit();
+                                if (is_array($arg)) {
+                                    $implodeArgument .= '[';
+                                    foreach ($arg as $k => $v) {
+//                                        Debug::preOutput($k);
+//                                        Debug::preOutput($v);
+                                        if (is_array($v)) {
+                                            $implodeArgument .=sprintf('%1$s=>%2$s, ', $k, '[...]');
+                                        } elseif (is_object($v)) {
+                                            $implodeArgument .= sprintf('class %1$s {...} , ', get_class($v));
+                                        } elseif (is_int($k)) {
+                                            $implodeArgument .= $v;
+                                        } else {
+                                            $implodeArgument .=sprintf('%1$s=>%2$s, ', $k, $v);
+                                        }
                                     }
+                                    if (str_ends_with($implodeArgument, ', ')) {
+                                        $implodeArgument = substr($implodeArgument, 0, -2);
+                                    }
+                                    $implodeArgument .= ']';
+                                } elseif (is_object($arg)) {
+//                                    Debug::preOutput($arg);
+//                                    if (array_key_exists('parameter', $arg)){Debug::preOutput($arg['parameter']);}
+//                                    Debug::preOutput(json_encode($arg));
+//                                    Debug::preOutput(gettype($arg));
+//                                    Debug::preOutput(get_class($arg));
+//                                    Debug::preOutput(key($arg));
+//
+//                                    //Debug::preOutput(get_object_vars($arg));
+//                                    foreach ($arg as $obKey => $obValue) {
+//                                        Debug::preOutput($obKey);
+//                                        Debug::preOutput($obValue);
+//                                    }
+                                    $implodeArgument .= sprintf('class %1$s {...} , ', get_class($arg));
+                                } else {
+                                    $implodeArgument .= $arg . ', ';
                                 }
-                                if (str_ends_with($argImplode, ', ')) {
-                                    $argImplode = substr($argImplode, 0, -2);
-                                }
-                                $argImplode .= ']';
-                            } elseif (is_object($arg)) {
-                                $argImplode .= print_r($arg, true) . ' , ';
-                            } else {
-                                $argImplode .= $arg . ', ';
                             }
+                            
+                            if (str_ends_with($implodeArgument, ', ')) {
+                                $implodeArgument = substr($implodeArgument, 0, -2);
+                            }
+                            $line .= sprintf('(%1$s)', $implodeArgument);
+                        } else {
+                            $line .=  '()';
                         }
-                        if (str_ends_with($argImplode, ', ')) {
-                            $argImplode = substr($argImplode, 0, -2);
-                        }
-                        $line .= '(' . $argImplode . ')';
                     } else {
                         $line .= $value['function'] . '()';
                     }
@@ -215,6 +248,8 @@ class Handler extends ErrorException implements ExceptionInterface
             }//end foreach
         }//end if
 
+       // Debug::preOutput($traceArray);
+       // exit();
         return $traceArray;
     }//end makeBeautifulStackTrace()
 
