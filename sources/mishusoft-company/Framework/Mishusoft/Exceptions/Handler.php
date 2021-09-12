@@ -123,8 +123,8 @@ class Handler extends ErrorException implements ExceptionInterface
                 'debug@stack@'.JSON::encodeToString($stack),
                 'debug@description@'.$description
             );
-            Framework::terminate();
         }
+        Framework::terminate();
     }
 
     private function makePrintable(string $errorType, string $message, array $stack):void
