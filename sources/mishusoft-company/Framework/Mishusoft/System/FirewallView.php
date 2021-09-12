@@ -17,6 +17,7 @@ use Mishusoft\Http\IP;
 use Mishusoft\Registry;
 use Mishusoft\Storage;
 use Mishusoft\Ui;
+use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\Inflect;
 use Mishusoft\Utility\Number;
 
@@ -389,7 +390,9 @@ class FirewallView extends Firewall
         $contents = [];
 
         if (array_key_exists('caption', self::$messageDetails) === true) {
-            $contents['div'][] = ['class' => 'flex-justify-center error-title', 'text' => self::$messageDetails['caption']];
+            $contents['div'][] = ['class' => 'flex-justify-center error-title',
+                'text' => self::$messageDetails['caption'],
+            ];
         }
         if (array_key_exists('message', self::$messageDetails) === true) {
             if (is_array(self::$messageDetails['message']) === true) {
@@ -397,7 +400,9 @@ class FirewallView extends Firewall
                     $contents['div'][] = ['class' => 'flex-justify-center message', 'text' => $message];
                 }
             } else {
-                $contents['div'][] = ['class' => 'flex-justify-center message', 'text' => self::$messageDetails['message']];
+                $contents['div'][] = ['class' => 'flex-justify-center message',
+                    'text' => self::$messageDetails['message'],
+                    ];
             }
 
         } else {

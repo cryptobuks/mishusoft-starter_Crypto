@@ -27,15 +27,15 @@ class Inline
 {
     public const REGEX_QUOTED_STRING = '(?:"([^"\\\\]*+(?:\\\\.[^"\\\\]*+)*+)"|\'([^\']*+(?:\'\'[^\']*+)*+)\')';
 
-    public static $parsedLineNumber = -1;
-    public static $parsedFilename;
+    public static int $parsedLineNumber = -1;
+    public static string $parsedFilename;
 
-    private static $exceptionOnInvalidType = false;
-    private static $objectSupport = false;
-    private static $objectForMap = false;
-    private static $constantSupport = false;
+    private static bool $exceptionOnInvalidType = false;
+    private static bool $objectSupport = false;
+    private static bool $objectForMap = false;
+    private static bool $constantSupport = false;
 
-    public static function initialize(int $flags, int $parsedLineNumber = null, string $parsedFilename = null)
+    public static function initialize(int $flags, int $parsedLineNumber = null, string $parsedFilename = null): void
     {
         self::$exceptionOnInvalidType = (bool) (Yaml::PARSE_EXCEPTION_ON_INVALID_TYPE & $flags);
         self::$objectSupport = (bool) (Yaml::PARSE_OBJECT & $flags);
@@ -91,7 +91,12 @@ class Inline
 
             // some comments are allowed at the end
             if (preg_replace('/\s*#.*$/A', '', substr($value, $i))) {
-                throw new ParseException(sprintf('Unexpected characters near "%s".', substr($value, $i)), self::$parsedLineNumber + 1, $value, self::$parsedFilename);
+                throw new ParseException(
+                    sprintf('Unexpected characters near "%s".', substr($value, $i)),
+                    self::$parsedLineNumber + 1,
+                    $value,
+                    self::$parsedFilename
+                );
             }
 
             if (null !== $tag && '' !== $tag) {
@@ -116,12 +121,14 @@ class Inline
      *
      * @throws DumpException When trying to dump PHP resource
      */
-    public static function dump($value, int $flags = 0): string
+    public static function dump(mixed $value, int $flags = 0): string
     {
         switch (true) {
             case \is_resource($value):
                 if (Yaml::DUMP_EXCEPTION_ON_INVALID_TYPE & $flags) {
-                    throw new DumpException(sprintf('Unable to dump PHP resources in a YAML file ("%s").', get_resource_type($value)));
+                    throw new DumpException(
+                        sprintf('Unable to dump PHP resources in a YAML file ("%s").', get_resource_type($value))
+                    );
                 }
 
                 return self::dumpNull($flags);
@@ -138,7 +145,8 @@ class Inline
                     return '!php/object '.self::dump(serialize($value));
                 }
 
-                if (Yaml::DUMP_OBJECT_AS_MAP & $flags && ($value instanceof \stdClass || $value instanceof \ArrayObject)) {
+                if (Yaml::DUMP_OBJECT_AS_MAP && $flags
+                    && ($value instanceof \stdClass || $value instanceof \ArrayObject)) {
                     $output = [];
 
                     foreach ($value as $key => $val) {
@@ -203,11 +211,11 @@ class Inline
     /**
      * Check if given array is hash or just normal indexed array.
      *
-     * @param array|\ArrayObject|\stdClass $value The PHP array or array-like object to check
+     * @param \ArrayObject|array|\stdClass $value The PHP array or array-like object to check
      *
      * @return bool true if value is hash array, false otherwise
      */
-    public static function isHash($value): bool
+    public static function isHash(\ArrayObject|array|\stdClass $value): bool
     {
         if ($value instanceof \stdClass || $value instanceof \ArrayObject) {
             return true;
@@ -786,19 +794,19 @@ class Inline
     private static function getTimestampRegex(): string
     {
         return <<<EOF
-        ~^
-        (?P<year>[0-9][0-9][0-9][0-9])
-        -(?P<month>[0-9][0-9]?)
-        -(?P<day>[0-9][0-9]?)
-        (?:(?:[Tt]|[ \t]+)
-        (?P<hour>[0-9][0-9]?)
-        :(?P<minute>[0-9][0-9])
-        :(?P<second>[0-9][0-9])
-        (?:\.(?P<fraction>[0-9]*))?
-        (?:[ \t]*(?P<tz>Z|(?P<tz_sign>[-+])(?P<tz_hour>[0-9][0-9]?)
-        (?::(?P<tz_minute>[0-9][0-9]))?))?)?
-        $~x
-EOF;
+                    ~^
+                    (?P<year>[0-9][0-9][0-9][0-9])
+                    -(?P<month>[0-9][0-9]?)
+                    -(?P<day>[0-9][0-9]?)
+                    (?:(?:[Tt]|[ \t]+)
+                    (?P<hour>[0-9][0-9]?)
+                    :(?P<minute>[0-9][0-9])
+                    :(?P<second>[0-9][0-9])
+                    (?:\.(?P<fraction>[0-9]*))?
+                    (?:[ \t]*(?P<tz>Z|(?P<tz_sign>[-+])(?P<tz_hour>[0-9][0-9]?)
+                    (?::(?P<tz_minute>[0-9][0-9]))?))?)?
+                    $~x
+            EOF;
     }
 
     /**

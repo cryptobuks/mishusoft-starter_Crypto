@@ -85,20 +85,6 @@
   family: Intel
   profile: Generic
 
-
-#  'x64' => '64 Bit',
-#  'WOW64' => '64 Bit',
-#  'Win64' => '64 Bit',
-#  'x86_64' => '64 Bit',
-#  'x86-64' => '64 Bit',
-#  'x64/x86' => '64 Bit',
-#  'IA-64' => '64 Bit',
-#  'ARM64' => '64 Bit',
-#  'AMD64' => '64 Bit',
-#  'Intel64' => '64 Bit',
-
-
-
 # url: https://en.wikipedia.org/wiki/X86
 
 - architecture: 'blackfin'

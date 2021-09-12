@@ -120,7 +120,7 @@
       functional: true
 
   # Information maker method use it
-  info: browser wcgbrowser-browser
+  info: browser wcg-browser
 
 
 

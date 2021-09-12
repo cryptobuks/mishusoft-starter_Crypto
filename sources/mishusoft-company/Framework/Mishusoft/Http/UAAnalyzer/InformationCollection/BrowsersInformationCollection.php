@@ -505,37 +505,6 @@ class BrowsersInformationCollection extends Collection
             //https://www.whatsmyua.info/
             //https://useragents.io/
 
-            //Browsers based on Chromium
-            //Active
-            ///Amazon Silk
-            ///Avast Secure Browser developed by Avast
-            ///Beaker, a peer-to-peer web browser
-            ///Blisk is a browser available for Windows 7 and later, OS X 10.9 and later that aims to provide an array of useful tools for Web development.
-            ///Brave is an open-source web browser that aims to block website trackers and remove intrusive internet advertisements.
-            //CodeWeavers CrossOver Chromium is an unofficial bundle of a Wine derivative and Chromium Developer Build 21 for Linux and macOS, first released on 15 September 2008 by CodeWeavers as part of their CrossOver project.[65][66]
-            ///Comodo Dragon is a rebranded version of Chromium for 32-bit Windows 8.1, 8, Windows 7 and Vista[67] produced by the Comodo Group. According to the developer, it provides improved security and privacy features.[68]
-            ///Cốc Cốc is a freeware web browser focused on the Vietnamese market, developed by Vietnamese company Cốc Cốc, based on Chromium open-source code for Windows.[69] According to data published by StatCounter in July 2013, Cốc Cốc has passed Opera to become one of the top 5 most popular browsers in Vietnam[70] within 2 months after its official release.[71]
-            ///Epic Browser is a privacy-centric web browser developed by Hidden Reflex of India and based on Chromium source code.[72]
-            ///Falkon a Qt-based GUI, using the Chromium-based QtWebEngine.[73]
-            //qutebrowser a Qt-based GUI with Vim-like keybindings, using the Chromium-based QtWebEngine.[74]
-            //Microsoft Edge is Chromium-based as of 15 January 2020.[75][76]
-            //Naver Whale is a South Korean freeware web browser developed by Naver Corporation, which is also available in English. It became available on Android on 13 April 2018.
-            //Opera began to base its web browser on Chromium with version 15.[77]
-            //Qihoo 360 Secure Browser is a Chromium-based Chinese web browser developed by Qihoo.[78]
-            //SalamWeb is a web browser based on Chromium for Muslims, which only allows Halal websites/information.
-            //Samsung Internet shipped its first Chromium-based browser in a Galaxy S4 model released in 2013.[79]
-            //Sleipnir is a Chromium derivative browser for Windows and macOS. One of its main features is linking to Web apps (Facebook, Twitter, Dropbox, etc.) and smartphone apps (Google Map, etc.). It also boasts what it calls "beautiful text," and has unique graphical tabs, among other features.[80]
-            //Slimjet: A Chromium-based web browser released by FlashPeak that features built-in webpage translation, PDF viewing capability and a PPAPI flash plugin, features usually missing from Chromium-based browsers currently not supported.
-            //SRWare Iron is a freeware release of Chromium for Windows, macOS and Linux, offering both installable and portable versions. Iron disables certain configurable Chromium features that could share information with third parties and additional tracking features that Google adds to its Chrome browser.[81]
-            //Torch is a browser based on Chromium for Windows. It specializes in media downloading and has built-in media features, including a torrent engine, video grabber and sharing button.[82]
-            //Vivaldi is a browser for Windows, macOS and Linux developed by Vivaldi Technologies.[83][84] Chromium-based Vivaldi aims to revive the rich features of the Presto-era Opera with its own proprietary modifications.
-            //Yandex Browser is a browser created by the Russian software company Yandex for macOS, Windows, Linux, Android and iOS.[85] The browser integrates Yandex services, which include a search engine, a machine translation service and cloud storage. On Android it provides ability to install chrome extensions on a mobile browser.[86]
-            //Discontinued
-            //Flock – a browser that specialized in providing social networking and had Web 2.0 facilities built into its user interface. It was based on Chromium starting with version 3.0. Flock was discontinued in April 2011.[87][88]
-            //Redcore – a browser developed by Chinese company Redcore Times (Beijing) Technology Ltd. and marketed as a domestic product that was developed in-house, but was revealed to be based on Chromium[89]
-            //Rockmelt – a Chromium-based browser for Windows, macOS, Android and iOS under a commercial proprietary licence. It integrated features from Facebook and Twitter, but was discontinued in April 2013 and fully retired at 10am PT on 31 July 2013.[90][91] On 2 August 2013, Rockmelt was acquired by Yahoo! Rockmelt's extensions and its website was shut down after 31 August 2013. Yahoo! plans to integrate Rockmelt's technology into other products.[92]
-
-
             //Mozilla/5.0 (X11; Linux) AppleWebKit/602.1 (KHTML, like Gecko) qutebrowser/1.6.1 Version/9.0 Safari/602.1
             //Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) qutebrowser/1.13.1 QtWebEngine/5.14.2 Chrome/77.0.3865.129 Safari/537.36
 

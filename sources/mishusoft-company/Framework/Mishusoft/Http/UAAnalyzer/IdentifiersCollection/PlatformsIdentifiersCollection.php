@@ -9,6 +9,9 @@ use Mishusoft\Http\UAAnalyzer\Collection;
 
 class PlatformsIdentifiersCollection extends Collection
 {
+    /**
+     * @throws RuntimeException
+     */
     public function __construct()
     {
         parent::__construct();
@@ -22,7 +25,6 @@ class PlatformsIdentifiersCollection extends Collection
 
     /**
      * @return array
-     * @throws JsonException
      * @throws RuntimeException
      * @throws \Mishusoft\Exceptions\JsonException
      */
@@ -48,7 +50,6 @@ class PlatformsIdentifiersCollection extends Collection
      * List of web browsers window manager
      *
      * @return array
-     * @throws JsonException
      * @throws RuntimeException
      * @throws \Mishusoft\Exceptions\JsonException
      */

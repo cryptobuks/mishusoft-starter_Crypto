@@ -3,10 +3,8 @@
 
 namespace Mishusoft\Http\UAAnalyzer;
 
-use JsonException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Storage;
-use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\Inflect;
 use Mishusoft\Utility\JSON;
 
@@ -207,9 +205,7 @@ abstract class Collection extends UAAnalyzerBase
      */
     protected function query(string $category, string $item): array
     {
-        //print_r(func_get_args(), false);
         if (array_key_exists($category, $this->directoriesWithFiles) === true) {
-            //print_r($this->dictionaries[$category], false);
             if (array_key_exists($item, $this->dictionaries[$category]) === true) {
                 return $this->dictionaries[$category][$item];
             }
@@ -309,17 +305,14 @@ abstract class Collection extends UAAnalyzerBase
                                 throw new RuntimeException(
                                     sprintf(
                                         'Pattern attribute not exists in %s',
-                                        JSON::encodeToString($properties)
+                                        $properties
                                     )
                                 );
                             }
                         }
                     } else {
                         throw new RuntimeException(
-                            sprintf(
-                                'Identifier attribute not exists in %s',
-                                JSON::encodeToString($dictionary)
-                            )
+                            sprintf('Identifier attribute not exists in (%s)', $dictionary)
                         );
                     }
                 }
@@ -338,7 +331,7 @@ abstract class Collection extends UAAnalyzerBase
                                     } else {
                                         throw new RuntimeException(
                                             sprintf(
-                                                'The details has been string like {%s}',
+                                                'The details has been string like (%s)',
                                                 $result[$component]
                                             )
                                         );
@@ -350,18 +343,12 @@ abstract class Collection extends UAAnalyzerBase
                             }
                         } else {
                             throw new RuntimeException(
-                                sprintf(
-                                    'Identifier attribute not exists in %s',
-                                    JSON::encodeToString($dictionary)
-                                )
+                                sprintf('Identifier attribute not exists in (%s)', $dictionary)
                             );
                         }
                     } else {
                         throw new RuntimeException(
-                            sprintf(
-                                'Info attribute not exists in %s',
-                                JSON::encodeToString($dictionary)
-                            )
+                            sprintf('Info attribute not exists in (%s)', $dictionary)
                         );
                     }
                 }

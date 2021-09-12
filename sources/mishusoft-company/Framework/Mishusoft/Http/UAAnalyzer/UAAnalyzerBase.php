@@ -8,8 +8,8 @@ use Mishusoft\CacheManager as Cache;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Http\IP;
-use Mishusoft\Registry;
 use Mishusoft\Storage;
+use Mishusoft\Utility\ArrayCollection;
 
 class UAAnalyzerBase extends Base
 {
@@ -19,6 +19,7 @@ class UAAnalyzerBase extends Base
     protected string $userAgent;
 
     protected array $replace_pairs = ['/' => ' ', '-' => '.', '_' => '.'];
+    protected array $versionPrefix = ['v' => '', 'y' => '', 'yb' => '', 'nt' => '',];
 
     protected string $browserName = 'Unknown';
     protected string $browserNameFull = 'Unknown';
@@ -75,25 +76,25 @@ class UAAnalyzerBase extends Base
     public function __construct()
     {
         parent::__construct();
-        //$this->uaStoragePath = self::dataFile('UAAnalyzer','');
         $this->uaStoragePath = Storage::dataDriveStoragesPath() . 'UAAnalyzer' . DS;
         $this->todayDateOnly = date('Y-m-d');
         $this->todayTimeOnly = date('H:i:s');
 
-        $this->uaAllFile  = self::dFile(
-            Cache::directiveDataFile('UAAnalyzerData', $this->cFile('ua.list.all'))
-        );
-        $this->uaSolvableListFile  = self::dFile(
-            Cache::directiveDataFile('UAAnalyzerData', $this->cFile('ua.list.solved'))
-        );
-        $this->uaUnsolvableListFile  = self::dFile(
-            Cache::directiveDataFile('UAAnalyzerData', $this->cFile('ua.list.unsolved'))
-        );
+        $this->uaAllFile  = $this->cacheFile('ua.list.all');
+        $this->uaSolvableListFile  = $this->cacheFile('ua.list.solved');
+        $this->uaUnsolvableListFile  = $this->cacheFile('ua.list.unsolved');
 
         $this->directoryValidation();
     }
 
-    protected function cFile(string $name):string
+    protected function cacheFile(string $name):string
+    {
+        return self::dFile(
+            Cache::directiveDataFile('UAAnalyzerData', $this->makeFile($name))
+        );
+    }
+
+    protected function makeFile(string $name):string
     {
         return $name.DS.$this->todayDateOnly;
     }
@@ -219,7 +220,7 @@ class UAAnalyzerBase extends Base
         $string = strtolower($string);
         $string = preg_replace('/\s+/', '', $string);
         return $this->cleanContent(
-            $this->cleanContent($string, ['v' => '', 'y' => '', 'yb' => '', 'nt' => '',])
+            $this->cleanContent($string, $this->versionPrefix)
         );
     }
 
@@ -270,28 +271,22 @@ class UAAnalyzerBase extends Base
      */
     private function write(string $filename, array $details = []): void
     {
-        // Verify file directory existent.
         $requestedFileDirectory = dirname($filename);
-
         Storage\FileSystem::makeDirectory($requestedFileDirectory);
-
-        // Write or append data into file.
         if (is_writable($requestedFileDirectory) === true) {
-            //wire, read and inserting new data in file
             $newYamlData =[];
             if ((file_exists($filename) === true) && Storage\FileSystem::read($filename) !== '') {
                 $newYamlData = Storage\FileSystem\Yaml::parseFile($filename);
-            }
+            }//end if
             if (basename(dirname($filename)) ==='ua.list.solved') {
                 if (count($details)>0) {
                     $newYamlData[$details['ua']]=$details;
                     Storage\FileSystem\Yaml::emitFile($filename, $newYamlData);
-                }
+                }//end if
             } else {
-                $newYamlData[IP::get()][]=['when'=>$this->todayTimeOnly,'carrier'=>$this->userAgent];
-                //$newYamlData['::1'][]=['time'=>$this->todayTimeOnly,'carrier'=>$this->userAgent];
+                $newYamlData[IP::get()][]=['time'=>$this->todayTimeOnly,'carrier'=>$this->userAgent];
                 Storage\FileSystem\Yaml::emitFile($filename, $newYamlData);
-            }
+            }//end if
         } else {
             throw new PermissionRequiredException(
                 sprintf('Unable to write or read "%s"', $requestedFileDirectory)
@@ -361,34 +356,6 @@ class UAAnalyzerBase extends Base
      */
     protected function value(array $array, string $key): string|array
     {
-        $results = '';
-        $original = $array;
-        if (strpos($key, '.')) {
-            $parts = explode('.', $key);
-            $results = (array)$results;
-            $temp = $original;
-
-            // clean up before each pass
-            while (count($parts) > 0) {
-                $part = array_shift($parts);
-
-                if (array_key_exists($part, $temp)) {
-                    if (is_array($temp[$part])) {
-                        $temp = $temp[$part];
-                    } else {
-                        $results = $temp[$part];
-                    }
-                }
-            }
-            if (is_array($results) === true) {
-                $results = $temp;
-            }
-        }
-
-        if (array_key_exists($key, $array) === true) {
-            $results = $original[$key];
-        }
-
-        return $results;
+        return ArrayCollection::value($array, $key);
     }
 }
