@@ -16,44 +16,45 @@ const backupTime = `${date.getFullYear()}-${months}-${days}-${hours}-${minutes}-
 const rootDir = path.join(__dirname, '../..')
 const DEST_DIR = '/home/abir/ts-app-backup'
 
-async function main () {
+async function main()
+{
   /* verify output directory */
-  console.log('Verifying destination [' + DEST_DIR + '] directory...')
-  await ensureDir(DEST_DIR)
+    console.log('Verifying destination [' + DEST_DIR + '] directory...')
+    await ensureDir(DEST_DIR)
 
-  const versionString = getPackageVersion()
-  const backupCompressedFilename = `mishusoft-backup-${versionString}@${backupTime}.zip`
-  console.log(`Creating to ${backupCompressedFilename}...`)
+    const versionString = getPackageVersion()
+    const backupCompressedFilename = `mishusoft-backup-${versionString}@${backupTime}.zip`
+    console.log(`Creating to ${backupCompressedFilename}...`)
 
-  await exportToFile(DEST_DIR, backupCompressedFilename, function (archive) {
-    const dirs = [
-      'Sources',
-      'Storages'
-    ]
-    for (const dir of dirs) {
-      archive.directory(path.join(rootDir, dir), dir)
-    }
+    await exportToFile(DEST_DIR, backupCompressedFilename, function (archive) {
+        const dirs = [
+        'Sources',
+        'Storages'
+        ]
+        for (const dir of dirs) {
+            archive.directory(path.join(rootDir, dir), dir)
+        }
 
-    const files = [
-      'budget.json',
-      'package.json',
-      'package-lock.json',
-      'postcss.config.js',
-      'tsconfig.json',
-      'webpack.config.js'
-    ]
-    for (const file of files) {
-      archive.file(path.join(rootDir, file), { name: file })
-    }
-  })
+        const files = [
+        'budget.json',
+        'package.json',
+        'package-lock.json',
+        'postcss.config.js',
+        'tsconfig.json',
+        'webpack.config.js'
+        ]
+        for (const file of files) {
+            archive.file(path.join(rootDir, file), { name: file })
+        }
+    })
 }
 
 main()
   .then(() => {
-    console.log('Done.')
-    process.exit(0)
-  })
+        console.log('Done.')
+        process.exit(0)
+    })
   .catch(err => {
-    console.error(err)
-    process.exit(1)
-  })
+        console.error(err)
+        process.exit(1)
+    })

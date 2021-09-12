@@ -14,6 +14,7 @@ class CacheManager extends Base
         'app://'.PUBLIC_ROOT_PATH.'robots.txt',
         'app://storages/app/assets/',
         'app://storages/app/media/images/icons/',
+        'app://storages/framework/views/',
     ];
 
     protected static string $cacheDirectory = '';
@@ -42,6 +43,7 @@ class CacheManager extends Base
         if (count(self::$observation)>0) {
             foreach (self::$observation as $item) {
                 $fullName = Inflect::replace($item, ROOT_IDENTITY, RUNTIME_ROOT_PATH);
+                $fullName = Inflect::replace($fullName, '/', DS);
 
                 if (file_exists($fullName)) {
                     if (is_dir($fullName)) {

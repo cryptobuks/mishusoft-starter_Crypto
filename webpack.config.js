@@ -9,13 +9,14 @@
 ``
 
 const path = require('path')
-
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const JavaScriptObfuscator = require('webpack-obfuscator')
+
 
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts')
 //const HtmlWebpackPlugin = require('html-webpack-plugin') /* webpack 5 */
@@ -81,6 +82,14 @@ const commonConfig = {
                 to: path.join(__dirname, './storages/app/assets/webfonts/')
             },]
         }),
+        /*copy media from sources directory*/
+        new CopyWebpackPlugin({
+            patterns: [{
+                from: path.join(__dirname, './sources/Assets/media/'),
+                to: path.join(__dirname, './storages/app/media/')
+            },]
+        }),
+        new ImageminPlugin()
     ],
 }
 

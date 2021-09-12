@@ -343,7 +343,6 @@ icab-browser:
   #Blink for mobile, Webkit for linux and custom for mac os
   engines: [  'Blink',  'WebKit',  'custom' ]
 
-
 lynx-browser:
   name: 'Lynx'
   url: 'https://en.wikipedia.org/wiki/Lynx_(web_browser)'
@@ -354,7 +353,6 @@ lynx-browser:
   status: Active
   licence: GPLv2
   engines: [  'libwww', 'custom' ]
-
 
 msie-browser:
   name: 'Internet Explorer'
@@ -367,7 +365,6 @@ msie-browser:
   licence: GPLv2
   engines: [ 'Trident', 'Chakra' ]
 
-
 midori-browser:
   name: 'Midori '
   url: 'https://en.wikipedia.org/wiki/Midori_(web_browser)'
@@ -379,50 +376,17 @@ midori-browser:
   licence: GPLv2
   engines: [ 'WebKit' ]
 
-#
-#    //NetSurf/3.6 (Linux)
-#      //NetSurf/3.2 (Linux)
-#      //NetSurf/1.2 (NetBSD; amd64)
-#      //NetSurf/3.10 (Linux)
-#      //NetSurf/2.9 (Linux; armv6l)
-#    'Net-Surf' => [
-#    'name' => 'NetSurf Browser',
-#    'type' => 'Web Browser',
-#    'ui' => 'GraphicalMode',
-#    'creator' => [
-#    [
-#        'name' => 'The NetSurf Developers',
-#        'link' => 'http://www.netsurf-browser.org/',
-#    ],
-#  ],
-#    'cost' => 'Free',
-#    'status' => 'Active',
-#    'licence' => [
-#    [
-#        'name' => 'GPL',
-#        'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
-#    ],
-#  ],
-#    'layout' => [
-#    [
-#        'name' => 'Qt WebEngine',
-#        'link' => 'https://en.wikipedia.org/wiki/Qt_WebEngine',
-#    ],
-#    [
-#        'name' => 'QtWebKit',
-#        'link' => 'https://en.wikipedia.org/wiki/QtWebKit',
-#    ],
-#  ],
-#    'latest-release' => [
-#      'Stable release' => [
-#        'version' => '3.10',
-#        'date' => 'May 24, 2020',
-#    ],
-#      'Preview release' => [ ],
-#  ],
-#],
-#
-#
+netsurf-browser:
+  name: 'NetSurf '
+  url: 'https://en.wikipedia.org/wiki/NetSurf'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 'The NetSurf Developers'
+  cost: Free
+  status: Active
+  licence: 	GPL-2.0-only
+  engines: [ 'custom' ]
+
 #    //Browsers based on Chromium
 #      //Active
 #      ///Amazon Silk
@@ -452,73 +416,40 @@ midori-browser:
 #      //Flock – a browser that specialized in providing social networking and had Web 2.0 facilities built into its user interface. It was based on Chromium starting with version 3.0. Flock was discontinued in April 2011.[ 87 ][ 88 ]
 #    //Redcore – a browser developed by Chinese company Redcore Times (Beijing) Technology Ltd. and marketed as a domestic product that was developed in-house, but was revealed to be based on Chromium[ 89 ]
 #    //Rockmelt – a Chromium-based browser for Windows, macOS, Android and iOS under a commercial proprietary licence. It integrated features from Facebook and Twitter, but was discontinued in April 2013 and fully retired at 10am PT on 31 July 2013.[ 90 ][ 91 ] On 2 August 2013, Rockmelt was acquired by Yahoo! Rockmelt's extensions and its website was shut down after 31 August 2013. Yahoo! plans to integrate Rockmelt's technology into other products.[ 92 ]
-#
-#    //TOP LEVEL BROWSER (ENGINE)
-#      //QtWebEngine based Browser
-#      //Mozilla/5.0 (X11; U; Linux; ru-RU) AppleWebKit/532.4 (KHTML, like Gecko) Arora/0.10.2 Safari/532.4
-#                                                                       //Mozilla/5.0 (X11; U; UNICOS lcLinux; en-US) Gecko/20140730 (KHTML, like Gecko, Safari/419.3) Arora/0.8.0
-#                                                                                                                                                          //Mozilla/5.0 (X11; Linux i686) AppleWebKit/538.1 (KHTML, like Gecko) Arora/0.11.0 Safari/538.1
-#                                                                                                                                                                                                                      //Mozilla/5.0 (Windows; U; ; en-EN) AppleWebKit/527+ (KHTML, like Gecko, Safari/419.3) Arora/0.8.0
-#                                                                                                                                                                                                                                                                                                 //Arora 0.3
-#    'Arora' => [
-#    'name' => 'Arora',
-#    'type' => 'Web Browser',
-#    'ui' => 'GraphicalMode',
-#    'creator' => [
-#    [ 'name' => 'Avant Force' ],
-#  ],
-#    'cost' => 'Free',
-#    'status' => 'discontinued',
-#    'licence' => [
-#    [
-#        'name' => 'Proprietary',
-#        'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
-#    ],
-#  ],
-#    'layout' => [
-#    [
-#        'name' => 'Blink',
-#        'link' => 'https://en.wikipedia.org/wiki/WebKit',
-#    ],
-#  ],
-#    'latest-release' => [
-#      'version' => '0.11.0',
-#      'date' => '27 September 2010',
-#  ],
-#],
-#
-#    //Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Falkon/3.1.0 Chrome/87.0.4280.144 Safari/537.36
-#    'Falkon' => [
-#    'name' => 'Falkon',
-#    'type' => 'Web Browser',
-#    'ui' => 'GraphicalMode',
-#    'creator' => [
-#    [
-#        'name' => 'David Rosca',
-#        'link' => 'https://en.wikipedia.org/wiki/Links_(web_browser)',
-#    ],
-#  ],
-#    'cost' => 'Free',
-#    'status' => 'Active',
-#    'licence' => [
-#    [
-#        'name' => 'GPL 3.0',
-#        'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
-#    ],
-#  ],
-#    'layout' => [
-#    [
-#        'name' => 'Blink',
-#        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
-#    ],
-#  ],
-#    'latest-release' => [
-#    [
-#        'version' => '3.1.0.75',
-#        'date' => 'March 19, 2019',
-#    ],
-#  ],
-#],
+
+
+# TOP LEVEL BROWSER (ENGINE)
+# QtWebEngine based Browser
+# Mozilla/5.0 (X11; U; Linux; ru-RU) AppleWebKit/532.4 (KHTML, like Gecko) Arora/0.10.2 Safari/532.4
+# Mozilla/5.0 (X11; U; UNICOS lcLinux; en-US) Gecko/20140730 (KHTML, like Gecko, Safari/419.3) Arora/0.8.0
+# Mozilla/5.0 (X11; Linux i686) AppleWebKit/538.1 (KHTML, like Gecko) Arora/0.11.0 Safari/538.1
+# Mozilla/5.0 (Windows; U; ; en-EN) AppleWebKit/527+ (KHTML, like Gecko, Safari/419.3) Arora/0.8.0
+# Arora 0.3
+
+
+arora-browser:
+  name: 'Arora '
+  url: 'https://en.wikipedia.org/wiki/Arora_(web_browser)'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 'Benjamin C. Meyer'
+  cost: Free
+  status: discontinued
+  licence: 	GPL-2.0-or-later
+  engines: [ '	WebKit' ]
+
+
+falkon-browser:
+  name: 'Falkon '
+  url: 'https://en.wikipedia.org/wiki/Falkon'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 'David Rosca'
+  cost: Free
+  status: Active
+  licence: GPL-3.0-or-later
+  engines: [ 'Blink' ]
+
 #
 #    //Mozilla/5.0 (X11; Linux) AppleWebKit/602.1 (KHTML, like Gecko) qutebrowser/1.6.1 Version/9.0 Safari/602.1
 #                                                           //Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) qutebrowser/1.13.1 QtWebEngine/5.14.2 Chrome/77.0.3865.129 Safari/537.36

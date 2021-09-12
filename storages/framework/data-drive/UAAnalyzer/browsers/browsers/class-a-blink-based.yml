@@ -202,3 +202,23 @@
 
   # Information maker method use it
   info: browser icab-browser
+
+
+# Falkon
+# This is a web browser developed by Alexander Clauss. This browser renders web pages using the Blink engine.
+
+#ref: https://en.wikipedia.org/wiki/Falkon
+
+# Latest user agents:
+#Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Falkon/3.1.0 Chrome/87.0.4280.144 Safari/537.36
+- identifiers:
+    # Pattern maker method use it
+    browser-falkon-blink:
+      pattern:
+        name: (falkon)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser falkon-browser

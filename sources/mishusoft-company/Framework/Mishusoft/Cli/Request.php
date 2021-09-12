@@ -44,7 +44,7 @@ class Request
             if ($argv[0] ==='cli') {
                 unset($argv[0]);
             } else {
-                echo 'Error: Environment is not cli. This section for cli only'.PHP_EOL;
+                echo 'Error: Environment is not cli. This section for cli only'.LB;
                 exit();
             }
         }

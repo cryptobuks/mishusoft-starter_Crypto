@@ -4,7 +4,6 @@ namespace Mishusoft;
 
 /**
  * @method static Browser()
- * @method static Ip()
  * @method static RequestQualifiedAPI()
  */
 class Registry extends Singleton

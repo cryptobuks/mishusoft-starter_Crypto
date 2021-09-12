@@ -6,19 +6,18 @@ namespace Mishusoft\Http\UAAnalyzer;
 use JsonException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Storage;
+use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\Inflect;
 use Mishusoft\Utility\JSON;
 
 abstract class Collection extends UAAnalyzerBase
 {
-    private string $defaultSeparators = '(\s+|\/|\_|\-|\:|\;|\()';
-    //private string $defaultVersionsString
-    // = '(v|y|yb\/|nt)?\s*(\d+[.-_]\d+[.-]\d+[.-_]\d+)|(\d+[.-_]\d+[.-_]\d+)|(\d+[.-_]\d+)|(\d+)|(\w+)';
-    private string $defaultVersionsString;
-
+    private array $regex = [
+        'separator' => '(\s+|\/|\_|\-|\:|\;|\()',
+    ];
 
     private array $dictionaries = [];
-    private array $directoriesWithFiles = [
+    private array $configs = [
         'browsers' => [
             'analysers',
             'applications',
@@ -69,6 +68,7 @@ abstract class Collection extends UAAnalyzerBase
             //'validators',
         ],
     ];
+    private array $directoriesWithFiles = [];
     private array $attributes;
     private string $detailsBuilderAttribute;
 
@@ -77,6 +77,8 @@ abstract class Collection extends UAAnalyzerBase
      */
     protected function __construct()
     {
+        parent::__construct();
+
         //https://user-agents.net/browsers
         //https://developers.whatismybrowser.com/useragents/explore/software_name/
         //https://deviceatlas.com/blog/list-of-user-agent-strings
@@ -85,13 +87,12 @@ abstract class Collection extends UAAnalyzerBase
         //https://useragents.io/
         //http://www.zytrax.com/tech/web/browser_ids.htm
 
-        parent::__construct();
-        // Add prefix for version number
-        $this->defaultVersionsString = '(v|y|yb\/|nt)?';
-        // Add additional separator for version number
-        $this->defaultVersionsString .= '(\s*|\/|\_|\-|\:|\;|\()?';
-        // version number
-        $this->defaultVersionsString .= '((\d+[.-_ ])?(\d+[.-_ ])?(\d+[.-_ ])?(\d+[.-_ ])?(\d+))|(\w+)';
+        // Add regex for prefix for version number
+        $this->regex['version'] = '(v|y|yb\/|nt)?';
+        // Add regex for additional separator for version number
+        $this->regex['version'] .= '(\s*|\/|\_|\-|\:|\;|\()?';
+        //Add regex for version number or word
+        $this->regex['version'] .= '((\d+[.-_ ])?(\d+[.-_ ])?(\d+[.-_ ])?(\d+[.-_ ])?(\d+))|(\w+)';
 
         $this->attributes = ['author', 'licence', 'engines'];
 
@@ -100,14 +101,22 @@ abstract class Collection extends UAAnalyzerBase
 
     /**
      * @throws RuntimeException
-     * @throws \Mishusoft\Exceptions\JsonException
-     * @throws JsonException
      */
     private function loadDictionaries(): void
     {
-        $cacheFile = self::dFile(self::configDataFile('UAAnalyzer', 'dictionaries'));
-        if (file_exists($cacheFile)) {
-            $this->dictionaries = Storage\FileSystem\Yaml::parseFile($cacheFile);
+        $configFile = self::dFile(self::configDataFile('UAAnalyzer', 'configs'));
+        $loadedConfig = Storage\FileSystem\Yaml::parseFile($configFile);
+
+        if (file_exists($configFile) && (count($loadedConfig) > 0)) {
+                $this->directoriesWithFiles = $loadedConfig;
+        } else {
+            Storage\FileSystem\Yaml::emitFile($configFile, $this->configs);
+            $this->directoriesWithFiles = $this->configs;
+        }
+
+        $cacheDictionariesFile = self::dFile(self::configDataFile('UAAnalyzer', 'dictionaries'));
+        if (file_exists($cacheDictionariesFile)) {
+            $this->dictionaries = Storage\FileSystem\Yaml::parseFile($cacheDictionariesFile);
         } elseif (count($this->directoriesWithFiles) > 0) {
             foreach ($this->directoriesWithFiles as $directory => $files) {
                 if (is_array($files) === true) {
@@ -120,9 +129,9 @@ abstract class Collection extends UAAnalyzerBase
                     throw new RuntimeException('UA Analyzer\'s directory list has been corrupted');
                 }
             }
-            if (BROWSERS_CACHE_DATA_UPDATE) {
-                Storage\FileSystem::makeDirectory(dirname($cacheFile));
-                Storage\FileSystem\Yaml::emitFile($cacheFile, $this->dictionaries);
+            if (BROWSERS_CACHE_DATA_UPDATE === true) {
+                Storage\FileSystem::makeDirectory(dirname($cacheDictionariesFile));
+                Storage\FileSystem\Yaml::emitFile($cacheDictionariesFile, $this->dictionaries);
             }
         } else {
             throw new RuntimeException('The dictionaries of UA Analyzer could not loaded');
@@ -134,8 +143,8 @@ abstract class Collection extends UAAnalyzerBase
      */
     private function loadDictionariesBuilder(string $directory, string $filename): void
     {
-        if (file_exists($this->uaStoragePath . $directory . DIRECTORY_SEPARATOR) === true) {
-            $diskLocation = sprintf('%s%s%s%s', $this->uaStoragePath, $directory, DS, $filename);
+        if (file_exists($this->uaStoragePath . $directory . DS) === true) {
+            $diskLocation = sprintf('%1$s%2$s%3$s%4$s', $this->uaStoragePath, $directory, DS, $filename);
             $diskLocationAsFile = self::dFile($diskLocation);
             if (is_dir($diskLocation) === true) {
                 if (count(Storage::globRecursive($diskLocation, GLOB_MARK)) > 0) {
@@ -149,19 +158,11 @@ abstract class Collection extends UAAnalyzerBase
                     $this->dictionaries[$directory][$filename] = $dictionary;
                 } else {
                     throw new RuntimeException(
-                        sprintf(
-                            'Data type array required, string found in %s ',
-                            $diskLocationAsFile
-                        )
+                        sprintf('Data type array required, string found in %s ', $diskLocationAsFile)
                     );
                 }
             } else {
-                throw new RuntimeException(
-                    sprintf(
-                        '%s not exists',
-                        $diskLocationAsFile
-                    )
-                );
+                throw new RuntimeException(sprintf('%s not exists', $diskLocationAsFile));
             }
         } else {
             throw new RuntimeException(sprintf('%s not exists', $directory));
@@ -194,11 +195,11 @@ abstract class Collection extends UAAnalyzerBase
             throw new RuntimeException(
                 sprintf(
                     '%s not exists',
-                    sprintf('%s%s%s', $this->uaStoragePath, strtolower($name), DIRECTORY_SEPARATOR)
+                    sprintf('%s%s%s', $this->uaStoragePath, strtolower($name), DS)
                 )
             );
         }
-        return sprintf('%s%s%s', $this->uaStoragePath, strtolower($name), DIRECTORY_SEPARATOR);
+        return sprintf('%s%s%s', $this->uaStoragePath, strtolower($name), DS);
     }
 
     /**
@@ -564,39 +565,6 @@ abstract class Collection extends UAAnalyzerBase
     {
         //https://www.php.net/manual/en/regexp.reference.subpatterns.php
         //https://www.php.net/manual/en/reference.pcre.pattern.modifiers.php
-
-        //Simple regex
-        //
-        //Regex quick reference
-        //[abc]     A single character: a, b or c
-        //[^abc]     Any single character but a, b, or c
-        //[a-z]     Any single character in the range a-z
-        //[a-zA-Z]     Any single character in the range a-z or A-Z
-        //^     Start of line
-        //$     End of line
-        //\A     Start of string
-        //\z     End of string
-        //.     Any single character
-        //\s     Any whitespace character
-        //\S     Any non-whitespace character
-        //\d     Any digit
-        //\D     Any non-digit
-        //\w     Any word character (letter, number, underscore)
-        //\W     Any non-word character
-        //\b     Any word boundary character
-        //(...)     Capture everything enclosed
-        //(a|b)     a or b
-        //a?     Zero or one of a
-        //a*     Zero or more of a
-        //a+     One or more of a
-        //a{3}     Exactly 3 of a
-        //a{3,}     3 or more of a
-        //a{3,6}     Between 3 and 6 of a
-        //
-        //options:
-        // i case insensitive m make dot match newlines x ignore whitespace in regex
-        // o perform #{...} substitutions only once
-
         if ($name !== '') {
             $namePattern = sprintf('(?<name>%s)', $name);
         } else {
@@ -607,8 +575,8 @@ abstract class Collection extends UAAnalyzerBase
         return sprintf(
             '/%s%s%s/imu',
             $namePattern,
-            $this->validate('separator', $this->defaultSeparators, $separator),
-            $this->validate('version', $this->defaultVersionsString, $version)
+            $this->validate('separator', $this->regex['separator'], $separator),
+            $this->validate('version', $this->regex['version'], $version)
         );
     }
 

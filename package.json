@@ -3,8 +3,8 @@
   "version": "2.0.35",
   "description": "Mishusoft official app development",
   "scripts": {
-    "composer:install":"php ./requirements/composer-install.php",
-    "composer:update":"php ./requirements/composer.phar install",
+    "composer:install": "php ./requirements/composer-install.php",
+    "composer:update": "php ./requirements/composer.phar install",
     "build": "webpack",
     "build:prod": "webpack --env target=production",
     "watch": "webpack -w && npm run update:rv",
@@ -42,6 +42,12 @@
     "gulp-uglifycss": "^1.1.0",
     "html-loader": "^2.1.2",
     "html-webpack-plugin": "^5.3.2",
+    "image-minimizer-webpack-plugin": "^2.2.0",
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-jpegtran": "^7.0.0",
+    "imagemin-optipng": "^8.0.0",
+    "imagemin-svgo": "^10.0.0",
+    "imagemin-webpack-plugin": "^2.4.2",
     "javascript-obfuscator": "^2.19.0",
     "lodash-webpack-plugin": "^0.11.6",
     "mini-css-extract-plugin": "^2.2.2",
@@ -74,6 +80,7 @@
     "whatwg-fetch": "^3.6.2"
   },
   "dependencies": {
+    "imagemin": "^8.0.1",
     "lodash": "^4.17.21"
   }
 }

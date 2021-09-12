@@ -80,7 +80,7 @@ abstract class CliSurfaceController
     {
         //ref: https://misc.flogisoft.com/bash/tip_colors_and_formatting
         $printableMessage =sprintf(
-            '[%1$s] [%2$s] %3$s'.PHP_EOL,
+            '[%1$s] [%2$s] %3$s'.LB,
             date('Y-m-d H:i:s A'),
             strtoupper($type),
             Storage::hidePath($message)
@@ -91,7 +91,7 @@ abstract class CliSurfaceController
             'error', 'removing' => "\e[31m$printableMessage",
             'following', 'success', 'completed', 'coping' => "\e[32m$printableMessage",
             'warning', 'checking' => "\e[33m$printableMessage",
-            default => "\e[33mError: An error occurred!".PHP_EOL,
+            default => "\e[33mError: An error occurred!".LB,
         };
     }//end log()
 }

@@ -7,6 +7,8 @@ use Mishusoft\Base;
 use Mishusoft\CacheManager as Cache;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
+use Mishusoft\Http\IP;
+use Mishusoft\Registry;
 use Mishusoft\Storage;
 
 class UAAnalyzerBase extends Base
@@ -286,8 +288,8 @@ class UAAnalyzerBase extends Base
                     Storage\FileSystem\Yaml::emitFile($filename, $newYamlData);
                 }
             } else {
-                //$newYamlData[IP::get()][]=['when'=>$this->todayTimeOnly,'who'=>$this->userAgent];
-                $newYamlData['::1'][]=['time'=>$this->todayTimeOnly,'carrier'=>$this->userAgent];
+                $newYamlData[IP::get()][]=['when'=>$this->todayTimeOnly,'carrier'=>$this->userAgent];
+                //$newYamlData['::1'][]=['time'=>$this->todayTimeOnly,'carrier'=>$this->userAgent];
                 Storage\FileSystem\Yaml::emitFile($filename, $newYamlData);
             }
         } else {

@@ -129,10 +129,10 @@ class Handler extends ErrorException implements ExceptionInterface
 
     private function makePrintable(string $errorType, string $message, array $stack):void
     {
-        echo sprintf('%s::%s ', $errorType, $message).PHP_EOL;
-        echo 'Trace::'.PHP_EOL;
+        echo sprintf('%s::%s ', $errorType, $message).LB;
+        echo 'Trace::'.LB;
         foreach ($stack as $serial => $details) {
-            echo sprintf('%s::%s ', Number::next($serial), $details).PHP_EOL;
+            echo sprintf('%s::%s ', Number::next($serial), $details).LB;
         }
     }
 

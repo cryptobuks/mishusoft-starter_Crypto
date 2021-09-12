@@ -183,3 +183,27 @@
 
   # Information maker method use it
   info: browser midori-browser
+
+
+
+# NetSurf
+# This is a web browser developed by The NetSurf Developers. This browser renders web pages using the custom engine.
+
+#ref:https://developers.whatismybrowser.com/useragents/explore/software_name/netsurf
+#ref:https://en.wikipedia.org/wiki/NetSurf
+
+# Latest user agents:
+#NetSurf/3.10 (Linux; Arch Linux)
+# Mozilla/5.0 (Linux; Android 6.0.0; INNJOO NETSURFER Build/MMB29N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Mobile Safari/21.3.4.59
+
+- identifiers:
+    # Pattern maker method use it
+    browser-netsurf-indivisual:
+      pattern:
+        name: (netsurf)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser netsurf-browser

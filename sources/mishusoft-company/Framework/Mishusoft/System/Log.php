@@ -8,6 +8,7 @@ use Mishusoft\Exceptions;
 use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
+use Mishusoft\Http\IP;
 use Mishusoft\Registry;
 use Mishusoft\Storage;
 use Mishusoft\Utility\Inflect;
@@ -230,7 +231,7 @@ class Log
                         $resource = fopen($logFile, 'wb+');
                     }
 
-                    $ip         = Registry::Ip()::get();
+                    $ip         = IP::get();
                     $useragent  = Registry::Browser()->getUserAgent();
                     $mode       = Registry::Browser()->getRequestMethod();
                     $server     = Registry::Browser()->getURLHostname();

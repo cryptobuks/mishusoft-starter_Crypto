@@ -49,7 +49,7 @@ class Yaml
         mixed $data,
         int   $encoding = YAML_ANY_ENCODING,
         int   $linebreak = YAML_ANY_BREAK,
-        array $callbacks = null
+        array $callbacks = []
     ): string {
         self::validation();
         return yaml_emit($data, $encoding, $linebreak, $callbacks);

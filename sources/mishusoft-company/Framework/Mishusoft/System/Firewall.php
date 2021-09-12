@@ -982,7 +982,7 @@ class Firewall extends Base
         }//end if
 
         if (IS_CLI) {
-            echo $message['description'].PHP_EOL;
+            echo $message['description'].LB;
         } elseif (Registry::Browser()->getRequestMethod() === 'OPTIONS') {
             // add welcome not for http options method
             Storage\Stream::json(['message' => ['type' => 'error', 'contents' => "An Internal error occurred."]]);
@@ -1364,27 +1364,27 @@ class Firewall extends Base
                     ]
                 );
             } elseif ($viewMode === 'text') {
-                echo PHP_EOL;
-                echo " Your access has been $status $componentText. " . PHP_EOL;
+                echo LB;
+                echo " Your access has been $status $componentText. " . LB;
                 for ($i = 0; $i <= 65; $i++) {
                     echo '-';
                 }
 
-                echo PHP_EOL;
-                // echo " User Agent : $this->msg_tab" . Registry::Browser()->getUserAgent() . PHP_EOL;
-                echo " Request URL : $this->msgTab$requestMethod $requestAddress" . PHP_EOL;
-                echo PHP_EOL;
-                echo " IP address : $this->msgTab" . IP::get() . PHP_EOL;
+                echo LB;
+                // echo " User Agent : $this->msg_tab" . Registry::Browser()->getUserAgent() . LB;
+                echo " Request URL : $this->msgTab$requestMethod $requestAddress" . LB;
+                echo LB;
+                echo " IP address : $this->msgTab" . IP::get() . LB;
 
                 if (Character::lower(IP::getCountry()) !== 'unknown') {
-                    echo " Country : $this->msgTab" . IP::getCountry() . PHP_EOL;
+                    echo " Country : $this->msgTab" . IP::getCountry() . LB;
                 } elseif (Character::lower(IP::getInfo('country')) !== 'unknown location') {
-                    echo " Country : $this->msgTab" . IP::getInfo('country') . PHP_EOL;
+                    echo " Country : $this->msgTab" . IP::getInfo('country') . LB;
                 }
 
                 // avoid error browser capturing
                 if (Character::lower(Registry::Browser()->getBrowserName()) !== 'unknown') {
-                    echo " Browser : $this->msgTab" . Registry::Browser()->getBrowserNameFull() . PHP_EOL;
+                    echo " Browser : $this->msgTab" . Registry::Browser()->getBrowserNameFull() . LB;
                 }
 
                 // avoid error device capturing
@@ -1392,17 +1392,17 @@ class Firewall extends Base
                     echo " Device : $this->msgTab"
                         . Registry::Browser()->getDeviceName() . ' ('
                         . Character::lower(Registry::Browser()->getPlatformArchitecture())
-                        . ').' . PHP_EOL;
+                        . ').' . LB;
                 }
 
                 for ($i = 0; $i <= 65; $i++) {
                     echo '-';
                 }
 
-                echo PHP_EOL;
+                echo LB;
                 //echo 'Copyright © '.Time::getCurrentYearNumber().' '
-                //.Framework::COMPANY_NAME.'. All Right Reserved.'.PHP_EOL;
-                echo '© ' . Time::currentYearNumber() . ' ' . Framework::COMPANY_NAME . '.' . PHP_EOL;
+                //.Framework::COMPANY_NAME.'. All Right Reserved.'.LB;
+                echo '© ' . Time::currentYearNumber() . ' ' . Framework::COMPANY_NAME . '.' . LB;
             } else {
                // Ui\EmbeddedView::protection(
                 FirewallView::protection(

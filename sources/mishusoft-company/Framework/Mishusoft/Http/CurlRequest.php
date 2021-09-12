@@ -281,7 +281,7 @@ class CurlRequest
                 $item,
                 $keyword,
                 $directory
-            ) . PHP_EOL;
+            ) . LB;
             foreach ($formats as $format) {
                 if ((file_exists($directory) === false) && !mkdir($directory, 077, true) && !is_dir($directory)) {
                     throw new \RuntimeException(sprintf('Directory "%s" was not created', $directory));
@@ -290,7 +290,7 @@ class CurlRequest
                 self::download($item, $keyword, $format, $directory, $filter, $filenamePrefix);
             }
 
-            print_r('The content of ' . $item . ' download has been finished.' . PHP_EOL . PHP_EOL, false);
+            print_r('The content of ' . $item . ' download has been finished.' . LB . LB, false);
         }
     }
 
@@ -315,17 +315,17 @@ class CurlRequest
             if ($filter === 'update') {
                 $filename = sprintf('%s%s%s.%s', $directory, $filenamePrefix, $item, $format);
                 if (file_exists($filename) === true) {
-                    print_r('Remove old file: ' . basename($filename) . PHP_EOL, false);
+                    print_r('Remove old file: ' . basename($filename) . LB, false);
                     unlink($filename);
                 }
 
                 self::write($filename, self::response($keyword, $item, $format));
             }
         } catch (\Error | \Exception $exception) {
-            echo PHP_EOL;
-            //echo 'Unable to write ' . $filename . PHP_EOL;
-            echo sprintf('Unable to write %s%s%s.%s', $directory, $filenamePrefix, $item, $format) . PHP_EOL;
-            echo $exception->getMessage() . PHP_EOL;
+            echo LB;
+            //echo 'Unable to write ' . $filename . LB;
+            echo sprintf('Unable to write %s%s%s.%s', $directory, $filenamePrefix, $item, $format) . LB;
+            echo $exception->getMessage() . LB;
             Framework::terminate();
         }
     }
@@ -339,7 +339,7 @@ class CurlRequest
                 fclose($resource);
             }
 
-            print_r('Write new file: ' . basename($filename) . PHP_EOL, false);
+            print_r('Write new file: ' . basename($filename) . LB, false);
         }
     }
 

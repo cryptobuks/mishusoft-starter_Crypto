@@ -202,3 +202,30 @@
   info: browser midori-browser
 
 
+# Arora
+# This is a web browser developed by Benjamin C. Meyer. This browser renders web pages using the WebKit engine.
+
+# ref:https://user-agents.net/browsers/arora
+# ref:https://developers.whatismybrowser.com/useragents/explore/software_name/arora/
+# ref:https://en.wikipedia.org/wiki/Arora_(web_browser)
+
+# Latest user agent list
+#Mozilla/5.0 (X11; U; Linux; ru-RU) AppleWebKit/532.4 (KHTML, like Gecko) Arora/0.10.2 (Git: 1375 bb7a6a6) Safari/532.4
+#Mozilla/5.0 (X11; U; UNICOS lcLinux; en-US) Gecko/20140730 (KHTML, like Gecko, Safari/419.3) Arora/0.8.0
+#Mozilla/5.0 (Windows; U; ; en-US) AppleWebKit/527+ (KHTML, like Gecko, Safari/419.3) Arora/0.8.0
+#Mozilla/5.0 (X11; Linux i686) AppleWebKit/538.1 (KHTML, like Gecko) Arora/0.11.0 Safari/538.1
+#Mozilla/5.0 (Windows; U; ; en-EN) AppleWebKit/527+ (KHTML, like Gecko, Safari/419.3) Arora/0.8.0
+
+- identifiers:
+    # Pattern maker method use it
+    browser-arora-webkit:
+      pattern:
+        name: (arora)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser arora-browser
+
+
