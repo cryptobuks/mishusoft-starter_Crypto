@@ -176,3 +176,29 @@
   info: browser icab-browser
 
 
+# Midori
+# This is a web browser developed by Christian Dywan. This browser renders web pages using the WebKit and custom engine.
+
+# ref:https://user-agents.net/browsers/midori
+# ref:https://developers.whatismybrowser.com/useragents/explore/software_name/midori/
+# ref:https://en.wikipedia.org/wiki/Midori_(web_browser)
+
+# Latest user agent list
+#Mozilla/5.0 (Macintosh; U; Intel Mac OS X; c) AppleWebKit/535+ (KHTML, like Gecko) Version/5.0 Safari/535.22+ Midori/0.4
+#Mozilla/5.0 (X11; U; Linux i686; de) AppleWebKit/523+ midori/0.1
+#Midori/0.1.8 (Windows; Windows; U; en-us) WebKit/532
+#Mozilla/5.0 (Windows NT 6.2) AppleWebKit/538.15 (KHTML, like Gecko) Chrome/18.0.1025.133 Safari/538.15 Midori/0.5
+
+- identifiers:
+    # Pattern maker method use it
+    browser-midori-webkit:
+      pattern:
+        name: (midori)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser midori-browser
+
+
