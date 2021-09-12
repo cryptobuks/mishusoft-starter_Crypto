@@ -506,35 +506,6 @@ class BrowsersInformationCollection extends Collection
             //https://useragents.io/
 
 
-            //Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/602.1 (KHTML, like Gecko) browser.py Version/10.0 Safari/602.1
-            'WCGBrowser' => [
-                'name' => 'WCGBrowser',
-                'type' => 'Web Browser',
-                'ui' => 'GraphicalMode',
-                'creator' => [
-                    [
-                        'name' => 'Alan D Moore',
-                        'link' => 'https://www.alandmoore.com/',
-                    ],
-                ],
-                'cost' => 'Free',
-                'status' => 'Active',
-                'licence' => [
-                    [
-                        'name' => 'GPL',
-                        'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
-                    ],
-                ],
-                'layout' => [
-                    ['name' => 'custom'],
-                ],
-                'latest-release' => [
-                    [
-                        'version' => '2.21',
-                        'date' => '2 August 2020',
-                    ],
-                ],
-            ],
 
             //Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/602.1 (KHTML, like Gecko) Otter/0.9.99
             'Otter' => [
