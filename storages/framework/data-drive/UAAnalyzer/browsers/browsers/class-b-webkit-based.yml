@@ -123,3 +123,56 @@
   info: browser wcgbrowser-browser
 
 
+
+# Otter
+# This is a web browser developed by otter-browser.org. This browser renders web pages using the Blink engine.
+
+# ref:https://user-agents.net/browsers/otter
+# ref:https://github.com/OtterBrowser/otter-browser
+# ref:https://en.wikipedia.org/wiki/Otter_Browser
+
+# Latest user agent list
+#Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/602.1 (KHTML, like Gecko) Otter/1.0.81
+#Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/534.57.7 (KHTML, like Gecko) Otter/1.0.81
+#Mozilla/5.0 (X11; Linux i686) AppleWebKit/602.1 (KHTML, like Gecko) Otter/1.0.01
+#Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/602.1 (KHTML, like Gecko) Otter/1.0.81
+
+- identifiers:
+    # Pattern maker method use it
+    browser-otter-webkit:
+      pattern:
+        name: (otter)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser otter-browser
+
+
+# iCab
+# This is a web browser developed by Alexander Clauss. This browser renders web pages using the Blink, WebKit and custom engine.
+
+# ref:https://user-agents.net/browsers/otter
+# ref:https://github.com/OtterBrowser/otter-browser
+# ref:https://en.wikipedia.org/wiki/Otter_Browser
+
+# Latest user agent list
+#Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_7; en-us) AppleWebKit/533.20.25 (KHTML, like Gecko) iCab/4.8 Safari/533.16
+#Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8) AppleWebKit/536.15 (KHTML, like Gecko) iCab/5.0 Safari/533.16
+#Mozilla/5.0 (compatible; iCab 3.0.2; Macintosh; U; PPC Mac OS)
+#iCab 4.5
+
+- identifiers:
+    # Pattern maker method use it
+    browser-icab-webkit:
+      pattern:
+        name: (icab)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser icab-browser
+
+
