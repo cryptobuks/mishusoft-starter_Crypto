@@ -119,3 +119,67 @@
 
   # Information maker method use it
   info: browser icab-browser
+
+
+# Lynx
+# This is a web browser developed by Thomas Dickey and renders web pages using the libwww engine.
+
+# Latest user agents:
+#Lynx 2.8.5dev.3
+- identifiers:
+    # Pattern maker method use it
+    browser-lynx-libwww:
+      pattern:
+        name: (lynx)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser lynx-browser
+
+
+
+# Internet Explorer
+# This is a web browser developed by Microsoft. This browser renders web pages using the Trident and custom engine.
+
+# Latest user agents:
+#Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 6.0; .NET CLR 3.4.5058)
+#Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.0; .NET CLR 3.2.5908)
+#Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0; .NET CLR 3.4.4384)
+
+- identifiers:
+    # Pattern maker method use it
+    browser-msie-indivisual:
+      pattern:
+        name: (msie)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser msie-browser
+
+
+# Midori
+# This is a web browser developed by Christian Dywan. This browser renders web pages using the WebKit and custom engine.
+
+# ref:https://user-agents.net/browsers/midori
+# ref:https://developers.whatismybrowser.com/useragents/explore/software_name/midori/
+# ref:https://en.wikipedia.org/wiki/Midori_(web_browser)
+
+# Latest user agent list
+#Midori 0.4
+#Midori 0.1
+
+- identifiers:
+    # Pattern maker method use it
+    browser-midori-indivisual:
+      pattern:
+        name: (midori)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser midori-browser
