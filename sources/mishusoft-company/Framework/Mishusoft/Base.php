@@ -6,9 +6,9 @@ namespace Mishusoft;
 abstract class Base extends Singleton
 {
 
-    public const SYSTEM_APP_FILE= 'php';
-    public const SYSTEM_DATA_FILE= 'yml';
-    public const PUBLIC_DATA_FILE= 'json';
+    public const SYSTEM_APP_FILE    = 'php';
+    public const SYSTEM_DATA_FILE   = 'yml';
+    public const PUBLIC_DATA_FILE   = 'json';
 
     /**
      * @return string
