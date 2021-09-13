@@ -9,12 +9,14 @@ class CLI extends BIOS
 {
     public static function initialise(): void
     {
-        self::singleton(/**
+        self::singleton(
+        /**
          * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
          * @throws \Mishusoft\Exceptions\HttpException\HttpRequestException
-         */            function ($registry) {
-                       $registry->requestCli = new Request();
-                       \Mishusoft\Drivers\Bootstrap\Cli::run(new $registry->requestCli);
+         */
+            function ($registry) {
+                $registry->requestCli = new Request();
+                \Mishusoft\Drivers\Bootstrap\Cli::run(new $registry->requestCli);
             }
         );
     }
