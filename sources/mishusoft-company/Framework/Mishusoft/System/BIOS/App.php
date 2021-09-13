@@ -34,11 +34,20 @@ class App extends BIOS
      */
     public static function initialise():void
     {
+
+
+
         self::singleton(function ($registry) {
-            $registry->browser              = new Http\Browser();
+            //Debug::preOutput($registry);
+            //Debug::preOutput('before setting data');
+            $registry->browser              = Http\Browser::getInstance();
             $registry->requestClassic       = Http\Request\Classic::getInstance();
             $registry->requestQualifiedAPI  = Http\Request\QualifiedAPI::getInstance();
             $registry->ip                   = new Http\IP();
+
+            //Debug::preOutput('after setting data');
+            //Debug::preOutput($registry);
+
 
             // Communicate with framework.
             Log::info('Start framework application.');

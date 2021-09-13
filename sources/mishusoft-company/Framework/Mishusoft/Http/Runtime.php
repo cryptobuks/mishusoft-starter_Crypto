@@ -17,6 +17,7 @@ use Mishusoft\System\Firewall;
 use Mishusoft\System\Localization;
 use Mishusoft\System\Memory;
 use Mishusoft\Utility\ArrayCollection as Arr;
+use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\JSON;
 
 class Runtime
@@ -237,14 +238,16 @@ class Runtime
             }
         }
 
-        //Debug::preOutput($message['debug']['stack']);
+//        Debug::preOutput($message['debug']['stack']);
+//        Debug::preOutput(explode('$$', $message['debug']['stack']));
+//        exit();
 
         if (array_key_exists('caption', $message['debug'])) {
             $messageDetails['debug']['caption'] = $message['debug']['caption'];
             $messageDetails['debug']['description'] = $message['debug']['description'];
             if (!is_array($message['debug']['stack'])) {
                 //Debug::preOutput($message['debug']['stack']);
-                $messageDetails['debug']['stack'] = JSON::decodeToArray($message['debug']['stack']);
+                $messageDetails['debug']['stack'] = explode('$$', $message['debug']['stack']);
             }
         } else {
             $messageDetails = [

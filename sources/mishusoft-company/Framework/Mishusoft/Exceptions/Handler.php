@@ -113,6 +113,10 @@ class Handler extends ErrorException implements ExceptionInterface
             $stack =  ['No trace of this error could be detected.'];
         }
 
+//        Debug::preOutput($stack);
+//        Debug::preOutput(implode('$', $stack));
+//        exit();
+
         Log::debug($description, LOG_STYLE_SMART, LOG_TYPE_RUNTIME);
         if (IS_CLI) {
             $this->makePrintable($titleOfErrorMessage, $description, $stack);
@@ -120,7 +124,7 @@ class Handler extends ErrorException implements ExceptionInterface
             Http\Runtime::abort(
                 Http\Errors::SERVICE_UNAVAILABLE,
                 'debug@caption@'.$titleOfErrorMessage,
-                'debug@stack@'.JSON::encodeToString($stack),
+                'debug@stack@'.implode('$$', $stack),
                 'debug@description@'.$description
             );
         }

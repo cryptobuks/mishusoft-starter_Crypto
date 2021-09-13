@@ -6,13 +6,13 @@ use Closure;
 use GeoIp2\Exception\AddressNotFoundException;
 use JsonException;
 use MaxMind\Db\Reader\InvalidDatabaseException;
+use Mishusoft\Http\Browser;
 use Mishusoft\Storage\FileSystem;
 use Mishusoft\System\Log;
 use Mishusoft\System\Memory;
 use Mishusoft\System\Network;
 use Mishusoft\System\Time;
 use Mishusoft\Ui\EmbeddedView;
-use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\JSON;
 
 class Framework extends Base
@@ -81,6 +81,14 @@ class Framework extends Base
         //static::execute();
         return $instance;
     }//end init()
+
+    /**
+     * @return string
+     */
+    public static function getAbsoluteInstalledURL(): string
+    {
+        return Browser::getInstance()::urlOrigin($_SERVER).Storage::applicationWebDirectivePath();
+    }//end getAbsoluteInstalledURL()
 
     /**
      * @return string
@@ -371,7 +379,7 @@ class Framework extends Base
                 'debug'       => !(MPM\Classic::getProperty('release') === 'stable'),
                 'date'        => Time::todayDateOnly(),
                 'host'        => [
-                    'url'  => System::getAbsoluteInstalledURL(),
+                    'url'  => self::getAbsoluteInstalledURL(),
                     'name' => Network::getValOfSrv('HTTP_HOST'),
                     'ip'   => Network::getValOfSrv('SERVER_ADDR'),
                 ],

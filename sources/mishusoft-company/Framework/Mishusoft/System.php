@@ -125,7 +125,6 @@ class System extends Base
      */
     public static function activate(): System
     {
-
         self::initializeSecurity();
         self::getProgressedSystemStatus(self::getRequiresFile('SECURITY_FILE_PATH'));
 
@@ -146,11 +145,11 @@ class System extends Base
     {
         $data = [
             'app'    => [
-                'version'           => MPM::getProperty('version'),
-                'release'           => MPM::getProperty('release'),
+                'version'           => MPM\Classic::getProperty('version'),
+                'release'           => MPM\Classic::getProperty('release'),
                 'author'            => DEFAULT_APP_AUTHOR,
                 'currentStatus'     => $status,
-                'installedLocation' => self::getAbsoluteInstalledURL(),
+                'installedLocation' => Framework::getAbsoluteInstalledURL(),
             ],
             'client' => [
                 'IP'      => IP::get(),
@@ -161,15 +160,6 @@ class System extends Base
 
         self::verifySecurityFile(json_encode($data, JSON_THROW_ON_ERROR));
     }//end initializeSecurity()
-
-
-    /**
-     * @return string
-     */
-    public static function getAbsoluteInstalledURL(): string
-    {
-        return Registry::Browser()::urlOrigin($_SERVER).Storage::applicationWebDirectivePath();
-    }//end getAbsoluteInstalledURL()
 
 
     /**
@@ -327,7 +317,7 @@ class System extends Base
                         if ($security->app->currentStatus === 'Installed') {
                             self::checkSystemConfiguration();
                         } else {
-                            if ($security->app->installedLocation === self::getAbsoluteInstalledURL()) {
+                            if ($security->app->installedLocation === Framework::getAbsoluteInstalledURL()) {
                                 // verify visitor's current location and redirect to installed page.
                                 if ($security->client->IP === IP::get()) {
                                     // verify The Installer ip address
@@ -1590,9 +1580,9 @@ class System extends Base
                             $appCompany     = $data->env->installation->client->base->area->website->company;
                             $doccumentRoot        = str_replace('\\', '/', Storage::applicationDirectivePath());
                             $http_host_name  = $_SERVER['SERVER_NAME'];
-                            $http_host_add   = self::getAbsoluteInstalledURL();
+                            $http_host_add   = Framework::getAbsoluteInstalledURL();
                             $http_host_ip    = $_SERVER['SERVER_ADDR'];
-                            $default_home    = self::getAbsoluteInstalledURL();
+                            $default_home    = Framework::getAbsoluteInstalledURL();
                             $default_layout  = DEFAULT_SYSTEM_LAYOUT;
                             $defaultFavicon  = 'mishusoft-logo-lite.webp';
                             $setupMessage    = 'This app successfully installed';
@@ -1879,7 +1869,7 @@ class System extends Base
                     FileSystem::makeDirectory(self::getRequiresFile('CONFIG_SERVER_DIR_PATH') . DS . $name);
                     FileSystem::exec(self::getRequiresFile('CONFIG_SERVER_DIR_PATH').DS.$name);
                     FileSystem::saveToFile(self::getRequiresFile('CONFIG_PROPERTIES_FILE_PATH'), JSON::encodeToString($current_data));
-                    }
+                }
             }//end if
 
             return true;

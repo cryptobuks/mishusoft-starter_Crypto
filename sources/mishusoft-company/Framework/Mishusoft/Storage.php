@@ -962,13 +962,18 @@ class Storage extends Base
             $localDrive .= DS;
         }
 
-        if (is_bool($remoteDrive) === true) {
-            $remoteDrive = BASE_URL;
+        if (defined('BASE_URL')) {
+            if (is_bool($remoteDrive) === true) {
+                $remoteDrive = BASE_URL;
+            }
+        } else {
+            $remoteDrive = false;
         }
 
-        if (str_ends_with($remoteDrive, '/') === false) {
+        if (!is_bool($remoteDrive) && str_ends_with($remoteDrive, '/') === false) {
             $remoteDrive .= '/';
         }
+
 
         if (is_bool($pathIndicator) === true) {
             $pathIndicator = '';
