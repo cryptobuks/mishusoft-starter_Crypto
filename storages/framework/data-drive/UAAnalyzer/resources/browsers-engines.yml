@@ -64,6 +64,21 @@ qtwebkit:
   License:  LGPL-2.1
   website: https://doc.qt.io/archives/qt-5.5/qtwebkit-index.html
 
+# http://wiki.qt.io/QtWebEngine
+qtwebengine:
+  author: The QT Company
+  developers: The QT Company
+  status: Active
+  release:
+    initial: Dec 6, 2012
+    latest: Mar 10, 2020
+  repository: https://github.com/qt/qtwebengine
+  writtenIn: C++
+  operatingSystem: [ Linux, BSD, Windows, macOS ]
+  type: Browser engine
+  License:  LGPL-2.1
+  website: https://doc.qt.io/qt-5/qtwebengine-index.html
+
 # https://en.wikipedia.org/wiki/WebKit
 webkit:
   author: KDE
