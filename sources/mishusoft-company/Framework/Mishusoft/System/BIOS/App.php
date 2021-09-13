@@ -8,6 +8,7 @@ use Mishusoft\Http\Session;
 use Mishusoft\Framework;
 use Mishusoft\Http;
 use Mishusoft\Registry;
+use Mishusoft\Storage;
 use Mishusoft\Storage\Stream;
 use Mishusoft\System\BIOS;
 use Mishusoft\System\Firewall;
@@ -34,9 +35,6 @@ class App extends BIOS
      */
     public static function initialise():void
     {
-
-
-
         self::singleton(function ($registry) {
             //Debug::preOutput($registry);
             //Debug::preOutput('before setting data');
@@ -51,7 +49,7 @@ class App extends BIOS
 
             // Communicate with framework.
             Log::info('Start framework application.');
-            Framework::init(function ($framework) use ($registry) {
+            Framework::init($registry, function ($framework) use ($registry) {
                 // Instance system memory.
                 Log::info('Start system memory.');
                 Memory::enable($framework);
@@ -87,16 +85,19 @@ class App extends BIOS
                         Log::info('Start system session.');
                         Session::init();
 
-                        /*
-                         * Start special url handler [Api Url Service].
-                         */
-                        QualifiedAPI::run($registry::RequestQualifiedAPI());
+                        if (file_exists(Storage::applicationDirectivePath())) {
+                            /*
+                             * Start special url handler [Api Url Service].
+                             */
+                            QualifiedAPI::run($registry::RequestQualifiedAPI());
 
-                        /*
-                         * Start special url handler [Embed Mishusoft Application].
-                         */
-                        //Debug::preOutput($registry::RequestQualifiedAPI());
-                        Ema::run($registry::RequestQualifiedAPI());
+                            /*
+                             * Start special url handler [Embed Mishusoft Application].
+                             */
+                            //Debug::preOutput($registry::RequestQualifiedAPI());
+                            Ema::run($registry::RequestQualifiedAPI());
+                        }
+
 
                         //execute framework core
                         $framework->execute();
