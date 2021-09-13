@@ -437,7 +437,7 @@ class EmbeddedView
                         );
                     }
                     if ($type === 'warning') {
-                        $additional = $additionalCommon . 'background: #f9d8b1;color: #fb8e0d;';
+                        $additional = $additionalCommon . 'background: #f9d8b1;color: rgba(157, 87, 3, 1); border:2px solid rgba(157, 87, 3, 1);';
                         $contents['div'][] = self::setAttributes(
                             ['class' => $commonMessage, 'style' => $additional, 'text' => $message,]
                         );
