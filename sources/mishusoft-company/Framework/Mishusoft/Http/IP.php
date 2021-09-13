@@ -38,7 +38,7 @@ class IP extends Base
      */
     public static function cityDbFile():string
     {
-        return self::dFile(self::dataFile('GeoIP', 'GeoLite2-City'), 'mmdb');
+        return self::dFile(self::requiredDataFile('GeoIP', 'GeoLite2-City'), 'mmdb');
     }
 
 
@@ -47,7 +47,7 @@ class IP extends Base
      */
     public static function countryDbFile():string
     {
-        return self::dFile(self::dataFile('GeoIP', 'GeoLite2-Country'), 'mmdb');
+        return self::dFile(self::requiredDataFile('GeoIP', 'GeoLite2-Country'), 'mmdb');
     }
 
 
