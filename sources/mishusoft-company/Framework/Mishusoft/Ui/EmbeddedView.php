@@ -431,7 +431,7 @@ class EmbeddedView
                         ];
                     }
                     if ($type === 'description') {
-                        $additional = $additionalCommon . 'background: none;border: none;text-align: center;';
+                        $additional = $additionalCommon . 'background: transparent;border: none;text-align: center;font-size: 15px;line-height: 1.6;';
                         $contents['div'][] = self::setAttributes(
                             ['class' => $commonMessage, 'style' => $additional, 'text' => $message,]
                         );
