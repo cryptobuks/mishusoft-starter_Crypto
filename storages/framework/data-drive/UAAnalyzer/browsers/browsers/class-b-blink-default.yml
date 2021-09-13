@@ -1,0 +1,42 @@
+# Blink Default (Original) browsers
+
+# Chromium
+# This is a web browser developed by The Chromium Project. This browser renders web pages using the Blink engine.
+
+#ref: https://en.wikipedia.org/wiki/Chromium_(web_browser)
+
+# Latest user agents:
+#Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) snap Chromium/83.0.4103.61 Chrome/91.0.4472.77 Safari/537.36
+- identifiers:
+    # Pattern maker method use it
+    browser-chromium-default:
+      pattern:
+        name: (chromium)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser chromium-browser
+
+# Chrome
+# This is a web browser developed by Google. This browser renders web pages using the Blink engine.
+
+#ref: https://en.wikipedia.org/wiki/Google_Chrome
+#ref: https://user-agents.net/browsers/chrome
+#ref: https://developers.whatismybrowser.com/useragents/explore/software_name/chrome/
+
+# Latest user agents:
+#Mozilla/5.0 (Linux; Android 5.0.2; vivo Y31A) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.62 Mobile Safari/537.36
+#Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.48 CitizenFX/1.0.0.4512 Safari/537.36
+- identifiers:
+    # Pattern maker method use it
+    browser-chrome-default:
+      pattern:
+        name: (chrome)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser chrome-browser
