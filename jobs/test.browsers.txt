@@ -1,1 +1,3 @@
 qutebrower test failed with linux
+chrome test failed with linux
+chromium test failed with linux
