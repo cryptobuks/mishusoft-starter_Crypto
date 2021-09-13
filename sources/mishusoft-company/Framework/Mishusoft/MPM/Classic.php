@@ -143,7 +143,7 @@ class Classic extends MPM
      * @throws PermissionRequiredException
      * @throws \JsonException
      */
-    public static function databasesPath(string $package = ''): string
+    public static function appDatabasesPath(string $package = ''): string
     {
         //return app databases path [root://app/Packages/PackageName/databases/]
         return sprintf(
@@ -152,7 +152,7 @@ class Classic extends MPM
             self::validDefaultPackage($package),
             DS
         );
-    }//end databasesPath()
+    }//end appDatabasesPath()
 
     /**
      * @param string $package
@@ -232,7 +232,7 @@ class Classic extends MPM
     public static function moduleRootController(string $module): string
     {
         // Return root controller file of module.
-        return self::getControllerOfModule(self::defaultModule(), $module);
+        return self::controllerWithModule(self::defaultModule(), $module);
     }//end moduleRootController()
 
     /**
@@ -240,7 +240,7 @@ class Classic extends MPM
      * @param string $controller
      * @return string
      */
-    private static function getControllerOfModule(string $module, string $controller): string
+    private static function controllerWithModule(string $module, string $controller): string
     {
         //return app databases path [like root://app/Packages/Modules/ModuleName/Controllers/NameController.php]
         return sprintf(
@@ -250,7 +250,7 @@ class Classic extends MPM
             $controller,
             DS
         );
-    }//end getControllerOfModule()
+    }//end controllerWithModule()
 
 
     /**
@@ -268,7 +268,7 @@ class Classic extends MPM
     {
         // Check module is set or not.
         $module = empty($module) ? self::defaultModule() : $module;
-        return self::getControllerOfModule($module, $controller);
+        return self::controllerWithModule($module, $controller);
     }//end runtimeRootController()
 
 
