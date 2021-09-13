@@ -13,6 +13,7 @@ use Mishusoft\System\Memory;
 use Mishusoft\System\Network;
 use Mishusoft\System\Time;
 use Mishusoft\Ui\EmbeddedView;
+use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\JSON;
 
 class Framework extends Base
@@ -43,10 +44,12 @@ class Framework extends Base
     public const COMPANY_SUPPORT_LINK        = 'https://support.mishusoft.com';
     public const COMPANY_MAIL_LINK           = 'support@mishusoft.com';
     public const COMPANY_EST_YEAR            = '2014';
+    private static Registry $registry;
 
     /**
      * Init function for Framework
      *
+     * @param Registry $registry
      * @param Closure $closure
      * @return Framework
      * @throws Exceptions\ErrorException
@@ -54,11 +57,11 @@ class Framework extends Base
      * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws Exceptions\RuntimeException\NotFoundException
      * @throws JsonException
      */
-    public static function init(Closure $closure): static
+    public static function init(Registry $registry, Closure $closure): static
     {
+        self::$registry = $registry;
         $instance = new static();
 
         //configure and install framework
@@ -87,7 +90,7 @@ class Framework extends Base
      */
     public static function getAbsoluteInstalledURL(): string
     {
-        return Browser::getInstance()::urlOrigin($_SERVER).Storage::applicationWebDirectivePath();
+        return Registry::Browser()::urlOrigin($_SERVER).Storage::applicationWebDirectivePath();
     }//end getAbsoluteInstalledURL()
 
     /**
@@ -236,11 +239,11 @@ class Framework extends Base
             ],
             'exclude'      => [
                 'dir' => [
-                    'composer',
+                    'vendor',
                     'node_modules',
                     'dist',
                     'dist-src',
-                    'Sources',
+                    'sources',
                 ],
             ],
         ];
@@ -276,14 +279,7 @@ class Framework extends Base
         /*
          * Check provided root directory in app installed path.
          * */
-        $currentDirectory = strtolower(
-            substr(
-                $rootPath,
-                strlen(RUNTIME_ROOT_PATH),
-                ((strlen($rootPath) - strlen(RUNTIME_ROOT_PATH)) - 1)
-            )
-        );
-        if (in_array($currentDirectory, SYSTEM_EXCLUDE_DIRS, true) === true) {
+        if (in_array(self::getDirectoryName($rootPath), SYSTEM_EXCLUDE_DIRS, true) === true) {
             return;
         }
 
@@ -379,15 +375,15 @@ class Framework extends Base
                 'debug'       => !(MPM\Classic::getProperty('release') === 'stable'),
                 'date'        => Time::todayDateOnly(),
                 'host'        => [
-                    'url'  => self::getAbsoluteInstalledURL(),
+                    'url'  => self::$registry::Browser()::urlOrigin($_SERVER).Storage::applicationWebDirectivePath(),
                     'name' => Network::getValOfSrv('HTTP_HOST'),
                     'ip'   => Network::getValOfSrv('SERVER_ADDR'),
                 ],
                 'root'        => [
                     'dir' => [
-                        'name' => RUNTIME_ROOT_PATH,
-                        'size' => disk_total_space(RUNTIME_ROOT_PATH),
-                        'free' => disk_free_space(RUNTIME_ROOT_PATH),
+                        'name' => self::rootPath(),
+                        'size' => disk_total_space(self::rootPath()),
+                        'free' => disk_free_space(self::rootPath()),
                     ],
                 ],
             ]);
@@ -447,10 +443,10 @@ class Framework extends Base
         $thirdParty = JSON::decodeToArray(JSON::encodeToString(Memory::data()->required->thirdparty));
         if (count($thirdParty) > 0) {
             foreach ($thirdParty as $package => $details) {
-                if (is_dir(RUNTIME_ROOT_PATH.'vendor/'.$package) === false) {
+                if (is_dir(self::rootPath().'vendor/'.$package) === false) {
                     throw new Exceptions\ErrorException(
                         sprintf(
-                            '%s is required. Please run %s or for fresh download visit %s',
+                            '%1$s is required. Please run %2$s or for fresh download visit %3$s',
                             ucfirst($details['name']),
                             $details['command'],
                             $details['url']
@@ -515,17 +511,24 @@ class Framework extends Base
      */
     public function execute(): void
     {
-        if (file_exists(MPM\Classic::configFile()) === false) {
+        if (file_exists(Storage::applicationDirectivePath()) === false) {
             EmbeddedView::welcomeToFramework(static::FULL_NAME, [
                 'caption' => static::FULL_NAME,
                 'description' => static::description(),
                 'warning' => static::installWarning(),
                 'copyright' => Ui::copyRightText(),
             ]);
-            static::terminate();
-        }//end if
-
-        MPM\Classic::load();
+        } elseif (file_exists(MPM\Classic::configFile()) === false) {
+            EmbeddedView::welcomeToFramework(static::FULL_NAME, [
+                'caption' => static::FULL_NAME,
+                'description' => static::description(),
+                'warning' => static::installWarning(),
+                'copyright' => Ui::copyRightText(),
+            ]);
+        } else {
+            MPM\Classic::load();
+        }
+        static::terminate();
     }//end execute()
 
     private static function installWarning():string
