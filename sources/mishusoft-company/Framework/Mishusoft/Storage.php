@@ -17,14 +17,6 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function rootPath(): string
-    {
-        return parent::rootPath();
-    }
-
-    /**
-     * @return string
-     */
     public static function frameworkPath(): string
     {
         if (defined('FRAMEWORK_PATH')) {
@@ -142,336 +134,6 @@ class Storage extends Base
         }
 
         return $rootUri;
-    }
-
-    /**
-     * @return string
-     */
-    public static function storagesPath(): string
-    {
-        return sprintf(
-            '%1$s%2$s%3$s',
-            RUNTIME_ROOT_PATH,
-            'storages',
-            DS
-        );
-    }
-
-    /**
-     * @return string
-     */
-    public static function appStoragesPath(): string
-    {
-        return sprintf(
-            '%1$s%2$s%3$s',
-            self::storagesPath(),
-            'app',
-            DS
-        );
-    }
-
-    /**
-     * @return string
-     */
-    public static function assetsPath(): string
-    {
-        return sprintf(
-            '%1$s%2$s%3$s',
-            self::appStoragesPath(),
-            'assets',
-            DS
-        );
-    }
-
-    /**
-     * @return string
-     */
-    public static function fViewsPath(): string
-    {
-        return sprintf(
-            '%1$s%2$s%3$s',
-            self::frameworkStoragesPath(),
-            'views',
-            DS
-        );
-    }
-
-    /**
-     * @return string
-     */
-    public static function cssAssetsPath(): string
-    {
-        return sprintf(
-            '%1$s%2$s%3$s',
-            self::assetsPath(),
-            'css',
-            DS
-        );
-    }
-
-    /**
-     * @return string
-     */
-    public static function jsAssetsPath(): string
-    {
-        return sprintf(
-            '%1$s%2$s%3$s',
-            self::assetsPath(),
-            'js',
-            DS
-        );
-    }
-
-    /**
-     * @return string
-     */
-    public static function webfontsAssetsPath(): string
-    {
-        return sprintf(
-            '%1$s%2$s%3$s',
-            self::assetsPath(),
-            'webfonts',
-            DS
-        );
-    }
-
-    /**
-     * @return string
-     */
-    public static function localizationPath(): string
-    {
-        return sprintf(
-            '%1$s%2$s%3$s',
-            self::appStoragesPath(),
-            'localization',
-            DS
-        );
-    }
-
-    /**
-     * @return string
-     */
-    public static function mediaPath(): string
-    {
-        return sprintf(
-            '%1$s%2$s%3$s',
-            self::appStoragesPath(),
-            'media',
-            DS
-        );
-    }
-
-    /**
-     * @return string
-     */
-    public static function imagesPath(): string
-    {
-        return sprintf(
-            '%1$s%2$s%3$s',
-            self::mediaPath(),
-            'images',
-            DS
-        );
-    }
-
-    /**
-     * @param bool $isRemote
-     * @return string
-     */
-    public static function logosPath(bool $isRemote = false): string
-    {
-        if ($isRemote) {
-            return sprintf(
-                '%1$s%2$s',
-                BASE_URL,
-                'media/logos/'
-            );
-        }
-        return sprintf(
-            '%1$s%2$s%3$s',
-            self::mediaPath(),
-            'logos',
-            DS
-        );
-    }
-
-    /**
-     * @param bool $isRemote
-     * @return string
-     */
-    public static function logosDefaultPath(bool $isRemote = false): string
-    {
-        return sprintf(
-            '%1$s%2$s',
-            self::logosPath($isRemote),
-            'default/'
-        );
-    }
-
-    /**
-     * @return string
-     */
-    public static function uploadsPath(): string
-    {
-        return sprintf(
-            '%1$s%2$s%3$s',
-            self::mediaPath(),
-            'uploads',
-            DS
-        );
-    }
-
-    /**
-     * @return string
-     */
-    public static function usersPicturesPath(): string
-    {
-        return sprintf(
-            '%1$s%2$s%3$s',
-            self::mediaPath(),
-            'users',
-            DS
-        );
-    }
-
-    /**
-     * @return string
-     */
-    public static function usersProfilePicturesPath(): string
-    {
-        return sprintf(
-            '%1$s%2$s%3$s',
-            self::usersPicturesPath(),
-            'profiles',
-            DS
-        );
-    }
-
-    /**
-     * @return string
-     */
-    public static function usersCoverPicturesPath(): string
-    {
-        return sprintf(
-            '%1$s%2$s%3$s',
-            self::usersPicturesPath(),
-            'covers',
-            DS
-        );
-    }
-
-    /**
-     * @return string
-     */
-    public static function usersBackgroundPicturesPath(): string
-    {
-        return sprintf(
-            '%1$s%2$s%3$s',
-            self::usersPicturesPath(),
-            'backgrounds',
-            DS
-        );
-    }
-
-    /**
-     * @return string
-     */
-    public static function databasesPath(): string
-    {
-        return sprintf(
-            '%1$s%2$s%3$s',
-            self::storagesPath(),
-            'databases',
-            DS
-        );
-    }
-
-
-    /**
-     * @return string
-     */
-    public static function frameworkStoragesPath(): string
-    {
-        return sprintf(
-            '%1$s%2$s%3$s',
-            self::storagesPath(),
-            'framework',
-            DS
-        );
-    }
-
-    /**
-     * @return string
-     */
-    public static function cachesStoragesPath(): string
-    {
-        return sprintf(
-            '%1$s%2$s%3$s',
-            self::frameworkStoragesPath(),
-            'caches',
-            DS
-        );
-    }
-
-    /**
-     * @return string
-     */
-    public static function dataDriveStoragesPath(): string
-    {
-        return sprintf(
-            '%1$s%2$s%3$s',
-            self::frameworkStoragesPath(),
-            'data-drive',
-            DS
-        );
-    }
-
-    /**
-     * @return string
-     */
-    public static function configDataDriveStoragesPath(): string
-    {
-        return sprintf(
-            '%1$s%2$s%3$s',
-            self::frameworkStoragesPath(),
-            'configs',
-            DS
-        );
-    }
-
-    /**
-     * @return string
-     */
-    public static function frameworkSessionsPath(): string
-    {
-        return sprintf(
-            '%1$s%2$s%3$s',
-            self::frameworkStoragesPath(),
-            'sessions',
-            DS
-        );
-    }
-
-    /**
-     * @return string
-     */
-    public static function logsPath(): string
-    {
-        return sprintf(
-            '%1$s%2$s%3$s',
-            self::storagesPath(),
-            'logs',
-            DS
-        );
-    }
-
-    /**
-     * @param string $string
-     * @return string
-     */
-    public static function hidePath(string $string): string
-    {
-        return str_replace(RUNTIME_ROOT_PATH, ROOT_IDENTITY, $string);
     }
 
     /**
@@ -613,7 +275,7 @@ class Storage extends Base
                         'src' => self::toDataUri(
                             'media',
                             'logos' . DS . 'default' . DS . Storage\FileSystem::fileBase($imageFile),
-                        //'remote'
+                            //'remote'
                         ),
                     ];
                 }
@@ -628,7 +290,7 @@ class Storage extends Base
                         'href' => self::toDataUri(
                             'media',
                             'logos' . DS . 'default' . DS . Storage\FileSystem::fileBase($imageFile),
-                        //'remote'
+                            //'remote'
                         ),
                     ];
                 }
@@ -642,7 +304,7 @@ class Storage extends Base
                         'href' => self::toDataUri(
                             'media',
                             'logos' . DS . 'default' . DS . Storage\FileSystem::fileBase($imageFile),
-                        //'remote'
+                            //'remote'
                         ),
                     ];
 
@@ -673,7 +335,7 @@ class Storage extends Base
                         'href' => self::toDataUri(
                             'media',
                             'logos' . DS . 'default' . DS . Storage\FileSystem::fileBase($imageFile),
-                        //'remote'
+                            //'remote'
                         ),
                     ];
                 }
@@ -687,7 +349,7 @@ class Storage extends Base
                         'href' => self::toDataUri(
                             'media',
                             'logos' . DS . 'default' . DS . Storage\FileSystem::fileBase($imageFile),
-                        //'remote'
+                            //'remote'
                         ),
                     ];
                 }
@@ -726,7 +388,7 @@ class Storage extends Base
                 'href' => self::toDataUri(
                     'assets',
                     'webfonts' . DS . Storage\FileSystem::fileBase($file),
-                //'remote'
+                    //'remote'
                 ),
             ];
         }
@@ -755,10 +417,9 @@ class Storage extends Base
         string $filename,
         string $feature = 'local',
         string $indicator = 'media/logos/default'
-    ): string
-    {
+    ): string {
         return self::fullPathBuilder(self::logosDefaultPath(), false, $filename, $feature, $indicator);
-    }//end getLogosMediaPath()
+    }//end logoFullPath()
 
     /**
      * @param string $filename
@@ -771,10 +432,9 @@ class Storage extends Base
         string $filename,
         string $feature = 'local',
         string $indicator = 'media/users/'
-    ): string
-    {
+    ): string {
         return self::fullPathBuilder(self::usersPicturesPath(), false, $filename, $feature, $indicator);
-    }//end getMediaPathOfUsersPhotos()
+    }//end userPhotoFullPath()
 
 
     /**
@@ -798,7 +458,7 @@ class Storage extends Base
             $feature,
             'additional/js/'
         );
-    }//end getMediaPathOfTemplatesJavascriptResourcesRoot()
+    }//end additionalJSResourceFullPath()
 
 
     /**
@@ -812,8 +472,7 @@ class Storage extends Base
         string $filename,
         string $feature = 'local',
         string $indicator = 'media/uploads/'
-    ): string
-    {
+    ): string {
         return self::fullPathBuilder(self::uploadsPath(), false, $filename, $feature, $indicator);
     }//end getMediaPathOfUploads()
 
@@ -829,8 +488,7 @@ class Storage extends Base
         string $filename,
         string $feature = 'local',
         string $indicator = 'shared/json/'
-    ): string
-    {
+    ): string {
         return self::fullPathBuilder(self::dataDriveStoragesPath(), false, $filename, $feature, $indicator);
     }//end getMediaPathOfUploads()
 
@@ -921,7 +579,7 @@ class Storage extends Base
      */
     public static function fViewsFullPath(string $filename, string $feature = 'local'): string
     {
-        return self::fullPathBuilder(self::fViewsPath(), false, $filename, $feature, false);
+        return self::fullPathBuilder(self::frameworkViewsPath(), false, $filename, $feature, false);
     }//end getAssetsPath()
 
     /**
