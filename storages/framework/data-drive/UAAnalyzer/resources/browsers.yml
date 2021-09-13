@@ -481,144 +481,63 @@ falkon-browser:
 #//Rockmelt – a Chromium-based browser for Windows, macOS, Android and iOS under a commercial proprietary licence. It integrated features from Facebook and Twitter, but was discontinued in April 2013 and fully retired at 10am PT on 31 July 2013.[90][91] On 2 August 2013, Rockmelt was acquired by Yahoo! Rockmelt's extensions and its website was shut down after 31 August 2013. Yahoo! plans to integrate Rockmelt's technology into other products.[92]
 #
 
-#
-#    //Mozilla/5.0 (X11; Linux) AppleWebKit/602.1 (KHTML, like Gecko) qutebrowser/1.6.1 Version/9.0 Safari/602.1
-#                                                           //Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) qutebrowser/1.13.1 QtWebEngine/5.14.2 Chrome/77.0.3865.129 Safari/537.36
-#
-#                                                                                                                          //LATEST USER AGENT FROM QUTE BROWSER
-#                                                                                                                          //Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.15.2 Chrome/87.0.4280.144 Safari/537.36
-#    'qute-browser' => [
-#    'name' => 'Qute Browser',
-#    'type' => 'Web Browser',
-#    'ui' => 'GraphicalMode',
-#    'creator' => [
-#    [
-#        'name' => 'Florian Bruhin',
-#        'link' => 'https://en.wikipedia.org/wiki/Qutebrowser',
-#    ],
-#  ],
-#    'cost' => 'Free',
-#    'status' => 'Active',
-#    'licence' => [
-#    [
-#        'name' => 'GPL 3.0',
-#        'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
-#    ],
-#  ],
-#    'layout' => [
-#    [
-#        'name' => 'WebKit',
-#        'link' => 'https://en.wikipedia.org/wiki/WebKit',
-#    ],
-#  ],
-#    'latest-release' => [ 'Unknown', ],
-#],
-#
-#    //QuteBrowser
-#    'qute-browser-deprecated' => [
-#    'name' => 'Qute Browser (Deprecated)',
-#    'type' => 'Web Browser',
-#    'ui' => 'GraphicalMode',
-#    'creator' => [
-#    [
-#        'name' => 'Florian Bruhin',
-#        'link' => 'https://en.wikipedia.org/wiki/Qutebrowser',
-#    ],
-#  ],
-#    'cost' => 'Free',
-#    'status' => 'Active',
-#    'licence' => [
-#    [
-#        'name' => 'GPL 3.0',
-#        'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
-#    ],
-#  ],
-#    'layout' => [
-#    [
-#        'name' => 'WebKit',
-#        'link' => 'https://en.wikipedia.org/wiki/WebKit',
-#    ],
-#  ],
-#    'latest-release' => [ 'Unknown', ],
-#],
-#
-#    //End QtWebEngine based Browser
-#
-#      //Original Browser
-#      //Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.9.4 Chrome/56.0.2924.122 Safari/537.36
-#                                                                              //BrightSign/8.0.69 (XT1143)Mozilla/5.0 (X11; Linux armv7l) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.11.2 Chrome/65.0.3325.230 Safari/537.36
-#                                                                                                                                                                       //BrightSign/8.2.55.5 (XT1144)Mozilla/5.0 (X11; Linux aarch64) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.12.3 Chrome/69.0.3497.128 Safari/537.36
-#                                                                                                                                                                                                                                                                   //BrightSign/7.1.95 (XT1143) Mozilla/5.0 (Unknown; Linux arm) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.6.0 Chrome/45.0.2454.101 Safari/537.36
-#                                                                                                                                                                                                                                                                                                                                                              //Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.15.2 Chrome/87.0.4280.144 Safari/537.36
-#    'Qt-Web-Engine' => [
-#    'name' => 'QtWebEngine Based Browser',
-#    'type' => 'Web Browser',
-#    'ui' => 'GraphicalMode',
-#    'creator' => [
-#    [
-#        'name' => 'Haavard Nord and Eirik Chambe-Eng',
-#        'link' => 'https://www.qt.io/',
-#    ],
-#  ],
-#    'cost' => 'Free',
-#    'status' => 'Active',
-#    'licence' => [
-#    [
-#        'name' => 'BSD',
-#        'link' => 'https://en.wikipedia.org/wiki/BSD_licenses',
-#    ],
-#  ],
-#    'layout' => [
-#    [
-#        'name' => 'Blink',
-#        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
-#    ],
-#  ],
-#    'latest-release' => [
-#    [
-#        'version' => '2020.10.10',
-#        'date' => 'October 10, 2020',
-#    ],
-#  ],
-#],
-#    //End original Browser
-#
-#      //Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) snap Chromium/83.0.4103.61 Chrome/91.0.4472.77 Safari/537.36
-#                                                                     //Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/81.0.4044.138 Chrome/91.0.4472.77 Safari/537.36
-#                                                                                                                                    //Mozilla/5.0 (X11; Linux x86_64; SMARTEMB Build/3.7.9128) AppleWebKit/537.36 (KHTML, like Gecko) Chromium/81.0.4044.96 Chrome/81.0.4044.96 Safari/537.36
-#                                                                                                                                                                                                                            //Mozilla/5.0 (X11; Linux x86_64; SMARTEMB Build/3.7.9088) AppleWebKit/537.36 (KHTML, like Gecko) Chromium/81.0.4044.96 Chrome/81.0.4044.96 Safari/537.36
-#    'Chromium' => [
-#    'name' => 'Chromium Browser',
-#    'type' => 'Web Browser',
-#    'ui' => 'GraphicalMode',
-#    'creator' => [
-#    [
-#        'name' => 'The Chromium Project',
-#        'link' => 'https://www.chromium.org/',
-#    ],
-#  ],
-#    'cost' => 'Free',
-#    'status' => 'Active',
-#    'licence' => [
-#    [
-#        'name' => 'BSD',
-#        'link' => 'https://en.wikipedia.org/wiki/BSD_licenses',
-#    ],
-#  ],
-#    'layout' => [
-#    [
-#        'name' => 'Blink',
-#        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
-#    ],
-#  ],
-#    'latest-release' => [
-#    [
-#        'name' => 'built nightly',
-#        'link' => 'https://chromium.woolyss.com/',
-#    ],
-#  ],
-#],
-#
+
+# Start QtWebEngine based Browser
+
+qutebrowser-browser:
+  name: 'Qute Browser '
+  url: 'https://en.wikipedia.org/wiki/Qutebrowser'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 'Florian Bruhin'
+  cost: Free
+  status: Active
+  licence: 	GPL-3.0-or-later
+  engines: [ 'QtWebEngine' ]
+
+# End QtWebEngine based Browser
+
+# Original Browser
+qtwebengine-browser:
+  name: 'QtWebEngine Based '
+  url: 'https://github.com/qt/qtwebengine'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 'The QT Company'
+  cost: Free
+  status: Active
+  licence: GPL-3.0-or-later
+  engines: [ 'QtWebEngine' ]
+# End original Browser
+
+
+
+# Original Browser
+chromium-browser:
+  name: 'Chromium'
+  url: 'https://www.chromium.org/'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 'The QT Company'
+  cost: Free
+  status: Active
+  licence: 	BSD
+  engines: [ 'Blink' ]
+
+chrome-browser:
+  name: 'Chrome'
+  url: 'https://en.wikipedia.org/wiki/Google_Chrome'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 'Google'
+  cost: Free
+  status: Active
+  licence: 	[	Proprietary freeware, ]
+  engines: [ 'Blink' ]
+# End original Browser
+
+
+
 #    // Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36 115Browser/13.0.0
 #                                                                        // Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36 115Browser/23.9.0
 #    '115browser' => [
