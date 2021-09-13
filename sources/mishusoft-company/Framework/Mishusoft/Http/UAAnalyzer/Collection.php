@@ -112,6 +112,8 @@ abstract class Collection extends UAAnalyzerBase
             $this->directoriesWithFiles = $this->configs;
         }
 
+        //check modif of data files
+
         $cacheDictionariesFile = self::dFile(self::configDataFile('UAAnalyzer', 'dictionaries'));
         if (file_exists($cacheDictionariesFile)) {
             $this->dictionaries = Storage\FileSystem\Yaml::parseFile($cacheDictionariesFile);
