@@ -532,6 +532,7 @@ class FirewallView extends Firewall
         $webBrowser = Registry::Browser();
         $visitorDetails = [];
 
+        //Debug::preOutput($webBrowser);
         if (self::$launcher === 'protection') {
             // Reason of block.
             $visitorDetails[] = [
@@ -611,6 +612,8 @@ class FirewallView extends Firewall
                 ],
             ];
         }//end if
+
+        Debug::preOutput($webBrowser->getBrowserNameFull());
 
         // avoid error browser capturing
         if (Inflect::lower($webBrowser->getBrowserName()) !== 'unknown') {
