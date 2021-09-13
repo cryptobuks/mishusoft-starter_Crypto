@@ -324,6 +324,33 @@
     author:   qt
 
 
+
+# QtWebEngine of Blink
+# The Qt port of QtWebEngine currently compiles and runs on Linux, *BSD, Windows and macOS.
+# url : https://github.com/qt/qtwebengine
+
+# Latest user agents
+# Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.15.2 Chrome/87.0.4280.144 Safari/537.36
+
+- identifiers:
+    # Pattern maker method use it
+    browser-engine-qt-web-engine:
+      pattern:
+        name: (qtwebengine)
+        separator: true
+        version: true
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'QtWebEngine'
+  space: 'browsers-engines'
+
+  # Information maker method use it
+  info:
+    name:     QtWebEngine
+    author:   qt
+
+
 # Tkhtml
 # Tkhtml is a discontinued open-source browser engine written in C using the Tk widget toolkit.
 # It was used primarily by the Html Viewer 3 (Hv3) minimalist web browser.
