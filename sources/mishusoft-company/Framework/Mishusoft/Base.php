@@ -10,6 +10,17 @@ abstract class Base extends Singleton
     public const SYSTEM_DATA_FILE   = 'yml';
     public const PUBLIC_DATA_FILE   = 'json';
 
+    protected static function frameworkDataPath(): string
+    {
+        return sprintf(
+            '%1$s%2$s%4$s%3$s',
+            RUNTIME_ROOT_PATH,
+            'storages',
+            'framework',
+            DS
+        );
+    }
+
     /**
      * @return string
      */
@@ -41,13 +52,28 @@ abstract class Base extends Singleton
      * @param string $filename
      * @return string
      */
+    protected static function cacheDataFile(string $directive, string $filename):string
+    {
+        return sprintf(
+            '%1$s%2$s%5$s%3$s%5$s%4$s',
+            self::frameworkDataPath(),
+            'caches',
+            $directive,
+            $filename,
+            DS
+        );
+    }
+
+    /**
+     * @param string $directive
+     * @param string $filename
+     * @return string
+     */
     protected static function configDataFile(string $directive, string $filename):string
     {
         return sprintf(
-            '%1$s%2$s%7$s%3$s%7$s%4$s%7$s%5$s%7$s%6$s',
-            RUNTIME_ROOT_PATH,
-            'storages',
-            'framework',
+            '%1$s%2$s%5$s%3$s%5$s%4$s',
+            self::frameworkDataPath(),
             'configs',
             $directive,
             $filename,
@@ -60,33 +86,12 @@ abstract class Base extends Singleton
      * @param string $filename
      * @return string
      */
-    protected static function dataFile(string $directive, string $filename):string
+    protected static function requiredDataFile(string $directive, string $filename):string
     {
         return sprintf(
-            '%1$s%2$s%7$s%3$s%7$s%4$s%7$s%5$s%7$s%6$s',
-            RUNTIME_ROOT_PATH,
-            'storages',
-            'framework',
+            '%1$s%2$s%5$s%3$s%5$s%4$s',
+            self::frameworkDataPath(),
             'data-drive',
-            $directive,
-            $filename,
-            DS
-        );
-    }
-
-    /**
-     * @param string $directive
-     * @param string $filename
-     * @return string
-     */
-    protected static function cacheDataFile(string $directive, string $filename):string
-    {
-        return sprintf(
-            '%1$s%2$s%7$s%3$s%7$s%4$s%7$s%5$s%7$s%6$s',
-            RUNTIME_ROOT_PATH,
-            'storages',
-            'framework',
-            'caches',
             $directive,
             $filename,
             DS
@@ -101,26 +106,29 @@ abstract class Base extends Singleton
     public static function getClassNamespace(string $filename): string
     {
         if (str_starts_with($filename, RUNTIME_SOURCES_PATH)) {
-            $filename = substr($filename, self::currentPosition($filename, RUNTIME_SOURCES_PATH), strlen($filename));
-            return self::getNamespace($filename);
+            $filename = substr($filename, self::startPosition($filename, RUNTIME_SOURCES_PATH), strlen($filename));
+            return self::getPathNamespace($filename);
         }
 
-        $namespace = self::getNamespace($filename);
-        return substr($namespace, self::currentPosition($namespace, RUNTIME_ROOT_PATH), strlen($namespace));
+        $namespace = self::getPathNamespace($filename);
+        return substr($namespace, self::startPosition($namespace, RUNTIME_ROOT_PATH), strlen($namespace));
     }//end getClassNamespace()
 
-    private static function currentPosition(string $resources, string $path):string
+    private static function startPosition(string $resources, string $path):string
     {
-        return (strpos($resources, rtrim($path, DS)) + strlen(rtrim($path, DS)));
+        $path = rtrim($path, DS);
+        //get actual point from path/name/with/file.extension
+        return (strpos($resources, $path) + strlen($path));
     }
 
-    private static function getNamespace(string $path):string
+    private static function lastPosition(string $path):string
     {
-        return str_replace(['//', '/'], ['/', '\\'], substr(
-            $path,
-            0,
-            (strlen($path) - (strlen($path) - strpos($path, '.php')))
-        ));
+        return (strlen($path) - (strlen($path) - strpos($path, '.php')));
+    }
+
+    private static function getPathNamespace(string $path):string
+    {
+        return str_replace(['//', '/'], ['/', '\\'], substr($path, 0, self::lastPosition($path)));
     }
 
 
