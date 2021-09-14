@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Dallgoot\Yaml;
+namespace Mishusoft\Storage\FileSystem\Dallgoot\Yaml;
 
-use Dallgoot\Yaml\Nodes;
+use Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Nodes;
 
 /**
  * Process reading a Yaml Content (loading file if required)
