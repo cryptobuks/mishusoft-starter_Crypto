@@ -59,7 +59,7 @@ class Classic extends MPM
      */
     public static function defaultPackage(): string
     {
-        //Debug::preOutput(Memory::data('mpm'));
+        Debug::preOutput(Memory::data('mpm'));
         return Memory::data('mpm')->packages->default;
     }//end defaultPackage()
 
