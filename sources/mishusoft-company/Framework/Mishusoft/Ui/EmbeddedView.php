@@ -3,14 +3,6 @@
 
 namespace Mishusoft\Ui;
 
-use GeoIp2\Exception\AddressNotFoundException;
-use JsonException;
-use MaxMind\Db\Reader\InvalidDatabaseException;
-use Mishusoft\Exceptions\ErrorException;
-use Mishusoft\Exceptions\HttpException\HttpResponseException;
-use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
-use Mishusoft\Exceptions\PermissionRequiredException;
-use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Exceptions\RuntimeException\NotFoundException;
 use Mishusoft\Framework;
 use Mishusoft\Registry;
@@ -28,15 +20,6 @@ class EmbeddedView
     /**
      * @param array|string $message
      * @param int $http_response_code
-     * @throws HttpResponseException
-     * @throws AddressNotFoundException
-     * @throws JsonException
-     * @throws InvalidDatabaseException
-     * @throws ErrorException
-     * @throws \Mishusoft\Exceptions\JsonException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
      * @throws NotFoundException
      */
     public static function maintenance(array|string $message, int $http_response_code): void
@@ -50,15 +33,6 @@ class EmbeddedView
      * @param string $title
      * @param array|string $message
      * @param int $http_response_code
-     * @throws HttpResponseException
-     * @throws AddressNotFoundException
-     * @throws JsonException
-     * @throws InvalidDatabaseException
-     * @throws ErrorException
-     * @throws \Mishusoft\Exceptions\JsonException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
      * @throws NotFoundException
      */
     public static function debug(string $title, array|string $message, int $http_response_code = 503): void
@@ -73,15 +47,6 @@ class EmbeddedView
      * @param string $title
      * @param array|string $message
      * @param int $http_response_code
-     * @throws HttpResponseException
-     * @throws AddressNotFoundException
-     * @throws JsonException
-     * @throws InvalidDatabaseException
-     * @throws ErrorException
-     * @throws \Mishusoft\Exceptions\JsonException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
      * @throws NotFoundException
      */
     public static function runtimeFail(string $title, array|string $message, int $http_response_code = 503): void
@@ -96,15 +61,6 @@ class EmbeddedView
      * @param string $title
      * @param array|string $message
      * @param int $http_response_code
-     * @throws HttpResponseException
-     * @throws AddressNotFoundException
-     * @throws JsonException
-     * @throws InvalidDatabaseException
-     * @throws ErrorException
-     * @throws \Mishusoft\Exceptions\JsonException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
      * @throws NotFoundException
      */
     public static function protection(string $title, array|string $message, int $http_response_code = 403): void
@@ -116,16 +72,10 @@ class EmbeddedView
     }
 
     /**
-     * @throws InvalidDatabaseException
-     * @throws RuntimeException
-     * @throws AddressNotFoundException
-     * @throws JsonException
-     * @throws ErrorException
-     * @throws InvalidArgumentException
-     * @throws HttpResponseException
+     * @param string $title
+     * @param array|string $message
+     * @param int $http_response_code
      * @throws NotFoundException
-     * @throws PermissionRequiredException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     public static function welcomeToFramework(string $title, array|string $message, int $http_response_code = 200): void
     {
@@ -138,15 +88,6 @@ class EmbeddedView
     /**
      * @param array|string $message
      * @param int $http_response_code
-     * @throws HttpResponseException
-     * @throws AddressNotFoundException
-     * @throws JsonException
-     * @throws InvalidDatabaseException
-     * @throws ErrorException
-     * @throws \Mishusoft\Exceptions\JsonException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
      * @throws NotFoundException
      */
     private static function template(array|string $message, int $http_response_code): void
@@ -191,15 +132,6 @@ class EmbeddedView
 
     /**
      * @return array
-     * @throws HttpResponseException
-     * @throws AddressNotFoundException
-     * @throws JsonException
-     * @throws InvalidDatabaseException
-     * @throws ErrorException
-     * @throws \Mishusoft\Exceptions\JsonException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
      * @throws NotFoundException
      */
     private static function childElement(): array
@@ -244,15 +176,6 @@ class EmbeddedView
 
     /**
      * @return array
-     * @throws HttpResponseException
-     * @throws AddressNotFoundException
-     * @throws JsonException
-     * @throws InvalidDatabaseException
-     * @throws ErrorException
-     * @throws \Mishusoft\Exceptions\JsonException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
      * @throws NotFoundException
      */
     private static function viewContentBuilder(): array
