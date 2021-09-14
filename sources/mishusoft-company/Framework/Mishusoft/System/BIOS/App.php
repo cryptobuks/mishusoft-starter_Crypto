@@ -36,15 +36,13 @@ class App extends BIOS
          * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
          */
             function ($registry) {
-                //Debug::preOutput($registry);
                 //Debug::preOutput('before setting data');
+                //Debug::preOutput($registry);
                 $registry->browser              = Http\Browser::getInstance();
-                $registry->requestClassic       = Http\Request\Classic::getInstance();
-                $registry->requestQualifiedAPI  = Http\Request\QualifiedAPI::getInstance();
                 $registry->ip                   = new Http\IP();
 
-                //Debug::preOutput('after setting data');
-                //Debug::preOutput($registry);
+               // Debug::preOutput('after setting data');
+               // Debug::preOutput($registry);
 
 
                 // Communicate with framework.
@@ -86,13 +84,16 @@ class App extends BIOS
                             Session::init();
 
                             if (file_exists(Storage::applicationDirectivePath())) {
+                                $registry->requestClassic       = Http\Request\Classic::getInstance();
+                                $registry->requestQualifiedAPI  = Http\Request\QualifiedAPI::getInstance();
+
                                 /*
-                             * Start special url handler [Api Url Service].
+                                 * Start special url handler [Api Url Service].
                                  */
                                 QualifiedAPI::run($registry::RequestQualifiedAPI());
 
                                 /*
-                             * Start special url handler [Embed Mishusoft Application].
+                                 * Start special url handler [Embed Mishusoft Application].
                                  */
                                 //Debug::preOutput($registry::RequestQualifiedAPI());
                                 Ema::run($registry::RequestQualifiedAPI());
