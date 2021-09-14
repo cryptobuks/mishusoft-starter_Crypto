@@ -499,15 +499,12 @@ class Framework extends Base
 
     /**
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\HttpException\HttpResponseException
      * @throws Exceptions\JsonException
      * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
      * @throws Exceptions\RuntimeException\NotFoundException
      * @throws JsonException
-     * @throws AddressNotFoundException
-     * @throws InvalidDatabaseException
      */
     public function execute(): void
     {
