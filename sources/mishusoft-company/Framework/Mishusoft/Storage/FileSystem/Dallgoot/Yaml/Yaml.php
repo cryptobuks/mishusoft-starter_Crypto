@@ -1,6 +1,10 @@
 <?php
 
-namespace Dallgoot;
+namespace Mishusoft\Storage\FileSystem\Dallgoot\Yaml;
+
+use Exception;
+use Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Types\YamlObject;
+use Throwable;
 
 /**
  * Library that :
@@ -17,7 +21,7 @@ namespace Dallgoot;
  */
 final class Yaml
 {
-    const VERSION_SUPPORT = "1.2";
+    public const VERSION_SUPPORT = "1.2";
     /**
      * Parse the given Yaml string to either :
      * - a YamlObject
@@ -31,19 +35,19 @@ final class Yaml
      *                           Loader::NO_OBJECT_FOR_DATE
      * @param int|null $debug    define the level of debugging (true = default)
      *
-     * @return Yaml\YamlObject|array|null a Yaml document as YamlObject OR multiple documents as an array of YamlObject,
+     * @return YamlObject|array|null a Yaml document as YamlObject OR multiple documents as an array of YamlObject,
      *                               NULL if Error and option Loader::NO_PARSING_EXCEPTIONS is set.
-     * @throws \Exception coming from Dallgoot\Yaml\Loader
-     * @see    Dallgoot\Yaml\Loader
+     * @throws Exception coming from Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Loader
+     * @see    Loader
      *
      * @todo transpose Loader::NO_PARSING_EXCEPTIONS in this class
      */
-    public static function parse(string $someYaml, $options = null, $debug = null)
+    public static function parse(string $someYaml, int $options = null, int $debug = null): array|YamlObject|null
     {
         try {
-            return (new Yaml\Loader(null, $options, $debug))->parse($someYaml);
-        } catch (\Throwable $e) {
-            throw new \Exception(__CLASS__." Error while parsing YAML string", 1, $e);
+            return (new Loader(null, $options, $debug))->parse($someYaml);
+        } catch (Throwable $e) {
+            throw new Exception(__CLASS__." Error while parsing YAML string", 1, $e);
         }
     }
 
@@ -60,19 +64,18 @@ final class Yaml
      *                           Loader::NO_OBJECT_FOR_DATE
      * @param int|null $debug    define the level of debugging (true = default)
      *
-     * @return Yaml\YamlObject|array|null a Yaml document as YamlObject OR multiple documents as an array of YamlObject,
+     * @return YamlObject|array|null a Yaml document as YamlObject OR multiple documents as an array of YamlObject,
      *                               NULL if Error
-     * @throws \Exception coming from Dallgoot\Yaml\Loader
-     * @see    Dallgoot\Yaml\Loader
+     * @throws Exception coming from Loader
+     * @see    Loader
      */
-    public static function parseFile(string $fileName, $options = null, $debug = null)
+    public static function parseFile(string $fileName, int $options = null, int $debug = null): YamlObject|array|null
     {
         try {
-            return (new Yaml\Loader($fileName, $options, (int) $debug))->parse();
-        } catch (\Throwable $e) {
-            throw new \Exception(__CLASS__." Error during parsing '$fileName'", 1, $e);
+            return (new Loader($fileName, $options, (int) $debug))->parse();
+        } catch (Throwable $e) {
+            throw new Exception(__CLASS__." Error during parsing '$fileName'", 1, $e);
         }
-
     }
 
     /**
@@ -82,15 +85,15 @@ final class Yaml
      * @param int|null $options    enable/disable some options see Dumper
      *
      * @return string  ( the representation of $somePhpVar as a YAML content (single or multiple document accordingly) )
-     * @throws \Exception on errors during building YAML string coming from Dumper class
+     * @throws Exception on errors during building YAML string coming from Dumper class
      * @see    Dumper
      */
-    public static function dump($somePhpVar, $options = null):string
+    public static function dump(mixed $somePhpVar, int $options = null):string
     {
         try {
-            return (new Yaml\Dumper($options))->toString($somePhpVar);
-        } catch (\Throwable $e) {
-            throw new \Exception(__CLASS__." Error dumping", 1, $e);
+            return (new Dumper($options))->toString($somePhpVar);
+        } catch (Throwable $e) {
+            throw new Exception(__CLASS__." Error dumping", 1, $e);
         }
     }
 
@@ -104,15 +107,15 @@ final class Yaml
      * @param int|null $options    Dumper::constants as options
      *
      * @return boolean  true if YAML built and saved , false if error during writing file
-     * @throws \Exception on errors (from Dumper::toString) during building YAML string
+     * @throws Exception on errors (from Dumper::toString) during building YAML string
      * @see    Dumper
      */
-    public static function dumpFile(string $fileName, $somePhpVar, $options = null):bool
+    public static function dumpFile(string $fileName, mixed $somePhpVar, int $options = null):bool
     {
         try {
-            return (new Yaml\Dumper($options))->toFile($fileName, $somePhpVar);
-        } catch (\Throwable $e) {
-            throw new \Exception(__CLASS__." Error during dumping '$fileName'", 1, $e);
+            return (new Dumper($options))->toFile($fileName, $somePhpVar);
+        } catch (Throwable $e) {
+            throw new Exception(__CLASS__." Error during dumping '$fileName'", 1, $e);
         }
     }
 }
