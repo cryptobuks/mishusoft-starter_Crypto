@@ -15,6 +15,7 @@ use Mishusoft\Storage\FileSystem;
 use Mishusoft\Framework;
 use Mishusoft\MPM;
 use Mishusoft\System;
+use Mishusoft\Utility\ArrayCollection;
 use Mishusoft\Utility\JSON;
 use stdClass;
 
@@ -125,6 +126,7 @@ class Memory extends Base
         self::$cacheFile = self::dFile(self::cacheDataFile('Memory', 'data'));
         $result = '';
 
+        //validation for every format and default value.
         if (array_key_exists('format', $options) === true) {
             $format = $options['format'];
         } else {
@@ -137,6 +139,9 @@ class Memory extends Base
             $default = ['container' => 'empty'];
         }//end if
 
+        //end of validation
+
+        //set filename according to carrier
         if ($carrier === 'config') {
             if (array_key_exists('file', $options) === true) {
                 $filename = $options['file'];
@@ -245,10 +250,12 @@ class Memory extends Base
                     if (strtolower($format) === 'object') {
                         if (is_string($contents) === true) {
                             Log::info(sprintf('Create a data object from %s file\'s content.', $filename));
-                            $result = JSON::encodeToObject($contentsArray);
+                            //$result = JSON::encodeToObject($contentsArray);
+                            $result = ArrayCollection::arrayToObject($contentsArray);
                         } else {
                             Log::info('Create a data object from default content.');
-                            $result = JSON::encodeToObject($default);
+                            //$result = JSON::encodeToObject($default);
+                            $result = ArrayCollection::arrayToObject($default);
                         }
 
                         if (is_object($result) === false) {
