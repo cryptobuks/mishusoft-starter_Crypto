@@ -10,6 +10,7 @@ use Mishusoft\System\Memory;
 use Mishusoft\System\Network;
 use Mishusoft\System\Time;
 use Mishusoft\Ui\EmbeddedView;
+use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\JSON;
 
 class Framework extends Base
@@ -415,6 +416,8 @@ class Framework extends Base
                     throw new Exceptions\ErrorException(sprintf('%s extension is required', ucfirst($extension)));
                 }
             }
+        } else {
+            throw new Exceptions\ErrorException('Framework required extension checking failed');
         }
     }//end extensionRequiredCheck()
 
@@ -430,16 +433,17 @@ class Framework extends Base
     private static function thirdPartyRequiredCheck(): void
     {
         // required third-party library check
-        $thirdParty = JSON::decodeToArray(JSON::encodeToString(Memory::data()->required->thirdparty));
+        $thirdParty = (array) Memory::data()->required->thirdparty;
         if (count($thirdParty) > 0) {
             foreach ($thirdParty as $package => $details) {
-                if (is_dir(self::rootPath().'vendor/'.$package) === false) {
+                $path = sprintf('%1$svendor%3$s%2$s', self::rootPath(), $package, DS);
+                if (is_dir($path) === false) {
                     throw new Exceptions\ErrorException(
                         sprintf(
-                            '%1$s is required. Please run %2$s or for fresh download visit %3$s',
-                            ucfirst($details['name']),
-                            $details['command'],
-                            $details['url']
+                            '%1$s is required. Please run `%2$s` or for fresh download visit %3$s',
+                            ucfirst($details->name),
+                            $details->command,
+                            $details->url
                         )
                     );
                 }
