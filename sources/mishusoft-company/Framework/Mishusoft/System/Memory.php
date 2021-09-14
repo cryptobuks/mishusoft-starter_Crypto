@@ -16,12 +16,12 @@ use Mishusoft\Framework;
 use Mishusoft\MPM;
 use Mishusoft\System;
 use Mishusoft\Utility\ArrayCollection;
+use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\JSON;
 use stdClass;
 
 class Memory extends Base
 {
-
     private static array $data = [];
     private static string $cacheFile = '';
     private static Framework $framework;
@@ -102,9 +102,9 @@ class Memory extends Base
             FileSystem\Yaml::emitFile($filename, self::$framework::defaultConfiguration());
         });
 
-        FileSystem::check(self::$framework::installFile(), function () {
-            self::$framework::install();
-        });
+//        FileSystem::check(self::$framework::installFile(), function () {
+//            self::$framework::install();
+//        });
     }
 
     /**
@@ -123,6 +123,8 @@ class Memory extends Base
      */
     public static function data(string $carrier = 'memory', array $options = []): array|object
     {
+//        Debug::preOutput('called me '. get_called_class());
+//        Debug::preOutput(debug_backtrace());
         self::$cacheFile = self::dFile(self::cacheDataFile('Memory', 'data'));
         $result = '';
 
@@ -153,6 +155,7 @@ class Memory extends Base
         }//end if
 
         if ($carrier === 'mpm') {
+            Debug::preOutput('called me '. get_called_class());
             if (array_key_exists('file', $options) === true) {
                 $filename = $options['file'];
             } else {
@@ -160,7 +163,8 @@ class Memory extends Base
             }//end if
 
             if (file_exists($filename) === false) {
-                MPM\Classic::install();
+                //MPM\Classic::install();
+                throw new RuntimeException\NotFoundException(sprintf('%1$s not found', $filename));
             }//end if
 
             //$filename = 'test';
@@ -175,7 +179,8 @@ class Memory extends Base
             }//end if
 
             if (file_exists($filename) === false) {
-                Framework::install();
+                //Framework::install();
+                throw new RuntimeException\NotFoundException(sprintf('%1$s not found', $filename));
             }//end if
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
