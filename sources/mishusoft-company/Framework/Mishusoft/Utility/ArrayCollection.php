@@ -9,14 +9,22 @@ class ArrayCollection
 {
     /**
      * @param array $array
+     * @param string $classname
      * @return object
-     * @throws \JsonException
      */
-    public static function arrayToObject(array $array): object
+    public static function arrayToObject(array $array, string $classname = 'stdClass'): object
     {
-        return json_decode(json_encode($array, JSON_THROW_ON_ERROR), false, 512, JSON_THROW_ON_ERROR);
+        $object = new $classname;
+        foreach ($array as $key => $value) {
+            if (is_array($value)) {
+                //convert the array to an object
+                $value = self::arrayToObject($value, $classname);
+            }
+            //Add the value to the object
+            $object->{$key} = $value;
+        }
+        return $object;
     }
-
 
     /**
      * @param array $haystack
