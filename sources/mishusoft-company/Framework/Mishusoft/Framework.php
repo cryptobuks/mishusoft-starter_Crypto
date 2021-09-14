@@ -415,8 +415,6 @@ class Framework extends Base
                     throw new Exceptions\ErrorException(sprintf('%s extension is required', ucfirst($extension)));
                 }
             }
-        } else {
-            throw new Exceptions\ErrorException('Framework required extensions checking failed');
         }
     }//end extensionRequiredCheck()
 
