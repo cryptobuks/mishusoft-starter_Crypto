@@ -1,12 +1,11 @@
 <?php
 
-namespace Dallgoot\Yaml;
+namespace Mishusoft\Storage\FileSystem\Dallgoot\Yaml;
 
-use Dallgoot\Yaml\Nodes\NodeGeneric;
-use Dallgoot\Yaml\NodeList;
-use Dallgoot\Yaml\Nodes\Root;
-use Dallgoot\Yaml\Nodes\DocEnd;
-use Dallgoot\Yaml\Nodes\DocStart;
+use Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Nodes\Root;
+use Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Nodes\DocEnd;
+use Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Nodes\DocStart;
+use Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Types\YamlObject;
 
 /**
  * Constructs the result (YamlObject or array) according to every Nodes and their values
@@ -18,29 +17,31 @@ use Dallgoot\Yaml\Nodes\DocStart;
 final class Builder
 {
     /** @var boolean */
-    public $dateAsObject = false;
+    public bool $dateAsObject = false;
 
     private $_options;
     private $_debug = 0;
 
-    const INVALID_DOCUMENT = "DOCUMENT %d is invalid,";
+    public const INVALID_DOCUMENT = "DOCUMENT %d is invalid,";
 
     public function __construct($options, $debug)
     {
         $this->_options = $options;
         $this->_debug = $debug;
     }
+
     /**
      * Builds a YAM content.  check multiple documents & split if more than one documents
      *
-     * @param Root $root  The NodeRoot node
+     * @param Root $root The NodeRoot node
      *
      * @return array|YamlObject|null   list of documents or just one, null if appropriate debug lvl
+     * @throws \Exception
      */
-    public function buildContent(Root $root)
+    public function buildContent(Root $root): YamlObject|array|null
     {
         if ($this->_debug === 2) {
-            print_r($root);
+            print_r($root, false);
             return null;
         }
         $documents = [];
@@ -81,7 +82,7 @@ final class Builder
             }
             if ($this->_debug === 3) {
                 echo "Document #$docNum\n";
-                print_r($rootNode);
+                print_r($rootNode, false);
             }
             return $rootNode->build($yamlObject);
         } catch (\Throwable $e) {
@@ -89,14 +90,14 @@ final class Builder
         }
     }
 
-    public function pushAndSave(DocEnd $child, NodeList &$buffer, array &$documents)
+    public function pushAndSave(DocEnd $child, NodeList &$buffer, array &$documents): void
     {
         $buffer->push($child);
         $documents[] = $this->buildDocument($buffer, count($documents) + 1);
         $buffer = new NodeList();
     }
 
-    public function saveAndPush(DocStart $child, NodeList &$buffer, array &$documents)
+    public function saveAndPush(DocStart $child, NodeList &$buffer, array &$documents): void
     {
         if ($buffer->count() > 0 && $buffer->hasContent()) {
             $documents[] = $this->buildDocument($buffer, count($documents) + 1);
