@@ -1,6 +1,5 @@
 <?php
-namespace Dallgoot\Yaml;
-
+namespace Mishusoft\Storage\FileSystem\Dallgoot\Yaml;
 
 /**
  *  Convert PHP datatypes to a YAML string syntax
@@ -31,7 +30,7 @@ class Dumper
     private $handler;
 
 
-    public function __construct($options=null)
+    public function __construct($options = null)
     {
         $this->options = is_int($options) ? $options : self::OPTIONS;
         $this->handler = new DumperHandlers($this);
@@ -48,7 +47,9 @@ class Dumper
      */
     public function toString($dataType, int $options = null):string
     {
-        if (empty($dataType)) throw new \Exception(self::class.": No content to convert to Yaml");
+        if (empty($dataType)) {
+            throw new \Exception(self::class.": No content to convert to Yaml");
+        }
         if (is_scalar($dataType)) {
             return "--- ".$this->handler->dumpScalar($dataType). self::LINEFEED ;
         }
@@ -107,7 +108,7 @@ class Dumper
     public function dumpYamlObject(YamlObject $obj):string
     {
         if ($this->multipleDocs || $obj->hasDocStart() || $obj->isTagged()) {
-           $this->multipleDocs = true;
+            $this->multipleDocs = true;
           // && $this->$result instanceof DLL) $this->$result->push("---");
         }
         // $this->insertComments($obj->getComment());
@@ -119,9 +120,12 @@ class Dumper
     }
 
 
-    public function iteratorToString(\Iterator $iterable,
-                                      string $keyMask, string $itemSeparator, int $indent):string
-    {
+    public function iteratorToString(
+        \Iterator $iterable,
+        string $keyMask,
+        string $itemSeparator,
+        int $indent
+    ):string {
         $pairs = [];
         $valueIndent = $indent + self::INDENT;
         foreach ($iterable as $key => $value) {
@@ -135,7 +139,6 @@ class Dumper
             } else {
                 $pairs[] = str_repeat(' ', $indent).sprintf($keyMask, $key).$separator.$this->dump($value, $valueIndent);
             }
-
         }
         // $processItem = function ()
         return implode($itemSeparator, $pairs);
