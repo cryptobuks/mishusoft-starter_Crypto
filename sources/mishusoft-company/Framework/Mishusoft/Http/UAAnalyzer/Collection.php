@@ -103,11 +103,14 @@ abstract class Collection extends UAAnalyzerBase
     private function loadDictionaries(): void
     {
         $configFile = self::dFile(self::configDataFile('UAAnalyzer', 'configs'));
-        $loadedConfig = Storage\FileSystem\Yaml::parseFile($configFile);
 
-        if (file_exists($configFile) && (count($loadedConfig) > 0)) {
+        if (file_exists($configFile)) {
+            $loadedConfig = Storage\FileSystem\Yaml::parseFile($configFile);
+            if ((count($loadedConfig) > 0)) {
                 $this->directoriesWithFiles = $loadedConfig;
+            }
         } else {
+            Storage\FileSystem::makeDirectory(dirname($configFile));
             Storage\FileSystem\Yaml::emitFile($configFile, $this->configs);
             $this->directoriesWithFiles = $this->configs;
         }
