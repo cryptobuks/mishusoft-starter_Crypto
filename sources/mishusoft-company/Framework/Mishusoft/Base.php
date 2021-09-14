@@ -438,12 +438,13 @@ abstract class Base extends Singleton
     /**
      * @return string
      */
-    public static function configDataDriveStoragesPath(): string
+    public static function configDataDriveStoragesPath(string $directive = ''): string
     {
         return sprintf(
-            '%1$s%2$s%3$s',
+            '%1$s%2$s%4$s%3$s',
             self::frameworkStoragesPath(),
             'configs',
+            $directive . DS ?? '',
             DS
         );
     }
