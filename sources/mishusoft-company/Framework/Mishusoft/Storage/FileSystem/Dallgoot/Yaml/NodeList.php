@@ -1,18 +1,17 @@
 <?php
 
-namespace Dallgoot\Yaml;
+namespace Mishusoft\Storage\FileSystem\Dallgoot\Yaml;
 
-use Dallgoot\Yaml\Nodes\NodeGeneric;
-use Dallgoot\Yaml\Nodes\Blank;
-use Dallgoot\Yaml\Nodes\Comment;
-use Dallgoot\Yaml\Nodes\Directive;
-use Dallgoot\Yaml\Nodes\Docstart;
-use Dallgoot\Yaml\Nodes\Item;
-use Dallgoot\Yaml\Nodes\Key;
-use Dallgoot\Yaml\Nodes\SetKey;
-use Dallgoot\Yaml\Nodes\SetValue;
-use Dallgoot\Yaml\Nodes\Scalar;
-
+use Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Nodes\NodeGeneric;
+use Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Nodes\Blank;
+use Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Nodes\Comment;
+use Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Nodes\Directive;
+use Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Nodes\Docstart;
+use Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Nodes\Item;
+use Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Nodes\Key;
+use Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Nodes\SetKey;
+use Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Nodes\SetValue;
+use Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Nodes\Scalar;
 
 /**
  * A collection of Nodes
@@ -23,10 +22,10 @@ use Dallgoot\Yaml\Nodes\Scalar;
  */
 class NodeList extends \SplDoublyLinkedList
 {
-    const MAPPING   = 1;
-    const MULTILINE = 2;
-    const SEQUENCE  = 4;
-    const SET       = 8;
+    public const MAPPING   = 1;
+    public const MULTILINE = 2;
+    public const SEQUENCE  = 4;
+    public const SET       = 8;
 
     public $type;
 
@@ -50,7 +49,9 @@ class NodeList extends \SplDoublyLinkedList
         $tmp->rewind();
         $fqn = __NAMESPACE__."\\Nodes\\$nodeType";
         foreach ($tmp as $child) {
-            if ($child instanceof $fqn) return true;
+            if ($child instanceof $fqn) {
+                return true;
+            }
         }
         return false;
     }
@@ -64,7 +65,9 @@ class NodeList extends \SplDoublyLinkedList
                 && !($child instanceof Directive)
                 && !($child instanceof Blank)
                 && !($child instanceof Docstart
-                && is_null($child->value)) ) return true;
+                && is_null($child->value))) {
+                return true;
+            }
         }
         return false;
     }
@@ -72,13 +75,13 @@ class NodeList extends \SplDoublyLinkedList
     public function push($node)
     {
         $type = null;
-        if ($node instanceof Item ) {
+        if ($node instanceof Item) {
             $type = self::SEQUENCE;
         } elseif ($node instanceof Key) {
             $type = self::MAPPING;
-        } elseif ($node->isOneOf('SetKey','SetValue')) {
+        } elseif ($node->isOneOf('SetKey', 'SetValue')) {
             $type = self::SET;
-        } elseif ($node instanceof Scalar){
+        } elseif ($node instanceof Scalar) {
             $type = self::MULTILINE;
         }
         if (!is_null($type) && $this->checkTypeCoherence($type)) {
@@ -102,7 +105,7 @@ class NodeList extends \SplDoublyLinkedList
        //         throw new \ParseError("Error : no coherence in types", 1);
        //     }
        // }
-       return (bool) $estimatedType;
+        return (bool) $estimatedType;
     }
 
     public function build(&$parent = null)
@@ -167,10 +170,10 @@ class NodeList extends \SplDoublyLinkedList
             if ($child instanceof Comment) {
                 // $child->build();
             } else {
-                if($child->value instanceof Comment) {
+                if ($child->value instanceof Comment) {
                     // $child->value->build();
                     // $child->value = null;
-                } elseif($child->value instanceof NodeList) {
+                } elseif ($child->value instanceof NodeList) {
                     $child->value = $child->value->filterComment();
                 }
                 $out->push($child);
