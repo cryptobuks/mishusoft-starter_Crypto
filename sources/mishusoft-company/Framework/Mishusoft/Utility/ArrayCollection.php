@@ -3,8 +3,6 @@
 
 namespace Mishusoft\Utility;
 
-use stdClass;
-
 class ArrayCollection
 {
     /**
@@ -33,7 +31,7 @@ class ArrayCollection
     public static function objectToArray(object $object): array
     {
         $reflectionClass = new \ReflectionClass(get_class($object));
-        $array = array();
+        $array = [];
         foreach ($reflectionClass->getProperties() as $property) {
             $property->setAccessible(true);
             if (is_object($property->getValue($object))) {
@@ -42,7 +40,6 @@ class ArrayCollection
                 $array[$property->getName()] = $property->getValue($object);
                 $property->setAccessible(false);
             }
-            //print_r($property->getValue($object), false);
         }
         return $array;
     }
@@ -93,12 +90,10 @@ class ArrayCollection
      */
     public static function cleanArray(array $array, array $excludes): array
     {
-        if (count($array) > 0) {
-            if (count($excludes) > 0) {
-                foreach ($excludes as $exclude) {
-                    if (array_key_exists($exclude, $array)) {
-                        unset($array[$exclude]);
-                    }
+        if ((count($array) > 0) && count($excludes) > 0) {
+            foreach ($excludes as $exclude) {
+                if (array_key_exists($exclude, $array)) {
+                    unset($array[$exclude]);
                 }
             }
         }
@@ -131,22 +126,22 @@ class ArrayCollection
      * @param null $indexkey
      * @return array
      */
-    public static function columnExt(array $array, $columnkey, $indexkey = null): array
+    public static function columnExt(array $array, $columnKey, $indexKey = null): array
     {
         $result = [];
         foreach ($array as $subarray => $value) {
-            if (array_key_exists($columnkey, $value)) {
-                $val = $array[$subarray][$columnkey];
-            } elseif ($columnkey === null) {
+            if (array_key_exists($columnKey, $value)) {
+                $val = $array[$subarray][$columnKey];
+            } elseif ($columnKey === null) {
                 $val = $value;
             } else {
                 continue;
             }
 
-            if ($indexkey === null) {
+            if ($indexKey === null) {
                 $result[] = $val;
-            } elseif ($indexkey === -1 || array_key_exists($indexkey, $value)) {
-                $result[($indexkey === -1)?$subarray:$array[$subarray][$indexkey]] = $val;
+            } elseif ($indexKey === -1 || array_key_exists($indexKey, $value)) {
+                $result[($indexKey === -1)?$subarray:$array[$subarray][$indexKey]] = $val;
             }
         }
         return $result;
@@ -218,7 +213,7 @@ class ArrayCollection
      * @param array $column_keys
      * @return array
      */
-    public static function array_column_multi(array $input, array $column_keys): array
+    public static function arrayColumnMulti(array $input, array $column_keys): array
     {
         $result = [];
         $column_keys = array_flip($column_keys);
