@@ -3,8 +3,7 @@
 
 namespace Mishusoft;
 
-use Mishusoft\Http\Browser;
-use Mishusoft\Utility\JSON;
+use Mishusoft\Utility\ArrayCollection;
 
 class Http extends Http\Errors
 {
@@ -15,7 +14,6 @@ class Http extends Http\Errors
      * @param string $format Format of data.
      *
      * @return array|object
-     * @throws Exceptions\JsonException
      */
     public static function errorsRecords(string $format = 'array'): array|object
     {
@@ -24,7 +22,7 @@ class Http extends Http\Errors
         }
 
         if ($format === 'object') {
-            return JSON::encodeToObject(self::BUILT_IN_HTTP_ERRORS_RECORDS);
+            return ArrayCollection::arrayToObject(self::BUILT_IN_HTTP_ERRORS_RECORDS);
         }
 
         return ['container' => 'empty'];
@@ -37,7 +35,6 @@ class Http extends Http\Errors
      * @param string $description Error description.
      *
      * @return integer
-     * @throws Exceptions\JsonException
      */
     public static function errorCode(string $description): int
     {
@@ -59,7 +56,6 @@ class Http extends Http\Errors
      * @param int $code Error code.
      *
      * @return string
-     * @throws Exceptions\JsonException
      */
     public static function errorDescription(int $code): string
     {
