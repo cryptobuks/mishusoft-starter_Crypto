@@ -4,6 +4,9 @@
 # PHPStorm's cache folder
 /.idea/
 
+# Apache NetBeans's cache folder
+/nbproject/
+
 # SASS's cache folder
 *.sass-cache/
 
@@ -42,3 +45,4 @@
 
 # Linker output
 *.map
+/nbproject/private/
