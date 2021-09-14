@@ -114,17 +114,12 @@ class Memory extends Base
      * @param array $options Options of data loader.
      *
      * @return array|object
-     * @throws InvalidArgumentException
-     * @throws JsonException
-     * @throws PermissionRequiredException
      * @throws ErrorException
-     * @throws \Mishusoft\Exceptions\JsonException
      * @throws RuntimeException
+     * @throws RuntimeException\NotFoundException
      */
     public static function data(string $carrier = 'memory', array $options = []): array|object
     {
-//        Debug::preOutput('called me '. get_called_class());
-//        Debug::preOutput(debug_backtrace());
         self::$cacheFile = self::dFile(self::cacheDataFile('Memory', 'data'));
         $result = '';
 
@@ -140,7 +135,6 @@ class Memory extends Base
         } else {
             $default = ['container' => 'empty'];
         }//end if
-
         //end of validation
 
         //set filename according to carrier
@@ -155,7 +149,6 @@ class Memory extends Base
         }//end if
 
         if ($carrier === 'mpm') {
-            Debug::preOutput('called me '. get_called_class());
             if (array_key_exists('file', $options) === true) {
                 $filename = $options['file'];
             } else {
@@ -229,7 +222,6 @@ class Memory extends Base
      * @return object|array Return data on demand.
      * @throws ErrorException
      * @throws RuntimeException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     private static function dataLoader(string $carrier, string $format, array $default, string $filename): object|array
     {
@@ -283,7 +275,7 @@ class Memory extends Base
                     }
 
                     if (MEMORY_CACHE_DATA_UPDATE === true) {
-                        $reserved = $format === 'object' ? JSON::encodeToArray($result) : $result;
+                        $reserved = $format === 'object' ? ArrayCollection::objectToArray($result) : $result;
 
                         if (!empty($reserved)) {
                             self::$data[$carrier]['default'] = $default;
@@ -313,7 +305,6 @@ class Memory extends Base
      * @param string $format
      * @return bool
      * @throws RuntimeException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     private static function isValid(string $carrier, string $format): bool
     {
@@ -323,7 +314,7 @@ class Memory extends Base
 
             if (($format === 'object')
                 && isset(self::$data[$carrier][$format])) {
-                self::$data[$carrier][$format] = JSON::encodeToObject(self::$data[$carrier][$format]);
+                self::$data[$carrier][$format] = ArrayCollection::arrayToObject(self::$data[$carrier][$format]);
             }
         }
 
