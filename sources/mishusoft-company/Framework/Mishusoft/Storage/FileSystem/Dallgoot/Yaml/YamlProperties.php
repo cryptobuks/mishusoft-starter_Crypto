@@ -1,6 +1,6 @@
 <?php
 
-namespace Dallgoot\Yaml;
+namespace Mishusoft\Storage\FileSystem\Dallgoot\Yaml;
 
 /**
  * Encapsulate the properties of a YAML Document
@@ -22,16 +22,15 @@ class YamlProperties
     /** @var int */
     public $_options;
     /** @var null|string */
-    public $value;
+    public ?string $value;
 
     /**
      * Creates API object to be used for the document provided as argument
      *
-     * @param YamlObject $obj the YamlObject as the target for all methods call that needs it
+     * @param int $buildingOptions
      */
     public function __construct(int $buildingOptions)
     {
         $this->_options = $buildingOptions;
     }
-
 }
