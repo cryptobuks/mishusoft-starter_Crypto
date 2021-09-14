@@ -1,7 +1,7 @@
 <?php
-namespace Dallgoot\Yaml;
+namespace Mishusoft\Storage\FileSystem\Dallgoot\Yaml;
 
-use Dallgoot\Yaml\Dumper;
+use Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Dumper;
 
 /**
  *  Convert PHP datatypes to a YAML string syntax
