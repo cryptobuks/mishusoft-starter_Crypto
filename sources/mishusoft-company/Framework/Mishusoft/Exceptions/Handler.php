@@ -186,7 +186,7 @@ class Handler extends ErrorException implements ExceptionInterface
                         $line .= $value['function'];
                         if (count($value['args']) > 0) {
                             $implodeArgument = '';
-                           // Debug::preOutput($value['args']);exit();
+                            // Debug::preOutput($value['args']);exit();
 
                             foreach ($value['args'] as $arg) {
                                 //Debug::preOutput($arg);exit();
@@ -253,7 +253,7 @@ class Handler extends ErrorException implements ExceptionInterface
         }//end if
 
        // Debug::preOutput($traceArray);
-       // exit();
+        // exit();
         return $traceArray;
     }//end makeBeautifulStackTrace()
 
