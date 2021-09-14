@@ -3,22 +3,17 @@
 namespace Mishusoft;
 
 use Closure;
-use GeoIp2\Exception\AddressNotFoundException;
 use JsonException;
-use MaxMind\Db\Reader\InvalidDatabaseException;
-use Mishusoft\Http\Browser;
 use Mishusoft\Storage\FileSystem;
 use Mishusoft\System\Log;
 use Mishusoft\System\Memory;
 use Mishusoft\System\Network;
 use Mishusoft\System\Time;
 use Mishusoft\Ui\EmbeddedView;
-use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\JSON;
 
 class Framework extends Base
 {
-
     // Declare framework version.
     public const VERSION = '1.0.2';
 
@@ -44,7 +39,6 @@ class Framework extends Base
     public const COMPANY_SUPPORT_LINK        = 'https://support.mishusoft.com';
     public const COMPANY_MAIL_LINK           = 'support@mishusoft.com';
     public const COMPANY_EST_YEAR            = '2014';
-    private static Registry $registry;
 
     /**
      * Init function for Framework
@@ -61,12 +55,11 @@ class Framework extends Base
      */
     public static function init(Registry $registry, Closure $closure): static
     {
-        self::$registry = $registry;
         $instance = new static();
 
         //configure and install framework
         static::makeConfigure();
-        static::install();
+        static::install($registry);
 
         //Check framework requirements
         static::extensionRequiredCheck();
@@ -351,6 +344,19 @@ class Framework extends Base
 
 
     /**
+     * @throws Exceptions\RuntimeException
+     */
+    public static function makeConfigure(): void
+    {
+        // Preparing to create framework config file.
+        if (!is_readable(static::configFile())) {
+            FileSystem::makeDirectory(dirname(static::configFile()));
+            FileSystem\Yaml::emitFile(static::configFile(), self::defaultConfiguration());
+        }
+    }
+
+
+    /**
      * @throws Exceptions\ErrorException
      * @throws Exceptions\JsonException
      * @throws Exceptions\LogicException\InvalidArgumentException
@@ -358,7 +364,7 @@ class Framework extends Base
      * @throws Exceptions\RuntimeException
      * @throws JsonException
      */
-    public static function install(): void
+    public static function install(Registry $registry): void
     {
         // Preparing to check framework install file.
         if (is_readable(static::installFile()) === true) {
@@ -375,7 +381,7 @@ class Framework extends Base
                 'debug'       => !(MPM\Classic::getProperty('release') === 'stable'),
                 'date'        => Time::todayDateOnly(),
                 'host'        => [
-                    'url'  => self::$registry::Browser()::urlOrigin($_SERVER).Storage::applicationWebDirectivePath(),
+                    'url'  => $registry::Browser()::urlOrigin($_SERVER).Storage::applicationWebDirectivePath(),
                     'name' => Network::getValOfSrv('HTTP_HOST'),
                     'ip'   => Network::getValOfSrv('SERVER_ADDR'),
                 ],
@@ -390,19 +396,6 @@ class Framework extends Base
         }//end if
     }//end install()
 
-    /**
-     * @throws Exceptions\RuntimeException
-     */
-    public static function makeConfigure(): void
-    {
-        // Preparing to create framework config file.
-        if (!is_readable(static::configFile())) {
-            FileSystem::makeDirectory(dirname(static::configFile()));
-            FileSystem\Yaml::emitFile(static::configFile(), self::defaultConfiguration());
-        }
-    }
-
-
 
     /**
      * @throws Exceptions\ErrorException
@@ -414,11 +407,10 @@ class Framework extends Base
      */
     private static function extensionRequiredCheck(): void
     {
+        $requiredExtensions = (array) Memory::data()->required->extensions;
         // Framework required extensions check.
-        if ((is_array(Memory::data()->required->extensions) === true)
-            && (count(Memory::data()->required->extensions) > 0)
-        ) {
-            foreach (Memory::data()->required->extensions as $extension) {
+        if (count($requiredExtensions) > 0) {
+            foreach ($requiredExtensions as $extension) {
                 if (extension_loaded($extension) === false) {
                     throw new Exceptions\ErrorException(sprintf('%s extension is required', ucfirst($extension)));
                 }
