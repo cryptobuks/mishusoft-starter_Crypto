@@ -59,7 +59,7 @@ class Framework extends Base
 
         //configure and install framework
         static::makeConfigure();
-        static::install($registry);
+        static::makeInstall($registry);
 
         //Check framework requirements
         static::extensionRequiredCheck();
@@ -364,7 +364,7 @@ class Framework extends Base
      * @throws Exceptions\RuntimeException
      * @throws JsonException
      */
-    public static function install(Registry $registry): void
+    public static function makeInstall(Registry $registry): void
     {
         // Preparing to check framework install file.
         if (is_readable(static::installFile()) === true) {
