@@ -89,7 +89,7 @@ class Yaml
      */
     public static function emitDallGoot(mixed $input, array $options = null): string
     {
-        return \Dallgoot\Yaml::dump($input, $options);
+        return \Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Yaml::dump($input, $options);
     }
 
     /**
@@ -212,9 +212,9 @@ class Yaml
      *
      * @throws Exception If the YAML is not valid
      */
-    public static function parseDallGoot(string $input): \Dallgoot\Yaml\YamlObject|array|null
+    public static function parseDallGoot(string $input): \Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Yaml\YamlObject|array|null
     {
-        return \Dallgoot\Yaml::parse($input);
+        return \Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Yaml::parse($input);
     }
 
 
@@ -270,9 +270,9 @@ class Yaml
      * @throws Yaml\Exception\ParseException If the file could not be read or the YAML is not valid
      * @throws Exception
      */
-    public static function parseFileDallGoot(string $filename): \Dallgoot\Yaml\YamlObject|array|null
+    public static function parseFileDallGoot(string $filename): \Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Yaml\YamlObject|array|null
     {
-        return \Dallgoot\Yaml::parseFile($filename);
+        return \Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Yaml::parseFile($filename);
     }
 
 
