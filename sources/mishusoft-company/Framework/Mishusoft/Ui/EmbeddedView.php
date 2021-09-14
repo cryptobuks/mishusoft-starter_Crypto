@@ -633,7 +633,7 @@ class EmbeddedView
             'class' => $classname,
             'alt' => ucfirst($alternate),
             'title' => ucfirst($alternate),
-            'src' => Storage::toDataUri('media', $src),
+            'src' => Storage::toDataUri('framework', $src),
         ];
     }
 
