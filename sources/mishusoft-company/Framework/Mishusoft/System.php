@@ -193,34 +193,31 @@ class System extends Base
      * @param string $filename
      * @param string $dirname
      * @return string
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws JsonException
      */
     public static function getRequiresFile(string $filename, string $dirname = ''): string
     {
         // Packages configuration.
-        self::$configDir       = implode(DS, [Storage::applicationPackagesPath(), Memory::Data('mpm')->packages->default, 'Configs'.DS]);
-        self::$configServerDir = self::$configDir.md5(Registry::Browser()->getURLHostname()).DS;
-        if (empty($dirname) === true) {
-            self::$setupFile = self::dFile(self::$configServerDir.$dirname.DS.Encryption::static(Registry::Browser()->getURLHostname()));
+        $md5HostName            = md5(Registry::Browser()->getURLHostname());
+        $encryptHostName        = Encryption::static(Registry::Browser()->getURLHostname());
+        self::$configDir        = self::configDataDriveStoragesPath('MPM');
+        self::$configServerDir  = self::$configDir.$md5HostName.DS;
+        if (empty($dirname) === false) {
+            self::$setupFile = self::dFile(self::$configServerDir.$dirname.DS. $encryptHostName);
         }
 
         // Application security.
-        self::$appSecurityDirectory      = Storage::applicationPackagesPath().Memory::Data('mpm')->packages->default.DS.'Security'.DS;
+        self::$appSecurityDirectory      = self::$configDir.'Security'.DS;
         self::$appSecurityFileName       = ucfirst(DEFAULT_APP_NAME).'ApplicationSecurity.lock';
         self::$appSecurityBackupFileName = ucfirst(DEFAULT_APP_NAME).'ApplicationSecurity.lock.cache';
         self::$appSecurityFile           = self::$appSecurityDirectory.self::$appSecurityFileName;
-        self::$appSecurityFileBackup     = Storage::frameworkPath().'Backups'.DIRECTORY_SEPARATOR.self::$appSecurityBackupFileName;
+        self::$appSecurityFileBackup     = self::cacheDataFile('MPM', self::$appSecurityBackupFileName);
 
         // Configuration properties.
         self::$configurePropertiesFileName = 'properties.json';
         self::$configurePropertiesFile     = self::$configServerDir.self::$configurePropertiesFileName;
         // Backup location of security file.
-        self::$appSecurityFileBackupDirectory = Storage::frameworkPath().'Backups'.DIRECTORY_SEPARATOR;
+        self::$appSecurityFileBackupDirectory = Storage::frameworkPath().'Backups'.DS;
 
         return match (strtoupper($filename)) {
             'CONFIG_SERVER_DIR_PATH' => self::$configServerDir,
