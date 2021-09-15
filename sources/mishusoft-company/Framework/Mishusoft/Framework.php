@@ -57,20 +57,24 @@ class Framework extends Base
      */
     public static function init(Registry $registry, Closure $closure): static
     {
+        //[]
+        //['test','test1','test2','test3'];
+        //['test','test1','test2','test3'=>'test3value'];
+        //['test1'=>'test1value', 'test2'=>['test2key'=>'test2keyvalue']]
+        //['test1'=>['test1'=>'test1value', 'test2'=>['test2key'=>'test2keyvalue']],
+        // 'test2'=>['test1'=>'test1value', 'test2'=>['test2key'=>'test2keyvalue']]]
+
         $array = ['test','test1','test2','test3'];
-        $array2 = ['test','test1','test2','test3'=>['test','test1','test2','test3']];
-        $array_keys = array_keys($array);
-        $isInt = array_walk_recursive($array_keys, static function ($value, $key) {
-            return is_int($key);
-        });
-        //Debug::preOutput('validation');
-        //Debug::preOutput($isInt);
+        $array2 = ['test','test1','test2','test3'=>['test','test1','test2','test3'],'test4'=>true];
+        $array3 = ['test1'=>['test1'=>'test1value', 'test2'=>['test2key'=>'test2keyvalue']],
+            'test2'=>['test1'=>'test1value', 'test2'=>['test2key'=>'test2keyvalue']]];
 
-        //Debug::preOutput(array_keys($array2));
+        Debug::preOutput(json_encode($array));
+        Debug::preOutput(Implement::arrayToJson($array));
         Debug::preOutput(json_encode($array2));
-        Debug::preOutput(json_encode([]));
-
         Debug::preOutput(Implement::arrayToJson($array2));
+        Debug::preOutput(json_encode($array3));
+        Debug::preOutput(Implement::arrayToJson($array3));
 
         Debug::preOutput(FileSystem\Dallgoot\Yaml\Yaml::parseFile(self::installFile()));
         $instance = new static();
