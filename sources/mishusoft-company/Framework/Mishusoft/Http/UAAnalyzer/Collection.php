@@ -5,6 +5,8 @@ namespace Mishusoft\Http\UAAnalyzer;
 
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Storage;
+use Mishusoft\Utility\Debug;
+use Mishusoft\Utility\Implement;
 use Mishusoft\Utility\Inflect;
 use Mishusoft\Utility\JSON;
 
@@ -115,11 +117,12 @@ abstract class Collection extends UAAnalyzerBase
             $this->directoriesWithFiles = $this->configs;
         }
 
-        //check modif of data files
+        //check modification of data files
 
         $cacheDictionariesFile = self::dFile(self::configDataFile('UAAnalyzer', 'dictionaries'));
         if (file_exists($cacheDictionariesFile)) {
             $this->dictionaries = Storage\FileSystem\Yaml::parseFile($cacheDictionariesFile);
+            //Debug::preOutput(Implement::arrayToJson($this->dictionaries));
         } elseif (count($this->directoriesWithFiles) > 0) {
             foreach ($this->directoriesWithFiles as $directory => $files) {
                 if (is_array($files) === true) {
