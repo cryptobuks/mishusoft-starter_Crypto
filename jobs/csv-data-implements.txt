@@ -1,0 +1,3 @@
+https://en.wikipedia.org/wiki/Comma-separated_values
+https://en.wikipedia.org/wiki/Delimiter-separated_values
+https://en.wikipedia.org/wiki/Tab-separated_values
