@@ -37,46 +37,40 @@ class Implement
         // 'test2'=>['test1'=>'test1value', 'test2'=>['test2key'=>'test2keyvalue']]]
 
         if (count($array) > 0) {
-            Debug::preOutput($array);
-            Debug::preOutput(self::everyIsInt($array));
+            //Debug::preOutput($array);
+            //Debug::preOutput(self::everyIsInt($array));
             if (self::everyIsInt($array) === true) {
                 return sprintf('[ %1$s ]', implode(', ', $array));
-            } else {
-                $result = [];
-                foreach ($array as $key => $value) {
-                    $key = (is_string($key)) ? (string) $key : $key;
-                    $value = (is_string($value)) ? (string) $value : $value;
+            }
 
-                    if (is_bool($value)) {
-                        $impValue = ($value === true) ? 1 : '';
-                        $result[] = sprintf('%1$s : %2$s', $key, $impValue);
-                    }
-
-                    if (is_string($value)) {
-                        $result[] = sprintf('%1$s : %2$s', $key, $value);
-                    }
-
-                    if (is_array($value)) {
-                        $result[] = sprintf('%1$s : %2$s', $key, self::arrayToJson($value));
-                    }
+            $result = [];
+            foreach ($array as $key => $value) {
+                if (is_bool($value)) {
+                    $impValue = ($value === true) ? 1 : '';
+                    $result[] = sprintf('"%1$s" : "%2$s"', $key, $impValue);
                 }
 
+                if (is_string($value)) {
+                    $result[] = sprintf('"%1$s" : "%2$s"', $key, $value);
+                }
 
-                return sprintf('{ %1$s }', implode(', ', $result));
+                if (is_array($value)) {
+                    $result[] = sprintf('"%1$s" : %2$s', $key, self::arrayToJson($value));
+                }
             }
+
+
+            return sprintf('{ %1$s }', implode(', ', $result));
         }
         return [];
     }
 
     private static function everyIsInt(array $array):bool
     {
-        $array_keys = array_keys($array);
-        foreach ($array_keys as $array_key) {
-            if (is_int($array_key)) {
-                return true;
-            }
+        if (array() === $array) {
+            return false;
         }
-        return false;
+        return array_keys($array) === range(0, count($array) - 1);
     }
 
     /**
