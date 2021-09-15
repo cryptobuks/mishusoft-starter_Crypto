@@ -41,29 +41,29 @@ class Implement
             Debug::preOutput(self::everyIsInt($array));
             if (self::everyIsInt($array) === true) {
                 return sprintf('[ %1$s ]', implode(', ', $array));
+            } else {
+                $result = '';
+                foreach ($array as $key => $value) {
+                    $key = (is_string($key)) ? (string) $key : $key;
+                    $value = (is_string($value)) ? (string) $value : $value;
+
+                    if (is_bool($value)) {
+                        $impValue = ($value === true) ? 1 : '';
+                        $result .= sprintf('{ %1$s : %2$s }', $key, $impValue);
+                    }
+
+                    if (is_string($value)) {
+                        $result .= sprintf('{ %1$s : %2$s }', $key, $value);
+                    }
+
+                    if (is_array($value)) {
+                        $result .= sprintf('{ %1$s : %2$s }', $key, self::arrayToJson($value));
+                    }
+                }
+
+
+                return sprintf('{ %1$s }', $result);
             }
-
-            $result = '';
-            foreach ($array as $key => $value) {
-                $key = (is_string($key)) ? (string) $key : $key;
-                $value = (is_string($value)) ? (string) $value : $value;
-
-                if (is_bool($value)) {
-                    $impValue = ($value === true) ? 1 : '';
-                    $result .= sprintf('{ %1$s : %2$s }', $key, $impValue);
-                }
-
-                if (is_string($value)) {
-                    $result .= sprintf('{ %1$s : %2$s }', $key, $value);
-                }
-
-                if (is_array($value)) {
-                    $result .= sprintf('{ %1$s : %2$s }', $key, self::arrayToJson($value));
-                }
-            }
-
-
-            return sprintf('{ %1$s }', $result);
         }
         return [];
     }
@@ -71,10 +71,12 @@ class Implement
     private static function everyIsInt(array $array):bool
     {
         $array_keys = array_keys($array);
-        Debug::preOutput($array_keys);
-        return array_walk_recursive($array_keys, static function ($value, $key) {
-            return is_int($key);
-        });
+        foreach ($array_keys as $array_key) {
+            if (is_int($array_key)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
