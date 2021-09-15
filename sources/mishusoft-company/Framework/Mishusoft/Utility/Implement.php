@@ -42,27 +42,27 @@ class Implement
             if (self::everyIsInt($array) === true) {
                 return sprintf('[ %1$s ]', implode(', ', $array));
             } else {
-                $result = '';
+                $result = [];
                 foreach ($array as $key => $value) {
                     $key = (is_string($key)) ? (string) $key : $key;
                     $value = (is_string($value)) ? (string) $value : $value;
 
                     if (is_bool($value)) {
                         $impValue = ($value === true) ? 1 : '';
-                        $result .= sprintf('{ %1$s : %2$s }', $key, $impValue);
+                        $result[] = sprintf('%1$s : %2$s', $key, $impValue);
                     }
 
                     if (is_string($value)) {
-                        $result .= sprintf('{ %1$s : %2$s }', $key, $value);
+                        $result[] = sprintf('%1$s : %2$s', $key, $value);
                     }
 
                     if (is_array($value)) {
-                        $result .= sprintf('{ %1$s : %2$s }', $key, self::arrayToJson($value));
+                        $result[] = sprintf('%1$s : %2$s', $key, self::arrayToJson($value));
                     }
                 }
 
 
-                return sprintf('{ %1$s }', $result);
+                return sprintf('{ %1$s }', implode(', ', $result));
             }
         }
         return [];
