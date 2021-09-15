@@ -2,6 +2,14 @@
 
 namespace Mishusoft\Utility;
 
+//add array to json
+//add array to object
+//add object to array
+//add object to json
+//add csv to array
+//add csv to json
+//add csv to object
+
 class Implement
 {
     /**
