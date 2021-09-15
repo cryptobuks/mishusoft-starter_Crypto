@@ -68,7 +68,11 @@ class Implement
     private static function map(array $array): array
     {
         return array_map(static function ($val) {
-            return sprintf('"%1$s"', $val);
+            if (is_int($val)) {
+                return $val;
+            } else {
+                return sprintf('"%1$s"', $val);
+            }
         }, $array);
     }
 
