@@ -11,6 +11,7 @@ use Mishusoft\System\Network;
 use Mishusoft\System\Time;
 use Mishusoft\Ui\EmbeddedView;
 use Mishusoft\Utility\Debug;
+use Mishusoft\Utility\Implement;
 use Mishusoft\Utility\JSON;
 
 class Framework extends Base
@@ -56,6 +57,22 @@ class Framework extends Base
      */
     public static function init(Registry $registry, Closure $closure): static
     {
+        $array = ['test','test1','test2','test3'];
+        $array2 = ['test','test1','test2','test3'=>['test','test1','test2','test3']];
+        $array_keys = array_keys($array);
+        $isInt = array_walk_recursive($array_keys, static function ($value, $key) {
+            return is_int($key);
+        });
+        Debug::preOutput('validation');
+        Debug::preOutput($isInt);
+
+        Debug::preOutput(array_keys($array2));
+        Debug::preOutput(json_encode($array2));
+        Debug::preOutput(json_encode([]));
+
+        Debug::preOutput(Implement::arrayToJson($array2));
+
+        Debug::preOutput(FileSystem\Dallgoot\Yaml\Yaml::parseFile(self::installFile()));
         $instance = new static();
 
         //configure and install framework
