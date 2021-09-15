@@ -40,14 +40,14 @@ class Implement
             //Debug::preOutput($array);
             //Debug::preOutput(self::everyIsInt($array));
             if (self::everyIsInt($array) === true) {
-                return sprintf('[ %1$s ]', implode(', ', $array));
+                return sprintf('[ %1$s ]', implode(', ', self::map($array)));
             }
 
             $result = [];
             foreach ($array as $key => $value) {
                 if (is_bool($value)) {
-                    $impValue = ($value === true) ? 1 : '';
-                    $result[] = sprintf('"%1$s" : "%2$s"', $key, $impValue);
+                    $impValue = ($value === true) ? "true" : "false";
+                    $result[] = sprintf('"%1$s" : %2$s', $key, $impValue);
                 }
 
                 if (is_string($value)) {
@@ -63,6 +63,13 @@ class Implement
             return sprintf('{ %1$s }', implode(', ', $result));
         }
         return [];
+    }
+
+    private static function map(array $array): array
+    {
+        return array_map(static function ($val) {
+            return sprintf('"%1$s"', $val);
+        }, $array);
     }
 
     private static function everyIsInt(array $array):bool
