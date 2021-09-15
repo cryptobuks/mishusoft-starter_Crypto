@@ -64,7 +64,7 @@ class Framework extends Base
         //['test1'=>['test1'=>'test1value', 'test2'=>['test2key'=>'test2keyvalue']],
         // 'test2'=>['test1'=>'test1value', 'test2'=>['test2key'=>'test2keyvalue']]]
 
-        $array = ['test','test1','test2','test3'];
+        $array = ['test','test1','test2','test3', 5];
         $array2 = ['test','test1','test2','test3'=>['test','test1','test2','test3'],'test4'=>true];
         $array3 = ['test1'=>['test1'=>'test1value', 'test2'=>['test2key'=>'test2keyvalue']],
             'test2'=>['test1'=>'test1value', 'test2'=>['test2key'=>'test2keyvalue']]];
