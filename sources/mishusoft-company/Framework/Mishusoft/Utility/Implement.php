@@ -50,12 +50,12 @@ class Implement
             if (self::everyIsInt($array) === true) {
                 return sprintf('[ %1$s ]', implode(', ', self::map($array)));
             }
-            return self::arrayObject($array);
+            return self::arrayToJsonBuilder($array);
         }
         return [];
     }
 
-    private static function arrayObject(array $array): string|array
+    private static function arrayToJsonBuilder(array $array): string|array
     {
         $result = [];
         foreach ($array as $key => $value) {
@@ -107,7 +107,7 @@ class Implement
             }
 
             if (is_array($val) || is_object($val)) {
-                return self::arrayObject($val);
+                return self::arrayToJsonBuilder($val);
             }
 
             return sprintf('"%1$s"', $val);
@@ -120,6 +120,11 @@ class Implement
             return false;
         }
         return array_keys($array) === range(0, count($array) - 1);
+    }
+
+    public static function jsonToArray(string $json):array
+    {
+        return [];
     }
 
     /**
