@@ -63,10 +63,10 @@ class Framework extends Base
         $isInt = array_walk_recursive($array_keys, static function ($value, $key) {
             return is_int($key);
         });
-        Debug::preOutput('validation');
-        Debug::preOutput($isInt);
+        //Debug::preOutput('validation');
+        //Debug::preOutput($isInt);
 
-        Debug::preOutput(array_keys($array2));
+        //Debug::preOutput(array_keys($array2));
         Debug::preOutput(json_encode($array2));
         Debug::preOutput(json_encode([]));
 
