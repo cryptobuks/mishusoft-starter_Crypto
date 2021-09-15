@@ -45,15 +45,23 @@ class Implement
 
             $result = [];
             foreach ($array as $key => $value) {
+                //check if boolean
                 if (is_bool($value)) {
-                    $impValue = ($value === true) ? "true" : "false";
-                    $result[] = sprintf('"%1$s" : %2$s', $key, $impValue);
+                    $result[] = sprintf('"%1$s" : %2$s', $key, ($value === true) ? "true" : "false");
                 }
-
+                //check if null
+                if (is_null($value)) {
+                    $result[] = sprintf('"%1$s" : %2$s', $key, 'null');
+                }
+                //check if integer
+                if (is_int($value)) {
+                    $result[] = sprintf('"%1$s" : %2$s', $key, $value);
+                }
+                //check if string
                 if (is_string($value)) {
-                    $result[] = sprintf('"%1$s" : "%2$s"', $key, $value);
+                    $result[] = sprintf('"%1$s" : "%2$s"', self::addSlash($key), self::addSlash($value));
                 }
-
+                //check if array
                 if (is_array($value)) {
                     $result[] = sprintf('"%1$s" : %2$s', $key, self::arrayToJson($value));
                 }
@@ -65,14 +73,27 @@ class Implement
         return [];
     }
 
+    private static function addSlash(string $variable): string
+    {
+        return str_replace('\/', '/', $variable);
+    }
+
     private static function map(array $array): array
     {
         return array_map(static function ($val) {
             if (is_int($val)) {
                 return $val;
-            } else {
-                return sprintf('"%1$s"', $val);
             }
+
+            if (is_null($val)) {
+                return 'null';
+            }
+
+            if (is_bool($val)) {
+                return sprintf('%1$s', ($val === true) ? "true" : "false");
+            }
+
+            return sprintf('"%1$s"', $val);
         }, $array);
     }
 
