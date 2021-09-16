@@ -75,7 +75,7 @@ class Implement
      *                   in ASCII or UTF-8 format!
      * @access   public
      */
-    public static function decode(string $str, int $type = IMPLEMENT_JSON_IN_OBJ): \stdClass|string|array|bool|null|float
+    public static function decode(string $str, int $type = IMPLEMENT_JSON_IN_OBJ)
     {
         $str = self::tidyContent($str);
 
@@ -103,7 +103,7 @@ class Implement
                     return (float)$str;
                 }
 
-                if (preg_match('/^("|\').*(\1)$/s', $str, $m) && $m[1] == $m[2]) {
+                if (preg_match('/^("|\').*(\1)$/s', $str, $m) && $m[1] === $m[2]) {
                     // STRINGS RETURNED IN UTF-8 FORMAT
                     $delim = Inflect::substr8($str, 0, 1);
                     $chrs = Inflect::substr8($str, 1, -1);
@@ -214,6 +214,7 @@ class Implement
                         }
                     }
 
+
                     $stk[] = array('what' => IMPLEMENT_JSON_SLICE,
                         'where' => 0,
                         'delim' => false);
@@ -229,7 +230,9 @@ class Implement
                         return $obj;
                     }
 
-                    //print("\nparsing {$chrs}\n");
+                    Debug::preOutput($str);
+                    Debug::preOutput(Inflect::substr8($str, 1, -1));
+                    print("\nparsing {$chrs}\n");
 
                     $strlen_chrs = Inflect::strlen8($chrs);
 
