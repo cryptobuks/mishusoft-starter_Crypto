@@ -413,4 +413,23 @@ class Inflect
         }
         return strlen($str);
     }
+
+
+    /**
+     * Returns part of a string, interpreting $start and $length as number of bytes.
+     * @param string $string
+     * @param integer start
+     * @param int|null $length
+     * @return string length
+     */
+    public static function substr8(string $string, int $start, ?int $length): string
+    {
+        if (is_int($length)) {
+            $length = self::strlen8($string) - $start;
+        }
+        if (function_exists('mb_substr')) {
+            return mb_substr($string, $start, $length, "8bit");
+        }
+        return substr($string, $start, $length);
+    }
 }
