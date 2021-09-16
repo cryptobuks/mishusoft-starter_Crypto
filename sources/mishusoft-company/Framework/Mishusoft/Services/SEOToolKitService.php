@@ -3,12 +3,9 @@
 
 namespace Mishusoft\Services;
 
-use JsonException;
 use Mishusoft\Base;
 use Mishusoft\Drivers\View\MishusoftView;
 use Mishusoft\Exceptions\ErrorException;
-use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
-use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Registry;
 use Mishusoft\Storage;
@@ -16,6 +13,7 @@ use Mishusoft\Storage\FileSystem;
 use Mishusoft\System\Memory;
 use Mishusoft\Ui;
 use Mishusoft\Utility\ArrayCollection;
+use Mishusoft\Utility\Implement;
 
 class SEOToolKitService extends Base
 {
@@ -48,7 +46,6 @@ class SEOToolKitService extends Base
      * SEOToolKitService constructor.
      *
      * @param MishusoftView $view
-     * @throws JsonException
      * @throws RuntimeException
      */
     public function __construct(MishusoftView $view)
@@ -90,7 +87,6 @@ class SEOToolKitService extends Base
 
 
     /**
-     * @throws JsonException
      * @throws RuntimeException
      */
     private function check(): void
@@ -105,7 +101,7 @@ class SEOToolKitService extends Base
             foreach ($fileList as $file) {
                 if (file_exists($file) === false) {
                     FileSystem\Yaml::emitFile($file, []);
-                    FileSystem::saveToFile($file, json_encode([], JSON_THROW_ON_ERROR));
+                    FileSystem::saveToFile($file, Implement::toJson([]));
                 } elseif ((is_array(FileSystem\Yaml::parseFile($file)) === false)
                     && FileSystem::remove($file) === true) {
                     FileSystem\Yaml::emitFile($file, []);
@@ -118,12 +114,8 @@ class SEOToolKitService extends Base
     /**
      *
      * @throws ErrorException
-     * @throws InvalidArgumentException
-     * @throws JsonException
-     * @throws PermissionRequiredException
      * @throws RuntimeException
      * @throws RuntimeException\NotFoundException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function start(): void
     {
@@ -136,12 +128,8 @@ class SEOToolKitService extends Base
 
     /**
      * @throws ErrorException
-     * @throws InvalidArgumentException
-     * @throws JsonException
-     * @throws PermissionRequiredException
      * @throws RuntimeException
      * @throws RuntimeException\NotFoundException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     private function socialNetworkManager(): void
     {
@@ -241,12 +229,9 @@ class SEOToolKitService extends Base
 
     /**
      *
-     * @throws JsonException
      * @throws ErrorException
-     * @throws \Mishusoft\Exceptions\JsonException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
      * @throws RuntimeException
+     * @throws RuntimeException\NotFoundException
      */
     private function default(): void
     {
@@ -320,12 +305,8 @@ class SEOToolKitService extends Base
 
     /**
      * @throws ErrorException
-     * @throws InvalidArgumentException
-     * @throws JsonException
-     * @throws PermissionRequiredException
      * @throws RuntimeException
      * @throws RuntimeException\NotFoundException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     private function markupForGoogle(): void
     {
@@ -354,12 +335,8 @@ class SEOToolKitService extends Base
     /**
      *
      * @throws ErrorException
-     * @throws InvalidArgumentException
-     * @throws JsonException
-     * @throws PermissionRequiredException
      * @throws RuntimeException
      * @throws RuntimeException\NotFoundException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     private function twitterCard(): void
     {
@@ -399,12 +376,8 @@ class SEOToolKitService extends Base
 
     /**
      * @throws ErrorException
-     * @throws InvalidArgumentException
-     * @throws JsonException
-     * @throws PermissionRequiredException
      * @throws RuntimeException
      * @throws RuntimeException\NotFoundException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     private function openGraphData(): void
     {
@@ -442,12 +415,10 @@ class SEOToolKitService extends Base
     }//end openGraphData()
 
     /**
+     * @return string
      * @throws ErrorException
      * @throws RuntimeException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
-     * @throws \Mishusoft\Exceptions\JsonException
-     * @throws JsonException
+     * @throws RuntimeException\NotFoundException
      */
     private function getDescriptionDetails(): string
     {
@@ -477,12 +448,10 @@ class SEOToolKitService extends Base
     }//end getAbout()
 
     /**
+     * @return mixed
      * @throws ErrorException
      * @throws RuntimeException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
-     * @throws \Mishusoft\Exceptions\JsonException
-     * @throws JsonException
+     * @throws RuntimeException\NotFoundException
      */
     private function loadDescription():mixed
     {
