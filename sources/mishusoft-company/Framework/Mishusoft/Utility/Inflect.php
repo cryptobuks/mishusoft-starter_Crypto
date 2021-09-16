@@ -374,7 +374,7 @@ class Inflect
             return mb_convert_encoding($utf8, 'UTF-16', 'UTF-8');
         }
 
-        switch (self::strlen8($utf8)) {
+        switch (self::strLen8($utf8)) {
             case 1:
                 // this case should never be reached, because we are in ASCII range
                 // see: http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
@@ -406,7 +406,7 @@ class Inflect
      * @param string
      * @return integer length
      */
-    public static function strlen8(string $str): int
+    public static function strLen8(string $str): int
     {
         if (function_exists('mb_strlen')) {
             return mb_strlen($str, "8bit");
@@ -424,9 +424,9 @@ class Inflect
      */
     public static function substr8(string $string, int $start, ?int $length): string
     {
-        Debug::preOutput($length);
-        if (is_int($length)) {
-            $length = self::strlen8($string) - $start;
+        //Debug::preOutput($length);
+        if (!is_int($length)) {
+            $length = self::strLen8($string) - $start;
         }
         if (function_exists('mb_substr')) {
             return mb_substr($string, $start, $length, "8bit");
