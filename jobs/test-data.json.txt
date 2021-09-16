@@ -1,0 +1,7 @@
+["test","test1","test2","test3",5,"\u2587"]
+{"0":"test","1":"test1","2":"test2","test3":["test","test1","test2","test3"],"test4":true}
+{"test1":{"test1":"test1value","test2":{"test2key":"test2keyvalue"}},"test2":{"test1":"test1value","test2":{"test2key":"CreateNewDoc()"}}}
+{"test1":{"test1":"test1value","test2":{"test2key":"test2keyvalue"}},"test2":{"test1":"test1value","test2":{"test2key":"http:\/\/localhost:8080"}}}
+{"test1":{"test1":"test1value","test2":{"test2key":-122.6438}},"test2":{"test1":0.54264448532277,"test2":{"test2key":"http:\/\/localhost:8080"}}}
+[{"test1":{"test1":"test1value","test2":{"test2key":-122.6438}},"test2":{"test1":0.54264448532277,"test2":{"test2key":"http:\/\/localhost:8080"}}}]
+
