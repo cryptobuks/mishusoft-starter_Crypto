@@ -3,7 +3,6 @@
 namespace Mishusoft;
 
 use Closure;
-use JsonException;
 use Mishusoft\Storage\FileSystem;
 use Mishusoft\System\Log;
 use Mishusoft\System\Memory;
@@ -12,7 +11,6 @@ use Mishusoft\System\Time;
 use Mishusoft\Ui\EmbeddedView;
 use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\Implement;
-use Mishusoft\Utility\JSON;
 
 class Framework extends Base
 {
@@ -49,15 +47,15 @@ class Framework extends Base
      * @param Closure $closure
      * @return Framework
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
      * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws JsonException
+     * @throws \Exception
      */
     public static function init(Registry $registry, Closure $closure): static
     {
 
+        Debug::preOutput(Implement::csv(RUNTIME_ROOT_PATH . 'tests/data/sample-01.csv'));
         Debug::preOutput(FileSystem\Dallgoot\Yaml\Yaml::parseFile(self::installFile()));
         $instance = new static();
 
@@ -188,7 +186,6 @@ class Framework extends Base
                     'date',
                     'openssl',
                     'dom',
-                    'json',
                     'PDO',
                     'session',
                     'mysqlnd',
@@ -401,11 +398,7 @@ class Framework extends Base
 
     /**
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws JsonException
      */
     private static function extensionRequiredCheck(): void
     {
@@ -425,11 +418,7 @@ class Framework extends Base
 
     /**
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws JsonException
      */
     private static function thirdPartyRequiredCheck(): void
     {
@@ -494,12 +483,10 @@ class Framework extends Base
 
     /**
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
      * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
      * @throws Exceptions\RuntimeException\NotFoundException
-     * @throws JsonException
      */
     public function execute(): void
     {
