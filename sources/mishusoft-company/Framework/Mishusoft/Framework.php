@@ -75,6 +75,12 @@ class Framework extends Base
         $array6 = [['test1'=>['test1'=>'test1value', 'test2'=>['test2key'=>-122.6438]],
             'test2'=>['test1'=>0.54264448532277, 'test2'=>['test2key'=>'http://localhost:8080']], ]];
 
+
+        Debug::preOutput(json_encode('$array'));
+        Debug::preOutput(json_decode(json_encode('$array')));
+        Debug::preOutput(json_encode(1));
+        Debug::preOutput(json_decode(json_encode(1)));
+
         Debug::preOutput('Encoding');
         Debug::preOutput('Decoding');
         Debug::preOutput(json_encode($array));
