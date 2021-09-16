@@ -2,10 +2,12 @@
 
 namespace Mishusoft\Utility;
 
-//add array to json
-//add array to object
-//add object to array
-//add object to json
+//add array to json done
+//add array to object done
+//add object to array done
+//add object to json done
+
+//pending
 //add csv to array
 //add csv to json
 //add csv to object
@@ -47,7 +49,6 @@ class Implement
         }
         return $object;
     }
-
     //end of make array to object
 
     //start of make array to json
@@ -61,7 +62,6 @@ class Implement
             }
         );
     }
-
 
     /**
      * decodes a JSON string into appropriate variable
@@ -604,66 +604,9 @@ class Implement
         // eliminate extraneous space
         return trim($str);
     }
-
-
     //end of make content to json
 
-    //start of make json to array
-    public static function jsonToArray(string $json):array
-    {
-//        Debug::preOutput(Inflect::utf162utf8($json));
-        self::withLocale(function () use ($json) {
-            //Debug::preOutput(Inflect::utf162utf8($json));
-            //Debug::preOutput($json);
-        });
-//        self::withLocale(function () use ($json) {
-//            Debug::preOutput(Inflect::utf82utf16($json));
-//        });
-//        Debug::preOutput(Inflect::utf82utf16($json));
-        if (($json[0] === '{' && $json[-1] === '}') || ($json[0] === '[' && $json[-1] === ']')) {
-            if ($json[0] === '[' && $json[-1] === ']') {
-                //$json = strstr($json, ['[' => ' ', ']' => ' ']);
-                $array = explode(',', strtr($json, ['[' => ' ', ']' => ' ']));
-                foreach ($array as $key => $value) {
-                    // Debug::preOutput(gettype($value));
-                    if (is_string($value)) {
-                        if (is_numeric((int) $value) && (int) $value !== 0) {
-                            $array[$key] = (int) $value;
-                        } elseif ($value === 'true') {
-                            $array[$key] = true;
-                        } elseif ($value === 'false') {
-                            $array[$key] = false;
-                        } elseif ($value === 'null') {
-                            $array[$key] = null;
-                        } else {
-                            $array[$key] = trim(trim($value), '"');
-                        }
-                    } elseif (is_float($value) ||is_int($value)) {
-                        $array[$key] = $value;
-                    } elseif (is_array($value)) {
-                        $array[$key] = self::jsonToArray($value);
-                    }
-                }
-                return $array;
-            }
-            if ($json[0] === '{' && $json[-1] === '}') {
-                //$json = strstr($json, ['[' => ' ', ']' => ' ']);
-                $array = explode(',', strtr($json, ['{' => ' ', '}' => ' ']));
-                foreach ($array as $key => $value) {
-                    // Debug::preOutput(gettype($value));
-                    $array[trim(trim($key), '"')] = trim(trim($value), '"');
-                }
-                return $array;
-            }
-            //return (array) strtr($json, ['{'=>'[', '}'=>']']);
-        }
-
-        throw new \RuntimeException('Incorrect encoding');
-    }
-
-
-    //end of make json to array
-
+    //start of make object to array
     /**
      * @param object $object
      * @return array
@@ -683,4 +626,9 @@ class Implement
         }
         return $array;
     }
+    //end of make object to array
+
+
+    //start of make csv to array
+
 }
