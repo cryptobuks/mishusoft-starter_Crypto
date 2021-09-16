@@ -354,7 +354,7 @@ class Services_JSON
                                 $ascii .= '?';
                                 break;
                             }
-                            
+
                             $char = pack('C*', $ord_var_c, ord($var{$c + 1}));
                             $c += 1;
                             $utf16 = $this->utf82utf16($char);
@@ -480,27 +480,27 @@ class Services_JSON
                 return '[' . join(',', $elements) . ']';
 
             case 'object':
-            
+
                 // support toJSON methods.
                 if (($this->use & SERVICES_JSON_USE_TO_JSON) && method_exists($var, 'toJSON')) {
                     // this may end up allowing unlimited recursion
                     // so we check the return value to make sure it's not got the same method.
                     $recode = $var->toJSON();
-                    
+
                     if (method_exists($recode, 'toJSON')) {
-                        
+
                         return ($this->use & SERVICES_JSON_SUPPRESS_ERRORS)
                         ? 'null'
                         : new Services_JSON_Error(class_name($var).
                             " toJSON returned an object with a toJSON method.");
-                            
+
                     }
-                    
+
                     return $this->_encode( $recode );
-                } 
-                
+                }
+
                 $vars = get_object_vars($var);
-                
+
                 $properties = array_map(array($this, 'name_value'),
                                         array_keys($vars),
                                         array_values($vars));
@@ -864,7 +864,7 @@ class Services_JSON
     {
         if (class_exists('pear')) {
             return PEAR::isError($data, $code);
-        } elseif (is_object($data) && (get_class($data) == 'services_json_error' ||
+        } elseif (is_object($data) && (get_class($data) === 'services_json_error' ||
                                  is_subclass_of($data, 'services_json_error'))) {
             return true;
         }
