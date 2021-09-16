@@ -94,9 +94,12 @@ abstract class Collection extends UAAnalyzerBase
         //Add regex for version number or word
         $this->regex['version'] .= '((\d+[.-_ ])?(\d+[.-_ ])?(\d+[.-_ ])?(\d+[.-_ ])?(\d+))|(\w+)';
 
+        //add attributes
         $this->attributes = ['author', 'licence', 'engines'];
 
-        $this->loadDictionaries();
+        if (count($this->dictionaries) === 0) {
+            $this->loadDictionaries();
+        }
     }
 
     /**
