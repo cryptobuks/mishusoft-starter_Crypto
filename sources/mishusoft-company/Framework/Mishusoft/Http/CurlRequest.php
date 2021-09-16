@@ -5,9 +5,8 @@ namespace Mishusoft\Http;
 
 use CurlHandle;
 use Mishusoft\Exceptions\HttpException\HttpResponseException;
-use Mishusoft\Exceptions\JsonException;
 use Mishusoft\Framework;
-use Mishusoft\System\Log;
+use Mishusoft\Utility\Implement;
 
 /*
  * Example of use it
@@ -142,7 +141,7 @@ class CurlRequest
                 if (strtolower($parameters['method'])=== 'post') {
                     $this->requestMethod = strtoupper($parameters['method']);
                     @curl_setopt($this->ch, CURLOPT_POST, true);
-                    // make dynamic pamameter binding.
+                    // make dynamic parameter binding.
                     @curl_setopt($this->ch, CURLOPT_POSTFIELDS, $parameters['post_fields']);
                 }
                 if (strtolower($parameters['method'])=== 'put') {
@@ -204,7 +203,6 @@ class CurlRequest
     }
 
     /**
-     * @throws \JsonException
      * @throws HttpResponseException
      */
     public static function uploadFile(string $hostUrl, array $files): array
@@ -406,58 +404,35 @@ class CurlRequest
         }
     }
 
-    /**
-     * @throws JsonException
-     */
-    private function jsonLastErrorCheckOut(): void
-    {
-        if (JSON_ERROR_NONE !== json_last_error()) {
-            throw new JsonException(sprintf('Error (%d) when trying to json_decode response', json_last_error()));
-        }
-    }
 
 
     /**
      * @throws HttpResponseException
-     * @throws JsonException|\JsonException
      */
     public function toArray(): array
     {
         $this->validate('content-type', 'application/json');
 
-        $result = json_decode($this->getResponseBody(), true, 512, JSON_THROW_ON_ERROR);
-        $this->jsonLastErrorCheckOut();
-
-        return $result;
+        return Implement::jsonDecode($this->getResponseBody(), IMPLEMENT_JSON_IN_ARR);
     }
 
 
     /**
      * @throws HttpResponseException
-     * @throws JsonException|\JsonException
      */
     public function toObject(): object
     {
         $this->validate('content-type', 'application/json');
 
-        $result = json_decode($this->getResponseBody(), false, 512, JSON_THROW_ON_ERROR);
-        $this->jsonLastErrorCheckOut();
-
-        return $result;
+        return Implement::jsonDecode($this->getResponseBody());
     }
 
 
-    /**
-     * @throws JsonException | \JsonException
-     */
     public function toJson(): string
     {
         //$this->validate('date', date('Y-m-d H:i:s'));
 
-        $result = json_encode($this->getResponseBody(), JSON_THROW_ON_ERROR);
-        $this->jsonLastErrorCheckOut();
-
-        return $result;
+        return Implement::toJson($this->getResponseBody());
     }
 
     /**
