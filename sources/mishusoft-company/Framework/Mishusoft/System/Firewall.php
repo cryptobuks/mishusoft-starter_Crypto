@@ -938,10 +938,8 @@ class Firewall extends Base
      * @throws HttpResponseException
      * @throws InvalidArgumentException
      * @throws InvalidDatabaseException
-     * @throws JsonException
      * @throws PermissionRequiredException
      * @throws \Mishusoft\Exceptions\ErrorException
-     * @throws \Mishusoft\Exceptions\JsonException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public static function runtimeFailure(int $status, array $message): void
@@ -961,12 +959,10 @@ class Firewall extends Base
      * @return void
      * @throws HttpResponseException
      * @throws InvalidArgumentException
-     * @throws JsonException Throw exception when json error occurred.
      * @throws PermissionRequiredException
      * @throws AddressNotFoundException
      * @throws InvalidDatabaseException
      * @throws \Mishusoft\Exceptions\ErrorException
-     * @throws \Mishusoft\Exceptions\JsonException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private static function runtimeFailureUi(string $title, array $message): void
