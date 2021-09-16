@@ -7,7 +7,7 @@ use Mishusoft\MPM;
 use Mishusoft\Storage;
 use Mishusoft\Storage\FileSystem;
 use Mishusoft\System\Log;
-use Mishusoft\Utility\JSON;
+use Mishusoft\Utility\Implement;
 
 class Common extends MPM
 {
@@ -21,7 +21,6 @@ class Common extends MPM
 
 
     /**
-     * @throws Exceptions\JsonException
      * @throws Exceptions\RuntimeException
      */
     public static function autoUpdateQualifiedAPIRoutes(): void
@@ -35,8 +34,9 @@ class Common extends MPM
             if (count(FileSystem::list(Storage::qualifiedAPIRoutesDirectory(), 'file')) > 0) {
                 foreach (FileSystem::list(Storage::qualifiedAPIRoutesDirectory(), 'file') as $filename) {
                     if (pathinfo($filename, PATHINFO_EXTENSION) === 'json') {
-                        $configs[] = JSON::decodeToArray(
-                            FileSystem::read(Storage::qualifiedAPIRoutesDirectory().$filename)
+                        $configs[] = Implement::jsonDecode(
+                            FileSystem::read(Storage::qualifiedAPIRoutesDirectory().$filename),
+                            IMPLEMENT_JSON_IN_ARR
                         );
                     }
                 }
