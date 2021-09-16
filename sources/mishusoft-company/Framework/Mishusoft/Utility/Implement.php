@@ -75,7 +75,7 @@ class Implement
      *                   in ASCII or UTF-8 format!
      * @access   public
      */
-    public static function decode(string $str, int $type = IMPLEMENT_JSON_IN_OBJ)
+    public static function jsonDecode(string $str, int $type = IMPLEMENT_JSON_IN_OBJ)
     {
         $str = self::tidyContent($str);
 
@@ -255,7 +255,7 @@ class Implement
 
                             if (reset($stk) === IMPLEMENT_JSON_IN_ARR) {
                                 // we are in an array, so just push an element onto the stack
-                                $arr[] = self::decode($slice);
+                                $arr[] = self::jsonDecode($slice);
                             } elseif (reset($stk) === IMPLEMENT_JSON_IN_OBJ) {
                                 // we are in an object, so figure
                                 // out the property name and set an
@@ -265,8 +265,8 @@ class Implement
 
                                 if (preg_match('/^\s*(["\'].*[^\\\]["\'])\s*:/Uis', $slice, $parts)) {
                                     // "name":value pair
-                                    $key = self::decode($parts[1]);
-                                    $val = self::decode(trim(substr($slice, strlen($parts[0])), ", \t\n\r\0\x0B"));
+                                    $key = self::jsonDecode($parts[1]);
+                                    $val = self::jsonDecode(trim(substr($slice, strlen($parts[0])), ", \t\n\r\0\x0B"));
                                     if ($type & IMPLEMENT_JSON_LOOSE_TYPE) {
                                         $obj[$key] = $val;
                                     } else {
@@ -275,7 +275,7 @@ class Implement
                                 } elseif (preg_match('/^\s*(\w+)\s*:/Uis', $slice, $parts)) {
                                     // name:value pair, where name is unquoted
                                     $key = $parts[1];
-                                    $val = self::decode(trim(substr($slice, strlen($parts[0])), ", \t\n\r\0\x0B"));
+                                    $val = self::jsonDecode(trim(substr($slice, strlen($parts[0])), ", \t\n\r\0\x0B"));
 
                                     if ($type & IMPLEMENT_JSON_LOOSE_TYPE) {
                                         $obj[$key] = $val;
