@@ -281,7 +281,7 @@ abstract class Collection extends UAAnalyzerBase
                         throw new RuntimeException(
                             sprintf(
                                 'Identifier attribute not exists in %s',
-                                JSON::encodeToString($dictionary)
+                                Implement::toJson($dictionary)
                             )
                         );
                     }
