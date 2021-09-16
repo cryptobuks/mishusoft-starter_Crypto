@@ -52,7 +52,7 @@ class Implement
     public static function toJson(mixed $content) : mixed
     {
         return self::withLocale(function () use ($content) {
-            //Debug::preOutput(Inflect::utf162utf8($json));
+            Debug::preOutput(self::toJsonBuilder($content));
             Debug::preOutput($content);
         });
     }
@@ -190,18 +190,18 @@ class Implement
                             // characters U-04000000 - U-7FFFFFFF, mask 1111110X
                             // see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
                             $char = pack('C*', $ord_var_c,
-                                ord($content{$c + 1}),
-                                ord($content{$c + 2}),
-                                ord($content{$c + 3}),
-                                ord($content{$c + 4}),
-                                ord($content{$c + 5}));
+                                ord($content[$c + 1]),
+                                ord($content[$c + 2]),
+                                ord($content[$c + 3]),
+                                ord($content[$c + 4]),
+                                ord($content[$c + 5]));
                             $c += 5;
                             $utf16 = Inflect::utf82utf16($char);
                             $ascii .= sprintf('\u%04s', bin2hex($utf16));
                             break;
                     }
                 }
-                return  '"'.$ascii.'"';
+                return  sprintf('"%1$s"', $ascii);
 
             case 'array':
                 /*
@@ -254,7 +254,7 @@ class Implement
                 if (($this->use & SERVICES_JSON_USE_TO_JSON) && method_exists($content, 'toJSON')) {
                     // this may end up allowing unlimited recursion
                     // so we check the return value to make sure it's not got the same method.
-                    $recode = $var->toJSON();
+                    $recode = $content->toJSON();
 
                     if (method_exists($recode, 'toJSON')) {
 
