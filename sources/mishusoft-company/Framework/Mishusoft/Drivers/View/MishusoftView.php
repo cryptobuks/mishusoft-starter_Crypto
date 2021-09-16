@@ -9,8 +9,8 @@ use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Storage;
 use Mishusoft\System\Log;
 use Mishusoft\Utility\ArrayCollection;
+use Mishusoft\Utility\Implement;
 use Mishusoft\Utility\Inflect;
-use Mishusoft\Utility\JSON;
 
 class MishusoftView extends Base implements MishusoftViewInterface
 {
@@ -168,7 +168,10 @@ class MishusoftView extends Base implements MishusoftViewInterface
                     );
                     if (file_exists($widgetConfigFile) === true) {
                         $filenameOriginal = substr($filename, 0, strpos($filename, 'Widget'));
-                        $configuration = JSON::decodeToArray(Storage\FileSystem::read($widgetConfigFile));
+                        $configuration = Implement::jsonDecode(
+                            Storage\FileSystem::read($widgetConfigFile),
+                            IMPLEMENT_JSON_IN_ARR
+                        );
 
                         $lastModification = filemtime($widgetConfigFile);
 
@@ -258,7 +261,10 @@ class MishusoftView extends Base implements MishusoftViewInterface
                     if (file_exists($widgetConfigFile) === true) {
                         $filenameOriginal = substr($filename, 0, strpos($filename, 'Widget'));
                         $lastModification = filemtime($widgetConfigFile);
-                        $configuration = JSON::decodeToArray(Storage\FileSystem::read($widgetConfigFile));
+                        $configuration = Implement::jsonDecode(
+                            Storage\FileSystem::read($widgetConfigFile),
+                            IMPLEMENT_JSON_IN_ARR
+                        );
 
                         if ((array_key_exists('setting', $configuration) === true)
                             && array_key_exists('status', $configuration['setting']) === true
@@ -603,9 +609,11 @@ class MishusoftView extends Base implements MishusoftViewInterface
             // Verification of widgets position visibility.
             if (array_key_exists($widgets[$k]['config']['position'], $positions) === true) {
                 // Verification it's view disability by url [controller/method].
-                if (empty($widgets[$k]['config']['hide']) || !in_array($currentUrl, $widgets[$k]['config']['hide'], true)) {
+                if (empty($widgets[$k]['config']['hide'])
+                    || !in_array($currentUrl, $widgets[$k]['config']['hide'], true)) {
                     // Verification it's view visibility by url [controller/method].
-                    if ($widgets[$k]['config']['show'] === 'all' || in_array($currentUrl, $widgets[$k]['config']['show'], true)) {
+                    if ($widgets[$k]['config']['show'] === 'all'
+                        || in_array($currentUrl, $widgets[$k]['config']['show'], true)) {
                         if (array_key_exists($k, $this->widget) === true) {
                             $widgets[$k]['content'][2] = $this->widget[$k];
                         }
@@ -698,7 +706,7 @@ class MishusoftView extends Base implements MishusoftViewInterface
                 Log::info('Checking custom template directory is set or not ?');
                 if (array_key_exists('templateDirectory', $options) === true) {
                     Log::info('Set custom templateDirectory to runtime template directory.');
-                    $this->templateRenderDirectory = (string)ArrayCollection::value($options, 'templateDirectory');
+                    $this->templateRenderDirectory = (string) ArrayCollection::value($options, 'templateDirectory');
                 } else {
                     Log::info('Custom templateDirectory is not found.');
                     throw new InvalidArgumentException(
