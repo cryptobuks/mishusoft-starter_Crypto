@@ -211,12 +211,10 @@ class Runtime
      * @throws InvalidDatabaseException
      * @throws RuntimeException
      * @throws AddressNotFoundException
-     * @throws \JsonException
      * @throws ErrorException
      * @throws InvalidArgumentException
      * @throws HttpResponseException
      * @throws PermissionRequiredException
-     * @throws JsonException
      */
     public static function abort(int $status, string|array ...$details): void
     {
