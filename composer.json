@@ -116,7 +116,6 @@
     "ext-openssl": "*",
     "ext-yaml": "*",
     "ext-zend-opcache": "*",
-    "ext-json": "*",
     "ext-zip": "*",
     "ext-dom": "*",
     "ext-curl": "*",
