@@ -10,7 +10,7 @@ namespace Mishusoft\Utility;
 //add csv to json
 //add csv to object
 
-// support: Services_JSON (http://pear.php.net/pepr/pepr-proposal-show.php?id=198)
+// support: IMPLEMENT_JSON (http://pear.php.net/pepr/pepr-proposal-show.php?id=198)
 
 use Exception;
 
@@ -63,20 +63,19 @@ class Implement
     }
 
 
-
     /**
      * decodes a JSON string into appropriate variable
      *
-     * @param string $str    JSON-formatted string
-     *
-     * @return   mixed   number, boolean, string, array, or object
+     * @param string $str JSON-formatted string
+     * @param int $type
+     * @return   \stdClass|string|array|bool|float|null   number, boolean, string, array, or object
      *                   corresponding to given JSON input string.
-     *                   See argument 1 to Services_JSON() above for object-output behavior.
+     *                   See argument 1 to IMPLEMENT_JSON() above for object-output behavior.
      *                   Note that decode() always returns strings
      *                   in ASCII or UTF-8 format!
      * @access   public
      */
-    public static function decode(string $str, int $type = IMPLEMENT_JSON_IN_OBJ): mixed
+    public static function decode(string $str, int $type = IMPLEMENT_JSON_IN_OBJ): \stdClass|string|array|bool|null|float
     {
         $str = self::tidyContent($str);
 
@@ -204,18 +203,18 @@ class Implement
                     // array, or object notation
 
                     if ($str[0] === '[') {
-                        $stk = array(SERVICES_JSON_IN_ARR);
+                        $stk = array(IMPLEMENT_JSON_IN_ARR);
                         $arr = array();
                     } else {
-                        $stk = array(SERVICES_JSON_IN_OBJ);
-                        if ($type & SERVICES_JSON_LOOSE_TYPE) {
+                        $stk = array(IMPLEMENT_JSON_IN_OBJ);
+                        if ($type & IMPLEMENT_JSON_LOOSE_TYPE) {
                             $obj = array();
                         } else {
                             $obj = new \stdClass();
                         }
                     }
 
-                    $stk[] = array('what' => SERVICES_JSON_SLICE,
+                    $stk[] = array('what' => IMPLEMENT_JSON_SLICE,
                         'where' => 0,
                         'delim' => false);
 
@@ -223,7 +222,7 @@ class Implement
                     $chrs = self::tidyContent($chrs);
 
                     if ($chrs === '') {
-                        if (reset($stk) === SERVICES_JSON_IN_ARR) {
+                        if (reset($stk) === IMPLEMENT_JSON_IN_ARR) {
                             return $arr;
                         }
 
@@ -238,17 +237,17 @@ class Implement
                         $top = end($stk);
                         $substr_chrs_c_2 = Inflect::substr8($chrs, $c, 2);
 
-                        if (($c === $strlen_chrs) || (($chrs[$c] === ',') && ($top['what'] === SERVICES_JSON_SLICE))) {
+                        if (($c === $strlen_chrs) || (($chrs[$c] === ',') && ($top['what'] === IMPLEMENT_JSON_SLICE))) {
                             // found a comma that is not inside a string, array, etc.,
                             // OR we've reached the end of the character list
                             $slice = Inflect::substr8($chrs, $top['where'], ($c - $top['where']));
-                            $stk[] = array('what' => SERVICES_JSON_SLICE, 'where' => ($c + 1), 'delim' => false);
+                            $stk[] = array('what' => IMPLEMENT_JSON_SLICE, 'where' => ($c + 1), 'delim' => false);
                             //print("Found split at {$c}: ".$this->substr8($chrs, $top['where'], (1 + $c - $top['where']))."\n");
 
-                            if (reset($stk) === SERVICES_JSON_IN_ARR) {
+                            if (reset($stk) === IMPLEMENT_JSON_IN_ARR) {
                                 // we are in an array, so just push an element onto the stack
                                 $arr[] = self::decode($slice);
-                            } elseif (reset($stk) === SERVICES_JSON_IN_OBJ) {
+                            } elseif (reset($stk) === IMPLEMENT_JSON_IN_OBJ) {
                                 // we are in an object, so figure
                                 // out the property name and set an
                                 // element in an associative array,
@@ -259,7 +258,7 @@ class Implement
                                     // "name":value pair
                                     $key = self::decode($parts[1]);
                                     $val = self::decode(trim(substr($slice, strlen($parts[0])), ", \t\n\r\0\x0B"));
-                                    if ($type & SERVICES_JSON_LOOSE_TYPE) {
+                                    if ($type & IMPLEMENT_JSON_LOOSE_TYPE) {
                                         $obj[$key] = $val;
                                     } else {
                                         $obj->$key = $val;
@@ -269,19 +268,20 @@ class Implement
                                     $key = $parts[1];
                                     $val = self::decode(trim(substr($slice, strlen($parts[0])), ", \t\n\r\0\x0B"));
 
-                                    if ($type & SERVICES_JSON_LOOSE_TYPE) {
+                                    if ($type & IMPLEMENT_JSON_LOOSE_TYPE) {
                                         $obj[$key] = $val;
                                     } else {
                                         $obj->$key = $val;
                                     }
                                 }
                             }
-                        } elseif ((($chrs[$c] === '"') || ($chrs[$c] === "'")) && ($top['what'] !== SERVICES_JSON_IN_STR)) {
+                        } elseif ((($chrs[$c] === '"') || ($chrs[$c] === "'"))
+                            && ($top['what'] !== IMPLEMENT_JSON_IN_STR)) {
                             // found a quote, and we are not inside a string
-                            $stk[] = array('what' => SERVICES_JSON_IN_STR, 'where' => $c, 'delim' => $chrs[$c]);
+                            $stk[] = array('what' => IMPLEMENT_JSON_IN_STR, 'where' => $c, 'delim' => $chrs[$c]);
                         //print("Found start of string at {$c}\n");
                         } elseif (($chrs[$c] === $top['delim']) &&
-                            ($top['what'] === SERVICES_JSON_IN_STR) &&
+                            ($top['what'] === IMPLEMENT_JSON_IN_STR) &&
                             ((Inflect::strlen8(Inflect::substr8($chrs, 0, $c)) - Inflect::strlen8(rtrim(Inflect::substr8($chrs, 0, $c), '\\'))) % 2 !== 1)) {
                             // found a quote, we're in a string, and it's not escaped
                             // we know that it's not escaped becase there is _not_ an
@@ -289,30 +289,30 @@ class Implement
                             array_pop($stk);
                         //print("Found end of string at {$c}: ".$this->substr8($chrs, $top['where'], (1 + 1 + $c - $top['where']))."\n");
                         } elseif (($chrs[$c] === '[') &&
-                            in_array($top['what'], array(SERVICES_JSON_SLICE, SERVICES_JSON_IN_ARR, SERVICES_JSON_IN_OBJ), true)) {
+                            in_array($top['what'], array(IMPLEMENT_JSON_SLICE, IMPLEMENT_JSON_IN_ARR, IMPLEMENT_JSON_IN_OBJ), true)) {
                             // found a left-bracket, and we are in an array, object, or slice
-                            $stk[] = array('what' => SERVICES_JSON_IN_ARR, 'where' => $c, 'delim' => false);
+                            $stk[] = array('what' => IMPLEMENT_JSON_IN_ARR, 'where' => $c, 'delim' => false);
                         //print("Found start of array at {$c}\n");
-                        } elseif (($chrs[$c] === ']') && ($top['what'] === SERVICES_JSON_IN_ARR)) {
+                        } elseif (($chrs[$c] === ']') && ($top['what'] === IMPLEMENT_JSON_IN_ARR)) {
                             // found a right-bracket, and we're in an array
                             array_pop($stk);
                         //print("Found end of array at {$c}: ".$this->substr8($chrs, $top['where'], (1 + $c - $top['where']))."\n");
                         } elseif (($chrs[$c] === '{') &&
-                            in_array($top['what'], array(SERVICES_JSON_SLICE, SERVICES_JSON_IN_ARR, SERVICES_JSON_IN_OBJ), true)) {
+                            in_array($top['what'], array(IMPLEMENT_JSON_SLICE, IMPLEMENT_JSON_IN_ARR, IMPLEMENT_JSON_IN_OBJ), true)) {
                             // found a left-brace, and we are in an array, object, or slice
-                            $stk[] = array('what' => SERVICES_JSON_IN_OBJ, 'where' => $c, 'delim' => false);
+                            $stk[] = array('what' => IMPLEMENT_JSON_IN_OBJ, 'where' => $c, 'delim' => false);
                         //print("Found start of object at {$c}\n");
-                        } elseif (($chrs[$c] === '}') && ($top['what'] === SERVICES_JSON_IN_OBJ)) {
+                        } elseif (($chrs[$c] === '}') && ($top['what'] === IMPLEMENT_JSON_IN_OBJ)) {
                             // found a right-brace, and we're in an object
                             array_pop($stk);
                         //print("Found end of object at {$c}: ".$this->substr8($chrs, $top['where'], (1 + $c - $top['where']))."\n");
                         } elseif (($substr_chrs_c_2 === '/*') &&
-                            in_array($top['what'], array(SERVICES_JSON_SLICE, SERVICES_JSON_IN_ARR, SERVICES_JSON_IN_OBJ), true)) {
+                            in_array($top['what'], array(IMPLEMENT_JSON_SLICE, IMPLEMENT_JSON_IN_ARR, IMPLEMENT_JSON_IN_OBJ), true)) {
                             // found a comment start, and we are in an array, object, or slice
-                            $stk[] = array('what' => SERVICES_JSON_IN_CMT, 'where' => $c, 'delim' => false);
+                            $stk[] = array('what' => IMPLEMENT_JSON_IN_CMT, 'where' => $c, 'delim' => false);
                             $c++;
                         //print("Found start of comment at {$c}\n");
-                        } elseif (($substr_chrs_c_2 === '*/') && ($top['what'] === SERVICES_JSON_IN_CMT)) {
+                        } elseif (($substr_chrs_c_2 === '*/') && ($top['what'] === IMPLEMENT_JSON_IN_CMT)) {
                             // found a comment end, and we're in one now
                             array_pop($stk);
                             $c++;
@@ -325,11 +325,11 @@ class Implement
                         }
                     }
 
-                    if (reset($stk) === SERVICES_JSON_IN_ARR) {
+                    if (reset($stk) === IMPLEMENT_JSON_IN_ARR) {
                         return $arr;
                     }
 
-                    if (reset($stk) === SERVICES_JSON_IN_OBJ) {
+                    if (reset($stk) === IMPLEMENT_JSON_IN_OBJ) {
                         return $obj;
                     }
                 }
