@@ -630,5 +630,9 @@ class Implement
 
 
     //start of make csv to array
+    public static function csv(string $filename)
+    {
+        return file($filename);
+    }
 
 }
