@@ -195,7 +195,6 @@ class Implement
                                 $utf8 .= Inflect::substr8($chars, $c, 6);
                                 $c += 5;
                                 break;
-
                         }
                     }
 
@@ -632,7 +631,10 @@ class Implement
     //start of make csv to array
     public static function csv(string $filename)
     {
-        return file($filename);
+        $csv = array_map('str_getcsv', file($filename));
+        array_walk($csv, static function (&$a) use ($csv) {
+            $a = array_combine($csv[0], $a);
+        });
+        return $csv;
     }
-
 }
