@@ -11,7 +11,6 @@ use Mishusoft\Storage\FileSystem\Yaml\Exception\RuntimeException;
 use Mishusoft\System\Memory;
 use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\Implement;
-use Mishusoft\Utility\JSON;
 
 class Classic extends MPM
 {
@@ -52,11 +51,7 @@ class Classic extends MPM
     /**
      * @return string
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws \JsonException
      */
     public static function defaultPackage(): string
     {
@@ -69,11 +64,7 @@ class Classic extends MPM
      * @param string $package
      * @return string
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\RuntimeException
-     * @throws PermissionRequiredException
-     * @throws \JsonException
      */
     public static function validDefaultPackage(string $package): string
     {
@@ -83,11 +74,8 @@ class Classic extends MPM
     /**
      * @return string
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws \JsonException
+     * @throws Exceptions\RuntimeException\NotFoundException
      */
     public static function defaultModule(): string
     {
@@ -99,11 +87,7 @@ class Classic extends MPM
      * @param string $package
      * @return string
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws \JsonException
      */
     public static function propertiesFile(string $package = ''): string
     {
@@ -116,11 +100,7 @@ class Classic extends MPM
      * @param string $package
      * @return string
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\RuntimeException
-     * @throws PermissionRequiredException
-     * @throws \JsonException
      */
     public static function modulesPath(string $package = ''): string
     {
@@ -138,11 +118,7 @@ class Classic extends MPM
      * @param string $package
      * @return string
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\RuntimeException
-     * @throws PermissionRequiredException
-     * @throws \JsonException
      */
     public static function appDatabasesPath(string $package = ''): string
     {
@@ -159,11 +135,7 @@ class Classic extends MPM
      * @param string $package
      * @return string
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\RuntimeException
-     * @throws PermissionRequiredException
-     * @throws \JsonException
      */
     public static function resourcesPath(string $package = ''): string
     {
@@ -177,17 +149,12 @@ class Classic extends MPM
     }//end resourcesPath()
 
 
-
     /**
      * @param string $moduleName
      * @param string $controllerName
      * @return string
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws \JsonException
      */
     public static function templatesHtmlResourcesRoot(string $moduleName, string $controllerName): string
     {
@@ -208,11 +175,7 @@ class Classic extends MPM
     /**
      * @return string
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws \JsonException
      */
     public static function templatesJSResourcesRootLocal(): string
     {
@@ -224,11 +187,8 @@ class Classic extends MPM
      * @param string $module
      * @return string
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws \JsonException
+     * @throws Exceptions\RuntimeException\NotFoundException
      */
     public static function moduleRootController(string $module): string
     {
@@ -259,11 +219,8 @@ class Classic extends MPM
      * @param string $module
      * @return string
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws \JsonException
+     * @throws Exceptions\RuntimeException\NotFoundException
      */
     public static function runtimeRootController(string $controller, string $module = ''): string
     {
@@ -324,11 +281,9 @@ class Classic extends MPM
 
     /**
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
      * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws \JsonException
      */
     public static function load(): void
     {
@@ -386,11 +341,9 @@ class Classic extends MPM
      *
      * @return void
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
      * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws \JsonException
      */
     public static function moduleMonitor(): void
     {
@@ -433,11 +386,9 @@ class Classic extends MPM
      * @param array $filter
      * @return mixed
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
      * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws \JsonException
      */
     public static function modulesAll(string $packageName, array $filter = []): mixed
     {
@@ -514,11 +465,8 @@ class Classic extends MPM
      * @param array $filter
      * @return mixed
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws \JsonException
      */
     public static function packagesAll(array $filter = []): mixed
     {
@@ -581,7 +529,6 @@ class Classic extends MPM
      *
      * @param string $newPackage
      * @param boolean $setDefault
-     * @throws Exceptions\JsonException
      * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
      */
@@ -890,11 +837,9 @@ class Classic extends MPM
      * @param string $package
      * @return string
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
      * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws \JsonException
      */
     public static function getProperty(string $property, string $package = ''): string
     {
