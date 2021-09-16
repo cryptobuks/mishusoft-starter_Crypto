@@ -3,7 +3,7 @@
 
 namespace Mishusoft;
 
-use Mishusoft\Utility\ArrayCollection;
+use Mishusoft\Utility\Implement;
 
 class Http extends Http\Errors
 {
@@ -22,7 +22,7 @@ class Http extends Http\Errors
         }
 
         if ($format === 'object') {
-            return ArrayCollection::arrayToObject(self::BUILT_IN_HTTP_ERRORS_RECORDS);
+            return Implement::arrayToObject(self::BUILT_IN_HTTP_ERRORS_RECORDS);
         }
 
         return ['container' => 'empty'];
