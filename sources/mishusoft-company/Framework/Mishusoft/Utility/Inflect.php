@@ -424,6 +424,7 @@ class Inflect
      */
     public static function substr8(string $string, int $start, ?int $length): string
     {
+        Debug::preOutput($length);
         if (is_int($length)) {
             $length = self::strlen8($string) - $start;
         }
