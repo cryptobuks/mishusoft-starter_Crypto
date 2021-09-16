@@ -3,10 +3,8 @@
 
 namespace Mishusoft\System;
 
-use JsonException;
 use Mishusoft\Base;
 use Mishusoft\Exceptions\ErrorException;
-use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Registry;
@@ -15,9 +13,7 @@ use Mishusoft\Storage\FileSystem;
 use Mishusoft\Framework;
 use Mishusoft\MPM;
 use Mishusoft\System;
-use Mishusoft\Utility\ArrayCollection;
-use Mishusoft\Utility\Debug;
-use Mishusoft\Utility\JSON;
+use Mishusoft\Utility\Implement;
 use stdClass;
 
 class Memory extends Base
@@ -33,12 +29,8 @@ class Memory extends Base
      *
      * @param Framework $framework
      * @return void
-     * @throws ErrorException
-     * @throws InvalidArgumentException
-     * @throws JsonException
      * @throws PermissionRequiredException
      * @throws RuntimeException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     public static function enable(Framework $framework): void
     {
@@ -56,12 +48,8 @@ class Memory extends Base
      * Check config file, create and store default data when not found.
      * Check validation of stored data, restore to default data when configuration data corrupted
      *
-     * @throws ErrorException
-     * @throws InvalidArgumentException
-     * @throws JsonException
      * @throws PermissionRequiredException
      * @throws RuntimeException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     private static function validation(): void
     {
@@ -248,11 +236,11 @@ class Memory extends Base
                         if (is_string($contents) === true) {
                             Log::info(sprintf('Create a data object from %s file\'s content.', $filename));
                             //$result = JSON::encodeToObject($contentsArray);
-                            $result = ArrayCollection::arrayToObject($contentsArray);
+                            $result = Implement::arrayToObject($contentsArray);
                         } else {
                             Log::info('Create a data object from default content.');
                             //$result = JSON::encodeToObject($default);
-                            $result = ArrayCollection::arrayToObject($default);
+                            $result = Implement::arrayToObject($default);
                         }
 
                         if (is_object($result) === false) {
@@ -275,7 +263,7 @@ class Memory extends Base
                     }
 
                     if (MEMORY_CACHE_DATA_UPDATE === true) {
-                        $reserved = $format === 'object' ? ArrayCollection::objectToArray($result) : $result;
+                        $reserved = $format === 'object' ? Implement::objectToArray($result) : $result;
 
                         if (!empty($reserved)) {
                             self::$data[$carrier]['default'] = $default;
@@ -314,7 +302,7 @@ class Memory extends Base
 
             if (($format === 'object')
                 && isset(self::$data[$carrier][$format])) {
-                self::$data[$carrier][$format] = ArrayCollection::arrayToObject(self::$data[$carrier][$format]);
+                self::$data[$carrier][$format] = Implement::arrayToObject(self::$data[$carrier][$format]);
             }
         }
 
