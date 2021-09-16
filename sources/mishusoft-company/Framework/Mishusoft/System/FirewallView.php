@@ -5,19 +5,13 @@ namespace Mishusoft\System;
 
 use GeoIp2\Exception\AddressNotFoundException;
 use MaxMind\Db\Reader\InvalidDatabaseException;
-use Mishusoft\Exceptions\ErrorException;
 use Mishusoft\Exceptions\HttpException\HttpResponseException;
-use Mishusoft\Exceptions\JsonException;
-use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
-use Mishusoft\Exceptions\PermissionRequiredException;
-use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Exceptions\RuntimeException\NotFoundException;
 use Mishusoft\Framework;
 use Mishusoft\Http\IP;
 use Mishusoft\Registry;
 use Mishusoft\Storage;
 use Mishusoft\Ui;
-use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\Inflect;
 use Mishusoft\Utility\Number;
 
@@ -33,9 +27,7 @@ class FirewallView extends Firewall
      * @throws AddressNotFoundException
      * @throws HttpResponseException
      * @throws InvalidDatabaseException
-     * @throws JsonException
      * @throws NotFoundException
-     * @throws \JsonException
      */
     public static function maintenance(array|string $message, int $http_response_code): void
     {
@@ -51,9 +43,7 @@ class FirewallView extends Firewall
      * @throws AddressNotFoundException
      * @throws HttpResponseException
      * @throws InvalidDatabaseException
-     * @throws JsonException
      * @throws NotFoundException
-     * @throws \JsonException
      */
     public static function debug(string $title, array|string $message, int $http_response_code = 503): void
     {
@@ -70,9 +60,7 @@ class FirewallView extends Firewall
      * @throws AddressNotFoundException
      * @throws HttpResponseException
      * @throws InvalidDatabaseException
-     * @throws JsonException
      * @throws NotFoundException
-     * @throws \JsonException
      */
     public static function runtimeFail(string $title, array|string $message, int $http_response_code = 503): void
     {
@@ -89,9 +77,7 @@ class FirewallView extends Firewall
      * @throws AddressNotFoundException
      * @throws HttpResponseException
      * @throws InvalidDatabaseException
-     * @throws JsonException
      * @throws NotFoundException
-     * @throws \JsonException
      */
     public static function protection(string $title, array|string $message, int $http_response_code): void
     {
@@ -107,9 +93,7 @@ class FirewallView extends Firewall
      * @throws AddressNotFoundException
      * @throws HttpResponseException
      * @throws InvalidDatabaseException
-     * @throws JsonException
      * @throws NotFoundException
-     * @throws \JsonException
      */
     private static function template(array|string $message, int $http_response_code): void
     {
@@ -156,9 +140,7 @@ class FirewallView extends Firewall
      * @throws AddressNotFoundException
      * @throws HttpResponseException
      * @throws InvalidDatabaseException
-     * @throws JsonException
      * @throws NotFoundException
-     * @throws \JsonException
      */
     private static function childElement(): array
     {
@@ -182,9 +164,7 @@ class FirewallView extends Firewall
      * @throws AddressNotFoundException
      * @throws HttpResponseException
      * @throws InvalidDatabaseException
-     * @throws JsonException
      * @throws NotFoundException
-     * @throws \JsonException
      */
     private static function viewContentBuilder(): array
     {
@@ -479,9 +459,7 @@ class FirewallView extends Firewall
      * @return array
      * @throws HttpResponseException
      * @throws AddressNotFoundException
-     * @throws \JsonException
      * @throws InvalidDatabaseException
-     * @throws JsonException
      */
     protected static function assignableVisitorContentBuilder(string $title): array
     {
@@ -523,9 +501,7 @@ class FirewallView extends Firewall
      * @return array
      * @throws HttpResponseException
      * @throws AddressNotFoundException
-     * @throws \JsonException
      * @throws InvalidDatabaseException
-     * @throws JsonException
      */
     private static function assignableVisitorDetails(): array
     {
