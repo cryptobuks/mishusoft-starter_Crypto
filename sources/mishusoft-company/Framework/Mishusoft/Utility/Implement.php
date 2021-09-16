@@ -10,6 +10,8 @@ namespace Mishusoft\Utility;
 //add csv to json
 //add csv to object
 
+use Exception;
+
 class Implement
 {
 
@@ -51,12 +53,19 @@ class Implement
 
     public static function toJson(mixed $content) : mixed
     {
-        return self::withLocale(function () use ($content) {
+        return self::withLocale(/**
+         * @throws Exception
+         */            function () use ($content) {
             //Debug::preOutput(Inflect::utf162utf8($json));
-            Debug::preOutput($content);
-        });
+            //Debug::preOutput($content);
+            return self::toJsonBuilder($content);
+        }
+        );
     }
 
+    /**
+     * @throws Exception
+     */
     private static function toJsonBuilder(mixed $content) : mixed
     {
         switch (gettype($content)) {
@@ -83,7 +92,6 @@ class Implement
                  * escaping with a slash or encoding to UTF-8 where necessary
                  */
                 for ($c = 0; $c < $strlen_var; ++$c) {
-
                     $ord_var_c = ord($content[$c]);
 
                     switch (true) {
@@ -138,9 +146,12 @@ class Implement
                             }
                             // characters U-00000800 - U-0000FFFF, mask 1110XXXX
                             // see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
-                            $char = pack('C*', $ord_var_c,
+                            $char = pack(
+                                'C*',
+                                $ord_var_c,
                                 @ord($content[$c + 1]),
-                                @ord($content[$c + 2]));
+                                @ord($content[$c + 2])
+                            );
                             $c += 2;
                             $utf16 = Inflect::utf82utf16($char);
                             $ascii .= sprintf('\u%04s', bin2hex($utf16));
@@ -154,10 +165,13 @@ class Implement
                             }
                             // characters U-00010000 - U-001FFFFF, mask 11110XXX
                             // see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
-                            $char = pack('C*', $ord_var_c,
+                            $char = pack(
+                                'C*',
+                                $ord_var_c,
                                 ord($content[$c + 1]),
                                 ord($content[$c + 2]),
-                                ord($content[$c + 3]));
+                                ord($content[$c + 3])
+                            );
                             $c += 3;
                             $utf16 = Inflect::utf82utf16($char);
                             $ascii .= sprintf('\u%04s', bin2hex($utf16));
@@ -171,11 +185,14 @@ class Implement
                                 $ascii .= '?';
                                 break;
                             }
-                            $char = pack('C*', $ord_var_c,
+                            $char = pack(
+                                'C*',
+                                $ord_var_c,
                                 ord($content[$c + 1]),
                                 ord($content[$c + 2]),
                                 ord($content[$c + 3]),
-                                ord($content[$c + 4]));
+                                ord($content[$c + 4])
+                            );
                             $c += 4;
                             $utf16 = Inflect::utf82utf16($char);
                             $ascii .= sprintf('\u%04s', bin2hex($utf16));
@@ -189,24 +206,27 @@ class Implement
                             }
                             // characters U-04000000 - U-7FFFFFFF, mask 1111110X
                             // see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
-                            $char = pack('C*', $ord_var_c,
+                            $char = pack(
+                                'C*',
+                                $ord_var_c,
                                 ord($content[$c + 1]),
                                 ord($content[$c + 2]),
                                 ord($content[$c + 3]),
                                 ord($content[$c + 4]),
-                                ord($content[$c + 5]));
+                                ord($content[$c + 5])
+                            );
                             $c += 5;
                             $utf16 = Inflect::utf82utf16($char);
                             $ascii .= sprintf('\u%04s', bin2hex($utf16));
                             break;
                     }
                 }
-                return  '"'.$ascii.'"';
+                return  sprintf('"%1$s"', $ascii);
 
             case 'array':
                 /*
                  * As per JSON spec if any array key is not an integer
-                 * we must treat the the whole array as an object. We
+                 * we must treat the whole array as an object. We
                  * also try to catch a sparsely populated associative
                  * array with numeric keys here because some JS engines
                  * will create an array with empty indexes up to
@@ -223,71 +243,55 @@ class Implement
                  */
 
                 // treat as a JSON object
-                if (is_array($content) && count($content) && (array_keys($content) !== range(0, sizeof($content) - 1))) {
-                    $properties = array_map(array($this, 'name_value'),
+                if (is_array($content)
+                    && count($content)
+                    && (array_keys($content) !== range(0, sizeof($content) - 1))) {
+                    $properties = array_map(
+                        array(__CLASS__, 'keyValue'),
                         array_keys($content),
-                        array_values($content));
-
-                    foreach($properties as $property) {
-                        if(Services_JSON::isError($property)) {
-                            return $property;
-                        }
-                    }
+                        array_values($content)
+                    );
 
                     return '{' . implode(',', $properties) . '}';
                 }
 
                 // treat it like a regular array
-                $elements = array_map(array($this, '_encode'), $content);
-
-                foreach($elements as $element) {
-                    if(Services_JSON::isError($element)) {
-                        return $element;
-                    }
-                }
-
-                return '[' . join(',', $elements) . ']';
+                $elements = array_map(array(__CLASS__, 'toJsonBuilder'), $content);
+                return '[' . implode(',', $elements) . ']';
 
             case 'object':
-
-                // support toJSON methods.
-                if (($this->use & SERVICES_JSON_USE_TO_JSON) && method_exists($content, 'toJSON')) {
-                    // this may end up allowing unlimited recursion
-                    // so we check the return value to make sure it's not got the same method.
-                    $recode = $var->toJSON();
-
-                    if (method_exists($recode, 'toJSON')) {
-
-                        return ($this->use & SERVICES_JSON_SUPPRESS_ERRORS)
-                            ? 'null'
-                            : new Services_JSON_Error(class_name($var).
-                                " toJSON returned an object with a toJSON method.");
-
-                    }
-
-                    return $this->_encode( $recode );
-                }
-
                 $vars = get_object_vars($content);
 
-                $properties = array_map(array($this, 'name_value'),
+                $properties = array_map(
+                    array(__CLASS__, 'keyValue'),
                     array_keys($vars),
-                    array_values($vars));
+                    array_values($vars)
+                );
 
-                foreach($properties as $property) {
-                    if(Services_JSON::isError($property)) {
-                        return $property;
-                    }
-                }
-
-                return '{' . join(',', $properties) . '}';
+                return '{' . implode(',', $properties) . '}';
 
             default:
-                return ($this->use & SERVICES_JSON_SUPPRESS_ERRORS)
-                    ? 'null'
-                    : new Services_JSON_Error(gettype($content)." can not be encoded as JSON string");
+                throw new Exception(gettype($content)." can not be encoded as JSON string");
         }
     }
+
+
+    /**
+     * array-walking function for use in generating JSON-formatted name-value pairs
+     *
+     * @param string $key
+     * @param mixed $value reference to an array element to be encoded
+     *
+     * @return   string  JSON-formatted name-value pair, like '"name":value'
+     * @throws Exception
+     * @access   private
+     */
+    public static function keyValue(string $key, mixed $value): string
+    {
+        $encoded_value = self::toJsonBuilder($value);
+        return self::toJsonBuilder($key) . ':' . $encoded_value;
+    }
+
     /**
      * @param array $array
      * @return string|array
@@ -307,8 +311,8 @@ class Implement
     {
         $result = [];
         foreach ($array as $key => $value) {
-            Debug::preOutput(gettype($value));
-            Debug::preOutput($value);
+            //Debug::preOutput(gettype($value));
+            //Debug::preOutput($value);
             //check if boolean
             if (is_bool($value)) {
                 $result[] = sprintf('"%1$s" : %2$s', $key, ($value === true) ? "true" : "false");
@@ -351,8 +355,8 @@ class Implement
     private static function map(array $array): array
     {
         return array_map(static function ($value) {
-            Debug::preOutput(gettype($value));
-            Debug::preOutput($value);
+            //Debug::preOutput(gettype($value));
+            //Debug::preOutput($value);
             if (is_int($value)) {
                 return $value;
             }
@@ -381,7 +385,7 @@ class Implement
 //        Debug::preOutput(Inflect::utf162utf8($json));
         self::withLocale(function () use ($json) {
             //Debug::preOutput(Inflect::utf162utf8($json));
-            Debug::preOutput($json);
+            //Debug::preOutput($json);
         });
 //        self::withLocale(function () use ($json) {
 //            Debug::preOutput(Inflect::utf82utf16($json));
@@ -392,7 +396,7 @@ class Implement
                 //$json = strstr($json, ['[' => ' ', ']' => ' ']);
                 $array = explode(',', strtr($json, ['[' => ' ', ']' => ' ']));
                 foreach ($array as $key => $value) {
-                   // Debug::preOutput(gettype($value));
+                    // Debug::preOutput(gettype($value));
                     if (is_string($value)) {
                         if (is_numeric((int) $value) && (int) $value !== 0) {
                             $array[$key] = (int) $value;
@@ -417,7 +421,7 @@ class Implement
                 //$json = strstr($json, ['[' => ' ', ']' => ' ']);
                 $array = explode(',', strtr($json, ['{' => ' ', '}' => ' ']));
                 foreach ($array as $key => $value) {
-                   // Debug::preOutput(gettype($value));
+                    // Debug::preOutput(gettype($value));
                     $array[trim(trim($key), '"')] = trim(trim($value), '"');
                 }
                 return $array;
