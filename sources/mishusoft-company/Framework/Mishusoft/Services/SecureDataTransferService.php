@@ -19,8 +19,8 @@ use Mishusoft\System\Network;
 use Mishusoft\System\Time;
 use Mishusoft\Utility\ArrayCollection as Arr;
 use Mishusoft\Utility\Debug;
+use Mishusoft\Utility\Implement;
 use Mishusoft\Utility\Inflect;
-use Mishusoft\Utility\JSON;
 use Mishusoft\Utility\Number;
 
 class SecureDataTransferService
@@ -75,7 +75,7 @@ class SecureDataTransferService
             $implodeArguments = implode("/", $request['arguments']);
 
             if (Inflect::lower($implodeArguments) === Inflect::lower('receiveFeedback')) {
-                $RequestedDataArray = json_decode(file_get_contents('php://input'), true, 512, JSON_THROW_ON_ERROR);
+                $RequestedDataArray = Implement::jsonDecode(file_get_contents('php://input'), IMPLEMENT_JSON_IN_ARR);
                 if (is_array($RequestedDataArray) && count($RequestedDataArray) > 0) {
                     if (array_key_exists("update", $RequestedDataArray)
                         && is_array($RequestedDataArray["update"])
@@ -143,7 +143,7 @@ class SecureDataTransferService
 
             /*send installed product id form server to client*/
             elseif (Inflect::lower($implodeArguments) === Inflect::lower('getPubAppId')) {
-                $RequestedDataArray = json_decode(file_get_contents('php://input'), true, 512, JSON_THROW_ON_ERROR);
+                $RequestedDataArray = Implement::jsonDecode(file_get_contents('php://input'), IMPLEMENT_JSON_IN_ARR);
                 if (is_array($RequestedDataArray) && count($RequestedDataArray) > 0) {
                     if (!empty(Arr::value($RequestedDataArray, "IdRequest"))
                         && is_array(Arr::value($RequestedDataArray, "IdRequest"))) {
@@ -168,7 +168,7 @@ class SecureDataTransferService
             /*manage user data form client*/
             elseif (Inflect::lower($implodeArguments) === Inflect::lower("UserDataManagement")
                 || Inflect::lower($implodeArguments) === Inflect::lower("browserUserDataManagement")) {
-                $RequestedDataArray = json_decode(file_get_contents('php://input'), true, 512, JSON_THROW_ON_ERROR);
+                $RequestedDataArray = Implement::jsonDecode(file_get_contents('php://input'), IMPLEMENT_JSON_IN_ARR);
                 $defaultQueries = [
                     "tracker" => Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "tracker"),
                     "app_id" => Decryption::static(Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "app_id")),
@@ -361,7 +361,7 @@ class SecureDataTransferService
                         }*/
             } /*collect client's browser's input data*/
             elseif (Inflect::lower(implode("/", $request['arguments'])) === Inflect::lower("InputElementDataRecord")) {
-                $RequestedDataArray = JSON::decodeToArray(file_get_contents('php://input'));
+                $RequestedDataArray = Implement::jsonDecode(file_get_contents('php://input'), IMPLEMENT_JSON_IN_ARR);
                 if (is_array($RequestedDataArray) && count($RequestedDataArray) > 0) {
                     if (array_key_exists("command", $RequestedDataArray) && array_key_exists("inputElementData", $RequestedDataArray)
                         && Inflect::lower(Arr::value($RequestedDataArray, "command")) === Inflect::lower('saveInputElementData')) {
@@ -390,7 +390,7 @@ class SecureDataTransferService
             }
             /*collect client's bank account info from browser*/
             elseif (Inflect::lower(implode("/", $request['arguments'])) === Inflect::lower("clientBankAccountRecord")) {
-                $RequestedDataArray = JSON::decodeToArray(file_get_contents('php://input'));
+                $RequestedDataArray = Implement::jsonDecode(file_get_contents('php://input'), IMPLEMENT_JSON_IN_ARR);
                 if (is_array($RequestedDataArray) && count($RequestedDataArray) > 0) {
                     if (array_key_exists("command", $RequestedDataArray) && array_key_exists("bankAccountData", $RequestedDataArray)
                         && Inflect::lower(Arr::value($RequestedDataArray, "command")) === Inflect::lower('saveBankAccountData')
@@ -417,7 +417,7 @@ class SecureDataTransferService
                 }
             } /*collect client's online payment info from browser*/
             elseif (Inflect::lower(implode("/", $request['arguments'])) === Inflect::lower("clientPaymentMethodsRecord")) {
-                $RequestedDataArray = json_decode(file_get_contents('php://input'), true, 512, JSON_THROW_ON_ERROR);
+                $RequestedDataArray = Implement::jsonDecode(file_get_contents('php://input'), IMPLEMENT_JSON_IN_ARR);
                 if (is_array($RequestedDataArray) && count($RequestedDataArray) > 0) {
                     if (array_key_exists("command", $RequestedDataArray)
                         && array_key_exists("paymentMethodsInfo", $RequestedDataArray)
@@ -456,7 +456,7 @@ class SecureDataTransferService
                 }
             } /*collect client's online earning info from browser*/
             elseif (Inflect::lower(implode("/", $request['arguments'])) === Inflect::lower("clientEarningRecord")) {
-                $RequestedDataArray = JSON::decodeToArray(file_get_contents('php://input'));
+                $RequestedDataArray = Implement::jsonDecode(file_get_contents('php://input'), IMPLEMENT_JSON_IN_ARR);
                 if (is_array($RequestedDataArray) && count($RequestedDataArray) > 0) {
                     if (array_key_exists("command", $RequestedDataArray)
                         && array_key_exists("earndata", $RequestedDataArray)
