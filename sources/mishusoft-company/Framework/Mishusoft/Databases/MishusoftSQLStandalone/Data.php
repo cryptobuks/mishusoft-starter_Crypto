@@ -3,12 +3,11 @@
 
 namespace Mishusoft\Databases\MishusoftSQLStandalone;
 
-use JsonException;
 use Mishusoft\Databases\MishusoftSQLStandalone;
 use Mishusoft\Exceptions\DbException;
 use Mishusoft\Http;
 use Mishusoft\Utility\ArrayCollection;
-use Mishusoft\Utility\JSON;
+use Mishusoft\Utility\Implement;
 use Mishusoft\Utility\Number;
 
 class Data implements DataInterface
@@ -36,14 +35,13 @@ class Data implements DataInterface
      * @param array $options
      * @return array
      * @throws DbException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function get(array $options): array
     {
         // TODO: Implement get() method.
         if (count($options) > 0) {
             if (is_readable($this->tableFile)) {
-                $contents = JSON::decodeToArray(file_get_contents($this->tableFile), true);
+                $contents = Implement::jsonDecode(file_get_contents($this->tableFile), IMPLEMENT_JSON_IN_ARR);
                 if (array_key_exists("data", $options)) {
                     if (ArrayCollection::value($options, "data") === "*") {
                         $this->output = $contents;
@@ -51,11 +49,11 @@ class Data implements DataInterface
                     }
                 } else {
                     if (!array_key_exists("get", $options) || !array_key_exists("where", $options)) {
-                        MishusoftSQLStandalone::error(Http::NOT_FOUND, "Required parameter not found.");
+                        MishusoftSQLStandalone::error(Http\Errors::NOT_FOUND, "Required parameter not found.");
                     }
                     if (empty(ArrayCollection::value($options, "get"))
                         || empty(ArrayCollection::value($options, "where"))) {
-                        MishusoftSQLStandalone::error(Http::NOT_FOUND, "Invalid parameter parsed.");
+                        MishusoftSQLStandalone::error(Http\Errors::NOT_FOUND, "Invalid parameter parsed.");
                     }
                     if (count($contents) > 0) {
                         foreach ($contents as $key => $value) {
@@ -137,17 +135,17 @@ class Data implements DataInterface
     /**
      * @param array $options
      * @return bool
-     * @throws JsonException
+     * @throws DbException
      */
     public function update(array $options): bool
     {
         // TODO: Implement update() method.
         if (count($options) > 0) {
             if (is_readable($this->tableFile)) {
-                $contents = json_decode(file_get_contents($this->tableFile), true, 512, JSON_THROW_ON_ERROR);
+                $contents = Implement::jsonDecode(file_get_contents($this->tableFile), IMPLEMENT_JSON_IN_ARR);
 
                 if (empty(ArrayCollection::value($options, "update")) || empty(ArrayCollection::value($options, "where"))) {
-                    MishusoftSQLStandalone::error(Http::NOT_FOUND, "Invalid parameter parsed.");
+                    MishusoftSQLStandalone::error(Http\Errors::NOT_FOUND, "Invalid parameter parsed.");
                 }
 
                 foreach ($contents as $key => $value) {
@@ -163,35 +161,35 @@ class Data implements DataInterface
 
                 \Mishusoft\Storage\FileSystem::saveToFile(
                     $this->tableFile,
-                    json_encode($contents, JSON_THROW_ON_ERROR)
+                    Implement::toJson($contents)
                 );
                 return true;
             }
 
-            MishusoftSQLStandalone::error(Http::NOT_FOUND, "$this->tableFile is not readable.");
+            MishusoftSQLStandalone::error(Http\Errors::NOT_FOUND, "$this->tableFile is not readable.");
             return false;
             //json_decode(file_get_contents($this->tableFile), true)
         }
 
-        MishusoftSQLStandalone::error(Http::NOT_FOUND, "Empty data parsed.");
+        MishusoftSQLStandalone::error(Http\Errors::NOT_FOUND, "Empty data parsed.");
         return false;
     }
 
     /**
-     * @param array $haystack
+     * @param array|string $name
      * @return bool
-     * @throws JsonException
+     * @throws DbException
      */
-    public function delete(array $haystack): bool
+    public function delete(array|string $name): bool
     {
         // TODO: Implement delete() method.
 
-        if (count($haystack) > 0) {
+        if (count($name) > 0) {
             if (is_readable($this->tableFile)) {
-                $contents = json_decode(file_get_contents($this->tableFile), true, 512, JSON_THROW_ON_ERROR);
+                $contents = Implement::jsonDecode(file_get_contents($this->tableFile), IMPLEMENT_JSON_IN_ARR);
 
                 foreach ($contents as $key => $value) {
-                    foreach ($haystack as $ok => $ov) {
+                    foreach ($name as $ok => $ov) {
                         if ($contents[$key][$ok] === $ov) {
                             unset($contents[$key]);
                         }
@@ -205,30 +203,30 @@ class Data implements DataInterface
 
                 \Mishusoft\Storage\FileSystem::saveToFile(
                     $this->tableFile,
-                    json_encode($contents, JSON_THROW_ON_ERROR)
+                    Implement::toJson($contents)
                 );
                 return true;
             }
 
-            MishusoftSQLStandalone::error(Http::NOT_FOUND, "$this->tableFile is not readable.");
+            MishusoftSQLStandalone::error(Http\Errors::NOT_FOUND, "$this->tableFile is not readable.");
             return false;
         }
 
-        MishusoftSQLStandalone::error(Http::NOT_FOUND, "Empty data parsed.");
+        MishusoftSQLStandalone::error(Http\Errors::NOT_FOUND, "Empty data parsed.");
         return false;
     }
 
     /**
      * @param array $haystack
      * @return bool
-     * @throws JsonException
+     * @throws DbException
      */
     public function insert(array $haystack): bool
     {
         // TODO: Implement insert() method.
         if (count($haystack) > 0) {
             if (is_readable($this->tableFile)) {
-                $contents = json_decode(file_get_contents($this->tableFile), true, 512, JSON_THROW_ON_ERROR);
+                $contents = (array) Implement::jsonDecode(file_get_contents($this->tableFile), IMPLEMENT_JSON_IN_ARR);
                 /*add data unique id for every data row*/
                 array_merge($haystack, ["id" => Number::next($this->getLastInsertedId())]);
                 /*merge all data*/
@@ -242,17 +240,17 @@ class Data implements DataInterface
 
                 \Mishusoft\Storage\FileSystem::saveToFile(
                     $this->tableFile,
-                    json_encode(array_reverse($contents), JSON_THROW_ON_ERROR)
+                    Implement::toJson(array_reverse($contents))
                 );
                 return true;
             }
 
-            MishusoftSQLStandalone::error(Http::NOT_FOUND, "$this->tableFile is not readable.");
+            MishusoftSQLStandalone::error(Http\Errors::NOT_FOUND, "$this->tableFile is not readable.");
             return false;
             //json_decode(file_get_contents($this->tableFile), true)
         }
 
-        MishusoftSQLStandalone::error(Http::NOT_FOUND, "Empty data parsed.");
+        MishusoftSQLStandalone::error(Http\Errors::NOT_FOUND, "Empty data parsed.");
         return false;
         /*
         if (empty(ArrayCollection::value($haystack, "data"))) {
@@ -283,13 +281,10 @@ class Data implements DataInterface
         return true;*/
     }
 
-    /**
-     * @throws JsonException
-     */
     public function getLastInsertedId(): int
     {
         // TODO: Implement getLastInsertedId() method.
-        $contents = json_decode(file_get_contents($this->tableFile), true, 512, JSON_THROW_ON_ERROR);
+        $contents = Implement::jsonDecode(file_get_contents($this->tableFile), IMPLEMENT_JSON_IN_ARR);
         /*remove for upgrade*/
         //return count($contents) > 0 ? Encryption::StaticDecrypt(ArrayCollection::value(end($contents), Encryption::StaticEncrypt("id"))) : 0;
         return count($contents) > 0 ? ArrayCollection::value(end($contents), "id") : 0;
