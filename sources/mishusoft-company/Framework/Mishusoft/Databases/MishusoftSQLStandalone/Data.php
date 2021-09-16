@@ -6,6 +6,7 @@ namespace Mishusoft\Databases\MishusoftSQLStandalone;
 use Mishusoft\Databases\MishusoftSQLStandalone;
 use Mishusoft\Exceptions\DbException;
 use Mishusoft\Http;
+use Mishusoft\Storage\FileSystem;
 use Mishusoft\Utility\ArrayCollection;
 use Mishusoft\Utility\Implement;
 use Mishusoft\Utility\Number;
@@ -39,84 +40,79 @@ class Data implements DataInterface
     public function get(array $options): array
     {
         // TODO: Implement get() method.
-        if (count($options) > 0) {
-            if (is_readable($this->tableFile)) {
-                $contents = Implement::jsonDecode(file_get_contents($this->tableFile), IMPLEMENT_JSON_IN_ARR);
-                if (array_key_exists("data", $options)) {
-                    if (ArrayCollection::value($options, "data") === "*") {
-                        $this->output = $contents;
-                        //$this->output = $this->DecryptData(json_decode($contents, true));
-                    }
-                } else {
-                    if (!array_key_exists("get", $options) || !array_key_exists("where", $options)) {
-                        MishusoftSQLStandalone::error(Http\Errors::NOT_FOUND, "Required parameter not found.");
-                    }
-                    if (empty(ArrayCollection::value($options, "get"))
-                        || empty(ArrayCollection::value($options, "where"))) {
-                        MishusoftSQLStandalone::error(Http\Errors::NOT_FOUND, "Invalid parameter parsed.");
-                    }
-                    if (count($contents) > 0) {
-                        foreach ($contents as $key => $value) {
-                            if (array_key_exists("fetch", $options) and $options["fetch"] === "all") {
+        if ((count($options) > 0) && is_readable($this->tableFile)) {
+            $contents = Implement::jsonDecode(file_get_contents($this->tableFile), IMPLEMENT_JSON_IN_ARR);
+            if (array_key_exists("data", $options)) {
+                if (ArrayCollection::value($options, "data") === "*") {
+                    $this->output = $contents;
+                    //$this->output = $this->DecryptData(json_decode($contents, true));
+                }
+            } else {
+                if (!array_key_exists("get", $options) || !array_key_exists("where", $options)) {
+                    MishusoftSQLStandalone::error(Http\Errors::NOT_FOUND, "Required parameter not found.");
+                }
+                if (empty(ArrayCollection::value($options, "get"))
+                    || empty(ArrayCollection::value($options, "where"))) {
+                    MishusoftSQLStandalone::error(Http\Errors::NOT_FOUND, "Invalid parameter parsed.");
+                }
+                if (count($contents) > 0) {
+                    foreach ($contents as $key => $value) {
+                        if (array_key_exists("fetch", $options) and $options["fetch"] === "all") {
+                            foreach ($options["get"] as $option) {
+                                if (ArrayCollection::value($contents[$key], $option)) {
+                                    foreach ($options["where"] as $k => $v) {
+                                        $v = is_numeric($v) ? (string)$v : $v;
+                                        if (array_key_exists($k, $contents[$key]) === true
+                                            && $contents[$key][$k] === $v) {
+                                            $this->output[] = [$option => $contents[$key][$option]];
+                                        }
+                                    }
+                                }
+                                /*if (ArrayCollection::value($data[$key], Encryption::StaticEncrypt($option))) {
+                                    foreach ($options["data"]["where"] as $k => $v) {
+                                        if (array_key_exists(Encryption::StaticEncrypt($k),$data[$key]) and $data[$key][Encryption::StaticEncrypt($k)] === Encryption::StaticEncrypt($v)) {
+                                            array_push($this->output, [$option => $data[$key][Encryption::StaticEncrypt($option)]]);
+                                        }
+                                    }
+                                }*/
+                            }
+                        } else {
+                            if (is_array($options["get"])) {
                                 foreach ($options["get"] as $option) {
                                     if (ArrayCollection::value($contents[$key], $option)) {
                                         foreach ($options["where"] as $k => $v) {
                                             $v = is_numeric($v) ? (string)$v : $v;
-                                            if (array_key_exists($k, $contents[$key]) === true && $contents[$key][$k] === $v) {
-                                                array_push($this->output, [$option => $contents[$key][$option]]);
+                                            if (array_key_exists($k, $contents[$key]) && $contents[$key][$k] === $v) {
+                                                //$this->output = array_merge($this->output, [$option => $contents[$key][$option]]);
+                                                $this->output[$option] = $contents[$key][$option];
                                             }
                                         }
                                     }
                                     /*if (ArrayCollection::value($data[$key], Encryption::StaticEncrypt($option))) {
                                         foreach ($options["data"]["where"] as $k => $v) {
                                             if (array_key_exists(Encryption::StaticEncrypt($k),$data[$key]) and $data[$key][Encryption::StaticEncrypt($k)] === Encryption::StaticEncrypt($v)) {
-                                                array_push($this->output, [$option => $data[$key][Encryption::StaticEncrypt($option)]]);
+                                                $this->output = array_merge($this->output, [$option => $data[$key][Encryption::StaticEncrypt($option)]]);
                                             }
                                         }
                                     }*/
                                 }
                             } else {
-                                if (is_array($options["get"])) {
-                                    foreach ($options["get"] as $option) {
-                                        if (ArrayCollection::value($contents[$key], $option)) {
-                                            foreach ($options["where"] as $k => $v) {
-                                                $v = is_numeric($v) ? (string)$v : $v;
-                                                if (array_key_exists($k, $contents[$key]) and $contents[$key][$k] === $v) {
-                                                    //$this->output = array_merge($this->output, [$option => $contents[$key][$option]]);
-                                                    $this->output[$option] = $contents[$key][$option];
-                                                }
-                                            }
+                                if ($options["get"] === "*") {
+                                    foreach ($options["where"] as $k => $v) {
+                                        $v = is_numeric($v) ? (string)$v : $v;
+                                        if (array_key_exists($k, $contents[$key]) && $contents[$key][$k] === $v) {
+                                            $this->output = $contents[$key];
                                         }
-                                        /*if (ArrayCollection::value($data[$key], Encryption::StaticEncrypt($option))) {
-                                            foreach ($options["data"]["where"] as $k => $v) {
-                                                if (array_key_exists(Encryption::StaticEncrypt($k),$data[$key]) and $data[$key][Encryption::StaticEncrypt($k)] === Encryption::StaticEncrypt($v)) {
-                                                    $this->output = array_merge($this->output, [$option => $data[$key][Encryption::StaticEncrypt($option)]]);
-                                                }
-                                            }
+                                        /*if (array_key_exists(Encryption::StaticEncrypt($k), $data[$key]) and $data[$key][Encryption::StaticEncrypt($k)] === Encryption::StaticEncrypt($v)) {
+                                            $this->output = $data[$key];
                                         }*/
-                                    }
-                                } else {
-                                    if ($options["get"] === "*") {
-                                        foreach ($options["where"] as $k => $v) {
-                                            $v = is_numeric($v) ? (string)$v : $v;
-                                            if (array_key_exists($k, $contents[$key]) and $contents[$key][$k] === $v) {
-                                                $this->output = $contents[$key];
-                                            }
-                                            /*if (array_key_exists(Encryption::StaticEncrypt($k), $data[$key]) and $data[$key][Encryption::StaticEncrypt($k)] === Encryption::StaticEncrypt($v)) {
-                                                $this->output = $data[$key];
-                                            }*/
-                                        }
                                     }
                                 }
                             }
                         }
                     }
                 }
-            } else {
-                /*MishusoftQL::error(Http::NOT_FOUND, "$this->tableFile is not readable.");*/
-                return $this->output;
             }
-            //json_decode(file_get_contents($this->tableFile), true)
         } else {
             /*MishusoftQL::error(Http::NOT_FOUND, "Empty data parsed.");*/
             return $this->output;
@@ -144,7 +140,8 @@ class Data implements DataInterface
             if (is_readable($this->tableFile)) {
                 $contents = Implement::jsonDecode(file_get_contents($this->tableFile), IMPLEMENT_JSON_IN_ARR);
 
-                if (empty(ArrayCollection::value($options, "update")) || empty(ArrayCollection::value($options, "where"))) {
+                if (empty(ArrayCollection::value($options, "update"))
+                    || empty(ArrayCollection::value($options, "where"))) {
                     MishusoftSQLStandalone::error(Http\Errors::NOT_FOUND, "Invalid parameter parsed.");
                 }
 
@@ -159,20 +156,15 @@ class Data implements DataInterface
                 array_multisort($contents, SORT_ASC);
                 ksort($contents, SORT_ASC);
 
-                \Mishusoft\Storage\FileSystem::saveToFile(
-                    $this->tableFile,
-                    Implement::toJson($contents)
-                );
+                FileSystem::saveToFile($this->tableFile, Implement::toJson($contents));
                 return true;
             }
 
-            MishusoftSQLStandalone::error(Http\Errors::NOT_FOUND, "$this->tableFile is not readable.");
-            return false;
+            throw new DbException("$this->tableFile is not readable.");
             //json_decode(file_get_contents($this->tableFile), true)
         }
 
-        MishusoftSQLStandalone::error(Http\Errors::NOT_FOUND, "Empty data parsed.");
-        return false;
+        throw new DbException("Empty data parsed.");
     }
 
     /**
@@ -201,7 +193,7 @@ class Data implements DataInterface
                 array_multisort($contents, SORT_ASC);
                 ksort($contents, SORT_ASC);
 
-                \Mishusoft\Storage\FileSystem::saveToFile(
+                FileSystem::saveToFile(
                     $this->tableFile,
                     Implement::toJson($contents)
                 );
@@ -238,7 +230,7 @@ class Data implements DataInterface
                 array_multisort($contents, SORT_ASC);
                 ksort($contents, SORT_ASC);
 
-                \Mishusoft\Storage\FileSystem::saveToFile(
+                FileSystem::saveToFile(
                     $this->tableFile,
                     Implement::toJson(array_reverse($contents))
                 );
@@ -286,7 +278,8 @@ class Data implements DataInterface
         // TODO: Implement getLastInsertedId() method.
         $contents = Implement::jsonDecode(file_get_contents($this->tableFile), IMPLEMENT_JSON_IN_ARR);
         /*remove for upgrade*/
-        //return count($contents) > 0 ? Encryption::StaticDecrypt(ArrayCollection::value(end($contents), Encryption::StaticEncrypt("id"))) : 0;
+        //return count($contents) > 0 ? Encryption::StaticDecrypt(ArrayCollection::value(end($contents)
+        //, Encryption::StaticEncrypt("id"))) : 0;
         return count($contents) > 0 ? ArrayCollection::value(end($contents), "id") : 0;
     }
 
