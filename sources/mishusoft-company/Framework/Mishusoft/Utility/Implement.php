@@ -190,11 +190,11 @@ class Implement
                             // characters U-04000000 - U-7FFFFFFF, mask 1111110X
                             // see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
                             $char = pack('C*', $ord_var_c,
-                                ord($content{$c + 1}),
-                                ord($content{$c + 2}),
-                                ord($content{$c + 3}),
-                                ord($content{$c + 4}),
-                                ord($content{$c + 5}));
+                                ord($content[$c + 1]),
+                                ord($content[$c + 2]),
+                                ord($content[$c + 3]),
+                                ord($content[$c + 4]),
+                                ord($content[$c + 5]));
                             $c += 5;
                             $utf16 = Inflect::utf82utf16($char);
                             $ascii .= sprintf('\u%04s', bin2hex($utf16));
