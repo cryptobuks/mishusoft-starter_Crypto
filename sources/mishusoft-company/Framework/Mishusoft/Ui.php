@@ -560,16 +560,9 @@ class Ui
     }//end setNoScriptText()
 
     /**
-     * @throws \MaxMind\Db\Reader\InvalidDatabaseException
-     * @throws Exceptions\RuntimeException
-     * @throws \GeoIp2\Exception\AddressNotFoundException
-     * @throws \JsonException
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\HttpException\HttpResponseException
+     * @param DOMNode|DOMElement $parentElementChild
+     * @param string $src
      * @throws Exceptions\RuntimeException\NotFoundException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\JsonException
      */
     public static function setDocumentLoader(DOMNode|DOMElement $parentElementChild, string $src): void
     {
@@ -595,11 +588,7 @@ class Ui
     /**
      * @param DOMElement $templateBody
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws \JsonException
      */
     public static function addDefaultSignature(DOMElement $templateBody): void
     {
@@ -627,11 +616,7 @@ class Ui
     /**
      * @return string
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws \JsonException
      */
     public static function copyRightText():string
     {
