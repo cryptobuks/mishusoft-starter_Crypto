@@ -136,11 +136,9 @@ class System extends Base
     /**
      * @param string $status
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
      * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws JsonException
      */
     private static function initializeSecurity(string $status = 'Installing'): void
     {
@@ -159,18 +157,13 @@ class System extends Base
             ],
         ];
 
-        self::verifySecurityFile(json_encode($data, JSON_THROW_ON_ERROR));
+        self::verifySecurityFile(Implement::toJson($data));
     }//end initializeSecurity()
 
 
     /**
      * @param string $data
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws JsonException
      */
     private static function verifySecurityFile(string $data): void
     {
@@ -295,11 +288,9 @@ class System extends Base
      * @param string $appSecurityFile
      * @return array
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
      * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws JsonException
      */
     private static function getProgressedSystemStatus(string $appSecurityFile): array
     {
@@ -376,24 +367,24 @@ class System extends Base
 
     /**
      * @return array
+     * @throws Exceptions\DbException
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
      * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws JsonException
+     * @throws Exceptions\RuntimeException\NotFoundException
      */
     private static function checkSystemConfiguration(): array
     {
         if (file_exists(self::getRequiresFile('CONFIG_DIR_PATH')) and file_exists(self::getRequiresFile('CONFIG_SERVER_DIR_PATH'))) {
             if (file_exists(self::getRequiresFile('CONFIG_PROPERTIES_FILE_PATH'))) {
                 $properties = file_get_contents(self::getRequiresFile('CONFIG_PROPERTIES_FILE_PATH'));
-                if ($properties != '' and is_string($properties)) {
-                    $properties = json_decode($properties, true);
+                if ($properties !== '' && is_string($properties)) {
+                    $properties = Implement::jsonDecode($properties, IMPLEMENT_JSON_IN_ARR);
 
                     if (is_array(Arr::value($properties, 'dbms')) and count(array_filter(Arr::value($properties, 'dbms'))) > 0) {
                         if (Arr::value($properties, 'default') !== '') {
-                            if (in_array(Arr::value($properties, 'default'), Arr::value($properties, 'dbms'))) {
+                            if (in_array(Arr::value($properties, 'default'), Arr::value($properties, 'dbms'), true)) {
                                 if (file_exists(self::getRequiresFile('SETUP_FILE_PATH', Arr::value($properties, 'default')))) {
                                     if (!empty(file_get_contents(self::getRequiresFile('SETUP_FILE_PATH', Arr::value($properties, 'default'))))) {
                                         // verify setup file's data exists
@@ -405,7 +396,7 @@ class System extends Base
                                         /**/
                                         /**/
 
-                                        switch (strtolower(ArrayCollection::value($properties, 'default'))) {
+                                        switch (strtolower(Arr::value($properties, 'default'))) {
                                             case 'mishusoftsql':
                                                 $configure  = Memory::Data('config', ['file' => self::getRequiresFile('SETUP_FILE_PATH', Arr::value($properties, 'default'))]);
                                                 $connection = (new MishusoftSQLStandalone($configure->db->user, $configure->db->password));
@@ -547,17 +538,20 @@ class System extends Base
                     }//end if
                 }//end if
             } else {
-                Stream::createFile(self::getRequiresFile('CONFIG_PROPERTIES_FILE_PATH'));
-                Stream::exec(self::getRequiresFile('CONFIG_PROPERTIES_FILE_PATH'));
+                FileSystem::createFile(self::getRequiresFile('CONFIG_PROPERTIES_FILE_PATH'));
+                FileSystem::exec(self::getRequiresFile('CONFIG_PROPERTIES_FILE_PATH'));
                 if (file_exists(self::getRequiresFile('CONFIG_PROPERTIES_FILE_PATH'))) {
-                    if (file_put_contents(self::getRequiresFile('CONFIG_PROPERTIES_FILE_PATH'), json_encode(self::DEFAULT_CONFIG_PROPERTIES))) {
+                    if (file_put_contents(
+                        self::getRequiresFile('CONFIG_PROPERTIES_FILE_PATH'),
+                        Implement::toJson(self::DEFAULT_CONFIG_PROPERTIES)
+                    )) {
                         return self::checkSystemConfiguration();
-                    } else {
-                        self::$event = [
-                            'type'    => 'error',
-                            'message' => 'config-properties-write-permission-denied',
-                        ];
                     }
+
+                    self::$event = [
+                        'type'    => 'error',
+                        'message' => 'config-properties-write-permission-denied',
+                    ];
                 } else {
                     self::$event = [
                         'type'    => 'error',
@@ -565,28 +559,26 @@ class System extends Base
                     ];
                 }
             }//end if
-        } else {
-            if (Stream::createDirectory(self::getRequiresFile('CONFIG_DIR_PATH'))) {
-                Stream::exec(self::getRequiresFile('CONFIG_DIR_PATH'));
-                if (Stream::createDirectory(self::getRequiresFile('CONFIG_SERVER_DIR_PATH'))) {
-                    Stream::exec(self::getRequiresFile('CONFIG_SERVER_DIR_PATH'));
-                    // change directory permission
-                }
+        } else if (FileSystem::makeDirectory(self::getRequiresFile('CONFIG_DIR_PATH'))) {
+            FileSystem::exec(self::getRequiresFile('CONFIG_DIR_PATH'));
+            if (FileSystem::makeDirectory(self::getRequiresFile('CONFIG_SERVER_DIR_PATH'))) {
+                FileSystem::exec(self::getRequiresFile('CONFIG_SERVER_DIR_PATH'));
+                // change directory permission
+            }
 
-                if (count(self::getRealDbmsList()) <= 0) {
-                    self::$event = [
-                        'type'    => 'error',
-                        'message' => 'config-file-not-exist',
-                    ];
-                } else {
-                    return self::checkSystemConfiguration();
-                }
-            } else {
+            if (count(self::getRealDbmsList()) <= 0) {
                 self::$event = [
                     'type'    => 'error',
-                    'message' => 'config-dir-create-permission-denied',
+                    'message' => 'config-file-not-exist',
                 ];
-            }//end if
+            } else {
+                return self::checkSystemConfiguration();
+            }
+        } else {
+            self::$event = [
+                'type'    => 'error',
+                'message' => 'config-dir-create-permission-denied',
+            ];
         }//end if
 
         return self::$event;
@@ -595,16 +587,26 @@ class System extends Base
 
     /**
      * @param string $current_status
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
      */
     private static function updateSecurity(string $current_status)
     {
-        $current_data = json_decode(file_get_contents(self::getRequiresFile('SECURITY_FILE_PATH')), true);
-        if (is_array($current_data) and count($current_data) > 0) {
-            if (Arr::value($current_data, 'app') and is_array(Arr::value($current_data, 'app'))) {
+        $current_data = (array) Implement::jsonDecode(
+            file_get_contents(self::getRequiresFile('SECURITY_FILE_PATH')),
+            IMPLEMENT_JSON_IN_ARR
+        );
+        if (is_array($current_data) && count($current_data) > 0) {
+            if (Arr::value($current_data, 'app') && is_array(Arr::value($current_data, 'app'))) {
                 foreach ($current_data['app'] as $key => $value) {
-                    if ($key === 'currentStatus' and $current_data['app'][$key] === 'Installing') {
+                    if ($key === 'currentStatus' && $current_data['app'][$key] === 'Installing') {
                         $current_data['app'][$key] = $current_status;
-                        Stream::saveToFile(self::getRequiresFile('SECURITY_FILE_PATH'), json_encode($current_data));
+                        FileSystem::saveToFile(
+                            self::getRequiresFile('SECURITY_FILE_PATH'),
+                            Implement::toJson($current_data)
+                        );
                     }
                 }
             }
