@@ -40,8 +40,8 @@ class Media
      */
     public static function fileInfo(string $filename): array
     {
-        if (is_array(Mime::Common) && count(Mime::Common) > 0) {
-            foreach (Mime::Common as $content) {
+        if (is_array(Media\MimeDataObject::Common) && count(Media\MimeDataObject::Common) > 0) {
+            foreach (Media\MimeDataObject::Common as $content) {
                 if ($content['extension'] === self::getExtension($filename)) {
                     return $content;
                 }
