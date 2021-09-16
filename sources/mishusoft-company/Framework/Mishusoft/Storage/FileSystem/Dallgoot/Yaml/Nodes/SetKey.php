@@ -3,6 +3,7 @@
 namespace Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Nodes;
 
 use Mishusoft\Storage\FileSystem\Dallgoot\Yaml\NodeFactory;
+use Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Nodes\Abstract\NodeGeneric;
 use Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Regex;
 
 /**
@@ -33,8 +34,10 @@ class SetKey extends NodeGeneric
     {
         $built = is_null($this->value) ? null : $this->value->build();
         $stringKey = is_string($built) && Regex::isProperlyQuoted($built) ? trim($built, '\'" '): $built;
-        $key = json_encode($stringKey, JSON_PARTIAL_OUTPUT_ON_ERROR|JSON_UNESCAPED_SLASHES);
-        if (empty($key)) throw new \Exception("Cant serialize complex key: ".var_export($this->value, true));
+        $key = json_encode($stringKey, JSON_THROW_ON_ERROR | JSON_PARTIAL_OUTPUT_ON_ERROR | JSON_UNESCAPED_SLASHES);
+        if (empty($key)) {
+            throw new \Exception("Cant serialize complex key: ".var_export($this->value, true));
+        }
         $parent->{trim($key, '\'" ')} = null;
         return null;
     }
