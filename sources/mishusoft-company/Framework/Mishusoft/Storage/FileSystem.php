@@ -7,6 +7,7 @@ use JsonException;
 use Mishusoft\Exceptions\ErrorException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\System\Log;
+use Mishusoft\Utility\Implement;
 use Mishusoft\Utility\Number;
 
 class FileSystem
@@ -399,11 +400,7 @@ class FileSystem
     public static function write(string $filename, array $contents, int|null $length = null): bool|int
     {
         $createdFile = fopen($filename, 'wb+');
-        $isWritten = fwrite(
-            $createdFile,
-            json_encode($contents, JSON_THROW_ON_ERROR),
-            $length
-        );
+        $isWritten = fwrite($createdFile, Implement::toJson($contents), $length);
         fclose($createdFile);
 
         return $isWritten;
