@@ -361,7 +361,7 @@ class Inflect
      *
      * Normally should be handled by mb_convert_encoding, but
      * provides a slower PHP-only method for installations
-     * that lack the multibye string extension.
+     * that lack the multibyte string extension.
      *
      * @param   string $utf8   UTF-8 character
      * @return   string  UTF-16 character
