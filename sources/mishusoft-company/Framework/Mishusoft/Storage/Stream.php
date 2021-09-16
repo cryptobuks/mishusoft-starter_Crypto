@@ -2,14 +2,13 @@
 
 namespace Mishusoft\Storage;
 
-use JsonException;
 use Mishusoft\Framework;
+use Mishusoft\Utility\Implement;
 
 class Stream
 {
     /**
      * @param string $filename
-     * @throws JsonException
      * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
      * @throws \Mishusoft\Exceptions\PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
@@ -52,7 +51,6 @@ class Stream
 
     /**
      * @param array $data
-     * @throws JsonException
      * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
      * @throws \Mishusoft\Exceptions\PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
@@ -61,12 +59,11 @@ class Stream
     {
         header('Content-type:application/json;charset=UTF-8');
         if (empty($data) === false) {
-            echo json_encode($data, JSON_THROW_ON_ERROR);
+            echo Implement::toJson($data);
         } else {
             http_response_code(400);
-            echo json_encode(
-                ['type' => 'error', 'message' => 'JSONOutput::ERROR: Input message error'],
-                JSON_THROW_ON_ERROR
+            echo Implement::toJson(
+                ['type' => 'error', 'message' => 'JSONOutput::ERROR: Input message error']
             );
         }
         Framework::terminate();
@@ -75,7 +72,6 @@ class Stream
 
     /**
      * @param string $data
-     * @throws JsonException
      * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
      * @throws \Mishusoft\Exceptions\PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
