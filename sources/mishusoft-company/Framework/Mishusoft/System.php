@@ -15,6 +15,7 @@ use Mishusoft\System\Network;
 use Mishusoft\System\Memory;
 use Mishusoft\System\Time;
 use Mishusoft\Utility\ArrayCollection as Arr;
+use Mishusoft\Utility\Implement;
 use Mishusoft\Utility\Inflect;
 use Mishusoft\Utility\JSON;
 use RuntimeException;
@@ -797,16 +798,13 @@ class System extends Base
     /**
      * @return string
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws JsonException
+     * @throws Exceptions\RuntimeException\NotFoundException
      */
     public static function getInstalledURL(): string
     {
         if (file_exists(self::getRequiresFile('SECURITY_FILE_PATH'))) {
-            return JSON::decodeToObject(Storage\FileSystem::read(self::getRequiresFile('SECURITY_FILE_PATH')))
+            return Implement::jsonDecode(Storage\FileSystem::read(self::getRequiresFile('SECURITY_FILE_PATH')))
                 ->app->installedLocation;
         }
 
@@ -1815,11 +1813,12 @@ class System extends Base
 
     /**
      * @return string|null
+     * @throws Exceptions\RuntimeException
      */
     public static function getDefaultDb(): ?string
     {
-        $configure = json_decode(file_get_contents(self::getRequiresFile('CONFIG_PROPERTIES_FILE_PATH')));
-        if (!empty($configure) and is_object($configure) and !empty($configure->default)) {
+        $configure = Implement::jsonDecode(file_get_contents(self::getRequiresFile('CONFIG_PROPERTIES_FILE_PATH')));
+        if (!empty($configure) && is_object($configure) && !empty($configure->default)) {
             return $configure->default;
         }
 
@@ -1831,16 +1830,14 @@ class System extends Base
      * @param string $name
      * @param boolean $default
      * @return boolean
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\JsonException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws JsonException
      */
     private static function updateConfigProperties(string $name, bool $default = false): bool
     {
-        $current_data = JSON::decodeToArray(file_get_contents(self::getRequiresFile('CONFIG_PROPERTIES_FILE_PATH')));
+        $current_data = (array) Implement::jsonDecode(
+            file_get_contents(self::getRequiresFile('CONFIG_PROPERTIES_FILE_PATH')),
+            IMPLEMENT_JSON_IN_ARR
+        );
         if (is_array($current_data) and count($current_data) > 0) {
             if (array_key_exists('dbms', $current_data)) {
                 if (is_array($current_data['dbms'])) {
@@ -1865,7 +1862,10 @@ class System extends Base
                     && !file_exists(self::getRequiresFile('CONFIG_SERVER_DIR_PATH') . DS . $name)) {
                     FileSystem::makeDirectory(self::getRequiresFile('CONFIG_SERVER_DIR_PATH') . DS . $name);
                     FileSystem::exec(self::getRequiresFile('CONFIG_SERVER_DIR_PATH').DS.$name);
-                    FileSystem::saveToFile(self::getRequiresFile('CONFIG_PROPERTIES_FILE_PATH'), JSON::encodeToString($current_data));
+                    FileSystem::saveToFile(
+                        self::getRequiresFile('CONFIG_PROPERTIES_FILE_PATH'),
+                        Implement::toJson($current_data)
+                    );
                 }
             }//end if
 
