@@ -10,6 +10,7 @@ use Mishusoft\Storage\FileSystem;
 use Mishusoft\Storage\FileSystem\Yaml\Exception\RuntimeException;
 use Mishusoft\System\Memory;
 use Mishusoft\Utility\Debug;
+use Mishusoft\Utility\Implement;
 use Mishusoft\Utility\JSON;
 
 class Classic extends MPM
@@ -607,8 +608,9 @@ class Classic extends MPM
                         $configFile = Storage::applicationPackagesPath() . $newPackage . '.json';
                         if (file_exists($configFile) === true) {
                             // Importing package property.
-                            $properties = JSON::decodeToArray(
-                                file_get_contents(Storage::applicationPackagesPath() . $newPackage . '.json')
+                            $properties = Implement::jsonDecode(
+                                file_get_contents(Storage::applicationPackagesPath() . $newPackage . '.json'),
+                                IMPLEMENT_JSON_IN_ARR
                             );
 
                             if (array_key_exists('name', $properties) === true) {
@@ -898,7 +900,10 @@ class Classic extends MPM
     {
         $package = empty($package) ? Memory::Data('mpm')->packages->default : $package;
         if (!empty(Memory::Data('mpm')->packages->default)) {
-            $properties = JSON::decodeToArray(Storage\FileSystem::read(self::propertiesFile($package)));
+            $properties = Implement::jsonDecode(
+                Storage\FileSystem::read(self::propertiesFile($package)),
+                IMPLEMENT_JSON_IN_ARR
+            );
             if (is_array($properties) && count($properties) > 0) {
                 if (array_key_exists($property, $properties)) {
                     return $properties[$property];
@@ -921,7 +926,7 @@ class Classic extends MPM
     public static function importMysqlDB(
         object $db,
         string $filename,
-        string $db_prefix = DbPREFIX,
+        string $db_prefix = DB_PREFIX,
         string $pattern = '/\{DB_PREFIX\}/'
     ): void {
         // check $filename
