@@ -11,6 +11,7 @@ use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Http\IP;
 use Mishusoft\Registry;
 use Mishusoft\Storage;
+use Mishusoft\Utility\Implement;
 use Mishusoft\Utility\Inflect;
 
 class Log
@@ -184,7 +185,6 @@ class Log
      * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\RuntimeException
      * @throws Exceptions\PermissionRequiredException
-     * @throws JsonException
      */
     public static function terminate(): void
     {
@@ -203,7 +203,6 @@ class Log
      * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws JsonException
      */
     private static function writer(): void
     {
@@ -216,7 +215,7 @@ class Log
                 } else {
                     throw new RuntimeException(
                         'Unexpected flag value (\'' . $log['flag'] . '\') on '
-                        . json_encode($log, JSON_THROW_ON_ERROR)
+                        . Implement::toJson($log)
                     );
                 }
 
