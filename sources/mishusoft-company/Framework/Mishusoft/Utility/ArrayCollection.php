@@ -6,45 +6,6 @@ namespace Mishusoft\Utility;
 class ArrayCollection
 {
     /**
-     * @param array $array
-     * @param string $classname
-     * @return object
-     */
-    public static function arrayToObject(array $array, string $classname = 'stdClass'): object
-    {
-        $object = new $classname;
-        foreach ($array as $key => $value) {
-            if (is_array($value)) {
-                //convert the array to an object
-                $value = self::arrayToObject($value, $classname);
-            }
-            //Add the value to the object
-            $object->{$key} = $value;
-        }
-        return $object;
-    }
-
-    /**
-     * @param object $object
-     * @return array
-     */
-    public static function objectToArray(object $object): array
-    {
-        $reflectionClass = new \ReflectionClass(get_class($object));
-        $array = [];
-        foreach ($reflectionClass->getProperties() as $property) {
-            $property->setAccessible(true);
-            if (is_object($property->getValue($object))) {
-                $array[$property->getName()] = self::objectToArray($property->getValue($object));
-            } else {
-                $array[$property->getName()] = $property->getValue($object);
-                $property->setAccessible(false);
-            }
-        }
-        return $array;
-    }
-
-    /**
      * @param array $haystack
      * @param string $key
      * @return string|array|int
