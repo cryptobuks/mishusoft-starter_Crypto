@@ -114,37 +114,37 @@ class Implement
                     $lengthChars = Inflect::strlen8($chars);
 
                     for ($c = 0; $c < $lengthChars; ++$c) {
-                        $substr_chrs_c_2 = Inflect::substr8($chars, $c, 2);
+                        $substr_chars_c_2 = Inflect::substr8($chars, $c, 2);
                         $ord_chrs_c = ord($chars[$c]);
 
                         switch (true) {
-                            case $substr_chrs_c_2 === '\b':
+                            case $substr_chars_c_2 === '\b':
                                 $utf8 .= chr(0x08);
                                 ++$c;
                                 break;
-                            case $substr_chrs_c_2 === '\t':
+                            case $substr_chars_c_2 === '\t':
                                 $utf8 .= chr(0x09);
                                 ++$c;
                                 break;
-                            case $substr_chrs_c_2 === '\n':
+                            case $substr_chars_c_2 === '\n':
                                 $utf8 .= chr(0x0A);
                                 ++$c;
                                 break;
-                            case $substr_chrs_c_2 === '\f':
+                            case $substr_chars_c_2 === '\f':
                                 $utf8 .= chr(0x0C);
                                 ++$c;
                                 break;
-                            case $substr_chrs_c_2 === '\r':
+                            case $substr_chars_c_2 === '\r':
                                 $utf8 .= chr(0x0D);
                                 ++$c;
                                 break;
 
-                            case $substr_chrs_c_2 === '\\"':
-                            case $substr_chrs_c_2 === '\\\'':
-                            case $substr_chrs_c_2 === '\\\\':
-                            case $substr_chrs_c_2 === '\\/':
-                                if (($delim === '"' && $substr_chrs_c_2 !== '\\\'') ||
-                                    ($delim === "'" && $substr_chrs_c_2 !== '\\"')) {
+                            case $substr_chars_c_2 === '\\"':
+                            case $substr_chars_c_2 === '\\\'':
+                            case $substr_chars_c_2 === '\\\\':
+                            case $substr_chars_c_2 === '\\/':
+                                if (($delim === '"' && $substr_chars_c_2 !== '\\\'') ||
+                                    ($delim === "'" && $substr_chars_c_2 !== '\\"')) {
                                     $utf8 .= $chars[++$c];
                                 }
                                 break;
@@ -238,13 +238,13 @@ class Implement
                     //print("\nparsing {$chars}\n");
 
                     $lengthChars = Inflect::strLen8($chars);
+                    $implementArray = [IMPLEMENT_JSON_SLICE, IMPLEMENT_JSON_IN_ARR, IMPLEMENT_JSON_IN_OBJ];
 
                     for ($c = 0; $c <= $lengthChars; ++$c) {
                         $top = end($stk);
-                        $substr_chrs_c_2 = Inflect::substr8($chars, $c, 2);
+                        $substr_chars_c_2 = Inflect::substr8($chars, $c, 2);
 
-                        if (($c === $lengthChars) || (($chars[$c] === ',')
-                                && ($top['what'] === IMPLEMENT_JSON_SLICE))) {
+                        if (($c === $lengthChars) || (($chars[$c] === ',') && ($top['what'] === 1))) {
                             // found a comma that is not inside a string, array, etc.,
                             // OR we've reached the end of the character list
                             $slice = Inflect::substr8($chars, $top['where'], ($c - $top['where']));
@@ -288,7 +288,7 @@ class Implement
                             && ($top['what'] !== IMPLEMENT_JSON_IN_STR)) {
                             // found a quote, and we are not inside a string
                             $stk[] = ['what' => IMPLEMENT_JSON_IN_STR, 'where' => $c, 'delim' => $chars[$c]];
-                        //print("Found start of string at {$c}\n");
+                            //print("Found start of string at {$c}\n");
                         } elseif (($chars[$c] === $top['delim']) &&
                             ($top['what'] === IMPLEMENT_JSON_IN_STR) &&
                             ((Inflect::strLen8(Inflect::substr8($chars, 0, $c)) - Inflect::strLen8(rtrim(Inflect::substr8($chars, 0, $c), '\\'))) % 2 !== 1)) {
@@ -296,47 +296,35 @@ class Implement
                             // we know that it's not escaped because there is _not_ an
                             // odd number of backslashes at the end of the string so far
                             array_pop($stk);
-                        //print("Found end of string at {$c}: "
-                        //.$this->substr8($chars, $top['where'],
-                        // (1 + 1 + $c - $top['where']))."\n");
-                        } elseif (($chars[$c] === '[') && in_array(
-                            $top['what'],
-                            [IMPLEMENT_JSON_SLICE, IMPLEMENT_JSON_IN_ARR, IMPLEMENT_JSON_IN_OBJ],
-                            true
-                        )) {
+                            //print("Found end of string at {$c}: "
+                            //.$this->substr8($chars, $top['where'],
+                            // (1 + 1 + $c - $top['where']))."\n");
+                        } elseif (($chars[$c] === '[') && in_array($top['what'], $implementArray, true)) {
                             // found a left-bracket, and we are in an array, object, or slice
                             $stk[] = ['what' => IMPLEMENT_JSON_IN_ARR, 'where' => $c, 'delim' => false];
-                        //print("Found start of array at {$c}\n");
+                            //print("Found start of array at {$c}\n");
                         } elseif (($chars[$c] === ']') && ($top['what'] === IMPLEMENT_JSON_IN_ARR)) {
                             // found a right-bracket, and we're in an array
                             array_pop($stk);
-                        //print("Found end of array at {$c}: "
-                        //.$this->substr8($chars, $top['where'],
-                        // (1 + $c - $top['where']))."\n");
-                        } elseif (($chars[$c] === '{') && in_array(
-                            $top['what'],
-                            [IMPLEMENT_JSON_SLICE, IMPLEMENT_JSON_IN_ARR, IMPLEMENT_JSON_IN_OBJ],
-                            true
-                        )) {
+                            //print("Found end of array at {$c}: "
+                            //.$this->substr8($chars, $top['where'],
+                            // (1 + $c - $top['where']))."\n");
+                        } elseif (($chars[$c] === '{') && in_array($top['what'], $implementArray, true)) {
                             // found a left-brace, and we are in an array, object, or slice
                             $stk[] = ['what' => IMPLEMENT_JSON_IN_OBJ, 'where' => $c, 'delim' => false];
-                        //print("Found start of object at {$c}\n");
+                            //print("Found start of object at {$c}\n");
                         } elseif (($chars[$c] === '}') && ($top['what'] === IMPLEMENT_JSON_IN_OBJ)) {
                             // found a right-brace, and we're in an object
                             array_pop($stk);
-                        //print("Found end of object at {$c}: "
-                        //.$this->substr8($chars, $top['where'],
-                        // (1 + $c - $top['where']))."\n");
-                        } elseif (($substr_chrs_c_2 === '/*') && in_array(
-                            $top['what'],
-                            [IMPLEMENT_JSON_SLICE, IMPLEMENT_JSON_IN_ARR, IMPLEMENT_JSON_IN_OBJ],
-                            true
-                        )) {
+                            //print("Found end of object at {$c}: "
+                            //.$this->substr8($chars, $top['where'],
+                            // (1 + $c - $top['where']))."\n");
+                        } elseif (($substr_chars_c_2 === '/*') && in_array($top['what'], $implementArray, true)) {
                             // found a comment start, and we are in an array, object, or slice
                             $stk[] = ['what' => IMPLEMENT_JSON_IN_CMT, 'where' => $c, 'delim' => false];
                             $c++;
-                        //print("Found start of comment at {$c}\n");
-                        } elseif (($substr_chrs_c_2 === '*/') && ($top['what'] === IMPLEMENT_JSON_IN_CMT)) {
+                            //print("Found start of comment at {$c}\n");
+                        } elseif (($substr_chars_c_2 === '*/') && ($top['what'] === IMPLEMENT_JSON_IN_CMT)) {
                             // found a comment end, and we're in one now
                             array_pop($stk);
                             $c++;
