@@ -88,42 +88,42 @@ class Framework extends Base
         //Debug::preOutput(Implement::arrayToJson($array));
         Debug::preOutput(Implement::toJson($array));
         Debug::preOutput(json_decode(json_encode($array)));
-        Debug::preOutput(Implement::decode(Implement::toJson($array)));
+        Debug::preOutput(Implement::jsonDecode(Implement::toJson($array)));
         Debug::preOutput('');
 
         Debug::preOutput(json_encode($array2));
         //Debug::preOutput(Implement::arrayToJson($array2));
         Debug::preOutput(Implement::toJson($array2));
         Debug::preOutput(json_decode(json_encode($array2)));
-        Debug::preOutput(Implement::decode(Implement::toJson($array2)));
+        Debug::preOutput(Implement::jsonDecode(Implement::toJson($array2)));
         Debug::preOutput('');
 
         Debug::preOutput(json_encode($array3));
         //Debug::preOutput(Implement::arrayToJson($array3));
         Debug::preOutput(Implement::toJson($array3));
         Debug::preOutput(json_decode(json_encode($array3)));
-        Debug::preOutput(Implement::decode(Implement::toJson($array3)));
+        Debug::preOutput(Implement::jsonDecode(Implement::toJson($array3)));
         Debug::preOutput('');
 
         Debug::preOutput(json_encode($array4));
         //Debug::preOutput(Implement::arrayToJson($array4));
         Debug::preOutput(Implement::toJson($array4));
         Debug::preOutput(json_decode(json_encode($array4)));
-        Debug::preOutput(Implement::decode(Implement::toJson($array4)));
+        Debug::preOutput(Implement::jsonDecode(Implement::toJson($array4)));
         Debug::preOutput('');
 
         Debug::preOutput(json_encode($array5));
        // Debug::preOutput(Implement::arrayToJson($array5));
         Debug::preOutput(Implement::toJson($array5));
         Debug::preOutput(json_decode(json_encode($array5)));
-        Debug::preOutput(Implement::decode(Implement::toJson($array5)));
+        Debug::preOutput(Implement::jsonDecode(Implement::toJson($array5)));
         Debug::preOutput('');
 
         Debug::preOutput(json_encode($array6));
         //Debug::preOutput(Implement::arrayToJson($array6));
         Debug::preOutput(Implement::toJson($array6));
         Debug::preOutput(json_decode(json_encode($array6)));
-        Debug::preOutput(Implement::decode(Implement::toJson($array6)));
+        Debug::preOutput(Implement::jsonDecode(Implement::toJson($array6)));
         Debug::preOutput('');
 
         Debug::preOutput(FileSystem\Dallgoot\Yaml\Yaml::parseFile(self::installFile()));
