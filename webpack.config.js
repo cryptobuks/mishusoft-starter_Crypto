@@ -89,7 +89,7 @@ const commonConfig = {
                 to: path.join(__dirname, './storages/app/media/')
             },]
         }),
-        new ImageminPlugin()
+        new ImageminPlugin({ test: /\.(jpe?g|png|gif|svg)$/i })
     ],
 }
 
