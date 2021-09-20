@@ -55,7 +55,14 @@ class Framework extends Base
     public static function init(Registry $registry, Closure $closure): static
     {
 
-        Debug::preOutput(Implement::csv(RUNTIME_ROOT_PATH . 'tests/data/sample-01.csv'));
+
+        Debug::preOutput(file_get_contents(RUNTIME_ROOT_PATH . 'tests/data/freshman_kgs.csv'));
+        Debug::preOutput(explode("\r\n", file_get_contents(RUNTIME_ROOT_PATH . 'tests/data/freshman_kgs.csv')));
+        Debug::preOutput(file(RUNTIME_ROOT_PATH . 'tests/data/freshman_kgs.csv', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES));
+        Debug::preOutput(file_get_contents(RUNTIME_ROOT_PATH . 'tests/data/sample-03.csv'));
+        Debug::preOutput(explode("\r\n", file_get_contents(RUNTIME_ROOT_PATH . 'tests/data/sample-03.csv')));
+        Debug::preOutput(file(RUNTIME_ROOT_PATH . 'tests/data/sample-03.csv', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES));
+        Debug::preOutput(Implement::csv(RUNTIME_ROOT_PATH . 'tests/data/sample-03.csv'));
         Debug::preOutput(FileSystem\Dallgoot\Yaml\Yaml::parseFile(self::installFile()));
         $instance = new static();
 
