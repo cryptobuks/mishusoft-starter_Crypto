@@ -338,6 +338,7 @@ class FileSystem
                 $closure($file);
             }
         }
+        Log::info(sprintf('End checking if %s file exists.', $file));
     }
 
     public static function permission(string $pathname): bool|int
