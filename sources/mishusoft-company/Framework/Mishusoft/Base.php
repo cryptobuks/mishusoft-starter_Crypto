@@ -112,7 +112,7 @@ abstract class Base extends Singleton
      * Get current directory name from full path
      *
      * @param string $fullPath
-     * @param string $extension
+     * @param string $rootPath
      * @return string
      */
     public static function getDirectoryName(string $fullPath, string $rootPath = RUNTIME_ROOT_PATH): string
@@ -282,6 +282,20 @@ abstract class Base extends Singleton
     }
 
 
+    /**
+     * @return string
+     */
+    public static function frameworkStoragesPath(): string
+    {
+        return sprintf(
+            '%1$s%2$s%3$s',
+            self::storagesPath(),
+            'framework',
+            DS
+        );
+    }
+
+
 
     /**
      * @param bool $isRemote
@@ -395,20 +409,6 @@ abstract class Base extends Singleton
         );
     }
 
-
-    /**
-     * @return string
-     */
-    public static function frameworkStoragesPath(): string
-    {
-        return sprintf(
-            '%1$s%2$s%3$s',
-            self::storagesPath(),
-            'framework',
-            DS
-        );
-    }
-
     /**
      * @return string
      */
@@ -416,8 +416,21 @@ abstract class Base extends Singleton
     {
         return sprintf(
             '%1$s%2$s%3$s',
-            self::frameworkStoragesPath(),
+            self::frameworkDataPath(),
             'caches',
+            DS
+        );
+    }
+
+    /**
+     * @return string
+     */
+    public static function logsStoragesPath(): string
+    {
+        return sprintf(
+            '%1$s%2$s%3$s',
+            self::frameworkDataPath(),
+            'logs',
             DS
         );
     }
@@ -429,7 +442,7 @@ abstract class Base extends Singleton
     {
         return sprintf(
             '%1$s%2$s%3$s',
-            self::frameworkStoragesPath(),
+            self::frameworkDataPath(),
             'data-drive',
             DS
         );
@@ -438,13 +451,29 @@ abstract class Base extends Singleton
     /**
      * @return string
      */
-    public static function configDataDriveStoragesPath(string $directive = ''): string
+    public static function configDataDriveStoragesPath(string $directive): string
     {
         return sprintf(
             '%1$s%2$s%4$s%3$s',
-            self::frameworkStoragesPath(),
+            self::frameworkDataPath(),
             'configs',
-            $directive . DS ?? '',
+            $directive,
+            DS
+        );
+    }
+
+
+    /**
+     * @param string $directive
+     * @return string
+     */
+    protected static function logDirective(string $directive):string
+    {
+        return sprintf(
+            '%1$s%2$s%4$s%3$s%4$s',
+            self::frameworkDataPath(),
+            'logs',
+            $directive,
             DS
         );
     }
@@ -456,21 +485,8 @@ abstract class Base extends Singleton
     {
         return sprintf(
             '%1$s%2$s%3$s',
-            self::frameworkStoragesPath(),
+            self::frameworkDataPath(),
             'sessions',
-            DS
-        );
-    }
-
-    /**
-     * @return string
-     */
-    public static function logsPath(): string
-    {
-        return sprintf(
-            '%1$s%2$s%3$s',
-            self::storagesPath(),
-            'logs',
             DS
         );
     }
@@ -520,6 +536,23 @@ abstract class Base extends Singleton
             '%1$s%2$s%5$s%3$s%5$s%4$s',
             self::frameworkDataPath(),
             'data-drive',
+            $directive,
+            $filename,
+            DS
+        );
+    }
+
+    /**
+     * @param string $directive
+     * @param string $filename
+     * @return string
+     */
+    protected static function logDataFile(string $directive, string $filename):string
+    {
+        return sprintf(
+            '%1$s%2$s%5$s%3$s%5$s%4$s',
+            self::frameworkDataPath(),
+            'logs',
             $directive,
             $filename,
             DS
