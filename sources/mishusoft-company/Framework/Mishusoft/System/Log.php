@@ -230,6 +230,7 @@ class Log
                         $resource = fopen($logFile, 'wb+');
                     }
 
+                    //writable component
                     $ip         = IP::get();
                     $useragent  = Registry::Browser()->getUserAgent();
                     $mode       = Registry::Browser()->getRequestMethod();
@@ -238,46 +239,22 @@ class Log
                     $protocol   = Registry::Browser()->getURLProtocol();
                     $contents   = file_get_contents($logFile);
 
+                    //log format
+                    $smart      = "[%s]\t%s\t%s\t\"%s\t%s\t%s\"\t%s\r";
+                    $shortcut   = "[%s]\t%s\t\"%s\t%s\t%s\"\t%s\r";
+                    $full       = "[%s]\t%s\t%s\t%s\t%s %s\t\"%s\t%s\t%s\"\t%s\r";
+
                     if (strtolower($log['style']) === LOG_STYLE_SMART) {
                         // [2021-05-29 04:34 PM]    192.168.0.1 "localhost  GET /"  Filter request of client.
-                        $contents .= sprintf(
-                            "[%s]\t%s\t%s\t\"%s\t%s\t%s\"\t%s\r",
-                            $log['time'],
-                            $ip,
-                            $log['type'],
-                            $server,
-                            $mode,
-                            $url,
-                            $log['message']
-                        );
+                        $contents .= sprintf($smart, $log['time'], $ip, $log['type'], $server, $mode, $url, $log['message']);
                     } elseif (strtolower($log['style']) === LOG_STYLE_SHORTCUT) {
                         // [2021-05-29 04:34 PM]    "localhost GET /"   Filter request of client.
-                        $contents .= sprintf(
-                            "[%s]\t%s\t\"%s\t%s\t%s\"\t%s\r",
-                            $log['time'],
-                            $log['type'],
-                            $server,
-                            $mode,
-                            $url,
-                            $log['message']
-                        );
+                        $contents .= sprintf($shortcut, $log['time'], $log['type'], $server, $mode, $url, $log['message']);
                     } elseif (strtolower($log['style']) === LOG_STYLE_FULL) {
                         // [2021-05-29 05:44AM] 127.0.0.1 Mozilla/5.0 (X11; Linux x86_64; rv:88.0) Gecko/20100101
                         // Firefox/88.0<tab>http 200<tab>"localhost<tab>GET<tab>/"
                         // <tab>Description: Widget's content not readable or found.
-                        $contents .= sprintf(
-                            "[%s]\t%s\t%s\t%s\t%s %s\t\"%s\t%s\t%s\"\t%s\r",
-                            $log['time'],
-                            $log['type'],
-                            $ip,
-                            $useragent,
-                            $protocol,
-                            $log['response'],
-                            $server,
-                            $mode,
-                            $url,
-                            $log['message']
-                        );
+                        $contents .= sprintf($full, $log['time'], $log['type'], $ip, $useragent, $protocol, $log['response'], $server, $mode, $url, $log['message']);
                     } else {
                         throw new InvalidArgumentException('Invalid log style provided.');
                     }//end if
@@ -285,8 +262,6 @@ class Log
                     if (is_writable($logFile) === true) {
                         fwrite($resource, $contents);
                         fclose($resource);
-
-                        //exec('chmod -R 777 '.$logFile);
                     } else {
                         throw new PermissionRequiredException(
                             'Permission denied. Unable to write or read ' . $logFile
@@ -301,6 +276,11 @@ class Log
         }//end if
     }//end write()
 
+    private static function makeTidyMessage():string
+    {
+        
+    }
+
 
     /**
      * Get absolute path of log file by logger flag.
@@ -313,7 +293,7 @@ class Log
         // [root/] date > type > flag > host.ext
         return sprintf(
             '%1$s%2$s%6$s%3$s%6$s%4$s%6$s%5$s.log',
-            Storage::logsPath(),
+            Storage::logsStoragesPath(),
             date('Ymd'),
             $type,
             $flag,
