@@ -232,10 +232,6 @@ class Implement
                         return $obj;
                     }
 
-                    //Debug::preOutput($str);
-                    //Debug::preOutput(Inflect::substr8($str, 1, -1));
-                    //print("\nparsing {$chars}\n");
-
                     $lengthChars = Inflect::strLen8($chars);
                     $implementArray = [IMPLEMENT_JSON_SLICE, IMPLEMENT_JSON_IN_ARR, IMPLEMENT_JSON_IN_OBJ];
 
