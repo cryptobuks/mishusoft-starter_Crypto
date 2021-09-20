@@ -56,14 +56,14 @@ class Framework extends Base
     {
 
 
-        Debug::preOutput(file_get_contents(RUNTIME_ROOT_PATH . 'tests/data/freshman_kgs.csv'));
-        Debug::preOutput(explode("\r\n", file_get_contents(RUNTIME_ROOT_PATH . 'tests/data/freshman_kgs.csv')));
-        Debug::preOutput(file(RUNTIME_ROOT_PATH . 'tests/data/freshman_kgs.csv', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES));
-        Debug::preOutput(file_get_contents(RUNTIME_ROOT_PATH . 'tests/data/sample-03.csv'));
-        Debug::preOutput(explode("\r\n", file_get_contents(RUNTIME_ROOT_PATH . 'tests/data/sample-03.csv')));
-        Debug::preOutput(file(RUNTIME_ROOT_PATH . 'tests/data/sample-03.csv', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES));
-        Debug::preOutput(Implement::csv(RUNTIME_ROOT_PATH . 'tests/data/sample-03.csv'));
-        Debug::preOutput(FileSystem\Dallgoot\Yaml\Yaml::parseFile(self::installFile()));
+//        Debug::preOutput(file_get_contents(RUNTIME_ROOT_PATH . 'tests/data/freshman_kgs.csv'));
+//        Debug::preOutput(explode("\r\n", file_get_contents(RUNTIME_ROOT_PATH . 'tests/data/freshman_kgs.csv')));
+//        Debug::preOutput(file(RUNTIME_ROOT_PATH . 'tests/data/freshman_kgs.csv', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES));
+//        Debug::preOutput(file_get_contents(RUNTIME_ROOT_PATH . 'tests/data/sample-03.csv'));
+//        Debug::preOutput(explode("\r\n", file_get_contents(RUNTIME_ROOT_PATH . 'tests/data/sample-03.csv')));
+//        Debug::preOutput(file(RUNTIME_ROOT_PATH . 'tests/data/sample-03.csv', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES));
+//        Debug::preOutput(Implement::csv(RUNTIME_ROOT_PATH . 'tests/data/sample-03.csv'));
+//        Debug::preOutput(FileSystem\Dallgoot\Yaml\Yaml::parseFile(self::installFile()));
         $instance = new static();
 
         //configure and install framework
@@ -78,8 +78,7 @@ class Framework extends Base
         $closure($instance);
 
         //Check framework file system
-        if (file_exists($instance->listerFile()) === false
-            || file_get_contents($instance->listerFile()) === '') {
+        if (file_exists($instance->listerFile()) === false || file_get_contents($instance->listerFile()) === '') {
             $instance->checkFileSystem();
         }
 
