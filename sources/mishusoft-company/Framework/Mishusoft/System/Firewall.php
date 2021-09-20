@@ -3,7 +3,6 @@
 namespace Mishusoft\System;
 
 use GeoIp2\Exception\AddressNotFoundException;
-use JsonException;
 use MaxMind\Db\Reader\InvalidDatabaseException;
 use Mishusoft\Base;
 use Mishusoft\Exceptions\HttpException\HttpResponseException;
@@ -16,6 +15,7 @@ use Mishusoft\Registry;
 use Mishusoft\Storage;
 use Mishusoft\Storage\FileSystem;
 use Mishusoft\Utility\Character;
+use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\Inflect;
 use RuntimeException;
 
@@ -150,7 +150,6 @@ class Firewall extends Base
     /**
      * Firewall constructor.
      *
-     * @throws InvalidArgumentException
      * @throws PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
@@ -158,6 +157,8 @@ class Firewall extends Base
         private Framework $framework
     ) {
         parent::__construct();
+        //Debug::preOutput($this->framework);
+        //Debug::preOutput($this->framework::defaultConfiguration());
 
         Log::info(sprintf('Load Firewall configuration from %s.json.', self::configFile()));
         $this->loadConfig();
@@ -167,10 +168,8 @@ class Firewall extends Base
     {
         //data-drive/Firewall/logs/
         return sprintf(
-            '%1$s%2$s%5$s%3$s%5$s%4$s%5$s',
-            Storage::configDataDriveStoragesPath(),
-            'Firewall',
-            'logs',
+            '%1$s%2%s%3$s',
+            self::logDirective('Firewall'),
             Time::todayDateOnly(),
             DS
         );
@@ -178,9 +177,9 @@ class Firewall extends Base
 
     private static function logFile(string $underTakenAction): string
     {
-        //data-drive/Firewall/logs/blocked.yml
-        //data-drive/Firewall/logs/banned.yml
-        //data-drive/Firewall/logs/granted.yml
+        //logs/Firewall/date/blocked.yml
+        //logs/Firewall/date/banned.yml
+        //logs/Firewall/date/granted.yml
         return self::dFile(sprintf(
             '%1$s%2$s',
             self::logDirectory(),
@@ -211,7 +210,6 @@ class Firewall extends Base
      * Firewall config loader.
      *
      * @return void
-     * @throws InvalidArgumentException
      * @throws PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
@@ -220,29 +218,15 @@ class Firewall extends Base
         /*
          * Check firewall configuration file existent.
          */
-
-        Log::info(sprintf('Start checking if %s file exists.', self::configFile()));
-        if (file_exists(self::configFile()) === false) {
-            Log::error(sprintf('The file %s is not exists.', self::configFile()));
-            Log::notice(sprintf('Write new file %s.', self::configFile()));
-            FileSystem::makeDirectory(dirname(self::configFile()));
-            FileSystem\Yaml::emitFile(self::configFile(), []);
-        }
-
-        Log::info(sprintf('End checking if %s file exists.', self::configFile()));
+        FileSystem::makeDirectory(dirname(self::configFile()));
+        FileSystem::check(self::configFile(), function ($filename) {
+            FileSystem\Yaml::emitFile($filename, []);
+        });
 
         /*
-         * Check firewall logs file existent.
+         * Create log directory if not exists.
          */
-
-        Log::info(sprintf('Start checking if %s directory exists.', self::logDirectory()));
-        if (file_exists(self::logDirectory()) === false) {
-            Log::error(sprintf('The directory %s is not exists.', self::logDirectory()));
-            Log::notice(sprintf('Make new directory %s', self::logDirectory()));
-            FileSystem::makeDirectory(self::logDirectory());
-        }
-
-        Log::info(sprintf('End checking if %s directory exists.', self::logDirectory()));
+        FileSystem::makeDirectory(self::logDirectory());
 
         /*
          * Check read permission of configuration file.
@@ -352,12 +336,9 @@ class Firewall extends Base
      *
      * @return bool
      * @throws HttpResponseException
-     * @throws InvalidArgumentException
-     * @throws JsonException Throw exception when json error occurred.
      * @throws PermissionRequiredException
      * @throws AddressNotFoundException
      * @throws InvalidDatabaseException
-     * @throws \Mishusoft\Exceptions\JsonException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public function isRequestAccepted(): bool
@@ -368,7 +349,6 @@ class Firewall extends Base
             if (in_array(INSTALLED_HOST_NAME, $installedHost, true) === true) {
                 //start new world-class test
                 //print_r($installedHost, false);
-
                 Log::info('Filter request of client.');
                 $this->filterHttpRequest();
 
@@ -678,11 +658,9 @@ class Firewall extends Base
     /**
      * @return bool
      * @throws HttpResponseException
-     * @throws JsonException
      * @throws PermissionRequiredException
      * @throws AddressNotFoundException
      * @throws InvalidDatabaseException
-     * @throws \Mishusoft\Exceptions\JsonException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function makeAction(): bool
@@ -707,8 +685,6 @@ class Firewall extends Base
      * Filter http request of client.
      *
      * @return void
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function filterHttpRequest(): void
@@ -727,7 +703,7 @@ class Firewall extends Base
 
         Log::info('End checking whether the accept keyword is in the $this->config variable.');
 
-        Log::info('Start checking whether REQUEST_METHOD keyword in $_SERVER variable.');
+        Log::info('Start checking whether request method keyword in $_SERVER variable.');
         Log::info('Search accept keyword in allowed request method variable.');
         $requestMethodAll = $this->config['accept']['request-method'];
         if (in_array(Inflect::lower($_SERVER['REQUEST_METHOD']), $requestMethodAll, true) === false) {
@@ -751,8 +727,6 @@ class Firewall extends Base
      * @param array $config Array format of Firewall configuration.
      *
      * @return void
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function createConfiguration(array $config): void
@@ -770,11 +744,9 @@ class Firewall extends Base
 
     /**
      * @throws HttpResponseException
-     * @throws JsonException
      * @throws PermissionRequiredException
      * @throws AddressNotFoundException
      * @throws InvalidDatabaseException
-     * @throws \Mishusoft\Exceptions\JsonException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function storeFirewallLogs(): void
@@ -985,7 +957,7 @@ class Firewall extends Base
         } elseif (Registry::Browser()->getRequestMethod() === 'GET') {
             if (array_key_exists('caption', $message)) {
                 FirewallView::debug($message['caption'], $message, Http::errorCode($title));
-                //Ui\EmbeddedView::debug($message['caption'], $message, Http::errorCode($title));
+            //Ui\EmbeddedView::debug($message['caption'], $message, Http::errorCode($title));
             } else {
                 FirewallView::runtimeFail($title, $message, Http::errorCode($title));
                 //Ui\EmbeddedView::runtimeFail($title, $message, Http::errorCode($title));
@@ -1014,10 +986,8 @@ class Firewall extends Base
     /**
      * @return array[]
      * @throws HttpResponseException
-     * @throws JsonException
      * @throws AddressNotFoundException
      * @throws InvalidDatabaseException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     private function getNewVisitor(): array
     {
@@ -1039,10 +1009,8 @@ class Firewall extends Base
     /**
      * @return array[]
      * @throws HttpResponseException
-     * @throws JsonException
      * @throws AddressNotFoundException
      * @throws InvalidDatabaseException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     private function getNewVisitorTimeBased(): array
     {
@@ -1053,10 +1021,8 @@ class Firewall extends Base
     /**
      * @return \array[][]
      * @throws HttpResponseException
-     * @throws JsonException
      * @throws AddressNotFoundException
      * @throws InvalidDatabaseException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     private function getNewVisitorBrowserBased(): array
     {
@@ -1067,10 +1033,8 @@ class Firewall extends Base
     /**
      * @return \array[][][]
      * @throws HttpResponseException
-     * @throws JsonException
      * @throws AddressNotFoundException
      * @throws InvalidDatabaseException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     private function getNewVisitorIPBased(): array
     {
@@ -1264,18 +1228,14 @@ class Firewall extends Base
     /**
      * @throws HttpResponseException
      * @throws InvalidArgumentException
-     * @throws JsonException
      * @throws PermissionRequiredException
      * @throws AddressNotFoundException
      * @throws InvalidDatabaseException
-     * @throws \Mishusoft\Exceptions\ErrorException
-     * @throws \Mishusoft\Exceptions\JsonException
      * @throws \Mishusoft\Exceptions\RuntimeException
      * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
      */
     public function defenceActivate(): void
     {
-
         if ($this->actionStatus === 'banned' || $this->actionStatus === 'blocked') {
             if (array_key_exists('ui', Registry::Browser()->details())) {
                 //GranParadiso/3.0.8 is text browser
@@ -1312,12 +1272,9 @@ class Firewall extends Base
      * @param string $viewMode
      * @throws HttpResponseException
      * @throws InvalidArgumentException
-     * @throws JsonException
      * @throws PermissionRequiredException
      * @throws AddressNotFoundException
      * @throws InvalidDatabaseException
-     * @throws \Mishusoft\Exceptions\ErrorException
-     * @throws \Mishusoft\Exceptions\JsonException
      * @throws \Mishusoft\Exceptions\RuntimeException
      * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
      */
@@ -1400,7 +1357,7 @@ class Firewall extends Base
                 //.Framework::COMPANY_NAME.'. All Right Reserved.'.LB;
                 echo '© ' . Time::currentYearNumber() . ' ' . Framework::COMPANY_NAME . '.' . LB;
             } else {
-               // Ui\EmbeddedView::protection(
+                // Ui\EmbeddedView::protection(
                 FirewallView::protection(
                     "$title denied",
                     [
