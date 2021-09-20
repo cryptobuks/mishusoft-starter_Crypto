@@ -244,14 +244,14 @@ class Log
                     $shortcut   = "[%s]\t%s\t\"%s\t%s\t%s\"\t%s\r";
                     $full       = "[%s]\t%s\t%s\t%s\t%s %s\t\"%s\t%s\t%s\"\t%s\r";
 
-                    if (strtolower($log['style']) === LOG_STYLE_SMART) {
-                        // [2021-05-29 04:34 PM]    192.168.0.1 "localhost  GET /"  Filter request of client.
-                        $contents .= sprintf($smart, $log['time'], $ip, $log['type'], $server, $mode, $url, $log['message']);
-                    } elseif (strtolower($log['style']) === LOG_STYLE_SHORTCUT) {
-                        // [2021-05-29 04:34 PM]    "localhost GET /"   Filter request of client.
+                    if (strtolower($log['style']) === LOG_STYLE_SHORTCUT) {
+                        // [2021-05-29 04:34 PM] WARN    "localhost GET /"   Filter request of client.
                         $contents .= sprintf($shortcut, $log['time'], $log['type'], $server, $mode, $url, $log['message']);
+                    } elseif (strtolower($log['style']) === LOG_STYLE_SMART) {
+                        // [2021-05-29 04:34 PM] WARN    192.168.0.1 "localhost  GET /"  Filter request of client.
+                        $contents .= sprintf($smart, $log['time'], $log['type'], $ip, $server, $mode, $url, $log['message']);
                     } elseif (strtolower($log['style']) === LOG_STYLE_FULL) {
-                        // [2021-05-29 05:44AM] 127.0.0.1 Mozilla/5.0 (X11; Linux x86_64; rv:88.0) Gecko/20100101
+                        // [2021-05-29 05:44AM] WARN 127.0.0.1 Mozilla/5.0 (X11; Linux x86_64; rv:88.0) Gecko/20100101
                         // Firefox/88.0<tab>http 200<tab>"localhost<tab>GET<tab>/"
                         // <tab>Description: Widget's content not readable or found.
                         $contents .= sprintf($full, $log['time'], $log['type'], $ip, $useragent, $protocol, $log['response'], $server, $mode, $url, $log['message']);
@@ -276,7 +276,7 @@ class Log
         }//end if
     }//end write()
 
-    private static function makeTidyMessage():string
+    private static function makeTidyMessage(array $log):string
     {
         
     }
