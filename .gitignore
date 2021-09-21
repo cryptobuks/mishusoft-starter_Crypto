@@ -24,6 +24,7 @@
 /storages/databases
 /storages/framework/caches/
 /storages/framework/configs/
+/storages/framework/logs/
 /storages/framework/sessions/
 #/storages/framework/views/
 /storages/framework/*.php
