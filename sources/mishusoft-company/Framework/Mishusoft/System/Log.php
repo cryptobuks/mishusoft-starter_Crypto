@@ -231,33 +231,22 @@ class Log
                     }
 
                     //writable component
-                    $ip         = IP::get();
-                    $useragent  = Registry::Browser()->getUserAgent();
-                    $mode       = Registry::Browser()->getRequestMethod();
-                    $server     = Registry::Browser()->getURLHostname();
-                    $url        = Registry::Browser()->getURLPath();
-                    $protocol   = Registry::Browser()->getURLProtocol();
+                    $log['host'] = [
+                        'name'   => Registry::Browser()->getURLHostname()
+                    ];
+                    $log['client'] = [
+                        'ip' => IP::get(),
+                        'browser' =>  [
+                            'pc'    => Registry::Browser()->getURLProtocol(),
+                            'ua'    => Registry::Browser()->getUserAgent(),
+                            'rm'    => Registry::Browser()->getRequestMethod(),
+                            'path'  => Registry::Browser()->getURLPath(),
+                        ],
+                    ];
+
                     $contents   = file_get_contents($logFile);
 
-                    //log format
-                    $smart      = "[%s]\t%s\t%s\t\"%s\t%s\t%s\"\t%s\r";
-                    $shortcut   = "[%s]\t%s\t\"%s\t%s\t%s\"\t%s\r";
-                    $full       = "[%s]\t%s\t%s\t%s\t%s %s\t\"%s\t%s\t%s\"\t%s\r";
-
-                    if (strtolower($log['style']) === LOG_STYLE_SHORTCUT) {
-                        // [2021-05-29 04:34 PM] WARN    "localhost GET /"   Filter request of client.
-                        $contents .= sprintf($shortcut, $log['time'], $log['type'], $server, $mode, $url, $log['message']);
-                    } elseif (strtolower($log['style']) === LOG_STYLE_SMART) {
-                        // [2021-05-29 04:34 PM] WARN    192.168.0.1 "localhost  GET /"  Filter request of client.
-                        $contents .= sprintf($smart, $log['time'], $log['type'], $ip, $server, $mode, $url, $log['message']);
-                    } elseif (strtolower($log['style']) === LOG_STYLE_FULL) {
-                        // [2021-05-29 05:44AM] WARN 127.0.0.1 Mozilla/5.0 (X11; Linux x86_64; rv:88.0) Gecko/20100101
-                        // Firefox/88.0<tab>http 200<tab>"localhost<tab>GET<tab>/"
-                        // <tab>Description: Widget's content not readable or found.
-                        $contents .= sprintf($full, $log['time'], $log['type'], $ip, $useragent, $protocol, $log['response'], $server, $mode, $url, $log['message']);
-                    } else {
-                        throw new InvalidArgumentException('Invalid log style provided.');
-                    }//end if
+                    $contents .= self::makeTidyMessage($log);
 
                     if (is_writable($logFile) === true) {
                         fwrite($resource, $contents);
@@ -276,9 +265,39 @@ class Log
         }//end if
     }//end write()
 
+    /**
+     * @throws InvalidArgumentException
+     */
     private static function makeTidyMessage(array $log):string
     {
-        
+        $infix = '';
+
+        if (strtolower($log['style']) === LOG_STYLE_SHORTCUT) {
+            $infix .= sprintf("\t%s", $log['host']['name']);
+        } elseif (strtolower($log['style']) === LOG_STYLE_SMART) {
+            $infix .= sprintf("\t%s\t%s", $log['client']['ip'], $log['host']['name']);
+        } elseif (strtolower($log['style']) === LOG_STYLE_FULL) {
+            $infix .= sprintf(
+                "\t%s\t%s\t%s\t%s\t%s",
+                $log['client']['ip'],
+                $log['client']['browser']['ua'],
+                $log['client']['browser']['pc'],
+                $log['response'],
+                $log['host']['name']
+            );
+        } else {
+            throw new InvalidArgumentException('Invalid log style provided.');
+        }//end if
+
+        return sprintf(
+            "[%s]\t%s\t\"%s\t%s\t%s\"\t%s\r",
+            $log['time'],
+            $log['type'],
+            $infix,
+            $log['client']['browser']['rm'],
+            $log['client']['browser']['path'],
+            $log['message']
+        );
     }
 
 
