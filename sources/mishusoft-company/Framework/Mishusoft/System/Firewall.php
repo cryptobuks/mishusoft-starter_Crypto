@@ -213,7 +213,8 @@ class Firewall extends Base
     {
 
         //Create directory log and config if not exists.
-        FileSystem::directoryCreate([self::logDirective(self::logDirectory()),dirname(self::configFile())]);
+        FileSystem::makeDirectory(self::logDirective(self::logDirectory()));
+        FileSystem::makeDirectory(dirname(self::configFile()));
         //Check firewall configuration file existent.
         FileSystem::check(self::configFile(), function ($filename) {
             FileSystem\Yaml::emitFile($filename, []);
