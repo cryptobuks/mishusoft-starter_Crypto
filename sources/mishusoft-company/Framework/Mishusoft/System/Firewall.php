@@ -4,7 +4,6 @@ namespace Mishusoft\System;
 
 use GeoIp2\Exception\AddressNotFoundException;
 use MaxMind\Db\Reader\InvalidDatabaseException;
-use Mishusoft\Base;
 use Mishusoft\Exceptions\HttpException\HttpResponseException;
 use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Exceptions\PermissionRequiredException;
@@ -15,137 +14,11 @@ use Mishusoft\Registry;
 use Mishusoft\Storage;
 use Mishusoft\Storage\FileSystem;
 use Mishusoft\Utility\Character;
-use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\Inflect;
 use RuntimeException;
 
-class Firewall extends Base
+class Firewall extends Firewall\FirewallBase
 {
-    public const REQUIRED_KEYS = [
-        'status' => 'enable',
-        'granted-device-access-limit-filter' => 'enable',
-        'granted-device-access-limit' => '600',
-        'granted-device-time-limit' => '60',
-        'granted-device-limit-time-format' => 'minute',
-        'blocked-device-access-limit-filter' => 'enable',
-        'blocked-device-access-limit' => '10',
-        'blocked-device-time-limit' => '60',
-        'blocked-device-limit-time-format' => 'minute',
-    ];
-
-    public const BUILT_IN_CONFIG = [
-        'granted-device-count-down-time' => [],
-        'blocked-device-count-down-time' => [],
-        'accept' => [
-            'request-method' => [
-                'get',
-                'post',
-                'accept',
-                'ms-feedback-data',
-                'options',
-            ],
-        ],
-        'browser' => [
-            'order' => 'blacklist',
-            'banned' => ['curl', 'zmeu'],
-            'whitelist' => [],
-            'blacklist' => [],
-        ],
-        'ip' => [
-            'order' => 'blacklist',
-            'banned' => [],
-            'whitelist' => [],
-            'blacklist' => [],
-        ],
-        'device' => [
-            'order' => 'blacklist',
-            'banned' => [],
-            'whitelist' => [],
-            'blacklist' => [],
-        ],
-        'continent' => [
-            'order' => 'blacklist',
-            'banned' => [],
-            'whitelist' => [],
-            'blacklist' => [],
-        ],
-        'country' => [
-            'order' => 'blacklist',
-            'banned' => [],
-            'whitelist' => [],
-            'blacklist' => [],
-        ],
-        'city' => [
-            'order' => 'blacklist',
-            'banned' => [],
-            'whitelist' => [],
-            'blacklist' => [],
-        ],
-    ];
-
-    protected static array|string $messageOfBlock = '';
-
-    /**
-     * Check if access request is granted, else return false
-     *
-     * @var boolean
-     */
-    public bool $accessRequestProcessed = false;
-
-    /**
-     * Firewall configuration array.
-     *
-     * @var array
-     */
-    private array $config = [];
-
-    /**
-     * Action status.
-     * @var string
-     */
-    private string $actionStatus = '';
-
-    /**
-     * Action component.
-     *
-     * @var string
-     */
-    private string $actionComponent = '';
-
-    /**
-     * Message table.
-     *
-     * @var string
-     */
-    private string $msgTab = '';
-
-    /**
-     * Duration
-     *
-     * @var string|int
-     */
-    private string|int $duration = '';
-
-    /**
-     * Controller.
-     *
-     * @var string
-     */
-    private string $controller = '';
-
-    /**
-     * Separator.
-     *
-     * @var string
-     */
-    private string $separator = '';
-
-    /**
-     * Last visited duration.
-     *
-     * @var integer
-     */
-    private int $lastVisitDuration = 0;
 
     /**
      * Firewall constructor.
@@ -157,160 +30,10 @@ class Firewall extends Base
         private Framework $framework
     ) {
         parent::__construct();
-        //Debug::preOutput($this->framework);
-        //Debug::preOutput($this->framework::defaultConfiguration());
 
         Log::info(sprintf('Load Firewall configuration from %s.json.', self::configFile()));
         $this->loadConfig();
     }//end __construct()
-
-    private static function logDirectory(): string
-    {
-        //data-drive/Firewall/logs/
-        return sprintf(
-            '%1$s%3$s%2$s',
-            'Firewall',
-            Time::todayDateOnly(),
-            DS
-        );
-    }
-
-    private static function logFile(string $underTakenAction): string
-    {
-        //logs/Firewall/date/blocked.yml
-        //logs/Firewall/date/banned.yml
-        //logs/Firewall/date/granted.yml
-        return self::dFile(self::logDataFile(self::logDirectory(), $underTakenAction));
-    }
-
-
-    /**
-     * @return string
-     */
-    public static function configFile(): string
-    {
-        return self::dFile(self::configDataFile('Firewall', 'config'));
-    }
-
-
-    /**
-     * @return string
-     */
-    private static function siteFile(): string
-    {
-        return self::dFile(self::configDataFile('Firewall', 'sites'));
-    }
-
-
-    /**
-     * Firewall config loader.
-     *
-     * @return void
-     * @throws PermissionRequiredException
-     * @throws \Mishusoft\Exceptions\RuntimeException
-     */
-    private function loadConfig(): void
-    {
-
-        //Create directory log and config if not exists.
-        FileSystem::directoryCreate([self::logDirective(self::logDirectory()),dirname(self::configFile())]);
-        //Check firewall configuration file existent.
-        FileSystem::check(self::configFile(), function ($filename) {
-            FileSystem\Yaml::emitFile($filename, []);
-        });
-
-        //Check read permission of configuration file.
-        Log::info(sprintf('Start checking read permission of %s.', self::configFile()));
-        if (is_readable(self::configFile()) === true) {
-            //check configuration file's content are valid array
-            $oldConfiguration = FileSystem\Yaml::parseFile(self::configFile());
-            Log::info(
-                sprintf(
-                    'Start of test whether the content of %s file can be converted to array format.',
-                    self::configFile()
-                )
-            );
-            if (is_array($oldConfiguration) === true) {
-                Log::info(sprintf('Converted %s for content into array format.', self::configFile()));
-                Log::info(sprintf('Load array format content into runtime from %s.', self::configFile()));
-                $this->config = $oldConfiguration;
-            }
-
-            Log::info(
-                sprintf(
-                    'End of test whether the content of %s file can be converted to array format.',
-                    self::configFile()
-                )
-            );
-            /*
-             * Check the firewall configuration is empty or not
-             * if it empties, then configuration reset with default
-             */
-
-            Log::info(sprintf('Start checking whether the %s file is empty.', self::configFile()));
-            if (count($this->config) > 0) {
-                /*
-                 * we need to array match
-                 * if return false, then we need to replace and continue
-                 */
-
-                Log::info('Check different of runtime configuration and required keys.');
-                if (count(array_diff_assoc(self::REQUIRED_KEYS, $this->config)) > 0) {
-                    Log::info('Different found from runtime configuration and required keys.');
-                    $replaced = array_replace_recursive($this->config, self::REQUIRED_KEYS);
-                    if ($replaced !== null) {
-                        Log::notice('Load changed configuration into runtime configuration.');
-                        $this->config = $replaced;
-                    }
-                }
-            } else {
-                //merge to default configuration
-                Log::alert(sprintf('The content of %s is not empty.', self::configFile()));
-                Log::notice('Merging default configuration into runtime configuration.');
-                $this->config = array_merge_recursive(self::REQUIRED_KEYS, self::BUILT_IN_CONFIG);
-            }//end if
-
-            Log::info(sprintf('End checking whether the %s file is empty.', self::configFile()));
-            /*
-             * if loaded firewall configuration is not valid array,
-             * then delete configuration file and write new default data
-             */
-
-            Log::info('Check required attribute of runtime configuration.');
-            if (count($this->config) === 10) {
-                Log::notice('Attribute missing found from runtime configuration.');
-                $config = array_replace_recursive($this->config, self::BUILT_IN_CONFIG);
-                if ($config !== null) {
-                    Log::notice('Load changed configuration into runtime configuration.');
-                    $this->config = $config;
-                }
-            }
-            /*
-             * if firewall configuration file is empty,
-             * then create configuration file and write new default data
-             */
-
-            Log::info(sprintf('Check content array conversation of %s.', self::configFile()));
-            if (is_array(FileSystem\Yaml::parseFile(self::configFile())) === true) {
-                $firewallArrayKeys = array_keys($this->config);
-                $firewallFileArrayKeys = array_keys(FileSystem\Yaml::parseFile(self::configFile()));
-
-                Log::notice('Check different of runtime configuration and stored configuration.');
-                if (count(array_diff_assoc($firewallArrayKeys, $firewallFileArrayKeys)) > 0) {
-                    Log::notice('Write the difference of runtime configuration and stored configuration.');
-                    $this->createConfiguration($this->config);
-                }
-            } else {
-                Log::alert('Write current runtime configuration.');
-                $this->createConfiguration($this->config);
-            }
-        } else {
-            Log::error(sprintf('Read permission required. Unable to read %s.', self::configFile()));
-            throw new PermissionRequiredException('Read permission required. Unable to read root' . self::configFile());
-        }//end if
-
-        Log::info(sprintf('End checking read permission of %s.', self::configFile()));
-    }//end loadConfig()
 
 
     /**
@@ -679,7 +402,7 @@ class Firewall extends Base
         if (array_key_exists('accept', $this->config) === false) {
             Log::error('Check failed. Accept keyword not found in $this->config variable.');
             Log::alert('Creating new config with built in config.');
-            $this->createConfiguration(array_merge_recursive(self::REQUIRED_KEYS, self::BUILT_IN_CONFIG));
+            $this->createConfiguration(array_merge_recursive($this->requiredProperties(), $this->defaultProperties()));
         }
         Log::info('End checking whether the accept keyword is in the $this->config variable.');
 
@@ -699,89 +422,6 @@ class Firewall extends Base
         }
         Log::info('End checking whether REQUEST_METHOD keyword in $_SERVER variable.');
     }//end filterHttpRequest()
-
-
-    /**
-     * Create configuration file.
-     *
-     * @param array $config Array format of Firewall configuration.
-     *
-     * @return void
-     * @throws \Mishusoft\Exceptions\RuntimeException
-     */
-    private function createConfiguration(array $config): void
-    {
-        Log::info('Check runtime configuration file existent.');
-        if (file_exists(self::configFile()) === true) {
-            Log::alert('Remove exists runtime configuration file.');
-            FileSystem::remove(self::configFile());
-        }
-
-        Log::notice(sprintf('Write firewall configuration into %s.', self::configFile()));
-        FileSystem\Yaml::emitFile(self::configFile(), $config);
-    }//end createConfiguration()
-
-
-    /**
-     * @throws HttpResponseException
-     * @throws PermissionRequiredException
-     * @throws AddressNotFoundException
-     * @throws InvalidDatabaseException
-     * @throws \Mishusoft\Exceptions\RuntimeException
-     */
-    private function storeFirewallLogs(): void
-    {
-        $logs = [];
-        $logDataFile = self::logFile($this->actionStatus);
-        $currentVisitor = $this->getNewVisitorIPBased();
-        $browserNameFull = Registry::Browser()->getBrowserNameFull();
-
-//        Debug::preOutput($logDataFile);
-//        Debug::preOutput(dirname($logDataFile));
-//        FileSystem::makeDirectory(dirname($logDataFile));
-
-        if (is_writable(dirname($logDataFile)) === true) {
-            //check point for log file content length
-            if ((file_exists($logDataFile) === true) && FileSystem::read($logDataFile) !== '') {
-                $oldContent = FileSystem\Yaml::parseFile($logDataFile);
-
-                //Merge file's content with logs
-                if (is_array($oldContent) === true) {
-                    $logs = array_merge($logs, $oldContent);
-                }//end if
-
-                if (count($logs) !== 0) {
-                    if (array_key_exists(IP::get(), $logs) === true) {
-                        if (array_key_exists($browserNameFull, $logs[IP::get()]) === true) {
-                            if (array_key_exists(Time::today(), $logs[IP::get()][$browserNameFull]) === false) {
-                                // Append current(new) access data of current client to logs file.
-                                $logs[IP::get()][$browserNameFull][Time::today()] = $this->getNewVisitor();
-                                FileSystem\Yaml::emitFile($logDataFile, $logs);
-                            }//end if
-                        } else {
-                            // Append current(new) browser's data of current client to logs file.
-                            $logs[IP::get()][$browserNameFull][Time::today()] = $this->getNewVisitor();
-                            FileSystem\Yaml::emitFile($logDataFile, $logs);
-                        }//end if
-                    } else {
-                        // Append new data about current client to logs file.
-                        FileSystem\Yaml::emitFile($logDataFile, array_merge($logs, $currentVisitor));
-                    }//end if
-                } else {
-                    //Write new data to empty file.
-                    FileSystem\Yaml::emitFile($logDataFile, $currentVisitor);
-                }//end if
-            } else {
-                //Write new data to empty file.
-                FileSystem\Yaml::emitFile($logDataFile, $currentVisitor);
-            }//end if
-        } else {
-            throw new PermissionRequiredException(
-                sprintf('Unable to write %s', dirname($logDataFile))
-            );
-        }//end if
-    }//end storeFirewallLogs()
-
 
     /**
      * Check the IP Address of client in blacklist or banned.
@@ -969,65 +609,6 @@ class Firewall extends Base
 
 
     /**
-     * @return array[]
-     * @throws HttpResponseException
-     * @throws AddressNotFoundException
-     * @throws InvalidDatabaseException
-     */
-    private function getNewVisitor(): array
-    {
-        return  [
-            'ip'        => IP::get(),
-            'country'   => IP::getCountry(),
-            'location'  => IP::getInfo(),
-            'device'    => Registry::Browser()->getDeviceNameWithArch(),
-            'browser'   => Registry::Browser()->getBrowserNameFull(),
-            'UUAS'      => Registry::Browser()->getUserAgent(),
-            'url'       => Registry::Browser()::VisitedPageURL($_SERVER),
-            'status'    => $this->actionStatus,
-            'component' => $this->actionComponent,
-            'visit-time' => Time::today(),
-        ];
-    }//end getNewVisitorTimeBased()
-
-
-    /**
-     * @return array[]
-     * @throws HttpResponseException
-     * @throws AddressNotFoundException
-     * @throws InvalidDatabaseException
-     */
-    private function getNewVisitorTimeBased(): array
-    {
-        return [Time::today() => $this->getNewVisitor(),];
-    }//end getNewVisitorTimeBased()
-
-
-    /**
-     * @return \array[][]
-     * @throws HttpResponseException
-     * @throws AddressNotFoundException
-     * @throws InvalidDatabaseException
-     */
-    private function getNewVisitorBrowserBased(): array
-    {
-        return [Registry::Browser()->getBrowserNameFull() => $this->getNewVisitorTimeBased()];
-    }//end getNewVisitorBrowserBased()
-
-
-    /**
-     * @return \array[][][]
-     * @throws HttpResponseException
-     * @throws AddressNotFoundException
-     * @throws InvalidDatabaseException
-     */
-    private function getNewVisitorIPBased(): array
-    {
-        return [IP::get() => $this->getNewVisitorBrowserBased()];
-    }//end getNewVisitorIPBased()
-
-
-    /**
      * @param string $status
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
@@ -1114,12 +695,15 @@ class Firewall extends Base
 
                                     else {
                                         // Autoload::log("Preparing to create firewall configuration file.");
-                                        if (FileSystem::IsWriteable(Firewall::configFile())) {
-                                            FileSystem\Yaml::emitFile(Firewall::configFile(), self::BUILT_IN_CONFIG);
+                                        if (FileSystem::IsWriteable(self::configFile())) {
+                                            FileSystem\Yaml::emitFile(
+                                                self::configFile(),
+                                                $this->defaultProperties()
+                                            );
                                         }
 
                                         // load firewall configuration in runtime
-                                        $this->config = self::BUILT_IN_CONFIG;
+                                        $this->config = $this->defaultProperties();
                                     }
 
                                     $this->controller = !empty($this->config["$status-device-count-down-time"][IP::get()]) ? $this->config["$status-device-count-down-time"][IP::get()] : $previous['visit-time'];
@@ -1146,12 +730,15 @@ class Firewall extends Base
 
                                     else {
                                         // Autoload::log("Preparing to create firewall configuration file.");
-                                        if (FileSystem::IsWriteable(Firewall::configFile())) {
-                                            FileSystem\Yaml::emitFile(Firewall::configFile(), self::BUILT_IN_CONFIG);
+                                        if (FileSystem::IsWriteable(self::configFile())) {
+                                            FileSystem\Yaml::emitFile(
+                                                self::configFile(),
+                                                $this->defaultProperties()
+                                            );
                                         }
 
                                         // load firewall configuration in runtime
-                                        $this->config = self::BUILT_IN_CONFIG;
+                                        $this->config = $this->defaultProperties();
                                     }
                                 }//end if
 
