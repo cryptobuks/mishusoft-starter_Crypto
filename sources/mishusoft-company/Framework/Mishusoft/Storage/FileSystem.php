@@ -284,7 +284,7 @@ class FileSystem
                 if (is_writable(self::realpath(dirname($file))) === true) {
                     self::makeDirectory($file);
                 } else {
-                    throw new RuntimeException('Permission denied. ' . $file . ' creation failed.');
+                    throw new RuntimeException('Permission denied. ' . $file . ' creation failed');
                 }
             }
         }
