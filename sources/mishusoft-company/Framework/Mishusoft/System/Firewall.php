@@ -180,11 +180,7 @@ class Firewall extends Base
         //logs/Firewall/date/blocked.yml
         //logs/Firewall/date/banned.yml
         //logs/Firewall/date/granted.yml
-        return self::dFile(sprintf(
-            '%1$s%2$s',
-            self::logDirectory(),
-            $underTakenAction
-        ));
+        return self::logDataFile(self::logDirectory(), $underTakenAction);
     }
 
 
@@ -215,29 +211,18 @@ class Firewall extends Base
      */
     private function loadConfig(): void
     {
-        /*
-         * Check firewall configuration file existent.
-         */
-        FileSystem::makeDirectory(dirname(self::configFile()));
+
+        //Create directory log and config if not exists.
+        FileSystem::directoryCreate([self::logDirectory(),dirname(self::configFile())]);
+        //Check firewall configuration file existent.
         FileSystem::check(self::configFile(), function ($filename) {
             FileSystem\Yaml::emitFile($filename, []);
         });
 
-        /*
-         * Create log directory if not exists.
-         */
-        FileSystem::makeDirectory(self::logDirectory());
-
-        /*
-         * Check read permission of configuration file.
-         */
-
+        //Check read permission of configuration file.
         Log::info(sprintf('Start checking read permission of %s.', self::configFile()));
         if (is_readable(self::configFile()) === true) {
-            /*
-             * check configuration file's content are valid array
-             */
-
+            //check configuration file's content are valid array
             $oldConfiguration = FileSystem\Yaml::parseFile(self::configFile());
             Log::info(
                 sprintf(
@@ -279,10 +264,7 @@ class Firewall extends Base
                     }
                 }
             } else {
-                /*
-                 * merge to default configuration
-                 */
-
+                //merge to default configuration
                 Log::alert(sprintf('The content of %s is not empty.', self::configFile()));
                 Log::notice('Merging default configuration into runtime configuration.');
                 $this->config = array_merge_recursive(self::REQUIRED_KEYS, self::BUILT_IN_CONFIG);
@@ -351,13 +333,11 @@ class Firewall extends Base
                 //print_r($installedHost, false);
                 Log::info('Filter request of client.');
                 $this->filterHttpRequest();
-
-                return $this->makeAction();
             } else {
                 $this->actionStatus = 'blocked';
                 $this->actionComponent = 'domain';
-                return $this->makeAction();
             }
+            return $this->makeAction();
         } else {
             Log::alert('Adding new domain to install framework.');
             FileSystem\Yaml::emitFile(self::siteFile(), [
@@ -694,15 +674,16 @@ class Firewall extends Base
          * if not exists, then reset configuration.
          */
 
+        //accept
         Log::info('Start checking whether the accept keyword is in the $this->config variable.');
         if (array_key_exists('accept', $this->config) === false) {
             Log::error('Check failed. Accept keyword not found in $this->config variable.');
             Log::alert('Creating new config with built in config.');
             $this->createConfiguration(array_merge_recursive(self::REQUIRED_KEYS, self::BUILT_IN_CONFIG));
         }
-
         Log::info('End checking whether the accept keyword is in the $this->config variable.');
 
+        //request method
         Log::info('Start checking whether request method keyword in $_SERVER variable.');
         Log::info('Search accept keyword in allowed request method variable.');
         $requestMethodAll = $this->config['accept']['request-method'];
@@ -716,7 +697,6 @@ class Firewall extends Base
                 $this->addIP(IP::get(), 'blocked');
             }
         }
-
         Log::info('End checking whether REQUEST_METHOD keyword in $_SERVER variable.');
     }//end filterHttpRequest()
 
@@ -939,6 +919,7 @@ class Firewall extends Base
      */
     private static function runtimeFailureUi(string $title, array $message): void
     {
+        //Debug::preOutput($message);
         if (Memory::Data('framework')->debug === false) {
             if (array_key_exists('error', $message) === true) {
                 $message = $message['error'];
@@ -966,7 +947,7 @@ class Firewall extends Base
             Storage\Stream::json([
                     'message' => [
                         'type' => 'error',
-                        'details' => $message['debug']['description'],
+                        'details' => $message['description'],
                         'visitor' => [
                             'user-agent' => Registry::Browser()->getUserAgent(),
                             'request-method' => Registry::Browser()->getRequestMethod(),
