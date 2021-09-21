@@ -168,7 +168,7 @@ class Firewall extends Base
     {
         //data-drive/Firewall/logs/
         return sprintf(
-            '%1$s%2%s%3$s',
+            '%1$s%2$s%3$s',
             self::logDirective('Firewall'),
             Time::todayDateOnly(),
             DS
