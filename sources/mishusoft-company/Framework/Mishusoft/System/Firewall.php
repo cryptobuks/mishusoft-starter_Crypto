@@ -168,8 +168,8 @@ class Firewall extends Base
     {
         //data-drive/Firewall/logs/
         return sprintf(
-            '%1$s%2$s%3$s',
-            self::logDirective('Firewall'),
+            '%1$s%3$s%2$s',
+            'Firewall',
             Time::todayDateOnly(),
             DS
         );
@@ -180,7 +180,7 @@ class Firewall extends Base
         //logs/Firewall/date/blocked.yml
         //logs/Firewall/date/banned.yml
         //logs/Firewall/date/granted.yml
-        return self::logDataFile(self::logDirectory(), $underTakenAction);
+        return self::dFile(self::logDataFile(self::logDirectory(), $underTakenAction));
     }
 
 
@@ -213,7 +213,7 @@ class Firewall extends Base
     {
 
         //Create directory log and config if not exists.
-        FileSystem::directoryCreate([self::logDirectory(),dirname(self::configFile())]);
+        FileSystem::directoryCreate([self::logDirective(self::logDirectory()),dirname(self::configFile())]);
         //Check firewall configuration file existent.
         FileSystem::check(self::configFile(), function ($filename) {
             FileSystem\Yaml::emitFile($filename, []);
@@ -735,6 +735,10 @@ class Firewall extends Base
         $logDataFile = self::logFile($this->actionStatus);
         $currentVisitor = $this->getNewVisitorIPBased();
         $browserNameFull = Registry::Browser()->getBrowserNameFull();
+
+//        Debug::preOutput($logDataFile);
+//        Debug::preOutput(dirname($logDataFile));
+//        FileSystem::makeDirectory(dirname($logDataFile));
 
         if (is_writable(dirname($logDataFile)) === true) {
             //check point for log file content length
