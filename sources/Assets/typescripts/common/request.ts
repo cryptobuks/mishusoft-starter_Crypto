@@ -1,67 +1,74 @@
-export function sendRequest(options: any, callback?: any) {
+export function sendRequest(options: any, callback?: any, fallback?: any) {
+    let dataType: string = 'unrecognize';
 
-    /*worker.postMessage({
-        "command": "sendRequest",
-        "options": options,
-        "receiver": __appHostedServerRoot
-    });
-
-    */
-
-    if (options.method !== null && options.url !== null) {
-        /*
-        * if (app.runtime.request !== 'pending') {}
-        * else { viewMessage('Another request is pending.', 'Your previous request is pending. Please wait until succeeded.', 'error')}
-        * */
-
-        try {
-
-            let dataType: any;
+    if (typeof options === "object") {
+        if (options.method !== undefined && options.url !== undefined) {
             let request = new XMLHttpRequest();
             request.open(options.method, options.url, options.async);
+            //set header for xhr request
             if (options.header !== null && typeof options.header == "object") {
-                for (let i = 0; i < options.header.length; i++) {
-                    request.setRequestHeader(options.header[i].name, options.header[i].value);
-                    if (options.header[i].value.indexOf('form') !== -1) {
-                        dataType = 'formData';
-                    }
-                    if (options.header[i].value.indexOf('json') !== -1) {
-                        dataType = 'jsonData';
-                    }
-                }
-            }
-            if (options.data !== null && typeof options.data == "object") {
-                if (dataType === 'jsonData') {
-                    request.send(JSON.stringify(options.data));
-                }
-                if (dataType === 'formData') {
-                    let formData: FormData = new FormData();
-                    Object.keys(options.data).forEach(function (key) {
-                        formData.append(key, options.data[key]);
-                    });
-                    request.send(formData);
-                }
-            }
-            else {
-                request.send();
+                options.header.forEach((item: any) => {
+                    Object.keys(item).forEach((name) => {
+                        let value : string = item[name];
+                        request.setRequestHeader(name, value);
+                        if (value.indexOf('form') !== -1) {
+                            dataType = 'formData';
+                        }
+                        if (value.indexOf('json') !== -1) {
+                            dataType = 'jsonData';
+                        }
+                    })
+                })
             }
 
-            request.onreadystatechange = function () {
-                if (this.readyState === 4 && this.status === 200) {
-                    if (callback) {
-                        callback(this.responseText)
+            //send data with xhr request
+            if (dataType !== 'unrecognize'){
+                if (options.data !== undefined && options.data !== null && typeof options.data == "object") {
+                    //send json data
+                    if (dataType === 'jsonData') {
+                        request.send(JSON.stringify(options.data));
                     }
-                    //console.log(this.responseText)
+                    //send form data
+                    else if (dataType === 'formData') {
+                        let formData = new FormData();
+                        Object.keys(options.data).forEach(function (key) {
+                            formData.append(key, options.data[key]);
+                        });
+                        request.send(formData);
+                    }
+                    else {
+                        request.send();
+                    }
                 }
             }
 
-        } catch (e) {
-            console.error("Fetching error."+ e);
+            //catch sate of xhr
+            request.onreadystatechange = function (event) {
+                if (this.readyState === 4) {
+                    if (this.status === 0) {
+                        fallback(new Error(`Request send failed ${options.url}`));
+                    }
+                    if (this.status === 200) {
+                        // console.log(`Response has been received from ${url}`)
+                        //  if (IsJsonString(event.currentTarget.responseText)) {
+                        //      response = JSON.parse(event.currentTarget.responseText);
+                        //  } else  {
+                        //      response = {
+                        //          'type' : 'raw',
+                        //          'data' : event.currentTarget.responseText
+                        //      }
+                        //  }
+
+                        if (typeof callback === 'function') {
+                            callback(this.responseText)
+                        }
+                    }
+                }
+            }
+        } else {
+            fallback(new Error("Request Method and URL can not be empty"));
         }
     } else {
-        console.error("Error: METHOD and URL empty.");
+        fallback(new Error("Invalid options"));
     }
-    /*window.addEventListener('message',function (event) {
-        console.log(event)
-    })*/
 }
