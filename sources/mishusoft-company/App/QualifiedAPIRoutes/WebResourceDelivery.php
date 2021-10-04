@@ -4,11 +4,8 @@ namespace App\QualifiedAPIRoutes;
 
 use DOMElement;
 use DOMNode;
-use GeoIp2\Exception\AddressNotFoundException;
 use JsonException;
-use MaxMind\Db\Reader\InvalidDatabaseException;
 use Mishusoft\Exceptions\ErrorException;
-use Mishusoft\Exceptions\HttpException\HttpResponseException;
 use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
@@ -16,8 +13,7 @@ use Mishusoft\Exceptions\RuntimeException\NotFoundException;
 use Mishusoft\Registry;
 use Mishusoft\Storage;
 use Mishusoft\MPM;
-use Mishusoft\System\Memory;
-use Mishusoft\System\Time;
+use Mishusoft\System;
 use Mishusoft\Ui;
 use Mishusoft\Http\Runtime;
 use App\Widgets\UniversalWidget;
@@ -41,26 +37,25 @@ class WebResourceDelivery
      * This is built-in uninterrupted web resources delivery system.
      *
      * @param string $defaultDirectoryIndex
-     * @throws \ErrorException
-     * @throws JsonException
+     * @throws ErrorException
+     * @throws NotFoundException
+     * @throws RuntimeException
      */
     public function __construct(
         private string $defaultDirectoryIndex = DEFAULT_CONTROLLER
     ) {
-        $this->defaultApplicationIcon = Memory::data()->preset->logo;
+        $this->defaultApplicationIcon = System\Memory::data()->preset->logo;
     }//end __construct()
 
     /**
      * @param array $request
-     * @throws AddressNotFoundException
-     * @throws JsonException
-     * @throws InvalidDatabaseException
      * @throws ErrorException
-     * @throws HttpResponseException
-     * @throws \Mishusoft\Exceptions\JsonException
      * @throws InvalidArgumentException
+     * @throws JsonException
+     * @throws NotFoundException
      * @throws PermissionRequiredException
      * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function assets(array $request): void
     {
@@ -68,14 +63,13 @@ class WebResourceDelivery
     }//end assets()
 
     /**
-     * @throws InvalidDatabaseException
-     * @throws RuntimeException
-     * @throws AddressNotFoundException
-     * @throws JsonException
+     * @param array $request
      * @throws ErrorException
      * @throws InvalidArgumentException
-     * @throws HttpResponseException
+     * @throws JsonException
+     * @throws NotFoundException
      * @throws PermissionRequiredException
+     * @throws RuntimeException
      * @throws \Mishusoft\Exceptions\JsonException
      */
     public function webfonts(array $request): void
@@ -86,15 +80,13 @@ class WebResourceDelivery
 
     /**
      * @param array $request
-     * @throws AddressNotFoundException
-     * @throws JsonException
-     * @throws InvalidDatabaseException
      * @throws ErrorException
-     * @throws HttpResponseException
-     * @throws \Mishusoft\Exceptions\JsonException
      * @throws InvalidArgumentException
+     * @throws JsonException
+     * @throws NotFoundException
      * @throws PermissionRequiredException
      * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function media(array $request): void
     {
@@ -104,15 +96,13 @@ class WebResourceDelivery
 
     /**
      * @param array $request
-     * @throws AddressNotFoundException
-     * @throws JsonException
-     * @throws InvalidDatabaseException
      * @throws ErrorException
-     * @throws HttpResponseException
-     * @throws \Mishusoft\Exceptions\JsonException
      * @throws InvalidArgumentException
+     * @throws JsonException
+     * @throws NotFoundException
      * @throws PermissionRequiredException
      * @throws RuntimeException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     private function browse(array $request): void
     {
@@ -205,8 +195,8 @@ class WebResourceDelivery
 
                 case strtolower('related'):
                     $requestArgument = implode(DS, $request['arguments']);
-                    $requestedWebFile = MPM::templatesJSResourcesRoot($request['module'], $request['controller']);
-                    if (file_exists(MPM::templatesJSResourcesRootLocal() . $requestArgument) === true) {
+                    $requestedWebFile = MPM\Classic::templatesJSResourcesRoot($request['module'], $request['controller']);
+                    if (file_exists(MPM\Classic::templatesJSResourcesRootLocal() . $requestArgument) === true) {
                         Storage\Stream::file($requestedWebFile);
                     } else {
                         throw new NotFoundException('Your requested url is not exists in the web data center!!');
@@ -225,16 +215,13 @@ class WebResourceDelivery
 
     /**
      * @param array $request
-     * @throws AddressNotFoundException
-     * @throws JsonException
-     * @throws InvalidDatabaseException
      * @throws ErrorException
-     * @throws HttpResponseException
-     * @throws \Mishusoft\Exceptions\JsonException
      * @throws InvalidArgumentException
+     * @throws JsonException
+     * @throws NotFoundException
      * @throws PermissionRequiredException
      * @throws RuntimeException
-     * @throws NotFoundException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     private function webExploreLoader(array $request): void
     {
@@ -268,16 +255,13 @@ class WebResourceDelivery
      *
      * @param string $dirname
      * @param array $request
-     * @throws AddressNotFoundException
-     * @throws JsonException
-     * @throws InvalidDatabaseException
      * @throws ErrorException
-     * @throws HttpResponseException
-     * @throws \Mishusoft\Exceptions\JsonException
      * @throws InvalidArgumentException
+     * @throws JsonException
+     * @throws NotFoundException
      * @throws PermissionRequiredException
      * @throws RuntimeException
-     * @throws NotFoundException
+     * @throws \Mishusoft\Exceptions\JsonException
      */
     private function webExplore(string $dirname, array $request): void
     {
@@ -302,7 +286,7 @@ class WebResourceDelivery
                     [
                         'id' => 'mishusoft-web-root',
                         'name' => 'mishusoft-web-root',
-                        'content' => Memory::Data('framework')->host->url,
+                        'content' => System\Memory::Data('framework')->host->url,
                     ],
                 ],
                 'style' => [
@@ -500,7 +484,9 @@ class WebResourceDelivery
                 Ui::getTemplateBody(),
                 'footer',
                 ['class' => 'footer width-100percent', 'style' => 'color:black;font-size:12px;margin:10px']
-            )
+            ),
+            System\Time::currentYearNumber(),
+            System\Memory::Data()->company->name
         );
 
         Ui::elementList(
@@ -592,7 +578,10 @@ class WebResourceDelivery
             }
 
             Ui::text(Ui::element($list, 'td'), Storage\FileSystem::fileSize($file));
-            Ui::text(Ui::element($list, 'td', ['style' => 'width:200px;']), Time::todayFullBeautify(filemtime($file)));
+            Ui::text(
+                Ui::element($list, 'td', ['style' => 'width:200px;']),
+                System\Time::todayFullBeautify(filemtime($file))
+            );
         }//end foreach
     }//end viewDirOrFileList()
 }//end class
