@@ -28,10 +28,10 @@ use Mishusoft\Utility\Inflect;
             define('DB_PREFIX', Memory::Data('config')->db->prefix);
 
             // instance Databases connection
-            $registry->db = new Mishusoft\Authentication\Database(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_CHAR);
+            $registry->db = new Mishusoft\Drivers\Database(DB_HOST, DB_NAME, DB_USER, DB_PASS, DB_CHAR);
         } else {
             // instance Databases connection
-            $registry->db = new Mishusoft\Authentication\Database(
+            $registry->db = new Mishusoft\Drivers\Database(
                 Memory::Data('config')->db->host,
                 Memory::Data('config')->db->name,
                 Memory::Data('config')->db->user,
@@ -41,10 +41,10 @@ use Mishusoft\Utility\Inflect;
         }//end if
 
         // init application
-        Mishusoft\Authentication\Bootstrap\Classic::run($registry->requestClassic);
+        Mishusoft\Drivers\Bootstrap\Classic::run($registry->requestClassic);
     } else {
         System::setProgressStep();
-        if (!in_array(Arr::value(System::$event, 'message'), System::getExcludeErrors())) {
+        if (!in_array(Arr::value(System::$event, 'message'), System::getExcludeErrors(), true)) {
             Ui::HtmlInterface(
                 ucfirst(Arr::value(System::$event, 'type')),
                 function ($html, $head) {
@@ -73,11 +73,15 @@ use Mishusoft\Utility\Inflect;
                     Ui::text(
                         Ui::element($template_body, 'ms-app-paragraph', ['style' => 'font-size: 15px;line-height: 1.5;display: flex;text-align: center;background: bisque;border-radius: 5px;padding: 5px;margin-top: 10px;user-select: none;-webkit-user-select: none;']),
                         // (_Array::value(Mishusoft::$event, "message") === "already-configured" || _Array::value(Mishusoft::$event, "message") === "app-installed-by-sys-admin") ? Mishusoft::$Message : Text::removeTags(Mishusoft::$Message));
-                        _String::removeTags(System::$Message)
+                        Inflect::removeTags(System::$Message)
                     );
 
                     // add system signature
-                    Ui::addDefaultSignature($template_body);
+                    Ui::addDefaultSignature(
+                        $template_body,
+                        System\Time::currentYearNumber(),
+                        Memory::Data()->company->name
+                    );
                 }
             );
         } else {
@@ -102,7 +106,7 @@ use Mishusoft\Utility\Inflect;
                                 [
                                     'id'      => 'runtime-php-version',
                                     'name'    => 'php-version',
-                                    'content' => phpversion(),
+                                    'content' => PHP_VERSION,
                                 ],
                                 [
                                     'id'      => 'runtime-host-name',
