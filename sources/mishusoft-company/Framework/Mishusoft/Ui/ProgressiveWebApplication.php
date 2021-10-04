@@ -2,13 +2,6 @@
 
 namespace Mishusoft\Ui;
 
-use GeoIp2\Exception\AddressNotFoundException;
-use MaxMind\Db\Reader\InvalidDatabaseException;
-use Mishusoft\Exceptions\ErrorException;
-use Mishusoft\Exceptions\HttpException\HttpResponseException;
-use Mishusoft\Exceptions\JsonException;
-use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
-use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Exceptions\RuntimeException\NotFoundException;
 use Mishusoft\Storage;
@@ -29,21 +22,16 @@ class ProgressiveWebApplication
 
 
     /**
-     * @throws RuntimeException
-     * @throws AddressNotFoundException
-     * @throws PermissionRequiredException
-     * @throws JsonException
-     * @throws InvalidDatabaseException
-     * @throws \JsonException
-     * @throws ErrorException
-     * @throws InvalidArgumentException
-     * @throws HttpResponseException
+     * @return string
      * @throws NotFoundException
+     * @throws RuntimeException
      */
     public static function loadManifestFile(): string
     {
         if (!file_exists(self::manifestFile())) {
-            static::makeManifestFile();
+            if (is_bool(static::makeManifestFile())) {
+                throw new RuntimeException('Progressive Web Application creating failed');
+            }
         }
 
         return Storage::makeDataUri(self::manifestFile());
@@ -58,20 +46,11 @@ class ProgressiveWebApplication
     }
 
     /**
-     * @throws AddressNotFoundException
-     * @throws ErrorException
-     * @throws HttpResponseException
-     * @throws InvalidArgumentException
-     * @throws InvalidDatabaseException
-     * @throws JsonException
      * @throws NotFoundException
-     * @throws PermissionRequiredException
-     * @throws RuntimeException
-     * @throws \JsonException
      */
-    private static function makeManifestFile(): void
+    private static function makeManifestFile(): bool|int
     {
-        Storage\FileSystem::write(self::manifestFile(), [
+        return Storage\FileSystem::write(self::manifestFile(), [
             'name' => !empty(static::$fullName) ? static::$shortName : DEFAULT_APP_NAME,
             'short_name' => !empty(static::$shortName) ? static::$shortName : DEFAULT_APP_NAME,
             'description' => !empty(static::$description) ? static::$description : DEFAULT_APP_DESCRIPTIONS,
