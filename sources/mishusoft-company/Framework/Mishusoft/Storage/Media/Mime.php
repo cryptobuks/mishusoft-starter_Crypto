@@ -2,26 +2,25 @@
 
 namespace Mishusoft\Storage\Media;
 
-
 class Mime extends MimeDataObject
 {
     // IANA-defined media types
-    public const iana_ALL_DB_URL = 'https://www.iana.org/assignments/media-types/media-types.xhtml';
-    public const iana_APPLICATION_DB_URL = 'https://www.iana.org/assignments/media-types/application.csv';
-    public const iana_AUDIO_DB_URL = 'https://www.iana.org/assignments/media-types/audio.csv';
-    public const iana_FONT_DB_URL = 'https://www.iana.org/assignments/media-types/font.csv';
-    public const iana_IMAGE_DB_URL = 'https://www.iana.org/assignments/media-types/image.csv';
-    public const iana_MESSAGE_DB_URL = 'https://www.iana.org/assignments/media-types/message.csv';
-    public const iana_MODEL_DB_URL = 'https://www.iana.org/assignments/media-types/model.csv';
-    public const iana_MULTIPART_DB_URL = 'https://www.iana.org/assignments/media-types/multipart.csv';
-    public const iana_TEXT_DB_URL = 'https://www.iana.org/assignments/media-types/text.csv';
-    public const iana_VIDEO_DB_URL = 'https://www.iana.org/assignments/media-types/video.csv';
+    public const IANA_ALL_DB_URL = 'https://www.iana.org/assignments/media-types/media-types.xhtml';
+    public const IANA_APPLICATION_DB_URL = 'https://www.iana.org/assignments/media-types/application.csv';
+    public const IANA_AUDIO_DB_URL = 'https://www.iana.org/assignments/media-types/audio.csv';
+    public const IANA_FONT_DB_URL = 'https://www.iana.org/assignments/media-types/font.csv';
+    public const IANA_IMAGE_DB_URL = 'https://www.iana.org/assignments/media-types/image.csv';
+    public const IANA_MESSAGE_DB_URL = 'https://www.iana.org/assignments/media-types/message.csv';
+    public const IANA_MODEL_DB_URL = 'https://www.iana.org/assignments/media-types/model.csv';
+    public const IANA_MULTIPART_DB_URL = 'https://www.iana.org/assignments/media-types/multipart.csv';
+    public const IANA_TEXT_DB_URL = 'https://www.iana.org/assignments/media-types/text.csv';
+    public const IANA_VIDEO_DB_URL = 'https://www.iana.org/assignments/media-types/video.csv';
 
     // Apache common media types
-    public const Apache_Common_DB_URL = 'http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types';
+    public const APACHE_COMMON_DB_URL = 'http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types';
 
     // nginx media types
-    public const nginx_Common_DB_URL = 'http://hg.nginx.org/nginx/raw-file/default/conf/mime.types';
+    public const NGINX_COMMON_DB_URL = 'http://hg.nginx.org/nginx/raw-file/default/conf/mime.types';
 
 
     /**
