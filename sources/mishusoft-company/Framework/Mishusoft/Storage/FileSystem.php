@@ -3,7 +3,6 @@
 namespace Mishusoft\Storage;
 
 use Closure;
-use JsonException;
 use Mishusoft\Exceptions\ErrorException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\System\Log;
@@ -396,7 +395,6 @@ class FileSystem
      * @param array $contents
      * @param integer|null $length
      * @return false|integer
-     * @throws JsonException
      */
     public static function write(string $filename, array $contents, int|null $length = null): bool|int
     {
