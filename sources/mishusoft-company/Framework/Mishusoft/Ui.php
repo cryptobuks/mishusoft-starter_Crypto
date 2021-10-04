@@ -562,7 +562,6 @@ class Ui
     /**
      * @param DOMNode|DOMElement $parentElementChild
      * @param string $src
-     * @throws Exceptions\RuntimeException\NotFoundException
      */
     public static function setDocumentLoader(DOMNode|DOMElement $parentElementChild, string $src): void
     {
@@ -577,7 +576,7 @@ class Ui
                     'img' => [
                         'alt' => 'Loading...',
                         'class'=>'app-loader-image',
-                        'src' => Storage::toDataUri('media', $src),
+                        'src' => $src,
                     ],
                 ],
             ]
@@ -587,10 +586,10 @@ class Ui
 
     /**
      * @param DOMElement $templateBody
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\RuntimeException
+     * @param string $year
+     * @param string $company
      */
-    public static function addDefaultSignature(DOMElement $templateBody): void
+    public static function addDefaultSignature(DOMElement $templateBody, string $year, string $company): void
     {
         // Add system signature.
         self::text(
@@ -601,7 +600,7 @@ class Ui
                 ['style' => 'font-size: 14px;line-height: 1.5;margin-top: 5px;display: block;']
             ),
             // Text for system default signature
-            self::copyRightText()
+            self::copyRightText($year, $company)
         );
     }//end addDefaultSignature()
 
@@ -615,13 +614,11 @@ class Ui
     }
     /**
      * @return string
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\RuntimeException
      */
-    public static function copyRightText():string
+    public static function copyRightText(string $year, string $company):string
     {
         // Copyright © 2020 Winstarit LTD. All Right Reserved.
-        return 'Copyright © '.Time::currentYearNumber().' '.Memory::Data()->company->name.'. All Right Reserved.';
+        return sprintf('Copyright © %1$s %2$s. All Right Reserved.', $year, $company);
     }
 
 
