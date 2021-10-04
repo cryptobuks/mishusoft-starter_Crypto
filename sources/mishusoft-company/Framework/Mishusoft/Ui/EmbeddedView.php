@@ -117,7 +117,7 @@ class EmbeddedView
                     ['name' => 'description', 'content' => self::$documentTitle,],
                 ],
                 'style' => [
-                    ['text' => Storage\FileSystem::read(Storage::assetsFullPath('css/embedded.css')),],
+                    ['text' => Storage\FileSystem::read(Storage::fViewsFullPath('css/embedded.css')),],
                 ],
                 //'style' => array(array('text'=>$cssContent))
             ]
