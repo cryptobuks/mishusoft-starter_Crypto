@@ -3,6 +3,7 @@
 
 use Mishusoft\Storage;
 use Mishusoft\Services\SEOToolKitService;
+use Mishusoft\Storage\FileSystem;
 use Mishusoft\System\Log;
 use Mishusoft\System\Memory;
 use Mishusoft\Ui;
@@ -129,6 +130,9 @@ if ($this->templateUse === 'no') {
 
     // add css file in head
 
+    //<link rel="stylesheet" media='screen and (min-width: 140px) and (max-width: 380px)' href="phone.css"/>
+    //<link rel="stylesheet" media='screen and (min-width: 381px) and (max-width: 700px)' href="tablet.css"/>
+
     //Ui::elementList(Ui::getDocumentHeadElement(), ['link'=>Storage::assignableWebFonts()]);
     Ui::elementList(
         Ui::getDocumentHeadElement(),
@@ -142,18 +146,18 @@ if ($this->templateUse === 'no') {
             'style' => [
                 [
                     'type' => 'text/css', 'id' => 'theme.css',
-                    'text' => file_get_contents(Storage::assetsFullPath('css/mishusoft-theme.css')),
+                    'text' => Storage\FileSystem::read(Storage::assetsFullPath('css/mishusoft-theme.css')),
                 ],
                 [
                     'type' => 'text/css', 'id' => 'theme.css',
-                    'text' => file_get_contents(Storage::assetsFullPath('css/framework.css')),
+                    'text' => Storage\FileSystem::read(Storage::assetsFullPath('css/framework.css')),
                 ],
             ],
         ]
     );
 
     Ui::element(Ui::getDocumentHeadElement(), 'style', [
-        'text' => file_get_contents(Storage::assetsFullPath('css/loader.css')),
+        'text' => Storage\FileSystem::read(Storage::assetsFullPath('css/loader.css')),
     ]);
 
     //web.dev/installable-manifest/
@@ -181,8 +185,9 @@ if ($this->templateUse === 'no') {
         ])
     );
 
+
     // add app loader
-    Ui::setDocumentLoader(Ui::getTemplateBody(), 'images/loaders/app-loader.gif');
+    Ui::setDocumentLoader(Ui::getTemplateBody(), Storage::toDataUri('media', 'images/loaders/app-loader.gif'));
 
 
     // add noscript to ui
