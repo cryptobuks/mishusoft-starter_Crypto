@@ -5,6 +5,7 @@ namespace Mishusoft\Ui;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Exceptions\RuntimeException\NotFoundException;
 use Mishusoft\Storage;
+use Mishusoft\Ui;
 
 class ProgressiveWebApplication
 {
@@ -19,6 +20,54 @@ class ProgressiveWebApplication
     private static string $background = '#3367D6';
     private static string $theme = '#006194';
     private static string $description = '';
+
+    /**
+     * @throws NotFoundException
+     * @throws RuntimeException
+     */
+    public static function create(string $name):void
+    {
+        //<link rel="manifest" href="manifest.json" />
+        //<meta name="mobile-web-app-capable" content="yes" />
+        //<meta name="apple-mobile-web-app-capable" content="yes" />
+        //<meta name="application-name" content="PWA Workshop" />
+        //<meta name="apple-mobile-web-app-title" content="PWA Workshop" />
+        //<meta name="msapplication-starturl" content="/index.html" />
+
+        Ui::elementList(
+            Ui::getDocumentHeadElement(),
+            [
+                'meta' => [
+                    [
+                        'name' => 'mobile-web-app-capable',
+                        'content' => 'yes',
+                    ],
+                    [
+                        'name' => 'apple-mobile-web-app-capable',
+                        'content' => 'yes',
+                    ],
+                    [
+                        'name' => 'application-name',
+                        'content' => $name,
+                    ],
+                    [
+                        'name' => 'apple-mobile-web-app-title',
+                        'content' => $name,
+                    ],
+                    [
+                        'name' => 'msapplication-starturl',
+                        'content' => self::startUrl(),
+                    ],
+                ],
+                'link' => [
+                    [
+                        'rel' => 'manifest',
+                        'href' => self::loadManifestFile(),
+                    ],
+                ],
+            ]
+        );
+    }
 
 
     /**
