@@ -8,27 +8,51 @@ use MaxMind\Db\Reader\InvalidDatabaseException;
 use Mishusoft\Cryptography\OpenSSL\Encryption;
 use Mishusoft\Exceptions\ErrorException;
 use Mishusoft\Exceptions\HttpException\HttpResponseException;
-use Mishusoft\Exceptions\JsonException;
 use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
+use Mishusoft\Registry;
 use Mishusoft\Storage;
 use Mishusoft\System\Firewall;
 use Mishusoft\System\Localization;
 use Mishusoft\System\Memory;
 use Mishusoft\Utility\ArrayCollection as Arr;
-use Mishusoft\Utility\Debug;
-use Mishusoft\Utility\JSON;
 
 class Runtime
 {
+
+    private static string $hostUrl = '';
+    private static string $currentUrl = '';
+
+    public static function currentUrl(): string
+    {
+        if (self::$currentUrl !== '') {
+            self::$currentUrl = Registry::Browser()::getVisitedPage();
+        }
+
+        return self::$currentUrl;
+    }
+
+    /**
+     * @throws ErrorException
+     * @throws RuntimeException\NotFoundException
+     * @throws RuntimeException
+     */
+    public static function hostUrl(): string
+    {
+        if (self::$hostUrl !== '') {
+            self::$hostUrl = Memory::Data("framework")->host->url;
+        }
+
+        return self::$hostUrl;
+    }
+
 
     /**
      * @return string
      */
     private static function getLocaleOnly(): string
     {
-
         /*
          * catch requested url from browser
          */
@@ -45,40 +69,26 @@ class Runtime
              */
             $locale = array_shift($url);
 
-            if (!empty($locale)) {
+            /*
+             * verify extracted locale language from url
+             * url like [protocol://hostname/]
+             * verified extracted locale language check from count supported locale language of system,
+             * verify if it is more than 0
+             */
+            if (!empty($locale) && count(array_change_key_case(Localization::SUPPORT)) > 0) {
                 /*
-                 * verify extracted locale language from url
-                 * url like [protocol://hostname/]
-                 * verified extracted locale language check from count supported locale language of system,
-                 * verify if it is more than 0
+                 * if supported locale languages list is not set or locale not in these,
+                 * then locale set to module, and it makes default
                  */
-                if (count(array_change_key_case(Localization::SUPPORT)) > 0) {
-                    /*
-                     * if supported locale languages list is not set or locale not in these,
-                     * then locale set to module, and it makes default
-                     */
-                    if (!in_array($locale, array_change_key_case(Localization::SUPPORT), true)) {
-                        return "";
-                    }
-
-                    /*
-                     * if locale language exists
-                     */
-                    return $locale;
+                if (!in_array($locale, array_change_key_case(Localization::SUPPORT), true)) {
+                    return "";
                 }
 
                 /*
-                 * if locale language exists, but it is not exists in supported locale languages,
-                 * then locale set to empty
+                 * if locale language exists
                  */
-                return "";
+                return $locale;
             }
-
-            /*
-             * if locale language not exists,
-             * then locale set to empty
-             */
-            return "";
         }
 
         /*
@@ -90,17 +100,14 @@ class Runtime
     /**
      * @param string $link
      * @return string
-     * @throws \JsonException
      * @throws ErrorException
-     * @throws JsonException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
      * @throws RuntimeException
+     * @throws RuntimeException\NotFoundException
      */
     public static function link(string $link): string
     {
         $link = trim($link);
-        $webRootUrl = Memory::Data("framework")->host->url;
+        $webRootUrl = self::hostUrl();
 
         if (str_ends_with($webRootUrl, '/') === false) {
             $webRootUrl .= '/';
@@ -117,12 +124,9 @@ class Runtime
 
     /**
      * @param string $url
-     * @throws \JsonException
      * @throws ErrorException
-     * @throws JsonException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
      * @throws RuntimeException
+     * @throws RuntimeException\NotFoundException
      */
     public static function redirect(string $url = ''): void
     {
@@ -235,10 +239,6 @@ class Runtime
                 throw new RuntimeException(__METHOD__ . '(): more than 4 parameter parsed');
             }
         }
-
-//        Debug::preOutput($message['debug']['stack']);
-//        Debug::preOutput(explode('$$', $message['debug']['stack']));
-//        exit();
 
         if (array_key_exists('caption', $message['debug'])) {
             $messageDetails['debug']['caption'] = $message['debug']['caption'];
