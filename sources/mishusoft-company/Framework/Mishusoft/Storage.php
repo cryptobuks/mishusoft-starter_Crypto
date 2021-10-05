@@ -275,7 +275,7 @@ class Storage extends Base
                         'src' => self::toDataUri(
                             'media',
                             'logos' . DS . 'default' . DS . Storage\FileSystem::fileBase($imageFile),
-                            //'remote'
+                            'remote'
                         ),
                     ];
                 }
@@ -290,7 +290,7 @@ class Storage extends Base
                         'href' => self::toDataUri(
                             'media',
                             'logos' . DS . 'default' . DS . Storage\FileSystem::fileBase($imageFile),
-                            //'remote'
+                            'remote'
                         ),
                     ];
                 }
@@ -304,7 +304,7 @@ class Storage extends Base
                         'href' => self::toDataUri(
                             'media',
                             'logos' . DS . 'default' . DS . Storage\FileSystem::fileBase($imageFile),
-                            //'remote'
+                            'remote'
                         ),
                     ];
 
@@ -335,7 +335,7 @@ class Storage extends Base
                         'href' => self::toDataUri(
                             'media',
                             'logos' . DS . 'default' . DS . Storage\FileSystem::fileBase($imageFile),
-                            //'remote'
+                            'remote'
                         ),
                     ];
                 }
@@ -349,7 +349,7 @@ class Storage extends Base
                         'href' => self::toDataUri(
                             'media',
                             'logos' . DS . 'default' . DS . Storage\FileSystem::fileBase($imageFile),
-                            //'remote'
+                            'remote'
                         ),
                     ];
                 }
