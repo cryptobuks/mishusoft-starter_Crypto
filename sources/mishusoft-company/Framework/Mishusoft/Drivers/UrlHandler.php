@@ -4,6 +4,7 @@
 namespace Mishusoft\Drivers;
 
 use Mishusoft\Databases\MishusoftSQLStandalone;
+use Mishusoft\Http\Runtime;
 use Mishusoft\System\Localization;
 use Mishusoft\System\Memory;
 use Mishusoft\Utility\ArrayCollection;
@@ -52,16 +53,14 @@ abstract class UrlHandler implements UrlHandlerInterface
      * @return View\MishusoftView
      * @throws \JsonException
      * @throws \Mishusoft\Exceptions\ErrorException
-     * @throws \Mishusoft\Exceptions\JsonException
-     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
-     * @throws \Mishusoft\Exceptions\PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
      */
     protected function render(string $rootTitle, array $request, array $noMenuList = []): View\MishusoftView
     {
         $this->localization->setCurrentLocale(ArrayCollection::value($request, 'locale'));
         return new View\MishusoftView(
-            Memory::Data('framework')->host->url,
+            Runtime::hostUrl(),
             $this->localization->translate($rootTitle),
             $noMenuList,
             $request
