@@ -1,9 +1,9 @@
 <?php
 
 
+use Mishusoft\Http\Runtime;
 use Mishusoft\Storage;
 use Mishusoft\Services\SEOToolKitService;
-use Mishusoft\Storage\FileSystem;
 use Mishusoft\System\Log;
 use Mishusoft\System\Memory;
 use Mishusoft\Ui;
@@ -33,91 +33,35 @@ if ($this->templateUse === 'no') {
      * we need to elaborate all meta tag for all supported seo engine
      * if we have not meta, then we execute default meta tags
      */
+    SEOToolKitService::start();
+    SEOToolKitService::addDocumentIdentify(['width'=>'device-width','initial-scale'=>'1.0','shrink-to-fit'=>'no']);
+    SEOToolKitService::loadAdsAuthentication();
+    SEOToolKitService::addDefault($this->titleOfCurrentWebPage);
+    SEOToolKitService::addRobotsMeta();
+    SEOToolKitService::addSocialCard(['google','og','twitter'], [
+        'title'=> $this->titleOfCurrentWebPage,
+        'image'=> Storage::toDataUri('media', 'logos/mishusoft-logo-lite.webp', 'remote')
+    ]);
 
-    (new SEOToolKitService($this))->start();
+    //add author file
+    SEOToolKitService::addAuthor(Runtime::link('humans.txt'));
+
+    //this step we declare meta and link tags for progressive web application
+    Ui\ProgressiveWebApplication::create(DEFAULT_APP_NAME);
 
 
-    Ui::elementList(Ui::getDocumentHeadElement(), ['link' => Storage::assignableWebFavicons()]);
-
-
-    //<link rel="manifest" href="manifest.json" />
-    //<meta name="mobile-web-app-capable" content="yes" />
-    //<meta name="apple-mobile-web-app-capable" content="yes" />
-    //<meta name="application-name" content="PWA Workshop" />
-    //<meta name="apple-mobile-web-app-title" content="PWA Workshop" />
-    //<meta name="msapplication-starturl" content="/index.html" />
-
-
-    /*
-     * this step we declare meta and link tags for progressive web application
-     */
-
-    Ui::elementList(
-        Ui::getDocumentHeadElement(),
-        [
-            'meta' => [
-                [
-                    'name' => 'mobile-web-app-capable',
-                    'content' => 'yes',
-                ],
-                [
-                    'name' => 'apple-mobile-web-app-capable',
-                    'content' => 'yes',
-                ],
-                [
-                    'name' => 'application-name',
-                    'content' => DEFAULT_APP_NAME,
-                ],
-                [
-                    'name' => 'apple-mobile-web-app-title',
-                    'content' => DEFAULT_APP_NAME,
-                ],
-                [
-                    'name' => 'msapplication-starturl',
-                    'content' => Ui\ProgressiveWebApplication::startUrl(),
-                ],
-            ],
-            'link' => [
-                [
-                    'rel' => 'manifest',
-                    'href' => Ui\ProgressiveWebApplication::loadManifestFile(),
-                ],
-            ],
-        ]
-    );
-
-    /*
-     * this step we declare meta tags for all seo engine
-     */
-
+    //this step we declare meta tags for all seo engine
     Ui::element(Ui::getDocumentHeadElement(), 'meta', ['name' => 'googlebot', 'content' => 'nosnippet']);
 
-    /*
-     * this step we declare meta tag for seo index
-     */
-
-    /*
-     * we declare default meta tags for mishusoft application
-    */
-
+    //we declare default meta tags for mishusoft application
     Ui::elementList(
         Ui::getDocumentHeadElement(),
         [
             'meta' => [
-                [
-                    'id' => 'meta-title',
-                    'name' => 'meta-title',
-                    'content' => $this->titleOfCurrentWebPage,
-                ],
-                [
-                    'id' => 'meta-app-name',
-                    'name' => 'meta-app-name',
-                    'content' => Memory::Data()->name,
-                ],
                 [
                     'id' => 'mishusoft-web-root',
                     'name' => 'mishusoft-web-root',
-                    'content' => Memory::Data('framework')->host->url,
+                    'content' => Runtime::hostUrl(),
                 ],
                 [
                     'id' => 'mishusoft-session-validity',
@@ -128,6 +72,11 @@ if ($this->templateUse === 'no') {
         ]
     );
 
+
+
+    //add web favicons file
+    Ui::elementList(Ui::getDocumentHeadElement(), ['link' => Storage::assignableWebFavicons()]);
+
     // add css file in head
 
     //<link rel="stylesheet" media='screen and (min-width: 140px) and (max-width: 380px)' href="phone.css"/>
@@ -137,12 +86,6 @@ if ($this->templateUse === 'no') {
     Ui::elementList(
         Ui::getDocumentHeadElement(),
         [
-        //            'link' => [
-        //                [
-        //                    'rel' => 'stylesheet', 'type' => 'text/css', 'id' => 'framework.css',
-        //                    'href' => Storage::assetsFullPath('css/framework.css', 'remote'),
-        //                ],
-        //            ],
             'style' => [
                 [
                     'type' => 'text/css', 'id' => 'theme.css',
@@ -172,6 +115,8 @@ if ($this->templateUse === 'no') {
 //        'src' => 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
 //    ]);
 
+
+    //end head section
 
 
 
