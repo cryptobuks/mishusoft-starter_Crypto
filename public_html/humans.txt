@@ -1,0 +1,13 @@
+/* TEAM */
+	Chef: Al-Amin Ahamed
+	Contact: alamin.rohita [at] hotmail.com
+	Twitter: @mralamainahamed
+	Facebook: @mralamainahamed
+	LinkedIn: @mralamainahamed
+	From: Dhaka, Bangladesh
+
+/* SITE */
+	Last update: 2021/10/05
+	Language: English / Bangla
+	Doctype: HTML5
+	IDE: PhpStorm, FileZilla, Photoshop
