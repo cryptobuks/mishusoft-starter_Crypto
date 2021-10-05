@@ -4,11 +4,9 @@
 namespace Mishusoft\Services;
 
 use Mishusoft\Base;
-use Mishusoft\Drivers\View\MishusoftView;
 use Mishusoft\Exceptions\ErrorException;
 use Mishusoft\Exceptions\RuntimeException;
-use Mishusoft\Registry;
-use Mishusoft\Storage;
+use Mishusoft\Http\Runtime;
 use Mishusoft\Storage\FileSystem;
 use Mishusoft\System\Memory;
 use Mishusoft\Ui;
@@ -17,54 +15,36 @@ use Mishusoft\Utility\Implement;
 
 class SEOToolKitService extends Base
 {
-    private object $view;
 
-    private array $SearchEngineList = [
-        'Bing',
-        'Yandex',
-        'CC Search',
-        'Swisscows',
-        'DuckDuckGo',
-        'StartPage',
-        'Search Encrypt',
-        'Google',
-        'Gibiru',
-        'OneSearch',
-        'Wiki.com',
-        'Boardreader',
-        'giveWater',
-        'Ekoru',
-        'Ecosia',
-        'Twitter',
-        'SlideShare',
-        'Internet Archive',
-        'The Takeaway',
-    ];
-
-
-    /**
-     * SEOToolKitService constructor.
-     *
-     * @param MishusoftView $view
-     * @throws RuntimeException
-     */
-    public function __construct(MishusoftView $view)
+    private function engines():array
     {
-        parent::__construct();
-        // Verify seo config, seo ad sense, seo se list file
-        $this->check();
-
-        $this->view = $view;
-    }//end __construct()
-
-    //    public const SEO_CONFIG_FILE         = RUNTIME_REGISTRIES_PATH.'seo.json';
-    //    public const AD_SENSE_CONFIG_FILE    = RUNTIME_REGISTRIES_PATH.'seo-ad-sense.json';
-    //    public const SEARCH_ENGINE_LIST_FILE = RUNTIME_REGISTRIES_PATH.'seo-se-list.json';
+        return [
+            'Bing',
+            'Yandex',
+            'CC Search',
+            'Swisscows',
+            'DuckDuckGo',
+            'StartPage',
+            'Search Encrypt',
+            'Google',
+            'Gibiru',
+            'OneSearch',
+            'Wiki.com',
+            'Boardreader',
+            'giveWater',
+            'Ekoru',
+            'Ecosia',
+            'Twitter',
+            'SlideShare',
+            'Internet Archive',
+            'The Takeaway',
+        ];
+    }
 
     /**
      * @return string
      */
-    private function seoConfigFile(): string
+    private static function seoConfigFile(): string
     {
         return self::dFile(self::configDataFile('SEOToolKitService', 'seo'));
     }
@@ -72,7 +52,7 @@ class SEOToolKitService extends Base
     /**
      * @return string
      */
-    private function adSenseConfigFile(): string
+    private static function adSenseConfigFile(): string
     {
         return self::dFile(self::configDataFile('SEOToolKitService', 'ad-sense'));
     }
@@ -80,7 +60,7 @@ class SEOToolKitService extends Base
     /**
      * @return string
      */
-    private function searchEngineListFile(): string
+    private static function searchEngineListFile(): string
     {
         return self::dFile(self::configDataFile('SEOToolKitService', 'se-list'));
     }
@@ -89,15 +69,19 @@ class SEOToolKitService extends Base
     /**
      * @throws RuntimeException
      */
-    private function check(): void
+    public static function start(): void
     {
+        // List of configuration files
         $fileList = [
-            $this->seoConfigFile(),
-            $this->adSenseConfigFile(),
-            $this->searchEngineListFile(),
+            self::seoConfigFile(),
+            self::adSenseConfigFile(),
+            self::searchEngineListFile(),
         ];
+
+        // Verify configurations
         if (count($fileList) > 0) {
-            FileSystem::makeDirectory(dirname($this->seoConfigFile()));
+            // Create directory if not exists
+            FileSystem::makeDirectory(dirname(self::seoConfigFile()));
             foreach ($fileList as $file) {
                 if (file_exists($file) === false) {
                     FileSystem\Yaml::emitFile($file, []);
@@ -108,156 +92,87 @@ class SEOToolKitService extends Base
                 }
             }
         }
-    }//end check()
-
-
-    /**
-     *
-     * @throws ErrorException
-     * @throws RuntimeException
-     * @throws RuntimeException\NotFoundException
-     */
-    public function start(): void
-    {
-        $this->documentIdentify();
-        $this->default();
-        $this->socialNetworkManager();
-        $this->AdSenseManager();
     }//end start()
 
 
     /**
-     * @throws ErrorException
-     * @throws RuntimeException
-     * @throws RuntimeException\NotFoundException
+     * @param string $source
      */
-    private function socialNetworkManager(): void
+    public static function addAuthor(string $source) : void
     {
-        /*
-         * <!-- Update your html tag to include the itemscope and itemtype attributes. -->
-            <!-- Place this data between the <head> tags of your website -->
-            <title>Page Title. Maximum length 60-70 characters</title>
-            <meta name="description" content="Page description. No longer than 155 characters." />
-
-            <!-- Schema.org markup for Google+ -->
-            <meta itemprop="name" content="The Name or Title Here">
-            <meta itemprop="description" content="This is the page description">
-            <meta itemprop="image" content="http://www.example.com/image.jpg">
-
-            <!-- Twitter Card data -->
-            <meta name="twitter:card" content="summary_large_image">
-            <meta name="twitter:site" content="@publisher_handle">
-            <meta name="twitter:title" content="Page Title">
-            <meta name="twitter:description" content="Page description less than 200 characters">
-            <meta name="twitter:creator" content="@author_handle">
-            <!-- Twitter summary card with large image must be at least 280x150px -->
-            <meta name="twitter:image:src" content="http://www.example.com/image.jpg">
-
-            <!-- Open Graph data -->
-            <meta property="og:title" content="Title Here" />
-            <meta property="og:type" content="article" />
-            <meta property="og:url" content="http://www.example.com/" />
-            <meta property="og:image" content="http://example.com/image.jpg" />
-            <meta property="og:description" content="Description Here" />
-            <meta property="og:site_name" content="Site Name, i.e. Moz" />
-            <meta property="article:published_time" content="2013-09-17T05:59:00+01:00" />
-            <meta property="article:modified_time" content="2013-09-16T19:08:47+01:00" />
-            <meta property="article:section" content="Article Section" />
-            <meta property="article:tag" content="Article Tag" />
-            <meta property="fb:admins" content="Facebook numberic ID" />
-         */
-
-        $this->markupForGoogle();
-        $this->twitterCard();
-        $this->openGraphData();
-    }//end socialNetworkManager()
-
-
-    /**
-     *
-     */
-    private function adSenseManager(): void
-    {
-        Ui::elementList(
+        Ui::element(
             Ui::getDocumentHeadElement(),
-            [
-                'meta' => [
-                    [
-                        'name' => 'google-site-verification',
-                        'content' => '920ooXJv6lcqtSwPRaqe_b5EJwKNB367u-F7qhfdQGA',
-                    ],
-                    [
-                        'name' => 'google-signin-client_id',
-                        'content' => '490685818841-9ck0mpi283mogcoskgk8kso236m5bvn4.apps.googleusercontent.com',
-                    ],
-                ],
-            ]
+            'link',
+            ['type' => 'text/plain', 'rel' => 'author', 'href' => $source]
         );
-    }//end AdSenseManager()
+    }
 
 
     /**
-     *
+     * @param array|string[] $view
      */
-    private function documentIdentify(): void
+    public static function addDocumentIdentify(array $view = ['width'=>'device-width','initial-scale'=>'1.0']): void
     {
         Ui::elementList(
             Ui::getDocumentHeadElement(),
             [
                 'meta' => [
                     ['charset' => 'UTF-8'],
-                    // ["name" => "viewport", "content" => "width=device-width, initial-scale=1.0"],
-                    // /*<meta name=viewport content="width=device-width, initial-scale=1">*/
-                    [
-                        'name' => 'viewport',
-                        'content' => 'width=device-width, initial-scale=1.0, shrink-to-fit=no',
-                    ],
-                    [
-                        'http-equiv' => 'X-UA-Compatible',
-                        'content' => 'ie=edge',
-                    ],
-                    [
-                        'http-equiv' => 'Content-Type',
-                        'content' => 'text/html; charset=utf-8',
-                    ],
-                    // <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                    ['name' => 'viewport', 'content' => implode(', ', $view),],
+                    ['http-equiv' => 'X-UA-Compatible', 'content' => 'ie=edge',],
+                    ['http-equiv' => 'Content-Type', 'content' => 'text/html; charset=utf-8',],
                 ],
             ]
         );
-    }//end documentIdentify()
+    }//end addDocumentIdentify()
 
 
     /**
+     * @throws RuntimeException
+     */
+    public static function loadAdsAuthentication(): void
+    {
+        $configs = FileSystem\Yaml::parseFile(self::adSenseConfigFile());
+        $attributes = [];
+
+        if (count($configs) > 0) {
+            foreach ($configs as $config) {
+                $attributes[] = [
+                    'name' => $config['name'],
+                    'content' => $config['content'],
+                ];
+            }
+
+            if (count($attributes) > 0) {
+                Ui::elementList(
+                    Ui::getDocumentHeadElement(),
+                    ['meta' => $attributes,]
+                );
+            }
+        }
+    }//end loadAdsAuthentication()
+
+
+    /**
+     * we declare default meta tags for seo index
      *
      * @throws ErrorException
      * @throws RuntimeException
      * @throws RuntimeException\NotFoundException
      */
-    private function default(): void
+    public static function addDefault(string $documentTitle): void
     {
-        /*
-         * we declare default meta tags for seo index
-         * */
-
-        /*
-         *     <meta name="keywords" content="{$title}"/>
-         *     <meta name="company" content="{$layoutParams.configs.app_company}"/>
-         *     <meta name="author" content="{$layoutParams.configs.app_author}"/>
-         *     <meta name="description" content="{$layoutParams.configs.app_slogan}"/>
-         */
-
-        // getVisitedPage
         Ui::elementList(
             Ui::getDocumentHeadElement(),
             [
                 'meta' => [
                     [
                         'name' => 'title',
-                        'content' => $this->view->titleOfCurrentWebPage,
+                        'content' => $documentTitle,
                     ],
                     [
                         'name' => 'keywords',
-                        'content' => $this->view->titleOfCurrentWebPage,
+                        'content' => self::getKeywords($documentTitle),
                     ],
                     [
                         'name' => 'company',
@@ -265,22 +180,29 @@ class SEOToolKitService extends Base
                     ],
                     [
                         'name' => 'description',
-                        'content' => $this->loadDescription(),
+                        'content' => self::getDescriptionDetails(),
                     ],
+                    [
+                        'name' => 'description',
+                        'content' => self::getDescriptionDetails(),
+                    ],
+                ],
+                'link' => [
+                    [
+                        'rel' => 'canonical',
+                        'href' => Runtime::currentUrl(),
+                    ]
                 ],
             ]
         );
     }//end default()
 
-    /**
-     *
-     */
-    private function robots(): void
-    {
-        /*
-         * we declare robots meta tags for robots
-         * */
 
+    /**
+     * we declare robots meta tags for robots
+     */
+    public static function addRobotsMeta(): void
+    {
         Ui::elementList(
             Ui::getDocumentHeadElement(),
             [
@@ -302,117 +224,151 @@ class SEOToolKitService extends Base
         );
     }//end default()
 
-
     /**
+     * @param array|string[] $sites
+     * @param array|string[] $items
      * @throws ErrorException
      * @throws RuntimeException
      * @throws RuntimeException\NotFoundException
      */
-    private function markupForGoogle(): void
+    public static function addSocialCard(array $sites = ['og'], array $items = ['image' => '/favicon.ico']): void
     {
-        Ui::elementList(
-            Ui::getDocumentHeadElement(),
-            [
-                'meta' => [
+        foreach ($sites as $site) {
+            if ($site === 'google') {
+                // <!-- Schema.org markup for Google+ -->
+                // <meta itemprop="name" content="The Name or Title Here">
+                // <meta itemprop="description" content="This is the page description">
+                // <meta itemprop="image" content="http://www.example.com/image.jpg">
+                Ui::elementList(
+                    Ui::getDocumentHeadElement(),
                     [
-                        'itemprop' => 'name',
-                        'content' => $this->view->titleOfCurrentWebPage,
-                    ],
+                        'meta' => [
+                            [
+                                'itemprop' => 'name',
+                                'content' => ArrayCollection::value($items, 'title'),
+                            ],
+                            [
+                                'itemprop' => 'image',
+                                'content' => ArrayCollection::value($items, 'image'),
+                            ],
+                            [
+                                'itemprop' => 'description',
+                                'content' => self::getDescriptionDetails(),
+                            ],
+                        ],
+                    ]
+                );
+            }
+            if ($site === 'og') {
+                //<!-- Open Graph data -->
+                //<meta property="og:title" content="Title Here" />
+                //<meta property="og:type" content="article" />
+                //<meta property="og:url" content="http://www.example.com/" />
+                //<meta property="og:image" content="http://example.com/image.jpg" />
+                //<meta property="og:description" content="Description Here" />
+                //<meta property="og:site_name" content="Site Name, i.e. Moz" />
+                //<meta property="article:published_time" content="2013-09-17T05:59:00+01:00" />
+                //<meta property="article:modified_time" content="2013-09-16T19:08:47+01:00" />
+                //<meta property="article:section" content="Article Section" />
+                //<meta property="article:tag" content="Article Tag" />
+                //<meta property="fb:admins" content="Facebook numberic ID" />
+                Ui::elementList(
+                    Ui::getDocumentHeadElement(),
                     [
-                        'itemprop' => 'image',
-                        'content' => Storage::logoFullPath('favicon.ico', 'remote', 'remote'),
-                    ],
+                        'meta' => [
+                            [
+                                'property' => 'og:title',
+                                'content' => ArrayCollection::value($items, 'title'),
+                            ],
+                            [
+                                'property' => 'og:type',
+                                'content' => 'article',
+                            ],
+                            [
+                                'property' => 'og:url',
+                                'content' => Runtime::hostUrl(),
+                            ],
+                            [
+                                'property' => 'og:image',
+                                'content' => ArrayCollection::value($items, 'image'),
+                            ],
+                            [
+                                'property' => 'og:description',
+                                'content' => self::getDescriptionDetails(),
+                            ],
+                            [
+                                'property' => 'og:site_name',
+                                'content' => Memory::data()->name,
+                            ],
+                        ],
+                    ]
+                );
+            }
+            if ($site === 'twitter') {
+                //<!-- Twitter Card data -->
+                //<meta name="twitter:card" content="summary_large_image">
+                //<meta name="twitter:site" content="@publisher_handle">
+                //<meta name="twitter:title" content="Page Title">
+                //<meta name="twitter:description" content="Page description less than 200 characters">
+                //<meta name="twitter:creator" content="@author_handle">
+                //<!-- Twitter summary card with large image must be at least 280x150px -->
+                //<meta name="twitter:image:src" content="http://www.example.com/image.jpg">
+                Ui::elementList(
+                    Ui::getDocumentHeadElement(),
                     [
-                        'itemprop' => 'description',
-                        'content' => $this->getDescriptionDetails(),
-                    ],
-                ],
-            ]
-        );
-    }//end markupForGoogle()
+                        'meta' => [
+                            [
+                                'name' => 'twitter:card',
+                                'content' => ArrayCollection::value($items, 'image'),
+                            ],
+                            [
+                                'name' => 'twitter:site',
+                                'content' => Runtime::hostUrl(),
+                            ],
+                            [
+                                'name' => 'twitter:title',
+                                'content' => ArrayCollection::value($items, 'title'),
+                            ],
+                            [
+                                'name' => 'twitter:description',
+                                'content' => self::getDescriptionDetails(),
+                            ],
+                            [
+                                'name' => 'twitter:creator',
+                                'content' => Memory::data()->author->name,
+                            ],
+                            [
+                                'name' => 'twitter:image:src',
+                                'content' => ArrayCollection::value($items, 'image'),
+                            ],
+                        ],
+                    ]
+                );
+            }
+        }
+    }
 
 
     /**
-     *
-     * @throws ErrorException
+     * @param string $documentTitle
+     * @return string
      * @throws RuntimeException
-     * @throws RuntimeException\NotFoundException
      */
-    private function twitterCard(): void
+    private static function getKeywords(string $documentTitle): string
     {
-        Ui::elementList(
-            Ui::getDocumentHeadElement(),
-            [
-                'meta' => [
-                    [
-                        'name' => 'twitter:card',
-                        'content' => Storage::toDataUri('media', 'logos/mishusoft-logo-lite.webp', 'remote'),
-                    ],
-                    [
-                        'name' => 'twitter:site',
-                        'content' => Memory::data('framework')->host->url,
-                    ],
-                    [
-                        'name' => 'twitter:title',
-                        'content' => $this->view->titleOfCurrentWebPage,
-                    ],
-                    [
-                        'name' => 'twitter:description',
-                        'content' => $this->getDescriptionDetails(),
-                    ],
-                    [
-                        'name' => 'twitter:creator',
-                        'content' => Memory::data()->author->name,
-                    ],
-                    [
-                        'name' => 'twitter:image:src',
-                        'content' => Storage::toDataUri('media', 'logos/mishusoft-logo-lite.webp', 'remote'),
-                    ],
-                ],
-            ]
-        );
-    }//end twitterCard()
+        if ((array_key_exists('keywords', self::getAbout(Runtime::currentUrl())))) {
+            return implode(
+                ',',
+                ArrayCollection::value(
+                    self::getAbout(Runtime::currentUrl()),
+                    'keywords'
+                )
+            );
+        }
 
+        return $documentTitle;
+    }
 
-    /**
-     * @throws ErrorException
-     * @throws RuntimeException
-     * @throws RuntimeException\NotFoundException
-     */
-    private function openGraphData(): void
-    {
-        Ui::elementList(
-            Ui::getDocumentHeadElement(),
-            [
-                'meta' => [
-                    [
-                        'property' => 'og:title',
-                        'content' => $this->view->titleOfCurrentWebPage,
-                    ],
-                    [
-                        'property' => 'og:type',
-                        'content' => 'article',
-                    ],
-                    [
-                        'property' => 'og:url',
-                        'content' => Memory::data('framework')->host->url,
-                    ],
-                    [
-                        'property' => 'og:image',
-                        'content' => Storage::toDataUri('media', 'logos/mishusoft-logo-lite.webp', 'remote'),
-                    ],
-                    [
-                        'property' => 'og:description',
-                        'content' => $this->getDescriptionDetails(),
-                    ],
-                    [
-                        'property' => 'og:site_name',
-                        'content' => Memory::data()->name,
-                    ],
-                ],
-            ]
-        );
-    }//end openGraphData()
 
     /**
      * @return string
@@ -420,10 +376,10 @@ class SEOToolKitService extends Base
      * @throws RuntimeException
      * @throws RuntimeException\NotFoundException
      */
-    private function getDescriptionDetails(): string
+    private static function getDescriptionDetails(): string
     {
-        if ((array_key_exists('description', $this->getAbout(Registry::Browser()::getVisitedPage())))) {
-            return ArrayCollection::value($this->getAbout(Registry::Browser()::getVisitedPage()), 'description');
+        if ((array_key_exists('description', self::getAbout(Runtime::currentUrl())))) {
+            return ArrayCollection::value(self::getAbout(Runtime::currentUrl()), 'description');
         }
 
         return Memory::data()->company->detailsDescription;
@@ -435,32 +391,18 @@ class SEOToolKitService extends Base
      * @return array
      * @throws RuntimeException
      */
-    private function getAbout(string $url): array
+    private static function getAbout(string $url): array
     {
         $result = [];
-        foreach (FileSystem\Yaml::parseFile($this->seoConfigFile()) as $inf) {
-            if (array_key_exists($url, $inf) === true) {
-                $result = $inf;
+        //data = ['url' => ['des','keywords]]
+        foreach (FileSystem\Yaml::parseFile(self::seoConfigFile()) as $info) {
+            if (array_key_exists($url, $info) === true) {
+                $result = $info[$url];
             }
         }
 
         return $result;
     }//end getAbout()
-
-    /**
-     * @return mixed
-     * @throws ErrorException
-     * @throws RuntimeException
-     * @throws RuntimeException\NotFoundException
-     */
-    private function loadDescription():mixed
-    {
-        if ((array_key_exists('description', $this->getAbout(Registry::Browser()::getVisitedPage())))) {
-            return $this->getAbout(Registry::Browser()::getVisitedPage())['description'];
-        }
-
-        return Memory::data()->company->detailsDescription;
-    }
 
 
     /**
@@ -469,12 +411,4 @@ class SEOToolKitService extends Base
     public function __destruct()
     {
     }//end __destruct()
-
-    /**
-     * @return array
-     */
-    public function getSearchEngineList(): array
-    {
-        return $this->SearchEngineList;
-    }
 }//end class
