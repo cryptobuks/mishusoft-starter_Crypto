@@ -501,14 +501,14 @@ class Framework extends Base
                 'caption' => static::FULL_NAME,
                 'description' => static::description(),
                 'warning' => static::installWarning(),
-                'copyright' => Ui::copyRightText(),
+                'copyright' => Ui::copyRightText(Time::currentYearNumber(), static::COMPANY_NAME),
             ]);
         } elseif (file_exists(MPM\Classic::configFile()) === false) {
             EmbeddedView::welcomeToFramework(static::FULL_NAME, [
                 'caption' => static::FULL_NAME,
                 'description' => static::description(),
                 'warning' => static::installWarning(),
-                'copyright' => Ui::copyRightText(),
+                'copyright' => Ui::copyRightText(Time::currentYearNumber(), static::COMPANY_NAME),
             ]);
         } else {
             MPM\Classic::load();
