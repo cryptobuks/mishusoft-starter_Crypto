@@ -102,9 +102,6 @@ class EmbeddedView
         Ui::start();
         Ui::setDocumentTitle(self::$documentTitle);
 
-        //Ui::element(Ui::getDocumentHeadElement(), 'style', ['text'=>$cssContent]);
-        Ui::elementList(Ui::getDocumentHeadElement(), ['link' => Storage::assignableWebFavicons()]);
-
         Ui::elementList(
             Ui::getDocumentHeadElement(),
             [
@@ -122,7 +119,11 @@ class EmbeddedView
                 //'style' => array(array('text'=>$cssContent))
             ]
         );
+
+        Ui::elementList(Ui::getDocumentHeadElement(), ['link' => Storage::assignableWebFavicons()]);
+
         //<link rel="icon" type="image/vnd.microsoft.icon" sizes="16x16" href="{logoFolder}favicon.ico">
+        //Ui::element(Ui::getDocumentHeadElement(), 'style', ['text'=>$cssContent]);
 
         Ui::element(Ui::getDocumentRoot(), 'body', ['child' => self::childElement()]);
 
