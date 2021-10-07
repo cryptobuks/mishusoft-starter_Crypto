@@ -113,14 +113,15 @@ class EmbeddedView
                     ['name' => 'author', 'content' => Framework::AUTHOR_NAME,],
                     ['name' => 'description', 'content' => self::$documentTitle,],
                 ],
-                'style' => [
-                    ['text' => Storage\FileSystem::read(Storage::fViewsFullPath('css/embedded.css')),],
-                ],
-                //'style' => array(array('text'=>$cssContent))
             ]
         );
 
-        Ui::elementList(Ui::getDocumentHeadElement(), ['link' => Storage::assignableWebFavicons()]);
+        Ui::elementList(Ui::getDocumentHeadElement(), [
+            'link' => Storage::assignableWebFavicons(),
+            'style' => [
+                ['text' => Storage\FileSystem::read(Storage::fViewsFullPath('css/embedded.css')),],
+            ],
+        ]);
 
         //<link rel="icon" type="image/vnd.microsoft.icon" sizes="16x16" href="{logoFolder}favicon.ico">
         //Ui::element(Ui::getDocumentHeadElement(), 'style', ['text'=>$cssContent]);

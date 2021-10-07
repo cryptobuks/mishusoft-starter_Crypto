@@ -14,7 +14,6 @@ use Mishusoft\System\BIOS;
 use Mishusoft\System\Firewall;
 use Mishusoft\System\Log;
 use Mishusoft\System\Memory;
-use Mishusoft\Utility\Debug;
 
 class App extends BIOS
 {
@@ -62,22 +61,15 @@ class App extends BIOS
                     if ($firewall->isRequestAccepted() === true) {
                         if (Registry::Browser()->getRequestMethod() === 'OPTIONS') {
                             $note = 'The HTTP OPTIONS method requests permitted to communicate';
+                            $currentUrl = $registry::Browser()::getVisitedPage();
                             // add welcome note for http options method
                             Stream::json([
                                 'message' => [
                                     'type' => 'success',
-                                    'contents' => sprintf(
-                                        "%s for %s.",
-                                        $note,
-                                        $registry::Browser()::getVisitedPage()
-                                    ),
+                                    'contents' => sprintf("%s for %s.", $note, $currentUrl),
                                 ],
                             ]);
-                            Log::info(
-                                sprintf("%s for %s.", $note, $registry::Browser()::getVisitedPage()),
-                                LOG_STYLE_FULL,
-                                LOG_TYPE_ACCESS
-                            );
+                            Log::info(sprintf("%s for %s.", $note, $currentUrl), LOG_STYLE_FULL, LOG_TYPE_ACCESS);
                         } else {
                             Log::info('Access validity of client has been passed.');
                             Log::info('Start system session.');

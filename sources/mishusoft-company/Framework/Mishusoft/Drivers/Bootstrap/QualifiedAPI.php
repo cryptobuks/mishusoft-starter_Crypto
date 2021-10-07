@@ -16,7 +16,6 @@ class QualifiedAPI
 
     /**
      * @param Http\Request\QualifiedAPI $request
-     * @throws Exceptions\JsonException
      * @throws Exceptions\RuntimeException
      * @throws Exceptions\RuntimeException\NotFoundException
      */
@@ -24,6 +23,8 @@ class QualifiedAPI
     {
         Log::info('Request store in $redirection variable');
         $rootDirectory = self::routesDirectory();
+
+        print_r($rootDirectory, false);
 
         /*
          * We need to check Embedded Web Url Root path

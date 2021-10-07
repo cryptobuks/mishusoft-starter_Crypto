@@ -9,11 +9,14 @@ use Mishusoft\System\Memory;
 use Mishusoft\System\Network;
 use Mishusoft\System\Time;
 use Mishusoft\Ui\EmbeddedView;
-use Mishusoft\Utility\Debug;
-use Mishusoft\Utility\Implement;
 
 class Framework extends Base
 {
+    //use trait
+    use Framework\Validation;
+    use Framework\DiskObserver;
+    use Framework\StaticText;
+
     // Declare framework version.
     public const VERSION = '1.0.2';
 
@@ -54,31 +57,21 @@ class Framework extends Base
      */
     public static function init(Registry $registry, Closure $closure): static
     {
-
-
-//        Debug::preOutput(file_get_contents(RUNTIME_ROOT_PATH . 'tests/data/freshman_kgs.csv'));
-//        Debug::preOutput(explode("\r\n", file_get_contents(RUNTIME_ROOT_PATH . 'tests/data/freshman_kgs.csv')));
-//        Debug::preOutput(file(RUNTIME_ROOT_PATH . 'tests/data/freshman_kgs.csv', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES));
-//        Debug::preOutput(file_get_contents(RUNTIME_ROOT_PATH . 'tests/data/sample-03.csv'));
-//        Debug::preOutput(explode("\r\n", file_get_contents(RUNTIME_ROOT_PATH . 'tests/data/sample-03.csv')));
-//        Debug::preOutput(file(RUNTIME_ROOT_PATH . 'tests/data/sample-03.csv', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES));
-//        Debug::preOutput(Implement::csv(RUNTIME_ROOT_PATH . 'tests/data/sample-03.csv'));
-//        Debug::preOutput(FileSystem\Dallgoot\Yaml\Yaml::parseFile(self::installFile()));
         $instance = new static();
 
         //configure and install framework
         static::makeConfigure();
         static::makeInstall($registry);
 
-        //Check framework requirements
+        //Check framework requirements with validation class
         static::extensionRequiredCheck();
         static::thirdPartyRequiredCheck();
         static::opcacheStatusCheck();
 
         $closure($instance);
 
-        //Check framework file system
-        if (file_exists($instance->listerFile()) === false || file_get_contents($instance->listerFile()) === '') {
+        //Check framework file system with disk observer
+        if (!file_exists($instance->listerFile()) || empty(file_get_contents($instance->listerFile()))) {
             $instance->checkFileSystem();
         }
 
@@ -93,52 +86,6 @@ class Framework extends Base
     {
         return Registry::Browser()::urlOrigin($_SERVER).Storage::applicationWebDirectivePath();
     }//end getAbsoluteInstalledURL()
-
-    /**
-     * @return string
-     */
-    public static function description():string
-    {
-        $details  = static::FULL_NAME.' is a robust multi-web platform developed by '.static::COMPANY_NAME.'.';
-        $details .= ' This platform is capable of getting start with all categories website quickly and accurately.';
-        return $details;
-    }
-
-    /**
-     * @return string
-     */
-    public static function companyDescriptionDetails():string
-    {
-        $details  = static::COMPANY_NAME.' is a software development company that is going to be established with ';
-        $details .= 'a view to offering high quality IT solutions at home and abroad. ';
-        $details .= 'The company is keen to take the advantage of fast growing global software and data processing ';
-        $details .= 'industry by offering professional service and price for support and benefit of the valued customers.';
-        return $details;
-    }
-
-    /**
-     * @return string
-     */
-    public static function configFile():string
-    {
-        return self::dFile(self::configDataFile('Framework', 'config'));
-    }
-
-    /**
-     * @return string
-     */
-    public static function installFile():string
-    {
-        return self::dFile(self::configDataFile('Framework', 'install'));
-    }
-
-    /**
-     * @return string
-     */
-    public function listerFile():string
-    {
-        return self::dFile(self::configDataFile('Framework', 'files/' . APPLICATION_SERVER_NAME), 'ext4');
-    }
 
 
     /**
@@ -249,105 +196,29 @@ class Framework extends Base
         ];
     }
 
+    /**
+     * @return string
+     */
+    public static function configFile():string
+    {
+        return self::dFile(self::configDataFile('Framework', 'config'));
+    }
 
     /**
-     * Check whole file system.
-     *
-     * @param string $rootPath System root path.
-     *
-     * @return void
-     * @throws Exceptions\RuntimeException
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\PermissionRequiredException
+     * @return string
      */
-    private function checkFileSystem(string $rootPath = RUNTIME_ROOT_PATH): void
+    public static function installFile():string
     {
-        /*
-         * Check root directory is directory or not.
-         * */
-        if (is_dir($rootPath) === false) {
-            throw new Exceptions\RuntimeException\NotFoundException($rootPath.' not found.');
-        }
-
-        /*
-         * Check last string of root directory is backslash or not.
-         * */
-        if ($rootPath[(strlen($rootPath) - 1)] !== '/') {
-            $rootPath .= '/';
-        }
-
-        /*
-         * Check provided root directory in app installed path.
-         * */
-        if (in_array(self::getDirectoryName($rootPath), SYSTEM_EXCLUDE_DIRS, true) === true) {
-            return;
-        }
-
-        /*
-         * Browse every file and directory.
-         * */
-        $files = glob($rootPath.'*', GLOB_MARK);
-        foreach ($files as $file) {
-            if (is_dir($file) === true) {
-                $this->checkFileSystem($file);
-            } else {
-                $this->updateFileSystemDisk($file);
-            }
-        }
-    }//end checkFileSystem()
-
+        return self::dFile(self::configDataFile('Framework', 'install'));
+    }
 
     /**
-     * @param string $file
-     * @throws Exceptions\RuntimeException
-     * @throws Exceptions\PermissionRequiredException
+     * @return string
      */
-    private function updateFileSystemDisk(string $file): void
+    public function listerFile():string
     {
-        if (file_exists($this->listerFile()) === true) {
-            if (is_readable($this->listerFile()) === true) {
-                $this->updateDirectoryIndex($file);
-            } else {
-                throw new Exceptions\PermissionRequiredException(sprintf('Unable to read %s', $this->listerFile()));
-            }
-        } elseif (is_writable(dirname($this->listerFile(), 2)) === true) {
-            if (is_dir(dirname($this->listerFile())) === false) {
-                FileSystem::makeDirectory(dirname($this->listerFile()));
-            }
-
-            if (is_writable(dirname($this->listerFile())) === true) {
-                if (file_exists($this->listerFile()) === false) {
-                    fclose(fopen($this->listerFile(), 'wb+'));
-                    FileSystem::exec($this->listerFile());
-                }
-
-                $this->updateDirectoryIndex($file);
-            }//end if
-        } else {
-            throw new Exceptions\PermissionRequiredException(
-                sprintf('Unable to write %s', dirname($this->listerFile(), 2))
-            );
-        }//end if
-    }//end updateFileSystemDisk()
-
-
-    /**
-     * @param string $file
-     * @throws Exceptions\PermissionRequiredException
-     */
-    private function updateDirectoryIndex(string $file): void
-    {
-        if (is_writable($this->listerFile()) === true) {
-            if (is_file($file) === true && file_exists($file) === true) {
-                $data  = file_get_contents($this->listerFile());
-                $data .= substr(sprintf('%o', fileperms($this->listerFile())), -4)."\t";
-                $data .= filetype(realpath($this->listerFile()))."\t$file\n";
-                FileSystem::saveToFile($this->listerFile(), $data);
-            }
-        } else {
-            throw new Exceptions\PermissionRequiredException(sprintf('Unable to write %s', $this->listerFile()));
-        }//end if
-    }//end updateDirectoryIndex()
+        return self::dFile(self::configDataFile('Framework', 'files/' . APPLICATION_SERVER_NAME), 'ext4');
+    }
 
 
     /**
@@ -393,99 +264,14 @@ class Framework extends Base
                 'root'        => [
                     'dir' => [
                         'name' => self::rootPath(),
-                        'size' => disk_total_space(self::rootPath()),
-                        'free' => disk_free_space(self::rootPath()),
+                        'size' => Storage::spaceTotal(self::rootPath()),
+                        'free' => Storage::spaceFree(self::rootPath()),
                     ],
                 ],
             ]);
         }//end if
     }//end install()
 
-
-    /**
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\RuntimeException
-     */
-    private static function extensionRequiredCheck(): void
-    {
-        $requiredExtensions = (array) Memory::data()->required->extensions;
-        // Framework required extensions check.
-        if (count($requiredExtensions) > 0) {
-            foreach ($requiredExtensions as $extension) {
-                if (extension_loaded($extension) === false) {
-                    throw new Exceptions\ErrorException(sprintf('%s extension is required', ucfirst($extension)));
-                }
-            }
-        } else {
-            throw new Exceptions\ErrorException('Framework required extension checking failed');
-        }
-    }//end extensionRequiredCheck()
-
-
-    /**
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\RuntimeException
-     */
-    private static function thirdPartyRequiredCheck(): void
-    {
-        // required third-party library check
-        $thirdParty = (array) Memory::data()->required->thirdparty;
-        if (count($thirdParty) > 0) {
-            foreach ($thirdParty as $package => $details) {
-                $path = sprintf('%1$svendor%3$s%2$s', self::rootPath(), $package, DS);
-                if (is_dir($path) === false) {
-                    throw new Exceptions\ErrorException(
-                        sprintf(
-                            '%1$s is required. Please run `%2$s` or for fresh download visit %3$s',
-                            ucfirst($details->name),
-                            $details->command,
-                            $details->url
-                        )
-                    );
-                }
-            }
-        } else {
-            throw new Exceptions\ErrorException('Framework required third party package checking failed');
-        }
-    }//end thirdPartyRequiredCheck()
-
-
-    /**
-     *
-     * @throws Exceptions\ErrorException
-     */
-    private static function opcacheStatusCheck(): void
-    {
-        // REQUIREMENTS - Opcache.
-        if (function_exists('opcache_get_status') === false) {
-            trigger_error('Requires Opcache installations');
-        } else {
-            $opcache = opcache_get_status(false);
-            if (empty($opcache) === false && isset($opcache['opcache_enabled']) === true) {
-                // Additional opcache ini settings.
-                ini_set('opcache.memory_consumption', 128);
-                // Application opcache memory_consumption.
-                ini_set('opcache.interned_strings_buffer', 8);
-                // Application opcache interned_strings_buffer.
-                ini_set('opcache.max_accelerated_files', 4000);
-                // Application opcache max_accelerated_files.
-                ini_set('opcache.revalidate_freq', 60);
-                // Application opcache revalidate_freq.
-                // ini_set('opcache.fast_shutdown', 1);
-                // Application opcache fast_shutdown.
-                ini_set('opcache.enable_cli', 1);
-                // Application opcache cli.
-                ini_set('opcache.use_cwd', 1);
-                // Application opcache use_cwd.
-                ini_set('opcache.file_cache', APPLICATION_SYSTEM_TEMP_PATH.'/cache/.opcache;');
-                if (isset($opcache['cache_full']) === true) {
-                    opcache_reset();
-                }
-            } else {
-                throw new Exceptions\ErrorException('You must need to enable opcache');
-            }//end if
-        }//end if
-    }//end opcacheStatusCheck()
 
     /**
      * @throws Exceptions\ErrorException
@@ -496,14 +282,8 @@ class Framework extends Base
      */
     public function execute(): void
     {
-        if (file_exists(Storage::applicationDirectivePath()) === false) {
-            EmbeddedView::welcomeToFramework(static::FULL_NAME, [
-                'caption' => static::FULL_NAME,
-                'description' => static::description(),
-                'warning' => static::installWarning(),
-                'copyright' => Ui::copyRightText(Time::currentYearNumber(), static::COMPANY_NAME),
-            ]);
-        } elseif (file_exists(MPM\Classic::configFile()) === false) {
+        if (file_exists(Storage::applicationDirectivePath()) === false
+            || file_exists(MPM\Classic::configFile()) === false) {
             EmbeddedView::welcomeToFramework(static::FULL_NAME, [
                 'caption' => static::FULL_NAME,
                 'description' => static::description(),
@@ -515,16 +295,6 @@ class Framework extends Base
         }
         static::terminate();
     }//end execute()
-
-    private static function installWarning():string
-    {
-        $message = 'Notice: This welcome interface has been shown after successful installation of this framework. ';
-        $message .= 'Now you need to install our package(s) to getting start. ';
-        $message .= 'If you would install any package but this page shown, ';
-        $message .= 'you should to follow our getting start guideline.';
-
-        return $message;
-    }
 
     /**
      * @throws Exceptions\RuntimeException
