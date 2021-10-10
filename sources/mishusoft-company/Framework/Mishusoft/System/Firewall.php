@@ -809,20 +809,11 @@ class Firewall extends Firewall\FirewallBase
     public function defenceActivate(): void
     {
         if ($this->actionStatus === 'banned' || $this->actionStatus === 'blocked') {
-            if (array_key_exists('ui', Registry::Browser()->details())) {
-                //GranParadiso/3.0.8 is text browser
-                if (Character::lower(Registry::Browser()->details()['ui']) === Character::lower('FullTextMode')) {
-                    $this->msgTab = "\t";
-                    $this->defenseMessageShow('', $this->actionStatus, $this->actionComponent, 'text');
-                } else {
-                    $this->msgTab = '&emsp;';
-                    $this->defenseMessageShow(
-                        'Access',
-                        $this->actionStatus,
-                        $this->actionComponent,
-                        'graphic'
-                    );
-                }
+            //GranParadiso/3.0.8 is text browser
+            if (array_key_exists('ui', Registry::Browser()->details())
+                && Character::lower(Registry::Browser()->details()['ui']) === Character::lower('FullTextMode')) {
+                $this->msgTab = "\t";
+                $this->defenseMessageShow('', $this->actionStatus, $this->actionComponent, 'text');
             } else {
                 $this->msgTab = '&emsp;';
                 $this->defenseMessageShow('Access', $this->actionStatus, $this->actionComponent, 'graphic');
@@ -874,7 +865,7 @@ class Firewall extends Firewall\FirewallBase
                     [
                         'message' => [
                             'type' => 'error',
-                            'details' => "Your access has been $status $componentText.",
+                            'details' => sprintf('Your access has been %1$s %2$s.', $status, $componentText),
                             'visitor' => [
                                 'user-agent' => Registry::Browser()->getUserAgent(),
                                 'request-method' => Registry::Browser()->getRequestMethod(),
@@ -890,34 +881,37 @@ class Firewall extends Firewall\FirewallBase
                 );
             } elseif ($viewMode === 'text') {
                 echo LB;
-                echo " Your access has been $status $componentText. " . LB;
+                echo sprintf(' Your access has been %1$s %2$s.', $status, $componentText) . LB;
                 for ($i = 0; $i <= 65; $i++) {
                     echo '-';
                 }
 
                 echo LB;
                 // echo " User Agent : $this->msg_tab" . Registry::Browser()->getUserAgent() . LB;
-                echo " Request URL : $this->msgTab$requestMethod $requestAddress" . LB;
+                echo sprintf(' Request URL : %1$s%2$s %3$s.', $this->msgTab, $requestMethod, $requestAddress) . LB;
                 echo LB;
-                echo " IP address : $this->msgTab" . IP::get() . LB;
+                echo sprintf(' IP address : %1$s%2$s', $this->msgTab, IP::get()) . LB;
 
                 if (Character::lower(IP::getCountry()) !== 'unknown') {
-                    echo " Country : $this->msgTab" . IP::getCountry() . LB;
+                    echo sprintf(' Country : %1$s%2$s', $this->msgTab, IP::getCountry()) . LB;
                 } elseif (Character::lower(IP::getInfo('country')) !== 'unknown location') {
-                    echo " Country : $this->msgTab" . IP::getInfo('country') . LB;
+                    echo sprintf(' Country : %1$s%2$s', $this->msgTab, IP::getInfo('country')) . LB;
                 }
+
 
                 // avoid error browser capturing
                 if (Character::lower(Registry::Browser()->getBrowserName()) !== 'unknown') {
-                    echo " Browser : $this->msgTab" . Registry::Browser()->getBrowserNameFull() . LB;
+                    echo sprintf(' Browser : %1$s%2$s', $this->msgTab, Registry::Browser()->getBrowserNameFull()) . LB;
                 }
 
                 // avoid error device capturing
                 if (Character::lower(Registry::Browser()->getDeviceName()) !== 'unknown') {
-                    echo " Device : $this->msgTab"
-                        . Registry::Browser()->getDeviceName() . ' ('
-                        . Character::lower(Registry::Browser()->getPlatformArchitecture())
-                        . ').' . LB;
+                    echo sprintf(
+                        ' Device : %1$s%2$s (%3$s)',
+                        $this->msgTab,
+                        Registry::Browser()->getDeviceName(),
+                        Inflect::lower(Registry::Browser()->getPlatformArchitecture())
+                    ) . LB;
                 }
 
                 for ($i = 0; $i <= 65; $i++) {
@@ -927,14 +921,14 @@ class Firewall extends Firewall\FirewallBase
                 echo LB;
                 //echo 'Copyright © '.Time::getCurrentYearNumber().' '
                 //.Framework::COMPANY_NAME.'. All Right Reserved.'.LB;
-                echo '© ' . Time::currentYearNumber() . ' ' . Framework::COMPANY_NAME . '.' . LB;
+                echo sprintf(' © %1$s %2$s', Time::currentYearNumber(), Framework::COMPANY_NAME) . LB;
             } else {
                 // Ui\EmbeddedView::protection(
                 FirewallView::protection(
                     "$title denied",
                     [
-                        'caption'=>"$component has been $status",
-                        'message'=> "This is internal error occurred. if you are developer or owner of this website, please fix this problem.",
+                    'caption'=>sprintf(' %1$s has been %2$s', $component, $status),
+                    'message'=> "This is internal error occurred. if you are developer or owner of this website, please fix this problem.",
                     ],
                     Http\Errors::NOT_ACCEPTABLE
                 );
