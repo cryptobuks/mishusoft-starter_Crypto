@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\QualifiedAPIRoutes;
+namespace Mishusoft\Communication;
 
 use DOMElement;
 use DOMNode;
@@ -195,7 +195,10 @@ class WebResourceDelivery
 
                 case strtolower('related'):
                     $requestArgument = implode(DS, $request['arguments']);
-                    $requestedWebFile = MPM\Classic::templatesJSResourcesRoot($request['module'], $request['controller']);
+                    $requestedWebFile = MPM\Classic::templatesJSResourcesRoot(
+                        $request['module'],
+                        $request['controller']
+                    );
                     if (file_exists(MPM\Classic::templatesJSResourcesRootLocal() . $requestArgument) === true) {
                         Storage\Stream::file($requestedWebFile);
                     } else {
@@ -520,61 +523,39 @@ class WebResourceDelivery
         foreach ((array)Storage::explore($dirname) as $file) {
             $list = Ui::element($table_body, 'tr');
             if (Storage\Media::in(Storage\Media\Mime::Image, Storage\Media::mimeContent($file))) {
-                Ui::element(Ui::element(Ui::element(
-                    $list,
-                    'td',
-                    ['style' => 'width: 20px;']
-                ), 'a', [
+                Ui::element(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', [
                     'style' => Ui::HTML_HREF_STYLE . 'color: #000;', 'href' => $parentURL . basename($file),
                 ]), 'img', ['style' => 'width:20px;height:20px;', 'src' => $parentURL . basename($file),
                 ]);
             } elseif (Storage\FileSystem::fileType($file) === 'dir') {
-                Ui::element(Ui::element(Ui::element(
-                    $list,
-                    'td',
-                    ['style' => 'width: 20px;']
-                ), 'a', [
+                Ui::element(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', [
                     'style' => Ui::HTML_HREF_STYLE . 'color: #000;', 'href' => $parentURL . basename($file),
-                ]), 'img', [
-                    'style' => 'width:20px;height:20px;',
+                ]), 'img', ['style' => 'width:20px;height:20px;',
                     'src' => Storage::toDataUri('media', 'images/icons/folder.png'),
                 ]);
             } elseif (Storage\FileSystem::fileType($file) === 'file') {
-                Ui::element(Ui::element(Ui::element(
-                    $list,
-                    'td',
-                    ['style' => 'width: 20px;']
-                ), 'a', [
+                Ui::element(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', [
                     'style' => Ui::HTML_HREF_STYLE . 'color: #000;', 'href' => $parentURL . basename($file),
                 ]), 'img', ['style' => 'width:20px;height:20px;',
                     'src' => Storage::toDataUri('media', 'images/icons/code-file.png'),
                 ]);
             } else {
-                Ui::text(Ui::element(Ui::element(
-                    $list,
-                    'td',
-                    ['style' => 'width: 20px;']
-                ), 'a', [
+                Ui::text(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', [
                     'style' => Ui::HTML_HREF_STYLE . 'color: #000;', 'href' => $parentURL . basename($file),
                 ]), Storage\FileSystem::fileType($file));
             }
 
-            Ui::text(Ui::element(Ui::element(
-                $list,
-                'td',
-                ['style' => 'width:400px;']
-            ), 'a', [
+            Ui::text(Ui::element(Ui::element($list, 'td', ['style' => 'width:400px;']), 'a', [
                 'class' => 'protect', 'style' => 'color: #000;', 'href' => $parentURL . basename($file),
             ]), Storage\FileSystem::fileOriginalName($file));
 
             if (Storage\FileSystem::fileType($file) === 'dir') {
                 Ui::text(Ui::element($list, 'td', ['style' => 'width:200px;']), 'File Folder');
             } else {
-                Ui::text(Ui::element(
-                    $list,
-                    'td',
-                    ['style' => 'width:200px;']
-                ), ArrayCollection::value(Storage\Media::fileInfo($file), 'document'));
+                Ui::text(
+                    Ui::element($list, 'td', ['style' => 'width:200px;']),
+                    ArrayCollection::value(Storage\Media::fileInfo($file), 'document')
+                );
             }
 
             Ui::text(Ui::element($list, 'td'), Storage\FileSystem::fileSize($file));

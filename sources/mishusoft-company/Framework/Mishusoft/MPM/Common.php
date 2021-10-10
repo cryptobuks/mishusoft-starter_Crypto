@@ -7,6 +7,7 @@ use Mishusoft\MPM;
 use Mishusoft\Storage;
 use Mishusoft\Storage\FileSystem;
 use Mishusoft\System\Log;
+use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\Implement;
 
 class Common extends MPM
@@ -16,26 +17,26 @@ class Common extends MPM
      */
     public static function qualifiedAPIRoutesFile(): string
     {
-        return self::dFile(self::configDataFile('MPM', 'QualifiedAPIRoutes'));
+        return self::dFile(self::configDataFile('MPM', 'routes.api'));
     }
 
 
     /**
      * @throws Exceptions\RuntimeException
      */
-    public static function autoUpdateQualifiedAPIRoutes(): void
+    public static function autoUpdateQualifiedAPIRoutes(string $rootDirectory): void
     {
         /*
          * Auto update splitters configurations
          */
-        if (!file_exists(self::qualifiedAPIRoutesFile())) {
+        if (file_exists(self::qualifiedAPIRoutesFile()) === false) {
             $configs = [];
-            Log::info(sprintf('Count all exists files from %s directory.', Storage::qualifiedAPIRoutesDirectory()));
-            if (count(FileSystem::list(Storage::qualifiedAPIRoutesDirectory(), 'file')) > 0) {
-                foreach (FileSystem::list(Storage::qualifiedAPIRoutesDirectory(), 'file') as $filename) {
+            Log::info(sprintf('Count all exists files from %s directory.', $rootDirectory));
+            if (count(FileSystem::list($rootDirectory, 'file')) > 0) {
+                foreach (FileSystem::list($rootDirectory, 'file') as $filename) {
                     if (pathinfo($filename, PATHINFO_EXTENSION) === 'json') {
-                        $configs[] = Implement::jsonDecode(
-                            FileSystem::read(Storage::qualifiedAPIRoutesDirectory().$filename),
+                        $configs[] = (array) Implement::jsonDecode(
+                            FileSystem::read($rootDirectory.$filename),
                             IMPLEMENT_JSON_IN_ARR
                         );
                     }

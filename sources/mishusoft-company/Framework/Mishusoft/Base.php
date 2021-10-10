@@ -50,7 +50,7 @@ abstract class Base extends Singleton
     {
         //make namespace from source path (if development, app://sources/company/Framework)
         if (str_starts_with($filename, RUNTIME_SOURCES_PATH)) {
-            return self::namespaceBuilder(RUNTIME_SOURCES_PATH, $filename);
+            return self::namespaceBuilder(RUNTIME_SOURCES_PATH . 'Framework' . DS, $filename);
         }
 
         //make namespace from (app://framework) production

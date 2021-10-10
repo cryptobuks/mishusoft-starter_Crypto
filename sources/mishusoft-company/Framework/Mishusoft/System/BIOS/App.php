@@ -39,6 +39,7 @@ class App extends BIOS
                 //Debug::preOutput($registry);
                 $registry->browser              = Http\Browser::getInstance();
                 $registry->ip                   = new Http\IP();
+                $registry->requestQualifiedAPI  = Http\Request\QualifiedAPI::getInstance();
 
                // Debug::preOutput('after setting data');
                // Debug::preOutput($registry);
@@ -75,19 +76,18 @@ class App extends BIOS
                             Log::info('Start system session.');
                             Session::init();
 
-                            if (file_exists(Storage::applicationDirectivePath())) {
-                                $registry->requestClassic       = Http\Request\Classic::getInstance();
-                                $registry->requestQualifiedAPI  = Http\Request\QualifiedAPI::getInstance();
+                            /*
+                             * Start special url handler [Api Url Service].
+                             */
+                            QualifiedAPI::run($registry::RequestQualifiedAPI());
 
-                                /*
-                                 * Start special url handler [Api Url Service].
-                                 */
-                                QualifiedAPI::run($registry::RequestQualifiedAPI());
+                            if (file_exists(Storage::applicationDirectivePath())) {
+                                //make this instance for future purpose in mpm load
+                                $registry->requestClassic       = Http\Request\Classic::getInstance();
 
                                 /*
                                  * Start special url handler [Embed Mishusoft Application].
                                  */
-                                //Debug::preOutput($registry::RequestQualifiedAPI());
                                 Ema::run($registry::RequestQualifiedAPI());
                             }
 

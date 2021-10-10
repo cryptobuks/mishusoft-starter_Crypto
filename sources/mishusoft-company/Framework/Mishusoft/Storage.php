@@ -26,7 +26,7 @@ class Storage extends Base
         return sprintf(
             '%1$s%2$s%6$s%3$s%6$s%4$s%6$s%5$s%6$s',
             self::rootPath(),
-            'Sources',
+            'sources',
             'mishusoft-company',
             'framework',
             'Mishusoft',
@@ -45,6 +45,14 @@ class Storage extends Base
             'app',
             DS
         );
+    }
+
+    /**
+     * @return string
+     */
+    public static function qualifiedAPIRoutesCoreDirectory(): string
+    {
+        return self::frameworkPath() . 'Mishusoft' . DS . 'Communication' . DS;
     }
 
     /**

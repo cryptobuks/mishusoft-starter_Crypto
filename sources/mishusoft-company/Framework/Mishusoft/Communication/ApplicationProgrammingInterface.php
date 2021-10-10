@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\QualifiedAPIRoutes;
+namespace Mishusoft\Communication;
 
 use Mishusoft\Services\SecureDataTransferService;
 
@@ -9,7 +9,7 @@ class ApplicationProgrammingInterface extends SecureDataTransferService
     /**
      * @param array $request
      */
-    public function api(array $request)
+    public function api(array $request):void
     {
         parent::api($request);
     }//end api()
@@ -27,7 +27,7 @@ class ApplicationProgrammingInterface extends SecureDataTransferService
      * @throws \Mishusoft\Exceptions\PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    public function monitor(array $request)
+    public function monitor(array $request):void
     {
         parent::monitor($request);
     }//end monitor()

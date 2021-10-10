@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace App\QualifiedAPIRoutes;
+namespace Mishusoft\Communication;
 
 use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Exceptions\RuntimeException\NotFoundException;
+use Mishusoft\Http\Runtime;
 use Mishusoft\Storage;
-use Mishusoft\Storage\Uploader;
 use Mishusoft\System;
 use ZipArchive;
 
@@ -40,16 +40,16 @@ class SystemConfiguration
      * @param array $request
      * @throws InvalidArgumentException
      * @throws NotFoundException
-     * @throws \JsonException
      * @throws \Mishusoft\Exceptions\PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws \Mishusoft\Exceptions\ErrorException
      */
     public function update(array $request): void
     {
 
         //$requestedFile = filter_input_array(FILE_BINARY, 'update');
         if (array_key_exists('update', $_FILES) === true) {
-            $uploader = new Uploader($_FILES['update']);
+            $uploader = new Storage\Uploader($_FILES['update']);
             if (!$uploader->file_temp_name) {
                 Storage\Stream::text('Please browse for a file before clicking upload button.');
             }
@@ -73,12 +73,12 @@ class SystemConfiguration
                     $zip->extractTo(RUNTIME_ROOT_PATH);
                     $zip->close();
                     unlink(APPLICATION_SYSTEM_TEMP_PATH.$uploader->file_name);
-                    Storage\Stream::text("$filename successfully installed on ".System::getAbsoluteInstalledURL());
+                    Storage\Stream::text("$filename successfully installed on ".Runtime::hostUrl());
                 } else {
-                    Storage\Stream::text("$filename installation failed on ".System::getAbsoluteInstalledURL());
+                    Storage\Stream::text("$filename installation failed on ".Runtime::hostUrl());
                 }
             } else {
-                Storage\Stream::text(pathinfo($uploader->file_name, PATHINFO_BASENAME).' upload failed.');
+                Storage\Stream::text(Storage\FileSystem::fileBase($uploader->file_name).' upload failed.');
             }
         } else {
             throw new NotFoundException('Your requested url not found');

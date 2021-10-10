@@ -211,7 +211,7 @@ class System extends Base
         self::$configurePropertiesFileName = 'properties.json';
         self::$configurePropertiesFile     = self::$configServerDir.self::$configurePropertiesFileName;
         // Backup location of security file.
-        self::$appSecurityFileBackupDirectory = Storage::frameworkPath().'Backups'.DS;
+        self::$appSecurityFileBackupDirectory = Storage::frameworkDataPath().'Backups'.DS;
 
         return match (strtoupper($filename)) {
             'CONFIG_SERVER_DIR_PATH' => self::$configServerDir,
