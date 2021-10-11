@@ -4,6 +4,7 @@ namespace Mishusoft\Drivers\Bootstrap;
 
 use Mishusoft\Base;
 use Mishusoft\Exceptions;
+use Mishusoft\Framework;
 use Mishusoft\Http;
 use Mishusoft\MPM;
 use Mishusoft\Storage;
@@ -17,6 +18,8 @@ class QualifiedAPI
 
     /**
      * @param Http\Request\QualifiedAPI $request
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
      * @throws Exceptions\RuntimeException\NotFoundException
      */
@@ -95,6 +98,8 @@ class QualifiedAPI
                                                 $requestedRouteFile
                                             ));
                                             call_user_func([new $urlSplitter(), $methodName,], $arguments);
+                                            //close framework
+                                            Framework::terminate();
                                         } else {
                                             Log::info(sprintf(
                                                 'Not found %1$s form %2$s.',
@@ -132,6 +137,8 @@ class QualifiedAPI
                 }//end if
             }
         }
+
+        //Framework::terminate();
     }
 
 
