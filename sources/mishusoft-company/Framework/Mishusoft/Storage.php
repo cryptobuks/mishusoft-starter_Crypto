@@ -5,6 +5,7 @@ namespace Mishusoft;
 use JsonException;
 use Mishusoft\Exceptions\RuntimeException\NotFoundException;
 use Mishusoft\Utility\ArrayCollection as Arr;
+use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\Inflect;
 
 class Storage extends Base
@@ -670,7 +671,11 @@ class Storage extends Base
             }
 
             if (Inflect::lower($feature) === 'remote') {
-                return $remoteDrive . $pathIndicator . $filename;
+                //check current platform is windows, then remove directory separator from file name
+                if (str_contains($filename, '\\') === true) {
+                    $filename = str_replace('\\', '/', $filename);
+                }
+                return sprintf('%1$s%2$s%3$s', $remoteDrive, $pathIndicator, $filename);
             }
         } else {
             throw new NotFoundException(sprintf('%s is not exists', self::localize($fileLocale)));
