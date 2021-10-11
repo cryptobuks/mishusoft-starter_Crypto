@@ -4,20 +4,20 @@ namespace Mishusoft\Communication;
 
 use DOMElement;
 use DOMNode;
-use JsonException;
 use Mishusoft\Exceptions\ErrorException;
 use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Exceptions\RuntimeException\NotFoundException;
 use Mishusoft\Registry;
+use Mishusoft\Services\SEOToolKitService;
 use Mishusoft\Storage;
 use Mishusoft\MPM;
 use Mishusoft\System;
 use Mishusoft\Ui;
 use Mishusoft\Http\Runtime;
-use App\Widgets\UniversalWidget;
 use Mishusoft\Utility\ArrayCollection;
+use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\Inflect;
 
 class WebResourceDelivery
@@ -43,7 +43,8 @@ class WebResourceDelivery
      */
     public function __construct(
         private string $defaultDirectoryIndex = DEFAULT_CONTROLLER
-    ) {
+    )
+    {
         $this->defaultApplicationIcon = System\Memory::data()->preset->logo;
     }//end __construct()
 
@@ -51,11 +52,9 @@ class WebResourceDelivery
      * @param array $request
      * @throws ErrorException
      * @throws InvalidArgumentException
-     * @throws JsonException
      * @throws NotFoundException
      * @throws PermissionRequiredException
      * @throws RuntimeException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function assets(array $request): void
     {
@@ -66,11 +65,9 @@ class WebResourceDelivery
      * @param array $request
      * @throws ErrorException
      * @throws InvalidArgumentException
-     * @throws JsonException
      * @throws NotFoundException
      * @throws PermissionRequiredException
      * @throws RuntimeException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function webfonts(array $request): void
     {
@@ -82,11 +79,9 @@ class WebResourceDelivery
      * @param array $request
      * @throws ErrorException
      * @throws InvalidArgumentException
-     * @throws JsonException
      * @throws NotFoundException
      * @throws PermissionRequiredException
      * @throws RuntimeException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function media(array $request): void
     {
@@ -98,11 +93,9 @@ class WebResourceDelivery
      * @param array $request
      * @throws ErrorException
      * @throws InvalidArgumentException
-     * @throws JsonException
      * @throws NotFoundException
      * @throws PermissionRequiredException
      * @throws RuntimeException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     private function browse(array $request): void
     {
@@ -122,11 +115,9 @@ class WebResourceDelivery
      * @param array $request
      * @throws ErrorException
      * @throws InvalidArgumentException
-     * @throws JsonException
      * @throws NotFoundException
      * @throws PermissionRequiredException
      * @throws RuntimeException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function shared(array $request): void
     {
@@ -220,25 +211,30 @@ class WebResourceDelivery
      * @param array $request
      * @throws ErrorException
      * @throws InvalidArgumentException
-     * @throws JsonException
      * @throws NotFoundException
      * @throws PermissionRequiredException
      * @throws RuntimeException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     private function webExploreLoader(array $request): void
     {
         //Debug::preOutput($request);
         //add webfonts url
+        //$directory = '';
+
+        //redirect actual url if controller is webfonts
         if ($request['controller'] === 'webfonts') {
-            //http://host/webfonts/fotname.ext
-            $implodedRequestArgument = 'assets' . DS . 'webfonts' . DS . $request['method'];
-        } else {
-            //http://host/directory/sub/filenameOrsub
-            $implodedRequestDirectory = $request['controller'] . DS . $request['method'] . DS;
-            $implodedRequestArgument = strtolower($implodedRequestDirectory) . implode(DS, $request['arguments']);
+            Runtime::redirect(sprintf('assets/webfonts/%1$s', $request['method']));
         }
 
+        if ($request['method'] === 'webfonts') {
+            if ($request['controller'] !== 'assets') {
+                Runtime::redirect(sprintf('assets/webfonts/%1$s', implode(DS, $request['arguments'])));
+            }
+        }
+
+        //http://host/directory/sub/filenameOrsub
+        $implodedRequestDirectory = $request['controller'] . DS . $request['method'] . DS;
+        $implodedRequestArgument = strtolower($implodedRequestDirectory) . implode(DS, $request['arguments']);
         $requestedFile = Storage::storageFullPath($implodedRequestArgument);
 
         if (file_exists($requestedFile) === true) {
@@ -259,12 +255,8 @@ class WebResourceDelivery
      * @param string $dirname
      * @param array $request
      * @throws ErrorException
-     * @throws InvalidArgumentException
-     * @throws JsonException
      * @throws NotFoundException
-     * @throws PermissionRequiredException
      * @throws RuntimeException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     private function webExplore(string $dirname, array $request): void
     {
@@ -275,6 +267,9 @@ class WebResourceDelivery
         Ui::start();
         Ui::setDocumentTitle(ucfirst($request['controller']));
 
+        SEOToolKitService::start();
+        SEOToolKitService::addDocumentIdentify(['width'=>'device-width','initial-scale'=>'1.0','shrink-to-fit'=>'no']);
+        SEOToolKitService::addDefault(ucfirst($request['controller']));
 
         Ui::elementList(Ui::getDocumentHeadElement(), ['link' => Storage::assignableWebFavicons()]);
 
@@ -295,19 +290,23 @@ class WebResourceDelivery
                 'style' => [
                     [
                         'rel' => 'stylesheet', 'type' => 'text/css',
-                        'text' => file_get_contents(Storage::assetsFullPath('css/loader.css')),
+                        'text' => Storage\FileSystem::read(Storage::assetsFullPath('css/loader.css')),
                     ],
                     [
                         'rel' => 'stylesheet', 'type' => 'text/css',
-                        'text' => file_get_contents(Storage::assetsFullPath('css/resources.css')),
+                        'text' => Storage\FileSystem::read(Storage::assetsFullPath('css/resources.css')),
                     ],
                     [
                         'rel' => 'stylesheet', 'type' => 'text/css',
-                        'text' => file_get_contents(Storage::assetsFullPath('css/mishusoft-theme.css')),
+                        'text' => Storage\FileSystem::read(Storage::assetsFullPath('css/mishusoft-theme.css')),
                     ],
                     [
                         'rel' => 'stylesheet', 'type' => 'text/css',
-                        'text' => file_get_contents(Storage::assetsFullPath('css/framework.css')),
+                        'text' => Storage\FileSystem::read(Storage::assetsFullPath('css/framework.css')),
+                    ],
+                    [
+                        'rel' => 'stylesheet', 'type' => 'text/css',
+                        'text' => 'html{background-color: rgba(0,0,0,0.03);}',
                     ],
                 ],]
         );
@@ -315,7 +314,7 @@ class WebResourceDelivery
         Ui::setTemplateBody(Ui::element(Ui::getDocumentRoot(), 'body', ['id' => Ui::makeBodyId($request)]));
 
         // Add app loader.
-        Ui::setDocumentLoader(Ui::getTemplateBody(), 'images/loaders/app-loader.gif');
+        Ui::setDocumentLoader(Ui::getTemplateBody(), Storage::toDataUri('media', 'images/loaders/app-loader.gif'));
 
         // add noscript to ui
         Ui::setNoScriptText(Ui::getTemplateBody());
@@ -327,8 +326,8 @@ class WebResourceDelivery
             Ui::getTemplateBody(),
             'header',
             [
-                'class' => 'header header-navigation-bar box-shadow2',
-                'style' => 'background:white;',
+                'class' => 'header header-navigation-bar',
+                'style' => 'background:white;border-bottom: 1px solid rgba(0,0,0,0.1);',
             ]
         ));
         // add logo, menu section in navigation bar in header area
@@ -424,15 +423,17 @@ class WebResourceDelivery
             Ui::assignAttributes($templateBody, ['class' => 'resources-body']);
         }//end if
 
-        (new UniversalWidget($templateBody))->breadcrumb();
-
-        // optimize web link
-        $visitedUrl = Inflect::lower(Registry::Browser()::getVisitedPage());
-        if ($visitedUrl[(strlen($visitedUrl) - 1)] !== '/') {
-            $parentURL = Inflect::lower(Registry::Browser()::getVisitedPage()) . '/';
+        $urlPath = Runtime::urlPath();
+        $currentUrl = Runtime::currentUrl();
+        $visitedUrl = Inflect::lower($currentUrl);
+        if ($visitedUrl !== '' && $visitedUrl[(strlen($visitedUrl) - 1)] !== '/') {
+            $parentURL = $visitedUrl . '/';
         } else {
-            $parentURL = Inflect::lower(Registry::Browser()::getVisitedPage());
+            $parentURL = $visitedUrl;
         }
+
+        /*make breadcrumb*/
+        $this->makeBreadcrumb($templateBody, $urlPath);
 
         // add media Registry::Browser()
         $table = Ui::element(
@@ -525,18 +526,25 @@ class WebResourceDelivery
             if (Storage\Media::in(Storage\Media\Mime::Image, Storage\Media::mimeContent($file))) {
                 Ui::element(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', [
                     'style' => Ui::HTML_HREF_STYLE . 'color: #000;', 'href' => $parentURL . basename($file),
-                ]), 'img', ['style' => 'width:20px;height:20px;', 'src' => $parentURL . basename($file),
+                ]), 'img', [
+                    'style' => 'width:20px;height:20px;',
+                    'alt' => basename($file),
+                    'src' => $parentURL . basename($file),
                 ]);
             } elseif (Storage\FileSystem::fileType($file) === 'dir') {
                 Ui::element(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', [
                     'style' => Ui::HTML_HREF_STYLE . 'color: #000;', 'href' => $parentURL . basename($file),
-                ]), 'img', ['style' => 'width:20px;height:20px;',
+                ]), 'img', [
+                    'style' => 'width:20px;height:20px;',
+                    'alt' => basename($file),
                     'src' => Storage::toDataUri('media', 'images/icons/folder.png'),
                 ]);
             } elseif (Storage\FileSystem::fileType($file) === 'file') {
                 Ui::element(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', [
                     'style' => Ui::HTML_HREF_STYLE . 'color: #000;', 'href' => $parentURL . basename($file),
-                ]), 'img', ['style' => 'width:20px;height:20px;',
+                ]), 'img', [
+                    'style' => 'width:20px;height:20px;',
+                    'alt' => basename($file),
                     'src' => Storage::toDataUri('media', 'images/icons/code-file.png'),
                 ]);
             } else {
@@ -565,4 +573,48 @@ class WebResourceDelivery
             );
         }//end foreach
     }//end viewDirOrFileList()
+
+    /**
+     * @throws ErrorException
+     * @throws RuntimeException
+     * @throws NotFoundException
+     */
+    private function makeBreadcrumb(DOMElement|DOMNode $templateBody, string $urlPath): void
+    {
+        /*image properties*/
+        $imageProperties = [
+            'src' => FRAMEWORK_FAVICON_FILE,
+            'alt' => 'mishusoft',
+            'class' => 'box-shadow1',
+            'style' => 'margin: 5px;text-align: center;width: 20px;height: 20px;float: left;border-radius: 50%;transition: all .15s ease;',
+            'width' => '20px',
+            'height' => '20px',
+        ];
+        // Add breadcrumb.
+        $breadcrumb = Ui::element($templateBody, 'breadcrumb', ['style' => 'border: 1px solid rgba(0,0,0,0.2);width: 99%;']);
+        Ui::element(
+            Ui::element($breadcrumb, 'a', ['class' => 'protect', 'href' => Runtime::link('default_home')]),
+            'img',
+            $imageProperties
+        );
+
+        // Collect navigation url list.
+        $webRoot = Storage::applicationWebDirectivePath();
+        if (str_starts_with($urlPath, $webRoot)) {
+            $urlPath = substr($urlPath, strlen($webRoot));
+        }
+
+        $urlList = array_filter(explode('/', $urlPath));
+        $urlList = array_values($urlList);
+
+        foreach ($urlList as $url) {
+            Ui::text($breadcrumb, '/');
+            Ui::element($breadcrumb, 'a', [
+                'href' => Runtime::link(
+                    implode('/', ArrayCollection::getValues(array_search($url, $urlList), $urlList))
+                ),
+                'text' => $url,
+            ]);
+        }
+    }//end breadcrumb()
 }//end class
