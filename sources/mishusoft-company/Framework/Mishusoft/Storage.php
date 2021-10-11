@@ -279,7 +279,7 @@ class Storage extends Base
         $list = self::files(self::logosDefaultPath());
 
         foreach ($list as $item) {
-            if (count(Storage\Media::imageFileInformation($item)) > 0) {
+            if (Storage\Media::imageFileInformation($item) !== []) {
                 $fileList[$item] = Storage\Media::imageFileInformation($item);
             }
         }
