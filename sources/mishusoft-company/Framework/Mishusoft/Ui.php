@@ -560,8 +560,8 @@ class Ui
     }//end setNoScriptText()
 
     /**
-     * @param DOMNode|DOMElement $parentElementChild
-     * @param string $src
+     * @param DOMNode|DOMElement $parentElementChild Html Element
+     * @param string $src full url
      */
     public static function setDocumentLoader(DOMNode|DOMElement $parentElementChild, string $src): void
     {
