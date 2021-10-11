@@ -53,8 +53,8 @@ abstract class Base extends Singleton
             return self::namespaceBuilder(RUNTIME_SOURCES_PATH . 'Framework' . DS, $filename);
         }
 
-        //make namespace from (app://framework) production
-        return self::namespaceBuilder(RUNTIME_ROOT_PATH, $filename);
+        //make namespace from (app://Framework) production
+        return self::namespaceBuilder(RUNTIME_ROOT_PATH . 'Framework' . DS, $filename);
     }//end getClassNamespace()
 
     private static function namespaceBuilder(string $rootPath, string $filename):string
