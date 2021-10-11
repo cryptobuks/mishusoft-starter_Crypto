@@ -25,6 +25,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     // register a single rule
     $services->set(TypedPropertyRector::class);
+    $services->set(\Rector\DowngradePhp74\Rector\Property\DowngradeTypedPropertyRector::class);
+    $services->set(\Rector\DowngradePhp74\Rector\ArrowFunction\ArrowFunctionToAnonymousFunctionRector::class);
+    $services->set(\Rector\DowngradePhp74\Rector\Coalesce\DowngradeNullCoalescingOperatorRector::class);
+    $services->set(\Rector\DowngradePhp80\Rector\FunctionLike\DowngradeUnionTypeDeclarationRector::class);
 
     // Path to phpstan with extensions, that PHPSTan in Rector uses to determine types
     $parameters->set(Option::PHPSTAN_FOR_RECTOR_PATH, getcwd() . '/phpstan.neon');
