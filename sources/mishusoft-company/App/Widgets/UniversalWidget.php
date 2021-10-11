@@ -32,12 +32,9 @@ class UniversalWidget
 
     /**
      * @return DOMElement|DOMNode
-     * @throws \JsonException
      * @throws \Mishusoft\Exceptions\ErrorException
-     * @throws \Mishusoft\Exceptions\JsonException
-     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
-     * @throws \Mishusoft\Exceptions\PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
      */
     public function breadcrumb(): DOMElement|DOMNode
     {
