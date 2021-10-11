@@ -16,7 +16,7 @@
 /tests/
 /tmp/
 /vendor/
-/framework/
+/Framework/
 /app/
 /storages/app/assets
 /storages/app/media

@@ -94,8 +94,8 @@ define('RUNTIME_ROOT_PATH', realpath(dirname(__DIR__)) . DS);
 define('RUNTIME_CACHE_ROOT_PATH', RUNTIME_ROOT_PATH . 'tmp' . DS . md5($_SERVER['PHP_SELF']) . DS);
 
 const RUNTIME_SOURCES_PATH = RUNTIME_ROOT_PATH . 'sources' . DS. 'mishusoft-company' . DS;
-const FRAMEWORK_PATH = RUNTIME_SOURCES_PATH. 'Framework' . DS;
-//const FRAMEWORK_PATH = RUNTIME_ROOT_PATH . 'framework' . DS;
+const SRC_FRAMEWORK_PATH = RUNTIME_SOURCES_PATH. 'Framework' . DS;
+const FRAMEWORK_PATH = RUNTIME_ROOT_PATH . 'Framework' . DS;
 const APPLICATION_SYSTEM_TEMP_PATH = RUNTIME_ROOT_PATH . 'tmp' . DS;
 
 
