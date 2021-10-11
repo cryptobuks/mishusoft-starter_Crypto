@@ -25,10 +25,21 @@ set_exception_handler(
  */
 spl_autoload_register(
     static function (string $class) {
+        if (defined('FRAMEWORK_PATH') && file_exists(FRAMEWORK_PATH)) {
+            //set framework path from install directory
+            $frameworkPath = FRAMEWORK_PATH;
+        } elseif (defined('SRC_FRAMEWORK_PATH') && file_exists(SRC_FRAMEWORK_PATH)) {
+            //set framework path from sources
+            $frameworkPath = SRC_FRAMEWORK_PATH;
+        } else {
+            //set default framework path
+            $frameworkPath = realpath(dirname(__DIR__, 2)  . 'Framework');
+        }
+
         // Check file is use namespace.
         if (is_int(strpos($class, '\\'))) {
             // Extract file namespace to file location.
-            $originalFile = FRAMEWORK_PATH . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
+            $originalFile = $frameworkPath . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
             // Checking local file: $originalFile.
             if (is_file($originalFile) === true) {
                 include_once $originalFile;
@@ -36,7 +47,7 @@ spl_autoload_register(
         } else {
             // Want to load normal File $class.
             foreach (scandir(realpath(dirname(__FILE__, 2))) as $directory) {
-                $originalFile = FRAMEWORK_PATH  . ucfirst($directory) . DS . ucfirst($class) . '.php';
+                $originalFile = $frameworkPath  . ucfirst($directory) . DS . ucfirst($class) . '.php';
                 if (file_exists($originalFile) === true) {
                     include_once $originalFile;
                 }
