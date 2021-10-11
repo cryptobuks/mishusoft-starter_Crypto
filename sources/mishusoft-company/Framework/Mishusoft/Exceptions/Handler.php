@@ -10,8 +10,6 @@ use Mishusoft\Framework;
 use Mishusoft\Http;
 use Mishusoft\Storage;
 use Mishusoft\System\Log;
-use Mishusoft\Utility\Debug;
-use Mishusoft\Utility\JSON;
 use Mishusoft\Utility\Number;
 
 class Handler extends ErrorException implements ExceptionInterface
@@ -84,12 +82,10 @@ class Handler extends ErrorException implements ExceptionInterface
 
     /**
      * @throws HttpException\HttpResponseException
-     * @throws JsonException
      * @throws LogicException\InvalidArgumentException
      * @throws PermissionRequiredException
      * @throws RuntimeException
      * @throws AddressNotFoundException
-     * @throws \JsonException
      * @throws InvalidDatabaseException
      * @throws \Mishusoft\Exceptions\ErrorException
      */
@@ -112,10 +108,6 @@ class Handler extends ErrorException implements ExceptionInterface
         } else {
             $stack =  ['No trace of this error could be detected.'];
         }
-
-//        Debug::preOutput($stack);
-//        Debug::preOutput(implode('$', $stack));
-//        exit();
 
         Log::debug($description, LOG_STYLE_SMART, LOG_TYPE_RUNTIME);
         if (IS_CLI) {

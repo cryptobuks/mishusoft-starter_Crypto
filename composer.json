@@ -20,12 +20,15 @@
     "source": "https://www.mishusoft.com/framework-sample"
   },
   "config": {
-    "sort-order": true
+    "sort-order": true,
+    "platform": {
+      "php": "7.4"
+    }
   },
   "autoload": {
     "psr-4": {
       "App\\": "app/",
-      "Mishusoft\\": "framework/Mishusoft"
+      "Mishusoft\\": "Framework/Mishusoft"
     }
   },
   "autoload-dev": {
