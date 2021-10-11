@@ -14,7 +14,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     // is your PHP version different from the one your refactor to?
     // [default: your PHP version], uses PHP_VERSION_ID format
-    $parameters->set(Option::PHP_VERSION_FEATURES, PhpVersion::PHP_74);
+    $parameters->set(Option::PHP_VERSION_FEATURES, PhpVersion::PHP_80);
 
     // Define what rule sets will be applied
     $containerConfigurator->import(SetList::DEAD_CODE);
