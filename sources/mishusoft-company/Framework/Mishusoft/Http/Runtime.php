@@ -23,14 +23,24 @@ class Runtime
 
     private static string $hostUrl = '';
     private static string $currentUrl = '';
+    private static string $urlPath = '';
 
     public static function currentUrl(): string
     {
-        if (self::$currentUrl !== '') {
+        if (empty(self::$currentUrl)) {
             self::$currentUrl = Registry::Browser()::getVisitedPage();
         }
 
         return self::$currentUrl;
+    }
+
+    public static function urlPath(): string
+    {
+        if (empty(self::$urlPath)) {
+            self::$urlPath = Registry::Browser()->getURLPath();
+        }
+
+        return self::$urlPath;
     }
 
     /**
@@ -40,7 +50,7 @@ class Runtime
      */
     public static function hostUrl(): string
     {
-        if (self::$hostUrl !== '') {
+        if (empty(self::$hostUrl)) {
             self::$hostUrl = Memory::Data("framework")->host->url;
         }
 
