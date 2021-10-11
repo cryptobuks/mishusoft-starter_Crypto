@@ -113,12 +113,17 @@ class SEOToolKitService extends Base
      */
     public static function addDocumentIdentify(array $view = ['width'=>'device-width','initial-scale'=>'1.0']): void
     {
+        $initiatedText = '';
+        foreach ($view as $key => $value) {
+            $initiatedText .= sprintf('%1$s=%2$s, ', $key, $value);
+        }
+        $initiatedText = rtrim($initiatedText, ', ');
         Ui::elementList(
             Ui::getDocumentHeadElement(),
             [
                 'meta' => [
                     ['charset' => 'UTF-8'],
-                    ['name' => 'viewport', 'content' => implode(', ', $view),],
+                    ['name' => 'viewport', 'content' => $initiatedText,],
                     ['http-equiv' => 'X-UA-Compatible', 'content' => 'ie=edge',],
                     ['http-equiv' => 'Content-Type', 'content' => 'text/html; charset=utf-8',],
                 ],
