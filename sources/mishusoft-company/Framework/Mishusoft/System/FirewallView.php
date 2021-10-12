@@ -121,6 +121,13 @@ class FirewallView extends Firewall
                     ['name' => 'author', 'content' => Framework::AUTHOR_NAME,],
                     ['name' => 'description', 'content' => self::$documentTitle,],
                 ],
+                'link' => [
+                    [
+                        'rel'=>'stylesheet',
+                        'type'=>'text/css',
+                        'href' => Storage::fViewsFullPath('css/embedded.css', 'remote')
+                    ],
+                ],
                 'style' => [
                     ['text' => Storage\FileSystem::read(Storage::fViewsFullPath('css/embedded.css')),],
                 ],
