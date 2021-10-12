@@ -42,7 +42,8 @@ class WebResourceDelivery
      */
     public function __construct(
         private string $defaultDirectoryIndex = DEFAULT_CONTROLLER
-    ) {
+    )
+    {
         $this->defaultApplicationIcon = System\Memory::data()->preset->logo;
     }//end __construct()
 
@@ -110,6 +111,7 @@ class WebResourceDelivery
      */
     private function browse(array $request): void
     {
+        //Debug::preOutput($request);
         if (file_exists(Storage::storagesPath()) === true && is_readable(Storage::storagesPath()) === true) {
             if (strtolower($request['method']) === strtolower($this->defaultDirectoryIndex)) {
                 $this->webExplore($request['method'], $request);
@@ -241,6 +243,10 @@ class WebResourceDelivery
 
         //http://host/directory/sub/filenameOrsub
         if ($controller === 'framework') {
+//            Debug::preOutput(strtolower(
+//                sprintf('%1$s%3$sviews%3$s%2$s%3$s', $controller, $method, DS)
+//            ) . implode(DS, $arguments));
+//            exit(0);
             $requestedFile = Storage::storageFullPath(
                 strtolower(
                     sprintf('%1$s%3$sviews%3$s%2$s%3$s', $controller, $method, DS)
@@ -249,14 +255,19 @@ class WebResourceDelivery
                 true
             );
         } else {
+//            Debug::preOutput(strtolower(
+//                sprintf('%1$s%3$s%2$s%3$s', $controller, $method, DS)
+//            ) . implode(DS, $arguments));
+//            exit(0);
             $requestedFile = Storage::storageFullPath(
                 strtolower(
-                    sprintf('%1$s%3%2$s%3$s', $controller, $method, DS)
+                    sprintf('%1$s%3$s%2$s%3$s', $controller, $method, DS)
                 ) . implode(DS, $arguments)
             );
         }
 
-        Debug::preOutput($requestedFile);exit();
+        //Debug::preOutput($requestedFile);
+        //exit();
         if (file_exists($requestedFile) === true) {
             if (filetype($requestedFile) === 'dir') {
                 $this->webExplore($requestedFile, $request);
@@ -280,12 +291,18 @@ class WebResourceDelivery
      */
     private function webExplore(string $dirname, array $request): void
     {
+        ['controller' => $controller, 'method' => $method, 'arguments' => $arguments] = $request;
+
         if ($dirname === $this->defaultDirectoryIndex) {
-            $dirname = Storage::appStoragesPath() . $request['controller'];
+            if ($controller === 'framework') {
+                $dirname = Storage::frameworkViewsPath();
+            } else {
+                $dirname = Storage::appStoragesPath() . $request['controller'];
+            }
         }
 
         Ui::start();
-        Ui::setDocumentTitle(ucfirst($request['controller']));
+        Ui::setDocumentTitle(ucfirst($controller));
 
         SEOToolKitService::start();
         SEOToolKitService::addDocumentIdentify(
@@ -308,36 +325,24 @@ class WebResourceDelivery
                         'name' => 'mishusoft-web-root',
                         'content' => System\Memory::Data('framework')->host->url,
                     ],
-                    [
-                        'rel' => 'prelaod', 'as' => 'style',
-                        'href' => Storage::assetsFullPath('css/resources.css', 'remote'),
-                    ],
-                    [
-                        'rel' => 'prelaod', 'as' => 'style',
-                        'href' => Storage::assetsFullPath('css/mishusoft-theme.css', 'remote'),
-                    ],
-                    [
-                        'rel' => 'prelaod', 'as' => 'style',
-                        'href' => Storage::assetsFullPath('css/framework.css', 'remote'),
-                    ],
                 ],
                 'style' => [
                     [
-                        'rel' => 'stylesheet', 'type' => 'text/css',
+                        'type' => 'text/css',
                         'text' => Storage\FileSystem::read(Storage::assetsFullPath('css/loader.css')),
                     ],
-            //                    [
-            //                        'rel' => 'stylesheet', 'type' => 'text/css',
-            //                        'text' => Storage\FileSystem::read(Storage::assetsFullPath('css/resources.css')),
-            //                    ],
-            //                    [
-            //                        'rel' => 'stylesheet', 'type' => 'text/css',
-            //                        'text' => Storage\FileSystem::read(Storage::assetsFullPath('css/mishusoft-theme.css')),
-            //                    ],
-            //                    [
-            //                        'rel' => 'stylesheet', 'type' => 'text/css',
-            //                        'text' => Storage\FileSystem::read(Storage::assetsFullPath('css/framework.css')),
-            //                    ],
+                    [
+                        'rel' => 'stylesheet', 'type' => 'text/css',
+                        'text' => Storage\FileSystem::read(Storage::assetsFullPath('css/resources.css')),
+                    ],
+                    [
+                        'rel' => 'stylesheet', 'type' => 'text/css',
+                        'text' => Storage\FileSystem::read(Storage::assetsFullPath('css/mishusoft-theme.css')),
+                    ],
+                    [
+                        'rel' => 'stylesheet', 'type' => 'text/css',
+                        'text' => Storage\FileSystem::read(Storage::assetsFullPath('css/framework.css')),
+                    ],
                     [
                         'rel' => 'stylesheet', 'type' => 'text/css',
                         'text' => 'html{background-color: rgba(0,0,0,0.03);}',
@@ -385,7 +390,7 @@ class WebResourceDelivery
                 'alt' => 'm',
             ]
         );
-        Ui::text($header_logo_zone, $request['controller']);
+        Ui::text($header_logo_zone, $controller);
 
         Ui::elementList(
             Ui::element(Ui::getDocumentContentHeader(), 'nav', ['class' => 'nav-right width-70percent',]),
@@ -429,7 +434,7 @@ class WebResourceDelivery
 
 
         // take action in index page on account area
-        if (Inflect::lower($request['method']) === Inflect::lower('index')) {
+        if (Inflect::lower($method) === Inflect::lower('index')) {
             // set text for title
             Ui::updateDocumentTitle('Home');
 
@@ -440,7 +445,7 @@ class WebResourceDelivery
                     'article' => [
                         [
                             'class' => 'resources-header-title width-text-align',
-                            'text' => str_replace('media', $request['controller'], self::WELCOME_TEXT),
+                            'text' => str_replace('media', $controller, self::WELCOME_TEXT),
                         ],
                         [
                             // set welcome text
@@ -474,7 +479,8 @@ class WebResourceDelivery
             $templateBody,
             'table',
             [
-                'class' => 'table table-striped table-radius', 'style' => 'background: gainsboro;',
+                'class' => 'table table-striped table-radius',
+                'style' => 'background: gainsboro;',
             ]
         );
 
@@ -536,7 +542,7 @@ class WebResourceDelivery
                         'text' => 0,
                     ],
                     [
-                        'type' => 'module',
+                        'rel' => 'prefetch', 'as' => 'script', 'type' => 'module',
                         'src' => Storage::assetsFullPath('js/readystate.js', 'remote'),
                     ],
                 ],
