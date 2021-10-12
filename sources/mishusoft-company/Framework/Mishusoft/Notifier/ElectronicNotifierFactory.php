@@ -15,8 +15,7 @@ echo $email->sendNotification();
 */
 
 
-namespace Mishusoft\Framework\Chipsets\Notifier;
-
+namespace Mishusoft\Notifier;
 
 use Exception;
 use Mishusoft\Framework\Interfaces\Chipsets\NotifierFactoryInterface;
