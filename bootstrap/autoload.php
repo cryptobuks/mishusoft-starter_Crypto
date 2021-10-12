@@ -40,22 +40,22 @@ spl_autoload_register(
             $class = sprintf('%1$s\\%2$s', WHO_AM_I, $class);
         }
 
-        print_r(' SYS PATH : ' . $frameworkPath . '<br/>', false);
-        print_r(' REQUIRED : ' . $class . '<br/>', false);
-        print_r('<br/>', false);
+        //print_r(' SYS PATH : ' . $frameworkPath . '<br/>', false);
+        //print_r(' REQUIRED : ' . $class . '<br/>', false);
+        //print_r('<br/>', false);
 
         // Check file is use namespace.
         if (is_int(strpos($class, '\\'))) {
             // Extract file namespace to file location.
             $originalFile = $frameworkPath . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
 
-            print_r(' PHYSICAL FILE : ' . $originalFile . '<br/>', false);
-            print_r('<br/>', false);
+            //print_r(' PHYSICAL FILE : ' . $originalFile . '<br/>', false);
+            //print_r('<br/>', false);
             // Checking local file: $originalFile.
             if (is_file($originalFile)) {
-                print_r(' PHYSICAL FILE IS FOUND<br/>', false);
-                print_r('<br/>', false);
-                print_r('<br/>', false);
+               // print_r(' PHYSICAL FILE IS FOUND<br/>', false);
+               // print_r('<br/>', false);
+               // print_r('<br/>', false);
                 include_once $originalFile;
             }
         } else {
