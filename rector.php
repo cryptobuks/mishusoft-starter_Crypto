@@ -25,6 +25,14 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     // register a single rule
     $services->set(TypedPropertyRector::class);
+    //Extra benefits
+//    $services->set(\Rector\Order\Rector\Class_\OrderPrivateMethodsByUseRector::class);
+//    $services->set(\Rector\Php80\Rector\Ternary\GetDebugTypeRector::class);
+//    $services->set(\Rector\Php80\Rector\Catch_\RemoveUnusedVariableInCatchRector::class);
+//    $services->set(\Rector\Php80\Rector\NotIdentical\StrContainsRector::class);
+//    $services->set(\Rector\Php80\Rector\Identical\StrStartsWithRector::class);
+//    $services->set(\Rector\Php80\Rector\Identical\StrEndsWithRector::class);
+
     //DowngradePhp80
     $services->set(\Rector\DowngradePhp80\Rector\Class_\DowngradeAttributeToAnnotationRector::class);
     $services->set(\Rector\DowngradePhp80\Rector\ClassConstFetch\DowngradeClassOnObjectToGetClassRector::class);
