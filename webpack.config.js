@@ -75,18 +75,22 @@ const commonConfig = {
             chunkFilename: 'css/[id].css'
         }),
         new FontPreloadPlugin(),
-        /*copy webfonts file from sources directory*/
         new CopyWebpackPlugin({
-            patterns: [{
+            patterns: [{ /*copy webfonts file from sources directory*/
                 from: path.join(__dirname, './storages/app/webfonts/'),
                 to: path.join(__dirname, './storages/app/assets/webfonts/')
-            },]
-        }),
-        /*copy media from sources directory*/
-        new CopyWebpackPlugin({
-            patterns: [{
+            }, { /*copy media from sources directory*/
                 from: path.join(__dirname, './sources/Assets/media/'),
                 to: path.join(__dirname, './storages/app/media/')
+            }, { /*copy core css from compiled directory*/
+                from: path.join(__dirname, './storages/app/assets/css/embedded.css'),
+                to: path.join(__dirname, './storages/framework/views/css/embedded.css')
+            }, { /*copy default logos from compiled directory*/
+                from: path.join(__dirname, './storages/app/media/logos/default/'),
+                to: path.join(__dirname, './storages/framework/views/logos/default/')
+            }, { /*copy social logos from compiled directory*/
+                from: path.join(__dirname, './storages/app/media/images/icons/social-media/'),
+                to: path.join(__dirname, './storages/framework/views/images/icons/social-media/')
             },]
         }),
         new ImageminPlugin({ test: /\.(jpe?g|png|gif|svg)$/i })
@@ -181,6 +185,7 @@ const prodConfig = {
         ],
     },
     plugins: [
+        ...commonFileConfig.plugins,
         new JavaScriptObfuscator({
             rotateStringArray: true
         })
