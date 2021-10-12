@@ -8,7 +8,7 @@ use MaxMind\Db\Reader\InvalidDatabaseException;
 use Mishusoft\Exceptions\HttpException\HttpResponseException;
 use Mishusoft\Exceptions\RuntimeException\NotFoundException;
 use Mishusoft\Framework;
-use Mishusoft\Http\IP;
+use Mishusoft\Http;
 use Mishusoft\Registry;
 use Mishusoft\Storage;
 use Mishusoft\Ui;
@@ -529,7 +529,7 @@ class FirewallView extends Firewall
             'child' => [
                 'td' => [
                     ['class' => 'details-item-title', 'text' => 'Your IP :',],
-                    ['class' => 'details-item-details', 'text' => IP::get(),],
+                    ['class' => 'details-item-details', 'text' => Http\IP::get(),],
                 ],
             ],
         ];
@@ -557,23 +557,29 @@ class FirewallView extends Firewall
         ];
 
         // avoid error country capturing
-        if (Inflect::lower(IP::getCountry()) !== 'unknown') {
+        if (Inflect::lower(Http\IP::getCountry()) !== 'unknown') {
             $visitorDetails[] = [
                 'class' => 'details-item',
                 'child' => [
                     'td' => [
                         ['class' => 'details-item-title', 'text' => 'Country :',],
-                        ['class' => 'details-item-details', 'text' => IP::getCountry() . ' (' . IP::get() . ')',],
+                        [
+                            'class' => 'details-item-details',
+                            'text' => Http\IP::getCountry() . ' (' . Http\IP::get() . ')',
+                        ],
                     ],
                 ],
             ];
-        } elseif (Inflect::lower(IP::getInfo('country')) !== 'unknown location') {
+        } elseif (Inflect::lower(Http\IP::getInfo('country')) !== 'unknown location') {
             $visitorDetails[] = [
                 'class' => 'details-item',
                 'child' => [
                     'td' => [
                         ['class' => 'details-item-title', 'text' => 'Country :',],
-                        ['class' => 'details-item-details', 'text' => IP::getInfo('country') . ' (' . IP::get() . ')',],
+                        [
+                            'class' => 'details-item-details',
+                            'text' => Http\IP::getInfo('country') . ' (' . Http\IP::get() . ')',
+                        ],
                     ],
                 ],
             ];
@@ -583,7 +589,7 @@ class FirewallView extends Firewall
                 'child' => [
                     'td' => [
                         ['class' => 'details-item-title', 'text' => 'Country :',],
-                        ['class' => 'details-item-details', 'text' => 'Unknown' . ' (' . IP::get() . ')',],
+                        ['class' => 'details-item-details', 'text' => 'Unknown' . ' (' . Http\IP::get() . ')',],
                     ],
                 ],
             ];
