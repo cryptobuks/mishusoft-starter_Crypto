@@ -39,6 +39,7 @@
 *.webmanifest
 *.cache
 *.conf
+*.zip
 
 # System required files
 .packages
