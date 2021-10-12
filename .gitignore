@@ -14,6 +14,7 @@
 /dist-src/
 /node_modules/
 /tests/
+/tools/
 /tmp/
 /vendor/
 /Framework/
