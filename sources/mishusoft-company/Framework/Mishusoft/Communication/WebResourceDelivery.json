@@ -3,6 +3,7 @@
   "descriptions": "This is built-in uninterrupted web resources delivery system. Every request communicate with public css, images and js libraries and other permitted resources",
   "class": "WebResourceDelivery",
   "route": [
+    "framework",
     "assets",
     "shared",
     "media",
