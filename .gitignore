@@ -28,7 +28,7 @@
 /storages/framework/logs/
 /storages/framework/sessions/
 #/storages/framework/views/
-/storages/framework/*.php
+#/storages/framework/*.php
 /storages/logs/
 /storages/user/
 
@@ -38,6 +38,7 @@
 *-lock.json
 *.webmanifest
 *.cache
+*.conf
 
 # System required files
 .packages
