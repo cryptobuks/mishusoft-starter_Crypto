@@ -9,15 +9,13 @@ use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Exceptions\RuntimeException\NotFoundException;
-use Mishusoft\Registry;
+use Mishusoft\Http\Runtime;
+use Mishusoft\MPM;
 use Mishusoft\Services\SEOToolKitService;
 use Mishusoft\Storage;
-use Mishusoft\MPM;
 use Mishusoft\System;
 use Mishusoft\Ui;
-use Mishusoft\Http\Runtime;
 use Mishusoft\Utility\ArrayCollection;
-use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\Inflect;
 
 class WebResourceDelivery
@@ -43,7 +41,8 @@ class WebResourceDelivery
      */
     public function __construct(
         private string $defaultDirectoryIndex = DEFAULT_CONTROLLER
-    ) {
+    )
+    {
         $this->defaultApplicationIcon = System\Memory::data()->preset->logo;
     }//end __construct()
 
@@ -229,27 +228,21 @@ class WebResourceDelivery
      */
     private function webExploreLoader(array $request): void
     {
-        //Debug::preOutput($request);
-        //add webfonts url
-        //$directory = '';
+        print_r($request, false);
 
         //redirect actual url if controller is webfonts
         if ($request['controller'] === 'webfonts') {
             Runtime::redirect(sprintf('assets/webfonts/%1$s', $request['method']));
         }
 
-        if ($request['method'] === 'webfonts') {
-            if ($request['controller'] !== 'assets') {
-                Runtime::redirect(sprintf('assets/webfonts/%1$s', implode(DS, $request['arguments'])));
-            }
+        if (($request['method'] === 'webfonts') && $request['controller'] !== 'assets') {
+            Runtime::redirect(sprintf('assets/webfonts/%1$s', implode(DS, $request['arguments'])));
         }
 
         //http://host/directory/sub/filenameOrsub
         $implodedRequestDirectory = $request['controller'] . DS . $request['method'] . DS;
         $implodedRequestArgument = strtolower($implodedRequestDirectory) . implode(DS, $request['arguments']);
         $requestedFile = Storage::storageFullPath($implodedRequestArgument);
-
-        print_r($request, false);
 
         if (file_exists($requestedFile) === true) {
             if (filetype($requestedFile) === 'dir') {
@@ -282,7 +275,7 @@ class WebResourceDelivery
         Ui::setDocumentTitle(ucfirst($request['controller']));
 
         SEOToolKitService::start();
-        SEOToolKitService::addDocumentIdentify(['width'=>'device-width','initial-scale'=>'1.0','shrink-to-fit'=>'no']);
+        SEOToolKitService::addDocumentIdentify(['width' => 'device-width', 'initial-scale' => '1.0', 'shrink-to-fit' => 'no']);
         SEOToolKitService::addDefault(ucfirst($request['controller']));
 
         Ui::elementList(Ui::getDocumentHeadElement(), ['link' => Storage::assignableWebFavicons()]);
