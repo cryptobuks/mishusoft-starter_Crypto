@@ -5,7 +5,6 @@ namespace Mishusoft;
 use JsonException;
 use Mishusoft\Exceptions\RuntimeException\NotFoundException;
 use Mishusoft\Utility\ArrayCollection as Arr;
-use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\Inflect;
 
 class Storage extends Base
@@ -20,19 +19,7 @@ class Storage extends Base
      */
     public static function frameworkPath(): string
     {
-        if (defined('FRAMEWORK_PATH')) {
-            return FRAMEWORK_PATH;
-        }
-
-        return sprintf(
-            '%1$s%2$s%6$s%3$s%6$s%4$s%6$s%5$s%6$s',
-            self::rootPath(),
-            'sources',
-            'mishusoft-company',
-            'framework',
-            'Mishusoft',
-            DS
-        );
+        return frameworkPath();
     }
 
     /**
@@ -267,11 +254,12 @@ class Storage extends Base
 
 
     /**
+     * @param string $root
      * @param bool $pwa
      * @return array
      * @throws NotFoundException
      */
-    public static function assignableWebFavicons(bool $pwa = false): array
+    public static function assignableWebFavicons(string $root = 'media', bool $pwa = false): array
     {
         $faviconsList = [];
         $fileList = [];
@@ -292,7 +280,7 @@ class Storage extends Base
                         'type' => Arr::value($fileDetails, 'mime'),
                         'sizes' => self::imageSizeBuilder($fileDetails),
                         'src' => self::toDataUri(
-                            'media',
+                            $root,
                             'logos' . DS . 'default' . DS . Storage\FileSystem::fileBase($imageFile),
                             'remote'
                         ),
@@ -307,7 +295,7 @@ class Storage extends Base
                         'type' => Arr::value($fileDetails, 'mime'),
                         'sizes' => self::imageSizeBuilder($fileDetails),
                         'href' => self::toDataUri(
-                            'media',
+                            $root,
                             'logos' . DS . 'default' . DS . Storage\FileSystem::fileBase($imageFile),
                             'remote'
                         ),
@@ -321,7 +309,7 @@ class Storage extends Base
                         'type' => Arr::value($fileDetails, 'mime'),
                         'sizes' => self::imageSizeBuilder($fileDetails),
                         'href' => self::toDataUri(
-                            'media',
+                            $root,
                             'logos' . DS . 'default' . DS . Storage\FileSystem::fileBase($imageFile),
                             'remote'
                         ),
@@ -335,8 +323,9 @@ class Storage extends Base
                             'rel' => 'shortcut icon',
                             'sizes' => self::imageSizeBuilder($fileDetails),
                             'href' => self::toDataUri(
-                                'media',
-                                'logos' . DS . 'default' . DS . Storage\FileSystem::fileBase($imageFile)
+                                $root,
+                                'logos' . DS . 'default' . DS . Storage\FileSystem::fileBase($imageFile),
+                                'remote'
                             ),
                         ];
                     }
@@ -352,7 +341,7 @@ class Storage extends Base
                         'type' => Arr::value($fileDetails, 'mime'),
                         'sizes' => self::imageSizeBuilder($fileDetails),
                         'href' => self::toDataUri(
-                            'media',
+                            $root,
                             'logos' . DS . 'default' . DS . Storage\FileSystem::fileBase($imageFile),
                             'remote'
                         ),
@@ -366,7 +355,7 @@ class Storage extends Base
                         'type' => Arr::value($fileDetails, 'mime'),
                         'sizes' => self::imageSizeBuilder($fileDetails),
                         'href' => self::toDataUri(
-                            'media',
+                            $root,
                             'logos' . DS . 'default' . DS . Storage\FileSystem::fileBase($imageFile),
                             'remote'
                         ),
@@ -407,7 +396,7 @@ class Storage extends Base
                 'href' => self::toDataUri(
                     'assets',
                     'webfonts' . DS . Storage\FileSystem::fileBase($file),
-                    //'remote'
+                //'remote'
                 ),
             ];
         }
@@ -436,7 +425,8 @@ class Storage extends Base
         string $filename,
         string $feature = 'local',
         string $indicator = 'media/logos/default'
-    ): string {
+    ): string
+    {
         return self::fullPathBuilder(self::logosDefaultPath(), false, $filename, $feature, $indicator);
     }//end logoFullPath()
 
@@ -451,7 +441,8 @@ class Storage extends Base
         string $filename,
         string $feature = 'local',
         string $indicator = 'media/users/'
-    ): string {
+    ): string
+    {
         return self::fullPathBuilder(self::usersPicturesPath(), false, $filename, $feature, $indicator);
     }//end userPhotoFullPath()
 
@@ -491,7 +482,8 @@ class Storage extends Base
         string $filename,
         string $feature = 'local',
         string $indicator = 'media/uploads/'
-    ): string {
+    ): string
+    {
         return self::fullPathBuilder(self::uploadsPath(), false, $filename, $feature, $indicator);
     }//end getMediaPathOfUploads()
 
@@ -507,7 +499,8 @@ class Storage extends Base
         string $filename,
         string $feature = 'local',
         string $indicator = 'shared/json/'
-    ): string {
+    ): string
+    {
         return self::fullPathBuilder(self::dataDriveStoragesPath(), false, $filename, $feature, $indicator);
     }//end getMediaPathOfUploads()
 
@@ -640,7 +633,8 @@ class Storage extends Base
         string      $filename,
         string      $feature,
         string|bool $pathIndicator
-    ): string {
+    ): string
+    {
         if (str_ends_with($localDrive, DS) === false) {
             $localDrive .= DS;
         }
