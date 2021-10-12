@@ -280,7 +280,7 @@ body {
   /* padding: 10px 35px; */
   text-align: left;
   /* background-color: white; */
-  width: 700px;
+  width: 100%;
   /* border: 1px solid red; */
 }
 .application-content-width-auto {
@@ -463,13 +463,13 @@ table {
   border-radius: 50%;
 }
 
-@media (min-width: 768px) {
+@media only screen and (min-width: 768px) {
   .application {
     margin: 1rem;
   }
 
   .application-content, .maintenance-content {
-    width: 100%;
+    width: 700px;
   }
 }
 
