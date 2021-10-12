@@ -14,6 +14,7 @@ use Mishusoft\System\BIOS;
 use Mishusoft\System\Firewall;
 use Mishusoft\System\Log;
 use Mishusoft\System\Memory;
+use Mishusoft\Utility\Debug;
 
 class App extends BIOS
 {
@@ -35,14 +36,14 @@ class App extends BIOS
          * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
          */
             function ($registry) {
-                //Debug::preOutput('before setting data');
-                //Debug::preOutput($registry);
-                $registry->browser              = Http\Browser::getInstance();
+                Debug::preOutput('before setting data');
+                Debug::preOutput($registry);
+                $registry->browser              = new Http\Browser();
                 $registry->ip                   = new Http\IP();
                 $registry->requestQualifiedAPI  = Http\Request\QualifiedAPI::getInstance();
 
-               // Debug::preOutput('after setting data');
-               // Debug::preOutput($registry);
+                Debug::preOutput('after setting data');
+                Debug::preOutput($registry);
 
 
                 // Communicate with framework.
