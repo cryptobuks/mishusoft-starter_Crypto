@@ -11,6 +11,9 @@ class ApplicationProgrammingInterface extends SecureDataTransferService
      */
     public function api(array $request):void
     {
+        //api/db/{query, add, delete, update}
+        //api/activity/{query, add, delete, update}
+        //api/user/{query, add, delete, update}
         parent::api($request);
     }//end api()
 
