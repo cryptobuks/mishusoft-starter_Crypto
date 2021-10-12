@@ -11,10 +11,13 @@ namespace Mishusoft\Http;
 
 use ErrorException;
 use JsonException;
+use Mishusoft\Http;
 use RuntimeException;
 
 class Browser extends UAAnalyzer
 {
+
+    public const DEFAULT_USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64; rv:95.0) Gecko/20100101 Firefox/95.0';
 
     private string $requestMethod;
     private string $requestMode;
@@ -162,47 +165,8 @@ class Browser extends UAAnalyzer
      */
     public static function visitedPageURL(array $s, bool $useForwardedHost = false): string
     {
-        return self::urlOrigin($s, $useForwardedHost) . $s['REQUEST_URI'];
+        return Http::getHost($useForwardedHost) . $s['REQUEST_URI'];
     }//end visitedPageURL()
-
-
-    /**
-     * @param array $s
-     * @param boolean $useForwardedHost
-     * @return string
-     */
-    public static function urlOrigin(array $s, bool $useForwardedHost = false): string
-    {
-        $ssl = (empty($s['HTTPS']) === false && $s['HTTPS'] === 'on');
-        $sp = strtolower($s['SERVER_PROTOCOL']);
-        $protocol = substr($sp, 0, strpos($sp, '/')) . (($ssl) ? 's' : '');
-        $port = $s['SERVER_PORT'];
-
-        //url:http://localhost:8080
-        //url:http://localhost
-        //url:https://localhost
-
-        $definedPort = ':' . $port;
-        $definedPortLen = strlen($definedPort);
-
-        if (substr($s['HTTP_HOST'], (strlen($s['HTTP_HOST']) - $definedPortLen)) === $definedPort) {
-            $port = '';
-        } elseif ((!$ssl && $port === '80') || ($ssl && $port === '443')) {
-            $port = '';
-        } else {
-            $port = $definedPort;
-        }
-
-        //$port = (!$ssl && $port === '80') || ($ssl && $port === '443') ? '' : ':' . $port;
-
-        if (($useForwardedHost && isset($s['HTTP_X_FORWARDED_HOST']))) {
-            $host = $s['HTTP_X_FORWARDED_HOST'];
-        } else {
-            $host = ($s['HTTP_HOST'] ?? null);
-        }
-        $host = ($host ?? $s['SERVER_NAME']) . $port;
-        return $protocol . '://' . $host;
-    }//end urlOrigin()
 
 
     /**
