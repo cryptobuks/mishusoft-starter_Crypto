@@ -43,8 +43,7 @@ class WebResourceDelivery
      */
     public function __construct(
         private string $defaultDirectoryIndex = DEFAULT_CONTROLLER
-    )
-    {
+    ) {
         $this->defaultApplicationIcon = System\Memory::data()->preset->logo;
     }//end __construct()
 
@@ -57,6 +56,19 @@ class WebResourceDelivery
      * @throws RuntimeException
      */
     public function assets(array $request): void
+    {
+        $this->browse($request);
+    }//end assets()
+
+    /**
+     * @param array $request
+     * @throws ErrorException
+     * @throws InvalidArgumentException
+     * @throws NotFoundException
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
+     */
+    public function framework(array $request): void
     {
         $this->browse($request);
     }//end assets()
@@ -284,6 +296,10 @@ class WebResourceDelivery
                     [
                         'id' => 'mishusoft-web-root',
                         'name' => 'mishusoft-web-root',
+                        'content' => System\Memory::Data('framework')->host->url,
+                    ],
+                    [
+                        'rel' => 'stylesheet', 'type' => 'text/css',
                         'content' => System\Memory::Data('framework')->host->url,
                     ],
                 ],
