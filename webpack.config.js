@@ -29,8 +29,8 @@ const commonConfig = {
     context: path.join(__dirname, './sources'),
     module: {
         rules: [
-            // compile sass, scss file
             {
+                // compile sass, scss file
                 test: /\.(sa|sc|c)ss$/i,
                 exclude: /node_modules/,
                 use: [
@@ -44,16 +44,16 @@ const commonConfig = {
                     'sass-loader'
                 ]
         },
-            //compile images
             {
-                test: /\.(png|jpg|gif)$/, /* test: /\.(svg|png|jpg|gif)$/, */
+                //compile images
+                test: /\.(png|jpe?g|gif)$/, /* test: /\.(svg|png|jpg|gif)$/, */
                 type: 'asset/resource',
                 generator: {
                     filename: 'images/[name][ext][query]'
                 },
         },
-            //compile webfonts
             {
+                //compile webfonts
                 test: /\.(ttf|otf|eot|svg|woff|woff2)$/,
                 type: 'asset/resource',
                 generator: {
@@ -93,7 +93,7 @@ const commonConfig = {
                 to: path.join(__dirname, './storages/framework/views/images/icons/social-media/')
             },]
         }),
-        new ImageminPlugin({ test: /\.(jpe?g|png|gif|svg)$/i })
+        new ImageminPlugin({test: /\.(jpe?g|png|gif|svg)$/i})
     ],
 }
 
@@ -119,7 +119,6 @@ const commonFileConfig = {
          * Stylesheet for themes
          */
         'mishusoft-theme': './Assets/sass/theme-mishusoft.scss',
-
 
 
         // Typescripts bundlers
