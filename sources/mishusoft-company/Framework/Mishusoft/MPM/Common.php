@@ -7,6 +7,7 @@ use Mishusoft\MPM;
 use Mishusoft\Storage;
 use Mishusoft\Storage\FileSystem;
 use Mishusoft\System\Log;
+use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\Implement;
 
 class Common extends MPM
@@ -28,9 +29,10 @@ class Common extends MPM
         $configs = [];
         if (count(FileSystem::list($rootDirectory, 'file')) > 0) {
             foreach (FileSystem::list($rootDirectory, 'file') as $filename) {
-                if (file_exists($filename) && pathinfo($filename, PATHINFO_EXTENSION) === 'json') {
-                    $configs[filemtime($filename)] = (array) Implement::jsonDecode(
-                        FileSystem::read($rootDirectory . $filename),
+                $filenameOriginal = $rootDirectory.$filename;
+                if (file_exists($filenameOriginal) && pathinfo($filenameOriginal, PATHINFO_EXTENSION) === 'json') {
+                    $configs[filemtime($filenameOriginal)] = (array) Implement::jsonDecode(
+                        FileSystem::read($filenameOriginal),
                         IMPLEMENT_JSON_IN_ARR
                     );
                 }
@@ -40,14 +42,16 @@ class Common extends MPM
             ksort($configs, SORT_ASC);
 
             if (file_exists(self::qualifiedAPIRoutesFile()) === true) {
-                if (array_key_exists(filemtime(self::qualifiedAPIRoutesFile()), array_keys($configs))) {
-                    FileSystem::remove(self::qualifiedAPIRoutesFile());
-                    $configs = array_merge_recursive(
-                        FileSystem\Yaml::parseFile(self::qualifiedAPIRoutesFile()),
-                        array_values($configs)
-                    );
-                    FileSystem\Yaml::emitFile(self::qualifiedAPIRoutesFile(), array_values($configs));
-                }
+                array_map(static function ($lastModifiedAt) use ($configs):void {
+                    if (filemtime(self::qualifiedAPIRoutesFile()) < $lastModifiedAt) {
+                        FileSystem::remove(self::qualifiedAPIRoutesFile());
+                        $configs = array_merge_recursive(
+                            FileSystem\Yaml::parseFile(self::qualifiedAPIRoutesFile()),
+                            array_values($configs)
+                        );
+                        FileSystem\Yaml::emitFile(self::qualifiedAPIRoutesFile(), array_values($configs));
+                    }
+                }, array_keys($configs));
             } else {
                 FileSystem\Yaml::emitFile(self::qualifiedAPIRoutesFile(), array_values($configs));
             }
