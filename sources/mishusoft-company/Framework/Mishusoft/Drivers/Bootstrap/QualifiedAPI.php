@@ -68,12 +68,6 @@ class QualifiedAPI
                                     $requestedClassName = Arr::value($routeDetails, 'class');
                                     $requestedRouteFile = self::currentFile($rootDirectory, $requestedClassName);
 
-                                    Debug::preOutput($request);
-                                    Debug::preOutput($requestedRoute);
-                                    Debug::preOutput($requestedClassName);
-                                    Debug::preOutput($requestedRouteFile);
-                                    exit(0);
-
                                     if (is_readable($requestedRouteFile) === true) {
                                         Log::info(sprintf('Load %s from %s.', $requestedRouteFile, $rootDirectory));
                                         include_once self::currentFile($rootDirectory, $requestedClassName);
