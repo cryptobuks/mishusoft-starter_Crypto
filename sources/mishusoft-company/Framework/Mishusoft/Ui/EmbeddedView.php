@@ -556,6 +556,7 @@ class EmbeddedView
     private static function makeImageElement(string $classname, string $alternate, string $src): array
     {
         return [
+            'rel' => 'preload',
             'class' => $classname,
             'alt' => ucfirst($alternate),
             'title' => ucfirst($alternate),
