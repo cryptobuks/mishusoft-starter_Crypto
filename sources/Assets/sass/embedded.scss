@@ -2,6 +2,14 @@
 @import './includes/common/functions';
 @import "webfonts";
 
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 html {
   box-sizing: border-box;
   font-size: 14px;
@@ -11,8 +19,6 @@ html {
 }
 
 body {
-  margin: 0;
-  padding: 0;
   color: var(--black);
   display: flex;
   flex-direction: column;
@@ -272,4 +278,14 @@ table {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
+}
+
+
+@media (min-width: 768px) {
+  .application {
+    margin: 1rem;
+  }
+  .application-content, .maintenance-content {
+    width: 100%;
+  }
 }
