@@ -36,14 +36,14 @@ class App extends BIOS
          * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
          */
             function ($registry) {
-                Debug::preOutput('before setting data');
-                Debug::preOutput($registry);
-                $registry->browser              = new Http\Browser();
+                //Debug::preOutput('before setting data');
+                //Debug::preOutput($registry);
+                $registry->browser              = Http\Browser::getInstance();
                 $registry->ip                   = new Http\IP();
                 $registry->requestQualifiedAPI  = Http\Request\QualifiedAPI::getInstance();
 
-                Debug::preOutput('after setting data');
-                Debug::preOutput($registry);
+                //Debug::preOutput('after setting data');
+                //Debug::preOutput($registry);
 
 
                 // Communicate with framework.
