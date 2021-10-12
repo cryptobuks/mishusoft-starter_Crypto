@@ -19,7 +19,7 @@
     </Files>
 
     #css|
-    <Files ~ "\.(png|jpe?g|gif|webp|ttf|otf|eot|woff|woff2)$">
+    <Files ~ "\.(png|jpe?g|gif|webp|ttf|otf|eot|woff2?|js|css)$">
       Header set Cache-Control: max-age=31536000
     </Files>
 
@@ -74,11 +74,11 @@
 
 
     #error page setting
-    ErrorDocument 400 /400.shtml
-    ErrorDocument 403 /403.shtml
-    ErrorDocument 404 /404.shtml
-    ErrorDocument 408 /408.shtml
-    ErrorDocument 500 /500.shtml
-    ErrorDocument 503 /503.shtml
+#    ErrorDocument 400 /400.shtml
+#    ErrorDocument 403 /403.shtml
+#    ErrorDocument 404 /404.shtml
+#    ErrorDocument 408 /408.shtml
+#    ErrorDocument 500 /500.shtml
+#    ErrorDocument 503 /503.shtml
 
 </IfModule>
