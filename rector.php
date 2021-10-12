@@ -9,8 +9,12 @@ use Rector\Set\ValueObject\SetList;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
+
     // get parameters
     $parameters = $containerConfigurator->parameters();
+
+    // paths to refactor; solid alternative to CLI arguments
+    $parameters->set(Option::PATHS, [__DIR__ . '/bootstrap', __DIR__ . '/Framework']);
 
     // is your PHP version different from the one your refactor to?
     // [default: your PHP version], uses PHP_VERSION_ID format
