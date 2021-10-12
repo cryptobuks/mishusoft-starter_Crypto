@@ -33,22 +33,36 @@ spl_autoload_register(
             $frameworkPath = SRC_FRAMEWORK_PATH;
         } else {
             //set default framework path
-            $frameworkPath = realpath(dirname(__DIR__, 2)  . 'Framework');
+            $frameworkPath = realpath(dirname(__DIR__, 2)  . 'Framework') . DIRECTORY_SEPARATOR;
         }
+
+        if (strncmp($class, WHO_AM_I, strlen(WHO_AM_I)) !== 0) {
+            $class = sprintf('%1$s\\%2$s', WHO_AM_I, $class);
+        }
+
+        print_r(' SYS PATH : ' . $frameworkPath . '<br/>', false);
+        print_r(' REQUIRED : ' . $class . '<br/>', false);
+        print_r('<br/>', false);
 
         // Check file is use namespace.
         if (is_int(strpos($class, '\\'))) {
             // Extract file namespace to file location.
             $originalFile = $frameworkPath . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
+
+            print_r(' PHYSICAL FILE : ' . $originalFile . '<br/>', false);
+            print_r('<br/>', false);
             // Checking local file: $originalFile.
-            if (is_file($originalFile) === true) {
+            if (is_file($originalFile)) {
+                print_r(' PHYSICAL FILE IS FOUND<br/>', false);
+                print_r('<br/>', false);
+                print_r('<br/>', false);
                 include_once $originalFile;
             }
         } else {
             // Want to load normal File $class.
             foreach (scandir(realpath(dirname(__FILE__, 2))) as $directory) {
                 $originalFile = $frameworkPath  . ucfirst($directory) . DS . ucfirst($class) . '.php';
-                if (file_exists($originalFile) === true) {
+                if (is_file($originalFile)) {
                     include_once $originalFile;
                 }
             }
