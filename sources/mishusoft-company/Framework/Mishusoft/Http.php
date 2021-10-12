@@ -9,6 +9,26 @@ class Http extends Http\Errors
 {
 
     /**
+     * Store Server information in this array and use on runtime requirements
+     *
+     * @var array
+     */
+    public static array $details = [];
+
+    /**
+     * Get server information in runtime requirements
+     *
+     * @return array
+     */
+    public static function getDetails():array
+    {
+        if (self::$details ===[]) {
+            self::$details = $_SERVER;
+        }
+
+        return self::$details;
+    }
+    /**
      * Get error records.
      *
      * @param string $format Format of data.
@@ -89,4 +109,64 @@ class Http extends Http\Errors
             }
         }
     }//end setHeader()
+
+    /**
+     * Check is use ssl certificate in domain
+     *
+     * @return bool
+     */
+    public static function isSecured():bool
+    {
+        return (!empty(self::getDetails()['HTTPS']) && self::getDetails()['HTTPS'] === 'on');
+    }
+
+    /**
+     * Get server http host name from details
+     *
+     * @param bool $useForwardedHost
+     * @return string
+     */
+    public static function getHost(bool $useForwardedHost = false):string
+    {
+        $s = self::getDetails();
+        $sp = strtolower($s['SERVER_PROTOCOL']);
+        $protocol = substr($sp, 0, strpos($sp, '/')) . ((self::isSecured()) ? 's' : '');
+
+        if (($useForwardedHost && isset($s['HTTP_X_FORWARDED_HOST']))) {
+            $host = $s['HTTP_X_FORWARDED_HOST'];
+        } else {
+            $host = ($s['HTTP_HOST'] ?? null);
+        }
+        $host = ($host ?? $s['SERVER_NAME']) . self::getPort();
+        return $protocol . '://' . $host;
+    }
+
+    /**
+     * Get server http port from details
+     *
+     * @return string
+     */
+    public static function getPort():string
+    {
+        //url:http://localhost:8080
+        //url:http://localhost
+        //url:https://localhost
+
+        $s = self::getDetails();
+        $ssl = self::isSecured();
+
+        $port = $s['SERVER_PORT'];
+        $definedPort = ':' . $port;
+        $definedPortLen = strlen($definedPort);
+
+        if (substr($s['HTTP_HOST'], (strlen($s['HTTP_HOST']) - $definedPortLen)) === $definedPort) {
+            $port = '';
+        } elseif ((!$ssl && $port === '80') || ($ssl && $port === '443')) {
+            $port = '';
+        } else {
+            $port = $definedPort;
+        }
+
+        return ltrim($port, ':');
+    }
 }//end class
