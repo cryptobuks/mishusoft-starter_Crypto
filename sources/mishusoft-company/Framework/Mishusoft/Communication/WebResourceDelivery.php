@@ -249,6 +249,8 @@ class WebResourceDelivery
         $implodedRequestArgument = strtolower($implodedRequestDirectory) . implode(DS, $request['arguments']);
         $requestedFile = Storage::storageFullPath($implodedRequestArgument);
 
+        print_r($request, false);
+
         if (file_exists($requestedFile) === true) {
             if (filetype($requestedFile) === 'dir') {
                 $this->webExplore($requestedFile, $request);
