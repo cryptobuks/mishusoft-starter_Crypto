@@ -1,8 +1,7 @@
 <?php
 
 
-namespace Mishusoft\Framework\Chipsets\Notifier;
-
+namespace Mishusoft\Notifier;
 
 use Exception;
 
@@ -23,9 +22,11 @@ class SMS extends Notifier
      * @throws Exception
      */
     public function sendNotification(): string
-    {if ($this->validateTo() === false) {
-        throw new Exception("Invalid phone number.");
-    }
+    {
+        if ($this->validateTo() === false) {
+            throw new Exception("Invalid phone number.");
+        }
         $notificationType = get_class($this);
         return "This is a " . $notificationType . " to " . $this->to . ".";
-    }}
+    }
+}
