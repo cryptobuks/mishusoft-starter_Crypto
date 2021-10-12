@@ -540,6 +540,12 @@ class Storage extends Base
             return self::makeDataUri(self::mediaFullPath($filename));
         }
         if ($directive === 'framework') {
+            if ($feature === 'remote') {
+                if ((is_readable(self::fViewsFullPath($filename))) === true) {
+                    return self::fViewsFullPath($filename, $feature);
+                }
+                return '';
+            }
             return self::makeDataUri(self::fViewsFullPath($filename));
         }
         return '';
@@ -598,7 +604,7 @@ class Storage extends Base
      */
     public static function fViewsFullPath(string $filename, string $feature = 'local'): string
     {
-        return self::fullPathBuilder(self::frameworkViewsPath(), false, $filename, $feature, false);
+        return self::fullPathBuilder(self::frameworkViewsPath(), false, $filename, $feature, 'framework/');
     }//end getAssetsPath()
 
     /**
