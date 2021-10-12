@@ -196,7 +196,15 @@ class SEOToolKitService extends Base
                     [
                         'rel' => 'canonical',
                         'href' => Runtime::currentUrl(),
-                    ]
+                    ],
+                    [
+                        'rel' => 'preconnect',
+                        'href' => Runtime::hostUrl(),
+                    ],
+                    [
+                        'rel' => 'dns-prefetch',
+                        'href' => Runtime::hostUrl(),
+                    ],
                 ],
             ]
         );
