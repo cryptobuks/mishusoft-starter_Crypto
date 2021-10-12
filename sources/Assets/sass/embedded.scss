@@ -5,8 +5,6 @@
 * {
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -36,8 +34,6 @@ body {
   padding: 2.5rem 3rem !important;
   background-color: var(--white);
 
-  -webkit-border-radius: .7rem;
-  -moz-border-radius: .7rem;
   border-radius: .7rem;
 
   @include box-shadow-light;
@@ -52,13 +48,9 @@ body {
   &-content {
     display: flex;
     flex-direction: column;
-    //align-items: center;
     margin: 0;
-    /* padding: 10px 35px; */
     text-align: left;
-    /* background-color: white; */
     width: 100%;
-    /* border: 1px solid red; */
 
     &-width-auto {
       width: auto;
@@ -87,12 +79,7 @@ body {
         height: 80px;
         float: left;
 
-        -webkit-border-radius: 50%;
-        -moz-border-radius: .50%;
         border-radius: 50%;
-
-        -webkit-box-shadow: 2px 2px 8px rgba(0, 0, 0, .29), inset 2px 2px 8px rgba(255, 255, 255, .44);
-        -moz-box-shadow: 2px 2px 8px rgba(0, 0, 0, .29), inset 2px 2px 8px rgba(255, 255, 255, .44);
         box-shadow: 2px 2px 8px rgba(0, 0, 0, .29), inset 2px 2px 8px rgba(255, 255, 255, .44);
 
         &-concat {
@@ -102,8 +89,6 @@ body {
           width: 20px;
           height: 20px;
 
-          -webkit-box-shadow: none;
-          -moz-box-shadow: none;
           box-shadow: none;
         }
       }
@@ -129,23 +114,16 @@ body {
 
   text-align: justify;
   background-color: #d3d3d357;
-
-  -webkit-border-radius: .5rem;
-  -moz-border-radius: .5rem;
   border-radius: .5rem;
-
   @include box-shadow-light;
 }
 
 .details {
   //border: 0.5px solid var(--gray-300);
   text-align: justify;
-
-  -webkit-border-radius: .5rem;
-  -moz-border-radius: .5rem;
   border-radius: .5rem;
 
-    @include box-shadow-light;
+  @include box-shadow-light;
 
 
   &-title {
@@ -236,13 +214,13 @@ body {
   justify-content: center;
 }
 
-.flex-row-center  {
+.flex-row-center {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-.flex-column-center  {
+.flex-column-center {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -276,8 +254,6 @@ table {
   margin: .6rem;
   float: left;
 
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
   border-radius: 50%;
 }
 
@@ -304,7 +280,7 @@ img[alt]:after {
   line-height: inherit;
   text-align: inherit;
   content: ' ';
-  border: inherit;
+  border-style: none;
   border-radius: inherit;
 }
 
