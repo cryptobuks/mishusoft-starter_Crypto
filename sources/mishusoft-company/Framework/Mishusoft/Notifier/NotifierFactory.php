@@ -1,8 +1,7 @@
 <?php
 
 
-namespace Mishusoft\Framework\Chipsets\Notifier;
-
+namespace Mishusoft\Notifier;
 
 use Exception;
 
