@@ -28,7 +28,7 @@ class Common extends MPM
         $configs = [];
         if (count(FileSystem::list($rootDirectory, 'file')) > 0) {
             foreach (FileSystem::list($rootDirectory, 'file') as $filename) {
-                if (pathinfo($filename, PATHINFO_EXTENSION) === 'json') {
+                if (file_exists($filename) && pathinfo($filename, PATHINFO_EXTENSION) === 'json') {
                     $configs[filemtime($filename)] = (array) Implement::jsonDecode(
                         FileSystem::read($rootDirectory . $filename),
                         IMPLEMENT_JSON_IN_ARR
