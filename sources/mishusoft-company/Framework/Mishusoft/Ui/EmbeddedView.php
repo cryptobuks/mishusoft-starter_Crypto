@@ -118,8 +118,18 @@ class EmbeddedView
 
         Ui::elementList(Ui::getDocumentHeadElement(), [
             'link' => Storage::assignableWebFavicons(),
-            'style' => [
+            /*'style' => [
                 ['text' => Storage\FileSystem::read(Storage::fViewsFullPath('css/embedded.css')),],
+            ],*/
+        ]);
+
+        Ui::elementList(Ui::getDocumentHeadElement(), [
+            'link' => [
+                [
+                    'rel'=>'stylesheet',
+                    'type'=>'text/css',
+                    'href' => Storage::fViewsFullPath('css/embedded.css', 'remote')
+                ],
             ],
         ]);
 
