@@ -86,8 +86,8 @@ const commonConfig = {
                 from: path.join(__dirname, './storages/app/assets/css/embedded.css'),
                 to: path.join(__dirname, './storages/framework/views/css/embedded.css')
             }, { /*copy default logos from compiled directory*/
-                from: path.join(__dirname, './storages/app/media/logos/default/'),
-                to: path.join(__dirname, './storages/framework/views/logos/default/')
+                from: path.join(__dirname, './storages/app/media/logos/'),
+                to: path.join(__dirname, './storages/framework/views/logos/')
             }, { /*copy social logos from compiled directory*/
                 from: path.join(__dirname, './storages/app/media/images/icons/social-media/'),
                 to: path.join(__dirname, './storages/framework/views/images/icons/social-media/')
