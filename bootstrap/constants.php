@@ -101,7 +101,7 @@ const APPLICATION_SYSTEM_TEMP_PATH = RUNTIME_ROOT_PATH . 'tmp' . DS;
 
 // Constants for Mishusoft associates.
 
-if (array_key_exists('USER', $_SERVER) === true) {
+if (array_key_exists('USER', $_SERVER)) {
     define('CURRENT_SYS_USER', $_SERVER['USER']);
 } else {
     define('CURRENT_SYS_USER', get_current_user());
@@ -114,13 +114,13 @@ if (array_key_exists('USER', $_SERVER) === true) {
 //
 //define('RUNTIME_CACHE_ROOT_PATH', RUNTIME_ROOT_PATH . 'tmp/' . md5($_SERVER['PHP_SELF']) . DS);
 //
-if (array_key_exists('HTTP_HOST', $_SERVER) === true) {
+if (array_key_exists('HTTP_HOST', $_SERVER)) {
     define('INSTALLED_HOST_NAME', $_SERVER['HTTP_HOST']);
 } else {
     define('INSTALLED_HOST_NAME', 'localhost');
 }
 
-if (array_key_exists('SERVER_NAME', $_SERVER) === true) {
+if (array_key_exists('SERVER_NAME', $_SERVER)) {
     define('APPLICATION_SERVER_NAME', $_SERVER['SERVER_NAME']);
 } else {
     define('APPLICATION_SERVER_NAME', 'localhost');
