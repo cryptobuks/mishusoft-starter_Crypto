@@ -13,7 +13,6 @@ use Mishusoft\Http\IP;
 use Mishusoft\Registry;
 use Mishusoft\Storage;
 use Mishusoft\Storage\FileSystem;
-use Mishusoft\Utility\Character;
 use Mishusoft\Utility\Inflect;
 use RuntimeException;
 
@@ -175,7 +174,11 @@ class Firewall extends Firewall\FirewallBase
                 Registry::Browser()->getDeviceNameFull()
             )
         );
-        if (in_array(Character::lower(Registry::Browser()->getDeviceName()), $this->config['device']['banned'], true) === true) {
+        if (in_array(
+            Inflect::lower(Registry::Browser()->getDeviceName()),
+            $this->config['device']['banned'],
+            true
+        ) === true) {
             Log::notice(
                 sprintf(
                     'The client device [%s] found in banned list.',
@@ -202,7 +205,7 @@ class Firewall extends Firewall\FirewallBase
                 IP::getInfo('continent')
             )
         );
-        if (in_array(Character::lower(IP::getInfo('continent')), $this->config['continent']['banned'], true)) {
+        if (in_array(Inflect::lower(IP::getInfo('continent')), $this->config['continent']['banned'], true)) {
             Log::notice(
                 sprintf(
                     'The client continent [%s] found in banned list.',
@@ -224,7 +227,7 @@ class Firewall extends Firewall\FirewallBase
         // End test the continent name of client.
         // Start test the country name of client.
         Log::info('Start searching client country in banned list.');
-        if (in_array(Character::lower(IP::getInfo('country')), $this->config['country']['banned'], true) === true) {
+        if (in_array(Inflect::lower(IP::getInfo('country')), $this->config['country']['banned'], true) === true) {
             Log::notice('The client continent found in banned list.');
             Log::notice('Firewall banned the country.');
             $this->actionStatus = 'banned';
@@ -236,7 +239,7 @@ class Firewall extends Firewall\FirewallBase
         // End test the country name of client.
         // Start test the country name of client.
         Log::info('Start searching client city in banned list.');
-        if (in_array(Character::lower(IP::getInfo('city')), $this->config['city']['banned'], true)) {
+        if (in_array(Inflect::lower(IP::getInfo('city')), $this->config['city']['banned'], true)) {
             Log::notice('The client city found in banned list.');
             Log::notice('Firewall banned the city.');
             $this->actionStatus = 'banned';
@@ -252,7 +255,11 @@ class Firewall extends Firewall\FirewallBase
             // we need to check block time of browser,
             // if the time has been expired, then unblock th browser
             // or show protection message
-            if (in_array(Character::lower(Registry::Browser()->getBrowserName()), $this->config['browser']['blacklist'], true) === true) {
+            if (in_array(
+                Inflect::lower(Registry::Browser()->getBrowserName()),
+                $this->config['browser']['blacklist'],
+                true
+            ) === true) {
                 Log::notice('The client browser found in black list.');
                 Log::notice('Firewall banned the browser.');
                 $this->actionStatus = 'blocked';
@@ -264,7 +271,7 @@ class Firewall extends Firewall\FirewallBase
         // End test the city name of client.
 
         if ($this->config['browser']['order'] === 'whitelist') {
-            if (in_array(Character::lower(Registry::Browser()->getBrowserName()), $this->config['browser']['whitelist'], true) === false) {
+            if (in_array(Inflect::lower(Registry::Browser()->getBrowserName()), $this->config['browser']['whitelist'], true) === false) {
                 $this->actionStatus = 'blocked';
                 $this->actionComponent = 'browser';
             }
@@ -574,35 +581,60 @@ class Firewall extends Firewall\FirewallBase
             $message = $message['debug'];
         }//end if
 
+        //resolve : undefined request method in browser
+        if (method_exists('Registry', 'Browser')) {
+            $httpRequestMethod = Registry::Browser()->getRequestMethod();
+        } elseif (array_key_exists('REQUEST_METHOD', $_SERVER)) {
+            $httpRequestMethod = $_SERVER['REQUEST_METHOD'];
+        } else {
+            $httpRequestMethod = 'GET';
+        }
+
+        //resolve : undefined user agent method in browser
+        if (method_exists('Registry', 'Browser')) {
+            $httpUserAgent = Registry::Browser()->getUserAgent();
+        } elseif (array_key_exists('HTTP_USER_AGENT', $_SERVER)) {
+            $httpUserAgent = $_SERVER['HTTP_USER_AGENT'];
+        } else {
+            $httpUserAgent = Http\Browser::DEFAULT_USER_AGENT;
+        }
+
+        //resolve : undefined visited page method in browser
+        if (method_exists('Registry', 'Browser')) {
+            $visitedPage = Registry::Browser()->getVisitedPage();
+        } else {
+            $visitedPage = sprintf('%1$s%2$s', Http::getHost(), $_SERVER['REQUEST_URI']);
+        }
+
         if (IS_CLI) {
             echo $message['description'].LB;
-        } elseif (Registry::Browser()->getRequestMethod() === 'OPTIONS') {
+        } elseif ($httpRequestMethod === 'OPTIONS') {
             // add welcome not for http options method
             Storage\Stream::json(['message' => ['type' => 'error', 'contents' => "An Internal error occurred."]]);
-        } elseif (Registry::Browser()->getRequestMethod() === 'GET') {
+        } elseif ($httpRequestMethod === 'GET') {
             if (array_key_exists('caption', $message)) {
                 FirewallView::debug($message['caption'], $message, Http::errorCode($title));
-            //Ui\EmbeddedView::debug($message['caption'], $message, Http::errorCode($title));
+                //Ui\EmbeddedView::debug($message['caption'], $message, Http::errorCode($title));
             } else {
                 FirewallView::runtimeFail($title, $message, Http::errorCode($title));
                 //Ui\EmbeddedView::runtimeFail($title, $message, Http::errorCode($title));
             }//end if
         } else {
             Storage\Stream::json([
-                    'message' => [
-                        'type' => 'error',
-                        'details' => $message['description'],
-                        'visitor' => [
-                            'user-agent' => Registry::Browser()->getUserAgent(),
-                            'request-method' => Registry::Browser()->getRequestMethod(),
-                            'request-url' => Registry::Browser()::getVisitedPage(),
-                            'ip-address' => IP::get(),
-                        ],
+                'message' => [
+                    'type' => 'error',
+                    'details' => $message['description'],
+                    'visitor' => [
+                        'user-agent' => $httpUserAgent,
+                        'request-method' => $httpRequestMethod,
+                        'request-url' => $visitedPage,
+                        'ip-address' => IP::get(),
                     ],
-                    'copyright' => [
-                        'year' => Time::currentYearNumber(),
-                        'owner' => Framework::COMPANY_NAME,
-                    ],
+                ],
+                'copyright' => [
+                    'year' => Time::currentYearNumber(),
+                    'owner' => Framework::COMPANY_NAME,
+                ],
             ]);
         }//end if
     }//end runtimeFailureUi()
@@ -811,7 +843,7 @@ class Firewall extends Firewall\FirewallBase
         if ($this->actionStatus === 'banned' || $this->actionStatus === 'blocked') {
             //GranParadiso/3.0.8 is text browser
             if (array_key_exists('ui', Registry::Browser()->details())
-                && Character::lower(Registry::Browser()->details()['ui']) === Character::lower('FullTextMode')) {
+                && Inflect::lower(Registry::Browser()->details()['ui']) === Inflect::lower('FullTextMode')) {
                 $this->msgTab = "\t";
                 $this->defenseMessageShow('', $this->actionStatus, $this->actionComponent, 'text');
             } else {
@@ -892,20 +924,20 @@ class Firewall extends Firewall\FirewallBase
                 echo LB;
                 echo sprintf(' IP address : %1$s%2$s', $this->msgTab, IP::get()) . LB;
 
-                if (Character::lower(IP::getCountry()) !== 'unknown') {
+                if (Inflect::lower(IP::getCountry()) !== 'unknown') {
                     echo sprintf(' Country : %1$s%2$s', $this->msgTab, IP::getCountry()) . LB;
-                } elseif (Character::lower(IP::getInfo('country')) !== 'unknown location') {
+                } elseif (Inflect::lower(IP::getInfo('country')) !== 'unknown location') {
                     echo sprintf(' Country : %1$s%2$s', $this->msgTab, IP::getInfo('country')) . LB;
                 }
 
 
                 // avoid error browser capturing
-                if (Character::lower(Registry::Browser()->getBrowserName()) !== 'unknown') {
+                if (Inflect::lower(Registry::Browser()->getBrowserName()) !== 'unknown') {
                     echo sprintf(' Browser : %1$s%2$s', $this->msgTab, Registry::Browser()->getBrowserNameFull()) . LB;
                 }
 
                 // avoid error device capturing
-                if (Character::lower(Registry::Browser()->getDeviceName()) !== 'unknown') {
+                if (Inflect::lower(Registry::Browser()->getDeviceName()) !== 'unknown') {
                     echo sprintf(
                         ' Device : %1$s%2$s (%3$s)',
                         $this->msgTab,
