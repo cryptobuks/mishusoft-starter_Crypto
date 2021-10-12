@@ -606,7 +606,7 @@ class Ui
 
     public static function makeBodyId(array $request):string
     {
-        if (count($request) >0) {
+        if (count($request) > 0) {
             unset($request['locale'], $request['arguments']);
         }
 
