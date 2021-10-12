@@ -16,6 +16,7 @@ use Mishusoft\Storage;
 use Mishusoft\System;
 use Mishusoft\Ui;
 use Mishusoft\Utility\ArrayCollection;
+use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\Inflect;
 
 class WebResourceDelivery
@@ -41,8 +42,7 @@ class WebResourceDelivery
      */
     public function __construct(
         private string $defaultDirectoryIndex = DEFAULT_CONTROLLER
-    )
-    {
+    ) {
         $this->defaultApplicationIcon = System\Memory::data()->preset->logo;
     }//end __construct()
 
@@ -228,22 +228,35 @@ class WebResourceDelivery
      */
     private function webExploreLoader(array $request): void
     {
-        print_r($request, false);
+        ['controller' => $controller, 'method' => $method, 'arguments' => $arguments] = $request;
 
         //redirect actual url if controller is webfonts
-        if ($request['controller'] === 'webfonts') {
-            Runtime::redirect(sprintf('assets/webfonts/%1$s', $request['method']));
+        if ($controller === 'webfonts') {
+            Runtime::redirect(sprintf('assets/webfonts/%1$s', $method));
         }
 
-        if (($request['method'] === 'webfonts') && $request['controller'] !== 'assets') {
-            Runtime::redirect(sprintf('assets/webfonts/%1$s', implode(DS, $request['arguments'])));
+        if (($method === 'webfonts') && $controller !== 'assets') {
+            Runtime::redirect(sprintf('assets/webfonts/%1$s', implode(DS, $arguments)));
         }
 
         //http://host/directory/sub/filenameOrsub
-        $implodedRequestDirectory = $request['controller'] . DS . $request['method'] . DS;
-        $implodedRequestArgument = strtolower($implodedRequestDirectory) . implode(DS, $request['arguments']);
-        $requestedFile = Storage::storageFullPath($implodedRequestArgument);
+        if ($controller === 'framework') {
+            $requestedFile = Storage::storageFullPath(
+                strtolower(
+                    sprintf('%1$s%3$sviews%3$s%2$s%3$s', $controller, $method, DS)
+                ) . implode(DS, $arguments),
+                'local',
+                true
+            );
+        } else {
+            $requestedFile = Storage::storageFullPath(
+                strtolower(
+                    sprintf('%1$s%3%2$s%3$s', $controller, $method, DS)
+                ) . implode(DS, $arguments)
+            );
+        }
 
+        Debug::preOutput($requestedFile);exit();
         if (file_exists($requestedFile) === true) {
             if (filetype($requestedFile) === 'dir') {
                 $this->webExplore($requestedFile, $request);
@@ -275,7 +288,9 @@ class WebResourceDelivery
         Ui::setDocumentTitle(ucfirst($request['controller']));
 
         SEOToolKitService::start();
-        SEOToolKitService::addDocumentIdentify(['width' => 'device-width', 'initial-scale' => '1.0', 'shrink-to-fit' => 'no']);
+        SEOToolKitService::addDocumentIdentify(
+            ['width' => 'device-width', 'initial-scale' => '1.0', 'shrink-to-fit' => 'no']
+        );
         SEOToolKitService::addDefault(ucfirst($request['controller']));
 
         Ui::elementList(Ui::getDocumentHeadElement(), ['link' => Storage::assignableWebFavicons()]);
@@ -294,8 +309,16 @@ class WebResourceDelivery
                         'content' => System\Memory::Data('framework')->host->url,
                     ],
                     [
-                        'rel' => 'stylesheet', 'type' => 'text/css',
-                        'content' => System\Memory::Data('framework')->host->url,
+                        'rel' => 'prelaod', 'as' => 'style',
+                        'href' => Storage::assetsFullPath('css/resources.css', 'remote'),
+                    ],
+                    [
+                        'rel' => 'prelaod', 'as' => 'style',
+                        'href' => Storage::assetsFullPath('css/mishusoft-theme.css', 'remote'),
+                    ],
+                    [
+                        'rel' => 'prelaod', 'as' => 'style',
+                        'href' => Storage::assetsFullPath('css/framework.css', 'remote'),
                     ],
                 ],
                 'style' => [
@@ -303,18 +326,18 @@ class WebResourceDelivery
                         'rel' => 'stylesheet', 'type' => 'text/css',
                         'text' => Storage\FileSystem::read(Storage::assetsFullPath('css/loader.css')),
                     ],
-                    [
-                        'rel' => 'stylesheet', 'type' => 'text/css',
-                        'text' => Storage\FileSystem::read(Storage::assetsFullPath('css/resources.css')),
-                    ],
-                    [
-                        'rel' => 'stylesheet', 'type' => 'text/css',
-                        'text' => Storage\FileSystem::read(Storage::assetsFullPath('css/mishusoft-theme.css')),
-                    ],
-                    [
-                        'rel' => 'stylesheet', 'type' => 'text/css',
-                        'text' => Storage\FileSystem::read(Storage::assetsFullPath('css/framework.css')),
-                    ],
+            //                    [
+            //                        'rel' => 'stylesheet', 'type' => 'text/css',
+            //                        'text' => Storage\FileSystem::read(Storage::assetsFullPath('css/resources.css')),
+            //                    ],
+            //                    [
+            //                        'rel' => 'stylesheet', 'type' => 'text/css',
+            //                        'text' => Storage\FileSystem::read(Storage::assetsFullPath('css/mishusoft-theme.css')),
+            //                    ],
+            //                    [
+            //                        'rel' => 'stylesheet', 'type' => 'text/css',
+            //                        'text' => Storage\FileSystem::read(Storage::assetsFullPath('css/framework.css')),
+            //                    ],
                     [
                         'rel' => 'stylesheet', 'type' => 'text/css',
                         'text' => 'html{background-color: rgba(0,0,0,0.03);}',
@@ -419,8 +442,8 @@ class WebResourceDelivery
                             'class' => 'resources-header-title width-text-align',
                             'text' => str_replace('media', $request['controller'], self::WELCOME_TEXT),
                         ],
-                        // set welcome text
                         [
+                            // set welcome text
                             'class' => 'resources-header-description width-text-align',
                             'text' => "We delivery various css, js and images file for website's use only.",
                         ],
