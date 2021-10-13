@@ -1,16 +1,16 @@
 <?php
 
 
-namespace Mishusoft\Framework\Interfaces\Chipsets\Databases;
+namespace Mishusoft\Interfaces\Chipsets\Databases;
 
 
-use Mishusoft\Framework\Interfaces\Chipsets\Databases\MishusoftSQLStandalone\TableInterface;
+use Mishusoft\Interfaces\Chipsets\Databases\MishusoftSQLStandalone\TableInterface;
 
 interface MishusoftSQLStandaloneInterface
 {
-    const who_am_i = "mishusoftsql";
-    const version = "1.0 (beta)";
-    const dbFileFormat = ".msdb";
+    public const who_am_i = "mishusoftsql";
+    public const version = "1.0 (beta)";
+    public const dbFileFormat = ".msdb";
 
     public static function error(int $code, string $message);
 

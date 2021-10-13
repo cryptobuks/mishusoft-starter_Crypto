@@ -1,11 +1,11 @@
 <?php
 
-namespace Mishusoft\Framework\Interfaces\Chipsets\Databases\MishusoftSQLStandalone;
+namespace Mishusoft\Interfaces\Chipsets\Databases\MishusoftSQLStandalone;
 
 interface TableInterface
 {
-    const dbFileFormat = ".msdb";
-    const dbTableFileFormat = ".mstbl";
+    public const dbFileFormat = ".msdb";
+    public const dbTableFileFormat = ".mstbl";
 
     public function create($table_name);
 
