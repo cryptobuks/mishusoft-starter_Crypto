@@ -1,6 +1,18 @@
 <?php
 
-$imageList = [];
+$imageList = [
+        '01-android-icon-36x36.png' =>'',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+        '',
+];
 
 $imageMimeType = 'image/png';
 
