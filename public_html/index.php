@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 $getFile = static function ($name) {
     return sprintf(
-        '%1$s%5$s%2$s%5$s%3$s%5$s%4$s',
+        '%1$s%5$s%2$s%5$s%3$s%5$s%4$s.php',
         realpath(dirname(__DIR__)),
         'storages',
         'framework',
@@ -22,9 +22,10 @@ $getFile = static function ($name) {
 };
 
 //fetch maintenance mode
-if (file_exists($getFile('maintenance.php'))) {
-    include_once $getFile('resolver.php');
-    include_once $getFile('maintenance.php');
+if (file_exists($getFile('maintenance'))) {
+    include_once $getFile('images');
+    include_once $getFile('resolver');
+    include_once $getFile('maintenance');
     exit(0);
 }
 

@@ -1,12 +1,18 @@
 <?php
 
-function make(string $mimeType, string $filename): string
+function make(string $filename): string
 {
     return sprintf(
         'data:%s;base64,%s',
-        $mimeType,
+        DEFAULT_IMAGE_MIME_TYPE,
         base64_encode(fileContent($filename))
     );
+}
+
+function load(string $filename): string
+{
+    $list = IMAGES;
+    return array_key_exists($filename, $list) ? $list[$filename] : '';
 }
 
 

@@ -25,7 +25,7 @@
   },
   "keywords": [],
   "author": "Al-Amin Ahamed (Abir)",
-  "license": "Property",
+  "license": "GPL-3.0-only",
   "devDependencies": {
     "@javascript-obfuscator/escodegen": "^2.2.1",
     "@types/sass": "^1.16.1",
@@ -78,8 +78,9 @@
   "dependencies": {
     "imagemin": "^8.0.1",
     "lodash": "^4.17.21"
-  },"repository": {
-  "type": "git",
-  "url": "git://github.com/username/repository.git"
-}
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mralaminahamed/lastest.mishusoft.com.git"
+  }
 }
