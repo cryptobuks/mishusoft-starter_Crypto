@@ -114,128 +114,13 @@ html:root {
   --breakpoint-xl: 1200px;
 }
 
-/* Noto Sans font*/
-@font-face {
-  font-family: "Noto Sans";
-  src: url("../webfonts/NotoSans/NotoSans-Regular.eot");
-  src: local("Noto Sans Regular"), local("NotoSans-Regular"), url("../webfonts/NotoSans/NotoSans-Regular.eot?#iefix") format("embedded-opentype"), url("../webfonts/NotoSans/NotoSans-Regular.woff2") format("woff2"), url("../webfonts/NotoSans/NotoSans-Regular.woff") format("woff"), url("../webfonts/NotoSans/NotoSans-Regular.ttf") format("truetype"), url("../webfonts/NotoSans/NotoSans-Regular.svg#NotoSans-Regular") format("svg");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Noto Sans";
-  src: url("../webfonts/NotoSans/NotoSans-Bold.eot");
-  src: local("Noto Sans Bold"), local("NotoSans-Bold"), url("../webfonts/NotoSans/NotoSans-Bold.eot?#iefix") format("embedded-opentype"), url("../webfonts/NotoSans/NotoSans-Bold.woff2") format("woff2"), url("../webfonts/NotoSans/NotoSans-Bold.woff") format("woff"), url("../webfonts/NotoSans/NotoSans-Bold.ttf") format("truetype"), url("../webfonts/NotoSans/NotoSans-Bold.svg#NotoSans-Bold") format("svg");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Noto Sans";
-  src: url("../webfonts/NotoSans/NotoSans-Black.eot");
-  src: local("Noto Sans Black"), local("NotoSans-Black"), url("../webfonts/NotoSans/NotoSans-Black.eot?#iefix") format("embedded-opentype"), url("../webfonts/NotoSans/NotoSans-Black.woff2") format("woff2"), url("../webfonts/NotoSans/NotoSans-Black.woff") format("woff"), url("../webfonts/NotoSans/NotoSans-Black.ttf") format("truetype"), url("../webfonts/NotoSans/NotoSans-Black.svg#NotoSans-Black") format("svg");
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Noto Sans";
-  src: url("../webfonts/NotoSans/NotoSans-Italic.eot");
-  src: local("Noto Sans Italic"), local("NotoSans-Italic"), url("../webfonts/NotoSans/NotoSans-Italic.eot?#iefix") format("embedded-opentype"), url("../webfonts/NotoSans/NotoSans-Italic.woff2") format("woff2"), url("../webfonts/NotoSans/NotoSans-Italic.woff") format("woff"), url("../webfonts/NotoSans/NotoSans-Italic.ttf") format("truetype"), url("../webfonts/NotoSans/NotoSans-Italic.svg#NotoSans-Italic") format("svg");
-  font-weight: normal;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Noto Sans";
-  src: url("../webfonts/NotoSans/NotoSans-Light.eot");
-  src: local("Noto Sans Light"), local("NotoSans-Light"), url("../webfonts/NotoSans/NotoSans-Light.eot?#iefix") format("embedded-opentype"), url("../webfonts/NotoSans/NotoSans-Light.woff2") format("woff2"), url("../webfonts/NotoSans/NotoSans-Light.woff") format("woff"), url("../webfonts/NotoSans/NotoSans-Light.ttf") format("truetype"), url("../webfonts/NotoSans/NotoSans-Light.svg#NotoSans-Light") format("svg");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Noto Sans";
-  src: url("../webfonts/NotoSans/NotoSans-LightItalic.eot");
-  src: local("Noto Sans Light Italic"), local("NotoSans-LightItalic"), url("../webfonts/NotoSans/NotoSans-LightItalic.eot?#iefix") format("embedded-opentype"), url("../webfonts/NotoSans/NotoSans-LightItalic.woff2") format("woff2"), url("../webfonts/NotoSans/NotoSans-LightItalic.woff") format("woff"), url("../webfonts/NotoSans/NotoSans-LightItalic.ttf") format("truetype"), url("../webfonts/NotoSans/NotoSans-LightItalic.svg#NotoSans-LightItalic") format("svg");
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Noto Sans Old";
-  src: url("../webfonts/NotoSans/NotoSansOldItalic-Regular.eot");
-  src: local("Noto Sans Old Italic Regular"), local("NotoSansOldItalic-Regular"), url("../webfonts/NotoSans/NotoSansOldItalic-Regular.eot?#iefix") format("embedded-opentype"), url("../webfonts/NotoSans/NotoSansOldItalic-Regular.woff2") format("woff2"), url("../webfonts/NotoSans/NotoSansOldItalic-Regular.woff") format("woff"), url("../webfonts/NotoSans/NotoSansOldItalic-Regular.ttf") format("truetype"), url("../webfonts/NotoSans/NotoSansOldItalic-Regular.svg#NotoSansOldItalic-Regular") format("svg");
-  font-weight: normal;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Noto Sans";
-  src: url("../webfonts/NotoSans/NotoSans-Medium.eot");
-  src: local("Noto Sans Medium"), local("NotoSans-Medium"), url("../webfonts/NotoSans/NotoSans-Medium.eot?#iefix") format("embedded-opentype"), url("../webfonts/NotoSans/NotoSans-Medium.woff2") format("woff2"), url("../webfonts/NotoSans/NotoSans-Medium.woff") format("woff"), url("../webfonts/NotoSans/NotoSans-Medium.ttf") format("truetype"), url("../webfonts/NotoSans/NotoSans-Medium.svg#NotoSans-Medium") format("svg");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Noto Sans";
-  src: url("../webfonts/NotoSans/NotoSans-MediumItalic.eot");
-  src: local("Noto Sans Medium Italic"), local("NotoSans-MediumItalic"), url("../webfonts/NotoSans/NotoSans-MediumItalic.eot?#iefix") format("embedded-opentype"), url("../webfonts/NotoSans/NotoSans-MediumItalic.woff2") format("woff2"), url("../webfonts/NotoSans/NotoSans-MediumItalic.woff") format("woff"), url("../webfonts/NotoSans/NotoSans-MediumItalic.ttf") format("truetype"), url("../webfonts/NotoSans/NotoSans-MediumItalic.svg#NotoSans-MediumItalic") format("svg");
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Noto Sans Mono";
-  src: url("../webfonts/NotoSans/NotoSansMono-Regular.eot");
-  src: local("Noto Sans Mono Regular"), local("NotoSansMono-Regular"), url("../webfonts/NotoSans/NotoSansMono-Regular.eot?#iefix") format("embedded-opentype"), url("../webfonts/NotoSans/NotoSansMono-Regular.woff2") format("woff2"), url("../webfonts/NotoSans/NotoSansMono-Regular.woff") format("woff"), url("../webfonts/NotoSans/NotoSansMono-Regular.ttf") format("truetype"), url("../webfonts/NotoSans/NotoSansMono-Regular.svg#NotoSansMono-Regular") format("svg");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Noto Sans";
-  src: url("../webfonts/NotoSans/NotoSans-Thin.eot");
-  src: local("Noto Sans Thin"), local("NotoSans-Thin"), url("../webfonts/NotoSans/NotoSans-Thin.eot?#iefix") format("embedded-opentype"), url("../webfonts/NotoSans/NotoSans-Thin.woff2") format("woff2"), url("../webfonts/NotoSans/NotoSans-Thin.woff") format("woff"), url("../webfonts/NotoSans/NotoSans-Thin.ttf") format("truetype"), url("../webfonts/NotoSans/NotoSans-Thin.svg#NotoSans-Thin") format("svg");
-  font-weight: 100;
-  font-style: normal;
-  font-display: swap;
-}
-/* Saira Stencil One font*/
-@font-face {
-  font-family: "Saira Stencil One";
-  src: url("../webfonts/SairaStencilOne/SairaStencilOne-Regular.eot");
-  src: local("Saira Stencil One"), local("Saira Stencil One"), url("../webfonts/SairaStencilOne/SairaStencilOne-Regular.eot?#iefix") format("embedded-opentype"), url("../webfonts/SairaStencilOne/SairaStencilOne-Regular.woff2") format("woff2"), url("../webfonts/SairaStencilOne/SairaStencilOne-Regular.woff") format("woff"), url("../webfonts/SairaStencilOne/SairaStencilOne-Regular.ttf") format("truetype"), url("../webfonts/SairaStencilOne/SairaStencilOne-Regular.svg#SairaStencilOne-Regular") format("svg");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-/* Solaiman Lipi font*/
-@font-face {
-  font-family: SolaimanLipi;
-  src: url("../webfonts/SolaimanLipi/SolaimanLipi.eot");
-  src: local("SolaimanLipi"), local("SolaimanLipi"), url("../webfonts/SolaimanLipi/SolaimanLipi.woff") format("woff"), url("../webfonts/SolaimanLipi/SolaimanLipi.ttf") format("truetype"), url("../webfonts/SolaimanLipi/SolaimanLipi.svg#SolaimanLipiNormal") format("svg"), url("../webfonts/SolaimanLipi/SolaimanLipi.eot?#iefix") format("embedded-opentype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-/* SourceSansPro font*/
-@font-face {
-  font-family: SourceSansPro;
-  src: url("../webfonts/SourceSansPro/SourceSansPro.eot");
-  src: local("SourceSansPro"), local("SourceSansPro"), url("../webfonts/SourceSansPro/SourceSansPro.woff2") format("woff2"), url("../webfonts/SourceSansPro/SourceSansPro.woff") format("woff"), url("../webfonts/SourceSansPro/SourceSansPro.ttf") format("truetype"), url("../webfonts/SourceSansPro/SourceSansPro.svg#SourceSansPro") format("svg"), url("../webfonts/SourceSansPro/SourceSansPro.eot?#iefix") format("embedded-opentype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-* {
+*, ::before, ::after {
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
   box-sizing: border-box;
+  clear: both;
 }
 
 html {
@@ -257,13 +142,24 @@ body {
   font-family: var(--font-family-sans-serif);
 }
 
+a, a:hover, a:active, a:visited {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
 .application {
-  margin-top: 1rem;
+  margin: 10px;
   line-height: 1.5;
   padding: 2.5rem 3rem !important;
   background-color: var(--white);
-  -webkit-border-radius: 0.7rem;
-  -moz-border-radius: 0.7rem;
   border-radius: 0.7rem;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 2px 3px rgba(0, 0, 0, 0.24);
   -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 2px 3px rgba(0, 0, 0, 0.24);
@@ -278,11 +174,8 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
-  /* padding: 10px 35px; */
   text-align: left;
-  /* background-color: white; */
   width: 100%;
-  /* border: 1px solid red; */
 }
 .application-content-width-auto {
   width: auto;
@@ -295,7 +188,7 @@ body {
 }
 .application-content-title {
   color: var(--red);
-  padding-bottom: 1rem;
+  margin-bottom: 40px;
   text-transform: capitalize;
   font-size: 2rem;
   font-weight: bold;
@@ -306,11 +199,7 @@ body {
   width: 80px;
   height: 80px;
   float: left;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 0.5%;
   border-radius: 50%;
-  -webkit-box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.29), inset 2px 2px 8px rgba(255, 255, 255, 0.44);
-  -moz-box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.29), inset 2px 2px 8px rgba(255, 255, 255, 0.44);
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.29), inset 2px 2px 8px rgba(255, 255, 255, 0.44);
 }
 .application-content-title-icon-concat {
@@ -318,8 +207,6 @@ body {
   padding: 0.1rem;
   width: 20px;
   height: 20px;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
   box-shadow: none;
 }
 .application-content-body {
@@ -331,23 +218,54 @@ body {
   padding-bottom: 0;
 }
 
+.maintenance-content {
+  display: flex;
+  text-align: left;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+.maintenance-logo {
+  float: left;
+  height: 96px;
+  margin: 0.6rem;
+  width: 96px;
+  border-radius: 50%;
+  padding: 10px;
+  -webkit-box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.29), inset 2px 2px 8px rgba(255, 255, 255, 0.44);
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.29), inset 2px 2px 8px rgba(255, 255, 255, 0.44);
+}
+.maintenance-title {
+  border-radius: 0.5rem;
+  background-color: rgba(212, 212, 212, 0.341);
+  border: 1px solid var(--gray-400);
+  padding: 1rem;
+}
+
 .message {
   padding: 1rem;
   border: 1px solid var(--gray-400);
   text-align: justify;
   background-color: #d3d3d357;
-  -webkit-border-radius: 0.5rem;
-  -moz-border-radius: 0.5rem;
   border-radius: 0.5rem;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 2px 3px rgba(0, 0, 0, 0.24);
   -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 2px 3px rgba(0, 0, 0, 0.24);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 2px 3px rgba(0, 0, 0, 0.24);
 }
+.message-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+.message-lite {
+  border-radius: 0.5rem;
+  background-color: rgba(212, 212, 212, 0.341);
+  border: 1px solid var(--gray-400);
+  padding: 1rem;
+}
 
 .details {
   text-align: justify;
-  -webkit-border-radius: 0.5rem;
-  -moz-border-radius: 0.5rem;
   border-radius: 0.5rem;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 2px 3px rgba(0, 0, 0, 0.24);
   -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 2px 3px rgba(0, 0, 0, 0.24);
@@ -459,12 +377,11 @@ table {
   padding: 0.1rem;
   margin: 0.6rem;
   float: left;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
   border-radius: 50%;
 }
 
 img {
+  display: block;
   position: relative;
   object-fit: cover;
   max-width: 100%;
@@ -479,21 +396,27 @@ img[alt]:after {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: inherit;
+  height: inherit;
   background-color: inherit;
   font-weight: inherit;
   line-height: inherit;
   text-align: inherit;
-  content: "";
+  content: " ";
+  border-style: none;
   border-radius: inherit;
 }
 
-@media only screen and (min-width: 768px) {
-  .application {
-    margin: 1rem;
-  }
+.text-black {
+  color: var(--black) !important;
+}
 
+@media only screen and (max-width: 425px) {
+  .application {
+    margin-top: 1rem;
+  }
+}
+@media only screen and (min-width: 768px) {
   .application-content, .maintenance-content {
     width: 700px;
   }
