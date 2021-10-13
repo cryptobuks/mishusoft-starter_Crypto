@@ -13,6 +13,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     // get parameters
     $parameters = $containerConfigurator->parameters();
 
+    // paths to autoload
+    $parameters->set(Option::AUTOLOAD_PATHS, [__DIR__ . '/Framework']);
+
     // paths to refactor; solid alternative to CLI arguments
     $parameters->set(Option::PATHS, [__DIR__ . '/bootstrap', __DIR__ . '/Framework']);
 

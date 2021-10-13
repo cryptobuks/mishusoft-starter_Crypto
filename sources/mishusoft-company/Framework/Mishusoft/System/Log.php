@@ -3,7 +3,6 @@
 
 namespace Mishusoft\System;
 
-use JsonException;
 use Mishusoft\Exceptions;
 use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Exceptions\PermissionRequiredException;
@@ -12,7 +11,6 @@ use Mishusoft\Http\IP;
 use Mishusoft\Registry;
 use Mishusoft\Storage;
 use Mishusoft\Utility\Implement;
-use Mishusoft\Utility\Inflect;
 
 class Log
 {
@@ -175,8 +173,12 @@ class Log
     private static function makeType(string $methodName): string
     {
         return basename(
-            Inflect::lower(
-                Inflect::replace(Inflect::replace($methodName, '::', DS), '\\', DS)
+            strtolower(
+                str_replace(
+                    str_replace($methodName, '::', DS),
+                    '\\',
+                    DS
+                )
             )
         );
     }

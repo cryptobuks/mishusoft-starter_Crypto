@@ -1,10 +1,10 @@
 <?php
 
-namespace Mishusoft\Framework\Interfaces\Chipsets\Databases\MishusoftSQLStandalone;
+namespace Mishusoft\Interfaces\Chipsets\Databases\MishusoftSQLStandalone;
 
 interface DataInterface
 {
-    const dbTableFileFormat = ".mstbl";
+    public const dbTableFileFormat = ".mstbl";
 
     /**
      * @param array $options
