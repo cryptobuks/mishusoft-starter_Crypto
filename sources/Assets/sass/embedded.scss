@@ -2,11 +2,15 @@
 @import './includes/common/functions';
 @import "webfonts";
 
-* {
+* , ::before, ::after {
   margin: 0;
   padding: 0;
+  border-width: 0;
+  border-style: solid;
   box-sizing: border-box;
+  clear: both;
 }
+
 
 html {
   box-sizing: border-box;
@@ -27,9 +31,21 @@ body {
   font-family: var(--font-family-sans-serif);
 }
 
-// *, ::before, ::after { border-width: 0;border-style: solid;border-color: rgb(232, 229, 239);border-color: var(--gray-300);';
+a, a:hover, a:active, a:visited {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
 .application {
-  margin-top: 1rem;
+  margin: 10px;
   line-height: 1.5;
   padding: 2.5rem 3rem !important;
   background-color: var(--white);
@@ -66,7 +82,7 @@ body {
 
     &-title {
       color: var(--red);
-      padding-bottom: 1rem;
+      margin-bottom: 40px;
       text-transform: capitalize;
       font-size: 2rem;
       font-weight: bold;
@@ -107,6 +123,34 @@ body {
   }
 }
 
+.maintenance {
+  &-content {
+    display: flex;
+    text-align: left;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &-logo {
+    float: left;
+    height: 96px;
+    margin: .6rem;
+    width: 96px;
+    border-radius: 50%;
+    padding: 10px;
+    -webkit-box-shadow: 2px 2px 8px rgba(0, 0, 0, .29), inset 2px 2px 8px rgba(255, 255, 255, .44);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, .29), inset 2px 2px 8px rgba(255, 255, 255, .44);
+  }
+
+  &-title {
+    border-radius: .5rem;
+    background-color: hsla(0, 0%, 83%, .341);
+    border: 1px solid var(--gray-400);
+    padding: 1rem;
+  }
+}
+
 
 .message {
   padding: 1rem;
@@ -116,6 +160,19 @@ body {
   background-color: #d3d3d357;
   border-radius: .5rem;
   @include box-shadow-light;
+
+  &-title {
+    font-size: 1.25rem;
+    margin-bottom: .5rem;
+    font-weight: bold;
+  }
+
+  &-lite {
+    border-radius: .5rem;
+    background-color: hsla(0, 0%, 83%, .341);
+    border: 1px solid var(--gray-400);
+    padding: 1rem;
+  }
 }
 
 .details {
@@ -284,13 +341,21 @@ img[alt]:after {
   border-radius: inherit;
 }
 
+.text-black {
+  color: var(--black) !important;
+}
+
+
+@media only screen and (max-width: 425px) {
+  .application {
+    margin-top: 1rem;
+  }
+}
+
 
 @media only screen and (min-width: 768px) {
-  .application {
-    margin: 1rem;
-  }
-
   .application-content, .maintenance-content {
     width: 700px;
   }
 }
+
