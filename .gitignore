@@ -11,14 +11,10 @@
 *.sass-cache/
 
 # Mishusoft Framework associates
+/app/
+/Framework/
 /dist-src/
 /node_modules/
-/tests/
-/tools/
-/tmp/
-/vendor/
-/Framework/
-/app/
 /storages/app/assets
 /storages/app/media
 /storages/app/webfonts
@@ -31,6 +27,10 @@
 #/storages/framework/*.php
 /storages/logs/
 /storages/user/
+/tests/
+/tools/
+/tmp/
+/vendor/
 
 
 # Runtime cache (with lock) files
@@ -40,13 +40,10 @@
 *.cache
 *.conf
 *.zip
+*.map
 
 # System required files
 .packages
 .env
 .env.example
 .user.ini
-
-# Linker output
-*.map
-/nbproject/private/
