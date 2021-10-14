@@ -174,15 +174,11 @@ class Handler extends ErrorException implements ExceptionInterface
                         $line .= $value['function'];
                         if (count($value['args']) > 0) {
                             $implodeArgument = '';
-                            // Debug::preOutput($value['args']);exit();
 
                             foreach ($value['args'] as $arg) {
-                                //Debug::preOutput($arg);exit();
                                 if (is_array($arg)) {
                                     $implodeArgument .= '[';
                                     foreach ($arg as $k => $v) {
-//                                        Debug::preOutput($k);
-//                                        Debug::preOutput($v);
                                         if (is_array($v)) {
                                             $implodeArgument .=sprintf('%1$s=>%2$s, ', $k, '[...]');
                                         } elseif (is_object($v)) {
@@ -193,7 +189,7 @@ class Handler extends ErrorException implements ExceptionInterface
                                             $implodeArgument .=sprintf('%1$s=>%2$s, ', $k, $v);
                                         }
                                     }
-                                    if (str_ends_with($implodeArgument, ', ')) {
+                                    if (Inflect::endsWith($implodeArgument, ', ')) {
                                         $implodeArgument = substr($implodeArgument, 0, -2);
                                     }
                                     $implodeArgument .= ']';
@@ -204,7 +200,7 @@ class Handler extends ErrorException implements ExceptionInterface
                                 }
                             }
                             
-                            if (str_ends_with($implodeArgument, ', ')) {
+                            if (Inflect::endsWith($implodeArgument, ', ')) {
                                 $implodeArgument = substr($implodeArgument, 0, -2);
                             }
                             $line .= sprintf('(%1$s)', $implodeArgument);
