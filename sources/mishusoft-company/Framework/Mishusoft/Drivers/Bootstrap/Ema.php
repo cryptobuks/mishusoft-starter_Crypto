@@ -16,7 +16,7 @@ class Ema
     /**
      * @throws RuntimeException
      */
-    public static function run(Request\QualifiedAPI $request):void
+    public static function run(Request\HttpAPI $request):void
     {
         /*
          * We need to check Ema Root path
