@@ -2,6 +2,8 @@
 
 namespace Mishusoft;
 
+use Mishusoft\Utility\Inflect;
+
 /**
  * @method static Browser()
  * @method static RequestQualifiedAPI()
@@ -49,7 +51,7 @@ class Registry extends Singleton
 
     private static function removePrefix(string $name):string
     {
-        if (str_starts_with($name, 'get')) {
+        if (Inflect::startsWith($name, 'get')) {
             return lcfirst(substr($name, 3));
         }
 
