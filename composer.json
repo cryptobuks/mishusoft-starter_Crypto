@@ -56,7 +56,7 @@
     "update:robots": "php cli update:robots ./sources/mishusoft-company/public/robots.txt ./public_html/robots.txt",
     "update:index.php": "php cli update:indexPHP ./sources/mishusoft-company/public/app.php ./public_html/index.php",
     "update:index.html": "php cli update:indexHTML ./sources/mishusoft-company/public/app.html ./public_html/index.html",
-    "update:framework": "php cli update:framework ./sources/mishusoft-company/Framework ./framework",
+    "update:framework": "php cli update:framework ./sources/mishusoft-company/Framework ./Framework",
 
     "update:cli": "php cli update:cli ./sources/mishusoft-company/App/CliSurface ./app/CliSurface",
 
