@@ -3,6 +3,8 @@
 
 namespace Mishusoft;
 
+use Mishusoft\Utility\Inflect;
+
 abstract class Base extends Singleton
 {
 
@@ -49,7 +51,7 @@ abstract class Base extends Singleton
     public static function getClassNamespace(string $filename): string
     {
         //make namespace from source path (if development, app://sources/company/Framework)
-        if (str_starts_with($filename, RUNTIME_SOURCES_PATH)) {
+        if (Inflect::startsWith($filename, RUNTIME_SOURCES_PATH)) {
             return self::namespaceBuilder(RUNTIME_SOURCES_PATH . 'Framework' . DS, $filename);
         }
 
