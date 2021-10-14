@@ -396,7 +396,7 @@ class FileSystem
      * @param integer|null $length
      * @return false|integer
      */
-    public static function write(string $filename, array $contents, int|null $length = null): bool|int
+    public static function write(string $filename, array $contents, int|null $length = null): false|int
     {
         $createdFile = fopen($filename, 'wb+');
         $isWritten = fwrite($createdFile, Implement::toJson($contents), $length);
