@@ -5,10 +5,8 @@ namespace Mishusoft\Http\UAAnalyzer;
 
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Storage;
-use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\Implement;
 use Mishusoft\Utility\Inflect;
-use Mishusoft\Utility\JSON;
 
 abstract class Collection extends UAAnalyzerBase
 {
@@ -263,7 +261,6 @@ abstract class Collection extends UAAnalyzerBase
 
     /**
      * @throws RuntimeException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     protected function extractAttribute(array $dictionaries, string $job): array
     {
@@ -373,7 +370,6 @@ abstract class Collection extends UAAnalyzerBase
 
     /**
      * @throws RuntimeException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     protected function extractAttributeRecursive(string $category, array $items, string $job): array
     {
