@@ -47,3 +47,4 @@
 .env
 .env.example
 .user.ini
+/sources/mishusoft-company/App/Views/Templates/Packages/
