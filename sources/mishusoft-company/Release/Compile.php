@@ -63,6 +63,7 @@ use Mishusoft\Http\CurlRequest;
 use Mishusoft\Storage;
 
 use Mishusoft\Storage\FileSystem;
+use Mishusoft\Utility\Inflect;
 use ZipArchive;
 
 /**
@@ -907,7 +908,7 @@ class Compile extends FileSystem
 
                         if (strtolower($destinationIdentify) === '-w') {
                             if (is_string($destinationServer) === true) {
-                                if (str_ends_with($destinationServer, '/') === true) {
+                                if (Inflect::endsWith($destinationServer, '/') === true) {
                                     $destinationServer = rtrim($destinationServer, '/');
                                 }
 
