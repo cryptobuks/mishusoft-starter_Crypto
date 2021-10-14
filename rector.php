@@ -14,7 +14,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     // paths to autoload
     $parameters->set(Option::AUTOLOAD_PATHS, $requiredDirectories);
-    // paths to refactor; solid alternative to CLI arguments
+    // paths to refactor; solid alternative to Cli arguments
     $parameters->set(Option::PATHS, $requiredDirectories);
     // is your PHP version different from the one your refactor to?
     // [default: your PHP version], uses PHP_VERSION_ID format
