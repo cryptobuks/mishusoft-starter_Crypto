@@ -6,6 +6,7 @@ use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Exceptions\RuntimeException\NotFoundException;
 use Mishusoft\Storage;
 use Mishusoft\Ui;
+use Mishusoft\Utility\Inflect;
 
 class ProgressiveWebApplication
 {
@@ -38,33 +39,13 @@ class ProgressiveWebApplication
             Ui::getDocumentHeadElement(),
             [
                 'meta' => [
-                    [
-                        'name' => 'mobile-web-app-capable',
-                        'content' => 'yes',
-                    ],
-                    [
-                        'name' => 'apple-mobile-web-app-capable',
-                        'content' => 'yes',
-                    ],
-                    [
-                        'name' => 'application-name',
-                        'content' => $name,
-                    ],
-                    [
-                        'name' => 'apple-mobile-web-app-title',
-                        'content' => $name,
-                    ],
-                    [
-                        'name' => 'msapplication-starturl',
-                        'content' => self::startUrl(),
-                    ],
+                    ['name' => 'mobile-web-app-capable', 'content' => 'yes',],
+                    ['name' => 'apple-mobile-web-app-capable', 'content' => 'yes',],
+                    ['name' => 'application-name', 'content' => $name,],
+                    ['name' => 'apple-mobile-web-app-title', 'content' => $name,],
+                    ['name' => 'msapplication-starturl', 'content' => self::startUrl(),],
                 ],
-                'link' => [
-                    [
-                        'rel' => 'manifest',
-                        'href' => self::loadManifestFile(),
-                    ],
-                ],
+                'link' => [['rel' => 'manifest', 'href' => self::loadManifestFile(),],],
             ]
         );
     }
@@ -77,8 +58,8 @@ class ProgressiveWebApplication
      */
     public static function loadManifestFile(): string
     {
-        if (!file_exists(self::manifestFile())) {
-            if (is_bool(static::makeManifestFile())) {
+        if (file_exists(self::manifestFile()) === false) {
+            if (static::makeManifestFile() === false) {
                 throw new RuntimeException('Progressive Web Application creating failed');
             }
         }
@@ -97,7 +78,7 @@ class ProgressiveWebApplication
     /**
      * @throws NotFoundException
      */
-    private static function makeManifestFile(): bool|int
+    private static function makeManifestFile(): false|int
     {
         return Storage\FileSystem::write(self::manifestFile(), [
             'name' => !empty(static::$fullName) ? static::$shortName : DEFAULT_APP_NAME,
@@ -123,7 +104,7 @@ class ProgressiveWebApplication
 
     private static function scopeUrl()
     {
-        if (str_ends_with(BASE_URL, '/')) {
+        if (Inflect::endsWith(BASE_URL, '/')) {
             return BASE_URL;
         }
         return BASE_URL . '/';
