@@ -39,7 +39,7 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function qualifiedAPIRoutesCoreDirectory(): string
+    public static function communicationDirectory(): string
     {
         return self::frameworkPath() . 'Mishusoft' . DS . 'Communication' . DS;
     }
@@ -47,9 +47,25 @@ class Storage extends Base
     /**
      * @return string
      */
-    public static function qualifiedAPIRoutesDirectory(): string
+    public static function cliCommunicationDirectory(): string
     {
-        return self::applicationDirectivePath() . 'QualifiedAPIRoutes' . DS;
+        return self::communicationDirectory() .'Cli' . DS;
+    }
+
+    /**
+     * @return string
+     */
+    public static function communicationHttpCoreDirectory(): string
+    {
+        return self::communicationDirectory() .'Http' . DS;
+    }
+
+    /**
+     * @return string
+     */
+    public static function communicationHttpUserDirectory(): string
+    {
+        return self::applicationDirectivePath() . 'HttpAPIRoutes' . DS;
     }
 
 
