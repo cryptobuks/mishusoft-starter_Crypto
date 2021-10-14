@@ -6,7 +6,6 @@
  * @author     Mishusoft System Inc <products@mishusoft.com>
  * @copyright  2021 Mishusoft System Inc (ABN 77 084 670 600)
  **/
-``
 
 const path = require('path')
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
@@ -15,12 +14,7 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const JavaScriptObfuscator = require('webpack-obfuscator')
-
-
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts')
-//const HtmlWebpackPlugin = require('html-webpack-plugin') /* webpack 5 */
-
 const FontPreloadPlugin = require("webpack-font-preload-plugin");
 
 
@@ -182,13 +176,7 @@ const prodConfig = {
             new TerserJSPlugin({}),
             new CssMinimizerPlugin()
         ],
-    },
-    plugins: [
-        ...commonFileConfig.plugins,
-        new JavaScriptObfuscator({
-            rotateStringArray: true
-        })
-    ]
+    }
 }
 
 const testConfig = {
