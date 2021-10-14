@@ -11,6 +11,7 @@ use Mishusoft\Storage\FileSystem\Yaml\Exception\RuntimeException;
 use Mishusoft\System\Memory;
 use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\Implement;
+use Mishusoft\Utility\Inflect;
 
 class Classic extends MPM
 {
@@ -881,7 +882,7 @@ class Classic extends MPM
             // Read entire file.
             foreach ($lines as $line) {
                 // Skip it if it's a comment
-                if ($line === '' || str_starts_with($line, '--') || str_starts_with($line, '/*')) {
+                if ($line === '' || Inflect::startsWith($line, '--') || Inflect::startsWith($line, '/*')) {
                     continue;
                 }
 
