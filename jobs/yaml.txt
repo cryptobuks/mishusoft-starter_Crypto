@@ -1,0 +1,6 @@
+Github: https://github.com/php/pecl-file_formats-yaml
+PECL: https://pecl.php.net/package/yaml
+PROFILE: https://pecl.php.net/user/bd808
+PYYAML: https://pyyaml.org/
+PHP: https://windows.php.net/downloaDS/pecl/releases/yaml/2.2.0b2/
+CentOS: https://centos.pkgs.org/8/remi-x86_64/php74-php-pecl-yaml-2.2.1-1.el8.remi.x86_64.rpm.html
