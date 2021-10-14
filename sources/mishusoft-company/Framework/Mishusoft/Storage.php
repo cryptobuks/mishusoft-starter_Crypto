@@ -193,7 +193,7 @@ class Storage extends Base
      */
     public static function globRecursive(string $directory, int $flags = 0): bool|array
     {
-        if (str_ends_with($directory, DS) === false) {
+        if (Inflect::endsWith($directory, DS) === false) {
             $directory .= DS;
         }
         $result = glob($directory . '*', $flags);
@@ -220,7 +220,7 @@ class Storage extends Base
      */
     public static function glob(string $directory, int $flags = 0): bool|array
     {
-        if (str_ends_with($directory, DS) === false) {
+        if (Inflect::endsWith($directory, DS) === false) {
             $directory .= DS;
         }
         $result = glob($directory . '*', $flags);
@@ -288,7 +288,7 @@ class Storage extends Base
                     ];
                 }
             } else {
-                if (str_starts_with(Storage\FileSystem::fileBase($imageFile), 'apple-icon') === true) {
+                if (Inflect::startsWith(Storage\FileSystem::fileBase($imageFile), 'apple-icon') === true) {
                     //<link rel="apple-touch-icon" sizes="57x57" href="{logoFolder}apple-icon-57x57.png">
                     ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/apple-icon-152x152.png
                     $faviconsList[] = [
@@ -302,7 +302,7 @@ class Storage extends Base
                         ),
                     ];
                 }
-                if (str_starts_with(Storage\FileSystem::fileName($imageFile), 'android-icon') === true) {
+                if (Inflect::startsWith(Storage\FileSystem::fileName($imageFile), 'android-icon') === true) {
                     //<link rel="icon" type="image/png" sizes="192x192" href="{logoFolder}android-icon-192x192.png">
                     ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/android-icon-192x192.png
                     $faviconsList[] = [
@@ -331,7 +331,7 @@ class Storage extends Base
                         ];
                     }
                 }
-                if (str_starts_with(Storage\FileSystem::fileName($imageFile), 'favicon') === true) {
+                if (Inflect::startsWith(Storage\FileSystem::fileName($imageFile), 'favicon') === true) {
                     //<link rel="icon" type="image/png" sizes="16x16" href="{logoFolder}favicon-16x16.png">
                     ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/favicon-16x16.png
 
@@ -348,7 +348,7 @@ class Storage extends Base
                         ),
                     ];
                 }
-                if (str_starts_with(Storage\FileSystem::fileName($imageFile), 'mishusoft-logo-lite') === true) {
+                if (Inflect::startsWith(Storage\FileSystem::fileName($imageFile), 'mishusoft-logo-lite') === true) {
                     //<link rel="icon" type="image/webp" sizes="16x16" href="{logoFolder}mishusoft-logo-lite.webp">
                     ///home/abir/Development/web-development/latest.mishusoft.com/Storages/0/media/logos/mishusoft-logo-lite.webp
                     $faviconsList[] = [
@@ -617,7 +617,7 @@ class Storage extends Base
     public static function webResourcesPath(bool $isFramework = false): string
     {
         $pathname = $isFramework ? 'framework/' : 'assets/';
-        if (str_ends_with(BASE_URL, '/')) {
+        if (Inflect::endsWith(BASE_URL, '/')) {
             return BASE_URL . $pathname;
         }
         return BASE_URL . DS . $pathname;
@@ -645,7 +645,7 @@ class Storage extends Base
         string      $feature,
         string|bool $pathIndicator
     ): string {
-        if (str_ends_with($localDrive, DS) === false) {
+        if (Inflect::endsWith($localDrive, DS) === false) {
             $localDrive .= DS;
         }
 
@@ -657,7 +657,7 @@ class Storage extends Base
             $remoteDrive = false;
         }
 
-        if (!is_bool($remoteDrive) && str_ends_with($remoteDrive, '/') === false) {
+        if (!is_bool($remoteDrive) && Inflect::endsWith($remoteDrive, '/') === false) {
             $remoteDrive .= '/';
         }
 
@@ -668,7 +668,7 @@ class Storage extends Base
 
         // /filename.ext
         // \filename.ext
-        if (str_starts_with($filename, '/') === true || str_starts_with($filename, '\\') === true) {
+        if (Inflect::startsWith($filename, '/') === true || Inflect::startsWith($filename, '\\') === true) {
             $filename = ltrim($filename, $filename[0]);
         }
 
@@ -680,7 +680,7 @@ class Storage extends Base
 
             if (Inflect::lower($feature) === 'remote') {
                 //check current platform is windows, then remove directory separator from file name
-                if (str_contains($filename, '\\') === true) {
+                if (Inflect::contains($filename, '\\') === true) {
                     $filename = str_replace('\\', '/', $filename);
                 }
                 return sprintf('%1$s%2$s%3$s', $remoteDrive, $pathIndicator, $filename);
