@@ -10,6 +10,7 @@ use Mishusoft\Framework;
 use Mishusoft\Http;
 use Mishusoft\Storage;
 use Mishusoft\System\Log;
+use Mishusoft\Utility\Inflect;
 use Mishusoft\Utility\Number;
 
 class Handler extends ErrorException implements ExceptionInterface
@@ -22,12 +23,10 @@ class Handler extends ErrorException implements ExceptionInterface
      *
      * @param object $exception Object of exception error.
      * @throws HttpException\HttpResponseException
-     * @throws JsonException
      * @throws LogicException\InvalidArgumentException
      * @throws PermissionRequiredException
      * @throws RuntimeException
      * @throws AddressNotFoundException
-     * @throws \JsonException
      * @throws InvalidDatabaseException
      * @throws \Mishusoft\Exceptions\ErrorException
      */
@@ -36,7 +35,6 @@ class Handler extends ErrorException implements ExceptionInterface
         (new self(
             $exception->getMessage(),
             $exception->getCode(),
-            //$exception->getSeverity(),
             $exception->getCode(),
             $exception->getFile(),
             $exception->getLine()
@@ -57,11 +55,9 @@ class Handler extends ErrorException implements ExceptionInterface
      * @throws AddressNotFoundException
      * @throws HttpException\HttpResponseException
      * @throws InvalidDatabaseException
-     * @throws JsonException
      * @throws LogicException\InvalidArgumentException
      * @throws PermissionRequiredException
      * @throws RuntimeException
-     * @throws \JsonException
      * @throws \Mishusoft\Exceptions\ErrorException
      */
     public static function fetchError(int $number, string $message, string $file, int $line, array $trace): void
@@ -202,18 +198,6 @@ class Handler extends ErrorException implements ExceptionInterface
                                     }
                                     $implodeArgument .= ']';
                                 } elseif (is_object($arg)) {
-//                                    Debug::preOutput($arg);
-//                                    if (array_key_exists('parameter', $arg)){Debug::preOutput($arg['parameter']);}
-//                                    Debug::preOutput(json_encode($arg));
-//                                    Debug::preOutput(gettype($arg));
-//                                    Debug::preOutput(get_class($arg));
-//                                    Debug::preOutput(key($arg));
-//
-//                                    //Debug::preOutput(get_object_vars($arg));
-//                                    foreach ($arg as $obKey => $obValue) {
-//                                        Debug::preOutput($obKey);
-//                                        Debug::preOutput($obValue);
-//                                    }
                                     $implodeArgument .= sprintf('class %1$s {...} , ', get_class($arg));
                                 } else {
                                     $implodeArgument .= $arg . ', ';
@@ -278,19 +262,19 @@ class Handler extends ErrorException implements ExceptionInterface
         foreach ($traceArray as $key => $value) {
             if (is_array($value) === true) {
                 if (array_key_exists('function', $value) === true) {
-                    if (str_contains($value['function'], '{closure}()') === true) {
+                    if (Inflect::contains($value['function'], '{closure}()') === true) {
                         unset($traceArray[$key]);
                     }
-                    if (str_contains($value['function'], '{main}') === true) {
+                    if (Inflect::contains($value['function'], '{main}') === true) {
                         unset($traceArray[$key]);
                     }
                 }
             } else {
-                if (str_contains($value, '{closure}()') === true) {
+                if (Inflect::contains($value, '{closure}()') === true) {
                     unset($traceArray[$key]);
                 }
 
-                if (str_contains($value, '{main}') === true) {
+                if (Inflect::contains($value, '{main}') === true) {
                     unset($traceArray[$key]);
                 }
             }
