@@ -5,8 +5,10 @@ namespace Mishusoft\Http;
 
 use CurlHandle;
 use Mishusoft\Exceptions\HttpException\HttpResponseException;
+use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Framework;
 use Mishusoft\Utility\Implement;
+use Mishusoft\Utility\Inflect;
 
 /*
  * Example of use it
@@ -372,17 +374,27 @@ class CurlRequest
      * @param string $keyword
      * @param string $validateName
      * @throws HttpResponseException
+     * @throws RuntimeException
      */
     private function validate(string $keyword, string $validateName): void
     {
         $head = $this->getResponseHeadArray();
         if (array_key_exists($keyword, $head) === true) {
             if ($this->getHeaderLine($keyword) !== $validateName) {
-                throw new \RuntimeException('Cannot convert response to array. Response has:'.$this->getHeaderLine($keyword));
+                throw new RuntimeException(
+                    sprintf(
+                        'Cannot convert response to array. Response has: %1$s',
+                        $this->getHeaderLine($keyword)
+                    )
+                );
             }
         } else {
-            print_r($this->getResponseHeadArray(), false);
-            throw new HttpResponseException(sprintf('Response has been corrupted. Unable to find out %s.', str_replace('-', ' ', $keyword)));
+            throw new HttpResponseException(
+                sprintf(
+                    'Response has been corrupted. Unable to find out %s.',
+                    str_replace('-', ' ', $keyword)
+                )
+            );
         }
     }
 
@@ -405,25 +417,26 @@ class CurlRequest
     }
 
 
-
     /**
+     * @return array
      * @throws HttpResponseException
+     * @throws RuntimeException
      */
     public function toArray(): array
     {
         $this->validate('content-type', 'application/json');
-
         return Implement::jsonDecode($this->getResponseBody(), IMPLEMENT_JSON_IN_ARR);
     }
 
 
     /**
+     * @return object
      * @throws HttpResponseException
+     * @throws RuntimeException
      */
     public function toObject(): object
     {
         $this->validate('content-type', 'application/json');
-
         return Implement::jsonDecode($this->getResponseBody());
     }
 
@@ -431,7 +444,6 @@ class CurlRequest
     public function toJson(): string
     {
         //$this->validate('date', date('Y-m-d H:i:s'));
-
         return Implement::toJson($this->getResponseBody());
     }
 
@@ -461,7 +473,7 @@ class CurlRequest
 
     private function isJsonString(string $string): bool
     {
-        return str_starts_with($string, '{') and str_ends_with($string, '}');
+        return Inflect::startsWith($string, '{') and Inflect::endsWith($string, '}');
     }
 
     /**
