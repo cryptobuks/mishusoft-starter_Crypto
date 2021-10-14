@@ -18,7 +18,7 @@ echo $email->sendNotification();
 namespace Mishusoft\Notifier;
 
 use Exception;
-use Mishusoft\Framework\Interfaces\Chipsets\NotifierFactoryInterface;
+use Mishusoft\Interfaces\Chipsets\NotifierFactoryInterface;
 
 class ElectronicNotifierFactory implements NotifierFactoryInterface
 {
