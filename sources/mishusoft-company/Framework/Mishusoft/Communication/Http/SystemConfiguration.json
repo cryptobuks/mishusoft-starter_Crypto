@@ -1,0 +1,9 @@
+{
+  "base": "setup",
+  "descriptions": "communicate with app installer with it called",
+  "class": "SystemConfiguration",
+  "route": [
+    "install",
+    "update"
+  ]
+}
