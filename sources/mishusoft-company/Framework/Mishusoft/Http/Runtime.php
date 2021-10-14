@@ -17,6 +17,7 @@ use Mishusoft\System\Firewall;
 use Mishusoft\System\Localization;
 use Mishusoft\System\Memory;
 use Mishusoft\Utility\ArrayCollection as Arr;
+use Mishusoft\Utility\Inflect;
 
 class Runtime
 {
@@ -119,7 +120,7 @@ class Runtime
         $link = trim($link);
         $webRootUrl = self::hostUrl();
 
-        if (str_ends_with($webRootUrl, '/') === false) {
+        if (Inflect::endsWith($webRootUrl, '/') === false) {
             $webRootUrl .= '/';
         }
 
