@@ -10,6 +10,7 @@ use Mishusoft\Storage;
 use Mishusoft\Ui;
 use Mishusoft\Http\Runtime;
 use Mishusoft\Utility\ArrayCollection;
+use Mishusoft\Utility\Inflect;
 
 class UniversalWidget
 {
@@ -56,7 +57,7 @@ class UniversalWidget
         // Collect navigation url list.
         $urlPath = Registry::Browser()->getURLPath();
         $webRoot = Storage::applicationWebDirectivePath();
-        if (str_starts_with($urlPath, $webRoot)) {
+        if (Inflect::startsWith($urlPath, $webRoot)) {
             $urlPath = substr($urlPath, strlen($webRoot));
         }
         $urlList = explode('/', $urlPath);
