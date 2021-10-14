@@ -78,21 +78,16 @@ class Memory extends Base
             );
         }
 
-        /*
+         /*
           * Check framework configuration file,
           * If the configuration not found, then create this file.
           * If the configuration file is empty, then rewrite this file.
           * If the configuration file is corrupted, then rewrite this file.
           */
-
         FileSystem::makeDirectory(dirname(self::$framework::configFile()));
         FileSystem::check(self::$framework::configFile(), function ($filename) {
             FileSystem\Yaml::emitFile($filename, self::$framework::defaultConfiguration());
         });
-
-//        FileSystem::check(self::$framework::installFile(), function () {
-//            self::$framework::install();
-//        });
     }
 
     /**
