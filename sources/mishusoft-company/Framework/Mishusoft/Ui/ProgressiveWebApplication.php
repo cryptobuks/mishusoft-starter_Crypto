@@ -14,7 +14,7 @@ class ProgressiveWebApplication
     public const FORMAT = 'webmanifest';
     public const FORMAT_FALLBACK = 'json';
 
-    private static string $manifestFile = 'app.' . self::FORMAT;
+    private static string $manifestFile = 'app.' . self::FORMAT_FALLBACK;
     private static string $fullName = 'Mishusoft Systems Incorporated PWA';
     private static string $shortName = 'Mishusoft App';
     private static string $startUrl = '';
@@ -28,13 +28,6 @@ class ProgressiveWebApplication
      */
     public static function create(string $name):void
     {
-        //<link rel="manifest" href="manifest.json" />
-        //<meta name="mobile-web-app-capable" content="yes" />
-        //<meta name="apple-mobile-web-app-capable" content="yes" />
-        //<meta name="application-name" content="PWA Workshop" />
-        //<meta name="apple-mobile-web-app-title" content="PWA Workshop" />
-        //<meta name="msapplication-starturl" content="/index.html" />
-
         Ui::elementList(
             Ui::getDocumentHeadElement(),
             [
@@ -50,21 +43,50 @@ class ProgressiveWebApplication
         );
     }
 
+    public static function addMeta(string $name) : void
+    {
+        Ui::elementList(
+            Ui::getDocumentHeadElement(),
+            [
+                'meta' => [
+                    ['name' => 'mobile-web-app-capable', 'content' => 'yes',],
+                    ['name' => 'apple-mobile-web-app-capable', 'content' => 'yes',],
+                    ['name' => 'application-name', 'content' => $name,],
+                    ['name' => 'apple-mobile-web-app-title', 'content' => $name,],
+                    ['name' => 'msapplication-starturl', 'content' => self::startUrl(),],
+                ]
+            ]
+        );
+    }
+
 
     /**
+     * @throws NotFoundException
+     * @throws RuntimeException
+     */
+    public static function addFile(string $view = 'local') : void
+    {
+        Ui::elementList(Ui::getDocumentHeadElement(), [
+                'link' => [['rel' => 'manifest', 'href' => self::loadManifestFile($view),],],
+        ]);
+    }
+
+
+    /**
+     * @param string $view
      * @return string
      * @throws NotFoundException
      * @throws RuntimeException
      */
-    public static function loadManifestFile(): string
+    public static function loadManifestFile(string $view = 'local'): string
     {
         if (file_exists(self::manifestFile()) === false) {
-            if (static::makeManifestFile() === false) {
+            if (self::makeManifestFile() === false) {
                 throw new RuntimeException('Progressive Web Application creating failed');
             }
         }
 
-        return Storage::makeDataUri(self::manifestFile());
+        return Storage::toDataUri('assets', self::$manifestFile, $view);
     }
 
     /**
@@ -72,7 +94,7 @@ class ProgressiveWebApplication
      */
     private static function manifestFile(): string
     {
-        return Storage::assetsPath().static::$manifestFile;
+        return Storage::assetsPath().self::$manifestFile;
     }
 
     /**
@@ -102,7 +124,10 @@ class ProgressiveWebApplication
         return self::scopeUrl() . '?source=pwa';
     }
 
-    private static function scopeUrl()
+    /**
+     * @return string
+     */
+    private static function scopeUrl() : string
     {
         if (Inflect::endsWith(BASE_URL, '/')) {
             return BASE_URL;
