@@ -238,41 +238,29 @@ class WebResourceDelivery
         }
 
         //http://host/directory/sub/filenameOrsub
-        
-        if ($arguments  !==[]) {
-            if ($controller === 'framework') {
-                $requestedFile = Storage::storageFullPath(
-                    strtolower(
-                        sprintf('%1$s%3$sviews%3$s%2$s%3$s', $controller, $method, DS)
-                    ) . implode(DS, $arguments),
-                    'local',
-                    true
-                );
-            } else {
-                $requestedFile = Storage::storageFullPath(
-                    strtolower(
-                        sprintf('%1$s%3$s%2$s%3$s', $controller, $method, DS)
-                    ) . implode(DS, $arguments)
-                );
-            }
-        } else {
-            if ($controller === 'framework') {
-                $requestedFile = Storage::storageFullPath(
-                    strtolower(
-                        sprintf('%1$s%3$sviews%3$s%2$s', $controller, $method, DS)
-                    ),
-                    'local',
-                    true
-                );
-            } else {
-                $requestedFile = Storage::storageFullPath(
-                    strtolower(
-                        sprintf('%1$s%3$s%2$s', $controller, $method, DS)
-                    )
-                );
-            }
-        }
 
+        $resolveRequestedFile = static function (string $directive, string $path) {
+            if ($directive === 'framework') {
+                return Storage::storageFullPath(
+                    sprintf('%1$s%3$sviews%3$s%2$s', $directive, $path, DS),
+                    'local',
+                    true
+                );
+            }
+
+            return Storage::storageFullPath(
+                strtolower(sprintf('%1$s%3$s%2$s', $directive, $path, DS))
+            );
+        };
+
+        if ($arguments  !==[]) {
+            $requestedFile = $resolveRequestedFile(
+                Utility\Inflect::lower($controller),
+                Utility\Inflect::lower(sprintf('%1$s%2$s', $method, DS)) . implode(DS, $arguments)
+            );
+        } else {
+            $requestedFile = $resolveRequestedFile(Utility\Inflect::lower($controller), $method);
+        }
 
         if (file_exists($requestedFile) === true) {
             if (filetype($requestedFile) === 'dir') {
@@ -323,13 +311,7 @@ class WebResourceDelivery
         Ui::elementList(
             Ui::getDocumentHeadElement(),
             [
-                'link' => [
-                    [
-                        'id' => 'mishusoft-web-root',
-                        'name' => 'mishusoft-web-root',
-                        'content' => System\Memory::Data('framework')->host->url,
-                    ],
-                ],
+                'link' => [['id' => 'mishusoft-web-root', 'content' => Runtime::hostUrl(),],],
                 'style' => [
                     ['type' => 'text/css', 'text' => Storage\FileSystem::readAssets('css/loader.css'),],
                     ['type' => 'text/css', 'text' => Storage\FileSystem::readAssets('css/colors.css'),],
@@ -356,19 +338,19 @@ class WebResourceDelivery
             'a',
             [
                 'class' => 'protect mishusoft-logo mishusoft-root-link mishusoft-root-link-primary animate',
-                'href' => Runtime::link('default_home'),
+                'href'  => Runtime::link('default_home'),
             ]
         );
         Ui::element(
             $header_logo_zone,
             'img',
             [
-                'src' => Storage::mediaFullPath('logos/mishusoft-logo-lite.webp', 'remote'),
+                'src'   => Storage::mediaFullPath('logos/mishusoft-logo-lite.webp', 'remote'),
                 'class' => ' box-shadow1',
-                'height' => '50px',
+                'height'    => '50px',
                 'width' => '50px',
-                'alt' => 'm',
-                'rel' => 'preload',
+                'alt'   => 'm',
+                'rel'   => 'preload',
             ]
         );
         Ui::text($header_logo_zone, $controller);
@@ -378,14 +360,8 @@ class WebResourceDelivery
             Ui::element(Ui::getDocumentContentHeader(), 'nav', ['class' => 'nav-right width-70percent',]),
             [
                 'a' => [
-                    [
-                        'href' => Runtime::link('about/aboutMishusoft'),
-                        'text' => 'About US',
-                    ],
-                    [
-                        'href' => Runtime::link('support'),
-                        'text' => 'Help',
-                    ],
+                    ['href' => Runtime::link('about/aboutMishusoft'), 'text' => 'About US',],
+                    ['href' => Runtime::link('support'), 'text' => 'Help',],
                 ],
             ]
         );
@@ -436,6 +412,7 @@ class WebResourceDelivery
         $urlPath = Runtime::urlPath();
         $currentUrl = Runtime::currentUrl();
         $visitedUrl = Utility\Inflect::lower($currentUrl);
+
         if ($visitedUrl !== '' && $visitedUrl[(strlen($visitedUrl) - 1)] !== '/') {
             $parentURL = $visitedUrl . '/';
         } else {
@@ -449,17 +426,14 @@ class WebResourceDelivery
         $table = Ui::element(
             $templateBody,
             'table',
-            [
-                'class' => 'table table-striped table-radius',
-                'style' => 'background: gainsboro;',
-            ]
+            ['class' => 'table table-striped table-radius', 'style' => 'background: gainsboro;',]
         );
 
-        $table_header = Ui::element(Ui::element(
-            $table,
-            'thead',
-            ['class' => 'bg-default', 'style' => 'font-size: 14px;font-weight: bold;']
-        ), 'tr');
+        $table_header = Ui::element(
+            Ui::element($table, 'thead', ['class' => 'bg-default', 'style' => 'font-size: 14px;font-weight: bold;']),
+            'tr'
+        );
+
         Ui::element($table_header, 'td', ['style' => 'width: 20px;']);
         Ui::text(Ui::element($table_header, 'td', ['style' => 'width:400px;']), 'Name');
         Ui::text(Ui::element($table_header, 'td', ['style' => 'width:200px;']), 'Type');
@@ -479,17 +453,10 @@ class WebResourceDelivery
                         ['style' => 'font-size: 14px;text-align: center;font-weight: bolder;']
                     ),
                     'td',
-                    [
-                        'style' => 'width:100%;',
-                        'colspan' => '5',
-                    ]
+                    ['style' => 'width:100%;', 'colspan' => '5',]
                 ),
                 'a',
-                [
-                    'class' => 'protect',
-                    'style' => 'color: #000;',
-                    'text' => 'Empty folder',
-                ]
+                ['class' => 'protect', 'style' => 'color: #000;', 'text' => 'Empty folder',]
             );
         }//end if
 
@@ -508,10 +475,7 @@ class WebResourceDelivery
             Ui::getTemplateBody(),
             [
                 'script' => [
-                    [
-                        'type' => 'application/javascript',
-                        'text' => 0,
-                    ],
+                    ['type' => 'application/javascript', 'text' => 0,],
                     [
                         'rel' => 'prefetch', 'as' => 'script', 'type' => 'module',
                         'src' => Storage::assetsFullPath('js/readystate.js', 'remote'),
@@ -538,28 +502,28 @@ class WebResourceDelivery
                 Ui::element(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', [
                     'style' => Ui::HTML_HREF_STYLE . 'color: #000;', 'href' => $parentURL . basename($file),
                 ]), 'img', [
-                    'rel' => 'preload',
+                    'rel'   => 'preload',
                     'style' => 'width:20px;height:20px;',
-                    'alt' => basename($file),
-                    'src' => $parentURL . basename($file),
+                    'alt'   => basename($file),
+                    'src'   => $parentURL . basename($file),
                 ]);
             } elseif (Storage\FileSystem::fileType($file) === 'dir') {
                 Ui::element(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', [
                     'style' => Ui::HTML_HREF_STYLE . 'color: #000;', 'href' => $parentURL . basename($file),
                 ]), 'img', [
-                    'rel' => 'preload',
+                    'rel'   => 'preload',
                     'style' => 'width:20px;height:20px;',
-                    'alt' => basename($file),
-                    'src' => Storage::toDataUri('media', 'images/icons/folder.png', 'remote'),
+                    'alt'   => basename($file),
+                    'src'   => Storage::toDataUri('media', 'images/icons/folder.png', 'remote'),
                 ]);
             } elseif (Storage\FileSystem::fileType($file) === 'file') {
                 Ui::element(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', [
                     'style' => Ui::HTML_HREF_STYLE . 'color: #000;', 'href' => $parentURL . basename($file),
                 ]), 'img', [
-                    'rel' => 'preload',
+                    'rel'   => 'preload',
                     'style' => 'width:20px;height:20px;',
-                    'alt' => basename($file),
-                    'src' => Storage::toDataUri('media', 'images/icons/code-file.png', 'remote'),
+                    'alt'   => basename($file),
+                    'src'   => Storage::toDataUri('media', 'images/icons/code-file.png', 'remote'),
                 ]);
             } else {
                 Ui::text(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', [
@@ -597,9 +561,9 @@ class WebResourceDelivery
     {
         /*image properties*/
         $imageProperties = [
-            'rel' => 'preload',
-            'src' => Storage::mediaFullPath('logos/mishusoft-logo-lite.webp', 'remote'),
-            'alt' => 'mishusoft',
+            'rel'   => 'preload',
+            'src'   => Storage::mediaFullPath('logos/mishusoft-logo-lite.webp', 'remote'),
+            'alt'   => 'mishusoft',
             'class' => 'box-shadow1',
             'style' => 'margin: 5px;text-align: center;width: 20px;height: 20px;float: left;border-radius: 50%;transition: all .15s ease;',
             'width' => '20px',
