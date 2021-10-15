@@ -86,6 +86,7 @@ a:hover {
       text-transform: capitalize;
       font-size: 2rem;
       font-weight: bold;
+      text-align: center;
 
       &-icon {
         margin: .6rem;
@@ -345,6 +346,10 @@ img[alt]:after {
   color: var(--black) !important;
 }
 
+.text-center{
+  text-align: center;
+}
+
 
 @media only screen and (max-width: 425px) {
   .application {
@@ -358,4 +363,3 @@ img[alt]:after {
     width: 700px;
   }
 }
-
