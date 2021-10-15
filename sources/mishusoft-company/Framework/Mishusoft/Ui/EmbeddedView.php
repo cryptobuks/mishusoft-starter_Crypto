@@ -6,6 +6,7 @@ namespace Mishusoft\Ui;
 use Mishusoft\Exceptions\RuntimeException\NotFoundException;
 use Mishusoft\Framework;
 use Mishusoft\Registry;
+use Mishusoft\Services\SEOToolKitService;
 use Mishusoft\Storage;
 use Mishusoft\Ui;
 use Mishusoft\Utility\Inflect;
@@ -102,20 +103,15 @@ class EmbeddedView
         Ui::start();
         Ui::setDocumentTitle(self::$documentTitle);
 
-        Ui::elementList(
-            Ui::getDocumentHeadElement(),
-            [
-                'meta' => [
-                    ['charset' => 'UTF-8'],
-                    ['name' => 'viewport', 'content' => 'width=device-width, initial-scale=1.0',],
-                    ['name' => 'keywords', 'content' => 'blocked, banned, denied',],
-                    ['name' => 'company', 'content' => Framework::COMPANY_NAME,],
-                    ['name' => 'author', 'content' => Framework::AUTHOR_NAME,],
-                    ['name' => 'description', 'content' => self::$documentTitle,],
-                ],
-            ]
-        );
+        //add meta tags
 
+        SEOToolKitService::start();
+        SEOToolKitService::addDocumentIdentify();
+        SEOToolKitService::loadAdsAuthentication();
+        SEOToolKitService::addDefault(self::$documentTitle);
+        Ui\ProgressiveWebApplication::addMeta(DEFAULT_APP_NAME);
+
+        //add icons and stylesheets
         Ui::elementList(Ui::getDocumentHeadElement(), [
             'link' => Storage::assignableWebFavicons('framework'),
             'style' => [
@@ -123,6 +119,9 @@ class EmbeddedView
                 ['text' => Storage\FileSystem::read(Storage::fViewsFullPath('css/embedded.css')),],
             ],
         ]);
+
+        //this step we declare meta and link tags for progressive web application
+        Ui\ProgressiveWebApplication::addFile('remote');
 
 
         //<link rel="icon" type="image/vnd.microsoft.icon" sizes="16x16" href="{logoFolder}favicon.ico">
@@ -329,20 +328,8 @@ class EmbeddedView
                             'logos/mishusoft-logo-lite.png'
                         ),
                     ],],
-                ],];
-//            $contents = self::mergeChild(
-//                self::makeElement(
-//                    'div',
-//                    self::setAttributes(['class' => 'flex-justify-center'], self::makeElement(
-//                        'img',
-//                        self::makeImageElement(
-//                            'application-content-title-icon',
-//                            'welcome',
-//                            'logos/mishusoft-logo-lite.png'
-//                        )
-//                    )),
-//                )
-//            );
+                ],
+            ];
             $common = 'flex-justify-center';
             $commonMessage = 'flex-justify-center message';
             $boxShadowNone = 'box-shadow: none;';
@@ -353,7 +340,7 @@ class EmbeddedView
                     if ($type === 'caption') {
                         $contents['div'][] = [
                             'class' => $common . ' error-title',
-                            'style' => 'color: var(--blue-deep);',
+                            'style' => 'color: var(--blue-deep);text-align:center;',
                             'text' => $message,
                         ];
                     }
@@ -364,7 +351,7 @@ class EmbeddedView
                         );
                     }
                     if ($type === 'warning') {
-                        $additional = $additionalCommon . 'background: rgba(157, 87, 3, .15);color: rgba(157, 87, 3, 1); border:2px solid rgba(157, 87, 3, 1);';
+                        $additional = $additionalCommon . 'background: rgba(157, 87, 3, .15);color: rgb(112, 62, 2); border:2px solid rgba(157, 87, 3, 1);';
                         $contents['div'][] = self::setAttributes(
                             ['class' => $commonMessage, 'style' => $additional, 'text' => $message,]
                         );
