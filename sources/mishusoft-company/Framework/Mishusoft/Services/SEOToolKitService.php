@@ -10,7 +10,7 @@ use Mishusoft\Http\Runtime;
 use Mishusoft\Storage\FileSystem;
 use Mishusoft\System\Memory;
 use Mishusoft\Ui;
-use Mishusoft\Utility\ArrayCollection;
+use Mishusoft\Utility\ArrayCollection as Arr;
 use Mishusoft\Utility\Implement;
 
 class SEOToolKitService extends Base
@@ -142,17 +142,11 @@ class SEOToolKitService extends Base
 
         if (count($configs) > 0) {
             foreach ($configs as $config) {
-                $attributes[] = [
-                    'name' => $config['name'],
-                    'content' => $config['content'],
-                ];
+                $attributes[] = ['name' => $config['name'], 'content' => $config['content'],];
             }
 
             if (count($attributes) > 0) {
-                Ui::elementList(
-                    Ui::getDocumentHeadElement(),
-                    ['meta' => $attributes,]
-                );
+                Ui::elementList(Ui::getDocumentHeadElement(), ['meta' => $attributes,]);
             }
         }
     }//end loadAdsAuthentication()
@@ -171,40 +165,16 @@ class SEOToolKitService extends Base
             Ui::getDocumentHeadElement(),
             [
                 'meta' => [
-                    [
-                        'name' => 'title',
-                        'content' => $documentTitle,
-                    ],
-                    [
-                        'name' => 'keywords',
-                        'content' => self::getKeywords($documentTitle),
-                    ],
-                    [
-                        'name' => 'company',
-                        'content' => Memory::data()->company->name,
-                    ],
-                    [
-                        'name' => 'description',
-                        'content' => self::getDescriptionDetails(),
-                    ],
-                    [
-                        'name' => 'description',
-                        'content' => self::getDescriptionDetails(),
-                    ],
+                    ['name' => 'title', 'content' => $documentTitle,],
+                    ['name' => 'keywords', 'content' => self::getKeywords($documentTitle),],
+                    ['name' => 'company', 'content' => Memory::data()->company->name,],
+                    ['name' => 'description', 'content' => self::getDescriptionDetails(),],
+                    ['name' => 'description', 'content' => self::getDescriptionDetails(),],
                 ],
                 'link' => [
-                    [
-                        'rel' => 'canonical',
-                        'href' => Runtime::currentUrl(),
-                    ],
-                    [
-                        'rel' => 'preconnect',
-                        'href' => Runtime::hostUrl(),
-                    ],
-                    [
-                        'rel' => 'dns-prefetch',
-                        'href' => Runtime::hostUrl(),
-                    ],
+                    ['rel' => 'canonical', 'href' => Runtime::currentUrl(),],
+                    ['rel' => 'preconnect', 'href' => Runtime::hostUrl(),],
+                    ['rel' => 'dns-prefetch', 'href' => Runtime::hostUrl(),],
                 ],
             ]
         );
@@ -220,18 +190,9 @@ class SEOToolKitService extends Base
             Ui::getDocumentHeadElement(),
             [
                 'meta' => [
-                    [
-                        'name' => 'robots',
-                        'content' => 'index, follow',
-                    ],
-                    [
-                        'name' => 'robots',
-                        'content' => 'max-image-preview:standard',
-                    ],
-                    [
-                        'name' => 'robots',
-                        'content' => 'max-video-preview:-1',
-                    ],
+                    ['name' => 'robots', 'content' => 'index, follow',],
+                    ['name' => 'robots', 'content' => 'max-image-preview:standard',],
+                    ['name' => 'robots', 'content' => 'max-video-preview:-1',],
                 ],
             ]
         );
@@ -256,18 +217,9 @@ class SEOToolKitService extends Base
                     Ui::getDocumentHeadElement(),
                     [
                         'meta' => [
-                            [
-                                'itemprop' => 'name',
-                                'content' => ArrayCollection::value($items, 'title'),
-                            ],
-                            [
-                                'itemprop' => 'image',
-                                'content' => ArrayCollection::value($items, 'image'),
-                            ],
-                            [
-                                'itemprop' => 'description',
-                                'content' => self::getDescriptionDetails(),
-                            ],
+                            ['itemprop' => 'name', 'content' => Arr::value($items, 'title'),],
+                            ['itemprop' => 'image', 'content' => Arr::value($items, 'image'),],
+                            ['itemprop' => 'description', 'content' => self::getDescriptionDetails(),],
                         ],
                     ]
                 );
@@ -289,30 +241,12 @@ class SEOToolKitService extends Base
                     Ui::getDocumentHeadElement(),
                     [
                         'meta' => [
-                            [
-                                'property' => 'og:title',
-                                'content' => ArrayCollection::value($items, 'title'),
-                            ],
-                            [
-                                'property' => 'og:type',
-                                'content' => 'article',
-                            ],
-                            [
-                                'property' => 'og:url',
-                                'content' => Runtime::hostUrl(),
-                            ],
-                            [
-                                'property' => 'og:image',
-                                'content' => ArrayCollection::value($items, 'image'),
-                            ],
-                            [
-                                'property' => 'og:description',
-                                'content' => self::getDescriptionDetails(),
-                            ],
-                            [
-                                'property' => 'og:site_name',
-                                'content' => Memory::data()->name,
-                            ],
+                            ['property' => 'og:title', 'content' => Arr::value($items, 'title'),],
+                            ['property' => 'og:type', 'content' => 'article',],
+                            ['property' => 'og:url', 'content' => Runtime::hostUrl(),],
+                            ['property' => 'og:image', 'content' => Arr::value($items, 'image'),],
+                            ['property' => 'og:description', 'content' => self::getDescriptionDetails(),],
+                            ['property' => 'og:site_name', 'content' => Memory::data()->name,],
                         ],
                     ]
                 );
@@ -330,30 +264,12 @@ class SEOToolKitService extends Base
                     Ui::getDocumentHeadElement(),
                     [
                         'meta' => [
-                            [
-                                'name' => 'twitter:card',
-                                'content' => ArrayCollection::value($items, 'image'),
-                            ],
-                            [
-                                'name' => 'twitter:site',
-                                'content' => Runtime::hostUrl(),
-                            ],
-                            [
-                                'name' => 'twitter:title',
-                                'content' => ArrayCollection::value($items, 'title'),
-                            ],
-                            [
-                                'name' => 'twitter:description',
-                                'content' => self::getDescriptionDetails(),
-                            ],
-                            [
-                                'name' => 'twitter:creator',
-                                'content' => Memory::data()->author->name,
-                            ],
-                            [
-                                'name' => 'twitter:image:src',
-                                'content' => ArrayCollection::value($items, 'image'),
-                            ],
+                            ['name' => 'twitter:card', 'content' => Arr::value($items, 'image'),],
+                            ['name' => 'twitter:site', 'content' => Runtime::hostUrl(),],
+                            ['name' => 'twitter:title', 'content' => Arr::value($items, 'title'),],
+                            ['name' => 'twitter:description', 'content' => self::getDescriptionDetails(),],
+                            ['name' => 'twitter:creator', 'content' => Memory::data()->author->name,],
+                            ['name' => 'twitter:image:src', 'content' => Arr::value($items, 'image'),],
                         ],
                     ]
                 );
@@ -370,13 +286,7 @@ class SEOToolKitService extends Base
     private static function getKeywords(string $documentTitle): string
     {
         if ((array_key_exists('keywords', self::getAbout(Runtime::currentUrl())))) {
-            return implode(
-                ',',
-                ArrayCollection::value(
-                    self::getAbout(Runtime::currentUrl()),
-                    'keywords'
-                )
-            );
+            return implode(',', Arr::value(self::getAbout(Runtime::currentUrl()), 'keywords'));
         }
 
         return $documentTitle;
@@ -392,7 +302,7 @@ class SEOToolKitService extends Base
     private static function getDescriptionDetails(): string
     {
         if ((array_key_exists('description', self::getAbout(Runtime::currentUrl())))) {
-            return ArrayCollection::value(self::getAbout(Runtime::currentUrl()), 'description');
+            return Arr::value(self::getAbout(Runtime::currentUrl()), 'description');
         }
 
         return Memory::data()->company->detailsDescription;
@@ -400,6 +310,8 @@ class SEOToolKitService extends Base
 
 
     /**
+     * Get property value of seo about current page or link
+     *
      * @param string $url
      * @return array
      * @throws RuntimeException
@@ -419,7 +331,7 @@ class SEOToolKitService extends Base
 
 
     /**
-     *
+     * Destruct class
      */
     public function __destruct()
     {
