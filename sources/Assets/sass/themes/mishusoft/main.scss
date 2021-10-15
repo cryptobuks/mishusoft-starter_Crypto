@@ -16,7 +16,7 @@ body {
   max-width: 100%;
   font-size: 14px;
   transition: background-color .5s;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", SourceSansPro, SolaimanLipi;
+  font-family: var(--font-family-sans-serif);
 }
 
 header {
@@ -72,7 +72,7 @@ header {
     top: 0;
     position: relative;
 
-    & left {
+    & .left {
       height: inherit;
       color: inherit;
       display: flex;
@@ -103,7 +103,7 @@ header {
 
     }
 
-    & right {
+    & .right {
       height: inherit;
       background: inherit;
       color: inherit;
@@ -212,6 +212,30 @@ header {
           /*add shadow*/
           box-shadow: inset 0 2px 4px rgba(0, 0, 0, .12), 0 2px 4px rgba(0, 0, 0, .24);
         }
+      }
+    }
+  }
+}
+
+.header-flash {
+  background: rgba(255, 255, 255, 100);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+  & .mishusoft-logo {
+    color: var(--blue-deep);
+  }
+
+
+  & .nav-left, & .nav-right {
+    & a {
+      border-bottom: 2px solid rgba(0, 0, 0, 0);
+      transition: none;
+
+      &:hover, &:active {
+        color: var(--blue-deep);
+        background-color: rgba(0, 0, 0, 0);
+        border-bottom: 2px solid var(--blue-deep);
+        box-shadow: none !important;
       }
     }
   }
@@ -345,7 +369,6 @@ header {
   -ms-user-select: none;
   outline-style: none;
 }
-
 
 
 .nav-left {
