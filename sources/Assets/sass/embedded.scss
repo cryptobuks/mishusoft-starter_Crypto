@@ -362,4 +362,7 @@ img[alt]:after {
   .application-content, .maintenance-content {
     width: 700px;
   }
+  .application-content-width-auto .application-content, .application-content-width-auto .maintenance-content{
+    width: 100%;
+  }
 }
