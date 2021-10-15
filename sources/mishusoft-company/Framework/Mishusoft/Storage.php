@@ -49,7 +49,7 @@ class Storage extends Base
      */
     public static function cliCommunicationDirectory(): string
     {
-        return self::communicationDirectory() .'Cli' . DS;
+        return self::communicationDirectory() . 'Cli' . DS;
     }
 
     /**
@@ -57,7 +57,7 @@ class Storage extends Base
      */
     public static function communicationHttpCoreDirectory(): string
     {
-        return self::communicationDirectory() .'Http' . DS;
+        return self::communicationDirectory() . 'Http' . DS;
     }
 
     /**
@@ -293,15 +293,18 @@ class Storage extends Base
         foreach ($fileList as $imageFile => $fileDetails) {
             if ($pwa === true) {
                 if (preg_match('/\d+x\d+/i', Storage\FileSystem::fileBase($imageFile)) === 1) {
-                    $faviconsList[] = [
-                        'type' => Arr::value($fileDetails, 'mime'),
-                        'sizes' => self::imageSizeBuilder($fileDetails),
-                        'src' => self::toDataUri(
-                            $root ?: 'framework',
-                            'logos' . DS . 'default' . DS . Storage\FileSystem::fileBase($imageFile),
-                            'remote'
-                        ),
-                    ];
+                    $extension = Storage\FileSystem::fileExt($imageFile);
+                    if (in_array($extension, ['png', 'svg', 'webp'], true)) {
+                        $faviconsList[] = [
+                            'type' => Arr::value($fileDetails, 'mime'),
+                            'sizes' => self::imageSizeBuilder($fileDetails),
+                            'src' => self::toDataUri(
+                                $root ?: 'framework',
+                                'logos' . DS . 'default' . DS . Storage\FileSystem::fileBase($imageFile),
+                                'remote'
+                            ),
+                        ];
+                    }
                 }
             } else {
                 if (Inflect::startsWith(Storage\FileSystem::fileBase($imageFile), 'apple-icon') === true) {
@@ -600,7 +603,7 @@ class Storage extends Base
     public static function storageFullPath(
         string $filename,
         string $feature = 'local',
-        bool $isFramework = false
+        bool   $isFramework = false
     ): string {
         if ($isFramework) {
             return self::fullPathBuilder(
