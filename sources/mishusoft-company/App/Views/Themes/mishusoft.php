@@ -34,7 +34,7 @@ if ($this->templateUse === 'no') {
      * if we have not meta, then we execute default meta tags
      */
     SEOToolKitService::start();
-    SEOToolKitService::addDocumentIdentify(['width'=>'device-width','initial-scale'=>'1.0','shrink-to-fit'=>'no']);
+    SEOToolKitService::addDocumentIdentify();
     SEOToolKitService::loadAdsAuthentication();
     SEOToolKitService::addDefault($this->titleOfCurrentWebPage);
     SEOToolKitService::addRobotsMeta();
@@ -42,32 +42,21 @@ if ($this->templateUse === 'no') {
         'title'=> $this->titleOfCurrentWebPage,
         'image'=> Storage::toDataUri('media', 'logos/mishusoft-logo-lite.webp', 'remote')
     ]);
-
     //add author file
     SEOToolKitService::addAuthor(Runtime::link('humans.txt'));
-
     //this step we declare meta and link tags for progressive web application
-    Ui\ProgressiveWebApplication::create(DEFAULT_APP_NAME);
+    Ui\ProgressiveWebApplication::addMeta(DEFAULT_APP_NAME);
 
 
     //this step we declare meta tags for all seo engine
     Ui::element(Ui::getDocumentHeadElement(), 'meta', ['name' => 'googlebot', 'content' => 'nosnippet']);
-
     //we declare default meta tags for mishusoft application
     Ui::elementList(
         Ui::getDocumentHeadElement(),
         [
             'meta' => [
-                [
-                    'id' => 'mishusoft-web-root',
-                    'name' => 'mishusoft-web-root',
-                    'content' => Runtime::hostUrl(),
-                ],
-                [
-                    'id' => 'mishusoft-session-validity',
-                    'name' => 'mishusoft-session-validity',
-                    'content' => Session::get('auth'),
-                ],
+                ['id' => 'mishusoft-web-root', 'content' => Runtime::hostUrl(),],
+                ['id' => 'mishusoft-session-validity', 'content' => Session::get('auth'),],
             ],
         ]
     );
@@ -89,21 +78,23 @@ if ($this->templateUse === 'no') {
             'style' => [
                 [
                     'type' => 'text/css', 'id' => 'theme.css',
-                    'text' => Storage\FileSystem::read(Storage::assetsFullPath('css/mishusoft-theme.css')),
+                    'text' => Storage\FileSystem::readAssets('css/mishusoft-theme.css'),
                 ],
                 [
                     'type' => 'text/css', 'id' => 'theme.css',
-                    'text' => Storage\FileSystem::read(Storage::assetsFullPath('css/framework.css')),
+                    'text' => Storage\FileSystem::readAssets('css/framework.css'),
                 ],
             ],
         ]
     );
 
     Ui::element(Ui::getDocumentHeadElement(), 'style', [
-        'text' => Storage\FileSystem::read(Storage::assetsFullPath('css/loader.css')),
+        'text' => Storage\FileSystem::readAssets('css/loader.css'),
     ]);
 
     //web.dev/installable-manifest/
+    //this step we declare meta and link tags for progressive web application
+    Ui\ProgressiveWebApplication::addFile();
 
 
     /*
