@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Mishusoft\Communication;
+namespace Mishusoft\Communication\Http;
 
 use Mishusoft\Services\SecureDataTransferService;
 
