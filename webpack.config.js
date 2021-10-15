@@ -108,17 +108,6 @@ const commonConfig = {
                     ["gifsicle", {interlaced: true}],
                     ["jpegtran", {progressive: true}],
                     ["optipng", {optimizationLevel: 5}],
-                    // Svgo configuration here https://github.com/svg/svgo#configuration
-                    [
-                        "svgo", {
-                        name: 'preset-default',
-                        params: {
-                            overrides: {
-                                removeViewBox: {active: false,},
-                                addAttributesToSVGElement: {attributes: [{xmlns: "http://www.w3.org/2000/svg"}],},
-                            },
-                        },
-                    },],
                 ],
             },
         }),
