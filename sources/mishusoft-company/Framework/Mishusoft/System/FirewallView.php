@@ -122,6 +122,7 @@ class FirewallView extends Firewall
                     ['name' => 'description', 'content' => self::$documentTitle,],
                 ],
                 'style' => [
+                    ['text' => Storage\FileSystem::read(Storage::fViewsFullPath('css/colors.css')),],
                     ['text' => Storage\FileSystem::read(Storage::fViewsFullPath('css/embedded.css')),],
                 ],
                 //'style' => array(array('text'=>$cssContent))
