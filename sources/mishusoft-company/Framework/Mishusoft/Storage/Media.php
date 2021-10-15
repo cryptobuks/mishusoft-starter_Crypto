@@ -40,8 +40,8 @@ class Media
      */
     public static function fileInfo(string $filename): array
     {
-        if (is_array(Media\MimeDataObject::Common) && count(Media\MimeDataObject::Common) > 0) {
-            foreach (Media\MimeDataObject::Common as $content) {
+        if (is_array(Media\Mime::COMMON) && count(Media\Mime::COMMON) > 0) {
+            foreach (Media\Mime::COMMON as $content) {
                 if ($content['extension'] === self::getExtension($filename)) {
                     return $content;
                 }
@@ -77,8 +77,8 @@ class Media
      */
     public static function mimeByFormat(string $format): string
     {
-        if (is_array(Mime::Common) and count(Mime::Common) > 0) {
-            foreach (Mime::Common as $content) {
+        if (is_array(Mime::COMMON) && count(Mime::COMMON) > 0) {
+            foreach (Mime::COMMON as $content) {
                 if ($content['extension'] === $format) {
                     return $content['type'];
                 }
