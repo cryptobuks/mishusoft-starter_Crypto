@@ -4,27 +4,6 @@ document.addEventListener('readystatechange', () => {
     // ready state = 'complete'
     //console.log(`readystate: ${document.readyState}\n`)
 
-    //hide app loader on document completed
-    //while (document.readyState === 'interactive') {
-    /*add required script tag to head*/
-    /*font-fontawesome private cdn*/
-    // fetch(app.website.fontAwesome)
-    //     .then(() => {
-    //         document.head.appendChild(createElement([{
-    //             'script': {
-    //                 'rel': 'preconnect',
-    //                 'type': 'application/javascript',
-    //                 'src': app.website.fontAwesome,
-    //                 'crossorigin': 'anonymous',
-    //                 'async': 'async',
-    //             }
-    //         }]));
-    //     })
-    //     .catch((err) => {
-    //         console.info('Fontawesome kit load failed. ' + err)
-    //     })
-    //}
-
     if (document.readyState === 'interactive') {
         //console.info(document.body.getAttribute('theme'));
         //console.log('Preparing css load...')
@@ -55,7 +34,7 @@ import('./db/app').then(function (db) {
             let webWorker = new t.WorkerResponse(publicJsUrl);
             webWorker.registerMe();
             //Variable, Constants declaration
-            const webServiceWorker = new Worker(new URL(publicJsUrl+'./sw.js', import.meta.url));
+            const webServiceWorker = new Worker(new URL(webWorker.getRegisteredUrl(), import.meta.url));
             webServiceWorker.postMessage({
                 question:
                     'The Answer to the Ultimate Question of Life, The Universe, and Everything.',
