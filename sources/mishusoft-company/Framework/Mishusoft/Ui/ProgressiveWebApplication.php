@@ -26,7 +26,7 @@ class ProgressiveWebApplication
      * @throws NotFoundException
      * @throws RuntimeException
      */
-    public static function create(string $name):void
+    public static function create(string $name): void
     {
         Ui::elementList(
             Ui::getDocumentHeadElement(),
@@ -43,7 +43,7 @@ class ProgressiveWebApplication
         );
     }
 
-    public static function addMeta(string $name) : void
+    public static function addMeta(string $name): void
     {
         Ui::elementList(
             Ui::getDocumentHeadElement(),
@@ -64,10 +64,10 @@ class ProgressiveWebApplication
      * @throws NotFoundException
      * @throws RuntimeException
      */
-    public static function addFile(string $view = 'local') : void
+    public static function addFile(string $view = 'local'): void
     {
         Ui::elementList(Ui::getDocumentHeadElement(), [
-                'link' => [['rel' => 'manifest', 'href' => self::loadManifestFile($view),],],
+            'link' => [['rel' => 'manifest', 'href' => self::loadManifestFile($view),],],
         ]);
     }
 
@@ -94,7 +94,7 @@ class ProgressiveWebApplication
      */
     private static function manifestFile(): string
     {
-        return Storage::assetsPath().self::$manifestFile;
+        return Storage::assetsPath() . self::$manifestFile;
     }
 
     /**
@@ -103,15 +103,17 @@ class ProgressiveWebApplication
     private static function makeManifestFile(): false|int
     {
         return Storage\FileSystem::write(self::manifestFile(), [
-            'name' => !empty(static::$fullName) ? static::$shortName : DEFAULT_APP_NAME,
-            'short_name' => !empty(static::$shortName) ? static::$shortName : DEFAULT_APP_NAME,
-            'description' => !empty(static::$description) ? static::$description : DEFAULT_APP_DESCRIPTIONS,
-            'start_url' => static::startUrl(),
-            'background_color' => static::$background,
-            'theme_color'=> static::$theme,
-            'display' => 'standalone',
-            'scope'=> static::scopeUrl(),
-            'icons'=> Storage::assignableWebFavicons(true),
+            'name'              => !empty(static::$fullName) ? static::$shortName : DEFAULT_APP_NAME,
+            'short_name'        => !empty(static::$shortName) ? static::$shortName : DEFAULT_APP_NAME,
+            'description'       => !empty(static::$description) ? static::$description : DEFAULT_APP_DESCRIPTIONS,
+            'start_url'         => static::startUrl(),
+            'background_color'  => static::$background,
+            'theme_color'       => static::$theme,
+            'display'           => 'standalone',
+            'scope'             => static::scopeUrl(),
+            'prefer_related_applications'   => true,
+            "related_applications"          => [],
+            'icons'             => Storage::assignableWebFavicons('framework', true),
         ]);
     }
 
@@ -127,7 +129,7 @@ class ProgressiveWebApplication
     /**
      * @return string
      */
-    private static function scopeUrl() : string
+    private static function scopeUrl(): string
     {
         if (Inflect::endsWith(BASE_URL, '/')) {
             return BASE_URL;
