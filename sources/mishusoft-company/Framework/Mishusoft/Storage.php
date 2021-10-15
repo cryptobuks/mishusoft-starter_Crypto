@@ -297,7 +297,7 @@ class Storage extends Base
                         'type' => Arr::value($fileDetails, 'mime'),
                         'sizes' => self::imageSizeBuilder($fileDetails),
                         'src' => self::toDataUri(
-                            $root,
+                            $root ?: 'framework',
                             'logos' . DS . 'default' . DS . Storage\FileSystem::fileBase($imageFile),
                             'remote'
                         ),
@@ -689,6 +689,10 @@ class Storage extends Base
         }
 
         $fileLocale = $localDrive . $filename;
+        //Debug::preOutput($localDrive);
+        //Debug::preOutput($filename);
+        //Debug::preOutput(filetype($fileLocale));
+        //Debug::preOutput(file_exists($fileLocale));
         if (file_exists($fileLocale) === true) {
             if (Inflect::lower($feature) === 'local') {
                 return self::localize($fileLocale);
