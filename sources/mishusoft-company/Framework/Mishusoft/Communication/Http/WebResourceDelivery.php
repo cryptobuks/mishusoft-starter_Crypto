@@ -238,21 +238,41 @@ class WebResourceDelivery
         }
 
         //http://host/directory/sub/filenameOrsub
-        if ($controller === 'framework') {
-            $requestedFile = Storage::storageFullPath(
-                strtolower(
-                    sprintf('%1$s%3$sviews%3$s%2$s%3$s', $controller, $method, DS)
-                ) . implode(DS, $arguments),
-                'local',
-                true
-            );
+        
+        if ($arguments  !==[]) {
+            if ($controller === 'framework') {
+                $requestedFile = Storage::storageFullPath(
+                    strtolower(
+                        sprintf('%1$s%3$sviews%3$s%2$s%3$s', $controller, $method, DS)
+                    ) . implode(DS, $arguments),
+                    'local',
+                    true
+                );
+            } else {
+                $requestedFile = Storage::storageFullPath(
+                    strtolower(
+                        sprintf('%1$s%3$s%2$s%3$s', $controller, $method, DS)
+                    ) . implode(DS, $arguments)
+                );
+            }
         } else {
-            $requestedFile = Storage::storageFullPath(
-                strtolower(
-                    sprintf('%1$s%3$s%2$s%3$s', $controller, $method, DS)
-                ) . implode(DS, $arguments)
-            );
+            if ($controller === 'framework') {
+                $requestedFile = Storage::storageFullPath(
+                    strtolower(
+                        sprintf('%1$s%3$sviews%3$s%2$s', $controller, $method, DS)
+                    ),
+                    'local',
+                    true
+                );
+            } else {
+                $requestedFile = Storage::storageFullPath(
+                    strtolower(
+                        sprintf('%1$s%3$s%2$s', $controller, $method, DS)
+                    )
+                );
+            }
         }
+
 
         if (file_exists($requestedFile) === true) {
             if (filetype($requestedFile) === 'dir') {
