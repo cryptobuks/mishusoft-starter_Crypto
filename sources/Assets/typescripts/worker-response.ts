@@ -1,15 +1,15 @@
 export class WorkerResponse {
     constructor(
-        private publicJsUrl:string
+        private publicJsUrl: string
     ) {
     }
 
-    public registerMe(){
+    public registerMe() {
         let publicJsUrl = this.publicJsUrl;
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register(`${publicJsUrl}sw.js`).then(registration => {
-                    //console.log('SW registered: ', registration);
+                    console.log('SW registered: ', registration);
                 }).catch(registrationError => {
                     console.log('SW registration failed: ', registrationError);
                 });
@@ -17,7 +17,7 @@ export class WorkerResponse {
         }
     }
 
-    public getPublicJsUrl() : string {
-        return this.publicJsUrl;
+    public getRegisteredUrl(): string {
+        return `${this.publicJsUrl}sw.js`;
     }
 }
