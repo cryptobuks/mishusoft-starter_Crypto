@@ -7,15 +7,16 @@
  * @copyright  2021 Mishusoft System Inc (ABN 77 084 670 600)
  **/
 
-const path = require('path')
-const ImageminPlugin = require('imagemin-webpack-plugin').default;
+const path = require('path');
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts')
 const FontPreloadPlugin = require("webpack-font-preload-plugin");
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const {extendDefaultPlugins} = require("svgo");
 
 
 const commonConfig = {
@@ -37,7 +38,7 @@ const commonConfig = {
                     // Compiles Sass to CSS.
                     'sass-loader'
                 ]
-        },
+            },
             {
                 //compile images
                 test: /\.(png|jpe?g|gif)$/, /* test: /\.(svg|png|jpg|gif)$/, */
@@ -45,7 +46,7 @@ const commonConfig = {
                 generator: {
                     filename: 'images/[name][ext][query]'
                 },
-        },
+            },
             {
                 //compile webfonts
                 test: /\.(ttf|otf|eot|svg|woff|woff2)$/,
@@ -53,7 +54,7 @@ const commonConfig = {
                 generator: {
                     filename: '../webfonts/[name].[hash][ext][query]'
                 },
-        },
+            },
         ]
     },
     resolve: {
@@ -79,6 +80,18 @@ const commonConfig = {
             }, { /*copy core css from compiled directory*/
                 from: path.join(__dirname, './storages/app/assets/css/embedded.css'),
                 to: path.join(__dirname, './storages/framework/views/css/embedded.css')
+            }, { /*copy core css from compiled directory*/
+                from: path.join(__dirname, './storages/app/assets/css/resources.css'),
+                to: path.join(__dirname, './storages/framework/views/css/resources.css')
+            }, { /*copy core css from compiled directory*/
+                from: path.join(__dirname, './storages/app/assets/css/webfonts.css'),
+                to: path.join(__dirname, './storages/framework/views/css/webfonts.css')
+            }, { /*copy core css from compiled directory*/
+                from: path.join(__dirname, './storages/app/assets/css/colors.css'),
+                to: path.join(__dirname, './storages/framework/views/css/colors.css')
+            }, { /*copy core css from compiled directory*/
+                from: path.join(__dirname, './storages/app/assets/css/loader.css'),
+                to: path.join(__dirname, './storages/framework/views/css/loader.css')
             }, { /*copy default logos from compiled directory*/
                 from: path.join(__dirname, './storages/app/media/logos/'),
                 to: path.join(__dirname, './storages/framework/views/logos/')
@@ -87,7 +100,28 @@ const commonConfig = {
                 to: path.join(__dirname, './storages/framework/views/images/icons/social-media/')
             },]
         }),
-        new ImageminPlugin({test: /\.(jpe?g|png|gif|svg)$/i})
+        new ImageMinimizerPlugin({
+            minimizerOptions: {
+                // Lossless optimization with custom option
+                // Feel free to experiment with options for better result for you
+                plugins: [
+                    ["gifsicle", {interlaced: true}],
+                    ["jpegtran", {progressive: true}],
+                    ["optipng", {optimizationLevel: 5}],
+                    // Svgo configuration here https://github.com/svg/svgo#configuration
+                    [
+                        "svgo", {
+                        name: 'preset-default',
+                        params: {
+                            overrides: {
+                                removeViewBox: {active: false,},
+                                addAttributesToSVGElement: {attributes: [{xmlns: "http://www.w3.org/2000/svg"}],},
+                            },
+                        },
+                    },],
+                ],
+            },
+        }),
     ],
 }
 
@@ -168,7 +202,7 @@ const prodConfig = {
                     }
                 }],
                 exclude: /node_modules/
-        }
+            }
         ]
     },
     optimization: {
@@ -200,7 +234,7 @@ const testConfig = {
                     }
                 }],
                 exclude: /node_modules/
-        }
+            }
         ]
     }
 }
