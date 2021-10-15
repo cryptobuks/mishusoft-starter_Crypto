@@ -5,6 +5,7 @@ namespace Mishusoft\Storage;
 use Closure;
 use Mishusoft\Exceptions\ErrorException;
 use Mishusoft\Exceptions\RuntimeException;
+use Mishusoft\Storage;
 use Mishusoft\System\Log;
 use Mishusoft\Utility\Implement;
 use Mishusoft\Utility\Number;
@@ -565,7 +566,13 @@ class FileSystem
         return ((Number::format((((filesize($filename) / 1024) / 1024) / 1024), 2, '.', '') . ' gb'));
     }//end getFileSize()
 
-
+    /**
+     * @throws RuntimeException\NotFoundException
+     */
+    public static function readAssets(string $path): bool|string
+    {
+        return self::read(Storage::assetsFullPath($path));
+    }
 
 
     /**
