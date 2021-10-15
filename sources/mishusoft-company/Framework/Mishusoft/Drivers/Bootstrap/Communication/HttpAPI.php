@@ -43,8 +43,6 @@ class HttpAPI
             $rootDirectories[] = Storage::communicationHttpUserDirectory();
         }
 
-        Debug::preOutput($rootDirectories);
-
         if (count($rootDirectories) > 0) {
             foreach ($rootDirectories as $rootDirectory) {
                 Log::info(sprintf('Check %s directory existent.', $rootDirectory));
