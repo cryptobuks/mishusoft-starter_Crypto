@@ -315,7 +315,8 @@ class WebResourceDelivery
                 'style' => [
                     ['type' => 'text/css', 'text' => Storage\FileSystem::readAssets('css/loader.css'),],
                     ['type' => 'text/css', 'text' => Storage\FileSystem::readAssets('css/colors.css'),],
-                    ['type' => 'text/css', 'text' => Storage\FileSystem::readAssets('css/webfonts.css'),],
+                    //['type' => 'text/css', 'text' => Storage\FileSystem::readAssets('css/webfonts.css'),],
+                    ['type' => 'text/css', 'text' => Storage\FileSystem::readAssetsWebFonts('css/webfonts.css'),],
                     ['type' => 'text/css', 'text' => Storage\FileSystem::readAssets('css/resources.css'),],
                     ['type' => 'text/css', 'text' => Storage\FileSystem::readAssets('css/mishusoft-theme.css'),],
                     ['type' => 'text/css', 'text' => Storage\FileSystem::readAssets('css/framework.css'),],
@@ -430,7 +431,7 @@ class WebResourceDelivery
         );
 
         $table_header = Ui::element(
-            Ui::element($table, 'thead', ['class' => 'bg-default', 'style' => 'font-size: 14px;font-weight: bold;']),
+            Ui::element($table, 'thead', ['class' => 'bg-default', 'style' => 'font-size: 16px;font-weight: 700;']),
             'tr'
         );
 
@@ -450,7 +451,7 @@ class WebResourceDelivery
                     Ui::element(
                         $table_body,
                         'tr',
-                        ['style' => 'font-size: 14px;text-align: center;font-weight: bolder;']
+                        ['style' => 'font-size: 14px;text-align: center;font-weight: 800;']
                     ),
                     'td',
                     ['style' => 'width:100%;', 'colspan' => '5',]
@@ -498,35 +499,37 @@ class WebResourceDelivery
     {
         foreach ((array)Storage::explore($dirname) as $file) {
             $list = Ui::element($table_body, 'tr');
+            $tdStyle = ['style' => 'width: 30px;display:inline-flex;justify-content:center;'];
+            $imageStyle = 'width:16px;height:16px;';
             if (Storage\Media::in(Storage\Media\Mime::IMAGE, Storage\Media::mimeContent($file))) {
-                Ui::element(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', [
+                Ui::element(Ui::element(Ui::element($list, 'td', $tdStyle), 'a', [
                     'style' => Ui::HTML_HREF_STYLE . 'color: #000;', 'href' => $parentURL . basename($file),
                 ]), 'img', [
                     'rel'   => 'preload',
-                    'style' => 'width:20px;height:20px;',
+                    'style' => $imageStyle,
                     'alt'   => basename($file),
                     'src'   => $parentURL . basename($file),
                 ]);
             } elseif (Storage\FileSystem::fileType($file) === 'dir') {
-                Ui::element(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', [
+                Ui::element(Ui::element(Ui::element($list, 'td', $tdStyle), 'a', [
                     'style' => Ui::HTML_HREF_STYLE . 'color: #000;', 'href' => $parentURL . basename($file),
                 ]), 'img', [
                     'rel'   => 'preload',
-                    'style' => 'width:20px;height:20px;',
+                    'style' => $imageStyle,
                     'alt'   => basename($file),
                     'src'   => Storage::toDataUri('media', 'images/icons/folder.png', 'remote'),
                 ]);
             } elseif (Storage\FileSystem::fileType($file) === 'file') {
-                Ui::element(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', [
+                Ui::element(Ui::element(Ui::element($list, 'td', $tdStyle), 'a', [
                     'style' => Ui::HTML_HREF_STYLE . 'color: #000;', 'href' => $parentURL . basename($file),
                 ]), 'img', [
                     'rel'   => 'preload',
-                    'style' => 'width:20px;height:20px;',
+                    'style' => $imageStyle,
                     'alt'   => basename($file),
                     'src'   => Storage::toDataUri('media', 'images/icons/code-file.png', 'remote'),
                 ]);
             } else {
-                Ui::text(Ui::element(Ui::element($list, 'td', ['style' => 'width: 20px;']), 'a', [
+                Ui::text(Ui::element(Ui::element($list, 'td', $tdStyle), 'a', [
                     'style' => Ui::HTML_HREF_STYLE . 'color: #000;', 'href' => $parentURL . basename($file),
                 ]), Storage\FileSystem::fileType($file));
             }
