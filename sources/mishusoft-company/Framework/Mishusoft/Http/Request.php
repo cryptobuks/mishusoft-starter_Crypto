@@ -39,12 +39,9 @@ class Request extends Singleton
     }
 
     /**
-     * @throws \Mishusoft\Exceptions\RuntimeException
-     * @throws \JsonException
      * @throws \Mishusoft\Exceptions\ErrorException
-     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
-     * @throws \Mishusoft\Exceptions\PermissionRequiredException
-     * @throws \Mishusoft\Exceptions\JsonException
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
      */
     protected function setFallback():void
     {
