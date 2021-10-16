@@ -48,7 +48,7 @@
     "sass": "^1.43.2",
     "sass-loader": "^12.2.0",
     "semver-parser": "^4.0.0",
-    "stripe": "^8.182.0",
+    "stripe": "^8.183.0",
     "style-loader": "^3.3.0",
     "sugarss": "^4.0.1",
     "svgo": "^2.7.0",
