@@ -13,6 +13,7 @@ use Mishusoft\Storage\FileSystem;
 use Mishusoft\Framework;
 use Mishusoft\MPM;
 use Mishusoft\System;
+use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\Implement;
 use stdClass;
 
@@ -103,6 +104,7 @@ class Memory extends Base
      */
     public static function data(string $carrier = 'memory', array $options = []): array|object
     {
+       // Debug::preOutput(debug_backtrace());
         self::$cacheFile = self::dFile(self::cacheDataFile('Memory', 'data'));
         $result = '';
 
@@ -176,7 +178,7 @@ class Memory extends Base
             }//end if
 
             if (file_exists($filename) === false) {
-                Framework::makeConfigure();
+                Framework::makeConfiguration();
             }//end if
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
