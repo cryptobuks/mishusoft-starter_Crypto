@@ -15,26 +15,23 @@ class App extends System\BIOS
     /**
      * BIOS initialise function
      */
-    public static function initialise():void
+    public static function initialise(): void
     {
-        Debug::preOutput('bios started');
         self::singleton(/**
-         * @throws \Mishusoft\Exceptions\PermissionRequiredException
-         * @throws \Mishusoft\Exceptions\JsonException
-         * @throws \JsonException
-         * @throws \Mishusoft\Exceptions\ErrorException
-         * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
-         * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
-         * @throws \Mishusoft\Exceptions\RuntimeException
+         * @param Registry $registry
          * @throws \GeoIp2\Exception\AddressNotFoundException
          * @throws \MaxMind\Db\Reader\InvalidDatabaseException
+         * @throws \Mishusoft\Exceptions\ErrorException
          * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
+         * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+         * @throws \Mishusoft\Exceptions\PermissionRequiredException
+         * @throws \Mishusoft\Exceptions\RuntimeException
+         * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
          */
-            function ($registry) {
+            function (Registry $registry) {
                 $registry->browser  = Http\Browser::getInstance();
                 $registry->ip       = new Http\IP();
 
-                Debug::preOutput('preparing framework started');
                 // Communicate with framework.
                 System\Log::info('Start framework application.');
                 Framework::init(function ($framework) use ($registry) {
@@ -58,10 +55,10 @@ class App extends System\BIOS
 
                             // add welcome note for http options method
                             Storage\Stream::json([
-                                'message' => [
-                                    'type' => 'success',
-                                    'contents' => sprintf("%s for %s.", $note, $currentUrl),
-                                ],
+                             'message' => [
+                               'type' => 'success',
+                               'contents' => sprintf("%s for %s.", $note, $currentUrl),
+                             ],
                             ]);
                             System\Log::info(
                                 sprintf("%s for %s.", $note, $currentUrl),
@@ -94,5 +91,5 @@ class App extends System\BIOS
                 });
             }
         );
-    }//end initialise()
+    }
 }
