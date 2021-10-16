@@ -1,0 +1,11 @@
+@media only screen and (max-width: 600px) {
+  .header-quick-tool-bar left div a {
+    display: none;
+  }
+
+  /*ms-app-body {
+    height: 820px !important;
+  }*/
+}
+
+/*# sourceMappingURL=max-600.css.map */
