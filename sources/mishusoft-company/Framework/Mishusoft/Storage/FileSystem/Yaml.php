@@ -87,7 +87,7 @@ class Yaml
      * @return string A YAML string representing the original PHP value
      * @throws Exception
      */
-    public static function emitDallGoot(mixed $input, array $options = null): string
+    public static function emitDallGoot(mixed $input, int $options = null): string
     {
         return \Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Yaml::dump($input, $options);
     }
