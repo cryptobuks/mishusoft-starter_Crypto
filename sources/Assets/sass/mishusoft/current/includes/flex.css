@@ -1,0 +1,53 @@
+/*position*/
+.flex-center-all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-center-left {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.flex-column-content {
+  padding: 10px 20px;
+  line-height: 1.6;
+}
+.flex-column-inside {
+  padding: 10px 20px;
+  line-height: 1.6;
+  width: 49%;
+}
+.flex-column-inside + .flex-column-inside {
+  margin-left: 20px;
+}
+.flex-column-inside:first-child {
+  margin-left: 0;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-group {
+  flex-flow: row wrap;
+  align-content: space-between;
+}
+
+.flex-box-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+  min-height: 450px;
+  min-width: inherit;
+}
+
+/*# sourceMappingURL=flex.css.map */
