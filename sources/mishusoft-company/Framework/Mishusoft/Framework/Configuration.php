@@ -4,6 +4,7 @@ namespace Mishusoft\Framework;
 
 trait Configuration
 {
+
     /**
      * @return array
      */
