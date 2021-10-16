@@ -39,7 +39,7 @@
     <link rel="icon" type="image/png" sizes="96x96" href="<?php echo load('019-favicon-96x96'); ?>"/>
 
     <!--stylesheets for html document-->
-    <style><?php echo fileContent(DEFAULT_CSS_DIRECTORY_ROOT . 'embedded.css'); ?></style>
+    <style><?php echo file_get_contents(DEFAULT_CSS_DIRECTORY_ROOT . 'embedded.css'); ?></style>
 </head>
 <body>
 <section class="application">
