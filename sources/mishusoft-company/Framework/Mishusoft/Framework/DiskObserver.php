@@ -19,30 +19,22 @@ trait DiskObserver
      */
     protected function checkFileSystem(string $rootPath = RUNTIME_ROOT_PATH): void
     {
-        /*
-         * Check root directory is directory or not.
-         * */
+        //Check root directory is directory or not.
         if (is_dir($rootPath) === false) {
             throw new Exceptions\RuntimeException\NotFoundException($rootPath.' not found.');
         }
 
-        /*
-         * Check last string of root directory is backslash or not.
-         * */
+        //Check last string of root directory is backslash or not.
         if ($rootPath[(strlen($rootPath) - 1)] !== '/') {
             $rootPath .= '/';
         }
 
-        /*
-         * Check provided root directory in app installed path.
-         * */
+        //Check provided root directory in app installed path.
         if (in_array(self::getDirectoryName($rootPath), SYSTEM_EXCLUDE_DIRS, true) === true) {
             return;
         }
 
-        /*
-         * Browse every file and directory.
-         * */
+        //Browse every file and directory.
         $files = glob($rootPath.'*', GLOB_MARK);
         foreach ($files as $file) {
             if (is_dir($file) === true) {
@@ -95,7 +87,7 @@ trait DiskObserver
     protected function updateDirectoryIndex(string $file): void
     {
         if (is_writable($this->listerFile()) === true) {
-            if (is_file($file) === true && file_exists($file) === true) {
+            if (is_file($file) === true) {
                 $data  = file_get_contents($this->listerFile());
                 $data .= substr(sprintf('%o', fileperms($this->listerFile())), -4)."\t";
                 $data .= filetype(realpath($this->listerFile()))."\t$file\n";
