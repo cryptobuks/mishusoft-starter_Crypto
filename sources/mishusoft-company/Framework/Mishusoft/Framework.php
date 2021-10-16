@@ -3,7 +3,9 @@
 namespace Mishusoft;
 
 use Closure;
+use Mishusoft\Storage\FileSystem;
 use Mishusoft\Ui\EmbeddedView;
+use Mishusoft\Utility\Debug;
 
 class Framework extends Base
 {
@@ -12,13 +14,15 @@ class Framework extends Base
     use Framework\Validation;
     use Framework\DiskObserver;
     use Framework\StaticText;
+    use Framework\FileList;
 
     // Declare framework version.
     public const VERSION = '1.0.2';
+    public const APP_TYPE = 'Framework';
 
     // Declare framework others constants.
     public const NAME        = 'Mishusoft';
-    public const FULL_NAME   = self::NAME.' Framework';
+    public const FULL_NAME   = self::NAME.' ' . self::APP_TYPE;
 
     // Declare framework authors info.
     public const AUTHOR_NAME          = 'Mr Al-Amin Ahmed Abir';
@@ -42,22 +46,21 @@ class Framework extends Base
     /**
      * Init function for Framework
      *
-     * @param Registry $registry
      * @param Closure $closure
      * @return Framework
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
-     * @throws \Exception
      */
-    public static function init(Registry $registry, Closure $closure): static
+    public static function init(Closure $closure): static
     {
+        Debug::preOutput('framework started');
         $instance = new static();
 
         //configure and install framework
-        static::makeConfigure();
-        static::makeInstall($registry);
+        FileSystem::makeDirectory(self::configDataDirective(self::APP_TYPE));
+        static::makeConfiguration();
+        static::makeInstall();
 
         //Check framework requirements with validation class
         static::extensionRequiredCheck();
@@ -71,81 +74,49 @@ class Framework extends Base
             $instance->checkFileSystem();
         }
 
-        //static::execute();
         return $instance;
     }//end init()
 
     /**
-     * @return string
-     */
-    public static function getAbsoluteInstalledURL(): string
-    {
-        return Registry::Browser()::urlOrigin($_SERVER).Storage::applicationWebDirectivePath();
-    }//end getAbsoluteInstalledURL()
-
-
-    /**
-     * @return string
-     */
-    public static function configFile():string
-    {
-        return self::dFile(self::configDataFile('Framework', 'config'));
-    }
-
-    /**
-     * @return string
-     */
-    public static function installFile():string
-    {
-        return self::dFile(self::configDataFile('Framework', 'install'));
-    }
-
-    /**
-     * @return string
-     */
-    public function listerFile():string
-    {
-        return self::dFile(self::configDataFile('Framework', 'files/' . APPLICATION_SERVER_NAME), 'ext4');
-    }
-
-
-    /**
      * @throws Exceptions\RuntimeException
      */
-    public static function makeConfigure(): void
+    public static function makeConfiguration(): void
     {
+        //Debug::preOutput(debug_backtrace());
         // Preparing to create framework config file.
-        if (!is_readable(static::configFile())) {
-            Storage\FileSystem::makeDirectory(dirname(static::configFile()));
-            Storage\FileSystem\Yaml::emitFile(static::configFile(), self::defaultConfiguration());
+        if (!is_readable(self::configFile())) {
+            Debug::preOutput('creating : '. self::configFile());
+            //Debug::preOutput(self::defaultConfiguration());
+            Storage\FileSystem\Yaml::emitFile(self::configFile(), self::defaultConfiguration());
+            Debug::preOutput('created : '. self::configFile());
         }
     }
 
 
     /**
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
      */
-    public static function makeInstall(Registry $registry): void
+    public static function makeInstall(): void
     {
+        Debug::preOutput('started framework installer : '. self::installFile());
         // Preparing to check framework install file.
-        if (is_readable(static::installFile()) === true) {
+        if (is_readable(self::installFile()) === true) {
             // Framework install file found and start reading.
             if (defined('INSTALLED_HOST_NAME') === false) {
                 define('INSTALLED_HOST_NAME', System\Memory::data('framework')->host->name);
             }
         } else {
-            Storage\FileSystem::makeDirectory(dirname(static::installFile()));
+            Debug::preOutput('creating : '. self::installFile());
             // Preparing to create framework install file.
-            Storage\FileSystem\Yaml::emitFile(static::installFile(), [
+            Storage\FileSystem\Yaml::emitFile(self::installFile(), [
                 'name'        => 'Framework Installer',
-                'version'     => static::VERSION,
-                'debug'       => !(MPM\Classic::getProperty('release') === 'stable'),
+                'version'     => self::VERSION,
+                //'debug'       => !(MPM\Classic::getProperty('release') === 'stable'),
+                'debug'       => false,
                 'date'        => System\Time::todayDateOnly(),
                 'host'        => [
-                    'url'  => $registry::Browser()::urlOrigin($_SERVER).Storage::applicationWebDirectivePath(),
+                    'url'  => Http::getHost().Storage::applicationWebDirectivePath(),
                     'name' => System\Network::getValOfSrv('HTTP_HOST'),
                     'ip'   => System\Network::getValOfSrv('SERVER_ADDR'),
                 ],
@@ -157,6 +128,7 @@ class Framework extends Base
                     ],
                 ],
             ]);
+            Debug::preOutput('created : '. self::installFile());
         }//end if
     }//end install()
 
