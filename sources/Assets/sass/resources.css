@@ -1,0 +1,43 @@
+*, ::before, ::after {
+  margin: 0;
+  padding: 0;
+  border-width: 0;
+  border-style: solid;
+  box-sizing: border-box;
+  clear: both;
+}
+
+html {
+  box-sizing: border-box;
+  font-family: var(--font-family-sans-serif);
+  font-size: 14px;
+  background-color: rgba(0, 0, 0, 0.03);
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.resources-header-title {
+  padding: 50px;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.resources-header-description {
+  font-size: 16px;
+  font-weight: normal;
+  margin-bottom: 15px;
+  padding: 10px;
+  line-height: 1.5;
+}
+
+.resources-body {
+  width: 1024px;
+  padding-top: 20px;
+}
+
+.width-text-align {
+  width: 100%;
+  text-align: center;
+}
+
+/*# sourceMappingURL=resources.css.map */

@@ -693,6 +693,7 @@ class Storage extends Base
 
         $fileLocale = $localDrive . $filename;
         //Debug::preOutput($localDrive);
+        //Debug::preOutput($remoteDrive);
         //Debug::preOutput($filename);
         //Debug::preOutput(filetype($fileLocale));
         //Debug::preOutput(file_exists($fileLocale));
@@ -702,11 +703,13 @@ class Storage extends Base
             }
 
             if (Inflect::lower($feature) === 'remote') {
+                $featuredUrl = sprintf('%1$s%2$s%3$s', $remoteDrive, $pathIndicator, $filename);
                 //check current platform is windows, then remove directory separator from file name
-                if (Inflect::contains($filename, '\\') === true) {
-                    $filename = str_replace('\\', '/', $filename);
+                if (Inflect::contains($featuredUrl, '\\') === true) {
+                    $featuredUrl = str_replace('\\', '/', $featuredUrl);
                 }
-                return sprintf('%1$s%2$s%3$s', $remoteDrive, $pathIndicator, $filename);
+
+                return $featuredUrl;
             }
         } else {
             throw new NotFoundException(sprintf('%s is not exists', self::localize($fileLocale)));

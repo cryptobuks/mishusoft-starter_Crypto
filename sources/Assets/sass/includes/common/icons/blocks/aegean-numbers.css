@@ -1,0 +1,39 @@
+@charset "UTF-8";
+.ms-icon-aegean-word-separator-line::after {
+  content: "𐄀";
+}
+.ms-icon-aegean-word-separator-dot::after {
+  content: "𐄁";
+}
+.ms-icon-aegean-check-mark::after {
+  content: "𐄂";
+}
+.ms-icon-aegean-number-one::after {
+  content: "𐄇";
+}
+.ms-icon-aegean-number-two::after {
+  content: "𐄈";
+}
+.ms-icon-aegean-number-three::after {
+  content: "𐄉";
+}
+.ms-icon-aegean-number-four::after {
+  content: "𐄊";
+}
+.ms-icon-aegean-number-five::after {
+  content: "𐄋";
+}
+.ms-icon-aegean-number-six::after {
+  content: "𐄌";
+}
+.ms-icon-aegean-number-seven::after {
+  content: "𐄍";
+}
+.ms-icon-aegean-number-eight::after {
+  content: "𐄎";
+}
+.ms-icon-aegean-number-nine::after {
+  content: "𐄏";
+}
+
+/*# sourceMappingURL=aegean-numbers.css.map */
