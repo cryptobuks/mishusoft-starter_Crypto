@@ -451,9 +451,10 @@ abstract class Base extends Singleton
     }
 
     /**
+     * @param string $directive
      * @return string
      */
-    public static function configDataDriveStoragesPath(string $directive): string
+    public static function configDataDirective(string $directive): string
     {
         return sprintf(
             '%1$s%2$s%4$s%3$s',
