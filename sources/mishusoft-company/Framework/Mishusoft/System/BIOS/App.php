@@ -8,6 +8,7 @@ use Mishusoft\Http;
 use Mishusoft\Registry;
 use Mishusoft\Storage;
 use Mishusoft\System;
+use Mishusoft\Utility\Debug;
 
 class App extends System\BIOS
 {
@@ -16,6 +17,7 @@ class App extends System\BIOS
      */
     public static function initialise():void
     {
+        Debug::preOutput('bios started');
         self::singleton(/**
          * @throws \Mishusoft\Exceptions\PermissionRequiredException
          * @throws \Mishusoft\Exceptions\JsonException
@@ -29,22 +31,18 @@ class App extends System\BIOS
          * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
          */
             function ($registry) {
-                //Debug::preOutput('before setting data');
-                //Debug::preOutput($registry);
                 $registry->browser  = Http\Browser::getInstance();
                 $registry->ip       = new Http\IP();
-                $registry->httpAPI  = Http\Request\HttpAPI::getInstance();
 
-                //Debug::preOutput('after setting data');
-                //Debug::preOutput($registry);
-
-
+                Debug::preOutput('preparing framework started');
                 // Communicate with framework.
                 System\Log::info('Start framework application.');
-                Framework::init($registry, function ($framework) use ($registry) {
+                Framework::init(function ($framework) use ($registry) {
+
                     // Instance system memory.
                     System\Log::info('Start system memory.');
                     System\Memory::enable($framework);
+
 
                     //Logger::write('Start system cache manager.');
                     //CacheManager::start();
@@ -55,8 +53,9 @@ class App extends System\BIOS
                     System\Log::info('Firewall check access validity of client.');
                     if ($firewall->isRequestAccepted() === true) {
                         if (Registry::Browser()->getRequestMethod() === 'OPTIONS') {
-                            $note = 'The HTTP OPTIONS method requests permitted to communicate';
+                            $note       = 'The HTTP OPTIONS method requests permitted to communicate';
                             $currentUrl = $registry::Browser()::getVisitedPage();
+
                             // add welcome note for http options method
                             Storage\Stream::json([
                                 'message' => [
@@ -74,21 +73,15 @@ class App extends System\BIOS
                             System\Log::info('Start system session.');
                             Http\Session::init();
 
-                            /*
-                             * Start special url handler [Api Url Service].
-                             */
+                            //Start special url handler [Api Url Service].
+                            $registry->httpAPI  = Http\Request\HttpAPI::getInstance();
                             Bootstrap\Communication\HttpAPI::run($registry::HttpAPI());
 
                             if (file_exists(Storage::applicationDirectivePath())) {
-                                //make this instance for future purpose in mpm load
-                                $registry->requestClassic       = Http\Request\Classic::getInstance();
-
-                                /*
-                                 * Start special url handler [Embed Mishusoft Application].
-                                 */
+                                //Start special url handler [Embed Mishusoft Application].
+                                $registry->requestClassic = Http\Request\Classic::getInstance();
                                 Bootstrap\Ema::run($registry::RequestQualifiedAPI());
                             }
-
 
                             //execute framework core
                             $framework->execute();
