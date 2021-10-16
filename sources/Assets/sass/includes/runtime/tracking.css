@@ -1,0 +1,148 @@
+/* src/assets/scss/lib.scss */
+/*colors*/
+/*ranges*/
+.table-view table {
+  padding: 0;
+}
+.table-view-data-body {
+  text-align: center;
+  padding: 90px 0;
+  overflow-y: scroll;
+  height: 200px;
+}
+.table-view-data-body tr {
+  cursor: pointer;
+}
+.table-view-data-body td:first-child {
+  width: 54px;
+}
+.table-view-data-body td:last-child {
+  width: 100px;
+}
+.table-view-table, .table-view-data-body {
+  width: 100%;
+  margin: 0;
+  display: block;
+}
+.table-view-preload {
+  width: 100%;
+  padding: 10px 5px;
+  display: block;
+}
+.table-view-preload-header {
+  border-style: none;
+  border-top: 1px solid #0777cc;
+  border-bottom: 1px solid #0777cc;
+}
+.table-view-preload-footer {
+  border-style: none;
+  border-top: 1px solid #0777cc;
+  border-bottom: 1px solid #0777cc;
+}
+.table-view-preload-header, .table-view-preload-footer {
+  width: 100%;
+  text-transform: capitalize;
+  display: inline-block;
+}
+.table-view-preload-header div, .table-view-preload-footer div, .table-view-preload .table-view-data-body td {
+  float: left;
+  padding: 2px 5px;
+  font-size: 13px;
+  text-align: center;
+}
+.table-view-preload-header div:nth-child(2), .table-view-preload-footer div:nth-child(2), .table-view-preload .table-view-data-body :nth-child(2) {
+  text-align: left !important;
+}
+.table-view-preload-header div:first-child, .table-view-preload-footer div:first-child {
+  width: 54px;
+}
+.table-view-preload-header div:last-child, .table-view-preload-footer div:last-child {
+  width: 100px;
+}
+
+.table-view-xs-data-body td:nth-child(2), .table-view-xs-preload-header div:nth-child(2), .table-view-xs-preload-footer div:nth-child(2) {
+  width: 90px !important;
+}
+.table-view-xs-data-body td:nth-child(3), .table-view-xs-preload-header div:nth-child(3), .table-view-xs-preload-footer div:nth-child(3) {
+  width: 120px !important;
+}
+.table-view-xs-data-body td:nth-child(14), .table-view-xs-preload-header div:nth-child(14), .table-view-xs-preload-footer div:nth-child(14) {
+  width: 70px !important;
+}
+.table-view-xs-data-body td:nth-child(4), .table-view-xs-preload-header div:nth-child(4), .table-view-xs-preload-footer div:nth-child(4), .table-view-xs-data-body td:nth-child(5), .table-view-xs-preload-header div:nth-child(5), .table-view-xs-preload-footer div:nth-child(5), .table-view-xs-data-body td:nth-child(6), .table-view-xs-preload-header div:nth-child(6), .table-view-xs-preload-footer div:nth-child(6), .table-view-xs-data-body td:nth-child(7), .table-view-xs-preload-header div:nth-child(7), .table-view-xs-preload-footer div:nth-child(7), .table-view-xs-data-body td:nth-child(8), .table-view-xs-preload-header div:nth-child(8), .table-view-xs-preload-footer div:nth-child(8), .table-view-xs-data-body td:nth-child(10), .table-view-xs-preload-header div:nth-child(10), .table-view-xs-preload-footer div:nth-child(10) {
+  width: 60px !important;
+}
+.table-view-xs-data-body td, .table-view-xs-preload-header div, .table-view-xs-preload-footer div {
+  width: 51px;
+}
+
+.table-view-sm-data-body td, .table-view-sm-preload-header div, .table-view-sm-preload-footer div {
+  width: 70px;
+}
+
+.table-view-sm-upd-data-body td, .table-view-sm-upd-preload-header div, .table-view-sm-upd-preload-footer div {
+  width: 84px;
+}
+
+.table-view-sm-md-data-body td, .table-view-sm-md-preload-header div, .table-view-sm-md-preload-footer div {
+  width: 106px;
+}
+
+.table-view-sm-xl-data-body td:nth-child(2), .table-view-sm-xl-preload-header div:nth-child(2), .table-view-sm-xl-preload-footer div:nth-child(2) {
+  width: 100px !important;
+}
+.table-view-sm-xl-data-body td:nth-child(4), .table-view-sm-xl-preload-header div:nth-child(4), .table-view-sm-xl-preload-footer div:nth-child(4), .table-view-sm-xl-data-body td:nth-child(6), .table-view-sm-xl-preload-header div:nth-child(6), .table-view-sm-xl-preload-footer div:nth-child(6), .table-view-sm-xl-data-body td:nth-child(7), .table-view-sm-xl-preload-header div:nth-child(7), .table-view-sm-xl-preload-footer div:nth-child(7) {
+  width: 80px !important;
+}
+.table-view-sm-xl-data-body td, .table-view-sm-xl-preload-header div, .table-view-sm-xl-preload-footer div {
+  width: 125px;
+}
+
+.table-view-md-data-body td, .table-view-md-preload-header div, .table-view-md-preload-footer div {
+  width: 120px;
+}
+
+.table-view-md-xl-data-body td, .table-view-md-xl-preload-header div, .table-view-md-xl-preload-footer div {
+  width: 142px;
+}
+
+.table-view-xl-data-body td, .table-view-xl-preload-header div, .table-view-xl-preload-footer div {
+  width: 140px;
+}
+
+.table-view-xl-md-data-body td, .table-view-xl-md-preload-header div, .table-view-xl-md-preload-footer div {
+  width: 168px;
+}
+
+.table-view-xl-xl-data-body td:nth-child(2), .table-view-xl-xl-preload-header div:nth-child(2), .table-view-xl-xl-preload-footer div:nth-child(2) {
+  width: 200px !important;
+}
+.table-view-xl-xl-data-body td, .table-view-xl-xl-preload-header div, .table-view-xl-xl-preload-footer div {
+  width: 650px;
+}
+
+.table-view-xl-xl-upd-data-body td:nth-child(2), .table-view-xl-xl-upd-preload-header div:nth-child(2), .table-view-xl-xl-upd-preload-footer div:nth-child(2) {
+  width: 200px !important;
+}
+.table-view-xl-xl-upd-data-body td:nth-child(3), .table-view-xl-xl-upd-preload-header div:nth-child(3), .table-view-xl-xl-upd-preload-footer div:nth-child(3) {
+  width: 100px !important;
+}
+.table-view-xl-xl-upd-data-body td, .table-view-xl-xl-upd-preload-header div, .table-view-xl-xl-upd-preload-footer div {
+  width: 545px;
+}
+
+.table-view-xl-xl-upd2-data-body td:nth-child(2), .table-view-xl-xl-upd2-preload-header div:nth-child(2), .table-view-xl-xl-upd2-preload-footer div:nth-child(2), .table-view-xl-xl-upd2-data-body td:nth-child(3), .table-view-xl-xl-upd2-preload-header div:nth-child(3), .table-view-xl-xl-upd2-preload-footer div:nth-child(3) {
+  width: 100px !important;
+}
+.table-view-xl-xl-upd2-data-body td:nth-child(5), .table-view-xl-xl-upd2-preload-header div:nth-child(5), .table-view-xl-xl-upd2-preload-footer div:nth-child(5) {
+  width: 125px !important;
+}
+.table-view-xl-xl-upd2-data-body td, .table-view-xl-xl-upd2-preload-header div, .table-view-xl-xl-upd2-preload-footer div {
+  width: 520px;
+}
+
+.table-view-xxl-data-body td, .table-view-xxl-preload-header div, .table-view-xxl-preload-footer div {
+  width: 845px;
+}
+
+/*# sourceMappingURL=tracking.css.map */
