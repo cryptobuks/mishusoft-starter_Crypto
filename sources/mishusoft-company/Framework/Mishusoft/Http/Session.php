@@ -4,24 +4,21 @@ namespace Mishusoft\Http;
 
 use Mishusoft\Exceptions\ErrorException;
 use Mishusoft\Exceptions\HttpException\HttpResponseException;
-use Mishusoft\Exceptions\JsonException;
-use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Storage;
 use Mishusoft\Storage\FileSystem;
 use Mishusoft\Utility\ArrayCollection;
 
+use const DEFAULT_APP_NAME;
+
 class Session
 {
     /**
      * @throws ErrorException
      * @throws HttpResponseException
-     * @throws InvalidArgumentException
-     * @throws JsonException
-     * @throws PermissionRequiredException
      * @throws RuntimeException
-     * @throws \JsonException
+     * @throws RuntimeException\NotFoundException
      */
     public static function init(): void
     {
@@ -33,19 +30,18 @@ class Session
         session_save_path(Storage::frameworkSessionsPath());
         session_cache_expire(600);
         session_start();
-        if ((self::get('auth') === true)
-            && self::get('RememberMe') === false) {
+        if (
+            (self::get('auth') === true)
+            && self::get('RememberMe') === false
+        ) {
             self::sessionTime();
         }
     }
 
     /**
      * @throws ErrorException
-     * @throws JsonException
-     * @throws \JsonException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
      * @throws RuntimeException
+     * @throws RuntimeException\NotFoundException
      */
     public static function validity(): void
     {
@@ -63,7 +59,7 @@ class Session
 
     public static function get($value)
     {
-        if (isset($_SESSION[$value])) {
+        if (array_key_exists($value, $_SESSION)) {
             return $_SESSION[$value];
         }
 
@@ -72,16 +68,13 @@ class Session
 
     /**
      * @throws ErrorException
-     * @throws JsonException
-     * @throws \JsonException
      * @throws HttpResponseException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
      * @throws RuntimeException
+     * @throws RuntimeException\NotFoundException
      */
     public static function sessionTime(): void
     {
-        if (!defined('SESSION_TIME')||!self::get('time')) {
+        if (!defined('SESSION_TIME') || !self::get('time')) {
             throw new HttpResponseException('Session Time is not set!!');
         }
 
@@ -102,8 +95,8 @@ class Session
      */
     public static function destroy(array|string $value = []): void
     {
-        if ($value) {
-            if (is_array($value) && count($value)>0) {
+        if (empty($value) === false) {
+            if (is_array($value) && count($value) > 0) {
                 foreach ($value as $iValue) {
                     if (isset($_SESSION[$iValue])) {
                         unset($_SESSION[$iValue]);
@@ -119,9 +112,9 @@ class Session
 
     /**
      * @param string $value
-     * @param $source
+     * @param string|int|array $source
      */
-    public static function set(string $value, $source): void
+    public static function set(string $value, string|int|array $source): void
     {
         if (!empty($value)) {
             $_SESSION[$value] = $source;
@@ -170,12 +163,10 @@ class Session
      * @param string $level
      * @return bool
      * @throws ErrorException
-     * @throws JsonException
-     * @throws \JsonException
      * @throws HttpResponseException
-     * @throws InvalidArgumentException
      * @throws PermissionRequiredException
      * @throws RuntimeException
+     * @throws RuntimeException\NotFoundException
      */
     public static function accessView(string $level): bool
     {
@@ -192,12 +183,10 @@ class Session
      * @param array $level
      * @param bool $noAdmin
      * @throws ErrorException
-     * @throws JsonException
-     * @throws \JsonException
      * @throws HttpResponseException
-     * @throws InvalidArgumentException
      * @throws PermissionRequiredException
      * @throws RuntimeException
+     * @throws RuntimeException\NotFoundException
      */
     public static function accessRestrict(array $level, bool $noAdmin = false): void
     {
@@ -207,13 +196,17 @@ class Session
 
         self::sessionTime();
 
-        if (($noAdmin === false)
-            && self::get('level') === 'admin') {
+        if (
+            ($noAdmin === false)
+            && self::get('level') === 'admin'
+        ) {
             return;
         }
 
-        if (count($level)
-            && in_array(self::get('level'), $level, true)) {
+        if (
+            count($level)
+            && in_array(self::get('level'), $level, true)
+        ) {
             return;
         }
 
@@ -225,12 +218,9 @@ class Session
      * @param bool $noAdmin
      * @return bool
      * @throws ErrorException
-     * @throws JsonException
-     * @throws \JsonException
      * @throws HttpResponseException
-     * @throws InvalidArgumentException
-     * @throws PermissionRequiredException
      * @throws RuntimeException
+     * @throws RuntimeException\NotFoundException
      */
     public static function accessViewRestrict(array $level, bool $noAdmin = false): bool
     {
@@ -240,13 +230,17 @@ class Session
 
         self::sessionTime();
 
-        if (($noAdmin === false)
-            && self::get('level') === 'admin') {
+        if (
+            ($noAdmin === false)
+            && self::get('level') === 'admin'
+        ) {
             return true;
         }
 
-        if (count($level)
-            && in_array(self::get('level'), $level, true)) {
+        if (
+            count($level)
+            && in_array(self::get('level'), $level, true)
+        ) {
             return true;
         }
 
