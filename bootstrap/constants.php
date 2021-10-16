@@ -50,40 +50,16 @@ const LOG_TYPE_RUNTIME = 'runtime';
  * Marker constant for Implement::decode(), used to flag stack state
  */
 const IMPLEMENT_JSON_SLICE = 1;
-
-/**
- * Marker constant for Implement::decode(), used to flag stack state
- */
 const IMPLEMENT_JSON_IN_STR = 2;
-
-/**
- * Marker constant for Implement::decode(), used to flag stack state
- */
 const IMPLEMENT_JSON_IN_ARR = 3;
-
-/**
- * Marker constant for Implement::decode(), used to flag stack state
- */
 const IMPLEMENT_JSON_IN_OBJ = 4;
-
-/**
- * Marker constant for Implement::decode(), used to flag stack state
- */
 const IMPLEMENT_JSON_IN_CMT = 5;
 
 /**
  * Behavior switch for Implement::decode()
  */
 const IMPLEMENT_JSON_LOOSE_TYPE = 16;
-
-/**
- * Behavior switch for Implement::decode()
- */
 const IMPLEMENT_JSON_SUPPRESS_ERRORS = 32;
-
-/**
- * Behavior switch for Implement::decode()
- */
 const IMPLEMENT_JSON_USE_TO_JSON = 64;
 
 
