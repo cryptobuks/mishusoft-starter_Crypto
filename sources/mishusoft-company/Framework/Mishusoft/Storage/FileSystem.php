@@ -5,6 +5,7 @@ namespace Mishusoft\Storage;
 use Closure;
 use Mishusoft\Exceptions\ErrorException;
 use Mishusoft\Exceptions\RuntimeException;
+use Mishusoft\Http\Runtime;
 use Mishusoft\Storage;
 use Mishusoft\System\Log;
 use Mishusoft\Utility\Implement;
@@ -572,6 +573,22 @@ class FileSystem
     public static function readAssets(string $path): bool|string
     {
         return self::read(Storage::assetsFullPath($path));
+    }
+
+    /**
+     * @param string $path
+     * @return bool|string
+     * @throws ErrorException
+     * @throws RuntimeException
+     * @throws RuntimeException\NotFoundException
+     */
+    public static function readAssetsWebFonts(string $path): bool|string
+    {
+        $content = self::read(Storage::assetsFullPath($path));
+        if (is_string($content)) {
+            $content = str_replace('../../webfonts', Runtime::hostUrl() . '/assets/webfonts', $content);
+        }
+        return $content;
     }
 
 
