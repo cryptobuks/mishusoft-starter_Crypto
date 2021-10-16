@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Mishusoft\Http;
 
@@ -14,8 +16,8 @@ class Request extends Singleton
     public const VERSION = "2.0.0";
 
     /*extracted item from url*/
-    protected array $arguments;
-    protected array $modules;
+    protected array $arguments = [];
+    protected array $modules = [];
     protected string $locale;
     protected string $controller;
     protected string $method;
@@ -43,7 +45,7 @@ class Request extends Singleton
      * @throws \Mishusoft\Exceptions\RuntimeException
      * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
      */
-    protected function setFallback():void
+    protected function setFallback(): void
     {
         /*
          * if [url] is not set, then set locale,
@@ -66,7 +68,7 @@ class Request extends Singleton
         }
     }
 
-    private function uriOrigin():string
+    private function uriOrigin(): string
     {
         if (Storage::applicationWebDirectivePath() !== '/') {
             return str_replace(Storage::applicationWebDirectivePath(), '', $_SERVER['REQUEST_URI']);
@@ -80,7 +82,7 @@ class Request extends Singleton
         return $this->locale;
     }
 
-    public function getModules():array
+    public function getModules(): array
     {
         return $this->modules;
     }
