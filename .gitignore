@@ -15,7 +15,6 @@
 /Framework/
 /dist-src/
 /node_modules/
-/sources/Assets/sass/[*].css
 /storages/app/assets
 /storages/app/media
 /storages/app/webfonts
