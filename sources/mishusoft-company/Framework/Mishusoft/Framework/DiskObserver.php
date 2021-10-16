@@ -5,6 +5,10 @@ namespace Mishusoft\Framework;
 use Mishusoft\Storage\FileSystem;
 use Mishusoft\Exceptions;
 
+use const GLOB_MARK;
+use const RUNTIME_ROOT_PATH;
+use const SYSTEM_EXCLUDE_DIRS;
+
 trait DiskObserver
 {
     /**
@@ -21,7 +25,7 @@ trait DiskObserver
     {
         //Check root directory is directory or not.
         if (is_dir($rootPath) === false) {
-            throw new Exceptions\RuntimeException\NotFoundException($rootPath.' not found.');
+            throw new Exceptions\RuntimeException\NotFoundException($rootPath . ' not found.');
         }
 
         //Check last string of root directory is backslash or not.
@@ -35,7 +39,7 @@ trait DiskObserver
         }
 
         //Browse every file and directory.
-        $files = glob($rootPath.'*', GLOB_MARK);
+        $files = glob($rootPath . '*', GLOB_MARK);
         foreach ($files as $file) {
             if (is_dir($file) === true) {
                 $this->checkFileSystem($file);
@@ -43,7 +47,7 @@ trait DiskObserver
                 $this->updateFileSystemDisk($file);
             }
         }
-    }//end checkFileSystem()
+    }
 
 
     /**
@@ -57,7 +61,9 @@ trait DiskObserver
             if (is_readable($this->listerFile()) === true) {
                 $this->updateDirectoryIndex($file);
             } else {
-                throw new Exceptions\PermissionRequiredException(sprintf('Unable to read %s', $this->listerFile()));
+                throw new Exceptions\PermissionRequiredException(
+                    sprintf('Unable to read %s', $this->listerFile())
+                );
             }
         } elseif (is_writable(dirname($this->listerFile(), 2)) === true) {
             if (is_dir(dirname($this->listerFile())) === false) {
@@ -77,7 +83,7 @@ trait DiskObserver
                 sprintf('Unable to write %s', dirname($this->listerFile(), 2))
             );
         }//end if
-    }//end updateFileSystemDisk()
+    }
 
 
     /**
@@ -89,13 +95,14 @@ trait DiskObserver
         if (is_writable($this->listerFile()) === true) {
             if (is_file($file) === true) {
                 $data  = file_get_contents($this->listerFile());
-                $data .= substr(sprintf('%o', fileperms($this->listerFile())), -4)."\t";
-                $data .= filetype(realpath($this->listerFile()))."\t$file\n";
+                $data .= substr(sprintf('%o', fileperms($this->listerFile())), -4) . "\t";
+                $data .= filetype(realpath($this->listerFile())) . "\t$file\n";
                 FileSystem::saveToFile($this->listerFile(), $data);
             }
         } else {
-            throw new Exceptions\PermissionRequiredException(sprintf('Unable to write %s', $this->listerFile()));
+            throw new Exceptions\PermissionRequiredException(
+                sprintf('Unable to write %s', $this->listerFile())
+            );
         }//end if
-    }//end updateDirectoryIndex()
-
+    }
 }
