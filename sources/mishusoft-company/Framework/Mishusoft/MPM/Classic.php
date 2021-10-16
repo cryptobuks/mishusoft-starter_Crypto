@@ -838,8 +838,6 @@ class Classic extends MPM
      * @param string $package
      * @return string
      * @throws Exceptions\ErrorException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
      */
     public static function getProperty(string $property, string $package = ''): string
