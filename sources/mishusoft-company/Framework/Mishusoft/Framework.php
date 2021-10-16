@@ -22,7 +22,7 @@ class Framework extends Base
 
     // Declare framework others constants.
     public const NAME        = 'Mishusoft';
-    public const FULL_NAME   = self::NAME.' ' . self::APP_TYPE;
+    public const FULL_NAME   = self::NAME . ' ' . self::APP_TYPE;
 
     // Declare framework authors info.
     public const AUTHOR_NAME          = 'Mr Al-Amin Ahmed Abir';
@@ -54,7 +54,6 @@ class Framework extends Base
      */
     public static function init(Closure $closure): static
     {
-        Debug::preOutput('framework started');
         $instance = new static();
 
         //configure and install framework
@@ -75,20 +74,17 @@ class Framework extends Base
         }
 
         return $instance;
-    }//end init()
+    }
 
     /**
      * @throws Exceptions\RuntimeException
      */
     public static function makeConfiguration(): void
     {
-        //Debug::preOutput(debug_backtrace());
         // Preparing to create framework config file.
         if (!is_readable(self::configFile())) {
-            Debug::preOutput('creating : '. self::configFile());
             //Debug::preOutput(self::defaultConfiguration());
             Storage\FileSystem\Yaml::emitFile(self::configFile(), self::defaultConfiguration());
-            Debug::preOutput('created : '. self::configFile());
         }
     }
 
@@ -99,7 +95,6 @@ class Framework extends Base
      */
     public static function makeInstall(): void
     {
-        Debug::preOutput('started framework installer : '. self::installFile());
         // Preparing to check framework install file.
         if (is_readable(self::installFile()) === true) {
             // Framework install file found and start reading.
@@ -107,7 +102,6 @@ class Framework extends Base
                 define('INSTALLED_HOST_NAME', System\Memory::data('framework')->host->name);
             }
         } else {
-            Debug::preOutput('creating : '. self::installFile());
             // Preparing to create framework install file.
             Storage\FileSystem\Yaml::emitFile(self::installFile(), [
                 'name'        => 'Framework Installer',
@@ -116,7 +110,7 @@ class Framework extends Base
                 'debug'       => false,
                 'date'        => System\Time::todayDateOnly(),
                 'host'        => [
-                    'url'  => Http::getHost().Storage::applicationWebDirectivePath(),
+                    'url'  => Http::getHost() . Storage::applicationWebDirectivePath(),
                     'name' => System\Network::getValOfSrv('HTTP_HOST'),
                     'ip'   => System\Network::getValOfSrv('SERVER_ADDR'),
                 ],
@@ -128,9 +122,8 @@ class Framework extends Base
                     ],
                 ],
             ]);
-            Debug::preOutput('created : '. self::installFile());
         }//end if
-    }//end install()
+    }
 
 
     /**
@@ -142,8 +135,10 @@ class Framework extends Base
      */
     public function execute(): void
     {
-        if (file_exists(Storage::applicationDirectivePath()) === false
-            || file_exists(MPM\Classic::configFile()) === false) {
+        if (
+            file_exists(Storage::applicationDirectivePath()) === false
+            || file_exists(MPM\Classic::configFile()) === false
+        ) {
             EmbeddedView::welcomeToFramework(static::FULL_NAME, [
                 'caption' => static::FULL_NAME,
                 'description' => static::description(),
@@ -154,7 +149,7 @@ class Framework extends Base
             MPM\Classic::load();
         }
         static::terminate();
-    }//end execute()
+    }
 
     /**
      * @throws Exceptions\RuntimeException
@@ -165,4 +160,4 @@ class Framework extends Base
     {
         System\Log::terminate();
     }
-}//end class
+}
