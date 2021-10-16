@@ -10,12 +10,9 @@ use Mishusoft\Utility\Inflect;
 class HttpAPI extends Request
 {
     /**
-     * @throws \JsonException
      * @throws \Mishusoft\Exceptions\ErrorException
-     * @throws \Mishusoft\Exceptions\JsonException
-     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
-     * @throws \Mishusoft\Exceptions\PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
      */
     public function __construct()
     {
