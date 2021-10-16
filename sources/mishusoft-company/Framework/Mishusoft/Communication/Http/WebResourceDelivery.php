@@ -249,7 +249,7 @@ class WebResourceDelivery
             }
 
             return Storage::storageFullPath(
-                strtolower(sprintf('%1$s%3$s%2$s', $directive, $path, DS))
+                sprintf('%1$s%3$s%2$s', $directive, $path, DS)
             );
         };
 
