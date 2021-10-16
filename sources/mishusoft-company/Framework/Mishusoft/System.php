@@ -194,7 +194,7 @@ class System extends Base
         // Packages configuration.
         $md5HostName            = md5(Registry::Browser()->getURLHostname());
         $encryptHostName        = Encryption::static(Registry::Browser()->getURLHostname());
-        self::$configDir        = self::configDataDriveStoragesPath('MPM');
+        self::$configDir        = self::configDataDirective('MPM');
         self::$configServerDir  = self::$configDir.$md5HostName.DS;
         if (empty($dirname) === false) {
             self::$setupFile = self::dFile(self::$configServerDir.$dirname.DS. $encryptHostName);
