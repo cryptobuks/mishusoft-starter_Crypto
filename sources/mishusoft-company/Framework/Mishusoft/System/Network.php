@@ -2,7 +2,7 @@
 
 namespace Mishusoft\System;
 
-use Mishusoft\Utility\Character;
+use Mishusoft\Utility\Inflect;
 
 class Network
 {
@@ -16,7 +16,11 @@ class Network
      */
     public static function requestHeader(string $argument):string
     {
-        return array_key_exists(Character::upper($argument), $_SERVER) ? $_SERVER[Character::upper($argument)] : 'Unavailable';
+        if (array_key_exists(Inflect::upper($argument), $_SERVER)) {
+            return $_SERVER[Inflect::upper($argument)];
+        }
+
+        return 'Unavailable';
     }
 
     /**
@@ -66,7 +70,11 @@ class Network
         'AUTH_TYPE',
         'PATH_INFO',
         'ORIG_PATH_INFO') ;*/
-        return array_key_exists(Character::upper($argument), $_SERVER) ? $_SERVER[Character::upper($argument)] : 'Unavailable';
+        if (array_key_exists(Inflect::upper($argument), $_SERVER)) {
+            return $_SERVER[Inflect::upper($argument)];
+        }
+
+        return 'Unavailable';
     }
 
     /**
@@ -83,7 +91,7 @@ class Network
      * @return bool true if any records are found; returns false if no records
      * were found or if an error occurred.
      */
-    public static function ChecksDNSRecords(string $host, string $type = 'MX'): bool
+    public static function checksDNSRecords(string $host, string $type = 'MX'): bool
     {
         if (checkdnsrr($host, $type)) {
             return true;
@@ -105,7 +113,7 @@ class Network
      * </p>
      * @return bool Returns <b>TRUE</b> if any records are found; returns <b>FALSE</b> if no records were found or if an error occurred.
      */
-    public static function dns_check_record(string $host, string $type = 'MX'): bool
+    public static function dnsCheckRecord(string $host, string $type = 'MX'): bool
     {
         if (dns_check_record($host, $type)) {
             return true;
@@ -125,9 +133,9 @@ class Network
      * mxhosts.
      * </p>
      */
-    public static function getmxrr(string $hostname, callable $callback)
+    public static function getmxrr(string $hostname, callable $callback): void
     {
-        if (getmxrr($hostname, $mx_details) && is_callable($callback)) {
+        if (getmxrr($hostname, $mx_details)) {
             $callback($mx_details);
         }
     }
@@ -138,9 +146,9 @@ class Network
      * @param $hostname
      * @param $callback
      */
-    public static function dns_get_mx(string $hostname, callable $callback)
+    public static function dnsGetMX(string $hostname, callable $callback): void
     {
-        if (dns_get_mx($hostname, $mx_details) && is_callable($callback)) {
+        if (dns_get_mx($hostname, $mx_details)) {
             $callback($mx_details);
         }
     }
@@ -352,8 +360,13 @@ class Network
      * </tr>
      * </table>
      */
-    public static function dns_get_record(string $hostname, string $type = DNS_ANY, array &$authns = null, array &$addtl = null, $raw = false): array
-    {
+    public static function dnsGetRecord(
+        string $hostname,
+        string $type = DNS_ANY,
+        array &$authns = null,
+        array &$addtl = null,
+        bool $raw = false
+    ): array {
         return dns_get_record($hostname, $type, $authns, $addtl, $raw);
     }
 
@@ -400,8 +413,13 @@ class Network
      * fwrite, fclose, and
      * feof). If the call fails, it will return false
      */
-    public static function fsockopen($hostname, $port = null, &$errno = null, &$errstr = null, $timeout = null): bool
-    {
+    public static function fSockOpen(
+        string $hostname,
+        $port = null,
+        &$errno = null,
+        &$errstr = null,
+        $timeout = null
+    ): bool {
         return fsockopen($hostname, $port, $errno, $errstr, $timeout);
     }
 
@@ -414,7 +432,7 @@ class Network
      * @return string the host name or the unmodified ip_address
      * on failure.
      */
-    public static function gethostbyaddr($ip_address): string
+    public static function getHostByAddress(string $ip_address): string
     {
         return gethostbyaddr($ip_address);
     }
@@ -429,7 +447,7 @@ class Network
      * @return string the IPv4 address or a string containing the unmodified
      * hostname on failure.
      */
-    public static function gethostbyname($hostname): string
+    public static function getHostByName(string $hostname): string
     {
         return gethostbyname($hostname);
     }
@@ -444,7 +462,7 @@ class Network
      * @return array an array of IPv4 addresses or false if
      * hostname could not be resolved.
      */
-    public static function gethostbynamel($hostname): array
+    public static function getHostByNameList(string $hostname): array
     {
         return gethostbynamel($hostname);
     }
@@ -455,7 +473,7 @@ class Network
      * @return string|false a string with the hostname on success, otherwise false is
      * returned.
      */
-    public static function gethostname()
+    public static function getHostName(): bool|string
     {
         return gethostname();
     }
@@ -476,9 +494,9 @@ class Network
      */
     public static function getServerNameVersion(): mixed
     {
-        if (false !== stripos(Character::lower($_SERVER["SERVER_SOFTWARE"]), "apache")) {
+        if (false !== stripos(Inflect::lower($_SERVER["SERVER_SOFTWARE"]), "apache")) {
             $server = str_replace('/', ' ', substr($_SERVER["SERVER_SOFTWARE"], 0, 20));
-        } elseif (false !== stripos(Character::lower($_SERVER["SERVER_SOFTWARE"]), "litespeed")) {
+        } elseif (false !== stripos(Inflect::lower($_SERVER["SERVER_SOFTWARE"]), "litespeed")) {
             $version = shell_exec('cat /usr/local/lsws/VERSION');
             $server = $_SERVER["SERVER_SOFTWARE"] . ' ' . $version;
         } else {
