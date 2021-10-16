@@ -14,17 +14,33 @@ class Registry extends Singleton
      * @var array
      */
     private array $data;
+    /**
+     * @var Http\Browser|mixed|null
+     */
+    private mixed $browser;
+    /**
+     * @var Http\IP|mixed|null
+     */
+    private mixed $ip;
+    /**
+     * @var Http\Request\HttpAPI|mixed|null
+     */
+    private mixed $httpAPI;
+    /**
+     * @var Http\Request\Classic|mixed|null
+     */
+    private mixed $requestClassic;
 
     public function __get(string $name)
     {
         return self::makeCall($this, $name);
-    }//end __get()
+    }
 
 
     public function __set(string $name, $value)
     {
         $this->data[$name] = $value;
-    }//end __set()
+    }
 
     public function __isset(string $name)
     {
@@ -49,7 +65,7 @@ class Registry extends Singleton
         return self::makeCall(self::getInstance(), $name, $arguments);
     }
 
-    private static function removePrefix(string $name):string
+    private static function removePrefix(string $name): string
     {
         if (Inflect::startsWith($name, 'get')) {
             return lcfirst(substr($name, 3));
@@ -80,5 +96,5 @@ class Registry extends Singleton
 
     public function __destruct()
     {
-    }//end __destruct()
-}//end class
+    }
+}
