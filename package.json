@@ -7,6 +7,7 @@
     "composer:update": "php ./requirements/composer.phar install",
     "build": "webpack",
     "build:prod": "webpack --env target=production",
+    "debug": "node --trace-deprecation node_modules/webpack/bin/webpack.js",
     "watch": "webpack -w && npm run update:rv",
     "start": "php -S localhost:8080 router.php",
     "start:server.dev": "php -S localhost:8080 router.php",
