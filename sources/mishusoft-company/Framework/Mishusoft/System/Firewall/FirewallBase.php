@@ -12,6 +12,7 @@ use Mishusoft\Registry;
 use Mishusoft\Storage\FileSystem;
 use Mishusoft\System\Log;
 use Mishusoft\System\Time;
+use Mishusoft\Utility\Debug;
 
 abstract class FirewallBase extends Base
 {
@@ -96,8 +97,11 @@ abstract class FirewallBase extends Base
      */
     protected function loadConfig(): void
     {
+
         //Create directory log and config if not exists.
-        FileSystem::directoryCreate([self::logDirective(self::logDirectory()),dirname(self::configFile())]);
+        FileSystem::makeDirectory(dirname(self::configFile()));
+        FileSystem::makeDirectory(self::logDirective(self::logDirectory()));
+
         //Check firewall configuration file existent.
         FileSystem::check(self::configFile(), function ($filename) {
             FileSystem\Yaml::emitFile($filename, []);
@@ -194,7 +198,7 @@ abstract class FirewallBase extends Base
         }//end if
 
         Log::info(sprintf('End checking read permission of %s.', self::configFile()));
-    }//end loadConfig()
+    }
 
 
     /**
@@ -215,11 +219,11 @@ abstract class FirewallBase extends Base
 
         Log::notice(sprintf('Write firewall configuration into %s.', self::configFile()));
         FileSystem\Yaml::emitFile(self::configFile(), $config);
-    }//end createConfiguration()
+    }
 
 
     /**
-     * @return array[]
+     * @return array
      * @throws HttpResponseException
      * @throws AddressNotFoundException
      * @throws InvalidDatabaseException
@@ -238,7 +242,7 @@ abstract class FirewallBase extends Base
             'component' => $this->actionComponent,
             'visit-time' => Time::today(),
         ];
-    }//end getNewVisitorTimeBased()
+    }
 
 
     /**
@@ -250,7 +254,7 @@ abstract class FirewallBase extends Base
     protected function getNewVisitorTimeBased(): array
     {
         return [Time::today() => $this->getNewVisitor(),];
-    }//end getNewVisitorTimeBased()
+    }
 
 
     /**
@@ -262,7 +266,7 @@ abstract class FirewallBase extends Base
     protected function getNewVisitorBrowserBased(): array
     {
         return [Registry::Browser()->getBrowserNameFull() => $this->getNewVisitorTimeBased()];
-    }//end getNewVisitorBrowserBased()
+    }
 
 
     /**
@@ -274,7 +278,7 @@ abstract class FirewallBase extends Base
     protected function getNewVisitorIPBased(): array
     {
         return [IP::get() => $this->getNewVisitorBrowserBased()];
-    }//end getNewVisitorIPBased()
+    }
 
 
 
@@ -291,10 +295,6 @@ abstract class FirewallBase extends Base
         $logDataFile = self::logFile($this->actionStatus);
         $currentVisitor = $this->getNewVisitorIPBased();
         $browserNameFull = Registry::Browser()->getBrowserNameFull();
-
-//        Debug::preOutput($logDataFile);
-//        Debug::preOutput(dirname($logDataFile));
-//        FileSystem::makeDirectory(dirname($logDataFile));
 
         if (is_writable(dirname($logDataFile)) === true) {
             //check point for log file content length
@@ -336,7 +336,7 @@ abstract class FirewallBase extends Base
                 sprintf('Unable to write %s', dirname($logDataFile))
             );
         }//end if
-    }//end storeFirewallLogs()
+    }
 
 
 }
