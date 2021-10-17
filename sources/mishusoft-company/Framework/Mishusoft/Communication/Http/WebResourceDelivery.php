@@ -479,14 +479,14 @@ class WebResourceDelivery
                     ['type' => 'application/javascript', 'text' => 0,],
                     [
                         'rel' => 'prefetch', 'as' => 'script', 'type' => 'module',
-                        'src' => Storage::assetsFullPath('js/readystate.js', 'remote'),
+                        'src' => Storage::assetsFullPath('js/loader.js', 'remote'),
                     ],
                 ],
             ]
         );
 
         Ui::display();
-    }//end webExplore()
+    }
 
 
     /**
