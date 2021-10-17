@@ -1,30 +1,30 @@
-document.addEventListener('readystatechange', () => {
-    // ready state = 'loading'
-    // ready state = 'interactive'
-    // ready state = 'complete'
-    //console.log(`readystate: ${document.readyState}\n`)
-
-    if (document.readyState === 'interactive') {
-        //console.info(document.body.getAttribute('theme'));
-        //console.log('Preparing css load...')
-
-    }
-
-
-    //hide app loader on document completed
-    if (document.readyState === 'complete') {
-        //initialize app loader image & application
-        import('./common/dom').then(function (t) {
-            let captureElement = t.captureElement;
-            if (captureElement('#app-loader')) {
-                captureElement('#app-loader').setAttribute('style', 'display:none;');
-            }
-
-        }).catch(function (err) {
-            console.log(err)
-        })
-    }
-});
+// document.addEventListener('readystatechange', () => {
+//     // ready state = 'loading'
+//     // ready state = 'interactive'
+//     // ready state = 'complete'
+//     //console.log(`readystate: ${document.readyState}\n`)
+//
+//     if (document.readyState === 'interactive') {
+//         //console.info(document.body.getAttribute('theme'));
+//         //console.log('Preparing css load...')
+//
+//     }
+//
+//
+//     //hide app loader on document completed
+//     if (document.readyState === 'complete') {
+//         //initialize app loader image & application
+//         import('./common/dom').then(function (t) {
+//             let captureElement = t.captureElement;
+//             if (captureElement('#app-loader')) {
+//                 captureElement('#app-loader').setAttribute('style', 'display:none;');
+//             }
+//
+//         }).catch(function (err) {
+//             console.log(err)
+//         })
+//     }
+// });
 
 //service worker manager
 import('./db/app').then(function (db) {
