@@ -40,7 +40,7 @@ class WebResourceDelivery
         private string $defaultDirectoryIndex = DEFAULT_CONTROLLER
     ) {
         $this->defaultApplicationIcon = System\Memory::data()->preset->logo;
-    }//end __construct()
+    }
 
     /**
      * @param array $request
@@ -192,7 +192,7 @@ class WebResourceDelivery
         } else {
             throw new Exceptions\RuntimeException\NotFoundException('The web data center is not set!!');
         }//end if
-    }//end shared()
+    }
 
 
     /**
@@ -215,7 +215,7 @@ class WebResourceDelivery
         } else {
             throw new Exceptions\RuntimeException\NotFoundException('The web data center is not set!!');
         }
-    }//end browse()
+    }
 
 
     /**
@@ -507,28 +507,31 @@ class WebResourceDelivery
                 Ui::element(Ui::element(Ui::element($list, 'td', $tdStyle), 'a', [
                     'style' => Ui::HTML_HREF_STYLE . 'color: #000;', 'href' => $parentURL . basename($file),
                 ]), 'img', [
-                    'rel'   => 'preload',
-                    'style' => $imageStyle,
-                    'alt'   => basename($file),
-                    'src'   => $parentURL . basename($file),
+                    'rel'       => 'preload',
+                    'loading'   => 'lazy',
+                    'style'     => $imageStyle,
+                    'alt'       => basename($file),
+                    'src'       => $parentURL . basename($file),
                 ]);
             } elseif (Storage\FileSystem::fileType($file) === 'dir') {
                 Ui::element(Ui::element(Ui::element($list, 'td', $tdStyle), 'a', [
                     'style' => Ui::HTML_HREF_STYLE . 'color: #000;', 'href' => $parentURL . basename($file),
                 ]), 'img', [
-                    'rel'   => 'preload',
-                    'style' => $imageStyle,
-                    'alt'   => basename($file),
-                    'src'   => Storage::toDataUri('media', 'images/icons/folder.png', 'remote'),
+                    'rel'       => 'preload',
+                    'loading'   => 'lazy',
+                    'style'     => $imageStyle,
+                    'alt'       => basename($file),
+                    'src'       => Storage::toDataUri('media', 'images/icons/folder.png', 'remote'),
                 ]);
             } elseif (Storage\FileSystem::fileType($file) === 'file') {
                 Ui::element(Ui::element(Ui::element($list, 'td', $tdStyle), 'a', [
                     'style' => Ui::HTML_HREF_STYLE . 'color: #000;', 'href' => $parentURL . basename($file),
                 ]), 'img', [
-                    'rel'   => 'preload',
-                    'style' => $imageStyle,
-                    'alt'   => basename($file),
-                    'src'   => Storage::toDataUri('media', 'images/icons/code-file.png', 'remote'),
+                    'rel'       => 'preload',
+                    'loading'   => 'lazy',
+                    'style'     => $imageStyle,
+                    'alt'       => basename($file),
+                    'src'       => Storage::toDataUri('media', 'images/icons/code-file.png', 'remote'),
                 ]);
             } else {
                 Ui::text(Ui::element(Ui::element($list, 'td', $tdStyle), 'a', [
@@ -555,7 +558,7 @@ class WebResourceDelivery
                 System\Time::todayFullBeautify(filemtime($file))
             );
         }//end foreach
-    }//end viewDirOrFileList()
+    }
 
     /**
      * @throws Exceptions\ErrorException
@@ -566,13 +569,14 @@ class WebResourceDelivery
     {
         /*image properties*/
         $imageProperties = [
-            'rel'   => 'preload',
-            'src'   => Storage::mediaFullPath('logos/mishusoft-logo-lite.webp', 'remote'),
-            'alt'   => 'mishusoft',
-            'class' => 'box-shadow1',
-            'style' => 'margin: 5px;text-align: center;width: 20px;height: 20px;float: left;border-radius: 50%;transition: all .15s ease;',
-            'width' => '20px',
-            'height' => '20px',
+            'rel'       => 'preload',
+            'loading'   => 'lazy',
+            'src'       => Storage::mediaFullPath('logos/mishusoft-logo-lite.webp', 'remote'),
+            'alt'       => 'mishusoft',
+            'class'     => 'box-shadow1',
+            'style'     => 'margin: 5px;text-align: center;width: 20px;height: 20px;float: left;border-radius: 50%;transition: all .15s ease;',
+            'width'     => '20px',
+            'height'    => '20px',
         ];
         // Add breadcrumb.
         $breadcrumb = Ui::element(
@@ -599,10 +603,13 @@ class WebResourceDelivery
             Ui::text($breadcrumb, '/');
             Ui::element($breadcrumb, 'a', [
                 'href' => Runtime::link(
-                    implode('/', Utility\ArrayCollection::getValues(array_search($url, $urlList), $urlList))
+                    implode('/', Utility\ArrayCollection::getValues(
+                        array_search($url, $urlList),
+                        $urlList
+                    ))
                 ),
                 'text' => $url,
             ]);
         }
-    }//end breadcrumb()
-}//end class
+    }
+}
