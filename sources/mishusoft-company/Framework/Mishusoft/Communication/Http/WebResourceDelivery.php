@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Mishusoft\Communication\Http;
 
@@ -91,7 +93,7 @@ class WebResourceDelivery
     public function media(array $request): void
     {
         $this->browse($request);
-    }//end media()
+    }
 
 
     /**
@@ -253,7 +255,7 @@ class WebResourceDelivery
             );
         };
 
-        if ($arguments  !==[]) {
+        if ($arguments  !== []) {
             $requestedFile = $resolveRequestedFile(
                 Utility\Inflect::lower($controller),
                 Utility\Inflect::lower(sprintf('%1$s%2$s', $method, DS)) . implode(DS, $arguments)
@@ -271,7 +273,7 @@ class WebResourceDelivery
         } else {
             throw new Exceptions\RuntimeException\NotFoundException('The web data center is not set!!');
         }
-    }//end webExploreLoader()
+    }
 
 
     /**
