@@ -585,11 +585,11 @@ class Ui
 
 
     /**
-     * @param DOMElement $templateBody
+     * @param DOMElement|DOMNode $templateBody
      * @param string $year
      * @param string $company
      */
-    public static function addDefaultSignature(DOMElement $templateBody, string $year, string $company): void
+    public static function addDefaultSignature(DOMElement|DOMNode $templateBody, string $year, string $company): void
     {
         // Add system signature.
         self::text(
