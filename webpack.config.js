@@ -79,9 +79,9 @@ const commonConfig = {
             }, { /*copy social logos from compiled directory*/
                 from: path.join(__dirname, './storages/app/media/images/icons/social-media/'),
                 to: path.join(__dirname, './storages/framework/views/images/icons/social-media/')
-            }, { /*copy webfonts file from sources directory*/
-                from: path.join(__dirname, './storages/app/webfonts/SairaStencilOne-Regular.*'),
-                to: path.join(__dirname, './storages/framework/views/webfonts/SairaStencilOne-Regular.[contenthash][ext]')
+            // }, { /*copy webfonts file from sources directory*/ //problem in windows
+            //     from: path.join(__dirname, './storages/app/webfonts/SairaStencilOne-Regular.**.(ttf|svg|eot|woff2?)'),
+            //     to: path.join(__dirname, './storages/framework/views/webfonts/SairaStencilOne-Regular.[contenthash][ext]')
             },  { /*copy core css from compiled directory*/
                 from: path.join(__dirname, './storages/app/assets/css/embedded.css'),
                 to: path.join(__dirname, './storages/framework/views/css/embedded.css')
