@@ -16,7 +16,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts')
 const FontPreloadPlugin = require("webpack-font-preload-plugin");
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const {extendDefaultPlugins} = require("svgo");
 
 
 const commonConfig = {
@@ -38,7 +37,7 @@ const commonConfig = {
                     // Compiles Sass to CSS.
                     'sass-loader'
                 ]
-            },
+        },
             {
                 //compile images
                 test: /\.(png|jpe?g|gif)$/, /* test: /\.(svg|png|jpg|gif)$/, */
@@ -46,7 +45,7 @@ const commonConfig = {
                 generator: {
                     filename: 'images/[name][ext][query]'
                 },
-            },
+        },
             {
                 //compile webfonts
                 test: /\.(ttf|otf|eot|svg|woff|woff2)$/,
@@ -54,7 +53,7 @@ const commonConfig = {
                 generator: {
                     filename: '../webfonts/[name].[hash][ext][query]'
                 },
-            },
+        },
         ]
     },
     resolve: {
@@ -77,7 +76,13 @@ const commonConfig = {
             }, { /*copy media from sources directory*/
                 from: path.join(__dirname, './sources/Assets/media/'),
                 to: path.join(__dirname, './storages/app/media/')
-            }, { /*copy core css from compiled directory*/
+            }, { /*copy social logos from compiled directory*/
+                from: path.join(__dirname, './storages/app/media/images/icons/social-media/'),
+                to: path.join(__dirname, './storages/framework/views/images/icons/social-media/')
+            }, { /*copy webfonts file from sources directory*/
+                from: path.join(__dirname, './storages/app/webfonts/SairaStencilOne-Regular.*'),
+                to: path.join(__dirname, './storages/framework/views/webfonts/SairaStencilOne-Regular.*')
+            },  { /*copy core css from compiled directory*/
                 from: path.join(__dirname, './storages/app/assets/css/embedded.css'),
                 to: path.join(__dirname, './storages/framework/views/css/embedded.css')
             }, { /*copy core css from compiled directory*/
@@ -96,8 +101,8 @@ const commonConfig = {
                 from: path.join(__dirname, './storages/app/media/logos/'),
                 to: path.join(__dirname, './storages/framework/views/logos/')
             }, { /*copy social logos from compiled directory*/
-                from: path.join(__dirname, './storages/app/media/images/icons/social-media/'),
-                to: path.join(__dirname, './storages/framework/views/images/icons/social-media/')
+                from: path.join(__dirname, './storages/app/assets/js/loader.js'),
+                to: path.join(__dirname, './storages/framework/views/js/loader.js')
             },]
         }),
         new ImageMinimizerPlugin({
@@ -122,10 +127,6 @@ const commonFileConfig = {
         // Runtime libraries
         webfonts: './Assets/sass/webfonts.scss',
         colors: './Assets/sass/includes/common/colors.scss',
-
-
-        //Stylesheet for application loader
-        loader: './Assets/sass/loader.scss',
 
 
         // Stylesheet for embedded application support
@@ -161,6 +162,9 @@ const commonFileConfig = {
         framework: ['./Assets/typescripts/app.ts', './Assets/sass/app.scss',],
         framework_v3: ['./Assets/typescripts/app-v3.ts', './Assets/sass/app-v3.scss'],
         framework_v4: ['./Assets/typescripts/app-v4.ts', './Assets/sass/app-v4.scss'],
+
+        //application loader
+        loader: ['./Assets/typescripts/loader.ts','./Assets/sass/loader.scss'],
     },
     output: {
         path: path.join(__dirname, './storages/app/assets'),
@@ -191,7 +195,7 @@ const prodConfig = {
                     }
                 }],
                 exclude: /node_modules/
-            }
+        }
         ]
     },
     optimization: {
@@ -223,7 +227,7 @@ const testConfig = {
                     }
                 }],
                 exclude: /node_modules/
-            }
+        }
         ]
     }
 }
