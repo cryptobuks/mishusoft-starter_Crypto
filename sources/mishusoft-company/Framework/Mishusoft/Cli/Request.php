@@ -37,14 +37,17 @@ class Request
         }
     }
 
-    private static function cliArguments():array
+    /**
+     * @return array
+     */
+    private static function cliArguments(): array
     {
         $argv = $_SERVER['argv'];
         if (array_key_exists('0', $argv)) {
-            if ($argv[0] ==='cli') {
+            if ($argv[0] === 'cli') {
                 unset($argv[0]);
             } else {
-                echo 'Error: Environment is not cli. This section for cli only'.LB;
+                echo 'Error: Environment is not cli. This section for cli only' . LB;
                 exit();
             }
         }
