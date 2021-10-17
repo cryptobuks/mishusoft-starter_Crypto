@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * The loader of global constants for mishusoft application
+ *
+ * Php version 7.4
+ *
+ * @category Loader
+ * @package  Mishusoft_Framework
+ * @author   Al-Amin Ahamed <alamin.rohita@hotmail.com>
+ * @license  MIT https://opensource.org/licenses/MIT
+ * @link     https://mishusoft.com
+ */
+
 // Start of core constants declarations.
 const DS = DIRECTORY_SEPARATOR;
 const PHP_CODE_SYNTAX = 'PHP_8.*';
@@ -48,7 +60,7 @@ const LOG_TYPE_RUNTIME = 'runtime';
 /**
  * Marker constant for Implement::decode(), used to flag stack state
  */
-const IMPLEMENT_JSON_SLICE = 1;
+const IMPLEMENT_JSON_SLICE  = 1;
 const IMPLEMENT_JSON_IN_STR = 2;
 const IMPLEMENT_JSON_IN_ARR = 3;
 const IMPLEMENT_JSON_IN_OBJ = 4;
@@ -57,18 +69,24 @@ const IMPLEMENT_JSON_IN_CMT = 5;
 /**
  * Behavior switch for Implement::decode()
  */
-const IMPLEMENT_JSON_LOOSE_TYPE = 16;
+const IMPLEMENT_JSON_LOOSE_TYPE      = 16;
 const IMPLEMENT_JSON_SUPPRESS_ERRORS = 32;
-const IMPLEMENT_JSON_USE_TO_JSON = 64;
+const IMPLEMENT_JSON_USE_TO_JSON     = 64;
 
 
 
 
 define('CURRENT_YEAR', date('Y'));
 define('RUNTIME_ROOT_PATH', realpath(dirname(__DIR__)) . DS);
-define('RUNTIME_CACHE_ROOT_PATH', RUNTIME_ROOT_PATH . 'tmp' . DS . md5($_SERVER['PHP_SELF']) . DS);
+define(
+    'RUNTIME_CACHE_ROOT_PATH',
+    RUNTIME_ROOT_PATH . 'tmp' . DS . md5($_SERVER['PHP_SELF']) . DS
+);
+define(
+    'RUNTIME_SOURCES_PATH',
+    RUNTIME_ROOT_PATH . 'sources' . DS . 'mishusoft-company' . DS
+);
 
-const RUNTIME_SOURCES_PATH = RUNTIME_ROOT_PATH . 'sources' . DS . 'mishusoft-company' . DS;
 const SRC_FRAMEWORK_PATH = RUNTIME_SOURCES_PATH . 'Framework' . DS;
 const FRAMEWORK_PATH = RUNTIME_ROOT_PATH . 'Framework' . DS;
 const APPLICATION_SYSTEM_TEMP_PATH = RUNTIME_ROOT_PATH . 'tmp' . DS;
@@ -84,11 +102,7 @@ if (array_key_exists('USER', $_SERVER)) {
 
 
 
-//
-//define('RUNTIME_SYSTEM_TEMP_PATH', RUNTIME_ROOT_PATH . 'tmp' . DS);
-//
-//define('RUNTIME_CACHE_ROOT_PATH', RUNTIME_ROOT_PATH . 'tmp/' . md5($_SERVER['PHP_SELF']) . DS);
-//
+
 if (array_key_exists('HTTP_HOST', $_SERVER)) {
     define('INSTALLED_HOST_NAME', $_SERVER['HTTP_HOST']);
 } else {
@@ -100,38 +114,3 @@ if (array_key_exists('SERVER_NAME', $_SERVER)) {
 } else {
     define('APPLICATION_SERVER_NAME', 'localhost');
 }
-
-//
-//// Create root directory for current server.
-//if ((file_exists(RUNTIME_CACHE_ROOT_PATH) === false)
-//    && mkdir(RUNTIME_CACHE_ROOT_PATH, 0777, true) === false
-//    && is_dir(RUNTIME_CACHE_ROOT_PATH) === false
-//) {
-//    throw new RuntimeException(sprintf('Directory "%s" was not created', RUNTIME_CACHE_ROOT_PATH));
-//}
-//
-//
-//define('RUNTIME_CACHE_TEMP_PATH', RUNTIME_CACHE_ROOT_PATH . 'caches' . DS);
-//define('RUNTIME_REGISTRIES_PATH', RUNTIME_CACHE_ROOT_PATH . 'configs' . DS);
-//define('RUNTIME_LOGS_PATH', RUNTIME_CACHE_ROOT_PATH . 'logs' . DS);
-//define('RUNTIME_CACHE_TEMPLATES_PATH', RUNTIME_CACHE_ROOT_PATH . 'templates' . DS);
-
-
-//
-//
-//// System default path declare.
-//define('APPLICATION_SYSTEM_PATH', RUNTIME_ROOT_PATH . 'Mishusoft' . DS);
-//define('APPLICATION_FRAMEWORK_PATH', RUNTIME_SYSTEM_PATH . 'Framework' . DS);
-//define('APPLICATION_PACKAGES_PATH', RUNTIME_SYSTEM_PATH . 'Packages' . DS);
-//define('APPLICATION_THEMES_PATH', RUNTIME_SYSTEM_PATH . 'Themes' . DS);
-//define('APPLICATION_WIDGETS_PATH', RUNTIME_SYSTEM_PATH . 'Widgets' . DS);
-//define('APPLICATION_PAGINATION_PATH', RUNTIME_SYSTEM_PATH . 'Views/Pagination' . DS);
-//
-//define('APPLICATION_STORAGE_PATH', RUNTIME_ROOT_PATH . 'Storages' . DS);
-//define('APPLICATION_DATABASES_PATH', APPLICATION_STORAGE_PATH . '0/databases' . DS);
-//define('APPLICATION_ASSETS_MEDIA_PATH', APPLICATION_STORAGE_PATH . '0/assets' . DS);
-//define('APPLICATION_PRIVATE_MEDIA_PATH', APPLICATION_STORAGE_PATH . '0/media' . DS);
-//define('APPLICATION_PRIVATE_LOCALIZATIONS_PATH', APPLICATION_STORAGE_PATH . '0/localization' . DS);
-//define('APPLICATION_UPLOADS_MEDIA_PATH', APPLICATION_STORAGE_PATH . '0/media/uploads' . DS);
-//
-//define('APPLICATION_PACKAGES_PATH', RUNTIME_ROOT_PATH . 'app' . DS);
