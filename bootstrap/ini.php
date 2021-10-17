@@ -1,6 +1,17 @@
 <?php
 
-// Start enable-mode.
+/**
+ * The loader of ini configuration
+ *
+ * Php version 7.4
+ *
+ * @category Loader
+ * @package  Mishusoft_Framework
+ * @author   Al-Amin Ahamed <alamin.rohita@hotmail.com>
+ * @license  MIT https://opensource.org/licenses/MIT
+ * @link     https://mishusoft.com
+ */
+
 // Enable display error mode.
 error_reporting(E_ALL);
 // ini_set('display_errors', '0');
