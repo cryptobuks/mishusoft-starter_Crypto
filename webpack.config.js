@@ -16,6 +16,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts')
 const FontPreloadPlugin = require("webpack-font-preload-plugin");
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const MyExampleWebpackPlugin = require("./sources/Utils/copy-after-built-webpack-plugin");
+const HelloWorldPlugin = require("./sources/Utils/hello-world-webpack-plugin");
 
 
 const commonConfig = {
@@ -120,7 +122,7 @@ const commonConfig = {
                     return Promise.resolve(path.join(__dirname, './storages/app/media'));
                 },
             },  { /*copy stylesheet files from compiled assets directory*/
-                from: path.join(__dirname, './storages/app/assets/css/**'),
+                from: path.join(__dirname, './storages/app/assets/css/'),
                 to({ context, absoluteFilename }){
                     const frameworkStylesheetPath = path.join(__dirname, './storages/framework/views/css');
                     if (/(embedded|resources|webfonts|colors|loader)/.test(absoluteFilename)) {
@@ -137,6 +139,8 @@ const commonConfig = {
                 to: path.join(__dirname, './storages/framework/views/js/loader.js')
             },]
         }),
+        new MyExampleWebpackPlugin(),
+        new HelloWorldPlugin({ options: true })
     ],
 }
 
