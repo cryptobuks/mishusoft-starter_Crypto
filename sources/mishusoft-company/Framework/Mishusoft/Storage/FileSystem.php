@@ -318,8 +318,6 @@ class FileSystem
     }//end createDirectory()
 
 
-
-
     /**
      * @throws RuntimeException
      */
@@ -491,7 +489,7 @@ class FileSystem
 
 
     /**
-     * @param  string $filename
+     * @param string $filename
      * @return string
      */
     public static function fileType(string $filename): string
@@ -501,7 +499,7 @@ class FileSystem
 
 
     /**
-     * @param  string $filename
+     * @param string $filename
      * @return string
      */
     public static function fileOriginalName(string $filename): string
@@ -538,15 +536,14 @@ class FileSystem
         return pathinfo($path, PATHINFO_EXTENSION);
     }//end fileExt()
 
-    public static function lastModifiedAt(string $path):int
+    public static function lastModifiedAt(string $path): int
     {
         return filemtime($path);
     }
 
 
-
     /**
-     * @param  string $filename
+     * @param string $filename
      * @return string
      */
     public static function fileSize(string $filename): string
@@ -577,16 +574,22 @@ class FileSystem
 
     /**
      * @param string $path
+     * @param string $controller
      * @return bool|string
      * @throws ErrorException
      * @throws RuntimeException
      * @throws RuntimeException\NotFoundException
      */
-    public static function readAssetsWebFonts(string $path): bool|string
+    public static function readAssetsWebFonts(string $path, string $controller): bool|string
     {
         $content = self::read(Storage::assetsFullPath($path));
+        $route = ($controller === 'framework') ? 'framework' : 'assets';
         if (is_string($content)) {
-            $content = str_replace('../../webfonts', Runtime::hostUrl() . '/assets/webfonts', $content);
+            $content = str_replace(
+                '../../webfonts',
+                sprintf('%1$s/%2$s/webfonts', Runtime::hostUrl(), $route),
+                $content
+            );
         }
         return $content;
     }
