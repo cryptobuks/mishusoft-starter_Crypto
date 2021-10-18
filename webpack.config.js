@@ -70,36 +70,57 @@ const commonConfig = {
         }),
         new FontPreloadPlugin(),
         new CopyWebpackPlugin({
-            patterns: [{ /*copy webfonts file from sources directory*/
-                from: path.join(__dirname, './storages/app/webfonts/'),
-                to: path.join(__dirname, './storages/app/assets/webfonts/')
-            }, { /*copy media from sources directory*/
-                from: path.join(__dirname, './sources/Assets/media/'),
-                to: path.join(__dirname, './storages/app/media/')
-            }, { /*copy social logos from compiled directory*/
-                from: path.join(__dirname, './storages/app/media/images/icons/social-media/'),
-                to: path.join(__dirname, './storages/framework/views/images/icons/social-media/')
-            // }, { /*copy webfonts file from sources directory*/ //problem in windows
-            //     from: path.join(__dirname, './storages/app/webfonts/SairaStencilOne-Regular.**.(ttf|svg|eot|woff2?)'),
-            //     to: path.join(__dirname, './storages/framework/views/webfonts/SairaStencilOne-Regular.[contenthash][ext]')
-            },  { /*copy core css from compiled directory*/
-                from: path.join(__dirname, './storages/app/assets/css/embedded.css'),
-                to: path.join(__dirname, './storages/framework/views/css/embedded.css')
-            }, { /*copy core css from compiled directory*/
-                from: path.join(__dirname, './storages/app/assets/css/resources.css'),
-                to: path.join(__dirname, './storages/framework/views/css/resources.css')
-            }, { /*copy core css from compiled directory*/
-                from: path.join(__dirname, './storages/app/assets/css/webfonts.css'),
-                to: path.join(__dirname, './storages/framework/views/css/webfonts.css')
-            }, { /*copy core css from compiled directory*/
-                from: path.join(__dirname, './storages/app/assets/css/colors.css'),
-                to: path.join(__dirname, './storages/framework/views/css/colors.css')
-            }, { /*copy core css from compiled directory*/
-                from: path.join(__dirname, './storages/app/assets/css/loader.css'),
-                to: path.join(__dirname, './storages/framework/views/css/loader.css')
-            }, { /*copy default logos from compiled directory*/
-                from: path.join(__dirname, './storages/app/media/logos/'),
-                to: path.join(__dirname, './storages/framework/views/logos/')
+            patterns: [  { /*copy webfont files from sources directory*/
+                from: path.join(__dirname, './storages/app/webfonts/**'),
+                to({ context, absoluteFilename }){
+                    const $frameworkViewFontsPath = path.join(__dirname, './storages/framework/views/webfonts');
+                    if (/SairaStencilOne-Regular/.test(absoluteFilename)) {
+                        /*copying to framework fonts directory*/
+                        return Promise.resolve(
+                            path.join($frameworkViewFontsPath, './SairaStencilOne-Regular.[contenthash][ext]')
+                        );
+                    }
+                    /*copying to app assets directory*/
+                    return Promise.resolve(path.join(__dirname, './storages/app/assets/webfonts/'));
+                },
+            }, { /*copy webfont files from sources directory*/
+                from: path.join(__dirname, './sources/Assets/media/**'),
+                to({ context, absoluteFilename }){
+                    const $frameworkMediaPath = path.join(__dirname, './storages/framework/views');
+                    if (/logos/.test(absoluteFilename)) {
+                        if (/default/.test(absoluteFilename)) {
+                            /*copying to default directory*/
+                            return Promise.resolve(
+                                path.join($frameworkMediaPath, './logos/default/[name][ext]')
+                            );
+                        }
+                        /*copying to uncompressed directory*/
+                        return Promise.resolve(
+                            path.join($frameworkMediaPath, './logos/[name][ext]')
+                        );
+                    }
+                    if (/social-media/.test(absoluteFilename)) {
+                        /*copying to uncompressed directory*/
+                        return Promise.resolve(
+                            path.join($frameworkMediaPath, './images/icons/social-media/[name][ext]')
+                        );
+                    }
+                    /*copying to app assets directory*/
+                    return Promise.resolve(path.join(__dirname, './storages/app/media/'));
+                },
+            },  { /*copy stylesheet files from compiled assets directory*/
+                from: path.join(__dirname, './storages/app/assets/css/**'),
+                to({ context, absoluteFilename }){
+                    const $frameworkStylesheetPath = path.join(__dirname, './storages/framework/views/css');
+                    if (/(embedded|resources|webfonts|colors|loader)/.test(absoluteFilename)) {
+                        /*copying to uncompressed directory*/
+                        return Promise.resolve(
+                            path.join($frameworkStylesheetPath, './[name][ext]')
+                        );
+                    }
+                    /*copying to app assets directory*/
+                    return Promise.resolve(path.join(__dirname, './storages/app/assets/css/backup/'));
+                },
             }, { /*copy social logos from compiled directory*/
                 from: path.join(__dirname, './storages/app/assets/js/loader.js'),
                 to: path.join(__dirname, './storages/framework/views/js/loader.js')
