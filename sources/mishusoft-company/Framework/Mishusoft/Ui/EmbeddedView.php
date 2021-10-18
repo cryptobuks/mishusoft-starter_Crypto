@@ -4,7 +4,6 @@
 namespace Mishusoft\Ui;
 
 use Mishusoft\Exceptions\RuntimeException\NotFoundException;
-use Mishusoft\Framework;
 use Mishusoft\Registry;
 use Mishusoft\Services\SEOToolKitService;
 use Mishusoft\Storage;
@@ -22,6 +21,8 @@ class EmbeddedView
      * @param array|string $message
      * @param int $http_response_code
      * @throws NotFoundException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public static function maintenance(array|string $message, int $http_response_code): void
     {
@@ -35,6 +36,8 @@ class EmbeddedView
      * @param array|string $message
      * @param int $http_response_code
      * @throws NotFoundException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public static function debug(string $title, array|string $message, int $http_response_code = 503): void
     {
@@ -49,6 +52,8 @@ class EmbeddedView
      * @param array|string $message
      * @param int $http_response_code
      * @throws NotFoundException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public static function runtimeFail(string $title, array|string $message, int $http_response_code = 503): void
     {
@@ -63,6 +68,8 @@ class EmbeddedView
      * @param array|string $message
      * @param int $http_response_code
      * @throws NotFoundException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public static function protection(string $title, array|string $message, int $http_response_code = 403): void
     {
@@ -77,6 +84,8 @@ class EmbeddedView
      * @param array|string $message
      * @param int $http_response_code
      * @throws NotFoundException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public static function welcomeToFramework(string $title, array|string $message, int $http_response_code = 200): void
     {
@@ -90,6 +99,8 @@ class EmbeddedView
      * @param array|string $message
      * @param int $http_response_code
      * @throws NotFoundException
+     * @throws \Mishusoft\Exceptions\ErrorException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private static function template(array|string $message, int $http_response_code): void
     {
@@ -109,7 +120,7 @@ class EmbeddedView
         SEOToolKitService::addDocumentIdentify();
         SEOToolKitService::loadAdsAuthentication();
         SEOToolKitService::addDefault(self::$documentTitle);
-        Ui\ProgressiveWebApplication::addMeta(DEFAULT_APP_NAME);
+        //Ui\ProgressiveWebApplication::addMeta(DEFAULT_APP_NAME);
 
         //add icons and stylesheets
         Ui::elementList(Ui::getDocumentHeadElement(), [
@@ -121,7 +132,7 @@ class EmbeddedView
         ]);
 
         //this step we declare meta and link tags for progressive web application
-        Ui\ProgressiveWebApplication::addFile('remote');
+        //Ui\ProgressiveWebApplication::addFile('remote');
 
 
         //<link rel="icon" type="image/vnd.microsoft.icon" sizes="16x16" href="{logoFolder}favicon.ico">
