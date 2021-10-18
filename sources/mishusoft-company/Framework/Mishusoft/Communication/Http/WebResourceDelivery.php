@@ -43,7 +43,7 @@ class WebResourceDelivery
     }
 
     /**
-     * @param array $request
+     * @param string[] $request
      * @throws Exceptions\ErrorException
      * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\PermissionRequiredException
@@ -53,10 +53,10 @@ class WebResourceDelivery
     public function assets(array $request): void
     {
         $this->browse($request);
-    }//end assets()
+    }
 
     /**
-     * @param array $request
+     * @param string[] $request
      * @throws Exceptions\ErrorException
      * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\PermissionRequiredException
@@ -66,10 +66,10 @@ class WebResourceDelivery
     public function framework(array $request): void
     {
         $this->browse($request);
-    }//end assets()
+    }
 
     /**
-     * @param array $request
+     * @param string[] $request
      * @throws Exceptions\ErrorException
      * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\PermissionRequiredException
@@ -83,7 +83,7 @@ class WebResourceDelivery
 
 
     /**
-     * @param array $request
+     * @param string[] $request
      * @throws Exceptions\ErrorException
      * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\PermissionRequiredException
@@ -97,7 +97,7 @@ class WebResourceDelivery
 
 
     /**
-     * @param array $request
+     * @param string[] $request
      * @throws Exceptions\ErrorException
      * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\PermissionRequiredException
@@ -109,13 +109,13 @@ class WebResourceDelivery
         if (file_exists(Storage::storagesPath()) && is_readable(Storage::storagesPath()) === true) {
             ['controller' => $controller, 'method' => $method, 'arguments' => $arguments] = $request;
 
-            switch (strtolower($method)) {
-                case strtolower($this->defaultDirectoryIndex):
+            switch (Utility\Inflect::lower($method)) {
+                case $this->defaultDirectoryIndex:
                     Runtime::redirect('assets');
                     break;
 
-                case strtolower('json'):
-                    if (count($arguments) > 0) {
+                case 'json':
+                    if (is_array($arguments) && count($arguments) > 0) {
                         if (str_contains(implode($arguments), '-') === true) {
                             Storage\Stream::file(
                                 Storage::sharedFullPath(
@@ -127,19 +127,19 @@ class WebResourceDelivery
                         }
                     } else {
                         throw new Exceptions\LogicException\InvalidArgumentException('Your requested url is broken');
-                    }//end if
+                    }
                     break;
 
-                case strtolower('logos'):
+                case 'logos':
                     if (file_exists(Storage::logosDefaultPath() . end($arguments)) === true) {
                         Storage\Stream::file(Storage::logoFullPath(end($arguments)));
                     } elseif (str_contains(end($arguments), '-') === true) {
-                        $filename = end($arguments);
-                        $ext = pathinfo(end($arguments), PATHINFO_EXTENSION);
-                        $explode = explode('-', end($arguments));
-                        $expected = array_pop($explode);
+                        $filename   = end($arguments);
+                        $ext        = pathinfo(end($arguments), PATHINFO_EXTENSION);
+                        $explode    = explode('-', end($arguments));
+                        $expected   = array_pop($explode);
 
-                        if (preg_match('[.' . $ext . ']', $expected) === true) {
+                        if (preg_match('[.' . $ext . ']', $expected)) {
                             [
                                 $width,
                                 $height,
@@ -171,9 +171,9 @@ class WebResourceDelivery
                     }//end if
                     break;
 
-                case strtolower('related'):
-                    $requestArgument = implode(DS, $arguments);
-                    $requestedWebFile = MPM\Classic::templatesJSResourcesRoot(
+                case 'related':
+                    $requestArgument    = implode(DS, $arguments);
+                    $requestedWebFile   = MPM\Classic::templatesJSResourcesRoot(
                         $request['module'],
                         $controller
                     );
@@ -196,7 +196,7 @@ class WebResourceDelivery
 
 
     /**
-     * @param array $request
+     * @param string[] $request
      * @throws Exceptions\ErrorException
      * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\PermissionRequiredException
@@ -205,9 +205,8 @@ class WebResourceDelivery
      */
     private function browse(array $request): void
     {
-        //Debug::preOutput($request);
-        if (file_exists(Storage::storagesPath()) === true && is_readable(Storage::storagesPath()) === true) {
-            if (strtolower($request['method']) === strtolower($this->defaultDirectoryIndex)) {
+        if (is_readable(Storage::storagesPath()) === true) {
+            if (Utility\Inflect::lower($request['method']) === $this->defaultDirectoryIndex) {
                 $this->webExplore($request['method'], $request);
             } else {
                 $this->webExploreLoader($request);
@@ -219,7 +218,7 @@ class WebResourceDelivery
 
 
     /**
-     * @param array $request
+     * @param string[] $request
      * @throws Exceptions\ErrorException
      * @throws Exceptions\LogicException\InvalidArgumentException
      * @throws Exceptions\PermissionRequiredException
@@ -235,7 +234,7 @@ class WebResourceDelivery
             Runtime::redirect(sprintf('assets/webfonts/%1$s', $method));
         }
 
-        if (($method === 'webfonts') && $controller !== 'assets') {
+        if (($method === 'webfonts') && !in_array($controller, ['assets', 'framework'], true)) {
             Runtime::redirect(sprintf('assets/webfonts/%1$s', implode(DS, $arguments)));
         }
 
@@ -280,7 +279,7 @@ class WebResourceDelivery
      * WebExplorer of CDN.
      *
      * @param string $dirname
-     * @param array $request
+     * @param string[] $request
      * @throws Exceptions\ErrorException
      * @throws Exceptions\RuntimeException
      * @throws Exceptions\RuntimeException\NotFoundException
@@ -318,7 +317,7 @@ class WebResourceDelivery
                     ['type' => 'text/css', 'text' => Storage\FileSystem::readAssets('css/loader.css'),],
                     ['type' => 'text/css', 'text' => Storage\FileSystem::readAssets('css/colors.css'),],
                     //['type' => 'text/css', 'text' => Storage\FileSystem::readAssets('css/webfonts.css'),],
-                    ['type' => 'text/css', 'text' => Storage\FileSystem::readAssetsWebFonts('css/webfonts.css'),],
+                    ['type' => 'text/css', 'text' => Storage\FileSystem::readAssetsWebFonts('css/webfonts.css', $controller),],
                     ['type' => 'text/css', 'text' => Storage\FileSystem::readAssets('css/resources.css'),],
                     ['type' => 'text/css', 'text' => Storage\FileSystem::readAssets('css/mishusoft-theme.css'),],
                     ['type' => 'text/css', 'text' => Storage\FileSystem::readAssets('css/framework.css'),],
