@@ -82,7 +82,7 @@ class Ui
      */
     private function __construct()
     {
-    }//end __construct()
+    }
 
 
     /**
@@ -95,7 +95,7 @@ class Ui
         self::$documentRoot         = self::element(self::$domDocument, self::$domDocumentType, ['lang' => 'en']);
         self::$documentHeadElement  = self::element(self::$documentRoot, 'head');
         self::$documentTitleElement = self::element(self::$documentHeadElement, 'title');
-    }//end start()
+    }
 
 
     public static function display(int $http_response_code = 200): void
@@ -118,7 +118,7 @@ class Ui
                 echo self::$domDocument->saveHTML();
                 break;
         }
-    }//end execute()
+    }
 
 
     /**
@@ -127,7 +127,7 @@ class Ui
     public static function getDocumentRoot(): DOMNode
     {
         return self::$documentRoot;
-    }//end getDocumentRoot()
+    }
 
 
     /**
@@ -136,7 +136,7 @@ class Ui
     public static function getDocumentHeadElement(): DOMNode
     {
         return self::$documentHeadElement;
-    }//end getDocumentHeadElement()
+    }
 
 
     /**
@@ -147,7 +147,7 @@ class Ui
     {
        // var_dump(debug_backtrace());
         return self::$domDocument->createElement($qualifiedName);
-    }//end make()
+    }
 
 
     /**
@@ -157,7 +157,7 @@ class Ui
     public static function setDocumentTitle(string $content): DOMNode
     {
         return self::text(self::$documentTitleElement, $content);
-    }//end setDocumentTitle()
+    }
 
 
     /**
@@ -167,7 +167,7 @@ class Ui
     public static function updateDocumentTitle(string $content): DOMNode
     {
         return self::text(self::$documentTitleElement, ' || '.Inflect::ucwords($content));
-    }//end updateDocumentTitle()
+    }
 
 
     /**
@@ -177,7 +177,7 @@ class Ui
     public static function setTemplateBody(DOMNode $templateBodyElement): void
     {
         self::$templateBodyElement = $templateBodyElement;
-    }//end updateDocumentTitle()
+    }
 
     /**
      * @return DOMNode
@@ -193,7 +193,7 @@ class Ui
     public static function setDocumentContentHeader(DOMNode $documentContentHeader): void
     {
         self::$documentContentHeader = $documentContentHeader;
-    }//end setDocumentContentHeader()
+    }
 
     /**
      * @return DOMNode
@@ -201,7 +201,7 @@ class Ui
     public static function getDocumentContentHeader():DOMNode
     {
         return self::$documentContentHeader;
-    }//end getDocumentContentHeader()
+    }
 
 
     /**
@@ -211,7 +211,7 @@ class Ui
     public static function setDocumentContentBody(DOMNode $documentContentBody): void
     {
         self::$documentContentBody = $documentContentBody;
-    }//end updateDocumentTitle()
+    }
 
     /**
      * @return DOMNode
@@ -229,7 +229,7 @@ class Ui
     public static function setDocumentContentFooter(DOMNode $documentContentFooter): void
     {
         self::$documentContentFooter = $documentContentFooter;
-    }//end updateDocumentTitle()
+    }
 
     /**
      * @return DOMNode
@@ -270,7 +270,7 @@ class Ui
         header('Content-Type: text/html; charset=utf-8');
         echo '<!DOCTYPE html>';
         echo self::$domDocument->saveHTML();
-    }//end HtmlInterface()
+    }
 
 
     /**
@@ -287,7 +287,7 @@ class Ui
         $root = self::make($tag);
         self::assignAttributes($root, $attributes);
         return $parent->appendChild($root);
-    }//end element()
+    }
 
 
     /**
@@ -298,7 +298,7 @@ class Ui
     public static function hasAttribute(DOMElement $htmlElement, string $qualifiedName): bool
     {
         return $htmlElement->hasAttribute($qualifiedName);
-    }//end hasAttribute()
+    }
 
 
     /**
@@ -309,7 +309,7 @@ class Ui
     public static function getAttribute(DOMElement $htmlElement, string $qualifiedName): string
     {
         return $htmlElement->getAttribute($qualifiedName);
-    }//end getAttribute()
+    }
 
 
     /**
@@ -320,7 +320,7 @@ class Ui
     public static function removeAttribute(DOMElement $htmlElement, string $qualifiedName): bool
     {
         return $htmlElement->removeAttribute($qualifiedName);
-    }//end removeAttribute()
+    }
 
 
     /**
@@ -335,7 +335,7 @@ class Ui
                 $htmlElement->setAttribute($updatedName, '');
             }
         }
-    }//end updateAttribute()
+    }
 
 
     /**
@@ -345,7 +345,7 @@ class Ui
     public static function domCDATA(string $string): DOMCdataSection
     {
         return new DOMCdataSection($string);
-    }//end domCDATA()
+    }
 
 
     /*
@@ -373,7 +373,7 @@ class Ui
                 }
             }
         }
-    }//end updateAttributesValue()
+    }
 
 
     /**
@@ -393,7 +393,7 @@ class Ui
                 }
             }
         }
-    }//end setAttributeValue()
+    }
 
 
     /**
@@ -409,7 +409,7 @@ class Ui
         $root = self::$domDocument->createElement($tag);
         self::assignAttributes($root, $attributes);
         return $parent->appendChild($root);
-    }//end makeElement()
+    }
 
 
     /**
@@ -419,7 +419,7 @@ class Ui
     public static function elementList(DOMElement|DOMNode|DOMDocument $parentElement, array $list = []): void
     {
         self::makeElementBatch($parentElement, $list);
-    }//end elementList()
+    }
 
 
     /**
@@ -463,15 +463,15 @@ class Ui
                 }
             }
         }
-    }//end makeElementBatch()
+    }
 
 
     /**
-     * @param  DOMElement $htmlElement
-     * @param  array      $attributes
+     * @param DOMElement|DOMNode $htmlElement
+     * @param string[]|array[] $attributes
      * @return DOMElement
      */
-    public static function assignAttributes(DOMElement $htmlElement, array $attributes = []): DOMElement
+    public static function assignAttributes(DOMElement|DOMNode $htmlElement, array $attributes = []): DOMElement
     {
         if (count($attributes) > 0) {
             if (array_key_exists(strtolower('text'), $attributes) === true) {
@@ -497,7 +497,7 @@ class Ui
         }//end if
 
         return $htmlElement;
-    }//end assignAttributes()
+    }
 
 
     /**
@@ -514,7 +514,7 @@ class Ui
         }
 
         return $htmlElement;
-    }//end _setAttributes()
+    }
 
 
     /**
@@ -525,7 +525,7 @@ class Ui
     public static function text(DOMElement|DOMNode $parentHtmlElement, string $content): DOMNode
     {
         return $parentHtmlElement->appendChild(self::$domDocument->createTextNode($content));
-    }//end text()
+    }
 
 
     /**
@@ -536,7 +536,7 @@ class Ui
     public static function html(DOMElement $parentHtmlElement, string $content): bool|DOMDocument|DOMNode
     {
         return $parentHtmlElement->appendChild(self::$domDocument->loadHTML($content));
-    }//end html()
+    }
 
 
     /**
@@ -557,7 +557,7 @@ class Ui
             "Sorry! Your web browser doesn't support javascript."
         );
         // end of adding noscript
-    }//end setNoScriptText()
+    }
 
     /**
      * @param DOMNode|DOMElement $parentElementChild Html Element
@@ -602,7 +602,7 @@ class Ui
             // Text for system default signature
             self::copyRightText($year, $company)
         );
-    }//end addDefaultSignature()
+    }
 
     public static function makeBodyId(array $request):string
     {
@@ -630,7 +630,7 @@ class Ui
     {
         ksort($attributes);
         return !(array_key_exists(0, array_filter($attributes)) === true);
-    }//end isSingleAttributeList()
+    }
 
 
     /**
@@ -641,7 +641,7 @@ class Ui
     public static function entity(object $parentHtmlElement, string $name): mixed
     {
         return $parentHtmlElement->appendChild(self::$domDocument->createEntityReference($name));
-    }//end entity()
+    }
 
 
     /**
@@ -652,7 +652,7 @@ class Ui
     public static function comment(object $parentHtmlElement, string $data): mixed
     {
         return $parentHtmlElement->appendChild(self::$domDocument->createComment($data));
-    }//end comment()
+    }
 
 
     /**
@@ -662,7 +662,7 @@ class Ui
     public static function remove(DOMElement $childElement): DOMNode
     {
         return self::$domDocument->removeChild($childElement);
-    }//end remove()
+    }
 
 
     /**
@@ -672,7 +672,7 @@ class Ui
     public static function captureElementsByTagName(string $tag): DOMNodeList
     {
         return self::$domDocument->getElementsByTagName($tag);
-    }//end captureElementsByTagName()
+    }
 
 
     /**
@@ -682,7 +682,7 @@ class Ui
     public static function captureElementById(string $elementId): ?DOMElement
     {
         return self::$domDocument->getElementById($elementId);
-    }//end captureElementById()
+    }
 
 
     /**
@@ -690,5 +690,5 @@ class Ui
      */
     public function __destruct()
     {
-    }//end __destruct()
-}//end class
+    }
+}
