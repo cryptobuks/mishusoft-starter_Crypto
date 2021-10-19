@@ -1,4 +1,4 @@
-import { validate } from 'schema-utils';
+const {validate} = require('schema-utils');
 
 
 // schema for options object
@@ -12,15 +12,17 @@ const schema = {
 };
 
 
-export default class HelloWorldPlugin {
-    constructor(options = {}) {
+module.exports = class HelloWorldPlugin {
+    constructor(options = {})
+    {
         validate(schema, options, {
             name: 'Hello World Plugin',
             baseDataPath: 'options',
         });
     }
 
-    apply(compiler) {
+    apply(compiler)
+    {
         // Tap into compilation hook which gives compilation as argument to the callback function
         compiler.hooks.compilation.tap('HelloCompilationPlugin', (compilation) => {
             // Now we can tap into various hooks available through compilation
