@@ -72,6 +72,10 @@
     # Rewrite /foo/bar to /foo/bar.php
     # RewriteRule ^([^.?]+)$.mfw %{REQUEST_URI} [L]
 
+    #error log file
+    ErrorLog "../storages/framework/logs/httpd/error.log"
+
+
 
     #error page setting
 #    ErrorDocument 400 /400.shtml
