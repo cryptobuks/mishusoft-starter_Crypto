@@ -1,17 +1,18 @@
 //external dependencies
 const path = require("path");
+const crypto = require("crypto");
 const {validate} = require('schema-utils');
 const normalizePath = require('normalize-path');
 const fastGlob = require('fast-glob');
+const globby = require("globby");
 
 //internal dependencies
 const schema = require('./options.json');
 const {stat, readFile} = require("./utils/promisify");
 const {version} = require("../package.json");
 const globParent = require('./utils/glob-parent');
+const serialize = require('./utils/serialize-javascript');
 const Limit = require('./utils/limit')
-const globby = require("globby");
-const crypto = require("crypto");
 
 //Internal variables
 const template = /\[\\*([\w:]+)\\*\]/i;
@@ -178,10 +179,15 @@ class CopyAdvancedPlugin {
 
         console.log(pattern.fromType)
 
+
+
         //we should do something here
 
         switch (pattern.fromType) {
             case "dir":
+                console.log(pattern.absoluteFrom)
+                console.log(normalizePath(path.resolve(pattern.absoluteFrom)))
+
                 compilation.contextDependencies.add(pattern.absoluteFrom);
                 logger.debug(`Added '${pattern.absoluteFrom}' as a context dependency`);
                 pattern.context = pattern.absoluteFrom;
@@ -248,6 +254,12 @@ class CopyAdvancedPlugin {
 
             return;
         }
+
+        console.log('viewing path')
+        console.log(pattern.glob)
+        console.log(pattern.globOptions)
+        console.log(paths)
+        console.log(paths.length)
 
         if (paths.length === 0) {
             if (pattern.noErrorOnMissing) {
