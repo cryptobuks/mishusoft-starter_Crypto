@@ -16,7 +16,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts')
 const FontPreloadPlugin = require("webpack-font-preload-plugin");
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const CopyAdvancedPlugin = require("./sources/Utils/plugins/copy-advanced-webpack-plugin/copy-advanced-webpack-plugin");
+const CopyAdvancedPlugin = require("./sources/Utils/plugins/copy-advanced-webpack-plugin/src/index");
 //const HelloWorldPlugin = require("./sources/Utils/hello-world-webpack-plugin");
 
 

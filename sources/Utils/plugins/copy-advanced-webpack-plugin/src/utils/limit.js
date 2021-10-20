@@ -1,7 +1,7 @@
 'use strict';
-const Queue = require('./yocto-queue');
+const Queue = require('./queue');
 
-const pLimit = concurrency => {
+const limit = concurrency => {
     if (!((Number.isInteger(concurrency) || concurrency === Infinity) && concurrency > 0)) {
         throw new TypeError('Expected `concurrency` to be a number from 1 and up');
     }
@@ -68,4 +68,4 @@ const pLimit = concurrency => {
     return generator;
 };
 
-module.exports = pLimit;
+module.exports = limit;

@@ -11,7 +11,7 @@ const days = date.getDate() < 10 ? '0' + (+date.getDate()) : date.getDate()
 const hours = date.getHours() < 10 ? '0' + (+date.getHours()) : date.getHours()
 const minutes = date.getMinutes() < 10 ? '0' + (+date.getMinutes()) : date.getMinutes()
 const seconds = date.getSeconds() < 10 ? '0' + (+date.getSeconds()) : date.getSeconds()
-const backupTime = `${date.getFullYear()}-${months}-${days}-${hours}-${minutes}-${seconds}`
+const backupTime = `${date.getFullYear()} - ${months} - ${days} - ${hours} - ${minutes} - ${seconds}`
 
 const rootDir = path.join(__dirname, '../..')
 const DEST_DIR = '/home/abir/ts-app-backup'
@@ -23,7 +23,7 @@ async function main()
     await ensureDir(DEST_DIR)
 
     const versionString = getPackageVersion()
-    const backupCompressedFilename = `mishusoft-backup-${versionString}@${backupTime}.zip`
+    const backupCompressedFilename = `mishusoft - backup - ${versionString}@${backupTime}.zip`
     console.log(`Creating to ${backupCompressedFilename}...`)
 
     await exportToFile(DEST_DIR, backupCompressedFilename, function (archive) {
