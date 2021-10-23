@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://github.com/webpack/webpack">
-    <img width="200" height="200"
+    <img width="200" height="200" alt="WebPack logo"
       src="https://webpack.js.org/assets/icon-square-big.svg">
   </a>
 </div>
@@ -11,7 +11,8 @@
 [![tests][tests]][tests-url]
 [![cover][cover]][cover-url]
 <!--[![chat][chat]][chat-url]-->
-[![size][size]][size-url]
+[![size][size]][size-url] [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
 
 # copy-advanced-webpack-plugin
 
@@ -1196,8 +1197,8 @@ Please take a moment to read our contributing guidelines if you haven't yet done
 
 [deps]: https://img.shields.io/librariesio/github/mralaminahamed/copy-advanced-webpack-plugin
 [deps-url]: https://david-dm.org/mralaminahamed/copy-advanced-webpack-plugin
-[tests]: https://github.com/mralaminahamed/copy-advanced-webpack-plugin/workflows/copy-advanced-webpack-plugin/badge.svg
-[tests-url]: https://github.com/mralaminahamed/copy-advanced-webpack-plugin/actions
+[tests]: https://github.com/mralaminahamed/copy-advanced-webpack-plugin/actions/workflows/nodejs.yml/badge.svg
+[tests-url]: https://github.com/mralaminahamed/copy-advanced-webpack-plugin/actions/workflows/nodejs.yml
 [cover]: https://codecov.io/gh/mralaminahamed/copy-advanced-webpack-plugin/branch/master/graph/badge.svg
 [cover-url]: https://codecov.io/gh/mralaminahamed/copy-advanced-webpack-plugin
 <!--[chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg
