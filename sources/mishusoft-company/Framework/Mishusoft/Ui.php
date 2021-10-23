@@ -145,7 +145,7 @@ class Ui
      */
     public static function make(string $qualifiedName): DOMElement
     {
-       // var_dump(debug_backtrace());
+        // var_dump(debug_backtrace());
         return self::$domDocument->createElement($qualifiedName);
     }
 
@@ -182,7 +182,7 @@ class Ui
     /**
      * @return DOMNode
      */
-    public static function getTemplateBody():DOMNode
+    public static function getTemplateBody(): DOMNode
     {
         return self::$templateBodyElement;
     }
@@ -198,7 +198,7 @@ class Ui
     /**
      * @return DOMNode
      */
-    public static function getDocumentContentHeader():DOMNode
+    public static function getDocumentContentHeader(): DOMNode
     {
         return self::$documentContentHeader;
     }
@@ -216,7 +216,7 @@ class Ui
     /**
      * @return DOMNode
      */
-    public static function getDocumentContentBody():DOMNode
+    public static function getDocumentContentBody(): DOMNode
     {
         return self::$documentContentBody;
     }
@@ -234,7 +234,7 @@ class Ui
     /**
      * @return DOMNode
      */
-    public static function getDocumentContentFooter():DOMNode
+    public static function getDocumentContentFooter(): DOMNode
     {
         return self::$documentContentFooter;
     }
@@ -604,7 +604,7 @@ class Ui
         );
     }
 
-    public static function makeBodyId(array $request):string
+    public static function makeBodyId(array $request): string
     {
         if (count($request) > 0) {
             unset($request['locale'], $request['arguments']);
@@ -615,7 +615,7 @@ class Ui
     /**
      * @return string
      */
-    public static function copyRightText(string $year, string $company):string
+    public static function copyRightText(string $year, string $company): string
     {
         // Copyright © 2020 Winstarit LTD. All Right Reserved.
         return sprintf('Copyright © %1$s %2$s. All Right Reserved.', $year, $company);

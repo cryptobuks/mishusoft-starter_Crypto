@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Ema\Mishusoft\Main\UrlHandlers;
 
 use Mishusoft\System\Localization;
@@ -9,7 +8,6 @@ use Mishusoft\Utility\ArrayCollection;
 
 class MonitorUrlHandler extends UrlHandler
 {
-
     /**
      * @param array $prediction
      * @throws \JsonException
@@ -19,7 +17,7 @@ class MonitorUrlHandler extends UrlHandler
      * @throws \Mishusoft\Exceptions\PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    public function response(array $prediction):void
+    public function response(array $prediction): void
     {
         // TODO: Implement Response() method.
         $translation = new Localization(ArrayCollection::value($prediction, 'locale'));

@@ -139,7 +139,7 @@ abstract class Controller implements ControllerInterface
                         } else {
                             echo "\n<br><span style=\"font-weight:bold; color:#ff0000;\">Failed</span> to set file permissions on " . $fullpath;
                         }
-                    } else if (chmod($fullpath, $perms['folder'])) {
+                    } elseif (chmod($fullpath, $perms['folder'])) {
                         echo "\n<br><span style=\"font-weight:bold;\">Directory</span> " . $fullpath . ' permissions changed to ' . decoct($perms['folder']);
                         $this->chmodFileFolder($fullpath);
                     } else {
@@ -239,7 +239,7 @@ abstract class Controller implements ControllerInterface
         if (is_readable($rootModel)) {
             require_once $rootModel;
             $model = Base::getClassNamespace($rootModel);
-            return new $model;
+            return new $model();
         }
         throw new NotFoundException($rootModel. ' not found');
     }

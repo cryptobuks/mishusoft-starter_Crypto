@@ -1,5 +1,6 @@
-<?php declare(strict_types=1);
+<?php
 
+declare(strict_types=1);
 
 namespace Mishusoft\System;
 
@@ -24,12 +25,12 @@ class Device
         }
     }//end __construct()
 
-    private function hostNameCtlFile():string
+    private function hostNameCtlFile(): string
     {
         return Storage::dataDriveStoragesPath().'hostnamectl.txt';
     }
 
-    private function lsbReleaseFile():string
+    private function lsbReleaseFile(): string
     {
         return Storage::dataDriveStoragesPath().'lsb_release.txt';
     }

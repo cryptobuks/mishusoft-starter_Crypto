@@ -13,7 +13,6 @@ use Mishusoft\Utility\Number;
 
 class FileSystem
 {
-
     /**
      * @param string $filename
      * @throws RuntimeException

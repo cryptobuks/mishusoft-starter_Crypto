@@ -11,7 +11,6 @@ use Mishusoft\System\Memory;
 
 class Classic
 {
-
     /**
      * @param Http\Request\Classic $request
      * @throws Exceptions\ErrorException
@@ -47,7 +46,7 @@ class Classic
         if (file_exists($rootController) && is_readable($rootController)) {
             include_once $rootController;
             $controller = Base::getClassNamespace($rootController);
-            $controller = new $controller;
+            $controller = new $controller();
 
             if (is_callable([$controller, $method])) {
                 $method = $request->getMethod();

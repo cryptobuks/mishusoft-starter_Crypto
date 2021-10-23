@@ -2,7 +2,6 @@
 
 namespace Mishusoft\Packages\Lab\Modules\System\Controllers;
 
-
 use Exception;
 use Mishusoft\Framework\Chipsets\Cryptography\Decryption;
 use Mishusoft\Framework\Chipsets\Storage;
@@ -136,7 +135,6 @@ class pagesController extends systemController
                 Storage::StreamAsJson(['type' => 'success', 'name' => _Array::value($this->system->getPage($this->filterInt($data->page)), 'title'), 'message' => 'page ' . _Array::value($this->system->getPage($this->filterInt($data->page)), 'title') . ' name send']);
                 //Tracker::addEvent(array('activity' => array('messageType' => 'success', 'name' => retrieveReturnVariable($this->system->getPage($this->filterInt($data->page)), 'title'), 'message' => 'page ' . retrieveReturnVariable($this->system->getPage($this->filterInt($data->page)), 'title') . ' name send')));
                 exit;
-
             } else {
                 Storage::StreamAsJson(['type' => 'error', 'message' => 'Page name request failed.']);
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Page name request failed.')));
@@ -256,15 +254,14 @@ class pagesController extends systemController
 
     public function sources($page = false)
     {
-
         if (isset($page)) {
-                        /*print_r($page);
-                        echo '<br>';
-                        print_r(Hash::StaticDecrypt($page));
-                        echo '<br>';
-                        print_r($this->system->getPageNameById($this->filterInt(Hash::StaticDecrypt($page))));
-                        echo '<br>';
-                        print_r($this->system->getPageSourceById($this->filterInt(Hash::StaticDecrypt($page))));*/
+            /*print_r($page);
+            echo '<br>';
+            print_r(Hash::StaticDecrypt($page));
+            echo '<br>';
+            print_r($this->system->getPageNameById($this->filterInt(Hash::StaticDecrypt($page))));
+            echo '<br>';
+            print_r($this->system->getPageSourceById($this->filterInt(Hash::StaticDecrypt($page))));*/
             $this->view->assign('title', 'Edit Source');
             $this->view->assign('fileId', $page);
             $this->view->assign('fileName', $this->system->getPageNameById($this->filterInt(Decryption::static($page))));
@@ -294,14 +291,14 @@ class pagesController extends systemController
                     exit;
                 }
 
-                if ($this->system->getPageSourceById($this->filterInt(Decryption::static($page)))){
-                    $this->system->editSource($this->filterInt(Decryption::static($page)),$this->getWordParam('content'));
+                if ($this->system->getPageSourceById($this->filterInt(Decryption::static($page)))) {
+                    $this->system->editSource($this->filterInt(Decryption::static($page)), $this->getWordParam('content'));
                     //Tracker::addEvent(array('activity' => array('messageType' => 'success', 'message' => 'Source code updated successfully.')));
                     $this->view->assign('success', 'Source code updated successfully');
                     $this->view->render('sources', 'Sources');
                     exit;
                 } else {
-                    $this->system->addSource($this->filterInt(Decryption::static($page)),$this->getWordParam('content'));
+                    $this->system->addSource($this->filterInt(Decryption::static($page)), $this->getWordParam('content'));
                     //Tracker::addEvent(array('activity' => array('messageType' => 'success', 'message' => 'Source code added successfully.')));
                     $this->view->assign('success', 'Source code added successfully');
                     $this->view->render('sources', 'Sources');
@@ -317,5 +314,4 @@ class pagesController extends systemController
         $this->view->assign('title', 'Sources');
         $this->view->render('sources', 'Sources');
     }
-
 }

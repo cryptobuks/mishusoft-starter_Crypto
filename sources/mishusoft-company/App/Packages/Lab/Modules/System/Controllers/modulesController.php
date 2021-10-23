@@ -2,7 +2,6 @@
 
 namespace Mishusoft\Packages\Lab\Modules\System\Controllers;
 
-
 use Exception;
 use Mishusoft\Framework\Chipsets\MPM;
 use Mishusoft\Framework\Chipsets\Utility\Pagination;
@@ -15,7 +14,7 @@ class modulesController extends systemController
 
     public function __construct()
     {
-        parent:: __construct();
+        parent::__construct();
         $this->access_init();
         $this->system = $this->loadModel('system');
     }
@@ -44,7 +43,6 @@ class modulesController extends systemController
         $this->acl->access('edit_content');
         //Tracker::addEvent(array('activity' => array('messageType' => 'success', 'message' => 'Installed module (JSON data) extract successfully')));
         echo json_encode($this->system->getModules());
-
     }
 
     public function indexPaginationAJAX()
@@ -100,11 +98,10 @@ class modulesController extends systemController
                 exit;
             }
             if (move_uploaded_file($fileTmpLoc, MS_PACKAGES_PATH . $fileName)) {
-
                 $uploadedFile = MS_PACKAGES_PATH . $fileName;
                 // decompress from gz
                 $p = new PharData($uploadedFile);
-                $p->extractTo(MS_PACKAGES_PATH, NULL, TRUE);
+                $p->extractTo(MS_PACKAGES_PATH, null, true);
                 unlink($uploadedFile);
                 $module = str_replace('.tar.gz', '', $fileName);
                 // Everything for owner, read and execute for others
@@ -204,5 +201,4 @@ class modulesController extends systemController
             exit;
         }
     }
-
 }

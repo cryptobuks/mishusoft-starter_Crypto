@@ -102,17 +102,17 @@ class paymentController extends Controller
                 exit;
             }
 
-/*            if (!$this->database->getAppDetailsById($this->filterInt(Decryption::static($data->appId)))) {
-                echo json_encode(['type' => 'error', 'message' => 'Your application not found.']);
-                //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Your application not found.')));
-                exit;
-            }
+            /*            if (!$this->database->getAppDetailsById($this->filterInt(Decryption::static($data->appId)))) {
+                            echo json_encode(['type' => 'error', 'message' => 'Your application not found.']);
+                            //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Your application not found.')));
+                            exit;
+                        }
 
-            if (!$this->database->getUserDetailsByEmail($data->userEmail)) {
-                echo json_encode(['type' => 'error', 'message' => 'Your information not found.']);
-                //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Your information not found.')));
-                exit;
-            }*/
+                        if (!$this->database->getUserDetailsByEmail($data->userEmail)) {
+                            echo json_encode(['type' => 'error', 'message' => 'Your information not found.']);
+                            //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Your information not found.')));
+                            exit;
+                        }*/
 
             echo json_encode(['type' => 'success', 'message' => 'Select your amount and pay.', 'appIdEncrypt' => $data->appId,
                 'emailEncrypt' => Encryption::static($data->userEmail),
@@ -120,7 +120,6 @@ class paymentController extends Controller
                 'paymentPlanEncrypt' => Encryption::static($this->getSqlText($data->plan))]);
             ////Tracker::addEvent(array('activity' => array('messageType' => 'success', 'message' => 'Select your amount.')));
             exit;
-
         } else {
             echo json_encode(['type' => 'error', 'message' => 'Invalid payment request.']);
             ////Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Invalid payment request.')));
@@ -146,7 +145,6 @@ class paymentController extends Controller
             echo json_encode(['type' => 'success', 'message' => 'Pay.', 'amount' => Encryption::static($data->amount)]);
             ////Tracker::addEvent(array('activity' => array('messageType' => 'success', 'message' => 'Pay.')));
             exit;
-
         } else {
             echo json_encode(['type' => 'error', 'message' => 'Invalid request.']);
             ////Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Invalid request.')));
@@ -291,19 +289,19 @@ class paymentController extends Controller
             exit;
         }
         //print_r($sourceDetails);
-        if ($sourceDetails->status ==='chargeable'){
+        if ($sourceDetails->status ==='chargeable') {
             try {
                 $charge = Charge::create([
                     'amount' => $this->filterInt($sourceDetails->amount),
                     'currency' => $this->getSqlText($sourceDetails->currency),
                     'source' => $this->getSqlText($sourceDetails->id),
                 ]);
-                if ($charge->status ==='pending'){
+                if ($charge->status ==='pending') {
                     echo json_encode(['type' => 'error', 'message' => 'Your payment is pending state for up to 14 days from today. After 14 days, your will receive receipt']);
                     //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Your payment is pending')));
                     exit;
                 }
-                if ($charge->status ==='failed'){
+                if ($charge->status ==='failed') {
                     echo json_encode(['type' => 'error', 'message' => 'Your payment is failed.']);
                     //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Your payment is failed')));
                     exit;
@@ -359,8 +357,8 @@ class paymentController extends Controller
                     // Verify your integration in this guide by including this parameter
                     'metadata' => ['integration_check' => 'accept_a_payment'],
                 ]);
-                echo json_encode(array('type' => 'success', 'message' => 'Ready to pay.',
-                    'client_secret' => $intent->client_secret, 'amount' => Encryption::static($this->payableAmount)));
+                echo json_encode(['type' => 'success', 'message' => 'Ready to pay.',
+                    'client_secret' => $intent->client_secret, 'amount' => Encryption::static($this->payableAmount)]);
             } catch (Exception $e) {
                 echo json_encode(['type' => 'error', 'message' => $e->getMessage()]);
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => $e->getMessage())));
@@ -468,26 +466,35 @@ class paymentController extends Controller
             if ($previousLicence) {
                 $this->database->updateLicenceKeyByAppId(
                     $this->filterInt(Decryption::static($data->appId)),
-                    $this->licenceType, $this->limit, $this->limitBase, Time::getToday(), Time::getNextMonthDate()
+                    $this->licenceType,
+                    $this->limit,
+                    $this->limitBase,
+                    Time::getToday(),
+                    Time::getNextMonthDate()
                 );
             } else {
                 $clientIpAddress = $this->database->getClientIpAddressById($this->filterInt(Decryption::static($data->clientId)));
                 /*setUserLicence($clientId, $app_id, $ip, $browser, $ltype, $limit, $limitBase, $lissue, $lupdate, $lnextupdate, $lexpire)*/
                 $this->database->setUserLicence(
-                    $this->filterInt(Decryption::static($data->appId)), $clientIpAddress,
-                    (new Browser())->getBrowserNameFull(), $this->licenceType, Time::getToday(), Time::getToday(), Time::getNextDayDate(),
+                    $this->filterInt(Decryption::static($data->appId)),
+                    $clientIpAddress,
+                    (new Browser())->getBrowserNameFull(),
+                    $this->licenceType,
+                    Time::getToday(),
+                    Time::getToday(),
+                    Time::getNextDayDate(),
                     Time::getNextMonthDate()
                 );
             }
 
-            echo json_encode(array(
+            echo json_encode([
                 'type' => 'success', 'message' => 'Payment completed!!',
-                'licence' => array(
+                'licence' => [
                     'key' => Encryption::static($this->database->getLicenceKeyByAppId($this->filterInt(Decryption::static($data->appId)))),
                     'type' => $this->licenceType, 'issue' => Time::getToday(), 'update' => Time::getToday(),
                     'expire' => Time::getNextMonthDate(), 'limit' => $this->limit, 'limitBase' => $this->limitBase
-                )
-            ));
+                ]
+            ]);
         } else {
             echo json_encode(['type' => 'error', 'message' => 'Invalid token request.',]);
             //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Invalid token request.')));
@@ -511,9 +518,9 @@ class paymentController extends Controller
                 $this->getSqlText($data->paymentObject->paymentIntentPaymentMethod)
             );
 
-            echo json_encode(array(
+            echo json_encode([
                 'type' => 'success', 'message' => 'Payment completed!!'
-            ));
+            ]);
         } else {
             echo json_encode(['type' => 'error', 'message' => 'Invalid token request.',]);
             //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Invalid token request.')));

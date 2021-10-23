@@ -14,7 +14,6 @@ use function Mishusoft\Framework\Globals\preVarDump;
 
 class developmentController extends Controller
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -99,11 +98,6 @@ class developmentController extends Controller
 
 
         var_dump(http_response_code());
-
-
-
-
-
     }
 
     public function mongodb()
@@ -123,7 +117,7 @@ class developmentController extends Controller
     {
 
 // This creates the Reader object, which should be reused across
-// lookups.
+        // lookups.
 
 
         try {
@@ -134,8 +128,8 @@ class developmentController extends Controller
             exit();
         }
 
-// Replace "city" with the appropriate method for your database, e.g.,
-// "country".
+        // Replace "city" with the appropriate method for your database, e.g.,
+        // "country".
         try {
             $record = $reader->city(IP::get());
 
@@ -170,7 +164,7 @@ class developmentController extends Controller
             $db_list = array_slice(scandir(MS_DOCUMENT_ROOT . $db_dir_name), 2);
             if (!empty($db_list)) {
                 foreach ($db_list as $db) {
-                    if (is_file(MS_DOCUMENT_ROOT . $db_dir_name . '/' . $db)){
+                    if (is_file(MS_DOCUMENT_ROOT . $db_dir_name . '/' . $db)) {
                         echo $db;
                         echo ' <br/>File Data : <br/>';
                         print_r(file_get_contents(MS_DOCUMENT_ROOT . $db_dir_name . '/' . $db));
@@ -185,7 +179,6 @@ class developmentController extends Controller
             mkdir(MS_DOCUMENT_ROOT . $db_dir_name);
             self::mishusoftdb();
         }
-
     }
 
     public function test()
@@ -194,7 +187,5 @@ class developmentController extends Controller
         $Locator = new DOMLocator();
         preOutput($dom);
         preOutput($Locator);
-
     }
-
 }

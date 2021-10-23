@@ -18,7 +18,8 @@ class branchesController extends systemController
         $this->system = $this->loadModel('system');
     }
 
-    public function index(){
+    public function index()
+    {
         $this->access_init();
         $this->acl->access('edit_content');
         //Tracker::addEvent(array('activity' => array('messageType' => 'success', 'message' => 'Navigate to Framework Manager page successfully')));
@@ -37,7 +38,8 @@ class branchesController extends systemController
         }
     }
 
-    public function getBranches(){
+    public function getBranches()
+    {
         $this->acl->access('system_access');
         Storage::StreamAsJson($this->system->getBranches());
     }
@@ -47,7 +49,7 @@ class branchesController extends systemController
         $this->access_init();
         $this->acl->access('edit_content');
         $data = json_decode(file_get_contents('php://input'));
-        if (!empty($data) && is_object($data)){
+        if (!empty($data) && is_object($data)) {
             $this->paginationValidity($data);
 
             try {
@@ -69,7 +71,7 @@ class branchesController extends systemController
         $this->acl->access('edit_content');
         $data = json_decode(file_get_contents('php://input'));
         if (!empty($data) && is_object($data)) {
-            if (empty($data->security_code) OR $data->security_code !== 1) {
+            if (empty($data->security_code) or $data->security_code !== 1) {
                 echo json_encode(['type' => 'error', 'message' => 'Branch\'s security code not found.']);
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Branch\'s security code not found.')));
                 exit;
@@ -200,13 +202,13 @@ class branchesController extends systemController
 
     public function usersPaginationAJAX($branch)
     {
-        if (empty($branch)){
+        if (empty($branch)) {
             $this->redirect('system/branches');
         }
         $this->access_init();
         $this->acl->access('edit_content');
         $data = json_decode(file_get_contents('php://input'));
-        if (!empty($data) && is_object($data)){
+        if (!empty($data) && is_object($data)) {
             $this->paginationValidity($data);
 
             try {
@@ -229,7 +231,7 @@ class branchesController extends systemController
         $data = json_decode(file_get_contents('php://input'));
 
         if ($data ==! false) {
-            if (empty($data->security_code) OR $data->security_code !== 1) {
+            if (empty($data->security_code) or $data->security_code !== 1) {
                 echo json_encode(['type' => 'error', 'message' => 'Branch\'s security code not found.']);
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Branch\'s security code not found.')));
                 exit;

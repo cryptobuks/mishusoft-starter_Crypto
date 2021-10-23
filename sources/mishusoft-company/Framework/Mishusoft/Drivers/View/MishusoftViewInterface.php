@@ -1,12 +1,9 @@
 <?php
 
-
 namespace Mishusoft\Drivers\View;
 
 interface MishusoftViewInterface
 {
-
-
     /**
      * MishusoftViewRenderInterface constructor.
      *

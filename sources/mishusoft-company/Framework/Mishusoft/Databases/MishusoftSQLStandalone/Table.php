@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Mishusoft\Databases\MishusoftSQLStandalone;
 
@@ -190,7 +192,7 @@ class Table extends CommonDependency implements TableInterface
     /**
      * @throws RuntimeException
      */
-    public function update(array $options):bool
+    public function update(array $options): bool
     {
         $contents = (array) Implement::jsonDecode(
             FileSystem::read($this->databaseFile($this->database)),

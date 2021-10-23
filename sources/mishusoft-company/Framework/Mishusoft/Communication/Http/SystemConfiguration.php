@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Mishusoft\Communication\Http;
 
@@ -11,8 +13,6 @@ use ZipArchive;
 
 class SystemConfiguration
 {
-
-
     /**
      * SystemConfiguration constructor.
      */

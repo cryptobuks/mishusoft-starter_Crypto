@@ -1,14 +1,11 @@
 <?php
 
-
 namespace App\Packages\Ema\Modules\Main\UrlHandlers;
 
 use Mishusoft\Drivers\UrlHandler;
 
 class IndexUrlHandler extends UrlHandler
 {
-
-
     /**
      * @param array $prediction
      * @throws \JsonException
@@ -18,7 +15,7 @@ class IndexUrlHandler extends UrlHandler
      * @throws \Mishusoft\Exceptions\PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    public function response(array $prediction):void
+    public function response(array $prediction): void
     {
         $view  = $this->render(WHO_AM_I, $prediction);
         $view->display();

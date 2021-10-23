@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Widgets\Models;
 
@@ -8,7 +10,6 @@ use Mishusoft\Authentication\Model;
 
 class menuModelWidget extends Model
 {
-
     public function getAllMenus(): array
     {
         $data = [];
@@ -61,7 +62,6 @@ class menuModelWidget extends Model
                         $data[$i]['submenu'][$j]['submenu'] = $this->getChildMenusByParentId($data[$i]['submenu'][$j]['id']);
                     }
                 }*/
-
             }
         }
         //return $menus;
@@ -73,7 +73,6 @@ class menuModelWidget extends Model
         $menu = (int)$menu;
         $data = $this->db->query("SELECT * FROM `" . DbPREFIX . "pages` WHERE `parent_id` = '{$menu}' AND  `status` = 'enable';")->fetch(PdoMySQL::FETCH_ASSOC);
         return $data !== false;
-
     }
 
     public function getChildMenusByParentId($parent): array
@@ -157,5 +156,4 @@ class menuModelWidget extends Model
     {
         return $this->db->query("SELECT * FROM `" . DbPREFIX . WEB_CONFIG_TABLE . "` WHERE `http_host_name` = '" . System::getInstalledURL() . "' LIMIT 1;")->fetchAll(PdoMySQL::FETCH_ASSOC);
     }
-
 }

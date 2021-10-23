@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Widgets;
 
 use Mishusoft\Authentication\Widget;

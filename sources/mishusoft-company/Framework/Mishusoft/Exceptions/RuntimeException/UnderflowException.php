@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\Exceptions\RuntimeException;
 
 use Mishusoft\Exceptions\RuntimeException;

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Mishusoft\Services;
 
@@ -46,7 +48,7 @@ class SecureDataTransferService
     /**
      * @param array $request
      */
-    public function api(array $request):void
+    public function api(array $request): void
     {
         Debug::preOutput($request);
     }
@@ -63,7 +65,7 @@ class SecureDataTransferService
      * @throws PermissionRequiredException
      * @throws RuntimeException
      */
-    public function monitor(array $request):void
+    public function monitor(array $request): void
     {
         if (Inflect::lower($request["method"]) === Inflect::lower('index')) {
             Http\Runtime::abort(
@@ -534,7 +536,7 @@ class SecureDataTransferService
      * @throws RuntimeException
      * @throws \JsonException
      */
-    private static function getVerifiedProductId(array $RequestedDataArray) : void
+    private static function getVerifiedProductId(array $RequestedDataArray): void
     {
         $idNbOfProduct = self::$conOfDatabase->verifiedProductId(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "IdRequest"), "name")), Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "IdRequest"), "version")), Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "IdRequest"), "ip")), Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "IdRequest"), "browser")));
         if (!is_numeric($idNbOfProduct)) {
@@ -545,7 +547,7 @@ class SecureDataTransferService
         }
     }
 
-    private static function getLicenceLimitByPlan(string $plan) : void
+    private static function getLicenceLimitByPlan(string $plan): void
     {
         switch ($plan) {
             case 'trial':

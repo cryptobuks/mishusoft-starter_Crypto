@@ -17,7 +17,6 @@ use SmartyException;
 
 class SmartyView extends SmartyBC
 {
-
     private static string $item = '';
 
     private Request $request;
@@ -314,10 +313,10 @@ class SmartyView extends SmartyBC
 
             if (is_callable($widgetClass, $method)) {
                 if (count($options)) {
-                    return call_user_func_array([new $widgetClass, $method], $options);
+                    return call_user_func_array([new $widgetClass(), $method], $options);
                 }
 
-                return call_user_func([new $widgetClass, $method]);
+                return call_user_func([new $widgetClass(), $method]);
             }
         } else {
             throw new NotFoundException('Widget\'s content not found');

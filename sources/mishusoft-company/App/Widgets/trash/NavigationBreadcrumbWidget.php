@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Mishusoft\Widgets;
-
 
 use Mishusoft\Framework\Drivers\Widget;
 
@@ -18,5 +16,4 @@ class NavigationBreadcrumbWidget extends Widget
         $data['name'] = $name;
         return $this->render($name, $view, $data, $format);
     }
-
 }

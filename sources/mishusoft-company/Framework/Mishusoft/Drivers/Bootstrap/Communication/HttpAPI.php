@@ -15,7 +15,6 @@ use Mishusoft\Utility\Inflect;
 
 class HttpAPI
 {
-
     /**
      * @param Http\Request\HttpAPI $request
      * @throws Exceptions\LogicException\InvalidArgumentException

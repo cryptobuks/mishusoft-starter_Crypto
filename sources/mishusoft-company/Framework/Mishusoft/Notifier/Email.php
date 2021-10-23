@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\Notifier;
 
 use Exception;

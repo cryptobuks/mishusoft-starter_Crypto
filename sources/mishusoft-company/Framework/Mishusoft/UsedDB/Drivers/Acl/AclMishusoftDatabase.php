@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Mishusoft\UsedDB\Drivers\Acl;
-
 
 use Mishusoft\Databases\MishusoftSQLStandalone;
 use Mishusoft\Databases\MishusoftSQLStandalone\TableInterface;
@@ -67,7 +65,7 @@ class AclMishusoftDatabase extends MishusoftSQLStandalone
      */
     public function getKeyOfPermission(int $idNumberOfPermission): ?string
     {
-        return _Array::value($this->db->read(DB::PERMISSIONS_LIST_TABLE)->get(["data" => ["get" => ["key"], "where" => ["id" => "{$idNumberOfPermission}"]]]),"key");
+        return _Array::value($this->db->read(DB::PERMISSIONS_LIST_TABLE)->get(["data" => ["get" => ["key"], "where" => ["id" => "{$idNumberOfPermission}"]]]), "key");
     }
 
     /**
@@ -76,7 +74,6 @@ class AclMishusoftDatabase extends MishusoftSQLStandalone
      */
     public function getNameOfPermission(int $idNumberOfPermission): ?string
     {
-        return _Array::value($this->db->read(DB::PERMISSIONS_LIST_TABLE)->get(["data" => ["get" => ["permission"], "where" => ["id" => "{$idNumberOfPermission}"]]]),"key");
+        return _Array::value($this->db->read(DB::PERMISSIONS_LIST_TABLE)->get(["data" => ["get" => ["permission"], "where" => ["id" => "{$idNumberOfPermission}"]]]), "key");
     }
-
 }

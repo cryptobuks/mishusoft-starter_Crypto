@@ -7,7 +7,6 @@ use App\Widgets\Models\menuModelWidget;
 
 class MenuWidget extends Widget
 {
-
     private menuModelWidget $menu;
 
 

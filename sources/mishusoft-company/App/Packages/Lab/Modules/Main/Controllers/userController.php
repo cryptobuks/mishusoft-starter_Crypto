@@ -174,7 +174,7 @@ class userController extends Controller
 
         $this->user->userNewLog($row['id'], 'LOGIN');
 
-        Session::set('auth', TRUE);
+        Session::set('auth', true);
         Session::set('level', $row['role']);
         Session::set('username', $row['username']);
         Session::set('first-name', $row['f_name']);
@@ -182,10 +182,11 @@ class userController extends Controller
         Session::set('userId', $row['id']);
     }
 
-    public function thirdparty($web_app_name) {
+    public function thirdparty($web_app_name)
+    {
         switch ($web_app_name) {
             case 'google':
-                if (isset($_SESSION['oauth2_tr::https://www.mishusoft.com::490685818841-9ck0mpi283mogcoskgk8kso236m5bvn4.apps.googleusercontent.com::_tr_'])){
+                if (isset($_SESSION['oauth2_tr::https://www.mishusoft.com::490685818841-9ck0mpi283mogcoskgk8kso236m5bvn4.apps.googleusercontent.com::_tr_'])) {
                     print_r($_SESSION);
                 }
                 break;
@@ -302,9 +303,13 @@ class userController extends Controller
 
 
             $this->user->addUser(
-                $this->getSql('first-name'), $this->getSql('last-name'),
-                $this->getWordParam('email'), $this->getAlphaNum('username'),
-                $this->getSql('password'), $this->getWordParam('dateOfBirth'), $this->getSql('gender')
+                $this->getSql('first-name'),
+                $this->getSql('last-name'),
+                $this->getWordParam('email'),
+                $this->getAlphaNum('username'),
+                $this->getSql('password'),
+                $this->getWordParam('dateOfBirth'),
+                $this->getSql('gender')
             );
 
             $username = $this->user->getUserByUsername($this->getAlphaNum('username'));
@@ -316,31 +321,31 @@ class userController extends Controller
                 exit;
             }
 
-            $this->view->assign('submitted_data', FALSE);
+            $this->view->assign('submitted_data', false);
             $this->view->assign('success', 'New user <b>' . $this->getSql('first-name') .
                 '</b> has been registered successfully and we send an email to your email address <b>' .
                 $this->getWordParam('email') . '</b>. Receive the mail and active your valuable account.');
 
-            Mail::send(json_encode(array(
-                    'config' => array(
+            Mail::send(json_encode([
+                    'config' => [
                         'server' => 'smtp.gmail.com',
                         'port' => 587,
                         'email' => 'sopnomon96@gmail.com',
                         'password' => 'AP17011996',
-                    ),
-                    'sender' => array(
+                    ],
+                    'sender' => [
                         'name' => 'Support Center',
                         'email' => 'support@mishusoft.com'
-                    ),
-                    'reply' => array(
+                    ],
+                    'reply' => [
                         'name' => 'Support Center',
                         'email' => 'support@mishusoft.com'
-                    ),
-                    'receiver' => array(
+                    ],
+                    'receiver' => [
                         'name' => $this->getSql('first-name') . ' ' . $this->getSql('last-name'),
                         'email' => $this->getWordParam('email')
-                    ),
-                    'mail' => array(
+                    ],
+                    'mail' => [
                         'subject' => 'Active your account',
                         'body' => 'Hello <strong>' . $this->getSql('first-name') . ' ' . $this->getSql('last-name') . '</strong> .' .
                             '<p> You have been recently created a account in <strong>' . DEFAULT_APP_COMPANY_NAME . '</strong>. But ' .
@@ -350,8 +355,8 @@ class userController extends Controller
                             '">' . BaseURL . 'user/membershipActivation/' . Encryption::static($username['id']) . '/' . Encryption::static($username['code']) .
                             '</a>.</p>',
                         'altbody' => '<p>Service Provider could not support HTML.</p>'
-                    )
-                )),$this->view);
+                    ]
+                ]), $this->view);
             //$this->redirect('user/reg/next');
         }
 
@@ -363,7 +368,6 @@ class userController extends Controller
     {
         $data = json_decode(file_get_contents('php://input'));
         if (is_object($data)) {
-
             if (empty($data->security_code) or $data->security_code !== 1) {
                 echo json_encode(['type' => 'error', 'message' => 'User registration error.']);
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Security code not found.')));
@@ -447,9 +451,13 @@ class userController extends Controller
             }
 
             $this->user->addUser(
-                $this->getSqlText($data->firstName), $this->getSqlText($data->lastName),
-                $this->getSqlText($data->email), $this->getSqlText($data->username),
-                $data->password, $this->getSqlText($data->dateOfBirth), $this->getSqlText($data->gender)
+                $this->getSqlText($data->firstName),
+                $this->getSqlText($data->lastName),
+                $this->getSqlText($data->email),
+                $this->getSqlText($data->username),
+                $data->password,
+                $this->getSqlText($data->dateOfBirth),
+                $this->getSqlText($data->gender)
             );
             $user = $this->user->getUserByUsername($this->getSqlText($data->username));
 
@@ -459,26 +467,27 @@ class userController extends Controller
                 exit;
             }
 
-            Mail::send(json_encode(array(
-                    'config' => array(
+            Mail::send(json_encode(
+                [
+                    'config' => [
                         'server' => 'smtp.gmail.com',
                         'port' => 587,
                         'email' => 'sopnomon96@gmail.com',
                         'password' => 'AP17011996',
-                    ),
-                    'sender' => array(
+                    ],
+                    'sender' => [
                         'name' => 'Support Center',
                         'email' => 'support@mishusoft.com'
-                    ),
-                    'reply' => array(
+                    ],
+                    'reply' => [
                         'name' => 'Support Center',
                         'email' => 'support@mishusoft.com'
-                    ),
-                    'receiver' => array(
+                    ],
+                    'receiver' => [
                         'name' => $this->getSqlText($data->firstName) . ' ' . $this->getSqlText($data->lastName),
                         'email' => $this->getSqlText($data->email)
-                    ),
-                    'mail' => array(
+                    ],
+                    'mail' => [
                         'subject' => 'Active your account',
                         'body' => 'Hello <strong>' . $this->getSqlText($data->firstName) . ' ' . $this->getSqlText($data->lastName) . '</strong> .' .
                             '<p> You have been recently created a account in <strong>' . DEFAULT_APP_COMPANY_NAME . '</strong>. But ' .
@@ -488,8 +497,8 @@ class userController extends Controller
                             '">' . BaseURL . 'user/membershipActivation/' . Encryption::static($user['id']) . '/' . Encryption::static($user['code']) .
                             '</a>.</p>',
                         'altbody' => '<p>Service Provider could not support HTML.</p>'
-                    )
-                )
+                    ]
+                ]
             ));
 
             echo json_encode(['type' => 'success', 'message' => 'New user <b>' . $this->getSqlText($data->firstName) . '</b> has been registered successfully and we send an email to your email address <b>' .
@@ -516,7 +525,7 @@ class userController extends Controller
             if ($upload->processed) {
                 $image = $upload->file_dst_name;
                 $thumb = new upload($upload->file_dst_pathname);
-                $thumb->image_resize = TRUE;
+                $thumb->image_resize = true;
                 $thumb->image_x = 100;
                 $thumb->image_y = 70;
                 $thumb->file_name_body_pre = 'thumb_';
@@ -577,7 +586,8 @@ class userController extends Controller
         $this->view->render('pswrdRecovery', 'Password recovery');
     }
 
-    public function passwordRecoveryValidation(){
+    public function passwordRecoveryValidation()
+    {
         $data = json_decode(file_get_contents('php://input'));
         if (is_object($data)) {
             if (empty($data->security_code) or $data->security_code !== 1) {
@@ -599,26 +609,27 @@ class userController extends Controller
             if (!empty($this->getSqlText($data->username))) {
                 if ($this->user->getUserName($this->getSqlText($data->username))) {
                     $user = $this->user->getUserByUsername($this->getSqlText($data->username));
-                    Mail::send(json_encode(array(
-                            'config' => array(
+                    Mail::send(json_encode(
+                        [
+                            'config' => [
                                 'server' => 'smtp.gmail.com',
                                 'port' => 587,
                                 'email' => 'sopnomon96@gmail.com',
                                 'password' => 'AP17011996',
-                            ),
-                            'sender' => array(
+                            ],
+                            'sender' => [
                                 'name' => 'Support Center',
                                 'email' => 'support@mishusoft.com'
-                            ),
-                            'reply' => array(
+                            ],
+                            'reply' => [
                                 'name' => 'Support Center',
                                 'email' => 'support@mishusoft.com'
-                            ),
-                            'receiver' => array(
+                            ],
+                            'receiver' => [
                                 'name' => $user['f_name'] . ' ' . $user['l_name'],
                                 'email' => $user['email']
-                            ),
-                            'mail' => array(
+                            ],
+                            'mail' => [
                                 'subject' => 'Active your account',
                                 'body' => 'Hello <strong>' . $user['f_name'] . ' ' . $user['l_name'] . '</strong> .' .
                                     '<p> You have been request to reset your password. Click to the following link to reset your password.' .
@@ -626,8 +637,8 @@ class userController extends Controller
                                     '">' . BaseURL . 'user/resetpassword/' . Encryption::static($user['id']) . '/' . Encryption::static($user['code']) .
                                     '</a>.</p>',
                                 'altbody' => '<p>Service Provider could not support HTML.</p>'
-                            )
-                        )
+                            ]
+                        ]
                     ));
 
                     echo json_encode(['type' => 'success', 'message' => 'We send an email to your email address (<b>' . $user['email'] . '</b>). Please check your mail inbox and active your valuable account.']);
@@ -648,26 +659,27 @@ class userController extends Controller
                 }
                 if ($this->user->verifyEmail($this->getSqlText($data->email))) {
                     $user = $this->user->getUserByEmail($this->getSqlText($data->email));
-                    Mail::send(json_encode(array(
-                            'config' => array(
+                    Mail::send(json_encode(
+                        [
+                            'config' => [
                                 'server' => 'smtp.gmail.com',
                                 'port' => 587,
                                 'email' => 'sopnomon96@gmail.com',
                                 'password' => 'AP17011996',
-                            ),
-                            'sender' => array(
+                            ],
+                            'sender' => [
                                 'name' => 'Support Center',
                                 'email' => 'support@mishusoft.com'
-                            ),
-                            'reply' => array(
+                            ],
+                            'reply' => [
                                 'name' => 'Support Center',
                                 'email' => 'support@mishusoft.com'
-                            ),
-                            'receiver' => array(
+                            ],
+                            'receiver' => [
                                 'name' => $user['f_name'] . ' ' . $user['l_name'],
                                 'email' => $user['email']
-                            ),
-                            'mail' => array(
+                            ],
+                            'mail' => [
                                 'subject' => 'Active your account',
                                 'body' => 'Hello <strong>' . $user['f_name'] . ' ' . $user['l_name'] . '</strong> .' .
                                     '<p> You have been request to reset your password. Click to the following link to reset your password.' .
@@ -675,8 +687,8 @@ class userController extends Controller
                                     '">' . BaseURL . 'user/resetpassword/' . Encryption::static($user['id']) . '/' . Encryption::static($user['code']) .
                                     '</a>.</p>',
                                 'altbody' => '<p>Service Provider could not support HTML.</p>'
-                            )
-                        )
+                            ]
+                        ]
                     ));
 
                     echo json_encode(['type' => 'success', 'message' => 'We send an email to your email address (<b>' . $user['email'] . '</b>). Please check your mail inbox and active your valuable account.']);
@@ -715,10 +727,10 @@ class userController extends Controller
         /*$this->view->setJs(['main']);*/
         $this->view->assign('userId', $id);
         $this->view->render('resetpassword', 'Register');
-
     }
 
-    public function newPasswordValidation(){
+    public function newPasswordValidation()
+    {
         $data = json_decode(file_get_contents('php://input'));
         if (is_object($data)) {
             if (empty($data->security_code) or $data->security_code !== 1) {
@@ -766,7 +778,6 @@ class userController extends Controller
             //Tracker::addEvent(array('activity' => array('messageType' => 'success', 'message' => 'New password set successfully.')));
             exit;
         }
-
     }
 
     public function logout()
@@ -902,26 +913,27 @@ class userController extends Controller
 
          }*/
 
-        Mail::send(json_encode(array(
-                'config' => array(
+        Mail::send(json_encode(
+            [
+                'config' => [
                     'server' => 'smtp.gmail.com',
                     'port' => 587,
                     'email' => 'sopnomon96@gmail.com',
                     'password' => 'AP17011996',
-                ),
-                'sender' => array(
+                ],
+                'sender' => [
                     'name' => 'Support Center',
                     'email' => 'support@mishusoft.com'
-                ),
-                'reply' => array(
+                ],
+                'reply' => [
                     'name' => 'Support Center',
                     'email' => 'support@mishusoft.com'
-                ),
-                'receiver' => array(
+                ],
+                'receiver' => [
                     'name' => 'Abir Ahamed',
                     'email' => 'mrabir.ahamed@gmail.com'
-                )
-            )
+                ]
+            ]
         ));
     }
 }

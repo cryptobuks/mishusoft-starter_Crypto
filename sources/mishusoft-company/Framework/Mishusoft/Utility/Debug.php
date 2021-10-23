@@ -1,10 +1,11 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Mishusoft\Utility;
 
 class Debug
 {
-
     public static function preOutput($argument): void
     {
         echo '<pre>';

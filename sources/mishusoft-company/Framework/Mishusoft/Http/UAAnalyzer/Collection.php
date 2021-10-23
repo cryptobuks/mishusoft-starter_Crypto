@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\Http\UAAnalyzer;
 
 use Mishusoft\Exceptions\RuntimeException;
@@ -123,7 +122,7 @@ abstract class Collection extends UAAnalyzerBase
         $cacheDictionariesFile = self::dFile(self::configDataFile('UAAnalyzer', 'dictionaries'));
         if (file_exists($cacheDictionariesFile)) {
             $this->dictionaries = Storage\FileSystem\Yaml::parseFile($cacheDictionariesFile);
-            //Debug::preOutput(Implement::arrayToJson($this->dictionaries));
+        //Debug::preOutput(Implement::arrayToJson($this->dictionaries));
         } elseif (count($this->directoriesWithFiles) > 0) {
             foreach ($this->directoriesWithFiles as $directory => $files) {
                 if (is_array($files) === true) {

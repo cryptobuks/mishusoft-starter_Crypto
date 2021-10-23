@@ -2,7 +2,6 @@
 
 namespace Mishusoft\Packages\Lab\Modules\System\Controllers;
 
-
 use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Framework\Chipsets\Utility\Pagination;
 use Mishusoft\Framework\Globals\Functions\Text;
@@ -14,14 +13,13 @@ class usersController extends systemController
     private $system;
     public function __construct()
     {
-        parent:: __construct();
+        parent::__construct();
         $this->access_init();
         $this->system = $this->loadModel('system');
     }
 
     public function index()
     {
-
         $this->acl->access('edit_content');
         //Tracker::addEvent(array('activity' => array('messageType' => 'success', 'message' => 'Navigate to users page successfully')));
 
@@ -60,7 +58,7 @@ class usersController extends systemController
         $data = json_decode(file_get_contents('php://input'));
 
         if (!empty($data) && is_object($data)) {
-            if (empty($data->security_code) OR $data->security_code !== 1) {
+            if (empty($data->security_code) or $data->security_code !== 1) {
                 echo json_encode(['type' => 'error', 'message' => 'User\'s security code not found.']);
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'User\'s security code not found.')));
                 exit;
@@ -115,16 +113,16 @@ class usersController extends systemController
                 } elseif ($this->system->verifyUsername(Text::removeTags($data->username))) {
                     echo json_encode(['type' => 'error', 'message' => 'The username <b>' . Text::removeTags($data->username) . '</b> has already exist. Please enter new one.']);
                     exit;
-                }
-                else {
-                    $this->system->insertUserBasicInfo(Text::removeTags($data->FName), Text::removeTags($data->LName), Text::removeTags($data->email), Text::removeTags($data->username), Text::removeTags($data->password), Text::removeTags($data->activity), $this->filterInt($data->role),0);
+                } else {
+                    $this->system->insertUserBasicInfo(Text::removeTags($data->FName), Text::removeTags($data->LName), Text::removeTags($data->email), Text::removeTags($data->username), Text::removeTags($data->password), Text::removeTags($data->activity), $this->filterInt($data->role), 0);
                     $this->system->insertUserDetailsInfo(Text::removeTags($data->dateOfBirth), Text::removeTags($data->gender), Text::removeTags($data->profession));
                     echo json_encode(['type' => 'success', 'user' => $this->system->UserLastInsertId($data->email), 'message' => 'New user (' . ucfirst(Text::removeTags($data->FName)) . ' ' . Text::removeTags($data->LName) . ') added successfully...']);
                     /*Tracker::addEvent(array(
                         'activity' => array('messageType' => 'success', 'message' => 'New user (' . ucfirst(Text::removeTags($data->FName)) . ' ' . Text::removeTags($data->LName) . ') added successfully...'),
                         'update' => array('messageType' => 'success', 'uFile' => 'user', 'message' => 'New user (' . ucfirst(Text::removeTags($data->FName)) . ' ' . Text::removeTags($data->LName) . ') added successfully...')
                     ));*/
-                    exit;}
+                    exit;
+                }
             }
 
             if ($data->btnName === 'Update') {
@@ -170,7 +168,7 @@ class usersController extends systemController
         $data = json_decode(file_get_contents('php://input'));
 
         if (!empty($data) && is_object($data)) {
-            if (empty($data->security_code) OR $data->security_code !== 1) {
+            if (empty($data->security_code) or $data->security_code !== 1) {
                 echo json_encode(['type' => 'error', 'message' => 'User\'s security code not found.']);
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'User\'s security code not found.')));
                 exit;
@@ -199,7 +197,7 @@ class usersController extends systemController
         $data = json_decode(file_get_contents('php://input'));
 
         if (!empty($data) && is_object($data)) {
-            if (empty($data->security_code) OR $data->security_code !== 1) {
+            if (empty($data->security_code) or $data->security_code !== 1) {
                 echo json_encode(['status' => 'failed', 'type' => 'error', 'message' => 'User\'s security code not found.']);
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'User\'s security code not found.')));
                 exit;
@@ -231,15 +229,15 @@ class usersController extends systemController
 
         if (isset($_FILES['imageFile']['name'])) {
             $upload = new upload($_FILES['imageFile']);
-            $upload->allowed = array('image/*');
+            $upload->allowed = ['image/*'];
             $upload->file_new_name_body = 'msu_pro_pic_' . uniqid();
-            $upload->process(Storage::getMediaPathOfUploads("","local"));
+            $upload->process(Storage::getMediaPathOfUploads("", "local"));
 
             if ($upload->processed) {
                 $imageName = $upload->file_dst_name;
                 $imageMime = $upload->file_src_mime;
                 $imageSize = ($upload->file_src_size / 1024) / 1024;
-                $imageContent = file_get_contents(Storage::getMediaPathOfUploads($imageName,"local"));
+                $imageContent = file_get_contents(Storage::getMediaPathOfUploads($imageName, "local"));
 
                 //$imageActualSize = number_format($imageSize, 2) . ' Mb';
 
@@ -277,5 +275,4 @@ class usersController extends systemController
         header('Content-Disposition: filename= Image'); // https://www.php.net/manual/en/function.headers-sent.php
         echo $data['data'];
     }
-
 }

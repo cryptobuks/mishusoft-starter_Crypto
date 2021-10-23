@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\Storage\FileSystem;
 
 use Exception;
@@ -10,7 +9,6 @@ use Mishusoft\Storage\FileSystem;
 
 class Yaml
 {
-
     public const DUMP_OBJECT = 1;
     public const PARSE_EXCEPTION_ON_INVALID_TYPE = 2;
     public const PARSE_OBJECT = 4;

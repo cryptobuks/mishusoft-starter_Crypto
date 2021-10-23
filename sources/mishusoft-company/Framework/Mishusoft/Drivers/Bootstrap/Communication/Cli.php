@@ -9,7 +9,6 @@ use Mishusoft\MPM;
 
 class Cli
 {
-
     /**
      * @param Request $request
      * @throws Exceptions\HttpException\HttpRequestException
@@ -27,7 +26,7 @@ class Cli
             if (file_exists($rootController) && is_readable($rootController)) {
                 include_once $rootController;
                 $controller = Base::getClassNamespace($rootController);
-                $controller = new $controller;
+                $controller = new $controller();
 
                 if (is_callable([$controller, $method])) {
                     $method = $request->getMethod();

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Widgets;
 
 use DOMElement;
@@ -14,7 +13,6 @@ use Mishusoft\Utility\Inflect;
 
 class UniversalWidget
 {
-
     /**
      * @var DOMElement
      */

@@ -122,7 +122,7 @@ class Compression
                     $new .= "<<<S\n";
                     $iw   = false;
                     $ih   = true;
-                    // in HEREDOC.
+                // in HEREDOC.
                 } elseif ($tn === T_END_HEREDOC) {
                     $new .= 'S;';
                     $iw   = true;

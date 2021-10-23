@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\Http\UAAnalyzer\IdentifiersCollection;
 
 use Mishusoft\Exceptions\RuntimeException;
@@ -63,7 +62,7 @@ class BrowsersIdentifiersCollection extends Collection
      * @throws RuntimeException
      * @throws \Mishusoft\Exceptions\JsonException
      */
-    public function analyserAll():array
+    public function analyserAll(): array
     {
         return $this->extractAttribute($this->query('browsers', 'analysers'), 'identifier-only');
     }
@@ -73,7 +72,7 @@ class BrowsersIdentifiersCollection extends Collection
      * @throws RuntimeException
      * @throws \Mishusoft\Exceptions\JsonException
      */
-    public function botsAll():array
+    public function botsAll(): array
     {
         return $this->extractAttribute($this->query('browsers', 'bots'), 'identifier-only');
     }
@@ -83,7 +82,7 @@ class BrowsersIdentifiersCollection extends Collection
      * @throws RuntimeException
      * @throws \Mishusoft\Exceptions\JsonException
      */
-    public function applicationsAll():array
+    public function applicationsAll(): array
     {
         return $this->extractAttribute($this->query('browsers', 'applications'), 'identifier-only');
     }
@@ -93,7 +92,7 @@ class BrowsersIdentifiersCollection extends Collection
      * @throws RuntimeException
      * @throws \Mishusoft\Exceptions\JsonException
      */
-    public function emailClientsAll():array
+    public function emailClientsAll(): array
     {
         return $this->extractAttribute($this->query('browsers', 'email-clients'), 'identifier-only');
     }
@@ -103,7 +102,7 @@ class BrowsersIdentifiersCollection extends Collection
      * @throws RuntimeException
      * @throws \Mishusoft\Exceptions\JsonException
      */
-    public function feedReadersAll():array
+    public function feedReadersAll(): array
     {
         return $this->extractAttribute($this->query('browsers', 'feed-readers'), 'identifier-only');
     }
@@ -113,7 +112,7 @@ class BrowsersIdentifiersCollection extends Collection
      * @throws RuntimeException
      * @throws \Mishusoft\Exceptions\JsonException
      */
-    public function multimediaPlayersAll():array
+    public function multimediaPlayersAll(): array
     {
         return $this->extractAttribute($this->query('browsers', 'multimedia-players'), 'identifier-only');
     }
@@ -123,7 +122,7 @@ class BrowsersIdentifiersCollection extends Collection
      * @throws RuntimeException
      * @throws \Mishusoft\Exceptions\JsonException
      */
-    public function offlineBrowsersAll():array
+    public function offlineBrowsersAll(): array
     {
         return $this->extractAttribute($this->query('browsers', 'offline-browsers'), 'identifier-only');
     }
@@ -133,7 +132,7 @@ class BrowsersIdentifiersCollection extends Collection
      * @throws RuntimeException
      * @throws \Mishusoft\Exceptions\JsonException
      */
-    public function toolsAll():array
+    public function toolsAll(): array
     {
         return $this->extractAttribute($this->query('browsers', 'tools'), 'identifier-only');
     }
@@ -143,7 +142,7 @@ class BrowsersIdentifiersCollection extends Collection
      * @throws RuntimeException
      * @throws \Mishusoft\Exceptions\JsonException
      */
-    public function browsersAll():array
+    public function browsersAll(): array
     {
         return $this->extractAttribute($this->query('browsers', 'browsers'), 'identifier-only');
     }
@@ -153,7 +152,7 @@ class BrowsersIdentifiersCollection extends Collection
      * @throws RuntimeException
      * @throws \Mishusoft\Exceptions\JsonException
      */
-    public function compatibilitiesAll():array
+    public function compatibilitiesAll(): array
     {
         return $this->extractAttribute($this->query('browsers', 'compatibilities'), 'identifier-only');
     }
@@ -163,7 +162,7 @@ class BrowsersIdentifiersCollection extends Collection
      * @throws RuntimeException
      * @throws \Mishusoft\Exceptions\JsonException
      */
-    public function browserEnginesAll():array
+    public function browserEnginesAll(): array
     {
         return $this->extractAttribute($this->query('browsers', 'browsers-engines'), 'identifier-only');
     }

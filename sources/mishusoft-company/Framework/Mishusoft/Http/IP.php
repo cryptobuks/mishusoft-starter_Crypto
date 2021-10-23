@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * Reserved for private networks.
@@ -35,7 +37,7 @@ class IP extends Base
     /**
      * Absolute path of geo lite city db file.
      */
-    public static function cityDbFile():string
+    public static function cityDbFile(): string
     {
         return self::dFile(self::requiredDataFile('GeoIP', 'GeoLite2-City'), 'mmdb');
     }
@@ -44,7 +46,7 @@ class IP extends Base
     /**
      * Absolute path of geo lite country db file.
      */
-    public static function countryDbFile():string
+    public static function countryDbFile(): string
     {
         return self::dFile(self::requiredDataFile('GeoIP', 'GeoLite2-Country'), 'mmdb');
     }

@@ -19,7 +19,7 @@ trait FileList
     /**
      * @return string
      */
-    public static function configFile():string
+    public static function configFile(): string
     {
         return self::dFile(
             self::configDataFile(
@@ -32,7 +32,7 @@ trait FileList
     /**
      * @return string
      */
-    public static function installFile():string
+    public static function installFile(): string
     {
         return self::dFile(
             self::configDataFile(
@@ -45,7 +45,7 @@ trait FileList
     /**
      * @return string
      */
-    public function listerFile():string
+    public function listerFile(): string
     {
         return self::dFile(
             self::configDataFile(

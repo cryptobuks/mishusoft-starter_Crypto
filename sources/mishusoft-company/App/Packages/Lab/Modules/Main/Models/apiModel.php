@@ -6,8 +6,10 @@ use Mishusoft\Framework\Drivers\Model;
 use PDO;
 use function Mishusoft\Framework\Globals\value;
 
-class apiModel extends Model {
-    public function __construct(){
+class apiModel extends Model
+{
+    public function __construct()
+    {
         parent::__construct();
     }
 
@@ -45,13 +47,13 @@ class apiModel extends Model {
     public function getPageIdByName($name)
     {
         $data = $this->query("SELECT * FROM `" . DbPREFIX . "pages` WHERE `title` = '{$name}'");
-        return value($data->fetch(PDO::FETCH_ASSOC),'id');
+        return value($data->fetch(PDO::FETCH_ASSOC), 'id');
     }
 
     public function getPageSourceById($id)
     {
         $id = (int)$id;
         $data = $this->query("SELECT * FROM `" . DbPREFIX . "pages_sources` WHERE `page` = '{$id}'");
-        return value($data->fetch(PDO::FETCH_ASSOC),'sources');
+        return value($data->fetch(PDO::FETCH_ASSOC), 'sources');
     }
 }

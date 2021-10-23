@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 /*
  * Browser (php language) Library
@@ -16,7 +18,6 @@ use RuntimeException;
 
 class Browser extends UAAnalyzer
 {
-
     public const DEFAULT_USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64; rv:95.0) Gecko/20100101 Firefox/95.0';
 
     private string $requestMethod;

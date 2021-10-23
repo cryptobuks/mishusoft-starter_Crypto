@@ -12,11 +12,10 @@ use Mishusoft\Utility\Inflect;
 
 class Ema
 {
-
     /**
      * @throws RuntimeException
      */
-    public static function run(Request\HttpAPI $request):void
+    public static function run(Request\HttpAPI $request): void
     {
         /*
          * We need to check Ema Root path
@@ -64,17 +63,17 @@ class Ema
         }//end if
     }
 
-    private static function rootPath():string
+    private static function rootPath(): string
     {
         return Storage::emaPath().'Modules'.DS;
     }
 
-    private static function defaultPackage():string
+    private static function defaultPackage(): string
     {
         return 'Main';
     }
 
-    private static function handlersDirectory():string
+    private static function handlersDirectory(): string
     {
         return self::rootPath().self::defaultPackage().'/UrlHandlers/';
     }

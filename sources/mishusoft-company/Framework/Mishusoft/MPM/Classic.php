@@ -15,7 +15,6 @@ use Mishusoft\Utility\Inflect;
 
 class Classic extends MPM
 {
-
     /**
      * MPM valid keys.
      *
@@ -688,7 +687,7 @@ class Classic extends MPM
         string $packageName,
         string $status = 'disabled',
         bool $set_default = false
-    ) : void {
+    ): void {
         if (empty($module_name)=== false) {
             if ((self::readConfigure() === true)
                 && in_array($packageName, self::$content['modules'], true)

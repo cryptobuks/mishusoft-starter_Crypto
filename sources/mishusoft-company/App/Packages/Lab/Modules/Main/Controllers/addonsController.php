@@ -4,8 +4,10 @@ namespace Mishusoft\Packages\Lab\Modules\Main\Controllers;
 
 use Mishusoft\Framework\Drivers\Controller;
 
-class addonsController extends Controller {
-    public function __construct(){
+class addonsController extends Controller
+{
+    public function __construct()
+    {
         parent::__construct();
     }
 
@@ -17,10 +19,13 @@ class addonsController extends Controller {
         $this->view->render('index', 'Add-ons');
     }
 
-    public function ipinfo($ip = false){
+    public function ipinfo($ip = false)
+    {
         /*$this->view->setJs(['main']);*/
         $this->view->assign('title', 'Ip Info');
-        if (isset($ip)){$this->view->assign('ip_address', $ip);}
+        if (isset($ip)) {
+            $this->view->assign('ip_address', $ip);
+        }
         $this->view->render('ipinfo', 'Ip Info');
     }
 }

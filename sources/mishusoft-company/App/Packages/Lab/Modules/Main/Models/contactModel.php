@@ -2,7 +2,6 @@
 
 namespace Mishusoft\Packages\Lab\Modules\Main\Models;
 
-
 use Mishusoft\Framework\Drivers\Model;
 
 class contactModel extends Model
@@ -21,7 +20,7 @@ class contactModel extends Model
          * */
         $this->prepare("INSERT INTO `" . DbPREFIX . "contact_messages` (`id`, `ip`, `f_name`, `l_name`, `email`, `mobile`, `subject`, `message`,`last_update_date_time`) VALUES (null, :ip_add, :firstName, :lastName, :email, :mobileNumber, :messageSubject, :messageContent, now())")
             ->execute(
-                array(
+                [
                     ':ip_add' => $ip,
                     ':firstName' => $firstName,
                     ':lastName' => $lastName,
@@ -29,7 +28,7 @@ class contactModel extends Model
                     ':mobileNumber' => $mobileNumber,
                     ':messageSubject' => $messageSubject,
                     ':messageContent' => $messageContent
-                ));
+                ]
+            );
     }
-
 }

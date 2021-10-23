@@ -13,7 +13,7 @@ class webappController extends systemController
     private $system;
     public function __construct()
     {
-        parent:: __construct();
+        parent::__construct();
         $this->access_init();
         $this->system = $this->loadModel('system');
     }
@@ -41,7 +41,7 @@ class webappController extends systemController
         $data = json_decode(file_get_contents('php://input'));
 
         if (!empty($data) && is_object($data)) {
-            if (empty($this->filterInt($data->security_code)) OR $this->filterInt($data->security_code) !== 1) {
+            if (empty($this->filterInt($data->security_code)) or $this->filterInt($data->security_code) !== 1) {
                 echo json_encode(['type' => 'error', 'message' => 'Site\'s security code not found.',]);
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Site\'s security code not found.')));
                 exit;
@@ -89,7 +89,7 @@ class webappController extends systemController
         $data = json_decode(file_get_contents('php://input'));
 
         if (!empty($data) && is_object($data)) {
-            if (empty($this->filterInt($data->security_code)) OR $this->filterInt($data->security_code) !== 1) {
+            if (empty($this->filterInt($data->security_code)) or $this->filterInt($data->security_code) !== 1) {
                 echo json_encode(['type' => 'error', 'message' => 'Site\'s security code not found.',]);
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Site\'s security code not found.')));
                 exit;
@@ -113,7 +113,7 @@ class webappController extends systemController
                     'update' => array('messageType' => 'success', 'uFile' => 'Socialinks', 'message' => ucfirst($this->getSqlText($data->name)) . ' profile link updated successfully....')
                 ));*/
                 exit;
-            } else if ($data->btnName === 'Save') {
+            } elseif ($data->btnName === 'Save') {
                 $this->system->addSocialLink($this->getSqlText($data->name), $this->getSqlText($data->link));
                 echo json_encode(['type' => 'success', 'message' => 'New ' . ucfirst($this->getSqlText($data->name)) . ' profile link added successfully....',]);
                 /*Tracker::addEvent(array(
@@ -148,13 +148,15 @@ class webappController extends systemController
         }
     }
 
-    public function getWebAppTables(){
+    public function getWebAppTables()
+    {
         $this->acl->access('edit_content');
         echo json_encode($this->system->getWebAppTables());
         /*Tracker::addEvent(array('activity' => array('messageType' => 'success', 'message' => 'Web app\'s tables json data extract successfully')));*/
     }
 
-    public function getWebAppSocialLinks(){
+    public function getWebAppSocialLinks()
+    {
         $this->acl->access('edit_content');
         echo json_encode($this->system->getWebAppSocialLinks());
         /*Tracker::addEvent(array('activity' => array('messageType' => 'success', 'message' => 'Web app\'s social links json data extract successfully')));*/
@@ -186,9 +188,9 @@ class webappController extends systemController
                 exit;
             }
 
-            $permit_file_size = substr(ini_get('upload_max_filesize'),0,1);
-            $actual_file_size =substr(($fileSize / 1024) / 1024,0,3);
-            if ($actual_file_size > $permit_file_size){
+            $permit_file_size = substr(ini_get('upload_max_filesize'), 0, 1);
+            $actual_file_size =substr(($fileSize / 1024) / 1024, 0, 3);
+            if ($actual_file_size > $permit_file_size) {
                 echo 'The file ('.$fileName.') size is larger than the permit size..';
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'The file ('.$fileName.') size is larger than the permit size..')));
                 exit;
@@ -200,11 +202,10 @@ class webappController extends systemController
                 exit;
             }
 
-            chmod(MPM::databasesPath(),0777);
+            chmod(MPM::databasesPath(), 0777);
             if (move_uploaded_file($fileTmpLoc, MPM::databasesPath() . $fileName)) {
-
                 $uploadedFile = MPM::databasesPath() . $fileName;
-                chmod($uploadedFile,0777);
+                chmod($uploadedFile, 0777);
 
                 if (!file_exists($uploadedFile)) {
                     echo 'Error: Databases file [' . $fileName . '] not found.';
@@ -232,7 +233,7 @@ class webappController extends systemController
         $data = json_decode(file_get_contents('php://input'));
 
         if (!empty($data) && is_object($data)) {
-            if (empty($this->filterInt($data->security_code)) OR $this->filterInt($data->security_code) !== 1) {
+            if (empty($this->filterInt($data->security_code)) or $this->filterInt($data->security_code) !== 1) {
                 echo 'Security code not found.';
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Security code not found.')));
                 exit;
@@ -260,9 +261,9 @@ class webappController extends systemController
                 }
                 if (!file_exists($systemMasterDatabaseFile)) {
                     echo ' Framework master database file (' . strtolower(DEFAULT_APP_NAME).Mishusoft_Database_Dump_File_Format . ') not found in '. MPM::databasesPath()  .'.';
-                   /* Tracker::addEvent(array(
-                        'activity' => array('messageType' => 'error', 'message' => 'Framework master database file (' . strtolower('DefaultAppName').MishusoftDatabaseDumpFileFormat . ') not found in '. MPM::databasesPath()  .'.')
-                    ));*/
+                    /* Tracker::addEvent(array(
+                         'activity' => array('messageType' => 'error', 'message' => 'Framework master database file (' . strtolower('DefaultAppName').MishusoftDatabaseDumpFileFormat . ') not found in '. MPM::databasesPath()  .'.')
+                     ));*/
                     exit;
                 }
 
@@ -274,24 +275,44 @@ class webappController extends systemController
                     $this->system->dbconfdata($systemAccountDatabaseFile);
                     echo 'Setting up default user in database...<br/>';
                     $this->system->insertUserBasicInfo(
-                        '','', SUPPORT_EMAIL_ADDRESS, str_replace('msu_','',DEFAULT_OPERATING_SYSTEM_USER),
-                        DEFAULT_OPERATING_SYSTEM_PASSWORD, 'active', '1', '1'
+                        '',
+                        '',
+                        SUPPORT_EMAIL_ADDRESS,
+                        str_replace('msu_', '', DEFAULT_OPERATING_SYSTEM_USER),
+                        DEFAULT_OPERATING_SYSTEM_PASSWORD,
+                        'active',
+                        '1',
+                        '1'
                     );
-                    $this->system->insertUserDetailsInfo(DEFAULT_DATE_OF_BIRTH, 'male','');
+                    $this->system->insertUserDetailsInfo(DEFAULT_DATE_OF_BIRTH, 'male', '');
                     echo 'Setting up admin user in database...<br/>';
                     $this->system->insertUserBasicInfo(
-                        '','', $config->account->email, str_replace('msu_','', $config->account->username),
-                        $config->account->password, $config->account->activity, $config->account->role,
+                        '',
+                        '',
+                        $config->account->email,
+                        str_replace('msu_', '', $config->account->username),
+                        $config->account->password,
+                        $config->account->activity,
+                        $config->account->role,
                         $config->account->status
                     );
-                    $this->system->insertUserDetailsInfo($config->account->dob, $config->account->gender,'');
+                    $this->system->insertUserDetailsInfo($config->account->dob, $config->account->gender, '');
                     echo 'Creating extra tables in database...<br/>';
                     $this->system->dbconfdata($systemMasterDatabaseFile);
                     echo 'Setting up webapp in database...<br/>';
                     $this->system->configWebApp(
-                        $config->app->name, $config->app->description, $config->app->company, $config->app->doc_root, $config->app->http_host_name,
-                        $config->app->http_host_add, $config->app->http_host_ip, $config->app->default_home, $config->app->default_layout,
-                        $config->app->icon_remote_dir, $config->app->icon_local_dir, $config->app->favicon
+                        $config->app->name,
+                        $config->app->description,
+                        $config->app->company,
+                        $config->app->doc_root,
+                        $config->app->http_host_name,
+                        $config->app->http_host_add,
+                        $config->app->http_host_ip,
+                        $config->app->default_home,
+                        $config->app->default_layout,
+                        $config->app->icon_remote_dir,
+                        $config->app->icon_local_dir,
+                        $config->app->favicon
                     );
                     echo ' Framework database restored successfully....';
                     /*Tracker::addEvent(array(
@@ -299,7 +320,7 @@ class webappController extends systemController
                         'update' => array('messageType' => 'success', 'uFile' => 'Webapp', 'message' => 'Framework database restored successfully....')
                     ));*/
                     exit;
-                } else{
+                } else {
                     echo 'Configuration data not found.';
                     //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Configuration data not found.')));
                     exit;
@@ -322,9 +343,9 @@ class webappController extends systemController
             $fileSize= $_FILES['logoImage']['size']; //the size of file it is
             $fileErrorMsg = $_FILES['logoImage']['error']; //0 for false ... and 1 for true
 
-            $permit_file_size = substr(ini_get('upload_max_filesize'),0,1);
-            $actual_file_size =substr(($fileSize / 1024) / 1024,0,3);
-            if ($actual_file_size > $permit_file_size){
+            $permit_file_size = substr(ini_get('upload_max_filesize'), 0, 1);
+            $actual_file_size =substr(($fileSize / 1024) / 1024, 0, 3);
+            if ($actual_file_size > $permit_file_size) {
                 echo 'The file ('.$fileName.') size is larger than the permit size..';
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'The file ('.$fileName.') size is larger than the permit size..')));
                 exit;
@@ -345,13 +366,12 @@ class webappController extends systemController
                 exit;
             }
 
-            chmod(Storage::getMediaPathOfUploads("","local"),0777);
-            if (move_uploaded_file($fileTmpLoc, Storage::getMediaPathOfUploads($fileName,"local"))) {
-
-                $oldImageFile = Storage::getMediaPathOfUploads($fileName,"local");
+            chmod(Storage::getMediaPathOfUploads("", "local"), 0777);
+            if (move_uploaded_file($fileTmpLoc, Storage::getMediaPathOfUploads($fileName, "local"))) {
+                $oldImageFile = Storage::getMediaPathOfUploads($fileName, "local");
                 $newImageFile = 'logo_' . uniqid();
-                rename($oldImageFile , Storage::getMediaPathOfUploads($newImageFile,"local"));
-                chmod(Storage::getMediaPathOfUploads($newImageFile,"local"),0777);
+                rename($oldImageFile, Storage::getMediaPathOfUploads($newImageFile, "local"));
+                chmod(Storage::getMediaPathOfUploads($newImageFile, "local"), 0777);
                 $this->system->setLogo($newImageFile);
                 echo 'Webapp logo change with new (' . $fileName . ') successfully....';
                 /*Tracker::addEvent(array(

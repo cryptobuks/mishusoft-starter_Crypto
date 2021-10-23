@@ -8,7 +8,6 @@ use PDOException;
 
 class Model
 {
-
     /**
      * @var mixed|false
      */
@@ -30,13 +29,11 @@ class Model
         $this->registry = Registry::getInstance();
         $this->db       = $this->registry->db;
         $this->dbc      = $this->db;
-
     }//end __construct()
 
 
-    function __destruct()
+    public function __destruct()
     {
-
     }//end __destruct()
 
 
@@ -57,7 +54,6 @@ class Model
         }
 
         // exit();
-
     }//end prepare()
 
 
@@ -73,7 +69,6 @@ class Model
         }
 
         return false;
-
     }//end isTableExistsOnDatabase()
 
 
@@ -107,8 +102,5 @@ class Model
         }
 
         // exit();
-
     }//end query()
-
-
 }//end class

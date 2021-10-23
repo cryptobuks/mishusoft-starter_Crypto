@@ -1,13 +1,9 @@
 <?php
 
-
 namespace Mishusoft\Framework\Interfaces\Drivers;
-
 
 interface MishusoftViewInterface
 {
-
-
     /**
      * MishusoftViewRenderInterface constructor.
      *
@@ -49,6 +45,4 @@ interface MishusoftViewInterface
      * @return array
      */
     public function assign(string $tplKey, $tplValue): array;
-
-
 }//end interface

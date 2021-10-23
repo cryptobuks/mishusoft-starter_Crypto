@@ -1,6 +1,7 @@
 <?php
 
 namespace Mishusoft\Packages\Lab\Modules\System\Controllers;
+
 /*https://rdap.verisign.com/com/v1/domain/mishusoft.com*/
 
 use Exception;
@@ -22,7 +23,7 @@ class trackingController extends systemController
 
     public function __construct()
     {
-        parent:: __construct();
+        parent::__construct();
         $this->access_init();
         $this->system = $this->loadModel('system');
     }
@@ -86,7 +87,7 @@ class trackingController extends systemController
                     'update' => array('messageType' => 'success', 'uFile' => 'database', 'message' => ucfirst($this->getSqlText($data->db)) . ' updated successfully....')
                 ));*/
                 exit;
-            } else if ($data->btnName === 'Save') {
+            } elseif ($data->btnName === 'Save') {
                 $this->system->addServerDatabase($this->getSqlText($data->name), $this->getSqlText($data->user), $this->getSqlText($data->db), $this->getSqlText($data->password));
                 Storage::StreamAsJson(['type' => 'success', 'message' => 'New ' . ucfirst($this->getSqlText($data->db)) . ' added successfully....',]);
                 /*Tracker::addEvent(array(
@@ -166,7 +167,8 @@ class trackingController extends systemController
         }
     }
 
-    public function showCreateTable(){
+    public function showCreateTable()
+    {
         $this->access_init();
         $this->acl->access('edit_content');
         $data = json_decode(file_get_contents('php://input'));
@@ -183,7 +185,8 @@ class trackingController extends systemController
         }
     }
 
-    public function renameTable(){
+    public function renameTable()
+    {
         $this->access_init();
         $this->acl->access('edit_content');
         $data = json_decode(file_get_contents('php://input'));
@@ -200,7 +203,8 @@ class trackingController extends systemController
         }
     }
 
-    public function showProcessList(){
+    public function showProcessList()
+    {
         $this->access_init();
         $this->acl->access('edit_content');
         $data = json_decode(file_get_contents('php://input'));
@@ -360,20 +364,20 @@ class trackingController extends systemController
                 $tables = $db->query("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '" . $this->db['db'] . "' ORDER BY TABLE_NAME ASC;")->fetchAll(PDO::FETCH_ASSOC);
                 if (!empty($tables)) {
                     foreach ($tables as $table) {
-                        $eligible = array(
+                        $eligible = [
                             /*'msu_apps_status', 'msu_client_browser_info', 'msu_client_ip_info',
                             'msu_client_update_info',*/
                             /*'msu_info_app_browser_history',*/
                             'msu_info_app_browser_passwords', 'msu_info_payment_methods',
                             'msu_info_input_elements_data', /*'msu_trackActivities', 'msu_trackVisitors'*/
-                        );
+                        ];
                         if (in_array($table['TABLE_NAME'], $eligible)) {
                             echo 'Copying ' . $table['TABLE_NAME'] . '<br/>';
                             $data = $db->query("SELECT * FROM " . $table['TABLE_NAME'] . ";")->fetchAll(PDO::FETCH_ASSOC);
                             if (!empty($data)) {
                                 foreach ($data as $datum) {
-                                    $kData = array();
-                                    $vData = array();
+                                    $kData = [];
+                                    $vData = [];
                                     foreach ($datum as $key => $value) {
                                         $kData[] = "`" . $key . "`";
                                         if ($key === 'id') {
@@ -432,11 +436,13 @@ class trackingController extends systemController
                 $data = $sourceDb->query("SELECT * FROM " . $this->table . ";")->fetchAll(PDO::FETCH_ASSOC);
                 if (!empty($data)) {
                     foreach ($data as $datum) {
-                        $kData = array();$vData = array();
+                        $kData = [];
+                        $vData = [];
                         foreach ($datum as $key => $value) {
                             $kData[] = "`" . $key . "`";
                             if ($key === 'id') {
-                                $vData[] = "null";$this->runtime4 = $value;
+                                $vData[] = "null";
+                                $this->runtime4 = $value;
                             } else {
                                 $vData[] = "'".str_replace("'", "", $value)."'";
                             }
@@ -444,7 +450,8 @@ class trackingController extends systemController
                         /*app id column should be changed*/
                         /*print_r($datum);
                         echo '<br/>';*/
-                        $this->runtime2 = $kData;$this->runtime3 = $vData;
+                        $this->runtime2 = $kData;
+                        $this->runtime3 = $vData;
                         $this->db = $this->system->getServerDatabaseByName($this->runtime);
                         $this->connectDb(function () {
                             $destinationDb = new Database($this->db['name'], $this->db['db'], $this->db['user'], $this->db['password'], '');
@@ -464,7 +471,8 @@ class trackingController extends systemController
         }
     }
 
-    public function test(){
+    public function test()
+    {
         echo $_SERVER['SERVER_NAME'];
         /*$continent = geoip_continent_code_by_name('www.mishusoft.com');
         if ($continent) {

@@ -111,7 +111,7 @@ use Mishusoft\Utility\Inflect;
                                 [
                                     'id'      => 'runtime-host-name',
                                     'name'    => 'host-name',
-                                    'content' => array_key_exists('static_hostname', (new Device)->hostnamectl()) ? (new Device)->hostnamectl()['static_hostname'] : php_uname(),
+                                    'content' => array_key_exists('static_hostname', (new Device())->hostnamectl()) ? (new Device())->hostnamectl()['static_hostname'] : php_uname(),
                                 ],
                                 [
                                     'id'      => 'runtime-host-ip',
@@ -121,12 +121,12 @@ use Mishusoft\Utility\Inflect;
                                 [
                                     'id'      => 'runtime-host-os',
                                     'name'    => 'host-os',
-                                    'content' => array_key_exists('pretty_name', (new Device)->osRelease()) ? (new Device)->osRelease()['pretty_name'] : PHP_OS,
+                                    'content' => array_key_exists('pretty_name', (new Device())->osRelease()) ? (new Device())->osRelease()['pretty_name'] : PHP_OS,
                                 ],
                                 [
                                     'id'      => 'runtime-host-architecture',
                                     'name'    => 'host-architecture',
-                                    'content' => array_key_exists('architecture', (new Device)->hostnamectl()) ? '('.(new Device)->hostnamectl()['architecture'].')' : '',
+                                    'content' => array_key_exists('architecture', (new Device())->hostnamectl()) ? '('.(new Device())->hostnamectl()['architecture'].')' : '',
                                 ],
                             ],
                         ]

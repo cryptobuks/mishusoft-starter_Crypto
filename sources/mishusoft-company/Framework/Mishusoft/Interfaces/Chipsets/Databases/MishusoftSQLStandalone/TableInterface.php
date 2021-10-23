@@ -16,6 +16,4 @@ interface TableInterface
     public function delete($table_name);
 
     public function update();
-
-
 }

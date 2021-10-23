@@ -16,8 +16,10 @@ Ui::text($this->documentTitleElement, " || " . $translation->translate("Welcome 
 
 /*set separate paragraph for index page*/
 Ui::elementList(
-    $this->documentTemplateBodyElement, [
+    $this->documentTemplateBodyElement,
+    [
     "ms-app-paragraph" => [
         ["style" => "padding: 50px;text-align: center;font-size: 37px;font-weight: bold;", "text" => $translation->translate("Welcome to Mishusoft Carrier.")],/*set welcome text*/
     ],
-]);
+]
+);

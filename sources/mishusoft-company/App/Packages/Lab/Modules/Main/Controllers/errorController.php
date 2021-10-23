@@ -2,35 +2,37 @@
 
 namespace Mishusoft\Packages\Lab\Modules\Main\Controllers;
 
-
 use Mishusoft\Framework\Drivers\Controller;
 
 class errorController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct();
     }
 
-    public function index($code = FALSE){
+    public function index($code = false)
+    {
         $message = $this->_getError($code);
-       /* $this->view->setJs(['main']);*/
+        /* $this->view->setJs(['main']);*/
         $this->view->assign('title', $message['Message']);
         $this->view->assign('message', $message);
 
         //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => $message['Message'])));
-        $this->view->render('index','error');
+        $this->view->render('index', 'error');
     }
 
-    public function access($code){
+    public function access($code)
+    {
         $message = $this->_getError($code);
         /*$this->view->setJs(['main']);*/
         $this->view->assign('title', $message['Message']);
         $this->view->assign('message', $message);
         //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => $message['Message'])));
-        $this->view->render('access','error');
+        $this->view->render('access', 'error');
     }
 
-    private function _getError($code = FALSE)
+    private function _getError($code = false)
     {
         if ($code) {
             $code = $this->filterInt($code);

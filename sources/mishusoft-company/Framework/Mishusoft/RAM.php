@@ -4,7 +4,6 @@ namespace Mishusoft;
 
 class RAM extends Base
 {
-
     protected array $providers =[
         ''=>'',
     ];
@@ -19,8 +18,5 @@ class RAM extends Base
 
     public static function activate()
     {
-
-
-        
     }
 }

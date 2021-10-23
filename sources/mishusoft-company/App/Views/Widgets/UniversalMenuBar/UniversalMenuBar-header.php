@@ -49,11 +49,14 @@ Ui::text($header_logo_zone, $this->titleOfCurrentWebPage);
 if (Session::get('auth')) {
     if (in_array(Character::lower($this->request['controller']), $authenticate)) {
         Ui::assignAttributes($template_header, ['style' => 'height: 40px;']);
-        Ui::assignAttributes($header_logo_zone,
+        Ui::assignAttributes(
+            $header_logo_zone,
             ['style' => Ui::HTML_HREF_STYLE.'color: '.Ui::COLOR['default'].';width: 30%;font-family: Saira Stencil One, SolaimanLipi, Arial,serif;font-size: 25px;font-weight: bold;text-transform: uppercase;display: flex;align-items: center;justify-content: left;transition: all .15s ease;']
         );
-        Ui::assignAttributes($header_logo,
-            ['style' => 'margin: 10px;text-align: center;width: 25px;height: 25px;float: left;border-radius: 50%;box-shadow: 0 2px 4px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);transition: all .15s ease;'])
+        Ui::assignAttributes(
+            $header_logo,
+            ['style' => 'margin: 10px;text-align: center;width: 25px;height: 25px;float: left;border-radius: 50%;box-shadow: 0 2px 4px rgba(0,0,0,.12),0 2px 4px rgba(0,0,0,.24);transition: all .15s ease;']
+        )
         ;
         Ui::elementList(
             Ui::element($template_header, 'nav', ['class' => 'nav-right width-70percent']),

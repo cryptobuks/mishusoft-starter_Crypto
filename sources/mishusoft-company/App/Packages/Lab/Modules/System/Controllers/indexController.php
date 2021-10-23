@@ -11,7 +11,7 @@ class indexController extends systemController
 
     public function __construct()
     {
-        parent:: __construct();
+        parent::__construct();
         $this->access_init();
         $this->system = $this->loadModel('system');
     }
@@ -31,7 +31,6 @@ class indexController extends systemController
         $this->acl->access('edit_content');
         /*Tracker::addEvent(array('activity' => array('messageType' => 'success', 'message' => ' Framework Menu main (JSON data) extract successfully')));*/
         Storage::StreamAsJson($this->system->getMainItemTabs());
-
     }
 
     public function getExtraItemTabs()
@@ -39,6 +38,5 @@ class indexController extends systemController
         $this->acl->access('edit_content');
         /*Tracker::addEvent(array('activity' => array('messageType' => 'success', 'message' => ' Framework Menu extra (JSON data) extract successfully')));*/
         Storage::StreamAsJson($this->system->getExtraItemTabs());
-
     }
 }

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\System;
 
 use GeoIp2\Exception\AddressNotFoundException;
@@ -385,7 +384,6 @@ class FirewallView extends Firewall
                     'text' => self::$messageDetails['message'],
                     ];
             }
-
         } else {
             $contents['div'][] = ['class' => 'flex-justify-center message', 'text' => 'An error occurred'];
         }

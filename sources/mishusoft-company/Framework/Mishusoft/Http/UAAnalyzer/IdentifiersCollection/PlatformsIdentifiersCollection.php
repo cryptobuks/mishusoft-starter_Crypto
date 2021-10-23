@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\Http\UAAnalyzer\IdentifiersCollection;
 
 use JsonException;
@@ -28,7 +27,7 @@ class PlatformsIdentifiersCollection extends Collection
      * @throws RuntimeException
      * @throws \Mishusoft\Exceptions\JsonException
      */
-    public function all():array
+    public function all(): array
     {
         return $this->extractAttribute($this->query('platforms', 'os'), 'identifier-only');
     }
@@ -40,7 +39,7 @@ class PlatformsIdentifiersCollection extends Collection
      * @return array
      * @throws RuntimeException
      */
-    public function archAll():array
+    public function archAll(): array
     {
         return $this->extractArchitectures($this->query('platforms', 'architectures'));
     }

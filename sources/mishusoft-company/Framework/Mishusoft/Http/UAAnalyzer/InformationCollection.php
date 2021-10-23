@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\Http\UAAnalyzer;
 
 class InformationCollection extends Collection

@@ -1,5 +1,6 @@
-<?php declare(strict_types=1);
+<?php
 
+declare(strict_types=1);
 
 namespace Mishusoft\Drivers\View;
 
@@ -119,7 +120,7 @@ class MishusoftView extends Base implements MishusoftViewInterface
      * @return array
      * @throws RuntimeException
      */
-    public function installedWidgetsAll():array
+    public function installedWidgetsAll(): array
     {
         Log::info('Collecting all data from ' . $this->widgetsFile() . ' in system.');
         return Storage\FileSystem\Yaml::parseFile($this->widgetsFile());
@@ -129,7 +130,7 @@ class MishusoftView extends Base implements MishusoftViewInterface
      * @return array
      * @throws RuntimeException
      */
-    public function widgetsConfigsAll():array
+    public function widgetsConfigsAll(): array
     {
         Log::info('Collecting all configuration from ' . $this->widgetsConfigFile() . ' in system.');
         return Storage\FileSystem\Yaml::parseFile($this->widgetsConfigFile());
@@ -528,10 +529,10 @@ class MishusoftView extends Base implements MishusoftViewInterface
             Log::info('Checking ' . $widgetClass . ' and ' . $method . '.is callable or not.');
             if (method_exists($widgetClass, $method) === true) {
                 if (count($options) > 0) {
-                    return call_user_func_array([new $widgetClass, $method], $options);
+                    return call_user_func_array([new $widgetClass(), $method], $options);
                 }
 
-                return call_user_func([new $widgetClass, $method]);
+                return call_user_func([new $widgetClass(), $method]);
             }
         } else {
             Log::info(Storage::applicationWidgetsPath() . $widgetClass . '.php is not readable.');

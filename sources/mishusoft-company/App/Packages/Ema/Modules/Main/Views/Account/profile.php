@@ -27,7 +27,7 @@ $conOfDatabase = new AccountMSQL();
 /*
  * verify secret code form $_GET
 */
-$detailsOfUser = array();
+$detailsOfUser = [];
 if (array_key_exists("sc", $_GET)) {
     /*if secret code does not match with logged user or not found any user, then redirect to logged user's profile*/
     if (is_numeric(_Array::value($_GET, "sc")) && Number::filterInt(_Array::value($_GET, "sc")) !== _Array::value((array)Session::get("me"), "code")) {
@@ -37,7 +37,6 @@ if (array_key_exists("sc", $_GET)) {
             Runtime::redirect("account/profile?a=" . time() . "&t=view&sc=" . _Array::value((array)Session::get("me"), "code"));
         }
     }
-
 } else {
     $detailsOfUser = (array)Session::get("me");
 }
@@ -77,7 +76,7 @@ $profileBody = Ui::element($this->documentTemplateBodyElement, "ms-app-profile-b
 ]);*/
 Ui::element($profileBody, "img", [
     "style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";background: lightgray;text-align: center;font-size: 16px;height:125px;width: -moz-available;width: -webkit-fill-available;" . Ui::css["display-flex"] . Ui::css["flex-column"] . Ui::css["center"],
-    "src" => Storage::getAssetsPath("images_abstract-texture-background.jpg","remote"),
+    "src" => Storage::getAssetsPath("images_abstract-texture-background.jpg", "remote"),
 ]);
 /*
  * off-white-paper-texture-watermark-useful-as-background-off-white-paper-texture-watermark-useful-as-background-high-130523073.jpg
@@ -92,14 +91,14 @@ Ui::element(Ui::element($profileBody, "ms-app-profile-user-photo", [
 ]);*/
 
 
-$tabList = array(
-    array("url" => "&tab=summery", "name" => "Summery", "tooltip" => "Summery"),
-    array("url" => "&tab=basic", "name" => "Basic", "tooltip" => "Basic Information"),
-    array("url" => "&tab=work", "name" => "Work", "tooltip" => "Work Information"),
-    array("url" => "&tab=academic", "name" => "Academic", "tooltip" => "Academic Information"),
-    array("url" => "&tab=payment", "name" => "Payment", "tooltip" => "Payment Information"),
-    array("url" => "&tab=security", "name" => "Security", "tooltip" => "Login & Security Information"),
-);
+$tabList = [
+    ["url" => "&tab=summery", "name" => "Summery", "tooltip" => "Summery"],
+    ["url" => "&tab=basic", "name" => "Basic", "tooltip" => "Basic Information"],
+    ["url" => "&tab=work", "name" => "Work", "tooltip" => "Work Information"],
+    ["url" => "&tab=academic", "name" => "Academic", "tooltip" => "Academic Information"],
+    ["url" => "&tab=payment", "name" => "Payment", "tooltip" => "Payment Information"],
+    ["url" => "&tab=security", "name" => "Security", "tooltip" => "Login & Security Information"],
+];
 $commonStyleStringForLinks = Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";height: inherit;width: 120px;text-transform: capitalize;" . Ui::css["display-flex"] . Ui::css["center"];
 /*Ui::elementList(Ui::element($profileBody, "ms-app-profile-tab", [
     "style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";text-align: center;font-size: 16px;height:50px;width: -moz-available;width: -webkit-fill-available;width: 1024px;margin-bottom: 10px;border-top: 1px solid rgba(0,0,0,.12);box-shadow: 1px 3px 4px rgba(0,0,0,.12),1px 1px 2px rgba(0,0,0,.24);" . Ui::css["display-flex"] . Ui::css["flex-row"] . Ui::css["center"],]), [
@@ -173,7 +172,7 @@ if (array_key_exists("tab", $_GET)) {
     if (_Array::value($_GET, "tab") === "basic") {
         /*collect all records about current user*/
         $basicOfUser = $conOfDatabase->getDetailsByItem(DB::USERS_BASIC_INFO_LIST_TABLE, ["user" => _Array::value($detailsOfUser, "id")]);
-        if (count($basicOfUser)>0){
+        if (count($basicOfUser)>0) {
             //_Debug::preOutput($basicOfUser);
             $viewBoard = Ui::element(Ui::element(Ui::element($profileContent, 'basic', ['class' => 'messageZone', 'style' => Ui::css['display-flex'].'width: inherit;']), 'info', ['class' => "box-message box-success box-shadow-light"]), 'content', ['class' => 'notify-md-content', 'style' => Ui::css['display-flex'].Ui::css['flex-column'].'justify-content: left;align-items: start;']);
             Ui::element($viewBoard, 'caption_text', ['style' => 'font-size:20px;margin-bottom: 5px;font-weight: bolder;','text'=>'Basic Information']);
@@ -212,7 +211,6 @@ if (_Array::value($detailsOfUser, "code") === _Array::value((array)Session::get(
     Ui::element(Ui::element($profileContent, "command", ["style" => Ui::htmlHrefStyle . Ui::css["display-flex"] . Ui::css["flex-column"]]), "a", [
         "href" => Memory::Data("framework")->host->url . "account/profile?a=" . time() . "&t=update&tab=summery&sc=" . _Array::value((array)Session::get("me"), "code"),
         "class" => "button button-primary", "text" => "Update Profile", "style" => "display: flex;justify-content: center;align-items: center;"]);
-
 }
 
 /*end of profile page*/

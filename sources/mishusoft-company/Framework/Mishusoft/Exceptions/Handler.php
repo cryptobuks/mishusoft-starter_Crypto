@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\Exceptions;
 
 use ErrorException;
@@ -119,7 +118,7 @@ class Handler extends ErrorException implements ExceptionInterface
         Framework::terminate();
     }
 
-    private function makePrintable(string $errorType, string $message, array $stack):void
+    private function makePrintable(string $errorType, string $message, array $stack): void
     {
         echo sprintf('%s::%s ', $errorType, $message).LB;
         echo 'Trace::'.LB;
@@ -199,7 +198,7 @@ class Handler extends ErrorException implements ExceptionInterface
                                     $implodeArgument .= $arg . ', ';
                                 }
                             }
-                            
+
                             if (Inflect::endsWith($implodeArgument, ', ')) {
                                 $implodeArgument = substr($implodeArgument, 0, -2);
                             }

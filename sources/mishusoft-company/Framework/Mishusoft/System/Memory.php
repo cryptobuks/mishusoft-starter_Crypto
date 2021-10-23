@@ -1,5 +1,6 @@
-<?php declare(strict_types=1);
+<?php
 
+declare(strict_types=1);
 
 namespace Mishusoft\System;
 
@@ -79,12 +80,12 @@ class Memory extends Base
             );
         }
 
-         /*
-          * Check framework configuration file,
-          * If the configuration not found, then create this file.
-          * If the configuration file is empty, then rewrite this file.
-          * If the configuration file is corrupted, then rewrite this file.
-          */
+        /*
+         * Check framework configuration file,
+         * If the configuration not found, then create this file.
+         * If the configuration file is empty, then rewrite this file.
+         * If the configuration file is corrupted, then rewrite this file.
+         */
         FileSystem::makeDirectory(dirname(self::$framework::configFile()));
         FileSystem::check(self::$framework::configFile(), function ($filename) {
             FileSystem\Yaml::emitFile($filename, self::$framework::defaultConfiguration());
@@ -104,7 +105,7 @@ class Memory extends Base
      */
     public static function data(string $carrier = 'memory', array $options = []): array|object
     {
-       // Debug::preOutput(debug_backtrace());
+        // Debug::preOutput(debug_backtrace());
         self::$cacheFile = self::dFile(self::cacheDataFile('Memory', 'data'));
         $result = '';
 

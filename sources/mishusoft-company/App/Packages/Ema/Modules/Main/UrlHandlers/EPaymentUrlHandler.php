@@ -1,13 +1,11 @@
 <?php
 
-
 namespace App\Ema\Mishusoft\Main\UrlHandlers;
 
 use Mishusoft\Drivers\UrlHandler;
 
 class EPaymentUrlHandler extends UrlHandler
 {
-
     /**
      * @param array $prediction
      * @throws \JsonException
@@ -17,7 +15,7 @@ class EPaymentUrlHandler extends UrlHandler
      * @throws \Mishusoft\Exceptions\PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    public function response(array $prediction):void
+    public function response(array $prediction): void
     {
         $view        = $this->render('Payment', $prediction);
         $view->display();

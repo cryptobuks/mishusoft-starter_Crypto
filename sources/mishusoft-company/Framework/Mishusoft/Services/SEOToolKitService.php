@@ -1,5 +1,6 @@
-<?php declare(strict_types=1);
+<?php
 
+declare(strict_types=1);
 
 namespace Mishusoft\Services;
 
@@ -15,8 +16,7 @@ use Mishusoft\Utility\Implement;
 
 class SEOToolKitService extends Base
 {
-
-    private function engines():array
+    private function engines(): array
     {
         return [
             'Bing',
@@ -98,7 +98,7 @@ class SEOToolKitService extends Base
     /**
      * @param string $source
      */
-    public static function addAuthor(string $source) : void
+    public static function addAuthor(string $source): void
     {
         Ui::element(
             Ui::getDocumentHeadElement(),

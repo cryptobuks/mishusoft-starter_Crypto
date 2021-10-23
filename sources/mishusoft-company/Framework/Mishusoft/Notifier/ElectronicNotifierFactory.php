@@ -14,7 +14,6 @@ $email = ElectronicNotifierFactory::getNotifier("Email",
 echo $email->sendNotification();
 */
 
-
 namespace Mishusoft\Notifier;
 
 use Exception;

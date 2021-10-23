@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Mishusoft\System;
 
@@ -48,7 +50,7 @@ class Localization extends Base
     /**
      * @throws RuntimeException
      */
-    private function dataLoader(string $filename):array
+    private function dataLoader(string $filename): array
     {
         return Storage\FileSystem\Yaml::parseFile(
             self::dFile(Storage::localizationPath() . $filename)

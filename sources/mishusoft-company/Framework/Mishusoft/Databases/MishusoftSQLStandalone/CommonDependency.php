@@ -54,7 +54,7 @@ class CommonDependency extends Base
     /**
      * @throws RuntimeException
      */
-    protected function readFile(string $path):array
+    protected function readFile(string $path): array
     {
         return Storage\FileSystem\Yaml::parseFile($path);
     }
@@ -78,7 +78,7 @@ class CommonDependency extends Base
     {
         if (count($this->schemaProperties) === 0) {
             $properties  = $this->readFile($this->schemaPropertiesFile());
-            $this->schemaProperties  = is_array($properties)?$properties:[];
+            $this->schemaProperties  = is_array($properties) ? $properties : [];
         }
 
         return $this->schemaProperties;
@@ -91,7 +91,7 @@ class CommonDependency extends Base
     {
         if (count($this->databaseProperties) === 0) {
             $properties  = $this->readFile($this->databaseFile($name));
-            $this->databaseProperties  = is_array($properties)?$properties:[];
+            $this->databaseProperties  = is_array($properties) ? $properties : [];
         }
 
         return $this->databaseProperties;
@@ -162,7 +162,7 @@ class CommonDependency extends Base
         $this->currentDatabase = $currentDatabase;
     }
 
-    protected function sort(array $array):array
+    protected function sort(array $array): array
     {
         $result = [];
         if (count($array)> 0) {

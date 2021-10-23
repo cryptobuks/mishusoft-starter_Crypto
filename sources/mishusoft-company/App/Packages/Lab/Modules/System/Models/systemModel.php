@@ -1,4 +1,5 @@
 <?php
+
 namespace Mishusoft\Packages\Lab\Modules\System\Models;
 
 use Mishusoft\Framework\Chipsets\Cryptography\Decryption;
@@ -9,7 +10,6 @@ use PDO;
 
 class systemModel extends Model
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -52,21 +52,21 @@ class systemModel extends Model
     {
         $branch = $this->query("SELECT * FROM " . DbPREFIX . "branch_user WHERE `id` = '$id'; ");
         $branch = $branch->fetch(PDO::FETCH_ASSOC);
-        return _Array::value($branch,'user');
+        return _Array::value($branch, 'user');
     }
 
     public function isBranchAlreadyExists($name): bool
     {
         $branch = $this->db->prepare("SELECT * FROM `" . DbPREFIX . "branches` WHERE `name` = :name");
         $branch->execute(
-            array(
+            [
                 ':name' => $name
-            )
+            ]
         );
         if ($branch->fetch(PDO::FETCH_ASSOC)) {
-            return TRUE;
+            return true;
         }
-        return FALSE;
+        return false;
     }
 
     public function insertBranch($name, $status, $location)
@@ -77,7 +77,8 @@ class systemModel extends Model
                     ':name' => $name,
                     ':status' => $status,
                     ':location' => $location
-                ]);
+                ]
+            );
     }
 
     public function editBranch($id, $name, $status, $location)
@@ -90,7 +91,8 @@ class systemModel extends Model
                     ':name' => $name,
                     ':status' => $status,
                     ':location' => $location
-                ]);
+                ]
+            );
     }
 
     public function deleteBranch($id)
@@ -103,15 +105,15 @@ class systemModel extends Model
     {
         $data = $this->db->prepare("SELECT * FROM `" . DbPREFIX . "branch_user` WHERE `branch` = :branch AND `user` = :stuff");
         $data->execute(
-            array(
+            [
                 ':branch' => $branch,
                 ':stuff' => $stuff
-            )
+            ]
         );
         if ($data->fetch(PDO::FETCH_ASSOC)) {
-            return TRUE;
+            return true;
         }
-        return FALSE;
+        return false;
     }
 
     /**
@@ -129,7 +131,8 @@ class systemModel extends Model
                 [
                     ':branch' => $branch,
                     ':stuff' => $stuff,
-                ]);
+                ]
+            );
     }
 
     public function removeStuffFromBranch($branch, $stuff)
@@ -153,13 +156,13 @@ class systemModel extends Model
         $branch = (int)$branch;
         $Users = $this->query("SELECT u.*, ui.* FROM " . DbPREFIX . "users u, " . DbPREFIX . "users_details ui WHERE u.id = ui.id");
         $Users = $Users->fetchAll(PDO::FETCH_ASSOC);
-        $data = array();
-        $subData1 = array();
-        $subData2 = array();
+        $data = [];
+        $subData1 = [];
+        $subData2 = [];
 
         for ($i = 0; $i < count($Users); $i++) {
             if ($Users[$i]['id'] === $this->getUserIdByBranchNUserId($branch, $Users[$i]['id'])) {
-                $subData1[$i] = array(
+                $subData1[$i] = [
                     'serialNumber' => $i + 1,
                     'id' => $Users[$i]['id'],
                     'full_name' => $Users[$i]['f_name'] . ' ' . $Users[$i]['l_name'],
@@ -174,11 +177,11 @@ class systemModel extends Model
                     'branch' => $this->getBranchIdByUserId($Users[$i]['id']),
                     'branchName' => $this->getBranchNameById($this->getBranchIdByUserId($Users[$i]['id']))
 
-                );
+                ];
             }
 
             if ($Users[$i]['id'] !== $this->getUserIdFromBranchUserByUserId($Users[$i]['id'])) {
-                $subData2[$i] = array(
+                $subData2[$i] = [
                     'serialNumber' => $i + 1,
                     'id' => $Users[$i]['id'],
                     'full_name' => $Users[$i]['f_name'] . ' ' . $Users[$i]['l_name'],
@@ -193,7 +196,7 @@ class systemModel extends Model
                     'branch' => $this->getBranchIdByUserId($Users[$i]['id']),
                     'branchName' => $this->getBranchNameById($this->getBranchIdByUserId($Users[$i]['id']))
 
-                );
+                ];
             }
 
             $data = array_merge($subData1, $subData2);
@@ -208,21 +211,21 @@ class systemModel extends Model
         $user = (int)$user;
         $data = $this->query("SELECT * FROM `" . DbPREFIX . "branch_user` WHERE `branch` = '$branch' AND `user` = '$user' ");
         $data = $data->fetch(PDO::FETCH_ASSOC);
-        return _Array::value($data,'user');
+        return _Array::value($data, 'user');
     }
 
     public function getUserIdFromBranchUserByUserId($id)
     {
         $data = $this->query("SELECT * FROM `" . DbPREFIX . "branch_user` WHERE `user` = '$id' ");
         $data = $data->fetch(PDO::FETCH_ASSOC);
-        return _Array::value($data,'user');
+        return _Array::value($data, 'user');
     }
 
     public function getBranchIdByUserId($id)
     {
         $data = $this->query("SELECT * FROM `" . DbPREFIX . "branch_user` WHERE `user` = '$id' ");
         $data = $data->fetch(PDO::FETCH_ASSOC);
-        return _Array::value($data,'branch');
+        return _Array::value($data, 'branch');
     }
 
     public function getTimeDuration($start, $end): string
@@ -258,9 +261,9 @@ class systemModel extends Model
     public function getAllPagesPerfectly(): array
     {
         $pages = $this->db->query("SELECT * FROM `" . DbPREFIX . "pages` ORDER BY `id` ASC;")->fetchAll(PDO::FETCH_ASSOC);
-        $data = array();
+        $data = [];
         foreach ($pages as $page) {
-            $data[] = array(
+            $data[] = [
                 "id" => _Array::value($page, "id"),
                 "parentId" => _Array::value($page, "parent_id"),
                 "title" => _Array::value($page, "title"),
@@ -271,7 +274,7 @@ class systemModel extends Model
                 "status" => _Array::value($page, "status"),
                 "type" => _Array::value($page, "type"),
                 "seo" => _Array::value($page, "seo"),
-            );
+            ];
         }
 
         return $data;
@@ -292,18 +295,18 @@ class systemModel extends Model
     {
         $data = $this->query("SELECT * FROM `" . DbPREFIX . "pages` WHERE `title` = '$name'");
         if ($data->fetch(PDO::FETCH_ASSOC)) {
-            return TRUE;
+            return true;
         }
-        return FALSE;
+        return false;
     }
 
     public function isPageUrlAlreadyExists($url): bool
     {
         $data = $this->query("SELECT * FROM `" . DbPREFIX . "pages` WHERE `url` = '$url'");
         if ($data->fetch(PDO::FETCH_ASSOC)) {
-            return TRUE;
+            return true;
         }
-        return FALSE;
+        return false;
     }
 
     public function isPageExistsById($id): bool
@@ -311,9 +314,9 @@ class systemModel extends Model
         $id = (int)$id;
         $data = $this->query("SELECT * FROM `" . DbPREFIX . "pages` WHERE `id` = '{$id}'");
         if ($data->fetch(PDO::FETCH_ASSOC)) {
-            return TRUE;
+            return true;
         }
-        return FALSE;
+        return false;
     }
 
     public function addPage($parentId, $title, $url, $icon, $position, $status, $type, $seo)
@@ -322,7 +325,7 @@ class systemModel extends Model
         $position = (int)$position;
         $this->prepare("INSERT INTO `" . DbPREFIX . "pages` VALUES (null, :parentId, :title, :url, :icon, :position, :p_status, :type, :seo);")
             ->execute(
-                array(
+                [
                     ':parentId' => $parentId,
                     ':title' => $title,
                     ':url' => $url,
@@ -331,7 +334,8 @@ class systemModel extends Model
                     ':p_status' => $status,
                     ':type' => $type,
                     ':seo' => $seo
-                ));
+                ]
+            );
     }
 
     public function editPage($id, $parent, $title, $url, $icon, $position, $status, $type, $seo)
@@ -351,7 +355,8 @@ class systemModel extends Model
                     ':status' => $status,
                     ':type' => $type,
                     ':seo' => $seo
-                ]);
+                ]
+            );
     }
 
     public function deletePage($id)
@@ -364,21 +369,21 @@ class systemModel extends Model
     {
         $id = (int)$id;
         $data = $this->query("SELECT * FROM `" . DbPREFIX . "pages` WHERE `id` = '{$id}'");
-        return _Array::value($data->fetch(PDO::FETCH_ASSOC),'title');
+        return _Array::value($data->fetch(PDO::FETCH_ASSOC), 'title');
     }
 
     public function getPageURIById($id)
     {
         $id = (int)$id;
         $data = $this->query("SELECT * FROM `" . DbPREFIX . "pages` WHERE `id` = '{$id}'");
-        return _Array::value($data->fetch(PDO::FETCH_ASSOC),'url');
+        return _Array::value($data->fetch(PDO::FETCH_ASSOC), 'url');
     }
 
     public function getPageSourceById($id)
     {
         $id = (int)$id;
         $data = $this->query("SELECT * FROM `" . DbPREFIX . "pages_sources` WHERE `page` = '{$id}'");
-        return _Array::value($data->fetch(PDO::FETCH_ASSOC),'sources');
+        return _Array::value($data->fetch(PDO::FETCH_ASSOC), 'sources');
     }
 
 
@@ -386,10 +391,10 @@ class systemModel extends Model
     {
         $page = (int)$page;
         $this->prepare("INSERT INTO `" . DbPREFIX . "pages_sources` (`id`, `page`, `sources`, `created_date`, `update_date`) VALUES (null, :page, :source, now(),now());")
-            ->execute(array(
+            ->execute([
                     ':page' => $page,
                     ':source' => $source
-                ));
+                ]);
     }
 
     public function editSource($page, $sources)
@@ -400,7 +405,8 @@ class systemModel extends Model
                 [
                     ':page' => $page,
                     ':sources' => $sources
-                ]);
+                ]
+            );
     }
 
 
@@ -429,7 +435,7 @@ class systemModel extends Model
     public function editAppearanceData($id, $bgc_name, $dtheme_name)
     {
         $id = (int)$id;
-        $edit = array();
+        $edit = [];
 
         if (!empty($bgc_name)) {
             $edit[] = "`bgc_name` = '$bgc_name'";
@@ -456,11 +462,12 @@ class systemModel extends Model
     {
         $this->prepare("INSERT INTO `" . DbPREFIX . "modules` VALUES (null, :name, :installed_location, :status);")
             ->execute(
-                array(
+                [
                     ':name' => $md_name,
                     ':installed_location' => $installed_location,
                     ':status' => $md_status
-                ));
+                ]
+            );
     }
 
     public function editModule($id, $status)
@@ -468,9 +475,10 @@ class systemModel extends Model
         $id = (int)$id;
         $this->prepare("UPDATE `" . DbPREFIX . "modules` SET `status` = :status WHERE `id` = $id")
             ->execute(
-                array(
+                [
                     ':status' => $status
-                ));
+                ]
+            );
     }
 
     public function deleteModule($id)
@@ -499,8 +507,9 @@ class systemModel extends Model
 
         foreach ($lines as $line) {
             // Skip it if it's a comment
-            if (substr($line, 0, 2) === '--' || $line === '' || substr($line, 0, 2) === '/*')
+            if (substr($line, 0, 2) === '--' || $line === '' || substr($line, 0, 2) === '/*') {
                 continue;
+            }
 
             // Add this line to the current segment
             $templine .= $line;
@@ -539,14 +548,14 @@ class systemModel extends Model
     {
         $role = $this->db->prepare("SELECT * FROM `" . DbPREFIX . "roles` WHERE `role` = :role");
         $role->execute(
-            array(
+            [
                 ':role' => $roleName
-            )
+            ]
         );
         if ($role->fetch(PDO::FETCH_ASSOC)) {
-            return TRUE;
+            return true;
         }
-        return FALSE;
+        return false;
     }
 
     public function insertRole($role)
@@ -555,7 +564,8 @@ class systemModel extends Model
             ->execute(
                 [
                     ':role' => $role,
-                ]);
+                ]
+            );
     }
 
     public function editRole($roleId, $role)
@@ -566,7 +576,8 @@ class systemModel extends Model
                 [
                     ':id' => $id,
                     ':role' => $role,
-                ]);
+                ]
+            );
     }
 
     public function deleteRole($id)
@@ -630,7 +641,8 @@ class systemModel extends Model
                     ':permission' => $permission,
                     ':key' => $key,
                     ':PKID' => $PKID,
-                ]);
+                ]
+            );
     }
 
     public function editPermission($id, $permission, $key, $PKID)
@@ -644,7 +656,8 @@ class systemModel extends Model
                     ':permission' => $permission,
                     ':key' => $key,
                     ':PKID' => $PKID,
-                ]);
+                ]
+            );
     }
 
     public function deletePermission($id)
@@ -671,7 +684,7 @@ class systemModel extends Model
         $permissions = $this->query("SELECT * FROM " . DbPREFIX . "permissions");
         $permissions = $permissions->fetchAll(PDO::FETCH_ASSOC);
 
-        $data = array();
+        $data = [];
 
         for ($i = 0; $i < count($permissions); $i++) {
             if ($permissions[$i]['key'] === '') {
@@ -746,11 +759,12 @@ class systemModel extends Model
         $id = (int)$id;
         $query = $this->db->prepare("UPDATE `" . DbPREFIX . "webapp` SET `name`=:name,`description`=:description,`company`=:company WHERE `id` = '$id'");
         $query->execute(
-            array(
+            [
                 ':name' => $name,
                 ':description' => $description,
                 ':company' => $company
-            ));
+            ]
+        );
     }
 
     public function setLogo($favicon)
@@ -787,10 +801,11 @@ class systemModel extends Model
         $id = (int)$id;
         $this->db->prepare("UPDATE `" . DbPREFIX . "app_social_links` SET `name`=:name,`link`=:link WHERE `id` = '$id'")
             ->execute(
-                array(
+                [
                     ':name' => $name,
                     ':link' => $link
-                ));
+                ]
+            );
     }
 
     public function deleteSocialLink($id)
@@ -814,7 +829,7 @@ class systemModel extends Model
         $usr = $this->query("SELECT * FROM " . DbPREFIX . "users ORDER BY `id` ASC;");
         $usr = $usr->fetchAll(PDO::FETCH_ASSOC);
 
-        $data = array();
+        $data = [];
         for ($i = 0; $i < count($usr); $i++) {
             $data[$i] = [
                 'serial' => $i + 1,
@@ -861,7 +876,7 @@ class systemModel extends Model
         $random = rand(124578, 999999999);
         $this->db->prepare("INSERT INTO `" . DbPREFIX . "users`  VALUES (null, :FName, :LName, :email, :password, :username, :activity, :role, :status, now(), :code)")
             ->execute(
-                array(
+                [
                     ':FName' => $FName,
                     ':LName' => $LName,
                     ':email' => $email,
@@ -871,18 +886,20 @@ class systemModel extends Model
                     ':role' => $role,
                     ':status' => $status,
                     ':code' => $random
-                ));
+                ]
+            );
     }
 
     public function insertUserDetailsInfo($dob, $gender, $profession)
     {
         $this->db->prepare("INSERT INTO `" . DbPREFIX . "users_details` VALUES (null, :dob, :gender, :profession, null, null);")
             ->execute(
-                array(
+                [
                     ':dob' => date("d/m/Y", strtotime($dob)),
                     ':gender' => $gender,
                     ':profession' => $profession
-                ));
+                ]
+            );
     }
 
     public function editUserBasicInfo($id, $FName, $LName, $email, $username, $password, $activity, $role)
@@ -913,9 +930,9 @@ class systemModel extends Model
         $username = APP_USERNAME_PREFIX . $username;
         $data = $this->db->prepare("SELECT `id`, `code` FROM `" . DbPREFIX . "users` WHERE `username` = :username;");
         $data->execute(
-            array(
+            [
                 ':username' => $username
-            )
+            ]
         );
         return $data->fetch(PDO::FETCH_ASSOC);
     }
@@ -924,24 +941,24 @@ class systemModel extends Model
     {
         $id = $this->db->prepare("SELECT `id` FROM `" . DbPREFIX . "users` WHERE `email` = :email;");
         $id->execute(
-            array(
+            [
                 ':email' => $email
-            )
+            ]
         );
         if ($id->fetch(PDO::FETCH_ASSOC)) {
-            return TRUE;
+            return true;
         }
-        return FALSE;
+        return false;
     }
 
     public function activeUser($id, $code)
     {
         $data = $this->db->prepare("UPDATE `" . DbPREFIX . "users` SET `status` = 1 WHERE `id` = :id and `code` = :code");
         $data->execute(
-            array(
+            [
                 ':id' => $id,
                 ':code' => $code
-            )
+            ]
         );
         return $data->fetch(PDO::FETCH_ASSOC);
     }
@@ -985,13 +1002,14 @@ class systemModel extends Model
 
         $this->db->prepare("INSERT INTO `" . DbPREFIX . "users_photos`  VALUES (null, :user, :name, :mime, :size, :data)")
             ->execute(
-                array(
+                [
                     ':user' => $user,
                     ':name' => $name,
                     ':mime' => $mime,
                     ':size' => $size,
                     ':data' => $data
-                ));
+                ]
+            );
     }
 
     public function getLastInsertUserProfilePictureId()
@@ -1060,13 +1078,14 @@ class systemModel extends Model
         $id = (int)$id;
         $this->db->prepare("UPDATE `" . DbPREFIX . "app_databases` SET `name`=:name,`user`=:user,`db`=:db,`password`=:password WHERE `id` = '$id'")
             ->execute(
-                array(
+                [
                     ':name' => $name,
                     ':user' => $user,
                     ':db' => $db,
                     ':password' => $password
 
-                ));
+                ]
+            );
     }
 
     public function deleteServerDatabase($id)
@@ -1080,5 +1099,4 @@ class systemModel extends Model
     {
         $this->query("INSERT INTO `$tableName` VALUES (null, " . implode(",", $data) . ");");
     }*/
-
 }

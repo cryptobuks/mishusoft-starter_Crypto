@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Mishusoft\Libraries;
-
 
 class Validator
 {
@@ -36,6 +34,4 @@ class Validator
     {
         return (bool)filter_var($email, FILTER_VALIDATE_EMAIL);
     }
-
-
 }

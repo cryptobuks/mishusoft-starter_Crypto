@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\Http\UAAnalyzer\PatternsCollection;
 
 use JsonException;
@@ -23,7 +22,7 @@ class PlatformsPatternsCollection extends Collection
      * @throws RuntimeException
      * @throws \Mishusoft\Exceptions\JsonException
      */
-    public function name(string $identifier):string
+    public function name(string $identifier): string
     {
         $dictionary = $this->extractAttribute($this->query('platforms', 'os'), 'identifier-with-pattern');
         if (array_key_exists($identifier, $dictionary)=== true) {
@@ -40,7 +39,7 @@ class PlatformsPatternsCollection extends Collection
      * @param string $identifier
      * @return string
      */
-    public function arch(string $identifier):string
+    public function arch(string $identifier): string
     {
         return '/(?<type>('.$this->quote(strtolower($identifier)).'))/i';
     }
@@ -54,7 +53,7 @@ class PlatformsPatternsCollection extends Collection
      * @throws RuntimeException
      * @throws \Mishusoft\Exceptions\JsonException
      */
-    public function wm(string $identifier):string
+    public function wm(string $identifier): string
     {
         $dictionary = $this->extractAttribute($this->query('platforms', 'wm'), 'identifier-with-pattern');
         if (array_key_exists($identifier, $dictionary)=== true) {

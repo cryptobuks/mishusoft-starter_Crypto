@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\System;
 
 use Mishusoft\Exceptions;
@@ -270,7 +269,7 @@ class Log
     /**
      * @throws InvalidArgumentException
      */
-    private static function makeTidyMessage(array $log):string
+    private static function makeTidyMessage(array $log): string
     {
         $infix = '';
 

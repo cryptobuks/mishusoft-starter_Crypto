@@ -2,7 +2,6 @@
 
 // another library : https://github.com/lancedikson/bowser
 
-
 namespace Mishusoft\Http;
 
 use JsonException;
@@ -180,7 +179,7 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
         return $this;
     }//end analyze()
 
-    private function makeDetails(array $solvableList):void
+    private function makeDetails(array $solvableList): void
     {
         $this->matchFound = $solvableList['solved'];
         $this->timeOfExecution = $solvableList['time'];
@@ -418,7 +417,7 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
         return $this->deviceName;
     }
 
-    public function getDeviceNameWithArch():string
+    public function getDeviceNameWithArch(): string
     {
         return $this->deviceName . ' ' . $this->platformArchitecture;
     }

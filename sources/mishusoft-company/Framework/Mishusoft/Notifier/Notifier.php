@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\Notifier;
 
 abstract class Notifier

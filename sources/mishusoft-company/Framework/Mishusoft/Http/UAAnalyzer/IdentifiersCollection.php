@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\Http\UAAnalyzer;
 
 use Mishusoft\Exceptions\RuntimeException;

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\Http;
 
 use CurlHandle;
@@ -401,7 +400,7 @@ class CurlRequest
     /**
      * @throws HttpResponseException
      */
-    public function responseErrorCheckOut():void
+    public function responseErrorCheckOut(): void
     {
         if ($this->getResponseCode() !== 200) {
             if (is_array($this->getErrors())) {

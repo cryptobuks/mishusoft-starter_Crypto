@@ -2,7 +2,6 @@
 
 namespace Mishusoft\Packages\Lab\Modules\System\Controllers;
 
-
 use Mishusoft\Framework\Chipsets\Utility\Pagination;
 use Mishusoft\Framework\Globals\Functions\Text;
 use Mishusoft\Packages\Lab\Modules\Main\Controllers\systemController;
@@ -12,7 +11,7 @@ class rolesController extends systemController
     private $system;
     public function __construct()
     {
-        parent:: __construct();
+        parent::__construct();
         $this->access_init();
         $this->system = $this->loadModel('system');
     }
@@ -22,7 +21,7 @@ class rolesController extends systemController
         $this->access_init();
         $this->acl->access('edit_content');
         //Tracker::addEvent(array('activity' => array('messageType' => 'success', 'message' => 'Navigate to roles page successfully')));
-       
+
         $pagination = new Pagination();
 
         /*$this->view->setJs(['main']);*/
@@ -37,7 +36,7 @@ class rolesController extends systemController
         $this->access_init();
         $this->acl->access('edit_content');
         $page = $this->getInt('page');
-        
+
         $pagination = new Pagination();
 
         $this->view->assign('roles', $pagination->pager($this->system->getRoles(), $page));
@@ -167,7 +166,7 @@ class rolesController extends systemController
         $this->view->assign('rolePermissions', $pagination->pager($this->system->getRolePermissions($id), $page));
         $this->view->assign('pagination', $pagination->getView('ajax'));
         $this->view->assign('title', 'Role permissions ');
-        $this->view->render('permissions_pagination',  false, true);
+        $this->view->render('permissions_pagination', false, true);
     }
 
     public function updateRolePermission()
@@ -175,7 +174,7 @@ class rolesController extends systemController
         $data = json_decode(file_get_contents('php://input'));
 
         if (!empty($data) && is_object($data)) {
-            if (empty($data->security_code) OR $data->security_code !== 1) {
+            if (empty($data->security_code) or $data->security_code !== 1) {
                 echo json_encode(['type' => 'error', 'message' => 'Permission\'s security code not found.']);
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Permission\'s security code not found.')));
                 exit;
@@ -214,5 +213,4 @@ class rolesController extends systemController
             }
         }
     }
-
 }

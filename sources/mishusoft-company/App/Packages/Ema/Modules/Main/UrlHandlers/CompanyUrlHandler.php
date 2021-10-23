@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Ema\Mishusoft\Main\UrlHandlers;
 
 use Mishusoft\Databases\MishusoftSQLStandalone;
@@ -12,7 +11,6 @@ use Mishusoft\Utility\Inflect;
 
 class CompanyUrlHandler extends UrlHandler
 {
-
     /**
      * @param array $prediction
      * @throws \JsonException
@@ -22,7 +20,7 @@ class CompanyUrlHandler extends UrlHandler
      * @throws \Mishusoft\Exceptions\PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    public function response(array $prediction):void
+    public function response(array $prediction): void
     {
         // TODO: Implement Response() method.
         $view = $this->render("Mishusoft", $prediction);

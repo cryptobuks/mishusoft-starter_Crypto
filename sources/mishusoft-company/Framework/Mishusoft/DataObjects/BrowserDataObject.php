@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Mishusoft\DataObjects;
-
 
 class BrowserDataObject
 {
@@ -304,7 +302,6 @@ class BrowserDataObject
 
     public function __construct()
     {
-
     }//end __construct()
 
 
@@ -1675,7 +1672,6 @@ class BrowserDataObject
                 'manufacture' => 'ShySky.',
             ],
         ];
-
     }//end getDevicesList()
 
 
@@ -1693,7 +1689,6 @@ class BrowserDataObject
             'win'   => 'win',
             'mobi'  => 'mobi',
         ];
-
     }//end getDevicesCategoryList()
 
 
@@ -1775,7 +1770,6 @@ class BrowserDataObject
             'AMD64'                                        => '64 Bit',
             'Intel64'                                      => '64 Bit',
         ];
-
     }//end getDevicesArchitectureList()
 
 
@@ -1805,7 +1799,6 @@ class BrowserDataObject
                 'type' => 'Mac Window Manager.',
             ],
         ];
-
     }//end getPlatformWmList()
 
 
@@ -3535,7 +3528,6 @@ class BrowserDataObject
                 ],
             ],
         ];
-
     }//end getWebBrowsersList()
 
 
@@ -4645,7 +4637,6 @@ class BrowserDataObject
             'zune',
             'zvu'
         ];
-
     }//end getWebBrowsers()
 
 
@@ -4658,7 +4649,6 @@ class BrowserDataObject
     {
         // Parent App of Browser
         return ['mozilla' => 'Mozilla'];
-
     }//end getWebBrowserAppCodeList()
 
 
@@ -4753,8 +4743,5 @@ class BrowserDataObject
                 'contain_example' => 'libwww-FM/xyz',
             ],
         ];
-
     }//end getWebBrowsersLayoutList()
-
-
 }//end class

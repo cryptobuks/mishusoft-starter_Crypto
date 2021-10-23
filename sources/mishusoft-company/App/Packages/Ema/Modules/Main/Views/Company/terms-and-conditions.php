@@ -6,7 +6,6 @@ use Mishusoft\Framework\Chipsets\Utility\_Array;
 use Mishusoft\Framework\Chipsets\Utility\_String;
 use Mishusoft\Framework\Chipsets\Utility\Stream;
 
-
 $translation = new Localization(_Array::value($this->request, "locale"));
 $aboutInfo = Stream::read(RUNTIME_REGISTRIES_PATH . "company-about.json");
 

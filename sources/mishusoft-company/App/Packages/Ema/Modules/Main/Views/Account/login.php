@@ -10,7 +10,6 @@ use Mishusoft\Framework\Drivers\Session;
 use Mishusoft\Framework\Drivers\ViewRender;
 use Mishusoft\Framework\Libraries\Runtime;
 
-
 /*_Debug::preOutput($_GET);*/
 if (Session::get("auth")) {
     Runtime::redirect("account/welcome"
@@ -96,8 +95,11 @@ if (Session::get("auth")) {
          * <span class="checkmark"></span>
          * </label>
          */
-        $label = Ui::element(Ui::element($command, "remember", ["style" => Ui::css["display-flex"] . "width: -webkit-fill-available;width: -moz-available;"]),
-            "label", ["class" => "input-container", "style" => Ui::css["font-normal"]]);
+        $label = Ui::element(
+            Ui::element($command, "remember", ["style" => Ui::css["display-flex"] . "width: -webkit-fill-available;width: -moz-available;"]),
+            "label",
+            ["class" => "input-container", "style" => Ui::css["font-normal"]]
+        );
         Ui::element($label, "input", ["type" => "checkbox", "name" => "RememberMe", "value" => true]);
         Ui::element($label, "span", ["class" => "checkmark"]);
         Ui::text($label, "Remember Me");
@@ -197,7 +199,6 @@ if (Session::get("auth")) {
             Ui::element($alternative, "a", ["style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";font-size:15px;", "href" => Memory::Data("framework")->host->url . "account/recovery", "text" => "Forget Account?", "title" => "Click to recovery your account if you forget password or account"]);
             Ui::element($alternative, "a", ["style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";font-size:15px;", "href" => Memory::Data("framework")->host->url . "account/create", "text" => "Create New Account", "title" => "Click to create new account"]);
             Ui::element($alternative, "a", ["style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";font-size:15px;", "href" => Memory::Data("framework")->host->url, "text" => "Back to home", "title" => "Click to go back to home"]);
-
         } else {
             Runtime::redirect("account/login?type=username-and-password");
         }

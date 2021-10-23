@@ -1,5 +1,6 @@
-<?php declare(strict_types=1);
+<?php
 
+declare(strict_types=1);
 
 namespace Mishusoft\Ui;
 
@@ -9,7 +10,6 @@ use Mishusoft\Ui;
 
 class Element extends Ui
 {
-
     /**
      * @param string $type
      * @param DOMElement $documentRoot

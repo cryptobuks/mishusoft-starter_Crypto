@@ -2,7 +2,6 @@
 
 namespace Mishusoft\Packages\Lab\Modules\Main\Models;
 
-
 use Mishusoft\Framework\Chipsets\Cryptography\Encryption;
 use Mishusoft\Framework\Drivers\Model;
 use Mishusoft\Framework\PreRequires\_Array;
@@ -10,7 +9,6 @@ use PDO;
 
 class userModel extends Model
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -22,10 +20,10 @@ class userModel extends Model
         $password = Encryption::static($password);
         $data = $this->db->prepare("SELECT * from `" . DbPREFIX . "users` WHERE `username` = :username AND `password` = :password;");
         $data->execute(
-            array(
+            [
                 ':username' => $username,
                 ':password' => $password
-            )
+            ]
         );
         return $data->fetch(PDO::FETCH_ASSOC);
     }
@@ -36,10 +34,10 @@ class userModel extends Model
         $code = (int) $code;
         $data = $this->db->prepare("SELECT * from `" . DbPREFIX . "users` WHERE `id` = :id AND `code` = :code;");
         $data->execute(
-            array(
+            [
                 ':id' => $id,
                 ':code' => $code
-            )
+            ]
         );
         return $data->fetch(PDO::FETCH_ASSOC);
     }
@@ -48,9 +46,9 @@ class userModel extends Model
     {
         $data = $this->db->prepare("SELECT * from `" . DbPREFIX . "users` WHERE `email` = :email");
         $data->execute(
-            array(
+            [
                 ':email' => $email
-            )
+            ]
         );
         return $data->fetch(PDO::FETCH_ASSOC);
     }
@@ -59,9 +57,9 @@ class userModel extends Model
     {
         $data = $this->db->prepare("SELECT * from `" . DbPREFIX . "users` WHERE `username` = :username");
         $data->execute(
-            array(
+            [
                 ':username' => DbPREFIX . $username
-            )
+            ]
         );
         return $data->fetch(PDO::FETCH_ASSOC);
     }
@@ -71,36 +69,36 @@ class userModel extends Model
         $random = rand(1245678, 99999999);
         $data = $this->db->prepare("UPDATE `" . DbPREFIX . "users` SET `code` = :random WHERE `email` = :email");
         $data->execute(
-            array(
+            [
                 ':random' => $random,
                 ':email' => $email
-            )
+            ]
         );
         return $data->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function setNewPassword($id,$password)
+    public function setNewPassword($id, $password)
     {
         $id = (int) $id;
-        $this->db->prepare("UPDATE `" . DbPREFIX . "users` SET `password` = :password WHERE `id` = {$id}")->execute(array(':password' => Encryption::static($password)));
+        $this->db->prepare("UPDATE `" . DbPREFIX . "users` SET `password` = :password WHERE `id` = {$id}")->execute([':password' => Encryption::static($password)]);
     }
 
     public function getUserName($username): bool
     {
         $username = APP_USERNAME_PREFIX . $username;
         $data = $this->db->prepare("SELECT `username` FROM `" . DbPREFIX . "users` WHERE `username` = :username");
-        $data->execute(array(':username' => $username));
+        $data->execute([':username' => $username]);
         if ($data->fetch(PDO::FETCH_ASSOC)) {
-            return TRUE;
+            return true;
         }
-        return FALSE;
+        return false;
     }
 
     public function getUserPassWord($username)
     {
         $username = APP_USERNAME_PREFIX . $username;
         $data = $this->query("SELECT `password` FROM `" . DbPREFIX . "users` WHERE `username` = '{$username}'")->fetch(PDO::FETCH_ASSOC);
-        return _Array::value($data,"password");
+        return _Array::value($data, "password");
     }
 
     public function verifyUsername($username)
@@ -108,9 +106,9 @@ class userModel extends Model
         $username = APP_USERNAME_PREFIX . $username;
         $data = $this->db->prepare("SELECT `id`, `code` FROM `" . DbPREFIX . "users` WHERE `username` = :username");
         $data->execute(
-            array(
+            [
                 ':username' => $username
-            )
+            ]
         );
         return $data->fetch(PDO::FETCH_ASSOC);
     }
@@ -119,14 +117,14 @@ class userModel extends Model
     {
         $id = $this->db->prepare("SELECT `id` FROM `" . DbPREFIX . "users` WHERE `email` = :email");
         $id->execute(
-            array(
+            [
                 ':email' => $email
-            )
+            ]
         );
         if ($id->fetch(PDO::FETCH_ASSOC)) {
-            return TRUE;
+            return true;
         }
-        return FALSE;
+        return false;
     }
 
     public function addUser($fName, $lName, $email, $username, $password, $dateOfBirth, $gender)
@@ -138,7 +136,7 @@ class userModel extends Model
 
         $this->prepare("INSERT INTO `" . DbPREFIX . "users` VALUES (null, :fName, :lName, :email, :password, :username, 'active', :role, 0, now(), :code)")
             ->execute(
-                array(
+                [
                     ':fName' => $fName,
                     ':lName' => $lName,
                     ':email' => $email,
@@ -146,7 +144,8 @@ class userModel extends Model
                     ':username' => $username,
                     ':role' => $role,
                     ':code' => $random
-                ));
+                ]
+            );
 
         /**
          * INSERT INTO `msu_users_details`(`id`, `dob`, `gender`, `profession`, `pro_pic`, `cover_pic`)
@@ -154,20 +153,21 @@ class userModel extends Model
         .*/
         $this->prepare("INSERT INTO `" . DbPREFIX . "users_details`(`id`, `dob`, `gender`) VALUES (null, :dob, :gender)")
             ->execute(
-                array(
+                [
                     ':dob' => $dateOfBirth,
                     ':gender' => $gender
-                ));
+                ]
+            );
     }
 
     public function getUserStatusByIdCode($id, $code)
     {
         $data = $this->db->prepare("SELECT `status` FROM `" . DbPREFIX . "users` WHERE `id` = :id and `code` = :code");
         $data->execute(
-            array(
+            [
                 ':id' => $id,
                 ':code' => $code
-            )
+            ]
         );
         return $data->fetch(PDO::FETCH_ASSOC);
     }
@@ -176,10 +176,10 @@ class userModel extends Model
     {
         $data = $this->db->prepare("UPDATE `" . DbPREFIX . "users` SET `status` = 1 WHERE `id` = :id and `code` = :code");
         $data->execute(
-            array(
+            [
                 ':id' => $id,
                 ':code' => $code
-            )
+            ]
         );
         return $data->fetch(PDO::FETCH_ASSOC);
     }
@@ -188,16 +188,17 @@ class userModel extends Model
     {
         if ($type === 'LOGIN') {
             $this->prepare("INSERT INTO `" . DbPREFIX . "userslog_details` VALUES (null, :id, now(), '')")
-                ->execute(array(':id' => $id));
+                ->execute([':id' => $id]);
         }
 
         if ($type === 'LOGOUT') {
             $this->prepare("INSERT INTO `" . DbPREFIX . "userslog_details` VALUES (null, :id, '', now()")
-                ->execute(array(':id' => $id));
+                ->execute([':id' => $id]);
         }
     }
 
-    public function getLoggedInUserDetails($id){
+    public function getLoggedInUserDetails($id)
+    {
         $id = (int)$id;
         return $this->db->query("SELECT * FROM `" . DbPREFIX . "users` WHERE `id` = '$id';")->fetch(PDO::FETCH_ASSOC);
         //$mDetails = $this->db->query("SELECT * FROM `" . DbPREFIX . "users_details` WHERE `id` = '$id';");
@@ -210,13 +211,14 @@ class userModel extends Model
         return $this->db->query("SELECT * FROM `" . DbPREFIX . "trackActivities` ORDER BY `ID` DESC;")->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getBranchIdByUserId($id){
+    public function getBranchIdByUserId($id)
+    {
         $id = (int) $id;
-        return _Array::value($this->query("SELECT * FROM `" . DbPREFIX . "branch_user` WHERE `user` = '$id';")->fetch(PDO::FETCH_ASSOC),'branch');
+        return _Array::value($this->query("SELECT * FROM `" . DbPREFIX . "branch_user` WHERE `user` = '$id';")->fetch(PDO::FETCH_ASSOC), 'branch');
     }
 
-    public function getBranchNameById($id){
-        return _Array::value($this->query("SELECT * FROM " . DbPREFIX . "branches WHERE `id` = '$id';")->fetch(PDO::FETCH_ASSOC),'name');
+    public function getBranchNameById($id)
+    {
+        return _Array::value($this->query("SELECT * FROM " . DbPREFIX . "branches WHERE `id` = '$id';")->fetch(PDO::FETCH_ASSOC), 'name');
     }
-
 }

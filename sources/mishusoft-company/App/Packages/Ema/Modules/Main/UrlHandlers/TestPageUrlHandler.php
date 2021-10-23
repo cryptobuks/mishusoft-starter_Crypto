@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Ema\Mishusoft\Main\UrlHandlers;
 
 use Mishusoft\Storage;
@@ -18,7 +17,7 @@ class TestPageUrlHandler extends UrlHandler
      * @throws \Mishusoft\Exceptions\PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    public function response(array $prediction):void
+    public function response(array $prediction): void
     {
         Debug::preOutput("test Page");
         //_Debug::preOutput($prediction->getController());

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Mishusoft\Interfaces\Chipsets\Databases;
-
 
 use Mishusoft\Interfaces\Chipsets\Databases\MishusoftSQLStandalone\TableInterface;
 
@@ -24,5 +22,3 @@ interface MishusoftSQLStandaloneInterface
 
     public function empty(string $database_name);
 }
-
-

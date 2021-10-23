@@ -2,8 +2,6 @@
 
 namespace Mishusoft\Packages\Lab\Modules\Main\Controllers;
 
-
-
 use Mishusoft\Framework\Chipsets\Utility\Pagination;
 use Mishusoft\Framework\Drivers\Controller;
 
@@ -14,7 +12,8 @@ class filemanagerController extends Controller
         parent::__construct();
     }
 
-    public function index(){
+    public function index()
+    {
         $this->access_init();
         $this->acl->access('edit_content');
         //Tracker::addEvent(array('activity' => array('messageType' => 'success', 'message' => 'Navigate to File Manager successfully')));
@@ -33,5 +32,4 @@ class filemanagerController extends Controller
             exit;
         }
     }
-
 }

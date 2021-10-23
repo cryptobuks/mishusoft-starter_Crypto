@@ -45,7 +45,7 @@ class Pagination
      *
      * @var array
      */
-    private array $pagination = array();
+    private array $pagination = [];
 
     /**
      * Pagination constructor.
@@ -68,7 +68,7 @@ class Pagination
         array $query,
         int $page = 1,
         int $limit = 10,
-        array $pagination = array()
+        array $pagination = []
     ): array {
         if ($page > 1) {
             $offset = ($page - 1) * $limit;
@@ -120,7 +120,7 @@ class Pagination
         $selected = $this->pagination['current'];
         $range = ceil($limit / 2);
 
-        $pages = array();
+        $pages = [];
 
         $next = $total - $selected;
         $exists = ($next < $range) ? ($range - $next) : 0;
@@ -162,7 +162,7 @@ class Pagination
             $view,
             DS
         );
-        $link = $link !== BASE_URL ? BASE_URL . $link . '/' :  $link;
+        $link = $link !== BASE_URL ? BASE_URL . $link . '/' : $link;
 
         if (is_readable($rootView)) {
             ob_start();

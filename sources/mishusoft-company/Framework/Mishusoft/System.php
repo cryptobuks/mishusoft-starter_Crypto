@@ -559,7 +559,7 @@ class System extends Base
                     ];
                 }
             }//end if
-        } else if (FileSystem::makeDirectory(self::getRequiresFile('CONFIG_DIR_PATH'))) {
+        } elseif (FileSystem::makeDirectory(self::getRequiresFile('CONFIG_DIR_PATH'))) {
             FileSystem::exec(self::getRequiresFile('CONFIG_DIR_PATH'));
             if (FileSystem::makeDirectory(self::getRequiresFile('CONFIG_SERVER_DIR_PATH'))) {
                 FileSystem::exec(self::getRequiresFile('CONFIG_SERVER_DIR_PATH'));

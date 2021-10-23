@@ -109,7 +109,6 @@ class Parser
 
     private function doParse(string $value, int $flags)
     {
-
         $this->currentLineNb = -1;
         $this->currentLine = '';
         $value = $this->cleanup($value);

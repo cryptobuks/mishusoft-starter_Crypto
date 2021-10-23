@@ -1,6 +1,7 @@
 <?php
 
 //source::https://github.com/firebase/php-jwt
+
 namespace Mishusoft\Authentication;
 
 use DomainException;
@@ -108,7 +109,7 @@ class JWK
             }
             return $publicKey;
         }
-// Currently, only RSA is supported
+        // Currently, only RSA is supported
     }
 
     /**

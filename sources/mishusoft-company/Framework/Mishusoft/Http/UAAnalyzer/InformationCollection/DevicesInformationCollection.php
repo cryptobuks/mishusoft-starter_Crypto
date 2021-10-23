@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\Http\UAAnalyzer\InformationCollection;
 
 use JsonException;
@@ -23,6 +22,6 @@ class DevicesInformationCollection extends Collection
         if (array_key_exists($identifier, $resourcesInfo) === true) {
             return $resourcesInfo[$identifier];
         }
-        return array();
+        return [];
     }
 }

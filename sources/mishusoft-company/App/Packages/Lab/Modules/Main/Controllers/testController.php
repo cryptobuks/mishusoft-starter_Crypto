@@ -2,12 +2,10 @@
 
 namespace Mishusoft\Packages\Lab\Modules\Main\Controllers;
 
-
 use Mishusoft\Framework\Drivers\Controller;
 
 class testController extends Controller
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -48,6 +46,4 @@ class testController extends Controller
         print_r($_SERVER);
         echo '</pre>';
     }
-
-
 }

@@ -1,11 +1,9 @@
 <?php
 
-
 namespace Mishusoft\Libraries;
 
 class MishusoftTemplateEngine
 {
-
     private string $UrlOfCurrentWebPage;
     private string $TitleOfCurrentWebPage;
 

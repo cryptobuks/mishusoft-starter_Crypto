@@ -1,11 +1,9 @@
 <?php
 
-
 namespace Mishusoft\Http;
 
 class Errors
 {
-
     // declare version
     public const VERSION = '1.0.2';
 

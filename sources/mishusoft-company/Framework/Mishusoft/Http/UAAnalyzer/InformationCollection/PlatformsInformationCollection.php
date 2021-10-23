@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\Http\UAAnalyzer\InformationCollection;
 
 use Mishusoft\Exceptions\RuntimeException;
@@ -22,7 +21,7 @@ class PlatformsInformationCollection extends Collection
         if (array_key_exists($identifier, $resourcesInfo) === true) {
             return $resourcesInfo[$identifier];
         }
-        return array();
+        return [];
     }
 
     /**
@@ -34,6 +33,6 @@ class PlatformsInformationCollection extends Collection
         if (array_key_exists($identifier, $resourcesInfo) === true) {
             return $resourcesInfo[$identifier];
         }
-        return array();
+        return [];
     }
 }

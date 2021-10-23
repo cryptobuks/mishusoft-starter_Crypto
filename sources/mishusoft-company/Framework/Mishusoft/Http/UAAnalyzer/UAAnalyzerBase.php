@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\Http\UAAnalyzer;
 
 use Mishusoft\Base;
@@ -13,7 +12,6 @@ use Mishusoft\Utility\ArrayCollection;
 
 class UAAnalyzerBase extends Base
 {
-
     private const USER_AGENT_HISTORY_LINK = 'https://webaim.org/blog/user-agent-string-history/';
 
     protected string $userAgent;
@@ -87,14 +85,14 @@ class UAAnalyzerBase extends Base
         $this->directoryValidation();
     }
 
-    protected function cacheFile(string $name):string
+    protected function cacheFile(string $name): string
     {
         return self::dFile(
             Cache::directiveDataFile('UAAnalyzerData', $this->makeFile($name))
         );
     }
 
-    protected function makeFile(string $name):string
+    protected function makeFile(string $name): string
     {
         return $name.DS.$this->todayDateOnly;
     }
@@ -115,7 +113,7 @@ class UAAnalyzerBase extends Base
     /**
      * @throws RuntimeException
      */
-    protected function solvedUA():array
+    protected function solvedUA(): array
     {
         $result = [];
         $files = Storage::globRecursive(dirname($this->uaSolvableListFile));

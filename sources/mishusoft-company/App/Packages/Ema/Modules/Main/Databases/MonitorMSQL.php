@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Mishusoft\Ema\Mishusoft\Main\Databases;
-
 
 use Mishusoft\Framework\Chipsets\Databases\MishusoftSQLStandalone;
 use Mishusoft\Framework\Interfaces\Chipsets\Databases\MishusoftSQLSandalone\TableInterface;

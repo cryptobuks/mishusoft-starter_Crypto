@@ -7,8 +7,6 @@ use Mishusoft\Exceptions;
 
 trait Validation
 {
-
-
     /**
      * @throws Exceptions\ErrorException
      * @throws Exceptions\RuntimeException

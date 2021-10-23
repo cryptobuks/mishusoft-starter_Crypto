@@ -12,13 +12,15 @@ Ui::updateDocumentTitle(" || " . $translation->translate("Welcome to Mishusoft f
 
 /*set separate paragraph for index page*/
 Ui::elementList(
-    $this->documentTemplateBodyElement, [
+    $this->documentTemplateBodyElement,
+    [
     "ms-app-paragraph" => [
         ["style" => "padding: 50px;text-align: center;font-size: 40px;font-weight: bold;", "text" => $translation->translate("Welcome to Mishusoft family")],/*set welcome text*/
         ["style" => "padding: 10px;text-align: center;font-size: 16px;font-weight: normal;line-height: 1.5;margin: 0 10px 0 10px;", "text" => $translation->translate("Mishusoft Systems Incorporated is a software development company that is going to be established with a view to offering high quality IT solutions at home and abroad. The company is keen to take the advantage of fast growing global software and data processing industry by offering professional service and price for support and benefit of the valued customers.")],/*set company details text*/
         ["style" => "padding: 10px;text-align: center;font-size: 16px;font-weight: normal;line-height: 1.5;margin: 0 10px 0 10px;", "text" => $translation->translate("We offered to join with us and receive any service, then the valued customers take a relax.")]/*set offer text*/
     ],
-]);
+]
+);
 
 
 /*add account related card"s title*/
@@ -52,7 +54,8 @@ Ui::element($this->documentTemplateBodyElement, "ms-app-paragraph", ["style" => 
 
 /*create html anchor elements*/
 Ui::elementList(
-    Ui::element($this->documentTemplateBodyElement, "card", ["class" => "card1",]), [
+    Ui::element($this->documentTemplateBodyElement, "card", ["class" => "card1",]),
+    [
         "a" => [
             ["class" => "protect flex-center-all", "style" => "background: white;", "href" => Runtime::link("account/login"), "child"=>[
                 "div" => [

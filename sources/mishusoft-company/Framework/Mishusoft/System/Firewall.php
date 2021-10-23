@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Mishusoft\System;
 
@@ -18,7 +20,6 @@ use RuntimeException;
 
 class Firewall extends Firewall\FirewallBase
 {
-
     /**
      * Firewall constructor.
      *
@@ -614,7 +615,7 @@ class Firewall extends Firewall\FirewallBase
         } elseif ($httpRequestMethod === 'GET') {
             if (array_key_exists('caption', $message)) {
                 FirewallView::debug($message['caption'], $message, Http::errorCode($title));
-                //Ui\EmbeddedView::debug($message['caption'], $message, Http::errorCode($title));
+            //Ui\EmbeddedView::debug($message['caption'], $message, Http::errorCode($title));
             } else {
                 FirewallView::runtimeFail($title, $message, Http::errorCode($title));
                 //Ui\EmbeddedView::runtimeFail($title, $message, Http::errorCode($title));

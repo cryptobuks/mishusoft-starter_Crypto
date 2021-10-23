@@ -2,7 +2,6 @@
 
 namespace Mishusoft\Packages\Lab\Modules\Main\Controllers;
 
-
 use Mishusoft\Framework\Drivers\Controller;
 
 class sitemapsController extends Controller
@@ -48,7 +47,8 @@ class sitemapsController extends Controller
         }
     }
 
-    public function sitemapXml(){
+    public function sitemapXml()
+    {
         header('Content-Type: text/xml; charset=utf-8', true);
         echo '<?xml version="1.0" encoding="UTF-8"?>';
         echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.sitemaps.org/schemas/sitemap/0.9 https://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">';
@@ -84,5 +84,4 @@ class sitemapsController extends Controller
         echo '</channel>';
         echo '</rss>';
     }
-
 }

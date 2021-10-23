@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Mishusoft\System;
 
@@ -14,7 +16,7 @@ class Network
      * @param string $argument
      * @return string
      */
-    public static function requestHeader(string $argument):string
+    public static function requestHeader(string $argument): string
     {
         if (array_key_exists(Inflect::upper($argument), $_SERVER)) {
             return $_SERVER[Inflect::upper($argument)];

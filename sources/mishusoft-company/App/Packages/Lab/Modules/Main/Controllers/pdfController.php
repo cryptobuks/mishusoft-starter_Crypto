@@ -2,14 +2,11 @@
 
 namespace Mishusoft\Packages\Lab\Modules\Main\Controllers;
 
-
-
 use Mishusoft\Framework\Chipsets\RuntimeErrors;
 use Mishusoft\Framework\Drivers\Controller;
 
 class pdfController extends Controller
 {
-
     private $pdf;
 
     public function __construct()
@@ -53,5 +50,4 @@ class pdfController extends Controller
 
         $this->pdf->Output('New Document.pdf', 'D');
     }
-
 }

@@ -2,12 +2,10 @@
 
 namespace Mishusoft\Packages\Lab\Modules\Main\Controllers;
 
-
 use Mishusoft\Framework\Drivers\Controller;
 
 class servicesController extends Controller
 {
-
     public function __construct()
     {
         parent::__construct();

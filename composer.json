@@ -111,7 +111,8 @@
     ],
 
     "phpcs": "phpcs",
-    "phpcbf": "phpcbf"
+    "phpcbf": "phpcbf",
+    "php-cs-fixer": "php-cs-fixer fix"
   },
   "require": {
     "php": ">=7.4",

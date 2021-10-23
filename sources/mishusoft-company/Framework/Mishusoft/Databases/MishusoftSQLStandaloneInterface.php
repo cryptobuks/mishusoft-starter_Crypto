@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\Databases;
 
 interface MishusoftSQLStandaloneInterface extends MishusoftSQLStandalone\CommonStructureInterface

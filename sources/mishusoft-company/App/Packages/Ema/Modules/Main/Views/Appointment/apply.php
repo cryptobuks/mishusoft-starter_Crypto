@@ -16,9 +16,10 @@ Ui::text($this->documentTitleElement, " || " . $translation->translate("Apply to
 
 /*set separate paragraph for index page*/
 Ui::elementList(
-    $this->documentTemplateBodyElement, [
+    $this->documentTemplateBodyElement,
+    [
     "ms-app-paragraph" => [
         ["style" => "padding: 50px;text-align: center;font-size: 37px;font-weight: bold;", "text" => $translation->translate("Under development.")],/*set welcome text*/
     ],
-]);
-
+]
+);

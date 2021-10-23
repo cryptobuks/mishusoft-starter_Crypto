@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\Http\UAAnalyzer\PatternsCollection;
 
 use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
@@ -41,7 +40,7 @@ class BrowsersPatternsCollection extends Collection
      * @throws \JsonException
      * @throws \Mishusoft\Exceptions\JsonException
      */
-    public function compat(string $identifier):string
+    public function compat(string $identifier): string
     {
         $dictionary = $this->extractAttribute($this->query('browsers', 'compatibilities'), 'identifier-with-pattern');
         if (array_key_exists($identifier, $dictionary)=== true) {
@@ -59,7 +58,7 @@ class BrowsersPatternsCollection extends Collection
      * @throws \JsonException
      * @throws \Mishusoft\Exceptions\JsonException
      */
-    public function browserEngine(string $identifier):string
+    public function browserEngine(string $identifier): string
     {
         $dictionary = $this->extractAttribute($this->query('browsers', 'browsers-engines'), 'identifier-with-pattern');
         if (array_key_exists($identifier, $dictionary)=== true) {
@@ -77,7 +76,7 @@ class BrowsersPatternsCollection extends Collection
      * @throws \JsonException
      * @throws \Mishusoft\Exceptions\JsonException
      */
-    public function match(string $identifier):string
+    public function match(string $identifier): string
     {
         if (array_key_exists($identifier, $this->all())=== true) {
             return strtolower($this->all()[$identifier]);
@@ -90,7 +89,7 @@ class BrowsersPatternsCollection extends Collection
      * @throws InvalidArgumentException
      * @throws RuntimeException
      */
-    public function webBrowser(string $identifier):string
+    public function webBrowser(string $identifier): string
     {
         return match (strtolower($identifier)) {
             // Bot

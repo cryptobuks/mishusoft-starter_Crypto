@@ -4,11 +4,10 @@ namespace Mishusoft\Framework;
 
 trait Configuration
 {
-
     /**
      * @return array
      */
-    public static function defaultConfiguration():array
+    public static function defaultConfiguration(): array
     {
         return [
             'name'         => static::NAME,

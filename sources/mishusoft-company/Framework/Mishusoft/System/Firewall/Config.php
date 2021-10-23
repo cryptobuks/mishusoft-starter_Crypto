@@ -4,7 +4,6 @@ namespace Mishusoft\System\Firewall;
 
 trait Config
 {
-
     protected function requiredProperties(): array
     {
         return  [
@@ -72,5 +71,4 @@ trait Config
             ],
         ];
     }
-
 }

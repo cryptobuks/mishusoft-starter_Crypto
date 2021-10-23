@@ -12,7 +12,6 @@ use Mishusoft\Storage\FileSystem;
 
 abstract class Widget implements WidgetInterface
 {
-
     /**
      * @var Registry
      */
@@ -46,7 +45,7 @@ abstract class Widget implements WidgetInterface
             $modelClass = Base::getClassNamespace($widgetModelFile);
             if (in_array($widgetModelFile, get_included_files()) === true) {
                 if (class_exists($modelClass, false) === true) {
-                    return new $modelClass;
+                    return new $modelClass();
                 }
 
                 throw new Exceptions\RuntimeException("class $modelClass loading failed");

@@ -6,8 +6,6 @@ use Mishusoft\System\Time;
 
 trait Assets
 {
-
-
     /**
      * @return string
      */
@@ -53,5 +51,4 @@ trait Assets
     {
         return self::dFile(self::configDataFile('Firewall', 'sites'));
     }
-
 }

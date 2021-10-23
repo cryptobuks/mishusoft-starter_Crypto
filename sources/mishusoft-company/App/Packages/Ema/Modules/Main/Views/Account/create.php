@@ -93,13 +93,15 @@ if (Session::get("auth")) {
 
     /*alternate help links*/
     Ui::elementList(
-        Ui::element($frm, "alternative", ["style" => Ui::css["display-flex"] . Ui::css["flex-column"] . Ui::htmlHrefStyle . "width: -webkit-fill-available;width: -moz-available;;line-height: 2;"]), [
+        Ui::element($frm, "alternative", ["style" => Ui::css["display-flex"] . Ui::css["flex-column"] . Ui::htmlHrefStyle . "width: -webkit-fill-available;width: -moz-available;;line-height: 2;"]),
+        [
         "a" => [
             ["style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";font-size:15px;", "href" => Memory::Data("framework")->host->url . "account/login", "text" => "Log in", "title" => "Click to log in your account"],
             ["style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";font-size:15px;", "href" => Memory::Data("framework")->host->url . "account/recovery", "text" => "Forget Account?", "title" => "Click to recovery your account if you forget password or account"],
             ["style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";font-size:15px;", "href" => Memory::Data("framework")->host->url, "text" => "Back to home", "title" => "Click to go back to home"]
         ],
-    ]);
+    ]
+    );
 }
 
 /*end of create page*/

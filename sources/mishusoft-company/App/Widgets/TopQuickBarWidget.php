@@ -1,13 +1,11 @@
 <?php
 
-
 namespace App\Widgets;
 
 use Mishusoft\Drivers\Widget;
 
 class TopQuickBarWidget extends Widget
 {
-
     /**
      * @param string $name
      * @param string $view

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Mishusoft\Ema\Mishusoft\Main\Databases;
-
 
 use Mishusoft\Framework\Chipsets\Databases\MishusoftSQLStandalone;
 use Mishusoft\Framework\Chipsets\System\Time;
@@ -117,5 +115,4 @@ class AccountMSQL extends MishusoftSQLStandalone
                 "email" => "{$email}", "code" => "{$code}"
             ]]);
     }
-
 }

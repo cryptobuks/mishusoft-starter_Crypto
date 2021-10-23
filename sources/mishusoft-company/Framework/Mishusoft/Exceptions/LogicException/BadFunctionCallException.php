@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\Exceptions\LogicException;
 
 use Mishusoft\Exceptions\LogicException;

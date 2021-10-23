@@ -2,7 +2,6 @@
 
 namespace Mishusoft\Packages\Lab\Modules\System\Controllers;
 
-
 use Mishusoft\Framework\Chipsets\Utility\Pagination;
 use Mishusoft\Framework\Globals\Functions\Text;
 use Mishusoft\Packages\Lab\Modules\Main\Controllers\systemController;
@@ -12,7 +11,7 @@ class permissionsController extends systemController
     private $system;
     public function __construct()
     {
-        parent:: __construct();
+        parent::__construct();
         $this->access_init();
         $this->system = $this->loadModel('system');
     }
@@ -22,7 +21,7 @@ class permissionsController extends systemController
         $this->access_init();
         $this->acl->access('edit_content');
         //Tracker::addEvent(array('activity' => array('messageType' => 'success', 'message' => 'Navigate to  modules successfully')));
-        
+
         $pagination = new Pagination();
 
         /*$this->view->setJs(['main']);*/
@@ -37,7 +36,7 @@ class permissionsController extends systemController
         $this->access_init();
         $this->acl->access('edit_content');
         $page = $this->getInt('page');
-        
+
         $pagination = new Pagination();
 
         $this->view->assign('permissions', $pagination->pager($this->system->getPermissions(), $page));
@@ -88,10 +87,10 @@ class permissionsController extends systemController
                 $p = $this->system->getPermission($this->filterInt($data->id));
                 $this->system->editPermission($this->filterInt($data->id), Text::removeTags($data->name), Text::removeTags($data->key), Text::removeTags($data->PKID));
                 echo json_encode(['type' => 'success', 'message' => 'Permission ' . ucfirst($p['permission']) . ' to ' . ucfirst(Text::removeTags($data->name)) . ' updated successfully....']);
-               /* Tracker::addEvent(array(
-                    'activity' => array('messageType' => 'success', 'message' => 'Permission ' . ucfirst($p['permission']) . ' to ' . ucfirst(Text::removeTags($data->name)) . ' updated successfully....'),
-                    'update' => array('messageType' => 'success', 'uFile' => 'Permission', 'message' => 'Permission ' . ucfirst($p['permission']) . ' to ' . ucfirst(Text::removeTags($data->name)) . ' updated successfully....')
-                ));*/
+                /* Tracker::addEvent(array(
+                     'activity' => array('messageType' => 'success', 'message' => 'Permission ' . ucfirst($p['permission']) . ' to ' . ucfirst(Text::removeTags($data->name)) . ' updated successfully....'),
+                     'update' => array('messageType' => 'success', 'uFile' => 'Permission', 'message' => 'Permission ' . ucfirst($p['permission']) . ' to ' . ucfirst(Text::removeTags($data->name)) . ' updated successfully....')
+                 ));*/
                 exit;
             }
 
@@ -125,6 +124,4 @@ class permissionsController extends systemController
         $this->acl->access('edit_content');
         echo json_encode($this->system->getPermissionsRole($id));
     }
-
-
 }

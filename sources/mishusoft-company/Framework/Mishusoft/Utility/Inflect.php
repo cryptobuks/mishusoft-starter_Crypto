@@ -1,5 +1,5 @@
 <?php
-  
+
   // original source: http://kuwamoto.org/2007/12/17/improved-pluralizing-in-php-actionscript-and-ror/
   // collected source: https://gist.github.com/tbrianjones/ba0460cc1d55f357e00b
 
@@ -10,7 +10,6 @@
   //           http://www.fortunecity.com/bally/durrus/153/gramch13.html
   //           http://www2.gsu.edu/~wwwesl/egw/crump.htm
   //
-
 
 namespace Mishusoft\Utility;
 
@@ -92,60 +91,60 @@ class Inflect
         'information',
         'equipment',
     ];
-      
+
     public static function pluralize($string)
     {
         // save some time in the case that singular and plural are the same
         if (in_array(strtolower($string), self::$uncountable, true)) {
             return $string;
         }
-              
-      
+
+
         // check for irregular singular forms
         foreach (self::$irregular as $pattern => $result) {
             $pattern = '/' . $pattern . '$/i';
-              
+
             if (preg_match($pattern, $string)) {
                 return preg_replace($pattern, $result, $string);
             }
         }
-          
+
         // check for matches using regular expressions
         foreach (self::$plural as $pattern => $result) {
             if (preg_match($pattern, $string)) {
                 return preg_replace($pattern, $result, $string);
             }
         }
-          
+
         return $string;
     }
-      
+
     public static function singularize($string)
     {
         // save some time in the case that singular and plural are the same
         if (in_array(strtolower($string), self::$uncountable, true)) {
             return $string;
         }
-  
+
         // check for irregular plural forms
         foreach (self::$irregular as $result => $pattern) {
             $pattern = '/' . $pattern . '$/i';
-              
+
             if (preg_match($pattern, $string)) {
                 return preg_replace($pattern, $result, $string);
             }
         }
-          
+
         // check for matches using regular expressions
         foreach (self::$singular as $pattern => $result) {
             if (preg_match($pattern, $string)) {
                 return preg_replace($pattern, $result, $string);
             }
         }
-          
+
         return $string;
     }
-      
+
     public static function pluralizeIf($count, $string): string
     {
         if ($count === 1) {
@@ -297,12 +296,12 @@ class Inflect
         return strpos($haystack, $needle);
     }
 
-    public static function replace(string $haystack, string $search, string $replace = ''):string
+    public static function replace(string $haystack, string $search, string $replace = ''): string
     {
         return str_replace($search, $replace, $haystack);
     }
 
-    public static function validString(string $content):string
+    public static function validString(string $content): string
     {
         //preg_replace('~^"?(.*?)"?$~', '$1', $string); // double quotes
         // either ' or " whichever is found

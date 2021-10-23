@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\Migration;
 
 class DB

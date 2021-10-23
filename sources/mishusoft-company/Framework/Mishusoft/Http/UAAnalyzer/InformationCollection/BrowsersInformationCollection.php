@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\Http\UAAnalyzer\InformationCollection;
 
 use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
@@ -19,7 +18,7 @@ class BrowsersInformationCollection extends Collection
      * @throws RuntimeException
      * @throws \Mishusoft\Exceptions\JsonException
      */
-    public function all():array
+    public function all(): array
     {
         return $this->extractAttributeRecursive(
             'browsers',

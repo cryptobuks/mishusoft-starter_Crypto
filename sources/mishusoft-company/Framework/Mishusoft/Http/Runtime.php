@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\Http;
 
 use GeoIp2\Exception\AddressNotFoundException;
@@ -21,7 +20,6 @@ use Mishusoft\Utility\Inflect;
 
 class Runtime
 {
-
     private static string $hostUrl = '';
     private static string $currentUrl = '';
     private static string $urlPath = '';

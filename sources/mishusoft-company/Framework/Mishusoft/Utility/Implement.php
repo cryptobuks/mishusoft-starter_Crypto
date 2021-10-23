@@ -18,7 +18,6 @@ use Exception;
 
 class Implement
 {
-
     //fix locale issue
     private static function withLocale(\Closure $closure)
     {
@@ -38,7 +37,7 @@ class Implement
      */
     public static function arrayToObject(array $array, string $classname = 'stdClass'): object
     {
-        $object = new $classname;
+        $object = new $classname();
         foreach ($array as $key => $value) {
             if (is_array($value)) {
                 //convert the array to an object
@@ -52,7 +51,7 @@ class Implement
     //end of make array to object
 
     //start of make array to json
-    public static function toJson(mixed $content) : mixed
+    public static function toJson(mixed $content): mixed
     {
         return self::withLocale(/**
          * @throws Exception
@@ -283,7 +282,7 @@ class Implement
                             && ($top['what'] !== IMPLEMENT_JSON_IN_STR)) {
                             // found a quote, and we are not inside a string
                             $stk[] = ['what' => IMPLEMENT_JSON_IN_STR, 'where' => $c, 'delim' => $chars[$c]];
-                            //print("Found start of string at {$c}\n");
+                        //print("Found start of string at {$c}\n");
                         } elseif (($chars[$c] === $top['delim']) &&
                             ($top['what'] === IMPLEMENT_JSON_IN_STR) &&
                             ((Inflect::strLen8(Inflect::substr8($chars, 0, $c)) - Inflect::strLen8(rtrim(Inflect::substr8($chars, 0, $c), '\\'))) % 2 !== 1)) {
@@ -291,34 +290,34 @@ class Implement
                             // we know that it's not escaped because there is _not_ an
                             // odd number of backslashes at the end of the string so far
                             array_pop($stk);
-                            //print("Found end of string at {$c}: "
+                        //print("Found end of string at {$c}: "
                             //.$this->substr8($chars, $top['where'],
                             // (1 + 1 + $c - $top['where']))."\n");
                         } elseif (($chars[$c] === '[') && in_array($top['what'], $implementArray, true)) {
                             // found a left-bracket, and we are in an array, object, or slice
                             $stk[] = ['what' => IMPLEMENT_JSON_IN_ARR, 'where' => $c, 'delim' => false];
-                            //print("Found start of array at {$c}\n");
+                        //print("Found start of array at {$c}\n");
                         } elseif (($chars[$c] === ']') && ($top['what'] === IMPLEMENT_JSON_IN_ARR)) {
                             // found a right-bracket, and we're in an array
                             array_pop($stk);
-                            //print("Found end of array at {$c}: "
+                        //print("Found end of array at {$c}: "
                             //.$this->substr8($chars, $top['where'],
                             // (1 + $c - $top['where']))."\n");
                         } elseif (($chars[$c] === '{') && in_array($top['what'], $implementArray, true)) {
                             // found a left-brace, and we are in an array, object, or slice
                             $stk[] = ['what' => IMPLEMENT_JSON_IN_OBJ, 'where' => $c, 'delim' => false];
-                            //print("Found start of object at {$c}\n");
+                        //print("Found start of object at {$c}\n");
                         } elseif (($chars[$c] === '}') && ($top['what'] === IMPLEMENT_JSON_IN_OBJ)) {
                             // found a right-brace, and we're in an object
                             array_pop($stk);
-                            //print("Found end of object at {$c}: "
+                        //print("Found end of object at {$c}: "
                             //.$this->substr8($chars, $top['where'],
                             // (1 + $c - $top['where']))."\n");
                         } elseif (($substr_chars_c_2 === '/*') && in_array($top['what'], $implementArray, true)) {
                             // found a comment start, and we are in an array, object, or slice
                             $stk[] = ['what' => IMPLEMENT_JSON_IN_CMT, 'where' => $c, 'delim' => false];
                             $c++;
-                            //print("Found start of comment at {$c}\n");
+                        //print("Found start of comment at {$c}\n");
                         } elseif (($substr_chars_c_2 === '*/') && ($top['what'] === IMPLEMENT_JSON_IN_CMT)) {
                             // found a comment end, and we're in one now
                             array_pop($stk);
@@ -350,7 +349,7 @@ class Implement
     /**
      * @throws Exception
      */
-    private static function toJsonBuilder(mixed $content) : string|int|float
+    private static function toJsonBuilder(mixed $content): string|int|float
     {
         switch (gettype($content)) {
             case 'boolean':

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\Drivers;
 
 use Mishusoft\Databases\MishusoftSQLStandalone;
@@ -11,7 +10,6 @@ use Mishusoft\Utility\ArrayCollection;
 
 abstract class UrlHandler implements UrlHandlerInterface
 {
-
     protected Localization $localization;
     protected MishusoftSQLStandalone $mishusoftDB;
 

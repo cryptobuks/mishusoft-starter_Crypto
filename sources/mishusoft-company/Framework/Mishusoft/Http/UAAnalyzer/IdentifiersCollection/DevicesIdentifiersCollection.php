@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\Http\UAAnalyzer\IdentifiersCollection;
 
 use JsonException;

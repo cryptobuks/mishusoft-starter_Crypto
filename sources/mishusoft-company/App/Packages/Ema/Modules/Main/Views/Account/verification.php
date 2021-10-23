@@ -17,7 +17,6 @@ use Mishusoft\Framework\Libraries\Runtime;
 use Mishusoft\Framework\Libraries\Validator;
 use Mishusoft\Framework\Migration\DB;
 
-
 if (count($_POST) > 0) {
     _Debug::preOutput($_POST);
     $conOfDatabase = new AccountMSQL();
@@ -29,7 +28,7 @@ if (count($_POST) > 0) {
                     //_Debug::preOutput($conOfDatabase->select("system")->read("users"));
                     if ($conOfDatabase->AlreadyIn(["email" => _Array::value($_POST, "email")])) {
                         Runtime::redirect(_Array::value($_POST, "redirect") . "?error=" . Encryption::dynamic("Your email address already registered. Please enter new email address."));
-                        //echo "old member";
+                    //echo "old member";
                     } else {
                         //echo "new member";
                         if ($conOfDatabase->insertEmailOfNewUser(_Array::value($_POST, "email"))) {
@@ -59,11 +58,11 @@ if (count($_POST) > 0) {
                         if (array_key_exists("activation", $dtlOfUser)) {
                             if (_Array::value($dtlOfUser, "activation") === "yes") {
                                 /*set welcome session*/
-                                Session::set('auth', TRUE);
+                                Session::set('auth', true);
                                 Session::set('me', $dtlOfUser);
                                 Session::set('code', _Array::value($dtlOfUser, "code"));
                                 Session::set('time', time());
-                                Session::set('RememberMe', _Array::value($_POST, "RememberMe") ? TRUE : FALSE);
+                                Session::set('RememberMe', _Array::value($_POST, "RememberMe") ? true : false);
 
                                 if (Session::get("auth")) {
                                     Runtime::redirect("account/welcome"
@@ -131,8 +130,11 @@ if (count($_POST) > 0) {
                                 if (_Array::value($dtlOfUser, "activation") === "yes") {
                                     if (array_key_exists("username", $dtlOfUser)) {
                                         if (Decryption::dynamic(_Array::value($_POST, "type")) === "update") {
-                                            if ($conOfDatabase->updateUsernameOfUser(_Array::value($dtlOfUser, "email"),
-                                                Number::filterInt(Decryption::dynamic($security)), _Array::value($_POST, "new-username"))) {
+                                            if ($conOfDatabase->updateUsernameOfUser(
+                                                _Array::value($dtlOfUser, "email"),
+                                                Number::filterInt(Decryption::dynamic($security)),
+                                                _Array::value($_POST, "new-username")
+                                            )) {
                                                 Runtime::redirect(_Array::value($_POST, "redirect")
                                                     . "?t=" . _Array::value($_POST, "type") . "&sc=" . Encryption::dynamic(_Array::value($dtlOfUser, "code"))
                                                     . "&success=" . Encryption::dynamic("Your username [" . _Array::value($_POST, "old-username") . "] to [" . _Array::value($_POST, "new-username") . "] updated successfully."));
@@ -149,8 +151,11 @@ if (count($_POST) > 0) {
                                     } else {
                                         _Debug::preOutput(Decryption::dynamic(_Array::value($_POST, "type")));
                                         if (Decryption::dynamic(_Array::value($_POST, "type")) === "new") {
-                                            if ($conOfDatabase->updateUsernameOfUser(_Array::value($dtlOfUser, "email"),
-                                                Number::filterInt(Decryption::dynamic($security)), _Array::value($_POST, "new-username"))) {
+                                            if ($conOfDatabase->updateUsernameOfUser(
+                                                _Array::value($dtlOfUser, "email"),
+                                                Number::filterInt(Decryption::dynamic($security)),
+                                                _Array::value($_POST, "new-username")
+                                            )) {
                                                 echo "set";
                                                 Runtime::redirect(_Array::value($_POST, "redirect")
                                                     . "?t=" . _Array::value($_POST, "type") . "&sc=" . Encryption::dynamic(_Array::value($dtlOfUser, "code"))
@@ -196,7 +201,6 @@ if (count($_POST) > 0) {
             }
         }
     }
-
 } else {
     if (array_key_exists("redirect", $_POST)) {
         Runtime::redirect(_Array::value($_POST, "redirect"));

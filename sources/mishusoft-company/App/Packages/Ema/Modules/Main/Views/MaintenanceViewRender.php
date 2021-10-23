@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Mishusoft\Framework\BuiltInWeb\ViewRenders;
-
 
 use Mishusoft\Framework\Chipsets\Http;
 use Mishusoft\Framework\Chipsets\System\Memory;
@@ -14,7 +12,6 @@ class MaintenanceViewRender extends ViewRender
     public function __construct(array $request)
     {
         parent::__construct($request);
-
     }
 
     public function runTemplate(): void
@@ -22,7 +19,7 @@ class MaintenanceViewRender extends ViewRender
         // TODO: Implement runTemplate() method.
         /*special page for maintenance mode*/
         Ui::HtmlInterface($this->TitleOfCurrentWebPage, function ($html, $head) {
-            Ui::text(Ui::element($head, 'style'),'* {user-select:none;-moz-user-select:none;-webkit-user-select:none;}');
+            Ui::text(Ui::element($head, 'style'), '* {user-select:none;-moz-user-select:none;-webkit-user-select:none;}');
 
             /*add html body*/
             $body = Ui::element($html, 'body', ['id' => 'maintenance-mode']);
@@ -49,6 +46,6 @@ class MaintenanceViewRender extends ViewRender
 
             /*add javascript file and embedded code in body area*/
             Ui::text(Ui::element($body, 'script', ['type' => 'application/javascript']), 'let _root_ = \'' . Memory::Data("framework")->host->url . '\';');
-        },Http::LOCKED);
+        }, Http::LOCKED);
     }
 }

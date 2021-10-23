@@ -1,13 +1,11 @@
 <?php
 
-
 namespace Mishusoft;
 
 use Mishusoft\Utility\Implement;
 
 class Http extends Http\Errors
 {
-
     /**
      * Store Server information in this array and use on runtime requirements
      *
@@ -20,7 +18,7 @@ class Http extends Http\Errors
      *
      * @return array
      */
-    public static function getDetails():array
+    public static function getDetails(): array
     {
         if (self::$details ===[]) {
             self::$details = $_SERVER;
@@ -115,7 +113,7 @@ class Http extends Http\Errors
      *
      * @return bool
      */
-    public static function isSecured():bool
+    public static function isSecured(): bool
     {
         return (!empty(self::getDetails()['HTTPS']) && self::getDetails()['HTTPS'] === 'on');
     }
@@ -126,7 +124,7 @@ class Http extends Http\Errors
      * @param bool $useForwardedHost
      * @return string
      */
-    public static function getHost(bool $useForwardedHost = false):string
+    public static function getHost(bool $useForwardedHost = false): string
     {
         $s = self::getDetails();
         $sp = strtolower($s['SERVER_PROTOCOL']);
@@ -146,7 +144,7 @@ class Http extends Http\Errors
      *
      * @return string
      */
-    public static function getPort():string
+    public static function getPort(): string
     {
         //url:http://localhost:8080
         //url:http://localhost

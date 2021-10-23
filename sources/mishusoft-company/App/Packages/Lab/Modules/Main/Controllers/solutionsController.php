@@ -2,7 +2,6 @@
 
 namespace Mishusoft\Packages\Lab\Modules\Main\Controllers;
 
-
 use Mishusoft\Framework\Drivers\Controller;
 
 class solutionsController extends Controller

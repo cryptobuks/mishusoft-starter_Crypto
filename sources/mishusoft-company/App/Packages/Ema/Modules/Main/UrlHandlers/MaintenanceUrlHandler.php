@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Ema\Mishusoft\Main\UrlHandlers;
 
 use Mishusoft\Registry;
@@ -12,8 +11,6 @@ use Mishusoft\Utility\ArrayCollection;
 
 class MaintenanceUrlHandler extends UrlHandler
 {
-
-
     /**
      * @throws \Mishusoft\Exceptions\RuntimeException
      * @throws \GeoIp2\Exception\AddressNotFoundException
@@ -25,7 +22,7 @@ class MaintenanceUrlHandler extends UrlHandler
      * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
      * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
      */
-    public function response(array $prediction):void
+    public function response(array $prediction): void
     {
         // TODO: Implement Response() method.
         if (!Memory::Data("framework")->maintenance) {

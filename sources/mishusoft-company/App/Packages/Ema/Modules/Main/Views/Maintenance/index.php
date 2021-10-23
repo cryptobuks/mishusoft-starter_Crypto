@@ -7,7 +7,7 @@ use Mishusoft\Framework\Chipsets\Utility\_Array;
 
 $translation = new Localization(_Array::value($this->request, "locale"));
 
-Ui::text(Ui::element($this->documentHeadElement, 'style'),'* {user-select:none;-moz-user-select:none;-webkit-user-select:none;}body{margin: 0;padding: 0;display: flex;justify-content: center;align-items: center;height: 375px;}');
+Ui::text(Ui::element($this->documentHeadElement, 'style'), '* {user-select:none;-moz-user-select:none;-webkit-user-select:none;}body{margin: 0;padding: 0;display: flex;justify-content: center;align-items: center;height: 375px;}');
 
 /*add html body*/
 $template = Ui::element($this->documentTemplateBodyElement, 'ms-app-content', ['style' => 'display: block;margin: 0;padding: 0;text-align: left;border: 1.5px solid #f2d2ab;-webkit-border-radius: 5px;border-radius: 5px;width: 650px;background: white;']);
@@ -32,7 +32,7 @@ Ui::addDefaultSignature($template_body);
 
 /*add javascript file and embedded code in body area*/
 Ui::text(Ui::element($this->documentBodyElement, 'script', ['type' => 'application/javascript']), 'let _root_ = \'' . Memory::Data("framework")->host->url . '\';');
-Ui::text(Ui::element($this->documentBodyElement, "script"),"function fixWindowSize(){if(document.querySelector('ms-app-body').hasAttribute('style')){document.querySelector('ms-app-body').removeAttribute('style');}if(window.innerHeight < '375') {document.body.style = 'height:375px;';} else if(window.innerHeight > '375') {document.body.style = 'height:'+window.innerHeight + 'px';} else {if(window.innerHeight > '1024') {document.body.style = 'height:1024px;';}}}window.addEventListener('resize', fixWindowSize);window.addEventListener('load', fixWindowSize);");
+Ui::text(Ui::element($this->documentBodyElement, "script"), "function fixWindowSize(){if(document.querySelector('ms-app-body').hasAttribute('style')){document.querySelector('ms-app-body').removeAttribute('style');}if(window.innerHeight < '375') {document.body.style = 'height:375px;';} else if(window.innerHeight > '375') {document.body.style = 'height:'+window.innerHeight + 'px';} else {if(window.innerHeight > '1024') {document.body.style = 'height:1024px;';}}}window.addEventListener('resize', fixWindowSize);window.addEventListener('load', fixWindowSize);");
 
 
 /*end of index page*/

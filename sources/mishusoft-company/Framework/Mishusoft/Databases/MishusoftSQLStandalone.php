@@ -1,5 +1,6 @@
-<?php declare(strict_types=1);
+<?php
 
+declare(strict_types=1);
 
 namespace Mishusoft\Databases;
 
@@ -95,7 +96,7 @@ class MishusoftSQLStandalone extends MishusoftSQLStandalone\CommonDependency imp
      * @param string $message
      * @throws DbException
      */
-    public static function error(int $code, string $message):void
+    public static function error(int $code, string $message): void
     {
         throw new DbException("DbError[$code]: $message");
     }
@@ -124,7 +125,7 @@ class MishusoftSQLStandalone extends MishusoftSQLStandalone\CommonDependency imp
      * @throws DbException
      * @throws RuntimeException
      */
-    public function create(array|string$database_name):void
+    public function create(array|string$database_name): void
     {
         if (is_array($database_name)) {
             foreach ($database_name as $db) {
@@ -200,7 +201,7 @@ class MishusoftSQLStandalone extends MishusoftSQLStandalone\CommonDependency imp
      * @throws InvalidArgumentException
      * @throws RuntimeException
      */
-    public function delete(array|string $name) : bool
+    public function delete(array|string $name): bool
     {
         $isRemoved = false;
         if (is_array($name)) {
@@ -244,7 +245,7 @@ class MishusoftSQLStandalone extends MishusoftSQLStandalone\CommonDependency imp
      * @throws DbException
      * @throws InvalidArgumentException
      */
-    public function empty(array|string $database_name):void
+    public function empty(array|string $database_name): void
     {
         if (in_array($database_name, $this->databasesAll, true)) {
             $this->quickEmpty($database_name, 'dir');

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Mishusoft\Framework\BuiltInWeb\ViewRenders;
-
 
 use Mishusoft\Framework\Chipsets\Http\Browser;
 use Mishusoft\Framework\Chipsets\Http\IP;
@@ -14,8 +12,6 @@ use Mishusoft\Framework\Drivers\ViewRender;
 
 class EPaymentViewRender extends ViewRender
 {
-
-
     public function __construct(array $request)
     {
         parent::__construct($request);
@@ -30,7 +26,7 @@ class EPaymentViewRender extends ViewRender
             Ui::element($head, 'meta', ['id' => 'mishusoft-web-root', 'name' => 'root', 'content' => Memory::Data('framework')->host->url]);
 
             /*add css*/
-            Ui::text(Ui::element($head, 'style'),'* {user-select:none;-moz-user-select:none;-webkit-user-select:none;}');
+            Ui::text(Ui::element($head, 'style'), '* {user-select:none;-moz-user-select:none;-webkit-user-select:none;}');
 
 
             /*add html body*/
@@ -43,22 +39,21 @@ class EPaymentViewRender extends ViewRender
             Ui::element($template_body, 'img', ['src' => FRAMEWORK_FAVICON_FILE, 'alt' => 'mishusoft-company-logo-m', 'style' => 'text-align:center;  width: 100px;height: 100px;padding: 2px;margin: 0;border-radius: 50%;position: relative;-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);-o-box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);-webkit-transition: all .25s ease;-o-transition: all .25s ease;transition: all .25s ease;margin: 10px;']);
 
             /*add current action*/
-            if ($this->request["method"] === "index"){
+            if ($this->request["method"] === "index") {
                 $debug = Ui::element($template_body, 'ms-app-paragraph', ['style' => 'font-size: 15px;line-height: 1.5;display: block;background: bisque;border-radius: 5px;padding: 5px;margin-top: 10px;']);
                 Ui::text($debug, 'Debug mode :');
-                Ui::text(Ui::element($debug, "input",["type"=>"radio","id"=>"debug-enable","name"=>"debug","value"=>true]),"Enable");
-                Ui::text(Ui::element($debug, "input",["type"=>"radio","id"=>"debug-disable","name"=>"debug","value"=>false]),"Disable");
+                Ui::text(Ui::element($debug, "input", ["type"=>"radio","id"=>"debug-enable","name"=>"debug","value"=>true]), "Enable");
+                Ui::text(Ui::element($debug, "input", ["type"=>"radio","id"=>"debug-disable","name"=>"debug","value"=>false]), "Disable");
 
                 $index = Ui::element($template_body, 'ms-app-paragraph', ['style' => 'font-size: 15px;line-height: 1.5;display: block;background: bisque;border-radius: 5px;padding: 5px;margin-top: 10px;']);
                 Ui::text($index, 'Maintenance mode :');
-                Ui::text(Ui::element($index, "input",["type"=>"radio","id"=>"maintenance-enable","name"=>"maintenance","value"=>true]),"Enable");
-                Ui::text(Ui::element($index, "input",["type"=>"radio","id"=>"maintenance-disable","name"=>"maintenance","value"=>false]),"Disable");
+                Ui::text(Ui::element($index, "input", ["type"=>"radio","id"=>"maintenance-enable","name"=>"maintenance","value"=>true]), "Enable");
+                Ui::text(Ui::element($index, "input", ["type"=>"radio","id"=>"maintenance-disable","name"=>"maintenance","value"=>false]), "Disable");
             }
-            if ($this->request["method"] === "reset"){
-
+            if ($this->request["method"] === "reset") {
                 Ui::text(Ui::element($template_body, 'ms-app-paragraph', ['style' => 'font-size: 15px;line-height: 1.5;display: block;background: bisque;border-radius: 5px;padding: 5px;margin-top: 10px;']), 'We are ready to reset.');
             }
-            if ($this->request["method"] === "restore"){
+            if ($this->request["method"] === "restore") {
                 Ui::text(Ui::element($template_body, 'ms-app-paragraph', ['style' => 'font-size: 15px;line-height: 1.5;display: block;background: bisque;border-radius: 5px;padding: 5px;margin-top: 10px;']), 'We are ready to restore.');
             }
 

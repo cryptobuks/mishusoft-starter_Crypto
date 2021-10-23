@@ -2,7 +2,6 @@
 
 namespace Mishusoft\Packages\Lab\Modules\Main\Models;
 
-
 use Mishusoft\Framework\Drivers\Model;
 
 class sitemapsModel extends Model

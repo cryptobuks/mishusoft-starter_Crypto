@@ -16,7 +16,7 @@ class Cli extends BIOS
          */
             function ($registry) {
                 $registry->requestCli = new Request();
-                \Mishusoft\Drivers\Bootstrap\Communication\Cli::run(new $registry->requestCli);
+                \Mishusoft\Drivers\Bootstrap\Communication\Cli::run(new $registry->requestCli());
             }
         );
     }

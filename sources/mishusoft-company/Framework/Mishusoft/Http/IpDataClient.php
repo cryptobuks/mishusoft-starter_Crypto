@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\Http;
 
 use Mishusoft\Utility\Implement;
@@ -30,7 +29,7 @@ class IpDataClient
      * @return array
      * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
      */
-    public function lookup(string $ip, array $fields = []) : array
+    public function lookup(string $ip, array $fields = []): array
     {
         $query = [
             'api-key' => $this->apiKey,
@@ -40,7 +39,7 @@ class IpDataClient
             $query['fields'] = implode(',', $fields);
         }
 
-        $curlHandle = new CurlRequest;
+        $curlHandle = new CurlRequest();
         // echo sprintf('%s/%s?%s', self::BASE_URL, $ip, http_build_query($query)).PHP_EOL;
         $curlHandle->setHost(sprintf('%s/%s?%s', self::BASE_URL, $ip, http_build_query($query)));
         $curlHandle->makeRequest(['timeout' => 20]);
@@ -61,7 +60,7 @@ class IpDataClient
             $query['fields'] = implode(',', $fields);
         }
 
-        $curlHandle = new CurlRequest;
+        $curlHandle = new CurlRequest();
         $curlHandle->setHost(sprintf('%s/bulk?%s', self::BASE_URL, http_build_query($query)));
         $curlHandle->makeRequest(['timeout' => 20])
             ->with('method', ['method' => 'post', 'post_fields' => Implement::toJson($ips)]);

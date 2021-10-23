@@ -1,12 +1,11 @@
-<?php declare(strict_types=1);
+<?php
 
+declare(strict_types=1);
 
 namespace Mishusoft\Cryptography;
 
 class Base64
 {
-
-
     /**
      * @param  string $data
      * @return string

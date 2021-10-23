@@ -10,7 +10,6 @@ use Mishusoft\Utility\Inflect;
 
 class ProgressiveWebApplication
 {
-
     public const FORMAT = 'webmanifest';
     public const FORMAT_FALLBACK = 'json';
 

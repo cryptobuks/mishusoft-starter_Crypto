@@ -15,9 +15,9 @@ abstract class CliSurfaceController
         $this->request = Registry::requestCli();
     }
 
-    abstract protected function run():void;
+    abstract protected function run(): void;
 
-    protected function update(string $source, string $destination):void
+    protected function update(string $source, string $destination): void
     {
         $this->log('Updating ' . Storage\FileSystem::realpath($source));
         $this->copy(Storage\FileSystem::realpath($source), lcfirst(Storage\FileSystem::realpath($destination)));
@@ -27,7 +27,7 @@ abstract class CliSurfaceController
     /**
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    protected function copy(string $source, string $destination):void
+    protected function copy(string $source, string $destination): void
     {
         $this->log(sprintf('Checking source %s existence', $source), 'checking');
         if (file_exists($source)) {

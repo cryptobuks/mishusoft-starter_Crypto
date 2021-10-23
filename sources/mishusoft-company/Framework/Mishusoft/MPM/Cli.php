@@ -7,7 +7,6 @@ use Mishusoft\Storage;
 
 class Cli extends MPM
 {
-
     /**
      * @return string
      */
@@ -49,5 +48,4 @@ class Cli extends MPM
             DS
         );
     }//end getControllerOfModule()
-
 }

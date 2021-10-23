@@ -337,6 +337,4 @@ abstract class FirewallBase extends Base
             );
         }//end if
     }
-
-
 }

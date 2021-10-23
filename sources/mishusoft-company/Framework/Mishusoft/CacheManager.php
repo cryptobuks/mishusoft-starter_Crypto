@@ -35,7 +35,6 @@ class CacheManager extends Base
      */
     private static function observe(): void
     {
-
         if (!file_exists(self::$cacheDirectory)) {
             Storage\FileSystem::makeDirectory(self::$cacheDirectory);
         }
@@ -90,7 +89,7 @@ class CacheManager extends Base
     /**
      * @return string
      */
-    private static function propertyFile():string
+    private static function propertyFile(): string
     {
         return self::dFile(self::configDataFile('Cache', 'properties'));
     }
@@ -98,7 +97,7 @@ class CacheManager extends Base
     /**
      * @throws Exceptions\RuntimeException
      */
-    private static function readProperties():array
+    private static function readProperties(): array
     {
         if (file_exists(self::propertyFile())) {
             return Storage\FileSystem\Yaml::parseFile(self::propertyFile());
@@ -111,7 +110,7 @@ class CacheManager extends Base
     /**
      * @throws Exceptions\RuntimeException
      */
-    private static function make(string $resource):void
+    private static function make(string $resource): void
     {
         $willBe = self::file(Inflect::replace($resource, RUNTIME_ROOT_PATH));
 
@@ -124,7 +123,7 @@ class CacheManager extends Base
         Storage\FileSystem\Yaml::emitFile(self::propertyFile(), $properties);
     }
 
-    private static function restore(string $keyword):void
+    private static function restore(string $keyword): void
     {
         $cacheFile  = self::file($keyword);
         $originalFile  = RUNTIME_ROOT_PATH.$keyword;
@@ -150,7 +149,7 @@ class CacheManager extends Base
      * @param string $filename
      * @return string
      */
-    private static function originalFile(string $filename):string
+    private static function originalFile(string $filename): string
     {
         return sprintf('%s%s', RUNTIME_ROOT_PATH /*. 'public_html'*/, $filename);
     }
@@ -159,7 +158,7 @@ class CacheManager extends Base
      * @param string $directive
      * @return string
      */
-    public static function directive(string $directive):string
+    public static function directive(string $directive): string
     {
         return sprintf(
             '%1$s%2$s',
@@ -172,7 +171,7 @@ class CacheManager extends Base
      * @param string $filename
      * @return string
      */
-    public static function file(string $filename):string
+    public static function file(string $filename): string
     {
         return sprintf(
             '%1$s%2$s.cache',
@@ -186,7 +185,7 @@ class CacheManager extends Base
      * @param string $filename
      * @return string
      */
-    public static function directiveDataFile(string $directive, string $filename):string
+    public static function directiveDataFile(string $directive, string $filename): string
     {
         return sprintf(
             '%1$s%3$s%2$s',

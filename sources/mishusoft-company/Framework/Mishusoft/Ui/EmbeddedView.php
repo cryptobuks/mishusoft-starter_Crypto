@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\Ui;
 
 use Mishusoft\Exceptions\RuntimeException\NotFoundException;
@@ -488,7 +487,6 @@ class EmbeddedView
      */
     private static function assignableSocialMediaLinkWithIcons(): array
     {
-
         return self::makeElement('a', self::setAttributes([
             self::makeAnchorElement(
                 'link',

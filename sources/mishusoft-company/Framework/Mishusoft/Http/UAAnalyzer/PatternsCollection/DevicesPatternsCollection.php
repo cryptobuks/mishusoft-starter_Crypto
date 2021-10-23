@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Mishusoft\Http\UAAnalyzer\PatternsCollection;
 
 use JsonException;
@@ -20,7 +19,7 @@ class DevicesPatternsCollection extends Collection
      * @throws RuntimeException
      * @throws JsonException
      */
-    public function match(string $identifier):string
+    public function match(string $identifier): string
     {
         $dictionary = $this->extractAttribute($this->query('devices', 'categories'), 'identifier-with-pattern');
         if (array_key_exists($identifier, $dictionary)=== true) {

@@ -1,5 +1,6 @@
-<?php declare(strict_types=1);
+<?php
 
+declare(strict_types=1);
 
 namespace Mishusoft\Utility;
 
@@ -102,7 +103,7 @@ class ArrayCollection
             if ($indexKey === null) {
                 $result[] = $val;
             } elseif ($indexKey === -1 || array_key_exists($indexKey, $value)) {
-                $result[($indexKey === -1)?$subarray:$array[$subarray][$indexKey]] = $val;
+                $result[($indexKey === -1) ? $subarray : $array[$subarray][$indexKey]] = $val;
             }
         }
         return $result;
@@ -113,7 +114,7 @@ class ArrayCollection
      * @param array $values
      * @return array
      */
-    public static function combine(array $keys, array $values):array
+    public static function combine(array $keys, array $values): array
     {
         return array_combine($keys, $values);
     }

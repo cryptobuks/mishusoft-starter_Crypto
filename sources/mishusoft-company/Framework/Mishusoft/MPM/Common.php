@@ -66,7 +66,7 @@ class Common extends MPM
                 FileSystem\Yaml::emitFile(
                     self::httpAPIRoutesFile(),
                     array_map(
-                        static fn($details): array => $details['configuration'],
+                        static fn ($details): array => $details['configuration'],
                         array_values($configs)
                     )
                 );

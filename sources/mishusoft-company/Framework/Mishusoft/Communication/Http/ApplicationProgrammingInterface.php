@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Mishusoft\Communication\Http;
 
@@ -9,7 +11,7 @@ class ApplicationProgrammingInterface extends SecureDataTransferService
     /**
      * @param array $request
      */
-    public function api(array $request):void
+    public function api(array $request): void
     {
         //api/db/{query, add, delete, update}
         //api/activity/{query, add, delete, update}
@@ -30,7 +32,7 @@ class ApplicationProgrammingInterface extends SecureDataTransferService
      * @throws \Mishusoft\Exceptions\PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    public function monitor(array $request):void
+    public function monitor(array $request): void
     {
         parent::monitor($request);
     }//end monitor()

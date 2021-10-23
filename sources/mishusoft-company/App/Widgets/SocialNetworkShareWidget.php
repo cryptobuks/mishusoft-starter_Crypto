@@ -1,14 +1,11 @@
 <?php
 
-
 namespace App\Widgets;
 
 use Mishusoft\Authentication\Widget;
 
 class SocialNetworkShareWidget extends Widget
 {
-
-
     /**
      * @param string $name
      * @param string $view

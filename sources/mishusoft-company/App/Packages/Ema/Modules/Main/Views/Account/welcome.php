@@ -83,7 +83,7 @@ if (array_key_exists("t", $_GET)) {
         Ui::element(Ui::element($welcomeBody, "command", ["style" => Ui::htmlHrefStyle . Ui::css["display-flex"] . Ui::css["flex-column"].'width: inherit;']), "a", [
             "href" => Memory::Data("framework")->host->url . "account/profile?a=" . time() . "&t=update&sc=" . _Array::value((array)Session::get("me"), "code"),
             "class" => "button button-primary", "text" => "Update Profile", "style" => "display: flex;justify-content: center;align-items: center;"]);
-        /*end of create page*/
+    /*end of create page*/
     } else {
         Runtime::redirect();
     }

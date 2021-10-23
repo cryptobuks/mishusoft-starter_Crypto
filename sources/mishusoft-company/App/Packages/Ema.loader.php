@@ -6,5 +6,5 @@ use Mishusoft\Http\Request;
 use Mishusoft\System\Log;
 
 Log::info('Ema loader started');
-Ema::run(new Request\HttpAPI);
+Ema::run(new Request\HttpAPI());
 Framework::terminate();

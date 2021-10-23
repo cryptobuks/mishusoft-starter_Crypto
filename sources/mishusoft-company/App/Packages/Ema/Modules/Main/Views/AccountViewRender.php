@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Mishusoft\Ema\Mishusoft\Main\Views;
-
 
 use Mishusoft\Ema\Mishusoft\Main\Databases\AccountMSQL;
 use Mishusoft\Framework\Chipsets\Cryptography\Decryption;
@@ -26,9 +24,8 @@ use Mishusoft\Framework\Migration\DB;
 
 class AccountViewRender extends ViewRender
 {
-
     /*text*/
-    const welcomeText = "Welcome to Mishusoft family";
+    public const welcomeText = "Welcome to Mishusoft family";
     /**
      * @var AccountMSQL
      */
@@ -39,7 +36,6 @@ class AccountViewRender extends ViewRender
     {
         parent::__construct($hostUrl, $rootTitle, $noMenuList, $request);
         $this->conOfDatabase = new AccountMSQL();
-
     }
 
     public function runTemplate(): void
@@ -99,13 +95,15 @@ class AccountViewRender extends ViewRender
 
                 /*set separate paragraph for index page*/
                 Ui::elementList(
-                    $template_body, [
+                    $template_body,
+                    [
                     "ms-app-paragraph" => [
                         ["style" => "padding: 50px;text-align: center;font-size: 40px;font-weight: bold;", "text" => self::welcomeText],/*set welcome text*/
                         ["style" => "padding: 10px;text-align: center;font-size: 16px;font-weight: normal;line-height: 1.5;margin: 0 10px 0 10px;", "text" => Framework::COMPANY_DESCRIPTION_DETAILS],/*set company details text*/
                         ["style" => "padding: 10px;text-align: center;font-size: 16px;font-weight: normal;line-height: 1.5;margin: 0 10px 0 10px;", "text" => "We offered to join with us and receive any service, then the valued customers take a relax."]/*set offer text*/
                     ],
-                ]);
+                ]
+                );
 
 
                 /*add account related card"s title*/
@@ -211,8 +209,11 @@ class AccountViewRender extends ViewRender
                          * <span class="checkmark"></span>
                          * </label>
                          */
-                        $label = Ui::element(Ui::element($command, "remember", ["style" => Ui::css["display-flex"] . "width: -webkit-fill-available;width: -moz-available;"]),
-                            "label", ["class" => "input-container", "style" => Ui::css["font-normal"]]);
+                        $label = Ui::element(
+                            Ui::element($command, "remember", ["style" => Ui::css["display-flex"] . "width: -webkit-fill-available;width: -moz-available;"]),
+                            "label",
+                            ["class" => "input-container", "style" => Ui::css["font-normal"]]
+                        );
                         Ui::element($label, "input", ["type" => "checkbox", "name" => "RememberMe", "value" => true]);
                         Ui::element($label, "span", ["class" => "checkmark"]);
                         Ui::text($label, "Remember Me");
@@ -313,7 +314,6 @@ class AccountViewRender extends ViewRender
                 }
 
                 /*end of login page*/
-
             } /*take action in create page on account area*/
             elseif (_String::lower($this->request["method"]) === _String::lower("create")) {
                 if (Session::get("auth")) {
@@ -398,13 +398,15 @@ class AccountViewRender extends ViewRender
 
                     /*alternate help links*/
                     Ui::elementList(
-                        Ui::element($frm, "alternative", ["style" => Ui::css["display-flex"] . Ui::css["flex-column"] . Ui::htmlHrefStyle . "width: -webkit-fill-available;width: -moz-available;;line-height: 2;"]), [
+                        Ui::element($frm, "alternative", ["style" => Ui::css["display-flex"] . Ui::css["flex-column"] . Ui::htmlHrefStyle . "width: -webkit-fill-available;width: -moz-available;;line-height: 2;"]),
+                        [
                         "a" => [
                             ["style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";font-size:15px;", "href" => Memory::Data("framework")->host->url . "account/login", "text" => "Log in", "title" => "Click to log in your account"],
                             ["style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";font-size:15px;", "href" => Memory::Data("framework")->host->url . "account/recovery", "text" => "Forget Account?", "title" => "Click to recovery your account if you forget password or account"],
                             ["style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";font-size:15px;", "href" => Memory::Data("framework")->host->url, "text" => "Back to home", "title" => "Click to go back to home"]
                         ],
-                    ]);
+                    ]
+                    );
                 }
 
                 /*end of create page*/
@@ -427,7 +429,6 @@ class AccountViewRender extends ViewRender
                     _Debug::preOutput(_Array::value($_GET, "t"));
                     _Debug::preOutput(Decryption::dynamic(_Array::value($_GET, "t")));
                     if (array_key_exists("sc", $_GET)) {
-
                         Ui::assignAttributes($template_body, ["style" => "height: 700px;align-items: center;justify-content: center;"]);
 
                         /*add template body*/
@@ -526,7 +527,6 @@ class AccountViewRender extends ViewRender
                                         "autocomplete" => "off", "title" => "Must contain alphanumeric characters only and at least 8 letters from a to z",
                                         "required" => "required", "autofocus" => "autofocus"]);
                                 }
-
                             } else {
                                 /*create username"s child element*/
                                 /**
@@ -551,23 +551,41 @@ class AccountViewRender extends ViewRender
                         $command = Ui::element($frm, "command", ["style" => Ui::htmlHrefStyle . Ui::css["display-flex"] . Ui::css["flex-row"] . "width:100%;"]);
                         if (array_key_exists("success", $_GET)) {
                             if (Decryption::dynamic(_Array::value($_GET, "t")) === "update") {
-                                Ui::element(Ui::element($command, "submit", ["style" => Ui::css["display-flex"] . "justify-content:left;"]),
-                                    "input", ["id" => "next-button", "type" => "submit", "name" => "button", "class" => "button button-primary", "value" => "UPDATE",]);
-                                Ui::element(Ui::element($command, "submit", ["style" => Ui::css["display-flex"] . "justify-content:right;"]),
-                                    "input", ["id" => "next-button", "type" => "submit", "name" => "button", "class" => "button button-success", "value" => "NEXT",]);
+                                Ui::element(
+                                    Ui::element($command, "submit", ["style" => Ui::css["display-flex"] . "justify-content:left;"]),
+                                    "input",
+                                    ["id" => "next-button", "type" => "submit", "name" => "button", "class" => "button button-primary", "value" => "UPDATE",]
+                                );
+                                Ui::element(
+                                    Ui::element($command, "submit", ["style" => Ui::css["display-flex"] . "justify-content:right;"]),
+                                    "input",
+                                    ["id" => "next-button", "type" => "submit", "name" => "button", "class" => "button button-success", "value" => "NEXT",]
+                                );
                             } else {
-                                Ui::element(Ui::element($command, "submit", ["style" => Ui::css["display-flex"] . "justify-content:left;"]),
-                                    "input", ["id" => "next-button", "type" => "submit", "name" => "button", "class" => "button button-primary", "value" => "SET",]);
-                                Ui::element(Ui::element($command, "submit", ["style" => Ui::css["display-flex"] . "justify-content:right;"]),
-                                    "input", ["id" => "next-button", "type" => "submit", "name" => "button", "class" => "button button-success", "value" => "NEXT",]);
+                                Ui::element(
+                                    Ui::element($command, "submit", ["style" => Ui::css["display-flex"] . "justify-content:left;"]),
+                                    "input",
+                                    ["id" => "next-button", "type" => "submit", "name" => "button", "class" => "button button-primary", "value" => "SET",]
+                                );
+                                Ui::element(
+                                    Ui::element($command, "submit", ["style" => Ui::css["display-flex"] . "justify-content:right;"]),
+                                    "input",
+                                    ["id" => "next-button", "type" => "submit", "name" => "button", "class" => "button button-success", "value" => "NEXT",]
+                                );
                             }
                         } else {
                             if (Decryption::dynamic(_Array::value($_GET, "t")) === "update") {
-                                Ui::element(Ui::element($command, "submit", ["style" => Ui::css["display-flex"] . "justify-content:center;"]),
-                                    "input", ["id" => "next-button", "type" => "submit", "name" => "button", "class" => "button button-primary", "value" => "UPDATE",]);
+                                Ui::element(
+                                    Ui::element($command, "submit", ["style" => Ui::css["display-flex"] . "justify-content:center;"]),
+                                    "input",
+                                    ["id" => "next-button", "type" => "submit", "name" => "button", "class" => "button button-primary", "value" => "UPDATE",]
+                                );
                             } else {
-                                Ui::element(Ui::element($command, "submit", ["style" => Ui::css["display-flex"] . "justify-content:center;"]),
-                                    "input", ["id" => "next-button", "type" => "submit", "name" => "button", "class" => "button button-primary", "value" => "SET",]);
+                                Ui::element(
+                                    Ui::element($command, "submit", ["style" => Ui::css["display-flex"] . "justify-content:center;"]),
+                                    "input",
+                                    ["id" => "next-button", "type" => "submit", "name" => "button", "class" => "button button-primary", "value" => "SET",]
+                                );
                             }
                         }
 
@@ -580,7 +598,7 @@ class AccountViewRender extends ViewRender
                             ],
                         ]);
 
-                        /*end of create page*/
+                    /*end of create page*/
                     } else {
                         Runtime::redirect();
                     }
@@ -606,7 +624,6 @@ class AccountViewRender extends ViewRender
                     _Debug::preOutput(_Array::value($_GET, "t"));
                     _Debug::preOutput(Decryption::dynamic(_Array::value($_GET, "t")));
                     if (array_key_exists("sc", $_GET)) {
-
                         Ui::assignAttributes($template_body, ["style" => "height: 700px;align-items: center;justify-content: center;"]);
 
                         /*add template body*/
@@ -621,7 +638,6 @@ class AccountViewRender extends ViewRender
                             /*set text for title*/
                             Ui::text($title, " || " . _String::ucwords("Update username"));
                             Ui::element($usernameBody, "h3", ["style" => Ui::htmlHrefStyle . "text-align: left;display: flex;align-items: start;width: 100%;padding: 5px;margin-bottom: 5px;margin-top: 0px;", "text" => "Update username"]);
-
                         } else {
                             /*set text for title*/
                             Ui::text($title, " || " . _String::ucwords("Set new username"));
@@ -706,7 +722,6 @@ class AccountViewRender extends ViewRender
                                         "autocomplete" => "off", "title" => "Must contain alphanumeric characters only and at least 8 letters from a to z",
                                         "required" => "required", "autofocus" => "autofocus"]);
                                 }
-
                             } else {
                                 /*create username"s child element*/
                                 /**
@@ -731,23 +746,41 @@ class AccountViewRender extends ViewRender
                         $command = Ui::element($frm, "command", ["style" => Ui::htmlHrefStyle . Ui::css["display-flex"] . Ui::css["flex-row"] . "width:100%;"]);
                         if (array_key_exists("success", $_GET)) {
                             if (Decryption::dynamic(_Array::value($_GET, "t")) === "update") {
-                                Ui::element(Ui::element($command, "submit", ["style" => Ui::css["display-flex"] . "justify-content:left;"]),
-                                    "input", ["id" => "next-button", "type" => "submit", "name" => "button", "class" => "button button-primary", "value" => "UPDATE",]);
-                                Ui::element(Ui::element($command, "submit", ["style" => Ui::css["display-flex"] . "justify-content:right;"]),
-                                    "input", ["id" => "next-button", "type" => "submit", "name" => "button", "class" => "button button-success", "value" => "NEXT",]);
+                                Ui::element(
+                                    Ui::element($command, "submit", ["style" => Ui::css["display-flex"] . "justify-content:left;"]),
+                                    "input",
+                                    ["id" => "next-button", "type" => "submit", "name" => "button", "class" => "button button-primary", "value" => "UPDATE",]
+                                );
+                                Ui::element(
+                                    Ui::element($command, "submit", ["style" => Ui::css["display-flex"] . "justify-content:right;"]),
+                                    "input",
+                                    ["id" => "next-button", "type" => "submit", "name" => "button", "class" => "button button-success", "value" => "NEXT",]
+                                );
                             } else {
-                                Ui::element(Ui::element($command, "submit", ["style" => Ui::css["display-flex"] . "justify-content:left;"]),
-                                    "input", ["id" => "next-button", "type" => "submit", "name" => "button", "class" => "button button-primary", "value" => "SET",]);
-                                Ui::element(Ui::element($command, "submit", ["style" => Ui::css["display-flex"] . "justify-content:right;"]),
-                                    "input", ["id" => "next-button", "type" => "submit", "name" => "button", "class" => "button button-success", "value" => "NEXT",]);
+                                Ui::element(
+                                    Ui::element($command, "submit", ["style" => Ui::css["display-flex"] . "justify-content:left;"]),
+                                    "input",
+                                    ["id" => "next-button", "type" => "submit", "name" => "button", "class" => "button button-primary", "value" => "SET",]
+                                );
+                                Ui::element(
+                                    Ui::element($command, "submit", ["style" => Ui::css["display-flex"] . "justify-content:right;"]),
+                                    "input",
+                                    ["id" => "next-button", "type" => "submit", "name" => "button", "class" => "button button-success", "value" => "NEXT",]
+                                );
                             }
                         } else {
                             if (Decryption::dynamic(_Array::value($_GET, "t")) === "update") {
-                                Ui::element(Ui::element($command, "submit", ["style" => Ui::css["display-flex"] . "justify-content:center;"]),
-                                    "input", ["id" => "next-button", "type" => "submit", "name" => "button", "class" => "button button-primary", "value" => "UPDATE",]);
+                                Ui::element(
+                                    Ui::element($command, "submit", ["style" => Ui::css["display-flex"] . "justify-content:center;"]),
+                                    "input",
+                                    ["id" => "next-button", "type" => "submit", "name" => "button", "class" => "button button-primary", "value" => "UPDATE",]
+                                );
                             } else {
-                                Ui::element(Ui::element($command, "submit", ["style" => Ui::css["display-flex"] . "justify-content:center;"]),
-                                    "input", ["id" => "next-button", "type" => "submit", "name" => "button", "class" => "button button-primary", "value" => "SET",]);
+                                Ui::element(
+                                    Ui::element($command, "submit", ["style" => Ui::css["display-flex"] . "justify-content:center;"]),
+                                    "input",
+                                    ["id" => "next-button", "type" => "submit", "name" => "button", "class" => "button button-primary", "value" => "SET",]
+                                );
                             }
                         }
 
@@ -760,7 +793,7 @@ class AccountViewRender extends ViewRender
                             ],
                         ]);
 
-                        /*end of create page*/
+                    /*end of create page*/
                     } else {
                         Runtime::redirect();
                     }
@@ -838,7 +871,7 @@ class AccountViewRender extends ViewRender
                         Ui::element(Ui::element($welcomeBody, "command", ["style" => Ui::htmlHrefStyle . Ui::css["display-flex"] . Ui::css["flex-column"]]), "a", [
                             "href" => Memory::Data("framework")->host->url . "account/profile?a=" . time() . "&t=update&sc=" . _Array::value((array)Session::get("me"), "code"),
                             "class" => "button button-primary", "text" => "Update Profile", "style" => "display: flex;justify-content: center;align-items: center;"]);
-                        /*end of create page*/
+                    /*end of create page*/
                     } else {
                         Runtime::redirect();
                     }
@@ -859,7 +892,7 @@ class AccountViewRender extends ViewRender
                 /*
                  * verify secret code form $_GET
                 */
-                $detailsOfUser = array();
+                $detailsOfUser = [];
                 if (array_key_exists("sc", $_GET)) {
                     /*if secret code does not match with logged user or not found any user, then redirect to logged user's profile*/
                     if (is_numeric(_Array::value($_GET, "sc")) && Number::filterInt(_Array::value($_GET, "sc")) !== _Array::value((array)Session::get("me"), "code")) {
@@ -869,7 +902,6 @@ class AccountViewRender extends ViewRender
                             Runtime::redirect("account/profile?a=" . time() . "&t=view&sc=" . _Array::value((array)Session::get("me"), "code"));
                         }
                     }
-
                 } else {
                     $detailsOfUser = (array)Session::get("me");
                 }
@@ -917,14 +949,14 @@ class AccountViewRender extends ViewRender
                 ]);*/
 
 
-                $tabList = array(
-                    array("url" => "&tab=summery", "name" => "Summery", "tooltip" => "Summery"),
-                    array("url" => "&tab=basic", "name" => "Basic", "tooltip" => "Basic Information"),
-                    array("url" => "&tab=work", "name" => "Work", "tooltip" => "Work Information"),
-                    array("url" => "&tab=academic", "name" => "Academic", "tooltip" => "Academic Information"),
-                    array("url" => "&tab=payment", "name" => "Payment", "tooltip" => "Payment Information"),
-                    array("url" => "&tab=security", "name" => "Security", "tooltip" => "Login & Security Information"),
-                );
+                $tabList = [
+                    ["url" => "&tab=summery", "name" => "Summery", "tooltip" => "Summery"],
+                    ["url" => "&tab=basic", "name" => "Basic", "tooltip" => "Basic Information"],
+                    ["url" => "&tab=work", "name" => "Work", "tooltip" => "Work Information"],
+                    ["url" => "&tab=academic", "name" => "Academic", "tooltip" => "Academic Information"],
+                    ["url" => "&tab=payment", "name" => "Payment", "tooltip" => "Payment Information"],
+                    ["url" => "&tab=security", "name" => "Security", "tooltip" => "Login & Security Information"],
+                ];
                 $commonStyleStringForLinks = Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";height: inherit;width: 120px;text-transform: capitalize;" . Ui::css["display-flex"] . Ui::css["center"];
                 /*Ui::elementList(Ui::element($profileBody, "ms-app-profile-tab", [
                     "style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";text-align: center;font-size: 16px;height:50px;width: -moz-available;width: -webkit-fill-available;width: 1024px;margin-bottom: 10px;border-top: 1px solid rgba(0,0,0,.12);box-shadow: 1px 3px 4px rgba(0,0,0,.12),1px 1px 2px rgba(0,0,0,.24);" . Ui::css["display-flex"] . Ui::css["flex-row"] . Ui::css["center"],]), [
@@ -998,7 +1030,7 @@ class AccountViewRender extends ViewRender
                     if (_Array::value($_GET, "tab") === "basic") {
                         /*collect all records about current user*/
                         $basicOfUser = $this->conOfDatabase->getDetailsByItem(DB::USERS_BASIC_INFO_LIST_TABLE, ["user" => _Array::value($detailsOfUser, "id")]);
-                        if (count($basicOfUser)>0){
+                        if (count($basicOfUser)>0) {
                             _Debug::preOutput($basicOfUser);
                             $viewBoard = Ui::element(Ui::element(Ui::element($profileContent, 'basic', ['class' => 'messageZone', 'style' => Ui::css['display-flex']]), 'info', ['class' => "box-message box-success box-shadow-light"]), 'content', ['class' => 'notify-md-content']);
                             Ui::text(Ui::element($viewBoard, 'title', ['style' => 'font-size:20px;']), "Content is empty.");
@@ -1037,12 +1069,9 @@ class AccountViewRender extends ViewRender
                     Ui::element(Ui::element($profileContent, "command", ["style" => Ui::htmlHrefStyle . Ui::css["display-flex"] . Ui::css["flex-column"]]), "a", [
                         "href" => Memory::Data("framework")->host->url . "account/profile?a=" . time() . "&t=update&sc=" . _Array::value((array)Session::get("me"), "code"),
                         "class" => "button button-primary", "text" => "Update Profile", "style" => "display: flex;justify-content: center;align-items: center;"]);
-
                 }
 
                 /*end of profile page*/
-
-
             } /*take action in verification page on account area*/
             elseif (_String::lower($this->request["method"]) === _String::lower("verification")) {
                 /**
@@ -1060,7 +1089,7 @@ class AccountViewRender extends ViewRender
                                     //_Debug::preOutput($this->conOfDatabase->select("system")->read("users"));
                                     if ($this->conOfDatabase->AlreadyIn(["email" => _Array::value($_POST, "email")])) {
                                         Runtime::redirect(_Array::value($_POST, "redirect") . "?error=" . Encryption::dynamic("Your email address already registered. Please enter new email address."));
-                                        //echo "old member";
+                                    //echo "old member";
                                     } else {
                                         //echo "new member";
                                         if ($this->conOfDatabase->insertEmailOfNewUser(_Array::value($_POST, "email"))) {
@@ -1090,11 +1119,11 @@ class AccountViewRender extends ViewRender
                                         if (array_key_exists("activation", $dtlOfUser)) {
                                             if (_Array::value($dtlOfUser, "activation") === "yes") {
                                                 /*set welcome session*/
-                                                Session::set('auth', TRUE);
+                                                Session::set('auth', true);
                                                 Session::set('me', $dtlOfUser);
                                                 Session::set('code', _Array::value($dtlOfUser, "code"));
                                                 Session::set('time', time());
-                                                Session::set('RememberMe', _Array::value($_POST, "RememberMe") ? TRUE : FALSE);
+                                                Session::set('RememberMe', _Array::value($_POST, "RememberMe") ? true : false);
 
                                                 if (Session::get("auth")) {
                                                     Runtime::redirect("account/welcome"
@@ -1162,8 +1191,11 @@ class AccountViewRender extends ViewRender
                                                 if (_Array::value($dtlOfUser, "activation") === "yes") {
                                                     if (array_key_exists("username", $dtlOfUser)) {
                                                         if (Decryption::dynamic(_Array::value($_POST, "type")) === "update") {
-                                                            if ($this->conOfDatabase->updateUsernameOfUser(_Array::value($dtlOfUser, "email"),
-                                                                Number::filterInt(Decryption::dynamic($security)), _Array::value($_POST, "new-username"))) {
+                                                            if ($this->conOfDatabase->updateUsernameOfUser(
+                                                                _Array::value($dtlOfUser, "email"),
+                                                                Number::filterInt(Decryption::dynamic($security)),
+                                                                _Array::value($_POST, "new-username")
+                                                            )) {
                                                                 Runtime::redirect(_Array::value($_POST, "redirect")
                                                                     . "?t=" . _Array::value($_POST, "type") . "&sc=" . Encryption::dynamic(_Array::value($dtlOfUser, "code"))
                                                                     . "&success=" . Encryption::dynamic("Your username [" . _Array::value($_POST, "old-username") . "] to [" . _Array::value($_POST, "new-username") . "] updated successfully."));
@@ -1180,8 +1212,11 @@ class AccountViewRender extends ViewRender
                                                     } else {
                                                         _Debug::preOutput(Decryption::dynamic(_Array::value($_POST, "type")));
                                                         if (Decryption::dynamic(_Array::value($_POST, "type")) === "new") {
-                                                            if ($this->conOfDatabase->updateUsernameOfUser(_Array::value($dtlOfUser, "email"),
-                                                                Number::filterInt(Decryption::dynamic($security)), _Array::value($_POST, "new-username"))) {
+                                                            if ($this->conOfDatabase->updateUsernameOfUser(
+                                                                _Array::value($dtlOfUser, "email"),
+                                                                Number::filterInt(Decryption::dynamic($security)),
+                                                                _Array::value($_POST, "new-username")
+                                                            )) {
                                                                 echo "set";
                                                                 Runtime::redirect(_Array::value($_POST, "redirect")
                                                                     . "?t=" . _Array::value($_POST, "type") . "&sc=" . Encryption::dynamic(_Array::value($dtlOfUser, "code"))
@@ -1227,7 +1262,6 @@ class AccountViewRender extends ViewRender
                             }
                         }
                     }
-
                 } else {
                     if (array_key_exists("redirect", $_POST)) {
                         Runtime::redirect(_Array::value($_POST, "redirect"));
@@ -1235,7 +1269,6 @@ class AccountViewRender extends ViewRender
                         Runtime::redirect();
                     }
                 }
-
             } /*take action in activation page on account area*/
             elseif (_String::lower($this->request["method"]) === _String::lower("activation")) {
                 _Debug::preOutput("Time:" . time());
@@ -1269,20 +1302,23 @@ class AccountViewRender extends ViewRender
 
                                 if (array_key_exists("activation", $dtlOfUser)) {
                                     if (_Array::value($dtlOfUser, "activation") === "no") {
-                                        if ($this->conOfDatabase->activeAccountOfUser(_Array::value($dtlOfUser, "email"),
-                                            Number::filterInt(Decryption::dynamic($activationCode)), "yes", $time, time())) {
+                                        if ($this->conOfDatabase->activeAccountOfUser(
+                                            _Array::value($dtlOfUser, "email"),
+                                            Number::filterInt(Decryption::dynamic($activationCode)),
+                                            "yes",
+                                            $time,
+                                            time()
+                                        )) {
                                             Ui::element($activation, "message", ["style" => Ui::htmlHrefStyle,
                                                 "text" => "Your account activated successfully."]);
                                         } else {
                                             Ui::element($activation, "message", ["style" => Ui::htmlHrefStyle,
                                                 "text" => "We can not activate new account request."]);
                                         }
-
                                     } else {
                                         Ui::element($activation, "message", ["style" => Ui::htmlHrefStyle,
                                             "text" => "Your account already activated. Please login to your account to get access."]);
                                     }
-
                                 } else {
                                     Ui::element($activation, "message", ["style" => Ui::htmlHrefStyle,
                                         "text" => "Your account has been corrupted. Please create a new account to get access."]);
@@ -1291,12 +1327,10 @@ class AccountViewRender extends ViewRender
                                 Ui::element($activation, "message", ["style" => Ui::htmlHrefStyle,
                                     "text" => "Your account has been corrupted. Please recover your account to get access."]);
                             }
-
                         } else {
                             Ui::element($activation, "message", ["style" => Ui::htmlHrefStyle,
                                 "text" => "Due to invalid or corrupted activation code, your account activation failed. Please try again."]);
                         }
-
                     } else {
                         Ui::element($activation, "message", ["style" => Ui::htmlHrefStyle,
                             "text" => "Due to invalid request, your account activation failed. Please try again."]);
@@ -1304,7 +1338,6 @@ class AccountViewRender extends ViewRender
                 } else {
                     Runtime::redirect();
                 }
-
             } /*take action in updatePassword page on account area*/
             elseif (_String::lower($this->request["method"]) === _String::lower("updatePassword")) {
                 /*set text for title*/
@@ -1350,5 +1383,4 @@ class AccountViewRender extends ViewRender
             $this->widget("footer", $template);
         });
     }
-
 }
