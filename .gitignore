@@ -13,6 +13,7 @@
 # Mishusoft Framework associates
 /app/
 /Framework/
+/dist/
 /dist-src/
 /node_modules/
 /storages/app/assets
