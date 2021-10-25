@@ -236,52 +236,12 @@ const commonConfig = {
     //new HelloWorldPlugin({ options: true })
   ],
 };
-const commonFileConfig = {
+const commonFilesConfiguration = {
   ...commonConfig,
   entry: {
-    // CSS bundlers
-
     // Runtime libraries
     webfonts: "./Assets/sass/webfonts.scss",
     colors: "./Assets/sass/includes/common/colors.scss",
-
-    // Stylesheet for embedded application support
-    embedded: "./Assets/sass/embedded.scss",
-    resources: "./Assets/sass/resources.scss",
-
-    /**
-     * Stylesheet for themes
-     */
-    "mishusoft-theme": "./Assets/sass/theme-mishusoft.scss",
-
-    // Typescripts bundlers
-
-    // Analyzers (browser and activity) framework
-    browser: "./Assets/typescripts/mishusoft/browser.ts",
-    monitor: "./Assets/typescripts/tracker.ts",
-
-    // Worker (Web Service) framework
-    sw: "./Assets/typescripts/service-worker.ts" /*build serviceworker module for background mode support*/,
-
-    // Ui builders framework
-    installer: "./Assets/typescripts/installer.ts",
-
-    // Preloader manager framework
-    readystate: "./Assets/typescripts/readystate.ts",
-
-    // Core framework (Javascript and Stylesheet)
-    framework: ["./Assets/typescripts/app.ts", "./Assets/sass/app.scss"],
-    framework_v3: [
-      "./Assets/typescripts/app-v3.ts",
-      "./Assets/sass/app-v3.scss",
-    ],
-    framework_v4: [
-      "./Assets/typescripts/app-v4.ts",
-      "./Assets/sass/app-v4.scss",
-    ],
-
-    //application loader
-    loader: ["./Assets/typescripts/loader.ts", "./Assets/sass/loader.scss"],
   },
   output: {
     path: path.join(__dirname, "./storages/app/assets"),
@@ -293,11 +253,11 @@ const commonFileConfig = {
   },
 };
 
-const prodConfig = {
-  ...commonFileConfig,
+const productionConfiguration = {
+  ...commonFilesConfiguration,
   module: {
     rules: [
-      ...commonFileConfig.module.rules,
+      ...commonFilesConfiguration.module.rules,
       {
         // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
         test: /\.tsx?$/,
@@ -329,13 +289,13 @@ const prodConfig = {
 };
 
 const testConfig = {
-  ...commonFileConfig,
+  ...commonFilesConfiguration,
   name: "tests",
   mode: "development",
   devtool: "inline-source-map",
   module: {
     rules: [
-      ...commonFileConfig.module.rules,
+      ...commonFilesConfiguration.module.rules,
       {
         test: /\.ts$/,
         use: [
@@ -414,15 +374,67 @@ const frameworkCommonConfig = {
 };
 
 // file configuration for applications
-const appFileConfiguration = {};
+const appFilesConfiguration = {
+  entry: {
+    ...commonFilesConfiguration.entry,
+    /**
+     * Stylesheet for themes
+     */
+    "mishusoft-theme": "./Assets/sass/theme-mishusoft.scss",
+
+    // Typescripts bundlers
+
+    // Analyzers (browser and activity) framework
+    browser: "./Assets/typescripts/mishusoft/browser.ts",
+    monitor: "./Assets/typescripts/tracker.ts",
+
+    // Worker (Web Service) framework
+    sw: "./Assets/typescripts/service-worker.ts" /*build serviceworker module for background mode support*/,
+
+    // Ui builders framework
+    installer: "./Assets/typescripts/installer.ts",
+
+    // Preloader manager framework
+    readystate: "./Assets/typescripts/readystate.ts",
+
+    // Core framework (Javascript and Stylesheet)
+    framework: ["./Assets/typescripts/app.ts", "./Assets/sass/app.scss"],
+    framework_v3: [
+      "./Assets/typescripts/app-v3.ts",
+      "./Assets/sass/app-v3.scss",
+    ],
+    framework_v4: [
+      "./Assets/typescripts/app-v4.ts",
+      "./Assets/sass/app-v4.scss",
+    ],
+
+    //application loader
+    loader: ["./Assets/typescripts/loader.ts", "./Assets/sass/loader.scss"],
+  },
+  output: {
+    ...commonFilesConfiguration.entry,
+    path: path.join(__dirname, "./storages/app/assets"),
+  },
+};
 // file configuration for framework
-const frameworkFileConfiguration = {};
+const frameworkFilesConfiguration = {
+  entry: {
+    ...commonFilesConfiguration.entry,
+    // Stylesheet for embedded application support
+    embedded: "./Assets/sass/embedded.scss",
+    resources: "./Assets/sass/resources.scss",
+  },
+  output: {
+    ...commonFilesConfiguration.entry,
+    path: path.join(__dirname, "./storages/framework/views"),
+  },
+};
 
 const buildTarget = (target) => {
   const configs = [];
 
   if (target === "production") {
-    configs.push({ ...prodConfig, name: "production" });
+    configs.push({ ...productionConfiguration, name: "production" });
   } else {
     configs.push({ ...testConfig, name: "development" });
   }
