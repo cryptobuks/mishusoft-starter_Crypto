@@ -63,146 +63,6 @@ class WebResourceDelivery
      * @throws Exceptions\RuntimeException
      * @throws Exceptions\RuntimeException\NotFoundException
      */
-    public function framework(array $request): void
-    {
-        $this->browse($request);
-    }
-
-    /**
-     * @param string[] $request
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
-     * @throws Exceptions\RuntimeException\NotFoundException
-     */
-    public function webfonts(array $request): void
-    {
-        $this->browse($request);
-    }
-
-
-    /**
-     * @param string[] $request
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
-     * @throws Exceptions\RuntimeException\NotFoundException
-     */
-    public function media(array $request): void
-    {
-        $this->browse($request);
-    }
-
-
-    /**
-     * @param string[] $request
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
-     * @throws Exceptions\RuntimeException\NotFoundException
-     */
-    public function shared(array $request): void
-    {
-        if (file_exists(Storage::storagesPath()) && is_readable(Storage::storagesPath()) === true) {
-            ['controller' => $controller, 'method' => $method, 'arguments' => $arguments] = $request;
-
-            switch (Utility\Inflect::lower($method)) {
-                case $this->defaultDirectoryIndex:
-                    Runtime::redirect('assets');
-                    break;
-
-                case 'json':
-                    if (is_array($arguments) && count($arguments) > 0) {
-                        if (str_contains(implode($arguments), '-') === true) {
-                            Storage\Stream::file(
-                                Storage::sharedFullPath(
-                                    str_replace('-', '.', implode($arguments)),
-                                )
-                            );
-                        } else {
-                            throw new Exceptions\LogicException\InvalidArgumentException('Invalid filename');
-                        }
-                    } else {
-                        throw new Exceptions\LogicException\InvalidArgumentException('Your requested url is broken');
-                    }
-                    break;
-
-                case 'logos':
-                    if (file_exists(Storage::logosDefaultPath() . end($arguments)) === true) {
-                        Storage\Stream::file(Storage::logoFullPath(end($arguments)));
-                    } elseif (str_contains(end($arguments), '-') === true) {
-                        $filename   = end($arguments);
-                        $ext        = pathinfo(end($arguments), PATHINFO_EXTENSION);
-                        $explode    = explode('-', end($arguments));
-                        $expected   = array_pop($explode);
-
-                        if (preg_match('[.' . $ext . ']', $expected)) {
-                            [
-                                $width,
-                                $height,
-                            ] = explode('x', preg_replace('[.' . $ext . ']', '', $expected));
-                            if (file_exists(Storage::logoFullPath($this->defaultApplicationIcon)) === true) {
-                                Storage\Stream::file(
-                                    Storage\Media\Image::resize(
-                                        Storage::logoFullPath($this->defaultApplicationIcon),
-                                        (int)$width,
-                                        (int)$height,
-                                        Storage::logosDefaultPath() . $filename
-                                    )
-                                );
-                            }
-                        } else {
-                            Storage\Stream::file(
-                                Storage\Media\Image::resize(
-                                    Storage::logoFullPath($this->defaultApplicationIcon),
-                                    16,
-                                    16,
-                                    Storage::logosDefaultPath() . $filename
-                                )
-                            );
-                        }//end if
-                    } else {
-                        throw new Exceptions\RuntimeException\NotFoundException(
-                            'Your requested url is not exists in the web data center!!'
-                        );
-                    }//end if
-                    break;
-
-                case 'related':
-                    $requestArgument    = implode(DS, $arguments);
-                    $requestedWebFile   = MPM\Classic::templatesJSResourcesRoot(
-                        $request['module'],
-                        $controller
-                    );
-                    if (file_exists(MPM\Classic::templatesJSResourcesRootLocal() . $requestArgument) === true) {
-                        Storage\Stream::file($requestedWebFile);
-                    } else {
-                        throw new Exceptions\RuntimeException\NotFoundException(
-                            'Your requested url is not exists in the web data center!!'
-                        );
-                    }
-                    break;
-
-                default:
-                    throw new Exceptions\RuntimeException\NotFoundException('The web data center is not set!!');
-            }//end switch
-        } else {
-            throw new Exceptions\RuntimeException\NotFoundException('The web data center is not set!!');
-        }//end if
-    }
-
-
-    /**
-     * @param string[] $request
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
-     * @throws Exceptions\RuntimeException\NotFoundException
-     */
     private function browse(array $request): void
     {
         if (is_readable(Storage::storagesPath()) === true) {
@@ -215,65 +75,6 @@ class WebResourceDelivery
             throw new Exceptions\RuntimeException\NotFoundException('The web data center is not set!!');
         }
     }
-
-
-    /**
-     * @param string[] $request
-     * @throws Exceptions\ErrorException
-     * @throws Exceptions\LogicException\InvalidArgumentException
-     * @throws Exceptions\PermissionRequiredException
-     * @throws Exceptions\RuntimeException
-     * @throws Exceptions\RuntimeException\NotFoundException
-     */
-    private function webExploreLoader(array $request): void
-    {
-        ['controller' => $controller, 'method' => $method, 'arguments' => $arguments] = $request;
-
-        //redirect actual url if controller is webfonts
-        if ($controller === 'webfonts') {
-            Runtime::redirect(sprintf('assets/webfonts/%1$s', $method));
-        }
-
-        if (($method === 'webfonts') && !in_array($controller, ['assets', 'framework'], true)) {
-            Runtime::redirect(sprintf('assets/webfonts/%1$s', implode(DS, $arguments)));
-        }
-
-        //http://host/directory/sub/filenameOrsub
-
-        $resolveRequestedFile = static function (string $directive, string $path) {
-            if ($directive === 'framework') {
-                return Storage::storageFullPath(
-                    sprintf('%1$s%3$sviews%3$s%2$s', $directive, $path, DS),
-                    'local',
-                    true
-                );
-            }
-
-            return Storage::storageFullPath(
-                sprintf('%1$s%3$s%2$s', $directive, $path, DS)
-            );
-        };
-
-        if ($arguments  !== []) {
-            $requestedFile = $resolveRequestedFile(
-                Utility\Inflect::lower($controller),
-                Utility\Inflect::lower(sprintf('%1$s%2$s', $method, DS)) . implode(DS, $arguments)
-            );
-        } else {
-            $requestedFile = $resolveRequestedFile(Utility\Inflect::lower($controller), $method);
-        }
-
-        if (file_exists($requestedFile) === true) {
-            if (filetype($requestedFile) === 'dir') {
-                $this->webExplore($requestedFile, $request);
-            } else {
-                Storage\Stream::file($requestedFile);
-            }
-        } else {
-            throw new Exceptions\RuntimeException\NotFoundException('The web data center is not set!!');
-        }
-    }
-
 
     /**
      * WebExplorer of CDN.
@@ -317,8 +118,11 @@ class WebResourceDelivery
                     ['type' => 'text/css', 'text' => Storage\FileSystem::readAssets('css/loader.css'),],
                     ['type' => 'text/css', 'text' => Storage\FileSystem::readAssets('css/colors.css'),],
                     //['type' => 'text/css', 'text' => Storage\FileSystem::readAssets('css/webfonts.css'),],
-                    ['type' => 'text/css', 'text' => Storage\FileSystem::readAssetsWebFonts('css/webfonts.css', $controller),],
-                    ['type' => 'text/css', 'text' => Storage\FileSystem::readAssets('css/resources.css'),],
+                    ['type' => 'text/css', 'text' => Storage\FileSystem::readAssetsWebFonts(
+                        'css/webfonts.css',
+                        $controller
+                    ),],
+                    ['type' => 'text/css', 'text' => Storage\FileSystem::readFrameworkAssets('css/resources.css'),],
                     ['type' => 'text/css', 'text' => Storage\FileSystem::readAssets('css/mishusoft-theme.css'),],
                     ['type' => 'text/css', 'text' => Storage\FileSystem::readAssets('css/framework.css'),],
                 ],]
@@ -489,6 +293,58 @@ class WebResourceDelivery
         Ui::display();
     }
 
+    /**
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\RuntimeException
+     * @throws Exceptions\RuntimeException\NotFoundException
+     */
+    private function makeBreadcrumb(DOMElement|DOMNode $templateBody, string $urlPath): void
+    {
+        /*image properties*/
+        $imageProperties = [
+            'rel'       => 'preload',
+            'loading'   => 'lazy',
+            'src'       => Storage::mediaFullPath('logos/mishusoft-logo-lite.webp', 'remote'),
+            'alt'       => 'mishusoft',
+            'class'     => 'box-shadow1',
+            'style'     => 'margin: 5px;text-align: center;width: 20px;height: 20px;float: left;border-radius: 50%;transition: all .15s ease;',
+            'width'     => '20px',
+            'height'    => '20px',
+        ];
+        // Add breadcrumb.
+        $breadcrumb = Ui::element(
+            $templateBody,
+            'breadcrumb',
+            ['style' => 'border: 1px solid rgba(0,0,0,0.2);width: 99%;']
+        );
+        Ui::element(
+            Ui::element($breadcrumb, 'a', ['class' => 'protect', 'href' => Runtime::link('default_home')]),
+            'img',
+            $imageProperties
+        );
+
+        // Collect navigation url list.
+        $webRoot = Storage::applicationWebDirectivePath();
+        if (Utility\Inflect::startsWith($urlPath, $webRoot)) {
+            $urlPath = substr($urlPath, strlen($webRoot));
+        }
+
+        $urlList = array_filter(explode('/', $urlPath));
+        $urlList = array_values($urlList);
+
+        foreach ($urlList as $url) {
+            Ui::text($breadcrumb, '/');
+            Ui::element($breadcrumb, 'a', [
+                'href' => Runtime::link(
+                    implode('/', Utility\ArrayCollection::getValues(
+                        array_search($url, $urlList),
+                        $urlList
+                    ))
+                ),
+                'text' => $url,
+            ]);
+        }
+    }
 
     /**
      * @param string $dirname
@@ -560,55 +416,196 @@ class WebResourceDelivery
     }
 
     /**
+     * @param string[] $request
      * @throws Exceptions\ErrorException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
      * @throws Exceptions\RuntimeException\NotFoundException
      */
-    private function makeBreadcrumb(DOMElement|DOMNode $templateBody, string $urlPath): void
+    private function webExploreLoader(array $request): void
     {
-        /*image properties*/
-        $imageProperties = [
-            'rel'       => 'preload',
-            'loading'   => 'lazy',
-            'src'       => Storage::mediaFullPath('logos/mishusoft-logo-lite.webp', 'remote'),
-            'alt'       => 'mishusoft',
-            'class'     => 'box-shadow1',
-            'style'     => 'margin: 5px;text-align: center;width: 20px;height: 20px;float: left;border-radius: 50%;transition: all .15s ease;',
-            'width'     => '20px',
-            'height'    => '20px',
-        ];
-        // Add breadcrumb.
-        $breadcrumb = Ui::element(
-            $templateBody,
-            'breadcrumb',
-            ['style' => 'border: 1px solid rgba(0,0,0,0.2);width: 99%;']
-        );
-        Ui::element(
-            Ui::element($breadcrumb, 'a', ['class' => 'protect', 'href' => Runtime::link('default_home')]),
-            'img',
-            $imageProperties
-        );
+        ['controller' => $controller, 'method' => $method, 'arguments' => $arguments] = $request;
 
-        // Collect navigation url list.
-        $webRoot = Storage::applicationWebDirectivePath();
-        if (Utility\Inflect::startsWith($urlPath, $webRoot)) {
-            $urlPath = substr($urlPath, strlen($webRoot));
+        //redirect actual url if controller is webfonts
+        if ($controller === 'webfonts') {
+            Runtime::redirect(sprintf('assets/webfonts/%1$s', $method));
         }
 
-        $urlList = array_filter(explode('/', $urlPath));
-        $urlList = array_values($urlList);
-
-        foreach ($urlList as $url) {
-            Ui::text($breadcrumb, '/');
-            Ui::element($breadcrumb, 'a', [
-                'href' => Runtime::link(
-                    implode('/', Utility\ArrayCollection::getValues(
-                        array_search($url, $urlList),
-                        $urlList
-                    ))
-                ),
-                'text' => $url,
-            ]);
+        if (($method === 'webfonts') && !in_array($controller, ['assets', 'framework'], true)) {
+            Runtime::redirect(sprintf('assets/webfonts/%1$s', implode(DS, $arguments)));
         }
+
+        //http://host/directory/sub/filenameOrsub
+
+        $resolveRequestedFile = static function (string $directive, string $path) {
+            if ($directive === 'framework') {
+                return Storage::storageFullPath(
+                    sprintf('%1$s%3$sviews%3$s%2$s', $directive, $path, DS),
+                    'local',
+                    true
+                );
+            }
+
+            return Storage::storageFullPath(
+                sprintf('%1$s%3$s%2$s', $directive, $path, DS)
+            );
+        };
+
+        if ($arguments  !== []) {
+            $requestedFile = $resolveRequestedFile(
+                Utility\Inflect::lower($controller),
+                Utility\Inflect::lower(sprintf('%1$s%2$s', $method, DS)) . implode(DS, $arguments)
+            );
+        } else {
+            $requestedFile = $resolveRequestedFile(Utility\Inflect::lower($controller), $method);
+        }
+
+        if (file_exists($requestedFile) === true) {
+            if (filetype($requestedFile) === 'dir') {
+                $this->webExplore($requestedFile, $request);
+            } else {
+                Storage\Stream::file($requestedFile);
+            }
+        } else {
+            throw new Exceptions\RuntimeException\NotFoundException('The web data center is not set!!');
+        }
+    }
+
+    /**
+     * @param string[] $request
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
+     * @throws Exceptions\RuntimeException\NotFoundException
+     */
+    public function framework(array $request): void
+    {
+        $this->browse($request);
+    }
+
+    /**
+     * @param string[] $request
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
+     * @throws Exceptions\RuntimeException\NotFoundException
+     */
+    public function webfonts(array $request): void
+    {
+        $this->browse($request);
+    }
+
+    /**
+     * @param string[] $request
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
+     * @throws Exceptions\RuntimeException\NotFoundException
+     */
+    public function media(array $request): void
+    {
+        $this->browse($request);
+    }
+
+    /**
+     * @param string[] $request
+     * @throws Exceptions\ErrorException
+     * @throws Exceptions\LogicException\InvalidArgumentException
+     * @throws Exceptions\PermissionRequiredException
+     * @throws Exceptions\RuntimeException
+     * @throws Exceptions\RuntimeException\NotFoundException
+     */
+    public function shared(array $request): void
+    {
+        if (file_exists(Storage::storagesPath()) && is_readable(Storage::storagesPath()) === true) {
+            ['controller' => $controller, 'method' => $method, 'arguments' => $arguments] = $request;
+
+            switch (Utility\Inflect::lower($method)) {
+                case $this->defaultDirectoryIndex:
+                    Runtime::redirect('assets');
+                    break;
+
+                case 'json':
+                    if (is_array($arguments) && count($arguments) > 0) {
+                        if (str_contains(implode($arguments), '-') === true) {
+                            Storage\Stream::file(
+                                Storage::sharedFullPath(
+                                    str_replace('-', '.', implode($arguments)),
+                                )
+                            );
+                        } else {
+                            throw new Exceptions\LogicException\InvalidArgumentException('Invalid filename');
+                        }
+                    } else {
+                        throw new Exceptions\LogicException\InvalidArgumentException('Your requested url is broken');
+                    }
+                    break;
+
+                case 'logos':
+                    if (file_exists(Storage::logosDefaultPath() . end($arguments)) === true) {
+                        Storage\Stream::file(Storage::logoFullPath(end($arguments)));
+                    } elseif (str_contains(end($arguments), '-') === true) {
+                        $filename   = end($arguments);
+                        $ext        = pathinfo(end($arguments), PATHINFO_EXTENSION);
+                        $explode    = explode('-', end($arguments));
+                        $expected   = array_pop($explode);
+
+                        if (preg_match('[.' . $ext . ']', $expected)) {
+                            [
+                                $width,
+                                $height,
+                            ] = explode('x', preg_replace('[.' . $ext . ']', '', $expected));
+                            if (file_exists(Storage::logoFullPath($this->defaultApplicationIcon)) === true) {
+                                Storage\Stream::file(
+                                    Storage\Media\Image::resize(
+                                        Storage::logoFullPath($this->defaultApplicationIcon),
+                                        (int)$width,
+                                        (int)$height,
+                                        Storage::logosDefaultPath() . $filename
+                                    )
+                                );
+                            }
+                        } else {
+                            Storage\Stream::file(
+                                Storage\Media\Image::resize(
+                                    Storage::logoFullPath($this->defaultApplicationIcon),
+                                    16,
+                                    16,
+                                    Storage::logosDefaultPath() . $filename
+                                )
+                            );
+                        }//end if
+                    } else {
+                        throw new Exceptions\RuntimeException\NotFoundException(
+                            'Your requested url is not exists in the web data center!!'
+                        );
+                    }//end if
+                    break;
+
+                case 'related':
+                    $requestArgument    = implode(DS, $arguments);
+                    $requestedWebFile   = MPM\Classic::templatesJSResourcesRoot(
+                        $request['module'],
+                        $controller
+                    );
+                    if (file_exists(MPM\Classic::templatesJSResourcesRootLocal() . $requestArgument) === true) {
+                        Storage\Stream::file($requestedWebFile);
+                    } else {
+                        throw new Exceptions\RuntimeException\NotFoundException(
+                            'Your requested url is not exists in the web data center!!'
+                        );
+                    }
+                    break;
+
+                default:
+                    throw new Exceptions\RuntimeException\NotFoundException('The web data center is not set!!');
+            }//end switch
+        } else {
+            throw new Exceptions\RuntimeException\NotFoundException('The web data center is not set!!');
+        }//end if
     }
 }

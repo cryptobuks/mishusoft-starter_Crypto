@@ -39,7 +39,7 @@
     "debug": "npm run debug:app && npm run debug:framework",
     "watch:app": "webpack -w --env product=app",
     "watch:framework": "webpack -w --env product=framework",
-    "watch": "webpack -w",
+    "watch": "npm run watch:app && npm run watch:framework",
     "start": "php -S localhost:8080 router.php",
     "start:server.dev": "php -S localhost:8080 router.php",
     "start:php80.win": "tools\\php80\\php.exe -S localhost:8080 router.php",

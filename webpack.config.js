@@ -198,12 +198,12 @@ module.exports = (env) => {
           {
             /*copy webfont files from sources directory*/
             from: path.join(sourceImagesPath, "./icons/social-media"),
-            to: path.join(frameworkViewPath, "./icons/social-media"),
+            to: path.join(frameworkViewPath, "./images/icons/social-media"),
           },
           {
             /*copy webfont files from sources directory*/
             from: path.join(sourceImagesPath, "./icons/default"),
-            to: path.join(frameworkViewPath, "./icons"),
+            to: path.join(frameworkViewPath, "./images/icons"),
           },
           {
             /*copy webfont files from sources directory*/
