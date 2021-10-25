@@ -2,13 +2,43 @@
   "name": "lastest.mishusoft.com",
   "version": "2.0.35",
   "description": "Mishusoft official app development",
+  "keywords": [],
+  "homepage": "https://github.com/mralaminahamed/latest.mishusoft.com",
+  "bugs": {
+    "url": "https://github.com/mralaminahamed/latest.mishusoft.com/issues",
+    "email": "alamin.rohita@hotmail.com"
+  },
+  "license": "GPL-3.0-only",
+  "author": {
+    "name": "Al-Amin Ahamed",
+    "email": "alamin.rohita@hotmail.com",
+    "url": "https://github.com/mralaminahamed//"
+  },
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/al-amin-ahamed"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mralaminahamed/lastest.mishusoft.com.git"
+  },
   "scripts": {
     "composer:install": "php ./requirements/composer-install.php",
     "composer:update": "php ./requirements/composer.phar install",
-    "build": "webpack",
-    "build:prod": "webpack --env target=production",
-    "debug": "node --trace-deprecation node_modules/webpack/bin/webpack.js",
-    "watch": "webpack -w && npm run update:rv",
+    "build": "npm run build:app && npm run build:framework",
+    "build:app": "webpack --env product=app",
+    "build:prod:app": "webpack --env product=app target=production",
+    "build:framework": "webpack --env product=framework",
+    "build:prod:framework": "webpack --env product=framework target=production",
+    "debug:app": "node --trace-deprecation node_modules/webpack/bin/webpack.js --env product=app",
+    "debug:framework": "node --trace-deprecation node_modules/webpack/bin/webpack.js --env product=framework",
+    "debug": "npm run debug:app && npm run debug:framework",
+    "watch:app": "webpack -w --env product=app",
+    "watch:framework": "webpack -w --env product=framework",
+    "watch": "webpack -w",
     "start": "php -S localhost:8080 router.php",
     "start:server.dev": "php -S localhost:8080 router.php",
     "start:php80.win": "tools\\php80\\php.exe -S localhost:8080 router.php",
@@ -24,9 +54,6 @@
     "packages:outdated": "npm outdated",
     "packages:upgrade": "npx npm-check-updates -u --timeout 100000 && npm install && composer update"
   },
-  "keywords": [],
-  "author": "Al-Amin Ahamed (Abir)",
-  "license": "GPL-3.0-only",
   "devDependencies": {
     "@types/sass": "^1.16.1",
     "archiver": "^5.3.0",
@@ -73,11 +100,11 @@
     "webpack-remove-empty-scripts": "^0.7.1",
     "whatwg-fetch": "^3.6.2"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/mralaminahamed/lastest.mishusoft.com.git"
-  },
   "dependencies": {
     "schema-utils": "^3.1.1"
+  },
+  "engines": {
+    "node": ">= 14.0.0",
+    "npm": "~7.0.20"
   }
 }

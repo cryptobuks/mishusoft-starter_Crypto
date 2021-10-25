@@ -3,8 +3,8 @@
  *
  * @package    MishusoftDevelopment
  * @subpackage webpack
- * @author     Mishusoft System Inc <products@mishusoft.com>
- * @copyright  2021 Mishusoft System Inc (ABN 77 084 670 600)
+ * @author     Al-Amin Ahamed <alamin.rohita@hotmail.com>
+ * @copyright  2021 Al-Amin Ahamed (ABN 77 084 670 600)
  **/
 
 const path = require("path");
@@ -357,12 +357,29 @@ const testConfig = {
   },
 };
 
-module.exports = (env) => {
+const buildTarget = (target) => {
   const configs = [];
-  if (env && env.target === "production") {
+  if (target === "production") {
     configs.push({ ...prodConfig, name: "production" });
   } else {
     configs.push({ ...testConfig, name: "development" });
+  }
+
+  return configs;
+};
+
+module.exports = (env) => {
+  let configs = [];
+  if (typeof env === "object") {
+    const { target, product } = env;
+
+    if (product === "app") {
+      configs = buildTarget("app", target);
+    } else if (product === "framework") {
+      configs = buildTarget("framework", target);
+    } else {
+      console.error("Please set `product` value with environment variable");
+    }
   }
 
   return configs;
