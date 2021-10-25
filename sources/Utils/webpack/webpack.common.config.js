@@ -238,7 +238,7 @@ const commonConfig = {
   ],
 };
 
-export const commonFileConfig = {
+const commonFileConfig = {
   ...commonConfig,
   entry: {
     // CSS bundlers
@@ -295,7 +295,7 @@ export const commonFileConfig = {
   },
 };
 
-export const prodConfig = {
+const prodConfig = {
   ...commonFileConfig,
   module: {
     rules: [
@@ -330,7 +330,7 @@ export const prodConfig = {
   },
 };
 
-export const testConfig = {
+const testConfig = {
   ...commonFileConfig,
   name: "tests",
   mode: "development",
@@ -358,220 +358,15 @@ export const testConfig = {
     ],
   },
 };
+module.exports = (env) => {
+  const configs = [];
+  const { target } = env;
 
-module.exports = {
-  mode: "production",
-  context: path.join(__dirname, "./sources"),
-  module: {
-    rules: [
-      {
-        // compile sass, scss file
-        test: /\.(sa|sc|c)ss$/i,
-        exclude: /node_modules/,
-        use: [
-          // Minify compiled css files.
-          MiniCssExtractPlugin.loader,
-          // Translates CSS into CommonJS.
-          "css-loader",
-          // Load postcss.
-          "postcss-loader",
-          // Compiles Sass to CSS.
-          "sass-loader",
-        ],
-      },
-      {
-        //compile images
-        test: /\.(png|jpe?g|gif)$/ /* test: /\.(svg|png|jpg|gif)$/, */,
-        type: "asset/resource",
-        generator: {
-          filename: "images/[name][ext][query]",
-        },
-      },
-      {
-        //compile webfonts
-        test: /\.(ttf|otf|eot|svg|woff|woff2)$/,
-        type: "asset/resource",
-        generator: {
-          filename: "../webfonts/[name].[hash][ext][query]",
-        },
-      },
-    ],
-  },
-  resolve: {
-    // Add `.ts` and `.tsx` as a resolvable extension.
-    extensions: [".ts", ".tsx", ".js"],
-  },
-  //externals: 'lodash',
-  plugins: [
-    new CleanWebpackPlugin(),
-    new RemoveEmptyScriptsPlugin(),
-    new MiniCssExtractPlugin({
-      filename: "css/[name].css",
-      chunkFilename: "css/[id].css",
-    }),
-    new FontPreloadPlugin(),
-    new ImageMinimizerPlugin({
-      minimizerOptions: {
-        // Lossless optimization with custom option
-        // Feel free to experiment with options for better result for you
-        plugins: [
-          ["gifsicle", { interlaced: true }],
-          ["jpegtran", { progressive: true }],
-          ["optipng", { optimizationLevel: 5 }],
-        ],
-      },
-    }),
-    // new CopyWebpackPlugin({
-    //     patterns: [
-    //         { /*copy webfont files from sources directory*/
-    //             from: path.join(__dirname, './storages/app/webfonts/'),
-    //             to({ context, absoluteFilename }){
-    //                 const frameworkViewFontsPath = path.join(__dirname, './storages/framework/views/webfonts');
-    //                 if (/SairaStencilOne-Regular/.test(absoluteFilename)) {
-    //                     /*copying to framework fonts directory*/
-    //                     return Promise.resolve(
-    //                         path.join(frameworkViewFontsPath, './SairaStencilOne-Regular.[contenthash][ext]')
-    //                     );
-    //                 }
-    //                 /*copying to app assets directory*/
-    //                 return Promise.resolve(path.join(__dirname, './storages/app/assets/webfonts'));
-    //             },
-    //     },
-    //         { /*copy webfont files from sources directory*/
-    //             from: path.join(__dirname, './sources/Assets/media/'),
-    //             to({ context, absoluteFilename }){
-    //                 const frameworkMediaPath = path.join(__dirname, './storages/framework/views');
-    //                 if (/logos/.test(absoluteFilename)) {
-    //                     if (/default/.test(absoluteFilename)) {
-    //                         /*copying to default directory*/
-    //                         return Promise.resolve(
-    //                             path.join(frameworkMediaPath, './logos/default/[name][ext]')
-    //                         );
-    //                     }
-    //                     /*copying to uncompressed directory*/
-    //                     return Promise.resolve(
-    //                         path.join(frameworkMediaPath, './logos/[name][ext]')
-    //                     );
-    //                 }
-    //                 if (/social-media/.test(absoluteFilename)) {
-    //                     /*copying to uncompressed directory*/
-    //                     return Promise.resolve(
-    //                         path.join(frameworkMediaPath, './images/icons/social-media/[name][ext]')
-    //                     );
-    //                 }
-    //                 /*copying to app assets directory*/
-    //                 return Promise.resolve(path.join(__dirname, './storages/app/media'));
-    //             },
-    //     },
-    //         { /*copy stylesheet files from compiled assets directory*/
-    //             from: path.join(__dirname, './storages/app/assets/css/'),
-    //             to({ context, absoluteFilename }){
-    //                 const frameworkStylesheetPath = path.join(__dirname, './storages/framework/views/css');
-    //                 if (/(embedded|resources|webfonts|colors|loader)/.test(absoluteFilename)) {
-    //                     /*copying to uncompressed directory*/
-    //                     return Promise.resolve(
-    //                         path.join(frameworkStylesheetPath, './[name][ext]')
-    //                     );
-    //                 }
-    //                 /*copying to app assets directory*/
-    //                 return Promise.resolve(path.join(__dirname, './backup'));
-    //             },
-    //     },
-    //         { /*copy social logos from compiled directory*/
-    //             from: path.join(__dirname, './storages/app/assets/js/loader.js'),
-    //             to: path.join(__dirname, './storages/framework/views/js/loader.js')
-    //     },
-    //     ]
-    // }),
-    new CopyAdvancedPlugin({
-      patterns: [
-        {
-          /*copy webfont files from sources directory*/
-          from: path.join(__dirname, "./storages/app/webfonts"),
-          to({ context, absoluteFilename }) {
-            const frameworkViewFontsPath = path.join(
-              __dirname,
-              "./storages/framework/views/webfonts"
-            );
-            if (/SairaStencilOne-Regular/.test(absoluteFilename)) {
-              /*copying to framework fonts directory*/
-              return Promise.resolve(
-                path.join(
-                  frameworkViewFontsPath,
-                  "./SairaStencilOne-Regular.[contenthash][ext]"
-                )
-              );
-            }
-            /*copying to app assets directory*/
-            return Promise.resolve(
-              path.join(__dirname, "./storages/app/assets/webfonts")
-            );
-          },
-        },
-        {
-          /*copy webfont files from sources directory*/
-          from: path.join(__dirname, "./sources/Assets/media"),
-          to({ context, absoluteFilename }) {
-            const frameworkMediaPath = path.join(
-              __dirname,
-              "./storages/framework/views"
-            );
-            if (/logos/.test(absoluteFilename)) {
-              if (/default/.test(absoluteFilename)) {
-                /*copying to default directory*/
-                return Promise.resolve(
-                  path.join(frameworkMediaPath, "./logos/default/[name][ext]")
-                );
-              }
-              /*copying to uncompressed directory*/
-              return Promise.resolve(
-                path.join(frameworkMediaPath, "./logos/[name][ext]")
-              );
-            }
-            if (/social-media/.test(absoluteFilename)) {
-              /*copying to uncompressed directory*/
-              return Promise.resolve(
-                path.join(
-                  frameworkMediaPath,
-                  "./images/icons/social-media/[name][ext]"
-                )
-              );
-            }
-            /*copying to app assets directory*/
-            return Promise.resolve(
-              path.join(__dirname, "./storages/app/media")
-            );
-          },
-        },
-        {
-          /*copy stylesheet files from compiled assets directory*/
-          from: path.join(__dirname, "./storages/app/assets/css"),
-          to({ context, absoluteFilename }) {
-            const frameworkStylesheetPath = path.join(
-              __dirname,
-              "./storages/framework/views/css"
-            );
-            if (
-              /(embedded|resources|webfonts|colors|loader)/.test(
-                absoluteFilename
-              )
-            ) {
-              /*copying to uncompressed directory*/
-              return Promise.resolve(
-                path.join(frameworkStylesheetPath, "./[name][ext]")
-              );
-            }
-            /*copying to app assets directory*/
-            return Promise.resolve(path.join(__dirname, "./backup"));
-          },
-        },
-        {
-          /*copy social logos from compiled directory*/
-          from: path.join(__dirname, "./storages/app/assets/js/loader.js"),
-          to: path.join(__dirname, "./storages/framework/views/js/loader.js"),
-        },
-      ],
-    }),
-    //new HelloWorldPlugin({ options: true })
-  ],
+  if (target === "production") {
+    configs.push({ ...prodConfig, name: "production" });
+  } else {
+    configs.push({ ...testConfig, name: "development" });
+  }
+
+  return configs;
 };
