@@ -14,6 +14,7 @@
 
 //Load pre defined constants
 require_once __DIR__ . '/constants.php';
+require_once __DIR__ . '/constants.configurable.php';
 require_once __DIR__ . '/functions.php';
 
 //Load mishusoft framework

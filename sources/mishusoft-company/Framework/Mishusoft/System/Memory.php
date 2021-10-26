@@ -14,7 +14,6 @@ use Mishusoft\Storage\FileSystem;
 use Mishusoft\Framework;
 use Mishusoft\MPM;
 use Mishusoft\System;
-use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\Implement;
 use stdClass;
 
@@ -42,7 +41,7 @@ class Memory extends Base
         self::validation();
         self::loadFrameworkMemory();
         self::baseUrlSet();
-    }//end enable()
+    }
 
 
     /**
@@ -90,6 +89,115 @@ class Memory extends Base
         FileSystem::check(self::$framework::configFile(), function ($filename) {
             FileSystem\Yaml::emitFile($filename, self::$framework::defaultConfiguration());
         });
+    }
+
+    /**
+     * Load framework memory data.
+     *
+     * @return void
+     * @throws RuntimeException
+     */
+    private static function loadFrameworkMemory(): void
+    {
+        Log::info(sprintf('Check read permission of %s file.', self::$framework::configFile()));
+        if (is_readable(self::$framework::configFile()) === true) {
+            Log::info(sprintf('Load data from %s file.', self::$framework::configFile()));
+            self::read(FileSystem\Yaml::parseFile(self::$framework::configFile()));
+        } else {
+            Log::info(sprintf('Not found system data file %s.', self::$framework::configFile()));
+            Log::info('Load default data from system.');
+            self::read(self::$framework::defaultConfiguration());
+        }//end if
+    }
+
+    /**
+     * Read object of framework
+     *
+     * @param array $configuration Framework configuration object.
+     *
+     * @return void Return nothing.
+     * @throws RuntimeException Throw exception when runtime error occurred.
+     */
+    private static function read(array $configuration): void
+    {
+        // Required constant variables declared here.
+        if (count($configuration) > 0) {
+            //Core constants
+            define('DEFAULT_APP_NAME', $configuration['name']);
+            define('FRAMEWORK_NAME', $configuration['fullName']);
+            define('FRAMEWORK_DESCRIPTION', $configuration['descriptions']);
+            define('DEFAULT_APP_AUTHOR', $configuration['author']['name']);
+            define('DEFAULT_APP_COMPANY_NAME', $configuration['company']['name']);
+            define('DEFAULT_APP_DESCRIPTIONS', $configuration['company']['shortDescription']);
+            define('DEFAULT_APP_DESCRIPTIONS_FULL', $configuration['company']['detailsDescription']);
+            define('DEFAULT_APP_COMPANY_WEB_ADDRESS', $configuration['company']['website']);
+            define('DEFAULT_DATE_OF_BIRTH', $configuration['author']['dateOfBirth']);
+            define('DEFAULT_DATA_CHAR_SET', $configuration['charset']);
+            define('DEFAULT_DATA_TABLE_PREFIX', $configuration['prefix']['char']);
+
+            //Preset constants
+            // Alias of default system layout.
+            define('DEFAULT_SYSTEM_LAYOUT', $configuration['preset']['theme']);
+            define('DEFAULT_SYSTEM_THEME', $configuration['preset']['theme']);
+            define('DEFAULT_OPERATING_SYSTEM_PASSWORD', $configuration['preset']['user']);
+            define('DEFAULT_CONTROLLER', $configuration['preset']['directoryIndex']);
+            define('DEFAULT_DIRECTORY_INDEX', $configuration['preset']['directoryIndex']);
+            define('SESSION_TIME', $configuration['preset']['sessionDuration']);
+            define('WEB_CONFIG_TABLE', $configuration['preset']['config']);
+
+            //prefix constants
+            define(
+                'APP_USERNAME_PREFIX',
+                sprintf(
+                    '%1$s%2$s',
+                    $configuration['prefix']['char'],
+                    $configuration['prefix']['separator']
+                )
+            );
+            define(
+                'DEFAULT_OPERATING_SYSTEM_USER',
+                sprintf(
+                    '%1$s%2$s',
+                    APP_USERNAME_PREFIX,
+                    $configuration['preset']['user']
+                )
+            );
+
+            define('DB_DEFAULT_NAME', 'system');
+            define('DB_USER_NAME', DEFAULT_OPERATING_SYSTEM_USER);
+            define('DB_USER_PASSWORD', DEFAULT_OPERATING_SYSTEM_PASSWORD);
+            define('DB_WEB_CONFIG_TABLE', $configuration['preset']['config']);
+
+            // Mishusoft associates files format.
+            define('MISHUSOFT_DATABASE_FILE_FORMAT', '.msdb');
+            define('MISHUSOFT_DATABASE_DUMP_FILE_FORMAT', '.mdf');
+            define('MISHUSOFT_CONFIGURATION_FILE_FORMAT', '.mscf');
+
+            define('USER_PASSWORD_LENGTH_LIMIT', 8);
+
+            // Support address.
+            define('SUPPORT_EMAIL_ADDRESS', $configuration['company']['mail']);
+            define('SUPPORT_WEBSITE', $configuration['company']['support']);
+            define('SUPPORT_CONTACT_TITLE', 'Feedback');
+
+            // System exclude dir.
+            define('SYSTEM_EXCLUDE_DIRS', $configuration['exclude']['dir']);
+        } else {
+            throw new RuntimeException('Framework configuration is corrupted.');
+        }//end if
+    }//end dataLoader()
+
+    /**
+     * @throws RuntimeException
+     */
+    private static function baseUrlSet(): void
+    {
+        if (file_exists(self::$framework::installFile())) {
+            $config = FileSystem\Yaml::parseFile(self::$framework::installFile());
+            define('BASE_URL', $config['host']['url']);
+        } else {
+            define('BASE_URL', Registry::Browser()->getURLHostname());
+        }
     }
 
     /**
@@ -194,21 +302,20 @@ class Memory extends Base
             }
         }//end if
         return $result;
-    }//end data()
-
+    }//end loadMemory()
 
     /**
-     * Data loader of system memory.
-     *
-     * @param string $carrier
-     * @param string $format Format for data load.
-     * @param array $default Default array data for fallback.
-     * @param string $filename Absolute data file path.
-     *
-     * @return object|array Return data on demand.
-     * @throws ErrorException
-     * @throws RuntimeException
-     */
+         * Data loader of system memory.
+         *
+         * @param string $carrier
+         * @param string $format Format for data load.
+         * @param array $default Default array data for fallback.
+         * @param string $filename Absolute data file path.
+         *
+         * @return object|array Return data on demand.
+         * @throws ErrorException
+         * @throws RuntimeException
+         */
     private static function dataLoader(string $carrier, string $format, array $default, string $filename): object|array
     {
         $result = [];
@@ -284,7 +391,7 @@ class Memory extends Base
         }
 
         return $result;
-    }//end dataLoader()
+    }
 
     /**
      * @param string $carrier
@@ -308,115 +415,5 @@ class Memory extends Base
         return array_key_exists($carrier, self::$data) && array_key_exists($format, self::$data[$carrier])
             && array_key_exists('default', self::$data[$carrier])
             && array_key_exists('filename', self::$data[$carrier]);
-    }
-
-    /**
-     * Load framework memory data.
-     *
-     * @return void
-     * @throws RuntimeException
-     */
-    private static function loadFrameworkMemory(): void
-    {
-        Log::info(sprintf('Check read permission of %s file.', self::$framework::configFile()));
-        if (is_readable(self::$framework::configFile()) === true) {
-            Log::info(sprintf('Load data from %s file.', self::$framework::configFile()));
-            self::read(FileSystem\Yaml::parseFile(self::$framework::configFile()));
-        } else {
-            Log::info(sprintf('Not found system data file %s.', self::$framework::configFile()));
-            Log::info('Load default data from system.');
-            self::read(self::$framework::defaultConfiguration());
-        }//end if
-    }//end loadMemory()
-
-    /**
-     * @throws RuntimeException
-     */
-    private static function baseUrlSet(): void
-    {
-        if (file_exists(self::$framework::installFile())) {
-            $config = FileSystem\Yaml::parseFile(self::$framework::installFile());
-            define('BASE_URL', $config['host']['url']);
-        } else {
-            define('BASE_URL', Registry::Browser()->getURLHostname());
-        }
-    }
-
-
-    /**
-     * Read object of framework
-     *
-     * @param array $configuration Framework configuration object.
-     *
-     * @return void Return nothing.
-     * @throws RuntimeException Throw exception when runtime error occurred.
-     */
-    private static function read(array $configuration): void
-    {
-        // Required constant variables declared here.
-        if (count($configuration) > 0) {
-            //Core constants
-            define('DEFAULT_APP_NAME', $configuration['name']);
-            define('FRAMEWORK_NAME', $configuration['fullName']);
-            define('FRAMEWORK_DESCRIPTION', $configuration['descriptions']);
-            define('DEFAULT_APP_AUTHOR', $configuration['author']['name']);
-            define('DEFAULT_APP_COMPANY_NAME', $configuration['company']['name']);
-            define('DEFAULT_APP_DESCRIPTIONS', $configuration['company']['shortDescription']);
-            define('DEFAULT_APP_DESCRIPTIONS_FULL', $configuration['company']['detailsDescription']);
-            define('DEFAULT_APP_COMPANY_WEB_ADDRESS', $configuration['company']['website']);
-            define('DEFAULT_DATE_OF_BIRTH', $configuration['author']['dateOfBirth']);
-            define('DEFAULT_DATA_CHAR_SET', $configuration['charset']);
-            define('DEFAULT_DATA_TABLE_PREFIX', $configuration['prefix']['char']);
-
-            //Preset constants
-            // Alias of default system layout.
-            define('DEFAULT_SYSTEM_LAYOUT', $configuration['preset']['theme']);
-            define('DEFAULT_SYSTEM_THEME', $configuration['preset']['theme']);
-            define('DEFAULT_OPERATING_SYSTEM_PASSWORD', $configuration['preset']['user']);
-            define('DEFAULT_CONTROLLER', $configuration['preset']['directoryIndex']);
-            define('DEFAULT_DIRECTORY_INDEX', $configuration['preset']['directoryIndex']);
-            define('SESSION_TIME', $configuration['preset']['sessionDuration']);
-            define('WEB_CONFIG_TABLE', $configuration['preset']['config']);
-
-            //prefix constants
-            define(
-                'APP_USERNAME_PREFIX',
-                sprintf(
-                    '%1$s%2$s',
-                    $configuration['prefix']['char'],
-                    $configuration['prefix']['separator']
-                )
-            );
-            define(
-                'DEFAULT_OPERATING_SYSTEM_USER',
-                sprintf(
-                    '%1$s%2$s',
-                    APP_USERNAME_PREFIX,
-                    $configuration['preset']['user']
-                )
-            );
-
-            define('DB_DEFAULT_NAME', 'system');
-            define('DB_USER_NAME', DEFAULT_OPERATING_SYSTEM_USER);
-            define('DB_USER_PASSWORD', DEFAULT_OPERATING_SYSTEM_PASSWORD);
-            define('DB_WEB_CONFIG_TABLE', $configuration['preset']['config']);
-
-            // Mishusoft associates files format.
-            define('MISHUSOFT_DATABASE_FILE_FORMAT', '.msdb');
-            define('MISHUSOFT_DATABASE_DUMP_FILE_FORMAT', '.mdf');
-            define('MISHUSOFT_CONFIGURATION_FILE_FORMAT', '.mscf');
-
-            define('USER_PASSWORD_LENGTH_LIMIT', 8);
-
-            // Support address.
-            define('SUPPORT_EMAIL_ADDRESS', $configuration['company']['mail']);
-            define('SUPPORT_WEBSITE', $configuration['company']['support']);
-            define('SUPPORT_CONTACT_TITLE', 'Feedback');
-
-            // System exclude dir.
-            define('SYSTEM_EXCLUDE_DIRS', $configuration['exclude']['dir']);
-        } else {
-            throw new RuntimeException('Framework configuration is corrupted.');
-        }//end if
     }//end read()
 }//end class

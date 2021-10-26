@@ -17,6 +17,7 @@ require_once __DIR__ . '/ini.php';
 
 //Load pre defined constants
 require_once __DIR__ . '/constants.php';
+require_once __DIR__ . '/constants.configurable.php';
 require_once __DIR__ . '/base64-files.php';
 require_once __DIR__ . '/functions.php';
 
