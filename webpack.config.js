@@ -17,14 +17,12 @@ const RemoveEmptyScriptsPlugin = require("webpack-remove-empty-scripts");
 const FontPreloadPlugin = require("webpack-font-preload-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
-const sourceAssetsPath = path.join(__dirname, "./sources/Assets");
-const sourceImagesPath = path.join(sourceAssetsPath, "./media/images");
-const storageAssetsPath = path.join(__dirname, "./storages/app/assets");
-const frameworkViewPath = path.join(__dirname, "./storages/framework/views");
-
-//https://stackoverflow.com/questions/49168478/how-to-use-multiple-configuration-files-in-webpack
-
 module.exports = (env) => {
+  const sourceAssetsPath = path.join(__dirname, "./sources/Assets");
+  const sourceImagesPath = path.join(sourceAssetsPath, "./media/images");
+  const storageAssetsPath = path.join(__dirname, "./storages/app/assets");
+  const frameworkViewPath = path.join(__dirname, "./storages/framework/views");
+
   // Default common configuration for all product
   const commonConfiguration = {
     mode: "production",
