@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Mishusoft\Communication\Http;
 
+use Mishusoft\Services\GraphQLService;
 use Mishusoft\Services\SecureDataTransferService;
 
 class ApplicationProgrammingInterface extends SecureDataTransferService
@@ -16,8 +17,19 @@ class ApplicationProgrammingInterface extends SecureDataTransferService
         //api/db/{query, add, delete, update}
         //api/activity/{query, add, delete, update}
         //api/user/{query, add, delete, update}
+        GraphQLService::run($request);
+    }
+    /**
+     * @param array $request
+     */
+    public function rapi(array $request): void
+    {
+        //api/db/query
+        //api/db/add
+        //api/db/delete
+        //api/db/update
         parent::api($request);
-    }//end api()
+    }
 
 
     /**
