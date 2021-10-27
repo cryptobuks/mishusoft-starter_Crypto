@@ -59,16 +59,15 @@ module.exports = (env) => {
           //compile webfonts
           test: /\.(ttf|otf|eot|svg|woff2?)$/,
           type: "asset/resource",
-          // generator: {
-          //   filename: "webfonts/[hash][ext][query]",
-          // },
         },
       ],
     },
     resolve: {
       // Add `.ts` and `.tsx` as a resolvable extension.
-      extensions: [".ts", ".tsx", ".js"],
+      extensions: [".tsx", ".ts", ".js"],
     },
+    // Add target
+    target: ["web", "browserslist"],
     plugins: [
       new webpack.ProgressPlugin(),
       new RemoveEmptyScriptsPlugin(),
@@ -101,12 +100,12 @@ module.exports = (env) => {
       // path: path.join(__dirname, "./storages/app/assets"), // The output directory as an absolute path.
       filename: "js/[name].js", // js/filename.js
       chunkFilename: "js/[name].runtime.bundle.js", // js/filename.runtime.bundle.js
-      hotUpdateChunkFilename: "js/[name].[fullhash].hot-update.js", // js/filename.[fullhash].runhot-update.js
+      // hotUpdateChunkFilename: "js/[name].[fullhash].hot-update.js", // js/filename.[fullhash].runhot-update.js
       assetModuleFilename: "webfonts/[name][ext]", // webfonts/filename.(ttf|oet|woff|woff2)
       // library: "MishusoftRuntime",
       scriptType: "module", // This option allows loading asynchronous chunks with a custom script type, such as <script type="module" ...>.
       clean: true, // Clean the output directory before emit.
-      iife: false, // Tells webpack to add IIFE wrapper around emitted code.
+      iife: true, // Tells webpack to add IIFE wrapper around emitted code.
       //module: true, // future version will be added
       strictModuleErrorHandling: true, //Handle error in module loading as per EcmaScript Modules spec at a performance cost.
     },
@@ -162,9 +161,14 @@ module.exports = (env) => {
     module: {
       rules: [
         {
-          test: /\.ts$/,
+          test: /\.tsx?$/,
           use: [
-            "ts-loader",
+            {
+              loader: "ts-loader",
+              options: {
+                transpileOnly: true,
+              },
+            },
             {
               loader: "webpack-preprocessor-loader",
               options: {
@@ -234,11 +238,11 @@ module.exports = (env) => {
       // Typescripts bundlers
 
       // Analyzers (browser and activity) framework
-      browser: "./Assets/typescripts/mishusoft/browser.ts",
-      monitor: "./Assets/typescripts/tracker.ts",
+      // browser: "./Assets/typescripts/mishusoft/browser.ts",
+      // monitor: "./Assets/typescripts/tracker.ts",
 
       // Worker (Web Service) framework
-      sw: "./Assets/typescripts/service-worker.ts" /*build serviceworker module for background mode support*/,
+      // sw: "./Assets/typescripts/service-worker.ts" /*build serviceworker module for background mode support*/,
 
       // Ui builders framework
       installer: "./Assets/typescripts/installer.ts",
