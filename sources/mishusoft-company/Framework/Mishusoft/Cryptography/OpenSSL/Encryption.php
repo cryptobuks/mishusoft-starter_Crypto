@@ -15,27 +15,25 @@ class Encryption extends OpenSSL
     public static function password(int $digit): string
     {
         // $data = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=`~[]{};\:"|",./<>?';
-        return substr(
-            str_shuffle(self::$alphanumerics),
-            0,
-            $digit
-        );
-    }//end password()
-
+        return substr(str_shuffle(self::$alphanumerics), 0, $digit);
+    }
 
     /**
      * Encrypt data dynamically.
      *
      * @param string $data String for encryption.
      * @param string $type Action filter.
-     * @return string Encrypted string.
+     *
+     * @return string|false Encrypted string.
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    public static function dynamic(string $data, string $type = 'advanced'): string
-    {
-        $result = '';
+    public static function dynamic(
+        string $data,
+        string $type = "advanced"
+    ): string|false {
+        $result = "";
 
-        if ($type === 'classic') {
+        if ($type === "classic") {
             // Encrypt the data using AES 256 encryption in CBC mode,
             // using our encryption key and initialization vector.
             $encrypted = openssl_encrypt(
@@ -47,10 +45,16 @@ class Encryption extends OpenSSL
             );
             // The $random is just as important as the key for decrypting,
             // so save it with our encrypted data.
-            $result = base64_encode($encrypted.':'.self::$waterMark.':'.self::getRandomNumber());
-        }//end if
+            $result = base64_encode(
+                $encrypted .
+                    ":" .
+                    self::$waterMark .
+                    ":" .
+                    self::getRandomNumber()
+            );
+        } //end if
 
-        if ($type === 'advanced') {
+        if ($type === "advanced") {
             // Encrypt the data using AES 256 encryption in CBC mode,
             // using our encryption key and initialization vector.
             $result = openssl_encrypt(
@@ -60,11 +64,10 @@ class Encryption extends OpenSSL
                 0,
                 self::getRandomNumber()
             );
-        }//end if
+        } //end if
 
         return $result;
-    }//end dynamic()
-
+    }
 
     /**
      * Encrypt data statically.
@@ -91,5 +94,5 @@ class Encryption extends OpenSSL
                 self::getRandomNumber()
             )
         );
-    }//end static()
-}//end class
+    } //end static()
+} //end class

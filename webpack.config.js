@@ -4,7 +4,7 @@
  * @package    MishusoftDevelopment
  * @subpackage webpack
  * @author     Al-Amin Ahamed <alamin.rohita@hotmail.com>
- * @copyright  2021 Al-Amin Ahamed (ABN 77 084 670 600)
+ * @copyright  2021 Al-Amin Ahamed
  **/
 
 const path = require("path");
@@ -15,13 +15,16 @@ const TerserJSPlugin = require("terser-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const RemoveEmptyScriptsPlugin = require("webpack-remove-empty-scripts");
 const FontPreloadPlugin = require("webpack-font-preload-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const webpack = require("webpack");
 
 module.exports = (env) => {
-  const sourceAssetsPath = path.join(__dirname, "./sources/Assets");
+  const sourceAssetsPath = path.resolve(__dirname, "./sources/Assets");
   const sourceImagesPath = path.join(sourceAssetsPath, "./media/images");
-  const storageAssetsPath = path.join(__dirname, "./storages/app/assets");
-  const frameworkViewPath = path.join(__dirname, "./storages/framework/views");
+  const storageAssetsPath = path.resolve(__dirname, "./storages/app/assets");
+  const frameworkViewPath = path.resolve(
+    __dirname,
+    "./storages/framework/views"
+  );
 
   // Default common configuration for all product
   const commonConfiguration = {
@@ -38,7 +41,7 @@ module.exports = (env) => {
             MiniCssExtractPlugin.loader,
             // Translates CSS into CommonJS.
             "css-loader",
-            // Load postcss.
+            // postcss Loader.
             "postcss-loader",
             // Compiles Sass to CSS.
             "sass-loader",
@@ -54,11 +57,11 @@ module.exports = (env) => {
         },
         {
           //compile webfonts
-          test: /\.(ttf|otf|eot|svg|woff|woff2)$/,
+          test: /\.(ttf|otf|eot|svg|woff2?)$/,
           type: "asset/resource",
-          generator: {
-            filename: "../webfonts/[name].[hash][ext][query]",
-          },
+          // generator: {
+          //   filename: "webfonts/[hash][ext][query]",
+          // },
         },
       ],
     },
@@ -66,9 +69,8 @@ module.exports = (env) => {
       // Add `.ts` and `.tsx` as a resolvable extension.
       extensions: [".ts", ".tsx", ".js"],
     },
-    //externals: 'lodash',
     plugins: [
-      new CleanWebpackPlugin(),
+      new webpack.ProgressPlugin(),
       new RemoveEmptyScriptsPlugin(),
       new MiniCssExtractPlugin({
         filename: "css/[name].css",
@@ -93,16 +95,20 @@ module.exports = (env) => {
   const commonFilesConfiguration = {
     entry: {
       // Runtime libraries
-      webfonts: "./Assets/sass/webfonts.scss",
       colors: "./Assets/sass/includes/common/colors.scss",
     },
     output: {
-      // path: path.join(__dirname, "./storages/app/assets"),
-      filename: "js/[name].js",
-      chunkFilename: "js/[id].runtime.bundle.js",
-      library: "MishusoftRuntime",
-      scriptType: "module",
-      clean: true,
+      // path: path.join(__dirname, "./storages/app/assets"), // The output directory as an absolute path.
+      filename: "js/[name].js", // js/filename.js
+      chunkFilename: "js/[name].runtime.bundle.js", // js/filename.runtime.bundle.js
+      hotUpdateChunkFilename: "js/[name].[fullhash].hot-update.js", // js/filename.[fullhash].runhot-update.js
+      assetModuleFilename: "webfonts/[name][ext]", // webfonts/filename.(ttf|oet|woff|woff2)
+      // library: "MishusoftRuntime",
+      scriptType: "module", // This option allows loading asynchronous chunks with a custom script type, such as <script type="module" ...>.
+      clean: true, // Clean the output directory before emit.
+      iife: false, // Tells webpack to add IIFE wrapper around emitted code.
+      //module: true, // future version will be added
+      strictModuleErrorHandling: true, //Handle error in module loading as per EcmaScript Modules spec at a performance cost.
     },
   };
 
@@ -136,7 +142,15 @@ module.exports = (env) => {
       ],
     },
     optimization: {
-      minimizer: [new TerserJSPlugin({}), new CssMinimizerPlugin()],
+      minimize: true,
+      minimizer: [
+        new TerserJSPlugin({
+          parallel: true,
+        }),
+        new CssMinimizerPlugin({
+          parallel: true,
+        }),
+      ],
     },
   };
 
@@ -175,11 +189,6 @@ module.exports = (env) => {
         patterns: [
           {
             /*copy webfont files from sources directory*/
-            from: path.join(storageAssetsPath, "../webfonts"),
-            to: path.join(storageAssetsPath, "./webfonts"),
-          },
-          {
-            /*copy webfont files from sources directory*/
             from: path.join(sourceAssetsPath, "./media"),
             to: path.join(storageAssetsPath, "../media"),
           },
@@ -208,11 +217,6 @@ module.exports = (env) => {
             from: path.join(sourceAssetsPath, "./media/logos"),
             to: path.join(frameworkViewPath, "./logos"),
           },
-          {
-            /*copy webfont files from sources directory*/
-            from: path.join(frameworkViewPath, "../webfonts"),
-            to: path.join(frameworkViewPath, "./webfonts"),
-          },
         ],
       }),
     ],
@@ -222,10 +226,10 @@ module.exports = (env) => {
   const applicationFilesConfiguration = {
     entry: {
       ...commonFilesConfiguration.entry,
-      /**
-       * Stylesheet for themes
-       */
-      "mishusoft-theme": "./Assets/sass/theme-mishusoft.scss",
+      // webfonts for application
+      webfonts: "./Assets/sass/webfonts.scss",
+      // Stylesheet for themes
+      "theme/mishusoft": "./Assets/sass/theme-mishusoft.scss",
 
       // Typescripts bundlers
 
@@ -257,7 +261,7 @@ module.exports = (env) => {
       loader: ["./Assets/typescripts/loader.ts", "./Assets/sass/loader.scss"],
     },
     output: {
-      path: path.join(__dirname, "./storages/app/assets"),
+      path: path.resolve(__dirname, "./storages/app/assets"),
       ...commonFilesConfiguration.output,
     },
   };
@@ -267,12 +271,12 @@ module.exports = (env) => {
     ...frameworkCommonConfiguration,
     entry: {
       ...commonFilesConfiguration.entry,
-      // Stylesheet for embedded application support
+      webfonts: "./Assets/sass/webfonts.framework.scss",
       embedded: "./Assets/sass/embedded.scss",
       resources: "./Assets/sass/resources.scss",
     },
     output: {
-      path: path.join(__dirname, "./storages/framework/views"),
+      path: path.resolve(__dirname, "./storages/framework/views"),
       ...commonFilesConfiguration.output,
     },
   };

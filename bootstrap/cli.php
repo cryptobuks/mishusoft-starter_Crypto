@@ -13,9 +13,9 @@
  */
 
 //Load pre defined constants
-require_once __DIR__ . '/constants.php';
-require_once __DIR__ . '/constants.configurable.php';
-require_once __DIR__ . '/functions.php';
+require_once __DIR__ . "/constants.php";
+require_once __DIR__ . "/constants.configurable.php";
+require_once __DIR__ . "/functions.php";
 
 //Load mishusoft framework
-require_once __DIR__ . '/autoload.php';
+require_once __DIR__ . "/autoload.php";

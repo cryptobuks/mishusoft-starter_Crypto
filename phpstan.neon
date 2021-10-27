@@ -1,4 +1,12 @@
 parameters:
-	level: 7
+	bootstrapFiles:
+		- bootstrap/app.php
+	tmpDir: tmp
 	paths:
-		- Sources
+		- sources
+		- bootstrap
+	fileExtensions:
+		- php
+		- module
+		- inc
+	level: 7
