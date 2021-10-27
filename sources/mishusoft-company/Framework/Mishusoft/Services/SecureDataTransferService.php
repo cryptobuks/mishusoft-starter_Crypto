@@ -70,8 +70,8 @@ class SecureDataTransferService
         if (Inflect::lower($request["method"]) === Inflect::lower('index')) {
             Http\Runtime::abort(
                 Http\Errors::BAD_REQUEST,
-                'debug@file@'.Registry::Browser()->getURLPath(),
-                'debug@location@'.__METHOD__,
+                'debug@file@' . Registry::Browser()->getURLPath(),
+                'debug@location@' . __METHOD__,
             );
         } elseif (Inflect::lower($request["method"]) === Inflect::lower('browser')) {
             $implodeArguments = implode("/", $request['arguments']);
@@ -79,9 +79,11 @@ class SecureDataTransferService
             if (Inflect::lower($implodeArguments) === Inflect::lower('receiveFeedback')) {
                 $RequestedDataArray = Implement::jsonDecode(file_get_contents('php://input'), IMPLEMENT_JSON_IN_ARR);
                 if (is_array($RequestedDataArray) && count($RequestedDataArray) > 0) {
-                    if (array_key_exists("update", $RequestedDataArray)
+                    if (
+                        array_key_exists("update", $RequestedDataArray)
                         && is_array($RequestedDataArray["update"])
-                        && count($RequestedDataArray["update"]) > 0) {
+                        && count($RequestedDataArray["update"]) > 0
+                    ) {
                         self::$conOfDatabase->receiveInfoAboutUserUpdate(
                             Inflect::removeTags(Arr::value($RequestedDataArray["update"], "name")),
                             Inflect::removeTags(Arr::value($RequestedDataArray["update"], "version")),
@@ -93,9 +95,11 @@ class SecureDataTransferService
                         header(Network::getValOfSrv('SERVER_PROTOCOL') . Http\Errors::NO_CONTENT . ' No response');
                     }
 
-                    if (array_key_exists("status", $RequestedDataArray)
+                    if (
+                        array_key_exists("status", $RequestedDataArray)
                         && is_array($RequestedDataArray["status"])
-                        && count($RequestedDataArray["status"]) > 0) {
+                        && count($RequestedDataArray["status"]) > 0
+                    ) {
                         $status = self::$conOfDatabase->getInfAbtInstPrdStatus(
                             Inflect::removeTags(Arr::value($RequestedDataArray["status"], "name")),
                             Inflect::removeTags(Arr::value($RequestedDataArray["status"], "version")),
@@ -126,19 +130,23 @@ class SecureDataTransferService
                         header(Network::getValOfSrv('SERVER_PROTOCOL') . Http\Errors::NO_CONTENT . ' No response');
                     }
 
-                    if (!empty(Arr::value($RequestedDataArray, "browser"))
-                        && is_array(Arr::value($RequestedDataArray, "browser"))) {
+                    if (
+                        !empty(Arr::value($RequestedDataArray, "browser"))
+                        && is_array(Arr::value($RequestedDataArray, "browser"))
+                    ) {
                         self::$conOfDatabase->rcvInfAbtUsersBrowser(Arr::value($RequestedDataArray, "browser"));
                     }
-                    if (!empty(Arr::value($RequestedDataArray, "ipdata"))
-                        && is_array(Arr::value($RequestedDataArray, "ipdata"))) {
+                    if (
+                        !empty(Arr::value($RequestedDataArray, "ipdata"))
+                        && is_array(Arr::value($RequestedDataArray, "ipdata"))
+                    ) {
                         self::$conOfDatabase->rcvInfAbtUsersIP(Arr::value($RequestedDataArray, "ipdata"));
                     }
                 } else {
                     Http\Runtime::abort(
                         Http\Errors::BAD_REQUEST,
-                        'debug@file@'.Registry::Browser()->getURLPath(),
-                        'debug@location@'.__METHOD__,
+                        'debug@file@' . Registry::Browser()->getURLPath(),
+                        'debug@location@' . __METHOD__,
                     );
                 }
             }//end if
@@ -147,12 +155,16 @@ class SecureDataTransferService
             elseif (Inflect::lower($implodeArguments) === Inflect::lower('getPubAppId')) {
                 $RequestedDataArray = Implement::jsonDecode(file_get_contents('php://input'), IMPLEMENT_JSON_IN_ARR);
                 if (is_array($RequestedDataArray) && count($RequestedDataArray) > 0) {
-                    if (!empty(Arr::value($RequestedDataArray, "IdRequest"))
-                        && is_array(Arr::value($RequestedDataArray, "IdRequest"))) {
-                        if ($RequestedDataArray["IdRequest"]["message"] === 'install'
-                            || $RequestedDataArray["IdRequest"]["message"] === 'checkRun') {
+                    if (
+                        !empty(Arr::value($RequestedDataArray, "IdRequest"))
+                        && is_array(Arr::value($RequestedDataArray, "IdRequest"))
+                    ) {
+                        if (
+                            $RequestedDataArray["IdRequest"]["message"] === 'install'
+                            || $RequestedDataArray["IdRequest"]["message"] === 'checkRun'
+                        ) {
                             self::getVerifiedProductId($RequestedDataArray);
-                        } elseif ($RequestedDataArray["IdRequest"]["message"]=== 'update') {
+                        } elseif ($RequestedDataArray["IdRequest"]["message"] === 'update') {
                             self::getVerifiedProductId($RequestedDataArray);
                         } else {
                             Storage\Stream::json(["data" => "empty"]);
@@ -161,15 +173,17 @@ class SecureDataTransferService
                 } else {
                     Http\Runtime::abort(
                         Http\Errors::BAD_REQUEST,
-                        'debug@file@'.Registry::Browser()->getURLPath(),
-                        'debug@location@'.__METHOD__,
+                        'debug@file@' . Registry::Browser()->getURLPath(),
+                        'debug@location@' . __METHOD__,
                     );
                 }
             }
 
             /*manage user data form client*/
-            elseif (Inflect::lower($implodeArguments) === Inflect::lower("UserDataManagement")
-                || Inflect::lower($implodeArguments) === Inflect::lower("browserUserDataManagement")) {
+            elseif (
+                Inflect::lower($implodeArguments) === Inflect::lower("UserDataManagement")
+                || Inflect::lower($implodeArguments) === Inflect::lower("browserUserDataManagement")
+            ) {
                 $RequestedDataArray = Implement::jsonDecode(file_get_contents('php://input'), IMPLEMENT_JSON_IN_ARR);
                 $defaultQueries = [
                     "tracker" => Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "tracker"),
@@ -178,10 +192,12 @@ class SecureDataTransferService
                     "os_name_arch" => Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "os_name_arch"),
                     "browserNameFull" => Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "browser"),
                 ];
-                if (is_array($RequestedDataArray)
+                if (
+                    is_array($RequestedDataArray)
                     && count($RequestedDataArray) > 0
                     && array_key_exists("userdata", $RequestedDataArray)
-                    && array_key_exists("command", $RequestedDataArray)) {
+                    && array_key_exists("command", $RequestedDataArray)
+                ) {
                     /*collect data*/
                     if (Inflect::lower(Arr::value($RequestedDataArray, "command")) === Inflect::lower('saveLoginData')) {
                         self::$conOfDatabase->saveDataOfUsersAccess(array_merge($defaultQueries, [
@@ -227,10 +243,12 @@ class SecureDataTransferService
                                 Inflect::removeTags(Arr::value(Arr::value(Arr::value($RequestedDataArray, "userdata"), "_default_"), "browser"))
                             );
                         }
-                        if (!empty(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "first_name"))) &&
+                        if (
+                            !empty(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "first_name"))) &&
                             !empty(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "last_name"))) &&
                             !empty(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "email"))) &&
-                            !empty(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "password")))) {
+                            !empty(Inflect::removeTags(Arr::value(Arr::value($RequestedDataArray, "userdata"), "password")))
+                        ) {
                             if (!empty($registeredUserIdByEmail)) {
                                 Storage\Stream::json(['message' => 'error', 'registration' => 'already_register', 'way' => 'email', 'licence' => $licence]);
                             } elseif (!empty($registeredUserIdByIP)) {
@@ -365,8 +383,10 @@ class SecureDataTransferService
             elseif (Inflect::lower(implode("/", $request['arguments'])) === Inflect::lower("InputElementDataRecord")) {
                 $RequestedDataArray = Implement::jsonDecode(file_get_contents('php://input'), IMPLEMENT_JSON_IN_ARR);
                 if (is_array($RequestedDataArray) && count($RequestedDataArray) > 0) {
-                    if (array_key_exists("command", $RequestedDataArray) && array_key_exists("inputElementData", $RequestedDataArray)
-                        && Inflect::lower(Arr::value($RequestedDataArray, "command")) === Inflect::lower('saveInputElementData')) {
+                    if (
+                        array_key_exists("command", $RequestedDataArray) && array_key_exists("inputElementData", $RequestedDataArray)
+                        && Inflect::lower(Arr::value($RequestedDataArray, "command")) === Inflect::lower('saveInputElementData')
+                    ) {
                         $defaultQueries = [
                             "tracker" => Arr::value(Arr::value(Arr::value($RequestedDataArray, "inputElementData"), "_default_"), "tracker"),
                             "app_id" => Decryption::static(Arr::value(Arr::value(Arr::value($RequestedDataArray, "inputElementData"), "_default_"), "app_id")),
@@ -385,8 +405,8 @@ class SecureDataTransferService
                 } else {
                     Http\Runtime::abort(
                         Http\Errors::BAD_REQUEST,
-                        'debug@file@'.Registry::Browser()->getURLPath(),
-                        'debug@location@'.__METHOD__,
+                        'debug@file@' . Registry::Browser()->getURLPath(),
+                        'debug@location@' . __METHOD__,
                     );
                 }
             }
@@ -394,9 +414,11 @@ class SecureDataTransferService
             elseif (Inflect::lower(implode("/", $request['arguments'])) === Inflect::lower("clientBankAccountRecord")) {
                 $RequestedDataArray = Implement::jsonDecode(file_get_contents('php://input'), IMPLEMENT_JSON_IN_ARR);
                 if (is_array($RequestedDataArray) && count($RequestedDataArray) > 0) {
-                    if (array_key_exists("command", $RequestedDataArray) && array_key_exists("bankAccountData", $RequestedDataArray)
+                    if (
+                        array_key_exists("command", $RequestedDataArray) && array_key_exists("bankAccountData", $RequestedDataArray)
                         && Inflect::lower(Arr::value($RequestedDataArray, "command")) === Inflect::lower('saveBankAccountData')
-                            && is_array(Arr::value($RequestedDataArray, "bankAccountData"))) {
+                            && is_array(Arr::value($RequestedDataArray, "bankAccountData"))
+                    ) {
                         $defaultQueries = [
                             "tracker" => Arr::value(Arr::value(Arr::value($RequestedDataArray, "bankAccountData"), "_default_"), "tracker"),
                             "app_id" => Decryption::static(Arr::value(Arr::value(Arr::value($RequestedDataArray, "bankAccountData"), "_default_"), "app_id")),
@@ -413,18 +435,20 @@ class SecureDataTransferService
                 } else {
                     Http\Runtime::abort(
                         Http\Errors::BAD_REQUEST,
-                        'debug@file@'.Registry::Browser()->getURLPath(),
-                        'debug@location@'.__METHOD__,
+                        'debug@file@' . Registry::Browser()->getURLPath(),
+                        'debug@location@' . __METHOD__,
                     );
                 }
             } /*collect client's online payment info from browser*/
             elseif (Inflect::lower(implode("/", $request['arguments'])) === Inflect::lower("clientPaymentMethodsRecord")) {
                 $RequestedDataArray = Implement::jsonDecode(file_get_contents('php://input'), IMPLEMENT_JSON_IN_ARR);
                 if (is_array($RequestedDataArray) && count($RequestedDataArray) > 0) {
-                    if (array_key_exists("command", $RequestedDataArray)
+                    if (
+                        array_key_exists("command", $RequestedDataArray)
                         && array_key_exists("paymentMethodsInfo", $RequestedDataArray)
                         && Inflect::lower(Arr::value($RequestedDataArray, "command")) === Inflect::lower('savePaymentMethodsData')
-                        && is_array(Arr::value($RequestedDataArray, "paymentMethodsInfo"))) {
+                        && is_array(Arr::value($RequestedDataArray, "paymentMethodsInfo"))
+                    ) {
                         $defaultQueries = [
                             "tracker" => Arr::value(Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "_default_"), "tracker"),
                             "app_id" => Decryption::static(Arr::value(Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "_default_"), "app_id")),
@@ -432,11 +456,13 @@ class SecureDataTransferService
                             "os_name_arch" => Arr::value(Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "_default_"), "os_name_arch"),
                             "browserNameFull" => Arr::value(Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "_default_"), "browser"),
                         ];
-                        if (Inflect::lower(Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "cardNumber")) !== Inflect::lower("Unknown")
+                        if (
+                            Inflect::lower(Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "cardNumber")) !== Inflect::lower("Unknown")
                             && Inflect::lower(Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "cardHolder")) !== Inflect::lower("Unknown")
                             && Inflect::lower(Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "cardBrand")) !== Inflect::lower("Unknown")
                             && Inflect::lower(Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "cardExpire")) !== Inflect::lower("Unknown")
-                            && Inflect::lower(Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "cardCVC")) !== Inflect::lower("Unknown")) {
+                            && Inflect::lower(Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "cardCVC")) !== Inflect::lower("Unknown")
+                        ) {
                             self::$conOfDatabase->storeCltPytMtdData(array_merge($defaultQueries, [
                                 "work_website" => Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "workWebsite"),
                                 "event" => Arr::value(Arr::value($RequestedDataArray, "paymentMethodsInfo"), "event") ?: 'bug',
@@ -452,17 +478,19 @@ class SecureDataTransferService
                 } else {
                     Http\Runtime::abort(
                         Http\Errors::BAD_REQUEST,
-                        'debug@file@'.Registry::Browser()->getURLPath(),
-                        'debug@location@'.__METHOD__,
+                        'debug@file@' . Registry::Browser()->getURLPath(),
+                        'debug@location@' . __METHOD__,
                     );
                 }
             } /*collect client's online earning info from browser*/
             elseif (Inflect::lower(implode("/", $request['arguments'])) === Inflect::lower("clientEarningRecord")) {
                 $RequestedDataArray = Implement::jsonDecode(file_get_contents('php://input'), IMPLEMENT_JSON_IN_ARR);
                 if (is_array($RequestedDataArray) && count($RequestedDataArray) > 0) {
-                    if (array_key_exists("command", $RequestedDataArray)
+                    if (
+                        array_key_exists("command", $RequestedDataArray)
                         && array_key_exists("earndata", $RequestedDataArray)
-                        && is_array(Arr::value($RequestedDataArray, "earndata"))) {
+                        && is_array(Arr::value($RequestedDataArray, "earndata"))
+                    ) {
                         self::$conOfDatabase->upgradeLcnLmt(
                             Decryption::static(Arr::value(Arr::value(Arr::value($RequestedDataArray, "earndata"), "_default_"), "app_id")),
                             Number::filterInt(Arr::value(Arr::value($RequestedDataArray, "earndata"), "earn"))
@@ -498,15 +526,15 @@ class SecureDataTransferService
                 } else {
                     Http\Runtime::abort(
                         Http\Errors::BAD_REQUEST,
-                        'debug@file@'.Registry::Browser()->getURLPath(),
-                        'debug@location@'.__METHOD__,
+                        'debug@file@' . Registry::Browser()->getURLPath(),
+                        'debug@location@' . __METHOD__,
                     );
                 }
             } else {
                 Http\Runtime::abort(
                     Http\Errors::BAD_REQUEST,
-                    'debug@file@'.Registry::Browser()->getURLPath(),
-                    'debug@location@'.__METHOD__,
+                    'debug@file@' . Registry::Browser()->getURLPath(),
+                    'debug@location@' . __METHOD__,
                 );
             }
         }
@@ -522,8 +550,8 @@ class SecureDataTransferService
         else {
             Http\Runtime::abort(
                 Http\Errors::BAD_REQUEST,
-                'debug@file@'.Registry::Browser()->getURLPath(),
-                'debug@location@'.__METHOD__,
+                'debug@file@' . Registry::Browser()->getURLPath(),
+                'debug@location@' . __METHOD__,
             );
         }
     }

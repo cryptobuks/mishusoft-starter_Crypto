@@ -4,6 +4,7 @@
   "class": "ApplicationProgrammingInterface",
   "route": [
     "api",
+    "rapi",
     "monitor"
   ]
 }
