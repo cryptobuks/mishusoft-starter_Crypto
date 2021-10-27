@@ -50,7 +50,6 @@
     "lighthouse": "CHROME_PATH=/usr/bin/vivaldi-stable lighthouse --quiet --no-update-notifier --no-enable-error-reporting --output=json --chrome-flags=\"--headless\" http://localhost",
     "src:backup": "node ./sources/Utils/backup-src",
     "src:zip": "node ./sources/Utils/zip-src",
-    "remove:webfonts": "rm -rvf ./storages/app/webfonts",
     "remove:framework": "rm -rvf ./Framework",
     "packages:outdated": "npm outdated",
     "packages:upgrade": "npx npm-check-updates -u --timeout 100000 && npm install && composer update"
