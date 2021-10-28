@@ -19,41 +19,47 @@ class FileSystem
      * @param null $context
      * @return boolean
      */
-    public static function copy(string $fromDestination, string $toDestination, $context = null): bool
-    {
+    public static function copy(
+        string $fromDestination,
+        string $toDestination,
+        $context = null
+    ): bool {
         return copy($fromDestination, $toDestination, $context);
-    }//end exec()
+    } //end exec()
 
     /**
-         * @param string $fromDestination
-         * @param string $toDestination
-         * @param null $context
-         * @return boolean
-         */
-    public static function rename(string $fromDestination, string $toDestination, $context = null): bool
-    {
+     * @param string $fromDestination
+     * @param string $toDestination
+     * @param null $context
+     * @return boolean
+     */
+    public static function rename(
+        string $fromDestination,
+        string $toDestination,
+        $context = null
+    ): bool {
         return rename($fromDestination, $toDestination, $context);
-    }//end copy()
+    } //end copy()
 
     /**
-         * @param string $dirname
-         * @return false
-         */
+     * @param string $dirname
+     * @return false
+     */
     public static function isDirectory(string $dirname): bool
     {
         return is_dir($dirname);
-    }//end rename()
+    } //end rename()
 
     /**
-         * @param string $file
-         * @param string $delimiter
-         * @return array
-         */
+     * @param string $file
+     * @param string $delimiter
+     * @return array
+     */
     public static function readCsvFile(string $file, string $delimiter): array
     {
         $data = [];
         if (self::isExists($file) === true) {
-            if (($handle = fopen($file, 'rb')) === false) {
+            if (($handle = fopen($file, "rb")) === false) {
                 Log::info('Can"t open the file.');
             }
 
@@ -68,46 +74,50 @@ class FileSystem
         }
 
         return $data;
-    }//end isFileExists()
+    } //end isFileExists()
 
     /**
-         * @param string $filename
-         * @return bool
-         */
+     * @param string $filename
+     * @return bool
+     */
     public static function isExists(string $filename): bool
     {
         return file_exists($filename);
-    }//end isDirectory()
+    } //end isDirectory()
 
     /**
-         * @param string $filename
-         * @param string $content
-         * @return false|integer
-         */
-    public static function saveToFile(string $filename, string $content): bool|int
-    {
+     * @param string $filename
+     * @param string $content
+     * @return false|integer
+     */
+    public static function saveToFile(
+        string $filename,
+        string $content
+    ): bool|int {
         return file_put_contents($filename, $content);
-    }//end csvtojson()
+    } //end csvtojson()
 
     /**
-         * @param string $filename
-         * @param Closure $callback
-         * @return bool|null
-         * @throws ErrorException
-         */
-    public static function readFromFile(string $filename, Closure $callback): ?bool
-    {
+     * @param string $filename
+     * @param Closure $callback
+     * @return bool|null
+     * @throws ErrorException
+     */
+    public static function readFromFile(
+        string $filename,
+        Closure $callback
+    ): ?bool {
         if (self::isReadable($filename) === true) {
             return $callback(file_get_contents($filename));
         }
 
-        throw new ErrorException($filename . ' not readable');
-    }//end saveToFile()
+        throw new ErrorException($filename . " not readable");
+    } //end saveToFile()
 
     /**
-         * @param string $filename
-         * @return boolean
-         */
+     * @param string $filename
+     * @return boolean
+     */
     public static function isReadable(string $filename): bool
     {
         if (self::isExists($filename) === true) {
@@ -115,13 +125,13 @@ class FileSystem
         }
 
         return false;
-    }//end readFromFile()
+    } //end readFromFile()
 
     /**
-         * @param string $destination
-         * @param integer $mode
-         * @return bool
-         */
+     * @param string $destination
+     * @param integer $mode
+     * @return bool
+     */
     public static function chmod(string $destination, int $mode): bool
     {
         /*
@@ -132,15 +142,18 @@ class FileSystem
          * */
 
         return @chmod($destination, $mode);
-    }//end isReadable()
+    } //end isReadable()
 
     /**
-         * @param string $path
-         * @param integer $fileMode
-         * @param integer $dirMde
-         */
-    public static function chmodR(string $path, int $fileMode, int $dirMde): void
-    {
+     * @param string $path
+     * @param integer $fileMode
+     * @param integer $dirMde
+     */
+    public static function chmodR(
+        string $path,
+        int $fileMode,
+        int $dirMde
+    ): void {
         if (is_dir($path) === true) {
             if (chmod($path, $dirMde) === false) {
                 $dirMode = decoct($dirMde);
@@ -151,9 +164,9 @@ class FileSystem
 
             $dh = opendir($path);
             while (($file = readdir($dh)) !== false) {
-                if ($file !== '.' && $file !== '..') {
+                if ($file !== "." && $file !== "..") {
                     // Skip self and parent pointing directories.
-                    $fullPath = $path . '/' . $file;
+                    $fullPath = $path . "/" . $file;
                     self::chmodR($fullPath, $fileMode, $dirMde);
                 }
             }
@@ -169,26 +182,26 @@ class FileSystem
                 $file_mode = decoct($fileMode);
                 print "Failed applying file mode '$file_mode' on file '$path'\n";
             }
-        }//end if
-    }//end chmod()
+        } //end if
+    } //end chmod()
 
-/**
+    /**
      * @param string $filename
      * @return bool
      */
     public static function createFile(string $filename): bool
     {
         if (is_writable(dirname($filename)) === true) {
-            return fopen($filename, 'wb+');
+            return fopen($filename, "wb+");
         }
 
         return false;
-    }//end chmodR()
+    } //end chmodR()
 
     /**
-         * @param string $filename
-         * @return boolean
-         */
+     * @param string $filename
+     * @return boolean
+     */
     public static function isWriteable(string $filename): bool
     {
         if (file_exists($filename) === true) {
@@ -196,12 +209,12 @@ class FileSystem
         }
 
         return false;
-    }//end createFile()
+    } //end createFile()
 
     /**
-         * @param array|string $filename
-         * @return bool
-         */
+     * @param array|string $filename
+     * @return bool
+     */
     public static function remove(array|string $filename): bool
     {
         if (is_array($filename) === true) {
@@ -214,24 +227,24 @@ class FileSystem
             return true;
         }
 
-        if ((is_string($filename) === true) && is_writable($filename) === true) {
+        if (is_string($filename) === true && is_writable($filename) === true) {
             self::delete($filename);
             return true;
         }
 
         return false;
-    }//end isWriteable()
+    } //end isWriteable()
 
     /**
-         * Php delete function that deals with directories recursively.
-         *
-         * @param string $target
-         */
+     * Php delete function that deals with directories recursively.
+     *
+     * @param string $target
+     */
     public static function delete(string $target): void
     {
         if (is_dir($target) === true) {
             // GLOB_MARK adds a slash to directories returned.
-            $files = glob($target . '*', GLOB_MARK);
+            $files = glob($target . "*", GLOB_MARK);
             foreach ($files as $file) {
                 self::delete($file);
             }
@@ -244,12 +257,12 @@ class FileSystem
         if (is_file($target) === true) {
             unlink($target);
         }
-    }//end remove()
+    } //end remove()
 
     /**
-         * @param array|string $directory
-         * @throws RuntimeException
-         */
+     * @param array|string $directory
+     * @throws RuntimeException
+     */
     public static function directoryCreate(array|string $directory): void
     {
         if (is_array($directory) === true) {
@@ -257,7 +270,9 @@ class FileSystem
                 if (is_writable(self::realpath(dirname($file))) === true) {
                     self::makeDirectory($file);
                 } else {
-                    throw new RuntimeException('Permission denied. ' . $file . ' creation failed');
+                    throw new RuntimeException(
+                        "Permission denied. " . $file . " creation failed"
+                    );
                 }
             }
         }
@@ -266,61 +281,73 @@ class FileSystem
             if (is_writable(self::realpath(dirname($directory))) === true) {
                 self::makeDirectory($directory);
             } else {
-                throw new RuntimeException('Permission denied. ' . $directory . ' creation failed');
+                throw new RuntimeException(
+                    "Permission denied. " . $directory . " creation failed"
+                );
             }
         }
-    }//end delete()
+    } //end delete()
 
     /**
-         * Returns canonicalized absolute pathname
-         *
-         * @link   https://php.net/manual/en/function.realpath.php
-         * @param string $path <p>
-         * The path being checked.
-         * </p>
-         * @return string|false the canonicalized absolute pathname on success. The resulting path
-         * will have no symbolic link, '/./' or '/../' components.
-         * </p>
-         * <p>
-         * realpath returns false on failure, e.g. if
-         * the file does not exist.
-         */
+     * Returns canonicalized absolute pathname
+     *
+     * @link   https://php.net/manual/en/function.realpath.php
+     * @param string $path <p>
+     * The path being checked.
+     * </p>
+     * @return string|false the canonicalized absolute pathname on success. The resulting path
+     * will have no symbolic link, '/./' or '/../' components.
+     * </p>
+     * <p>
+     * realpath returns false on failure, e.g. if
+     * the file does not exist.
+     */
     public static function realpath(string $path): bool|string
     {
         if (file_exists($path) === true) {
             return realpath($path);
         }
 
-        $currentDirectory = realpath('./');
-        return str_replace('./', $currentDirectory . '/', $path);
-    }//end directoryCreate()
+        $currentDirectory = realpath("./");
+        return str_replace("./", $currentDirectory . "/", $path);
+    } //end directoryCreate()
 
     /**
-         * @param string $directory
-         * @param integer $permissions
-         * @param boolean $recursive
-         * @throws RuntimeException
-         */
-    public static function makeDirectory(string $directory, int $permissions = 0777, bool $recursive = true): void
-    {
+     * @param string $directory
+     * @param integer $permissions
+     * @param boolean $recursive
+     * @throws RuntimeException
+     */
+    public static function makeDirectory(
+        string $directory,
+        int $permissions = 0777,
+        bool $recursive = true
+    ): void {
         if (file_exists($directory) === false) {
-            if (mkdir($directory, $permissions, $recursive) === false && is_dir($directory) === false) {
-                throw new RuntimeException(sprintf('Directory "%s" was not created', $directory));
+            if (
+                mkdir($directory, $permissions, $recursive) === false &&
+                is_dir($directory) === false
+            ) {
+                throw new RuntimeException(
+                    sprintf('Directory "%s" was not created', $directory)
+                );
             }
 
             self::exec($directory);
         }
-    }//end createDirectory()
+    } //end createDirectory()
 
     /**
-         * @param string $filename
-         * @throws RuntimeException
-         */
+     * @param string $filename
+     * @throws RuntimeException
+     */
     public static function exec(string $filename): void
     {
         //if (exec(sprintf('chmod -R 777 %s', $filename)) === false) {
         if (chmod($filename, 0777) === false) {
-            throw new RuntimeException(sprintf('Unable to change permission of "%s"', $filename));
+            throw new RuntimeException(
+                sprintf('Unable to change permission of "%s"', $filename)
+            );
         }
     }
 
@@ -329,76 +356,98 @@ class FileSystem
      */
     public static function check(string $file, \Closure $closure): void
     {
-        Log::info(sprintf('Check %s file existent.', $file));
+        Log::info(sprintf("Check %s file existent.", $file));
         if (file_exists($file) === false) {
-            Log::info(sprintf('Check failed. %s file not exists', $file));
-            Log::info(sprintf('Creating new %s file', $file));
+            Log::info(sprintf("Check failed. %s file not exists", $file));
+            Log::info(sprintf("Creating new %s file", $file));
             $closure($file);
         } else {
             $installContent = FileSystem\Yaml::parseFile($file);
             Log::info(sprintf('Check %s file\'s content length', $file));
             if (count($installContent) === 0) {
-                Log::info(sprintf('The content of %s file is empty', $file));
-                Log::info(sprintf('Creating new %s file', $file));
+                Log::info(sprintf("The content of %s file is empty", $file));
+                Log::info(sprintf("Creating new %s file", $file));
                 $closure($file);
             }
         }
-        Log::info(sprintf('End checking if %s file exists.', $file));
+        Log::info(sprintf("End checking if %s file exists.", $file));
     }
 
     public static function permission(string $pathname): bool|int
     {
         return fileperms($pathname);
-    }//end list()
+    } //end list()
 
     /**
-         * @param string $directoryPath
-         * @param string $filter
-         * @return boolean|array
-         * @throws RuntimeException
-         */
-    public static function list(string $directoryPath, string $filter = 'both'): bool|array
-    {
+     * @param string $directoryPath
+     * @param string $filter
+     * @return boolean|array
+     * @throws RuntimeException
+     */
+    public static function list(
+        string $directoryPath,
+        string $filter = "both"
+    ): bool|array {
         $files = scandir($directoryPath);
 
         foreach ($files as $id => $file) {
-            if ($file === '.' || $file === '..') {
+            if ($file === "." || $file === "..") {
                 unset($files[$id]);
             }
 
-            if (($filter === 'directory') && is_file($directoryPath . '/' . $file) === true) {
+            if (
+                $filter === "directory" &&
+                is_file($directoryPath . "/" . $file) === true
+            ) {
                 unset($files[$id]);
             }
 
-            if (($filter === 'file') && is_dir($directoryPath . '/' . $file) === true) {
+            if (
+                $filter === "file" &&
+                is_dir($directoryPath . "/" . $file) === true
+            ) {
                 unset($files[$id]);
             }
 
-            if ($filter !== 'both' && $filter !== 'directory' && $filter !== 'file') {
-                throw new RuntimeException('$filter=' . $filter . ' not determined. Unknown $filter found.');
+            if (
+                $filter !== "both" &&
+                $filter !== "directory" &&
+                $filter !== "file"
+            ) {
+                throw new RuntimeException(
+                    '$filter=' .
+                        $filter .
+                        ' not determined. Unknown $filter found.'
+                );
             }
         }
 
         array_multisort($files, SORT_ASC);
         ksort($files, SORT_ASC);
         return $files;
-    }//end read()
+    } //end read()
 
     /**
-         * @param string $filename
-         * @param array $contents
-         * @param integer|null $length
-         * @return false|integer
-         */
-    public static function write(string $filename, array $contents, int|null $length = null): false|int
-    {
-        $createdFile = fopen($filename, 'wb+');
-        $isWritten = fwrite($createdFile, Implement::toJson($contents), $length);
+     * @param string $filename
+     * @param array $contents
+     * @param integer|null $length
+     * @return false|integer
+     */
+    public static function write(
+        string $filename,
+        array $contents,
+        int|null $length = null
+    ): false|int {
+        $createdFile = fopen($filename, "wb+");
+        $isWritten = fwrite(
+            $createdFile,
+            Implement::toJson($contents),
+            $length
+        );
         fclose($createdFile);
 
         return $isWritten;
-    }//end write()
-
+    } //end write()
 
     /**
      * @param string $filename
@@ -408,17 +457,17 @@ class FileSystem
     public static function append(string $filename, string $content): void
     {
         // Opens file in append mode.
-        $fp = fopen($filename, 'ab+');
+        $fp = fopen($filename, "ab+");
         self::exec($filename);
         fwrite($fp, $content);
         fclose($fp);
-    }//end append()
+    } //end append()
 
     /**
-         * @param string $path
-         * @param string $filter
-         * @return string|array
-         */
+     * @param string $path
+     * @param string $filter
+     * @return string|array
+     */
     public static function file(string $path, string $filter): string|array
     {
         // echo pathinfo($path, PATHINFO_FILENAME);
@@ -427,49 +476,49 @@ class FileSystem
         // echo pathinfo($path, PATHINFO_DIRNAME);
         // echo pathinfo($path, PATHINFO_EXTENSION);
         return match (strtolower($filter)) {
-            'name' => self::fileName($path),
-            'base' => self::fileBase($path),
-            'directory' => self::fileDirectory($path),
-            'extension' => self::fileExt($path),
-            default => self::fileInfo($path),
+            "name" => self::fileName($path),
+            "base" => self::fileBase($path),
+            "directory" => self::fileDirectory($path),
+            "extension" => self::fileExt($path),
+            default => self::fileInfo($path)
         };
-    }//end realpath()
+    } //end realpath()
 
     /**
-         * @param string $path
-         * @return string
-         */
+     * @param string $path
+     * @return string
+     */
     public static function fileName(string $path): string
     {
         return pathinfo($path, PATHINFO_FILENAME);
-    }//end file()
+    } //end file()
 
     /**
-         * @param string $path
-         * @return string
-         */
+     * @param string $path
+     * @return string
+     */
     public static function fileBase(string $path): string
     {
         return pathinfo($path, PATHINFO_BASENAME);
-    }//end fileInfo()
+    } //end fileInfo()
 
     /**
-         * @param string $path
-         * @return string
-         */
+     * @param string $path
+     * @return string
+     */
     public static function fileDirectory(string $path): string
     {
         return pathinfo($path, PATHINFO_DIRNAME);
-    }//end fileName()
+    } //end fileName()
 
     /**
-         * @param string $path
-         * @return string
-         */
+     * @param string $path
+     * @return string
+     */
     public static function fileExt(string $path): string
     {
         return pathinfo($path, PATHINFO_EXTENSION);
-    }//end getFileType()
+    } //end getFileType()
 
     /**
      * @param string $path
@@ -478,7 +527,7 @@ class FileSystem
     public static function fileInfo(string $path): array
     {
         return pathinfo($path, PATHINFO_ALL);
-    }//end getOriginalNameOfFile()
+    } //end getOriginalNameOfFile()
 
     /**
      * @param string $filename
@@ -487,7 +536,7 @@ class FileSystem
     public static function fileType(string $filename): string|false
     {
         return filetype($filename);
-    }//end fileBase()
+    } //end fileBase()
 
     /**
      * @param string $filename
@@ -496,17 +545,17 @@ class FileSystem
     public static function fileOriginalName(string $filename): string
     {
         return basename($filename);
-    }//end fileDirectory()
+    } //end fileDirectory()
 
     public static function lastModifiedAt(string $path): int
     {
         return filemtime($path);
-    }//end fileExt()
+    } //end fileExt()
 
     /**
-         * @param string $filename
-         * @return string
-         */
+     * @param string $filename
+     * @return string
+     */
     public static function fileSize(string $filename): string
     {
         $size = filesize($filename);
@@ -515,14 +564,25 @@ class FileSystem
         }
 
         if ($size < 1048576) {
-            return (Number::format((filesize($filename) / 1024), 2, '.', '') . ' kb');
+            return Number::format(filesize($filename) / 1024, 2, ".", "") .
+                " kb";
         }
 
         if ($size < 1073741824) {
-            return ((Number::format(((filesize($filename) / 1024) / 1024), 2, '.', '') . ' mb'));
+            return Number::format(
+                filesize($filename) / 1024 / 1024,
+                2,
+                ".",
+                ""
+            ) . " mb";
         }
 
-        return ((Number::format((((filesize($filename) / 1024) / 1024) / 1024), 2, '.', '') . ' gb'));
+        return Number::format(
+            filesize($filename) / 1024 / 1024 / 1024,
+            2,
+            ".",
+            ""
+        ) . " gb";
     }
 
     /**
@@ -531,12 +591,12 @@ class FileSystem
     public static function readAssets(string $path): bool|string
     {
         return self::read(Storage::assetsFullPath($path));
-    }//end getFileSize()
+    }
 
     /**
-         * @param string $filename
-         * @return string|boolean
-         */
+     * @param string $filename
+     * @return string|boolean
+     */
     public static function read(string $filename): string|bool
     {
         return file_get_contents($filename);
@@ -558,13 +618,15 @@ class FileSystem
      * @throws RuntimeException
      * @throws RuntimeException\NotFoundException
      */
-    public static function readAssetsWebFonts(string $path, string $controller): bool|string
-    {
+    public static function readAssetsWebFonts(
+        string $path,
+        string $controller
+    ): bool|string {
         $content = self::read(Storage::assetsFullPath($path));
-        $route = ($controller === 'framework') ? 'framework' : 'assets';
+        $route = $controller === "framework" ? "framework" : "assets";
         if (is_string($content)) {
             $content = str_replace(
-                '../../webfonts',
+                "../../webfonts",
                 sprintf('%1$s/%2$s/webfonts', Runtime::hostUrl(), $route),
                 $content
             );
@@ -572,11 +634,10 @@ class FileSystem
         return $content;
     }
 
-
     /**
      * Destruct class.
      */
     public function __destruct()
     {
-    }//end __destruct()
-}//end class
+    } //end __destruct()
+} //end class

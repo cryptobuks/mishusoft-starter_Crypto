@@ -1,9 +1,0 @@
-@font-face {
-  font-display: swap;
-  font-family: "Saira Stencil One";
-  font-style: normal;
-  font-weight: 400;
-  src: local("Saira Stencil One"), local("Saira Stencil One"), url("../webfonts/SairaStencilOne/SairaStencilOne-Regular.eot"), url("../webfonts/SairaStencilOne/SairaStencilOne-Regular.eot?#iefix") format("embedded-opentype"), url("../webfonts/SairaStencilOne/SairaStencilOne-Regular.woff2") format("woff2"), url("../webfonts/SairaStencilOne/SairaStencilOne-Regular.woff") format("woff"), url("../webfonts/SairaStencilOne/SairaStencilOne-Regular.ttf") format("truetype"), url("../webfonts/SairaStencilOne/SairaStencilOne-Regular.svg#SairaStencilOne-Regular") format("svg");
-}
-
-/*# sourceMappingURL=webfonts.framework.css.map */

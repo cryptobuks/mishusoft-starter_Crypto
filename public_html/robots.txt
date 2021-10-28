@@ -1,4 +1,5 @@
 User-Agent: *
-Allow: /libraries/
-Allow: /sitemap
-Sitemap: https://www.mishusoft.com/company/sitemap
+Allow: /assets/
+Allow: /media/
+Allow: /about/sitemap
+Sitemap: https://www.mishusoft.com/about/sitemap

@@ -117,18 +117,22 @@ class WebResourceDelivery
         $stylesheets = [
             ["type" => "text/css", "text" => read_asset("css/loader.css")],
             ["type" => "text/css", "text" => read_asset("css/colors.css")],
-            ["type" => "text/css", "text" => read_asset("css/webfonts.css")],
+            // ["type" => "text/css", "text" => read_asset("css/webfonts.css")],
             [
                 "type" => "text/css",
                 "text" => read_asset_framework("css/resources.css"),
             ],
             [
                 "type" => "text/css",
-                "text" => read_asset("css/theme/mishusoft.css"),
+                "text" => read_asset("css/themes/mishusoft.css"),
             ],
-            ["type" => "text/css", "text" => read_asset("css/framework.css")],
+            [
+                "type" => "text/css",
+                "text" => read_asset("css/framework/current.css"),
+            ],
         ];
 
+        preload("style", "webfonts/saira-stencil-one.css");
         Ui::elementList(Ui::getDocumentHeadElement(), [
             "link" => [
                 ["id" => "mishusoft-web-root", "content" => Runtime::hostUrl()],
@@ -161,13 +165,15 @@ class WebResourceDelivery
                 "protect mishusoft-logo mishusoft-root-link mishusoft-root-link-primary animate",
             "href" => uri("default_home"),
         ]);
+
+        preload("image", "logos/default/favicon-32x32.png");
+        preload("image", "logos/mishusoft-logo-lite.webp");
         Ui::element($header_logo_zone, "img", [
             "src" => media_path("logos/mishusoft-logo-lite.webp", true),
             "class" => " box-shadow1",
             "height" => "50px",
             "width" => "50px",
             "alt" => "m",
-            "rel" => "preload",
         ]);
         Ui::text($header_logo_zone, $controller);
 
@@ -532,16 +538,29 @@ class WebResourceDelivery
 
         //redirect actual url if controller is webfonts
         if ($controller === "webfonts") {
-            Runtime::redirect(sprintf('assets/webfonts/%1$s', $method));
+            if (!is_string($arguments) && count($arguments) > 0) {
+                redirect(
+                    sprintf(
+                        'assets/webfonts/%1$s/%2$s',
+                        $method,
+                        implode("/", $arguments)
+                    )
+                );
+            }
+            redirect(sprintf('assets/webfonts/%1$s', $method));
         }
 
         if (
             $method === "webfonts" &&
             !in_array($controller, ["assets", "framework"], true)
         ) {
-            Runtime::redirect(
-                sprintf('assets/webfonts/%1$s', implode(DS, $arguments))
-            );
+            if (!is_string($arguments)) {
+                redirect(
+                    sprintf('assets/webfonts/%1$s', implode("/", $arguments))
+                );
+            } else {
+                redirect(sprintf('assets/webfonts/%1$s', $arguments));
+            }
         }
 
         //http://host/directory/sub/filenameOrsub
@@ -650,7 +669,7 @@ class WebResourceDelivery
 
             switch (Utility\Inflect::lower($method)) {
                 case $this->defaultDirectoryIndex:
-                    Runtime::redirect("assets");
+                    redirect("assets");
                     break;
 
                 case "json":
@@ -674,18 +693,18 @@ class WebResourceDelivery
                     break;
 
                 case "logos":
+                    $fileAbsoluteName = is_string($arguments)
+                        ? $arguments
+                        : end($arguments);
                     if (
                         file_exists(
-                            Storage::logosDefaultPath() . end($arguments)
+                            logos_path_default() . $fileAbsoluteName
                         ) === true
                     ) {
-                        Storage\Stream::file(
-                            Storage::logoFullPath(end($arguments))
-                        );
-                    } elseif (str_contains(end($arguments), "-") === true) {
-                        $filename = end($arguments);
-                        $ext = pathinfo(end($arguments), PATHINFO_EXTENSION);
-                        $explode = explode("-", end($arguments));
+                        stream_file(logos_path($fileAbsoluteName));
+                    } elseif (str_contains($fileAbsoluteName, "-") === true) {
+                        $ext = pathinfo($fileAbsoluteName, PATHINFO_EXTENSION);
+                        $explode = explode("-", $fileAbsoluteName);
                         $expected = array_pop($explode);
 
                         if (preg_match("[." . $ext . "]", $expected)) {
@@ -707,7 +726,8 @@ class WebResourceDelivery
                                         ),
                                         (int) $width,
                                         (int) $height,
-                                        Storage::logosDefaultPath() . $filename
+                                        Storage::logosDefaultPath() .
+                                            $fileAbsoluteName
                                     )
                                 );
                             }
@@ -719,7 +739,8 @@ class WebResourceDelivery
                                     ),
                                     16,
                                     16,
-                                    Storage::logosDefaultPath() . $filename
+                                    Storage::logosDefaultPath() .
+                                        $fileAbsoluteName
                                 )
                             );
                         } //end if
@@ -731,7 +752,9 @@ class WebResourceDelivery
                     break;
 
                 case "related":
-                    $requestArgument = implode(DS, $arguments);
+                    $requestArgument = is_string($arguments)
+                        ? $arguments
+                        : implode(DS, $arguments);
                     $requestedWebFile = MPM\Classic::templatesJSResourcesRoot(
                         $request["module"],
                         $controller

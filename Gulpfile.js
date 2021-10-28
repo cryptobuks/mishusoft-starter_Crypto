@@ -14,6 +14,7 @@ const tsProject = ts.createProject("tsconfig.json");
 const paths = {
   styles: {
     common: ["sources/Assets/sass/includes/common/colors.scss"],
+    commonAll: { colors: "sources/Assets/sass/includes/common/colors.scss" },
     app: {
       src: "sources/Assets/sass",
       srcGlob: "sources/Assets/sass/**/*.{sass,scss}",
@@ -35,6 +36,11 @@ const paths = {
         "sources/Assets/sass/embedded.scss",
         "sources/Assets/sass/resources.scss",
       ],
+      filesAll: {
+        webfonts: "sources/Assets/sass/webfonts.framework.scss",
+        embedded: "sources/Assets/sass/embedded.scss",
+        resources: "sources/Assets/sass/resources.scss",
+      },
       dest: "storages/framework/views/css",
     },
   },
@@ -83,7 +89,7 @@ function styles() {
 
 function scripts() {
   const tsResult = gulp
-    .src(paths.scripts.src, { sourcemaps: true })
+    .src(paths.scripts.src)
     // .pipe(uglify())
     .pipe(tsProject());
 
