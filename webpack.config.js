@@ -233,7 +233,7 @@ module.exports = (env) => {
       // webfonts for application
       webfonts: "./Assets/sass/webfonts.scss",
       // Stylesheet for themes
-      "theme/mishusoft": "./Assets/sass/theme-mishusoft.scss",
+      "theme/mishusoft": "./Assets/sass/themes/mishusoft.scss",
 
       // Typescripts bundlers
 

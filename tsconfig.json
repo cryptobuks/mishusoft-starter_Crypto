@@ -16,11 +16,9 @@
     "typeRoots": ["node_modules/@types"],
     "lib": [
       "ESNext",
-      "DOM",
-      "WebWorker"
+      "DOM"
+      /*"WebWorker"*/
     ]
   },
-  "include": [
-    "./sources/Assets/typescripts"
-  ]
+  "include": ["./sources/Assets/typescripts"]
 }
