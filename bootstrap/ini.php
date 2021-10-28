@@ -22,3 +22,5 @@ ini_set("max_input_time", "600");
 ini_set("max_execution_time", "300");
 ini_set("zlib.output_compression", "On");
 set_time_limit(600);
+ini_set("log_errors", "1");
+ini_set("error_log", dirname(__DIR__) . "tmp/php-error.log");
