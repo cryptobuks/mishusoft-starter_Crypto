@@ -12,6 +12,7 @@
 
 # Mishusoft Framework associates
 /app/
+/backup/
 /Framework/
 /dist/
 /dist-src/
