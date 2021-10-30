@@ -19,11 +19,8 @@ class FileSystem
      * @param null $context
      * @return boolean
      */
-    public static function copy(
-        string $fromDestination,
-        string $toDestination,
-        $context = null
-    ): bool {
+    public static function copy(string $fromDestination, string $toDestination, $context = null): bool
+    {
         return copy($fromDestination, $toDestination, $context);
     } //end exec()
 
@@ -33,11 +30,8 @@ class FileSystem
      * @param null $context
      * @return boolean
      */
-    public static function rename(
-        string $fromDestination,
-        string $toDestination,
-        $context = null
-    ): bool {
+    public static function rename(string $fromDestination, string $toDestination, $context = null): bool
+    {
         return rename($fromDestination, $toDestination, $context);
     } //end copy()
 
@@ -90,10 +84,8 @@ class FileSystem
      * @param string $content
      * @return false|integer
      */
-    public static function saveToFile(
-        string $filename,
-        string $content
-    ): bool|int {
+    public static function saveToFile(string $filename, string $content): bool|int
+    {
         return file_put_contents($filename, $content);
     } //end csvtojson()
 
@@ -103,10 +95,8 @@ class FileSystem
      * @return bool|null
      * @throws ErrorException
      */
-    public static function readFromFile(
-        string $filename,
-        Closure $callback
-    ): ?bool {
+    public static function readFromFile(string $filename, Closure $callback): ?bool
+    {
         if (self::isReadable($filename) === true) {
             return $callback(file_get_contents($filename));
         }
@@ -149,11 +139,8 @@ class FileSystem
      * @param integer $fileMode
      * @param integer $dirMde
      */
-    public static function chmodR(
-        string $path,
-        int $fileMode,
-        int $dirMde
-    ): void {
+    public static function chmodR(string $path, int $fileMode, int $dirMde): void
+    {
         if (is_dir($path) === true) {
             if (chmod($path, $dirMde) === false) {
                 $dirMode = decoct($dirMde);
@@ -270,9 +257,7 @@ class FileSystem
                 if (is_writable(self::realpath(dirname($file))) === true) {
                     self::makeDirectory($file);
                 } else {
-                    throw new RuntimeException(
-                        "Permission denied. " . $file . " creation failed"
-                    );
+                    throw new RuntimeException("Permission denied. " . $file . " creation failed");
                 }
             }
         }
@@ -281,9 +266,7 @@ class FileSystem
             if (is_writable(self::realpath(dirname($directory))) === true) {
                 self::makeDirectory($directory);
             } else {
-                throw new RuntimeException(
-                    "Permission denied. " . $directory . " creation failed"
-                );
+                throw new RuntimeException("Permission denied. " . $directory . " creation failed");
             }
         }
     } //end delete()
@@ -318,19 +301,11 @@ class FileSystem
      * @param boolean $recursive
      * @throws RuntimeException
      */
-    public static function makeDirectory(
-        string $directory,
-        int $permissions = 0777,
-        bool $recursive = true
-    ): void {
+    public static function makeDirectory(string $directory, int $permissions = 0777, bool $recursive = true): void
+    {
         if (file_exists($directory) === false) {
-            if (
-                mkdir($directory, $permissions, $recursive) === false &&
-                is_dir($directory) === false
-            ) {
-                throw new RuntimeException(
-                    sprintf('Directory "%s" was not created', $directory)
-                );
+            if (mkdir($directory, $permissions, $recursive) === false && is_dir($directory) === false) {
+                throw new RuntimeException(sprintf('Directory "%s" was not created', $directory));
             }
 
             self::exec($directory);
@@ -345,9 +320,7 @@ class FileSystem
     {
         //if (exec(sprintf('chmod -R 777 %s', $filename)) === false) {
         if (chmod($filename, 0777) === false) {
-            throw new RuntimeException(
-                sprintf('Unable to change permission of "%s"', $filename)
-            );
+            throw new RuntimeException(sprintf('Unable to change permission of "%s"', $filename));
         }
     }
 
@@ -384,10 +357,8 @@ class FileSystem
      * @return boolean|array
      * @throws RuntimeException
      */
-    public static function list(
-        string $directoryPath,
-        string $filter = "both"
-    ): bool|array {
+    public static function list(string $directoryPath, string $filter = "both"): bool|array
+    {
         $files = scandir($directoryPath);
 
         foreach ($files as $id => $file) {
@@ -395,30 +366,16 @@ class FileSystem
                 unset($files[$id]);
             }
 
-            if (
-                $filter === "directory" &&
-                is_file($directoryPath . "/" . $file) === true
-            ) {
+            if ($filter === "directory" && is_file($directoryPath . "/" . $file) === true) {
                 unset($files[$id]);
             }
 
-            if (
-                $filter === "file" &&
-                is_dir($directoryPath . "/" . $file) === true
-            ) {
+            if ($filter === "file" && is_dir($directoryPath . "/" . $file) === true) {
                 unset($files[$id]);
             }
 
-            if (
-                $filter !== "both" &&
-                $filter !== "directory" &&
-                $filter !== "file"
-            ) {
-                throw new RuntimeException(
-                    '$filter=' .
-                        $filter .
-                        ' not determined. Unknown $filter found.'
-                );
+            if ($filter !== "both" && $filter !== "directory" && $filter !== "file") {
+                throw new RuntimeException('$filter=' . $filter . ' not determined. Unknown $filter found.');
             }
         }
 
@@ -433,17 +390,10 @@ class FileSystem
      * @param integer|null $length
      * @return false|integer
      */
-    public static function write(
-        string $filename,
-        array $contents,
-        int|null $length = null
-    ): false|int {
+    public static function write(string $filename, array $contents, int|null $length = null): false|int
+    {
         $createdFile = fopen($filename, "wb+");
-        $isWritten = fwrite(
-            $createdFile,
-            Implement::toJson($contents),
-            $length
-        );
+        $isWritten = fwrite($createdFile, Implement::toJson($contents), $length);
         fclose($createdFile);
 
         return $isWritten;
@@ -533,10 +483,10 @@ class FileSystem
      * @param string $filename
      * @return string|false
      */
-    public static function fileType(string $filename): string|false
+    public static function fileType(string $filename)
     {
         return filetype($filename);
-    } //end fileBase()
+    }
 
     /**
      * @param string $filename
@@ -545,12 +495,12 @@ class FileSystem
     public static function fileOriginalName(string $filename): string
     {
         return basename($filename);
-    } //end fileDirectory()
+    }
 
     public static function lastModifiedAt(string $path): int
     {
         return filemtime($path);
-    } //end fileExt()
+    }
 
     /**
      * @param string $filename
@@ -564,31 +514,22 @@ class FileSystem
         }
 
         if ($size < 1048576) {
-            return Number::format(filesize($filename) / 1024, 2, ".", "") .
-                " kb";
+            return Number::format(filesize($filename) / 1024, 2, ".", "") . " kb";
         }
 
         if ($size < 1073741824) {
-            return Number::format(
-                filesize($filename) / 1024 / 1024,
-                2,
-                ".",
-                ""
-            ) . " mb";
+            return Number::format(filesize($filename) / 1024 / 1024, 2, ".", "") . " mb";
         }
 
-        return Number::format(
-            filesize($filename) / 1024 / 1024 / 1024,
-            2,
-            ".",
-            ""
-        ) . " gb";
+        return Number::format(filesize($filename) / 1024 / 1024 / 1024, 2, ".", "") . " gb";
     }
 
     /**
+     * @return bool|string
+     *
      * @throws RuntimeException\NotFoundException
      */
-    public static function readAssets(string $path): bool|string
+    public static function readAssets(string $path)
     {
         return self::read(Storage::assetsFullPath($path));
     }
@@ -597,15 +538,18 @@ class FileSystem
      * @param string $filename
      * @return string|boolean
      */
-    public static function read(string $filename): string|bool
+    public static function read(string $filename)
     {
         return file_get_contents($filename);
     }
 
     /**
+     * @param string $path
+     * @return bool|string
+     *
      * @throws RuntimeException\NotFoundException
      */
-    public static function readFrameworkAssets(string $path): bool|string
+    public static function readFrameworkAssets(string $path)
     {
         return self::read(Storage::fViewsFullPath($path));
     }
@@ -613,23 +557,21 @@ class FileSystem
     /**
      * @param string $path
      * @param string $controller
+     *
      * @return bool|string
+     *
      * @throws ErrorException
      * @throws RuntimeException
      * @throws RuntimeException\NotFoundException
      */
-    public static function readAssetsWebFonts(
-        string $path,
-        string $controller
-    ): bool|string {
+    public static function readAssetsWebFonts(string $path, string $controller)
+    {
         $content = self::read(Storage::assetsFullPath($path));
         $route = $controller === "framework" ? "framework" : "assets";
         if (is_string($content)) {
-            $content = str_replace(
-                "../../webfonts",
-                sprintf('%1$s/%2$s/webfonts', Runtime::hostUrl(), $route),
-                $content
-            );
+            $fromPath = "../../webfonts";
+            $willBePath = '%1$s/%2$s/webfonts';
+            $content = str_replace($fromPath, sprintf($willBePath, Runtime::hostUrl(), $route), $content);
         }
         return $content;
     }
@@ -639,5 +581,5 @@ class FileSystem
      */
     public function __destruct()
     {
-    } //end __destruct()
-} //end class
+    }
+}
