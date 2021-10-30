@@ -20,8 +20,6 @@ class Data implements DataInterface
 
     /**
      * Data constructor.
-     * @param string $data_dir
-     * @param string $table
      * @throws DbException
      */
     public function __construct(string $data_dir, string $table)
@@ -34,14 +32,12 @@ class Data implements DataInterface
     }
 
     /**
-     * @param array $options
-     * @return array
      * @throws DbException
      */
     public function get(array $options): array
     {
         // TODO: Implement get() method.
-        if ((count($options) > 0) && is_readable($this->tableFile)) {
+        if (($options !== []) && is_readable($this->tableFile)) {
             $contents = Implement::jsonDecode(file_get_contents($this->tableFile), IMPLEMENT_JSON_IN_ARR);
             if (array_key_exists("data", $options)) {
                 if (ArrayCollection::value($options, "data") === "*") {
@@ -56,60 +52,54 @@ class Data implements DataInterface
                     || empty(ArrayCollection::value($options, "where"))) {
                     MishusoftSQLStandalone::error(Http\Errors::NOT_FOUND, "Invalid parameter parsed.");
                 }
-                if (count($contents) > 0) {
-                    foreach ($contents as $key => $value) {
-                        if (array_key_exists("fetch", $options) and $options["fetch"] === "all") {
-                            foreach ($options["get"] as $option) {
-                                if (ArrayCollection::value($contents[$key], $option)) {
-                                    foreach ($options["where"] as $k => $v) {
-                                        $v = is_numeric($v) ? (string)$v : $v;
-                                        if (array_key_exists($k, $contents[$key]) === true
-                                            && $contents[$key][$k] === $v) {
-                                            $this->output[] = [$option => $contents[$key][$option]];
-                                        }
-                                    }
-                                }
-                                /*if (ArrayCollection::value($data[$key], Encryption::StaticEncrypt($option))) {
-                                    foreach ($options["data"]["where"] as $k => $v) {
-                                        if (array_key_exists(Encryption::StaticEncrypt($k),$data[$key]) and $data[$key][Encryption::StaticEncrypt($k)] === Encryption::StaticEncrypt($v)) {
-                                            array_push($this->output, [$option => $data[$key][Encryption::StaticEncrypt($option)]]);
-                                        }
-                                    }
-                                }*/
-                            }
-                        } else {
-                            if (is_array($options["get"])) {
-                                foreach ($options["get"] as $option) {
-                                    if (ArrayCollection::value($contents[$key], $option)) {
-                                        foreach ($options["where"] as $k => $v) {
-                                            $v = is_numeric($v) ? (string)$v : $v;
-                                            if (array_key_exists($k, $contents[$key]) && $contents[$key][$k] === $v) {
-                                                //$this->output = array_merge($this->output, [$option => $contents[$key][$option]]);
-                                                $this->output[$option] = $contents[$key][$option];
-                                            }
-                                        }
-                                    }
-                                    /*if (ArrayCollection::value($data[$key], Encryption::StaticEncrypt($option))) {
-                                        foreach ($options["data"]["where"] as $k => $v) {
-                                            if (array_key_exists(Encryption::StaticEncrypt($k),$data[$key]) and $data[$key][Encryption::StaticEncrypt($k)] === Encryption::StaticEncrypt($v)) {
-                                                $this->output = array_merge($this->output, [$option => $data[$key][Encryption::StaticEncrypt($option)]]);
-                                            }
-                                        }
-                                    }*/
-                                }
-                            } else {
-                                if ($options["get"] === "*") {
-                                    foreach ($options["where"] as $k => $v) {
-                                        $v = is_numeric($v) ? (string)$v : $v;
-                                        if (array_key_exists($k, $contents[$key]) && $contents[$key][$k] === $v) {
-                                            $this->output = $contents[$key];
-                                        }
-                                        /*if (array_key_exists(Encryption::StaticEncrypt($k), $data[$key]) and $data[$key][Encryption::StaticEncrypt($k)] === Encryption::StaticEncrypt($v)) {
-                                            $this->output = $data[$key];
-                                        }*/
+                foreach ($contents as $key => $value) {
+                    if (array_key_exists("fetch", $options) && $options["fetch"] === "all") {
+                        foreach ($options["get"] as $option) {
+                            if (ArrayCollection::value($contents[$key], $option)) {
+                                foreach ($options["where"] as $k => $v) {
+                                    $v = is_numeric($v) ? (string)$v : $v;
+                                    if (array_key_exists($k, $contents[$key])
+                                        && $contents[$key][$k] === $v) {
+                                        $this->output[] = [$option => $contents[$key][$option]];
                                     }
                                 }
                             }
+                            /*if (ArrayCollection::value($data[$key], Encryption::StaticEncrypt($option))) {
+                                foreach ($options["data"]["where"] as $k => $v) {
+                                    if (array_key_exists(Encryption::StaticEncrypt($k),$data[$key]) and $data[$key][Encryption::StaticEncrypt($k)] === Encryption::StaticEncrypt($v)) {
+                                        array_push($this->output, [$option => $data[$key][Encryption::StaticEncrypt($option)]]);
+                                    }
+                                }
+                            }*/
+                        }
+                    } elseif (is_array($options["get"])) {
+                        foreach ($options["get"] as $option) {
+                            if (ArrayCollection::value($contents[$key], $option)) {
+                                foreach ($options["where"] as $k => $v) {
+                                    $v = is_numeric($v) ? (string)$v : $v;
+                                    if (array_key_exists($k, $contents[$key]) && $contents[$key][$k] === $v) {
+                                        //$this->output = array_merge($this->output, [$option => $contents[$key][$option]]);
+                                        $this->output[$option] = $contents[$key][$option];
+                                    }
+                                }
+                            }
+                            /*if (ArrayCollection::value($data[$key], Encryption::StaticEncrypt($option))) {
+                                foreach ($options["data"]["where"] as $k => $v) {
+                                    if (array_key_exists(Encryption::StaticEncrypt($k),$data[$key]) and $data[$key][Encryption::StaticEncrypt($k)] === Encryption::StaticEncrypt($v)) {
+                                        $this->output = array_merge($this->output, [$option => $data[$key][Encryption::StaticEncrypt($option)]]);
+                                    }
+                                }
+                            }*/
+                        }
+                    } elseif ($options["get"] === "*") {
+                        foreach ($options["where"] as $k => $v) {
+                            $v = is_numeric($v) ? (string)$v : $v;
+                            if (array_key_exists($k, $contents[$key]) && $contents[$key][$k] === $v) {
+                                $this->output = $contents[$key];
+                            }
+                            /*if (array_key_exists(Encryption::StaticEncrypt($k), $data[$key]) and $data[$key][Encryption::StaticEncrypt($k)] === Encryption::StaticEncrypt($v)) {
+                                $this->output = $data[$key];
+                            }*/
                         }
                     }
                 }
@@ -130,14 +120,12 @@ class Data implements DataInterface
 
 
     /**
-     * @param array $options
-     * @return bool
      * @throws DbException
      */
     public function update(array $options): bool
     {
         // TODO: Implement update() method.
-        if (count($options) > 0) {
+        if ($options !== []) {
             if (is_readable($this->tableFile)) {
                 $contents = Implement::jsonDecode(file_get_contents($this->tableFile), IMPLEMENT_JSON_IN_ARR);
 
@@ -169,11 +157,10 @@ class Data implements DataInterface
     }
 
     /**
-     * @param array|string $name
-     * @return bool
      * @throws DbException
+     * @param mixed[]|string $name
      */
-    public function delete(array|string $name): bool
+    public function delete($name): bool
     {
         // TODO: Implement delete() method.
 
@@ -210,14 +197,12 @@ class Data implements DataInterface
     }
 
     /**
-     * @param array $haystack
-     * @return bool
      * @throws DbException
      */
     public function insert(array $haystack): bool
     {
         // TODO: Implement insert() method.
-        if (count($haystack) > 0) {
+        if ($haystack !== []) {
             if (is_readable($this->tableFile)) {
                 $contents = (array) Implement::jsonDecode(file_get_contents($this->tableFile), IMPLEMENT_JSON_IN_ARR);
                 /*add data unique id for every data row*/
@@ -284,13 +269,6 @@ class Data implements DataInterface
         return count($contents) > 0 ? ArrayCollection::value(end($contents), "id") : 0;
     }
 
-    public function __destruct()
-    {
-    }
-
-    /**
-     * @return string
-     */
     public function getTableName(): string
     {
         return $this->tableName;

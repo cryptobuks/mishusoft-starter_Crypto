@@ -15,14 +15,16 @@ class Table extends CommonDependency implements TableInterface
 {
     private string $dataDirectory;
     private array $tablesAll = [];
+    private string $database;
 
     /**
      * @throws RuntimeException
      * @throws DbException
      */
     public function __construct(
-        private string $database
+        string $database
     ) {
+        $this->database = $database;
         parent::__construct(CommonStructureInterface::WHO_AM_I, CommonStructureInterface::DB_FILE_FORMAT);
         $this->setCurrentDatabase($this->database);
         $this->dataDirectory = $this->directory($this->database);
@@ -37,9 +39,6 @@ class Table extends CommonDependency implements TableInterface
         }
     }
 
-    /**
-     * @return array
-     */
     public function getTableAll(): array
     {
         return $this->tablesAll;
@@ -47,11 +46,11 @@ class Table extends CommonDependency implements TableInterface
 
 
     /**
-     * @param string|array $table_name
      * @throws DbException
      * @throws RuntimeException
+     * @param mixed[]|string $table_name
      */
-    public function create(array|string $table_name): void
+    public function create($table_name): void
     {
         if (is_array($table_name)) {
             foreach ($table_name as $tbl) {
@@ -63,7 +62,6 @@ class Table extends CommonDependency implements TableInterface
     }
 
     /**
-     * @param string $table_name
      * @throws DbException
      * @throws RuntimeException
      */
@@ -88,8 +86,6 @@ class Table extends CommonDependency implements TableInterface
 
 
     /**
-     * @param string $table_name
-     * @return DataInterface
      * @throws DbException
      */
     public function read(string $table_name): DataInterface
@@ -102,8 +98,6 @@ class Table extends CommonDependency implements TableInterface
     }
 
     /**
-     * @param string $old_name
-     * @param string $new_name
      * @return mixed
      * @throws DbException
      */
@@ -128,10 +122,7 @@ class Table extends CommonDependency implements TableInterface
                     unset($contents["tables"][array_search($old_name, $contents["tables"], true)]);
                     $contents["tables"][] = $new_name;
                 }
-                $tables = [];
-                foreach ($contents["tables"] as $table) {
-                    $tables[] = $table;
-                }
+                $tables = $contents["tables"];
                 $contents["tables"] = $tables;
 
                 array_multisort($contents["tables"], SORT_ASC);
@@ -151,10 +142,9 @@ class Table extends CommonDependency implements TableInterface
     }
 
     /**
-     * @param array|string $name
-     * @return bool
+     * @param mixed[]|string $name
      */
-    public function delete(array|string $name): bool
+    public function delete($name): bool
     {
         if (is_array($name)) {
             foreach ($name as $tbl) {
@@ -166,7 +156,6 @@ class Table extends CommonDependency implements TableInterface
     }
 
     /**
-     * @param string $table_name
      * @throws DbException
      */
     private function deleteTable(string $table_name): void
@@ -209,9 +198,5 @@ class Table extends CommonDependency implements TableInterface
         ksort($contents["tables"], SORT_ASC);
         $this->tablesAll = $contents["tables"];
         return (bool) FileSystem::saveToFile($this->databaseFile($this->database), Implement::toJson($contents));
-    }
-
-    public function __destruct()
-    {
     }
 }

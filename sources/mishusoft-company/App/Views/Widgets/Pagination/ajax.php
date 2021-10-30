@@ -1,4 +1,4 @@
-<?php if (isset($this->pagination)): ?>
+<?php if (property_exists($this, 'pagination') && $this->pagination !== null): ?>
     <table class="table">
         <tr>
             <td style="width:100px">
@@ -24,7 +24,8 @@
                         <?php endif; ?>
 
                         <!--pagination-->
-                        <?php for ($i = 0; $i < count($this->pagination['range']); $i++): ?>
+                        
+$itemsCount = count($this->pagination['range']);<?php for ($i = 0; $i < $itemsCount; $i++): ?>
                             <?php if ($this->pagination['current'] === $this->pagination['range'][$i]): ?>
                                 <a class="active"><?php echo $this->pagination['range'][$i]; ?></a>
                             <?php else: ?>

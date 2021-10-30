@@ -22,9 +22,8 @@ if (Session::get("auth")) {
 //    \Mishusoft\Framework\Chipsets\Utility\_Debug::preOutput(Ui::hasAttribute($this->documentTemplateBodyElement,"class"));
 //    \Mishusoft\Framework\Chipsets\Utility\_Debug::preOutput(Ui::getAttribute($this->documentTemplateBodyElement,"class"));
 
-    if (Ui::hasAttribute($this->documentTemplateBodyElement, "class")
-        and !stripos(Ui::getAttribute($this->documentTemplateBodyElement, "class"), "height-700px")
-        || !stripos(Ui::getAttribute($this->documentTemplateBodyElement, "class"), "flex-center-all")) {
+    if (Ui::hasAttribute($this->documentTemplateBodyElement, "class") && (!stripos(Ui::getAttribute($this->documentTemplateBodyElement, "class"), "height-700px")
+    || !stripos(Ui::getAttribute($this->documentTemplateBodyElement, "class"), "flex-center-all"))) {
         Ui::assignAttributes($this->documentTemplateBodyElement, ["class" => Ui::getAttribute($this->documentTemplateBodyElement, "class") . " height-700px flex-center-all"]);
     }
 
@@ -65,10 +64,9 @@ if (Session::get("auth")) {
         ],
     ]);
 
-    if (array_key_exists("type", $_GET) and _Array::value($_GET, "type") === "email-only") {
+    if (array_key_exists("type", $_GET) && _Array::value($_GET, "type") === "email-only") {
         /*add secret code token*/
         Ui::element($frm, "input", ["type" => "hidden", "name" => "type", "value" => _Array::value($_GET, "type")]);
-
         /**
          * <label for="email">Email address (<span class="text-danger">*</span>)</label>
          * <input type="email" id="email" name="email" class="input-control" placeholder="Email address.."
@@ -84,10 +82,8 @@ if (Session::get("auth")) {
             "placeholder" => "Your e-mail address..", "pattern" => "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$",
             "autocomplete" => "off", "title" => "Must contain at characters@characters.domain (characters followed by an @ sign, followed by more characters, and then a '.'. After the '.' sign, add at least 2 letters from a to z",
             "required" => "required", "autofocus" => "autofocus"]);
-
         /*create command element*/
         $command = Ui::element($frm, "command", ["style" => Ui::htmlHrefStyle . Ui::css["display-flex"] . Ui::css["flex-column"] . "width:100%;"]);
-
         /*create command"s element*/
         /**
          * <label class="input-container">Remember me.
@@ -103,24 +99,19 @@ if (Session::get("auth")) {
         Ui::element($label, "input", ["type" => "checkbox", "name" => "RememberMe", "value" => true]);
         Ui::element($label, "span", ["class" => "checkmark"]);
         Ui::text($label, "Remember Me");
-
-
         /*create login button*/
         /**
          * <input type="submit" id="login-button" name="login" class="button button-primary" value="Log In"/>
          * */
         Ui::element(Ui::element($command, "login", ["style" => Ui::css["display-flex"] . "width: -webkit-fill-available;width: -moz-available;"]), "input", ["id" => "login-button", "type" => "submit", "name" => "button", "class" => "button button-success", "value" => "Log In",]);
-
         /*create alternative element*/
         $alternative = Ui::element($frm, "alternative", ["id" => "alternative",/*"style" => Ui::css["display-flex"] . Ui::css["flex-column"] . Ui::htmlHrefStyle . "width:100%;line-height: 2;"*/]);
-
         $other = Ui::element($alternative, "other", ["style" => Ui::htmlHrefStyle . Ui::css["display-flex"] . Ui::css["flex-column"] . "color:" . Ui::color["black"] . ";font-size:15px;justify-content: center;align-items: center;width:100%;margin-top: 10px;margin-bottom:10px;", "title" => "Click to log in with email"]);
         Ui::element($other, "option", ["style" => Ui::htmlHrefStyle . Ui::css["display-flex"] . "color:" . Ui::color["black"] . ";font-size:15px;justify-content: center;align-items: center;width:100%;", "text" => "Log in with your username and password"]);
         Ui::element($other, "a", [
             "href" => Memory::Data("framework")->host->url . "account/login?type=username-and-password",
             "class" => "button button-primary", "text" => "Log in with Username",
             "style" => "display: flex;justify-content: center;align-items: center;width: -webkit-fill-available;width: -moz-available;"]);
-
         /*alternate help links*/
         Ui::elementList($alternative, [
             "a" => [
@@ -129,79 +120,68 @@ if (Session::get("auth")) {
                 ["style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";font-size:15px;", "href" => Memory::Data("framework")->host->url, "text" => "Back to home", "title" => "Click to go back to home"]
             ],
         ]);
+    } elseif (empty(_Array::value($_GET, "type")) || _Array::value($_GET, "type") === "username-and-password") {
+        /**
+         * <label for="username">Username</label>
+         * <input type="text"  id="username" name="username" class="input-control" placeholder="Your username.."
+         *        pattern="{literal}[a-z0-9]{8,}${/literal}" autofocus autocomplete="off"
+         *        title="Must contain alphanumeric characters only and at least 8 letters from a to z"
+         *        required="required" value="{if isset($submitted_data)}{$submitted_data.username}{/if}"/>
+         * */
+        /*create username element*/
+        $username = Ui::element($frm, "username", ["style" => Ui::htmlHrefStyle . "width:100%;"]);
+        /*create username"s child element*/
+        Ui::element($username, "label", ["for" => "username", "text" => "Username"]);
+        Ui::element($username, "input", ["id" => "username", "type" => "text", "name" => "username",
+            "class" => "input-control", "placeholder" => "Your username..", "pattern" => "[a-z0-9]{8,}$", "autocomplete" => "off",
+            "title" => "Must contain alphanumeric characters only and at least 8 letters from a to z",
+            "required" => "required", "autofocus" => "autofocus"]);
+        /**
+         * <label for="password">Password</label>
+         * <input type="password" id="password" name="password" class="input-control"  autocomplete="off"
+         * placeholder="***************" pattern="{literal}(?=.*\d)(?=.*[@_])(?=.*[a-z])(?=.*[A-Z]).{6,}{/literal}"
+         * title="Must contain at least one  number and one uppercase and lowercase letter and at least 6 or more characters"
+         *  required="required" value="{if isset($submitted_data)}{$submitted_data.password}{/if}"/>
+         * */
+        /*create password element*/
+        $password = Ui::element($frm, "password", ["style" => Ui::htmlHrefStyle . "width:100%;"]);
+        /*create password"s child element*/
+        Ui::element($password, "label", ["for" => "password", "text" => "Password"]);
+        Ui::element($password, "input", ["id" => "password", "type" => "password", "name" => "password",
+            "required" => "required", "placeholder" => "***************", "class" => "input-control", "pattern" => "(?=.*\d)(?=.*[@_])(?=.*[a-z])(?=.*[A-Z]).{6,}",
+            "autocomplete" => "off", "title" => "Must contain at least one  number and one uppercase and lowercase letter and at least 6 or more characters"]);
+        /*create command element*/
+        $command = Ui::element($frm, "command", ["style" => Ui::htmlHrefStyle . Ui::css["display-flex"] . Ui::css["flex-column"] . "width:100%;"]);
+        /**
+         * <label class="input-container">Remember me.
+         * <input type="checkbox" id="RememberMe" name="RememberMe" value="RememberMe"/>
+         * <span class="checkmark"></span>
+         * </label>
+         */
+        /*create command"s element*/
+        $remember = Ui::element($command, "remember", ["style" => Ui::css["display-flex"] . "justify-content:left;width: -webkit-fill-available;width: -moz-available;"]);
+        $label = Ui::element($remember, "label", ["class" => "input-container", "for" => "RememberMe", "style" => Ui::css["font-normal"]]);
+        Ui::element($label, "input", ["id" => "RememberMe", "type" => "checkbox", "name" => "RememberMe", "value" => "RememberMe"]);
+        Ui::element($label, "span", ["class" => "checkmark"]);
+        Ui::text($label, "Remember Me");
+        /**
+         * <input type="submit" id="login-button" name="login" class="button button-primary" value="Log In"/>
+         * */
+        /*create login button*/
+        Ui::element(Ui::element($command, "login", ["style" => Ui::css["display-flex"] . "justify-content:right;width: -webkit-fill-available;width: -moz-available;"]), "input", ["id" => "login-button", "type" => "submit", "name" => "button", "class" => "button button-primary", "value" => "Log In",]);
+        /*create alternative element*/
+        $alternative = Ui::element($frm, "alternative", ["id" => "alternative",/*"style" => Ui::css["display-flex"] . Ui::css["flex-column"] . Ui::htmlHrefStyle . "width:100%;line-height: 2;"*/]);
+        $other = Ui::element($alternative, "other", ["style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . Ui::css["display-flex"] . Ui::css["flex-column"] . ";font-size:15px;justify-content: center;align-items: center;", "title" => "Click to log in with email"]);
+        Ui::element($other, "option", ["style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";font-size:15px;display: flex;justify-content: center;align-items: center;", "text" => "If you have no username or password"]);
+        Ui::element($other, "a", [
+            "href" => Memory::Data("framework")->host->url . "account/login?type=email-only",
+            "class" => "button button-success", "text" => "Log in with E-mail", "style" => "display: flex;justify-content: center;align-items: center;"]);
+        /*alternate help links*/
+        Ui::element($alternative, "a", ["style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";font-size:15px;", "href" => Memory::Data("framework")->host->url . "account/recovery", "text" => "Forget Account?", "title" => "Click to recovery your account if you forget password or account"]);
+        Ui::element($alternative, "a", ["style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";font-size:15px;", "href" => Memory::Data("framework")->host->url . "account/create", "text" => "Create New Account", "title" => "Click to create new account"]);
+        Ui::element($alternative, "a", ["style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";font-size:15px;", "href" => Memory::Data("framework")->host->url, "text" => "Back to home", "title" => "Click to go back to home"]);
     } else {
-        /*we execute username and password modal for login page after verification*/
-        if (empty(_Array::value($_GET, "type")) or _Array::value($_GET, "type") === "username-and-password") {
-
-            /**
-             * <label for="username">Username</label>
-             * <input type="text"  id="username" name="username" class="input-control" placeholder="Your username.."
-             *        pattern="{literal}[a-z0-9]{8,}${/literal}" autofocus autocomplete="off"
-             *        title="Must contain alphanumeric characters only and at least 8 letters from a to z"
-             *        required="required" value="{if isset($submitted_data)}{$submitted_data.username}{/if}"/>
-             * */
-            /*create username element*/
-            $username = Ui::element($frm, "username", ["style" => Ui::htmlHrefStyle . "width:100%;"]);
-            /*create username"s child element*/
-            Ui::element($username, "label", ["for" => "username", "text" => "Username"]);
-            Ui::element($username, "input", ["id" => "username", "type" => "text", "name" => "username",
-                "class" => "input-control", "placeholder" => "Your username..", "pattern" => "[a-z0-9]{8,}$", "autocomplete" => "off",
-                "title" => "Must contain alphanumeric characters only and at least 8 letters from a to z",
-                "required" => "required", "autofocus" => "autofocus"]);
-
-            /**
-             * <label for="password">Password</label>
-             * <input type="password" id="password" name="password" class="input-control"  autocomplete="off"
-             * placeholder="***************" pattern="{literal}(?=.*\d)(?=.*[@_])(?=.*[a-z])(?=.*[A-Z]).{6,}{/literal}"
-             * title="Must contain at least one  number and one uppercase and lowercase letter and at least 6 or more characters"
-             *  required="required" value="{if isset($submitted_data)}{$submitted_data.password}{/if}"/>
-             * */
-            /*create password element*/
-            $password = Ui::element($frm, "password", ["style" => Ui::htmlHrefStyle . "width:100%;"]);
-
-            /*create password"s child element*/
-            Ui::element($password, "label", ["for" => "password", "text" => "Password"]);
-            Ui::element($password, "input", ["id" => "password", "type" => "password", "name" => "password",
-                "required" => "required", "placeholder" => "***************", "class" => "input-control", "pattern" => "(?=.*\d)(?=.*[@_])(?=.*[a-z])(?=.*[A-Z]).{6,}",
-                "autocomplete" => "off", "title" => "Must contain at least one  number and one uppercase and lowercase letter and at least 6 or more characters"]);
-
-            /*create command element*/
-            $command = Ui::element($frm, "command", ["style" => Ui::htmlHrefStyle . Ui::css["display-flex"] . Ui::css["flex-column"] . "width:100%;"]);
-
-            /**
-             * <label class="input-container">Remember me.
-             * <input type="checkbox" id="RememberMe" name="RememberMe" value="RememberMe"/>
-             * <span class="checkmark"></span>
-             * </label>
-             */
-            /*create command"s element*/
-            $remember = Ui::element($command, "remember", ["style" => Ui::css["display-flex"] . "justify-content:left;width: -webkit-fill-available;width: -moz-available;"]);
-            $label = Ui::element($remember, "label", ["class" => "input-container", "for" => "RememberMe", "style" => Ui::css["font-normal"]]);
-            Ui::element($label, "input", ["id" => "RememberMe", "type" => "checkbox", "name" => "RememberMe", "value" => "RememberMe"]);
-            Ui::element($label, "span", ["class" => "checkmark"]);
-            Ui::text($label, "Remember Me");
-
-            /**
-             * <input type="submit" id="login-button" name="login" class="button button-primary" value="Log In"/>
-             * */
-            /*create login button*/
-            Ui::element(Ui::element($command, "login", ["style" => Ui::css["display-flex"] . "justify-content:right;width: -webkit-fill-available;width: -moz-available;"]), "input", ["id" => "login-button", "type" => "submit", "name" => "button", "class" => "button button-primary", "value" => "Log In",]);
-
-            /*create alternative element*/
-            $alternative = Ui::element($frm, "alternative", ["id" => "alternative",/*"style" => Ui::css["display-flex"] . Ui::css["flex-column"] . Ui::htmlHrefStyle . "width:100%;line-height: 2;"*/]);
-            $other = Ui::element($alternative, "other", ["style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . Ui::css["display-flex"] . Ui::css["flex-column"] . ";font-size:15px;justify-content: center;align-items: center;", "title" => "Click to log in with email"]);
-            Ui::element($other, "option", ["style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";font-size:15px;display: flex;justify-content: center;align-items: center;", "text" => "If you have no username or password"]);
-            Ui::element($other, "a", [
-                "href" => Memory::Data("framework")->host->url . "account/login?type=email-only",
-                "class" => "button button-success", "text" => "Log in with E-mail", "style" => "display: flex;justify-content: center;align-items: center;"]);
-
-            /*alternate help links*/
-            Ui::element($alternative, "a", ["style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";font-size:15px;", "href" => Memory::Data("framework")->host->url . "account/recovery", "text" => "Forget Account?", "title" => "Click to recovery your account if you forget password or account"]);
-            Ui::element($alternative, "a", ["style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";font-size:15px;", "href" => Memory::Data("framework")->host->url . "account/create", "text" => "Create New Account", "title" => "Click to create new account"]);
-            Ui::element($alternative, "a", ["style" => Ui::htmlHrefStyle . "color:" . Ui::color["black"] . ";font-size:15px;", "href" => Memory::Data("framework")->host->url, "text" => "Back to home", "title" => "Click to go back to home"]);
-        } else {
-            Runtime::redirect("account/login?type=username-and-password");
-        }
+        Runtime::redirect("account/login?type=username-and-password");
     }
 }
 

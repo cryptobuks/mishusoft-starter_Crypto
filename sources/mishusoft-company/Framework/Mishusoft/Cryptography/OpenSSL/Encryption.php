@@ -24,13 +24,13 @@ class Encryption extends OpenSSL
      * @param string $data String for encryption.
      * @param string $type Action filter.
      *
-     * @return string|false Encrypted string.
+     * @return string|bool Encrypted string.
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public static function dynamic(
         string $data,
         string $type = "advanced"
-    ): string|false {
+    ) {
         $result = "";
 
         if ($type === "classic") {

@@ -48,9 +48,9 @@ abstract class CliSurfaceController
      */
     protected function copyVerbose(string $source, string $destination): void
     {
-        if (empty($source) === false && empty($destination) === false) {
+        if (!empty($source) && !empty($destination)) {
             foreach (Storage::globRecursive($source.'/*', GLOB_MARK) as $file) {
-                if (is_file($file) === true) {
+                if (is_file($file)) {
                     $copyFile = str_replace($source, $destination, $file);
                     if (!file_exists(dirname($copyFile))) {
                         Storage\FileSystem::makeDirectory(dirname($copyFile));
@@ -58,7 +58,7 @@ abstract class CliSurfaceController
                     if (file_exists($copyFile)) {
                         Storage\FileSystem::remove($copyFile);
                     }
-                    if (copy($file, $copyFile) === true) {
+                    if (copy($file, $copyFile)) {
                         $this->log($file.' copied!!', 'success');
                     } else {
                         $this->log($file.' could not copied!!', 'error');
@@ -72,9 +72,6 @@ abstract class CliSurfaceController
 
     /**
      * Log message to screen.
-     *
-     * @param string $message
-     * @param string $type
      */
     public function log(string $message, string $type = 'log'): void
     {

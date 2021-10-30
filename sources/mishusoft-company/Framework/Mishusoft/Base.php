@@ -11,41 +11,23 @@ abstract class Base extends Singleton
     public const PUBLIC_DATA_FILE   = 'json';
 
 
-    //Basic functionalities
-
-    /**
-     * @return string
-     */
     protected static function dataFileFormat(): string
     {
         return 'yml';
     }
 
 
-    /**
-     * @param string $path
-     * @param string $extension
-     * @return string
-     */
     protected static function dFile(string $path, string $extension = 'yml'): string
     {
         return sprintf('%s.%s', $path, $extension);
     }
 
 
-    /**
-     * @param string $string
-     * @return string
-     */
     public static function hidePath(string $string): string
     {
         return str_replace(RUNTIME_ROOT_PATH, ROOT_IDENTITY, $string);
     }
 
-    /**
-     * @param string $filename
-     * @return string
-     */
     public static function getClassNamespace(string $filename): string
     {
         //make namespace from source path (if development, app://sources/company/Framework)
@@ -63,20 +45,11 @@ abstract class Base extends Singleton
         return self::makePathToNamespace($filename);
     }
 
-    /**
-     * @param string $path
-     * @return string
-     */
     private static function makePathToNamespace(string $path): string
     {
         return str_replace(['//', '/'], ['/', '\\'], substr($path, 0, self::lastPosition($path)));
     }
 
-    /**
-     * @param string $resources
-     * @param string $path
-     * @return string
-     */
     private static function startPosition(string $resources, string $path): string
     {
         $path = rtrim($path, DS);
@@ -84,10 +57,6 @@ abstract class Base extends Singleton
         return (strpos($resources, $path) + strlen($path));
     }
 
-    /**
-     * @param string $path
-     * @return string
-     */
     private static function lastPosition(string $path): string
     {
         return (strlen($path) - (strlen($path) - strpos($path, '.php')));
@@ -96,24 +65,14 @@ abstract class Base extends Singleton
 
     /**
      * Get path from psr_4 namespace
-     *
-     * @param string $name_space
-     * @param string $extension
-     * @return string
      */
     public static function getPath(string $name_space, string $extension = '.php'): string
     {
         $file = str_replace('\\', DS, $name_space).$extension;
         return RUNTIME_ROOT_PATH.$file;
     }//end getPath()
-
-
     /**
      * Get current directory name from full path
-     *
-     * @param string $fullPath
-     * @param string $rootPath
-     * @return string
      */
     public static function getDirectoryName(string $fullPath, string $rootPath = RUNTIME_ROOT_PATH): string
     {
@@ -124,24 +83,11 @@ abstract class Base extends Singleton
                 ((strlen($fullPath) - strlen($rootPath)) - 1)
             )
         );
-    }//end getDirectoryName()
-
-    //End basic functionalities
-
-
-    //Path making functionalities
-
-    /**
-     * @return string
-     */
-    public static function rootPath(): string
+    }public static function rootPath(): string
     {
         return RUNTIME_ROOT_PATH;
     }
 
-    /**
-     * @return string
-     */
     public static function storagesPath(): string
     {
         return sprintf(
@@ -153,9 +99,6 @@ abstract class Base extends Singleton
     }
 
 
-    /**
-     * @return string
-     */
     public static function appStoragesPath(): string
     {
         return sprintf(
@@ -166,9 +109,6 @@ abstract class Base extends Singleton
         );
     }
 
-    /**
-     * @return string
-     */
     public static function assetsPath(): string
     {
         return sprintf(
@@ -179,9 +119,6 @@ abstract class Base extends Singleton
         );
     }
 
-    /**
-     * @return string
-     */
     public static function frameworkViewsPath(): string
     {
         return sprintf(
@@ -192,9 +129,6 @@ abstract class Base extends Singleton
         );
     }
 
-    /**
-     * @return string
-     */
     public static function cssAssetsPath(): string
     {
         return sprintf(
@@ -205,9 +139,6 @@ abstract class Base extends Singleton
         );
     }
 
-    /**
-     * @return string
-     */
     public static function jsAssetsPath(): string
     {
         return sprintf(
@@ -218,9 +149,6 @@ abstract class Base extends Singleton
         );
     }
 
-    /**
-     * @return string
-     */
     public static function webfontsAssetsPath(): string
     {
         return sprintf(
@@ -231,9 +159,6 @@ abstract class Base extends Singleton
         );
     }
 
-    /**
-     * @return string
-     */
     public static function localizationPath(): string
     {
         return sprintf(
@@ -244,9 +169,6 @@ abstract class Base extends Singleton
         );
     }
 
-    /**
-     * @return string
-     */
     public static function mediaPath(): string
     {
         return sprintf(
@@ -257,9 +179,6 @@ abstract class Base extends Singleton
         );
     }
 
-    /**
-     * @return string
-     */
     public static function imagesPath(): string
     {
         return sprintf(
@@ -282,9 +201,6 @@ abstract class Base extends Singleton
     }
 
 
-    /**
-     * @return string
-     */
     public static function frameworkStoragesPath(): string
     {
         return sprintf(
@@ -297,10 +213,6 @@ abstract class Base extends Singleton
 
 
 
-    /**
-     * @param bool $isRemote
-     * @return string
-     */
     public static function logosPath(bool $isRemote = false): string
     {
         if ($isRemote) {
@@ -318,10 +230,6 @@ abstract class Base extends Singleton
         );
     }
 
-    /**
-     * @param bool $isRemote
-     * @return string
-     */
     public static function logosDefaultPath(bool $isRemote = false): string
     {
         return sprintf(
@@ -331,9 +239,6 @@ abstract class Base extends Singleton
         );
     }
 
-    /**
-     * @return string
-     */
     public static function uploadsPath(): string
     {
         return sprintf(
@@ -344,9 +249,6 @@ abstract class Base extends Singleton
         );
     }
 
-    /**
-     * @return string
-     */
     public static function usersPicturesPath(): string
     {
         return sprintf(
@@ -357,9 +259,6 @@ abstract class Base extends Singleton
         );
     }
 
-    /**
-     * @return string
-     */
     public static function usersProfilePicturesPath(): string
     {
         return sprintf(
@@ -370,9 +269,6 @@ abstract class Base extends Singleton
         );
     }
 
-    /**
-     * @return string
-     */
     public static function usersCoverPicturesPath(): string
     {
         return sprintf(
@@ -383,9 +279,6 @@ abstract class Base extends Singleton
         );
     }
 
-    /**
-     * @return string
-     */
     public static function usersBackgroundPicturesPath(): string
     {
         return sprintf(
@@ -396,9 +289,6 @@ abstract class Base extends Singleton
         );
     }
 
-    /**
-     * @return string
-     */
     public static function databasesPath(): string
     {
         return sprintf(
@@ -409,9 +299,6 @@ abstract class Base extends Singleton
         );
     }
 
-    /**
-     * @return string
-     */
     public static function cachesStoragesPath(): string
     {
         return sprintf(
@@ -422,9 +309,6 @@ abstract class Base extends Singleton
         );
     }
 
-    /**
-     * @return string
-     */
     public static function logsStoragesPath(): string
     {
         return sprintf(
@@ -435,9 +319,6 @@ abstract class Base extends Singleton
         );
     }
 
-    /**
-     * @return string
-     */
     public static function dataDriveStoragesPath(): string
     {
         return sprintf(
@@ -448,10 +329,6 @@ abstract class Base extends Singleton
         );
     }
 
-    /**
-     * @param string $directive
-     * @return string
-     */
     public static function configDataDirective(string $directive): string
     {
         return sprintf(
@@ -464,10 +341,6 @@ abstract class Base extends Singleton
     }
 
 
-    /**
-     * @param string $directive
-     * @return string
-     */
     protected static function logDirective(string $directive): string
     {
         return sprintf(
@@ -479,9 +352,6 @@ abstract class Base extends Singleton
         );
     }
 
-    /**
-     * @return string
-     */
     public static function frameworkSessionsPath(): string
     {
         return sprintf(
@@ -492,11 +362,6 @@ abstract class Base extends Singleton
         );
     }
 
-    /**
-     * @param string $directive
-     * @param string $filename
-     * @return string
-     */
     protected static function cacheDataFile(string $directive, string $filename): string
     {
         return sprintf(
@@ -509,11 +374,6 @@ abstract class Base extends Singleton
         );
     }
 
-    /**
-     * @param string $directive
-     * @param string $filename
-     * @return string
-     */
     protected static function configDataFile(string $directive, string $filename): string
     {
         return sprintf(
@@ -526,11 +386,6 @@ abstract class Base extends Singleton
         );
     }
 
-    /**
-     * @param string $directive
-     * @param string $filename
-     * @return string
-     */
     protected static function requiredDataFile(string $directive, string $filename): string
     {
         return sprintf(
@@ -543,11 +398,6 @@ abstract class Base extends Singleton
         );
     }
 
-    /**
-     * @param string $directive
-     * @param string $filename
-     * @return string
-     */
     protected static function logDataFile(string $directive, string $filename): string
     {
         return sprintf(

@@ -38,8 +38,6 @@ class SmartyView extends SmartyBC
     /**
      * View constructor.
      *
-     * @param Request $prediction
-     * @param Acl $acl
      * @throws \JsonException
      * @throws \Mishusoft\Exceptions\ErrorException
      * @throws \Mishusoft\Exceptions\JsonException
@@ -63,42 +61,31 @@ class SmartyView extends SmartyBC
             $this->roots['view'] = MPM\Classic::TemplatesHtmlResourcesRoot(MPM\Classic::defaultModule(), $controller);
             $this->roots['js']   = MPM\Classic::TemplatesJSResourcesRoot(MPM\Classic::defaultModule(), $controller);
         }
-    }//end __construct()
-
-
-    /**
-     * @return string
-     */
-    public static function getViewId(): string
+    }public static function getViewId(): string
     {
         return self::$item;
     }//end getViewId()
-
-
     /**
-     * @param string $view
-     * @param string $item
-     * @param false $noLayout
      * @throws NotFoundException
      * @throws SmartyException
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public function render(string $view, string $item = '', bool $noLayout = false): void
     {
-        if ($item) {
+        if ($item !== '' && $item !== '0') {
             self::$item = $item;
         }
 
         // Ensure required directory.
-        if (is_dir(Storage::applicationThemesPath().$this->template.DS.'configs'.DS) === false) {
+        if (!is_dir(Storage::applicationThemesPath().$this->template.DS.'configs'.DS)) {
             FileSystem::makeDirectory(Storage::applicationThemesPath().$this->template.DS.'configs'.DS);
         }
 
-        if (is_dir(RUNTIME_CACHE_ROOT_PATH) === false) {
+        if (!is_dir(RUNTIME_CACHE_ROOT_PATH)) {
             FileSystem::makeDirectory(RUNTIME_CACHE_ROOT_PATH);
         }
 
-        if (is_dir(RUNTIME_CACHE_ROOT_PATH.'templates'.DS) === false) {
+        if (!is_dir(RUNTIME_CACHE_ROOT_PATH.'templates'.DS)) {
             FileSystem::makeDirectory(RUNTIME_CACHE_ROOT_PATH.'templates'.DS);
         }
 
@@ -111,7 +98,7 @@ class SmartyView extends SmartyBC
         // $favicon = join([MS_MEDIA_PATH,"favicons/"]) . $this->favicon();
         $js = [];
 
-        if (count($this->_js) > 0) {
+        if ($this->_js !== []) {
             $js = $this->_js;
         }
 
@@ -154,8 +141,8 @@ class SmartyView extends SmartyBC
             ],
         ];
 
-        if (is_readable($this->roots['view'].$view.'.tpl') === true) {
-            if ($noLayout === true) {
+        if (is_readable($this->roots['view'].$view.'.tpl')) {
+            if ($noLayout) {
                 $this->template_dir = $this->roots['view'];
                 $this->display($this->roots['view'].$view.'.tpl');
                 exit;
@@ -268,32 +255,24 @@ class SmartyView extends SmartyBC
 
         foreach ($keys as $k) {
             // Verification of widgets position visibility.
-            if (isset($positions[$widgets[$k]['config']['position']])) {
-                // Verification it's view disability
-                if (!isset($widgets[$k]['config']['hide'])
-                    || !in_array(self::$item, $widgets[$k]['config']['hide'], true)) {
-                    // Verification it's view visibility
-                    if ($widgets[$k]['config']['show'] === 'all'
-                        || in_array(self::$item, $widgets[$k]['config']['show'], true)) {
-                        if (isset($this->widget[$k])) {
-                            $widgets[$k]['content'][2] = $this->widget[$k];
-                        }
-
-                        // is it's have position in layout
-                        $positions[$widgets[$k]['config']['position']][] = $this->getWidgetContent($widgets[$k]['content']);
-                    }
+            // Verification it's view disability
+            // Verification it's view visibility
+            if (isset($positions[$widgets[$k]['config']['position']]) && (!isset($widgets[$k]['config']['hide'])
+                || !in_array(self::$item, $widgets[$k]['config']['hide'], true)) && ($widgets[$k]['config']['show'] === 'all'
+                || in_array(self::$item, $widgets[$k]['config']['show'], true))) {
+                if (isset($this->widget[$k])) {
+                    $widgets[$k]['content'][2] = $this->widget[$k];
                 }
+                // is it's have position in layout
+                $positions[$widgets[$k]['config']['position']][] = $this->getWidgetContent($widgets[$k]['content']);
             }
         }//end foreach
 
         return $positions;
     }//end getWidgets()
-
-
     /**
      * @param  $widget
      * @param  $method
-     * @param array $options
      * @return mixed|void
      * @throws NotFoundException
      */
@@ -304,15 +283,15 @@ class SmartyView extends SmartyBC
         }
 
         $widgetClass = $widget.'Widget';
-        if (is_readable(Storage::applicationWidgetsPath()."$widgetClass.php") === true) {
+        if (is_readable(Storage::applicationWidgetsPath()."$widgetClass.php")) {
             include_once Storage::applicationWidgetsPath()."$widgetClass.php";
             $widgetClass = Base::getClassNamespace(Storage::applicationWidgetsPath()."$widgetClass.php");
-            if (class_exists($widgetClass, false) === false) {
+            if (!class_exists($widgetClass, false)) {
                 throw new NotFoundException(Storage::applicationWidgetsPath()."$widgetClass.php not found");
             }
 
             if (is_callable($widgetClass, $method)) {
-                if (count($options)) {
+                if ($options !== []) {
                     return call_user_func_array([new $widgetClass(), $method], $options);
                 }
 
@@ -322,10 +301,7 @@ class SmartyView extends SmartyBC
             throw new NotFoundException('Widget\'s content not found');
         }//end if
     }//end widget()
-
-
     /**
-     * @return array
      * @throws NotFoundException
      */
     public function getLayoutPositions(): array
@@ -345,10 +321,7 @@ class SmartyView extends SmartyBC
             Storage::applicationThemesPath().$template . DS. 'configs'. DS. 'configs.php not found'
         );
     }//end getLayoutPositions()
-
-
     /**
-     * @param array $content
      * @return mixed|void
      * @throws NotFoundException
      */
@@ -364,15 +337,12 @@ class SmartyView extends SmartyBC
 
         return $this->widget($content[0], $content[1], $content[2]);
     }//end getWidgetContent()
-
-
     /**
-     * @param array $js
      * @throws NotFoundException
      */
     public function setJs(array $js)
     {
-        if (count($js)) {
+        if ($js !== []) {
             foreach ($js as $iValue) {
                 $this->_js[] = $this->roots['js']. $iValue .'.js';
             }
@@ -381,15 +351,12 @@ class SmartyView extends SmartyBC
             .implode(',', $this->_js));
         }
     }//end setJs()
-
-
     /**
-     * @param array $js
      * @throws NotFoundException
      */
     public function setJsPlugin(array $js)
     {
-        if (count($js)) {
+        if ($js !== []) {
             foreach ($js as $iValue) {
                 $this->jsPlugin[] = BASE_URL.'libraries'.DS.'js'.DS.'plugin'.DS. $iValue .'.js';
             }
@@ -397,14 +364,7 @@ class SmartyView extends SmartyBC
             throw new NotFoundException('JavaScript Plugin file not found or error while loading JavaScript files '
                     .implode(',', $this->jsPlugin));
         }
-    }//end setJsPlugin()
-
-
-    /**
-     * @param  string $template
-     * @return string
-     */
-    public function setModuleTemplate(string $template): string
+    }public function setModuleTemplate(string $template): string
     {
         return $this->template = $template;
     }//end setModuleTemplate()
@@ -417,10 +377,5 @@ class SmartyView extends SmartyBC
     public function setWidgetOptions($key, $options): void
     {
         $this->widget[$key] = $options;
-    }//end setWidgetOptions()
-
-
-    public function __destruct()
-    {
     }//end __destruct()
 }//end class

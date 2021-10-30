@@ -20,7 +20,7 @@ Ui::elementList(
     ]
 );
 
-(function (DOMNode|DOMElement $storeObject) {
+(function ($storeObject) {
     $dirList = Storage\FileSystem::list($this->templateRenderDirectory . ucfirst($this->request["controller"]), "file");
 
     foreach ($dirList as $index => $dir) {

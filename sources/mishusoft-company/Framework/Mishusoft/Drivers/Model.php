@@ -29,16 +29,8 @@ class Model
         $this->registry = Registry::getInstance();
         $this->db       = $this->registry->db;
         $this->dbc      = $this->db;
-    }//end __construct()
-
-
-    public function __destruct()
-    {
     }//end __destruct()
-
-
     /**
-     * @param string $sql
      * @return mixed
      */
     protected function prepare(string $sql)
@@ -54,39 +46,24 @@ class Model
         }
 
         // exit();
-    }//end prepare()
-
-
-    /**
-     * @param string $table
-     * @return bool
-     */
-    protected function isTableExistsOnDatabase(string $table): bool
+    }protected function isTableExistsOnDatabase(string $table): bool
     {
         $tbl = $this->query('SHOW TABLES LIKE %'.DbPREFIX.$table.'`;');
-        if ($tbl->fetch(PDO::FETCH_ASSOC) === true) {
-            return true;
-        }
-
-        return false;
+        return $tbl->fetch(PDO::FETCH_ASSOC) === true;
     }//end isTableExistsOnDatabase()
-
-
     /*
-        protected function retrieveReturnVariable($data, $var) {
-        if (version_compare(PhpVersion, '7.4', '<')) {
-            if ($data[$var]) {
-                return $data[$var];
+            protected function retrieveReturnVariable($data, $var) {
+            if (version_compare(PhpVersion, '7.4', '<')) {
+                if ($data[$var]) {
+                    return $data[$var];
+                }
+            } else {
+                if ($data[$var] ??= '') {if ($data[$var] || '') {
+                    return $data[$var];
+                }
             }
-        } else {
-            if ($data[$var] ??= '') {if ($data[$var] || '') {
-                return $data[$var];
-            }
-        }
-    }*/
-
+        }*/
     /**
-     * @param string $sql
      * @return mixed
      */
     protected function query(string $sql)

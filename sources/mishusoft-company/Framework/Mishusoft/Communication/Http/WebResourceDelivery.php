@@ -25,19 +25,23 @@ class WebResourceDelivery
      * @var string
      */
     private string $defaultApplicationIcon;
+    /**
+     * @var string
+     */
+    private string $defaultDirectoryIndex = DEFAULT_CONTROLLER;
 
     /**
      * WebResource constructor.
      * This is built-in uninterrupted web resources delivery system.
      *
-     * @param string $defaultDirectoryIndex
      * @throws Exceptions\ErrorException
      * @throws Exceptions\RuntimeException
      * @throws Exceptions\RuntimeException\NotFoundException
      */
     public function __construct(
-        private string $defaultDirectoryIndex = DEFAULT_CONTROLLER
+        string $defaultDirectoryIndex = DEFAULT_CONTROLLER
     ) {
+        $this->defaultDirectoryIndex = $defaultDirectoryIndex;
         $this->defaultApplicationIcon = data()->preset->logo;
     }
 
@@ -64,7 +68,7 @@ class WebResourceDelivery
      */
     private function browse(array $request): void
     {
-        if (is_readable(Storage::storagesPath()) === true) {
+        if (is_readable(Storage::storagesPath())) {
             if (
                 Utility\Inflect::lower($request["method"]) ===
                 $this->defaultDirectoryIndex
@@ -83,7 +87,6 @@ class WebResourceDelivery
     /**
      * WebExplorer of CDN.
      *
-     * @param string $dirname
      * @param string[] $request
      * @throws Exceptions\ErrorException
      * @throws Exceptions\RuntimeException
@@ -244,14 +247,8 @@ class WebResourceDelivery
         $currentUrl = Runtime::currentUrl();
         $visitedUrl = Utility\Inflect::lower($currentUrl);
 
-        if (
-            $visitedUrl !== "" &&
-            $visitedUrl[strlen($visitedUrl) - 1] !== "/"
-        ) {
-            $parentURL = $visitedUrl . "/";
-        } else {
-            $parentURL = $visitedUrl;
-        }
+        $parentURL = $visitedUrl !== "" &&
+        $visitedUrl[strlen($visitedUrl) - 1] !== "/" ? $visitedUrl . "/" : $visitedUrl;
 
         /*make breadcrumb*/
         $this->makeBreadcrumb($templateBody, $urlPath);
@@ -339,9 +336,10 @@ class WebResourceDelivery
      * @throws Exceptions\ErrorException
      * @throws Exceptions\RuntimeException
      * @throws Exceptions\RuntimeException\NotFoundException
+     * @param \DOMElement|\DOMNode $templateBody
      */
     private function makeBreadcrumb(
-        DOMElement|DOMNode $templateBody,
+        $templateBody,
         string $urlPath
     ): void {
         /*image properties*/
@@ -396,14 +394,12 @@ class WebResourceDelivery
     }
 
     /**
-     * @param string $dirname
-     * @param DOMElement|DOMNode $table_body
-     * @param string $parentURL
      * @throws Exceptions\RuntimeException\NotFoundException
+     * @param \DOMElement|\DOMNode $table_body
      */
     private function viewDirOrFileList(
         string $dirname,
-        DOMElement|DOMNode $table_body,
+        $table_body,
         string $parentURL
     ): void {
         foreach ((array) Storage::explore($dirname) as $file) {
@@ -595,7 +591,7 @@ class WebResourceDelivery
             );
         }
 
-        if (file_exists($requestedFile) === true) {
+        if (file_exists($requestedFile)) {
             if (filetype($requestedFile) === "dir") {
                 $this->webExplore($requestedFile, $request);
             } else {
@@ -659,7 +655,7 @@ class WebResourceDelivery
     {
         if (
             file_exists(Storage::storagesPath()) &&
-            is_readable(Storage::storagesPath()) === true
+            is_readable(Storage::storagesPath())
         ) {
             [
                 "controller" => $controller,
@@ -674,7 +670,7 @@ class WebResourceDelivery
 
                 case "json":
                     if (is_array($arguments) && count($arguments) > 0) {
-                        if (str_contains(implode($arguments), "-") === true) {
+                        if (strpos(implode($arguments), "-") !== false) {
                             Storage\Stream::file(
                                 Storage::sharedFullPath(
                                     str_replace("-", ".", implode($arguments))
@@ -699,10 +695,10 @@ class WebResourceDelivery
                     if (
                         file_exists(
                             logos_path_default() . $fileAbsoluteName
-                        ) === true
+                        )
                     ) {
                         stream_file(logos_path($fileAbsoluteName));
-                    } elseif (str_contains($fileAbsoluteName, "-") === true) {
+                    } elseif (strpos($fileAbsoluteName, "-") !== false) {
                         $ext = pathinfo($fileAbsoluteName, PATHINFO_EXTENSION);
                         $explode = explode("-", $fileAbsoluteName);
                         $expected = array_pop($explode);
@@ -717,7 +713,7 @@ class WebResourceDelivery
                                     Storage::logoFullPath(
                                         $this->defaultApplicationIcon
                                     )
-                                ) === true
+                                )
                             ) {
                                 Storage\Stream::file(
                                     Storage\Media\Image::resize(
@@ -763,7 +759,7 @@ class WebResourceDelivery
                         file_exists(
                             MPM\Classic::templatesJSResourcesRootLocal() .
                                 $requestArgument
-                        ) === true
+                        )
                     ) {
                         Storage\Stream::file($requestedWebFile);
                     } else {

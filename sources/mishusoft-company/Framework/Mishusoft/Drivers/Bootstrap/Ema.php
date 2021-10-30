@@ -25,7 +25,7 @@ class Ema
          * */
 
         Log::info(sprintf('Check %s directory existent.', Storage::emaPath()));
-        if (file_exists(Storage::emaPath()) === true) {
+        if (file_exists(Storage::emaPath())) {
             Log::info(sprintf('Found %s directory existent.', Storage::emaPath()));
             /*
              * We need to check Mishusoft DVO (Mishusoft-App) root path,
@@ -34,13 +34,13 @@ class Ema
              */
 
             Log::info(sprintf('Check %s directory existent.', self::rootPath()));
-            if (file_exists(self::rootPath()) === true) {
+            if (file_exists(self::rootPath())) {
                 Log::info(sprintf('Count all exists files from %s directory.', self::rootPath()));
                 if (count(FileSystem::list(self::handlersDirectory(), 'file')) > 0) {
                     foreach (FileSystem::list(self::handlersDirectory(), 'file') as $handler) {
                         if (Inflect::lower(self::filename($handler)) === Inflect::lower($request->getController())) {
                             $handlerFile = self::handlersDirectory().$handler;
-                            if (is_readable($handlerFile) === true) {
+                            if (is_readable($handlerFile)) {
                                 Log::info(
                                     sprintf('Load %s form %s directory.', $handlerFile, self::rootPath())
                                 );
@@ -78,9 +78,6 @@ class Ema
         return self::rootPath().self::defaultPackage().'/UrlHandlers/';
     }
 
-    /**
-     * @return string
-     */
     protected static function emaLoaderFile(): string
     {
         return sprintf('%s%s', Storage::applicationPackagesPath(), 'Ema.loader.php');

@@ -75,7 +75,7 @@ class JWT
      *
      * Will default to PHP time() value if null.
      */
-    public static $timestamp = null;
+    public static $timestamp;
 
     public static array $supported_algs = [
         'ES384' => ['openssl', 'SHA384'],
@@ -105,7 +105,7 @@ class JWT
      * @uses jsonDecode
      * @uses urlsafeB64Decode
      */
-    public static function decode(string $jwt, array|string $key, array $allowed_algs = []): object
+    public static function decode(string $jwt, $key, array $allowed_algs = []): object
     {
         $timestamp = is_null(static::$timestamp) ? time() : static::$timestamp;
 
@@ -141,7 +141,7 @@ class JWT
         }
 
         if (is_array($key) || $key instanceof ArrayAccess) {
-            if (isset($header->kid)) {
+            if (property_exists($header, 'kid') && $header->kid !== null) {
                 if (!isset($key[$header->kid])) {
                     throw new UnexpectedValueException('"kid" invalid, unable to lookup correct key');
                 }
@@ -158,7 +158,7 @@ class JWT
 
         // Check the nbf if it is defined. This is the time that the
         // token can actually be used. If it's not yet that time, abort.
-        if (isset($payload->nbf) && $payload->nbf > ($timestamp + static::$leeway)) {
+        if (property_exists($payload, 'nbf') && $payload->nbf !== null && $payload->nbf > ($timestamp + static::$leeway)) {
             throw new BeforeValidException(
                 'Cannot handle token prior to ' . date(DateTimeInterface::ATOM, $payload->nbf)
             );
@@ -167,14 +167,14 @@ class JWT
         // Check that this token has been created before 'now'. This prevents
         // using tokens that have been created for later use (and haven't
         // correctly used the nbf claim).
-        if (isset($payload->iat) && $payload->iat > ($timestamp + static::$leeway)) {
+        if (property_exists($payload, 'iat') && $payload->iat !== null && $payload->iat > ($timestamp + static::$leeway)) {
             throw new BeforeValidException(
                 'Cannot handle token prior to ' . date(DateTimeInterface::ATOM, $payload->iat)
             );
         }
 
         // Check if this token has expired.
-        if (isset($payload->exp) && ($timestamp - static::$leeway) >= $payload->exp) {
+        if (property_exists($payload, 'exp') && $payload->exp !== null && ($timestamp - static::$leeway) >= $payload->exp) {
             throw new ExpiredException('Expired token');
         }
 
@@ -190,7 +190,7 @@ class JWT
      * @param string $alg The signing algorithm.
      *                                      Supported algorithms are 'ES384','ES256', 'HS256', 'HS384',
      *                                      'HS512', 'RS256', 'RS384', and 'RS512'
-     * @param mixed|null $keyId
+     * @param mixed $keyId
      * @param array|null $head An array with header elements to attach
      *
      * @return string A signed JWT
@@ -199,7 +199,7 @@ class JWT
      * @uses jsonEncode
      * @uses urlsafeB64Encode
      */
-    public static function encode(object|array $payload, string $key, string $alg = 'HS256', mixed $keyId = null, array $head = null): string
+    public static function encode($payload, string $key, string $alg = 'HS256', $keyId = null, array $head = null): string
     {
         $header = ['typ' => 'JWT', 'alg' => $alg];
         if ($keyId !== null) {
@@ -277,7 +277,6 @@ class JWT
      * @param string $key        For HS*, a string key works. for RS*, must be a resource of an openssl public key
      * @param string $alg        The algorithm
      *
-     * @return bool
      *
      * @throws DomainException Invalid Algorithm, bad key, or OpenSSL failure
      */
@@ -317,18 +316,7 @@ class JWT
             case 'hash_hmac':
             default:
                 $hash = hash_hmac($algorithm, $msg, $key, true);
-                if (function_exists('hash_equals')) {
-                    return hash_equals($signature, $hash);
-                }
-                $len = min(static::safeStrlen($signature), static::safeStrlen($hash));
-
-                $status = 0;
-                for ($i = 0; $i < $len; $i++) {
-                    $status |= (ord($signature[$i]) ^ ord($hash[$i]));
-                }
-                $status |= (static::safeStrlen($signature) ^ static::safeStrlen($hash));
-
-                return ($status === 0);
+                return hash_equals($signature, $hash);
         }
     }
 
@@ -360,7 +348,7 @@ class JWT
             $obj = json_decode($json_without_bigints, false, 512, JSON_THROW_ON_ERROR);
         }
 
-        if ($errno = json_last_error()) {
+        if (($errno = json_last_error()) !== 0) {
             static::handleJsonError($errno);
         } elseif ($obj === null && $input !== 'null') {
             throw new DomainException('Null result with non-null input');
@@ -377,10 +365,10 @@ class JWT
      *
      * @throws JsonException
      */
-    public static function jsonEncode(object|array $input): string
+    public static function jsonEncode($input): string
     {
         $json = json_encode($input, JSON_THROW_ON_ERROR);
-        if ($errno = json_last_error()) {
+        if (($errno = json_last_error()) !== 0) {
             static::handleJsonError($errno);
         } elseif ($json === 'null') {
             throw new DomainException('Null result with non-null input');
@@ -398,7 +386,7 @@ class JWT
     public static function urlsafeB64Decode($input): string
     {
         $remainder = strlen($input) % 4;
-        if ($remainder) {
+        if ($remainder !== 0) {
             $padlen = 4 - $remainder;
             $input .= str_repeat('=', $padlen);
         }
@@ -421,8 +409,6 @@ class JWT
      * Helper method to create a JSON error.
      *
      * @param int $errno An error number from json_last_error()
-     *
-     * @return void
      */
     private static function handleJsonError($errno): void
     {
@@ -437,21 +423,6 @@ class JWT
             $messages[$errno]
             ?? 'Unknown JSON error: ' . $errno
         );
-    }
-
-    /**
-     * Get the number of bytes in cryptographic strings.
-     *
-     * @param string $str
-     *
-     * @return int
-     */
-    private static function safeStrlen($str): int
-    {
-        if (function_exists('mb_strlen')) {
-            return mb_strlen($str, '8bit');
-        }
-        return strlen($str);
     }
 
     /**
@@ -551,7 +522,7 @@ class JWT
 
         // Length
         $len = ord($der[$pos++]);
-        if ($len & 0x80) {
+        if (($len & 0x80) !== 0) {
             $n = $len & 0x1f;
             $len = 0;
             while ($n-- && $pos < $size) {
@@ -564,7 +535,7 @@ class JWT
             $pos++; // Skip the first contents octet (padding indicator)
             $data = substr($der, $pos, $len - 1);
             $pos += $len - 1;
-        } elseif (!$constructed) {
+        } elseif ($constructed === 0) {
             $data = substr($der, $pos, $len);
             $pos += $len;
         } else {

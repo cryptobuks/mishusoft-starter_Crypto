@@ -7,15 +7,13 @@ use Mishusoft\Drivers\Widget;
 class TopQuickBarWidget extends Widget
 {
     /**
-     * @param string $name
-     * @param string $view
-     * @param string $format
      * @param null $inverse
      * @param null $siteInfo
      * @return bool|string
      * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
+     * @return bool|string
      */
-    public function getTopQuickBar(string $name, string $view, string $format = 'phtml', $inverse = null, $siteInfo = null): bool|string
+    public function getTopQuickBar(string $name, string $view, string $format = 'phtml', $inverse = null, $siteInfo = null)
     {
         $data['name']      = $name;
         $data['inverse']   = $inverse;

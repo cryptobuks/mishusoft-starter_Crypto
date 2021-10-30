@@ -46,13 +46,12 @@ class Framework extends Base
     /**
      * Init function for Framework
      *
-     * @param Closure $closure
-     * @return Framework
      * @throws Exceptions\ErrorException
      * @throws Exceptions\PermissionRequiredException
      * @throws Exceptions\RuntimeException
+     * @return $this
      */
-    public static function init(Closure $closure): static
+    public static function init(Closure $closure)
     {
         $instance = new static();
 
@@ -96,9 +95,9 @@ class Framework extends Base
     public static function makeInstall(): void
     {
         // Preparing to check framework install file.
-        if (is_readable(self::installFile()) === true) {
+        if (is_readable(self::installFile())) {
             // Framework install file found and start reading.
-            if (defined('INSTALLED_HOST_NAME') === false) {
+            if (!defined('INSTALLED_HOST_NAME')) {
                 define('INSTALLED_HOST_NAME', System\Memory::data('framework')->host->name);
             }
         } else {
@@ -136,8 +135,8 @@ class Framework extends Base
     public function execute(): void
     {
         if (
-            file_exists(Storage::applicationDirectivePath()) === false
-            || file_exists(MPM\Classic::configFile()) === false
+            !file_exists(Storage::applicationDirectivePath())
+            || !file_exists(MPM\Classic::configFile())
         ) {
             EmbeddedView::welcomeToFramework(static::FULL_NAME, [
                 'caption' => static::FULL_NAME,

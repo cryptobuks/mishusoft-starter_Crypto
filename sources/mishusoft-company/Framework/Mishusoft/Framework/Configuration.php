@@ -4,9 +4,6 @@ namespace Mishusoft\Framework;
 
 trait Configuration
 {
-    /**
-     * @return array
-     */
     public static function defaultConfiguration(): array
     {
         return [

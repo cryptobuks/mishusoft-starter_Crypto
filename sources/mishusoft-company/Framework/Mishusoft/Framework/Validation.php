@@ -14,9 +14,9 @@ trait Validation
     protected static function extensionRequiredCheck(): void
     {
         $requiredExtensions = (array) Memory::data()->required->extensions;
-        if (count($requiredExtensions) > 0) {
+        if ($requiredExtensions !== []) {
             foreach ($requiredExtensions as $extension) {
-                if (extension_loaded($extension) === false) {
+                if (!extension_loaded($extension)) {
                     throw new Exceptions\ErrorException(sprintf('%s extension is required', ucfirst($extension)));
                 }
             }
@@ -34,10 +34,10 @@ trait Validation
     protected static function thirdPartyRequiredCheck(): void
     {
         $thirdParty = (array) Memory::data()->required->thirdparty;
-        if (count($thirdParty) > 0) {
+        if ($thirdParty !== []) {
             foreach ($thirdParty as $package => $details) {
                 $path = sprintf('%1$svendor%3$s%2$s', self::rootPath(), $package, DS);
-                if (is_dir($path) === false) {
+                if (!is_dir($path)) {
                     throw new Exceptions\ErrorException(
                         sprintf(
                             '%1$s is required. Please run `%2$s` or for fresh download visit %3$s',
@@ -60,11 +60,11 @@ trait Validation
      */
     protected static function opcacheStatusCheck(): void
     {
-        if (function_exists('opcache_get_status') === false) {
+        if (!function_exists('opcache_get_status')) {
             trigger_error('Requires Opcache installations');
         } else {
             $opcache = opcache_get_status(false);
-            if (empty($opcache) === false && isset($opcache['opcache_enabled']) === true) {
+            if (!empty($opcache) && isset($opcache['opcache_enabled'])) {
                 ini_set('opcache.memory_consumption', 128);
                 ini_set('opcache.interned_strings_buffer', 8);
                 ini_set('opcache.max_accelerated_files', 4000);
@@ -72,7 +72,7 @@ trait Validation
                 ini_set('opcache.enable_cli', 1);
                 ini_set('opcache.use_cwd', 1);
                 ini_set('opcache.file_cache', APPLICATION_SYSTEM_TEMP_PATH.'/cache/.opcache;');
-                if (isset($opcache['cache_full']) === true) {
+                if (isset($opcache['cache_full'])) {
                     opcache_reset();
                 }
             } else {

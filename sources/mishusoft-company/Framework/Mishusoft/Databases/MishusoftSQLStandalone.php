@@ -31,8 +31,6 @@ class MishusoftSQLStandalone extends MishusoftSQLStandalone\CommonDependency imp
     /**
      * MishusoftQL constructor.
      *
-     * @param string $username
-     * @param string $password
      * @throws RuntimeException
      * @throws DbException
      */
@@ -61,7 +59,7 @@ class MishusoftSQLStandalone extends MishusoftSQLStandalone\CommonDependency imp
 
         /*use contents of propertiesFile*/
         $properties = $this->schemaProperties();
-        if (count($properties) > 0) {
+        if ($properties !== []) {
             if (array_key_exists("databases", $properties)) {
                 $this->databasesAll = $properties["databases"];
             } else {
@@ -73,7 +71,7 @@ class MishusoftSQLStandalone extends MishusoftSQLStandalone\CommonDependency imp
                 $this->writeFile($this->schemaPropertiesFile(), $this->propertiesDefault);
             }
 
-            foreach ($this->usersAll as $number => $user) {
+            foreach (array_keys($this->usersAll) as $number) {
                 if ($this->usersAll[$number]["username"] === $this->username) {
                     $inRecord = true;
                     if ($this->usersAll[$number]["password"] === $this->password) {
@@ -92,8 +90,6 @@ class MishusoftSQLStandalone extends MishusoftSQLStandalone\CommonDependency imp
     }
 
     /**
-     * @param int $code
-     * @param string $message
      * @throws DbException
      */
     public static function error(int $code, string $message): void
@@ -101,16 +97,12 @@ class MishusoftSQLStandalone extends MishusoftSQLStandalone\CommonDependency imp
         throw new DbException("DbError[$code]: $message");
     }
 
-    /**
-     * @return array
-     */
     public function getDatabasesAll(): array
     {
         return $this->databasesAll;
     }
 
     /**
-     * @param string $database_name
      * @return mixed
      * @throws DbException
      * @throws RuntimeException
@@ -121,11 +113,11 @@ class MishusoftSQLStandalone extends MishusoftSQLStandalone\CommonDependency imp
     }
 
     /**
-     * @param array|string $database_name
      * @throws DbException
      * @throws RuntimeException
+     * @param mixed[]|string $database_name
      */
-    public function create(array|string$database_name): void
+    public function create($database_name): void
     {
         if (is_array($database_name)) {
             foreach ($database_name as $db) {
@@ -138,14 +130,13 @@ class MishusoftSQLStandalone extends MishusoftSQLStandalone\CommonDependency imp
 
 
     /**
-     * @param string $database_name
      * @throws RuntimeException|DbException
      */
     private function createDatabase(string $database_name): void
     {
         if (!in_array($database_name, $this->databasesAll, true)) {
             $contents = $this->readFile($this->schemaPropertiesFile());
-            if (count($contents) > 0) {
+            if ($contents !== []) {
                 if (array_key_exists("databases", $contents)) {
                     $contents["databases"][] = $database_name;
                 }
@@ -162,8 +153,6 @@ class MishusoftSQLStandalone extends MishusoftSQLStandalone\CommonDependency imp
     }
 
     /**
-     * @param string $old_database_name
-     * @param string $new_database_name
      *
      * @return mixed
      * @throws DbException
@@ -173,9 +162,9 @@ class MishusoftSQLStandalone extends MishusoftSQLStandalone\CommonDependency imp
     public function rename(string$old_database_name, string $new_database_name): bool
     {
         if (in_array($old_database_name, $this->databasesAll, true)) {
-            if ($this->databasefile($old_database_name)) {
+            if ($this->databasefile($old_database_name) !== '' && $this->databasefile($old_database_name) !== '0') {
                 $properties = $this->schemaProperties();
-                if (count($properties) > 0) {
+                if ($properties !== []) {
                     if (array_key_exists("databases", $properties)
                         && !in_array($new_database_name, $properties["databases"], true)) {
                         $OldDatabaseIndex = array_search($old_database_name, $properties["databases"], true);
@@ -195,13 +184,12 @@ class MishusoftSQLStandalone extends MishusoftSQLStandalone\CommonDependency imp
     }
 
     /**
-     * @param array|string $name
-     * @return bool
      * @throws DbException
      * @throws InvalidArgumentException
      * @throws RuntimeException
+     * @param mixed[]|string $name
      */
-    public function delete(array|string $name): bool
+    public function delete($name): bool
     {
         $isRemoved = false;
         if (is_array($name)) {
@@ -219,7 +207,6 @@ class MishusoftSQLStandalone extends MishusoftSQLStandalone\CommonDependency imp
 
 
     /**
-     * @param string $name
      * @throws DbException
      * @throws InvalidArgumentException
      * @throws RuntimeException
@@ -241,11 +228,11 @@ class MishusoftSQLStandalone extends MishusoftSQLStandalone\CommonDependency imp
     }
 
     /**
-     * @param array|string $database_name
      * @throws DbException
      * @throws InvalidArgumentException
+     * @param mixed[]|string $database_name
      */
-    public function empty(array|string $database_name): void
+    public function empty($database_name): void
     {
         if (in_array($database_name, $this->databasesAll, true)) {
             $this->quickEmpty($database_name, 'dir');
@@ -257,22 +244,16 @@ class MishusoftSQLStandalone extends MishusoftSQLStandalone\CommonDependency imp
     /**
      * @return mixed
      */
-    public function getUsersAll(): mixed
+    public function getUsersAll()
     {
         return $this->usersAll;
     }
 
-    /**
-     * @return string
-     */
     public function getUsername(): string
     {
         return $this->username;
     }
 
-    /**
-     * @return string
-     */
     public function getPassword(): string
     {
         return $this->password;

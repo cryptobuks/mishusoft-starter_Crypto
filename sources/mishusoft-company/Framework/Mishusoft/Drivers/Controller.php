@@ -36,10 +36,7 @@ abstract class Controller implements ControllerInterface
 
     public function validEmail($email): bool
     {
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            return false;
-        }
-        return true;
+        return (bool) filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
     public function getSearchText($value): string
@@ -78,25 +75,22 @@ abstract class Controller implements ControllerInterface
 
     /**
      * @param $source
-     * @return string|string[]|null
+     * @return mixed[]|string|null
      */
-    public function expandCamelCase($source): array|string|null
+    public function expandCamelCase($source)
     {
         return preg_replace('/(?<!^)([A-Z][a-z]|(?<=[a-z])[^a-z]|(?<=[A-Z])[0-9_])/', ' $1', $source);
     }
 
     /**
      * @param $subject
-     * @return string|string[]|null
+     * @return mixed[]|string|null
      */
-    public function findUSERNAME($subject): array|string|null
+    public function findUSERNAME($subject)
     {
         return preg_replace(DS . APP_USERNAME_PREFIX . '/is', '$1', $subject);
     }
 
-    /**
-     * @param string $folderpath
-     */
     public function deleteFolder(string $folderpath): void
     {
         if (!is_dir($folderpath)) {
@@ -151,10 +145,6 @@ abstract class Controller implements ControllerInterface
         }
     }
 
-    public function __destruct()
-    {
-    }
-
     /**
      * @throws Exceptions\ErrorException
      * @throws Exceptions\RuntimeException
@@ -170,10 +160,6 @@ abstract class Controller implements ControllerInterface
         }
     }
 
-    /**
-     * @param string $url
-     * @return string
-     */
     public function getNextURL(string $url): string
     {
         if (Storage::applicationWebDirectivePath() !== DS) {
@@ -189,7 +175,6 @@ abstract class Controller implements ControllerInterface
 
     /**
      * @param $value
-     * @return bool
      */
     protected function catchRedirectURL($value): bool
     {
@@ -201,7 +186,6 @@ abstract class Controller implements ControllerInterface
 
     /**
      * @param $value
-     * @return bool
      */
     protected function getTextOnURL($value): bool
     {
@@ -212,8 +196,6 @@ abstract class Controller implements ControllerInterface
     }
 
     /**
-     * @param string $model
-     * @param string $module
      *
      * @return mixed
      * @throws NotFoundException
@@ -223,13 +205,14 @@ abstract class Controller implements ControllerInterface
      * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
      * @throws \Mishusoft\Exceptions\PermissionRequiredException
      * @throws \Mishusoft\Exceptions\RuntimeException
+     * @return mixed
      */
-    protected function loadModel(string $model, string $module = ''): mixed
+    protected function loadModel(string $model, string $module = '')
     {
         $model = implode([$model, 'Model']);
         $rootModel = implode(DS, [MPM\Classic::modulesPath(), MPM\Classic::defaultModule(), 'Models', $model . ".php"]);
 
-        if (empty($module) === false) {
+        if (!empty($module)) {
             $module = $this->request->getModule();
         }
 
@@ -246,7 +229,6 @@ abstract class Controller implements ControllerInterface
 
     /**
      * @param $value
-     * @return string
      */
     protected function getText($value): string
     {
@@ -259,7 +241,6 @@ abstract class Controller implements ControllerInterface
 
     /**
      * @param $value
-     * @return string
      */
     protected function getNormalText($value): string
     {
@@ -271,7 +252,6 @@ abstract class Controller implements ControllerInterface
 
     /**
      * @param $value
-     * @return int
      */
     protected function getInt($value): int
     {
@@ -286,7 +266,7 @@ abstract class Controller implements ControllerInterface
      * @param $value
      * @return mixed
      */
-    protected function getWordParam($value): mixed
+    protected function getWordParam($value)
     {
         if (isset($_POST[$value]) && !empty($_POST[$value])) {
             return $_POST[$value];
@@ -296,7 +276,6 @@ abstract class Controller implements ControllerInterface
 
     /**
      * @param $value
-     * @return string
      */
     protected function getSql($value): string
     {
@@ -309,7 +288,6 @@ abstract class Controller implements ControllerInterface
 
     /**
      * @param $value
-     * @return string
      */
     protected function getSqlText($value): string
     {
@@ -322,7 +300,6 @@ abstract class Controller implements ControllerInterface
 
     /**
      * @param $value
-     * @return string
      */
     protected function getAlphaNum($value): string
     {
@@ -335,7 +312,6 @@ abstract class Controller implements ControllerInterface
 
     /**
      * @param $value
-     * @return string
      */
     protected function getAlphaNumText($value): string
     {

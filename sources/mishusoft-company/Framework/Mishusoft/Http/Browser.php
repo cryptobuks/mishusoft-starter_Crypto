@@ -27,6 +27,7 @@ class Browser extends UAAnalyzer
     private string $urlPath;
     private string $acceptLanguage;
     private string $acceptEncoding;
+    private string $userAgentString = 'default';
 
     /**
      * Browser constructor.
@@ -36,29 +37,18 @@ class Browser extends UAAnalyzer
      * @throws ErrorException
      */
     public function __construct(
-        private string $userAgentString = 'default'
+        string $userAgentString = 'default'
     ) {
+        $this->userAgentString = $userAgentString;
         parent::__construct($this->userAgentString);
         $this->requestMethod = $_SERVER['REQUEST_METHOD'];
 
-        if (array_key_exists('HTTP-SEC-FETCH-MODE', $_SERVER) === true) {
-            $this->requestMode = $_SERVER['HTTP-SEC-FETCH-MODE'];
-        } else {
-            $this->requestMode = 'negative';
-        }
+        $this->requestMode = array_key_exists('HTTP-SEC-FETCH-MODE', $_SERVER) ? $_SERVER['HTTP-SEC-FETCH-MODE'] : 'negative';
 
-        if (array_key_exists('REQUEST_SCHEME', $_SERVER) === true) {
-            $this->urlProtocol = $_SERVER['REQUEST_SCHEME'];
-        } else {
-            $this->urlProtocol = 'http';
-        }
+        $this->urlProtocol = array_key_exists('REQUEST_SCHEME', $_SERVER) ? $_SERVER['REQUEST_SCHEME'] : 'http';
 
-        if (array_key_exists('HTTP_HOST', $_SERVER) === true) {
-            if (in_array($_SERVER['HTTP_HOST'], $this->allowedDomains, true) === true) {
-                $domain = $_SERVER['HTTP_HOST'];
-            } else {
-                $domain = 'localhost';
-            }
+        if (array_key_exists('HTTP_HOST', $_SERVER)) {
+            $domain = in_array($_SERVER['HTTP_HOST'], $this->allowedDomains, true) ? $_SERVER['HTTP_HOST'] : 'localhost';
 
             $this->urlHostname = $domain;
         } else {
@@ -69,39 +59,39 @@ class Browser extends UAAnalyzer
 
         if ($this->userAgentString !== 'default') {
             $this->userAgent = $this->userAgentString;
-        } elseif (function_exists('apache_request_headers') === true) {
-            if (array_key_exists('User-Agent', apache_request_headers()) === true) {
+        } elseif (function_exists('apache_request_headers')) {
+            if (array_key_exists('User-Agent', apache_request_headers())) {
                 $this->userAgent = apache_request_headers()['User-Agent'];
-                if (array_key_exists('Accept-Language', apache_request_headers()) === true) {
+                if (array_key_exists('Accept-Language', apache_request_headers())) {
                     $this->acceptLanguage = apache_request_headers()['Accept-Language'];
                 }
 
-                if (array_key_exists('Accept-Encoding', apache_request_headers()) === true) {
+                if (array_key_exists('Accept-Encoding', apache_request_headers())) {
                     $this->acceptEncoding = apache_request_headers()['Accept-Encoding'];
                 }
 
                 $this->analyze();
             }
-        } elseif (function_exists('getallheaders') === true) {
-            if (array_key_exists('HTTP_USER_AGENT', getallheaders()) === true) {
+        } elseif (function_exists('getallheaders')) {
+            if (array_key_exists('HTTP_USER_AGENT', getallheaders())) {
                 $this->userAgent = getallheaders()['HTTP_USER_AGENT'];
-                if (array_key_exists('Accept-Language', getallheaders()) === true) {
+                if (array_key_exists('Accept-Language', getallheaders())) {
                     $this->acceptLanguage = getallheaders()['Accept-Language'];
                 }
 
-                if (array_key_exists('Accept-Encoding', getallheaders()) === true) {
+                if (array_key_exists('Accept-Encoding', getallheaders())) {
                     $this->acceptEncoding = getallheaders()['Accept-Encoding'];
                 }
                 $this->analyze();
             }
-        } elseif (array_key_exists('HTTP_USER_AGENT', $_SERVER) === true) {
+        } elseif (array_key_exists('HTTP_USER_AGENT', $_SERVER)) {
             $this->userAgent = $_SERVER['HTTP_USER_AGENT'];
 
-            if (array_key_exists('HTTP_ACCEPT_LANGUAGE', $_SERVER) === true) {
+            if (array_key_exists('HTTP_ACCEPT_LANGUAGE', $_SERVER)) {
                 $this->acceptLanguage = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
             }
 
-            if (array_key_exists('HTTP_ACCEPT_ENCODING', $_SERVER) === true) {
+            if (array_key_exists('HTTP_ACCEPT_ENCODING', $_SERVER)) {
                 $this->acceptEncoding = $_SERVER['HTTP_ACCEPT_ENCODING'];
             }
 
@@ -110,13 +100,10 @@ class Browser extends UAAnalyzer
             throw new RuntimeException('Unable to extract browser data.');
         }//end if
     }//end __construct()
-
-
     /**
      * Visited page title.
      *
      * @public
-     * @return string
      */
     public static function visitedPageTitle(): string
     {
@@ -125,16 +112,12 @@ class Browser extends UAAnalyzer
         // Web url
         $url = self::getVisitedPage();
         // OPEN THE REMOTE PAGE
-        $file = fopen($url, 'rb') or trigger_error('url not found');
+        ($file = fopen($url, 'rb')) || trigger_error('url not found');
         // ITERATE OVER THE PAGE DATA
         while (!feof($file)) {
             $text = fread($file, 16384);
             if (preg_match('/<title>(.*?)<\/title>/is', $text, $found) === 1) {
-                if (array_key_exists(1, $found) === true) {
-                    $title = $found[1];
-                } else {
-                    $title = 'Not found';
-                }
+                $title = array_key_exists(1, $found) ? $found[1] : 'Not found';
 
                 break;
             }
@@ -142,13 +125,10 @@ class Browser extends UAAnalyzer
 
         return ltrim($title);
     }//end visitedPageTitle()
-
-
     /**
      * Retrieve visited page.
      *
      * @public
-     * @return string
      */
     public static function getVisitedPage(): string
     {
@@ -198,45 +178,27 @@ class Browser extends UAAnalyzer
     {
         return $this->urlPath;
     }//end getURLPath()
-
-
     /**
      * @public
-     * @return string
      */
     public function getRequestMethod(): string
     {
         return $this->requestMethod;
-    }//end getRequestMethod()
-
-
-    /**
-     * @return string
-     */
-    public function getRequestMode(): string
+    }public function getRequestMode(): string
     {
         return $this->requestMode;
-    }//end getRequestMode()
-
-
-    public function __destruct()
-    {
     }//end __destruct()
-
-
     /**
      * @return mixed
      */
-    public function getAcceptLanguage(): mixed
+    public function getAcceptLanguage()
     {
         return $this->acceptLanguage;
     }//end getAcceptLanguage()
-
-
     /**
      * @return mixed
      */
-    public function getAcceptEncoding(): mixed
+    public function getAcceptEncoding()
     {
         return $this->acceptEncoding;
     }//end getAcceptEncoding()

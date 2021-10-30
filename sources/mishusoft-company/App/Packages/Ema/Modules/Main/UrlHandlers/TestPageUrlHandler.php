@@ -9,7 +9,6 @@ use Mishusoft\Drivers\UrlHandler;
 class TestPageUrlHandler extends UrlHandler
 {
     /**
-     * @param array $prediction
      * @throws \JsonException
      * @throws \Mishusoft\Exceptions\ErrorException
      * @throws \Mishusoft\Exceptions\JsonException

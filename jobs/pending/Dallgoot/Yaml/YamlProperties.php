@@ -26,8 +26,6 @@ class YamlProperties
 
     /**
      * Creates API object to be used for the document provided as argument
-     *
-     * @param int $buildingOptions
      */
     public function __construct(int $buildingOptions)
     {

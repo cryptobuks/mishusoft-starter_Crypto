@@ -15,8 +15,6 @@ class Http extends Http\Errors
 
     /**
      * Get server information in runtime requirements
-     *
-     * @return array
      */
     public static function getDetails(): array
     {
@@ -31,9 +29,9 @@ class Http extends Http\Errors
      *
      * @param string $format Format of data.
      *
-     * @return array|object
+     * @return mixed[]|object
      */
-    public static function errorsRecords(string $format = 'array'): array|object
+    public static function errorsRecords(string $format = 'array')
     {
         if ($format === 'array') {
             return self::BUILT_IN_HTTP_ERRORS_RECORDS;
@@ -45,19 +43,15 @@ class Http extends Http\Errors
 
         return ['container' => 'empty'];
     }//end getErrorsRecord()
-
-
     /**
      * Get error code by description.
      *
      * @param string $description Error description.
-     *
-     * @return integer
      */
     public static function errorCode(string $description): int
     {
         foreach (self::errorsRecords() as $errKey => $details) {
-            if (array_key_exists('Description', $details) === true
+            if (array_key_exists('Description', $details)
                 && strtolower($details['Description']) === strtolower($description)
             ) {
                 return $errKey;
@@ -66,31 +60,23 @@ class Http extends Http\Errors
 
         return self::NOT_FOUND;
     }//end getErrorCode()
-
-
     /**
      * Get error code by description.
      *
      * @param int $code Error code.
-     *
-     * @return string
      */
     public static function errorDescription(int $code): string
     {
-        if (array_key_exists($code, self::errorsRecords()) === true) {
+        if (array_key_exists($code, self::errorsRecords())) {
             return self::errorsRecords()[$code]['Description'];
         }
 
         return 'Not Found';
     }//end getErrorCode()
-
-
     /**
      * Set Header
      *
      * @param array $contents Parameters.
-     *
-     * @return void
      */
     public static function setHeader(array $contents): void
     {
@@ -101,17 +87,12 @@ class Http extends Http\Errors
             "Access-Control-Allow-Headers"=>"ms-feedback-data,Accept"
         ));*/
 
-        if (count($contents) > 0) {
-            foreach ($contents as $keyword => $value) {
-                header(sprintf('%s : %s', $keyword, $value));
-            }
+        foreach ($contents as $keyword => $value) {
+            header(sprintf('%s : %s', $keyword, $value));
         }
     }//end setHeader()
-
     /**
      * Check is use ssl certificate in domain
-     *
-     * @return bool
      */
     public static function isSecured(): bool
     {
@@ -120,9 +101,6 @@ class Http extends Http\Errors
 
     /**
      * Get server http host name from details
-     *
-     * @param bool $useForwardedHost
-     * @return string
      */
     public static function getHost(bool $useForwardedHost = false): string
     {
@@ -130,19 +108,13 @@ class Http extends Http\Errors
         $sp = strtolower($s['SERVER_PROTOCOL']);
         $protocol = substr($sp, 0, strpos($sp, '/')) . ((self::isSecured()) ? 's' : '');
 
-        if (($useForwardedHost && isset($s['HTTP_X_FORWARDED_HOST']))) {
-            $host = $s['HTTP_X_FORWARDED_HOST'];
-        } else {
-            $host = ($s['HTTP_HOST'] ?? null);
-        }
+        $host = $useForwardedHost && isset($s['HTTP_X_FORWARDED_HOST']) ? $s['HTTP_X_FORWARDED_HOST'] : $s['HTTP_HOST'] ?? null;
         $host = ($host ?? $s['SERVER_NAME']) . self::getPort();
         return $protocol . '://' . $host;
     }
 
     /**
      * Get server http port from details
-     *
-     * @return string
      */
     public static function getPort(): string
     {

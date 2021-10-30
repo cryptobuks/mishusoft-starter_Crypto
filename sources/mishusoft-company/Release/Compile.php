@@ -86,8 +86,6 @@ class Compile extends FileSystem
 
     /**
      * Write log for default.
-     *
-     * @return void
      */
     public function defaultInfo(): void
     {
@@ -112,14 +110,11 @@ class Compile extends FileSystem
         echo '\t -u \t Update node-app and Mishusoft Framework release versions'.PHP_EOL;
         echo '\t -h \t help for release'.PHP_EOL;
     }//end defaultInfo()
-
-
     /**
      * Start php file compiling.
      *
      * @param string $operation Compilation command.
      * @param array $options Resources of compilation.
-     * @param string $mode
      * @return void              No action return.
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
@@ -146,10 +141,10 @@ class Compile extends FileSystem
                         $this->log(self::PACKAGE_NAME.' :: Copy Operation is running.');
                         $this->log('Source:: '.$sourcesDirectory);
                         $this->log('Output:: '.$outputDirectory);
-                        if (empty($sourcesDirectory) === false && empty($outputDirectory) === false) {
+                        if (!empty($sourcesDirectory) && !empty($outputDirectory)) {
                             foreach (Storage::globRecursive($sourcesDirectory.'/*', GLOB_MARK) as $file) {
-                                if (is_file($file) === true) {
-                                    if (copy($file, str_replace($sourcesDirectory, $outputDirectory, $file)) === true) {
+                                if (is_file($file)) {
+                                    if (copy($file, str_replace($sourcesDirectory, $outputDirectory, $file))) {
                                         $this->log($file.' copied!!', 'success');
                                     } else {
                                         $this->log($file.' could not copied!!', 'error');
@@ -165,7 +160,7 @@ class Compile extends FileSystem
                     if ($operation === 'rThemes') {
                         $this->log(self::FILE_BASE_NAME.' is started.');
 
-                        if (file_exists($sourcesDirectory.'/positions.config.standard.php') === true) {
+                        if (file_exists($sourcesDirectory.'/positions.config.standard.php')) {
                             $this->log(self::PACKAGE_NAME.' :: Themes Release Operation is running.');
                             $this->log('Source:: '.$sourcesDirectory);
                             $this->log('Output:: '.$outputDirectory);
@@ -221,28 +216,26 @@ class Compile extends FileSystem
                     if ($operation === 'rWidgets') {
                         $this->log(self::FILE_BASE_NAME.' is started.');
 
-                        if (file_exists($sourcesDirectory) === true) {
+                        if (file_exists($sourcesDirectory)) {
                             $this->log(self::PACKAGE_NAME.' :: Widgets Release Operation is running.');
                             $this->log('Source:: '.$sourcesDirectory);
                             $this->log('Output:: '.$outputDirectory);
 
-                            if (count(self::list($sourcesDirectory, 'directory')) > 0) {
-                                foreach (self::list($sourcesDirectory, 'directory') as $widget) {
-                                    $widgetDirectory = pathinfo($widget, PATHINFO_FILENAME);
-                                    $sourceRoot      = $sourcesPathBase.'/'.$widget;
-                                    $outputRoot      = $outputPathBase.'/'.$widgetDirectory;
-                                    self::makeDirectory($outputDirectory.'/'.$widgetDirectory);
-                                    $this->log(
-                                        'Compiling [...]/'.$sourceRoot.' to [...]/'.$outputRoot,
-                                        'following'
-                                    );
-                                    $this->compiler(
-                                        $sourcesDirectory.'/'.$widget,
-                                        $outputDirectory.'/'.$widgetDirectory,
-                                        $mode,
-                                        ($flash === '-flash')
-                                    );
-                                }
+                            foreach (self::list($sourcesDirectory, 'directory') as $widget) {
+                                $widgetDirectory = pathinfo($widget, PATHINFO_FILENAME);
+                                $sourceRoot      = $sourcesPathBase.'/'.$widget;
+                                $outputRoot      = $outputPathBase.'/'.$widgetDirectory;
+                                self::makeDirectory($outputDirectory.'/'.$widgetDirectory);
+                                $this->log(
+                                    'Compiling [...]/'.$sourceRoot.' to [...]/'.$outputRoot,
+                                    'following'
+                                );
+                                $this->compiler(
+                                    $sourcesDirectory.'/'.$widget,
+                                    $outputDirectory.'/'.$widgetDirectory,
+                                    $mode,
+                                    ($flash === '-flash')
+                                );
                             }//end if
 
                             $this->log('Operation completed!!');
@@ -257,7 +250,7 @@ class Compile extends FileSystem
                     if ($operation === 'rStaticHTMLPages') {
                         $this->log(self::FILE_BASE_NAME.' is started.');
 
-                        if (file_exists($sourcesDirectory) === true) {
+                        if (file_exists($sourcesDirectory)) {
                             $this->log(self::PACKAGE_NAME.' :: Templates Release Operation is running.');
                             $this->log('Source:: '.$sourcesDirectory);
                             $this->log('Output:: '.$outputDirectory);
@@ -293,7 +286,7 @@ class Compile extends FileSystem
                         exit();
                     }//end if
 
-                    if (empty($sourcesDirectory) === false && empty($outputDirectory) === false) {
+                    if (!empty($sourcesDirectory) && !empty($outputDirectory)) {
                         $this->log(self::FILE_BASE_NAME.' is started.');
                         $this->log(self::PACKAGE_NAME.' Operation is running.');
 
@@ -320,16 +313,14 @@ class Compile extends FileSystem
             }//end if
         }//end if
     }//end start()
-
-
     /**
      * Get theme list of sources folder.
      *
      * @param string $directory Theme folder root.
-     * @return array|false       Return array or false by collecting info from sources folder.
+     * @return bool|mixed[] Return array or false by collecting info from sources folder.
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    private function getThemesList(string $directory): bool|array
+    private function getThemesList(string $directory)
     {
         $files = self::list($directory, 'file');
 
@@ -341,12 +332,9 @@ class Compile extends FileSystem
 
         return $files;
     }//end getThemesList()
-
-
     /**
      * Update package release version for all packages.
      *
-     * @param  string $directory
      * @throws JsonException|\Mishusoft\Exceptions\RuntimeException
      */
     public function updatePRVALlPackages(string $directory): void
@@ -355,23 +343,20 @@ class Compile extends FileSystem
 
         // Update package release version for all packages.
         foreach ($packages as $package) {
-            if (is_file(self::realpath($directory.'/'.$package.'.json')) === true) {
+            if (is_file(self::realpath($directory.'/'.$package.'.json'))) {
                 $this->updatePRV(self::realpath($directory.'/'.$package.'.json'));
             }
         }
     }//end updatePRVALlPackages()
-
-
     /**
-     * @param  string $packageJsonFile
      * @throws JsonException
      */
     public function updatePRV(string $packageJsonFile): void
     {
         $packageJsonContents = json_decode(file_get_contents($packageJsonFile), true, 512, JSON_THROW_ON_ERROR);
-        if (is_array($packageJsonContents) === true) {
-            if (count($packageJsonContents) > 0) {
-                if (array_key_exists('version', $packageJsonContents) === true) {
+        if (is_array($packageJsonContents)) {
+            if ($packageJsonContents !== []) {
+                if (array_key_exists('version', $packageJsonContents)) {
                     $oldVersion = $packageJsonContents['version'];
                     // Extract version string into array.
                     $versions = explode('.', $packageJsonContents['version']);
@@ -381,13 +366,13 @@ class Compile extends FileSystem
                     $middleArrKey = (count($versions) - 2);
                     // Find out last array key index.
                     $lastArrKey = (count($versions) - 1);
-                    if (array_key_exists($lastArrKey, $versions) === true) {
+                    if (array_key_exists($lastArrKey, $versions)) {
                         if ($versions[$lastArrKey] === 9) {
                             $versions[$lastArrKey] = 0;
-                            if (array_key_exists($middleArrKey, $versions) === true) {
+                            if (array_key_exists($middleArrKey, $versions)) {
                                 if ($versions[$middleArrKey] === 9) {
                                     $versions[$middleArrKey] = 0;
-                                    if (array_key_exists($firstArrKey, $versions) === true) {
+                                    if (array_key_exists($firstArrKey, $versions)) {
                                         ++$versions[$firstArrKey];
                                     }
                                 } else {
@@ -401,8 +386,8 @@ class Compile extends FileSystem
 
                     $newVersion = implode('.', $versions);
                     $packageJsonContents['version'] = $newVersion;
-                    if (is_readable($packageJsonFile) === true) {
-                        if (is_writable($packageJsonFile) === true) {
+                    if (is_readable($packageJsonFile)) {
+                        if (is_writable($packageJsonFile)) {
                             if (self::saveToFile(
                                 $packageJsonFile,
                                 json_encode($packageJsonContents, JSON_THROW_ON_ERROR)
@@ -436,13 +421,8 @@ class Compile extends FileSystem
             $this->log('Error in updating version, '.$packageJsonFile.' corrupted.', 'error');
         }//end if
     }//end updatePRV()
-
-
     /**
      * Log message to screen.
-     *
-     * @param string $message
-     * @param string $type
      */
     public function log(string $message, string $type = 'log'): void
     {
@@ -465,13 +445,13 @@ class Compile extends FileSystem
          * then the output has to be created from the directory.
          */
 
-        if (is_dir($sources) === true) {
+        if (is_dir($sources)) {
             /*
              * If the given output is exists, and it's child are no empty
              * then compiler will be deleted all child item.
              */
 
-            if ((file_exists($output) === true) && count(self::list($output)) > 0) {
+            if ((file_exists($output)) && count(self::list($output)) > 0) {
                 foreach (Storage::globRecursive($output) as $item) {
                     self::remove($item);
                 }
@@ -485,13 +465,13 @@ class Compile extends FileSystem
          * and create new.
          */
 
-        if ($flash === true) {
+        if ($flash) {
             /*
              * If the given output is exists
              * then compiler will be deleted all child item.
              */
 
-            if (file_exists($output) === true) {
+            if (file_exists($output)) {
                 self::remove($output);
             }//end if
 
@@ -505,49 +485,42 @@ class Compile extends FileSystem
          * step 3 : if source is file, then write
          */
 
-        if (is_file($sources) === true) {
+        if (is_file($sources)) {
             $this->log('Waiting '.$output, 'pending');
             $this->writeFile($output, $sources, $mode);
         } else {
             $files = glob($sources.'*', GLOB_MARK);
             foreach ($files as $file) {
-                if (basename($output) !== basename($file)) {
-                    $target = $output.DIRECTORY_SEPARATOR.basename($file);
-                } else {
-                    $target = $output;
-                }//end if
+                $target = basename($output) !== basename($file) ? $output.DIRECTORY_SEPARATOR.basename($file) : $output;//end if
 
-                if (is_file($file) === true) {
+                if (is_file($file)) {
                     $this->log('Waiting '.$target, 'pending');
                     $this->writeFile($target, $file, $mode);
                 }//end if
 
-                if (is_dir($file) === true) {
+                if (is_dir($file)) {
                     self::compiler($file, $target, $mode, $flash);
                 }//end if
             }
         }//end if
     }//end compiler()
-
-
     /**
      * Write new file form source.
      *
      * @param string $newFile New output filename.
      * @param string $sourceFile Source filename.
-     * @param string $mode
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
     private function writeFile(string $newFile, string $sourceFile, string $mode): void
     {
-        if ((file_exists($newFile) === true) && (is_file($newFile) === true)) {
+        if ((file_exists($newFile)) && (is_file($newFile))) {
             unlink($newFile);
         }//end if
 
-        if (is_file($sourceFile) === true) {
+        if (is_file($sourceFile)) {
             $compliedFile = fopen($newFile, 'wb+');
 
-            if (is_resource($compliedFile) === true) {
+            if (is_resource($compliedFile)) {
                 if ($mode === '-compile') {
                     fwrite($compliedFile, $this->compressPhpSource($sourceFile));
                 } elseif ($mode === '-test') {
@@ -565,16 +538,12 @@ class Compile extends FileSystem
 
         $this->log('File '.$newFile.' has been complied.', 'success');
     }//end writeFile()
-
-
-
     /**
      * With this function You can compress Your PHP source code.
      *
-     * @param  string $source
-     * @return boolean|string
+     * @return bool|string
      */
-    public function compressPhpSource(string $source): bool|string
+    public function compressPhpSource(string $source)
     {
         // Whitespaces left and right from this signs can be ignored.
         static $IW = [
@@ -635,7 +604,7 @@ class Compile extends FileSystem
             T_SR_EQUAL,
         // >>=
         ];
-        if (is_file($source) === true) {
+        if (is_file($source)) {
             if (!$source = file_get_contents($source)) {
                 return false;
             }//end if
@@ -644,7 +613,7 @@ class Compile extends FileSystem
         $tokens = token_get_all($source);
 
         $new = '';
-        $c   = sizeof($tokens);
+        $c   = count($tokens);
         $iw  = false;
         // ignore whitespace
         $ih = false;
@@ -655,7 +624,7 @@ class Compile extends FileSystem
         // open tag
         for ($i = 0; $i < $c; $i++) {
             $token = $tokens[$i];
-            if (is_array($token) === true) {
+            if (is_array($token)) {
                 [
                     $tn,
                     $ts,
@@ -690,7 +659,7 @@ class Compile extends FileSystem
                     $new .= $ts;
                     $ot   = null;
                     $iw   = false;
-                } elseif (in_array($tn, $IW, true) === true) {
+                } elseif (in_array($tn, $IW, true)) {
                     $new .= $ts;
                     $iw   = true;
                 } elseif ($tn === T_CONSTANT_ENCAPSED_STRING
@@ -703,7 +672,7 @@ class Compile extends FileSystem
                     $new .= $ts;
                     $iw   = true;
                 } elseif ($tn === T_WHITESPACE) {
-                    if (array_key_exists(($i + 1), $tokens) === true) {
+                    if (array_key_exists(($i + 1), $tokens)) {
                         $nt = @$tokens[($i + 1)];
                         if (!$iw && (!is_string($nt) || $nt === '$') && !in_array($nt[0], $IW)) {
                             $new .= ' ';
@@ -722,7 +691,7 @@ class Compile extends FileSystem
                     $ih   = false;
                     // in HEREDOC.
                     for ($j = ($i + 1); $j < $c; $j++) {
-                        if (is_string($tokens[$j]) === true && $tokens[$j] === ';') {
+                        if (is_string($tokens[$j]) && $tokens[$j] === ';') {
                             $i = $j;
                             break;
                         }
@@ -735,7 +704,6 @@ class Compile extends FileSystem
                     $iw = true;
                 } else {
                     if (!$ih) {
-                        $ts = $ts;
                         // $ts = strtolower($ts);
                     }
 
@@ -756,17 +724,15 @@ class Compile extends FileSystem
 
         return $new;
     }//end compressPhpSource()
-
-
     /**
      * Make a zip file for sources.
      *
      * @param string $srcDirectory Source directory for zip.
      * @param string $identity File identy.
-     * @return false|string Return filename or false.
+     * @return bool|string Return filename or false.
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
-    public function zip(string $srcDirectory, string $identity): bool|string
+    public function zip(string $srcDirectory, string $identity)
     {
         $tempDir = '/srv/http/tmp/caches/updates/';
         $update  = $identity.'-update-['.date('YmdH').'].zip';
@@ -777,10 +743,10 @@ class Compile extends FileSystem
 
         self::makeDirectory($tempDir);
 
-        if (file_exists($tempDir) === false) {
+        if (!file_exists($tempDir)) {
             $this->log('Creating new '.$tempDir);
             self::makeDirectory($tempDir);
-        } elseif (file_exists($archive) === true) {
+        } elseif (file_exists($archive)) {
             $this->log('Removing exists update '.$archive);
             self::remove($archive);
         }//end if
@@ -789,10 +755,10 @@ class Compile extends FileSystem
         // Output check end.
         // Check src files permissions start.
         $files = Storage::globRecursive($srcDirectory.'/*', GLOB_MARK);
-        if (is_array($files) === true && count($files) > 0) {
+        if (is_array($files) && $files !== []) {
             $this->log('Preparing to check permissions '.$srcDirectory);
             foreach ($files as $file) {
-                if (is_readable($file) === false) {
+                if (!is_readable($file)) {
                     $this->log(
                         'Exploit permission for '.$file.', permission is '.substr(sprintf('%o', fileperms($file)), -4),
                         'permission'
@@ -812,31 +778,28 @@ class Compile extends FileSystem
         }
 
         foreach ($files as $file) {
-            if (is_file($file) === true) {
+            if (is_file($file)) {
                 $zip->addFile($file, str_replace('/srv/http', '', $file));
             }//end if
         }
 
         $zip->close();
 
-        if (file_exists($archive) === true) {
+        if (file_exists($archive)) {
             $this->log('New archive '.$archive.' created');
             return $archive;
         }
 
         return false;
     }//end zip()
-
-
     /**
      * Make web request.
      *
-     * @param  string $url
-     * @param  mixed  $data
-     * @param  mixed  $headers
-     * @return boolean|string
+     * @param mixed $data
+     * @param mixed $headers
+     * @return bool|string
      */
-    public function curlPost(string $url, mixed $data = '', mixed $headers = ''): bool|string
+    public function curlPost(string $url, $data = '', $headers = '')
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, 1);
@@ -847,11 +810,11 @@ class Compile extends FileSystem
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
         curl_setopt($ch, CURLOPT_TIMEOUT, 300);
 
-        if (empty($headers) === false) {
+        if (!empty($headers)) {
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         }//end if
 
-        if (empty($data) === false) {
+        if (!empty($data)) {
             // Attach encoded JSON string to the POST fields.
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
             // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
@@ -859,7 +822,7 @@ class Compile extends FileSystem
 
         $response = curl_exec($ch);
 
-        if (is_string(curl_error($ch)) === true) {
+        if (is_string(curl_error($ch))) {
             $this->log('Connection Error: '.curl_error($ch), 'error');
             exit();
         }//end if
@@ -867,12 +830,9 @@ class Compile extends FileSystem
         curl_close($ch);
         return $response;
     }//end curlPost()
-
-
     /**
      * Update package version.
      *
-     * @param array $parameters
      * @return void Noting return.
      * @throws JsonException
      * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
@@ -898,7 +858,7 @@ class Compile extends FileSystem
 
                     $this->log(self::FILE_BASE_NAME.' is started.');
 
-                    if (file_exists($sourcesDirectory) === true) {
+                    if (file_exists($sourcesDirectory)) {
                         $this->log(self::PACKAGE_NAME_FULL.' :: update Operation is running.');
                         $this->log('Source:: '.$sourcesDirectory);
                         $this->log('Output:: WebDirectory/'.$outputDirectory);
@@ -907,15 +867,15 @@ class Compile extends FileSystem
                         $destinationServer   = array_shift($parameters);
 
                         if (strtolower($destinationIdentify) === '-w') {
-                            if (is_string($destinationServer) === true) {
-                                if (Inflect::endsWith($destinationServer, '/') === true) {
+                            if (is_string($destinationServer)) {
+                                if (Inflect::endsWith($destinationServer, '/')) {
                                     $destinationServer = rtrim($destinationServer, '/');
                                 }
 
                                 $this->log('Archiving '.$sourcesDirectory);
                                 $filename = $this->zip($sourcesDirectory, $outputDirectory);
 
-                                if (is_file($filename) === true) {
+                                if (is_file($filename)) {
                                     $response = CurlRequest::uploadFile(
                                         '{valid-full-host-address}',
                                         [

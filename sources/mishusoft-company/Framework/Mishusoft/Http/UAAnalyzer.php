@@ -16,42 +16,49 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
     private UAAnalyzer\InformationCollection $resources;
 
     private int $timeOfExecution;
+    /**
+     * @var string
+     */
+    public string $userAgent;
+    /**
+     * @var bool
+     */
+    private bool $matchFound = false;
 
     /**
      * UAAnalyze constructor.
      *
      * @param string $userAgent User agent string from web browser.
-     * @param boolean $matchFound
      * @throws RuntimeException
      */
     public function __construct(
-        public string $userAgent,
-        private bool  $matchFound = false
+        string $userAgent,
+        bool  $matchFound = false
     ) {
+        $this->userAgent = $userAgent;
+        $this->matchFound = $matchFound;
         parent::__construct();
         $this->timeOfExecution = time();
         $this->identifiers = new UAAnalyzer\IdentifiersCollection();
         $this->patterns = new UAAnalyzer\PatternsCollection();
         $this->resources = new UAAnalyzer\InformationCollection();
     }//end __construct()
-
-
     /**
      * Analyze
      *
-     * @return UAAnalyzer
      * @throws InvalidArgumentException
      * @throws JsonException
      * @throws PermissionRequiredException
      * @throws RuntimeException
      * @throws \Mishusoft\Exceptions\JsonException
+     * @return $this
      */
-    public function analyze(): static
+    public function analyze()
     {
         //If current user agent are stored in solved list,
         //then we should not solve this,
         //we load the solved data from solve list
-        if (array_key_exists($this->userAgent, $this->solvedUA()) === true) {
+        if (array_key_exists($this->userAgent, $this->solvedUA())) {
             $this->makeDetails($this->solvedUA()[$this->userAgent]);
         } else {
             $this->collectUA('development');
@@ -63,7 +70,7 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
                     $this->matchFound = true;
                     $details = $this->cleanFilter($matches);
                     $this->browserNameFull = $this->cleanImplode($details);
-                    if (array_key_exists('version', $details) === true) {
+                    if (array_key_exists('version', $details)) {
                         $this->browserVersionFull = $details['version'];
                         $this->browserVersion = $this->versionOrigin($details['version']);
                     }
@@ -169,7 +176,7 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
             }//end foreach
         }
 
-        if ($this->matchFound === true) {
+        if ($this->matchFound) {
             $this->collectUA('solved', $this->details());
         } else {
             $this->collectUA('unsolved');
@@ -246,7 +253,7 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
 
     public function details(): array
     {
-        if ($this->matchFound === true) {
+        if ($this->matchFound) {
             unset(
                 $this->browserDetails['name'],
                 $this->browserDetails['name-version'],
@@ -328,90 +335,57 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
         ];
     }
 
-    /**
-     * @return string
-     */
     public function getBrowserAppCodeName(): string
     {
         return $this->browserAppCodeName;
     }
 
-    /**
-     * @return string
-     */
     public function getBrowserAppCodeVersion(): string
     {
         return $this->browserAppCodeVersion;
     }
 
-    /**
-     * @return string
-     */
     public function getBrowserArchitecture(): string
     {
         return $this->browserArchitecture;
     }
 
-    /**
-     * @return string
-     */
     public function getBrowserEngineName(): string
     {
         return $this->browserEngineName;
     }
 
-    /**
-     * @return string
-     */
     public function getBrowserEngineNameFull(): string
     {
         return $this->browserEngineNameFull;
     }
 
-    /**
-     * @return string
-     */
     public function getBrowserEngineVersion(): string
     {
         return $this->browserEngineVersion;
     }
 
 
-    /**
-     * @return string
-     */
     public function getBrowserName(): string
     {
         return $this->browserName;
     }
 
-    /**
-     * @return string
-     */
     public function getBrowserNameFull(): string
     {
         return $this->browserNameFull;
     }
 
-    /**
-     * @return string
-     */
     public function getBrowserVersion(): string
     {
         return $this->browserVersion;
     }
 
-    /**
-     * @return string
-     */
     public function getBrowserVersionFull(): string
     {
         return $this->browserVersionFull;
     }
 
-    /**
-     * @return string
-     */
     public function getDeviceName(): string
     {
         return $this->deviceName;
@@ -422,81 +396,51 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
         return $this->deviceName . ' ' . $this->platformArchitecture;
     }
 
-    /**
-     * @return string
-     */
     public function getDeviceNameFull(): string
     {
         return $this->deviceNameFull;
     }
 
-    /**
-     * @return string
-     */
     public function getDeviceType(): string
     {
         return $this->deviceType;
     }
 
-    /**
-     * @return string
-     */
     public function getUserAgent(): string
     {
         return $this->userAgent;
     }
 
-    /**
-     * @return string
-     */
     public function getPlatformName(): string
     {
         return $this->platformName;
     }
 
-    /**
-     * @return string
-     */
     public function getPlatformNameFull(): string
     {
         return $this->platformNameFull;
     }
 
-    /**
-     * @return string
-     */
     public function getPlatformArchitecture(): string
     {
         return $this->platformArchitecture;
     }
 
-    /**
-     * @return string
-     */
     public function getPlatformWindowManager(): string
     {
         return $this->platformWindowManager;
     }
 
-    /**
-     * @return string
-     */
     public function getPlatformWmNameOriginal(): string
     {
         return $this->platformWmNameOriginal;
     }
 
-    /**
-     * @return int
-     */
     public function getTimeOfExecution(): int
     {
         return $this->timeOfExecution;
     }
 
-    /**
-     * @return string
-     */
     public function getBrowserAppCodeVersionFull(): string
     {
         return $this->browserAppCodeVersionFull;
@@ -505,7 +449,7 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
     /**
      * @return mixed
      */
-    public function getBrowserType(): mixed
+    public function getBrowserType()
     {
         return $this->browserType;
     }
@@ -513,7 +457,7 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
     /**
      * @return mixed
      */
-    public function getBrowserUi(): mixed
+    public function getBrowserUi()
     {
         return $this->browserUi;
     }

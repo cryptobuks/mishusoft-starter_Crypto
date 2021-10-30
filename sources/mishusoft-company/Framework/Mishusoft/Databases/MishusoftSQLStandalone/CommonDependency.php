@@ -12,12 +12,18 @@ class CommonDependency extends Base
     protected array $schemaProperties = [];
     protected array $databaseProperties = [];
     protected string $currentDatabase = '';
+    private string $identity;
+    private string $dbFileFormat;
+    private string $dbTableFileFormat = '';
 
     public function __construct(
-        private string $identity,
-        private string $dbFileFormat,
-        private string $dbTableFileFormat = ''
+        string $identity,
+        string $dbFileFormat,
+        string $dbTableFileFormat = ''
     ) {
+        $this->identity = $identity;
+        $this->dbFileFormat = $dbFileFormat;
+        $this->dbTableFileFormat = $dbTableFileFormat;
         parent::__construct();
     }
 
@@ -60,9 +66,6 @@ class CommonDependency extends Base
     }
 
     /**
-     * @param string $filename
-     * @param array $data
-     * @return void
      * @throws RuntimeException
      */
     protected function writeFile(string $filename, array $data): void
@@ -76,7 +79,7 @@ class CommonDependency extends Base
      */
     protected function schemaProperties(): array
     {
-        if (count($this->schemaProperties) === 0) {
+        if ($this->schemaProperties === []) {
             $properties  = $this->readFile($this->schemaPropertiesFile());
             $this->schemaProperties  = is_array($properties) ? $properties : [];
         }
@@ -89,7 +92,7 @@ class CommonDependency extends Base
      */
     protected function databaseProperties(string $name): array
     {
-        if (count($this->databaseProperties) === 0) {
+        if ($this->databaseProperties === []) {
             $properties  = $this->readFile($this->databaseFile($name));
             $this->databaseProperties  = is_array($properties) ? $properties : [];
         }
@@ -99,25 +102,27 @@ class CommonDependency extends Base
 
 
     /**
-     * @param string $old
-     * @param string $new
-     * @param string $file
-     * @param string $resource
-     * @return bool
      * @throws InvalidArgumentException
      */
     protected function quickRename(string $old, string $new, string $file = 'file', string $resource = 'database'): bool
     {
-        return match ($file) {
-            'dir' => rename($this->directory($old), $this->directory($new)),
-            'file' => match ($resource) {
-                'database' => rename($this->databaseFile($old), $this->databaseFile($new)),
-                'table' => rename($this->tableFile($old), $this->tableFile($new)),
-                default => throw new InvalidArgumentException('Unsupported parameter $resource ' . $resource)
-            },
-            'both' => $this->quickRename($old, $new) && $this->quickRename($old, $new, 'dir'),
-            default => throw new InvalidArgumentException('Unsupported parameter $file ' . $file)
-        };
+        switch ($file) {
+            case 'dir':
+                return rename($this->directory($old), $this->directory($new));
+            case 'file':
+                switch ($resource) {
+                    case 'database':
+                        return rename($this->databaseFile($old), $this->databaseFile($new));
+                    case 'table':
+                        return rename($this->tableFile($old), $this->tableFile($new));
+                    default:
+                        throw new InvalidArgumentException('Unsupported parameter $resource ' . $resource);
+                }
+            case 'both':
+                return $this->quickRename($old, $new) && $this->quickRename($old, $new, 'dir');
+            default:
+                throw new InvalidArgumentException('Unsupported parameter $file ' . $file);
+        }
     }
 
     /**
@@ -125,16 +130,23 @@ class CommonDependency extends Base
      */
     protected function quickRemove(string $name, string $file = 'file', string $resource = 'database'): ?bool
     {
-        return match ($file) {
-            'dir' => Storage\FileSystem::remove($name),
-            'file' => match ($resource) {
-                'database' => Storage\FileSystem::remove($this->databaseFile($name)),
-                'table' => Storage\FileSystem::remove($this->tableFile($name)),
-                default => throw new InvalidArgumentException('Unsupported parameter $resource ' . $resource)
-            },
-            'both' => $this->quickRemove($name) && $this->quickRemove($name, 'dir'),
-            default => throw new InvalidArgumentException('Unsupported parameter $file ' . $file)
-        };
+        switch ($file) {
+            case 'dir':
+                return Storage\FileSystem::remove($name);
+            case 'file':
+                switch ($resource) {
+                    case 'database':
+                        return Storage\FileSystem::remove($this->databaseFile($name));
+                    case 'table':
+                        return Storage\FileSystem::remove($this->tableFile($name));
+                    default:
+                        throw new InvalidArgumentException('Unsupported parameter $resource ' . $resource);
+                }
+            case 'both':
+                return $this->quickRemove($name) && $this->quickRemove($name, 'dir');
+            default:
+                throw new InvalidArgumentException('Unsupported parameter $file ' . $file);
+        }
     }
 
     /**
@@ -142,21 +154,25 @@ class CommonDependency extends Base
      */
     protected function quickEmpty(string $name, string $file = 'file', string $resource = 'database'): ?bool
     {
-        return match ($file) {
-            'dir' => Storage\FileSystem::remove($name),
-            'file' => match ($resource) {
-                'database' => Storage\FileSystem::remove($this->databaseFile($name)),
-                'table' => Storage\FileSystem::remove($this->tableFile($name)),
-                default => throw new InvalidArgumentException('Unsupported parameter $resource ' . $resource)
-            },
-            'both' => $this->quickRemove($name) && $this->quickRemove($name, 'dir'),
-            default => throw new InvalidArgumentException('Unsupported parameter $file ' . $file)
-        };
+        switch ($file) {
+            case 'dir':
+                return Storage\FileSystem::remove($name);
+            case 'file':
+                switch ($resource) {
+                    case 'database':
+                        return Storage\FileSystem::remove($this->databaseFile($name));
+                    case 'table':
+                        return Storage\FileSystem::remove($this->tableFile($name));
+                    default:
+                        throw new InvalidArgumentException('Unsupported parameter $resource ' . $resource);
+                }
+            case 'both':
+                return $this->quickRemove($name) && $this->quickRemove($name, 'dir');
+            default:
+                throw new InvalidArgumentException('Unsupported parameter $file ' . $file);
+        }
     }
 
-    /**
-     * @param string $currentDatabase
-     */
     protected function setCurrentDatabase(string $currentDatabase): void
     {
         $this->currentDatabase = $currentDatabase;
@@ -165,10 +181,8 @@ class CommonDependency extends Base
     protected function sort(array $array): array
     {
         $result = [];
-        if (count($array)> 0) {
-            foreach ($array as $item) {
-                $array[] = $item;
-            }
+        foreach ($array as $item) {
+            $array[] = $item;
         }
         return $result;
     }

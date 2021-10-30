@@ -42,7 +42,7 @@ final class Yaml
      *
      * @todo transpose Loader::NO_PARSING_EXCEPTIONS in this class
      */
-    public static function parse(string $someYaml, int $options = null, int $debug = null): array|YamlObject|null
+    public static function parse(string $someYaml, int $options = null, int $debug = null)
     {
         try {
             return (new Loader(null, $options, $debug))->parse($someYaml);
@@ -69,7 +69,7 @@ final class Yaml
      * @throws Exception coming from Loader
      * @see    Loader
      */
-    public static function parseFile(string $fileName, int $options = null, int $debug = null): YamlObject|array|null
+    public static function parseFile(string $fileName, int $options = null, int $debug = null)
     {
         try {
             return (new Loader($fileName, $options, (int) $debug))->parse();
@@ -88,7 +88,7 @@ final class Yaml
      * @throws Exception on errors during building YAML string coming from Dumper class
      * @see    Dumper
      */
-    public static function dump(mixed $somePhpVar, int $options = null):string
+    public static function dump($somePhpVar, int $options = null):string
     {
         try {
             return (new Dumper($options))->toString($somePhpVar);
@@ -110,7 +110,7 @@ final class Yaml
      * @throws Exception on errors (from Dumper::toString) during building YAML string
      * @see    Dumper
      */
-    public static function dumpFile(string $fileName, mixed $somePhpVar, int $options = null):bool
+    public static function dumpFile(string $fileName, $somePhpVar, int $options = null):bool
     {
         try {
             return (new Dumper($options))->toFile($fileName, $somePhpVar);

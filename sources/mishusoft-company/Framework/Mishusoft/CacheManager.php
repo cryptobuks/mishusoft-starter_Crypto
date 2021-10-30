@@ -39,34 +39,32 @@ class CacheManager extends Base
             Storage\FileSystem::makeDirectory(self::$cacheDirectory);
         }
 
-        if (count(self::$observation)>0) {
-            foreach (self::$observation as $item) {
-                $fullName = Inflect::replace($item, ROOT_IDENTITY, RUNTIME_ROOT_PATH);
-                $fullName = Inflect::replace($fullName, '/', DS);
+        foreach (self::$observation as $item) {
+            $fullName = Inflect::replace($item, ROOT_IDENTITY, RUNTIME_ROOT_PATH);
+            $fullName = Inflect::replace($fullName, '/', DS);
 
-                if (file_exists($fullName)) {
-                    if (is_dir($fullName)) {
-                        $willBe = self::directive(Inflect::replace($fullName, RUNTIME_ROOT_PATH));
+            if (file_exists($fullName)) {
+                if (is_dir($fullName)) {
+                    $willBe = self::directive(Inflect::replace($fullName, RUNTIME_ROOT_PATH));
 
-                        if (!file_exists($willBe)) {
-                            Storage\FileSystem::makeDirectory($willBe);
-                        }
-
-                        foreach (Storage::globRecursive($fullName) as $filename) {
-                            self::process($filename);
-                        }
+                    if (!file_exists($willBe)) {
+                        Storage\FileSystem::makeDirectory($willBe);
                     }
 
-                    if (is_file($fullName)) {
-                        if (file_exists(self::file(Inflect::replace($fullName, RUNTIME_ROOT_PATH)))) {
-                            self::process($fullName);
-                        } else {
-                            self::make($fullName);
-                        }
+                    foreach (Storage::globRecursive($fullName) as $filename) {
+                        self::process($filename);
                     }
-                } else {
-                    self::restore(Inflect::replace($fullName, RUNTIME_ROOT_PATH));
                 }
+
+                if (is_file($fullName)) {
+                    if (file_exists(self::file(Inflect::replace($fullName, RUNTIME_ROOT_PATH)))) {
+                        self::process($fullName);
+                    } else {
+                        self::make($fullName);
+                    }
+                }
+            } else {
+                self::restore(Inflect::replace($fullName, RUNTIME_ROOT_PATH));
             }
         }
     }
@@ -86,9 +84,6 @@ class CacheManager extends Base
         }
     }
 
-    /**
-     * @return string
-     */
     private static function propertyFile(): string
     {
         return self::dFile(self::configDataFile('Cache', 'properties'));
@@ -144,20 +139,6 @@ class CacheManager extends Base
         }
     }
 
-
-    /**
-     * @param string $filename
-     * @return string
-     */
-    private static function originalFile(string $filename): string
-    {
-        return sprintf('%s%s', RUNTIME_ROOT_PATH /*. 'public_html'*/, $filename);
-    }
-
-    /**
-     * @param string $directive
-     * @return string
-     */
     public static function directive(string $directive): string
     {
         return sprintf(
@@ -167,10 +148,6 @@ class CacheManager extends Base
         );
     }
 
-    /**
-     * @param string $filename
-     * @return string
-     */
     public static function file(string $filename): string
     {
         return sprintf(
@@ -180,11 +157,6 @@ class CacheManager extends Base
         );
     }
 
-    /**
-     * @param string $directive
-     * @param string $filename
-     * @return string
-     */
     public static function directiveDataFile(string $directive, string $filename): string
     {
         return sprintf(

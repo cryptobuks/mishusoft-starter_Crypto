@@ -20,7 +20,7 @@ class Request
 
         $this->controller = array_shift($arguments);
 
-        if (str_contains($this->controller, ':')) {
+        if (strpos($this->controller, ':') !== false) {
             [$this->controller, $this->method] = explode(':', $this->controller);
         }
 
@@ -37,9 +37,6 @@ class Request
         }
     }
 
-    /**
-     * @return array
-     */
     private static function cliArguments(): array
     {
         $argv = $_SERVER['argv'];
@@ -57,22 +54,16 @@ class Request
     /**
      * @return mixed
      */
-    public function getController(): mixed
+    public function getController()
     {
         return $this->controller;
     }
 
-    /**
-     * @return string
-     */
     public function getMethod(): string
     {
         return $this->method;
     }
 
-    /**
-     * @return array
-     */
     public function getArguments(): array
     {
         return $this->arguments;

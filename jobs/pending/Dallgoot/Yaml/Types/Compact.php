@@ -25,12 +25,10 @@ class Compact extends \ArrayIterator implements \JsonSerializable
 
     /**
      * Provides the correct ouput for Json Serialization
-     *
-     * @return array
      */
     public function jsonSerialize():array
     {
         $prop = get_object_vars($this);
-        return count($prop) > 0 ? $prop : iterator_to_array($this);
+        return $prop !== [] ? $prop : iterator_to_array($this);
     }
 }

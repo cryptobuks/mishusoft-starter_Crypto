@@ -6,7 +6,7 @@ use PDO;
 
 class Database extends PDO
 {
-    public function __construct($host, $db, $user, $pass, $char)
+    public function __construct($host, $db, $user, $pass)
     {
         parent::__construct(
             'mysql:host='. $host .';dbname=' . $db,

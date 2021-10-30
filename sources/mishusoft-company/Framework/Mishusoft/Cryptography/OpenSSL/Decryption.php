@@ -13,14 +13,14 @@ class Decryption extends OpenSSL
      * @param string $data Encrypted string.
      * @param string $type Command type, default is advanced.
      *
-     * @return string|false Return decrypted string.
+     * @return string|bool Return decrypted string.
      * @throws RuntimeException \Throwable Exception.
      * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public static function dynamic(
         string $data,
         string $type = "advanced"
-    ): string|false {
+    ) {
         $result = "";
         if ($type === "classic") {
             // Remove the base64 encoding from our key.
@@ -43,7 +43,7 @@ class Decryption extends OpenSSL
         if ($type === "advanced") {
             // Generate an initialization vector.
             $cipherLength = openssl_cipher_iv_length(self::$cipherAlgo1);
-            if (is_int($cipherLength) === true) {
+            if (is_int($cipherLength)) {
                 $random = openssl_random_pseudo_bytes(
                     $cipherLength,
                     $isSourceStrong
@@ -76,9 +76,9 @@ class Decryption extends OpenSSL
      *
      * @param  string $data Static string.
      *
-     * @return string|false Result.
+     * @return string|bool Result.
      */
-    public static function static(string $data): string|false
+    public static function static(string $data)
     {
         // you may change these values to your own
         /*

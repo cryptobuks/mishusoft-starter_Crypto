@@ -13,16 +13,8 @@ use ZipArchive;
 
 class SystemConfiguration
 {
+    //end __construct()
     /**
-     * SystemConfiguration constructor.
-     */
-    public function __construct()
-    {
-    }//end __construct()
-
-
-    /**
-     * @param array $request
      * @throws InvalidArgumentException
      */
     public function install(array $request): void
@@ -34,10 +26,7 @@ class SystemConfiguration
             throw new InvalidArgumentException('Empty Data send');
         }
     }//end install()
-
-
     /**
-     * @param array $request
      * @throws InvalidArgumentException
      * @throws NotFoundException
      * @throws \Mishusoft\Exceptions\PermissionRequiredException
@@ -48,9 +37,9 @@ class SystemConfiguration
     {
 
         //$requestedFile = filter_input_array(FILE_BINARY, 'update');
-        if (array_key_exists('update', $_FILES) === true) {
+        if (array_key_exists('update', $_FILES)) {
             $uploader = new Storage\Uploader($_FILES['update']);
-            if (!$uploader->file_temp_name) {
+            if ($uploader->file_temp_name === '' || $uploader->file_temp_name === '0') {
                 Storage\Stream::text('Please browse for a file before clicking upload button.');
             }
 

@@ -66,7 +66,6 @@ class Regex
     /**
      * Determines if a valid Date format
      * @param string $v a string value
-     * @return bool
      * @throws \Exception if any preg_match has invalid regex
      * @todo : support other date formats ???
      */

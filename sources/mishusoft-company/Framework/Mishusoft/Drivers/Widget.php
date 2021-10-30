@@ -29,22 +29,19 @@ abstract class Widget implements WidgetInterface
         $this->registry->acl    =  new Acl();
         $this->acl              =  $this->registry->acl;
     }//end __construct()
-
-
     /**
-     * @param string $model
-     * @return mixed
      * @throws Exceptions\RuntimeException
+     * @return mixed
      */
-    protected function loadModel(string $model): mixed
+    protected function loadModel(string $model)
     {
         $modelClass      = $model.'ModelWidget';
         $widgetModelFile = Storage::applicationWidgetsPath().'Models'.DS.$modelClass.'.php';
-        if (is_readable($widgetModelFile) === true) {
+        if (is_readable($widgetModelFile)) {
             include_once $widgetModelFile;
             $modelClass = Base::getClassNamespace($widgetModelFile);
-            if (in_array($widgetModelFile, get_included_files()) === true) {
-                if (class_exists($modelClass, false) === true) {
+            if (in_array($widgetModelFile, get_included_files())) {
+                if (class_exists($modelClass, false)) {
                     return new $modelClass();
                 }
 
@@ -56,20 +53,14 @@ abstract class Widget implements WidgetInterface
             throw new Exceptions\RuntimeException($widgetModelFile.' not found');
         }//end if
     }//end loadModel()
-
-
     /**
-     * @param string $menu
-     * @param string $view
-     * @param array $data
-     * @param string $ext
-     * @return false|string
      * @throws Exceptions\RuntimeException\NotFoundException
+     * @return bool|string
      */
-    protected function render(string $menu, string $view, array $data = [], string $ext = 'phtml'): bool|string
+    protected function render(string $menu, string $view, array $data = [], string $ext = 'phtml')
     {
         $widgetViewFile = Storage::applicationWidgetsPath().'Views'.DS.$menu.DS.$view.'.'.$ext;
-        if (is_readable($widgetViewFile) === true) {
+        if (is_readable($widgetViewFile)) {
             if (FileSystem::fileExt($widgetViewFile) === 'php') {
                 return $widgetViewFile;
             }
@@ -80,13 +71,5 @@ abstract class Widget implements WidgetInterface
             return ob_get_clean();
         }
         throw new Exceptions\RuntimeException\NotFoundException($widgetViewFile. ' not found');
-    }//end render()
-
-
-    /**
-     *
-     */
-    public function __destruct()
-    {
     }//end __destruct()
 }//end class

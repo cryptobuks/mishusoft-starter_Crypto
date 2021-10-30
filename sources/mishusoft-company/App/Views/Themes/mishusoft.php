@@ -138,14 +138,14 @@ if ($this->templateUse === 'no') {
 
 
     // add template topQuickBar
-    if (array_key_exists('top', $this->getWidgets()) === true) {
+    if (array_key_exists('top', $this->getWidgets())) {
         foreach ($this->getWidgets()['top'] as $widget) {
             include_once $widget;
         }
     }
 
     // add template universal menubar
-    if (array_key_exists('header', $this->getWidgets()) === true) {
+    if (array_key_exists('header', $this->getWidgets())) {
         foreach ($this->getWidgets()['header'] as $widget) {
             include_once $widget;
         }
@@ -155,7 +155,7 @@ if ($this->templateUse === 'no') {
     include_once $this->loadTemplateFile();
 
     // add template footer
-    if (array_key_exists('footer', $this->getWidgets()) === true) {
+    if (array_key_exists('footer', $this->getWidgets())) {
         foreach ($this->getWidgets()['footer'] as $widget) {
             include_once $widget;
         }

@@ -19,8 +19,6 @@ use Mishusoft\Storage\FileSystem\Dallgoot\Yaml\Tag\CoreSchema;
  */
 class TagFactory
 {
-    private const UNKNOWN_TAG = 'Error: tag "%s" is unknown (have you registered a handler for it? see Dallgoot\Yaml\Tag\SchemaInterface)';
-    private const NO_NAME     = '%s Error: a tag MUST have a name';
     private const WRONG_VALUE = "Error : cannot transform tag '%s' for type '%s'";
     private const ERROR_HANDLE_EXISTS = "This tag handle is already registered, did you use a named handle like '!name!' ?";
 

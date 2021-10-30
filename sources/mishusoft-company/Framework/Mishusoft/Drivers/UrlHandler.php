@@ -45,10 +45,6 @@ abstract class UrlHandler implements UrlHandlerInterface
 
 
     /**
-     * @param string $rootTitle
-     * @param array $request
-     * @param array $noMenuList
-     * @return View\MishusoftView
      * @throws \JsonException
      * @throws \Mishusoft\Exceptions\ErrorException
      * @throws \Mishusoft\Exceptions\RuntimeException

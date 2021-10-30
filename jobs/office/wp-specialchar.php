@@ -4,7 +4,7 @@ function _wp_specialchars($string, $quote_style = ENT_NOQUOTES, $charset = false
 {
     $string = (string) $string;
 
-    if (0 === strlen($string)) {
+    if ($string === '') {
         return '';
     }
 

@@ -37,9 +37,7 @@ foreach ($aboutInfo as $inf) {
     ]);
     Ui::element($root, "span", ["style" => "text-decoration: none;border-style: none;user-select: none;-webkit-user-select: none;-ms-user-select: none;outline-style: none;font-size: 18px;font-weight: 400;", "text" => $translation->translate(_Array::value($inf, "title"))]);
 
-    if (count(_Array::value($inf, "content")) > 0) {
-        foreach (_Array::value($inf, "content") as $content) {
-            Ui::element($root, "span", ["style" => Ui::htmlHrefStyle . "font-size: 15px;font-weight: 380;line-height: 1.6;margin-top: 5px;text-align: justify;", "text" => $translation->translate($content)]);
-        }
+    foreach (_Array::value($inf, "content") as $content) {
+        Ui::element($root, "span", ["style" => Ui::htmlHrefStyle . "font-size: 15px;font-weight: 380;line-height: 1.6;margin-top: 5px;text-align: justify;", "text" => $translation->translate($content)]);
     }
 }

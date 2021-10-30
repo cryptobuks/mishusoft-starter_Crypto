@@ -53,7 +53,7 @@ class Classic extends Request
              * verified extracted locale language check
              * from count supported locale language of system, verify if it is more than 0
              */
-            if (count(array_change_key_case(Localization::SUPPORT)) > 0) {
+            if (array_change_key_case(Localization::SUPPORT) !== []) {
                 /*
                  * if supported locale languages list is not set or locale not in these,
                  * then locale set to module, and it makes default

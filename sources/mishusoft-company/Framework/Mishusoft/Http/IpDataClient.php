@@ -8,25 +8,21 @@ use RuntimeException;
 class IpDataClient
 {
     private const BASE_URL = 'https://api.ipdata.co';
-
-
     /**
-     *
-     * @param  string $apiKey
+     * @var string
      */
+    private string $apiKey = '';
+
+
     public function __construct(
-        private string $apiKey = ''
+        string $apiKey = ''
     ) {
-        if (empty($this->apiKey) === true) {
+        $this->apiKey = $apiKey;
+        if (empty($this->apiKey)) {
             throw new RuntimeException('IpData api can not be empty.');
         }
     }//end __construct()
-
-
     /**
-     * @param string $ip
-     * @param array $fields
-     * @return array
      * @throws \Mishusoft\Exceptions\HttpException\HttpResponseException
      */
     public function lookup(string $ip, array $fields = []): array
@@ -35,7 +31,7 @@ class IpDataClient
             'api-key' => $this->apiKey,
         ];
 
-        if (empty($fields) === false) {
+        if (!empty($fields)) {
             $query['fields'] = implode(',', $fields);
         }
 
@@ -76,16 +72,12 @@ class IpDataClient
         $response = [];
         $curlHandle->sendRequest();
         if ($curlHandle->getResponseCode() !== 200) {
-            if (count($curlHandle->getErrors())>0) {
-                $errResponse = $curlHandle->getErrors();
-            } else {
-                $errResponse = $curlHandle->toArray();
-            }
+            $errResponse = $curlHandle->getErrors() !== [] ? $curlHandle->getErrors() : $curlHandle->toArray();
             throw new RuntimeException(implode(":", $errResponse));
         }
 
         $head = $curlHandle->getResponseHeadArray();
-        if (array_key_exists('content-type', $head) === true) {
+        if (array_key_exists('content-type', $head)) {
             if (trim($head['content-type']) === 'application/json') {
                 $response = $curlHandle->toArray();
             } else {

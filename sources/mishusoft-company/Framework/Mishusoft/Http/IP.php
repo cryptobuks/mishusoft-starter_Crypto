@@ -55,7 +55,6 @@ class IP extends Base
     /**
      * Get country name of client.
      *
-     * @return string
      * @throws HttpResponseException
      * @throws InvalidDatabaseException
      */
@@ -63,29 +62,22 @@ class IP extends Base
     {
         $country = 'Unknown';
         try {
-            if (self::isPublicIp(self::get()) === true) {
+            if (self::isPublicIp(self::get())) {
                 $reader  = new Reader(self::countryDbFile());
                 $record  = $reader->country(self::get());
                 $country = $record->country->name;
             } else {
                 $country = 'Private IP';
             }
-        } catch (AddressNotFoundException) {
-            if (empty($record->country->name) === true) {
+        } catch (AddressNotFoundException $exception) {
+            if (empty($record->country->name)) {
                 $remoteData = new IpDataClient(self::$apiKey);
                 $country    = $remoteData->lookup(self::get())['country_name'];
             }
         } finally {
             return $country;
         }//end try
-    }//end getCountry()
-
-
-    /**
-     * @param  string $ip
-     * @return boolean
-     */
-    public static function isPublicIp(string $ip = ''): bool
+    }public static function isPublicIp(string $ip = ''): bool
     {
         return filter_var(
             $ip,
@@ -93,23 +85,19 @@ class IP extends Base
             (FILTER_FLAG_IPV4 | FILTER_FLAG_IPV6 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)
         ) === $ip;
     }//end isPublicIp()
-
-
     /**
      * Get the IP Address of client.
-     *
-     * @return string
      */
     public static function get(): string
     {
         $remote  = $_SERVER['REMOTE_ADDR'];
         $client  = false;
         $forward = false;
-        if (array_key_exists('HTTP_CLIENT_IP', $_SERVER) === true) {
+        if (array_key_exists('HTTP_CLIENT_IP', $_SERVER)) {
             $client = $_SERVER['HTTP_CLIENT_IP'];
         }
 
-        if (array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER) === true) {
+        if (array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER)) {
             $forward = $_SERVER['HTTP_X_FORWARDED_FOR'];
         }
 
@@ -123,21 +111,19 @@ class IP extends Base
 
         return $ip;
     }//end get()
-
-
     /**
      * Get all information about client.
      *
      * @param string $purpose The purpose of data.
      *
-     * @return array|float|string|null
      * @throws InvalidDatabaseException|AddressNotFoundException
+     * @return float|mixed[]|string|null
      */
-    public static function getInfo(string $purpose = 'location'): float|array|string|null
+    public static function getInfo(string $purpose = 'location')
     {
         $output = 'Unknown Location';
 
-        if (self::isPublicIp(self::get()) === true) {
+        if (self::isPublicIp(self::get())) {
             $reader = new Reader(self::cityDbFile());
             $record = $reader->city(self::get());
             $purpose = str_replace(['name', "\n", "\t", ' ', '-', '_'], '', strtolower(trim($purpose)));
@@ -230,24 +216,13 @@ class IP extends Base
 
         return $output;
     }//end getInfo()
-
-
     /**
      * @public
-     * @param  string $ip
-     * @return boolean
      */
     public static function isPrivateIp(string $ip = ''): bool
     {
         return self::isIp($ip) && !self::isPublicIp($ip);
-    }//end isPrivateIp()
-
-
-    /**
-     * @param  string $ip
-     * @return boolean
-     */
-    public static function isIp(string $ip = ''): bool
+    }public static function isIp(string $ip = ''): bool
     {
         return filter_var(
             $ip,
@@ -255,38 +230,20 @@ class IP extends Base
             (FILTER_FLAG_IPV4 | FILTER_FLAG_IPV6)
         ) === $ip;
     }//end isIp()
-
-
     /**
      * @public
-     * @param  string $ip
-     * @return boolean
      */
     public static function isPrivateIpv4(string $ip = ''): bool
     {
         return self::isIpv4($ip) && !self::isPublicIpv4($ip);
-    }//end isPrivateIpv4()
-
-
-    /**
-     * @param  string $ip
-     * @return boolean
-     */
-    public static function isIpv4(string $ip = ''): bool
+    }public static function isIpv4(string $ip = ''): bool
     {
         return filter_var(
             $ip,
             FILTER_VALIDATE_IP,
             FILTER_FLAG_IPV4
         ) === $ip;
-    }//end isIpv4()
-
-
-    /**
-     * @param  string $ip
-     * @return boolean
-     */
-    public static function isPublicIpv4(string $ip = ''): bool
+    }public static function isPublicIpv4(string $ip = ''): bool
     {
         return filter_var(
             $ip,
@@ -294,22 +251,15 @@ class IP extends Base
             (FILTER_FLAG_IPV4 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)
         ) === $ip;
     }//end isPublicIpv4()
-
-
     /**
      * @public
-     * @param  string $ip
-     * @return boolean
      */
     public static function isPrivateIpv6(string $ip = ''): bool
     {
         return self::isIpv6($ip) && !self::isPublicIpv6($ip);
     }//end isPrivateIpv6()
-
-
     /**
      * @param  null $ip
-     * @return boolean
      */
     public static function isIpv6($ip = null): bool
     {
@@ -318,14 +268,7 @@ class IP extends Base
             FILTER_VALIDATE_IP,
             FILTER_FLAG_IPV6
         ) === $ip;
-    }//end isIpv6()
-
-
-    /**
-     * @param  string $ip
-     * @return boolean
-     */
-    public static function isPublicIpv6(string $ip = ''): bool
+    }public static function isPublicIpv6(string $ip = ''): bool
     {
         return filter_var(
             $ip,

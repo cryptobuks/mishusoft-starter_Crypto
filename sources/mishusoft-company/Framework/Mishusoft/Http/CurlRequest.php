@@ -51,17 +51,18 @@ class CurlRequest
     ];
     private int $executionTime;
     private array $connectionInfo;
+    private ?string $hostUrl = null;
 
-    public function __construct(private ?string $hostUrl = null)
+    public function __construct(?string $hostUrl = null)
     {
+        $this->hostUrl = $hostUrl;
         $this->ch = curl_init($this->hostUrl);
     }
 
     /**
-     * @param string $userAgent
-     * @return CurlRequest
+     * @return $this
      */
-    public function setUserAgent(string $userAgent): static
+    public function setUserAgent(string $userAgent)
     {
         if ($userAgent !== '') {
             $this->userAgent = $userAgent;
@@ -71,24 +72,22 @@ class CurlRequest
     }
 
     /**
-     * @param string $hostname
-     * @return CurlRequest
+     * @return $this
      */
-    public function setHost(string $hostname): static
+    public function setHost(string $hostname)
     {
         @curl_setopt($this->ch, CURLOPT_URL, $hostname);
         return $this;
     }
 
     /**
-     * @param array $headers
-     * @return CurlRequest
+     * @return $this
      */
-    public function setHeaders(array $headers): static
+    public function setHeaders(array $headers)
     {
         $finalHeaders = [];
 
-        if (count($headers) > 0) {
+        if ($headers !== []) {
             $this->headers = array_merge_recursive($this->headers, $headers);
         }
 
@@ -100,10 +99,9 @@ class CurlRequest
     }
 
     /**
-     * @param array $params
      * @return $this
      */
-    public function makeRequest(array $params): static
+    public function makeRequest(array $params)
     {
         @curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, 1);
         //@curl_setopt($this->ch, CURLOPT_VERBOSE, 1);
@@ -111,7 +109,7 @@ class CurlRequest
         @curl_setopt($this->ch, CURLOPT_FOLLOWLOCATION, 1);
 
         // Set time out.
-        if (array_key_exists('timeout', $params) === true) {
+        if (array_key_exists('timeout', $params)) {
             @curl_setopt($this->ch, CURLOPT_TIMEOUT, $params['timeout']);
         } else {
             @curl_setopt($this->ch, CURLOPT_TIMEOUT, $this->timeOut);
@@ -121,21 +119,27 @@ class CurlRequest
         return $this;
     }
 
-    public function noResponseBody(): static
+    /**
+     * @return $this
+     */
+    public function noResponseBody()
     {
         @curl_setopt($this->ch, CURLOPT_NOBODY, 1);
         return $this;
     }
 
-    public function with(string $keyword, array $parameters): static
+    /**
+     * @return $this
+     */
+    public function with(string $keyword, array $parameters)
     {
         if ($keyword !== "") {
             $keyword = strtoupper($keyword);
         }
 
         if ($keyword === 'METHOD') {
-            if (array_key_exists('method', $parameters) === true) {
-                if (in_array(strtolower($parameters['method']), $this->allowedRequestMethod, true) === false) {
+            if (array_key_exists('method', $parameters)) {
+                if (!in_array(strtolower($parameters['method']), $this->allowedRequestMethod, true)) {
                     throw new \InvalidArgumentException('Invalid argument parsed. Request method must be GET or POST.');
                 }
 
@@ -157,7 +161,7 @@ class CurlRequest
 
 
         if ($keyword === 'COOKIE') {
-            if (array_key_exists('cookie', $parameters) === true) {
+            if (array_key_exists('cookie', $parameters)) {
                 if (strtolower($parameters['cookie']) !== '') {
                     @curl_setopt($this->ch, CURLOPT_COOKIE, $parameters['cookie']);
                 }
@@ -170,7 +174,10 @@ class CurlRequest
         return $this;
     }
 
-    public function sendRequest(): static
+    /**
+     * @return $this
+     */
+    public function sendRequest()
     {
         // Execute curl request.
         $response = curl_exec($this->ch);
@@ -282,7 +289,7 @@ class CurlRequest
                 $directory
             ) . LB;
             foreach ($formats as $format) {
-                if ((file_exists($directory) === false) && !mkdir($directory, 077, true) && !is_dir($directory)) {
+                if ((!file_exists($directory)) && !mkdir($directory, 077, true) && !is_dir($directory)) {
                     throw new \RuntimeException(sprintf('Directory "%s" was not created', $directory));
                 }
 
@@ -295,7 +302,7 @@ class CurlRequest
 
     public static function download(string $item, string $keyword, string $format, string $directory, string $filter, string $filenamePrefix = 'download'): void
     {
-        if ((file_exists($directory) === false) && !mkdir($directory, 077, true) && !is_dir($directory)) {
+        if ((!file_exists($directory)) && !mkdir($directory, 077, true) && !is_dir($directory)) {
             throw new \RuntimeException(sprintf('Directory "%s" was not created', $directory));
         }
 
@@ -305,7 +312,7 @@ class CurlRequest
         try {
             if ($filter === 'new') {
                 $filename = sprintf('%s%s%s.%s', $directory, $filenamePrefix, $item, $format);
-                if (file_exists($filename) === false) {
+                if (!file_exists($filename)) {
                     self::write($filename, self::response($keyword, $item, $format));
                 }
             }
@@ -313,7 +320,7 @@ class CurlRequest
 
             if ($filter === 'update') {
                 $filename = sprintf('%s%s%s.%s', $directory, $filenamePrefix, $item, $format);
-                if (file_exists($filename) === true) {
+                if (file_exists($filename)) {
                     print_r('Remove old file: ' . basename($filename) . LB, false);
                     unlink($filename);
                 }
@@ -331,9 +338,9 @@ class CurlRequest
 
     public static function write(string $filename, string $content): void
     {
-        if (is_resource(fopen($filename, 'wb+')) === true) {
+        if (is_resource(fopen($filename, 'wb+'))) {
             $resource = fopen($filename, 'wb+');
-            if (is_resource($resource) === true) {
+            if (is_resource($resource)) {
                 fwrite($resource, $content);
                 fclose($resource);
             }
@@ -359,26 +366,18 @@ class CurlRequest
     }
 
 
-    /**
-     * @param  string $keyword
-     * @return string
-     */
     public function getHeaderLine(string $keyword): string
     {
         return trim($this->getResponseHeadArray()[$keyword]);
     }//end getHeaderLine()
-
-
     /**
-     * @param string $keyword
-     * @param string $validateName
      * @throws HttpResponseException
      * @throws RuntimeException
      */
     private function validate(string $keyword, string $validateName): void
     {
         $head = $this->getResponseHeadArray();
-        if (array_key_exists($keyword, $head) === true) {
+        if (array_key_exists($keyword, $head)) {
             if ($this->getHeaderLine($keyword) !== $validateName) {
                 throw new RuntimeException(
                     sprintf(
@@ -417,7 +416,6 @@ class CurlRequest
 
 
     /**
-     * @return array
      * @throws HttpResponseException
      * @throws RuntimeException
      */
@@ -429,7 +427,6 @@ class CurlRequest
 
 
     /**
-     * @return object
      * @throws HttpResponseException
      * @throws RuntimeException
      */
@@ -446,47 +443,27 @@ class CurlRequest
         return Implement::toJson($this->getResponseBody());
     }
 
-    /**
-     * @return array
-     */
     public function getErrors(): array
     {
         return array_filter($this->errors);
     }
 
-    /**
-     * @return int
-     */
     public function getExecutionTime(): int
     {
         return $this->executionTime;
     }
 
-    /**
-     * @return array
-     */
     public function getConnectionInfo(): array
     {
         return $this->connectionInfo;
     }
 
-    private function isJsonString(string $string): bool
-    {
-        return Inflect::startsWith($string, '{') and Inflect::endsWith($string, '}');
-    }
-
-    /**
-     * @return string
-     */
     public function getResponseHead(): string
     {
         return $this->responseHead;
     }
 
 
-    /**
-     * @return array
-     */
     public function getResponseHeadArray(): array
     {
 
@@ -512,28 +489,26 @@ class CurlRequest
         //print_r(http_parse_headers($this->responseHead), false);
 
         foreach ($headerArray as $item) {
-            if (empty($item) === false) {
-                if (str_contains(strtolower($item), 'http/') === true) {
+            if (!empty($item)) {
+                if (stripos($item, 'http/') !== false) {
                     $explode = explode(' ', strtolower($item));
-                    if (str_contains($explode[0], 'http/') === true) {
+                    if (strpos($explode[0], 'http/') !== false) {
                         $cleanHttpHeader['protocol']      = str_replace('/', ' ', $explode[0]);
                         $cleanHttpHeader['response_code'] = $explode[1];
                     }
                 } else {
-                    if (str_contains(strtolower($item), 'content-type') === true) {
-                        if (str_contains($item, ';') === true) {
-                            $item = substr($item, 0, strpos($item, ';'));
-                        }
+                    if (stripos($item, 'content-type') !== false && strpos($item, ';') !== false) {
+                        $item = substr($item, 0, strpos($item, ';'));
                     }
 
                     if (substr_count($item, ':') > 1) {
-                        if (str_contains($item, 'date:') === true) {
+                        if (strpos($item, 'date:') !== false) {
                             $cleanHttpHeader['date'] = substr($item, (strpos($item, ':') + 2));
                         }
                     } else {
                         $explode = explode(':', $item);
-                        if (array_key_exists(0, $explode) === true && empty($explode[0]) === false
-                            && array_key_exists(1, $explode) === true && empty($explode[1]) === false
+                        if (array_key_exists(0, $explode) && !empty($explode[0])
+                            && array_key_exists(1, $explode) && !empty($explode[1])
                         ) {
                             $cleanHttpHeader[$explode[0]] = $explode[1];
                         }
@@ -545,25 +520,16 @@ class CurlRequest
         return $cleanHttpHeader;
     }
 
-    /**
-     * @return string
-     */
     public function getResponseBody(): string
     {
         return $this->responseBody;
     }
 
-    /**
-     * @return int
-     */
     public function getResponseCode(): int
     {
         return $this->responseCode;
     }
 
-    /**
-     * @return string
-     */
     public function getLastUrl(): string
     {
         return $this->lastUrl;

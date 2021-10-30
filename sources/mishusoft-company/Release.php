@@ -29,13 +29,13 @@ require_once realpath(__DIR__).'/Release/Compile.php';
 
 (static function (array $parameters) {
     $compile  = new Compile();
-    if (count($parameters) > 0) {
+    if ($parameters !== []) {
         // Remove file name form $parameters string.
         array_shift($parameters);
         $options = array_shift($parameters);
         if ($options !== null) {
             // Update release versions of remote server.
-            if (str_starts_with($options, '-update') === true) {
+            if (strncmp($options, '-update', strlen('-update')) === 0) {
                 if (count($parameters) > 1) {
                     $compile->updateOldVersion($parameters);
                     exit();
@@ -51,14 +51,14 @@ require_once realpath(__DIR__).'/Release/Compile.php';
             }//end if
 
             // Update node-app and Mishusoft Framework release versions.
-            if (str_starts_with($options, '-u') === true) {
+            if (strncmp($options, '-u', strlen('-u')) === 0) {
                 $compile->updatePRV(realpath('./package.json'));
                 $compile->updatePRVALlPackages(realpath(__DIR__.'/Application/Packages'));
                 exit();
             }//end if
 
             // Update node-app and Mishusoft Framework release versions.
-            if (str_starts_with($options, '-copy') === true) {
+            if (strncmp($options, '-copy', strlen('-copy')) === 0) {
                 if (count($parameters) > 1) {
                     $compile->start('copy', $parameters, $options);
                     exit();
@@ -71,14 +71,14 @@ require_once realpath(__DIR__).'/Release/Compile.php';
             }//end if
 
             // Show help information.
-            if (str_starts_with($options, '-h') === true) {
+            if (strncmp($options, '-h', strlen('-h')) === 0) {
                 $compile->defaultInfo();
                 exit();
             }//end if
 
             // Release themes sources or compressed files.
-            if (str_starts_with($options, '-compile-themes') === true
-                || str_starts_with($options, '-test-themes') === true
+            if (strncmp($options, '-compile-themes', strlen('-compile-themes')) === 0
+                || strncmp($options, '-test-themes', strlen('-test-themes')) === 0
             ) {
                 if (count($parameters) > 1) {
                     $options = substr($options, 0, strpos($options, '-themes'));
@@ -96,8 +96,8 @@ require_once realpath(__DIR__).'/Release/Compile.php';
             }//end if
 
             // Release themes sources or compressed files.
-            if (str_starts_with($options, '-compile-widgets') === true
-                || str_starts_with($options, '-test-widgets') === true
+            if (strncmp($options, '-compile-widgets', strlen('-compile-widgets')) === 0
+                || strncmp($options, '-test-widgets', strlen('-test-widgets')) === 0
             ) {
                 if (count($parameters) > 1) {
                     $options = substr($options, 0, strpos($options, '-widgets'));
@@ -115,8 +115,8 @@ require_once realpath(__DIR__).'/Release/Compile.php';
             }//end if
 
             // Release static html pages sources files.
-            if (str_starts_with($options, '-compile-static') === true
-                || str_starts_with($options, '-test-static') === true
+            if (strncmp($options, '-compile-static', strlen('-compile-static')) === 0
+                || strncmp($options, '-test-static', strlen('-test-static')) === 0
             ) {
                 if (count($parameters) > 1) {
                     $options = substr($options, 0, strpos($options, '-static'));
@@ -131,7 +131,7 @@ require_once realpath(__DIR__).'/Release/Compile.php';
             }//end if
 
             // Compress sources code.
-            if (str_starts_with($options, '-compile') === true || str_starts_with($options, '-test') === true) {
+            if (strncmp($options, '-compile', strlen('-compile')) === 0 || strncmp($options, '-test', strlen('-test')) === 0) {
                 if (count($parameters) > 1) {
                     $compile->start('rPHP', $parameters, $options);
                     exit();

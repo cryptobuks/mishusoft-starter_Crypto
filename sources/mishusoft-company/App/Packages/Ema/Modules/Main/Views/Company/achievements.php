@@ -49,10 +49,8 @@ foreach ($information as $inf) {
      * add content of information
      * */
 
-    if (count(ArrayCollection::value($inf, "content")) > 0) {
-        foreach (ArrayCollection::value($inf, "content") as $content) {
-            Ui::element($root, "span", ["style" => "font-size: 15px;font-weight: normal;line-height: 1.6;margin-top: 5px;text-align: justify;margin-left: 20px;margin-right: 20px;", "text" => $translation->translate($content)]);
-        }
+    foreach (ArrayCollection::value($inf, "content") as $content) {
+        Ui::element($root, "span", ["style" => "font-size: 15px;font-weight: normal;line-height: 1.6;margin-top: 5px;text-align: justify;margin-left: 20px;margin-right: 20px;", "text" => $translation->translate($content)]);
     }
 
     /*
@@ -67,13 +65,11 @@ foreach ($information as $inf) {
      * */
 
     Ui::element($root, "span", ["style" => "font-size: 18px;font-weight: bold;margin-bottom: 10px;margin-left: 20px;margin-right: 20px;", "text" => $translation->translate("Award Provider")]);
-    if (count(ArrayCollection::value($inf, "provider")) > 0) {
-        foreach (ArrayCollection::value($inf, "provider") as $keyword => $content) {
-            Ui::elementList(Ui::element($root, "span", ["style" => "font-size: 15px;font-weight: normal;line-height: 1.6;margin-top: 5px;text-align: justify;margin-left: 20px;margin-right: 20px;"]), ["span" => [
-                ["style" => "font-weight: bold;", "text" => $translation->translate($keyword) . ": "],
-                ["style" => "font-weight: normal;", "text" => $translation->translate($content)],
-            ]]);
-        }
+    foreach (ArrayCollection::value($inf, "provider") as $keyword => $content) {
+        Ui::elementList(Ui::element($root, "span", ["style" => "font-size: 15px;font-weight: normal;line-height: 1.6;margin-top: 5px;text-align: justify;margin-left: 20px;margin-right: 20px;"]), ["span" => [
+            ["style" => "font-weight: bold;", "text" => $translation->translate($keyword) . ": "],
+            ["style" => "font-weight: normal;", "text" => $translation->translate($content)],
+        ]]);
     }
 
     /*
@@ -89,14 +85,12 @@ foreach ($information as $inf) {
 
     Ui::element($root, "span", ["style" => "font-size: 18px;font-weight: bold;margin-left: 20px;margin-right: 20px;margin-bottom: 10px;", "text" => $translation->translate("Project Summery")]);
 
-    if (count(ArrayCollection::value($inf, "brief")) > 0) {
-        foreach (ArrayCollection::value($inf, "brief") as $keyword => $content) {
-            //Ui::element($root, "span", ["style" => Ui::htmlHrefStyle . "font-size: 15px;font-weight: normal;line-height: 1.6;margin-top: 5px;text-align: justify;margin-left: 20px;margin-right: 20px;", "text" => $translation->translate($keyword) . ": " . $translation->translate($content)]);
-            Ui::elementList(Ui::element($root, "span", ["style" => "font-size: 15px;font-weight: normal;line-height: 1.6;margin-top: 5px;text-align: justify;margin-left: 20px;margin-right: 20px;"]), ["span" => [
-                ["style" => "font-weight: bold;", "text" => $translation->translate($keyword) . ": "],
-                ["style" => "font-weight: normal;", "text" => $translation->translate($content)],
-            ]]);
-        }
+    foreach (ArrayCollection::value($inf, "brief") as $keyword => $content) {
+        //Ui::element($root, "span", ["style" => Ui::htmlHrefStyle . "font-size: 15px;font-weight: normal;line-height: 1.6;margin-top: 5px;text-align: justify;margin-left: 20px;margin-right: 20px;", "text" => $translation->translate($keyword) . ": " . $translation->translate($content)]);
+        Ui::elementList(Ui::element($root, "span", ["style" => "font-size: 15px;font-weight: normal;line-height: 1.6;margin-top: 5px;text-align: justify;margin-left: 20px;margin-right: 20px;"]), ["span" => [
+            ["style" => "font-weight: bold;", "text" => $translation->translate($keyword) . ": "],
+            ["style" => "font-weight: normal;", "text" => $translation->translate($content)],
+        ]]);
     }
 
 

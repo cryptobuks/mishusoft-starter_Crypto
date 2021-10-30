@@ -46,7 +46,7 @@ class Session
     public static function validity(): void
     {
         if (self::get('auth') === false) {
-            if (count(ArrayCollection::cleanArray($_GET, ["url"])) > 0) {
+            if (ArrayCollection::cleanArray($_GET, ["url"]) !== []) {
                 Runtime::redirect(
                     'account/login?'
                     . Runtime::actualUrl("Your session time out. Please log in to continue.")
@@ -91,12 +91,12 @@ class Session
     }
 
     /**
-     * @param array|string $value
+     * @param mixed[]|string $value
      */
-    public static function destroy(array|string $value = []): void
+    public static function destroy($value = []): void
     {
-        if (empty($value) === false) {
-            if (is_array($value) && count($value) > 0) {
+        if (!empty($value)) {
+            if (is_array($value) && $value !== []) {
                 foreach ($value as $iValue) {
                     if (isset($_SESSION[$iValue])) {
                         unset($_SESSION[$iValue]);
@@ -111,10 +111,9 @@ class Session
     }
 
     /**
-     * @param string $value
-     * @param string|int|array $source
+     * @param string|int|mixed[] $source
      */
-    public static function set(string $value, string|int|array $source): void
+    public static function set(string $value, $source): void
     {
         if (!empty($value)) {
             $_SESSION[$value] = $source;
@@ -122,7 +121,6 @@ class Session
     }
 
     /**
-     * @param string $level
      * @throws PermissionRequiredException
      */
     public static function access(string $level): void
@@ -137,8 +135,6 @@ class Session
     }
 
     /**
-     * @param string $level
-     * @return int
      * @throws PermissionRequiredException
      */
     public static function getLevel(string $level): int
@@ -160,8 +156,6 @@ class Session
     }
 
     /**
-     * @param string $level
-     * @return bool
      * @throws ErrorException
      * @throws HttpResponseException
      * @throws PermissionRequiredException
@@ -176,12 +170,10 @@ class Session
 
         self::sessionTime();
 
-        return !(self::getLevel($level) > self::getLevel(self::get('level')));
+        return self::getLevel($level) <= self::getLevel(self::get('level'));
     }
 
     /**
-     * @param array $level
-     * @param bool $noAdmin
      * @throws ErrorException
      * @throws HttpResponseException
      * @throws PermissionRequiredException
@@ -197,7 +189,7 @@ class Session
         self::sessionTime();
 
         if (
-            ($noAdmin === false)
+            (!$noAdmin)
             && self::get('level') === 'admin'
         ) {
             return;
@@ -214,9 +206,6 @@ class Session
     }
 
     /**
-     * @param array $level
-     * @param bool $noAdmin
-     * @return bool
      * @throws ErrorException
      * @throws HttpResponseException
      * @throws RuntimeException
@@ -231,23 +220,12 @@ class Session
         self::sessionTime();
 
         if (
-            ($noAdmin === false)
+            (!$noAdmin)
             && self::get('level') === 'admin'
         ) {
             return true;
         }
-
-        if (
-            count($level)
-            && in_array(self::get('level'), $level, true)
-        ) {
-            return true;
-        }
-
-        return false;
-    }
-
-    public function __destruct()
-    {
+        return count($level)
+        && in_array(self::get('level'), $level, true);
     }
 }

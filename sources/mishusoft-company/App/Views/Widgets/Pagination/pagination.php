@@ -1,4 +1,4 @@
-<?php if (isset($this->pagination)): ?>
+<?php if (property_exists($this, 'pagination') && $this->pagination !== null): ?>
     <div class="text-align-center">
         <div class="pagination">
             <?php if ($this->pagination['first']): ?>
@@ -16,7 +16,8 @@
                 <a>Previous</a>
             <?php endif; ?>
 
-            <?php for ($i = 0; $i < count($this->pagination['range']); $i++): ?>
+            
+$itemsCount = count($this->pagination['range']);<?php for ($i = 0; $i < $itemsCount; $i++): ?>
                 <?php if ($this->pagination['current'] === $this->pagination['range'][$i]): ?>
                     <a class="active"><?php echo $this->pagination['range'][$i]; ?></a>
                 <?php else: ?>

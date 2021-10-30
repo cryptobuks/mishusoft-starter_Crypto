@@ -6,20 +6,15 @@ namespace Mishusoft\Cryptography;
 
 class Base64
 {
-    /**
-     * @param  string $data
-     * @return string
-     */
     public static function encode(string $data): string
     {
         return rtrim(strtr(base64_encode($data), "+/", "-_"), "=");
     }
 
     /**
-     * @param  string $data
-     * @return boolean|string
+     * @return bool|string
      */
-    public static function decode(string $data): bool|string
+    public static function decode(string $data)
     {
         return base64_decode(
             str_pad(
@@ -32,19 +27,17 @@ class Base64
     }
 
     /**
-     * @param  string $string
-     * @return boolean|string
+     * @return bool|string
      */
-    public static function justEncode(string $string): bool|string
+    public static function justEncode(string $string)
     {
         return base64_encode($string);
     }
 
     /**
-     * @param  string $string
-     * @return boolean|string
+     * @return bool|string
      */
-    public static function justDecode(string $string): bool|string
+    public static function justDecode(string $string)
     {
         return base64_decode($string);
     }

@@ -4,12 +4,11 @@ class test
 {
 
     /**
-     * @param array $array
-     * @return string|array
+     * @return string|mixed[]
      */
-    public static function arrayToJson(array $array): string|array
+    public static function arrayToJson(array $array)
     {
-        if (count($array) > 0) {
+        if ($array !== []) {
             if (self::areAllKeysInteger($array) === true) {
                 return sprintf('[ %1$s ]', implode(', ', self::map($array)));
             }
@@ -18,7 +17,10 @@ class test
         return [];
     }
 
-    private static function arrayToJsonBuilder(array $array): string|array
+    /**
+     * @return string|mixed[]
+     */
+    private static function arrayToJsonBuilder(array $array)
     {
         $result = [];
         foreach ($array as $key => $value) {
@@ -26,7 +28,7 @@ class test
             //Debug::preOutput($value);
             //check if boolean
             if (is_bool($value)) {
-                $result[] = sprintf('"%1$s" : %2$s', $key, ($value === true) ? "true" : "false");
+                $result[] = sprintf('"%1$s" : %2$s', $key, ($value) ? "true" : "false");
             }
             //check if null
             if (is_null($value)) {
@@ -77,7 +79,7 @@ class test
             }
 
             if (is_bool($value)) {
-                return sprintf('%1$s', ($value === true) ? "true" : "false");
+                return sprintf('%1$s', ($value) ? "true" : "false");
             }
 
             if (is_array($value) || is_object($value)) {

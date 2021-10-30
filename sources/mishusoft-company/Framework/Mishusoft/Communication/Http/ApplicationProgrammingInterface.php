@@ -9,9 +9,6 @@ use Mishusoft\Services\SecureDataTransferService;
 
 class ApplicationProgrammingInterface extends SecureDataTransferService
 {
-    /**
-     * @param array $request
-     */
     public function api(array $request): void
     {
         //api/db/{query, add, delete, update}
@@ -19,9 +16,6 @@ class ApplicationProgrammingInterface extends SecureDataTransferService
         //api/user/{query, add, delete, update}
         GraphQLService::run($request);
     }
-    /**
-     * @param array $request
-     */
     public function rapi(array $request): void
     {
         //api/db/query
@@ -33,7 +27,6 @@ class ApplicationProgrammingInterface extends SecureDataTransferService
 
 
     /**
-     * @param array $request
      * @throws \GeoIp2\Exception\AddressNotFoundException
      * @throws \JsonException
      * @throws \MaxMind\Db\Reader\InvalidDatabaseException

@@ -55,7 +55,7 @@ class YamlObject extends \ArrayIterator implements \JsonSerializable
      * @throws \UnexpectedValueException  (description)
      * @return mixed
      */
-    public function &addReference(string $name, mixed $value): mixed
+    public function &addReference(string $name, $value)
     {
         if (empty($name)) {
             throw new \UnexpectedValueException(self::UNAMED_REFERENCE);
@@ -73,7 +73,7 @@ class YamlObject extends \ArrayIterator implements \JsonSerializable
      * @return mixed Value of the reference
      * @throws \UnexpectedValueException    if there's no reference by that $name
      */
-    public function &getReference(string $name): mixed
+    public function &getReference(string $name)
     {
         if (array_key_exists($name, $this->__yaml__object__api->_anchors)) {
             return $this->__yaml__object__api->_anchors[$name];
@@ -89,8 +89,6 @@ class YamlObject extends \ArrayIterator implements \JsonSerializable
 
     /**
      * Return array with all references as Keys and their values, declared for this YamlObject
-     *
-     * @return array
      */
     public function getAllReferences():array
     {
@@ -102,8 +100,6 @@ class YamlObject extends \ArrayIterator implements \JsonSerializable
      *
      * @param int $lineNumber The line number at which the comment should appear
      * @param string $value The comment
-     *
-     * @return void
      */
     public function addComment(int $lineNumber, string $value): void
     {
@@ -117,7 +113,7 @@ class YamlObject extends \ArrayIterator implements \JsonSerializable
      *
      * @return string|array The comment at $lineNumber OR all comments.
      */
-    public function getComment(int $lineNumber = null): array|string
+    public function getComment(int $lineNumber = null)
     {
         if (array_key_exists((int) $lineNumber, $this->__yaml__object__api->_comments)) {
             return $this->__yaml__object__api->_comments[$lineNumber];
@@ -129,8 +125,6 @@ class YamlObject extends \ArrayIterator implements \JsonSerializable
      * Sets the text when the content is *only* a literal
      *
      * @param string $value The value
-     *
-     * @return YamlObject
      */
     public function setText(string $value):YamlObject
     {
@@ -197,7 +191,7 @@ class YamlObject extends \ArrayIterator implements \JsonSerializable
     {
         $prop = get_object_vars($this);
         unset($prop["__yaml__object__api"]);
-        if (count($prop) > 0) return $prop;
+        if ($prop !== []) return $prop;
         if (count($this) > 0) return iterator_to_array($this);
         return $this->__yaml__object__api->value ?? "_Empty YamlObject_";
     }

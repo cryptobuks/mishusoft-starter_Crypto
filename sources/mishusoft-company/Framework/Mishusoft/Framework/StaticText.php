@@ -4,19 +4,12 @@ namespace Mishusoft\Framework;
 
 trait StaticText
 {
-    /**
-     * @return string
-     */
     public static function description(): string
     {
         $details  = static::FULL_NAME.' is a robust multi-web platform developed by '.static::COMPANY_NAME.'.';
-        $details .= ' This platform is capable of getting start with all categories website quickly and accurately.';
-        return $details;
+        return $details . ' This platform is capable of getting start with all categories website quickly and accurately.';
     }
 
-    /**
-     * @return string
-     */
     public static function companyDescriptionDetails(): string
     {
         $details  = static::COMPANY_NAME.' is a software development company that is going to be established with ';

@@ -4,7 +4,10 @@ namespace Mishusoft\Databases\MishusoftSQLStandalone;
 
 interface TableInterface extends CommonStructureInterface
 {
-    public function create(array|string $table_name);
+    /**
+     * @param mixed[]|string $table_name
+     */
+    public function create($table_name);
 
     public function read(string $table_name): DataInterface;
 

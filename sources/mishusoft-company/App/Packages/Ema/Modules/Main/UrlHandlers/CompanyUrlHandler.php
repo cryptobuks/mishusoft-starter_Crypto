@@ -12,7 +12,6 @@ use Mishusoft\Utility\Inflect;
 class CompanyUrlHandler extends UrlHandler
 {
     /**
-     * @param array $prediction
      * @throws \JsonException
      * @throws \Mishusoft\Exceptions\ErrorException
      * @throws \Mishusoft\Exceptions\JsonException
@@ -32,17 +31,6 @@ class CompanyUrlHandler extends UrlHandler
         } else {
             $view->display();
         }
-    }
-
-    /**
-     * @param array $prediction
-     * @return mixed
-     * @throws \Mishusoft\Exceptions\RuntimeException
-     */
-    private function linkList(array $prediction): mixed
-    {
-        $path = RUNTIME_ROOT_PATH . "Ema" . DS . "Mishusoft/ViewRenders/".ucfirst($prediction["controller"]);
-        return Storage\FileSystem::list($path, "file");
     }
 
     /**

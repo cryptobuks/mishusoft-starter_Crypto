@@ -1,123 +1,86 @@
 <?php
 
-  // original source: http://kuwamoto.org/2007/12/17/improved-pluralizing-in-php-actionscript-and-ror/
-  // collected source: https://gist.github.com/tbrianjones/ba0460cc1d55f357e00b
+// original source: http://kuwamoto.org/2007/12/17/improved-pluralizing-in-php-actionscript-and-ror/
+// collected source: https://gist.github.com/tbrianjones/ba0460cc1d55f357e00b
 
-  // ORIGINAL NOTES
-  //
-  // Thanks to http://www.eval.ca/articles/php-pluralize (MIT license)
-  //           http://dev.rubyonrails.org/browser/trunk/activesupport/lib/active_support/inflections.rb (MIT license)
-  //           http://www.fortunecity.com/bally/durrus/153/gramch13.html
-  //           http://www2.gsu.edu/~wwwesl/egw/crump.htm
-  //
+// ORIGINAL NOTES
+//
+// Thanks to http://www.eval.ca/articles/php-pluralize (MIT license)
+//           http://dev.rubyonrails.org/browser/trunk/activesupport/lib/active_support/inflections.rb (MIT license)
+//           http://www.fortunecity.com/bally/durrus/153/gramch13.html
+//           http://www2.gsu.edu/~wwwesl/egw/crump.htm
+//
 
 namespace Mishusoft\Utility;
 
 class Inflect
 {
     private static array $plural = [
-        '/(quiz)$/i'               => "$1zes",
-        '/^(ox)$/i'                => "$1en",
-        '/([m|l])ouse$/i'          => "$1ice",
+        '/(quiz)$/i' => "$1zes",
+        '/^(ox)$/i' => "$1en",
+        '/([m|l])ouse$/i' => "$1ice",
         '/(matr|vert|ind)ix|ex$/i' => "$1ices",
-        '/(x|ch|ss|sh)$/i'         => "$1es",
-        '/([^aeiouy]|qu)y$/i'      => "$1ies",
-        '/(hive)$/i'               => "$1s",
+        '/(x|ch|ss|sh)$/i' => "$1es",
+        '/([^aeiouy]|qu)y$/i' => "$1ies",
+        '/(hive)$/i' => "$1s",
         '/(?:([^f])fe|([lr])f)$/i' => "$1$2ves",
         '/(shea|lea|loa|thie)f$/i' => "$1ves",
-        '/sis$/i'                  => "ses",
-        '/([ti])um$/i'             => "$1a",
-        '/(tomat|potat|ech|her|vet)o$/i'=> "$1oes",
-        '/(bu)s$/i'                => "$1ses",
-        '/(alias)$/i'              => "$1es",
-        '/(octop)us$/i'            => "$1i",
-        '/(ax|test)is$/i'          => "$1es",
-        '/(us)$/i'                 => "$1es",
-        '/s$/i'                    => "s",
-        '/$/'                      => "s",
+        '/sis$/i' => "ses",
+        '/([ti])um$/i' => "$1a",
+        '/(tomat|potat|ech|her|vet)o$/i' => "$1oes",
+        '/(bu)s$/i' => "$1ses",
+        '/(alias)$/i' => "$1es",
+        '/(octop)us$/i' => "$1i",
+        '/(ax|test)is$/i' => "$1es",
+        '/(us)$/i' => "$1es",
+        '/s$/i' => "s",
+        '/$/' => "s",
     ];
 
     private static array $singular = [
-        '/(quiz)zes$/i'             => "$1",
-        '/(matr)ices$/i'            => "$1ix",
-        '/(vert|ind)ices$/i'        => "$1ex",
-        '/^(ox)en$/i'               => "$1",
-        '/(alias)es$/i'             => "$1",
-        '/(octop|vir)i$/i'          => "$1us",
-        '/(cris|ax|test)es$/i'      => "$1is",
-        '/(shoe)s$/i'               => "$1",
-        '/(o)es$/i'                 => "$1",
-        '/(bus)es$/i'               => "$1",
-        '/([m|l])ice$/i'            => "$1ouse",
-        '/(x|ch|ss|sh)es$/i'        => "$1",
-        '/(m)ovies$/i'              => "$1ovie",
-        '/(s)eries$/i'              => "$1eries",
-        '/([^aeiouy]|qu)ies$/i'     => "$1y",
-        '/([lr])ves$/i'             => "$1f",
-        '/(tive)s$/i'               => "$1",
-        '/(hive)s$/i'               => "$1",
-        '/(li|wi|kni)ves$/i'        => "$1fe",
-        '/(shea|loa|lea|thie)ves$/i'=> "$1f",
-        '/(^analy)ses$/i'           => "$1sis",
-        '/((a)naly|(b)a|(d)iagno|(p)arenthe|(p)rogno|(s)ynop|(t)he)ses$/i'  => "$1$2sis",
-        '/([ti])a$/i'               => "$1um",
-        '/(n)ews$/i'                => "$1ews",
-        '/(h|bl)ouses$/i'           => "$1ouse",
-        '/(corpse)s$/i'             => "$1",
-        '/(us)es$/i'                => "$1",
-        '/s$/i'                     => "",
+        '/(quiz)zes$/i' => "$1",
+        '/(matr)ices$/i' => "$1ix",
+        '/(vert|ind)ices$/i' => "$1ex",
+        '/^(ox)en$/i' => "$1",
+        '/(alias)es$/i' => "$1",
+        '/(octop|vir)i$/i' => "$1us",
+        '/(cris|ax|test)es$/i' => "$1is",
+        '/(shoe)s$/i' => "$1",
+        '/(o)es$/i' => "$1",
+        '/(bus)es$/i' => "$1",
+        '/([m|l])ice$/i' => "$1ouse",
+        '/(x|ch|ss|sh)es$/i' => "$1",
+        '/(m)ovies$/i' => "$1ovie",
+        '/(s)eries$/i' => "$1eries",
+        '/([^aeiouy]|qu)ies$/i' => "$1y",
+        '/([lr])ves$/i' => "$1f",
+        '/(tive)s$/i' => "$1",
+        '/(hive)s$/i' => "$1",
+        '/(li|wi|kni)ves$/i' => "$1fe",
+        '/(shea|loa|lea|thie)ves$/i' => "$1f",
+        '/(^analy)ses$/i' => "$1sis",
+        '/((a)naly|(b)a|(d)iagno|(p)arenthe|(p)rogno|(s)ynop|(t)he)ses$/i' => "$1$2sis",
+        '/([ti])a$/i' => "$1um",
+        '/(n)ews$/i' => "$1ews",
+        '/(h|bl)ouses$/i' => "$1ouse",
+        '/(corpse)s$/i' => "$1",
+        '/(us)es$/i' => "$1",
+        '/s$/i' => "",
     ];
 
     private static array $irregular = [
-        'move'   => 'moves',
-        'foot'   => 'feet',
-        'goose'  => 'geese',
-        'sex'    => 'sexes',
-        'child'  => 'children',
-        'man'    => 'men',
-        'tooth'  => 'teeth',
-        'person' => 'people',
-        'valve'  => 'valves',
+        "move" => "moves",
+        "foot" => "feet",
+        "goose" => "geese",
+        "sex" => "sexes",
+        "child" => "children",
+        "man" => "men",
+        "tooth" => "teeth",
+        "person" => "people",
+        "valve" => "valves",
     ];
 
-    private static array $uncountable = [
-        'sheep',
-        'fish',
-        'deer',
-        'series',
-        'species',
-        'money',
-        'rice',
-        'information',
-        'equipment',
-    ];
-
-    public static function pluralize($string)
-    {
-        // save some time in the case that singular and plural are the same
-        if (in_array(strtolower($string), self::$uncountable, true)) {
-            return $string;
-        }
-
-
-        // check for irregular singular forms
-        foreach (self::$irregular as $pattern => $result) {
-            $pattern = '/' . $pattern . '$/i';
-
-            if (preg_match($pattern, $string)) {
-                return preg_replace($pattern, $result, $string);
-            }
-        }
-
-        // check for matches using regular expressions
-        foreach (self::$plural as $pattern => $result) {
-            if (preg_match($pattern, $string)) {
-                return preg_replace($pattern, $result, $string);
-            }
-        }
-
-        return $string;
-    }
+    private static array $uncountable = ["sheep", "fish", "deer", "series", "species", "money", "rice", "information", "equipment"];
 
     public static function singularize($string)
     {
@@ -128,7 +91,7 @@ class Inflect
 
         // check for irregular plural forms
         foreach (self::$irregular as $result => $pattern) {
-            $pattern = '/' . $pattern . '$/i';
+            $pattern = "/" . $pattern . '$/i';
 
             if (preg_match($pattern, $string)) {
                 return preg_replace($pattern, $result, $string);
@@ -154,6 +117,31 @@ class Inflect
         return $count . " " . self::pluralize($string);
     }
 
+    public static function pluralize($string)
+    {
+        // save some time in the case that singular and plural are the same
+        if (in_array(strtolower($string), self::$uncountable, true)) {
+            return $string;
+        }
+
+        // check for irregular singular forms
+        foreach (self::$irregular as $pattern => $result) {
+            $pattern = "/" . $pattern . '$/i';
+
+            if (preg_match($pattern, $string)) {
+                return preg_replace($pattern, $result, $string);
+            }
+        }
+
+        // check for matches using regular expressions
+        foreach (self::$plural as $pattern => $result) {
+            if (preg_match($pattern, $string)) {
+                return preg_replace($pattern, $result, $string);
+            }
+        }
+
+        return $string;
+    }
 
     /**
      * Make a string lowercase
@@ -176,7 +164,6 @@ class Inflect
     {
         return "" !== $string ? strtoupper($string) : "";
     }
-
 
     /**
      * Make a string's first character uppercase
@@ -231,15 +218,6 @@ class Inflect
         return strpos($haystack, $needle, $offset);
     }
 
-    /**
-     * @param string $contents
-     * @return string
-     */
-    public static function removeTags(string $contents): string
-    {
-        return "" !== $contents ? trim(strip_tags($contents)) : "";
-    }
-
     public static function strpos(string $needle, string $string): int
     {
         return strpos($string, $needle);
@@ -254,7 +232,6 @@ class Inflect
         return "" !== $contents ? htmlspecialchars($contents, ENT_QUOTES) : "";
     }
 
-
     /**
      * @param string $haystack
      * @param string $needle
@@ -262,7 +239,7 @@ class Inflect
      */
     public static function contains(string $haystack, string $needle): bool
     {
-        return '' === $needle || false !== strpos($haystack, $needle);
+        return "" === $needle || false !== strpos($haystack, $needle);
     }
 
     /**
@@ -282,21 +259,21 @@ class Inflect
      */
     public static function endsWith(string $haystack, string $needle): bool
     {
-        return '' === $needle || ('' !== $haystack && 0 === substr_compare($haystack, $needle, -strlen($needle)));
+        return "" === $needle || ("" !== $haystack && 0 === substr_compare($haystack, $needle, -strlen($needle)));
     }
 
     public static function getClassBaseName(string $classname): ?string
     {
-        $path = explode('\\', $classname);
+        $path = explode("\\", $classname);
         return array_pop($path);
     }
 
-    public static function search(string $haystack, string $needle, int $offset = 0): bool|int
+    public static function search(string $haystack, string $needle, int $offset = 0)
     {
         return strpos($haystack, $needle);
     }
 
-    public static function replace(string $haystack, string $search, string $replace = ''): string
+    public static function replace(string $haystack, string $search, string $replace = ""): string
     {
         return str_replace($search, $replace, $haystack);
     }
@@ -308,7 +285,14 @@ class Inflect
         return preg_replace('~^[\'"]?(.*?)[\'"]?$~', '$1', self::removeTags($content));
     }
 
-
+    /**
+     * @param string $contents
+     * @return string
+     */
+    public static function removeTags(string $contents): string
+    {
+        return "" !== $contents ? trim(strip_tags($contents)) : "";
+    }
 
     /**
      * convert a string from one UTF-16 char to one UTF-8 char
@@ -324,36 +308,32 @@ class Inflect
     public static function utf162utf8(string $utf16): string
     {
         // oh, please
-        if (function_exists('mb_convert_encoding')) {
-            return mb_convert_encoding($utf16, 'UTF-8', 'UTF-16');
+        if (function_exists("mb_convert_encoding")) {
+            return mb_convert_encoding($utf16, "UTF-8", "UTF-16");
         }
 
         $bytes = (ord($utf16[0]) << 8) | ord($utf16[1]);
 
         switch (true) {
-            case ((0x7F & $bytes) === $bytes):
+            case (0x7f & $bytes) === $bytes:
                 // this case should never be reached, because we are in ASCII range
                 // see: http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
-                return chr(0x7F & $bytes);
+                return chr(0x7f & $bytes);
 
-            case (0x07FF & $bytes) === $bytes:
+            case (0x07ff & $bytes) === $bytes:
                 // return a 2-byte UTF-8 character
                 // see: http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
-                return chr(0xC0 | (($bytes >> 6) & 0x1F))
-                    . chr(0x80 | ($bytes & 0x3F));
+                return chr(0xc0 | (($bytes >> 6) & 0x1f)) . chr(0x80 | ($bytes & 0x3f));
 
-            case (0xFFFF & $bytes) === $bytes:
+            case (0xffff & $bytes) === $bytes:
                 // return a 3-byte UTF-8 character
                 // see: http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
-                return chr(0xE0 | (($bytes >> 12) & 0x0F))
-                    . chr(0x80 | (($bytes >> 6) & 0x3F))
-                    . chr(0x80 | ($bytes & 0x3F));
+                return chr(0xe0 | (($bytes >> 12) & 0x0f)) . chr(0x80 | (($bytes >> 6) & 0x3f)) . chr(0x80 | ($bytes & 0x3f));
         }
 
         // ignoring UTF-32 for now, sorry
-        return '';
+        return "";
     }
-
 
     /**
      * convert a string from one UTF-8 char to one UTF-16 char
@@ -369,8 +349,8 @@ class Inflect
     public static function utf82utf16(string $utf8): string
     {
         // oh, please
-        if (function_exists('mb_convert_encoding')) {
-            return mb_convert_encoding($utf8, 'UTF-16', 'UTF-8');
+        if (function_exists("mb_convert_encoding")) {
+            return mb_convert_encoding($utf8, "UTF-16", "UTF-8");
         }
 
         switch (self::strLen8($utf8)) {
@@ -382,23 +362,17 @@ class Inflect
             case 2:
                 // return a UTF-16 character from a 2-byte UTF-8 char
                 // see: http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
-                return chr(0x07 & (ord($utf8[0]) >> 2))
-                    . chr((0xC0 & (ord($utf8[0]) << 6))
-                        | (0x3F & ord($utf8[1])));
+                return chr(0x07 & (ord($utf8[0]) >> 2)) . chr((0xc0 & (ord($utf8[0]) << 6)) | (0x3f & ord($utf8[1])));
 
             case 3:
                 // return a UTF-16 character from a 3-byte UTF-8 char
                 // see: http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
-                return chr((0xF0 & (ord($utf8[0]) << 4))
-                        | (0x0F & (ord($utf8[1]) >> 2)))
-                    . chr((0xC0 & (ord($utf8[1]) << 6))
-                        | (0x7F & ord($utf8[2])));
+                return chr((0xf0 & (ord($utf8[0]) << 4)) | (0x0f & (ord($utf8[1]) >> 2))) . chr((0xc0 & (ord($utf8[1]) << 6)) | (0x7f & ord($utf8[2])));
         }
 
         // ignoring UTF-32 for now, sorry
-        return '';
+        return "";
     }
-
 
     /**
      * Calculates length of string in bytes
@@ -407,12 +381,11 @@ class Inflect
      */
     public static function strLen8(string $str): int
     {
-        if (function_exists('mb_strlen')) {
+        if (function_exists("mb_strlen")) {
             return mb_strlen($str, "8bit");
         }
         return strlen($str);
     }
-
 
     /**
      * Returns part of a string, interpreting $start and $length as number of bytes.
@@ -427,7 +400,7 @@ class Inflect
         if (!is_int($length)) {
             $length = self::strLen8($string) - $start;
         }
-        if (function_exists('mb_substr')) {
+        if (function_exists("mb_substr")) {
             return mb_substr($string, $start, $length, "8bit");
         }
         return substr($string, $start, $length);

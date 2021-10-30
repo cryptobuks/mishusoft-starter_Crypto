@@ -21,21 +21,18 @@ class UniversalWidget
 
     /**
      * universalWidget constructor.
-     * @param DOMElement $bodyElement
      */
     public function __construct(DOMElement $bodyElement)
     {
         $this->htmlBody = $bodyElement;
     }//end __construct()
-
-
     /**
-     * @return DOMElement|DOMNode
      * @throws \Mishusoft\Exceptions\ErrorException
      * @throws \Mishusoft\Exceptions\RuntimeException
      * @throws \Mishusoft\Exceptions\RuntimeException\NotFoundException
+     * @return \DOMElement|\DOMNode
      */
-    public function breadcrumb(): DOMElement|DOMNode
+    public function breadcrumb()
     {
         // Add breadcrumb.
         $breadcrumb = Ui::element($this->htmlBody, 'breadcrumb', ['class' => 'box-shadow1', 'style' => 'border-top:1px solid lightgrey;']);
@@ -62,7 +59,7 @@ class UniversalWidget
         $urlList = array_filter($urlList);
         $urlList = array_values($urlList);
 
-        foreach ($urlList as $id => $url) {
+        foreach ($urlList as $url) {
             Ui::text($breadcrumb, '/');
             Ui::element($breadcrumb, 'a', [
                 'href' => Runtime::link(

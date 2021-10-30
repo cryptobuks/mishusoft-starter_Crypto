@@ -7,7 +7,6 @@ use Mishusoft\Drivers\UrlHandler;
 class AppointmentUrlHandler extends UrlHandler
 {
     /**
-     * @param array $prediction
      * @throws \JsonException
      * @throws \Mishusoft\Exceptions\ErrorException
      * @throws \Mishusoft\Exceptions\JsonException
