@@ -1,6 +1,8 @@
 parameters:
 	bootstrapFiles:
 		- bootstrap/app.php
+		- storages/framework/images.php
+		- storages/framework/resolver.php
 	tmpDir: tmp
 	paths:
 		- sources
