@@ -60,9 +60,7 @@ class Memory extends Base
          */
 
         if (is_writable(self::$dataDrive) === false) {
-            throw new PermissionRequiredException(
-                sprintf("Unable to write %s", self::$dataDrive)
-            );
+            throw new PermissionRequiredException(sprintf("Unable to write %s", self::$dataDrive));
         }
 
         /*
@@ -71,9 +69,7 @@ class Memory extends Base
          */
 
         if (is_readable(dirname(self::$dataDrive)) === false) {
-            throw new PermissionRequiredException(
-                sprintf("Unable to read %s", dirname(self::$dataDrive))
-            );
+            throw new PermissionRequiredException(sprintf("Unable to read %s", dirname(self::$dataDrive)));
         }
 
         /*
@@ -84,10 +80,7 @@ class Memory extends Base
          */
         FileSystem::makeDirectory(dirname(self::$framework::configFile()));
         FileSystem::check(self::$framework::configFile(), function ($filename) {
-            FileSystem\Yaml::emitFile(
-                $filename,
-                self::$framework::defaultConfiguration()
-            );
+            FileSystem\Yaml::emitFile($filename, self::$framework::defaultConfiguration());
         });
     }
 
@@ -99,29 +92,12 @@ class Memory extends Base
      */
     private static function loadFrameworkMemory(): void
     {
-        Log::info(
-            sprintf(
-                "Check read permission of %s file.",
-                self::$framework::configFile()
-            )
-        );
+        Log::info(sprintf("Check read permission of %s file.", self::$framework::configFile()));
         if (is_readable(self::$framework::configFile()) === true) {
-            Log::info(
-                sprintf(
-                    "Load data from %s file.",
-                    self::$framework::configFile()
-                )
-            );
-            self::read(
-                FileSystem\Yaml::parseFile(self::$framework::configFile())
-            );
+            Log::info(sprintf("Load data from %s file.", self::$framework::configFile()));
+            self::read(FileSystem\Yaml::parseFile(self::$framework::configFile()));
         } else {
-            Log::info(
-                sprintf(
-                    "Not found system data file %s.",
-                    self::$framework::configFile()
-                )
-            );
+            Log::info(sprintf("Not found system data file %s.", self::$framework::configFile()));
             Log::info("Load default data from system.");
             self::read(self::$framework::defaultConfiguration());
         } //end if
@@ -144,68 +120,27 @@ class Memory extends Base
             define("FRAMEWORK_NAME", $configuration["fullName"]);
             define("FRAMEWORK_DESCRIPTION", $configuration["descriptions"]);
             define("DEFAULT_APP_AUTHOR", $configuration["author"]["name"]);
-            define(
-                "DEFAULT_APP_COMPANY_NAME",
-                $configuration["company"]["name"]
-            );
-            define(
-                "DEFAULT_APP_DESCRIPTIONS",
-                $configuration["company"]["shortDescription"]
-            );
-            define(
-                "DEFAULT_APP_DESCRIPTIONS_FULL",
-                $configuration["company"]["detailsDescription"]
-            );
-            define(
-                "DEFAULT_APP_COMPANY_WEB_ADDRESS",
-                $configuration["company"]["website"]
-            );
-            define(
-                "DEFAULT_DATE_OF_BIRTH",
-                $configuration["author"]["dateOfBirth"]
-            );
+            define("DEFAULT_APP_COMPANY_NAME", $configuration["company"]["name"]);
+            define("DEFAULT_APP_DESCRIPTIONS", $configuration["company"]["shortDescription"]);
+            define("DEFAULT_APP_DESCRIPTIONS_FULL", $configuration["company"]["detailsDescription"]);
+            define("DEFAULT_APP_COMPANY_WEB_ADDRESS", $configuration["company"]["website"]);
+            define("DEFAULT_DATE_OF_BIRTH", $configuration["author"]["dateOfBirth"]);
             define("DEFAULT_DATA_CHAR_SET", $configuration["charset"]);
-            define(
-                "DEFAULT_DATA_TABLE_PREFIX",
-                $configuration["prefix"]["char"]
-            );
+            define("DEFAULT_DATA_TABLE_PREFIX", $configuration["prefix"]["char"]);
 
             //Preset constants
             // Alias of default system layout.
             define("DEFAULT_SYSTEM_LAYOUT", $configuration["preset"]["theme"]);
             define("DEFAULT_SYSTEM_THEME", $configuration["preset"]["theme"]);
-            define(
-                "DEFAULT_OPERATING_SYSTEM_PASSWORD",
-                $configuration["preset"]["user"]
-            );
-            define(
-                "DEFAULT_CONTROLLER",
-                $configuration["preset"]["directoryIndex"]
-            );
-            define(
-                "DEFAULT_DIRECTORY_INDEX",
-                $configuration["preset"]["directoryIndex"]
-            );
+            define("DEFAULT_OPERATING_SYSTEM_PASSWORD", $configuration["preset"]["user"]);
+            define("DEFAULT_CONTROLLER", $configuration["preset"]["directoryIndex"]);
+            define("DEFAULT_DIRECTORY_INDEX", $configuration["preset"]["directoryIndex"]);
             define("SESSION_TIME", $configuration["preset"]["sessionDuration"]);
             define("WEB_CONFIG_TABLE", $configuration["preset"]["config"]);
 
             //prefix constants
-            define(
-                "APP_USERNAME_PREFIX",
-                sprintf(
-                    '%1$s%2$s',
-                    $configuration["prefix"]["char"],
-                    $configuration["prefix"]["separator"]
-                )
-            );
-            define(
-                "DEFAULT_OPERATING_SYSTEM_USER",
-                sprintf(
-                    '%1$s%2$s',
-                    APP_USERNAME_PREFIX,
-                    $configuration["preset"]["user"]
-                )
-            );
+            define("APP_USERNAME_PREFIX", sprintf('%1$s%2$s', $configuration["prefix"]["char"], $configuration["prefix"]["separator"]));
+            define("DEFAULT_OPERATING_SYSTEM_USER", sprintf('%1$s%2$s', APP_USERNAME_PREFIX, $configuration["preset"]["user"]));
 
             define("DB_DEFAULT_NAME", "system");
             define("DB_USER_NAME", DEFAULT_OPERATING_SYSTEM_USER);
@@ -237,9 +172,7 @@ class Memory extends Base
     private static function baseUrlSet(): void
     {
         if (file_exists(self::$framework::installFile())) {
-            $config = FileSystem\Yaml::parseFile(
-                self::$framework::installFile()
-            );
+            $config = FileSystem\Yaml::parseFile(self::$framework::installFile());
             define("BASE_URL", $config["host"]["url"]);
         } else {
             define("BASE_URL", Registry::Browser()->getURLHostname());
@@ -257,10 +190,8 @@ class Memory extends Base
      * @throws RuntimeException
      * @throws RuntimeException\NotFoundException
      */
-    public static function data(
-        string $carrier = "memory",
-        array $options = []
-    ): array|object {
+    public static function data(string $carrier = "memory", array $options = [])
+    {
         // Debug::preOutput(debug_backtrace());
         self::$cacheFile = self::dFile(self::cacheDataFile("Memory", "data"));
         $result = "";
@@ -284,10 +215,7 @@ class Memory extends Base
             if (array_key_exists("file", $options) === true) {
                 $filename = $options["file"];
             } else {
-                $filename = System::getRequiresFile(
-                    "SETUP_FILE_PATH",
-                    System::getDefaultDb()
-                );
+                $filename = System::getRequiresFile("SETUP_FILE_PATH", System::getDefaultDb());
             } //end if
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
@@ -302,9 +230,7 @@ class Memory extends Base
 
             if (file_exists($filename) === false) {
                 //MPM\Classic::install();
-                throw new RuntimeException\NotFoundException(
-                    sprintf('%1$s not found', $filename)
-                );
+                throw new RuntimeException\NotFoundException(sprintf('%1$s not found', $filename));
             } //end if
 
             //$filename = 'test';
@@ -320,9 +246,7 @@ class Memory extends Base
 
             if (file_exists($filename) === false) {
                 //Framework::install();
-                throw new RuntimeException\NotFoundException(
-                    sprintf('%1$s not found', $filename)
-                );
+                throw new RuntimeException\NotFoundException(sprintf('%1$s not found', $filename));
             } //end if
 
             $result = self::dataLoader($carrier, $format, $default, $filename);
@@ -350,16 +274,9 @@ class Memory extends Base
 
         if (!in_array(getType($result), ["object", "array"], true)) {
             if (count($options) > 0) {
-                $result = self::dataLoader(
-                    $carrier,
-                    $format,
-                    $default,
-                    $options["file"]
-                );
+                $result = self::dataLoader($carrier, $format, $default, $options["file"]);
             } else {
-                throw new RuntimeException\NotFoundException(
-                    "Data file name can not be empty"
-                );
+                throw new RuntimeException\NotFoundException("Data file name can not be empty");
             }
         } //end if
         return $result;
@@ -377,47 +294,28 @@ class Memory extends Base
      * @throws ErrorException
      * @throws RuntimeException
      */
-    private static function dataLoader(
-        string $carrier,
-        string $format,
-        array $default,
-        string $filename
-    ): object|array {
+    private static function dataLoader(string $carrier, string $format, array $default, string $filename)
+    {
         $result = [];
         if (self::isValid($carrier, $format)) {
             $result = self::$data[$carrier][$format];
         } else {
             Log::info(sprintf("Check read permission of %s file.", $filename));
             if (is_readable($filename) === true) {
-                Log::info(
-                    sprintf(
-                        "Get permission %s from %s file.",
-                        substr(sprintf("%o", fileperms($filename)), -4),
-                        $filename
-                    )
-                );
+                Log::info(sprintf("Get permission %s from %s file.", substr(sprintf("%o", fileperms($filename)), -4), $filename));
                 Log::info(sprintf("Collect content from %s file.", $filename));
                 $contents = FileSystem::read($filename);
                 $contentsArray = FileSystem\Yaml::parseFile($filename);
 
-                Log::info(
-                    sprintf("Check content length of %s file.", $filename)
-                );
+                Log::info(sprintf("Check content length of %s file.", $filename));
                 if ($contents !== "") {
                     if (strtolower($format) === "object") {
                         if (is_string($contents) === true) {
-                            Log::info(
-                                sprintf(
-                                    'Create a data object from %s file\'s content.',
-                                    $filename
-                                )
-                            );
+                            Log::info(sprintf('Create a data object from %s file\'s content.', $filename));
                             //$result = JSON::encodeToObject($contentsArray);
                             $result = Implement::arrayToObject($contentsArray);
                         } else {
-                            Log::info(
-                                "Create a data object from default content."
-                            );
+                            Log::info("Create a data object from default content.");
                             //$result = JSON::encodeToObject($default);
                             $result = Implement::arrayToObject($default);
                         }
@@ -429,17 +327,10 @@ class Memory extends Base
 
                     if (strtolower($format) === "array") {
                         if (is_string($contents)) {
-                            Log::info(
-                                sprintf(
-                                    'Create a data array from %s file\'s content.',
-                                    $filename
-                                )
-                            );
+                            Log::info(sprintf('Create a data array from %s file\'s content.', $filename));
                             $result = $contentsArray;
                         } else {
-                            Log::info(
-                                "Create a data object from default content."
-                            );
+                            Log::info("Create a data object from default content.");
                             $result = $default;
                         }
 
@@ -449,10 +340,7 @@ class Memory extends Base
                     }
 
                     if (MEMORY_CACHE_DATA_UPDATE === true) {
-                        $reserved =
-                            $format === "object"
-                                ? Implement::objectToArray($result)
-                                : $result;
+                        $reserved = $format === "object" ? Implement::objectToArray($result) : $result;
 
                         if (!empty($reserved)) {
                             self::$data[$carrier]["default"] = $default;
@@ -460,13 +348,8 @@ class Memory extends Base
                             self::$data[$carrier][$format] = $reserved;
 
                             //make a cache file for memory
-                            FileSystem::makeDirectory(
-                                dirname(self::$cacheFile)
-                            );
-                            FileSystem\Yaml::emitFile(
-                                self::$cacheFile,
-                                self::$data
-                            );
+                            FileSystem::makeDirectory(dirname(self::$cacheFile));
+                            FileSystem\Yaml::emitFile(self::$cacheFile, self::$data);
                         }
                     }
                 } else {
@@ -490,16 +373,11 @@ class Memory extends Base
      */
     private static function isValid(string $carrier, string $format): bool
     {
-        if (
-            MEMORY_CACHE_DATA_UPDATE === true &&
-            file_exists(self::$cacheFile)
-        ) {
+        if (MEMORY_CACHE_DATA_UPDATE === true && file_exists(self::$cacheFile)) {
             self::$data = FileSystem\Yaml::parseFile(self::$cacheFile);
 
             if ($format === "object" && isset(self::$data[$carrier][$format])) {
-                self::$data[$carrier][$format] = Implement::arrayToObject(
-                    self::$data[$carrier][$format]
-                );
+                self::$data[$carrier][$format] = Implement::arrayToObject(self::$data[$carrier][$format]);
             }
         }
 
