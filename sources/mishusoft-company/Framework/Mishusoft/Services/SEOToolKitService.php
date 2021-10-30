@@ -16,50 +16,16 @@ use Mishusoft\Utility\Implement;
 
 class SEOToolKitService extends Base
 {
-    private function engines(): array
-    {
-        return [
-            'Bing',
-            'Yandex',
-            'CC Search',
-            'Swisscows',
-            'DuckDuckGo',
-            'StartPage',
-            'Search Encrypt',
-            'Google',
-            'Gibiru',
-            'OneSearch',
-            'Wiki.com',
-            'Boardreader',
-            'giveWater',
-            'Ekoru',
-            'Ecosia',
-            'Twitter',
-            'SlideShare',
-            'Internet Archive',
-            'The Takeaway',
-        ];
-    }
-
-    /**
-     * @return string
-     */
     private static function seoConfigFile(): string
     {
         return self::dFile(self::configDataFile('SEOToolKitService', 'seo'));
     }
 
-    /**
-     * @return string
-     */
     private static function adSenseConfigFile(): string
     {
         return self::dFile(self::configDataFile('SEOToolKitService', 'ad-sense'));
     }
 
-    /**
-     * @return string
-     */
     private static function searchEngineListFile(): string
     {
         return self::dFile(self::configDataFile('SEOToolKitService', 'se-list'));
@@ -82,12 +48,12 @@ class SEOToolKitService extends Base
         // Create directory if not exists
         FileSystem::makeDirectory(dirname(self::seoConfigFile()));
         foreach ($fileList as $file) {
-            if (file_exists($file) === false) {
+            if (!file_exists($file)) {
                 FileSystem\Yaml::emitFile($file, []);
                 FileSystem::saveToFile($file, Implement::toJson([]));
             } elseif (
-                (is_array(FileSystem\Yaml::parseFile($file)) === false)
-                && FileSystem::remove($file) === true
+                (!is_array(FileSystem\Yaml::parseFile($file)))
+                && FileSystem::remove($file)
             ) {
                 FileSystem\Yaml::emitFile($file, []);
             }
@@ -95,9 +61,6 @@ class SEOToolKitService extends Base
     }
 
 
-    /**
-     * @param string $source
-     */
     public static function addAuthor(string $source): void
     {
         Ui::element(
@@ -145,7 +108,7 @@ class SEOToolKitService extends Base
                 $attributes[] = ['name' => $config['name'], 'content' => $config['content'],];
             }
 
-            if (count($attributes) > 0) {
+            if ($attributes !== []) {
                 Ui::elementList(Ui::getDocumentHeadElement(), ['meta' => $attributes,]);
             }
         }
@@ -279,8 +242,6 @@ class SEOToolKitService extends Base
 
 
     /**
-     * @param string $documentTitle
-     * @return string
      * @throws RuntimeException
      */
     private static function getKeywords(string $documentTitle): string
@@ -294,7 +255,6 @@ class SEOToolKitService extends Base
 
 
     /**
-     * @return string
      * @throws ErrorException
      * @throws RuntimeException
      * @throws RuntimeException\NotFoundException
@@ -312,8 +272,6 @@ class SEOToolKitService extends Base
     /**
      * Get property value of seo about current page or link
      *
-     * @param string $url
-     * @return array
      * @throws RuntimeException
      */
     private static function getAbout(string $url): array
@@ -321,19 +279,11 @@ class SEOToolKitService extends Base
         $result = [];
         //data = ['url' => ['des','keywords]]
         foreach (FileSystem\Yaml::parseFile(self::seoConfigFile()) as $info) {
-            if (array_key_exists($url, $info) === true) {
+            if (array_key_exists($url, $info)) {
                 $result = $info[$url];
             }
         }
 
         return $result;
-    }
-
-
-    /**
-     * Destruct class
-     */
-    public function __destruct()
-    {
     }
 }
