@@ -1,0 +1,10 @@
+install nvs
+choco install nvs
+
+install node
+
+$ nvs
+select version
+$ nvs link lts
+$ link: nvs add node/lts
+$ nvs use node/16.13.0/x64
