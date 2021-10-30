@@ -73,7 +73,7 @@ const IMPLEMENT_JSON_USE_TO_JSON = 64;
 define("CURRENT_YEAR", date("Y"));
 define("RUNTIME_ROOT_PATH", realpath(dirname(__DIR__)) . DS);
 define("RUNTIME_CACHE_ROOT_PATH", RUNTIME_ROOT_PATH . "tmp" . DS . md5($_SERVER["PHP_SELF"]) . DS);
-define("RUNTIME_SOURCES_PATH", RUNTIME_ROOT_PATH . "sources" . DS . "mishusoft-company" . DS);
+const RUNTIME_SOURCES_PATH = RUNTIME_ROOT_PATH . "sources" . DS . "mishusoft-company" . DS;
 
 const SRC_FRAMEWORK_PATH = RUNTIME_SOURCES_PATH . "Framework" . DS;
 const FRAMEWORK_PATH = RUNTIME_ROOT_PATH . "Framework" . DS;
