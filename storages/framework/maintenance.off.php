@@ -9,6 +9,9 @@
     <meta name="author" content="Mr Al-Amin Ahmed (Abir)">
     <meta name="description" content="Access denied - Mishusoft Firewall">
 
+    // google site verification
+    <meta name="google-site-verification" content="920ooXJv6lcqtSwPRaqe_b5EJwKNB367u-F7qhfdQGA" />
+
     <!--title of html document-->
     <title>Under Maintenance</title>
 
