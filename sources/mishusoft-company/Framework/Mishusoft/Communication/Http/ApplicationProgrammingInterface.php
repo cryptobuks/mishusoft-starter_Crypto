@@ -31,7 +31,6 @@ class ApplicationProgrammingInterface extends SecureDataTransferService
         parent::api($request);
     }
 
-
     /**
      * @param array $request
      * @throws \GeoIp2\Exception\AddressNotFoundException
@@ -47,5 +46,5 @@ class ApplicationProgrammingInterface extends SecureDataTransferService
     public function monitor(array $request): void
     {
         parent::monitor($request);
-    }//end monitor()
-}//end class
+    }
+}
