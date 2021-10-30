@@ -79,20 +79,20 @@ class SEOToolKitService extends Base
         ];
 
         // Verify configurations
-        if (count($fileList) > 0) {
-            // Create directory if not exists
-            FileSystem::makeDirectory(dirname(self::seoConfigFile()));
-            foreach ($fileList as $file) {
-                if (file_exists($file) === false) {
-                    FileSystem\Yaml::emitFile($file, []);
-                    FileSystem::saveToFile($file, Implement::toJson([]));
-                } elseif ((is_array(FileSystem\Yaml::parseFile($file)) === false)
-                    && FileSystem::remove($file) === true) {
-                    FileSystem\Yaml::emitFile($file, []);
-                }
+        // Create directory if not exists
+        FileSystem::makeDirectory(dirname(self::seoConfigFile()));
+        foreach ($fileList as $file) {
+            if (file_exists($file) === false) {
+                FileSystem\Yaml::emitFile($file, []);
+                FileSystem::saveToFile($file, Implement::toJson([]));
+            } elseif (
+                (is_array(FileSystem\Yaml::parseFile($file)) === false)
+                && FileSystem::remove($file) === true
+            ) {
+                FileSystem\Yaml::emitFile($file, []);
             }
         }
-    }//end start()
+    }
 
 
     /**
@@ -111,7 +111,7 @@ class SEOToolKitService extends Base
     /**
      * @param array|string[] $view
      */
-    public static function addDocumentIdentify(array $view = ['width'=>'device-width','initial-scale'=>'1.0']): void
+    public static function addDocumentIdentify(array $view = ['width' => 'device-width','initial-scale' => '1.0']): void
     {
         $initiatedText = '';
         foreach ($view as $key => $value) {
@@ -129,7 +129,7 @@ class SEOToolKitService extends Base
                 ],
             ]
         );
-    }//end addDocumentIdentify()
+    }
 
 
     /**
@@ -149,7 +149,7 @@ class SEOToolKitService extends Base
                 Ui::elementList(Ui::getDocumentHeadElement(), ['meta' => $attributes,]);
             }
         }
-    }//end loadAdsAuthentication()
+    }
 
 
     /**
@@ -167,7 +167,7 @@ class SEOToolKitService extends Base
                 'meta' => [
                     ['name' => 'title', 'content' => $documentTitle,],
                     ['name' => 'keywords', 'content' => self::getKeywords($documentTitle),],
-                    ['name' => 'company', 'content' => Memory::data()->company->name,],
+                    ['name' => 'company', 'content' => data()->company->name,],
                     ['name' => 'description', 'content' => self::getDescriptionDetails(),],
                     ['name' => 'description', 'content' => self::getDescriptionDetails(),],
                 ],
@@ -178,7 +178,7 @@ class SEOToolKitService extends Base
                 ],
             ]
         );
-    }//end default()
+    }
 
 
     /**
@@ -196,7 +196,7 @@ class SEOToolKitService extends Base
                 ],
             ]
         );
-    }//end default()
+    }
 
     /**
      * @param array|string[] $sites
@@ -327,7 +327,7 @@ class SEOToolKitService extends Base
         }
 
         return $result;
-    }//end getAbout()
+    }
 
 
     /**
@@ -335,5 +335,5 @@ class SEOToolKitService extends Base
      */
     public function __destruct()
     {
-    }//end __destruct()
-}//end class
+    }
+}
