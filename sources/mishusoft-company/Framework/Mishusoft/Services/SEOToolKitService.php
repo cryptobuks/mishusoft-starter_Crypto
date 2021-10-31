@@ -327,7 +327,7 @@ class SEOToolKitService extends Base
         }
 
         return $result;
-    }//end getAbout()
+    }
 
 
     /**
@@ -335,5 +335,5 @@ class SEOToolKitService extends Base
      */
     public function __destruct()
     {
-    }//end __destruct()
-}//end class
+    }
+}
