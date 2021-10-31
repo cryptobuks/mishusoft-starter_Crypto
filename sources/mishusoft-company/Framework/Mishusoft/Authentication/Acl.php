@@ -100,8 +100,13 @@ class Acl
         $permissions = [];
 
         foreach ($ids as $id) {
+<<<<<<< Updated upstream
             if ($this->getAllPermissionsOfUser($this->id, (int) $id) !== []) {
                 $permissions[] = $this->getAllPermissionsOfUser($this->id, (int) $id);
+=======
+            if ($this->getAllPermissionsOfUser($this->id, (int)$id) !== []) {
+                $permissions[] = $this->getAllPermissionsOfUser($this->id, (int)$id);
+>>>>>>> Stashed changes
             }
         }
 
@@ -172,4 +177,51 @@ class Acl
         }
         return $key;
     }
+<<<<<<< Updated upstream
+=======
+
+
+
+    private function getRole(int $idNumber): ?string
+    {
+        return (int)ArrayCollection::value(self::$conOfDatabase->read(DB\Table::USERS_LIST)->get(
+            ["data" => ["get" => ["role"], "where" => ["id" => "{$idNumber}"]]]
+        ), "role");
+    }
+
+    private function getPermissionsOfRole(int $roleNumber): array
+    {
+        return self::$conOfDatabase->read(DB\Table::PERMISSIONS_OF_ROLES_LIST)->get(
+            ["data" => ["get" => "*", "where" => ["role" => "{$roleNumber}"]]]
+        );
+    }
+
+    private function getPermissionFromPermissionsOfRole(int $roleNumber): array
+    {
+        return self::$conOfDatabase->read(DB\Table::PERMISSIONS_OF_ROLES_LIST)->get(
+            ["data" => ["get" => ["permission"], "where" => ["role" => "{$roleNumber}"]]]
+        );
+    }
+
+    private function getAllPermissionsOfUser(int $roleNumber, int $permissionId): array
+    {
+        return self::$conOfDatabase->read(DB\Table::PERMISSIONS_OF_ROLES_LIST)->get(
+            ["data" => ["get" => "*", "where" => ["role" => "{$roleNumber}", "permission" => "{$permissionId}"]]]
+        );
+    }
+
+    private function getKeyOfPermission(int $idNumberOfPermission): ?string
+    {
+        return ArrayCollection::value(self::$conOfDatabase->read(DB\Table::PERMISSIONS_LIST)->get(
+            ["data" => ["get" => ["key"], "where" => ["id" => "{$idNumberOfPermission}"]]]
+        ), "key");
+    }
+
+    private function getNameOfPermission(int $idNumberOfPermission): ?string
+    {
+        return ArrayCollection::value(self::$conOfDatabase->read(DB\Table::PERMISSIONS_LIST)->get(
+            ["data" => ["get" => ["permission"], "where" => ["id" => "{$idNumberOfPermission}"]]]
+        ), "key");
+    }
+>>>>>>> Stashed changes
 }

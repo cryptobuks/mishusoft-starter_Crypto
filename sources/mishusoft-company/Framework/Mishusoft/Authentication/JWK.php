@@ -64,7 +64,11 @@ class JWK
         }
 
         if ([] === $keys) {
+<<<<<<< Updated upstream
             throw new UnexpectedValueException("No supported algorithms found in JWK Set");
+=======
+            throw new UnexpectedValueException('No supported algorithms found in JWK Set');
+>>>>>>> Stashed changes
         }
 
         return $keys;

@@ -38,9 +38,14 @@ class WebResourceDelivery
      * @throws Exceptions\RuntimeException
      * @throws Exceptions\RuntimeException\NotFoundException
      */
+<<<<<<< Updated upstream
     public function __construct(
         string $defaultDirectoryIndex = DEFAULT_CONTROLLER
     ) {
+=======
+    public function __construct(string $defaultDirectoryIndex = DEFAULT_CONTROLLER)
+    {
+>>>>>>> Stashed changes
         $this->defaultDirectoryIndex = $defaultDirectoryIndex;
         $this->defaultApplicationIcon = data()->preset->logo;
     }
@@ -69,10 +74,14 @@ class WebResourceDelivery
     private function browse(array $request): void
     {
         if (is_readable(Storage::storagesPath())) {
+<<<<<<< Updated upstream
             if (
                 Utility\Inflect::lower($request["method"]) ===
                 $this->defaultDirectoryIndex
             ) {
+=======
+            if (Utility\Inflect::lower($request["method"]) === $this->defaultDirectoryIndex) {
+>>>>>>> Stashed changes
                 $this->webExplore($request["method"], $request);
             } else {
                 $this->webExploreLoader($request);
@@ -247,8 +256,12 @@ class WebResourceDelivery
         $currentUrl = Runtime::currentUrl();
         $visitedUrl = Utility\Inflect::lower($currentUrl);
 
+<<<<<<< Updated upstream
         $parentURL = $visitedUrl !== "" &&
         $visitedUrl[strlen($visitedUrl) - 1] !== "/" ? $visitedUrl . "/" : $visitedUrl;
+=======
+        $parentURL = $visitedUrl !== "" && $visitedUrl[strlen($visitedUrl) - 1] !== "/" ? $visitedUrl . "/" : $visitedUrl;
+>>>>>>> Stashed changes
 
         /*make breadcrumb*/
         $this->makeBreadcrumb($templateBody, $urlPath);
@@ -286,7 +299,13 @@ class WebResourceDelivery
             "style" => "font-size: 12px;",
         ]);
 
+<<<<<<< Updated upstream
         if (count(Storage\FileSystem::list($dirname)) > 0) {
+=======
+        $dirList = Storage\FileSystem::list($dirname);
+
+        if (is_array($dirList) && $dirList !== []) {
+>>>>>>> Stashed changes
             $this->viewDirOrFileList($dirname, $table_body, $parentURL);
         } else {
             Ui::element(
@@ -338,10 +357,15 @@ class WebResourceDelivery
      * @throws Exceptions\RuntimeException\NotFoundException
      * @param \DOMElement|\DOMNode $templateBody
      */
+<<<<<<< Updated upstream
     private function makeBreadcrumb(
         $templateBody,
         string $urlPath
     ): void {
+=======
+    private function makeBreadcrumb($templateBody, string $urlPath): void
+    {
+>>>>>>> Stashed changes
         /*image properties*/
         $imageProperties = [
             "rel" => "preload",
@@ -397,11 +421,16 @@ class WebResourceDelivery
      * @throws Exceptions\RuntimeException\NotFoundException
      * @param \DOMElement|\DOMNode $table_body
      */
+<<<<<<< Updated upstream
     private function viewDirOrFileList(
         string $dirname,
         $table_body,
         string $parentURL
     ): void {
+=======
+    private function viewDirOrFileList(string $dirname, $table_body, string $parentURL): void
+    {
+>>>>>>> Stashed changes
         foreach ((array) Storage::explore($dirname) as $file) {
             $list = Ui::element($table_body, "tr");
             $tdStyle = [
@@ -653,10 +682,14 @@ class WebResourceDelivery
      */
     public function shared(array $request): void
     {
+<<<<<<< Updated upstream
         if (
             file_exists(Storage::storagesPath()) &&
             is_readable(Storage::storagesPath())
         ) {
+=======
+        if (file_exists(Storage::storagesPath()) && is_readable(Storage::storagesPath())) {
+>>>>>>> Stashed changes
             [
                 "controller" => $controller,
                 "method" => $method,
@@ -671,11 +704,15 @@ class WebResourceDelivery
                 case "json":
                     if (is_array($arguments) && count($arguments) > 0) {
                         if (strpos(implode($arguments), "-") !== false) {
+<<<<<<< Updated upstream
                             Storage\Stream::file(
                                 Storage::sharedFullPath(
                                     str_replace("-", ".", implode($arguments))
                                 )
                             );
+=======
+                            Storage\Stream::file(Storage::sharedFullPath(str_replace("-", ".", implode($arguments))));
+>>>>>>> Stashed changes
                         } else {
                             throw new Exceptions\LogicException\InvalidArgumentException(
                                 "Invalid filename"
@@ -689,6 +726,7 @@ class WebResourceDelivery
                     break;
 
                 case "logos":
+<<<<<<< Updated upstream
                     $fileAbsoluteName = is_string($arguments)
                         ? $arguments
                         : end($arguments);
@@ -697,6 +735,10 @@ class WebResourceDelivery
                             logos_path_default() . $fileAbsoluteName
                         )
                     ) {
+=======
+                    $fileAbsoluteName = is_string($arguments) ? $arguments : end($arguments);
+                    if (file_exists(logos_path_default() . $fileAbsoluteName)) {
+>>>>>>> Stashed changes
                         stream_file(logos_path($fileAbsoluteName));
                     } elseif (strpos($fileAbsoluteName, "-") !== false) {
                         $ext = pathinfo($fileAbsoluteName, PATHINFO_EXTENSION);
@@ -704,6 +746,7 @@ class WebResourceDelivery
                         $expected = array_pop($explode);
 
                         if (preg_match("[." . $ext . "]", $expected)) {
+<<<<<<< Updated upstream
                             [$width, $height] = explode(
                                 "x",
                                 preg_replace("[." . $ext . "]", "", $expected)
@@ -715,6 +758,10 @@ class WebResourceDelivery
                                     )
                                 )
                             ) {
+=======
+                            [$width, $height] = explode("x", preg_replace("[." . $ext . "]", "", $expected));
+                            if (file_exists(Storage::logoFullPath($this->defaultApplicationIcon))) {
+>>>>>>> Stashed changes
                                 Storage\Stream::file(
                                     Storage\Media\Image::resize(
                                         Storage::logoFullPath(
@@ -748,6 +795,7 @@ class WebResourceDelivery
                     break;
 
                 case "related":
+<<<<<<< Updated upstream
                     $requestArgument = is_string($arguments)
                         ? $arguments
                         : implode(DS, $arguments);
@@ -761,6 +809,11 @@ class WebResourceDelivery
                                 $requestArgument
                         )
                     ) {
+=======
+                    $requestArgument = is_string($arguments) ? $arguments : implode(DS, $arguments);
+                    $requestedWebFile = MPM\Classic::templatesJSResourcesRoot($request["module"], $controller);
+                    if (file_exists(MPM\Classic::templatesJSResourcesRootLocal() . $requestArgument)) {
+>>>>>>> Stashed changes
                         Storage\Stream::file($requestedWebFile);
                     } else {
                         throw new Exceptions\RuntimeException\NotFoundException(

@@ -22,7 +22,10 @@ abstract class Base extends Singleton
         return sprintf('%s.%s', $path, $extension);
     }
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     public static function hidePath(string $string): string
     {
         return str_replace(RUNTIME_ROOT_PATH, ROOT_IDENTITY, $string);
@@ -45,19 +48,31 @@ abstract class Base extends Singleton
         return self::makePathToNamespace($filename);
     }
 
+<<<<<<< Updated upstream
     private static function makePathToNamespace(string $path): string
+=======
+    private static function startPosition(string $resources, string $path): int
+>>>>>>> Stashed changes
     {
         return str_replace(['//', '/'], ['/', '\\'], substr($path, 0, self::lastPosition($path)));
     }
 
+<<<<<<< Updated upstream
     private static function startPosition(string $resources, string $path): string
+=======
+    private static function makePathToNamespace(string $path): string
+>>>>>>> Stashed changes
     {
         $path = rtrim($path, DS);
         //get actual point from path/name/with/file.extension
         return (strpos($resources, $path) + strlen($path));
     }
 
+<<<<<<< Updated upstream
     private static function lastPosition(string $path): string
+=======
+    private static function lastPosition(string $path): int
+>>>>>>> Stashed changes
     {
         return (strlen($path) - (strlen($path) - strpos($path, '.php')));
     }
@@ -76,6 +91,7 @@ abstract class Base extends Singleton
      */
     public static function getDirectoryName(string $fullPath, string $rootPath = RUNTIME_ROOT_PATH): string
     {
+<<<<<<< Updated upstream
         return strtolower(
             substr(
                 $fullPath,
@@ -84,6 +100,12 @@ abstract class Base extends Singleton
             )
         );
     }public static function rootPath(): string
+=======
+        return strtolower(substr($fullPath, strlen($rootPath), strlen($fullPath) - strlen($rootPath) - 1));
+    }
+
+    public static function frameworkViewsPath(): string
+>>>>>>> Stashed changes
     {
         return RUNTIME_ROOT_PATH;
     }
@@ -98,8 +120,17 @@ abstract class Base extends Singleton
         );
     }
 
+<<<<<<< Updated upstream
 
     public static function appStoragesPath(): string
+=======
+    public static function rootPath(): string
+    {
+        return RUNTIME_ROOT_PATH;
+    }
+
+    public static function cssAssetsPath(): string
+>>>>>>> Stashed changes
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -119,7 +150,11 @@ abstract class Base extends Singleton
         );
     }
 
+<<<<<<< Updated upstream
     public static function frameworkViewsPath(): string
+=======
+    public static function appStoragesPath(): string
+>>>>>>> Stashed changes
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -129,7 +164,11 @@ abstract class Base extends Singleton
         );
     }
 
+<<<<<<< Updated upstream
     public static function cssAssetsPath(): string
+=======
+    public static function storagesPath(): string
+>>>>>>> Stashed changes
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -169,7 +208,11 @@ abstract class Base extends Singleton
         );
     }
 
+<<<<<<< Updated upstream
     public static function mediaPath(): string
+=======
+    public static function imagesPath(): string
+>>>>>>> Stashed changes
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -179,7 +222,11 @@ abstract class Base extends Singleton
         );
     }
 
+<<<<<<< Updated upstream
     public static function imagesPath(): string
+=======
+    public static function mediaPath(): string
+>>>>>>> Stashed changes
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -189,7 +236,11 @@ abstract class Base extends Singleton
         );
     }
 
+<<<<<<< Updated upstream
     protected static function frameworkDataPath(): string
+=======
+    public static function frameworkStoragesPath(): string
+>>>>>>> Stashed changes
     {
         return sprintf(
             '%1$s%2$s%4$s%3$s%4$s',
@@ -200,8 +251,12 @@ abstract class Base extends Singleton
         );
     }
 
+<<<<<<< Updated upstream
 
     public static function frameworkStoragesPath(): string
+=======
+    public static function logosDefaultPath(bool $isRemote = false): string
+>>>>>>> Stashed changes
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -211,8 +266,11 @@ abstract class Base extends Singleton
         );
     }
 
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
     public static function logosPath(bool $isRemote = false): string
     {
         if ($isRemote) {
@@ -230,7 +288,11 @@ abstract class Base extends Singleton
         );
     }
 
+<<<<<<< Updated upstream
     public static function logosDefaultPath(bool $isRemote = false): string
+=======
+    public static function uploadsPath(): string
+>>>>>>> Stashed changes
     {
         return sprintf(
             '%1$s%2$s',
@@ -239,7 +301,11 @@ abstract class Base extends Singleton
         );
     }
 
+<<<<<<< Updated upstream
     public static function uploadsPath(): string
+=======
+    public static function usersProfilePicturesPath(): string
+>>>>>>> Stashed changes
     {
         return sprintf(
             '%1$s%2$s%3$s',
@@ -340,8 +406,22 @@ abstract class Base extends Singleton
         );
     }
 
+<<<<<<< Updated upstream
 
     protected static function logDirective(string $directive): string
+=======
+    public static function frameworkSessionsPath(): string
+    {
+        return sprintf('%1$s%2$s%3$s', self::frameworkDataPath(), "sessions", DS);
+    }
+
+    protected static function dataFileFormat(): string
+    {
+        return "yml";
+    }
+
+    protected static function dFile(string $path, string $extension = "yml"): string
+>>>>>>> Stashed changes
     {
         return sprintf(
             '%1$s%2$s%4$s%3$s%4$s',
@@ -352,7 +432,11 @@ abstract class Base extends Singleton
         );
     }
 
+<<<<<<< Updated upstream
     public static function frameworkSessionsPath(): string
+=======
+    protected static function logDirective(string $directive): string
+>>>>>>> Stashed changes
     {
         return sprintf(
             '%1$s%2$s%3$s',
