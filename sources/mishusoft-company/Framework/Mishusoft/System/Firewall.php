@@ -15,6 +15,7 @@ use Mishusoft\Http\IP;
 use Mishusoft\Registry;
 use Mishusoft\Storage;
 use Mishusoft\Storage\FileSystem;
+use Mishusoft\Utility\Debug;
 use Mishusoft\Utility\Inflect;
 use RuntimeException;
 
@@ -33,7 +34,7 @@ class Firewall extends Firewall\FirewallBase
 
         Log::info(sprintf('Load Firewall configuration from %s.json.', self::configFile()));
         $this->loadConfig();
-    }//end __construct()
+    }
 
 
     /**
@@ -48,6 +49,7 @@ class Firewall extends Firewall\FirewallBase
      */
     public function isRequestAccepted(): bool
     {
+        Debug::preOutput($this->framework);
         Log::info('Check domain installation file of framework.');
         if (file_exists(self::siteFile()) === true) {
             $installedHost = FileSystem\Yaml::parseFile(self::siteFile());
