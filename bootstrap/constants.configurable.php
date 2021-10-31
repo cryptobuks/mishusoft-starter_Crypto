@@ -6,7 +6,7 @@
 // *
 // * @category Loader
 // * @package  Mishusoft_Framework
-// * @author   Al-Amin Ahamed <alamin.rohita@hotmail.com>
+// * @author   Al-Amin Ahamed <alamin@mishusoft.com>
 // * @license  MIT https://opensource.org/licenses/MIT
 // * @link     https://mishusoft.com
 // */

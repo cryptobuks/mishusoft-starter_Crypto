@@ -78,21 +78,21 @@ class SEOToolKitService extends Base
             self::searchEngineListFile(),
         ];
 
-        // Verify configurations
-        if (count($fileList) > 0) {
-            // Create directory if not exists
-            FileSystem::makeDirectory(dirname(self::seoConfigFile()));
-            foreach ($fileList as $file) {
-                if (file_exists($file) === false) {
-                    FileSystem\Yaml::emitFile($file, []);
-                    FileSystem::saveToFile($file, Implement::toJson([]));
-                } elseif ((is_array(FileSystem\Yaml::parseFile($file)) === false)
-                    && FileSystem::remove($file) === true) {
-                    FileSystem\Yaml::emitFile($file, []);
-                }
+
+        // Create directory if not exists
+        FileSystem::makeDirectory(dirname(self::seoConfigFile()));
+        foreach ($fileList as $file) {
+            if (file_exists($file) === false) {
+                FileSystem\Yaml::emitFile($file, []);
+                FileSystem::saveToFile($file, Implement::toJson([]));
+            } elseif (
+                (is_array(FileSystem\Yaml::parseFile($file)) === false)
+                && FileSystem::remove($file) === true
+            ) {
+                FileSystem\Yaml::emitFile($file, []);
             }
         }
-    }//end start()
+    }
 
 
     /**
@@ -111,7 +111,7 @@ class SEOToolKitService extends Base
     /**
      * @param array|string[] $view
      */
-    public static function addDocumentIdentify(array $view = ['width'=>'device-width','initial-scale'=>'1.0']): void
+    public static function addDocumentIdentify(array $view = ['width' => 'device-width','initial-scale' => '1.0']): void
     {
         $initiatedText = '';
         foreach ($view as $key => $value) {
