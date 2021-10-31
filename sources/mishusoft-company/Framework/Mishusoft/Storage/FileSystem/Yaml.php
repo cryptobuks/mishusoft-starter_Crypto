@@ -62,12 +62,11 @@ class Yaml
     private static function validation(): void
     {
         if (!extension_loaded("yaml")) {
-            $directoryPath = RUNTIME_ROOT_PATH . "requirements/";
-            $prefix = PHP_SHLIB_SUFFIX === "dll" ? "php_" : "";
-            \dl($directoryPath . $prefix . "sqlite." . PHP_SHLIB_SUFFIX);
+            // $directoryPath = RUNTIME_ROOT_PATH . "requirements/";
+            // $prefix = PHP_SHLIB_SUFFIX === "dll" ? "php_" : "";
+            // \dl($directoryPath . $prefix . "sqlite." . PHP_SHLIB_SUFFIX);
+            throw new RuntimeException("YAML extension required");
         }
-
-        throw new RuntimeException("YAML extension required");
     }
 
     /**
