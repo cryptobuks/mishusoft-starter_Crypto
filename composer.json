@@ -115,7 +115,7 @@
     "php-cs-fixer": "php-cs-fixer fix"
   },
   "require": {
-    "php": ">=7.4",
+    "php": "^5.6||^7.4||^8.0",
     "verot/class.upload.php": "^2.1",
     "stripe/stripe-php": "^7.77",
     "phpmailer/phpmailer": "^6.4",
