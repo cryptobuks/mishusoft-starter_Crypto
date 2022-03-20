@@ -1,0 +1,34 @@
+# Applications
+# In addition to browsers, many applications need to process web content. For this purpose, as well as browsers,
+# these applications are using rendering engines and they also have their own user agent.
+
+# 1Password
+# 1Password is an application devoloped by AgileBits, Inc.. This application renders web resources using the WebKit engine.
+
+# Common user agent list
+# Mozilla/5.0 (iPhone; CPU OS 13_6_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) 1Password/7.4.4 (like Version/13.6.1 Mobile/17G80 Safari/600.1.4)
+# Mozilla/5.0 (iPhone; CPU OS 13_7 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) 1Password/7.6.2 (like Version/13.7 Mobile/17H35 Safari/600.1.4)
+# Mozilla/5.0 (iPhone; CPU OS 14_2 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) 1Password/7.7 (like Version/14.2 Mobile/18B92 Safari/600.1.4)
+# Mozilla/5.0 (iPhone; CPU OS 14_3 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) 1Password/7.7 (like Version/14.3 Mobile/18C66 Safari/600.1.4)
+- identifiers:
+    # Pattern maker method use it
+    application-1-password:
+      pattern:
+        name: (1password)
+        separator: true
+        version: true
+      functional: true
+    application-1-password-fallback:
+      pattern:
+        name: (1password)
+        separator: false
+        version: false
+      functional: true
+
+  # Information maker method use it
+  info: application one-password
+
+
+#  Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Coder Nut/45.41 Safari/537.36	Coder Nut 45	Windows	Computer	Uncommon
+#  Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Coder Nut/88.16 Safari/537.36	Coder Nut 88	Windows	Computer	Uncommon
+#  Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Coder Nut/50.77 Safari/537.36

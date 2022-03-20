@@ -1,0 +1,205 @@
+/* src/assets/scss/lib.scss */
+/*colors*/
+/*ranges*/
+.hidden {
+  display: none;
+}
+
+.center-box {
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.app-payment-sandbox {
+  background-color: white;
+  position: absolute;
+  padding: 5px 20px 5px 20px;
+  text-align: center;
+  width: 500px;
+  height: 600px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.payment-symbol {
+  font-size: 80px;
+  border: 1px solid #0777cc;
+  border-radius: 5px;
+  color: #0777cc;
+  padding: 5px;
+  height: 92px;
+  width: 112px;
+}
+
+.messageBoard {
+  display: none;
+  padding: 5px 10px;
+  width: 100% !important;
+  text-align: justify;
+  position: relative;
+  left: 0 !important;
+  margin-top: 10px;
+  line-height: 1.5;
+  font-size: 13px;
+}
+
+.ev_error {
+  color: #ff0000;
+  border-left: 3px solid #ff0000;
+  background: #f7d7d4;
+}
+
+.ev_success {
+  color: #4caf50;
+  border-left: 3px solid #4caf50;
+  background: #70e8c0d4;
+}
+
+.ev_info {
+  color: #34abe6;
+  border-left: 3px solid #0777cc;
+  background: #c3eff9;
+}
+
+.app-payment-title {
+  padding: 10px 0 20px 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/*stripe*/
+.StripeElement {
+  box-sizing: border-box;
+  height: 40px !important;
+  padding: 10px 12px !important;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0 3px 4px 4px #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #ff0000;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+.ElementsApp, .SelectField, .SelectField-control {
+  color: #32325d;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 16px !important;
+  padding: 10px 12px !important;
+  height: 39.2px !important;
+  -webkit-font-smoothing: antialiased;
+  /*-moz-osx-font-smoothing: grayscale;*/
+}
+
+.ElementsApp, .SelectField, .SelectField-control {
+  color: #32325d;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 16px !important;
+  padding: 10px 12px !important;
+  height: 39.2px !important;
+  -webkit-font-smoothing: antialiased;
+  /*-moz-osx-font-smoothing: grayscale;*/
+}
+
+.ElementsApp, .ElementsApp .SelectListItem {
+  color: #000;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 16px;
+  padding: 10px 12px !important;
+  height: 39.2px !important;
+  -webkit-font-smoothing: antialiased;
+  /*-moz-osx-font-smoothing: grayscale;*/
+}
+
+/*stripe*/
+.pay-option {
+  width: 100%;
+  display: inline-block;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+.pay-option-item {
+  font-size: 17px;
+  min-width: 93px;
+  height: 40px;
+  color: #000;
+  background: #ffffff;
+  float: left;
+  border-right: 1px solid #d3d3d3;
+  padding: 5px 7px;
+  cursor: pointer;
+}
+
+.pay-option-item:hover, .active-method {
+  background: #d3d3d3;
+  color: #ffffff;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.pay-option-item:last-child {
+  border-right: none;
+}
+
+.pre-order-card {
+  display: inline-block;
+  height: 110px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.poc-symbol {
+  float: left;
+  font-size: 45px;
+  padding: 10px 15px;
+  height: 84px;
+  width: 80px;
+  color: #0777cc;
+}
+
+.poc-body {
+  float: left;
+  font-size: 14px;
+  padding: 5px 0 5px 15px;
+  text-align: left;
+  width: 64%;
+  line-height: 1.4;
+  height: 84px;
+  border-left: 1px solid #0777cc;
+  border-right: 1px solid #0777cc;
+}
+
+.poc-body-price {
+  text-align: center;
+  width: 17%;
+  float: left;
+  line-height: 2;
+}
+
+.absolute-price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #0777cc;
+}
+
+/*# sourceMappingURL=payment.css.map */

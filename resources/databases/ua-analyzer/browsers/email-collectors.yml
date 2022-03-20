@@ -1,0 +1,13 @@
+# Email Siphon
+# EmailSiphon
+- identifiers:
+    # Pattern maker method use it
+    email-cllectors-email-siphon:
+      pattern:
+        name: (emailsiphon)
+        separator: false
+        version: false
+      functional: true
+
+  # Information maker method use it
+  info: email-cllector emailsiphon

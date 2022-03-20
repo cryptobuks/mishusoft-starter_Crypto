@@ -2,7 +2,7 @@
   "name": "mishusoft/website",
   "description": "Official website of Mishusoft",
   "homepage": "https://www.mishusoft.com/",
-  "license": "proprietary",
+  "license": "GPL-3.0-only",
   "authors": [
     {
       "name": "Al-Amin Ahamed (Abir)",
@@ -16,7 +16,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/mralaminahamed/lastest.mishusoft.com.git"
+    "url": "git://gitlab.com/mralaminahamed/mishusoft-starter.git"
   },
   "support": {
     "email": "support@mishusoft.com",
@@ -24,14 +24,16 @@
     "source": "https://www.mishusoft.com/framework-sample"
   },
   "config": {
-    "sort-order": true,
     "platform": {
-      "php": "7.4"
-    }
+      "php": "8.0.0"
+    },
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "sort-order": true
   },
   "autoload": {
     "psr-4": {
-      "App\\": "app/",
+      "App\\": "App/",
       "Mishusoft\\": "Framework/Mishusoft"
     }
   },
@@ -42,24 +44,23 @@
     }
   },
   "scripts": {
-    "create:app": ["@update:cli","@update:api","@update:packages", "@update:packages.components","@update:themes","@update:widgets","@update:widgets.components"],
-
-    "copy:storages.all": "php ./Sources/mishusoft-company/Release.php -copy -s ./storages/ -d ./storages/",
-    "copy:assests": "php ./Sources/mishusoft-company/Release.php -copy -s ./Sources/Assets -d ./storages/app/assets",
-    "copy:media": "php ./Sources/mishusoft-company/Release.php -copy -s ./Sources/Assets/media -d ./storages/app/media",
-    "copy:errors.page": "php ./Sources/mishusoft-company/Release.php -copy -s ./Sources/Mishusoft/Views/Errors/SHtml -d ./app/views/errors",
-
+    "create:app": [
+      "@update:cli",
+      "@update:api",
+      "@update:packages",
+      "@update:packages.components",
+      "@update:themes",
+      "@update:widgets",
+      "@update:widgets.components"
+    ],
+    "copy:assests": "php cli copy ./sources/Assets ./storages/app/assets",
+    "copy:media": "php cli copy ./sources/Assets/media ./storages/app/media",
+    "copy:errors.page": "php cli copy ./sources/mishusoft-company/App/Views/Errors/SHtml ./app/views/errors",
     "update:composer": "composer self-update",
     "update:composer.pacakges": "composer update",
     "update:composer.packages.global": "composer /home/abir/.config/composer update",
-
-    "update:robots": "php cli update:robots ./sources/mishusoft-company/public/robots.txt ./public_html/robots.txt",
-    "update:index.php": "php cli update:indexPHP ./sources/mishusoft-company/public/app.php ./public_html/index.php",
-    "update:index.html": "php cli update:indexHTML ./sources/mishusoft-company/public/app.html ./public_html/index.html",
     "update:framework": "php cli update:framework ./sources/mishusoft-company/Framework ./Framework",
-
     "update:cli": "php cli update:cli ./sources/mishusoft-company/App/CliSurface ./app/CliSurface",
-
     "update:api": "php cli update:api ./sources/mishusoft-company/App/QualifiedAPIRoutes ./app/QualifiedAPIRoutes",
     "update:ema": "php cli update:ema ./sources/mishusoft-company/App/Packages/Ema ./app/Packages/Ema",
     "update:ema.loader": "php cli update:ema.loader ./sources/mishusoft-company/App/Packages/Ema.loader.php ./app/Packages/Ema.loader.php",
@@ -68,39 +69,32 @@
     "update:widgets": "php cli update:widgets ./sources/mishusoft-company/App/Widgets ./app/Widgets",
     "update:widgets.components": "php cli update:widgets.components ./sources/mishusoft-company/App/Views/Widgets ./app/Widgets/Views",
     "update:packages.components": "php cli update:packages.components ./sources/mishusoft-company/App/Views/Templates/Packages ./app/Packages && @update:packages",
-
-
-    "update:test:index.php": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/app.php -d ./public_html/index.php",
-    "update:test:index-html": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/app.html -d ./public_html/index.html",
-    "update:test:framework": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/mishusoft-company/Framework -d ./Framework",
-    "update:test:ewUrl": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/Mishusoft/Application/EmbeddedWebUrlDirectory -d ./app/QualifiedAPIRoutes",
-    "update:test:ema": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/Mishusoft/Application/Packages/Ema -d ./app/Packages/Ema",
-    "update:test:packages": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/Mishusoft/Application/Packages -d ./app/Packages",
-    "update:test:themes": "php ./Sources/mishusoft-company/Release.php -test-themes -s ./Sources/mishusoft-company/Application/Views/Themes -d ./app/Themes",
-    "update:test:widgets": "php ./Sources/mishusoft-company/Release.php -test -s ./Sources/Mishusoft/Widgets -d ./public_html/app/Widgets",
-    "update:test:widgets.components": "php ./Sources/mishusoft-company/Release.php -test-widgets -s ./Sources/mishusoft-company/Application/Views/Widgets -d ./app/Widgets/Views",
-    "update:test:packages.components": "php ./Sources/mishusoft-company/Release.php -static -s ./Sources/mishusoft-company/Application/Views/Templates/Packages -d ./app/Packages",
-
-
+    "update:test:index.php": "php cli copy ./sources/app.php ./public_html/index.php",
+    "update:test:index-html": "php cli copy ./sources/app.html ./public_html/index.html",
+    "update:test:framework": "php cli copy ./sources/mishusoft-company/Framework ./Framework",
+    "update:test:ewUrl": "php cli copy ./sources/Mishusoft/Application/EmbeddedWebUrlDirectory ./app/QualifiedAPIRoutes",
+    "update:test:ema": "php cli copy ./sources/Mishusoft/Application/Packages/Ema ./app/Packages/Ema",
+    "update:test:packages": "php cli copy ./sources/Mishusoft/Application/Packages ./app/Packages",
+    "update:test:themes": "php cli copy:themes ./sources/mishusoft-company/Application/Views/Themes ./app/Themes",
+    "update:test:widgets": "php cli copy ./sources/Mishusoft/Widgets ./public_html/app/Widgets",
+    "update:test:widgets.components": "php cli copy:widgets ./sources/mishusoft-company/Application/Views/Widgets ./app/Widgets/Views",
+    "update:test:packages.components": "php cli copy:static ./sources/mishusoft-company/Application/Views/Templates/Packages ./app/Packages",
     "upgrade:db:geoip": "geoipupdate && cp -r /var/lib/GeoIP ./storages/framework/data-drive",
-    "upgrade:db:ua": "php ./Sources/mishusoft-company/Release.php -upgrade -s ./Sources/mishusoft-company/Application/Views/Templates/Packages -d ./app/Packages",
-    "upgrade:media:mime": "php ./Sources/mishusoft-company/Release.php -upgrade -s ./Sources/mishusoft-company/Application/Views/Templates/Packages -d ./app/Packages",
-
+    "upgrade:db:ua": "php cli build:ua",
+    "upgrade:media:mime": "php cli build:mime",
+    "release:media:mime": "php cli build:mime release",
     "release.app": [
       "Composer\\Config::disableProcessTimeout",
       "vendor/bin/rector process app"
     ],
-
     "release.framework": [
       "Composer\\Config::disableProcessTimeout",
       "vendor/bin/rector process framework"
     ],
-
     "start:server.dev": [
       "Composer\\Config::disableProcessTimeout",
-      "php -S localhost:8080 router.php"
+      "php -S localhost:8000 public_html/index.php"
     ],
-
     "test:user.agent": [
       "Composer\\Config::disableProcessTimeout",
       "php tests/user-agent-test.php > tmp/user.agent.log"
@@ -109,37 +103,33 @@
       "Composer\\Config::disableProcessTimeout",
       "php tests/user-agent-download.php"
     ],
-
     "phpcs": "phpcs",
     "phpcbf": "phpcbf",
     "php-cs-fixer": "php-cs-fixer fix"
   },
   "require": {
-    "php": "^5.6||^7.4||^8.0",
-    "verot/class.upload.php": "^2.1",
-    "stripe/stripe-php": "^7.77",
-    "phpmailer/phpmailer": "^6.4",
-    "smarty/smarty": "^3.1",
-    "geoip2/geoip2": "^2.11",
+    "php": "^8.0",
+    "ext-curl": "*",
+    "ext-dom": "*",
+    "ext-fileinfo": "*",
+    "ext-gd": "*",
+    "ext-intl": "*",
+    "ext-mysqli": "*",
     "ext-openssl": "*",
-    "ext-yaml": "*",
+    "ext-pdo": "*",
     "ext-zend-opcache": "*",
     "ext-zip": "*",
-    "ext-dom": "*",
-    "ext-curl": "*",
-    "ext-pdo": "*",
-    "ext-mysqli": "*",
-    "ext-intl": "*",
-    "ext-gd": "*",
-    "ext-fileinfo": "*",
-    "dallgoot/yaml": "^0.3.2"
+    "geoip2/geoip2": "^2.11",
+    "phpmailer/phpmailer": "^6.4",
+    "smarty/smarty": "^3.1",
+    "stripe/stripe-php": "^7.77",
+    "verot/class.upload.php": "^2.1"
   },
   "require-dev": {
-    "roave/security-advisories": "dev-latest",
-    "squizlabs/php_codesniffer": "^3.6",
     "friendsofphp/php-cs-fixer": "^3.0",
-    "rector/rector": "^0.11.38",
-    "ext-calendar": "*",
-    "phpstan/phpstan": "^0.12.99"
+    "phpstan/phpstan": "^1.2",
+    "rector/rector": "^0.12.4",
+    "roave/security-advisories": "dev-latest",
+    "ext-calendar": "*"
   }
 }

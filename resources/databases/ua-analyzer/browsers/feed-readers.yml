@@ -1,0 +1,24 @@
+# RSS Readers
+# RSS Readers also known as news aggregators, feed aggregators, or feed readers,
+# is a software that collects and combines content from multiple sources to display it in one place for easy viewing.
+# Below are listed 3 RSS readers. Click on the desired RSS reader to get detailed information about it.
+
+# Apple PubSub
+# Apple PubSub is a RSS reader devoloped by Apple Inc. This RSS reader renders web resources using the WebKit engine.
+
+# common user agent list
+# Apple-PubSub/65.21
+# Apple-PubSub/28
+# Apple-PubSub/65.23
+# Apple-PubSub/65.28
+- identifiers:
+    # Pattern maker method use it
+    feed-reader-apple-pub-sub:
+      pattern:
+        name: (apple\-pubsub)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: feed-reader apple-pub-sub

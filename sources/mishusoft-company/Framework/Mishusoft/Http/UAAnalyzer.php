@@ -4,7 +4,6 @@
 
 namespace Mishusoft\Http;
 
-use JsonException;
 use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Exceptions\PermissionRequiredException;
 use Mishusoft\Exceptions\RuntimeException;
@@ -29,10 +28,10 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
         private bool  $matchFound = false
     ) {
         parent::__construct();
-        $this->timeOfExecution = time();
-        $this->identifiers = new UAAnalyzer\IdentifiersCollection();
-        $this->patterns = new UAAnalyzer\PatternsCollection();
-        $this->resources = new UAAnalyzer\InformationCollection();
+        $this->timeOfExecution  = time();
+        $this->identifiers      = new UAAnalyzer\IdentifiersCollection();
+        $this->patterns         = new UAAnalyzer\PatternsCollection();
+        $this->resources        = new UAAnalyzer\InformationCollection();
     }//end __construct()
 
 
@@ -41,45 +40,45 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
      *
      * @return UAAnalyzer
      * @throws InvalidArgumentException
-     * @throws JsonException
      * @throws PermissionRequiredException
      * @throws RuntimeException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
-    public function analyze(): static
+    public function analyze(): UAAnalyzer
     {
-        //If current user agent are stored in solved list,
-        //then we should not solve this,
-        //we load the solved data from solve list
-        if (array_key_exists($this->userAgent, $this->solvedUA()) === true) {
-            $this->makeDetails($this->solvedUA()[$this->userAgent]);
+        // If current user agent are stored in solved list,
+        // then we should not solve this,
+        // we load the solved data from solve list
+        $cache = array_value($this->solvedUA(), $this->userAgent, true);
+        if (!is_bool($cache)) {
+            // pp(array_value($this->solvedUA(), $this->userAgent, true));
+            $this->makeDetails($cache);
         } else {
             $this->collectUA('development');
-            $cleanUA = $this->cleanUA($this->userAgent, $this->identifiers->browsers->knownBrowserAliases());
-            $webBrowserIdentifiers = $this->identifiers->browsers->all();
+            $cleanUA                = $this->cleanUA($this->userAgent, $this->identifiers->browsers->knownBrowserAliases());
+            $webBrowserIdentifiers  = $this->identifiers->browsers->all();
             //User-Agent: Mozilla/5.0 (<system-information>) <platform> (<platform-details>) <extensions>
             foreach ($webBrowserIdentifiers as $identifier) {
                 if (preg_match($this->patterns->browsers->match($identifier), $cleanUA, $matches) === 1) {
-                    $this->matchFound = true;
-                    $details = $this->cleanFilter($matches);
-                    $this->browserNameFull = $this->cleanImplode($details);
+                    $this->matchFound       = true;
+                    $details                = $this->cleanFilter($matches);
+                    $this->browserNameFull  = $this->cleanImplode($details);
                     if (array_key_exists('version', $details) === true) {
-                        $this->browserVersionFull = $details['version'];
-                        $this->browserVersion = $this->versionOrigin($details['version']);
+                        $this->browserVersionFull   = $details['version'];
+                        $this->browserVersion       = (string) $this->versionOrigin($details['version']);
                     }
-                    $browserDetails = $this->resources->browsers->makeDetails($identifier);
-                    $this->browserName = ucfirst($browserDetails['name']);
-                    $this->browserType = $browserDetails['type'];
-                    $this->browserUi = $browserDetails['ui'];
-                    $this->browserDetails = $browserDetails;
+                    $browserDetails         = $this->resources->browsers->makeDetails($identifier);
+                    $this->browserName      = ucfirst($browserDetails['name']);
+                    $this->browserType      = $browserDetails['type'];
+                    $this->browserUi        = $browserDetails['ui'];
+                    $this->browserDetails   = $browserDetails;
 
                     // Second step.
                     // Detecting app parents of web browser from user agent.
                     foreach ($this->identifiers->browsers->compatibilitiesAll() as $compatible) {
                         if (preg_match($this->patterns->browsers->compat($compatible), $cleanUA, $matches) === 1) {
                             $details = $this->cleanFilter($matches);
-                            $this->browserAppCodeName = $details['name'];
-                            $this->browserAppCodeVersion = $this->versionOrigin($details['version']);
+                            $this->browserAppCodeName        = $details['name'];
+                            $this->browserAppCodeVersion     = (string) $this->versionOrigin($details['version']);
                             $this->browserAppCodeVersionFull = $details['version'];
                             break;
                         }
@@ -90,9 +89,9 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
                     foreach ($this->identifiers->browsers->browserEnginesAll() as $engine) {
                         if (preg_match($this->patterns->browsers->browserEngine($engine), $cleanUA, $matches) === 1) {
                             $details = $this->cleanFilter($matches);
-                            $this->browserEngineName = $details['name'];
-                            $this->browserEngineNameFull = $this->cleanImplode($details);
-                            $this->browserEngineVersion = $this->versionOrigin($details['version']);
+                            $this->browserEngineName        = $details['name'];
+                            $this->browserEngineNameFull    = $this->cleanImplode($details);
+                            $this->browserEngineVersion     = $this->versionOrigin($details['version']);
                             $this->browserEngineVersionFull = $this->cleanContent($details['version']);
                             break;
                         }
@@ -100,9 +99,9 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
 
                     // Fourth step.
                     // Detecting platform and device architecture from user agent.
-                    foreach (array_reverse($this->identifiers->platforms->archAll()) as $architecture => $word) {
+                    foreach ($this->identifiers->platforms->archAll() as $architecture => $word) {
                         if (preg_match($this->patterns->platforms->arch($architecture), $cleanUA, $matches) === 1) {
-                            $this->browserArchitecture = $word;
+                            $this->browserArchitecture  = $word;
                             $this->platformArchitecture = $word;
                             break;
                         }
@@ -113,8 +112,8 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
                     foreach ($this->identifiers->platforms->windowManagers() as $windowManager) {
                         if (preg_match($this->patterns->platforms->wm($windowManager), $cleanUA, $matches) === 1) {
                             $details = $this->resources->platforms->makeWMDetails($windowManager);
-                            $this->platformWindowManager = $details['type'];
-                            $this->platformWmNameOriginal = $this->cleanImplode($this->cleanFilter($matches));
+                            $this->platformWindowManager    = $details['type'];
+                            $this->platformWmNameOriginal   = $this->cleanImplode($this->cleanFilter($matches));
                             break;
                         }
                     }
@@ -131,14 +130,14 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
                         if (preg_match($this->patterns->platforms->name($nameIdentifier), $cleanUA, $matches) === 1) {
                             $details = $this->cleanFilter($matches);
 
-                            $this->platformDetails = $this->resources->platforms->platformDetails($nameIdentifier);
-                            $this->platformName = $this->platformDetails['name'];
+                            $this->platformDetails  = $this->resources->platforms->platformDetails($nameIdentifier);
+                            $this->platformName     = $this->platformDetails['name'];
 
                             if (strtolower($details['name']) === 'windows') {
-                                $this->platformKernel = $this->cleanImplode($this->cleanFilter($matches));
-                                $this->platformVersion = $this->versionOrigin($details['version']);
+                                $this->platformKernel   = $this->cleanImplode($this->cleanFilter($matches));
+                                $this->platformVersion  = (string) $this->versionOrigin($details['version']);
                                 $this->platformNameFull = sprintf(
-                                    '%s %s',
+                                    '%1$s %2$s',
                                     $this->platformDetails['OS family'],
                                     $this->ntToVersion($details['version'])
                                 );
@@ -156,10 +155,10 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
                     foreach ($this->identifiers->devices->all() as $device) {
                         if (preg_match($this->patterns->devices->match($device), $cleanUA, $matches) === 1) {
                             $details = $this->cleanFilter($matches);
-                            $this->deviceDetails = $this->resources->devices->makeDetails($device);
-                            $this->deviceName = $this->deviceDetails['name'];
-                            $this->deviceNameFull = $details['name'];
-                            $this->deviceType = $this->deviceDetails['type'];
+                            $this->deviceDetails    = $this->resources->devices->makeDetails($device);
+                            $this->deviceName       = $this->deviceDetails['name'];
+                            $this->deviceNameFull   = $details['name'];
+                            $this->deviceType       = $this->deviceDetails['type'];
                             break;
                         }//end if
                     }//end foreach
@@ -168,6 +167,9 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
                 }//end if
             }//end foreach
         }
+
+//        pp($this->matchFound);
+//        pp($this->details());
 
         if ($this->matchFound === true) {
             $this->collectUA('solved', $this->details());
@@ -179,8 +181,15 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
         return $this;
     }//end analyze()
 
+    /**
+     * Generate details about current user
+     *
+     * @param string[] $solvableList
+     */
     private function makeDetails(array $solvableList): void
     {
+        // cpp(get_http_user_agent());
+        // pp($solvableList);
         $this->matchFound = $solvableList['solved'];
         $this->timeOfExecution = $solvableList['time'];
 
@@ -272,47 +281,47 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
                 $this->platformDetails['window-manager']['name-detected'],
             );
             return [
-                'ua' => $this->userAgent,
-                'solved' => $this->matchFound,
-                'time' => $this->timeOfExecution,
-                'browser' => array_merge_recursive(
+                'ua'        => $this->userAgent,
+                'solved'    => $this->matchFound,
+                'time'      => $this->timeOfExecution,
+                'browser'   => array_merge_recursive(
                     [
-                        'name' => $this->browserName,
-                        'name-version' => $this->browserNameFull,
-                        'version' => $this->browserVersion,
-                        'version-full' => $this->browserVersionFull,
-                        'architecture' => $this->browserArchitecture,
-                        'type' => $this->browserType,
-                        'ui' => $this->browserUi,
+                        'name'          => $this->browserName,
+                        'name-version'  => $this->browserNameFull,
+                        'version'       => $this->browserVersion,
+                        'version-full'  => $this->browserVersionFull,
+                        'architecture'  => $this->browserArchitecture,
+                        'type'  => $this->browserType,
+                        'ui'    => $this->browserUi,
                         'compatibility' => [
-                            'name' => $this->browserAppCodeName,
-                            'version' => $this->browserAppCodeVersion,
-                            'version-full' => $this->browserAppCodeVersionFull,
+                            'name'          => $this->browserAppCodeName,
+                            'version'       => $this->browserAppCodeVersion,
+                            'version-full'  => $this->browserAppCodeVersionFull,
                         ],
                         'engine' => [
-                            'name' => $this->browserEngineName,
-                            'name-full' => $this->browserEngineNameFull,
-                            'version' => $this->browserEngineVersion,
-                            'version-full' => $this->browserEngineVersionFull,
+                            'name'          => $this->browserEngineName,
+                            'name-full'     => $this->browserEngineNameFull,
+                            'version'       => $this->browserEngineVersion,
+                            'version-full'  => $this->browserEngineVersionFull,
                         ],
                     ],
                     $this->browserDetails,
                 ),
                 'device' => array_merge_recursive(
                     [
-                        'name' => $this->deviceName,
+                        'name'      => $this->deviceName,
                         'name-full' => $this->deviceNameFull,
-                        'type' => $this->deviceType,
+                        'type'      => $this->deviceType,
                     ],
                     $this->deviceDetails
                 ),
                 'platform' => array_merge_recursive(
                     [
-                        'name' => $this->platformName,
-                        'name-full' => $this->platformNameFull,
-                        'architecture' => $this->platformArchitecture,
-                        'window-manager' => [
-                            'name' => $this->platformWindowManager,
+                        'name'          => $this->platformName,
+                        'name-full'     => $this->platformNameFull,
+                        'architecture'  => $this->platformArchitecture,
+                        'window-manager'    => [
+                            'name'          => $this->platformWindowManager,
                             'name-detected' => $this->platformWmNameOriginal,
                         ],
                     ],
@@ -322,9 +331,9 @@ class UAAnalyzer extends UAAnalyzer\UAAnalyzerBase
         }
 
         return [
-            'ua' => $this->userAgent,
-            'solved' => $this->matchFound,
-            'time' => $this->timeOfExecution,
+            'ua'        => $this->userAgent,
+            'solved'    => $this->matchFound,
+            'time'      => $this->timeOfExecution,
         ];
     }
 

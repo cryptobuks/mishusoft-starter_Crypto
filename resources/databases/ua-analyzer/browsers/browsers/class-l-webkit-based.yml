@@ -1,0 +1,231 @@
+
+
+# 2345 Explorer
+# 2345 Explorer is a web browser developed by 2345.com. This browser renders web pages using the Blink engine.
+
+# Latest user agents:
+# Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36 2345Explorer/9.8.0.19047
+# Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3947.100 Safari/537.36 2345Explorer/10.19.0.21373
+# Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3947.100 Safari/537.36 2345Explorer/10.18.0.21318
+- identifiers:
+    # Pattern maker method use it
+    browser-2345-explorer:
+      pattern:
+        name: (2345explorer)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser 2345-explorer
+
+
+# abrowse
+# abrowse is a web browser developed by Syllable Project. This browser renders web pages using the AppleWebKit engine.
+# url:https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-13-2
+
+# Latest user agents:
+# Mozilla/5.0 (compatible; ABrowse 0.4; Syllable)
+# Mozilla/5.0 (compatible; U; ABrowse 0.6; Syllable) AppleWebKit/420+ (KHTML, like Gecko)
+- identifiers:
+    # Pattern maker method use it
+    browser-abrowse:
+      pattern:
+        name: (abrowse)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser abrowse
+
+
+# Konqueror
+# Konqueror is a web browser developed by volunteers. This browser renders web pages using the AppleWebKit, KHtml and QtWebEngine.
+# url:https://developers.whatismybrowser.com/useragents/explore/software_name/konqueror/
+
+# Latest user agents:
+# Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.21 (KHTML, like Gecko) konqueror/4.14.2 Safari/537.21
+- identifiers:
+    # Pattern maker method use it
+    browser-konqueror-webkit:
+      pattern:
+        name: (konqueror)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser konqueror
+
+
+# Dooble Browser
+# This a web browser developed by Dooble Project Team. This browser renders web pages using the webkit engine.
+
+# ref:https://developers.whatismybrowser.com/useragents/explore/software_name/dillo/
+
+# Latest user agent list
+# Mozilla/5.0 (X11; Linux; rv:2.0.1) Gecko/20100101 Firefox/4.0.1 Dillo/4.8
+
+- identifiers:
+    # Pattern maker method use it
+    browser-dooble-webkit:
+      pattern:
+        name: (dooble)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser dooble-browser
+
+
+# Epiphany Browser
+# This a web browser developed by Marco Pesenti Gritti. This browser renders web pages using the webkit engine.
+
+# ref:https://developers.whatismybrowser.com/useragents/explore/software_name/epiphany/
+
+# Latest user agent list
+# Mozilla/5.0 (X11; Ubuntu; Linux x86_64) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Safari/605.1.15 Epiphany/605.1.15
+
+- identifiers:
+    # Pattern maker method use it
+    browser-epiphany-webkit:
+      pattern:
+        name: (epiphany)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser epiphany-browser
+
+
+
+# WCGBrowser
+# This a web browser developed by  Alan D Moore. This browser renders web pages using the webkit and blink engine.
+
+# ref:https://github.com/alandmoore/wcgbrowser
+
+# Latest user agent list
+# Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/602.1 (KHTML, like Gecko) browser.py Version/10.0 Safari/602.1
+
+- identifiers:
+    # Pattern maker method use it
+    browser-wcgbrowser-webkit:
+      pattern:
+        name: (browser.py)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser wcg-browser
+
+
+
+# Otter
+# This is a web browser developed by otter-browser.org. This browser renders web pages using the Blink engine.
+
+# ref:https://user-agents.net/browsers/otter
+# ref:https://github.com/OtterBrowser/otter-browser
+# ref:https://en.wikipedia.org/wiki/Otter_Browser
+
+# Latest user agent list
+#Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/602.1 (KHTML, like Gecko) Otter/1.0.81
+#Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/534.57.7 (KHTML, like Gecko) Otter/1.0.81
+#Mozilla/5.0 (X11; Linux i686) AppleWebKit/602.1 (KHTML, like Gecko) Otter/1.0.01
+#Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/602.1 (KHTML, like Gecko) Otter/1.0.81
+
+- identifiers:
+    # Pattern maker method use it
+    browser-otter-webkit:
+      pattern:
+        name: (otter)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser otter-browser
+
+
+# iCab
+# This is a web browser developed by Alexander Clauss. This browser renders web pages using the Blink, WebKit and custom engine.
+
+# ref:https://user-agents.net/browsers/otter
+# ref:https://github.com/OtterBrowser/otter-browser
+# ref:https://en.wikipedia.org/wiki/Otter_Browser
+
+# Latest user agent list
+#Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_7; en-us) AppleWebKit/533.20.25 (KHTML, like Gecko) iCab/4.8 Safari/533.16
+#Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8) AppleWebKit/536.15 (KHTML, like Gecko) iCab/5.0 Safari/533.16
+#Mozilla/5.0 (compatible; iCab 3.0.2; Macintosh; U; PPC Mac OS)
+#iCab 4.5
+
+- identifiers:
+    # Pattern maker method use it
+    browser-icab-webkit:
+      pattern:
+        name: (icab)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser icab-browser
+
+
+# Midori
+# This is a web browser developed by Christian Dywan. This browser renders web pages using the WebKit and custom engine.
+
+# ref:https://user-agents.net/browsers/midori
+# ref:https://developers.whatismybrowser.com/useragents/explore/software_name/midori/
+# ref:https://en.wikipedia.org/wiki/Midori_(web_browser)
+
+# Latest user agent list
+#Mozilla/5.0 (Macintosh; U; Intel Mac OS X; c) AppleWebKit/535+ (KHTML, like Gecko) Version/5.0 Safari/535.22+ Midori/0.4
+#Mozilla/5.0 (X11; U; Linux i686; de) AppleWebKit/523+ midori/0.1
+#Midori/0.1.8 (Windows; Windows; U; en-us) WebKit/532
+#Mozilla/5.0 (Windows NT 6.2) AppleWebKit/538.15 (KHTML, like Gecko) Chrome/18.0.1025.133 Safari/538.15 Midori/0.5
+
+- identifiers:
+    # Pattern maker method use it
+    browser-midori-webkit:
+      pattern:
+        name: (midori)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser midori-browser
+
+
+# Arora
+# This is a web browser developed by Benjamin C. Meyer. This browser renders web pages using the WebKit engine.
+
+# ref:https://user-agents.net/browsers/arora
+# ref:https://developers.whatismybrowser.com/useragents/explore/software_name/arora/
+# ref:https://en.wikipedia.org/wiki/Arora_(web_browser)
+
+# Latest user agent list
+#Mozilla/5.0 (X11; U; Linux; ru-RU) AppleWebKit/532.4 (KHTML, like Gecko) Arora/0.10.2 (Git: 1375 bb7a6a6) Safari/532.4
+#Mozilla/5.0 (X11; U; UNICOS lcLinux; en-US) Gecko/20140730 (KHTML, like Gecko, Safari/419.3) Arora/0.8.0
+#Mozilla/5.0 (Windows; U; ; en-US) AppleWebKit/527+ (KHTML, like Gecko, Safari/419.3) Arora/0.8.0
+#Mozilla/5.0 (X11; Linux i686) AppleWebKit/538.1 (KHTML, like Gecko) Arora/0.11.0 Safari/538.1
+#Mozilla/5.0 (Windows; U; ; en-EN) AppleWebKit/527+ (KHTML, like Gecko, Safari/419.3) Arora/0.8.0
+
+- identifiers:
+    # Pattern maker method use it
+    browser-arora-webkit:
+      pattern:
+        name: (arora)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser arora-browser
+
+

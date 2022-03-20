@@ -1,0 +1,29 @@
+# Media Players
+# Long gone are those days when multimedia players could only play local music or video files.
+# Now, among other things, they are able to send network requests, and even display web pages.
+
+# Alexa
+# Alexa is a media player devoloped by Amazon.com, Inc..
+
+# common user agent list
+# Echo/1.0(APNG) [ip:93.40.195.24]
+# Echo/1.0(APNG) [ip:93.65.244.14]
+# Echo/1.0(APNG) [ip:151.50.204.176]
+# Echo/1.0(APNG) [ip:149.100.172.123]
+- identifiers:
+    # Pattern maker method use it
+    multimedia-player-alexa:
+      pattern:
+        name: (echo)
+        separator: true
+        version: true
+      functional: true
+    multimedia-player-alexa-fallback:
+      pattern:
+        name: (ia\_archiver)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: multimedia-player alexa

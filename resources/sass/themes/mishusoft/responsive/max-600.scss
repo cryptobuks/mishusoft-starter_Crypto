@@ -1,0 +1,17 @@
+@media only screen and (max-width: 600px) {
+  // স্ক্রিন সাইজ সর্বোচ্চ 600px হবে। তার মানে 600px এর নিচের এক্সট্রা স্মল ডিভাইস গুলাকে টার্গেট করে
+  .header-quick-tool-bar {
+    & left {
+      & div {
+        & a {
+          display: none;
+        }
+
+      }
+    }
+  }
+  /*ms-app-body {
+    height: 820px !important;
+  }*/
+}
+

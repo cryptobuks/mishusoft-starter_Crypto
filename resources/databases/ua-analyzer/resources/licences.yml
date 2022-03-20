@@ -1,0 +1,186 @@
+# @ref:https://opensource.org/licenses/category
+# @ref:https://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licences
+
+#Frequently used protective and permissive licenses
+#AGPLv3	GPLv3	GPLv2.1	LGPLv3	LGPLv2.1	MPL-2	BSD
+#SaaS/cloud	Yes	No	No	No	No	No	No
+#Tivoization	Yes	Yes	No	Yes	No	No	No
+#Patent trolling	Yes	Yes	No	Yes	No	No	No
+#Proprietization	Yes	Yes	Yes	Partial	Partial	Partial	No
+#Granularity / reach	Project	Project	Project	Library	Library	File	N/A
+#Trademark grant	Yes	Yes	?	Yes	?	No	No
+
+# The Mozilla Public License (MPL) is a free and open-source software license developed and maintained by the Mozilla Foundation.
+# url: https://www.mozilla.org/en-US/MPL/
+# url: https://en.wikipedia.org/wiki/Mozilla_Public_License
+- regex: mpl(\s+|\-)(\d+\.)?\d+
+  name: Mozilla Public License
+  category: Permissive license
+  url: https://www.mozilla.org/en-US/MPL/
+  published: January 3, 2012
+  latestVersion: '2.0'
+  debian-FSG-compatible: Yes
+  approved:
+    FSF: Yes
+    OSI: Yes
+  GPL-compatible:
+    '2.0': Yes
+    '1.1': No
+  copyleft: Yes (file-level)
+  Publisher:
+    name: Mozilla Foundation
+    url: https://www.mozilla.org/en-US/
+
+# Proprietary software
+# url: https://en.wikipedia.org/wiki/Proprietary_software
+- regex: proprietary
+  name: Proprietary software
+  category: Proprietary license
+  Publisher:
+    name: ''
+    url: ''
+
+# MIT License
+# url: https://en.wikipedia.org/wiki/MIT_License
+# MIT
+- regex: mit
+  name: MIT License (X11 License)
+  category: Permissive license
+  debian-FSG-compatible: Yes
+  approved:
+    FSF: Yes
+    OSI: Yes
+  GPL-compatible:
+    '2.0': Yes
+    '1.1': No
+  copyleft: Yes (file-level)
+  Publisher:
+    name: Massachusetts Institute of Technology
+    url: https://en.wikipedia.org/wiki/Massachusetts_Institute_of_Technology
+
+# Apache License
+# url: https://en.wikipedia.org/wiki/Apache_License
+- regex: apache
+  name: Apache License
+  category: Permissive license
+  url: https://www.apache.org/licenses
+  published: January 2004
+  latestVersion: 2.0
+  debian-FSG-compatible: Yes
+  approved:
+    FSF: Yes
+    OSI: Yes
+  GPL-compatible:
+    '2.0': Yes
+  copyleft: no
+  Publisher:
+    name: The Apache Software Foundation
+    url: https://www.apache.org/
+
+
+
+# BSD license
+# url: https://en.wikipedia.org/wiki/BSD_licenses
+# BSD-2-Clause-FreeBSD, BSD-2-Clause-NetBSD, BSD-3-Clause-Attribution, BSD-3-Clause-Clear, BSD-4-Clause-UC, BSD-Protection,
+# BSD-3-Clause-LBNL, BSD-3-Clause-No-Nuclear-License, BSD-3-Clause-No-Nuclear-License-2014, BSD-3-Clause-No-Nuclear-Warranty,
+# BSD-3-Clause-Open-MPI, BSD-4-Clause, BSD-3-Clause
+- regex: bsd
+  name: BSD license
+  category: Permissive license
+  url: https://en.wikipedia.org/wiki/BSD_licenses
+  published: 1988
+  latestVersion: 4.0
+  debian-FSG-compatible: Yes
+  approved:
+    OSI: no
+  GPL-compatible:
+    '2.0': no
+  copyleft: no
+  Publisher:
+    name: Regents of the University of California
+    url: https://www.apache.org/
+
+
+# GNU Affero General Public License
+# url: https://en.wikipedia.org/wiki/GNU_Affero_General_Public_License
+# AGPL-3.0-or-later
+# AGPL-3.0-only
+- regex: agpl
+  name: GNU Affero General Public License
+  category: Permissive license
+  url: https://gnu.org/licenses/agpl.html
+  published: January 2004
+  latestVersion: 3
+  debian-FSG-compatible: Yes
+  approved:
+    FSF: Yes
+    OSI: Yes
+  copyleft: no
+  Publisher:
+    name: 	Free Software Foundation
+    url: https://gnu.org/
+
+# GNU Lesser General Public License
+# url: https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License
+# LGPL-3.0-or-later
+#  LGPL-3.0-only
+#  LGPL-2.1-or-later
+#  LGPL-2.1-only
+#  LGPL-2.0-or-later
+#  LGPL-2.0-only
+- regex: lgpl
+  name: GNU Lesser General Public License
+  category: Permissive license
+  url: www.gnu.org/copyleft/lesser.html
+  published: 1991
+  latestVersion: 3
+  debian-FSG-compatible: Yes
+  approved:
+    FSF: Yes
+    OSI: Yes
+  copyleft: Yes
+  Publisher:
+    name: 	Free Software Foundation
+    url: https://gnu.org/
+
+# GNU General Public License
+# url: https://en.wikipedia.org/wiki/GNU_General_Public_License
+# GPL-3.0-or-later
+#GPL-3.0-only
+#GPL-2.0-or-later
+#GPL-2.0-only
+#GPL-1.0-or-later
+#GPL-1.0-only
+- regex: gpl
+  name: GNU General Public License
+  category: Permissive license
+  url: https://gnu.org/licenses/gpl.html
+  published: January 2004
+  latestVersion: 3
+  debian-FSG-compatible: Yes
+  approved:
+    OSI: Yes
+  copyleft: Yes
+  Publisher:
+    name: 	Free Software Foundation
+    url: https://gnu.org/
+
+# European Union Public Licence
+# url: https://en.wikipedia.org/wiki/European_Union_Public_Licence
+# EUPL-1.0, EUPL-1.1, EUPL-1.2
+- regex: eupl
+  author: European Commission
+  name: European Union Public Licence
+  category: Free software licence
+  url: https://en.wikipedia.org/wiki/European_Union_Public_Licence
+  # Published	January 2007 (v 1.0), May 2017 (v 1.2)
+  published: January 2007
+  latestVersion: 1.2
+  debian-FSG-compatible: Yes
+  GPL-compatible: Yes
+  approved:
+    OSI: Yes
+  copyleft: Yes
+  Publisher:
+    name: European Union
+    url: joinup.ec.europa.eu/page/eupl-guidelines-faq-infographics

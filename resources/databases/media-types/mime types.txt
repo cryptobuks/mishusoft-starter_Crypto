@@ -1,0 +1,3 @@
+mime types local
+/etc/mime.types [iana]
+/etc/ningx/mime.types

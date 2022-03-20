@@ -1,0 +1,408 @@
+# Word (computer architecture)
+# url: https://en.wikipedia.org/wiki/Word_(computer_architecture)
+
+# Old model computers
+- architecture: 'Babbage Analytical engine'
+  word: '50 d'
+  charSize: ''
+  year: 1837
+
+- architecture: 'Babbage Analytical engine'
+  word: '22 bit'
+  charSize: ''
+  year: 1941
+
+- architecture: 'ABC'
+  word: '50 bit'
+  charSize: ''
+  year: 1942
+
+- architecture: 'Harvard Mark I'
+  word: '23 d'
+  charSize: ''
+  year: 1944
+
+- architecture: 'ENIAC'
+  word: '10 d'
+  charSize: ''
+  year: 1946
+
+- architecture: 'Manchester Baby'
+  word: '32 bit'
+  charSize: ''
+  year: 1948
+
+- architecture: 'UNIVAC I'
+  word: '12 d'
+  charSize: '1 d'
+  year: 1951
+
+- architecture: 'IAS machine'
+  word: '40 bit'
+  charSize: '5 bit'
+  year: 1952
+
+- architecture: 'Fast Universal Digital Computer M-2'
+  word: '34 bit'
+  charSize: ''
+  year: 1952
+
+- architecture: 'IBM 701'
+  word: '36 bit'
+  charSize: '6 bit'
+  year: 1952
+
+- architecture: 'UNIVAC 60'
+  word: 'n d'
+  charSize: '6 bit'
+  year: 1952
+
+- architecture: 'ARRA I'
+  word: '30 bit'
+  charSize: '5 bit'
+  year: 1952
+
+- architecture: 'IBM 702'
+  word: 'n d'
+  charSize: '1 d'
+  year: 1953
+
+- architecture: 'UNIVAC 120'
+  word: 'n d'
+  charSize: '2 d, 3 d'
+  year: 1953
+
+- architecture: 'ARRA II'
+  word: '30 bit'
+  charSize: '5 bit'
+  year: 1953
+
+- architecture: 'IBM 650'
+  word: '10 d'
+  charSize: '2 d'
+  year: 1954
+
+- architecture: 'IBM 704'
+  word: '36 bit'
+  charSize: '6 bit'
+  year: 1954
+
+- architecture: 'IBM 705'
+  word: 'n d'
+  charSize: '1 d'
+  year: 1954
+
+- architecture: 'IBM NORC'
+  word: '16 d'
+  charSize: ''
+  year: 1954
+
+- architecture: 'IBM 305'
+  word: 'n d'
+  charSize: '1 d'
+  year: 1956
+
+- architecture: 'ARMAC'
+  word: '34 bit'
+  charSize: '6 bit'
+  year: 1956
+
+- architecture: 'Autonetics Recomp I'
+  word: '40 bit'
+  charSize: '5 bit'
+  year: 1957
+
+- architecture: 'UNIVAC II'
+  word: '12 d'
+  charSize: '1 d'
+  year: 1958
+
+- architecture: 'SAGE'
+  word: '32 bit'
+  charSize: '6 bit'
+  year: 1958
+
+- architecture: 'Autonetics Recomp II'
+  word: '40 bit'
+  charSize: '5 bit'
+  year: 1958
+
+- architecture: 'Setun'
+  word: '6 trit'
+  charSize: '4 trit'
+  year: 1958
+
+- architecture: 'Electrologica X1'
+  word: '27 bit'
+  charSize: '6 bit'
+  year: 1958
+
+- architecture: 'IBM 1401'
+  word: 'n d'
+  charSize: '1 d'
+  year: 1959
+
+- architecture: 'IBM 1620'
+  word: 'n d'
+  charSize: '2 d'
+  year: 1959
+
+- architecture: 'LARC'
+  word: '12 d'
+  charSize: '2 d'
+  year: 1960
+
+- architecture: 'CDC 1604'
+  word: '48 bit'
+  charSize: '6 bit'
+  year: 1960
+
+- architecture: 'IBM 1410'
+  word: 'n d'
+  charSize: '1 d'
+  year: 1960
+
+- architecture: 'IBM 7070'
+  word: '10 d'
+  charSize: '2 d'
+  year: 1960
+
+- architecture: 'PDP-1'
+  word: '18 bit'
+  charSize: '6 bit'
+  year: 1960
+
+- architecture: 'Elliott 803'
+  word: '39 bit'
+  charSize: ''
+  year: 1960
+
+- architecture: 'IBM 7030'
+  word: '64 bit'
+  charSize: '1 bit'
+  year: 1961
+
+- architecture: 'IBM 7080'
+  word: 'n d'
+  charSize: '1 d'
+  year: 1961
+
+- architecture: 'GE-6xx'
+  word: '36 bit'
+  charSize: '9 bit'
+  year: 1962
+
+- architecture: 'UNIVAC III'
+  word: '25 bit'
+  charSize: '6 bit'
+  year: 1962
+
+- architecture: 'Autonetics D-17B'
+  word: '27 bit'
+  charSize: '24 bit'
+  year: 1962
+
+- architecture: 'Minuteman I Guidance Computer'
+  word: '11 bit'
+  charSize: ''
+  year: 1962
+
+- architecture: 'UNIVAC 1107'
+  word: '36 bit'
+  charSize: '6 bit'
+  year: 1962
+
+- architecture: 'IBM 7010'
+  word: 'n d'
+  charSize: '1 d'
+  year: 1962
+
+- architecture: 'IBM 7094'
+  word: '36 bit'
+  charSize: '6 bit'
+  year: 1962
+
+- architecture: 'SDS 9 Series'
+  word: '24 bit'
+  charSize: ''
+  year: 1962
+
+- architecture: 'Apollo Guidance Computer'
+  word: '15 bit'
+  charSize: ''
+  year: 1963
+
+- architecture: 'Saturn Launch Vehicle Digital Computer'
+  word: '26 bit'
+  charSize: ''
+  year: 1963
+
+- architecture: 'PDP-6'
+  word: '36 bit'
+  charSize: '6 bit'
+  year: 1964
+
+- architecture: 'PDP-10'
+  word: '36 bit'
+  charSize: '9 bit'
+  year: 1966
+
+- architecture: 'Titan'
+  word: '48 bit'
+  charSize: ''
+  year: 1964
+
+- architecture: 'CDC 6600'
+  word: '60 bit'
+  charSize: '6 bit'
+  year: 1964
+
+- architecture: 'Autonetics D-37C'
+  word: '27 bit'
+  charSize: '4 bit'
+  year: 1964
+
+- architecture: 'Minuteman II'
+  word: '27 bit'
+  charSize: '5 bit'
+  year: 1964
+
+- architecture: 'Guidance Computer'
+  word: '27 bit'
+  charSize: '5 bit'
+  year: 1965
+
+- architecture: 'IBM 360'
+  word: '32 bit'
+  charSize: ''
+  year: 1965
+
+- architecture: 'UNIVAC 1108'
+  word: '36 bit'
+  charSize: '6 bit'
+  year: 1965
+
+- architecture: 'PDP-8'
+  word: '12 bit'
+  charSize: '8 bit'
+  year: 1965
+
+- architecture: 'Electrologica X8'
+  word: '27 bit'
+  charSize: '7 bit'
+  year: 1965
+
+- architecture: 'SDS Sigma'
+  word: '32 bit'
+  charSize: '8 bit'
+  year: 1966
+
+- architecture: 'Four-Phase Systems'
+  word: '8 bit'
+  charSize: ''
+  year: 1969
+
+- architecture: 'MP944'
+  word: '20 bit'
+  charSize: ''
+  year: 1970
+
+- architecture: 'PDP-11'
+  word: '16 bit'
+  charSize: '8 bit'
+  year: 1970
+
+- architecture: 'TMS1802NC'
+  word: '4 bit'
+  charSize: ''
+  year: 1971
+
+- architecture: 'Intel 4004'
+  word: '4 bit'
+  charSize: ''
+  year: 1971
+
+- architecture: 'Intel 8008'
+  word: '8 bit'
+  charSize: '8 bit'
+  year: 1972
+
+- architecture: 'Calcomp 900'
+  word: '9 bit'
+  charSize: '8 bit'
+  year: 1972
+
+- architecture: 'Intel 8080'
+  word: '8 bit'
+  charSize: '8 bit'
+  year: 1974
+
+- architecture: 'ILLIAC IV'
+  word: '64 bit'
+  charSize: ''
+  year: 1975
+
+- architecture: 'Motorola 6800'
+  word: '8 bit'
+  charSize: '8 bit'
+  year: 1975
+
+- architecture: 'MOS Tech'
+  word: '8 bit'
+  charSize: '8 bit'
+  year: 1975
+
+- architecture: 'Cray-1'
+  word: '64 bit'
+  charSize: '8 bit'
+  year: 1976
+
+- architecture: 'Zilog Z80'
+  word: '8 bit'
+  charSize: '8 bit'
+  year: 1976
+
+- architecture: 'Intel 8086'
+  word: '16 bit'
+  charSize: '8 bit'
+  year: 1978
+
+- architecture: 'VAX'
+  word: '32 bit'
+  charSize: '8 bit'
+  year: 1978
+
+- architecture: 'Motorola 68000'
+  word: '32 bit'
+  charSize: '8 bit'
+  year: 1979
+
+- architecture: 'IA-32'
+  word: '32 bit'
+  charSize: '8 bit'
+  year: 1985
+
+- architecture: 'MIPS'
+  word: '32 bit'
+  charSize: '8 bit'
+  year: 1985
+
+- architecture: 'Cray C90'
+  word: '64 bit'
+  charSize: '8 bit'
+  year: 1991
+
+- architecture: 'Alpha'
+  word: '64 bit'
+  charSize: '8 bit'
+  year: 1992
+
+- architecture: 'IBM'
+  word: '64 bit'
+  charSize: '8 bit'
+  year: 2000
+
+- architecture: 'IA-64'
+  word: '64 bit'
+  charSize: '8 bit'
+  year: 2001

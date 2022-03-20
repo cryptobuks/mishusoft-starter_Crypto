@@ -1,0 +1,32 @@
+.ms-icon {
+  &-boy::after {
+    content: '\01F466';
+  }
+  &-girl::after {
+    content: '\01F467';
+  }
+  &-man::after {
+    content: '\01F468';
+  }
+  &-woman::after {
+    content: '\01F469';
+  }
+  &-family::after {
+    content: '\01F46A';
+  }
+  &-friendship-man-woman::after {
+    content: '\01F46B';
+  }
+  &-friendship-man::after {
+    content: '\01F46C';
+  }
+  &-friendship-women::after {
+    content: '\01F46D';
+  }
+  &-police-officer::after {
+    content: '\01F46E';
+  }
+  &-woman-with-bunny-ears::after {
+    content: '\01F46F';
+  }
+}

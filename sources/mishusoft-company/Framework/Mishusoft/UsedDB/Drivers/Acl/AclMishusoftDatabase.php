@@ -18,7 +18,7 @@ class AclMishusoftDatabase extends MishusoftSQLStandalone
      */
     public function __construct()
     {
-        parent::__construct(MS_DB_USER_NAME, MS_DB_USER_PASSWORD);
+        parent::__construct(DB::USER(), DB::PASSWORD());
         $this->db = $this->select("system");
     }
 
@@ -28,7 +28,7 @@ class AclMishusoftDatabase extends MishusoftSQLStandalone
      */
     public function getRole(int $idNumber): ?string
     {
-        return (int) _Array::value($this->db->read(DB::USERS_LIST_TABLE)->get(["data" => ["get" => ["role"], "where" => ["id" => "{$idNumber}"]]]), "role");
+        return (int) _Array::value($this->db->read(DB\Table::USERS_LIST)->get(["data" => ["get" => ["role"], "where" => ["id" => "{$idNumber}"]]]), "role");
     }
 
     /**
@@ -37,7 +37,7 @@ class AclMishusoftDatabase extends MishusoftSQLStandalone
      */
     public function getPermissionsOfRole(int $roleNumber): array
     {
-        return $this->db->read(DB::PERMISSIONS_OF_ROLES_LIST_TABLE)->get(["data" => ["get" => "*", "where" => ["role" => "{$roleNumber}"]]]);
+        return $this->db->read(DB\Table::PERMISSIONS_OF_ROLES_LIST)->get(["data" => ["get" => "*", "where" => ["role" => "{$roleNumber}"]]]);
     }
 
     /**
@@ -46,7 +46,7 @@ class AclMishusoftDatabase extends MishusoftSQLStandalone
      */
     public function getPermissionFromPermissionsOfRole(int $roleNumber): array
     {
-        return $this->db->read(DB::PERMISSIONS_OF_ROLES_LIST_TABLE)->get(["data" => ["get" => ["permission"], "where" => ["role" => "{$roleNumber}"]]]);
+        return $this->db->read(DB\Table::PERMISSIONS_OF_ROLES_LIST)->get(["data" => ["get" => ["permission"], "where" => ["role" => "{$roleNumber}"]]]);
     }
 
     /**
@@ -56,7 +56,7 @@ class AclMishusoftDatabase extends MishusoftSQLStandalone
      */
     public function getAllPermissionsOfUser(int $roleNumber, int $permissionId): array
     {
-        return $this->db->read(DB::PERMISSIONS_OF_ROLES_LIST_TABLE)->get(["data" => ["get" => "*", "where" => ["role" => "{$roleNumber}","permission" => "{$permissionId}"]]]);
+        return $this->db->read(DB\Table::PERMISSIONS_OF_ROLES_LIST)->get(["data" => ["get" => "*", "where" => ["role" => "{$roleNumber}","permission" => "{$permissionId}"]]]);
     }
 
     /**
@@ -65,7 +65,7 @@ class AclMishusoftDatabase extends MishusoftSQLStandalone
      */
     public function getKeyOfPermission(int $idNumberOfPermission): ?string
     {
-        return _Array::value($this->db->read(DB::PERMISSIONS_LIST_TABLE)->get(["data" => ["get" => ["key"], "where" => ["id" => "{$idNumberOfPermission}"]]]), "key");
+        return _Array::value($this->db->read(DB\Table::PERMISSIONS_LIST)->get(["data" => ["get" => ["key"], "where" => ["id" => "{$idNumberOfPermission}"]]]), "key");
     }
 
     /**
@@ -74,6 +74,6 @@ class AclMishusoftDatabase extends MishusoftSQLStandalone
      */
     public function getNameOfPermission(int $idNumberOfPermission): ?string
     {
-        return _Array::value($this->db->read(DB::PERMISSIONS_LIST_TABLE)->get(["data" => ["get" => ["permission"], "where" => ["id" => "{$idNumberOfPermission}"]]]), "key");
+        return _Array::value($this->db->read(DB\Table::PERMISSIONS_LIST)->get(["data" => ["get" => ["permission"], "where" => ["id" => "{$idNumberOfPermission}"]]]), "key");
     }
 }

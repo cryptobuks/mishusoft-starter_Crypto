@@ -72,7 +72,7 @@ class Time extends DateTime
      */
     public static function dateOnly(string $date): string
     {
-        return date('Y-m-d', strtotime($date));
+        return date('Y-m-d', is_int(strtotime($date)) ? strtotime($date) : time());
     }//end getDateOnly()
 
 
@@ -92,7 +92,7 @@ class Time extends DateTime
      */
     public static function hours(string $date): string
     {
-        return date('h', strtotime($date));
+        return date('h', is_int(strtotime($date)) ? strtotime($date) : time());
     }//end getHours()
 
 

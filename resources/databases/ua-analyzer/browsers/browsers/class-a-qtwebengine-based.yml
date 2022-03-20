@@ -1,0 +1,20 @@
+# QtWebEngine Based browsers
+#ref: https://stackoverflow.com/questions/29055475/qwebview-or-qwebengineview
+
+##test failed
+# Qute Browser (Cute Browser)
+# This is a web browser developed by 115.com. This browser renders web pages using the QtWebEngine engine.
+
+# common user agent list
+# Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) qutebrowser/1.13.1 QtWebEngine/5.14.2 Chrome/77.0.3865.129 Safari/537.36
+- identifiers:
+    # Pattern maker method use it
+    browser-qutebrowser-browser:
+      pattern:
+        name: (qutebrowser)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser qutebrowser-browser

@@ -1,0 +1,212 @@
+---
+- extension:
+  - 3gp
+  - 3gpp
+  - 3ga
+  type: video/3gpp
+  document: 3GPP multimedia file
+  acronym: 3GPP
+  expanded-acronym: 3rd Generation Partnership Project
+  sub-class-of: video/mp4
+  alias: audio/x-rn-3gpp-amr-wb-encrypted
+- extension:
+  - 3g2
+  - 3gp2
+  - 3gpp2
+  type: video/3gpp2
+  document: 3GPP2 multimedia file
+  acronym: 3GPP2
+  expanded-acronym: 3rd Generation Partnership Project 2
+  alias: audio/3gpp2
+- extension:
+  - axv
+  type: video/annodex
+  document: Annodex video
+  sub-class-of: application/annodex
+  alias: video/x-annodex
+- extension:
+  - dv
+  type: video/dv
+  document: DV video
+  acronym: DV
+  expanded-acronym: Digital Video
+- extension: []
+  type: video/isivideo
+  document: ISI video
+- extension:
+  - mj2
+  - mjp2
+  type: video/mj2
+  document: JPEG-2000 MJ2 video
+  acronym: MJ2
+  expanded-acronym: Motion JPEG-2000
+- extension:
+  - m2t
+  - m2ts
+  - ts
+  - mts
+  - cpi
+  - clpi
+  - mpl
+  - mpls
+  - bdm
+  - bdmv
+  type: video/mp2t
+  document: MPEG-2 transport stream
+  acronym: MPEG-2 TS
+  expanded-acronym: Moving Picture Experts Group 2 Transport Stream
+- extension:
+  - mp4
+  - m4v
+  - f4v
+  - lrv
+  type: video/mp4
+  document: MPEG-4 video
+  alias: video/x-m4v
+- extension:
+  - mpeg
+  - mpg
+  - mp2
+  - mpe
+  - vob
+  - '[0-9][0-9][0-9].vdr'
+  type: video/mpeg
+  document: MPEG video
+  acronym: MPEG
+  expanded-acronym: Moving Picture Experts Group
+  alias: video/x-mpeg2
+- extension:
+  - ogv
+  - ogg
+  type: video/ogg
+  document: Ogg video
+  sub-class-of: application/ogg
+  alias: video/x-ogg
+- extension:
+  - qt
+  - mov
+  - moov
+  - qtvr
+  type: video/quicktime
+  document: QuickTime video
+- extension:
+  - m1u
+  - m4u
+  - mxu
+  type: video/vnd.mpegurl
+  document: Video playlist
+  sub-class-of: text/plain
+  alias: video/x-mpegurl
+- extension:
+  - bik
+  - bk2
+  type: video/vnd.radgamettools.bink
+  document: Bink Video
+- extension:
+  - smk
+  type: video/vnd.radgamettools.smacker
+  document: Smacker Video
+- extension:
+  - rv
+  - rvx
+  type: video/vnd.rn-realvideo
+  document: RealVideo document
+  alias: video/x-real-video
+- extension:
+  - viv
+  - vivo
+  type: video/vnd.vivo
+  document: Vivo video
+  alias: video/vivo
+- extension: []
+  type: video/wavelet
+  document: Wavelet video
+- extension:
+  - webm
+  type: video/webm
+  document: WebM video
+- extension:
+  - anim[1-9j]
+  type: video/x-anim
+  document: ANIM animation
+- extension:
+  - fli
+  - flc
+  type: video/x-flic
+  document: FLIC animation
+  alias: video/x-fli
+- extension:
+  - flv
+  type: video/x-flv
+  document: Flash video
+  alias: video/flv
+- extension:
+  - fxm
+  type: video/x-javafx
+  document: JavaFX video
+  sub-class-of: video/x-flv
+- extension:
+  - mk3d
+  type: video/x-matroska-3d
+  document: Matroska 3D video
+  sub-class-of: application/x-matroska
+- extension:
+  - mkv
+  type: video/x-matroska
+  document: Matroska video
+  sub-class-of: application/x-matroska
+- extension:
+  - mjpeg
+  - mjpg
+  type: video/x-mjpeg
+  document: MJPEG video stream
+  acronym: MJPEG
+  expanded-acronym: Motion JPEG
+  sub-class-of: image/jpeg
+- extension:
+  - mng
+  type: video/x-mng
+  document: MNG animation
+  acronym: MNG
+  expanded-acronym: Multiple-Image Network Graphics
+- extension:
+  - wmp
+  type: video/x-ms-wmp
+  document: Microsoft Media Format
+  sub-class-of: video/x-ms-wmv
+  alias: application/x-mplayer2
+- extension:
+  - wmv
+  type: video/x-ms-wmv
+  document: Windows Media video
+  sub-class-of: application/vnd.ms-asf
+- extension:
+  - avi
+  - avf
+  - divx
+  type: video/x-msvideo
+  document: AVI video
+  acronym: AVI
+  expanded-acronym: Audio Video Interleave
+  alias: video/vnd.divx
+- extension:
+  - nsv
+  type: video/x-nsv
+  document: NullSoft video
+- extension:
+  - ogm
+  type: video/x-ogm+ogg
+  document: OGM video
+  sub-class-of: video/ogg
+  alias: video/x-ogm
+- extension:
+  - movie
+  type: video/x-sgi-movie
+  document: SGI video
+- extension:
+  - ogg
+  type: video/x-theora+ogg
+  document: Ogg Theora video
+  sub-class-of: video/ogg
+  alias: video/x-theora
+...

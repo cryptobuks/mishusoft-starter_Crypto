@@ -1,0 +1,42 @@
+{
+  "extensions": [
+    "date",
+    "openssl",
+    "dom",
+    "PDO",
+    "session",
+    "mysqlnd",
+    "Phar",
+    "curl",
+    "pdo_mysql",
+    "zip",
+    "Zend OPcache"
+  ],
+  "thirdparty": {
+    "smarty": {
+      "name": "Smarty Template Engine Plug-In",
+      "command": "composer require smarty/smarty",
+      "url": "https ://github.com/smarty-php/smarty"
+    },
+    "verot": {
+      "name": "Verot Uploader Plug-In",
+      "command": "composer require verot/class.upload.php",
+      "url": "https ://github.com/verot/class.upload.php"
+    },
+    "phpmailer": {
+      "name": "PHPMailer Plug-In",
+      "command": "composer require phpmailer/phpmailer",
+      "url": "https ://github.com/phpmailer/phpmailer"
+    },
+    "stripe": {
+      "name": "Stripe Payment Plug-In",
+      "command": "composer require stripe/stripe-php",
+      "url": "https ://github.com/stripe/stripe-php"
+    },
+    "geoip2": {
+      "name": "GeoIP Plug-In",
+      "command": "composer require geoip2/geoip2",
+      "url": "https ://packagist.org/packages/geoip2/geoip2"
+    }
+  }
+}

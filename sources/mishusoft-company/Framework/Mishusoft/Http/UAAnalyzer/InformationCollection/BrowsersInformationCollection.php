@@ -16,7 +16,6 @@ class BrowsersInformationCollection extends Collection
     /**
      * @return array
      * @throws RuntimeException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function all(): array
     {
@@ -37,7 +36,6 @@ class BrowsersInformationCollection extends Collection
      * @return array
      * @throws InvalidArgumentException
      * @throws RuntimeException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function makeDetails(string $identifier): array
     {

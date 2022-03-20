@@ -2,6 +2,26 @@
 
 namespace Mishusoft\Utility;
 
+
+
+//Implement
+
+/**
+ * Marker constant for Implement::decode(), used to flag stack state
+ */
+const IMPLEMENT_JSON_SLICE = 1;
+const IMPLEMENT_JSON_IN_STR = 2;
+const IMPLEMENT_JSON_IN_ARR = 3;
+const IMPLEMENT_JSON_IN_OBJ = 4;
+const IMPLEMENT_JSON_IN_CMT = 5;
+
+/**
+ * Behavior switch for Implement::decode()
+ */
+const IMPLEMENT_JSON_LOOSE_TYPE = 16;
+const IMPLEMENT_JSON_SUPPRESS_ERRORS = 32;
+const IMPLEMENT_JSON_USE_TO_JSON = 64;
+
 //add array to json done
 //add array to object done
 //add object to array done
@@ -67,6 +87,7 @@ class Implement
     }
 
     /**
+     * @see https://pecl.php.net/package/JSON
      * @throws Exception
      */
     private static function toJsonBuilder(mixed $content): string|int|float
@@ -242,9 +263,19 @@ class Implement
         }
     }
 
+
+
     /**
      * decodes a JSON string into appropriate variable
      *
+     * @see https://pecl.php.net/package/JSON
+     * @see https://github.com/denis-cto/jsontophparray
+     * @see https://github.com/alexmuz/php-json
+     * @link https://github.com/ibm-cloud-architecture/refarch-jee-micro-shopping-bff/blob/master/ShoppingWebBFFService/WebContent/dojo/dojox/rpc/tests/resources/JSON.php
+     * @link https://code.google.com/p/yii/source/browse/tags/1.1.10/framework/web/helpers/CJSON.php#324
+     * @link https://documentation.help/CDbHttpSession-cn/CJSON.html
+     * @link https://pear.php.net/package/Services_JSON/download
+     * @link https://github.com/pear/Services_JSON
      * @param string $str JSON-formatted string
      * @param int $type
      * @return   \stdClass|string|array|bool|float|null   number, boolean, string, array, or object
@@ -522,17 +553,277 @@ class Implement
         return "";
     }
 
+
+    /**
+     * decodes a JSON string into appropriate variable
+     *
+     * @param string $str JSON-formatted string
+     * @param int $dataType
+     * @return   \stdClass|string|array|bool|float|null   number, boolean, string, array, or object
+     *                   corresponding to given JSON input string.
+     *                   See argument 1 to IMPLEMENT_JSON() above for object-output behavior.
+     *                   Note that decode() always returns strings
+     *                   in ASCII or UTF-8 format!
+     * @access   public
+     */
+    public static function jsonDecodeB(string $jsonContent, int $dataType = IMPLEMENT_JSON_IN_OBJ): float|bool|array|string|\stdClass|null
+    {
+
+        $str = self::tidyContent($jsonContent);
+        $arr = [];
+        $obj = new \stdClass();
+
+        switch (strtolower($str)) {
+            case "true":
+                return true;
+
+            case "false":
+                return false;
+
+            case "null":
+                return null;
+
+            default:
+                $m = [];
+
+                if (is_numeric($str)) {
+                    // Look-loo, it's a number
+
+                    // This would work on its own, but I'm trying to be
+                    // good about returning integers where appropriate:
+                    // return (float)$str;
+
+                    // Return float or int, as appropriate
+                    return (float) $str;
+                }
+
+                if (preg_match('/^("|\').*(\1)$/s', $str, $m) && $m[1] === $m[2]) {
+                    // STRINGS RETURNED IN UTF-8 FORMAT
+                    $delim = Inflect::substr8($str, 0, 1);
+                    $chars = Inflect::substr8($str, 1, -1);
+                    $utf8 = "";
+                    $lengthChars = Inflect::strlen8($chars);
+
+                    for ($c = 0; $c < $lengthChars; ++$c) {
+                        $substr_chars_c_2 = Inflect::substr8($chars, $c, 2);
+                        $ord_chars_c = ord($chars[$c]);
+
+                        switch (true) {
+                            case $substr_chars_c_2 === "\b":
+                                $utf8 .= chr(0x08);
+                                ++$c;
+                                break;
+                            case $substr_chars_c_2 === '\t':
+                                $utf8 .= chr(0x09);
+                                ++$c;
+                                break;
+                            case $substr_chars_c_2 === '\n':
+                                $utf8 .= chr(0x0a);
+                                ++$c;
+                                break;
+                            case $substr_chars_c_2 === '\f':
+                                $utf8 .= chr(0x0c);
+                                ++$c;
+                                break;
+                            case $substr_chars_c_2 === '\r':
+                                $utf8 .= chr(0x0d);
+                                ++$c;
+                                break;
+
+                            case $substr_chars_c_2 === '\\"':
+                            case $substr_chars_c_2 === '\\\'':
+                            case $substr_chars_c_2 === "\\\\":
+                            case $substr_chars_c_2 === "\\/":
+                                if (($delim === '"' && $substr_chars_c_2 !== '\\\'') || ($delim === "'" && $substr_chars_c_2 !== '\\"')) {
+                                    $utf8 .= $chars[++$c];
+                                }
+                                break;
+
+                            case preg_match("/\\\u[0-9A-F]{4}/i", Inflect::substr8($chars, $c, 6)):
+                                // single, escaped unicode character
+                                $utf16 = chr(hexdec(Inflect::substr8($chars, $c + 2, 2))) . chr(hexdec(Inflect::substr8($chars, $c + 4, 2)));
+                                $utf8 .= Inflect::utf162utf8($utf16);
+                                $c    += 5;
+                                break;
+
+                            case $ord_chars_c >= 0x20 && $ord_chars_c <= 0x7f:
+                                $utf8 .= $chars[$c];
+                                break;
+
+                            case ($ord_chars_c & 0xe0) === 0xc0:
+                                // characters U-00000080 - U-000007FF, mask 110XXXXX
+                                //see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
+                                $utf8 .= Inflect::substr8($chars, $c, 2);
+                                ++$c;
+                                break;
+
+                            case ($ord_chars_c & 0xf0) === 0xe0:
+                                // characters U-00000800 - U-0000FFFF, mask 1110XXXX
+                                // see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
+                                $utf8 .= Inflect::substr8($chars, $c, 3);
+                                $c += 2;
+                                break;
+
+                            case ($ord_chars_c & 0xf8) === 0xf0:
+                                // characters U-00010000 - U-001FFFFF, mask 11110XXX
+                                // see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
+                                $utf8 .= Inflect::substr8($chars, $c, 4);
+                                $c    += 3;
+                                break;
+
+                            case ($ord_chars_c & 0xfc) === 0xf8:
+                                // characters U-00200000 - U-03FFFFFF, mask 111110XX
+                                // see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
+                                $utf8 .= Inflect::substr8($chars, $c, 5);
+                                $c    += 4;
+                                break;
+
+                            case ($ord_chars_c & 0xfe) === 0xfc:
+                                // characters U-04000000 - U-7FFFFFFF, mask 1111110X
+                                // see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
+                                $utf8 .= Inflect::substr8($chars, $c, 6);
+                                $c    += 5;
+                                break;
+                        }
+                    }
+
+                    return $utf8;
+                }
+
+                if (preg_match('/^\[.*\]$/s', $str) || preg_match('/^\{.*\}$/s', $str)) {
+                    // array, or object notation
+
+                    if ($str[0] === "[") {
+                        $stk = [IMPLEMENT_JSON_IN_ARR];
+                        $arr = [];
+                    } else {
+                        $stk = [IMPLEMENT_JSON_IN_OBJ];
+                        if ($dataType & IMPLEMENT_JSON_LOOSE_TYPE) {
+                            $obj = [];
+                        } else {
+                            $obj = new \stdClass();
+                        }
+                    }
+
+                    $stk[] = ["what" => IMPLEMENT_JSON_SLICE, "where" => 0, "delim" => false];
+
+                    $chars = Inflect::substr8($str, 1, -1);
+                    $chars = self::tidyContent($chars);
+
+                    if ($chars === "") {
+                        if (reset($stk) === IMPLEMENT_JSON_IN_ARR) {
+                            return $arr;
+                        }
+
+                        return $obj;
+                    }
+
+                    $lengthChars = Inflect::strLen8($chars);
+                    $implementArray = [IMPLEMENT_JSON_SLICE, IMPLEMENT_JSON_IN_ARR, IMPLEMENT_JSON_IN_OBJ];
+
+                    for ($c = 0; $c <= $lengthChars; ++$c) {
+                        $top = end($stk);
+                        $substr_chars_c_2 = Inflect::substr8($chars, $c, 2);
+
+                        if ($c === $lengthChars || ($chars[$c] === "," && $top["what"] === 1)) {
+                            // found a comma that is not inside a string, array, etc.,
+                            // OR we've reached the end of the character list
+                            $slice = Inflect::substr8($chars, $top["where"], $c - $top["where"]);
+                            $stk[] = ["what" => IMPLEMENT_JSON_SLICE, "where" => $c + 1, "delim" => false];
+
+                            if (reset($stk) === IMPLEMENT_JSON_IN_ARR) {
+                                // we are in an array, so just push an element onto the stack
+                                $arr[] = self::jsonDecode($slice);
+                                //$arr[] = self::jsonDecode($slice, $dataType);
+                            } elseif (reset($stk) === IMPLEMENT_JSON_IN_OBJ) {
+                                // we are in an object, so figure
+                                // out the property name and set an
+                                // element in an associative array,
+                                // for now
+                                $parts = [];
+
+                                if (preg_match('/^\s*(["\'].*[^\\\]["\'])\s*:/Uis', $slice, $parts)) {
+                                    // "name":value pair
+                                    $key = self::jsonDecode($parts[1]);
+                                    $val = self::jsonDecode(trim(substr($slice, strlen($parts[0])), ", \t\n\r\0\x0B"));
+                                    if ($dataType & IMPLEMENT_JSON_LOOSE_TYPE) {
+                                        $obj[$key] = $val;
+                                    } else {
+                                        $obj->$key = $val;
+                                    }
+                                } elseif (preg_match("/^\s*(\w+)\s*:/Uis", $slice, $parts)) {
+                                    // name:value pair, where name is unquoted
+                                    $key = $parts[1];
+                                    $val = self::jsonDecode(trim(substr($slice, strlen($parts[0])), ", \t\n\r\0\x0B"));
+
+                                    if ($dataType & IMPLEMENT_JSON_LOOSE_TYPE) {
+                                        $obj[$key] = $val;
+                                    } else {
+                                        $obj->$key = $val;
+                                    }
+                                }
+                            }
+                        } elseif (($chars[$c] === '"' || $chars[$c] === "'") && $top["what"] !== IMPLEMENT_JSON_IN_STR) {
+                            // found a quote, and we are not inside a string
+                            $stk[] = ["what" => IMPLEMENT_JSON_IN_STR, "where" => $c, "delim" => $chars[$c]];
+                        } elseif (
+                            $chars[$c] === $top["delim"] &&
+                            $top["what"] === IMPLEMENT_JSON_IN_STR &&
+                            (Inflect::strLen8(Inflect::substr8($chars, 0, $c)) - Inflect::strLen8(rtrim(Inflect::substr8($chars, 0, $c), "\\"))) % 2 !== 1
+                        ) {
+                            // found a quote, we're in a string, and it's not escaped
+                            // we know that it's not escaped because there is _not_ an
+                            // odd number of backslashes at the end of the string so far
+                            array_pop($stk);
+                        } elseif ($chars[$c] === "[" && in_array($top["what"], $implementArray, true)) {
+                            // found a left-bracket, and we are in an array, object, or slice
+                            $stk[] = ["what" => IMPLEMENT_JSON_IN_ARR, "where" => $c, "delim" => false];
+                        } elseif ($chars[$c] === "]" && $top["what"] === IMPLEMENT_JSON_IN_ARR) {
+                            // found a right-bracket, and we're in an array
+                            array_pop($stk);
+                        } elseif ($chars[$c] === "{" && in_array($top["what"], $implementArray, true)) {
+                            // found a left-brace, and we are in an array, object, or slice
+                            $stk[] = ["what" => IMPLEMENT_JSON_IN_OBJ, "where" => $c, "delim" => false];
+                        } elseif ($chars[$c] === "}" && $top["what"] === IMPLEMENT_JSON_IN_OBJ) {
+                            // found a right-brace, and we're in an object
+                            array_pop($stk);
+                        } elseif ($substr_chars_c_2 === "/*" && in_array($top["what"], $implementArray, true)) {
+                            // found a comment start, and we are in an array, object, or slice
+                            $stk[] = ["what" => IMPLEMENT_JSON_IN_CMT, "where" => $c, "delim" => false];
+                            $c++;
+                        } elseif ($substr_chars_c_2 === "*/" && $top["what"] === IMPLEMENT_JSON_IN_CMT) {
+                            // found a comment end, and we're in one now
+                            array_pop($stk);
+                            $c++;
+
+                            for ($i = $top["where"]; $i <= $c; ++$i) {
+                                $chars = substr_replace($chars, " ", $i, 1);
+                            }
+                        }
+                    }
+
+                    if (reset($stk) === IMPLEMENT_JSON_IN_ARR) {
+                        return $arr;
+                    }
+
+                    if (reset($stk) === IMPLEMENT_JSON_IN_OBJ) {
+                        return $obj;
+                    }
+                }
+        }
+
+        return "";
+    }
+
     /**
      * Reduce a string by removing leading and trailing comments and whitespace
      *
-     * @param $str  string  string value to strip of comments and whitespace
-     *
-     * @return      string  string value stripped of comments and whitespace
-     * @access private
+     * @param string $string String value to strip of comments and whitespace
+     * @return string String value stripped of comments and whitespace
      */
-    private static function tidyContent(string $str): string
+    private static function tidyContent(string $string): string
     {
-        $str = preg_replace(
+        $string = preg_replace(
             [
                 // eliminate single line comments in '// ...' form
                 '#^\s*//(.+)$#m',
@@ -544,11 +835,11 @@ class Implement
                 '#/\*(.+)\*/\s*$#Us',
             ],
             "",
-            $str
+            $string
         );
 
         // eliminate extraneous space
-        return trim($str);
+        return trim($string);
     }
 
     /**

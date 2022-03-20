@@ -1,0 +1,4 @@
+nvs ls
+nvs use node/16.13.0/x64
+nvs link node/16.13.0/x64
+node -v

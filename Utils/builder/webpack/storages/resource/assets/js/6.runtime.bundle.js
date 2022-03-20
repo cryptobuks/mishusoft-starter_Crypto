@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[6],{6:function(n,e,u){u.r(e),u.d(e,{list:function(){return i}});var i=["index.index"]}}]);

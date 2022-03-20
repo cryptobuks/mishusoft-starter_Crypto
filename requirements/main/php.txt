@@ -1,0 +1,19 @@
+Stable versions list:
+# https://www.php.net/releases/8.1/en.php
+
+Current stable:
+   PHP 8.1.0  = 25 Nov 2021 // https://www.php.net/index.php#id2021-11-25-1
+   PHP 7.4.26 = 18 Nov 2021
+
+
+Old stable: 
+   PHP 8.0.13 = 18 Nov 2021
+
+Updates:
+windows = 30-11-2021 = office
+
+
+
+
+Nightly versions
+https://github.com/shivammathur/php-builder-windows

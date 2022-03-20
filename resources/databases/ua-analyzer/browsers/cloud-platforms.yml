@@ -1,0 +1,22 @@
+# url : https://developers.whatismybrowser.com/useragents/explore/software_type_specific/analyser/
+
+
+# Google App Engine
+# url : https://developers.whatismybrowser.com/useragents/explore/software_name/openlink-profiler-seo-analyser-bot/
+
+# Latest user agent list
+# Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.101 Safari/537.36 AppEngine-Google; (+http://code.google.com/appengine; appid: s~surf702-hrd)
+# AppEngine-Google; (+http://code.google.com/appengine; appid: s~virustotalcloud)
+
+- identifiers:
+    # Pattern maker method use it
+    cloud-platform-goggle-cloud:
+      pattern:
+        name: (appengine\-google)
+        separator: false
+        version: false
+      functional: true
+
+  # Information maker method use it
+  info: cloud-platform goggle-cloud
+

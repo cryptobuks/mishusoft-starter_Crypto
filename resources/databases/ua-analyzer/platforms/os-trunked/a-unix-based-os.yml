@@ -1,0 +1,18 @@
+
+# Unix Based OS
+
+# latest user agent lists
+# Surf/0.4.1 (X11; U; Unix; en-US) AppleWebKit/531.2+ Compatible (Safari; MSIE 9.0)
+# Mozilla/5.0 (Unknown; U; UNIX BSD/SYSV system; C -) AppleWebKit/527 (KHTML like Gecko Safari/419.3) Arora/0.10.2
+# Mozilla/5.0 (Unknown; UNIX BSD/SYSV system) AppleWebKit/534.34 (KHTML, like Gecko) QupZilla/1.8.6 Safari/534.34
+# Mozilla/5.0 (X11; U; Unix; en-US) AppleWebKit/537.15 (KHTML, like Gecko) Chrome/24.0.1295.0 Safari/537.15 Surf/0.7
+
+- identifiers:
+    platform-os-unix-based:
+      pattern:
+        name: '(unix|x11)'
+        separator: false
+        version: false
+      functional: true
+
+  info: platform unix-os

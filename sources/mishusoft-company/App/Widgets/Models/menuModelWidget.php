@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Widgets\Models;
 
 use Mishusoft\Databases\PdoMySQL;
+use Mishusoft\Exceptions\Authentication\Model;
 use Mishusoft\System;
-use Mishusoft\Authentication\Model;
 
 class menuModelWidget extends Model
 {

@@ -1,0 +1,30 @@
+---
+- extension:
+  - ttc
+  type: font/collection
+  document: Font collection
+- extension:
+  - otf
+  type: font/otf
+  document: OpenType font
+  sub-class-of: font/ttf
+  alias: application/x-font-otf
+- extension:
+  - ttf
+  type: font/ttf
+  document: TrueType font
+  alias: application/x-font-ttf
+- extension:
+  - woff
+  type: font/woff
+  document: WOFF font
+  acronym: WOFF
+  expanded-acronym: Web Open Font Format
+  alias: application/font-woff
+- extension:
+  - woff2
+  type: font/woff2
+  document: WOFF2 font
+  acronym: WOFF2
+  expanded-acronym: Web Open Font Format 2.0
+...

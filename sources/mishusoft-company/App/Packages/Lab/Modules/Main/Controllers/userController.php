@@ -8,6 +8,7 @@ use Mishusoft\Framework\Chipsets\Mail;
 use Mishusoft\Framework\Chipsets\Utility\Pagination;
 use Mishusoft\Framework\Drivers\Controller;
 use Mishusoft\Framework\Drivers\Session;
+use Mishusoft\System\Memory;
 use Verot\Upload\Upload;
 
 class userController extends Controller
@@ -348,7 +349,7 @@ class userController extends Controller
                     'mail' => [
                         'subject' => 'Active your account',
                         'body' => 'Hello <strong>' . $this->getSql('first-name') . ' ' . $this->getSql('last-name') . '</strong> .' .
-                            '<p> You have been recently created a account in <strong>' . DEFAULT_APP_COMPANY_NAME . '</strong>. But ' .
+                            '<p> You have been recently created a account in <strong>' . Memory::getConstant('DEFAULT_APP_COMPANY_NAME') . '</strong>. But ' .
                             'your account inactive now and it will be inactive until activation of your account. ' .
                             'So your must need active your account for use it and enjoy our all facilities. ' .
                             '<a href = "' . BaseURL . 'user/membershipActivation/' . Encryption::static($username['id']) . '/' . Encryption::static($username['code']) .
@@ -490,7 +491,7 @@ class userController extends Controller
                     'mail' => [
                         'subject' => 'Active your account',
                         'body' => 'Hello <strong>' . $this->getSqlText($data->firstName) . ' ' . $this->getSqlText($data->lastName) . '</strong> .' .
-                            '<p> You have been recently created a account in <strong>' . DEFAULT_APP_COMPANY_NAME . '</strong>. But ' .
+                            '<p> You have been recently created a account in <strong>' . Memory::getConstant('DEFAULT_APP_COMPANY_NAME') . '</strong>. But ' .
                             'your account inactive now and it will be inactive until activation of your account. ' .
                             'So your must need active your account for use it and enjoy our all facilities. ' .
                             '<a href = "' . BaseURL . 'user/membershipActivation/' . Encryption::static($user['id']) . '/' . Encryption::static($user['code']) .

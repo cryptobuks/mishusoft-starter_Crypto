@@ -1,0 +1,27 @@
+x11:
+  name: Linux Desktop
+  type: X11 Window Manager
+
+linux:
+  name: Linux Desktop
+  type: Unknown Window Manager
+
+windows:
+  name: windows Desktop
+  type: Windows Window Manager
+
+android:
+  name: Android Device
+  type: Android Window Manager
+
+cpu:
+  name: iOS Device
+  type: Mac Window Manager
+
+mac:
+  name: Macintosh Desktop
+  type: Mac Window Manager
+
+iphone:
+  name: iPhone Device
+  type: iOS Window Manager

@@ -1,0 +1,23 @@
+# Tools
+# As tools, I mean software that does not belong to other software types, like browsers, bots, email clients, or other.
+
+# gvfs
+# gvfs is a tool devoloped by The GNOME Project.
+# Latest user agents:
+# gvfs/1.46.2
+# gvfs/1.38.0
+# gvfs/1.24.2
+- identifiers:
+    # Pattern maker method use it
+    tool-gvfs:
+      pattern:
+        name: (gvfs)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: tool gvfs
+
+
+

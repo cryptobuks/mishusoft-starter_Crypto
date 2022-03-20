@@ -4,8 +4,8 @@ namespace Mishusoft\Drivers;
 
 use Mishusoft\Databases\MishusoftSQLStandalone;
 use Mishusoft\Http\Runtime;
+use Mishusoft\Migration\DB;
 use Mishusoft\System\Localization;
-use Mishusoft\System\Memory;
 use Mishusoft\Utility\ArrayCollection;
 
 abstract class UrlHandler implements UrlHandlerInterface
@@ -19,7 +19,7 @@ abstract class UrlHandler implements UrlHandlerInterface
     public function __construct()
     {
         $this->localization = new Localization();
-        $this->mishusoftDB = new MishusoftSQLStandalone(MS_DB_USER_NAME, MS_DB_USER_PASSWORD);
+        $this->mishusoftDB = new MishusoftSQLStandalone(DB::USER(), DB::PASSWORD());
     }//end __construct()
 
 

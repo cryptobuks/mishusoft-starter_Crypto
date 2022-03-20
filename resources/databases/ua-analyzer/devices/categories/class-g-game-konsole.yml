@@ -1,0 +1,49 @@
+# ref:https://developers.whatismybrowser.com/useragents/explore/hardware_type_specific/game-console/
+
+# PlayStation
+
+# Latest user agents
+# Mozilla/5.0 (PlayStation 4 5.55) AppleWebKit/601.2 (KHTML, like Gecko)
+# PS4Application libhttp/1.000 (PS4) CoreMedia libhttp/6.72 (PlayStation 4)
+
+- identifiers:
+    device-game-console-play-station:
+      pattern:
+        name: '(playstation)'
+        separator: true
+        version: true
+      functional: true
+
+  info: device game-console-play-station
+
+# Xbox
+
+# Latest user agents
+# Mozilla/5.0 (Windows NT 10.0; Win64; x64; Xbox; Xbox One) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 Edge/16.16299
+# Mozilla/5.0 (Windows NT 10.0; Win64; x64; Xbox; Xbox One) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.19041
+
+- identifiers:
+    device-game-console-xbox:
+      pattern:
+        name: '(xbox)'
+        separator: false
+        version: false
+      functional: true
+
+  info: device game-console-xbox
+
+# Nintendo
+
+# Latest user agents
+# Opera/9.10 (Nintendo Wii; U; ; 1621; en)
+# Opera/9.30 (Nintendo Wii; U; ; 2047-7; en)
+
+- identifiers:
+    device-game-console-nintendo:
+      pattern:
+        name: '(nintendo)'
+        separator: false
+        version: false
+      functional: true
+
+  info: device game-console-nintendo

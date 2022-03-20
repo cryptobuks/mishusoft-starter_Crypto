@@ -2,11 +2,12 @@
 
 namespace Mishusoft\Packages\Lab\Modules\System\Controllers;
 
-use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Framework\Chipsets\MPM;
+use Mishusoft\Framework\Chipsets\Storage;
 use Mishusoft\Framework\Chipsets\System;
 use Mishusoft\Framework\Globals\Functions\Text;
 use Mishusoft\Packages\Lab\Modules\Main\Controllers\systemController;
+use Mishusoft\System\Memory;
 
 class webappController extends systemController
 {
@@ -251,7 +252,7 @@ class webappController extends systemController
 
             if ($data->btnName === 'RESTORE') {
                 $systemAccountDatabaseFile = MPM::databasesPath() . strtolower('account').Mishusoft_Database_Dump_File_Format;
-                $systemMasterDatabaseFile = MPM::databasesPath() . strtolower(DEFAULT_APP_NAME).Mishusoft_Database_Dump_File_Format;
+                $systemMasterDatabaseFile = MPM::databasesPath() . strtolower(Memory::getConstant('DEFAULT_APP_NAME')).Mishusoft_Database_Dump_File_Format;
                 if (!file_exists($systemAccountDatabaseFile)) {
                     echo ' Framework account database file (' . strtolower('account').Mishusoft_Database_Dump_File_Format . ') not found in '. MPM::databasesPath()  .'.';
                     /*Tracker::addEvent(array(
@@ -260,7 +261,7 @@ class webappController extends systemController
                     exit;
                 }
                 if (!file_exists($systemMasterDatabaseFile)) {
-                    echo ' Framework master database file (' . strtolower(DEFAULT_APP_NAME).Mishusoft_Database_Dump_File_Format . ') not found in '. MPM::databasesPath()  .'.';
+                    echo ' Framework master database file (' . strtolower(Memory::getConstant('DEFAULT_APP_NAME')).Mishusoft_Database_Dump_File_Format . ') not found in '. MPM::databasesPath()  .'.';
                     /* Tracker::addEvent(array(
                          'activity' => array('messageType' => 'error', 'message' => 'Framework master database file (' . strtolower('DefaultAppName').MishusoftDatabaseDumpFileFormat . ') not found in '. MPM::databasesPath()  .'.')
                      ));*/
@@ -284,7 +285,7 @@ class webappController extends systemController
                         '1',
                         '1'
                     );
-                    $this->system->insertUserDetailsInfo(DEFAULT_DATE_OF_BIRTH, 'male', '');
+                    $this->system->insertUserDetailsInfo(Memory::getConstant('DEFAULT_DATE_OF_BIRTH'), 'male', '');
                     echo 'Setting up admin user in database...<br/>';
                     $this->system->insertUserBasicInfo(
                         '',

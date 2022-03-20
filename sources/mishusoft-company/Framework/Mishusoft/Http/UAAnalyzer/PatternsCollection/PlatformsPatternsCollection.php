@@ -2,7 +2,6 @@
 
 namespace Mishusoft\Http\UAAnalyzer\PatternsCollection;
 
-use JsonException;
 use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Http\UAAnalyzer\Collection;
@@ -18,9 +17,7 @@ class PlatformsPatternsCollection extends Collection
      * @param string $identifier
      * @return string
      * @throws InvalidArgumentException
-     * @throws JsonException
      * @throws RuntimeException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function name(string $identifier): string
     {
@@ -49,9 +46,7 @@ class PlatformsPatternsCollection extends Collection
      * @param string $identifier
      * @return string
      * @throws InvalidArgumentException
-     * @throws JsonException
      * @throws RuntimeException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function wm(string $identifier): string
     {

@@ -1,0 +1,27 @@
+# Mozilla/5.0 (Macintosh; Intel Mac OS X) EkiohFlow/5.5.2.28723M Flow/5.5.2 (like Firefox/53.0)
+# Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.2.2661.102 Safari/537.36; 360Spider
+- 360_spider:
+# Pattern maker method use it
+    id_360_spider:
+      pattern: '360spider'
+      functional: true
+      nameOnly: true
+# if as not matched with extracted name, then new name set into as key.
+  as: '360Spider'
+# Information maker method use it
+  info: '!as','Qihoo 360 Technology Co. Ltd', 'https://www.360.cn/about/englishversion.html'
+
+- 2345_explorer:
+# Pattern maker method use it
+    id_2345_explorer:
+      pattern: '2345explorer'
+      functional: true
+      nameOnly: false
+    id_2345_explorer_deprecated:
+      pattern: '2345explorer'
+      functional: true
+      nameOnly: true
+# if as not matched with extracted name, then new name set into as key.
+  as: '2345Explorer'
+# Information maker method use it
+  info: '!as','Qihoo 360 Technology Co. Ltd', 'https://www.360.cn/about/englishversion.html'

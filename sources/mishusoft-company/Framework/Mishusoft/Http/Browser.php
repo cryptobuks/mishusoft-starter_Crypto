@@ -11,14 +11,9 @@ declare(strict_types=1);
 
 namespace Mishusoft\Http;
 
-use ErrorException;
-use JsonException;
-use Mishusoft\Http;
-use RuntimeException;
-
 class Browser extends UAAnalyzer
 {
-    public const DEFAULT_USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64; rv:95.0) Gecko/20100101 Firefox/95.0';
+    public const DEFAULT_USER_AGENT = FRAMEWORK_DEFAULT_USER_AGENT;
 
     private string $requestMethod;
     private string $requestMode;
@@ -31,84 +26,36 @@ class Browser extends UAAnalyzer
     /**
      * Browser constructor.
      *
-     * @throws JsonException
-     * @throws RuntimeException
-     * @throws ErrorException
+     * @param string $userAgentString
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     * @throws \Mishusoft\Exceptions\PermissionRequiredException
+     * @throws \Mishusoft\Exceptions\RuntimeException
      */
     public function __construct(
         private string $userAgentString = 'default'
     ) {
         parent::__construct($this->userAgentString);
-        $this->requestMethod = $_SERVER['REQUEST_METHOD'];
 
-        if (array_key_exists('HTTP-SEC-FETCH-MODE', $_SERVER) === true) {
-            $this->requestMode = $_SERVER['HTTP-SEC-FETCH-MODE'];
-        } else {
-            $this->requestMode = 'negative';
-        }
+        $this->requestMethod = get_http_request_method();
+        $this->requestMode   = get_http_fetch_mode();
+        $this->urlProtocol   = get_server_Protocol();
+        $this->urlHostname   = get_http_host_name();
+        $this->urlPath       = get_http_request_uri();
 
-        if (array_key_exists('REQUEST_SCHEME', $_SERVER) === true) {
-            $this->urlProtocol = $_SERVER['REQUEST_SCHEME'];
-        } else {
-            $this->urlProtocol = 'http';
-        }
+        $this->acceptLanguage = get_http_accept_language();
+        $this->acceptEncoding = get_http_accept_encoding();
 
-        if (array_key_exists('HTTP_HOST', $_SERVER) === true) {
-            if (in_array($_SERVER['HTTP_HOST'], $this->allowedDomains, true) === true) {
-                $domain = $_SERVER['HTTP_HOST'];
-            } else {
-                $domain = 'localhost';
-            }
-
-            $this->urlHostname = $domain;
-        } else {
-            $this->urlHostname = 'unknown host';
-        }
-
-        $this->urlPath = $_SERVER['REQUEST_URI'];
+        // https://stackoverflow.com/questions/16884518/apache-request-headers-versus-server
+        // https://www.php.net/manual/en/function.apache-request-headers.php
+        // https://www.php.net/manual/en/reserved.variables.server.php
 
         if ($this->userAgentString !== 'default') {
             $this->userAgent = $this->userAgentString;
-        } elseif (function_exists('apache_request_headers') === true) {
-            if (array_key_exists('User-Agent', apache_request_headers()) === true) {
-                $this->userAgent = apache_request_headers()['User-Agent'];
-                if (array_key_exists('Accept-Language', apache_request_headers()) === true) {
-                    $this->acceptLanguage = apache_request_headers()['Accept-Language'];
-                }
-
-                if (array_key_exists('Accept-Encoding', apache_request_headers()) === true) {
-                    $this->acceptEncoding = apache_request_headers()['Accept-Encoding'];
-                }
-
-                $this->analyze();
-            }
-        } elseif (function_exists('getallheaders') === true) {
-            if (array_key_exists('HTTP_USER_AGENT', getallheaders()) === true) {
-                $this->userAgent = getallheaders()['HTTP_USER_AGENT'];
-                if (array_key_exists('Accept-Language', getallheaders()) === true) {
-                    $this->acceptLanguage = getallheaders()['Accept-Language'];
-                }
-
-                if (array_key_exists('Accept-Encoding', getallheaders()) === true) {
-                    $this->acceptEncoding = getallheaders()['Accept-Encoding'];
-                }
-                $this->analyze();
-            }
-        } elseif (array_key_exists('HTTP_USER_AGENT', $_SERVER) === true) {
-            $this->userAgent = $_SERVER['HTTP_USER_AGENT'];
-
-            if (array_key_exists('HTTP_ACCEPT_LANGUAGE', $_SERVER) === true) {
-                $this->acceptLanguage = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
-            }
-
-            if (array_key_exists('HTTP_ACCEPT_ENCODING', $_SERVER) === true) {
-                $this->acceptEncoding = $_SERVER['HTTP_ACCEPT_ENCODING'];
-            }
-
-            $this->analyze();
         } else {
-            throw new RuntimeException('Unable to extract browser data.');
-        }//end if
+            $this->userAgent = get_http_user_agent();
+        }
+
+        $this->analyze();
     }//end __construct()
 
 
@@ -123,13 +70,13 @@ class Browser extends UAAnalyzer
         // SET DEFAULT
         $title = 'No title found';
         // Web url
-        $url = self::getVisitedPage();
+        $url = get_visited_current_page();
         // OPEN THE REMOTE PAGE
         $file = fopen($url, 'rb') or trigger_error('url not found');
         // ITERATE OVER THE PAGE DATA
-        while (!feof($file)) {
+        while (is_resource($file) && !feof($file)) {
             $text = fread($file, 16384);
-            if (preg_match('/<title>(.*?)<\/title>/is', $text, $found) === 1) {
+            if (is_string($text) && preg_match('/<title>(.*?)<\/title>/is', $text, $found) === 1) {
                 if (array_key_exists(1, $found) === true) {
                     $title = $found[1];
                 } else {
@@ -166,13 +113,13 @@ class Browser extends UAAnalyzer
      */
     public static function visitedPageURL(array $s, bool $useForwardedHost = false): string
     {
-        return Http::getHost($useForwardedHost) . $s['REQUEST_URI'];
+        return domainRoot($useForwardedHost) . $s['REQUEST_URI'];
     }//end visitedPageURL()
 
 
     /**
      * @public
-     * @return mixed
+     * @return string
      */
     public function getURLProtocol(): string
     {
@@ -182,7 +129,7 @@ class Browser extends UAAnalyzer
 
     /**
      * @public
-     * @return mixed
+     * @return string
      */
     public function getURLHostname(): string
     {
@@ -192,7 +139,7 @@ class Browser extends UAAnalyzer
 
     /**
      * @public
-     * @return mixed
+     * @return string
      */
     public function getURLPath(): string
     {
@@ -219,25 +166,25 @@ class Browser extends UAAnalyzer
     }//end getRequestMode()
 
 
-    public function __destruct()
-    {
-    }//end __destruct()
-
-
     /**
-     * @return mixed
+     * @return string
      */
-    public function getAcceptLanguage(): mixed
+    public function getAcceptLanguage(): string
     {
         return $this->acceptLanguage;
     }//end getAcceptLanguage()
 
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getAcceptEncoding(): mixed
+    public function getAcceptEncoding(): string
     {
         return $this->acceptEncoding;
     }//end getAcceptEncoding()
+
+
+    public function __destruct()
+    {
+    }//end __destruct()
 }//end class

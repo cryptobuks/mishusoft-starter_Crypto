@@ -1,0 +1,14 @@
+@mixin box-shadow-light() {
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 2px 3px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 2px 3px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 2px 3px rgba(0, 0, 0, 0.24);
+}
+
+@mixin protect() {
+  border-style: none;
+  outline-style: none;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}

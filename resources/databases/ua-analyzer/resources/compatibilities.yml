@@ -1,0 +1,11 @@
+mozilla:
+  name:       'Netscape'
+  code:       'Mozilla'
+  author:     'ncsa'
+  url:        'https://www.ncsa.illinois.edu/Projects/mosaic.html'
+
+ncsa_mosaic:
+  name:       'NCSA Mosaic'
+  code:       'NCSA Mosaic'
+  author:     'ncsa'
+  url:        'https://www.ncsa.illinois.edu/Projects/mosaic.html'

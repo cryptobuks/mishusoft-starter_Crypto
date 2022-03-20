@@ -1,0 +1,230 @@
+Graphical
+Current and maintained projects are listed in boldface.
+
+Trident shells
+Other software publishers have built browsers and other products around Microsoft's Trident engine. The following browsers are all based on that rendering engine:
+
+360 Secure Browser
+AOL Explorer
+Bento Browser (built into Winamp)
+Deepnet Explorer
+GreenBrowser
+Internet Explorer
+MediaBrowser
+MenuBox
+MSN Explorer
+NeoPlanet
+NetCaptor
+RealPlayer
+Tencent Traveler
+UltraBrowser
+WebbIE
+Gecko-based
+Camino for Mac OS X (formerly Chimera)[20]
+Conkeror, keyboard-driven browser
+Galeon, GNOME's old default browser
+K-Meleon for Windows
+K-MeleonCCF ME for Windows (based on K-Meleon core, mostly written in Lua)
+K-Ninja for Windows (based on K-Meleon)
+MicroB (for Maemo)
+Minimo (for mobile)
+Mozilla Firefox (formerly Firebird and Phoenix)
+AT&T Pogo (based on Firefox)
+Cliqz, a fork of the Firefox web browser
+CometBird, an optimized fork of Firefox
+Comodo IceDragon (Firefox-based web browser for Windows)
+Flock (was based on Firefox until version 2.6.1, and based on Chromium thereafter)
+Iceweasel, Debian's Firefox rebrand
+GNU IceCat, GNU's fork of Firefox
+Netscape Browser 8 to Netscape Navigator 9
+TenFourFox (Firefox port to PowerPC versions of Mac OS X)
+Timberwolf, AmigaOS' Firefox rebrand
+Tor Browser, patched Firefox ESR for browsing in Tor anonymity network
+Swiftfox (processor-optimised builds based on Firefox)
+Swiftweasel (processor-optimised builds based on Iceweasel)
+Waterfox (Firefox-based web browser for Windows, macOS, and Linux)
+xB Browser (formerly XeroBank Browser and Torpark), portable browser for anonymous browsing, originally based on Firefox
+Firefox for mobile (codenamed Fennec)
+Mozilla Application Suite
+Beonex Communicator (separate branch, based on Mozilla Application Suite)
+Classilla (an updated fork of the Suite to Mac OS 9)
+Gnuzilla GNU's fork
+Netscape (Netscape 6 to 7, based on Mozilla)
+SeaMonkey (successor to Mozilla Application Suite)
+Iceape Debian's Seamonkey rebrand
+Skyfire (for mobile)
+SlimBrowser
+Yahoo! Browser (or partnership browsers e.g. "AT&T Yahoo! Browser"; "Verizon Yahoo! Browser"; "BT Yahoo! Browser", etc.)
+Goanna-based
+Basilisk – similar to Pale Moon, but with the interface of Firefox 29–56 and a few other differences
+K-Meleon – starting from 77 release version (2019)
+Pale Moon – a fork of Firefox that maintains support for XUL/XPCOM extensions and retains the user interface of the Firefox 4–28 era
+Gecko- and Trident-based
+Browsers that use both Trident and Gecko include:
+
+K-Meleon with the IE Tab extension
+Mozilla Firefox with the IE Tab extension
+Netscape Browser 8
+Webkit- and Trident-based
+Maxthon (up till version 4.2)
+QQ browser
+Blink- and Trident-based
+Baidu Browser
+Maxthon (since version 4.2)
+Gecko-, Trident-, and Blink- based
+Browsers that can use Trident, Gecko and Blink include:
+
+Avant Browser[21]
+Lunascape[22]
+KHTML-based
+Konqueror
+Konqueror Embedded
+Presto-based
+Internet Channel (for Wii console, Opera-based)
+Nintendo DS Browser (Opera-based)
+Opera (for releases up until 12.18[23][24])
+WebKit-based
+Status	Browser
+Aloha Browser (iOS and Android)
+experimental	Amazon Kindle
+discontinued	Arora
+discontinued	BOLT browser
+Google Chrome for iOS
+Dolphin Browser (Android and Bada)
+Dooble (qtwebkit version discontinued) (up to Version 1.56)
+Firefox for iOS
+discontinued	Flock (version 3.0 and above)
+iCab (version 4 uses WebKit; earlier versions used its own rendering engine)
+discontinued	Iris Browser
+Konqueror (version 4 can use WebKit as an alternative to its native KHTML[25])
+Maxthon (version 3.0 and above)
+Microsoft Edge for iOS
+Midori
+Nintendo 3DS NetFront Browser NX
+discontinued	OmniWeb
+Otter Browser (uses Blink and WebKit; aims to recreate the features of old Opera)
+discontinued	OWB
+discontinued	QtWeb
+qutebrowser (a Blink-based backend is currently used by default.)
+Roccat Browser
+discontinued	Rekonq
+Safari
+discontinued	PhantomJS (a headless browser)
+discontinued	Shiira
+discontinued	SlimBoat[26]
+discontinued	Steel for Android
+surf
+discontinued	Uzbl
+GNOME Web (Epiphany)
+discontinued	Web Browser for S60, used in all Nokia Symbian smartphones
+discontinued	webOS, used in the Palm Pre, Palm Pixi, Pre 2, HP Veer, Pre 3, and TouchPad mobile devices
+WebPositive, browser in Haiku
+discontinued	xombrero
+Blink-based
+Chromium
+Amazon Silk
+Avast Secure Browser
+Blisk
+Brave
+Cốc Cốc
+Comodo Dragon[27]
+Epic
+Google Chrome (based on Blink since Chrome v. 28)
+JioBrowser
+Microsoft Edge[28]
+Opera[29]
+Puffin Browser
+Redcore
+RockMelt
+Sleipnir
+SRWare Iron
+Torch
+qutebrowser (Blink backend mostly stable)
+Vivaldi
+NAVER Whale
+Yandex Browser
+Qt WebEngine
+Dooble (from Version 2.2)
+Falkon
+EdgeHTML-based
+Microsoft Edge (discontinued, now using Blink)[30]
+For Java platform
+BOLT Browser
+HotJava
+Opera Mini
+Teashark
+ThunderHawk
+Specialty browsers
+See also: Augmented browsing, List of augmented browsing software, and Site-specific browser
+Browsers created for enhancements of specific browsing activities.
+
+Current
+SpaceTime (Search the web in 3D)
+ZAC Browser (For children with autism, autism spectrum disorders such as Asperger syndrome, pervasive developmental disorders (PDD), and PDD-NOS)
+Discontinued
+Flock (To enhance social networking, blogging, photo-sharing, and RSS news-reading)
+Ghostzilla (Blends into the GUI to hide activity)
+Gollum browser (Created specially for browsing Wikipedia)
+Kirix Strata (Designed for data analytics)
+Miro (A media browser that integrates BitTorrent add-on)
+Nightingale (open source audio player and web browser based on the Songbird (see below) media player source code)
+Prodigy Classic (Executable only within the application)
+RockMelt (Designed to combine web browsing, and social activities such as Facebook and Twitter into a unified one window experience)
+Songbird (browser with advanced audio streaming features and built-in media player with library.)
+Mosaic-based
+Mosaic was the first widely used web browser. The National Center for Supercomputing Applications (NCSA) licensed the technology and many companies built their own web browser on Mosaic. The best known are the first versions of Internet Explorer and Netscape.
+
+AMosaic
+IBM WebExplorer
+Internet Explorer 1.x
+Internet in a Box
+Mosaic-CK
+Netscape
+Spyglass Mosaic
+VMS Mosaic
+Others
+Abaco (for Plan 9 from Bell Labs and Linux[31])
+Amaya
+Arachne (for DOS and Linux)
+Arena
+Ariadna (AMSD Ariadna) (first Russian web browser)
+AWeb (AmigaOS)
+Baidu Mobile Browser
+Charon (for Inferno)
+Dillo (for lower-end computers)
+DR-WebSpyder (for DOS)
+Embrowser (for DOS)
+Flow browser
+Gazelle (from Microsoft Research, OS-like)
+IBrowse (for AmigaOS)
+Mothra (for Plan 9 from Bell Labs)
+NetPositive (for BeOS)
+NetSurf (an open source web browser originally for RISC OS and GTK, e.g. Linux, Windows and more platforms, written in C)
+Phoenix, a browser based on tkWWW
+Planetweb browser (for Dreamcast)
+Qihoo 360 mobile browsers
+tkWWW, based on Tcl
+Voyager (for AmigaOS)
+Mobile browsers
+Main article: Mobile browser
+Amazon Silk
+Apple Safari
+Brave
+Dolphin browser
+Google Chrome
+Microsoft Edge
+Mozilla Firefox
+Opera Mobile
+QQ browser
+Samsung Internet
+UC Browser
+Text-based
+Main article: Text-based web browser
+Emacs/W3
+EWW
+Line Mode Browser
+Links
+ELinks
+Lynx
+w3m
+WebbIE

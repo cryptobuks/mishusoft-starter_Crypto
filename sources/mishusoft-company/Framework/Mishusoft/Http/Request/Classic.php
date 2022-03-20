@@ -3,20 +3,21 @@
 namespace Mishusoft\Http\Request;
 
 use Locale;
+use Mishusoft\Exceptions\ErrorException;
+use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
+use Mishusoft\Exceptions\PermissionRequiredException;
+use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Http\Request;
 use Mishusoft\MPM;
 use Mishusoft\System\Localization;
-use Mishusoft\Utility\Inflect;
 
 class Classic extends Request
 {
     /**
-     * @throws \JsonException
-     * @throws \Mishusoft\Exceptions\ErrorException
-     * @throws \Mishusoft\Exceptions\JsonException
-     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
-     * @throws \Mishusoft\Exceptions\PermissionRequiredException
-     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws ErrorException
+     * @throws InvalidArgumentException
+     * @throws PermissionRequiredException
+     * @throws RuntimeException
      */
     public function __construct()
     {
@@ -45,7 +46,7 @@ class Classic extends Request
              * extract and identify language from url
              * At first we collect locale from url
              */
-            $this->locale = (string) array_shift($url);
+            $this->locale = (string)array_shift($url);
 
             /*
              * verify extracted locale language from url
@@ -60,14 +61,14 @@ class Classic extends Request
                  */
                 if (!in_array($this->locale, array_change_key_case(Localization::SUPPORT), true)) {
                     $this->module = $this->locale;
-                    $this->locale = Inflect::lower(Locale::getDefault());
+                    $this->locale = strtolower(Locale::getDefault());
                 } else {
                     /*
                      * if locale language exists in supported locale languages of system,
                      * another parts exists in url list
                      * then extract module from url
                      */
-                    $this->module = (string) array_shift($url);
+                    $this->module = (string)array_shift($url);
                 }
             } else {
                 /*
@@ -75,7 +76,7 @@ class Classic extends Request
                  * then locale set to module, and it makes default
                  */
                 $this->module = $this->locale;
-                $this->locale = Inflect::lower(Locale::getDefault());
+                $this->locale = strtolower(Locale::getDefault());
             }
 
             /*
@@ -92,7 +93,7 @@ class Classic extends Request
                  */
                 if (!in_array($this->module, $this->modules, true)) {
                     $this->controller = $this->module;
-                    $this->module = "";
+                    $this->module     = "";
                 } else {
                     /*
                      * if module exists in installed enable modules,
@@ -100,7 +101,7 @@ class Classic extends Request
                      * if controller is not exists in url,
                      * then default directory index set to controller
                      */
-                    $this->controller = (string) array_shift($url);
+                    $this->controller = (string)array_shift($url);
                 }
             } else {
                 /*
@@ -108,7 +109,7 @@ class Classic extends Request
                  * then module set to controller, and it makes empty
                  */
                 $this->controller = $this->module;
-                $this->module = "";
+                $this->module     = "";
             }
 
 
@@ -145,7 +146,7 @@ class Classic extends Request
              * then extract method from url
              * else define default directory index
              */
-            $this->method = (string) array_shift($url);
+            $this->method = (string)array_shift($url);
             /*
              * if module or controller or both and method in url,
              * then extract arguments from url

@@ -1,0 +1,862 @@
+---
+- extension:
+  - manifest
+  type: text/cache-manifest
+  document: Web application cache file
+  sub-class-of: text/plain
+- extension:
+  - vcs
+  - ics
+  type: text/calendar
+  document: VCS/ICS calendar
+  acronym: VCS/ICS
+  expanded-acronym: vCalendar/iCalendar
+  sub-class-of: text/plain
+  alias: application/ics
+- extension:
+  - css
+  type: text/css
+  document: CSS stylesheet
+  acronym: CSS
+  expanded-acronym: Cascading Style Sheets
+  sub-class-of: text/plain
+- extension:
+  - csvs
+  type: text/csv-schema
+  document: CSV Schema document
+  acronym: CSV
+  expanded-acronym: Comma Separated Values
+  sub-class-of: text/plain
+- extension:
+  - csv
+  type: text/csv
+  document: CSV document
+  acronym: CSV
+  expanded-acronym: Comma Separated Values
+  sub-class-of: text/plain
+  alias: text/x-csv
+- extension: []
+  type: text/enriched
+  document: enriched text document
+  sub-class-of: text/plain
+- extension:
+  - html
+  - htm
+  type: text/html
+  document: HTML document
+  acronym: HTML
+  expanded-acronym: HyperText Markup Language
+  sub-class-of: text/plain
+- extension: []
+  type: text/htmlh
+  document: help page
+  sub-class-of: text/plain
+- extension:
+  - lrs
+  type: text/lrs
+  document: SONY E-book source format
+- extension:
+  - md
+  - mkd
+  - markdown
+  type: text/markdown
+  document: Markdown document
+  sub-class-of: text/plain
+  alias: text/x-markdown
+- extension:
+  - org
+  type: text/org
+  document: Org-mode file
+  sub-class-of: text/plain
+- extension:
+  - txt
+  - asc
+  - '*,v'
+  - doc
+  type: text/plain
+  document: plain text document
+- extension: []
+  type: text/rfc822-headers
+  document: email headers
+  sub-class-of: text/plain
+- extension:
+  - rtx
+  type: text/richtext
+  document: rich text document
+  sub-class-of: text/plain
+- extension:
+  - rs
+  type: text/rust
+  document: Rust source code
+  sub-class-of: text/plain
+- extension:
+  - sgml
+  - sgm
+  type: text/sgml
+  document: SGML document
+  acronym: SGML
+  expanded-acronym: Standard Generalized Markup Language
+  sub-class-of: text/plain
+- extension:
+  - sylk
+  - slk
+  type: text/spreadsheet
+  document: spreadsheet interchange document
+  sub-class-of: text/plain
+- extension:
+  - tsv
+  type: text/tab-separated-values
+  document: TSV document
+  acronym: TSV
+  expanded-acronym: Tab Separated Values
+  sub-class-of: text/plain
+- extension:
+  - tcl
+  - tk
+  type: text/tcl
+  document: Tcl script
+  sub-class-of: text/plain
+  alias: text/x-tcl
+- extension:
+  - tr
+  - roff
+  - t
+  type: text/troff
+  document: Troff document
+  sub-class-of: text/plain
+  alias: text/x-troff
+- extension:
+  - ttl
+  type: text/turtle
+  document: Turtle document
+  sub-class-of: text/plain
+- extension:
+  - vbs
+  type: text/vbscript
+  document: VBScript program
+  sub-class-of: text/plain
+  alias: text/vbs
+- extension:
+  - vcard
+  - vcf
+  - vct
+  - gcrd
+  type: text/vcard
+  document: electronic business card
+  sub-class-of: text/plain
+  alias: text/x-vcard
+- extension:
+  - abc
+  type: text/vnd.abc
+  document: abc musical notation file
+  sub-class-of: text/plain
+- extension:
+  - gv
+  - dot
+  type: text/vnd.graphviz
+  document: Graphviz DOT graph
+  sub-class-of: text/plain
+- extension:
+  - kcrash
+  - kcrash.txt
+  type: text/vnd.kde.kcrash-report
+  document: KCrash Report
+  sub-class-of: text/plain
+- extension:
+  - rt
+  type: text/vnd.rn-realtext
+  document: RealText document
+  sub-class-of: text/plain
+- extension:
+  - mc2
+  type: text/vnd.senx.warpscript
+  document: WarpScript source code
+  sub-class-of: text/plain
+- extension:
+  - jad
+  type: text/vnd.sun.j2me.app-descriptor
+  document: JAD document
+  acronym: JAD
+  expanded-acronym: Java Application Descriptor
+  sub-class-of: text/plain
+- extension:
+  - ts
+  type: text/vnd.trolltech.linguist
+  document: message catalog
+  sub-class-of: application/xml
+  alias: text/vnd.qt.linguist
+- extension:
+  - wml
+  type: text/vnd.wap.wml
+  document: WML document
+  acronym: WML
+  expanded-acronym: Wireless Markup Language
+  sub-class-of: application/xml
+- extension:
+  - wmls
+  type: text/vnd.wap.wmlscript
+  document: WMLScript program
+  sub-class-of: text/plain
+- extension:
+  - vtt
+  type: text/vtt
+  document: WebVTT subtitles
+  acronym: VTT
+  expanded-acronym: Video Text Tracks
+  sub-class-of: text/plain
+- extension:
+  - adb
+  - ads
+  type: text/x-adasrc
+  document: Ada source code
+  sub-class-of: text/plain
+- extension:
+  - AUTHORS
+  type: text/x-authors
+  document: author list
+  sub-class-of: text/plain
+- extension:
+  - bib
+  type: text/x-bibtex
+  document: BibTeX document
+  sub-class-of: text/plain
+- extension:
+  - hh
+  - hp
+  - hpp
+  - h++
+  - hxx
+  type: text/x-c++hdr
+  document: C++ header
+  sub-class-of: text/x-chdr
+- extension:
+  - cpp
+  - cxx
+  - cc
+  - C
+  - c++
+  type: text/x-c++src
+  document: C++ source code
+  sub-class-of: text/x-csrc
+- extension:
+  - ChangeLog
+  type: text/x-changelog
+  document: ChangeLog document
+  sub-class-of: text/plain
+- extension:
+  - h
+  type: text/x-chdr
+  document: C header
+  sub-class-of: text/x-csrc
+- extension:
+  - cmake
+  - CMakeLists.txt
+  type: text/x-cmake
+  document: CMake source code
+  sub-class-of: text/plain
+- extension:
+  - cbl
+  - cob
+  type: text/x-cobol
+  document: COBOL source code
+  acronym: COBOL
+  expanded-acronym: COmmon Business Oriented Language
+  sub-class-of: text/plain
+- extension:
+  - asd
+  - fasl
+  - lisp
+  - ros
+  type: text/x-common-lisp
+  document: Common Lisp source code
+  sub-class-of: text/plain
+- extension:
+  - COPYING
+  type: text/x-copying
+  document: license terms
+  sub-class-of: text/plain
+- extension:
+  - CREDITS
+  type: text/x-credits
+  document: author credits
+  sub-class-of: text/plain
+- extension:
+  - cr
+  type: text/x-crystal
+  document: Crystal source code
+  sub-class-of: text/plain
+  alias: text/crystal
+- extension:
+  - cs
+  type: text/x-csharp
+  document: C# source code
+  sub-class-of: text/x-csrc
+- extension:
+  - c
+  type: text/x-csrc
+  document: C source code
+  sub-class-of: text/plain
+  alias: text/x-c
+- extension:
+  - dart
+  type: text/x-dart
+  document: Dart source code
+  sub-class-of: text/plain
+- extension:
+  - service
+  type: text/x-dbus-service
+  document: D-Bus service file
+  sub-class-of: text/plain
+- extension:
+  - dcl
+  type: text/x-dcl
+  document: DCL script
+  acronym: DCL
+  expanded-acronym: Data Conversion Laboratory
+  sub-class-of: text/plain
+- extension:
+  - dsl
+  type: text/x-dsl
+  document: DSSSL document
+  acronym: DSSSL
+  expanded-acronym: Document Style Semantics and Specification Language
+  sub-class-of: text/plain
+- extension:
+  - d
+  - di
+  type: text/x-dsrc
+  document: D source code
+  sub-class-of: text/x-csrc
+- extension:
+  - e
+  - eif
+  type: text/x-eiffel
+  document: Eiffel source code
+  sub-class-of: text/plain
+- extension:
+  - ex
+  - exs
+  type: text/x-elixir
+  document: Elixir source code
+  sub-class-of: text/plain
+- extension:
+  - el
+  type: text/x-emacs-lisp
+  document: Emacs Lisp source code
+  sub-class-of: text/plain
+- extension:
+  - erl
+  type: text/x-erlang
+  document: Erlang source code
+  sub-class-of: text/plain
+- extension:
+  - f
+  - f90
+  - f95
+  - for
+  type: text/x-fortran
+  document: Fortran source code
+  sub-class-of: text/plain
+- extension:
+  - gs
+  type: text/x-genie
+  document: Genie source code
+  sub-class-of: text/plain
+- extension:
+  - pot
+  type: text/x-gettext-translation-template
+  document: translation template
+  sub-class-of: text/plain
+  alias: text/x-pot
+- extension:
+  - po
+  type: text/x-gettext-translation
+  document: translation file
+  sub-class-of: text/plain
+  alias: application/x-gettext
+- extension:
+  - feature
+  type: text/x-gherkin
+  document: Gherkin document
+  sub-class-of: text/plain
+- extension:
+  - go
+  type: text/x-go
+  document: Go source code
+  sub-class-of: text/plain
+- extension:
+  - gvp
+  type: text/x-google-video-pointer
+  document: Google Video Pointer shortcut
+  sub-class-of: text/plain
+  alias: text/google-video-pointer
+- extension:
+  - gradle
+  type: text/x-gradle
+  document: Gradle scripts
+  sub-class-of: text/x-groovy
+- extension:
+  - groovy
+  - gvy
+  - gy
+  - gsh
+  type: text/x-groovy
+  document: Groovy source code
+  sub-class-of: text/x-csrc
+- extension:
+  - hs
+  type: text/x-haskell
+  document: Haskell source code
+  sub-class-of: text/plain
+- extension:
+  - hex
+  type: text/x-hex
+  document: "Intel\xAE hexadecimal object file"
+  sub-class-of: text/plain
+- extension:
+  - idl
+  type: text/x-idl
+  document: IDL document
+  acronym: IDL
+  expanded-acronym: Interface Definition Language
+  sub-class-of: text/plain
+- extension:
+  - imy
+  - ime
+  type: text/x-iMelody
+  document: iMelody ringtone
+  sub-class-of: text/plain
+  alias: audio/iMelody
+- extension:
+  - INSTALL
+  type: text/x-install
+  document: installation instructions
+  sub-class-of: text/plain
+- extension:
+  - iptables
+  type: text/x-iptables
+  document: iptables configuration file
+  sub-class-of: text/plain
+- extension:
+  - java
+  type: text/x-java
+  document: Java source code
+  sub-class-of: text/x-csrc
+- extension:
+  - ksy
+  type: text/x-kaitai-struct
+  document: Kaitai Struct definition file
+  sub-class-of: application/x-yaml
+- extension:
+  - katefl
+  type: text/x-katefilelist
+  document: Kate file list loader plugin list
+  sub-class-of: text/plain
+- extension:
+  - kt
+  type: text/x-kotlin
+  document: Kotlin source code
+  sub-class-of: text/plain
+- extension:
+  - ldif
+  type: text/x-ldif
+  document: LDIF address book
+  acronym: LDIF
+  expanded-acronym: LDAP Data Interchange Format
+  sub-class-of: text/plain
+- extension:
+  - ly
+  type: text/x-lilypond
+  document: Lilypond music sheet
+  sub-class-of: text/plain
+- extension:
+  - lhs
+  type: text/x-literate-haskell
+  document: LHS source code
+  acronym: LHS
+  expanded-acronym: Literate Haskell source code
+  sub-class-of: text/plain
+- extension:
+  - log
+  type: text/x-log
+  document: application log
+  sub-class-of: text/plain
+- extension:
+  - lua
+  type: text/x-lua
+  document: Lua script
+  sub-class-of: text/plain
+- extension:
+  - makefile
+  - GNUmakefile
+  - mk
+  - mak
+  - Makefile.*
+  type: text/x-makefile
+  document: Makefile build file
+  sub-class-of: text/plain
+- extension:
+  - m
+  type: text/x-matlab
+  document: MATLAB file
+  sub-class-of: text/plain
+  alias: text/x-octave
+- extension:
+  - pom.xml
+  - settings.xml
+  type: text/x-maven+xml
+  document: Maven description file
+  sub-class-of: application/xml
+- extension:
+  - meson.build
+  - meson_options.txt
+  type: text/x-meson
+  document: Meson source code
+  sub-class-of: text/plain
+- extension:
+  - sub
+  type: text/x-microdvd
+  document: MicroDVD subtitles
+  sub-class-of: text/plain
+- extension:
+  - moc
+  type: text/x-moc
+  document: Qt MOC file
+  acronym: Qt MOC
+  expanded-acronym: Qt Meta Object Compiler
+  sub-class-of: text/plain
+- extension:
+  - mo
+  type: text/x-modelica
+  document: Modelica model
+  sub-class-of: text/plain
+- extension:
+  - mof
+  type: text/x-mof
+  document: MOF file
+  acronym: MOF
+  expanded-acronym: Windows Managed Object File
+  sub-class-of: text/x-csrc
+- extension:
+  - mpl
+  type: text/x-mpl2
+  document: MPlayer2 subtitles
+  sub-class-of: text/plain
+- extension:
+  - sub
+  type: text/x-mpsub
+  document: MPSub subtitles
+  acronym: MPSub
+  expanded-acronym: MPlayer Subtitle
+  sub-class-of: text/plain
+- extension:
+  - mrml
+  - mrl
+  type: text/x-mrml
+  document: MRML playlist
+  acronym: MRML
+  expanded-acronym: Multimedia Retrieval Markup Language
+  sub-class-of: application/xml
+- extension:
+  - reg
+  type: text/x-ms-regedit
+  document: Windows Registry extract
+  sub-class-of: text/plain
+- extension:
+  - mup
+  - not
+  type: text/x-mup
+  document: Mup musical composition document
+  sub-class-of: text/plain
+- extension:
+  - nfo
+  type: text/x-nfo
+  document: NFO document
+  sub-class-of: text/x-readme
+- extension:
+  - m
+  type: text/x-objcsrc
+  document: Objective-C source code
+  sub-class-of: text/x-csrc
+- extension:
+  - ml
+  - mli
+  type: text/x-ocaml
+  document: OCaml source code
+  sub-class-of: text/plain
+- extension:
+  - ocl
+  type: text/x-ocl
+  document: OCL file
+  acronym: OCL
+  expanded-acronym: Object Constraint Language
+  sub-class-of: text/plain
+- extension:
+  - ooc
+  type: text/x-ooc
+  document: OOC source code
+  acronym: OOC
+  expanded-acronym: Out Of Class
+  sub-class-of: text/x-csrc
+- extension:
+  - cl
+  type: text/x-opencl-src
+  document: OpenCL source code
+  acronym: OpenCL
+  expanded-acronym: Open Computing Language
+  sub-class-of: text/x-csrc
+- extension:
+  - opml
+  type: text/x-opml+xml
+  document: OPML syndication feed
+  sub-class-of: application/xml
+  alias: text/x-opml
+- extension:
+  - p
+  - pas
+  type: text/x-pascal
+  document: Pascal source code
+  sub-class-of: text/plain
+- extension:
+  - diff
+  - patch
+  type: text/x-patch
+  document: differences between files
+  sub-class-of: text/plain
+  alias: text/x-diff
+- extension:
+  - PKGBUILD
+  type: text/x-pkgbuild
+  document: PKGBUILD files
+  sub-class-of: text/plain
+- extension:
+  - py
+  - pyx
+  - wsgi
+  type: text/x-python
+  document: Python script
+  sub-class-of: text/plain
+- extension:
+  - py
+  - py3
+  - py3x
+  - pyi
+  type: text/x-python3
+  document: Python 3 script
+  sub-class-of: text/x-python
+- extension:
+  - qml
+  - qmltypes
+  - qmlproject
+  - qml
+  - qmltypes
+  - qmlproject
+  type: text/x-qml
+  document: Qt Markup Language file
+  sub-class-of: text/plain
+- extension:
+  - README*
+  type: text/x-readme
+  document: README document
+  sub-class-of: text/plain
+- extension:
+  - rej
+  type: text/x-reject
+  document: rejected patch
+  sub-class-of: text/plain
+  alias: application/x-reject
+- extension:
+  - spec
+  type: text/x-rpm-spec
+  document: RPM spec file
+  acronym: RPM
+  expanded-acronym: Red Hat Package Manager
+  sub-class-of: text/plain
+- extension:
+  - rst
+  type: text/x-rst
+  document: reStructuredText document
+  sub-class-of: text/plain
+- extension:
+  - sage
+  type: text/x-sagemath
+  document: SageMath script
+  sub-class-of: text/x-python
+- extension:
+  - sass
+  type: text/x-sass
+  document: Sass CSS pre-processor file
+  acronym: Sass
+  expanded-acronym: Syntactically Awesome Style Sheets
+  sub-class-of: text/plain
+- extension:
+  - scala
+  - sc
+  type: text/x-scala
+  document: Scala source code
+  sub-class-of: text/plain
+- extension:
+  - scm
+  - ss
+  type: text/x-scheme
+  document: Scheme source code
+  sub-class-of: text/plain
+- extension:
+  - SConstruct
+  - SConscript
+  - SConscript.*
+  type: text/x-scons
+  document: SCons configuration file
+  sub-class-of: text/x-python
+- extension:
+  - scss
+  type: text/x-scss
+  document: SCSS pre-processor file
+  acronym: SCSS
+  expanded-acronym: Sassy CSS
+  sub-class-of: text/plain
+- extension:
+  - etx
+  type: text/x-setext
+  document: Setext document
+  sub-class-of: text/plain
+- extension:
+  - ssa
+  - ass
+  type: text/x-ssa
+  document: SSA subtitles
+  acronym: SSA
+  expanded-acronym: SubStation Alpha
+  sub-class-of: text/plain
+- extension:
+  - sub
+  type: text/x-subviewer
+  document: SubViewer subtitles
+  sub-class-of: text/plain
+- extension:
+  - svh
+  type: text/x-svhdr
+  document: SystemVerilog header
+  sub-class-of: text/x-verilog
+- extension:
+  - sv
+  type: text/x-svsrc
+  document: SystemVerilog source code
+  sub-class-of: text/x-verilog
+- extension:
+  - automount
+  - device
+  - mount
+  - path
+  - scope
+  - service
+  - slice
+  - socket
+  - swap
+  - target
+  - timer
+  type: text/x-systemd-unit
+  document: systemd unit file
+  sub-class-of: text/plain
+- extension:
+  - tex
+  - ltx
+  - sty
+  - cls
+  - dtx
+  - ins
+  - latex
+  type: text/x-tex
+  document: TeX document
+  sub-class-of: text/plain
+  alias: application/x-tex
+- extension:
+  - texi
+  - texinfo
+  type: text/x-texinfo
+  document: TeXInfo document
+  sub-class-of: text/plain
+- extension:
+  - me
+  type: text/x-troff-me
+  document: Troff ME input document
+  sub-class-of: text/plain
+- extension:
+  - mm
+  type: text/x-troff-mm
+  document: Troff MM input document
+  sub-class-of: text/plain
+- extension:
+  - ms
+  type: text/x-troff-ms
+  document: Troff MS input document
+  sub-class-of: text/plain
+- extension:
+  - twig
+  type: text/x-twig
+  document: Twig template
+  sub-class-of: text/plain
+- extension:
+  - t2t
+  type: text/x-txt2tags
+  document: txt2tags document
+  sub-class-of: text/plain
+- extension:
+  - uil
+  type: text/x-uil
+  document: X-Motif UIL table
+  sub-class-of: text/plain
+- extension: []
+  type: text/x-uri
+  document: resource location
+  sub-class-of: text/plain
+- extension:
+  - uue
+  type: text/x-uuencode
+  document: uuencoded file
+  sub-class-of: text/plain
+  alias: zz-application/zz-winassoc-uu
+- extension:
+  - vala
+  - vapi
+  type: text/x-vala
+  document: Vala source code
+  sub-class-of: text/x-csrc
+- extension:
+  - v
+  type: text/x-verilog
+  document: Verilog source code
+  sub-class-of: text/plain
+- extension:
+  - vhd
+  - vhdl
+  type: text/x-vhdl
+  document: VHDL source code
+  acronym: VHDL
+  expanded-acronym: Very-High-Speed Integrated Circuit Hardware Description Language
+  sub-class-of: text/plain
+- extension:
+  - xmi
+  type: text/x-xmi
+  document: XMI file
+  acronym: XMI
+  expanded-acronym: XML Metadata Interchange
+  sub-class-of: application/xml
+- extension:
+  - fo
+  - xslfo
+  type: text/x-xslfo
+  document: XSL FO file
+  acronym: XSL FO
+  expanded-acronym: XSL Formatting Objects
+  sub-class-of: application/xml
+- extension:
+  - gcode
+  type: text/x.gcode
+  document: G-code file
+  sub-class-of: text/plain
+- extension: []
+  type: text/xmcd
+  document: XMCD CD database
+  sub-class-of: text/plain
+...

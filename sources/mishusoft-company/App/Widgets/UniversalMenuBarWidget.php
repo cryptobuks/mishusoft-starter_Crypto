@@ -2,7 +2,7 @@
 
 namespace App\Widgets;
 
-use Mishusoft\Authentication\Widget;
+use Mishusoft\Exceptions\Authentication\Widget;
 
 class UniversalMenuBarWidget extends Widget
 {

@@ -4,32 +4,13 @@ namespace Mishusoft;
 
 use Mishusoft\Utility\Inflect;
 
-/**
- * @method static Browser()
- * @method static RequestQualifiedAPI()
- */
+
 class Registry extends Singleton
 {
     /**
      * @var array
      */
     private array $data;
-    /**
-     * @var Http\Browser|mixed|null
-     */
-    private mixed $browser;
-    /**
-     * @var Http\IP|mixed|null
-     */
-    private mixed $ip;
-    /**
-     * @var Http\Request\HttpAPI|mixed|null
-     */
-    private mixed $httpAPI;
-    /**
-     * @var Http\Request\Classic|mixed|null
-     */
-    private mixed $requestClassic;
 
     public function __get(string $name)
     {
@@ -74,11 +55,19 @@ class Registry extends Singleton
         return lcfirst($name);
     }
 
+    /**
+     * @see https://www.php.net/manual/en/language.oop5.overloading.php
+     *
+     * @param object $storage
+     * @param string $name
+     * @param array $arguments
+     * @return mixed|null
+     */
     private static function makeCall(object $storage, string $name, array $arguments = [])
     {
         $name = self::removePrefix($name);
 
-        if (isset($storage->data[$name]) === true) {
+        if (array_key_exists($name, $storage->data)) {
             if (count($arguments) > 0) {
                 return $storage->data[$name]($arguments);
             }

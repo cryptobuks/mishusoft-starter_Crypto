@@ -1,0 +1,29 @@
+#ref:https://prx.github.io/prx-podagent/
+
+
+#iPod touch
+
+#Inception 1.4 (iPod touch; iPhone OS 4.3.3; en_US)
+
+
+- identifiers:
+    device-music-player-ipod:
+      pattern:
+        name: '(ipod)'
+        separator: true
+        version: true
+      functional: true
+    device-music-player-ipod-touch:
+      pattern:
+        name: '(ipod\s+touch)'
+        separator: false
+        version: false
+      functional: true
+    device-music-player-ipod-touch-another:
+      pattern:
+        name: '(ipod)'
+        separator: false
+        version: false
+      functional: true
+
+  info: device music-player-ipod

@@ -1,15 +1,22 @@
 #! /bin/php
-
 <?php
+
+declare(strict_types=1);
+
 /**
  * Mishusoft application player.
  *
  * @package    Mishusoft
  * @subpackage website
- * @author     Al-Amin Ahamed <alamin.rohita@hotmail.com>
+ * @author     Al-Amin Ahamed <alamin@mishusoft.com>
  * @copyright  2021 Al-Amin Ahamed
  */
 
+// define required constants for runtime requirement
+const WHO_AM_I = "Mishusoft";
+const DS = DIRECTORY_SEPARATOR;
+define("FRAMEWORK_START_AT", time());
+define("RUNTIME_ROOT_PATH", realpath(__DIR__) . DS);
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +42,7 @@ include_once __DIR__ . '/vendor/autoload.php';
 */
 
 include_once __DIR__ . '/bootstrap/cli.php';
+
 
 // BIOS initialisation.
 Mishusoft\System\BIOS\Cli::initialise();

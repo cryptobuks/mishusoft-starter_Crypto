@@ -1,10 +1,16 @@
 {
-  "base": "api",
-  "descriptions": "receive client request and response",
-  "class": "ApplicationProgrammingInterface",
-  "route": [
-    "api",
-    "rapi",
-    "monitor"
+  "base" :         "http.api.request",
+  "descriptions" : "receive client request and response",
+  "class" :        "ApplicationProgrammingInterface",
+  "group" :        "api",
+  "route" :        [
+    "rest",
+    "db",
+    "activity",
+    "user",
+    "tools",
+    "monitor",
+    "install",
+    "update"
   ]
 }

@@ -2,7 +2,6 @@
 
 namespace Mishusoft\Http\UAAnalyzer\IdentifiersCollection;
 
-use JsonException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Http\UAAnalyzer\Collection;
 
@@ -25,7 +24,6 @@ class PlatformsIdentifiersCollection extends Collection
     /**
      * @return array
      * @throws RuntimeException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function all(): array
     {
@@ -50,7 +48,6 @@ class PlatformsIdentifiersCollection extends Collection
      *
      * @return array
      * @throws RuntimeException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function windowManagers(): array
     {

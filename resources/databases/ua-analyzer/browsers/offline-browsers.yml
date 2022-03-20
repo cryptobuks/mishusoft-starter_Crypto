@@ -1,0 +1,83 @@
+# Offline Browsers
+# Offline Browsers, also termed as offline reader or offline navigator, is a software that downloads web content and,
+# by preserving its original structure, makes it available even if the device is not connected to the Internet.
+
+
+# Check&Get
+# Latest user agents:
+# Mozilla/4.0 (compatible; Check&Get 3.4; Windows NT)
+- identifiers:
+    # Pattern maker method use it
+    offline-browser-check-get:
+      pattern:
+        name: (check\&get)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: offline-browser check-get
+
+
+# HTTrack
+# HTTrack is an offline browser devoloped by Xavier Roche.
+
+# Latest user agents:
+# Mozilla/5.0 (compatible; HTTrack 3.0x; Windows 98)
+# HTTrack User Agent String
+# Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)
+- identifiers:
+    # Pattern maker method use it
+    offline-browser-ht-track:
+      pattern:
+        name: (httrack)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: offline-browser ht-track
+
+
+# iGetter
+
+# Latest user agents:
+# iGetter/2.0
+# iGetter/2 (Macintosh; U; PPC Mac OS X; en)
+- identifiers:
+    # Pattern maker method use it
+    offline-browser-i-getter:
+      pattern:
+        name: (igetter)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: offline-browser i-getter
+
+
+
+# wget
+# wget is an offline browser devoloped by Free Software Foundation, Inc..
+
+# Latest user agents:
+# wget/1.0 (http://gnu.org/gnu/wget)
+# Wget/1.0
+# Wget/1.21
+# Wget/1.20.3 (darwin20.1.0)
+# Wget/1.19.5 (darwin17.7.0)
+# Wget/1.20.3 (linux-musl)
+# Wget/1.11.4 (Red Hat modified) [ip:213.32.4.211]
+- identifiers:
+    # Pattern maker method use it
+    offline-browser-wget:
+      pattern:
+        name: (wget)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: offline-browser wget
+

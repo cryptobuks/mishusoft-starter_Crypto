@@ -1,0 +1,206 @@
+.messageZone {
+  /*margin-top: 10px;*/
+  text-align: center;
+  width: 100%;
+}
+
+
+.box {
+  display: block;
+  margin: 10% auto;
+  padding: 15px;
+  text-align: center;
+  width: 330px;
+
+  &-container {
+    display: block;
+    padding: 15px;
+    text-align: left;
+  }
+
+  &-message {
+    font-size: 14px;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding: 10px 10px;
+    width: 100%;
+    display: inline-block;
+
+    -webkit-transition: all .15s ease;
+    -o-transition: all .15s ease;
+    transition: all .15s ease;
+  }
+
+
+  &-panel {
+    display: block;
+    width: 500px;
+    padding: 15px;
+    text-align: left;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #fff;
+
+    &-primary {
+      display: block;
+      width: 500px;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+      border: 1px solid var(--blue-deep);
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+    }
+
+    &-header {
+      font-size: 18px;
+      font-weight: 700;
+      padding: 10px;
+      color: #fff;
+      text-align: left;
+      display: block;
+      background-color: var(--blue-deep);
+    }
+
+    &-body {
+      padding: 10px;
+      display: block;
+      text-align: left;
+    }
+  }
+
+
+  &-notify {
+    color: #20b2aa;
+    border-left: 5px solid #20b2aa;
+    background-color: #d9f2f4;
+
+    & a, & p, & span {
+      color: #20b2aa;
+    }
+    &-symbol {
+      color: #20b2aa;
+    }
+
+  }
+
+
+  &-success {
+    color: var(--green);
+    border-left: 5px solid var(--green);
+    background-color: #e3f1d4;
+
+    & a, & p, & span {
+      color: var(--green)
+    }
+    &-symbol {
+      color: var(--green);
+    }
+
+  }
+
+  &-danger {
+    color: var(--red);
+    border-left: 5px solid var(--red);
+    background-color: #ffecec;
+
+    & a, & p, & span {
+      color: var(--red)
+    }
+
+    &-symbol {
+      color: var(--red);
+    }
+  }
+
+  &-danger p, &-success p, &-notify p, {
+    padding: 0;
+    margin: 0;
+  }
+
+  &-danger-symbol, &-success-symbol, &-notify-symbol {
+    font-size: 12.5px;
+    text-align: center;
+    height: 20px;
+    width: 20px;
+    /*padding: 1px;*/
+    border: 1px solid;
+    /*margin-top: 4px;*/
+    margin-right: 8px;
+    /*top: 10px;*/
+    position: relative;
+    display: block;
+    float: left;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+  }
+
+  &-runtime {
+    color: lightseagreen;
+    background-color: rgb(217, 242, 244);
+    font-size: 17px;
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    border-style: none;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    box-shadow: rgba(0, 0, 0, 0.12) 0 1px 3px, rgba(0, 0, 0, 0.24) 0 1px 2px;
+  }
+
+}
+
+
+.notify-icon {
+  margin: 0;
+  padding: 2px;
+  float: left;
+  width: 20px
+}
+
+.notify-content {
+  margin: 0;
+  padding: 0 0;
+  float: left;
+  width: 94%
+}
+
+.notify-md-content {
+  margin: 0;
+  padding: 0 0;
+  float: left;
+  width: 89%
+}
+
+.notify-sm-content {
+  margin: 0;
+  padding: 0 0;
+  float: left;
+  width: 85%
+}
+
+.notify-action {
+  margin: 0;
+  padding: 2px;
+  float: right;
+  width: 20px
+}
+
+.setup-box {
+  display: block;
+  margin: 12% auto;
+  padding: 10px;
+  text-align: center
+}
+
+.setup-error {
+  font-size: 15px;
+  text-align: left;
+  display: block
+}

@@ -1,0 +1,61 @@
+---
+- extension: []
+  type: x-content/audio-cdda
+  document: audio CD
+- extension: []
+  type: x-content/audio-dvd
+  document: audio DVD
+- extension: []
+  type: x-content/audio-player
+  document: portable audio player
+- extension: []
+  type: x-content/blank-bd
+  document: blank Blu-ray disc
+- extension: []
+  type: x-content/blank-cd
+  document: blank CD disc
+- extension: []
+  type: x-content/blank-dvd
+  document: blank DVD disc
+- extension: []
+  type: x-content/blank-hddvd
+  document: blank HD DVD disc
+- extension: []
+  type: x-content/ebook-reader
+  document: e-book reader
+- extension: []
+  type: x-content/image-dcf
+  document: digital photos
+- extension: []
+  type: x-content/image-picturecd
+  document: Picture CD
+- extension: []
+  type: x-content/ostree-repository
+  document: OSTree software updates
+- extension: []
+  type: x-content/software
+  document: software
+- extension: []
+  type: x-content/unix-software
+  document: UNIX software
+  sub-class-of: x-content/software
+- extension: []
+  type: x-content/video-bluray
+  document: Blu-ray video disc
+- extension: []
+  type: x-content/video-dvd
+  document: video DVD
+- extension: []
+  type: x-content/video-hddvd
+  document: HD DVD video disc
+- extension: []
+  type: x-content/video-svcd
+  document: Super Video CD
+- extension: []
+  type: x-content/video-vcd
+  document: Video CD
+- extension: []
+  type: x-content/win32-software
+  document: Windows software
+  sub-class-of: x-content/software
+...

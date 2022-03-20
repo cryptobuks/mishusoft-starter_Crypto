@@ -1,0 +1,16 @@
+check-get:
+  name:     'Check & Get'
+  author:   'unknown'
+
+ht-track:
+  name:     'HTTrack'
+  author:   'Xavier Roche'
+
+i-getter:
+  name:     'iGetter'
+  author:   'unknown'
+
+wget:
+  name:     'wget'
+  author:   'Free Software Foundation'
+

@@ -1,0 +1,44 @@
+/* src/assets/scss/v3.scss */
+@import "../common/lib";
+
+.ip-info-plus-app {
+  /*width: 360px;*/
+
+  &-hr {
+    margin: 0;
+    padding: 0;
+    border-style: none;
+    border-bottom: 2px solid $lightskyblue;
+  }
+
+  &-title {
+    padding: 5px 0 5px 0;
+    text-align: center;
+    font-size: 20px;
+    font-family: $fontFamily;
+  }
+
+  &-body {
+    padding: 5px;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  &-bottom {
+    padding: 5px 0 5px 5px;
+    text-align: left;
+    font-size: 16px;
+    font-family: $fontFamily;
+  }
+
+  &-data-table {
+    text-align: left;
+    font-size: 14px;
+    font-family: $fontFamily;
+  }
+
+  &-search-body {
+    width: 100%;
+    display: inline-block;
+  }
+}

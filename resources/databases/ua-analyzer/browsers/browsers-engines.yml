@@ -1,0 +1,798 @@
+# Rendering Engines
+# A web rendering engine or a web browser engine is a computer program that loads all resources from a web page and
+# converts them into an “interactive image” (that is, you not only see the visual representation of the page,
+# but you can also navigate to another pages or submit forms). This process is known as “rendering” and it follows
+# a certain specification in order to get the same result, even if the different engines handle differently HTML, CSS,
+# JavaScript, images, and other web resources.
+
+# url: https://en.wikipedia.org/wiki/List_of_web_browsers#WebKit-based
+# KHTML and KJS were adopted by Apple in 2002 for use in the Safari web browser.
+# Apple publishes the source code for their fork of the KHTML engine, called WebKit.
+# In 2013, Google began development on a fork of WebKit, called Blink.[16]
+
+## LIST OF ENGINES
+# 1. EdgeHTML ok
+# 2. u2 ok
+# 3. u3 ok
+# 4. x5 ok
+# 5. Blink ok
+# 6. t5 ok
+# 7. t7 ok
+# 8. WebKit ok
+# 9. Tkhtml ok
+# 10. KHTML ok
+# 11. Goanna ok
+# 12. Servo ok
+# 13. NetSurf ok
+# 14. EkiohFlow ok
+# 15. Gecko ok
+# 16. Tasman ok
+# 17. Trident ok
+# 18. Presto ok
+# 19. NetFront ok
+# 20. mariner ok
+# 21. cobra ok
+# 22. libwww ok
+
+
+# EdgeHTML
+# url: https://en.wikipedia.org/wiki/EdgeHTML
+# EdgeHTML is a proprietary browser engine from Microsoft that was formerly used in the Edge web browser.
+# The debut of both was in 2015 as part of the Windows 10 release.
+
+# In 2018, Microsoft began rebuilding Edge as a Chromium-based browser,[2][3] which meant that EdgeHTML would no longer be used in
+# the Edge browser. This transition was completed in 2021.
+
+# EdgeHTML is a fork of the Trident engine of Internet Explorer.[4] It is designed as a component that enables developers
+# to easily add web browsing functionality to other apps. In this capacity, Microsoft still permits the use of EdgeHTML for UWP apps.[5]
+
+# url: https://developers.whatismybrowser.com/useragents/explore/layout_engine_name/edgehtml/
+# url: https://user-agents.net/rendering-engines/edge/user-agents
+# Latest user agents:
+# Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4521.0 Safari/537.36 Edg/93.0.910.5
+# Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/17.17134	Edge 42	Windows	Computer	Very common
+# Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/18.17763	Edge 44	Windows	Computer	Very common
+# Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18362
+
+- identifiers:
+    # Pattern maker method use it
+    browser-engine-edge-html:
+      pattern:
+        name: (edge)
+        separator: true
+        version: true
+      functional: true
+
+    browser-engine-edge-html-fallback:
+      pattern:
+        name: (edg)
+        separator: true
+        version: true
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'EdgeHTML'
+  space: 'browsers-engines'
+
+  # Information maker method use it
+  info:
+    name:     EdgeHTML
+    author:   microsoft
+
+
+# U2
+# url: https://user-agents.net/rendering-engines/u2/
+# U2 is a web rendering engine developed by UCWeb Inc.. This engine is known for being used to develop browsers.
+
+# url: https://developers.whatismybrowser.com/useragents/explore/software_name/uc-browser/
+# url: https://user-agents.net/rendering-engines/u2/user-agents
+# Latest user agents:
+# UCWEB/2.0 (MIDP-2.0; U; Adr 4.4.2; en-US; TECNO-Y2) U2/1.0.0 UCBrowser/10.7.8.806 U2/1.0.0 Mobile
+# UCWEB/2.0 (Symbian; U; S60 V5; ru; Nokia5530) U2/1.0.0 UCBrowser/9.2.0.336 U2/1.0.0 Mobile
+# Mozilla/5.0 (Linux; U; Android 4.4.2; zh-CN; HUAWEI MT7-TL00 Build/HuaweiMT7-TL00) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/40.0.2214.89 UCBrowser/11.3.8.909 Mobile Safari/537.36
+# Mozilla/5.0 (Linux; U; Android 5.1.1نسخه سفارشی تیم سام جی اس ام; en-US; SM-G5500 Build/LMY47X) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.108 UCBrowser/12.2.5.1102 Mobile Safari/537.36
+# Mozilla/5.0 (Linux; U; Android 4.2.1; ru-RU; Lenovo_K900_ROW Build/JOP40D) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 UCBrowser/11.3.0.950 U3/0.8.0 Mobile Safari/E7FBAF
+# Mozilla/5.0 (X11; U; Linux i686; en-US) U2/1.0.0 UCBrowser/9.3.1.344
+
+- identifiers:
+    # Pattern maker method use it
+    browser-engine-u2:
+      pattern:
+        name: (u2)
+        separator: true
+        version: true
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'U2'
+  space: 'browsers-engines'
+
+  # Information maker method use it
+  info:
+    name:     U2
+    author:   ucweb
+
+
+# U3
+# url: https://user-agents.net/rendering-engines/u3/
+# U3 is a web rendering engine developed by UCWeb Inc.. This engine is known for being used to develop browsers and applications.
+
+# url: https://user-agents.net/rendering-engines/u3/user-agents
+# Latest user agents:
+# Mozilla/5.0 (Linux; U; Android 5.1; zh-cn; vivo X6D Build/LMY47I) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 UCBrowser/1.0.0.100 U3/0.8.0 Mobile Safari/534.30 AliApp(TB/6.6.2) WindVane/8.0.0 1080X1920 GCanvas/1.4.2.21NULL
+# Mozilla/5.0 (Linux; U; Android 5.0.2; zh-cn; vivo X5Pro V Build/LRX22G) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 UCBrowser/1.0.0.100 U3/0.8.0 Mobile Safari/534.30 AliApp(TB/6.5.3) WindVane/8.0.0 1080X1920 GCanvas/1.4.2.21NULL
+
+- identifiers:
+    # Pattern maker method use it
+    browser-engine-u3:
+      pattern:
+        name: (u3)
+        separator: true
+        version: true
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'U3'
+  space: 'browsers-engines'
+
+  # Information maker method use it
+  info:
+    name:     U3
+    author:   ucweb
+
+
+
+# X5
+# X5 is a web rendering engine developed by Tencent Ltd.. This engine is known for being used to develop browsers and applications.
+
+# url : https://en.wikipedia.org/wiki/QQ_browser
+# url : https://user-agents.net/rendering-engines/x5
+
+# url: https://user-agents.net/rendering-engines/tasman/user-agents
+# url: https://developers.whatismybrowser.com/useragents/explore/software_name/qq-browser/
+
+# Latest user agents
+# Mozilla/5.0 (Linux; Android 10; SKW-A0 Build/SKYW2104270CN00MQ6; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045224 Mobile Safari/537.36
+# Mozilla/5.0 (Linux; Android 9; SM-J600G Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044813 Mobile Safari/537.36 MMWEBID/2976 MicroMessenger/7.0.6.1460(0x27000634) Process/tools NetType/4G Language/zh_HK
+#Mozilla/5.0 (Linux; Android 10; HMA-TL00 Build/HUAWEIHMA-TL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045520 Mobile Safari/537.36 V1_AND_SQ_8.6.0_1672_YYB_D A_8060000 PA QQ/8.6.0.5210 NetType/WIFI WebP/0.3.0 Pixel/1080 StatusBarHeight/81 SimpleUISwitch/0 QQTheme/1103 InMagicWin/0 StudyMode/0
+#Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3861.400 QQBrowser/10.7.4313.400
+#Mozilla/5.0 (Linux; U; Android 5.0.2; pt-br; PLK-TL01H Build/HONORPLK-TL01H) AppleWebKit/537.36 (KHTML, like Gecko)Version/4.0 MQQBrowser/5.3 Mobile Safari/537.36
+#Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.26 Safari/537.36 Core/1.63.6788.400 QQBrowser/10.3.2727.400
+#Mozilla/5.0 (Linux; Android 7.0; LGMS210 Build/NRD90U; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044506 Mobile Safari/537.36
+
+- identifiers:
+    # Pattern maker method use it
+    browser-engine-x5:
+      pattern:
+        name: (tbs)
+        separator: true
+        version: true
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'X5'
+  space: 'browsers-engines'
+
+  # Information maker method use it
+  info:
+    name:     X5
+    author:   tencent
+
+
+
+# Blink
+# Blink is a web rendering engine developed by Google Inc. This engine is known for being used to develop browsers,
+# bots, applications and media players.
+
+# url: https://user-agents.net/rendering-engines/blink/user-agents
+# Latest user agents
+# Mozilla/5.0 (Linux; Android 6.0.1; Lenovo YT3-X50L) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.120 Safari/537.36
+# Mozilla/5.0 (Linux; Android 9; JKM-LX3 Build/HUAWEIJKM-L23; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.105 Mobile Safari/537.36 UCURSOS/v1.6_250-android
+
+- identifiers:
+    # Pattern maker method use it
+    browser-engine-blink:
+      pattern:
+        name: (chrome)
+        separator: true
+        version: true
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'Blink'
+  space: 'browsers-engines'
+
+  # Information maker method use it
+  info:
+    name:     Blink
+    author:   google
+
+
+# T5
+# T5 is a web rendering engine developed by Baidu. This engine is known for being used to develop browsers and applications.
+
+# url: https://user-agents.net/rendering-engines/t5/user-agents
+# Latest user agents
+# Mozilla/5.0 (Linux; U; Android 4.4.4; zh-cn; H7S Build/KTU84Q) AppleWebKit/534.24 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.24 T5/2.0 baidubrowser/5.0.3.0 (Baidu; P1 4.4.4)
+# Mozilla/5.0 (Linux; U; Android 4.4.2; zh-cn; HUAWEI C199 Build/HuaweiC199) AppleWebKit/534.24 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.24 T5/2.0 baiduboxapp/6.9 (Baidu; P1 4.4.2)
+# Mozilla/5.0 (Linux; U; Android 4.1.2; zh-cn; HUAWEI C8813Q Build/HuaweiC8813Q) AppleWebKit/534.24 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.24 T5/2.0 baidubrowser/5.2.3.10 (Baidu; P1 4.1.2)
+# Mozilla/5.0 (Linux; U; Android 4.1.2; ru-; HTC Desire 600 dual sim Build/JZO54K) AppleWebKit/534.24 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.24 T5/2.0 bdbrowser_i18n/4.7.0.5
+
+- identifiers:
+    # Pattern maker method use it
+    browser-engine-t5:
+      pattern:
+        name: (t5)
+        separator: true
+        version: true
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'T5'
+  space: 'browsers-engines'
+
+  # Information maker method use it
+  info:
+    name:     T5
+    author:   Baidu
+
+
+# T7
+# T7 is a web rendering engine developed by Baidu. This engine is known for being used to develop browsers and applications.
+
+# url: https://user-agents.net/rendering-engines/t5/user-agents
+# Latest user agents
+# Mozilla/5.0 (Linux; Android 9; Redmi Note 8 Pro Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/76.0.3809.89 Mobile Safari/537.36 T7/12.17 SP-engine/2.32.0 baiduboxapp/12.17.5.10 (Baidu; P1 9) NABar/1.0
+# Mozilla/5.0 (Linux; Android 9; HMA-AL00 Build/HUAWEIHMA-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/76.0.3809.89 Mobile Safari/537.36 T7/12.17 SP-engine/2.32.0 baiduboxapp/12.18.0.10 (Baidu; P1 9) NABar/1.0
+# Mozilla/5.0 (Linux; Android 9; MHA-AL00 Build/HUAWEIMHA-AL00; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/76.0.3809.89 Mobile Safari/537.36 T7/12.13.0 SP-engine/2.21.0 matrixstyle/MHA-AL00 lite baiduboxapp/5.6.0.11 (Baidu; P1 9) NABar/1.0
+
+- identifiers:
+    # Pattern maker method use it
+    browser-engine-t7:
+      pattern:
+        name: (t7)
+        separator: true
+        version: true
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'T7'
+  space: 'browsers-engines'
+
+  # Information maker method use it
+  info:
+    name:     T7
+    author:   Baidu
+
+
+# WebKit
+# WebKit is a web rendering engine developed by Apple Inc. This engine is known for being used to develop browsers, bots, applications,
+# email clients, media players and rss readers.
+
+# url: https://user-agents.net/rendering-engines/webkit/user-agents
+# Latest user agents
+# Mozilla/5.0 (iPad; CPU OS 15_0 like Mac OS X) WebKit/8612 (KHTML, like Gecko) Mobile/19A5281j [FBAN/FBIOS;FBDV/iPad8,10;FBMD/iPad;FBSN/iPadOS;FBSV/15.0;FBSS/2;FBID/tablet;FBLC/it_IT;FBOP/5]
+# Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Instagram 189.0.0.28.119 (iPhone12,1; iOS 14_4; it_IT; it-IT; scale=2.00; 828x1792; 293153398)
+# Mozilla/5.0 (iPhone; CPU iPhone OS 14_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Instagram 193.0.0.29.121 (iPhone12,5; iOS 14_6; it_IT; it; scale=3.00; 1242x2688; 299401192)
+
+- identifiers:
+    # Pattern maker method use it
+    browser-engine-web-kit:
+      pattern:
+        name: (webkit)
+        separator: true
+        version: true
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'AppleWebKit'
+  space: 'browsers-engines'
+
+  # Information maker method use it
+  info:
+    name:     AppleWebKit
+    author:   apple
+
+
+# Qt Port of WebKit (QtWebKit)
+# The Qt port of WebKit currently compiles and runs on Linux, *BSD, Windows and macOS.
+# url : https://github.com/qt/qtwebkit
+
+# url: https://user-agents.net/rendering-engines/webkit/user-agents
+# Latest user agents
+# Mozilla/5.0 (compatible; U; NETFLIX) AppleWebKit/533.3 (KHTML, like Gecko) Qt/4.7.0 Safari/533.3 Netflix/3.2 (DEVTYPE=RKU-42XXX-; CERTVER=0) QtWebKit/3.0, Roku 3/8.0 (Roku, 4200X, Wireless)
+# Mozilla/5.0 (compatible; U; NETFLIX) AppleWebKit/533.3 (KHTML, like Gecko) Qt/4.7.0 Safari/533.3 Netflix/3.2 (DEVTYPE=RKU-42XXX-; CERTVER=0) QtWebKit/2.2, Roku 3/7.0 (Roku, 4200X, Wireless)
+# Mozilla/5.0 (Linux aarch64; U;HbbTV/1.2.1 (+RTSP;Dream Property GmbH;Dreambox;1.5;1.0;) CE-HTML/1.0; en) WebKit QtWebkit OIPF/1.1
+# Mozilla/5.0 (Apple TV; U; CPU OS 13_3) AppleWebKit/606 (KHTML, like Gecko) Version/14.0.4 Safari/605.1.15 (DEVTYPE=RKU-42XXX-; CERTVER=0) QtWebKit/6.0, Roku 6/10.0 (Roku, 4200X, Wireless)
+
+- identifiers:
+    # Pattern maker method use it
+    browser-engine-qt-web-kit:
+      pattern:
+        name: (qwebkit)
+        separator: true
+        version: true
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'QtWebKit'
+  space: 'browsers-engines'
+
+  # Information maker method use it
+  info:
+    name:     QtWebKit
+    author:   qt
+
+
+
+# QtWebEngine of Blink
+# The Qt port of QtWebEngine currently compiles and runs on Linux, *BSD, Windows and macOS.
+# url : https://github.com/qt/qtwebengine
+
+# Latest user agents
+# Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) QtWebEngine/5.15.2 Chrome/87.0.4280.144 Safari/537.36
+
+- identifiers:
+    # Pattern maker method use it
+    browser-engine-qt-web-engine:
+      pattern:
+        name: (qtwebengine)
+        separator: true
+        version: true
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'QtWebEngine'
+  space: 'browsers-engines'
+
+  # Information maker method use it
+  info:
+    name:     QtWebEngine
+    author:   qt
+
+
+# Tkhtml
+# Tkhtml is a discontinued open-source browser engine written in C using the Tk widget toolkit.
+# It was used primarily by the Html Viewer 3 (Hv3) minimalist web browser.
+
+# url: http://www.zytrax.com/tech/web/browser_ids.htm
+# Latest user agents
+# Mozilla/5.1 (X11; U; Linux i686; en-US; rv:1.8.0.3) Gecko/20060425 SUSE/1.5.0.3-7 Hv3/alpha
+
+- identifiers:
+    # Pattern maker method use it
+    browser-engine-khtml:
+      pattern:
+        name: (khtml)
+        separator: true
+        version: true
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'KHTML'
+  space: 'browsers-engines'
+
+  # Information maker method use it
+  info:
+    name:     KHTML
+    author:   kde
+
+
+# KHTML
+# KHTML is a web rendering engine developed by KDE e.V.. This engine is known for being used to develop browsers.
+
+# url: https://user-agents.net/rendering-engines/khtml/user-agents
+# Latest user agents
+# Mozilla/5.0 (compatible; Konqueror/3.3; Linux) (KHTML, like Gecko)
+# Mozilla/5.0 (compatible; Konqueror/2.2-11; Linux)
+# Mozilla/5.0 (Windows; Windows ) KHTML/5.79.0 (like Gecko) Konqueror/5 KIO/5.79
+
+- identifiers:
+    # Pattern maker method use it
+    browser-engine-khtml:
+      pattern:
+        name: (khtml)
+        separator: true
+        version: true
+      functional: true
+
+    browser-engine-khtml-fallback:
+      pattern:
+        name: (konqueror)
+        separator: true
+        version: true
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'KHTML'
+  space: 'browsers-engines'
+
+  # Information maker method use it
+  info:
+    name:     KHTML
+    author:   kde
+
+
+# Goanna
+# Goanna is a web rendering engine developed by Moonchild Productions. This engine is known for being used to develop browsers.
+
+# url: https://user-agents.net/rendering-engines/goanna/user-agents
+# Latest user agents
+# Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Goanna/4.8 Firefox/68.0 PaleMoon/29.2.1
+# Mozilla/5.0 (X11; Linux x86_64; rv:4.8) Goanna/20210607 PaleMoon/29.2.1
+# Mozilla/5.0 (Windows NT 5.2; Win64; x64; rv:4.8) Goanna/20210625 PaleMoon/28.10.3a1
+# Mozilla/5.0 (Windows NT 6.1; WOW64; rv:78.0) Gecko/20100101 Goanna/4.8 Firefox/78.0 PaleMoon/29.2.1
+# Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Goanna/4.8 PaleMoon/29.2.1
+
+- identifiers:
+    # Pattern maker method use it
+    browser-engine-goanna:
+      pattern:
+        name: (goanna)
+        separator: true
+        version: true
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'Goanna'
+  space: 'browsers-engines'
+
+  # Information maker method use it
+  info:
+    name:     Goanna
+    author:   moonchildproductions
+
+
+# url: https://developers.whatismybrowser.com/useragents/explore/layout_engine_name/ekiohflow/
+# Servo
+# Servo is an experimental browser engine designed to take advantage of the memory safety properties and concurrency features of the Rust programming language.
+# Servo has always been a research project. It began at the Mozilla Corporation in 2012, and its employees did the bulk of the work until 2020.
+# This included the Quantum project, when portions of Servo were incorporated into the Gecko engine of Firefox.[9][10]
+
+# Latest user agents
+# Mozilla/5.0 (X11; Linux i686) Servo/1.0 (like Gecko) Firefox/36.0
+# Mozilla/5.0 (Android; Mobile; rv:1.0) Servo/1.0 Firefox/36.0
+# Mozilla/5.0 (Mobile; rv:1.0) Servo/1.0 Firefox/36.0
+
+- identifiers:
+    # Pattern maker method use it
+    browser-engine-servo:
+      pattern:
+        name: (servo)
+        separator: true
+        version: true
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'Servo'
+  space: 'browsers-engines'
+
+  # Information maker method use it
+  info:
+    name:     Servo
+    author:   Netscape
+
+
+# EkiohFlow
+# Flow is a web browser with a proprietary rendering engine that claims to "dramatically improve rendering performance".
+# Its JavaScript engine, however, is the SpiderMonkey engine of Firefox.[1][2]
+
+# url: https://developers.whatismybrowser.com/useragents/explore/layout_engine_name/ekiohflow/
+# Latest user agents
+# Mozilla/5.0 (Macintosh; Intel Mac OS X) EkiohFlow/5.5.2.28723M Flow/5.5.2 (like Firefox/53.0)
+# Mozilla/5.0 (Macintosh; Intel Mac OS X) EkiohFlow/5.5.2.28723:28751M Flow/5.5.2 (like Firefox/53.0)
+# Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) EkiohFlow/5.5.2.28744M Flow/5.5.2 (like Firefox/53.0 rv:53.0)
+
+- identifiers:
+    # Pattern maker method use it
+    browser-engine-ekioh-flow:
+      pattern:
+        name: (ekiohflow)
+        separator: true
+        version: true
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'Ekioh Flow'
+  space: 'browsers-engines'
+
+  # Information maker method use it
+  info:
+    name:     Ekioh Flow
+    author:   Netscape
+
+
+# NetSurf
+# NetSurf is an open-source web browser which uses its own layout engine.
+# Its design goal is to be lightweight and portable. NetSurf provides features including tabbed browsing, bookmarks and page thumbnailing.
+
+# url: http://www.useragentstring.com/pages/useragentstring.php?name=GranParadiso
+# Latest user agents
+# Mozilla/5.0 (X11; U; Darwin 10.0.0; en-US; rv:1.9.0.8) Gecko/2009040414 GranParadiso/3.0.8
+# Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.3pre) Gecko/2008091304 GranParadiso/3.0.3pre
+# Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.0.3pre) Gecko/2008090704 GranParadiso/3.0.3pre
+# Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.2pre) Gecko/2008072405 GranParadiso/3.0.2pre
+
+- identifiers:
+    # Pattern maker method use it
+    browser-engine-net-surf:
+      pattern:
+        name: (granparadiso)
+        separator: true
+        version: true
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'NetSurf'
+  space: 'browsers-engines'
+
+  # Information maker method use it
+  info:
+    name:     NetSurf
+    author:   NetSurf
+
+
+# Gecko
+# Gecko is a web rendering engine developed by Mozilla Foundation. This engine is known for being used to develop browsers,
+# bots, applications and email clients. See below the software that is developed using the Gecko engine.
+
+# url: https://user-agents.net/rendering-engines/gecko/user-agents
+# Latest user agents
+# Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0/QpVJ8LnXd1Dmu
+# Mozilla/5.0 (Mobile; Digit_Digit4G-Elite_4G; rv:48.0) Gecko/48.0 Firefox/48.0 KAIOS/2.5.3.1
+
+- identifiers:
+    # Pattern maker method use it
+    browser-engine-gecko:
+      pattern:
+        name: (gecko)
+        separator: true
+        version: true
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'Gecko'
+  space: 'browsers-engines'
+
+  # Information maker method use it
+  info:
+    name:     Gecko
+    author:   Netscape
+
+
+# Tasman
+# Tasman is a web rendering engine developed by Apple Inc. This engine is known for being used to develop browsers.
+
+# url: https://user-agents.net/rendering-engines/tasman/user-agents
+# Latest user agents
+# Mozilla/4.0 (compatible; MSIE 5.15; Mac_PowerPC)
+# Mozilla/4.0 (compatible; MSIE 5.5b1; Mac_PowerPC)
+# Mozilla/4.0 (compatible; MSIE 5.23; Mac_PowerPC)
+# Mozilla/4.0 (compatible; MSIE 5.0; Mac_PowerPC; AtHome021)
+
+- identifiers:
+    # Pattern maker method use it
+    browser-engine-tasman:
+      pattern:
+        name: (msie)
+        separator: true
+        version: true
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'Tasman'
+  space: 'browsers-engines'
+
+  # Information maker method use it
+  info:
+    name:     Tasman
+    author:   microsoft
+
+
+# Trident
+# Trident is a web rendering engine developed by Microsoft Corporation. This engine is known for being used to develop browsers,
+# bots, applications, email clients and media players.
+
+# url: https://user-agents.net/rendering-engines/trident/user-agents
+# Latest user agents
+# Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko Core/1.47.915.400 QQBrowser/9.4.8659.400
+# Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 10.0; Win64; x64; Trident/7.0; .NET4.0C; .NET4.0E; .NET CLR 2.0.50727; .NET CLR 3.0.30729; .NET CLR 3.5.30729; Microsoft Outlook 15.0.4927; ms-office; MSOffice 15)
+# Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/7.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; .NET4.0C; .NET4.0E; Media Center PC 6.0; Microsoft Outlook 15.0.4911; ms-office; MSOffice 15)
+# Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/7.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; .NET4.0C; .NET4.0E; Media Center PC 6.0; BRI/2; MASE; InfoPath.3; WWTClient2; Zoom 3.6.0)
+
+- identifiers:
+    # Pattern maker method use it
+    browser-engine-trident:
+      pattern:
+        name: (trident)
+        separator: true
+        version: true
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'Trident'
+  space: 'browsers-engines'
+
+  # Information maker method use it
+  info:
+    name:     Trident
+    author:   microsoft
+
+# Presto
+# Presto is a web rendering engine developed by Opera Software ASA. This engine is known for being used to develop browsers.
+
+# url: https://user-agents.net/rendering-engines/presto/user-agents
+# Latest user agents
+# Opera/9.80 (Windows NT 6.1; WOW64) Presto/2.12.388 Version/12.18
+# Opera/9.80 (Linux armv7l) Presto/2.12.407 Version/12.51 , D50u-D1-UHD/V1.5.16-UHD (Vizio, D50u-D1, Wireless)
+# SAMSUNG-GT-S5222 Opera/9.80 (J2ME/MIDP; Opera Mini/6.5.28404/191.238; U; en) Presto/2.12.423 Version/12.16
+# Opera/9.52 (X11; Linux i686; U; en)
+# Opera/9.80 (J2ME/MIDP; Opera Mini/5.0.22349/37.6584; U; en) Presto/2.12.423 Version/12.16
+
+- identifiers:
+    # Pattern maker method use it
+    browser-engine-presto:
+      pattern:
+        name: (presto)
+        separator: true
+        version: true
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'Presto'
+  space: 'browsers-engines'
+
+  # Information maker method use it
+  info:
+    name:     Presto
+    author:   opera
+
+
+# NetFront
+# NetFront is a web rendering engine developed by Access. This engine is known for being used to develop browsers.
+
+# url: https://user-agents.net/rendering-engines/netfront/user-agents
+# Latest user agents
+# HbbTV/1.2.1 (; VESTEL; TV MB90; 1.0; 1.0;) CE-HTML/1.0 LOH; NetFront/4.1 SmartTvA/3.0.0
+# SAMSUNG-GT-E2220/E2220XXMI1 NetFront/4.1 Profile/MIDP-2.0 Configuration/CLDC-1.1
+# SonyEricssonU10i/R7BA Browser/NetFront/3.5 Profile/MIDP-2.1 Configuration/CLDC-1.1 JavaPlatform/JP-8.5.2
+# Mozilla/4.0 (compatible; Linux 2.6.10) NetFront/3.3 Kindle/1.0 (screen 600x800)
+# SAMSUNG-GT-C3520/C3520XFLB1 NetFront/4.1 Profile/MIDP-2.0 Configuration/CLDC-1
+
+- identifiers:
+    # Pattern maker method use it
+    browser-engine-net-front:
+      pattern:
+        name: (netfront)
+        separator: true
+        version: true
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'NetFront'
+  space: 'browsers-engines'
+
+  # Information maker method use it
+  info:
+    name:     NetFront
+    author:   access
+
+
+# Mariner
+# Mariner was a canceled project to add performance and stability enhancements to the layout engine used in the Netscape Communicator
+# web browser. Mariner became open source in March 1998 when Netscape released its client code and started the Mozilla project.
+
+
+# Url: https://argonaut.gda.pl/robots.txt
+# Url: https://github.com/danielmiessler/SecLists/blob/master/Fuzzing/User-Agents/UserAgents.fuzz.txt
+# Latest user agents
+# Mariner/5.1b [de] (Win95; I;Kolibri gncwebbot)=Kolibri.de
+# Mariner/5.1b [de] (Win95; I ;Kolibri gncwebbot)
+
+- identifiers:
+    # Pattern maker method use it
+    browser-engine-mariner:
+      pattern:
+        name: (mariner)
+        separator: true
+        version: true
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'Mariner'
+  space: 'browsers-engines'
+
+  # Information maker method use it
+  info:
+    name:     Mariner
+    author:   mozilla
+
+
+# Cobra
+# Cobra is a rendering engine, origionally designed for LoboBrowser,
+# the gui of LoboBrowser has been separated from it so Cobra can easily be improved by forks of LoboBrowser.
+# url: https://github.com/lobobrowser/Cobra
+
+#https://lobobrowser.wordpress.com/
+# url: http://www.zytrax.com/tech/web/browser_ids.htm
+# Mozilla/4.0 (compatible; MSIE 6.0; U; Windows;) Lobo/0.98.2
+
+# Latest user agents
+# Mozilla/4.0 (compatible; MSIE 6.0; U; Windows;) Lobo/0.98.2 cobra/1.1
+
+- identifiers:
+    # Pattern maker method use it
+    browser-engine-cobra:
+      pattern:
+        name: (cobra)
+        separator: true
+        version: true
+      functional: true
+
+    browser-engine-cobra-fallback:
+      pattern:
+        name: (cobra)
+        separator: false
+        version: false
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'Cobra'
+  space: 'browsers-engines'
+
+  # Information maker method use it
+  info:
+    name:     Cobra
+    author:   LoboBrowser
+
+
+# libwww
+# libwww (Library World Wide Web) is a modular client-side web API for Unix and Windows. It is also the name of the reference implementation of the libwww API.
+# It has been used for applications of varying sizes, including web browsers, editors, Internet bots, and batch tools. Pluggable modules provided with libwww add support for HTTP/1.1 with caching, pipelining, POST, Digest Authentication, and deflate.
+# The purpose of libwww is to serve as a testbed for protocol experiments[5] so that software developers do not have to "reinvent the wheel."[6]
+# libcurl is considered to be a modern replacement for libwww.[7]
+
+# url: https://en.wikipedia.org/wiki/Libwww
+# url: https://github.com/danielmiessler/SecLists/blob/master/Fuzzing/User-Agents/software-name/lynx.txt
+# url: https://developers.whatismybrowser.com/useragents/explore/software_name/library-for-www-in-perl/
+# url: https://developers.whatismybrowser.com/useragents/explore/software_name/library-for-www-in-perl/
+
+# Latest user agents
+# Lynx/2.8.5rel.1 libwww-FM/2.14 SSL-MM/1.4.1 GNUTLS/1.0.16
+# Lynx/2.8.8pre.4 libwww-FM/2.14 SSL-MM/1.4.1 GNUTLS/2.12.23
+# Lynx/2.8.9dev.11 libwww-FM/2.14 SSL-MM/1.4.1 GNUTLS/3.5.6
+
+# Lynx/2.8.5rel.1 libwww-FM/2.15FC SSL-MM/1.4.1c OpenSSL/0.9.7e-dev
+# Lynx/2.8.9rel.1 libwww-FM/2.14 SSL-MM/1.4.1 GNUTLS/3.6.5
+# Lynx/2.8.5dev.16 libwww-FM/2.14 SSL-MM/1.4.1 OpenSSL/0.9.7a
+# Lynx/2.8.9dev.8 libwww-FM/2.14 SSL-MM/1.4.1 GNUTLS/3.4.9
+
+# libwww-perl/6.15
+# Mozilla/5.0libwww-perl/5.79
+# Mozilla/5.0libwww-perl/5.826
+# libwww-perl/5.837
+# libwww-perl/5.812
+
+- identifiers:
+    # Pattern maker method use it
+    browser-engine-libwww:
+      pattern:
+        name: (libwww\-\w+)
+        separator: true
+        version: true
+      functional: true
+    browser-engine-libwww-fallback:
+      pattern:
+        name: (libwww)
+        separator: false
+        version: false
+      functional: true
+
+  # if as not matched with extracted name, then new name set into as key.
+  as: 'libwww'
+  space: 'browsers-engines'
+
+  # Information maker method use it
+  info:
+    name:     libwww
+    author:   TimJean

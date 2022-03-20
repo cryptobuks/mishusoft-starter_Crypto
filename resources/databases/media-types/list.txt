@@ -1,0 +1,4 @@
+http://www.freedesktop.org/standards/shared-mime-info
+https://raw.githubusercontent.com/magic/mime-types/master/src/mimes.mjs
+/usr/share/mime/globs
+/usr/share/mime/globs2

@@ -1,0 +1,5 @@
+
+weblink: https://xdebug.org/download
+
+Add ini to php.ini
+zend_extension=xdebug

@@ -1,0 +1,7 @@
+# configure with gulp
+$ yarn add --dev gulp gulp-babel gulp-clean-css gulp-sass gulp-typescript gulp-uglify
+
+# use gulp config file
+Gulpfile.esm.js
+Gulpfile.js
+Gulpfile.webpack.config.js

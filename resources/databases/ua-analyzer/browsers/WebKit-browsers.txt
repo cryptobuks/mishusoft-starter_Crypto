@@ -1,0 +1,37 @@
+WebKit-based
+Status	Browser
+Aloha Browser (iOS and Android)
+experimental	Amazon Kindle
+discontinued	Arora
+discontinued	BOLT browser
+Google Chrome for iOS
+Dolphin Browser (Android and Bada)
+Dooble (qtwebkit version discontinued) (up to Version 1.56)
+Firefox for iOS
+discontinued	Flock (version 3.0 and above)
+iCab (version 4 uses WebKit; earlier versions used its own rendering engine)
+discontinued	Iris Browser
+Konqueror (version 4 can use WebKit as an alternative to its native KHTML[25])
+Maxthon (version 3.0 and above)
+Microsoft Edge for iOS
+Midori
+Nintendo 3DS NetFront Browser NX
+discontinued	OmniWeb
+Otter Browser (uses Blink and WebKit; aims to recreate the features of old Opera)
+discontinued	OWB
+discontinued	QtWeb
+qutebrowser (a Blink-based backend is currently used by default.)
+Roccat Browser
+discontinued	Rekonq
+Safari
+discontinued	PhantomJS (a headless browser)
+discontinued	Shiira
+discontinued	SlimBoat[26]
+discontinued	Steel for Android
+surf
+discontinued	Uzbl
+GNOME Web (Epiphany)
+discontinued	Web Browser for S60, used in all Nokia Symbian smartphones
+discontinued	webOS, used in the Palm Pre, Palm Pixi, Pre 2, HP Veer, Pre 3, and TouchPad mobile devices
+WebPositive, browser in Haiku
+discontinued	xombrero

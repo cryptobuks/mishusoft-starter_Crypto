@@ -1,0 +1,46 @@
+Use cases
+All versions of Internet Explorer for Windows from 4.0 onwards use Trident, and it is also used by various other web browsers and software components (see Internet Explorer shells). In Windows 98, Windows Me, and Windows 2000, it is also used for the Windows file manager/shell, Windows Explorer.[19] The Add/Remove Programs tool in Windows 2000 uses Trident to render the list of installed programs,[20] and in Windows XP it is also used for the User Accounts Control Panel, which is an HTML Application.[21] Trident, however, was not used by Internet Explorer for Mac (which used Tasman starting with version 5.0), nor by the early versions of Internet Explorer Mobile.
+
+Some other Trident-based applications include:
+
+AOL Explorer, a web browser
+AOL Instant Messenger 6.x, which uses Trident to render conversation and profile windows, and advertisement panels
+Avant Browser
+Bento Browser (built into Winamp)
+EA Link, incompatible with Trident as of Internet Explorer 7 RC2
+Flashpoint Secure Player, uses Trident to run ActiveX based web games
+Google Talk, which used Trident to render chat windows and profile cards
+GreenBrowser, which is also presented at the BrowserChoice.eu page
+IE Tab, a Firefox and Google Chrome add-on used to render pages with Trident within the Firefox or Chrome user interface.
+Impulse (content delivery), uses Trident to render "Explore" page, as well as several of the "Community" pages
+LimeWire, which renders the page 'New@Lime'
+Lunascape, developed by Lunascape Corporation
+Maxthon, which uses the Trident engine while adding features not built into IE7
+MediaBrowser, customized browsers, especially for Nintendo
+MenuBox, a web browser
+Microsoft Compiled HTML Help
+Microsoft Encarta and related products
+Microsoft InfoPath
+Microsoft Outlook which uses Trident to render HTML Messages (prior to Outlook 2007) and the "Outlook Today" screen
+Microsoft Outlook Express, which uses Trident to render HTML Messages
+Microsoft Visual InterDev 6 uses Trident in editing mode as visual HTML designer
+Microsoft Visual Studio 2002-2005 use Trident in editing mode to provide visual ASP.NET/HTML designer
+Microsoft Visual Studio and Visual Basic to render the WebBrowser control
+MSN Messenger, which uses it to produce Flash-based "winks" and games, and for all advertisements shown in the advertisement banner
+NeoPlanet, a web browser
+NetCaptor, a web browser
+Netscape Browser (Netscape 8), which used Trident to render web pages in IE mode
+Pyjs, a python Widget set Toolkit. Embedding IWebBrowser2 as an Active-X component and accessing the COM interface, Pyjs uses Trident for the Desktop version, through the python win32 "comtypes" library.
+Phoenix Browser, a lightweight web browser
+RealNetworks
+Sleipnir, a web browser
+SlimBrowser, a web browser
+Skype, software for VoIP that renders HTML data with Trident
+Tencent Traveler, a web browser
+ThreeTeeth Browser, a lightweight web browser
+UltraBrowser, a web browser
+Valve's Steam client, previous versions of which used Trident to render the "Store", "Update News" and "Community" sections as well as the Steam in-game browser and MOTD screens in Valve games. The Steam client was updated to use WebKit instead of Trident for these features. Then was updated further to use the Chromium Embedded Framework.[citation needed]
+WebbIE, a web browser
+Windows Live Writer, which uses Trident for its editor
+Windows Media Player, which uses Trident to render the "Media Information" pages
+360 Secure Browser, a web browser in China

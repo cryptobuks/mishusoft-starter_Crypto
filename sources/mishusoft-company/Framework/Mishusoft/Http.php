@@ -2,8 +2,6 @@
 
 namespace Mishusoft;
 
-use Mishusoft\Utility\Implement;
-
 class Http extends Http\Errors
 {
     /**
@@ -40,7 +38,7 @@ class Http extends Http\Errors
         }
 
         if ($format === 'object') {
-            return Implement::arrayToObject(self::BUILT_IN_HTTP_ERRORS_RECORDS);
+            return array_to_object(self::BUILT_IN_HTTP_ERRORS_RECORDS);
         }
 
         return ['container' => 'empty'];
@@ -52,15 +50,15 @@ class Http extends Http\Errors
      *
      * @param string $description Error description.
      *
-     * @return integer
+     * @return int
      */
     public static function errorCode(string $description): int
     {
-        foreach (self::errorsRecords() as $errKey => $details) {
+        foreach (self::BUILT_IN_HTTP_ERRORS_RECORDS as $errKey => $details) {
             if (array_key_exists('Description', $details) === true
                 && strtolower($details['Description']) === strtolower($description)
             ) {
-                return $errKey;
+                return (int) $errKey;
             }
         }
 
@@ -77,8 +75,8 @@ class Http extends Http\Errors
      */
     public static function errorDescription(int $code): string
     {
-        if (array_key_exists($code, self::errorsRecords()) === true) {
-            return self::errorsRecords()[$code]['Description'];
+        if (array_key_exists($code, self::BUILT_IN_HTTP_ERRORS_RECORDS) === true) {
+            return self::BUILT_IN_HTTP_ERRORS_RECORDS[$code]['Description'];
         }
 
         return 'Not Found';
@@ -127,7 +125,7 @@ class Http extends Http\Errors
     public static function getHost(bool $useForwardedHost = false): string
     {
         $s = self::getDetails();
-        $sp = strtolower($s['SERVER_PROTOCOL']);
+        $sp = strtolower(array_key_exists('SERVER_PROTOCOL', $s) ? $s['SERVER_PROTOCOL'] : 'cli');
         $protocol = substr($sp, 0, strpos($sp, '/')) . ((self::isSecured()) ? 's' : '');
 
         if (($useForwardedHost && isset($s['HTTP_X_FORWARDED_HOST']))) {
@@ -135,7 +133,7 @@ class Http extends Http\Errors
         } else {
             $host = ($s['HTTP_HOST'] ?? null);
         }
-        $host = ($host ?? $s['SERVER_NAME']) . self::getPort();
+        $host = ($host ?? array_key_exists('SERVER_NAME', $s) ? $s['SERVER_NAME'] : 'cli') . self::getPort();
         return $protocol . '://' . $host;
     }
 

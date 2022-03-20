@@ -8,14 +8,14 @@
  * @category Loader
  * @package  Mishusoft_Framework
  * @author   Al-Amin Ahamed <alamin@mishusoft.com>
- * @license  MIT https://opensource.org/licenses/MIT
+ * @license  GPL-3.0-only https://opensource.org/licenses/gpl-3.0.html
  * @link     https://mishusoft.com
  */
 
 //Load pre defined constants
 require_once __DIR__ . "/constants.php";
-require_once __DIR__ . "/constants.configurable.php";
 require_once __DIR__ . "/functions.php";
+require_once __DIR__ . "/helpers.php";
 
 //Load mishusoft framework
 require_once __DIR__ . "/autoload.php";

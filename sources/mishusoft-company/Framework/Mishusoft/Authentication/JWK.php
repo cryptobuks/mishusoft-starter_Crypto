@@ -4,19 +4,20 @@
 
 namespace Mishusoft\Authentication;
 
-use DomainException;
-use InvalidArgumentException;
+use Mishusoft\Exceptions\LogicException\DomainException;
+use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
+use Mishusoft\Exceptions\RuntimeException\UnexpectedValueException;
 use OpenSSLAsymmetricKey;
-use UnexpectedValueException;
-use function base64_encode;
-use function chr;
-use function chunk_split;
-use function count;
-use function ltrim;
-use function openssl_error_string;
-use function openssl_pkey_get_public;
-use function pack;
-use function strlen;
+
+//use function base64_encode;
+//use function chr;
+//use function chunk_split;
+//use function count;
+//use function ltrim;
+//use function openssl_error_string;
+//use function openssl_pkey_get_public;
+//use function pack;
+//use function strlen;
 
 /**
  * JSON Web Key implementation, based on this spec:

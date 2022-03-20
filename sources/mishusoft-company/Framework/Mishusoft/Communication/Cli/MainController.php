@@ -1,6 +1,6 @@
 <?php
 
-namespace App\CliSurface\Controllers;
+namespace Mishusoft\Communication\Cli;
 
 use Mishusoft\Drivers\CliSurfaceController;
 

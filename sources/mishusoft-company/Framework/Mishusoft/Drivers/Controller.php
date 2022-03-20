@@ -4,16 +4,16 @@ namespace Mishusoft\Drivers;
 
 use InvalidArgumentException;
 use Mishusoft\Base;
-use Mishusoft\Exceptions\RuntimeException\NotFoundException;
-use Mishusoft\Exceptions;
-use Mishusoft\Authentication\Acl;
 use Mishusoft\Drivers\View;
+use Mishusoft\Exceptions;
+use Mishusoft\Exceptions\Authentication\Acl;
+use Mishusoft\Exceptions\RuntimeException\NotFoundException;
 use Mishusoft\Http\Request\Classic as Request;
+use Mishusoft\Http\Runtime;
 use Mishusoft\Http\Session;
 use Mishusoft\MPM;
 use Mishusoft\Registry;
 use Mishusoft\Storage;
-use Mishusoft\Http\Runtime;
 
 abstract class Controller implements ControllerInterface
 {
@@ -63,7 +63,7 @@ abstract class Controller implements ControllerInterface
         if (empty($data->security_code) || $data->security_code !== 1) {
             Storage\Stream::json(['type' => 'error', 'message' => 'Pagination\'s security code not found.']);
         }
-        if (empty($data->pageNumber) && $this->filterInt($data->pageNumber) !==0) {
+        if (empty($data->pageNumber) && $this->filterInt($data->pageNumber) !== 0) {
             Storage\Stream::json(['type' => 'error', 'message' => 'Page number not found.']);
         }
         if (empty($data->viewMode)) {
@@ -241,7 +241,7 @@ abstract class Controller implements ControllerInterface
             $model = Base::getClassNamespace($rootModel);
             return new $model();
         }
-        throw new NotFoundException($rootModel. ' not found');
+        throw new NotFoundException($rootModel . ' not found');
     }
 
     /**

@@ -1,12 +1,10 @@
 parameters:
 	bootstrapFiles:
-		- bootstrap/app.php
-		- storages/framework/images.php
-		- storages/framework/resolver.php
+		- public_html/index.php
 	tmpDir: tmp
 	paths:
 		- sources
-		- bootstrap
+		# - bootstrap
 	fileExtensions:
 		- php
 		- module

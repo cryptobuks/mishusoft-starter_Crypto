@@ -8,9 +8,9 @@ class Debug
 {
     public static function preOutput($argument): void
     {
-        echo '<pre>';
+        echo IS_CLI ? "\n" : "<pre>";
         print_r($argument, false);
-        echo '</pre>';
+        echo IS_CLI ? "\n" : "</pre>";
     }
 
     public static function preVarDump($argument)

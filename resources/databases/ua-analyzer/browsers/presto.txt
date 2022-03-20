@@ -1,0 +1,15 @@
+Presto-based applications
+Web browsers
+Opera
+Opera 7 to 12
+Opera Mobile 9.5 to 12
+Opera Mini (continues to use Presto rendering on an intermediate server)
+Nintendo
+Nintendo DS Browser (based on Opera)[20]
+Nintendo DSi Browser (based on Opera)[21]
+Wii Internet Channel Browser (based on Opera)[22]
+Nokia 770 Browser (based on Opera)
+Sony Mylo COM-1's Browser (based on Opera)[23]
+HTML editors
+Macromedia Dreamweaver MX to Dreamweaver CS3 (CS4/CS5 use WebKit)
+Adobe Creative Suite 2[24] and 3[25]

@@ -1,0 +1,13 @@
+https://www.apachelounge.com/download/
+https://www.apache.org/dyn/closer.cgi/httpd/binaries/win32/symbols/
+https://bitnami.com/stack/wamp/installer
+https://sourceforge.net/projects/wampserver/files/
+https://www.apachehaus.com/cgi-bin/download.plx
+https://httpd.apache.org/docs/current/platform/windows.html#down
+
+https://archive.apache.org/dist/httpd/binaries/win32/
+
+https://www.microsoft.com/en-us/download/details.aspx?id=30679
+
+https://redmine.lighttpd.net/projects/lighttpd/wiki/TutorialConfiguration
+

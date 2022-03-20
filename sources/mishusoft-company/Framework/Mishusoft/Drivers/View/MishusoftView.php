@@ -9,6 +9,7 @@ use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Storage;
 use Mishusoft\System\Log;
+use Mishusoft\System\Memory;
 use Mishusoft\Utility\ArrayCollection;
 use Mishusoft\Utility\Implement;
 use Mishusoft\Utility\Inflect;
@@ -82,7 +83,7 @@ class MishusoftView extends Base implements MishusoftViewInterface
         $this->widgetConfig = $widgetConfig;
 
         // Info of template.
-        $this->templateName = strtolower(DEFAULT_APP_NAME);
+        $this->templateName = strtolower(Memory::getConstant('DEFAULT_APP_NAME'));
 
         // Template preset info.
         $this->templateLoad = 'auto';

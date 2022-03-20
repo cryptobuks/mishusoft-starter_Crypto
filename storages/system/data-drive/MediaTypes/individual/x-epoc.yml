@@ -1,0 +1,8 @@
+---
+- extension:
+  - sisx
+  type: x-epoc/x-sisx-app
+  document: SISX package
+  acronym: SIS
+  expanded-acronym: Symbian Installation File
+...

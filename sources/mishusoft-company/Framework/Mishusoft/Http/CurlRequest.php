@@ -6,6 +6,7 @@ use CurlHandle;
 use Mishusoft\Exceptions\HttpException\HttpResponseException;
 use Mishusoft\Exceptions\RuntimeException;
 use Mishusoft\Framework;
+use Mishusoft\Storage\FileSystem;
 use Mishusoft\Utility\Implement;
 use Mishusoft\Utility\Inflect;
 
@@ -61,7 +62,7 @@ class CurlRequest
      * @param string $userAgent
      * @return CurlRequest
      */
-    public function setUserAgent(string $userAgent): static
+    public function setUserAgent(string $userAgent = ''): static
     {
         if ($userAgent !== '') {
             $this->userAgent = $userAgent;
@@ -109,6 +110,11 @@ class CurlRequest
         //@curl_setopt($this->ch, CURLOPT_VERBOSE, 1);
         @curl_setopt($this->ch, CURLOPT_HEADER, 1);
         @curl_setopt($this->ch, CURLOPT_FOLLOWLOCATION, 1);
+        // https://stackoverflow.com/questions/24611640/curl-60-ssl-certificate-problem-unable-to-get-local-issuer-certificate
+        @curl_setopt($this->ch, CURLOPT_SSL_VERIFYHOST, false);
+        // https://curl.se/docs/sslcerts.html
+         @curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, false);
+
 
         // Set time out.
         if (array_key_exists('timeout', $params) === true) {
@@ -116,6 +122,8 @@ class CurlRequest
         } else {
             @curl_setopt($this->ch, CURLOPT_TIMEOUT, $this->timeOut);
         }
+
+       // $this->setCertificate();
 
 
         return $this;
@@ -164,6 +172,16 @@ class CurlRequest
             } else {
                 throw new \RuntimeException('Cookie parameter not found.');
             }
+        }
+
+
+        return $this;
+    }
+
+    public function setCertificate():static
+    {
+        if (defined('CURL_CA_CERT') && file_exists(CURL_CA_CERT)){
+            @curl_setopt($this->ch, CURLOPT_CERTINFO, CURL_CA_CERT);
         }
 
 
@@ -289,7 +307,7 @@ class CurlRequest
                 self::download($item, $keyword, $format, $directory, $filter, $filenamePrefix);
             }
 
-            print_r('The content of ' . $item . ' download has been finished.' . LB . LB, false);
+          //  print_r('The content of ' . $item . ' download has been finished.' . LB . LB, false);
         }
     }
 
@@ -318,7 +336,7 @@ class CurlRequest
                     unlink($filename);
                 }
 
-                self::write($filename, self::response($keyword, $item, $format));
+                (new CurlRequest)->write($filename, self::response($keyword, $item, $format));
             }
         } catch (\Error | \Exception $exception) {
             echo LB;
@@ -329,8 +347,14 @@ class CurlRequest
         }
     }
 
-    public static function write(string $filename, string $content): void
+    /**
+     * @throws RuntimeException
+     */
+    public function write(string $filename, string $content): void
     {
+        // create directory if not exists
+        FileSystem::makeDirectory(dirname($filename));
+
         if (is_resource(fopen($filename, 'wb+')) === true) {
             $resource = fopen($filename, 'wb+');
             if (is_resource($resource) === true) {
@@ -338,12 +362,12 @@ class CurlRequest
                 fclose($resource);
             }
 
-            print_r('Write new file: ' . basename($filename) . LB, false);
+           // print_r('Write new file: ' . basename($filename) . LB, false);
         }
     }
 
     /**
-     * @throws HttpResponseException
+     * @throws HttpResponseException|RuntimeException
      */
     public static function response($keyword, $item, $format): string
     {
@@ -550,6 +574,9 @@ class CurlRequest
      */
     public function getResponseBody(): string
     {
+        if (count($this->getErrors()) > 0){
+            return Implement::toJson($this->getErrors());
+        }
         return $this->responseBody;
     }
 

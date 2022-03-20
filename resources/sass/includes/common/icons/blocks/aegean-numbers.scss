@@ -1,0 +1,38 @@
+.ms-icon {
+  &-aegean-word-separator-line::after {
+    content: '\010100';
+  }
+  &-aegean-word-separator-dot::after {
+    content: '\010101';
+  }
+  &-aegean-check-mark::after {
+    content: '\010102';
+  }
+  &-aegean-number-one::after {
+    content: '\010107';
+  }
+  &-aegean-number-two::after {
+    content: '\010108';
+  }
+  &-aegean-number-three::after {
+    content: '\010109';
+  }
+  &-aegean-number-four::after {
+    content: '\01010A';
+  }
+  &-aegean-number-five::after {
+    content: '\01010B';
+  }
+  &-aegean-number-six::after {
+    content: '\01010C';
+  }
+  &-aegean-number-seven::after {
+    content: '\01010D';
+  }
+  &-aegean-number-eight::after {
+    content: '\01010E';
+  }
+  &-aegean-number-nine::after {
+    content: '\01010F';
+  }
+}

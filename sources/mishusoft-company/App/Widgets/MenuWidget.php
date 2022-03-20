@@ -2,8 +2,8 @@
 
 namespace App\Widgets;
 
-use Mishusoft\Authentication\Widget;
 use App\Widgets\Models\menuModelWidget;
+use Mishusoft\Exceptions\Authentication\Widget;
 
 class MenuWidget extends Widget
 {
@@ -44,9 +44,9 @@ class MenuWidget extends Widget
             $menu,
             $view,
             [
-                'name'     => $menu,
-                'menu'     => $this->menu->getSelectedMenu($view),
-                'inverse'  => $inverse,
+                'name' => $menu,
+                'menu' => $this->menu->getSelectedMenu($view),
+                'inverse' => $inverse,
                 'siteInfo' => $this->menu->getSiteInfo(),
             ],
             $format
@@ -62,10 +62,10 @@ class MenuWidget extends Widget
     {
         // return $this->menu->getMenuConfig($menu);
         // Array ( [header] => Array ( [position] => header [show] => all [hide] => Array ( [0] => default_home [1] => Login [2] => Password recovery [3] => Register ) ) );
-        $menus['top']    = [
+        $menus['top'] = [
             'position' => 'header',
-            'show'     => 'all',
-            'hide'     => [
+            'show' => 'all',
+            'hide' => [
                 'Login',
                 'Register',
                 'Password recovery',
@@ -78,8 +78,8 @@ class MenuWidget extends Widget
         ];
         $menus['header'] = [
             'position' => 'header',
-            'show'     => 'all',
-            'hide'     => [
+            'show' => 'all',
+            'hide' => [
                 'Login',
                 'Register',
                 'Password recovery',
@@ -92,10 +92,10 @@ class MenuWidget extends Widget
                 'Tracker',
             ],
         ];
-        $menus['left']   = [
+        $menus['left'] = [
             'position' => 'left',
-            'show'     => 'all',
-            'hide'     => [
+            'show' => 'all',
+            'hide' => [
                 'Login',
                 'Register',
                 'Password recovery',
@@ -106,10 +106,10 @@ class MenuWidget extends Widget
                 'Tracker',
             ],
         ];
-        $menus['right']  = [
+        $menus['right'] = [
             'position' => 'right',
-            'show'     => 'all',
-            'hide'     => [
+            'show' => 'all',
+            'hide' => [
                 'Login',
                 'Register',
                 'Password recovery',
@@ -121,8 +121,8 @@ class MenuWidget extends Widget
         ];
         $menus['footer'] = [
             'position' => 'footer',
-            'show'     => 'all',
-            'hide'     => [
+            'show' => 'all',
+            'hide' => [
                 'Login',
                 'Register',
                 'Password recovery',

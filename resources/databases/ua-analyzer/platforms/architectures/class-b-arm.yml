@@ -1,0 +1,163 @@
+# url: https://en.wikipedia.org/wiki/ARM_architecture
+# url: https://en.wikipedia.org/wiki/List_of_ARM_microarchitectures
+
+# ARM (stylised in lowercase as arm, previously an acronym for Advanced RISC Machines and originally Acorn RISC Machine)
+# is a family of reduced instruction set computing (RISC) architectures for computer processors, configured for various environments.
+# Arm Ltd. develops the architecture and licenses it to other companies, who design their own products that implement
+# one of those architectures‍—‌including systems-on-chips (SoC) and systems-on-modules (SoM) that incorporate different components such as memory,
+# interfaces, and radios.
+
+- architecture: 'ARMv1'
+  word: '32 bit'
+  family: ARM1
+  profile: Classic
+
+- architecture: 'ARMv2'
+  word: '32 bit'
+  family: ARM2
+  profile: Classic
+
+- architecture: 'ARMv3'
+  word: '32 bit'
+  family: ARM3
+  profile: Classic
+
+- architecture: 'ARMv4'
+  word: '32 bit'
+  family: ARM4
+  profile: Classic
+
+- architecture: 'ARMv4T'
+  word: '32 bit'
+  family: ARM4
+  profile: Classic
+
+- architecture: 'ARMv5TE'
+  word: '32 bit'
+  family: ARM5
+  profile: Classic
+
+# Mozilla/5.0 (X11; U; Linux armv61; en-US; rv:1.9.1b2pre) Gecko/20081015 Fennec/1.0a1
+- architecture: 'ARMv6'
+  word: '32 bit'
+  family: ARM6
+  profile: Classic
+
+- architecture: 'ARMv6-M'
+  word: '32 bit'
+  family: ARM6
+  profile: Microcontroller
+
+# iTunes/4.7.1 (Linux; N; piCore; armv8l-linux; ES; utf8) SqueezeCenter, Squeezebox Server, Logitech Media Server/8.1.1/1610364019
+- architecture: 'ARMv7-M'
+  word: '32 bit'
+  family: ARM7
+  profile: Microcontroller
+
+- architecture: 'ARMv7E-M'
+  word: '32 bit'
+  family: ARM7
+  profile: Microcontroller
+
+- architecture: 'ARMv8-M'
+  word: '32 bit'
+  family: ARM8
+  profile: Microcontroller
+
+- architecture: 'ARMv7-R'
+  word: '32 bit'
+  family: ARM7
+  profile: Real-time
+
+- architecture: 'ARMv8-R'
+  word: '32/64 bit'
+  family: ARM8
+  profile: Real-time
+
+- architecture: 'AArch32'
+  word: '64 bit'
+  family: ARMv8-R
+  profile: Real-time
+
+- architecture: 'ARMv7-A'
+  word: '32 bit'
+  family: ARM7
+  profile: Application
+
+- architecture: 'ARMv8-A'
+  word: '32/64 bit'
+  family: ARM8
+  profile: Application
+
+- architecture: 'AArch64'
+  word: '64 bit'
+  family: ARMv8-A
+  profile: Application
+
+- architecture: 'ARMv8.1-A'
+  word: '64/32 bit'
+  family: ARM8
+  profile: Application
+
+- architecture: 'ARMv8.2-A'
+  word: '64/32 bit'
+  family: ARM8
+  profile: Application
+
+- architecture: 'ARMv8.3-A'
+  word: '64/32 bit'
+  family: ARM8
+  profile: Application
+
+- architecture: 'ARMv8.4-A'
+  word: '64/32 bit'
+  family: ARM8
+  profile: Application
+
+- architecture: 'ARMv8.5-A'
+  word: '64/32 bit'
+  family: ARM8
+  profile: Application
+
+- architecture: 'ARMv8.6-A'
+  word: '64 bit'
+  family: ARM8
+  profile: Application
+
+# fallback
+# Mozilla/5.0 (compatible; MSIE 10.0; Windows Phone 8.0; Trident/6.0; IEMobile/10.0; ARM; Touch; Microsoft; Lumia 950)
+- architecture: 'arm64'
+  word: '64 bit'
+  family: ARM
+  profile: Any
+
+- architecture: 'ARM'
+  word: '32 bit'
+  family: ARM
+  profile: Any
+
+
+#   // ARM architecture.
+#    'ARMv1' => '32 bit',
+#    'ARMv2' => '32 bit',
+#    'ARMv3' => '32 bit',
+#    'ARMv4' => '32 bit',
+#    'ARMv4T' => '32 bit',
+#    'ARMv5TE' => '32 bit',
+#    'ARMv6' => '32 bit',
+#    'ARMv6-M' => '32 bit',
+#
+#    'ARMv7-M' => '32 bit',
+#    'ARMv7E-M' => '32 bit',
+#    'ARMv7-R' => '32 bit',
+#    'ARMv7-A' => '32 bit',
+#    'ARMv8-M' => '32 bit',
+#    'ARMv8-R' => '32 bit',
+#
+#    'ARMv8-A' => '64 bit',
+#    'ARMv8.1-A' => '64/32 bit',
+#    'ARMv8.2-A' => '64/32 bit',
+#    'ARMv8.3-A' => '64/32 bit',
+#    'ARMv8.4-A' => '64/32 bit',
+#    'ARMv8.5-A' => '64/32 bit',
+#    'ARMv8.6-A' => '64/32 bit',

@@ -1,0 +1,77 @@
+
+- identifiers:
+    wm-x11:
+      pattern:
+        name: '(x11)'
+        separator: false
+        version: false
+      functional: true
+
+  info: wm x11
+
+- identifiers:
+    wm-linux:
+      pattern:
+        name: '(linux)'
+        separator: false
+        version: false
+      functional: true
+
+  info: wm linux
+
+- identifiers:
+    wm-windows:
+      pattern:
+        name: '(windows)'
+        separator: false
+        version: false
+      functional: true
+    wm-windows-old:
+      pattern:
+        name: '(win)'
+        separator: false
+        version: false
+      functional: true
+
+  info: wm windows
+
+- identifiers:
+    wm-android:
+      pattern:
+        name: '(android)'
+        separator: false
+        version: false
+      functional: true
+
+  info: wm android
+
+- identifiers:
+    wm-cpu:
+      pattern:
+        name: '(cpu)'
+        separator: false
+        version: false
+      functional: true
+
+  info: wm cpu
+
+- identifiers:
+    wm-mac:
+      pattern:
+        name: '(mac)'
+        separator: false
+        version: false
+      functional: true
+
+  info: wm mac
+
+- identifiers:
+    wm-iphone:
+      pattern:
+        name: '(iphone)'
+        separator: false
+        version: false
+      functional: true
+
+  info: wm iphone
+

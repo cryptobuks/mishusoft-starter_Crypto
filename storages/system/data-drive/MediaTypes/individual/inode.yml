@@ -1,0 +1,25 @@
+---
+- extension: []
+  type: inode/blockdevice
+  document: block device
+- extension: []
+  type: inode/chardevice
+  document: character device
+- extension: []
+  type: inode/directory
+  document: folder
+  alias: x-directory/normal
+- extension: []
+  type: inode/fifo
+  document: pipe
+- extension: []
+  type: inode/mount-point
+  document: mount point
+  sub-class-of: inode/directory
+- extension: []
+  type: inode/socket
+  document: socket
+- extension: []
+  type: inode/symlink
+  document: symbolic link
+...

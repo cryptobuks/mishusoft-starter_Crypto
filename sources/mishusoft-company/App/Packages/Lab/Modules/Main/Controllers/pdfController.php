@@ -4,6 +4,7 @@ namespace Mishusoft\Packages\Lab\Modules\Main\Controllers;
 
 use Mishusoft\Framework\Chipsets\RuntimeErrors;
 use Mishusoft\Framework\Drivers\Controller;
+use Mishusoft\System\Memory;
 
 class pdfController extends Controller
 {
@@ -32,8 +33,8 @@ class pdfController extends Controller
         ob_start();
         $title = "New Document";
         $this->pdf->SetTitle($title);
-        $this->pdf->SetAuthor(DEFAULT_APP_COMPANY_NAME);
-        $this->pdf->SetCreator(DEFAULT_APP_AUTHOR. " @ " . DEFAULT_APP_COMPANY_NAME);
+        $this->pdf->SetAuthor(Memory::getConstant('DEFAULT_APP_COMPANY_NAME'));
+        $this->pdf->SetCreator(Memory::getConstant('DEFAULT_APP_AUTHOR'). " @ " . Memory::getConstant('DEFAULT_APP_COMPANY_NAME'));
         $this->pdf->SetSubject($title);
         $this->pdf->SetKeywords($title);
         $this->pdf->SetDisplayMode('fullpage');

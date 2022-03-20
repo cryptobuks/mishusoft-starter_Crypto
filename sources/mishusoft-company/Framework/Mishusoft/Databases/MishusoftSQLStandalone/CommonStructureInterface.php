@@ -8,5 +8,9 @@ interface CommonStructureInterface
     public const DB_FILE_FORMAT = "msdb";
     public const DB_TABLE_FILE_FORMAT = ".mstbl";
 
+    /**
+     * @param array|string $name
+     * @return bool
+     */
     public function delete(array|string $name): bool;
 }

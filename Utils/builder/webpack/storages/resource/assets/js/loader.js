@@ -1,0 +1,1 @@
+document.addEventListener("readystatechange",(function(){var e;"complete"===document.readyState&&document.querySelector("#app-loader")&&(null===(e=document.querySelector("#app-loader"))||void 0===e||e.setAttribute("style","display:none;"))}));

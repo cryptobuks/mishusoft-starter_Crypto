@@ -2,11 +2,10 @@
 
 namespace App\Ema\Mishusoft\Main\UrlHandlers;
 
-use Mishusoft\Registry;
+use Mishusoft\Drivers\UrlHandler;
+use Mishusoft\System\Firewall;
 use Mishusoft\System\Localization;
 use Mishusoft\System\Memory;
-use Mishusoft\System\Firewall;
-use Mishusoft\Drivers\UrlHandler;
 use Mishusoft\Utility\ArrayCollection;
 
 class MaintenanceUrlHandler extends UrlHandler
@@ -28,8 +27,8 @@ class MaintenanceUrlHandler extends UrlHandler
         if (!Memory::Data("framework")->maintenance) {
             if ($prediction['controller']  === 'maintenance') {
                 Firewall::runtimeFailure("Not Found", [
-                    "debug" => ["file" => Registry::Browser()->getURLPath(),
-                        "location" => Registry::Browser()->getVisitedPage(),
+                    "debug" => ["file" => get_http_request_uri(),
+                        "location" => get_visited_current_page(),
                         "description" => "Your requested url not found!!",
                     ],
                     "error" => ["description" => "Your requested url not found!!"],

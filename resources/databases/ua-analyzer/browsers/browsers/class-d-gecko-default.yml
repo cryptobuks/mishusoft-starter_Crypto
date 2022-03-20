@@ -1,0 +1,28 @@
+# Gecko Default (Original) browser
+
+# ABrowser : default firefox user agent
+
+# Firefox Browser
+# This is renders web pages using the Gecko engine.
+
+# url : https://en.wikipedia.org/wiki/Firefox
+# url : https://user-agents.net/browsers/firefox
+# url : https://developers.whatismybrowser.com/useragents/explore/software_name/firefox/
+
+# Latest user agent list
+#Mozilla/5.0 (Mobile; Accent_60K28_512; rv:48.0) Gecko/48.0 Firefox/48.0 KAIOS/2.5.1.1
+#Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/99.0
+#Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:92.0) Gecko/20100101 Firefox/92.0/msodDknn-58
+#Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:92.0) Gecko/20100101 Firefox/92.0
+
+- identifiers:
+    # Pattern maker method use it
+    browser-firefox-browser:
+      pattern:
+        name: (firefox)
+        separator: true
+        version: true
+      functional: true
+
+  # Information maker method use it
+  info: browser firefox-browser

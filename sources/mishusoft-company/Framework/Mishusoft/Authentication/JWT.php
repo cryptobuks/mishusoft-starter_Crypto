@@ -6,9 +6,12 @@ use ArrayAccess;
 use DateTimeInterface;
 use DomainException;
 use Exception;
-use InvalidArgumentException;
 use JsonException;
-use UnexpectedValueException;
+use Mishusoft\Exceptions\Authentication\BeforeValidException;
+use Mishusoft\Exceptions\Authentication\ExpiredException;
+use Mishusoft\Exceptions\Authentication\SignatureInvalidException;
+use Mishusoft\Exceptions\LogicException\InvalidArgumentException;
+use Mishusoft\Exceptions\RuntimeException\UnexpectedValueException;
 use function array_merge;
 use function base64_decode;
 use function base64_encode;
@@ -25,7 +28,6 @@ use function in_array;
 use function is_array;
 use function is_null;
 use function json_decode;
-use function json_encode;
 use function json_last_error;
 use function ltrim;
 use function mb_strlen;
@@ -101,7 +103,12 @@ class JWT
      *
      * @return object The JWT's payload as a PHP object
      *
+     * @throws BeforeValidException
+     * @throws ExpiredException
+     * @throws InvalidArgumentException
      * @throws JsonException
+     * @throws SignatureInvalidException
+     * @throws UnexpectedValueException
      * @uses jsonDecode
      * @uses urlsafeB64Decode
      */
@@ -222,9 +229,9 @@ class JWT
     /**
      * Sign a string with a given key and algorithm.
      *
-     * @param string $msg    The message to sign
-     * @param string $key    The secret key
-     * @param string $alg    The signing algorithm.
+     * @param string $msg The message to sign
+     * @param string $key The secret key
+     * @param string $alg The signing algorithm.
      *                                  Supported algorithms are 'ES384','ES256', 'HS256', 'HS384',
      *                                  'HS512', 'RS256', 'RS384', and 'RS512'
      *
@@ -272,10 +279,10 @@ class JWT
      * Verify a signature with the message, key and method. Not all methods
      * are symmetric, so we must have a separate verify and sign method.
      *
-     * @param string $msg        The original message (header and body)
-     * @param string $signature  The original signature
-     * @param string $key        For HS*, a string key works. for RS*, must be a resource of an openssl public key
-     * @param string $alg        The algorithm
+     * @param string $msg The original message (header and body)
+     * @param string $signature The original signature
+     * @param string $key For HS*, a string key works. for RS*, must be a resource of an openssl public key
+     * @param string $alg The algorithm
      *
      * @return bool
      *
@@ -355,8 +362,8 @@ class JWT
              * manually detect large ints in the JSON string and quote them (thus converting
              *them to strings) before decoding, hence the preg_replace() call.
              */
-            $max_int_length = strlen((string) PHP_INT_MAX) - 1;
-            $json_without_bigints = preg_replace('/:\s*(-?\d{'.$max_int_length.',})/', ': "$1"', $input);
+            $max_int_length = strlen((string)PHP_INT_MAX) - 1;
+            $json_without_bigints = preg_replace('/:\s*(-?\d{' . $max_int_length . ',})/', ': "$1"', $input);
             $obj = json_decode($json_without_bigints, false, 512, JSON_THROW_ON_ERROR);
         }
 
@@ -375,7 +382,7 @@ class JWT
      *
      * @return string JSON representation of the PHP object or array
      *
-     * @throws JsonException
+     * @throws Exception
      */
     public static function jsonEncode(object|array $input): string
     {
@@ -395,7 +402,7 @@ class JWT
      *
      * @return string A decoded string
      */
-    public static function urlsafeB64Decode($input): string
+    public static function urlsafeB64Decode(string $input): string
     {
         $remainder = strlen($input) % 4;
         if ($remainder) {
@@ -424,7 +431,7 @@ class JWT
      *
      * @return void
      */
-    private static function handleJsonError($errno): void
+    private static function handleJsonError(int $errno): void
     {
         $messages = [
             JSON_ERROR_DEPTH => 'Maximum stack depth exceeded',
@@ -457,13 +464,13 @@ class JWT
     /**
      * Convert an ECDSA signature to an ASN.1 DER sequence
      *
-     * @param   string $sig The ECDSA signature to convert
+     * @param string $sig The ECDSA signature to convert
      * @return  string The encoded DER object
      */
     private static function signatureToDER($sig): string
     {
         // Separate the signature into r-value and s-value
-        [$r, $s] = str_split($sig, (int) (strlen($sig) / 2));
+        [$r, $s] = str_split($sig, (int)(strlen($sig) / 2));
 
         // Trim leading zeros
         $r = ltrim($r, "\x00");

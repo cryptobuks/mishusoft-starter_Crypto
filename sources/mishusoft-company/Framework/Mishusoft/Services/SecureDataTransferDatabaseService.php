@@ -5,11 +5,9 @@ declare(strict_types=1);
 namespace Mishusoft\Services;
 
 use Mishusoft\Databases\MishusoftSQLStandalone;
-use Mishusoft\System\Time;
-use Mishusoft\Utility\ArrayCollection as Arr;
 use Mishusoft\Databases\MishusoftSQLStandalone\TableInterface;
 use Mishusoft\Migration\DB;
-use Mishusoft\Utility\Inflect;
+use Mishusoft\System\Time;
 use Mishusoft\Utility\Number;
 
 class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
@@ -19,10 +17,19 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
      */
     private mixed $db;
 
+    /**
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     * @throws \Mishusoft\Exceptions\DbException
+     * @throws \Mishusoft\Exceptions\LogicException\InvalidArgumentException
+     */
     public function __construct()
     {
-        parent::__construct(DB::USER, DB::PASSWORD);
-        $this->db = $this->select(DB::NAME);
+        parent::__construct(DB::USER(), DB::PASSWORD());
+        // backup --- create default db
+        if (!in_array(DB::NAME(), $this->getDatabasesAll(), true)) {
+            $this->create(DB::NAME());
+        }
+        $this->db = $this->select(DB::NAME());
     }
 
     /*
@@ -35,13 +42,13 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
      */
     public function verifiedProductId(string $name, string $version, string $ip, string $browser): int
     {
-        return Arr::value($this->db->read(DB\Table::INSTALLED_PRODUCTS_LIST)->get([
+        return array_value($this->db->read(DB\Table::INSTALLED_PRODUCTS_LIST)->get([
             "get" => ["id"],
             "where" => [
-                "name" => Inflect::validString($name),
-                "version" => Inflect::validString($version),
-                "ip_address" => Inflect::validString($ip),
-                "browserNameFull" => Inflect::validString($browser),
+                "name" => validString($name),
+                "version" => validString($version),
+                "ip_address" => validString($ip),
+                "browserNameFull" => validString($browser),
             ],
         ]), "id");
     }
@@ -226,29 +233,29 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
 
     /**
      * @param string $email
-     * @return array|false|string
+     * @return array|int|string
      */
     public function getUsrIdByEmlAddr(string $email)
     {
-        return Arr::value($this->db->read(DB\Table::CLIENT_LIST)->get(["get" => ["id"], "where" => ["emailAddress" => "{$email}"]]), "id");
+        return array_value($this->db->read(DB\Table::CLIENT_LIST)->get(["get" => ["id"], "where" => ["emailAddress" => "{$email}"]]), "id");
     }
 
     /**
      * @param string $ip
-     * @return array|false|string
+     * @return array|int|string
      */
-    public function getUsrIdByIpAddr(string $ip)
+    public function getUsrIdByIpAddr(string $ip): int|array|string
     {
-        return Arr::value($this->db->read(DB\Table::CLIENT_LIST)->get(["get" => ["id"], "where" => ["ipAddress" => "{$ip}"]]), "id");
+        return array_value($this->db->read(DB\Table::CLIENT_LIST)->get(["get" => ["id"], "where" => ["ipAddress" => "{$ip}"]]), "id");
     }
 
     /**
      * @param string $email
-     * @return array|false|string
+     * @return array|int|string
      */
-    public function getUsrPssByEmlAddr(string $email)
+    public function getUsrPssByEmlAddr(string $email): int|array|string
     {
-        return Arr::value($this->db->read(DB\Table::CLIENT_LIST)->get(["get" => ["password"], "where" => ["emailAddress" => "{$email}"]]), "password");
+        return array_value($this->db->read(DB\Table::CLIENT_LIST)->get(["get" => ["password"], "where" => ["emailAddress" => "{$email}"]]), "password");
     }
 
     /**
@@ -500,7 +507,7 @@ class SecureDataTransferDatabaseService extends MishusoftSQLStandalone
      */
     public function getSpecificEarnOfToday(int $app_id, string $username, string $search): int
     {
-        return (int)Arr::value($this->db->read(DB\Table::CLIENT_EARNING_CAPTCHA_INFO_LIST)->get(["get" => ["{$search}"], "where" => ["app_id" => "{$app_id}", "username" => "{$username}"]]), "{$search}");
+        return (int)array_value($this->db->read(DB\Table::CLIENT_EARNING_CAPTCHA_INFO_LIST)->get(["get" => ["{$search}"], "where" => ["app_id" => "{$app_id}", "username" => "{$username}"]]), "{$search}");
     }
 
     /**

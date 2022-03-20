@@ -1,0 +1,12 @@
+# Create configuration file heroku
+# https://devcenter.heroku.com/articles/build-docker-images-heroku-yml
+
+build:
+  config:
+    APP_NAME: Mishusoft-Starter
+    APP_ENV: production
+    APP_DEBUG: true
+  command:
+    - npm run build:prod
+run:
+  web: vendor/bin/heroku-php-apache2 public_html/

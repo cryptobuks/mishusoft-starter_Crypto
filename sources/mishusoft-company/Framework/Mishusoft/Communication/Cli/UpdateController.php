@@ -1,11 +1,14 @@
 <?php
 
-namespace App\CliSurface\Controllers;
+namespace Mishusoft\Communication\Cli;
 
 use Mishusoft\Drivers\CliSurfaceController;
 
 class UpdateController extends CliSurfaceController
 {
+    /**
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     */
     public function run(string $source = '', string $destination = ''): void
     {
         //print_r(__METHOD__ . PHP_EOL, false);
@@ -14,45 +17,66 @@ class UpdateController extends CliSurfaceController
     }
 
 
+    /**
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     */
     public function robots(string $source, string $destination): void
     {
-        $this->log('robots.txt updating started');
+        self::log('robots.txt updating started');
         $this->update($source, $destination);
     }
 
+    /**
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     */
     public function indexPHP(string $source, string $destination): void
     {
-        $this->log('index.php updating started ');
+        self::log('index.php updating started ');
         $this->update($source, $destination);
     }
 
+    /**
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     */
     public function indexHTML(string $source, string $destination): void
     {
-        $this->log('index.html updating started ');
+        self::log('index.html updating started ');
         $this->update($source, $destination);
     }
 
+    /**
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     */
     public function framework(string $source, string $destination): void
     {
-        $this->log('Framework updating started ');
+        self::log('Framework updating started ');
         $this->update($source, $destination);
     }
 
+    /**
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     */
     public function cli(string $source, string $destination): void
     {
-        $this->log('Cli updating started ');
+        self::log('Cli updating started ');
         $this->update($source, $destination);
     }
 
+    /**
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     */
     public function api(string $source, string $destination): void
     {
-        $this->log('Api updating started ');
+        self::log('Api updating started ');
         $this->update($source, $destination);
     }
 
+    /**
+     * @throws \Mishusoft\Exceptions\RuntimeException
+     */
     public function ema(string $source, string $destination): void
     {
-        $this->log('Ema updating started ');
+        self::log('Ema updating started ');
         $this->update($source, $destination);
     }
 }

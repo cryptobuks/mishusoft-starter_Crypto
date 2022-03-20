@@ -2,9 +2,9 @@
 
 namespace Mishusoft\Drivers;
 
-use Mishusoft\Authentication\Acl;
 use Mishusoft\Base;
 use Mishusoft\Exceptions;
+use Mishusoft\Exceptions\Authentication\Acl;
 use Mishusoft\Preloader;
 use Mishusoft\Registry;
 use Mishusoft\Storage;
@@ -25,9 +25,9 @@ abstract class Widget implements WidgetInterface
      */
     public function __construct()
     {
-        $this->registry         = Registry::getInstance();
-        $this->registry->acl    =  new Acl();
-        $this->acl              =  $this->registry->acl;
+        $this->registry = Registry::getInstance();
+        $this->registry->acl = new Acl();
+        $this->acl = $this->registry->acl;
     }//end __construct()
 
 
@@ -38,8 +38,8 @@ abstract class Widget implements WidgetInterface
      */
     protected function loadModel(string $model): mixed
     {
-        $modelClass      = $model.'ModelWidget';
-        $widgetModelFile = Storage::applicationWidgetsPath().'Models'.DS.$modelClass.'.php';
+        $modelClass = $model . 'ModelWidget';
+        $widgetModelFile = Storage::applicationWidgetsPath() . 'Models' . DS . $modelClass . '.php';
         if (is_readable($widgetModelFile) === true) {
             include_once $widgetModelFile;
             $modelClass = Base::getClassNamespace($widgetModelFile);
@@ -51,9 +51,9 @@ abstract class Widget implements WidgetInterface
                 throw new Exceptions\RuntimeException("class $modelClass loading failed");
             }
 
-            throw new Exceptions\RuntimeException($widgetModelFile.' inclusion failed');
+            throw new Exceptions\RuntimeException($widgetModelFile . ' inclusion failed');
         } else {
-            throw new Exceptions\RuntimeException($widgetModelFile.' not found');
+            throw new Exceptions\RuntimeException($widgetModelFile . ' not found');
         }//end if
     }//end loadModel()
 
@@ -68,7 +68,7 @@ abstract class Widget implements WidgetInterface
      */
     protected function render(string $menu, string $view, array $data = [], string $ext = 'phtml'): bool|string
     {
-        $widgetViewFile = Storage::applicationWidgetsPath().'Views'.DS.$menu.DS.$view.'.'.$ext;
+        $widgetViewFile = Storage::applicationWidgetsPath() . 'Views' . DS . $menu . DS . $view . '.' . $ext;
         if (is_readable($widgetViewFile) === true) {
             if (FileSystem::fileExt($widgetViewFile) === 'php') {
                 return $widgetViewFile;
@@ -79,7 +79,7 @@ abstract class Widget implements WidgetInterface
             include_once $widgetViewFile;
             return ob_get_clean();
         }
-        throw new Exceptions\RuntimeException\NotFoundException($widgetViewFile. ' not found');
+        throw new Exceptions\RuntimeException\NotFoundException($widgetViewFile . ' not found');
     }//end render()
 
 

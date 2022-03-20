@@ -7,18 +7,27 @@
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
-    "outDir": "./dist/assets/js",
+    "outDir": "./out/js",
     "pretty": true,
     "sourceMap": true,
     "strictNullChecks": true,
     "resolveJsonModule": true,
     "target": "ES5",
-    "typeRoots": ["node_modules/@types"],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
     "lib": [
       "ESNext",
       "DOM"
-      /*"WebWorker"*/
-    ]
+    ],
+    "paths": {
+      "@/resources/*": [
+        "./resources/*"
+      ]
+    }
   },
-  "include": ["./sources/Assets/typescripts"]
+  "include": [
+    "./resources/typescripts",
+    "./sources/Assets/typescripts"
+  ]
 }

@@ -1,0 +1,30 @@
+// https://blog.bitsrc.io/5-image-loading-best-practices-for-websites-b3e6019e0691
+<picture>
+	<source srcset="img/image.avif" type="image/avif">
+	<source srcset="img/image.webp" type="image/webp">
+	<img src="img/image.jpg" alt="....">
+</picture>
+
+<img src="image.jpg"
+     srcset="image-320.jpg 320w,
+             image-480.jpg 480w,
+             image-640.jpg 640w,
+             image-800.jpg 800w,
+             image-1100.jpg 1100w"
+  sizes="(max-width: 1100px) 1100px, 100vw" />
+
+
+// https://stackoverflow.com/questions/26418237/loading-images-faster-in-webpage/30429625#30429625
+[js]
+$(window).load(function(){ // This runs when the window has loaded
+var img = $(““).attr(‘src’, ‘YourImagePath/img.jpg’).load(function() {
+$(“#a1″).append(img);
+// When the image has loaded, stick it in a div
+});
+var img2 = $(““).attr(‘src’, ‘YourImagePath/img2.jpg’).load(function() {
+$(“#a2″).append(img2);
+});
+});[/js]
+
+// https://web.dev/browser-level-image-lazy-loading/
+

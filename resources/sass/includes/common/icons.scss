@@ -1,0 +1,80 @@
+@import "icons/computer-assets";
+@import "icons/human";
+
+/*blocks*/
+@import "icons/blocks/aegean-numbers";
+
+/**
+* categories
+* ref : https://graphemica.com/categories/
+* blocks
+* ref : https://graphemica.com/blocks/
+*/
+
+
+.ms-icon {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+
+  &-exclamation-mark::after {
+    content: '\000021';
+  }
+  &-quotation-mark::after {
+    content: '\000022';
+  }
+  &-number-sign::after {
+    content: '\000023';
+  }
+
+
+  &-telephone::after {
+    content: '\002706';
+  }
+  &-write::after {
+    content: '\00270D';
+  }
+  &-victory-hand::after {
+    content: '\00270C';
+  }
+  &-envelope::after {
+    content: '\002709';
+  }
+  &-airplane::after {
+    content: '\002708';
+  }
+  &-tape-drive::after {
+    content: '\002707';
+  }
+  &-white-scissors::after {
+    content: '\002704';
+  }
+  &-black-scissors::after {
+    content: '\002702';
+  }
+  &-upper-blade-scissors::after {
+    content: '\002701';
+  }
+  &-white-flag-with-horizontal-middle-black-stripe::after {
+    content: '\0026FF';
+  }
+  &-credit-card::after {
+    content: '\01F4B3';
+  }
+  &-mathematical-sans-serif-bold-small-f::after {
+    content: '\01D5F3';
+  }
+  &-user::after {
+    content: '\01F464';
+  }
+  &-user-group::after {
+    content: '\01F465';
+  }
+
+  &-trash::after {
+    content: '\01F5D1';
+  }
+  &-search::after {
+    content: '\01F50D';
+  }
+}

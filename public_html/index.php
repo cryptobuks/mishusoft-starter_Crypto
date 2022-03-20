@@ -1,37 +1,36 @@
 <?php
-/**
- * Mishusoft application player.
- *
- * @package    Mishusoft
- * @subpackage website
- * @author     Squiz Pty Ltd <products@squiz.net>
- * @copyright  2021 Squiz Pty Ltd (ABN 77 084 670 600)
- *  */
 
-declare(strict_types=1);
+    declare(strict_types=1);
 
-$getFile = static function ($name) {
-    return sprintf(
-        '%1$s%5$s%2$s%5$s%3$s%5$s%4$s.php',
-        realpath(dirname(__DIR__)),
-        'storages',
-        'framework',
-        $name,
-        DIRECTORY_SEPARATOR
-    );
-};
+    /**
+     * Mishusoft application player.
+     *
+     * @package    Mishusoft
+     * @subpackage website
+     * @author     Al-Amin Ahamed <alamin@mishusoft.com>
+     * @copyright  2021 Al-Amin Ahamed
+     */
 
-//fetch maintenance mode
-if (file_exists($getFile('maintenance'))) {
-    include_once $getFile('images');
-    include_once $getFile('resolver');
-    include_once $getFile('maintenance');
-    exit(0);
-}
+    // define required constants for runtime requirement
+    const WHO_AM_I = "Mishusoft";
+    const DS       = DIRECTORY_SEPARATOR;
+    define("FRAMEWORK_START_AT", time());
+    define("RUNTIME_ROOT_PATH", realpath(dirname(__DIR__)) . DS);
 
-include_once dirname(__DIR__).'/bootstrap/app.php';
+    // Load files with composer
+    include_once dirname(__DIR__) . '/vendor/autoload.php';
 
-Mishusoft\System\Log::info(sprintf('%s application started', __NAMESPACE__));
+    // Load bootstrap files for application
+    include_once dirname(__DIR__) . '/bootstrap/app.php';
 
-// BIOS initialisation.
-Mishusoft\System\BIOS\App::initialise();
+    //fetch maintenance mode
+    if (file_exists(dirname(__DIR__) . '/maintenance.enable')) {
+        // load maintenance interface
+        include_once dirname(__DIR__) . '/storages/system/views/maintenance.php';
+        exit(0);
+    }
+
+    Mishusoft\System\Log::info(sprintf('%s application started', WHO_AM_I));
+
+    // BIOS initialisation.
+    Mishusoft\System\BIOS\App::run();

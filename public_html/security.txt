@@ -1,0 +1,12 @@
+# Our security address
+Contact: mailto:support@mishusoft.com
+
+# Our security policy
+Policy: https://www.mishusoft.com/about/policy
+
+# Our security acknowledgements
+Acknowledgements: https://www.mishusoft.com/about/acknowledgements
+
+#Expires
+Expires: 2025-12-31T17:22:00.000Z
+

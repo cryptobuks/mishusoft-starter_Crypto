@@ -1,0 +1,2015 @@
+#Browsers
+#https://user-agents.net/browsers
+#https://developers.whatismybrowser.com/useragents/explore/software_name/
+#https://deviceatlas.com/blog/list-of-user-agent-strings
+#http://www.useragentstring.com/pages/useragentstring.php
+#https://www.whatsmyua.info/
+#https://useragents.io/
+
+
+115-browser:
+  name: '115 Browser'
+  url: 'https://pc.115.com/'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 115-team
+  cost: Free
+  status: Active
+  licence: Unknown
+  engines: [ 'Blink' ]
+
+1st-browser:
+  name: '1st Browser'
+  url: 'https://www.1stbrowser.com/'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: ur-browser
+  cost: Free
+  status: Active
+  licence: Unknown
+  engines: [ 'Blink' ]
+
+2345-browser:
+  name: '2345 Browser'
+  url: 'https://app.2345.com/'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 2345-team
+  cost: Free
+  status: Active
+  licence: Unknown
+  engines: [ 'Blink' ]
+
+2345-chrome:
+  name: '2345 Chrome'
+  url: 'https://app.2345.com/'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 2345-team
+  cost: Free
+  status: Active
+  licence: Unknown
+  engines: [ 'Blink' ]
+
+2345-explorer:
+  name: '2345 Explorer'
+  url: 'https://app.2345.com/'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 2345-team
+  cost: Free
+  status: Active
+  licence: Unknown
+  engines: [ 'Blink' ]
+
+360se-browser:
+  name: '360 Secure Browser'
+  url: 'https://browser.360.cn/se/en.html'
+  type: 'Web Browser'
+  ui: 'GraphicalMode'
+  author: qihoo-360
+  cost: Free
+  status: Active
+  licence: Unknown
+  engines: [ 'Trident' ]
+
+360ee-browser:
+  name: '360 Speed Browser'
+  url: 'https://browser.360.cn/se/en.html'
+  type: 'Web Browser'
+  ui: 'GraphicalMode'
+  author: qihoo-360
+  cost: Free
+  status: Active
+  licence: Unknown
+  engines: [ 'Trident' ]
+
+abrowse-browser:
+  name: 'ABrowse Browser'
+  url: 'https://www.qixing123.com/'
+  type: 'Web Browser'
+  ui: 'GraphicalMode'
+  author: syllable-project
+  cost: Free
+  status: Active
+  licence: Unknown
+  engines: [ 'Blink' ]
+
+126-browser:
+  name: '126 Browser'
+  url: unknown
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: vietnam-mango
+  cost: Free
+  status: Active
+  licence: Unknown
+  engines: [ 'Trident' ]
+
+acoo-browser:
+  name: 'Acoo Browser'
+  url: 'https://www.acoobrowser.com/'
+  type: 'Web Browser'
+  ui: 'GraphicalMode'
+  author: matthew-marsh
+  cost: Free
+  status: Active
+  licence: Freeware
+  engines: [ 'Trident' ]
+
+
+1337-browser:
+  name: '1337 Browser'
+  # url:      'https://www.trythis0ne.com/levels/web-challanges/1337B/Main.php'
+  url: Unknown
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: Unknown
+  cost: Free
+  status: Active
+  licence: Freeware
+  engines: [ 'Gecko' ]
+
+
+
+abrowse:
+  name: 'ABrowse Browser'
+  url: 'http://www.abrowse.org/'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: syllable-project
+  cost: Free
+  status: Active
+  licence: Freeware
+  engines: [ 'WebKit' ]
+
+ad-muncher:
+  name: 'Ad Muncher Browser'
+  url: 'https://www.admuncher.com/'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: murray-hurps-pty-ltd
+  cost: Free
+  status: Active
+  licence: Freeware
+  engines: Unknown
+
+amaya:
+  name: 'Amaya Browser'
+  url: 'https://www.admuncher.com/'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: inria
+  #    'creator' => [
+  #    [
+  #        'name' => 'W3C',
+  #        'link' => 'https://www.w3.org/',
+  #    ],
+  #    [
+  #        'name' => 'INRIA',
+  #        'link' => 'https://www.inria.fr/en/',
+  #    ],
+  #  ],
+  cost: Free
+  status: Discontinued
+  licence: W3C
+  engines: Unknown
+
+avant:
+  name: 'Avant Browser'
+  url: 'https://avantbrowser.com/'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: Avant Force
+  cost: Free
+  status: Active
+  licence: 	Freeware
+  engines: [ 'Trident' ]
+
+camino-browser:
+  name: 'Camino Browser'
+  url: 'https://en.wikipedia.org/wiki/Camino_(web_browser)'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: The Camino Project
+  cost: Free
+  status: Discontinued
+  licence: 	MPL 1.1/ GPL 2.0/ LGPL 2.1 tri-license
+  engines: [ 'Gecko' ]
+
+cliqz-browser:
+  name: 'Cliqz Browser'
+  url: 'https://en.wikipedia.org/wiki/Camino_(web_browser)'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: Cliqz GmbH
+  cost: Free
+  status: Discontinued
+  licence: 	MPL 2.0
+  engines: [ 'Gecko' ]
+
+edge-client:
+  name: 'BIG-IP Edge Client'
+  url: 'https://www.f5.com'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: F5
+  cost: Free
+  status: Active
+  licence: 	Proprietary
+  engines: [ 'Trident' ]
+
+konqueror:
+  name: 'Konqueror'
+  url: 'https://invent.kde.org/network/konqueror'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: KDE
+  cost: Free
+  status: Active
+  licence: 	GPL-2.0-or-later
+  engines: [ 'Webkit', 'KHtml' ]
+
+dillo-browser:
+  name: 'Dillo'
+  url: 'https://www.dillo.org/'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 'Jorge Arellano Cid'
+  cost: Free
+  status: Active
+  licence: 	GPL-2.0-or-later
+  written: 	['C','C++']
+  engines: [  'Gecko','custom' ]
+
+dooble-browser:
+  name: 'Dooble'
+  url: 'https://en.wikipedia.org/wiki/Dooble'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 'Dooble Project Team'
+  cost: Free
+  status: Active
+  licence: 	BSD
+  written: 	['C']
+  engines: [  'WebKit' ]
+
+elinks-browser:
+  name: 'ELinks'
+  url: 'https://en.wikipedia.org/wiki/ELinks'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 'Baudis, Fonseca, et al.'
+  cost: Free
+  status: discontinued
+  licence: 	GPL
+  engines: [  'textmode' ]
+
+eolie-browser:
+  name: 'Eolie'
+  url: 'https://wiki.gnome.org/Apps/Eolie'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 'The GNOME Project'
+  cost: Free
+  status: Active
+  licence: 	MPL 2.0
+  engines: [  'Gecko' ]
+
+epiphany-browser:
+  name: 'Epiphany'
+  url: 'https://en.wikipedia.org/wiki/GNOME_Web'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 'Marco Pesenti Gritti'
+  cost: Free
+  status: Active
+  licence: 	GPL
+  engines: [  'WebKit' ]
+
+links-browser:
+  name: 'Links'
+  url: 'https://en.wikipedia.org/wiki/Links_(web_browser)'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 'Patocka, et al'
+  cost: Free
+  status: Active
+  licence: 	GPL
+  engines: [  'custom' ]
+
+wcg-browser:
+  name: 'WCGBrowser'
+  url: 'https://github.com/alandmoore/wcgbrowser'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: ' Alan D Moore '
+  cost: Free
+  status: Active
+  licence: 	GPL
+  engines: [  'WebKit','Blink' ]
+
+otter-browser:
+  name: 'Otter Browser'
+  url: 'https://github.com/alandmoore/wcgbrowser'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: ' Alan D Moore '
+  cost: Free
+  status: Active
+  licence: 	GPL
+  engines: [  'WebKit' ]
+
+galeon-browser:
+  name: 'Galeon'
+  url: 'https://en.wikipedia.org/wiki/Galeon'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 'Marco Pesenti Gritti'
+  cost: Free
+  status: discontinued
+  licence: 	GPL
+  engines: [  'Gecko' ]
+
+icab-browser:
+  name: 'iCab'
+  url: 'https://en.wikipedia.org/wiki/ICab'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 'Alexander Clauss'
+  cost: Free
+  status: discontinued
+  licence: 	GPL
+  #Blink for mobile, Webkit for linux and custom for mac os
+  engines: [  'Blink',  'WebKit',  'custom' ]
+
+lynx-browser:
+  name: 'Lynx'
+  url: 'https://en.wikipedia.org/wiki/Lynx_(web_browser)'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: ['Lou Montulli', 'Michael Grobe', 'Charles Rezac']
+  cost: Free
+  status: Active
+  licence: GPLv2
+  engines: [  'libwww', 'custom' ]
+
+msie-browser:
+  name: 'Internet Explorer'
+  url: 'https://en.wikipedia.org/wiki/Internet_Explorer'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: ['Thomas Reardon', 'Microsoft']
+  cost: Free
+  status: discontinued
+  licence: GPLv2
+  engines: [ 'Trident', 'Chakra' ]
+
+midori-browser:
+  name: 'Midori '
+  url: 'https://en.wikipedia.org/wiki/Midori_(web_browser)'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: ['Christian Dywan', 'Nancy Runge', 'Astian Foundation']
+  cost: Free
+  status: Active
+  licence: GPLv2
+  engines: [ 'WebKit' ]
+
+netsurf-browser:
+  name: 'NetSurf '
+  url: 'https://en.wikipedia.org/wiki/NetSurf'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 'The NetSurf Developers'
+  cost: Free
+  status: Active
+  licence: 	GPL-2.0-only
+  engines: [ 'custom' ]
+
+#    //Browsers based on Chromium
+#      //Active
+#      ///Amazon Silk
+#      ///Avast Secure Browser developed by Avast
+#      ///Beaker, a peer-to-peer web browser
+#                   ///Blisk is a browser available for Windows 7 and later, OS X 10.9 and later that aims to provide an array of useful tools for Web development.
+#                                                                              ///Brave is an open-source web browser that aims to block website trackers and remove intrusive internet advertisements.
+#                                                                              //CodeWeavers CrossOver Chromium is an unofficial bundle of a Wine derivative and Chromium Developer Build 21 for Linux and macOS, first released on 15 September 2008 by CodeWeavers as part of their CrossOver project.[ 65 ][ 66 ]
+#    ///Comodo Dragon is a rebranded version of Chromium for 32-bit Windows 8.1, 8, Windows 7 and Vista[ 67 ] produced by the Comodo Group. According to the developer, it provides improved security and privacy features.[ 68 ]
+#    ///Cốc Cốc is a freeware web browser focused on the Vietnamese market, developed by Vietnamese company Cốc Cốc, based on Chromium open-source code for Windows.[ 69 ] According to data published by StatCounter in July 2013, Cốc Cốc has passed Opera to become one of the top 5 most popular browsers in Vietnam[ 70 ] within 2 months after its official release.[ 71 ]
+#    ///Epic Browser is a privacy-centric web browser developed by Hidden Reflex of India and based on Chromium source code.[ 72 ]
+#    ///Falkon a Qt-based GUI, using the Chromium-based QtWebEngine.[ 73 ]
+#    //qutebrowser a Qt-based GUI with Vim-like keybindings, using the Chromium-based QtWebEngine.[ 74 ]
+#    //Microsoft Edge is Chromium-based as of 15 January 2020.[ 75 ][ 76 ]
+#    //Naver Whale is a South Korean freeware web browser developed by Naver Corporation, which is also available in English. It became available on Android on 13 April 2018.
+#                                                                                           //Opera began to base its web browser on Chromium with version 15.[ 77 ]
+#    //Qihoo 360 Secure Browser is a Chromium-based Chinese web browser developed by Qihoo.[ 78 ]
+#    //SalamWeb is a web browser based on Chromium for Muslims, which only allows Halal websites/information.
+#                                                                 //Samsung Internet shipped its first Chromium-based browser in a Galaxy S4 model released in 2013.[ 79 ]
+#    //Sleipnir is a Chromium derivative browser for Windows and macOS. One of its main features is linking to Web apps (Facebook, Twitter, Dropbox, etc.) and smartphone apps (Google Map, etc.). It also boasts what it calls "beautiful text," and has unique graphical tabs, among other features.[ 80 ]
+#    //Slimjet: A Chromium-based web browser released by FlashPeak that features built-in webpage translation, PDF viewing capability and a PPAPI flash plugin, features usually missing from Chromium-based browsers currently not supported.
+#                                                                                                                                                                 //SRWare Iron is a freeware release of Chromium for Windows, macOS and Linux, offering both installable and portable versions. Iron disables certain configurable Chromium features that could share information with third parties and additional tracking features that Google adds to its Chrome browser.[ 81 ]
+#    //Torch is a browser based on Chromium for Windows. It specializes in media downloading and has built-in media features, including a torrent engine, video grabber and sharing button.[ 82 ]
+#    //Vivaldi is a browser for Windows, macOS and Linux developed by Vivaldi Technologies.[ 83 ][ 84 ] Chromium-based Vivaldi aims to revive the rich features of the Presto-era Opera with its own proprietary modifications.
+#                                                                                                         //Yandex Browser is a browser created by the Russian software company Yandex for macOS, Windows, Linux, Android and iOS.[ 85 ] The browser integrates Yandex services, which include a search engine, a machine translation service and cloud storage. On Android it provides ability to install chrome extensions on a mobile browser.[ 86 ]
+#    //Discontinued
+#      //Flock – a browser that specialized in providing social networking and had Web 2.0 facilities built into its user interface. It was based on Chromium starting with version 3.0. Flock was discontinued in April 2011.[ 87 ][ 88 ]
+#    //Redcore – a browser developed by Chinese company Redcore Times (Beijing) Technology Ltd. and marketed as a domestic product that was developed in-house, but was revealed to be based on Chromium[ 89 ]
+#    //Rockmelt – a Chromium-based browser for Windows, macOS, Android and iOS under a commercial proprietary licence. It integrated features from Facebook and Twitter, but was discontinued in April 2013 and fully retired at 10am PT on 31 July 2013.[ 90 ][ 91 ] On 2 August 2013, Rockmelt was acquired by Yahoo! Rockmelt's extensions and its website was shut down after 31 August 2013. Yahoo! plans to integrate Rockmelt's technology into other products.[ 92 ]
+
+
+# TOP LEVEL BROWSER (ENGINE)
+# QtWebEngine based Browser
+# Mozilla/5.0 (X11; U; Linux; ru-RU) AppleWebKit/532.4 (KHTML, like Gecko) Arora/0.10.2 Safari/532.4
+# Mozilla/5.0 (X11; U; UNICOS lcLinux; en-US) Gecko/20140730 (KHTML, like Gecko, Safari/419.3) Arora/0.8.0
+# Mozilla/5.0 (X11; Linux i686) AppleWebKit/538.1 (KHTML, like Gecko) Arora/0.11.0 Safari/538.1
+# Mozilla/5.0 (Windows; U; ; en-EN) AppleWebKit/527+ (KHTML, like Gecko, Safari/419.3) Arora/0.8.0
+# Arora 0.3
+
+
+arora-browser:
+  name: 'Arora '
+  url: 'https://en.wikipedia.org/wiki/Arora_(web_browser)'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 'Benjamin C. Meyer'
+  cost: Free
+  status: discontinued
+  licence: 	GPL-2.0-or-later
+  engines: [ 'WebKit' ]
+
+
+falkon-browser:
+  name: 'Falkon '
+  url: 'https://en.wikipedia.org/wiki/Falkon'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 'David Rosca'
+  cost: Free
+  status: Active
+  licence: GPL-3.0-or-later
+  engines: [ 'Blink' ]
+
+#//Browsers based on Chromium
+#//Active
+#///Amazon Silk
+#///Avast Secure Browser developed by Avast
+#///Beaker, a peer-to-peer web browser
+#///Blisk is a browser available for Windows 7 and later, OS X 10.9 and later that aims to provide an array of useful tools for Web development.
+#///Brave is an open-source web browser that aims to block website trackers and remove intrusive internet advertisements.
+#//CodeWeavers CrossOver Chromium is an unofficial bundle of a Wine derivative and Chromium Developer Build 21 for Linux and macOS, first released on 15 September 2008 by CodeWeavers as part of their CrossOver project.[65][66]
+#///Comodo Dragon is a rebranded version of Chromium for 32-bit Windows 8.1, 8, Windows 7 and Vista[67] produced by the Comodo Group. According to the developer, it provides improved security and privacy features.[68]
+#///Cốc Cốc is a freeware web browser focused on the Vietnamese market, developed by Vietnamese company Cốc Cốc, based on Chromium open-source code for Windows.[69] According to data published by StatCounter in July 2013, Cốc Cốc has passed Opera to become one of the top 5 most popular browsers in Vietnam[70] within 2 months after its official release.[71]
+#///Epic Browser is a privacy-centric web browser developed by Hidden Reflex of India and based on Chromium source code.[72]
+#///Falkon a Qt-based GUI, using the Chromium-based QtWebEngine.[73]
+#//qutebrowser a Qt-based GUI with Vim-like keybindings, using the Chromium-based QtWebEngine.[74]
+#//Microsoft Edge is Chromium-based as of 15 January 2020.[75][76]
+#//Naver Whale is a South Korean freeware web browser developed by Naver Corporation, which is also available in English. It became available on Android on 13 April 2018.
+#//Opera began to base its web browser on Chromium with version 15.[77]
+#//Qihoo 360 Secure Browser is a Chromium-based Chinese web browser developed by Qihoo.[78]
+#//SalamWeb is a web browser based on Chromium for Muslims, which only allows Halal websites/information.
+#//Samsung Internet shipped its first Chromium-based browser in a Galaxy S4 model released in 2013.[79]
+#//Sleipnir is a Chromium derivative browser for Windows and macOS. One of its main features is linking to Web apps (Facebook, Twitter, Dropbox, etc.) and smartphone apps (Google Map, etc.). It also boasts what it calls "beautiful text," and has unique graphical tabs, among other features.[80]
+#//Slimjet: A Chromium-based web browser released by FlashPeak that features built-in webpage translation, PDF viewing capability and a PPAPI flash plugin, features usually missing from Chromium-based browsers currently not supported.
+#//SRWare Iron is a freeware release of Chromium for Windows, macOS and Linux, offering both installable and portable versions. Iron disables certain configurable Chromium features that could share information with third parties and additional tracking features that Google adds to its Chrome browser.[81]
+#//Torch is a browser based on Chromium for Windows. It specializes in media downloading and has built-in media features, including a torrent engine, video grabber and sharing button.[82]
+#//Vivaldi is a browser for Windows, macOS and Linux developed by Vivaldi Technologies.[83][84] Chromium-based Vivaldi aims to revive the rich features of the Presto-era Opera with its own proprietary modifications.
+#//Yandex Browser is a browser created by the Russian software company Yandex for macOS, Windows, Linux, Android and iOS.[85] The browser integrates Yandex services, which include a search engine, a machine translation service and cloud storage. On Android it provides ability to install chrome extensions on a mobile browser.[86]
+#//Discontinued
+#//Flock – a browser that specialized in providing social networking and had Web 2.0 facilities built into its user interface. It was based on Chromium starting with version 3.0. Flock was discontinued in April 2011.[87][88]
+#//Redcore – a browser developed by Chinese company Redcore Times (Beijing) Technology Ltd. and marketed as a domestic product that was developed in-house, but was revealed to be based on Chromium[89]
+#//Rockmelt – a Chromium-based browser for Windows, macOS, Android and iOS under a commercial proprietary licence. It integrated features from Facebook and Twitter, but was discontinued in April 2013 and fully retired at 10am PT on 31 July 2013.[90][91] On 2 August 2013, Rockmelt was acquired by Yahoo! Rockmelt's extensions and its website was shut down after 31 August 2013. Yahoo! plans to integrate Rockmelt's technology into other products.[92]
+#
+
+
+# Start QtWebEngine based Browser
+
+qutebrowser-browser:
+  name: 'Qute Browser '
+  url: 'https://en.wikipedia.org/wiki/Qutebrowser'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 'Florian Bruhin'
+  cost: Free
+  status: Active
+  licence: 	GPL-3.0-or-later
+  engines: [ 'QtWebEngine' ]
+
+# End QtWebEngine based Browser
+
+# Original Browser
+qtwebengine-browser:
+  name: 'QtWebEngine Based '
+  url: 'https://github.com/qt/qtwebengine'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 'The QT Company'
+  cost: Free
+  status: Active
+  licence: GPL-3.0-or-later
+  engines: [ 'QtWebEngine' ]
+# End original Browser
+
+
+
+# Original Browser
+chromium-browser:
+  name: 'Chromium'
+  url: 'https://www.chromium.org/'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 'The QT Company'
+  cost: Free
+  status: Active
+  licence: 	BSD
+  engines: [ 'Blink' ]
+
+chrome-browser:
+  name: 'Chrome'
+  url: 'https://en.wikipedia.org/wiki/Google_Chrome'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 'Google'
+  cost: Free
+  status: Active
+  licence: 	[	Proprietary, freeware ]
+  engines: [ 'Blink' ]
+
+firefox-browser:
+  name: 'Firefox'
+  url: 'https://en.wikipedia.org/wiki/Firefox'
+  type: 'Web Browser'
+  ui: GraphicalMode
+  author: 'mozilla'
+  cost: Free
+  status: Active
+  licence: 	MPL 2.0
+  engines: [ 'Gecko' ]
+# End original Browser
+
+
+#    // Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) 37abc/2.0.6.16 Chrome/60.0.3112.113 Safari/537.36
+#    '37abc' => [
+#    'name' => '37abc Browser',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'Guangzhou Network Technology Co., Ltd',
+#        'link' => 'https://37abc.com/',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [ 'name' => 'Unknown' ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Blink',
+#        'link' => 'https://en.wikipedia.org/wiki/Blink_(browser_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'version' => 'Unknown',
+#      'date' => 'Unknown',
+#  ],
+#],
+#
+#    // Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3202.75 7Star/2.1.62.0 Safari/537.36
+#    '7star' => [
+#    'name' => '7 Star Browser',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'Kuaiso Beijing ICP',
+#        'link' => 'https://www.qixing123.com/',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [ 'name' => 'Unknown' ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Blink',
+#        'link' => 'https://en.wikipedia.org/wiki/Blink_(browser_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'version' => 'Unknown',
+#      'date' => 'Unknown',
+#  ],
+#],
+#
+#    //Tablet
+#      //Mozilla/5.0 (Linux; Android android-version; product-model Build/product-build) AppleWebKit/webkit-version (KHTML, like Gecko)
+#                                                                                                                             //Silk/browser-version like Chrome/chrome-version Safari/webkit-version
+#                                                                                                                             //Desktop
+#                                                                                                                             //Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/webkit-version (KHTML, like Gecko)
+#                                                                                                                                                                                                    //Silk/browser-version like Chrome/chrome-version Safari/webkit-version
+#                                                                                                                                                                                                    //Mobile
+#                                                                                                                                                                                                    //Mozilla/5.0 (Linux; Android android-version; product-model Build/product-build) AppleWebKit/webkit-version (KHTML, like Gecko)
+#                                                                                                                                                                                                                                                                                                                           //Silk/browser-version like Chrome/chrome-version Mobile Safari/webkit-version
+#
+#                                                                                                                                                                                                                                                                                                                           //User Agent String Examples
+#                                                                                                                                                                                                                                                                                                                           //Examples of the Amazon Silk User Agent String
+#                                                                                                                                                                                                                                                                                                                           //Tablet
+#                                                                                                                                                                                                                                                                                                                           //Mozilla/5.0 (Linux; Android 4.4.3; KFTHWI Build/KTU84M) AppleWebKit/537.36 (KHTML, like Gecko)
+#                                                                                                                                                                                                                                                                                                                                                                                                                  //Silk/44.1.54 like Chrome/44.0.2403.63 Safari/537.36
+#                                                                                                                                                                                                                                                                                                                                                                                                                  //Desktop
+#                                                                                                                                                                                                                                                                                                                                                                                                                  //Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
+#                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 //Silk/44.1.54 like Chrome/44.0.2403.63 Safari/537.36
+#                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 //Mobile
+#                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 //Mozilla/5.0 (Linux; U; Android 4.4.3; KFTHWI Build/KTU84M) AppleWebKit/537.36 (KHTML, like Gecko)
+#                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           //Silk/44.1.54 like Chrome/44.0.2403.63 Mobile Safari/537.36
+#    'Amazon-Silk' => [
+#    'name' => 'Amazon Silk Browser',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'Amazon',
+#        'link' => 'https://docs.aws.amazon.com/silk',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [ 'name' => 'Unknown' ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Blink',
+#        'link' => 'https://en.wikipedia.org/wiki/Blink_(browser_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'version' => 'Unknown',
+#      'date' => 'Unknown',
+#  ],
+#],
+#
+#    //UA for Kindle Fire 1st Generation
+#      //Note
+#      //The UA for the Kindle Fire 1st Generation follows a slightly different syntax.
+#      //In the examples below, red and italic text indicates variable fields. The Amazon Silk-Accelerated value can be either true or false, depending upon customer selection.
+#                                                                                                                                               //
+#                                                                                                                                               //Desktop/Tablet
+#                                                                                                                                               //Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_3; en-us; Silk/1.0.13.81_10003810) AppleWebKit/533.16 (KHTML, like Gecko) Version/5.0 Safari/533.16 Silk-Accelerated=true
+#                                                                                                                                                                                                                                                                //Mobile
+#                                                                                                                                                                                                                                                                //Mozilla/5.0 (Linux; U; Android 2.3.4; en-us; Silk/1.0.13.81_10003810) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1 Silk-Accelerated=true
+#    'Amazon-Silk-1st-gen' => [
+#    'name' => 'Amazon Silk Browser (Kindle Fire 1st Generation)',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'Amazon',
+#        'link' => 'https://docs.aws.amazon.com/silk',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [ 'name' => 'Unknown' ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Blink',
+#        'link' => 'https://en.wikipedia.org/wiki/Blink_(browser_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'version' => 'Unknown',
+#      'date' => 'Unknown',
+#  ],
+#],
+#
+#    //Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36 ASW/3.55.2393.596
+#                                                                //Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.109 Safari/537.36 ASW/1.48.2066.95
+#
+#    'avast-secure' => [
+#    'name' => 'Avast Secure Browser (formerly Avast SafeZone/Avastium)',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'AVAST Software s.r.o.',
+#        'link' => 'https://www.avast.com/secure-browser',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'Freeware',
+#        'link' => 'https://en.wikipedia.org/wiki/Freeware',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Blink',
+#        'link' => 'https://en.wikipedia.org/wiki/Blink_(browser_engine)',
+#    ],
+#    [
+#        'name' => 'V8',
+#        'link' => 'https://en.wikipedia.org/wiki/V8_(JavaScript_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'version' => 'Unknown',
+#      'date' => 'Unknown',
+#  ],
+#],
+#
+#    //Mozilla/4.0 (compatible; MSIE 6.0; AOL 9.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322)
+#      //Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 ADG/11.0.2541 AOLBUILD/11.0.2541 Safari/537.36       Windows Computer    Common
+#                                                                          //Mozilla/4.0 (compatible; MSIE 6.0; AOL 9.0; Windows NT 5.0)
+#    'AOL' => [
+#    'name' => 'AOL Explorer',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'America Online, Inc',
+#        'link' => 'https://www.aol.com/',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'discontinued',
+#    'licence' => [
+#    [
+#        'name' => 'Proprietary',
+#        'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Trident',
+#        'link' => 'https://en.wikipedia.org/wiki/Trident_(software)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'version' => '1.5',
+#      'date' => 'May 10, 2016',
+#  ],
+#],
+#
+#    //Mozilla/5.0 (Windows NT 5.1; rv:60.9) Goanna/4.4 Basilisk/20191122
+#    'Blisk' => [
+#    'name' => 'Blisk browser',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [ 'name' => 'Blisk team',
+#      'link' => 'https://blisk.io/' ],
+#  ],
+#    'cost' => [
+#      'Free' => 'Limited',
+#      'Paid' => 'Unlimited Pro',
+#  ],
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'Proprietary',
+#        'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Blink',
+#        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+#    ],
+#    [
+#        'name' => 'V8',
+#        'link' => 'https://en.wikipedia.org/wiki/V8_(JavaScript_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'version' => '12.0.92.83',
+#      'date' => 'June 29, 2019',
+#  ],
+#],
+#
+#    //Mozilla/5.0 (Windows NT 5.1; rv:60.9) Goanna/4.4 Blisk
+#    'Blisk-deprecated' => [
+#    'name' => 'Blisk browser',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [ 'name' => 'Blisk team',
+#      'link' => 'https://blisk.io/' ],
+#  ],
+#    'cost' => [
+#      'Free' => 'Limited',
+#      'Paid' => 'Unlimited Pro',
+#  ],
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'Proprietary',
+#        'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Blink',
+#        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+#    ],
+#    [
+#        'name' => 'V8',
+#        'link' => 'https://en.wikipedia.org/wiki/V8_(JavaScript_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'version' => '12.0.92.83',
+#      'date' => 'June 29, 2019',
+#  ],
+#],
+#
+#    //Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) BeakerBrowser/1.0.0-prerelease.7 Chrome/84.0.4129.0 Electron/10.0.0-beta.2 Safari/537.36
+#                                                                             //Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) BeakerBrowser/0.8.10 Chrome/80.0.3987.141 Electron/8.1.1 Safari/537.36
+#    'Beaker-Browser' => [
+#    'name' => 'Beaker',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'Blue Link Labs',
+#        'link' => 'https://beakerbrowser.com/about',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'MIT License',
+#        'link' => 'https://en.wikipedia.org/wiki/MIT_License',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Blink',
+#        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'macOS' => [
+#        'version' => '0.8.10',
+#        'date' => 'March 13, 2020',
+#    ],
+#      'Windows' => [
+#        'version' => '0.8.10',
+#        'date' => 'March 13, 2020',
+#    ],
+#      'Linux' => [
+#        'version' => '0.8.10',
+#        'date' => 'March 13, 2020',
+#    ],
+#  ],
+#],
+#
+#
+#    //Electron (software framework)
+#      // https://en.wikipedia.org/wiki/Electron_(software_framework)
+#      //Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Teams/1.3.00.13565 Chrome/69.0.3497.128 Electron/4.2.12 Safari/537.36
+#                                                                               //Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) electron/1.0.0 Chrome/53.0.2785.113 Electron/1.4.3 Safari/537.36
+#    'Electron' => [
+#    'name' => 'Electron',
+#    'type' => 'Electron (software framework)',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'GitHub',
+#        'link' => 'https://en.wikipedia.org/wiki/GitHub',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'MIT License',
+#        'link' => 'https://en.wikipedia.org/wiki/MIT_License',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Blink',
+#        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'Stable release' => [
+#        'version' => '10.1.5',
+#        'date' => '23 October 2020',
+#    ],
+#      'Preview release' => [
+#        'version' => '11.0.0-beta.16',
+#        'date' => '24 October 2020',
+#    ],
+#  ],
+#],
+#
+#    //Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Brave Chrome/83.0.4103.116 Safari/537.36
+#                                                                                   //Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.38 Safari/537.36 Brave/75
+#    'Brave' => [
+#    'name' => 'Brave Browser',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'Brave Software Inc',
+#        'link' => 'https://en.wikipedia.org/wiki/Brave_(browser)',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'MPL 2.0',
+#        'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Blink',
+#        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'Android' => [
+#        'version' => '1.15.73',
+#        'date' => '15 October 2020',
+#    ],
+#      'iOS' => [
+#        'version' => '1.20',
+#        'date' => '25 September 2020',
+#    ],
+#      'macOS' => [
+#        'version' => '1.15.75',
+#        'date' => '16 October 2020',
+#    ],
+#      'Windows' => [
+#        'version' => '1.15.75',
+#        'date' => '16 October 2020',
+#    ],
+#      'Linux' => [
+#        'version' => '1.15.75',
+#        'date' => '16 October 2020',
+#    ],
+#  ],
+#],
+#
+#    //Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/17.17134
+#                                                                             //Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36 Edge/18.17763
+#                                                                                                                                                      //Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.102 Safari/537.36 Edge/18.18362
+#                                                                                                                                                                                                                               //Mozilla/5.0 (Linux; Android 5.0.1; GT-I9505) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.116 Mobile Safari/537.36 EdgA/46.05.2.5158
+#
+#    'Edge' => [
+#    'name' => 'Microsoft Edge',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'Microsoft Corp',
+#        'link' => 'https://www.microsoftedgeinsider.com/en-us/',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'Proprietary',
+#        'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Blink',
+#        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'version' => '88.0.673.0',
+#      'date' => '14 October 2020',
+#  ],
+#],
+#
+#    //Opera/9.80 (J2ME/MIDP; Opera Mini/9.80 (S60; SymbOS; Opera Mobi/23.348; U; en) Presto/2.5.25 Version/10.54
+#      //Mozilla/5.0 (Linux; Android 9; FIG-LX1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Mobile Safari/537.36 OPR/64.1.3282.59829
+#                                                                             //Opera/9.80 (Windows Mobile; WCE; Opera Mobi/49; U; en) Presto/2.4.18 Version/10.00
+#                                                                             //Opera/9.80 (Android 2.2; Linux; Opera Mobi/ADR-2093533120; U; pl) Presto/2.7.60 Version/10.5
+#                                                                             //Opera/9.80 (Android; Linux; Opera Mobi/27; U; en) Presto/2.4.18 Version/10.00
+#                                                                             //Opera/9.80 (Android 2.2.1; Linux; Opera Mobi/ADR-1107051709; U; pl) Presto/2.8.149 Version/11.10
+#                                                                             //Opera/9.80 (Android 2.2; Opera Mobi/-2118645896; U; pl) Presto/2.7.60 Version/10.5
+#    'Opera-Mobile' => [
+#    'name' => 'Opera Mobile',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'Opera Software ASA',
+#        'link' => 'https://en.wikipedia.org/wiki/Opera_Software',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'Proprietary',
+#        'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Blink',
+#        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'Android' => [
+#        'version' => '59.1.2926.54067',
+#        'date' => 'July 13, 2020',
+#    ],
+#      'Android (classic)' => [
+#        'version' => '12.1.9',
+#        'date' => 'June 8, 2016',
+#    ],
+#      'Symbian' => [
+#        'version' => 'S60 12.0.22',
+#        'date' => 'June 24, 2012',
+#    ],
+#      'Windows Mobile' => [
+#        'version' => '10.0',
+#        'date' => 'March 16, 2010',
+#    ],
+#  ],
+#],
+#
+#    //Mozilla/5.0 (Linux; Android 9; SM-A530F Build/PPR1.180610.011) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/76.0.3809.111 Mobile Safari/537.36 OPT/1.20.73
+#                                                                                                  //Mozilla/5.0 (Linux; Android 7.0; SM-A510F Build/NRD90M) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/68.0.3440.91 Mobile Safari/537.36 OPT/1.10.33
+#                                                                                                                                                                                         //Mozilla/5.0 (Linux; Android 8.0.0; ANE-LX1 Build/HUAWEIANE-LX1) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/71.0.3578.99 Mobile Safari/537.36 OPT/1.13.48
+#    'Opera-Touch' => [
+#    'name' => 'Opera Touch',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'Opera Software ASA',
+#        'link' => 'https://en.wikipedia.org/wiki/Opera_Software',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'Proprietary',
+#        'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Blink',
+#        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'Android' => [
+#        'version' => '59.1.2926.54067',
+#        'date' => 'July 13, 2020',
+#    ],
+#      'Android (classic)' => [
+#        'version' => '12.1.9',
+#        'date' => 'June 8, 2016',
+#    ],
+#      'Symbian' => [
+#        'version' => 'S60 12.0.22',
+#        'date' => 'June 24, 2012',
+#    ],
+#      'Windows Mobile' => [
+#        'version' => '10.0',
+#        'date' => 'March 16, 2010',
+#    ],
+#  ],
+#],
+#
+#
+#    //Mozilla/5.0 (Linux armv7l) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36 OPR/36.0.2128.0 OMI/4.8.0.129.PIXEL_UNICORN3.79 SonyCEBrowser/1.0 (KD-49X706E; CTV/v6.904; ARG;)
+#                                                              //Mozilla/5.0 (Linux armv7l) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36 OPR/36.0.2128.0 OMI/4.8.0.129.Driver3.25, HbbTV/1.1.1 _TV_MT5802/012.002.246.001 (Philips, PUS6262, wireless) CE-HTML/1.0 NETTV/4.6.0 SignOn/2.0 SmartTvA/5.0.0 en Opera/68.0.3618.31
+#    'Opera' => [
+#    'name' => 'Opera',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'Opera Software',
+#        'link' => 'https://en.wikipedia.org/wiki/Opera_Software',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'Proprietary',
+#        'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Blink',
+#        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'version' => '71.0.3770.271',
+#      'date' => '14 October 2020',
+#  ],
+#],
+#
+#    //Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.277 Whale/2.9.118.31 Safari/537.36
+#                                                                 //Mozilla/5.0 (Macintosh; Intel Mac OS X 11_4_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.272 Whale/2.9.118.16 Safari/537.36
+#                                                                                                                                               //Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.277 Whale/2.9.118.17 Safari/537.36
+#    'whale' => [
+#    'name' => 'Naver Whale',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'NHN Corporation',
+#        'link' => 'https://en.wikipedia.org/wiki/Naver_Corporation',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'Freeware',
+#        'link' => 'https://en.wikipedia.org/wiki/Freeware',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Blink',
+#        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'Android' => [
+#        'version' => '1.5.4.2',
+#        'date' => 'May 26, 2020',
+#    ],
+#      'iOS' => [
+#        'version' => '1.5.0',
+#        'date' => 'May 25, 2020',
+#    ],
+#      'macOS' => [
+#        'version' => '2.7.100.20',
+#        'date' => 'June 18, 2020',
+#    ],
+#      'Windows' => [
+#        'version' => '2.7.100.20',
+#        'date' => 'June 18, 2020',
+#    ],
+#      'Linux' => [
+#        'version' => '2.7.100.20',
+#        'date' => 'June 18, 2020',
+#    ],
+#  ],
+#],
+#
+#    //Mozilla/5.0 (iPhone; CPU iPhone OS 10_0 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 YaBrowser/17.4.3.195.10 Mobile/14A346 Safari/E7FBAF  17.4    iOS Mobile - Phone  Very common
+#                                                                                            //Mozilla/5.0 (Windows NT 6.3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 YaBrowser/17.6.1.749 Yowser/2.5 Safari/537.36    17.6    Windows Computer    Very common
+#                                                                                                                                                        //Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 YaBrowser/18.3.1.1232 Yowser/2.5 Safari/537.36
+#                                                                                                                                                                                                                     //Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 YaBrowser/21.5.3.753 (beta) Yowser/2.5 Safari/537.36
+#    'yandex-browser' => [
+#    'name' => 'Yandex Browser',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'Yandex',
+#        'link' => 'https://en.wikipedia.org/wiki/Yandex',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'Proprietary',
+#        'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Blink',
+#        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'Android' => [
+#        'version' => '20.6.3.54',
+#        'date' => 'July 23, 2020',
+#    ],
+#      'iOS' => [
+#        'version' => '20.6.2.318',
+#        'date' => 'July 16, 2020',
+#    ],
+#      'macOS' => [
+#        'version' => '20.7.2',
+#        'date' => 'July 2020',
+#    ],
+#      'Windows' => [
+#        'version' => '20.7.2',
+#        'date' => 'July 2020',
+#    ],
+#      'Linux' => [
+#        'version' => '20.7.2',
+#        'date' => 'July 2020',
+#    ],
+#  ],
+#],
+#
+#    //Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4650.0 Iron Safari/537.36
+#                                                                //Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4650.0 Iron Safari/537.36
+#                                                                                                                               //Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4650.0 Iron Safari/537.36
+#    'Iron' => [
+#    'name' => 'SRWare Iron',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'SRWare',
+#        'link' => 'www.srware.net/en/software_srware_iron.php',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'BSD',
+#        'link' => 'https://en.wikipedia.org/wiki/BSD_licenses',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Blink',
+#        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+#    ],
+#    [
+#        'name' => 'V8',
+#        'link' => 'https://en.wikipedia.org/wiki/V8_(JavaScript_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'Android' => [
+#        'version' => '74.0.3850.0',
+#        'date' => 'May 10, 2019',
+#    ],
+#      'macOS' => [
+#        'version' => '84.0.4300.0',
+#        'date' => 'August 29, 2020',
+#    ],
+#      'Windows' => [
+#        'version' => '85.0.4350.0',
+#        'date' => 'October 2, 2020',
+#    ],
+#      'Linux' => [
+#        'version' => '85.0.4350.0',
+#        'date' => 'October 6, 2020',
+#    ],
+#  ],
+#],
+#
+#    //Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.3 (KHTML, like Gecko) Comodo_Dragon/6.0.0.10 Chrome/6.0.472.63 Safari/534.3
+#                                                                                  //Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5 Comodo_Dragon/19.2.0.0 19.2
+#                                                                                                                                                    //Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.11 (KHTML, like Gecko) Comodo_Dragon/17.1.0.0 Chrome/17.0.963.38 Safari/535.11
+#                                                                                                                                                                                                                //Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.30 (KHTML, like Gecko) Comodo_Dragon/12.1.0.0 Chrome/12.0.742.91 Safari/534.30
+#    'Comodo-Dragon' => [
+#    'name' => 'Comodo Dragon',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'Comodo Group',
+#        'link' => 'https://www.comodo.com/home/browsers-toolbars/internet-products.php',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'BSD',
+#        'link' => 'https://en.wikipedia.org/wiki/BSD_licenses',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Blink',
+#        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#    [
+#        'version' => '83.0.4103.116',
+#        'date' => 'July 21, 2020',
+#    ],
+#  ],
+#],
+#
+#    //Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) coc_coc_browser/83.0.144 Chrome/77.0.3865.144 Safari/537.36
+#                                                                        //Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) coc_coc_browser/94.0.202 Chrome/88.0.4324.202 Safari/537.36
+#                                                                                                                                            //Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) coc_coc_browser/95.0.150 Chrome/89.0.4389.150 Safari/537.36
+#                                                                                                                                                                                                                //Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) coc_coc_browser/87.0.152 Chrome/81.0.4044.152 Safari/537.36
+#    'coc-coc' => [
+#    'name' => 'Comodo Dragon',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'Comodo Group',
+#        'link' => 'https://www.comodo.com/home/browsers-toolbars/internet-products.php',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'BSD',
+#        'link' => 'https://en.wikipedia.org/wiki/BSD_licenses',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Blink',
+#        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#    [
+#        'version' => '83.0.4103.116',
+#        'date' => 'July 21, 2020',
+#    ],
+#  ],
+#],
+#
+#    //Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:65.0) Gecko/20100101 Firefox/65.0 IceDragon/65.0.2
+#      //Mozilla/5.0 (Windows NT 10.0; WOW64; rv:65.0) Gecko/20100101 Firefox/65.0 IceDragon/65.0.2
+#      //Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:65.0) Gecko/20100101 Firefox/65.0 IceDragon/65.0.2
+#      //Mozilla/5.0 (Windows NT 6.1; WOW64; rv:22.0) Gecko/20100101 Firefox/22.0 IceDragon/22.0.0.1
+#      //Mozilla/5.0 (Windows NT 6.2; WOW64; rv:65.0) Gecko/20100101 Firefox/65.0 IceDragon/65.0.2
+#      //Mozilla/5.0 (Windows NT 6.2; rv:65.0) Gecko/20100101 Firefox/65.0 IceDragon/65.0.2
+#    'Ice-Dragon' => [
+#    'name' => 'Comodo Ice Dragon',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'Comodo Group',
+#        'link' => 'https://www.comodo.com/home/browsers-toolbars/internet-products.php',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'MPL 2.0',
+#        'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Gecko',
+#        'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#    [
+#        'version' => '65.0.2.15',
+#        'date' => 'June 19, 2019',
+#    ],
+#  ],
+#],
+#
+#    //Mozilla/5.0 (Windows NT 6.1; rv:9.0.1) Gecko/20100101 Firefox/9.0.1 epic/9.0.1
+#    'epic' => [
+#    'name' => 'Epic Browser',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'Hidden Reflex',
+#        'link' => 'https://www.epicbrowser.com/',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'Proprietary',
+#        'note' => '(as of 3.0)',
+#        'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'WebKit',
+#        'link' => 'https://en.wikipedia.org/wiki/WebKit',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'version' => 'Unknown',
+#      'date' => 'Unknown',
+#  ],
+#],
+#
+#    //Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.143 Safari/537.36 Vivaldi/1.95.1077.45
+#                                                                       //Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.214 Safari/537.36 Vivaldi/4.0.2312.24
+#                                                                                                                                                //Mozilla/5.0 (X11; Fedora; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.105 Safari/537.36 Vivaldi/1.92.917.43
+#    'vivaldi' => [
+#    'name' => 'Vivaldi Browser',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'Vivaldi Technologies',
+#        'link' => 'https://en.wikipedia.org/wiki/Vivaldi_(web_browser)',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'Proprietary',
+#        'note' => '(as of 3.0)',
+#        'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
+#    ],
+#    [
+#        'name' => 'Freeware',
+#        'link' => 'https://en.wikipedia.org/wiki/Freeware',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Blink',
+#        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+#    ],
+#    [
+#        'name' => 'V8',
+#        'link' => 'https://en.wikipedia.org/wiki/Chrome_V8',
+#    ],
+#  ],
+#    'latest-release' => 'Unknown',
+#],
+#
+#    //Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 UBrowser/7.0.185.1002 Safari/537.36
+#                                                                //Mozilla/5.0 (Linux; U; Android 7.0; en-US; SM-G935F Build/NRD90M) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 UCBrowser/11.3.8.976 U3/0.8.0 Mobile Safari/534.30
+#    'uc-browser' => [
+#    'name' => 'UC Browser',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'UCWeb Alibaba Group',
+#        'link' => 'https://en.wikipedia.org/wiki/UC_Browser',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'Proprietary',
+#        'note' => '(as of 3.0)',
+#        'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Blink',
+#        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+#    ],
+#    [
+#        'name' => 'V8',
+#        'link' => 'https://en.wikipedia.org/wiki/Chrome_V8',
+#    ],
+#  ],
+#    'latest-release' => 'Unknown',
+#],
+#
+#    //Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; Maxthon)
+#      //Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; Maxthon; .NET CLR 1.1.4322)
+#      //Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; Maxthon)
+#      //Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; Maxthon; .NET CLR 1.1.4322)
+#      //Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Maxthon/4.4.8.1000 Chrome/30.0.1599.101 Safari/537.36
+#    'Maxthon' => [
+#    'name' => 'Maxthon Browser',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'Maxthon International Ltd',
+#        'link' => 'https://en.wikipedia.org/wiki/Maxthon',
+#    ],
+#  ],
+#    'cost' => '	Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'Freeware',
+#        'link' => 'https://en.wikipedia.org/wiki/Freeware',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'WebKit',
+#        'link' => 'https://en.wikipedia.org/wiki/WebKit',
+#    ],
+#    [
+#        'name' => 'Trident',
+#        'link' => 'https://en.wikipedia.org/wiki/Trident_(layout_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'Windows' => [
+#        'version' => '5.3.8.2000',
+#        'date' => 'October 25, 2019',
+#    ],
+#      'Android' => [
+#        'version' => '5.2.3.3241',
+#        'date' => 'January 25, 2019',
+#    ],
+#      'macOS' => [
+#        'version' => '5.1.60',
+#        'date' => 'August 27, 2018',
+#    ],
+#      'iOS' => [
+#        'version' => '5.4.5',
+#        'date' => 'July 21, 2020',
+#    ],
+#      'Windows Phone' => [
+#        'version' => '2.2.0',
+#        'date' => 'March 30, 2017',
+#    ],
+#      'Linux' => [
+#        'version' => '1.0.5.3',
+#        'date' => 'September 9, 2014',
+#    ],
+#  ],
+#],
+#
+#    'maxthon-deprecated' => [
+#    'name' => 'Maxthon Browser (Deprecated)',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'Maxthon International Ltd',
+#        'link' => 'https://en.wikipedia.org/wiki/Maxthon',
+#    ],
+#  ],
+#    'cost' => '	Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'Freeware',
+#        'link' => 'https://en.wikipedia.org/wiki/Freeware',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'WebKit',
+#        'link' => 'https://en.wikipedia.org/wiki/WebKit',
+#    ],
+#    [
+#        'name' => 'Trident',
+#        'link' => 'https://en.wikipedia.org/wiki/Trident_(layout_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'Windows' => [
+#        'version' => '5.3.8.2000',
+#        'date' => 'October 25, 2019',
+#    ],
+#      'Android' => [
+#        'version' => '5.2.3.3241',
+#        'date' => 'January 25, 2019',
+#    ],
+#      'macOS' => [
+#        'version' => '5.1.60',
+#        'date' => 'August 27, 2018',
+#    ],
+#      'iOS' => [
+#        'version' => '5.4.5',
+#        'date' => 'July 21, 2020',
+#    ],
+#      'Windows Phone' => [
+#        'version' => '2.2.0',
+#        'date' => 'March 30, 2017',
+#    ],
+#      'Linux' => [
+#        'version' => '1.0.5.3',
+#        'date' => 'September 9, 2014',
+#    ],
+#  ],
+#],
+#
+#
+#    //END Browsers based on Chromium
+#
+#      //Original browser
+#      //Mozilla/5.0 (Linux; Android 11; HD1900) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.134 Mobile Safari/537.36
+#                                                                             //Mozilla/5.0 (Linux; arm; Android 11; SM-A115F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.216 YaApp_Android/21.53.1 YaSearchBrowser/21.53.1 BroPP/1.0 SA/3 Mobile Safari/537.36
+#                                                                                                                                                           //Mozilla/5.0 (Linux; Android 7.0; A81F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.120 Safari/537.36
+#                                                                                                                                                                                                                                 //Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4557.4 Safari/537.36
+#    'Chrome' => [
+#    'name' => 'Google Chrome',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'Google LLC',
+#        'link' => 'https://en.wikipedia.org/wiki/Google',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'BSD (Chromium executable) (some closed-source features)',
+#        'link' => 'https://en.wikipedia.org/wiki/BSD_licenses',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Blink',
+#        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'Android' => [
+#        'version' => '86.0.4240.114',
+#        'date' => 'October 22, 2020',
+#    ],
+#      'iOS' => [
+#        'version' => '86.0.4240.93',
+#        'date' => 'October 12, 2020',
+#    ],
+#      'macOS' => [
+#        'version' => '86.0.4240.111',
+#        'date' => 'October 20, 2020',
+#    ],
+#      'Windows' => [
+#        'version' => '86.0.4240.111',
+#        'date' => 'October 20, 2020',
+#    ],
+#      'Linux' => [
+#        'version' => '86.0.4240.111',
+#        'date' => 'October 20, 2020',
+#    ],
+#  ],
+#],
+#
+#
+#    //Firefox based browser
+#
+#      //Mozilla/5.0 (Windows NT 6.1; rv:9.0.1) Gecko/20100101 Firefox/9.0.1 Alienforce/9.0.1
+#    'alien-force' => [
+#    'name' => 'Alienforce Browser',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'kbclub',
+#        'link' => 'https://kbclub.ru/',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [ 'name' => 'Freeware', 'link' => 'https://en.wikipedia.org/wiki/Web_browser' ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Gecko',
+#        'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'version' => 'Unknown',
+#      'date' => 'Unknown',
+#  ],
+#],
+#
+#    //Mozilla/5.0 (X11; Linux x86_64; rv:55.0) Gecko/20100101 Goanna/4.0 Firefox/55.0 Basilisk/20180202
+#      //Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Goanna/4.8 Firefox/68.0 Basilisk/20210501
+#      //Mozilla/5.0 (Windows NT 5.1; rv:60.9) Goanna/4.4 Basilisk/20191122
+#    'Basilisk' => [
+#    'name' => 'Basilisk ',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'Moonchild Productions',
+#        'link' => 'https://www.basilisk-browser.org/',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'MPL 2.0',
+#        'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Goanna',
+#        'link' => 'https://en.wikipedia.org/wiki/Goanna_(software)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'version' => '2020.10.05',
+#      'date' => '5 October 2020',
+#  ],
+#],
+#
+#    //Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.0.11) Gecko/20070501 Firefox/1.5.0.11 Flock/0.7.13.1
+#      //Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.5; en-US; rv:1.9.0.3) Gecko/2008100716 Firefox/3.0.3 Flock/2.0
+#      //Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.8) Gecko/20071018 Firefox/2.0.0.8 Flock/1.0RC3
+#    'Flock' => [
+#    'name' => 'Flock',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'Flock Inc',
+#        'link' => [
+#        'https://web.archive.org/web/20110325151017/http://www.flock.com/',
+#        'https://en.wikipedia.org/wiki/Flock_(web_browser)',
+#    ],
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'discontinued',
+#    'licence' => [
+#    [
+#        'name' => 'Proprietary',
+#        'note' => '(as of 3.0)',
+#        'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'WebKit',
+#        'link' => 'https://en.wikipedia.org/wiki/WebKit',
+#    ],
+#  ],
+#    'latest-release' => [
+#    [
+#        'version' => '3.5.3.4641',
+#        'date' => 'February 1, 2011',
+#    ],
+#  ],
+#],
+#
+#    //Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0) Gecko/20100101 Firefox/78.0 Waterfox/78.12.0
+#      //Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101 Firefox/78.0 Waterfox/78.12.0
+#      //Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:78.0) Gecko/20100101 Firefox/78.0 Waterfox/78.10.0
+#      //Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:78.0) Gecko/20100101 Firefox/78.0 Waterfox/78.10.0
+#    'water-fox' => [
+#    'name' => 'Waterfox Browser',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [ 'name' => 'Alex Kontos' ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'GPL',
+#        'link' => 'https://en.wikipedia.org/wiki/GNU_General_Public_License',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Gecko',
+#        'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#    [
+#        'version' => '2020.10',
+#        'date' => '21 October 2020',
+#    ],
+#  ],
+#],
+#
+#    //Mozilla/5.0 (X11; Linux x86_64; rv:4.8) Goanna/20210607 PaleMoon/29.2.1
+#      //Mozilla/5.0 (Windows NT 5.2; Win64; x64; rv:4.8) Goanna/20210625 PaleMoon/28.10.3a1
+#      //Mozilla/5.0 (Windows NT 6.1; WOW64; rv:78.0) Gecko/20100101 Goanna/4.8 Firefox/78.0 PaleMoon/29.2.1
+#    'pale-moon' => [
+#    'name' => 'PaleMoon Browser',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [ 'name' => 'Moonchild Productions' ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'MPL 2.0',
+#        'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Goanna',
+#        'link' => 'https://en.wikipedia.org/wiki/Goanna_(software)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'Standard' => [
+#        'version' => '28.15.0',
+#        'date' => '27 October 2020',
+#    ],
+#  ],
+#],
+#
+#    //Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0.1) Gecko/20110608 SeaMonkey/2.1
+#      //Mozilla/5.0 (X11; Linux i686; rv:15.0) Gecko/20120909 SeaMonkey/2.12.1
+#      //Mozilla/5.0 (Windows NT 6.1; rv:60.0) Gecko/20100101 Firefox/60.0 SeaMonkey/2.53.8
+#      //Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101 Firefox/60.0 SeaMonkey/2.53.8
+#      //Mozilla/5.0 (Windows NT 6.2; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0 SeaMonkey/2.53.5.1
+#    'sea-monkey' => [
+#    'name' => 'SeaMonkey Browser',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [ 'name' => 'SeaMonkey Council' ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'MPL 2.0',
+#        'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Gecko',
+#        'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'Stable release' => [
+#        'version' => '2.53.4',
+#        'date' => 'September 22, 2020',
+#    ],
+#      'Preview release' => [
+#        'version' => '2.53.5b1',
+#        'date' => 'October 29, 2020',
+#    ],
+#  ],
+#],
+#
+#    //salamWeb/1.2.3.4
+#      //salam Browser
+#    'salam-web' => [
+#    'name' => 'SalamWeb Browser',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'SalamWeb',
+#        'link' => 'https://salamweb.com/',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'Freeware',
+#        'link' => 'https://en.wikipedia.org/wiki/Freeware',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Blink',
+#        'link' => 'https://en.wikipedia.org/wiki/Blink_(web_engine)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'Windows' => [
+#        'version' => '4.5',
+#        'date' => 'July 31, 2020',
+#    ],
+#      'Android' => [
+#        'version' => '4.5.0.40',
+#        'date' => 'June 25, 2020',
+#    ],
+#      'macOS' => [
+#        'version' => '4.5',
+#        'date' => 'June 20, 2020',
+#    ],
+#      'iOS' => [
+#        'version' => '4.5',
+#        'date' => 'June 20, 2020',
+#    ],
+#  ],
+#],
+#
+#    //Mozilla/5.0 (Windows NT 6.3; Win64; x64; rv:86.0.1) Gecko/20100101 Firefox/86.0.1
+#      //Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0/MDZ1X7f7-14
+#      //Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:89.1) Gecko/20100101 Firefox/89.1
+#      //Mozilla/5.0 (Android 10; Mobile; rv:89.0; Tesseract/1.0) Gecko/89.0 Firefox/89.0
+#    'firefox' => [
+#    'name' => 'Firefox Browser',
+#    'keyword' => 'firefox',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'Mozilla Foundation',
+#        'link' => 'https://en.wikipedia.org/wiki/Mozilla_Foundation',
+#    ],
+#  ],
+#    'cost' => 'Free',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'MPL 2.0',
+#        'link' => 'https://en.wikipedia.org/wiki/Mozilla_Public_License',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'Gecko',
+#        'note' => '(before v57)',
+#        'link' => 'https://en.wikipedia.org/wiki/Gecko_(layout_engine)',
+#    ],
+#    [
+#        'name' => 'Gecko w/Servo',
+#        'note' => 'v57 & after',
+#        'link' => 'https://en.wikipedia.org/wiki/Servo_(software)',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'Standard' => [
+#        'version' => '82.0',
+#        'date' => 'October 20, 2020',
+#    ],
+#      'Extended Support Release' => [
+#        'version' => '78.4.0',
+#        'date' => 'October 20, 2020',
+#    ],
+#  ],
+#],
+#
+#
+#    //Mozilla/5.0 (iPhone; CPU iPhone OS 14_4_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 Version/13.1 (Ecosia ios@4.1.7.870) Safari/604.1
+#                                                                                              //Mozilla/5.0 (iPhone; CPU iPhone OS 14_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 musical_ly_18.5.0 JsSdk/2.0 NetType/WIFI Channel/App Store ByteLocale/it Region/GB ByteFullLocale/it-IT isDarkMode/0 Safari/604.1 WKWebView/1
+#    'safari' => [
+#    'name' => 'safari Browser',
+#    'type' => 'Web Browser',
+#    'ui' => 'GraphicalMode',
+#    'creator' => [
+#    [
+#        'name' => 'Apple Inc.',
+#        'link' => 'https://en.wikipedia.org/wiki/Apple_Inc.',
+#    ],
+#  ],
+#    'cost' => 'Included with macOS and iOS',
+#    'status' => 'Active',
+#    'licence' => [
+#    [
+#        'name' => 'Proprietary (browser)',
+#        'link' => 'https://en.wikipedia.org/wiki/Proprietary_software',
+#    ],
+#    [
+#        'name' => 'LGPL (WebKit) ',
+#        'link' => 'https://en.wikipedia.org/wiki/GNU_Lesser_General_Public_License',
+#    ],
+#  ],
+#    'layout' => [
+#    [
+#        'name' => 'WebKit',
+#        'link' => 'https://en.wikipedia.org/wiki/WebKit',
+#    ],
+#  ],
+#    'latest-release' => [
+#      'macOS' => [
+#        'version' => '14.0',
+#        'date' => 'September 17, 2020',
+#    ],
+#      'iOS' => [
+#        'version' => '14.0',
+#        'date' => 'September 17, 2020',
+#    ],
+#  ],
+#],
+#]

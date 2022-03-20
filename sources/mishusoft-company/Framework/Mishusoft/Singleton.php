@@ -2,8 +2,6 @@
 
 namespace Mishusoft;
 
-use Exception;
-
 class Singleton
 {
     private static array $instances = [];
@@ -15,11 +13,11 @@ class Singleton
     }
 
     /**
-     * @throws Exception
+     * @throws \RuntimeException
      */
     public function __wakeup()
     {
-        throw new Exception("Cannot un-serialize singleton");
+        throw new \RuntimeException("Cannot un-serialize singleton");
     }
 
     public static function getInstance()

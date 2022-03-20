@@ -1,16 +1,34 @@
+# Add directory index files
+# https://help.dreamhost.com/hc/en-us/articles/215747718-How-can-I-control-my-directory-indexes-with-an-htaccess-file-
+# https://stackoverflow.com/questions/10212778/htaccess-directoryindex-does-not-work/20336343
+<IfModule dir_module>
+    DirectoryIndex index.php index.html
+</IfModule>
+
+# Use rewrite module to set new application
+# https://publib.boulder.ibm.com/httpserv/manual24/rewrite/index.html
 <IfModule mod_rewrite.c>
+    # Set Option for controls which server features are available in a particular directory.
+    # https://publib.boulder.ibm.com/httpserv/manual24/content-negotiation.html
+    # https://publib.boulder.ibm.com/httpserv/manual24/mod/core.html#options
+    # https://stackoverflow.com/a/25423722
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
     </IfModule>
+
+    # Control request header
+    # https://httpd.apache.org/docs/current/mod/mod_headers.html
     <IfModule mod_headers.c>
+        # set cors access control policy
         Header set Access-Control-Allow-Origin "*"
         Header set Access-Control-Allow-Methods "POST"
         Header set Access-Control-Allow-Headers "ms-feedback-data,Accept,OPTIONS"
 
         #Header add Content-Security-Policy "default-src 'self' 'unsafe-inline' 'unsafe-eval';font-src 'self' data:;img-src 'self' 'unsafe-inline' data:;script-src 'self' 'unsafe-inline';style-src 'self' 'unsafe-inline';style-src-attr 'self' 'unsafe-inline';"
-    </IfModule>
-    <IfModule dir_module>
-        DirectoryIndex index.php index.html
+
+        # Remove header with PHP version
+        Header always unset X-Powered-By
+        Header unset X-Powered-By
     </IfModule>
 
 
@@ -18,22 +36,16 @@
       Header set X-Robots-Tag "noindex"
     </Files>
 
-    #css|
-    <Files ~ "\.(png|jpe?g|gif|webp|ttf|otf|eot|woff2?|js|css)$">
-      Header set Cache-Control: max-age=31536000
-    </Files>
-
+    # cache lookup turn on for litespeed server
+    <IfModule LiteSpeed>
+       CacheLookup on
+    </IfModule>
 
     # RewriteEngine turn on
     RewriteEngine On
 
-    # Handle Authorization Header
-    # RewriteCond %{HTTP:Authorization} .
-    # RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-
-
     # Redirect HTTPS [https://www]
-    # Prevent me from redirect action
+    # Prevent local server from redirect action
     RewriteCond %{SERVER_NAME} !localhost
     RewriteCond %{REMOTE_ADDR} !^127\.0\.0\.1
     RewriteCond %{REMOTE_ADDR} !^::1
@@ -43,7 +55,7 @@
     RewriteRule ^(.*) https://www.%{SERVER_NAME}%{REQUEST_URI} [L,R=301]
 
     # Redirect HTTPS [https://]
-    # Prevent me from redirect action
+    # Prevent local server from redirect action
     RewriteCond %{SERVER_NAME} !localhost
     RewriteCond %{REMOTE_ADDR} !^127\.0\.0\.1
     RewriteCond %{REMOTE_ADDR} !^::1
@@ -53,36 +65,19 @@
     RewriteRule ^(.*) https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]
 
 
-    # Redirect Trailing Slashes If Not A Folder...
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_URI} (.+)/$
-    RewriteRule ^ %1 [L,R=301]
+    # Add a slash to end of url
+    # https://publib.boulder.ibm.com/httpserv/manual70/rewrite/rewrite_guide.html
+    RewriteCond %{REQUEST_FILENAME}     -d
+    RewriteRule    ^(.+[^/])$       $1/  [R]
 
-    # Send Requests To Front Controller...
+    # Verify for link, file and directory, then send request to directory index file
+    # https://stackoverflow.com/questions/18406156/redirect-all-to-index-php-using-htaccess
     # Rewrite Conditions set
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond  %{REQUEST_FILENAME} !-l
 
     # Rewrite Rules set
-    # RewriteRule ^ index.php [L]
-    #RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
-    RewriteRule ^ index.php [L]
-
-    # Rewrite /foo/bar to /foo/bar.php
-    # RewriteRule ^([^.?]+)$.mfw %{REQUEST_URI} [L]
-
-    #error log file
-    ErrorLog "../storages/framework/logs/httpd/error.log"
-
-
-
-    #error page setting
-#    ErrorDocument 400 /400.shtml
-#    ErrorDocument 403 /403.shtml
-#    ErrorDocument 404 /404.shtml
-#    ErrorDocument 408 /408.shtml
-#    ErrorDocument 500 /500.shtml
-#    ErrorDocument 503 /503.shtml
-
+    # https://stackoverflow.com/a/18406686
+    RewriteRule ^.*$ index.php [L,QSA]
 </IfModule>

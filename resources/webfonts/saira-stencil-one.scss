@@ -1,0 +1,15 @@
+/* Saira Stencil One font*/
+@font-face {
+  font-family: 'Saira Stencil One';
+  src: url('SairaStencilOne/SairaStencilOne-Regular.eot');
+  src: local('Saira Stencil One'), local('Saira Stencil One'),
+  url('SairaStencilOne/SairaStencilOne-Regular.eot?#iefix') format('embedded-opentype'),
+  url('SairaStencilOne/SairaStencilOne-Regular.woff2') format('woff2'),
+  url('SairaStencilOne/SairaStencilOne-Regular.woff') format('woff'),
+  url('SairaStencilOne/SairaStencilOne-Regular.ttf') format('truetype'),
+  url('SairaStencilOne/SairaStencilOne-Regular.svg#SairaStencilOne-Regular') format('svg')
+;
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

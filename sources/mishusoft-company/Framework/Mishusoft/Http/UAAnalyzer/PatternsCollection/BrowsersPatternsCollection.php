@@ -16,8 +16,6 @@ class BrowsersPatternsCollection extends Collection
     /**
      * @return array
      * @throws RuntimeException
-     * @throws \JsonException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function all(): array
     {
@@ -37,8 +35,6 @@ class BrowsersPatternsCollection extends Collection
      * @return string
      * @throws InvalidArgumentException
      * @throws RuntimeException
-     * @throws \JsonException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function compat(string $identifier): string
     {
@@ -55,8 +51,6 @@ class BrowsersPatternsCollection extends Collection
      * @return string
      * @throws InvalidArgumentException
      * @throws RuntimeException
-     * @throws \JsonException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function browserEngine(string $identifier): string
     {
@@ -73,8 +67,6 @@ class BrowsersPatternsCollection extends Collection
      * @return string
      * @throws InvalidArgumentException
      * @throws RuntimeException
-     * @throws \JsonException
-     * @throws \Mishusoft\Exceptions\JsonException
      */
     public function match(string $identifier): string
     {

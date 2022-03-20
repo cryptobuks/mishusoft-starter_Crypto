@@ -1,0 +1,10 @@
+user agent database list
+
+https://user-agents.net/
+https://userstack.com/
+https://developers.whatismybrowser.com/useragents/explore/
+https://opendata.stackexchange.com/questions/11545/database-of-user-agents
+https://github.com/browscap/browscap/wiki/Resource:-User-Agents-Database
+https://github.com/tamimibrahim17/List-of-user-agents
+https://awesomeopensource.com/projects/user-agent
+https://gist.github.com/leecade/3376147

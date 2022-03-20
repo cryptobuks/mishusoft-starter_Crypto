@@ -1,0 +1,39 @@
+---
+- extension:
+  - gltf
+  type: model/gltf+json
+  document: glTF model
+  acronym: glTF
+  expanded-acronym: GL Transmission Format
+  sub-class-of: application/json
+- extension:
+  - glb
+  type: model/gltf-binary
+  document: glTF model
+  acronym: glTF
+  expanded-acronym: GL Transmission Format
+- extension:
+  - igs
+  - iges
+  type: model/iges
+  document: IGES document
+  acronym: IGES
+  expanded-acronym: Initial Graphics Exchange Specification
+  sub-class-of: text/plain
+- extension:
+  - stl
+  type: model/stl
+  document: STL 3D model
+  acronym: STL
+  expanded-acronym: StereoLithography
+  alias: model/x.stl-binary
+- extension:
+  - vrm
+  - vrml
+  - wrl
+  type: model/vrml
+  document: VRML document
+  acronym: VRML
+  expanded-acronym: Virtual Reality Modeling Language
+  sub-class-of: text/plain
+...
